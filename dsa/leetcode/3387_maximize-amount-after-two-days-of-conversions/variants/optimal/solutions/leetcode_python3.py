@@ -11,9 +11,7 @@ class Solution:
         pairs2: List[List[str]],
         rates2: List[float],
     ) -> float:
-        def rates_from(
-            pairs: List[List[str]], rates: List[float]
-        ) -> dict[str, float]:
+        def rates_from(pairs: List[List[str]], rates: List[float]) -> dict[str, float]:
             graph = defaultdict(list)
             for (source, target), rate in zip(pairs, rates):
                 graph[source].append((target, rate))
@@ -31,8 +29,4 @@ class Solution:
 
         day1 = rates_from(pairs1, rates1)
         day2 = rates_from(pairs2, rates2)
-        return max(
-            amount / day2[currency]
-            for currency, amount in day1.items()
-            if currency in day2
-        )
+        return max(amount / day2[currency] for currency, amount in day1.items() if currency in day2)

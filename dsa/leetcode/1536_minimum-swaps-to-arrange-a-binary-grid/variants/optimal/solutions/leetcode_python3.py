@@ -22,6 +22,6 @@ class Solution:
             if candidate == n:
                 return -1
             swaps += candidate - position
-            trailing_zeros[position + 1:candidate + 1] = trailing_zeros[position:candidate]
+            trailing_zeros[position + 1 : candidate + 1] = trailing_zeros[position:candidate]
             trailing_zeros[position] = required
         return swaps

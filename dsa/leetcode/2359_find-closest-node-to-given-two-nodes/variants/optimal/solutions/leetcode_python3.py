@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def closestMeetingNode(
-        self, edges: List[int], node1: int, node2: int
-    ) -> int:
+    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
         def distances(start: int) -> List[int]:
             result = [-1] * len(edges)
             distance = 0

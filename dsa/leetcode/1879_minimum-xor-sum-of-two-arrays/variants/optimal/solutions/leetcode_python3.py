@@ -14,8 +14,7 @@ class Solution:
                 if mask & bit:
                     costs[mask] = min(
                         costs[mask],
-                        costs[mask ^ bit]
-                        + (nums1[first_index] ^ nums2[second_index]),
+                        costs[mask ^ bit] + (nums1[first_index] ^ nums2[second_index]),
                     )
 
         return int(costs[-1])

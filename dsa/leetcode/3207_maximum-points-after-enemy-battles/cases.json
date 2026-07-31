@@ -8,12 +8,12 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           3,
           2,
           2
         ],
-        "current_energy": 2
+        "currentEnergy": 2
       },
       "expected": 3,
       "tags": [
@@ -26,10 +26,10 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           2
         ],
-        "current_energy": 10
+        "currentEnergy": 10
       },
       "expected": 5,
       "tags": [
@@ -43,12 +43,12 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           5,
           7,
           9
         ],
-        "current_energy": 4
+        "currentEnergy": 4
       },
       "expected": 0,
       "tags": [
@@ -61,12 +61,12 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           1,
           2,
           3
         ],
-        "current_energy": 0
+        "currentEnergy": 0
       },
       "expected": 0,
       "tags": [
@@ -79,12 +79,12 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           4,
           9,
           6
         ],
-        "current_energy": 4
+        "currentEnergy": 4
       },
       "expected": 4,
       "tags": [
@@ -97,13 +97,13 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           2,
           2,
           2,
           7
         ],
-        "current_energy": 2
+        "currentEnergy": 2
       },
       "expected": 6,
       "tags": [
@@ -116,13 +116,13 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           20,
           11,
           6,
           3
         ],
-        "current_energy": 9
+        "currentEnergy": 9
       },
       "expected": 15,
       "tags": [
@@ -135,12 +135,12 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           100,
           250,
           400
         ],
-        "current_energy": 1000000000
+        "currentEnergy": 1000000000
       },
       "expected": 10000006,
       "tags": [
@@ -153,12 +153,12 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           1000000000,
           999999999,
           500000000
         ],
-        "current_energy": 500000000
+        "currentEnergy": 500000000
       },
       "expected": 4,
       "tags": [
@@ -171,12 +171,12 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           6,
           10,
           15
         ],
-        "current_energy": 7
+        "currentEnergy": 7
       },
       "expected": 5,
       "tags": [
@@ -189,7 +189,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           8,
           3,
           12,
@@ -197,7 +197,7 @@
           20,
           7
         ],
-        "current_energy": 3
+        "currentEnergy": 3
       },
       "expected": 18,
       "tags": [
@@ -210,10 +210,10 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           9
         ],
-        "current_energy": 8
+        "currentEnergy": 8
       },
       "expected": 0,
       "tags": [

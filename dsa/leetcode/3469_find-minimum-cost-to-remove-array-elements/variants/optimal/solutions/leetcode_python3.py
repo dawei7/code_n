@@ -8,14 +8,8 @@ class Solution:
             second = nums[next_index]
             third = nums[next_index + 1]
             updated = {
-                next_index: min(
-                    cost + max(nums[carried], third)
-                    for carried, cost in costs.items()
-                ),
-                next_index + 1: min(
-                    cost + max(nums[carried], second)
-                    for carried, cost in costs.items()
-                ),
+                next_index: min(cost + max(nums[carried], third) for carried, cost in costs.items()),
+                next_index + 1: min(cost + max(nums[carried], second) for carried, cost in costs.items()),
             }
             pair_cost = max(second, third)
             for carried, cost in costs.items():
@@ -25,7 +19,4 @@ class Solution:
 
         if next_index == size:
             return min(cost + nums[carried] for carried, cost in costs.items())
-        return min(
-            cost + max(nums[carried], nums[next_index])
-            for carried, cost in costs.items()
-        )
+        return min(cost + max(nums[carried], nums[next_index]) for carried, cost in costs.items())

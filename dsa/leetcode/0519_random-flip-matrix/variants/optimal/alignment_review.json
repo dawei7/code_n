@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/solve.py",
+  "native_source": "solutions/leetcode_python3.py",
+  "hashes": {
+    "app_sha256": "34d3ccd016f4d6cad69c994e96b895400b8ce51c8e947e7655698df342b2a5ba",
+    "native_sha256": "5995a40da58bff24f38f17bc5b2f211349275ac35b69de0fba28b4778261cb45",
+    "solution_variants_sha256": "e4ba88975aa4f0e3671f12a5825d38249519f24aec7268eb5ad0fa7e185b02fa",
+    "approach_sha256": "183c5dcafdc000b30fc0e2631e027b776fdc0ad672512b166027286d21535cda"
+  },
+  "classifications": ["judge_environment", "app_execution_adapter", "platform_signature"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "hidden random source and persistent operation sequence",
+      "native": "LeetCode constructs Solution(m, n), supplies randrange(), and calls flip() or reset() on the persistent object.",
+      "app": "solve(m, n, random_values, operations) derives deterministic randrange tickets and dispatches the authored flip/reset trace over the same persistent state.",
+      "rationale": "The offline judge must expose randomness and method calls as reproducible data. The virtual-array state, sparse Fisher-Yates remapping, flip return, reset behavior, and expected constant-time operations are otherwise identical."
+    }
+  ]
+}

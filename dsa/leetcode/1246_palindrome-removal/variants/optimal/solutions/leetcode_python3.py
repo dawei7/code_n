@@ -20,7 +20,5 @@ class Solution:
                 for middle in range(left + 2, right + 1):
                     if arr[left] == arr[middle]:
                         suffix = dp[middle + 1][right] if middle < right else 0
-                        dp[left][right] = min(
-                            dp[left][right], dp[left + 1][middle - 1] + suffix
-                        )
+                        dp[left][right] = min(dp[left][right], dp[left + 1][middle - 1] + suffix)
         return dp[0][length - 1]

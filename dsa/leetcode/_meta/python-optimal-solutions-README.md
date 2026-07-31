@@ -7,7 +7,7 @@ Example:
 
 ```text
 dsa/leetcode/0001_two-sum/doc.md
-dsa/leetcode/0001_two-sum/solutions/python.py
+dsa/leetcode/0001_two-sum/variants/optimal/solutions/solve.py
 ```
 
 Use cOde(n)'s project-native interface:

@@ -28,16 +28,9 @@ class Solution:
                     operator = operators[split]
                     for first in possible[left][split]:
                         for second in possible[split + 1][right]:
-                            value = (
-                                first + second
-                                if operator == "+"
-                                else first * second
-                            )
+                            value = first + second if operator == "+" else first * second
                             if value <= 1000:
                                 possible[left][right].add(value)
 
         plausible = possible[0][count - 1]
-        return sum(
-            5 if answer == correct else 2 if answer in plausible else 0
-            for answer in answers
-        )
+        return sum(5 if answer == correct else 2 if answer in plausible else 0 for answer in answers)

@@ -25,9 +25,7 @@ class Solution:
         ancestors = [[0] * n for _ in range(levels)]
         ancestors[0] = [0 if node == 0 else parent[node] for node in range(n)]
         matrices = [[(0, 0, 0, 0) for _ in range(n)] for _ in range(levels)]
-        matrices[0] = [
-            (blue, white, white, red) for red, blue, white in gates
-        ]
+        matrices[0] = [(blue, white, white, red) for red, blue, white in gates]
 
         def multiply(
             left: tuple[int, int, int, int],
@@ -50,9 +48,7 @@ class Solution:
             for node in range(n):
                 middle = previous_ancestors[node]
                 current_ancestors[node] = previous_ancestors[middle]
-                current_matrices[node] = multiply(
-                    previous_matrices[node], previous_matrices[middle]
-                )
+                current_matrices[node] = multiply(previous_matrices[node], previous_matrices[middle])
 
         def lift(node: int, distance: int) -> int:
             bit = 0

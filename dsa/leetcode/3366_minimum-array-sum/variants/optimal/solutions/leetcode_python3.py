@@ -23,9 +23,7 @@ class Solution:
                         next1 = used1 + add1
                         next2 = used2 + add2
                         if next1 <= op1 and next2 <= op2:
-                            next_dp[next1][next2] = min(
-                                next_dp[next1][next2], current + transformed
-                            )
+                            next_dp[next1][next2] = min(next_dp[next1][next2], current + transformed)
             dp = next_dp
 
         return min(map(min, dp))

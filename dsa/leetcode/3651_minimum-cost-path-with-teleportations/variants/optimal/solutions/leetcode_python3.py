@@ -6,11 +6,7 @@ class Solution:
         rows = len(grid)
         columns = len(grid[0])
         infinity = float("inf")
-        cells = sorted(
-            (grid[row][column], row, column)
-            for row in range(rows)
-            for column in range(columns)
-        )
+        cells = sorted((grid[row][column], row, column) for row in range(rows) for column in range(columns))
         cells.reverse()
 
         def close_normal_moves(costs: List[List[float]]) -> None:
@@ -45,9 +41,7 @@ class Solution:
                     end += 1
                 for position in range(index, end):
                     _, row, column = cells[position]
-                    next_costs[row][column] = min(
-                        next_costs[row][column], best_source
-                    )
+                    next_costs[row][column] = min(next_costs[row][column], best_source)
                 index = end
 
             close_normal_moves(next_costs)

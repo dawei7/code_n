@@ -2,9 +2,7 @@ from collections import deque
 
 
 class Solution:
-    def maximumSum(
-        self, nums: list[int], m: int, l: int, r: int
-    ) -> int:
+    def maximumSum(self, nums: list[int], m: int, l: int, r: int) -> int:
         n = len(nums)
         prefix = [0] * (n + 1)
         positive_sum = 0
@@ -17,10 +15,7 @@ class Solution:
         for end in range(1, n + 1):
             start = end - l
             if start >= 0:
-                while (
-                    minimum_prefixes
-                    and prefix[minimum_prefixes[-1]] >= prefix[start]
-                ):
+                while minimum_prefixes and prefix[minimum_prefixes[-1]] >= prefix[start]:
                     minimum_prefixes.pop()
                 minimum_prefixes.append(start)
 
@@ -63,12 +58,7 @@ class Solution:
                 counts[end] = counts[end - 1]
                 if candidates:
                     previous_start = candidates[0]
-                    candidate_value = (
-                        prefix[end]
-                        - penalty
-                        + values[previous_start]
-                        - prefix[previous_start]
-                    )
+                    candidate_value = prefix[end] - penalty + values[previous_start] - prefix[previous_start]
                     candidate_count = counts[previous_start] + 1
                     if (candidate_value, -candidate_count) > (
                         values[end],

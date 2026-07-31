@@ -4,10 +4,7 @@ from typing import List
 class Solution:
     def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:
         nums.sort()
-        ordered_queries = sorted(
-            (limit, value, index)
-            for index, (value, limit) in enumerate(queries)
-        )
+        ordered_queries = sorted((limit, value, index) for index, (value, limit) in enumerate(queries))
 
         trie = [[-1, -1]]
 

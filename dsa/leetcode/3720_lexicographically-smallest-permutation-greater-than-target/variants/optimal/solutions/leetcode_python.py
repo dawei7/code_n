@@ -22,10 +22,7 @@ class Solution:
                         continue
 
                     counts[index] -= 1
-                    suffix = "".join(
-                        chr(ord("a") + letter) * counts[letter]
-                        for letter in range(26)
-                    )
+                    suffix = "".join(chr(ord("a") + letter) * counts[letter] for letter in range(26))
                     return "".join(prefix) + chr(ord("a") + index) + suffix
 
             if not prefix:

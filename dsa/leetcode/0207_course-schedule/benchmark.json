@@ -10,7 +10,7 @@
       "visible": false,
       "size": 8,
       "input": {
-        "num_courses": 8,
+        "numCourses": 8,
         "prerequisites": [
           [
             1,
@@ -55,7 +55,7 @@
       "visible": false,
       "size": 64,
       "input": {
-        "num_courses": 64,
+        "numCourses": 64,
         "prerequisites": [
           [
             1,
@@ -324,7 +324,7 @@
       "visible": false,
       "size": 256,
       "input": {
-        "num_courses": 256,
+        "numCourses": 256,
         "prerequisites": [
           [
             1,

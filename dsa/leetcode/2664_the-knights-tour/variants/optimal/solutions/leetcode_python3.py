@@ -5,8 +5,14 @@ class Solution:
     def tourOfKnight(self, m: int, n: int, r: int, c: int) -> List[List[int]]:
         board = [[-1] * n for _ in range(m)]
         moves = (
-            (-2, -1), (-2, 1), (-1, -2), (-1, 2),
-            (1, -2), (1, 2), (2, -1), (2, 1),
+            (-2, -1),
+            (-2, 1),
+            (-1, -2),
+            (-1, 2),
+            (1, -2),
+            (1, 2),
+            (2, -1),
+            (2, 1),
         )
 
         def available_degree(row: int, column: int) -> int:
@@ -14,11 +20,7 @@ class Solution:
             for row_change, column_change in moves:
                 next_row = row + row_change
                 next_column = column + column_change
-                if (
-                    0 <= next_row < m
-                    and 0 <= next_column < n
-                    and board[next_row][next_column] == -1
-                ):
+                if 0 <= next_row < m and 0 <= next_column < n and board[next_row][next_column] == -1:
                     degree += 1
             return degree
 
@@ -30,11 +32,7 @@ class Solution:
             for row_change, column_change in moves:
                 next_row = row + row_change
                 next_column = column + column_change
-                if (
-                    0 <= next_row < m
-                    and 0 <= next_column < n
-                    and board[next_row][next_column] == -1
-                ):
+                if 0 <= next_row < m and 0 <= next_column < n and board[next_row][next_column] == -1:
                     candidates.append((available_degree(next_row, next_column), next_row, next_column))
 
             candidates.sort()

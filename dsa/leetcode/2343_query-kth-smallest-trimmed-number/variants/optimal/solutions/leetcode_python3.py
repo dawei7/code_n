@@ -2,12 +2,8 @@ from typing import List
 
 
 class Solution:
-    def smallestTrimmedNumbers(
-        self, nums: List[str], queries: List[List[int]]
-    ) -> List[int]:
-        by_trim: List[List[tuple[int, int]]] = [
-            [] for _ in range(max(trim for _, trim in queries) + 1)
-        ]
+    def smallestTrimmedNumbers(self, nums: List[str], queries: List[List[int]]) -> List[int]:
+        by_trim: List[List[tuple[int, int]]] = [[] for _ in range(max(trim for _, trim in queries) + 1)]
         for query_index, (rank, trim) in enumerate(queries):
             by_trim[trim].append((query_index, rank))
 

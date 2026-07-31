@@ -17,4 +17,3 @@ class Solution:
                 total += value * (n - len(seen_rows))
 
         return total
-

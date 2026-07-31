@@ -3,11 +3,7 @@ from typing import List
 
 class Solution:
     def flipgame(self, fronts: List[int], backs: List[int]) -> int:
-        blocked = {
-            front
-            for front, back in zip(fronts, backs)
-            if front == back
-        }
+        blocked = {front for front, back in zip(fronts, backs) if front == back}
 
         smallest = None
         for front, back in zip(fronts, backs):

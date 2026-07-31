@@ -8,7 +8,7 @@ For each sorted pair, compute the integer ceiling `(job + worker - 1) // worker`
 
 ## Complexity detail
 
-Let $n$ be the common number of jobs and workers. Sorting both arrays takes $O(n\log n)$ time, and the paired scan takes $O(n)$ time. The app-local implementation creates sorted copies, which use $O(n)$ auxiliary space and preserve the caller's input lists. The accepted native form sorts in place.
+Let $n$ be the common number of jobs and workers. Sorting both arrays takes $O(n\log n)$ time, and the paired scan takes $O(n)$ time. Python's in-place sorts may use $O(n)$ auxiliary storage.
 
 ## Alternatives and edge cases
 

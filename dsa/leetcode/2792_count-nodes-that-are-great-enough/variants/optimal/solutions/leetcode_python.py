@@ -1,10 +1,9 @@
 from bisect import insort
 from typing import Optional
 
+
 class Solution:
-    def countGreatEnoughNodes(
-        self, root: Optional[TreeNode], k: int
-    ) -> int:
+    def countGreatEnoughNodes(self, root: Optional[TreeNode], k: int) -> int:
         summaries = {}
         answer = 0
         stack = [(root, False)]
@@ -27,13 +26,8 @@ class Solution:
             left_index = 0
             right_index = 0
 
-            while len(merged) < k and (
-                left_index < len(left) or right_index < len(right)
-            ):
-                if right_index == len(right) or (
-                    left_index < len(left)
-                    and left[left_index] <= right[right_index]
-                ):
+            while len(merged) < k and (left_index < len(left) or right_index < len(right)):
+                if right_index == len(right) or (left_index < len(left) and left[left_index] <= right[right_index]):
                     merged.append(left[left_index])
                     left_index += 1
                 else:

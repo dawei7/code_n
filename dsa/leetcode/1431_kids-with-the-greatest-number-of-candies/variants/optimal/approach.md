@@ -1,7 +1,7 @@
 ## General
 **Establish the shared target once.** Compute `greatest = max(candies)` before evaluating any child. This is the count a hypothetical result must meet or exceed; no simulated update can increase another child's count.
 
-**Evaluate every child independently.** For each `candy`, append the comparison `candy + extra_candies >= greatest`. The same full amount is available in every hypothetical check, so one child's result does not modify the array or affect a later position.
+**Evaluate every child independently.** For each `candy`, append the comparison `candy + extraCandies >= greatest`. The same full amount is available in every hypothetical check, so one child's result does not modify the array or affect a later position.
 
 **Why the comparison is sufficient.** If the augmented count reaches `greatest`, it is at least every unchanged count because `greatest` was their maximum, so the child has a greatest count, possibly tied. If it remains below `greatest`, at least one original leader still has more candies, so the result must be `false`. Thus each comparison gives exactly the required boolean.
 

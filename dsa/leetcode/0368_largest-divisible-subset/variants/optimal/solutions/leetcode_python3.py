@@ -10,10 +10,7 @@ class Solution:
 
         for current in range(len(values)):
             for earlier in range(current):
-                if (
-                    values[current] % values[earlier] == 0
-                    and lengths[earlier] + 1 > lengths[current]
-                ):
+                if values[current] % values[earlier] == 0 and lengths[earlier] + 1 > lengths[current]:
                     lengths[current] = lengths[earlier] + 1
                     previous[current] = earlier
             if lengths[current] > lengths[best_index]:
@@ -25,4 +22,3 @@ class Solution:
             best_index = previous[best_index]
         subset.reverse()
         return subset
-

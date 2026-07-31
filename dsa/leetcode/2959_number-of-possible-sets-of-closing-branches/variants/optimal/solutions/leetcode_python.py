@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def numberOfSets(
-        self, n: int, maxDistance: int, roads: List[List[int]]
-    ) -> int:
+    def numberOfSets(self, n: int, maxDistance: int, roads: List[List[int]]) -> int:
         infinity = 10**15
         valid = 0
 
@@ -29,11 +27,7 @@ class Solution:
                         if candidate < distance[first][second]:
                             distance[first][second] = candidate
 
-            if all(
-                distance[first][second] <= maxDistance
-                for first in active
-                for second in active
-            ):
+            if all(distance[first][second] <= maxDistance for first in active for second in active):
                 valid += 1
 
         return valid

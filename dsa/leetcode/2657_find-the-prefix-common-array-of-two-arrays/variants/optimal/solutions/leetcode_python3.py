@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def findThePrefixCommonArray(
-        self, A: List[int], B: List[int]
-    ) -> List[int]:
+    def findThePrefixCommonArray(self, A: List[int], B: List[int]) -> List[int]:
         frequency = [0] * (len(A) + 1)
         common = 0
         prefix_common = []

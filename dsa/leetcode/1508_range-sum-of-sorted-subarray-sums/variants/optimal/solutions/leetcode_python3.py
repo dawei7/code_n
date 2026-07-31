@@ -18,10 +18,7 @@ class Solution:
                     start += 1
                 ending_count = end - start + 1
                 count += ending_count
-                total += (
-                    ending_count * prefix[end + 1]
-                    - (prefix_of_prefix[end + 1] - prefix_of_prefix[start])
-                )
+                total += ending_count * prefix[end + 1] - (prefix_of_prefix[end + 1] - prefix_of_prefix[start])
             return count, total
 
         def first_k_sum(k: int) -> int:

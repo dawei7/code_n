@@ -27,10 +27,7 @@ class Solution:
                     transitions.append(transitions[target].copy())
                     suffix_link.append(suffix_link[target])
                     longest.append(longest[state] + 1)
-                    while (
-                        state != -1
-                        and transitions[state].get(character) == target
-                    ):
+                    while state != -1 and transitions[state].get(character) == target:
                         transitions[state][character] = clone
                         state = suffix_link[state]
                     suffix_link[target] = clone
@@ -38,7 +35,4 @@ class Solution:
 
             last = current
 
-        return sum(
-            longest[state] - longest[suffix_link[state]]
-            for state in range(1, len(transitions))
-        )
+        return sum(longest[state] - longest[suffix_link[state]] for state in range(1, len(transitions)))

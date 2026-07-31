@@ -13,10 +13,7 @@ class Solution:
                 completed, pending = wait(pending, return_when=FIRST_COMPLETED)
                 for future in completed:
                     for neighbor in future.result():
-                        if (
-                            neighbor.split("/", 3)[2] == hostname
-                            and neighbor not in visited
-                        ):
+                        if neighbor.split("/", 3)[2] == hostname and neighbor not in visited:
                             visited.add(neighbor)
                             pending.add(executor.submit(htmlParser.getUrls, neighbor))
 

@@ -10,14 +10,8 @@ class Solution:
             for direction in (-1, 1):
                 for distance in range(1, d + 1):
                     destination = index + direction * distance
-                    if (
-                        destination < 0
-                        or destination >= length
-                        or arr[destination] >= arr[index]
-                    ):
+                    if destination < 0 or destination >= length or arr[destination] >= arr[index]:
                         break
-                    best[index] = max(
-                        best[index], 1 + best[destination]
-                    )
+                    best[index] = max(best[index], 1 + best[destination])
 
         return max(best)

@@ -4,10 +4,6 @@ class Solution:
 
         while len(groups) > 1:
             count = len(groups)
-            groups = [
-                f"({groups[index]},{groups[count - 1 - index]})"
-                for index in range(count // 2)
-            ]
+            groups = [f"({groups[index]},{groups[count - 1 - index]})" for index in range(count // 2)]
 
         return groups[0]
-

@@ -8,7 +8,4 @@ class Solution:
         endTime: List[int],
         queryTime: int,
     ) -> int:
-        return sum(
-            start <= queryTime <= end
-            for start, end in zip(startTime, endTime)
-        )
+        return sum(start <= queryTime <= end for start, end in zip(startTime, endTime))

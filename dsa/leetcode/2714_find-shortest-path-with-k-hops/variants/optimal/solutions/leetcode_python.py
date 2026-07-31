@@ -30,4 +30,3 @@ class Solution:
                     heappush(heap, (distance, neighbor, hops + 1))
 
         return -1
-

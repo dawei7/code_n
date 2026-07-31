@@ -18,8 +18,7 @@ class Solution:
                 )
 
             minimum_suffix = sum(
-                len(assignment[future]) if future in assignment else 1
-                for future in pattern[pattern_index + 1 :]
+                len(assignment[future]) if future in assignment else 1 for future in pattern[pattern_index + 1 :]
             )
             latest_end = len(s) - minimum_suffix
             for end in range(string_index + 1, latest_end + 1):

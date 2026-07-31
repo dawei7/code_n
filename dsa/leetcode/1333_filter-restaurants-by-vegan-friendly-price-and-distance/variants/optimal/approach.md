@@ -1,7 +1,7 @@
 ## General
 **Filter before ordering**
 
-Scan each record once. Reject it when its price exceeds `max_price`, its distance exceeds `max_distance`, or the caller requires vegan-friendly choices and the record's flag is 0. Store only the pair `(rating, id)` for every remaining record.
+Scan each record once. Reject it when its price exceeds `maxPrice`, its distance exceeds `maxDistance`, or the caller requires vegan-friendly choices and the record's flag is 0. Store only the pair `(rating, id)` for every remaining record.
 
 Sort these pairs in reverse lexicographic order. Python compares the rating first and the ID second, so reversing the pair order implements both required descending keys without a custom comparator. Project the sorted pairs to their IDs for the result.
 

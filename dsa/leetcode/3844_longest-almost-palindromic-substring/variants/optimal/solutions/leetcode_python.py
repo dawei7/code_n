@@ -22,11 +22,7 @@ class Solution:
             skip_left = left - 1
             keep_right = right
             candidate_length = palindrome_length + 1
-            while (
-                skip_left >= 0
-                and keep_right < n
-                and s[skip_left] == s[keep_right]
-            ):
+            while skip_left >= 0 and keep_right < n and s[skip_left] == s[keep_right]:
                 skip_left -= 1
                 keep_right += 1
                 candidate_length += 2
@@ -35,11 +31,7 @@ class Solution:
             keep_left = left
             skip_right = right + 1
             candidate_length = palindrome_length + 1
-            while (
-                keep_left >= 0
-                and skip_right < n
-                and s[keep_left] == s[skip_right]
-            ):
+            while keep_left >= 0 and skip_right < n and s[keep_left] == s[skip_right]:
                 keep_left -= 1
                 skip_right += 1
                 candidate_length += 2

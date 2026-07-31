@@ -6,17 +6,9 @@ class Solution:
         right = -1
 
         for center in range(length):
-            current = (
-                1
-                if center > right
-                else min(radius[left + right - center], right - center + 1)
-            )
+            current = 1 if center > right else min(radius[left + right - center], right - center + 1)
 
-            while (
-                center - current >= 0
-                and center + current < length
-                and s[center - current] == s[center + current]
-            ):
+            while center - current >= 0 and center + current < length and s[center - current] == s[center + current]:
                 current += 1
 
             radius[center] = current
@@ -48,7 +40,4 @@ class Solution:
         for index in range(length - 2, -1, -1):
             starting[index] = max(starting[index], starting[index + 1])
 
-        return max(
-            ending[index] * starting[index + 1]
-            for index in range(length - 1)
-        )
+        return max(ending[index] * starting[index + 1] for index in range(length - 1))

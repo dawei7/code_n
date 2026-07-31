@@ -1,6 +1,7 @@
 from heapq import heappop, heappush
 from typing import List
 
+
 class Solution:
     def minimumVisitedCells(self, grid: List[List[int]]) -> int:
         rows = len(grid)
@@ -21,11 +22,7 @@ class Solution:
                     distance = 1
                 else:
                     from_row = row_heaps[row][0][0] if row_heaps[row] else unreachable
-                    from_column = (
-                        column_heaps[column][0][0]
-                        if column_heaps[column]
-                        else unreachable
-                    )
+                    from_column = column_heaps[column][0][0] if column_heaps[column] else unreachable
                     distance = min(from_row, from_column) + 1
 
                 if distance <= rows * columns:

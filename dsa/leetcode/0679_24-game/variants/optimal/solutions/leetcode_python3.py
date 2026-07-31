@@ -14,9 +14,7 @@ class Solution:
                     left = values[left_index]
                     right = values[right_index]
                     remaining = [
-                        values[index]
-                        for index in range(len(values))
-                        if index not in (left_index, right_index)
+                        values[index] for index in range(len(values)) if index not in (left_index, right_index)
                     ]
                     results = {
                         left + right,
@@ -36,4 +34,3 @@ class Solution:
             return False
 
         return can_make(tuple(sorted(Fraction(card) for card in cards)))
-

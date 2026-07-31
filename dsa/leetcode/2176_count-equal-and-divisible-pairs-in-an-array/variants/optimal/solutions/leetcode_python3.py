@@ -11,9 +11,7 @@ class Solution:
         for index, value in enumerate(nums):
             current_gcd = gcd(index, k)
             answer += sum(
-                count
-                for previous_gcd, count in gcd_counts[value].items()
-                if (current_gcd * previous_gcd) % k == 0
+                count for previous_gcd, count in gcd_counts[value].items() if (current_gcd * previous_gcd) % k == 0
             )
             gcd_counts[value][current_gcd] += 1
 

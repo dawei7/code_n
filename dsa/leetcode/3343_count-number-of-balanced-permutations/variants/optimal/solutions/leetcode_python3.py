@@ -38,11 +38,7 @@ class Solution:
             for even_count in range(minimum_even, maximum_even + 1):
                 contribution = digit * even_count
                 if contribution <= target:
-                    weight = (
-                        inverse_factorial[even_count]
-                        * inverse_factorial[count - even_count]
-                        % modulus
-                    )
+                    weight = inverse_factorial[even_count] * inverse_factorial[count - even_count] % modulus
                     options.append((even_count, contribution, weight))
 
             next_dp = [[0] * (target + 1) for _ in range(even_slots + 1)]
@@ -55,9 +51,7 @@ class Solution:
                         next_used = used_even + extra_even
                         next_sum = current_sum + contribution
                         if next_used <= even_slots and next_sum <= target:
-                            next_dp[next_used][next_sum] = (
-                                next_dp[next_used][next_sum] + ways * weight
-                            ) % modulus
+                            next_dp[next_used][next_sum] = (next_dp[next_used][next_sum] + ways * weight) % modulus
 
             dp = next_dp
 

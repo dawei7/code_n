@@ -1,6 +1,7 @@
 from collections import deque
 from heapq import heappush, heappushpop
 
+
 class Solution:
     def kthLargestLevelSum(self, root: Optional[TreeNode], k: int) -> int:
         largest = []

@@ -1,4 +1,7 @@
-function* fibGenerator() {
+/**
+ * @return {Generator<number>}
+ */
+var fibGenerator = function*() {
     let previous = 0;
     let current = 1;
 
@@ -6,7 +9,13 @@ function* fibGenerator() {
         yield previous;
         [previous, current] = [current, previous + current];
     }
-}
+};
+
+/**
+ * const gen = fibGenerator();
+ * gen.next().value; // 0
+ * gen.next().value; // 1
+ */
 
 function solve(callCount) {
     const generator = fibGenerator();

@@ -2,7 +2,7 @@
 
 **Inputs**
 
-- `ransom_note`: The cOde(n) name for the lowercase string `ransomNote` that must be constructed.
+- `ransomNote`: The lowercase string that must be constructed.
 - `magazine`: The lowercase source string whose character occurrences are available.
 
 **Return value**

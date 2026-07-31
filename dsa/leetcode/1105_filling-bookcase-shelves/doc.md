@@ -22,8 +22,8 @@ Every shelf receives a consecutive group of books in their original order, and t
 
 **Inputs**
 
-- `books`: an ordered list of $n$ pairs `[thickness, height]`, where $1 \leq n \leq 1000$, $1 \leq \texttt{thickness} \leq \texttt{shelf_width}$, and $1 \leq \texttt{height} \leq 1000$.
-- `shelf_width`: the maximum total thickness of one shelf, where $1 \leq \texttt{shelf_width} \leq 1000$.
+- `books`: an ordered list of $n$ pairs `[thickness, height]`, where $1 \leq n \leq 1000$, $1 \leq \texttt{thickness} \leq \texttt{shelfWidth}$, and $1 \leq \texttt{height} \leq 1000$.
+- `shelfWidth`: the maximum total thickness of one shelf, where $1 \leq \texttt{shelfWidth} \leq 1000$.
 
 **Return value**
 
@@ -33,14 +33,14 @@ The minimum total height of a bookcase containing all books in the given order.
 
 **Example 1**
 
-- Input: `books = [[1,1],[2,3],[2,3],[1,1],[1,1],[1,1],[1,2]], shelf_width = 4`
+- Input: `books = [[1,1],[2,3],[2,3],[1,1],[1,1],[1,1],[1,2]], shelfWidth = 4`
 - Output: `6`
 
 An optimal arrangement has shelf heights 1, 3, and 2. The second book does not need to share the first shelf.
 
 **Example 2**
 
-- Input: `books = [[1,3],[2,4],[3,2]], shelf_width = 6`
+- Input: `books = [[1,3],[2,4],[3,2]], shelfWidth = 6`
 - Output: `4`
 
 All three books fit on one shelf, whose height is 4.

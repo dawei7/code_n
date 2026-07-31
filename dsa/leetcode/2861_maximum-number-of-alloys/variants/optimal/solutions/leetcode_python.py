@@ -12,10 +12,7 @@ class Solution:
 
         for recipe in composition:
             low = 0
-            high = min(
-                (stock[metal] + budget // cost[metal]) // recipe[metal]
-                for metal in range(n)
-            )
+            high = min((stock[metal] + budget // cost[metal]) // recipe[metal] for metal in range(n))
 
             while low <= high:
                 alloys = (low + high) // 2

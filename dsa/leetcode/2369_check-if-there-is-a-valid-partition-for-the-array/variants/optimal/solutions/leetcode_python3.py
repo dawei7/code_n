@@ -14,16 +14,8 @@ class Solution:
         for i in range(3, n + 1):
             pair = nums[i - 2] == nums[i - 1]
             triple_equal = nums[i - 3] == nums[i - 2] == nums[i - 1]
-            triple_consecutive = (
-                nums[i - 3] + 1 == nums[i - 2]
-                and nums[i - 2] + 1 == nums[i - 1]
-            )
-            current = (
-                dp_i_minus_2
-                and pair
-                or dp_i_minus_3
-                and (triple_equal or triple_consecutive)
-            )
+            triple_consecutive = nums[i - 3] + 1 == nums[i - 2] and nums[i - 2] + 1 == nums[i - 1]
+            current = dp_i_minus_2 and pair or dp_i_minus_3 and (triple_equal or triple_consecutive)
             dp_i_minus_3, dp_i_minus_2, dp_i_minus_1 = (
                 dp_i_minus_2,
                 dp_i_minus_1,

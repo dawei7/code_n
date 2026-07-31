@@ -25,18 +25,10 @@ class Solution:
             for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                 next_row = row + row_step
                 next_column = column + column_step
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and search(next_row, next_column, index + 1)
-                ):
+                if 0 <= next_row < rows and 0 <= next_column < columns and search(next_row, next_column, index + 1):
                     found = True
                     break
             board[row][column] = character
             return found
 
-        return any(
-            search(row, column, 0)
-            for row in range(rows)
-            for column in range(columns)
-        )
+        return any(search(row, column, 0) for row in range(rows) for column in range(columns))

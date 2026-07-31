@@ -16,4 +16,3 @@ class Solution:
                 position += 1
 
         return mismatches
-

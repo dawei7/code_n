@@ -47,9 +47,8 @@ class RangeModule:
             return self._query(node.left, left, middle, query_left, query_right)
         if query_left > middle:
             return self._query(node.right, middle + 1, right, query_left, query_right)
-        return (
-            self._query(node.left, left, middle, query_left, query_right)
-            and self._query(node.right, middle + 1, right, query_left, query_right)
+        return self._query(node.left, left, middle, query_left, query_right) and self._query(
+            node.right, middle + 1, right, query_left, query_right
         )
 
     def addRange(self, left: int, right: int) -> None:

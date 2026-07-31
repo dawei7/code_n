@@ -12,9 +12,4 @@ class Solution:
                 count = (n - start) // candidate + 1
                 is_prime[start : n + 1 : candidate] = b"\x00" * count
 
-        return [
-            [first, n - first]
-            for first in range(2, n // 2 + 1)
-            if is_prime[first] and is_prime[n - first]
-        ]
-
+        return [[first, n - first] for first in range(2, n // 2 + 1) if is_prime[first] and is_prime[n - first]]

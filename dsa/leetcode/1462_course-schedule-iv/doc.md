@@ -11,8 +11,8 @@
 ## Problem Description
 ### Goal
 
-There are `num_courses` courses labeled from `0` through
-`num_courses - 1`. Each pair `[a, b]` in `prerequisites` means course
+There are `numCourses` courses labeled from `0` through
+`numCourses - 1`. Each pair `[a, b]` in `prerequisites` means course
 `a` must be completed before course `b`. All prerequisite pairs are unique,
 and together they form a directed acyclic graph.
 
@@ -27,7 +27,7 @@ queries.
 ### Function Contract
 **Inputs**
 
-- `num_courses`: the number $C$ of courses, where $2 \le C \le 100$.
+- `numCourses`: the number $C$ of courses, where $2 \le C \le 100$.
 - `prerequisites`: $E$ unique directed pairs `[a, b]`, where
   $0\le E\le C(C-1)/2$, endpoints differ, and the graph has no cycle.
 - `queries`: $Q$ directed pairs `[u, v]`, where $1\le Q\le10^4$,
@@ -42,15 +42,15 @@ path of one or more prerequisite edges exists from `queries[j][0]` to
 ### Examples
 **Example 1**
 
-- Input: `num_courses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]`
+- Input: `numCourses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]`
 - Output: `[false,true]`
 
 **Example 2**
 
-- Input: `num_courses = 2, prerequisites = [], queries = [[1,0],[0,1]]`
+- Input: `numCourses = 2, prerequisites = [], queries = [[1,0],[0,1]]`
 - Output: `[false,false]`
 
 **Example 3**
 
-- Input: `num_courses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]`
+- Input: `numCourses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]`
 - Output: `[true,true]`

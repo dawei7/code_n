@@ -16,11 +16,7 @@ class Solution:
 
         for bus in buses:
             boarded = 0
-            while (
-                boarded < capacity
-                and passenger_index < len(passengers)
-                and passengers[passenger_index] <= bus
-            ):
+            while boarded < capacity and passenger_index < len(passengers) and passengers[passenger_index] <= bus:
                 passenger_index += 1
                 boarded += 1
 

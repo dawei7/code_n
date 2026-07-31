@@ -11,6 +11,8 @@ Each row's new value is computed from that row's original `sex` value during the
 
 The `SET` clause assigns only the `sex` column and the statement has no filtering predicate, so all rows participate while `id`, `name`, and `salary` are untouched. The conditional mapping is an involution: applying it once sends each allowed value to precisely its opposite.
 
+LeetCode judges the table mutation directly, so the verified native source ends after `UPDATE`. The offline SQL runner appends a deterministic `SELECT` solely to expose the mutated rows to the case validator; it does not alter the update or its data flow.
+
 ## Complexity detail
 For `R` employee rows, the update reads and writes each row once, giving $O(R)$ time. The conditional expression uses constant state per row and $O(1)$ auxiliary space beyond database transaction storage.
 

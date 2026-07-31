@@ -9,10 +9,7 @@ class Solution:
         while index < len(words):
             start = index
             letters = 0
-            while (
-                index < len(words)
-                and letters + len(words[index]) + (index - start) <= maxWidth
-            ):
+            while index < len(words) and letters + len(words[index]) + (index - start) <= maxWidth:
                 letters += len(words[index])
                 index += 1
 

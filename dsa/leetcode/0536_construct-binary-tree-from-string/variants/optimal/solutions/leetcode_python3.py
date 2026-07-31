@@ -8,7 +8,7 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def str2tree(self, s: str) -> Optional['TreeNode']:
+    def str2tree(self, s: str) -> Optional["TreeNode"]:
         if not s:
             return None
 

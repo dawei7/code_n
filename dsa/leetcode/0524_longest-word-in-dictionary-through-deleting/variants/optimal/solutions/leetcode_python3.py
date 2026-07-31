@@ -12,8 +12,6 @@ class Solution:
 
         answer = ""
         for word in dictionary:
-            if is_subsequence(word) and (
-                len(word) > len(answer) or (len(word) == len(answer) and word < answer)
-            ):
+            if is_subsequence(word) and (len(word) > len(answer) or (len(word) == len(answer) and word < answer)):
                 answer = word
         return answer

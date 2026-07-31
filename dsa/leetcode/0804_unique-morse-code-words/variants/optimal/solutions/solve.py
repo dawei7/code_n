@@ -1,0 +1,31 @@
+def solve(words: list[str]) -> int:
+    morse = (
+        ".-",
+        "-...",
+        "-.-.",
+        "-..",
+        ".",
+        "..-.",
+        "--.",
+        "....",
+        "..",
+        ".---",
+        "-.-",
+        ".-..",
+        "--",
+        "-.",
+        "---",
+        ".--.",
+        "--.-",
+        ".-.",
+        "...",
+        "-",
+        "..-",
+        "...-",
+        ".--",
+        "-..-",
+        "-.--",
+        "--..",
+    )
+    transformations = {"".join(morse[ord(char) - ord("a")] for char in word) for word in words}
+    return len(transformations)

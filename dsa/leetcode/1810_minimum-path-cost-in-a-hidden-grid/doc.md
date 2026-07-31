@@ -19,20 +19,16 @@ The native `GridMaster` interface reveals the grid through interaction. `canMove
 
 ### Function Contract
 
-**Native input**
+**Inputs**
 
-- `master`: a stateful `GridMaster` initially positioned at the start cell.
-
-**App-local input**
-
-- `grid`: an $m \times n$ integer matrix with $1 \le m,n \le 100$. A value of `0` marks a blocked cell; a value from `1` through `100` is the cost of entering an open cell.
-- `r1`, `c1`: the row and column of the open starting cell.
-- `r2`, `c2`: the row and column of the distinct open target cell.
+- `master`: the stateful `GridMaster` initially positioned at the start cell.
+- JSON fixtures configure it with `master.mode = "weighted"`, an $m \times n$ `master.grid`, and two-coordinate `master.start` and `master.target` arrays. A grid value of `0` marks a blocked cell; a value from `1` through `100` is the cost of entering an open cell. These fields are hidden harness state, not additional solution parameters.
+- Grid dimensions satisfy $1 \le m,n \le 100$.
 - Let $V$ be the number of open cells reachable from the start.
 
 **Return value**
 
-- Return the minimum sum of destination-cell costs along any orthogonal path from `(r1, c1)` to `(r2, c2)`.
+- Return the minimum sum of destination-cell costs along any orthogonal path from the hidden start to the hidden target.
 - Do not include the starting cell's cost.
 - Return `-1` if the target is outside the start's reachable component.
 
@@ -40,21 +36,21 @@ The native `GridMaster` interface reveals the grid through interaction. `canMove
 
 **Example 1**
 
-- Input: `grid = [[2,3],[1,1]], r1 = 0, c1 = 1, r2 = 1, c2 = 0`
+- Input fixture: `master = {"mode":"weighted","grid":[[2,3],[1,1]],"start":[0,1],"target":[1,0]}`
 - Output: `2`
 
 Moving down and then left enters cells with costs `1` and `1`.
 
 **Example 2**
 
-- Input: `grid = [[0,3,1],[3,4,2],[1,2,0]], r1 = 2, c1 = 0, r2 = 0, c2 = 2`
+- Input fixture: `master = {"mode":"weighted","grid":[[0,3,1],[3,4,2],[1,2,0]],"start":[2,0],"target":[0,2]}`
 - Output: `9`
 
 The cheapest reachable route enters cells costing `2`, `4`, `2`, and `1`.
 
 **Example 3**
 
-- Input: `grid = [[1,0],[0,1]], r1 = 0, c1 = 0, r2 = 1, c2 = 1`
+- Input fixture: `master = {"mode":"weighted","grid":[[1,0],[0,1]],"start":[0,0],"target":[1,1]}`
 - Output: `-1`
 
 Blocked cells separate the start and target.

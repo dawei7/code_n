@@ -1,6 +1,4 @@
 /**
- * Create an object from parallel key and value arrays.
- *
  * @param {Array} keysArr
  * @param {Array} valuesArr
  * @return {Object}
@@ -27,10 +25,8 @@ var createObject = function(keysArr, valuesArr) {
     return obj;
 };
 
-class Solution {
-    solve(keysArr, valuesArr) {
-        return createObject(keysArr, valuesArr);
-    }
+function solve(keysArr, valuesArr) {
+    return createObject(keysArr, valuesArr);
 }
 
-module.exports = { createObject, Solution };
+module.exports = { createObject, solve };

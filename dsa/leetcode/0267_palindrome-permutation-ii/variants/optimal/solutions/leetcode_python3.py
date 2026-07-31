@@ -9,11 +9,7 @@ class Solution:
         if len(odd) > 1:
             return []
         center = odd[0] if odd else ""
-        half = sorted(
-            character
-            for character, count in counts.items()
-            for _ in range(count // 2)
-        )
+        half = sorted(character for character, count in counts.items() for _ in range(count // 2))
         used = [False] * len(half)
         path = []
         palindromes = []

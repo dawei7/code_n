@@ -26,8 +26,6 @@ class Solution:
             if remainders[node] == 0:
                 components += 1
             elif parent[node] != -1:
-                remainders[parent[node]] = (
-                    remainders[parent[node]] + remainders[node]
-                ) % k
+                remainders[parent[node]] = (remainders[parent[node]] + remainders[node]) % k
 
         return components

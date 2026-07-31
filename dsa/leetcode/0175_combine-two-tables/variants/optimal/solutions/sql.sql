@@ -5,5 +5,4 @@ SELECT
     a.state
 FROM Person AS p
 LEFT JOIN Address AS a
-    ON a.personId = p.personId
-ORDER BY p.personId;
+    ON a.personId = p.personId;

@@ -1,11 +1,11 @@
 ## General
 **Define reachability by a predecessor interval**
 
-Let `reachable[i]` state whether index `i` can be visited. For a new index `i`, valid predecessors are exactly the indices from `i - max_jump` through `i - min_jump`, clipped to the string. Therefore `i` is reachable precisely when `s[i] == "0"` and at least one reachable predecessor lies in that interval.
+Let `reachable[i]` state whether index `i` can be visited. For a new index `i`, valid predecessors are exactly the indices from `i - maxJump` through `i - minJump`, clipped to the string. Therefore `i` is reachable precisely when `s[i] == "0"` and at least one reachable predecessor lies in that interval.
 
 **Maintain the interval as a sliding count**
 
-As `i` increases by one, one predecessor at `i - min_jump` enters the interval and one at `i - max_jump - 1` leaves it. Maintain the number of reachable indices currently inside. Add the entering Boolean, subtract the leaving Boolean, and set `reachable[i]` from whether the resulting count is positive.
+As `i` increases by one, one predecessor at `i - minJump` enters the interval and one at `i - maxJump - 1` leaves it. Maintain the number of reachable indices currently inside. Add the entering Boolean, subtract the leaving Boolean, and set `reachable[i]` from whether the resulting count is positive.
 
 **Why every valid path is represented**
 
@@ -19,6 +19,6 @@ Each index enters and leaves the predecessor window at most once, and all update
 - **Breadth-first interval expansion:** A queue works in linear time only if each destination range is scanned from a monotone frontier; rescanning overlapping ranges can become quadratic.
 - **Slice each predecessor window:** `any(reachable[left:right])` is concise, but copying or scanning a window per index can cost $O(N^2)$.
 - **Final character is `"1"`:** It can never be a landing position, so the answer is immediately false in effect.
-- **Exact jump boundaries:** Both `min_jump` and `max_jump` are allowed.
+- **Exact jump boundaries:** Both `minJump` and `maxJump` are allowed.
 - **No current predecessor:** A zero remains unreachable when the window count is zero.
 - **Large gap of ones:** Blocked positions contribute nothing and can break every route to later zeros.

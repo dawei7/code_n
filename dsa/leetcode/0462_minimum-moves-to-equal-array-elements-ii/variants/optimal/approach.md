@@ -5,14 +5,14 @@ For a chosen target `t`, the move count is $\operatorname{sum}(\operatorname{abs
 
 **Sort once and choose the middle value**
 
-Sort a copy of the array and select the element at index $\lfloor n/2 \rfloor$. Sum every absolute difference from that median. For odd length it is the unique middle order statistic; for even length every integer between the two middle values has the same minimum cost, so choosing the upper median is valid.
+Sort the array in place and select the element at index $\lfloor n/2 \rfloor$. Sum every absolute difference from that median. For odd length it is the unique middle order statistic; for even length every integer between the two middle values has the same minimum cost, so choosing the upper median is valid.
 
 **Pairing extremes gives the same total**
 
 After sorting, each smallest/largest pair must move across the gap between them regardless of which median in the middle interval is chosen. Summing `largest - smallest` while moving inward is an equivalent view and explains why the particular even-length median does not matter.
 
 ## Complexity detail
-Sorting dominates at $O(n \log n)$ time, followed by an $O(n)$ distance scan. A sorted copy uses $O(n)$ auxiliary space; in-place sorting reduces explicit copy space according to the language's sort implementation.
+Sorting dominates at $O(n \log n)$ time, followed by an $O(n)$ distance scan. The reference creates no input copy, though Python's in-place sorting implementation can still use $O(n)$ auxiliary memory.
 
 ## Alternatives and edge cases
 - **Quickselect the median:** gives expected $O(n)$ time and can avoid fully ordering the array, but requires careful pivot handling for robust worst-case behavior.

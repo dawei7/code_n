@@ -13,9 +13,7 @@ class Solution:
                 inner_cost = 0
                 if left + 1 <= right - 1:
                     inner_cost = interval_cost[left + 1][right - 1]
-                interval_cost[left][right] = (
-                    inner_cost + positions[right] - positions[left]
-                )
+                interval_cost[left][right] = inner_cost + positions[right] - positions[left]
 
         infinity = 10**18
         previous = [infinity] * (house_count + 1)

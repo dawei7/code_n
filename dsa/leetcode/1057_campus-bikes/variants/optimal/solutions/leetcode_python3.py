@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def assignBikes(
-        self, workers: List[List[int]], bikes: List[List[int]]
-    ) -> List[int]:
+    def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> List[int]:
         max_distance = 1998
         pairs_by_distance = [[] for _ in range(max_distance + 1)]
 

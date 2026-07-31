@@ -39,10 +39,7 @@ class Solution:
 
             assignments = []
             for cells in components.values():
-                rank = 1 + max(
-                    max(row_rank[row], column_rank[column])
-                    for row, column in cells
-                )
+                rank = 1 + max(max(row_rank[row], column_rank[column]) for row, column in cells)
                 assignments.append((cells, rank))
 
             for cells, rank in assignments:

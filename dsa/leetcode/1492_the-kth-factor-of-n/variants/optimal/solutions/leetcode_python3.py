@@ -22,4 +22,3 @@ class Solution:
                 return quotient
 
         return -1
-

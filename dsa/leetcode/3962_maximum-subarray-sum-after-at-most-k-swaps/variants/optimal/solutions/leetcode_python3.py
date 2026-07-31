@@ -71,9 +71,7 @@ class Solution:
                     inside_through = inside_before + inside_frequency[position]
                     profitable = max(
                         inside_before,
-                        outside_size
-                        - prefix_at_pivot[outside_size]
-                        + inside_through,
+                        outside_size - prefix_at_pivot[outside_size] + inside_through,
                     )
                     swaps = min(k, profitable)
 
@@ -85,18 +83,12 @@ class Solution:
                     step = bit_step
                     while step:
                         next_index = index + step
-                        if (
-                            next_index <= value_count
-                            and selected_count + inside_count_tree[next_index]
-                            < swaps
-                        ):
+                        if next_index <= value_count and selected_count + inside_count_tree[next_index] < swaps:
                             selected_count += inside_count_tree[next_index]
                             selected_sum += inside_sum_tree[next_index]
                             index = next_index
                         step >>= 1
-                    inside_smallest_sum = selected_sum + (
-                        swaps - selected_count
-                    ) * values[index]
+                    inside_smallest_sum = selected_sum + (swaps - selected_count) * values[index]
 
                     outside_small_count = outside_size - swaps
                     if outside_small_count:
@@ -107,27 +99,17 @@ class Solution:
                         while step:
                             next_index = index + step
                             if next_index <= value_count:
-                                block_count = (
-                                    total_count_tree[next_index]
-                                    - inside_count_tree[next_index]
-                                )
+                                block_count = total_count_tree[next_index] - inside_count_tree[next_index]
                                 if selected_count + block_count < outside_small_count:
                                     selected_count += block_count
-                                    selected_sum += (
-                                        total_sum_tree[next_index]
-                                        - inside_sum_tree[next_index]
-                                    )
+                                    selected_sum += total_sum_tree[next_index] - inside_sum_tree[next_index]
                                     index = next_index
                             step >>= 1
-                        outside_smallest_sum = selected_sum + (
-                            outside_small_count - selected_count
-                        ) * values[index]
+                        outside_smallest_sum = selected_sum + (outside_small_count - selected_count) * values[index]
                     else:
                         outside_smallest_sum = 0
 
-                    outside_largest_sum = (
-                        total_sum - current_sum - outside_smallest_sum
-                    )
+                    outside_largest_sum = total_sum - current_sum - outside_smallest_sum
                     candidate += outside_largest_sum - inside_smallest_sum
 
                 answer = max(answer, candidate)

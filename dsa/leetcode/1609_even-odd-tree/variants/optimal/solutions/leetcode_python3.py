@@ -3,7 +3,7 @@ from typing import Optional
 
 
 class Solution:
-    def isEvenOddTree(self, root: Optional['TreeNode']) -> bool:
+    def isEvenOddTree(self, root: Optional["TreeNode"]) -> bool:
         queue = deque([root])
         even_level = True
 

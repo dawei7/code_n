@@ -40,13 +40,9 @@ class Solution:
         prefix_product = [1] * (n + 2)
         suffix_product = [1] * (n + 2)
         for value in range(n + 1):
-            prefix_product[value + 1] = (
-                prefix_product[value] * (value_count - value) % mod
-            )
+            prefix_product[value + 1] = prefix_product[value] * (value_count - value) % mod
         for value in range(n, -1, -1):
-            suffix_product[value] = (
-                suffix_product[value + 1] * (value_count - value) % mod
-            )
+            suffix_product[value] = suffix_product[value + 1] * (value_count - value) % mod
 
         answer = 0
         for value, sample in enumerate(samples):

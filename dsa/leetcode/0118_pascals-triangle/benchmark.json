@@ -10,7 +10,7 @@
       "visible": false,
       "size": 1,
       "input": {
-        "num_rows": 1
+        "numRows": 1
       },
       "expected": [
         [
@@ -29,7 +29,7 @@
       "visible": false,
       "size": 36,
       "input": {
-        "num_rows": 8
+        "numRows": 8
       },
       "expected": [
         [
@@ -97,7 +97,7 @@
       "visible": false,
       "size": 528,
       "input": {
-        "num_rows": 32
+        "numRows": 32
       },
       "expected": [
         [

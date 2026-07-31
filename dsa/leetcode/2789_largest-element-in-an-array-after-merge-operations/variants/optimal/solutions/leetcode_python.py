@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def maxArrayValue(self, nums: List[int]) -> int:
         merged = nums[-1]

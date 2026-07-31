@@ -40,4 +40,3 @@ class Solution:
             size[left_root] += size[right_root]
 
         return second_parent if second_parent is not None else []
-

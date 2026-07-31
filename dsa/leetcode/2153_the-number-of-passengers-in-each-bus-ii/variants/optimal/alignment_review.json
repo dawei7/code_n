@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "1acdc066fd2236204ed3a59e8a2f4be42456d32e27c1b840769ef277f4a7eeda",
+    "native_sha256": "70ca36f3c1a6bf623b919ecfb1c428a0e3f7de7fec849c30862e6e124821e6ba",
+    "solution_variants_sha256": "78e99a02299f139c6c608d8a06cce0e36541802d2e86b4e8edaa783a9043f124",
+    "approach_sha256": "f80ba38dec91cce655ed227dc7733784b311c068140bfb19ad6c85f20c03cd3c"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "two-value minimum expression",
+      "native": "MySQL uses LEAST(capacity, waiting passengers) in both the recursive base and transition.",
+      "app": "SQLite expresses the same two-value minimum with CASE because it has no LEAST function.",
+      "rationale": "The ordered-bus CTE, cumulative arrival count, recursive carried departure total, capacity cap, output columns, and ordering are otherwise identical."
+    }
+  ]
+}

@@ -43,28 +43,16 @@ class Solution:
                 if discovery[next_row][next_column] == -1:
                     children += 1
                     dfs(next_row, next_column, (row, column))
-                    low[row][column] = min(
-                        low[row][column], low[next_row][next_column]
-                    )
+                    low[row][column] = min(low[row][column], low[next_row][next_column])
 
                     if parent is None and children > 1:
                         has_articulation = True
-                    if (
-                        parent is not None
-                        and low[next_row][next_column] >= discovery[row][column]
-                    ):
+                    if parent is not None and low[next_row][next_column] >= discovery[row][column]:
                         has_articulation = True
                 else:
-                    low[row][column] = min(
-                        low[row][column], discovery[next_row][next_column]
-                    )
+                    low[row][column] = min(low[row][column], discovery[next_row][next_column])
 
-        start = next(
-            (row, column)
-            for row in range(rows)
-            for column in range(columns)
-            if grid[row][column] == 1
-        )
+        start = next((row, column) for row in range(rows) for column in range(columns) if grid[row][column] == 1)
         dfs(start[0], start[1], None)
 
         if visited != land_count:

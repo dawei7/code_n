@@ -5,7 +5,7 @@ class Solution:
 
         prefix_min = nums[0]
         prefix_max = nums[0]
-        answer = -(10 ** 20)
+        answer = -(10**20)
 
         for last in range(m - 1, len(nums)):
             first_candidate = nums[last - m + 1]

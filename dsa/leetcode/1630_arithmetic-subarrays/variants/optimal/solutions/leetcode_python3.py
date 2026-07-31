@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def checkArithmeticSubarrays(
-        self, nums: List[int], l: List[int], r: List[int]
-    ) -> List[bool]:
+    def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
         answers = []
         for left, right in zip(l, r):
             length = right - left + 1

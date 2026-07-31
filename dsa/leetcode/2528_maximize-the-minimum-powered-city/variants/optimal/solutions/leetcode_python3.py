@@ -8,10 +8,7 @@ class Solution:
         for count in stations:
             prefix.append(prefix[-1] + count)
 
-        power = [
-            prefix[min(n, city + r + 1)] - prefix[max(0, city - r)]
-            for city in range(n)
-        ]
+        power = [prefix[min(n, city + r + 1)] - prefix[max(0, city - r)] for city in range(n)]
 
         def feasible(target: int) -> bool:
             difference = [0] * (n + 1)

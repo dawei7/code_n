@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maximizeSquareHoleArea(
-        self, n: int, m: int, hBars: List[int], vBars: List[int]
-    ) -> int:
+    def maximizeSquareHoleArea(self, n: int, m: int, hBars: List[int], vBars: List[int]) -> int:
         def maximum_opening(bars: List[int]) -> int:
             removable = set(bars)
             longest_run = 0

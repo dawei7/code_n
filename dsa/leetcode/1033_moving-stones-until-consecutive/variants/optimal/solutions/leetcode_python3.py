@@ -15,4 +15,3 @@ class Solution:
             minimum = 2
 
         return [minimum, z - x - 2]
-

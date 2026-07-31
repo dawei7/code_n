@@ -24,4 +24,3 @@ class Solution:
                 longest = max(longest, up + down + 1)
 
         return longest
-

@@ -1,26 +1,21 @@
 ## General
-**Exploit the complete bounded input domain**
+**Generate decimal palindromes in increasing order**
 
-The contract permits only eight bases and thirty counts, for exactly $8\cdot30=240$ legal input pairs. Store one row of thirty prefix sums for each base. Entry `n - 1` in row `k` is already the requested sum of the first `n` qualifying values, so a query needs only direct indexing.
+Enumerate decimal lengths beginning at one. A palindrome of a fixed length is determined by its first $\lceil L/2\rceil$ digits, so enumerate those halves in increasing order. Reflect the entire half for even lengths and all but its last digit for odd lengths. This produces every positive decimal palindrome exactly once and in numeric order without scanning nonpalindromic integers.
 
-**Produce the table from ordered palindromes**
+**Test the second representation directly**
 
-The preserved native submission and the independent certificate oracle generate decimal palindromes rather than testing every integer. They enumerate decimal lengths and increasing first halves, reflecting the whole half for even lengths and all but its final digit for odd lengths. This emits every positive decimal palindrome exactly once in numeric order.
+For each decimal palindrome, repeatedly take the remainder modulo `k` and divide by `k` to collect its base-$k$ digits from least significant to most significant. The representation is palindromic exactly when that digit list equals its reverse. Add every qualifying decimal value to the running sum and stop immediately after the `n`th match.
 
-For each candidate, repeated remainder and division by `k` recover its second-base digits. A candidate is accepted when that digit list equals its reverse. Accumulating accepted values produces every prefix sum stored in the app-local table.
-
-**Verify every lookup, not selected examples**
-
-The bounded-domain regression regenerates all thirty prefix sums independently for each base from 2 through 9 and compares all 240 table entries. The app can therefore use constant-time lookup without treating unverified constants as evidence.
+Because candidates are visited in increasing order, the first `n` accepted values are exactly the requested prefix. Decimal construction proves every candidate is a base-10 palindrome, and the explicit digit comparison proves the second-base condition, so the returned total includes all and only the first `n` $k$-mirror numbers.
 
 ## Complexity detail
-The app-local `solve` performs one fixed-table row lookup and one indexed lookup, taking $O(1)$ time and $O(1)$ auxiliary space. The 240 stored integers occupy fixed corpus space that cannot grow under the source constraints. A strict bounded-domain certificate replaces runtime scaling and is backed by exhaustive regeneration of every legal answer.
+Let $P$ be the number of decimal palindromes examined through the `n`th match, and let $D$ be the maximum number of base-$k$ digits in those candidates. Constructing and checking one candidate takes $O(D)$ time, so total time is $O(PD)$. The temporary digit list uses $O(D)$ space. The source contract bounds `k` to 2 through 9 and `n` to 1 through 30, so a bounded-domain certificate replaces dishonest runtime scaling beyond the legal domain.
 
 ## Alternatives and edge cases
-- **Generate decimal palindromes on demand:** This is the remotely Accepted native method and avoids scanning nonpalindromes, but larger legal samples exceed the app runner's ordinary interpreted-step cap.
-- **Test every positive integer:** Checking both representations in numeric order is correct but examines far more candidates than decimal-palindrome generation.
-- **Generate base-k palindromes first:** This is also valid, but the relative candidate count depends on `k`; generating in base 10 gives one uniform verification stream.
-- **Table integrity:** Fixed answers are acceptable only because an independent regression exhaustively verifies all 240 legal inputs.
+- **Precomputed answer table:** All 240 legal `(k, n)` pairs can be stored for constant-time lookup, but that obscures the Accepted algorithm and makes the app-local and native sources fundamentally different.
+- **Test every positive integer:** Checking both representations in numeric order is correct but examines far more candidates because most integers are not decimal palindromes.
+- **Generate base-`k` palindromes first:** This is also valid, but the relative candidate count varies by base; decimal generation provides one uniform ordered stream.
 - **Odd decimal length:** Do not duplicate the center digit when reflecting the first half.
-- **Leading zeros:** Starting every half at the smallest number with its required digit count prevents them automatically.
-- **One-digit values:** Every positive digit below `k` is palindromic in both bases, and the general generator handles them without a special case.
+- **Leading zeros:** Starting each half at the smallest number with the required digit count prevents them automatically.
+- **One-digit values:** Every positive digit below `k` is palindromic in both bases, and the general generator handles these without a special case.

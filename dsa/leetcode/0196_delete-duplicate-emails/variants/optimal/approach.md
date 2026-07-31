@@ -5,7 +5,7 @@ The native MySQL form expresses that predicate with a multi-table self-join dele
 
 For `(1,a), (2,b), (3,a), (4,a)`, rows 3 and 4 each match row 1 and are deleted. Row 1 has no same-email row with a smaller id, and row 2 has no duplicate at all, so both survive. It does not matter that row 4 may match multiple smaller rows; deletion remains idempotent for that target row.
 
-The local SQLite adapter uses a different mutation-safe shape because SQLite does not support MySQL's joined-delete syntax: compute minimum ids per email in a nested relation, then delete ids not in that keeper set. The extra nesting also avoids engines' restrictions on reading directly from the table currently being modified.
+The local SQLite adapter uses a correlated `EXISTS` predicate because SQLite does not support MySQL's joined-delete syntax. Delete a row exactly when another `Person` row has the same email and a smaller id. This is the same duplicate-versus-keeper relation as the native self-join.
 
 Every deleted row matches a same-email row with smaller id, so it cannot be the required representative. Conversely, every nonminimum row has the group's minimum-id row as a smaller same-email match and is deleted. The minimum row has no smaller match and survives, while a unique-email row also has no match. Hence exactly the minimum-id row remains for each distinct email.
 

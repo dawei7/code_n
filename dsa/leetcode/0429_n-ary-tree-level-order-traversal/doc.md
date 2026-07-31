@@ -17,7 +17,9 @@ Return one list per occupied depth from top to bottom. Within a level, preserve 
 ### Function Contract
 **Inputs**
 
-- `root`: the app representation of an N-ary node as `[value, children]`, recursively, or `None` for an empty tree
+- `root`: The N-ary `Node` root, or `None` for an empty tree. Each node exposes `val` and an ordered `children` list.
+
+Authored JSON cases encode a node recursively as `[value, children]`; the runner constructs the `Node` objects before calling `solve`.
 
 **Return value**
 

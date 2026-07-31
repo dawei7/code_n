@@ -115,6 +115,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "benchmark",
         "scale-small"
@@ -849,6 +850,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "benchmark",
         "scale-medium"
@@ -3695,6 +3697,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "benchmark",
         "scale-large"

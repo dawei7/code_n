@@ -6,10 +6,7 @@ class Solution:
         ordered = sorted(nums)
         median = ordered[len(ordered) // 2]
         candidates = self._nearby_palindromes(median)
-        return min(
-            sum(abs(value - target) for value in ordered)
-            for target in candidates
-        )
+        return min(sum(abs(value - target) for value in ordered) for target in candidates)
 
     def _nearby_palindromes(self, value: int) -> Set[int]:
         text = str(value)

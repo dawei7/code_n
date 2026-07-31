@@ -10,4 +10,4 @@ class Solution:
                 matched += 1
             prefix[index] = matched
 
-        return s[:prefix[-1]]
+        return s[: prefix[-1]]

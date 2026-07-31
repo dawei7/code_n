@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def countInterestingSubarrays(
-        self, nums: List[int], modulo: int, k: int
-    ) -> int:
+    def countInterestingSubarrays(self, nums: List[int], modulo: int, k: int) -> int:
         remainder_counts = defaultdict(int)
         remainder_counts[0] = 1
         qualifying_prefix = 0

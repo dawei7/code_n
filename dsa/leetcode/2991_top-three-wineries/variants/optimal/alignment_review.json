@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "67d2f90b688e094e613c45c661acb66a50817c7892a3b8d2155f51fa7ef2b560",
+    "native_sha256": "bb222a5d52ce63132172db56049cc4f4dac2e98ba5cfc17454e6e966f5bad6a5",
+    "solution_variants_sha256": "c72f1e30afeb57d6bb848d5231110a82afd45d64fb0baf6605d4fc0000d691f5",
+    "approach_sha256": "61736eef37ec4f5089e53b3b90e2cf6ae18719cbb2c65d659680d0d407563280"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {"same_algorithm": true, "same_data_flow": true, "same_helper_logic": true, "complexity_matches": true, "naming_consistent_where_interfaces_permit": true, "difference_is_unavoidable": true},
+  "differences": [{"aspect": "winery label concatenation", "native": "MySQL builds each label with CONCAT.", "app": "SQLite builds the same label with the || operator.", "rationale": "SQLite does not implement MySQL's CONCAT function. Totals, per-country ranking, tie-breaking, conditional pivot, fallback labels, aliases, and country ordering are identical."}]
+}

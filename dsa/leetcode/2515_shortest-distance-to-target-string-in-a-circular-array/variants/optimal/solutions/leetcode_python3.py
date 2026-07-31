@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def closestTarget(
-        self, words: List[str], target: str, startIndex: int
-    ) -> int:
+    def closestTarget(self, words: List[str], target: str, startIndex: int) -> int:
         length = len(words)
         best = length + 1
 

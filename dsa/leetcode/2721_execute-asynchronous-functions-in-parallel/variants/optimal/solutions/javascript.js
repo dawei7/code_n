@@ -1,4 +1,8 @@
-function promiseAll(functions) {
+/**
+ * @param {Array<Function>} functions
+ * @return {Promise<any>}
+ */
+var promiseAll = function(functions) {
     return new Promise((resolve, reject) => {
         const results = new Array(functions.length);
         let completed = 0;
@@ -11,30 +15,43 @@ function promiseAll(functions) {
             }).catch(reject);
         });
     });
-}
+};
 
-function solve(tasks) {
-    const startTimes = tasks.map(() => 0);
+async function solve(tasks) {
+    const startTimes = new Array(tasks.length);
+    const functions = tasks.map((task, index) => () => {
+        startTimes[index] = 0;
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (Object.prototype.hasOwnProperty.call(task, "reject")) {
+                    reject(task.reject);
+                } else {
+                    resolve(task.value);
+                }
+            }, task.delay);
+        });
+    });
     const rejections = tasks
         .map((task, index) => ({ task, index }))
         .filter(({ task }) => Object.prototype.hasOwnProperty.call(task, "reject"))
         .sort((left, right) => left.task.delay - right.task.delay || left.index - right.index);
 
-    if (rejections.length > 0) {
+    try {
+        const value = await promiseAll(functions);
+        return {
+            status: "resolved",
+            value,
+            completionTime: Math.max(...tasks.map((task) => task.delay)),
+            startTimes,
+        };
+    } catch (reason) {
         return {
             status: "rejected",
-            reason: rejections[0].task.reject,
+            reason,
             completionTime: rejections[0].task.delay,
             startTimes,
         };
     }
-
-    return {
-        status: "resolved",
-        value: tasks.map((task) => task.value),
-        completionTime: Math.max(...tasks.map((task) => task.delay)),
-        startTimes,
-    };
 }
 
 module.exports = { promiseAll, solve };

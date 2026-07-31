@@ -5,11 +5,11 @@ If the first character is not `[`, the entire valid serialization is a signed in
 
 **Let the stack represent open lists**
 
-For a list input, scan left to right. Each opening bracket creates a new list, appends it to its parent when one exists, and pushes it as the current container. A closing bracket finishes any number immediately before it and then pops the completed container. The stack therefore mirrors the unmatched opening brackets at every position.
+For a list input, scan left to right. Each opening bracket creates an empty `NestedInteger`, adds it to its parent when one exists, and pushes it as the current container. A closing bracket finishes any number immediately before it and then pops the completed container. The stack therefore mirrors the unmatched opening brackets at every position.
 
 **Recognize numbers by their source interval**
 
-When a digit or minus sign begins a number, remember that character index. The next comma or closing bracket ends the token, so convert exactly that substring once and append it to the current list. Empty lists have no pending number and are closed without adding a value.
+When a digit or minus sign begins a number, remember that character index. The next comma or closing bracket ends the token, so convert exactly that substring once, wrap it in a `NestedInteger`, and add it to the current container. Empty lists have no pending number and close without adding a value.
 
 **Why every token reaches the correct parent**
 

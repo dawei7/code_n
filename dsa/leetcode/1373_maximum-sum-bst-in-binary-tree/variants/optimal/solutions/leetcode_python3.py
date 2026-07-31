@@ -17,12 +17,8 @@ class Solution:
                     stack.append((node.left, False))
                 continue
 
-            left = summaries.get(
-                node.left, (True, float("inf"), float("-inf"), 0)
-            )
-            right = summaries.get(
-                node.right, (True, float("inf"), float("-inf"), 0)
-            )
+            left = summaries.get(node.left, (True, float("inf"), float("-inf"), 0))
+            right = summaries.get(node.right, (True, float("inf"), float("-inf"), 0))
             if left[0] and right[0] and left[2] < node.val < right[1]:
                 total = left[3] + node.val + right[3]
                 summaries[node] = (

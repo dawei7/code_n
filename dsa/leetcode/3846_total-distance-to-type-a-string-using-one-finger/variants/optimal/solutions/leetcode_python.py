@@ -6,9 +6,7 @@ class Solution:
             "zxcvbnm",
         )
         positions = {
-            character: (row, column)
-            for row, keys in enumerate(keyboard)
-            for column, character in enumerate(keys)
+            character: (row, column) for row, keys in enumerate(keyboard) for column, character in enumerate(keys)
         }
 
         row, column = positions["a"]

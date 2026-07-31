@@ -16,27 +16,17 @@ class Solution:
 
             term_numerator = 0
             while expression[index].isdigit():
-                term_numerator = (
-                    term_numerator * 10 + int(expression[index])
-                )
+                term_numerator = term_numerator * 10 + int(expression[index])
                 index += 1
 
             index += 1
             term_denominator = 0
-            while (
-                index < len(expression)
-                and expression[index].isdigit()
-            ):
-                term_denominator = (
-                    term_denominator * 10 + int(expression[index])
-                )
+            while index < len(expression) and expression[index].isdigit():
+                term_denominator = term_denominator * 10 + int(expression[index])
                 index += 1
 
             term_numerator *= sign
-            numerator = (
-                numerator * term_denominator
-                + term_numerator * denominator
-            )
+            numerator = numerator * term_denominator + term_numerator * denominator
             denominator *= term_denominator
 
             divisor = gcd(abs(numerator), denominator)
@@ -44,4 +34,3 @@ class Solution:
             denominator //= divisor
 
         return f"{numerator}/{denominator}"
-

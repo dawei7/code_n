@@ -4,6 +4,9 @@ from __future__ import annotations
 import ast
 import json
 import keyword
+import re
+import symtable
+import warnings
 
 from challenges.registry import get_challenge
 from engine import solutions
@@ -36,8 +39,163 @@ def test_python_templates_are_clean_and_explicit() -> None:
         assert template.startswith('\"\"\"\nDescription\n-----------\n')
         assert "return None" in template
         assert "```" not in template
-        compile(template, f"{challenge_id}_template.py", "exec")
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", SyntaxWarning)
+            compile(template, f"{challenge_id}_template.py", "exec")
         assert get_challenge(challenge_id) is not None
+
+
+def test_marked_judge_models_are_copied_into_python_templates() -> None:
+    for challenge_id, info in solutions._CHALLENGE_TEMPLATES.items():
+        solution_path = leetcode_solution_path(challenge_id, "python")
+        if solution_path is None or not solution_path.is_file():
+            continue
+        source = solution_path.read_text(encoding="utf-8")
+        source_tree = ast.parse(source)
+        expected_models = {
+            node.name
+            for node in source_tree.body
+            if isinstance(node, ast.ClassDef)
+            and (ast.get_docstring(node, clean=False) or "").startswith(
+                "Local equivalent of "
+            )
+        }
+        if not expected_models:
+            continue
+
+        template = solutions._solution_template(
+            challenge_id,
+            f"{challenge_id}: starter model regression",
+            "test description",
+        )
+        template_tree = ast.parse(template)
+        actual_models = {
+            node.name for node in template_tree.body if isinstance(node, ast.ClassDef)
+        }
+        assert expected_models <= actual_models, challenge_id
+
+
+def test_source_native_judge_models_are_explicit_in_app_solutions() -> None:
+    judge_models = {
+        "TreeNode",
+        "ListNode",
+        "PolyNode",
+        "RopeTreeNode",
+        "Street",
+        "CategoryHandler",
+        "BigArray",
+        "Node",
+        "NodeCopy",
+        "Point",
+        "NestedInteger",
+        "Employee",
+        "Interval",
+        "ArrayReader",
+        "Master",
+        "MountainArray",
+        "HtmlParser",
+        "CustomFunction",
+        "Sea",
+        "BinaryMatrix",
+        "GridMaster",
+    }
+    for challenge_id in solutions._CHALLENGE_TEMPLATES:
+        solution_path = leetcode_solution_path(challenge_id, "python")
+        if solution_path is None or not solution_path.is_file():
+            continue
+        native_paths = sorted(solution_path.parent.glob("leetcode_python*.py"))
+        if not native_paths:
+            continue
+
+        native_source = native_paths[0].read_text(encoding="utf-8")
+        native_tree = ast.parse(native_source)
+        native_defined_models = {
+            node.name
+            for node in ast.walk(native_tree)
+            if isinstance(node, ast.ClassDef) and node.name in judge_models
+        }
+        expected_models = {
+            model
+            for model in judge_models - native_defined_models
+            if re.search(rf"\b{model}\b", native_source)
+        }
+        if not expected_models:
+            continue
+
+        source_tree = ast.parse(solution_path.read_text(encoding="utf-8"))
+        marked_models = {
+            node.name
+            for node in source_tree.body
+            if isinstance(node, ast.ClassDef)
+            and (ast.get_docstring(node, clean=False) or "").startswith(
+                "Local equivalent of "
+            )
+        }
+        assert expected_models <= marked_models, challenge_id
+
+
+def test_app_references_do_not_depend_on_injected_judge_model_names() -> None:
+    model_names = {
+        "TreeNode",
+        "ListNode",
+        "PolyNode",
+        "RopeTreeNode",
+        "Street",
+        "CategoryHandler",
+        "BigArray",
+        "Node",
+        "NodeCopy",
+        "Point",
+        "NestedInteger",
+        "Employee",
+        "Interval",
+        "ArrayReader",
+        "Master",
+        "MountainArray",
+        "HtmlParser",
+        "CustomFunction",
+        "Sea",
+        "BinaryMatrix",
+        "GridMaster",
+    }
+
+    def unresolved_global_models(table: symtable.SymbolTable) -> set[str]:
+        unresolved: set[str] = set()
+        for name in model_names & set(table.get_identifiers()):
+            symbol = table.lookup(name)
+            if symbol.is_referenced() and symbol.is_global():
+                unresolved.add(name)
+        for child in table.get_children():
+            unresolved.update(unresolved_global_models(child))
+        return unresolved
+
+    for challenge_id in solutions._CHALLENGE_TEMPLATES:
+        solution_path = leetcode_solution_path(challenge_id, "python")
+        if solution_path is None or not solution_path.is_file():
+            continue
+        source = solution_path.read_text(encoding="utf-8")
+        module_table = symtable.symtable(source, str(solution_path), "exec")
+        module_bindings = {
+            name
+            for name in model_names & set(module_table.get_identifiers())
+            if module_table.lookup(name).is_assigned()
+            or module_table.lookup(name).is_imported()
+        }
+        unresolved = unresolved_global_models(module_table) - module_bindings
+        assert not unresolved, f"{challenge_id}: undefined {sorted(unresolved)}"
+
+
+def test_unique_bst_starter_defines_executable_tree_node() -> None:
+    template = solutions._solution_template(
+        "lc_95",
+        "lc_95: Unique Binary Search Trees II",
+        "Generate all structurally unique binary search trees.",
+    )
+    namespace: dict[str, object] = {}
+    exec(template, namespace)
+    tree_node = namespace["TreeNode"]
+    root = tree_node(2, tree_node(1), tree_node(3))
+    assert (root.val, root.left.val, root.right.val) == (2, 1, 3)
 
 
 def test_document_input_parser_ignores_constraint_bullets() -> None:

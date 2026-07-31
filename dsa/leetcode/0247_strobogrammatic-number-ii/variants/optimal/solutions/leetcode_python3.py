@@ -8,11 +8,6 @@ class Solution:
             if length == 1:
                 return ["0", "1", "8"]
             centers = build(length - 2)
-            return [
-                left + center + right
-                for center in centers
-                for left, right in pairs
-                if length != n or left != "0"
-            ]
+            return [left + center + right for center in centers for left, right in pairs if length != n or left != "0"]
 
         return build(n)

@@ -18,8 +18,7 @@ class Solution:
                     second_smallest = value
 
             previous = [
-                grid[row][column]
-                + (second_smallest if column == smallest_column else smallest)
+                grid[row][column] + (second_smallest if column == smallest_column else smallest)
                 for column in range(length)
             ]
 

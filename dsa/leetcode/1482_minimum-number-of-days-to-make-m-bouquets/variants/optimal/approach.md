@@ -5,7 +5,7 @@ Every bouquet consumes exactly `k` different flowers, so `m * k` positions are n
 
 **Defining a monotone feasibility predicate**
 
-For a proposed day `day`, mark a flower available precisely when `bloom_day[i] <= day`. If the required bouquets can be made on that day, they remain possible on every later day because flowers never become unavailable. Thus `can_make(day)` changes at most once, from false to true, across increasing days.
+For a proposed day `day`, mark a flower available precisely when `bloomDay[i] <= day`. If the required bouquets can be made on that day, they remain possible on every later day because flowers never become unavailable. Thus `can_make(day)` changes at most once, from false to true, across increasing days.
 
 This false-then-true structure is what permits binary search for the first feasible day rather than simulating every day in the potentially billion-wide range.
 
@@ -17,7 +17,7 @@ This greedy grouping maximizes the number of bouquets within every available run
 
 **Finding the first feasible day**
 
-After the impossibility check, `min(bloom_day)` is a valid lower search bound and `max(bloom_day)` is guaranteed feasible because all flowers have bloomed and $m k \le N$. At each step, test the midpoint. If it is feasible, keep it as a candidate by moving the right bound to `mid`; otherwise discard it and every earlier day by moving the left bound to `mid + 1`.
+After the impossibility check, `min(bloomDay)` is a valid lower search bound and `max(bloomDay)` is guaranteed feasible because all flowers have bloomed and $m k \le N$. At each step, test the midpoint. If it is feasible, keep it as a candidate by moving the right bound to `mid`; otherwise discard it and every earlier day by moving the left bound to `mid + 1`.
 
 The bounds converge on one day. All smaller days have been proven infeasible, while the converged day is feasible, so it is exactly the minimum waiting time required.
 

@@ -21,13 +21,14 @@ Unlike the standard version of this problem, either target may be absent from th
 
 - `root`: the root of a binary tree containing $n$ nodes, where $1 \le n \le 10^4$.
 - Every node value is unique and lies between $-10^9$ and $10^9$.
-- `p` and `q`: distinct target nodes; either or both may not belong to the tree.
+- `p`: the first target `TreeNode`; it may not belong to `root`.
+- `q`: the distinct second target `TreeNode`; it may not belong to `root`.
 
-In the app-local adapter, `p` and `q` are represented by their unique integer values.
+JSON fixtures use each target's unique value to recover the corresponding object from `root` before the call. An absent value becomes a missing target represented to the solution as `null`.
 
 **Return value**
 
-Return the lowest common ancestor when both targets occur in the tree; otherwise return `null`. The app-local result is the ancestor's unique value.
+Return the lowest-common-ancestor `TreeNode` when both targets occur in the tree; otherwise return `null`. The result display uses the returned node's value.
 
 ### Examples
 **Example 1**

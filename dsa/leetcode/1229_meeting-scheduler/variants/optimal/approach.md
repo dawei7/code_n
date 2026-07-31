@@ -1,5 +1,5 @@
 ## General
-**Put both schedules in chronological order.** Sort each list by interval start. Keeping sorted copies avoids changing the caller's inputs and makes the next possible overlap depend only on one current interval from each schedule.
+**Put both schedules in chronological order.** Sort each input list in place by interval start. The next possible overlap then depends only on one current interval from each schedule.
 
 **Measure the current intersection.** For intervals `[a, b]` and `[c, d]`, the shared portion begins at `max(a, c)` and ends at `min(b, d)`. If `end - start >= duration`, this is the earliest feasible overlap among all unprocessed slots, so return `[start, start + duration]` immediately.
 
@@ -8,7 +8,7 @@
 Every interval discarded by this rule is proven unable to participate in a feasible earlier meeting. The pointers therefore examine all potentially useful pairs in chronological order, and the first returned intersection has the smallest possible start time. Exhausting either list proves no pair remains.
 
 ## Complexity detail
-Sorting costs $O(n\log n+m\log m)$ time, and the two pointers advance at most $n+m$ times. The sorted copies occupy $O(n+m)$ space.
+Sorting costs $O(n\log n+m\log m)$ time, and the two pointers advance at most $n+m$ times. Python's in-place list sorts may use $O(n+m)$ temporary space in total.
 
 ## Alternatives and edge cases
 - **Compare every slot pair:** Testing all $nm$ intersections is correct but quadratic when both schedules are large.
@@ -16,5 +16,6 @@ Sorting costs $O(n\log n+m\log m)$ time, and the two pointers advance at most $n
 - **Touching endpoints:** An overlap of zero duration cannot host any positive `duration`.
 - **Exact fit:** If `end - start == duration`, return that entire overlap.
 - **Unsorted input:** Sorting is required before pointer advancement is valid.
+- **Input mutation:** The accepted implementation reorders both slot lists. Copy them first if a surrounding caller must preserve their original order.
 - **Multiple feasible overlaps:** Return immediately at the first one in chronological pointer order.
 - **No overlap:** Exhaustion of either schedule returns `[]`.

@@ -6,9 +6,7 @@ class Solution:
 
         for candies in range(1, n + 1):
             for bags in range(min(candies, k), 0, -1):
-                ways[bags] = (
-                    ways[bags - 1] + bags * ways[bags]
-                ) % modulus
+                ways[bags] = (ways[bags - 1] + bags * ways[bags]) % modulus
             ways[0] = 0
 
         return ways[k]

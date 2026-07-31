@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def minOperations(
-        self, nums: List[int], k: int, queries: List[List[int]]
-    ) -> List[int]:
+    def minOperations(self, nums: List[int], k: int, queries: List[List[int]]) -> List[int]:
         normalized = [value // k for value in nums]
         coordinates = sorted(set(normalized))
         rank = {value: index for index, value in enumerate(coordinates)}
@@ -23,13 +21,9 @@ class Solution:
             if low != high:
                 middle = (low + high) // 2
                 if position <= middle:
-                    left_child[node] = add(
-                        left_child[previous], low, middle, position, value
-                    )
+                    left_child[node] = add(left_child[previous], low, middle, position, value)
                 else:
-                    right_child[node] = add(
-                        right_child[previous], middle + 1, high, position, value
-                    )
+                    right_child[node] = add(right_child[previous], middle + 1, high, position, value)
             return node
 
         roots = [0]
@@ -39,9 +33,7 @@ class Solution:
 
         remainder_changes = [0] * len(nums)
         for index in range(1, len(nums)):
-            remainder_changes[index] = remainder_changes[index - 1] + (
-                nums[index] % k != nums[index - 1] % k
-            )
+            remainder_changes[index] = remainder_changes[index - 1] + (nums[index] % k != nums[index - 1] % k)
 
         answer = []
         for query_left, query_right in queries:
@@ -85,9 +77,6 @@ class Solution:
             range_sum = totals[newer_root] - totals[older_root]
             right_count = length - left_count
             right_sum = range_sum - left_sum
-            answer.append(
-                median * left_count - left_sum
-                + right_sum - median * right_count
-            )
+            answer.append(median * left_count - left_sum + right_sum - median * right_count)
 
         return answer

@@ -4,9 +4,7 @@ from typing import List
 class Solution:
     def findWords(self, words: List[str]) -> List[str]:
         row_by_letter = {
-            letter: row_index
-            for row_index, row in enumerate(("qwertyuiop", "asdfghjkl", "zxcvbnm"))
-            for letter in row
+            letter: row_index for row_index, row in enumerate(("qwertyuiop", "asdfghjkl", "zxcvbnm")) for letter in row
         }
         answer = []
         for word in words:

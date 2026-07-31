@@ -2,7 +2,7 @@
 
 Energy and experience evolve differently, so their minimum training requirements can be derived independently and then added.
 
-**Account for all energy at once.** Energy only decreases. To remain strictly positive after paying every opponent's energy cost, the trained starting amount must be at least `sum(energy) + 1`. Therefore the unavoidable energy training is `max(0, sum(energy) + 1 - initial_energy)`. This condition is also sufficient: every earlier prefix consumes no more energy than the full sequence.
+**Account for all energy at once.** Energy only decreases. To remain strictly positive after paying every opponent's energy cost, the trained starting amount must be at least `sum(energy) + 1`. Therefore the unavoidable energy training is `max(0, sum(energy) + 1 - initialEnergy)`. This condition is also sufficient: every earlier prefix consumes no more energy than the full sequence.
 
 **Repair experience only when necessary.** Experience increases after victories, so scan the opponents in order. Immediately before an encounter, if current experience is not strictly greater than the opponent's experience, train by exactly the missing amount `opponent_experience + 1 - current_experience`. Then add the experience gained from winning.
 

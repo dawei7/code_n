@@ -22,11 +22,11 @@ The first row contains the single boundary value one. For every later row, the t
 Those assignments are exactly Pascal's recurrence. Starting from the correct base row and applying it to every position constructs each requested row without omission or alteration.
 
 ## Complexity detail
-The triangle contains $1 + 2 + \dots + num_rows = O(num_rows^2)$ values, each written once. Time and returned storage are therefore both $O(num_rows^2)$; auxiliary working storage beyond the output is $O(num_rows)$ for the current row.
+The triangle contains $1 + 2 + \dots + numRows = O(numRows^2)$ values, each written once. Time and returned storage are therefore both $O(numRows^2)$; auxiliary working storage beyond the output is $O(numRows)$ for the current row.
 
 ## Alternatives and edge cases
 - **Compute binomial coefficients independently:** can avoid previous-row access but performs more arithmetic or requires careful multiplicative formulas.
 - **Recursive definition:** repeats the same coefficient subproblems without memoization.
 - **Return only the final row:** solves Problem 119, not this full-triangle contract.
-- `num_rows = 1` returns only `[1]`; no previous-row access occurs.
+- `numRows = 1` returns only `[1]`; no previous-row access occurs.
 - Each returned row must be a distinct list. Reusing one mutable row object would make earlier output rows change during later updates.

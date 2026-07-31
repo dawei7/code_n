@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def applySubstitutions(
-        self, replacements: List[List[str]], text: str
-    ) -> str:
+    def applySubstitutions(self, replacements: List[List[str]], text: str) -> str:
         raw_value = dict(replacements)
         expanded = {}
 

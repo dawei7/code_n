@@ -10,7 +10,7 @@
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Minimum Cost to Connect Sticks and meets the required complexity bound.",
       "time_complexity": "O(n \\log n)",
-      "space_complexity": "O(n)"
+      "space_complexity": "O(1)"
     }
   ]
 }

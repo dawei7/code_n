@@ -1,8 +1,6 @@
 class Solution:
     def putMarbles(self, weights: List[int], k: int) -> int:
-        boundary_costs = sorted(
-            left + right for left, right in zip(weights, weights[1:])
-        )
+        boundary_costs = sorted(left + right for left, right in zip(weights, weights[1:]))
         cuts = k - 1
 
         if cuts == 0:

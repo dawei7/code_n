@@ -4,10 +4,7 @@ from typing import List
 class Solution:
     def checkValidCuts(self, n: int, rectangles: List[List[int]]) -> bool:
         def has_three_groups(start_index: int, end_index: int) -> bool:
-            intervals = sorted(
-                (rectangle[start_index], rectangle[end_index])
-                for rectangle in rectangles
-            )
+            intervals = sorted((rectangle[start_index], rectangle[end_index]) for rectangle in rectangles)
             groups = 0
             current_end = -1
 

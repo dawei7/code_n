@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def findSolution(
-        self, customfunction: "CustomFunction", z: int
-    ) -> List[List[int]]:
+    def findSolution(self, customfunction: "CustomFunction", z: int) -> List[List[int]]:
         result = []
         x, y = 1, z
         while x <= z and y >= 1:

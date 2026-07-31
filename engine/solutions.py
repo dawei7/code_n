@@ -78,6 +78,11 @@ def _build_templates() -> dict[str, dict]:
             "params": list(spec.params),
             "inputs": dict(spec.inputs),
             "returns": spec.returns,
+            "python_starter_preamble": str(
+                (getattr(spec, "reference_metadata", {}) or {}).get(
+                    "python_starter_preamble", ""
+                )
+            ),
         }
     return templates
 
@@ -508,6 +513,11 @@ def _solution_header(challenge_id: str, description: str) -> str:
     blocks = [_section_block("Description", clean_description)]
     blocks.append(_section_block("Examples", samples or "No examples registered."))
     body = "\n\n".join(blocks).rstrip()
+    # The source material may describe literal escape sequences from another
+    # language (for example JavaScript's ``\` ``). Preserve those characters
+    # without letting Python reinterpret them or emit invalid-escape warnings
+    # in the generated starter docstring.
+    body = body.replace("\\", "\\\\").replace('"""', '\\"\\"\\"')
     return f'"""\n{body}\n"""\n\n'
 
 
@@ -1680,9 +1690,13 @@ def _solution_template(
 
     params = info["params"]
     sig = "def solve(" + ", ".join(params) + "):"
+    preamble = str(info.get("python_starter_preamble") or "").strip()
+    if preamble:
+        preamble += "\n\n"
 
     return (
         header +
+        preamble +
         f'{sig}\n'
         f'    # Write your code here.\n'
         f'    return None\n'

@@ -8,17 +8,8 @@ class Solution:
             inverses[1] = 1
         for exponent in range(1, max_exponent + 1):
             if exponent > 1:
-                inverses[exponent] = (
-                    mod
-                    - (mod // exponent) * inverses[mod % exponent] % mod
-                )
-            combinations[exponent] = (
-                combinations[exponent - 1]
-                * (n + exponent - 1)
-                % mod
-                * inverses[exponent]
-                % mod
-            )
+                inverses[exponent] = mod - (mod // exponent) * inverses[mod % exponent] % mod
+            combinations[exponent] = combinations[exponent - 1] * (n + exponent - 1) % mod * inverses[exponent] % mod
 
         smallest_prime = [0] * (maxValue + 1)
         for value in range(2, maxValue + 1):

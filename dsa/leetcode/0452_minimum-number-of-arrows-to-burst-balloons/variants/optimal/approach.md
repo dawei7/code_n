@@ -12,7 +12,7 @@ Keep the coordinate of the most recent arrow. In endpoint order, an interval is 
 The containment test is `start <= arrow`, not a strict comparison. An arrow at `2` bursts both `[1, 2]` and `[2, 3]`.
 
 ## Complexity detail
-Sorting dominates at $O(n \log n)$ time, and the greedy scan is $O(n)$. Creating a sorted copy uses $O(n)$ auxiliary space; an in-place sort can reduce explicit container space subject to the language's sorting implementation.
+Sorting dominates at $O(n \log n)$ time, and the greedy scan is $O(n)$. The reference sorts `points` in place; Python's sorting implementation can still use $O(n)$ auxiliary memory.
 
 ## Alternatives and edge cases
 - **Sort by starts and maintain an intersection:** track the minimum end within the current overlapping group; starting a disjoint group adds one arrow and is also $O(n \log n)$.

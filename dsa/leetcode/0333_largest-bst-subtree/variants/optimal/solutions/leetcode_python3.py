@@ -19,12 +19,8 @@ class Solution:
                 stack.append((node.left, False))
                 continue
 
-            left_valid, left_minimum, left_maximum, left_size, left_best = summaries.get(
-                node.left, empty
-            )
-            right_valid, right_minimum, right_maximum, right_size, right_best = summaries.get(
-                node.right, empty
-            )
+            left_valid, left_minimum, left_maximum, left_size, left_best = summaries.get(node.left, empty)
+            right_valid, right_minimum, right_maximum, right_size, right_best = summaries.get(node.right, empty)
             if left_valid and right_valid and left_maximum < node.val < right_minimum:
                 size = 1 + left_size + right_size
                 summaries[node] = (

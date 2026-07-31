@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def allCellsDistOrder(
-        self, rows: int, cols: int, rCenter: int, cCenter: int
-    ) -> List[List[int]]:
+    def allCellsDistOrder(self, rows: int, cols: int, rCenter: int, cCenter: int) -> List[List[int]]:
         buckets = [[] for _ in range(rows + cols - 1)]
         for row in range(rows):
             for col in range(cols):
@@ -12,4 +10,3 @@ class Solution:
                 buckets[distance].append([row, col])
 
         return [cell for bucket in buckets for cell in bucket]
-

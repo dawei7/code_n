@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "8a5cc8c007f2263fd35e12a10f2dc6745a5c3df8c11cdbfd07b7c08af34e5d99",
+    "native_sha256": "be1347c87b69dc4d168ca324de19de1b54fe6c6544af149c73ae82a9abce8415",
+    "solution_variants_sha256": "879ab2d87e8af0e5b947f40beb01a6735d75a4ddef2b622cb3f10929a366acae",
+    "approach_sha256": "f4e80ca4219194890fbd0cc33b851c68cff9dd2c8c6120b4c627f9b3cff198cc"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "inclusive 24-hour timestamp comparison",
+      "native": "MySQL uses TIMESTAMPDIFF in seconds and compares the result with 86400.",
+      "app": "SQLite compares the later timestamp with datetime(previous_time, '+24 hours').",
+      "rationale": "SQLite does not implement MySQL's TIMESTAMPDIFF function. The LAG window, user partition, chronological ordering, inclusive boundary, DISTINCT projection, and unordered result semantics otherwise match."
+    }
+  ]
+}

@@ -16,8 +16,5 @@ class Solution:
                 non_decreasing[index] = non_decreasing[index + 1] + 1
 
         return [
-            index
-            for index in range(k, size - k)
-            if non_increasing[index - 1] >= k
-            and non_decreasing[index + 1] >= k
+            index for index in range(k, size - k) if non_increasing[index - 1] >= k and non_decreasing[index + 1] >= k
         ]

@@ -9,10 +9,7 @@ class Solution:
             return False
 
         lines = list(board)
-        lines.extend(
-            "".join(board[row][column] for row in range(3))
-            for column in range(3)
-        )
+        lines.extend("".join(board[row][column] for row in range(3)) for column in range(3))
         lines.append("".join(board[index][index] for index in range(3)))
         lines.append("".join(board[index][2 - index] for index in range(3)))
         x_wins = "XXX" in lines

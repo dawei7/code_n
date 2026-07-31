@@ -11,14 +11,14 @@ class Solution:
             index = 0
             while index < len(line):
                 if in_block:
-                    if index + 1 < len(line) and line[index:index + 2] == "*/":
+                    if index + 1 < len(line) and line[index : index + 2] == "*/":
                         in_block = False
                         index += 2
                     else:
                         index += 1
-                elif index + 1 < len(line) and line[index:index + 2] == "//":
+                elif index + 1 < len(line) and line[index : index + 2] == "//":
                     break
-                elif index + 1 < len(line) and line[index:index + 2] == "/*":
+                elif index + 1 < len(line) and line[index : index + 2] == "/*":
                     in_block = True
                     index += 2
                 else:

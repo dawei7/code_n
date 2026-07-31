@@ -11,4 +11,3 @@ class Solution:
             answer += ending_here
 
         return answer
-

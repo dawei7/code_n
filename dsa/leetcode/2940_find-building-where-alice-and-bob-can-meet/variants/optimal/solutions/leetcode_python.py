@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def leftmostBuildingQueries(
-        self, heights: List[int], queries: List[List[int]]
-    ) -> List[int]:
+    def leftmostBuildingQueries(self, heights: List[int], queries: List[List[int]]) -> List[int]:
         answers = [-1] * len(queries)
         waiting = [[] for _ in heights]
 

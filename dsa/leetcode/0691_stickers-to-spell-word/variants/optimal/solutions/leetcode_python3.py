@@ -22,9 +22,7 @@ class Solution:
 
                 next_remaining = []
                 for letter, count in needed.items():
-                    next_remaining.extend(
-                        letter * max(0, count - sticker[letter])
-                    )
+                    next_remaining.extend(letter * max(0, count - sticker[letter]))
                 canonical = "".join(sorted(next_remaining))
                 residual = minimum(canonical)
                 if residual != impossible:
@@ -34,4 +32,3 @@ class Solution:
 
         answer = minimum("".join(sorted(target)))
         return -1 if answer == impossible else answer
-

@@ -23,11 +23,7 @@ class Solution:
             for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                 next_row = row + row_delta
                 next_column = column + column_delta
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and not visited[next_row][next_column]
-                ):
+                if 0 <= next_row < rows and 0 <= next_column < columns and not visited[next_row][next_column]:
                     visited[next_row][next_column] = True
                     terrain = heightMap[next_row][next_column]
                     trapped += max(0, wall - terrain)

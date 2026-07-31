@@ -33,14 +33,8 @@ class Solution:
                         if start >= current_length:
                             previous_start = start - current_length
                             common = lcp[previous_start][start]
-                            if (
-                                common >= current_length
-                                or num[previous_start + common] <= num[start + common]
-                            ):
-                                ways += (
-                                    prefix[start][current_length]
-                                    - prefix[start][current_length - 1]
-                                ) % modulus
+                            if common >= current_length or num[previous_start + common] <= num[start + common]:
+                                ways += (prefix[start][current_length] - prefix[start][current_length - 1]) % modulus
 
                 row[current_length] = (row[current_length - 1] + ways) % modulus
 

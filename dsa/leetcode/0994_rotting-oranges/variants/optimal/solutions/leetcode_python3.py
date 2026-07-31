@@ -24,11 +24,7 @@ class Solution:
             for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                 next_row = row + row_step
                 next_column = column + column_step
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and grid[next_row][next_column] == 1
-                ):
+                if 0 <= next_row < rows and 0 <= next_column < columns and grid[next_row][next_column] == 1:
                     grid[next_row][next_column] = 2
                     fresh -= 1
                     queue.append((next_row, next_column, minute + 1))

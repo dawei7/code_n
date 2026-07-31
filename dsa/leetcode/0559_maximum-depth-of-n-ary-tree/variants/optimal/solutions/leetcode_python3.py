@@ -7,7 +7,7 @@ from typing import Optional
 #         self.val = val
 #         self.children = children if children is not None else []
 class Solution:
-    def maxDepth(self, root: Optional['Node']) -> int:
+    def maxDepth(self, root: Optional["Node"]) -> int:
         if root is None:
             return 0
 

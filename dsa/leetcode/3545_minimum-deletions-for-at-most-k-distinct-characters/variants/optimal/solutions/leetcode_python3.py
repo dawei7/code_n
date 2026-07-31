@@ -4,8 +4,6 @@ class Solution:
         for char in s:
             counts[ord(char) - ord("a")] += 1
 
-        frequencies = sorted(
-            count for count in counts if count
-        )
+        frequencies = sorted(count for count in counts if count)
         remove = max(0, len(frequencies) - k)
         return sum(frequencies[:remove])

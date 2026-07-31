@@ -22,7 +22,7 @@ REPORT_PATH = LEETCODE_ROOT / "_reports" / "python_optimal_completion_report.jso
 def solution_path_for_doc(doc_path: Path, metadata: dict[str, Any]) -> Path:
     challenge_id = str(metadata.get("challenge_id") or "")
     routed = leetcode_solution_path(challenge_id, "python") if challenge_id else None
-    return routed or doc_path.parent / "__missing_optimal_variant__" / "python.py"
+    return routed or doc_path.parent / "__missing_optimal_variant__" / "solve.py"
 
 
 def load_package_metadata(doc_path: Path) -> dict[str, Any]:

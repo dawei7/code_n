@@ -12,10 +12,7 @@ class Solution:
                 return ["0." + digits[1:]]
             if digits[-1] == "0":
                 return [digits]
-            return [digits] + [
-                digits[:index] + "." + digits[index:]
-                for index in range(1, len(digits))
-            ]
+            return [digits] + [digits[:index] + "." + digits[index:] for index in range(1, len(digits))]
 
         digits = s[1:-1]
         coordinates = []

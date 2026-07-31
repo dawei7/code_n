@@ -16,9 +16,7 @@ class MajorityChecker:
         for index, value in enumerate(arr):
             self.tree[size + index] = (value, 1)
         for index in range(size - 1, 0, -1):
-            self.tree[index] = self._merge(
-                self.tree[index * 2], self.tree[index * 2 + 1]
-            )
+            self.tree[index] = self._merge(self.tree[index * 2], self.tree[index * 2 + 1])
 
     def _merge(self, left, right):
         left_value, left_count = left

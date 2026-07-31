@@ -7,13 +7,7 @@ class Solution:
         century = year // 100
         year_in_century = year % 100
         weekday = (
-            century // 4
-            - 2 * century
-            + year_in_century
-            + year_in_century // 4
-            + 13 * (month + 1) // 5
-            + day
-            - 1
+            century // 4 - 2 * century + year_in_century + year_in_century // 4 + 13 * (month + 1) // 5 + day - 1
         ) % 7
         names = [
             "Sunday",

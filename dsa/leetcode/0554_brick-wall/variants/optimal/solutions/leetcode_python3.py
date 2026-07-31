@@ -13,4 +13,3 @@ class Solution:
 
         most_aligned = max(edge_frequency.values(), default=0)
         return len(wall) - most_aligned
-

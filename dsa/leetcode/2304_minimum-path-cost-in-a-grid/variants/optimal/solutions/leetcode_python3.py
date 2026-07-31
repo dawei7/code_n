@@ -14,11 +14,7 @@ class Solution:
             for previous_column, previous_cost in enumerate(costs):
                 previous_value = grid[row_index - 1][previous_column]
                 for column, value in enumerate(grid[row_index]):
-                    candidate = (
-                        previous_cost
-                        + moveCost[previous_value][column]
-                        + value
-                    )
+                    candidate = previous_cost + moveCost[previous_value][column] + value
                     next_costs[column] = min(next_costs[column], candidate)
             costs = next_costs
 

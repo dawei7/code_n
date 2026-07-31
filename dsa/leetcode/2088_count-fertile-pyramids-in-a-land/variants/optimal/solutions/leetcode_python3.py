@@ -27,6 +27,4 @@ class Solution:
 
             return total
 
-        return count_orientation(range(rows - 1, -1, -1)) + count_orientation(
-            range(rows)
-        )
+        return count_orientation(range(rows - 1, -1, -1)) + count_orientation(range(rows))

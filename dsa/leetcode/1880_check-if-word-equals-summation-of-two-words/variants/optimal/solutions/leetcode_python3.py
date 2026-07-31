@@ -11,7 +11,4 @@ class Solution:
                 value = value * 10 + ord(character) - ord("a")
             return value
 
-        return (
-            numerical_value(firstWord) + numerical_value(secondWord)
-            == numerical_value(targetWord)
-        )
+        return numerical_value(firstWord) + numerical_value(secondWord) == numerical_value(targetWord)

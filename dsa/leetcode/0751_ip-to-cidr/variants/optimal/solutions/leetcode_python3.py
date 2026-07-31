@@ -18,9 +18,7 @@ class Solution:
             block_size = min(aligned_size, remaining_size)
             prefix_length = 32 - (block_size.bit_length() - 1)
 
-            address = ".".join(
-                str((current >> shift) & 255) for shift in (24, 16, 8, 0)
-            )
+            address = ".".join(str((current >> shift) & 255) for shift in (24, 16, 8, 0))
             blocks.append(f"{address}/{prefix_length}")
             current += block_size
             remaining -= block_size

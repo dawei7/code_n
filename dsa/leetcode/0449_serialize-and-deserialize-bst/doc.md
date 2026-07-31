@@ -17,11 +17,11 @@ Design a codec for binary search trees. `serialize(root)` must encode every node
 ### Function Contract
 **Inputs**
 
-- `root`: the app's level-order array representation of a binary search tree, using `None` for missing children
+- `root`: the root `TreeNode` of a binary search tree, or `None` for an empty tree
 
 **Return value**
 
-- Serialize and deserialize the tree, then return its reconstructed level-order representation. The native artifact exposes `Codec.serialize(root)` and `Codec.deserialize(data)` with `TreeNode` objects.
+- Serialize and deserialize the tree, then return the reconstructed root `TreeNode`. The native artifact exposes the same `Codec.serialize(root)` and `Codec.deserialize(data)` methods.
 
 ### Examples
 **Example 1**

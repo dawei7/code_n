@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def findMaximalUncoveredRanges(
-        self, n: int, ranges: List[List[int]]
-    ) -> List[List[int]]:
+    def findMaximalUncoveredRanges(self, n: int, ranges: List[List[int]]) -> List[List[int]]:
         uncovered = []
         next_uncovered = 0
 

@@ -34,9 +34,5 @@ class Solution:
 
         first_diameter = diameter(edges1)
         second_diameter = diameter(edges2)
-        merged_path = (
-            (first_diameter + 1) // 2
-            + (second_diameter + 1) // 2
-            + 1
-        )
+        merged_path = (first_diameter + 1) // 2 + (second_diameter + 1) // 2 + 1
         return max(first_diameter, second_diameter, merged_path)

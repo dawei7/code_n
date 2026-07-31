@@ -38,4 +38,3 @@ class CBTInserter:
 
     def get_root(self) -> Optional[TreeNode]:
         return self.root
-

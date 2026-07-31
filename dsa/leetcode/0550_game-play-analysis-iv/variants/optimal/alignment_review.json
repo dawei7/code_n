@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "07947040b576f252cf8725b3a910b500dbcba6b37cf0ddfa3e2506479d982042",
+    "native_sha256": "79498c26e47b49385905158fd087b299ace220834dfd61f8f770c564a96541b5",
+    "solution_variants_sha256": "b2c5cc56444cfc52088fe456ba6e8a503f7b7721a51151bf74247d072b35fb02",
+    "approach_sha256": "6b4e4bf72b79f4ca59c591c354c1d5136ad12b9d77aaee768c37ce1f569938ac"
+  },
+  "classifications": ["sql_dialect", "app_execution_adapter"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "date arithmetic and division semantics",
+      "native": "The verified MySQL query uses DATE_ADD(first_login, INTERVAL 1 DAY) and MySQL division.",
+      "app": "The offline SQLite query uses date(first_login, '+1 day') and multiplies the numerator by 1.0 to prevent integer division.",
+      "rationale": "These are the respective dialect-native spellings of the same next-calendar-day join and fractional aggregation. The CTE, grouping, join keys, numerator, denominator, rounding, result schema, and complexity are unchanged."
+    }
+  ]
+}

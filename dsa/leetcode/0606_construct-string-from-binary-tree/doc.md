@@ -17,7 +17,9 @@ Omit empty parenthesis pairs whenever doing so does not change the one-to-one ma
 ### Function Contract
 **Inputs**
 
-- `root: TreeNode | None`: the binary-tree root
+- `root`: The binary tree's `TreeNode` root, or `None`.
+
+JSON cases encode `root` as a level-order array. The runner reconstructs the `TreeNode` graph before calling `solve(root)`.
 
 **Return value**
 

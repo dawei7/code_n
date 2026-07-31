@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def countSubgraphsForEachDiameter(
-        self, n: int, edges: List[List[int]]
-    ) -> List[int]:
+    def countSubgraphsForEachDiameter(self, n: int, edges: List[List[int]]) -> List[int]:
         graph = [[] for _ in range(n)]
         for first, second in edges:
             first -= 1

@@ -9,6 +9,8 @@ The first bad version always lies in `[left, right]`. A bad midpoint makes `[lef
 
 If the midpoint is good, monotonicity proves every earlier version is good and the boundary must be to its right. If it is bad, the midpoint might itself be the first bad version, so the search retains it while discarding only later candidates. Each update preserves the transition point until the interval contains one version, which must be the answer.
 
+LeetCode supplies `isBadVersion(version)` as a hidden judge API. The offline app receives its monotone boundary as `bad` and defines a local predicate over that fixture; the binary-search body then makes the same predicate calls as the native solution.
+
 ## Complexity detail
 Each API call halves the remaining interval, so there are $O(\log n)$ calls and only constant local state.
 

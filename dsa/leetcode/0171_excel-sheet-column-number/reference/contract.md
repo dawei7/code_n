@@ -2,7 +2,7 @@
 
 **Inputs**
 
-- `column_title`: A valid, non-empty Excel column title made from uppercase English letters.
+- `columnTitle`: A valid, non-empty Excel column title made from uppercase English letters.
 
 **Return value**
 

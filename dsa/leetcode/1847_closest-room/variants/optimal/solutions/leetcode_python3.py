@@ -2,13 +2,9 @@ from bisect import bisect_left, bisect_right
 
 
 class Solution:
-    def closestRoom(
-        self, rooms: list[list[int]], queries: list[list[int]]
-    ) -> list[int]:
+    def closestRoom(self, rooms: list[list[int]], queries: list[list[int]]) -> list[int]:
         room_ids = sorted(room_id for room_id, _ in rooms)
-        positions = {
-            room_id: index + 1 for index, room_id in enumerate(room_ids)
-        }
+        positions = {room_id: index + 1 for index, room_id in enumerate(room_ids)}
         tree = [0] * (len(room_ids) + 1)
 
         def add(index: int) -> None:
@@ -36,20 +32,14 @@ class Solution:
 
         rooms.sort(key=lambda room: room[1], reverse=True)
         indexed_queries = sorted(
-            (
-                (minimum_size, preferred, query_index)
-                for query_index, (preferred, minimum_size) in enumerate(queries)
-            ),
+            ((minimum_size, preferred, query_index) for query_index, (preferred, minimum_size) in enumerate(queries)),
             reverse=True,
         )
         answer = [-1] * len(queries)
         room_index = 0
 
         for minimum_size, preferred, query_index in indexed_queries:
-            while (
-                room_index < len(rooms)
-                and rooms[room_index][1] >= minimum_size
-            ):
+            while room_index < len(rooms) and rooms[room_index][1] >= minimum_size:
                 add(positions[rooms[room_index][0]])
                 room_index += 1
 
@@ -66,8 +56,6 @@ class Solution:
             if count_before_right < total:
                 candidates.append(room_ids[kth(count_before_right + 1) - 1])
 
-            answer[query_index] = min(
-                candidates, key=lambda room_id: (abs(room_id - preferred), room_id)
-            )
+            answer[query_index] = min(candidates, key=lambda room_id: (abs(room_id - preferred), room_id))
 
         return answer

@@ -10,8 +10,8 @@
       "visible": false,
       "size": 6,
       "input": {
-        "initial_energy": 1,
-        "initial_experience": 1,
+        "initialEnergy": 1,
+        "initialExperience": 1,
         "energy": [
           100,
           100,
@@ -38,8 +38,8 @@
       "visible": false,
       "size": 25,
       "input": {
-        "initial_energy": 1,
-        "initial_experience": 1,
+        "initialEnergy": 1,
+        "initialExperience": 1,
         "energy": [
           100,
           100,
@@ -104,8 +104,8 @@
       "visible": false,
       "size": 100,
       "input": {
-        "initial_energy": 1,
-        "initial_experience": 1,
+        "initialEnergy": 1,
+        "initialExperience": 1,
         "energy": [
           100,
           100,

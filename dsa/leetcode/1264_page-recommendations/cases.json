@@ -101,6 +101,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "sample"
       ]
@@ -136,6 +137,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "sample"
       ]
@@ -171,6 +173,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "sample"
       ]
@@ -206,6 +209,7 @@
         ],
         "rows": []
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "trial",
         "excluded"
@@ -250,6 +254,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "trial",
         "distinct"
@@ -294,6 +299,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "real"
       ]
@@ -329,6 +335,7 @@
         ],
         "rows": []
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "real",
         "empty"

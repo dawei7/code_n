@@ -10,8 +10,8 @@ from typing import List, Optional
 
 
 class Solution:
-    def isValidSequence(self, root: Optional['TreeNode'], arr: List[int]) -> bool:
-        def matches(node: Optional['TreeNode'], index: int) -> bool:
+    def isValidSequence(self, root: Optional["TreeNode"], arr: List[int]) -> bool:
+        def matches(node: Optional["TreeNode"], index: int) -> bool:
             if node is None or index == len(arr) or node.val != arr[index]:
                 return False
             if node.left is None and node.right is None:

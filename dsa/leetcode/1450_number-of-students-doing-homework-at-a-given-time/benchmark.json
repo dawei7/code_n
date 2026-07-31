@@ -10,7 +10,7 @@
       "visible": false,
       "size": 20,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           1,
           1,
@@ -32,7 +32,7 @@
           1,
           1
         ],
-        "end_time": [
+        "endTime": [
           20,
           20,
           20,
@@ -54,7 +54,7 @@
           20,
           20
         ],
-        "query_time": 20
+        "queryTime": 20
       },
       "expected": 20,
       "tags": [
@@ -71,7 +71,7 @@
       "visible": false,
       "size": 50,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           1,
           1,
@@ -123,7 +123,7 @@
           1,
           1
         ],
-        "end_time": [
+        "endTime": [
           50,
           50,
           50,
@@ -175,7 +175,7 @@
           50,
           50
         ],
-        "query_time": 50
+        "queryTime": 50
       },
       "expected": 50,
       "tags": [
@@ -192,7 +192,7 @@
       "visible": false,
       "size": 100,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           1,
           1,
@@ -294,7 +294,7 @@
           1,
           1
         ],
-        "end_time": [
+        "endTime": [
           100,
           100,
           100,
@@ -396,7 +396,7 @@
           100,
           100
         ],
-        "query_time": 100
+        "queryTime": 100
       },
       "expected": 100,
       "tags": [

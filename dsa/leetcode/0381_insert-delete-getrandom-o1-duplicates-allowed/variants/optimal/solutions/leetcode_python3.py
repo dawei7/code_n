@@ -3,7 +3,6 @@ from random import choice
 
 
 class RandomizedCollection:
-
     def __init__(self):
         self.values = []
         self.indices = defaultdict(set)
@@ -32,4 +31,3 @@ class RandomizedCollection:
 
     def getRandom(self) -> int:
         return choice(self.values)
-

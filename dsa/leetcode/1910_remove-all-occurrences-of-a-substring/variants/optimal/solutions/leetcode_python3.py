@@ -21,8 +21,8 @@ class Solution:
             result.append(character)
             states.append(matched)
             if matched == len(part):
-                del result[-len(part):]
-                del states[-len(part):]
+                del result[-len(part) :]
+                del states[-len(part) :]
                 matched = states[-1] if states else 0
 
         return "".join(result)

@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def maximumSum(
-        self, nums: List[int], m: int, l: int, r: int
-    ) -> int:
+    def maximumSum(self, nums: List[int], m: int, l: int, r: int) -> int:
         n = len(nums)
         prefix = [0] * (n + 1)
         for index, value in enumerate(nums):
@@ -23,11 +21,7 @@ class Solution:
                 start = end - l
                 if start >= 0 and previous[start] != negative_infinity:
                     candidate = previous[start] - prefix[start]
-                    while (
-                        candidates
-                        and previous[candidates[-1]] - prefix[candidates[-1]]
-                        <= candidate
-                    ):
+                    while candidates and previous[candidates[-1]] - prefix[candidates[-1]] <= candidate:
                         candidates.pop()
                     candidates.append(start)
 
@@ -38,9 +32,7 @@ class Solution:
                 if candidates:
                     current[end] = max(
                         current[end],
-                        prefix[end]
-                        + previous[candidates[0]]
-                        - prefix[candidates[0]],
+                        prefix[end] + previous[candidates[0]] - prefix[candidates[0]],
                     )
 
             answer = max(answer, current[n])

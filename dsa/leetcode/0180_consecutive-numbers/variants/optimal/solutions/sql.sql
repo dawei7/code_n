@@ -9,5 +9,4 @@ WITH Sequenced AS (
 SELECT DISTINCT num AS ConsecutiveNums
 FROM Sequenced
 WHERE num = previous_one
-  AND num = previous_two
-ORDER BY ConsecutiveNums;
+  AND num = previous_two;

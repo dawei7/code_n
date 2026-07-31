@@ -4,7 +4,7 @@ class Solution:
         if limit == 0:
             return 0
 
-        negative = -10**30
+        negative = -(10**30)
 
         completed = [negative] * (limit + 1)
         completed[0] = 0
@@ -25,12 +25,8 @@ class Solution:
                     old_positive[pairs] - value,
                     old_negative[pairs] + value,
                 )
-                open_positive[pairs] = max(
-                    open_positive[pairs], old_completed[pairs] + value
-                )
-                open_negative[pairs] = max(
-                    open_negative[pairs], old_completed[pairs] - value
-                )
+                open_positive[pairs] = max(open_positive[pairs], old_completed[pairs] + value)
+                open_negative[pairs] = max(open_negative[pairs], old_completed[pairs] - value)
 
         answer = max(completed)
 

@@ -19,8 +19,6 @@ class Solution:
                     break
                 node = node[character]
                 if "#" in node:
-                    minimum_extra[end] = min(
-                        minimum_extra[end], minimum_extra[start]
-                    )
+                    minimum_extra[end] = min(minimum_extra[end], minimum_extra[start])
 
         return minimum_extra[len(s)]

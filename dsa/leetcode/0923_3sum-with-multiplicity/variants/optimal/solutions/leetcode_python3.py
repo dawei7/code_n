@@ -26,4 +26,3 @@ class Solution:
                     answer += counts[first] * counts[second] * counts[third]
 
         return answer % modulus
-

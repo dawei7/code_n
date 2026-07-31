@@ -38,4 +38,3 @@ class FileSystem:
     def readContentFromFile(self, filePath: str) -> str:
         node = self._walk(filePath)
         return "".join(node.content)
-

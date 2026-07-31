@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def findMissingRanges(
-        self, nums: List[int], lower: int, upper: int
-    ) -> List[List[int]]:
+    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[List[int]]:
         ranges = []
         next_missing = lower
         for value in nums:

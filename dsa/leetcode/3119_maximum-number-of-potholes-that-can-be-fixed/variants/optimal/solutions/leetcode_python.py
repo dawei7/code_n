@@ -1,7 +1,7 @@
 class Solution:
     def maxPotholes(self, road: str, budget: int) -> int:
         runs = sorted(
-            (len(block) for block in road.split('.') if block),
+            (len(block) for block in road.split(".") if block),
             reverse=True,
         )
 

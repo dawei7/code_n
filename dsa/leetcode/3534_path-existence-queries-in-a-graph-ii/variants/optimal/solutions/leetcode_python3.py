@@ -13,27 +13,23 @@ class Solution:
         for left in range(n):
             if right < left:
                 right = left
-            while (
-                right + 1 < n
-                and values[right + 1] - values[left] <= maxDiff
-            ):
+            while right + 1 < n and values[right + 1] - values[left] <= maxDiff:
                 right += 1
             farthest[left] = right
 
         jumps = [farthest]
         for _ in range(1, n.bit_length()):
             previous = jumps[-1]
-            jumps.append([
-                previous[previous[index]]
-                for index in range(n)
-            ])
+            jumps.append([previous[previous[index]] for index in range(n)])
 
         answer = []
         for source, target in queries:
-            left, right = sorted((
-                position[source],
-                position[target],
-            ))
+            left, right = sorted(
+                (
+                    position[source],
+                    position[target],
+                )
+            )
 
             if left == right:
                 answer.append(0)

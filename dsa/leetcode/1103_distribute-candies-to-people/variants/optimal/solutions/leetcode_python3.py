@@ -12,9 +12,7 @@ class Solution:
             if person >= complete_gifts:
                 break
             gift_count = (complete_gifts - 1 - person) // num_people + 1
-            distribution[person] = gift_count * (
-                2 * (person + 1) + (gift_count - 1) * num_people
-            ) // 2
+            distribution[person] = gift_count * (2 * (person + 1) + (gift_count - 1) * num_people) // 2
 
         if remaining:
             distribution[complete_gifts % num_people] += remaining

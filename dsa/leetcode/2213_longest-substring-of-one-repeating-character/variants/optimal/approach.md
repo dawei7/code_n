@@ -16,7 +16,7 @@ The node fields describe all possible locations of an optimal run: wholly inside
 
 Let $n$ be the initial string length and $q$ the query count. Building the tree takes $O(n)$ time. Each point update repairs $O(\log n)$ nodes, so total time is $O(n+q\log n)$.
 
-The power-of-two tree and mutable character array both use $O(n)$ space.
+The power-of-two segment tree uses $O(n)$ space.
 
 ## Alternatives and edge cases
 

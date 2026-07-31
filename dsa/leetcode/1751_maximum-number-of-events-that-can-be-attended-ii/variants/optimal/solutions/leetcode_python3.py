@@ -6,10 +6,7 @@ class Solution:
     def maxValue(self, events: List[List[int]], k: int) -> int:
         events.sort()
         starts = [start for start, _, _ in events]
-        next_index = [
-            bisect_right(starts, end)
-            for _, end, _ in events
-        ]
+        next_index = [bisect_right(starts, end) for _, end, _ in events]
 
         previous = [0] * (len(events) + 1)
         for _ in range(k):

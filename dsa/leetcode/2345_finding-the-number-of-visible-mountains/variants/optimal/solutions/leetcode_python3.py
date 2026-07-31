@@ -8,9 +8,8 @@ class Solution:
         rightmost = -1
 
         for index, interval in enumerate(ranges):
-            duplicate = (
-                (index > 0 and ranges[index - 1] == interval)
-                or (index + 1 < len(ranges) and ranges[index + 1] == interval)
+            duplicate = (index > 0 and ranges[index - 1] == interval) or (
+                index + 1 < len(ranges) and ranges[index + 1] == interval
             )
             if not duplicate and interval[1] > rightmost:
                 visible += 1

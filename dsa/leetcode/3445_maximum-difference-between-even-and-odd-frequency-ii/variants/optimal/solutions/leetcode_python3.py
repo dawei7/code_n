@@ -19,16 +19,11 @@ class Solution:
                 left = 0
 
                 for right in range(k, n + 1):
-                    while (
-                        left <= right - k
-                        and even_prefix[left] <= even_prefix[right] - 2
-                    ):
+                    while left <= right - k and even_prefix[left] <= even_prefix[right] - 2:
                         odd_parity = odd_prefix[left] & 1
                         even_parity = even_prefix[left] & 1
                         difference = odd_prefix[left] - even_prefix[left]
-                        best_prefix[odd_parity][even_parity] = min(
-                            best_prefix[odd_parity][even_parity], difference
-                        )
+                        best_prefix[odd_parity][even_parity] = min(best_prefix[odd_parity][even_parity], difference)
                         left += 1
 
                     needed_odd_parity = 1 - (odd_prefix[right] & 1)

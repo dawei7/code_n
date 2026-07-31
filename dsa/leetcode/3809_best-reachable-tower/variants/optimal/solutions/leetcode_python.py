@@ -9,9 +9,7 @@ class Solution:
                 continue
 
             coordinates = [x, y]
-            if quality > best_quality or (
-                quality == best_quality and coordinates < best_coordinates
-            ):
+            if quality > best_quality or (quality == best_quality and coordinates < best_coordinates):
                 best_quality = quality
                 best_coordinates = coordinates
 

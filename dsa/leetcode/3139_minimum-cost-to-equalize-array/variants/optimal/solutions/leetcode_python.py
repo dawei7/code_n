@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def minCostToEqualizeArray(
-        self, nums: List[int], cost1: int, cost2: int
-    ) -> int:
+    def minCostToEqualizeArray(self, nums: List[int], cost1: int, cost2: int) -> int:
         mod = 10**9 + 7
         n = len(nums)
         minimum = min(nums)

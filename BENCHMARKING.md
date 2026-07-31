@@ -5,7 +5,7 @@ reviewed example is the Two Sum package:
 
 - `dsa/leetcode/0001_two-sum/cases.json`
 - `dsa/leetcode/0001_two-sum/benchmark.json`
-- `dsa/leetcode/0001_two-sum/variants/optimal/solutions/python.py`
+- `dsa/leetcode/0001_two-sum/variants/optimal/solutions/solve.py`
 - `dsa/leetcode/0001_two-sum/doc.md`
 
 Future corpus migrations should reproduce the behavior described here, adapted

@@ -9,7 +9,7 @@ For a query, select the occurrence list for `value`. Binary-search for the first
 
 **Handle absent values without special traversal**
 
-If a value never occurs, use an empty position list. Both binary searches return zero, producing frequency zero. Repeated queries are read-only and need no state changes.
+If a value never occurs, the `defaultdict` supplies an empty position list. Both binary searches return zero, producing frequency zero. Existing occurrence lists are never modified by queries; the first query for an absent value merely installs its empty default list.
 
 ## Complexity detail
 Construction takes $O(n)$ time and stores $O(n)$ indices. A query performs two binary searches on a list of length $f$, taking $O(\log f)$ time and $O(1)$ auxiliary space. Across $Q$ calls, the total is $O(n+Q\log n)$ time. The index uses $O(n)$ space, while an app-level operation sequence also returns $O(Q)$ outputs.

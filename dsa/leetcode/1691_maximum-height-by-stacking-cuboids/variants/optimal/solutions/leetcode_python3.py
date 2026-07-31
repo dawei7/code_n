@@ -8,12 +8,7 @@ class Solution:
 
         for bottom in range(len(normalized)):
             for top in range(bottom):
-                if all(
-                    normalized[top][dimension] <= normalized[bottom][dimension]
-                    for dimension in range(3)
-                ):
-                    best[bottom] = max(
-                        best[bottom], best[top] + normalized[bottom][2]
-                    )
+                if all(normalized[top][dimension] <= normalized[bottom][dimension] for dimension in range(3)):
+                    best[bottom] = max(best[bottom], best[top] + normalized[bottom][2])
 
         return max(best)

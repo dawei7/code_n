@@ -14,14 +14,8 @@ class Solution:
 
         for value in arr1:
             position = bisect_left(sorted_arr2, value)
-            right_is_far = (
-                position == len(sorted_arr2)
-                or sorted_arr2[position] - value > d
-            )
-            left_is_far = (
-                position == 0
-                or value - sorted_arr2[position - 1] > d
-            )
+            right_is_far = position == len(sorted_arr2) or sorted_arr2[position] - value > d
+            left_is_far = position == 0 or value - sorted_arr2[position - 1] > d
             if left_is_far and right_is_far:
                 qualifying += 1
 

@@ -10,7 +10,7 @@ At every step, `maximum` is the greatest value already visited from the original
 
 ## Complexity detail
 
-Let $n$ be the number of nodes. Each node is visited once while reversing and once at most while filtering, so the running time is $O(n)$. Only a fixed number of pointers and one maximum value are stored, giving $O(1)$ auxiliary space. The app-local adapter serializes the returned nodes as a list for the JSON judge; that unavoidable output representation contains $O(k)$ values for $k$ retained nodes and is not auxiliary algorithmic storage.
+Let $n$ be the number of nodes. Each node is visited once while reversing and once at most while filtering, so the running time is $O(n)$. Only a fixed number of pointers and one maximum value are stored, giving $O(1)$ auxiliary space. The runner serializes the returned `ListNode` chain only after `solve` returns; the solution itself exposes and returns the source-native linked-list model.
 
 ## Alternatives and edge cases
 

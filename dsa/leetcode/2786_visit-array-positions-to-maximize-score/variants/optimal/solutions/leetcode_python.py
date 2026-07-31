@@ -1,6 +1,6 @@
 class Solution:
     def maxScore(self, nums: List[int], x: int) -> int:
-        unreachable = -(10 ** 30)
+        unreachable = -(10**30)
         best = [unreachable, unreachable]
         best[nums[0] % 2] = nums[0]
 

@@ -12,7 +12,7 @@ from typing import Optional
 #         self.bottomLeft = bottomLeft
 #         self.bottomRight = bottomRight
 class Solution:
-    def intersect(self, quadTree1: 'Node', quadTree2: 'Node') -> 'Node':
+    def intersect(self, quadTree1: "Node", quadTree2: "Node") -> "Node":
         if quadTree1.isLeaf:
             return Node(True, True) if quadTree1.val else quadTree2
         if quadTree2.isLeaf:
@@ -25,10 +25,7 @@ class Solution:
             self.intersect(quadTree1.bottomRight, quadTree2.bottomRight),
         ]
 
-        if all(
-            child.isLeaf and child.val == children[0].val
-            for child in children
-        ):
+        if all(child.isLeaf and child.val == children[0].val for child in children):
             return Node(children[0].val, True)
 
         return Node(
@@ -39,4 +36,3 @@ class Solution:
             children[2],
             children[3],
         )
-

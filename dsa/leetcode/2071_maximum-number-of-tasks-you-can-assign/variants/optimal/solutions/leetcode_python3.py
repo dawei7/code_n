@@ -19,10 +19,7 @@ class Solution:
             pills_left = pills
 
             for worker in workers[len(workers) - task_count :]:
-                while (
-                    task_index < task_count
-                    and tasks[task_index] <= worker + strength
-                ):
+                while task_index < task_count and tasks[task_index] <= worker + strength:
                     available.append(tasks[task_index])
                     task_index += 1
 

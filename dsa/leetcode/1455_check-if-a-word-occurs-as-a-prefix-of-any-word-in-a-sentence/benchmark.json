@@ -11,7 +11,7 @@
       "size": 10,
       "input": {
         "sentence": "b b b b b b b b b b",
-        "search_word": "a"
+        "searchWord": "a"
       },
       "expected": -1,
       "tags": [
@@ -29,7 +29,7 @@
       "size": 25,
       "input": {
         "sentence": "b b b b b b b b b b b b b b b b b b b b b b b b b",
-        "search_word": "a"
+        "searchWord": "a"
       },
       "expected": -1,
       "tags": [
@@ -47,7 +47,7 @@
       "size": 50,
       "input": {
         "sentence": "b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b",
-        "search_word": "a"
+        "searchWord": "a"
       },
       "expected": -1,
       "tags": [

@@ -14,11 +14,11 @@ These rules produce a direct sort key: pure-one segments, then mixed segments or
 
 **Evaluate runs without constructing the binary string**
 
-Maintain the processed prefix value modulo $P=10^9+7$. Appending $a$ ones multiplies the prefix by $2^a$ and adds $2^a-1$; appending $b$ zeros then multiplies it by $2^b$. Modular exponentiation performs both updates without allocating the segment text or the potentially enormous full integer. The native Accepted implementation uses an equivalent bit-by-bit modular scan.
+Maintain the processed prefix value modulo $P=10^9+7$. For each of a segment's `ones` positions, shift the prefix left and append one with `value = (value * 2 + 1) % P`. For each of its `zeros` positions, shift and append zero with `value = value * 2 % P`. This scans the chosen bit sequence directly without allocating the segment text or the potentially enormous full integer.
 
 ## Complexity detail
 
-Let $N$ be the number of segments and $L$ their total bit count as defined in the Function Contract. Constructing and sorting the segment pairs costs $O(N\log N)$ time. The Accepted source scans all $L$ bits, while the app-local source uses modular powers whose total exponent work is bounded by $O(L)$, so both satisfy $O(N\log N+L)$ time. The ordered segment list and the language runtime's sort workspace use $O(N)$ auxiliary space.
+Let $N$ be the number of segments and $L$ their total bit count as defined in the Function Contract. Constructing and sorting the segment pairs costs $O(N\log N)$ time, and evaluating their runs scans all $L$ bits. The total is $O(N\log N+L)$ time. The ordered segment list and the language runtime's sort workspace use $O(N)$ auxiliary space.
 
 The benchmark defines size as $N$ and keeps the average segment length bounded, making $L=\Theta(N)$. The required method therefore scales as $O(N\log N)$. A correct repeated-selection control performs $\Theta(N^2)$ segment comparisons before the same linear evaluation pass.
 
@@ -26,6 +26,7 @@ The benchmark defines size as $N$ and keeps the average segment length bounded, 
 
 - **Generic concatenation comparator:** Sorting explicit strings by whether `x + y` exceeds `y + x` is logically valid, but materializing both concatenations in every comparison repeats work proportional to segment lengths and is unnecessary for this restricted run structure.
 - **Repeatedly select the next segment:** Choosing the best remaining segment by a full scan preserves correctness but requires $\Theta(N^2)$ comparisons.
+- **Modular powers per run:** Appending $a$ ones as `value * 2**a + (2**a - 1)` and then shifting by $b$ zeros gives the same result with modular exponentiation; the direct scan more closely mirrors the chosen bit sequence.
 - **Pure-one segments:** Even a short all-one segment precedes every mixed segment, because it contributes no zero that could interrupt the combined leading-one prefix.
 - **Pure-zero segments:** These belong at the end; their relative order does not affect the final string.
 - **Equal leading-one counts:** For mixed segments with the same number of leading ones, the shorter zero run comes first so the next segment's `1` appears earlier.

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def canMakePalindromeQueries(
-        self, s: str, queries: List[List[int]]
-    ) -> List[bool]:
+    def canMakePalindromeQueries(self, s: str, queries: List[List[int]]) -> List[bool]:
         half = len(s) // 2
         left = s[:half]
         right = s[half:][::-1]
@@ -26,10 +24,7 @@ class Solution:
         def counts(prefix: List[List[int]], low: int, high: int) -> List[int]:
             if low > high:
                 return [0] * 26
-            return [
-                prefix[high + 1][letter] - prefix[low][letter]
-                for letter in range(26)
-            ]
+            return [prefix[high + 1][letter] - prefix[low][letter] for letter in range(26)]
 
         answer = []
         size = len(s)
@@ -39,15 +34,10 @@ class Solution:
             overlap_high = min(first_high, second_high)
 
             covered_mismatches = (
-                mismatch[first_high + 1]
-                - mismatch[first_low]
-                + mismatch[second_high + 1]
-                - mismatch[second_low]
+                mismatch[first_high + 1] - mismatch[first_low] + mismatch[second_high + 1] - mismatch[second_low]
             )
             if overlap_low <= overlap_high:
-                covered_mismatches -= (
-                    mismatch[overlap_high + 1] - mismatch[overlap_low]
-                )
+                covered_mismatches -= mismatch[overlap_high + 1] - mismatch[overlap_low]
             if mismatch[half] != covered_mismatches:
                 answer.append(False)
                 continue
@@ -64,10 +54,6 @@ class Solution:
 
             left_remaining = [a - b for a, b in zip(left_supply, right_fixed)]
             right_remaining = [a - b for a, b in zip(right_supply, left_fixed)]
-            answer.append(
-                min(left_remaining) >= 0
-                and min(right_remaining) >= 0
-                and left_remaining == right_remaining
-            )
+            answer.append(min(left_remaining) >= 0 and min(right_remaining) >= 0 and left_remaining == right_remaining)
 
         return answer

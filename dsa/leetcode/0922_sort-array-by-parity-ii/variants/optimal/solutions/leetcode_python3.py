@@ -14,4 +14,3 @@ class Solution:
             even_index += 2
 
         return nums
-

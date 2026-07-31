@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def reachableNodes(
-        self, edges: List[List[int]], maxMoves: int, n: int
-    ) -> int:
+    def reachableNodes(self, edges: List[List[int]], maxMoves: int, n: int) -> int:
         graph = [[] for _ in range(n)]
         for first, second, subdivisions in edges:
             weight = subdivisions + 1

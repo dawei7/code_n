@@ -11,7 +11,7 @@ class Solution:
         def subtree_max(node):
             nonlocal answer
             if node is None:
-                return float('-inf')
+                return float("-inf")
 
             left_max = subtree_max(node.left)
             right_max = subtree_max(node.right)

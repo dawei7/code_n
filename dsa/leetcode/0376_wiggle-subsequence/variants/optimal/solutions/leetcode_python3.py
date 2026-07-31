@@ -11,4 +11,3 @@ class Solution:
             elif nums[index] < nums[index - 1]:
                 down = up + 1
         return max(up, down)
-

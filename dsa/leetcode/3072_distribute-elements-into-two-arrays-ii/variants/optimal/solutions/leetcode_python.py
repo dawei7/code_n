@@ -28,9 +28,7 @@ class Solution:
             first_greater = len(first) - prefix_count(first_tree, rank)
             second_greater = len(second) - prefix_count(second_tree, rank)
 
-            if first_greater > second_greater or (
-                first_greater == second_greater and len(first) <= len(second)
-            ):
+            if first_greater > second_greater or (first_greater == second_greater and len(first) <= len(second)):
                 first.append(value)
                 add(first_tree, rank)
             else:

@@ -11,8 +11,7 @@ class Solution:
         divisible_counts = [0] * (maximum_factor + 1)
         for factor in range(1, maximum_factor + 1):
             divisible_counts[factor] = sum(
-                frequencies[multiple]
-                for multiple in range(factor, maximum_factor + 1, factor)
+                frequencies[multiple] for multiple in range(factor, maximum_factor + 1, factor)
             )
 
         dp = [0] * (budget + 1)

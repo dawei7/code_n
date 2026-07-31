@@ -10,9 +10,7 @@ class Solution:
                 if not acceptable or seen[girl]:
                     continue
                 seen[girl] = True
-                if matched_boy[girl] == -1 or augment(
-                    matched_boy[girl], seen
-                ):
+                if matched_boy[girl] == -1 or augment(matched_boy[girl], seen):
                     matched_boy[girl] = boy
                     return True
             return False

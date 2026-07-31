@@ -12,9 +12,7 @@ class Solution:
                 return False
 
             values = {
-                grid[top + row_offset][left + column_offset]
-                for row_offset in range(3)
-                for column_offset in range(3)
+                grid[top + row_offset][left + column_offset] for row_offset in range(3) for column_offset in range(3)
             }
             if values != magic_values:
                 return False
@@ -30,8 +28,4 @@ class Solution:
                 and sum(grid[top + offset][left + 2 - offset] for offset in range(3)) == 15
             )
 
-        return sum(
-            is_magic(top, left)
-            for top in range(rows - 2)
-            for left in range(columns - 2)
-        )
+        return sum(is_magic(top, left) for top in range(rows - 2) for left in range(columns - 2))

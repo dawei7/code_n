@@ -10,7 +10,7 @@
       "visible": false,
       "size": 32,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           3,
           5,
@@ -44,7 +44,7 @@
           61,
           63
         ],
-        "end_time": [
+        "endTime": [
           2,
           4,
           6,
@@ -127,7 +127,7 @@
       "visible": false,
       "size": 128,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           3,
           5,
@@ -257,7 +257,7 @@
           253,
           255
         ],
-        "end_time": [
+        "endTime": [
           2,
           4,
           6,
@@ -532,7 +532,7 @@
       "visible": false,
       "size": 512,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           3,
           5,
@@ -1046,7 +1046,7 @@
           1021,
           1023
         ],
-        "end_time": [
+        "endTime": [
           2,
           4,
           6,

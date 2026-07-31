@@ -12,8 +12,4 @@ class Solution:
                 frequencies[value] += 1
 
         required = len(arrays)
-        return [
-            value
-            for value in range(1, 101)
-            if frequencies[value] == required
-        ]
+        return [value for value in range(1, 101) if frequencies[value] == required]

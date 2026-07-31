@@ -2,9 +2,7 @@ from typing import Optional
 
 
 class Solution:
-    def isSubPath(
-        self, head: Optional[ListNode], root: Optional[TreeNode]
-    ) -> bool:
+    def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
         value_limit = 100
         pattern = []
         node = head
@@ -28,9 +26,7 @@ class Solution:
                 if value == pattern[state]:
                     transitions[state][value] = state + 1
                 elif state:
-                    transitions[state][value] = transitions[
-                        prefix[state - 1]
-                    ][value]
+                    transitions[state][value] = transitions[prefix[state - 1]][value]
 
         stack = [(root, 0)]
         while stack:

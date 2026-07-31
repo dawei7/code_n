@@ -15,19 +15,14 @@ class Solution:
 
         def same_inventory(first_start: int, second_start: int, size: int) -> bool:
             return all(
-                prefix1[character][first_start + size]
-                - prefix1[character][first_start]
-                == prefix2[character][second_start + size]
-                - prefix2[character][second_start]
+                prefix1[character][first_start + size] - prefix1[character][first_start]
+                == prefix2[character][second_start + size] - prefix2[character][second_start]
                 for character in range(26)
             )
 
         @cache
         def scramble(first_start: int, second_start: int, size: int) -> bool:
-            if (
-                s1[first_start : first_start + size]
-                == s2[second_start : second_start + size]
-            ):
+            if s1[first_start : first_start + size] == s2[second_start : second_start + size]:
                 return True
             if not same_inventory(first_start, second_start, size):
                 return False
@@ -36,9 +31,9 @@ class Solution:
                     first_start + split, second_start + split, size - split
                 ):
                     return True
-                if scramble(
-                    first_start, second_start + size - split, split
-                ) and scramble(first_start + split, second_start, size - split):
+                if scramble(first_start, second_start + size - split, split) and scramble(
+                    first_start + split, second_start, size - split
+                ):
                     return True
             return False
 

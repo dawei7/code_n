@@ -10,7 +10,7 @@
       "visible": false,
       "size": 16,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [
@@ -121,7 +121,7 @@
       "visible": false,
       "size": 64,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [
@@ -520,7 +520,7 @@
       "visible": false,
       "size": 256,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [

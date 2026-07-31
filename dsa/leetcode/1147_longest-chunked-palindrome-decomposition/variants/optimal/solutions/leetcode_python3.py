@@ -17,14 +17,11 @@ class Solution:
             pending_length += 1
             for position, modulus in enumerate(moduli):
                 left_hashes[position] = (left_hashes[position] * base + left_code) % modulus
-                right_hashes[position] = (
-                    right_code * powers[position] + right_hashes[position]
-                ) % modulus
+                right_hashes[position] = (right_code * powers[position] + right_hashes[position]) % modulus
 
             hashes_match = left_hashes == right_hashes
             characters_match = hashes_match and all(
-                text[chunk_left + offset] == text[right + offset]
-                for offset in range(pending_length)
+                text[chunk_left + offset] == text[right + offset] for offset in range(pending_length)
             )
             if characters_match:
                 chunks += 2

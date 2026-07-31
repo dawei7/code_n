@@ -11,9 +11,7 @@ class Solution:
         for column_index, counts in enumerate(column_counts):
             last_target_index = min(len(target) - 1, column_index)
             for target_index in range(last_target_index, -1, -1):
-                ways[target_index + 1] += (
-                    ways[target_index] * counts[target[target_index]]
-                )
+                ways[target_index + 1] += ways[target_index] * counts[target[target_index]]
                 ways[target_index + 1] %= modulus
 
         return ways[-1]

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "b476b863cdf6091971125a452d7e5de7e5fb93a98449890e9688fce1ecba7929",
+    "native_sha256": "9a703e082c29d47aa8474fd8b6c416f7642ccf305bf4e6b3f6876368ec7cda6b",
+    "solution_variants_sha256": "91a956a48e3b3c2da05f72d2dc7294bce08f19a4f611ad0e2c2c6ec52ab2c264",
+    "approach_sha256": "b95bc1f6214e5d516df3b466b1f3213800613a4d4ae887a4ae8a5a72728526eb"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "rounded-up minute duration",
+      "native": "MySQL computes seconds with TIMESTAMPDIFF and rounds seconds/60 upward with CEIL.",
+      "app": "SQLite subtracts Unix seconds obtained with strftime('%s') and uses integer (seconds + 59) / 60.",
+      "rationale": "SQLite does not implement TIMESTAMPDIFF. The per-log upward rounding, left join, employee grouping, zero-log handling, required-minute comparison, and output are identical."
+    }
+  ]
+}

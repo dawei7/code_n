@@ -18,11 +18,7 @@ class Solution:
                     remaining //= divisor
                     exponent += 1
                 if exponent:
-                    ways = (
-                        ways
-                        * comb(length + exponent - 1, exponent)
-                        % modulo
-                    )
+                    ways = ways * comb(length + exponent - 1, exponent) % modulo
                 divisor += 1
 
             if remaining > 1:

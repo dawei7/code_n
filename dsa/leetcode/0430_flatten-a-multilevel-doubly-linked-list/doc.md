@@ -17,7 +17,9 @@ Return the original top-level head after rewiring all existing nodes into one do
 ### Function Contract
 **Inputs**
 
-- `nodes`: the app representation of one level as `[value, child_nodes]` entries, recursively, with an empty child list when absent
+- `head`: The first `Node` of the top-level doubly linked list, or `null`. Each node exposes `val`, `prev`, `next`, and `child`.
+
+JSON cases encode `head` recursively as `[value, child_nodes]` entries, using an empty child list when no child level exists. The runner reconstructs the actual node graph before calling `solve(head)`.
 
 **Return value**
 
@@ -26,15 +28,15 @@ Return the original top-level head after rewiring all existing nodes into one do
 ### Examples
 **Example 1**
 
-- Input: `nodes = [[1, []], [2, []], [3, [[7, []], [8, [[11, []], [12, []]]], [9, []], [10, []]]], [4, []], [5, []], [6, []]]`
+- Input: `head = [[1, []], [2, []], [3, [[7, []], [8, [[11, []], [12, []]]], [9, []], [10, []]]], [4, []], [5, []], [6, []]]`
 - Output: `[1, 2, 3, 7, 8, 11, 12, 9, 10, 4, 5, 6]`
 
 **Example 2**
 
-- Input: `nodes = [[1, [[3, []]]], [2, []]]`
+- Input: `head = [[1, [[3, []]]], [2, []]]`
 - Output: `[1, 3, 2]`
 
 **Example 3**
 
-- Input: `nodes = []`
+- Input: `head = []`
 - Output: `[]`

@@ -11,7 +11,7 @@
 
 
 class Solution:
-    def getIndex(self, reader: 'ArrayReader') -> int:
+    def getIndex(self, reader: "ArrayReader") -> int:
         left = 0
         right = reader.length() - 1
 

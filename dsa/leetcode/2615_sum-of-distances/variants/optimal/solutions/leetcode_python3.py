@@ -1,6 +1,7 @@
 from collections import defaultdict
 from typing import List
 
+
 class Solution:
     def distance(self, nums: List[int]) -> List[int]:
         n = len(nums)

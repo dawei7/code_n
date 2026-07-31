@@ -32,4 +32,3 @@ class Solution:
                     best = max(best, row_hits + column_hits[col])
 
         return best
-

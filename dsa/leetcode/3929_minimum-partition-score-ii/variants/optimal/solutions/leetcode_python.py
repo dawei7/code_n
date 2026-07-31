@@ -21,31 +21,19 @@ class Solution:
                 while head < tail:
                     first = slopes[head] * prefix + intercepts[head]
                     second = slopes[head + 1] * prefix + intercepts[head + 1]
-                    if second < first or (
-                        second == first and counts[head + 1] > counts[head]
-                    ):
+                    if second < first or (second == first and counts[head + 1] > counts[head]):
                         head += 1
                     else:
                         break
 
-                cost = (
-                    prefix * prefix
-                    + prefix
-                    + slopes[head] * prefix
-                    + intercepts[head]
-                    + penalty
-                )
+                cost = prefix * prefix + prefix + slopes[head] * prefix + intercepts[head] + penalty
                 parts = counts[head] + 1
                 new_slope = -2 * prefix
                 new_intercept = cost + prefix * prefix - prefix
 
                 while head < tail:
-                    left = (intercepts[tail] - intercepts[tail - 1]) * (
-                        slopes[tail] - new_slope
-                    )
-                    right = (new_intercept - intercepts[tail]) * (
-                        slopes[tail - 1] - slopes[tail]
-                    )
+                    left = (intercepts[tail] - intercepts[tail - 1]) * (slopes[tail] - new_slope)
+                    right = (new_intercept - intercepts[tail]) * (slopes[tail - 1] - slopes[tail])
                     if left <= right:
                         break
                     tail -= 1

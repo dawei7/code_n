@@ -1,7 +1,5 @@
 class Solution:
-    def maximumValueSum(
-        self, nums: List[int], k: int, edges: List[List[int]]
-    ) -> int:
+    def maximumValueSum(self, nums: List[int], k: int, edges: List[List[int]]) -> int:
         best_sum = 0
         beneficial_toggles = 0
         smallest_adjustment = float("inf")

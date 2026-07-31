@@ -17,12 +17,12 @@ Return a linked list containing the sum's digits from most significant to least 
 ### Function Contract
 **Inputs**
 
-- `l1`: the app-local list of digits for the first number in forward order
-- `l2`: the app-local list of digits for the second number in forward order
+- `l1`: the head of the first `ListNode` chain, whose digits are in forward order
+- `l2`: the head of the second `ListNode` chain, whose digits are in forward order
 
 **Return value**
 
-- Return the sum's digits in forward order with no leading zero except for zero itself. The native artifact accepts and returns LeetCode `ListNode` chains.
+- Return the head of a new `ListNode` chain containing the sum's digits in forward order, with no leading zero except for zero itself.
 
 ### Examples
 **Example 1**

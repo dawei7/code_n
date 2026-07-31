@@ -12,10 +12,7 @@ class Solution:
         maximum = max(runs, default=0)
         grundy = [0] * (maximum + 1)
         for length in range(2, maximum + 1):
-            reachable = {
-                grundy[left] ^ grundy[length - left - 2]
-                for left in range(length - 1)
-            }
+            reachable = {grundy[left] ^ grundy[length - left - 2] for left in range(length - 1)}
             mex = 0
             while mex in reachable:
                 mex += 1

@@ -18,7 +18,7 @@ class Solution:
                     for replacement in "abcdefghijklmnopqrstuvwxyz":
                         if replacement == original:
                             continue
-                        candidate = word[:index] + replacement + word[index + 1:]
+                        candidate = word[:index] + replacement + word[index + 1 :]
                         if candidate in unvisited:
                             parents[candidate].append(word)
                             next_level.add(candidate)

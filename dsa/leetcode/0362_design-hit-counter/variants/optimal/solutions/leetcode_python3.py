@@ -1,5 +1,4 @@
 class HitCounter:
-
     def __init__(self):
         self.timestamps = [0] * 300
         self.counts = [0] * 300
@@ -18,4 +17,3 @@ class HitCounter:
             if timestamp - stored_timestamp < 300:
                 total += count
         return total
-

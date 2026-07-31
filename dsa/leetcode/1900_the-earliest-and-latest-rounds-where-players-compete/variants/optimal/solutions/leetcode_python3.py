@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def earliestAndLatest(
-        self, n: int, firstPlayer: int, secondPlayer: int
-    ) -> List[int]:
+    def earliestAndLatest(self, n: int, firstPlayer: int, secondPlayer: int) -> List[int]:
         @lru_cache(None)
         def search(player_count: int, first: int, second: int) -> tuple[int, int]:
             if first + second == player_count + 1:
@@ -48,9 +46,7 @@ class Solution:
             for before_first, before_second in positions:
                 next_first = before_first + 1
                 next_second = before_second + 1
-                child_earliest, child_latest = search(
-                    next_count, next_first, next_second
-                )
+                child_earliest, child_latest = search(next_count, next_first, next_second)
                 earliest = min(earliest, child_earliest + 1)
                 latest = max(latest, child_latest + 1)
             return earliest, latest

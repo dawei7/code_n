@@ -18,4 +18,3 @@ class Solution:
             best = max(best, longest)
 
         return best
-

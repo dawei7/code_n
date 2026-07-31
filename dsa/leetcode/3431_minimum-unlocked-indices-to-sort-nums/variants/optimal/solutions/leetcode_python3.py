@@ -21,8 +21,4 @@ class Solution:
         if first_three < last_one:
             return -1
 
-        return sum(
-            locked[i]
-            for i in range(n)
-            if first_two <= i < last_one or first_three <= i < last_two
-        )
+        return sum(locked[i] for i in range(n) if first_two <= i < last_one or first_three <= i < last_two)

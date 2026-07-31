@@ -10,18 +10,12 @@ class TodoList:
         return task_id
 
     def getAllTasks(self, userId: int) -> List[str]:
-        pending = [
-            task for task in self.tasks.values()
-            if task[0] == userId and not task[4]
-        ]
+        pending = [task for task in self.tasks.values() if task[0] == userId and not task[4]]
         pending.sort(key=lambda task: task[2])
         return [task[1] for task in pending]
 
     def getTasksForTag(self, userId: int, tag: str) -> List[str]:
-        pending = [
-            task for task in self.tasks.values()
-            if task[0] == userId and not task[4] and tag in task[3]
-        ]
+        pending = [task for task in self.tasks.values() if task[0] == userId and not task[4] and tag in task[3]]
         pending.sort(key=lambda task: task[2])
         return [task[1] for task in pending]
 

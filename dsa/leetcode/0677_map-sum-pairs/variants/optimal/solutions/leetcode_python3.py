@@ -25,4 +25,3 @@ class MapSum:
             if node is None:
                 return 0
         return node.total
-

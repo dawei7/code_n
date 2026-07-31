@@ -13,9 +13,7 @@ class Solution:
             current_minimum, list_index, value_index = heappop(heap)
             current_width = current_maximum - current_minimum
             best_width = best_right - best_left
-            if current_width < best_width or (
-                current_width == best_width and current_minimum < best_left
-            ):
+            if current_width < best_width or (current_width == best_width and current_minimum < best_left):
                 best_left, best_right = current_minimum, current_maximum
 
             value_index += 1

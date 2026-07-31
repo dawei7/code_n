@@ -8,9 +8,7 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def sufficientSubset(
-        self, root: Optional["TreeNode"], limit: int
-    ) -> Optional["TreeNode"]:
+    def sufficientSubset(self, root: Optional["TreeNode"], limit: int) -> Optional["TreeNode"]:
         if root is None:
             return None
 
@@ -27,11 +25,7 @@ class Solution:
                     stack.append((node.left, node, "left", child_need, False, False))
                 continue
 
-            survives = (
-                node.val >= need
-                if was_leaf
-                else node.left is not None or node.right is not None
-            )
+            survives = node.val >= need if was_leaf else node.left is not None or node.right is not None
             if not survives:
                 if parent is None:
                     root = None

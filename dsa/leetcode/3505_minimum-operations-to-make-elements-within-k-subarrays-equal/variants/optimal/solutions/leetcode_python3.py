@@ -56,12 +56,7 @@ class Solution:
                 total_sum = sum_tree.sum(len(values) - 1)
                 right_count = x - left_count
                 right_sum = total_sum - left_sum
-                window_cost[right - x + 1] = (
-                    median * left_count
-                    - left_sum
-                    + right_sum
-                    - median * right_count
-                )
+                window_cost[right - x + 1] = median * left_count - left_sum + right_sum - median * right_count
 
         infinity = 10**30
         previous = [0] * (n + 1)

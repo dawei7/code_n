@@ -27,4 +27,3 @@ class Solution:
                 best_total = total
                 answer = [first, middle, third]
         return answer
-

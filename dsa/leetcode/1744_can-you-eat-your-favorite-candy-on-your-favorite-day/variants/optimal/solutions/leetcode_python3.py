@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def canEat(
-        self, candiesCount: List[int], queries: List[List[int]]
-    ) -> List[bool]:
+    def canEat(self, candiesCount: List[int], queries: List[List[int]]) -> List[bool]:
         prefix = [0]
         for count in candiesCount:
             prefix.append(prefix[-1] + count)

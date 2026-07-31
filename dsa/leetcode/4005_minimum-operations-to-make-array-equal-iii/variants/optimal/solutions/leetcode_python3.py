@@ -19,9 +19,7 @@ class Solution:
         for value in range(2, isqrt(limit) + 1):
             if is_prime[value]:
                 start = value * value
-                is_prime[start : limit + 1 : value] = b"\x00" * (
-                    (limit - start) // value + 1
-                )
+                is_prime[start : limit + 1 : value] = b"\x00" * ((limit - start) // value + 1)
 
         primes = [value for value in range(2, limit + 1) if is_prime[value]]
         multiples = defaultdict(int)

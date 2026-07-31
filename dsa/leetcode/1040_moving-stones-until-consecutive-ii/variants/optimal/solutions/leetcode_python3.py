@@ -19,15 +19,9 @@ class Solution:
 
             stones_in_window = right - left + 1
             consecutive_span = position - positions[left] + 1
-            if (
-                stones_in_window == stone_count - 1
-                and consecutive_span == stone_count - 1
-            ):
+            if stones_in_window == stone_count - 1 and consecutive_span == stone_count - 1:
                 minimum_moves = min(minimum_moves, 2)
             else:
-                minimum_moves = min(
-                    minimum_moves, stone_count - stones_in_window
-                )
+                minimum_moves = min(minimum_moves, stone_count - stones_in_window)
 
         return [minimum_moves, maximum_moves]
-

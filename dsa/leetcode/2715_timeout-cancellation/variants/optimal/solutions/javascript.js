@@ -1,17 +1,15 @@
 /**
- * Schedule one delayed invocation and return a function that cancels it.
- *
  * @param {Function} fn
  * @param {Array} args
  * @param {number} t
  * @return {Function}
  */
-function cancellable(fn, args, t) {
+var cancellable = function(fn, args, t) {
     const timer = setTimeout(() => fn(...args), t);
-    return function cancel() {
+    return function() {
         clearTimeout(timer);
     };
-}
+};
 
 async function solve(operation, args, t, cancelTimeMs) {
     const operations = {
@@ -33,4 +31,3 @@ async function solve(operation, args, t, cancelTimeMs) {
 }
 
 module.exports = { cancellable, solve };
-

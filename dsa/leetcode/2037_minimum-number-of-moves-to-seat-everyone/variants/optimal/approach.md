@@ -29,9 +29,9 @@ the minimum. Duplicate positions cause no issue because their separate
 occurrences remain separate list entries.
 
 ## Complexity detail
-Sorting both length-$N$ arrays takes $O(N\log N)$ time, and the paired distance
-sum takes $O(N)$ time. The app-local implementation creates sorted copies,
-which use $O(N)$ auxiliary space.
+Sorting both supplied length-$N$ arrays in place takes $O(N\log N)$ time, and
+the paired distance sum takes $O(N)$ time. Python's Timsort may use $O(N)$
+auxiliary workspace in the worst case.
 
 ## Alternatives and edge cases
 - **Counting sort by position:** Because positions lie from $1$ through $100$,

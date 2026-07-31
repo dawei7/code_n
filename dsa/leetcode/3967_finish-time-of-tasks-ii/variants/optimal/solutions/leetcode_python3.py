@@ -24,25 +24,16 @@ class Solution:
 
         downward = [0] * n
         for task in reversed(order):
-            child_values = [
-                downward[neighbor]
-                for neighbor in graph[task]
-                if parent[neighbor] == task
-            ]
+            child_values = [downward[neighbor] for neighbor in graph[task] if parent[neighbor] == task]
             if not child_values:
                 downward[task] = baseTime[task]
             else:
-                downward[task] = (
-                    2 * max(child_values) - min(child_values) + baseTime[task]
-                )
+                downward[task] = 2 * max(child_values) - min(child_values) + baseTime[task]
 
         upward = [0] * n
         answer = None
         for task in order:
-            incoming = [
-                upward[task] if neighbor == parent[task] else downward[neighbor]
-                for neighbor in graph[task]
-            ]
+            incoming = [upward[task] if neighbor == parent[task] else downward[neighbor] for neighbor in graph[task]]
             if not incoming:
                 root_finish = baseTime[task]
             else:

@@ -21,13 +21,7 @@ class Solution:
 
             for lower in range(denominator, maximum + 1, denominator):
                 upper = min(lower + denominator - 1, maximum)
-                numerator_count = (
-                    prefix_count[upper] - prefix_count[lower - 1]
-                )
-                answer += (
-                    denominator_count
-                    * (lower // denominator)
-                    * numerator_count
-                )
+                numerator_count = prefix_count[upper] - prefix_count[lower - 1]
+                answer += denominator_count * (lower // denominator) * numerator_count
 
         return answer % modulo

@@ -3,6 +3,11 @@ class EventEmitter {
         this.events = new Map();
     }
 
+    /**
+     * @param {string} eventName
+     * @param {Function} callback
+     * @return {Object}
+     */
     subscribe(eventName, callback) {
         if (!this.events.has(eventName)) {
             this.events.set(eventName, []);
@@ -28,6 +33,11 @@ class EventEmitter {
         };
     }
 
+    /**
+     * @param {string} eventName
+     * @param {Array} args
+     * @return {Array}
+     */
     emit(eventName, args = []) {
         const listeners = this.events.get(eventName);
         if (!listeners) return [];

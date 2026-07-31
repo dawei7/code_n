@@ -6,7 +6,7 @@ Starting from the recovered head, follow `next` pointers to the tail and append 
 
 ## Complexity detail
 
-Let $n$ be the number of nodes. If the supplied node has $p$ predecessors, the backward walk takes $O(p)$ time and the forward walk takes $O(n)$ time, for $O(n)$ overall. The returned array requires $O(n)$ space; excluding that required output, the pointer traversal uses $O(1)$ auxiliary space. The app fixture adapter also spends $O(n)$ temporary space to reconstruct the serialized nodes.
+Let $n$ be the number of nodes. If the supplied node has $p$ predecessors, the backward walk takes $O(p)$ time and the forward walk takes $O(n)$ time, for $O(n)$ overall. The returned array requires $O(n)$ space; excluding that required output, the pointer traversal uses $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 

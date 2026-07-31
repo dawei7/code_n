@@ -32,11 +32,7 @@ class Solution:
                 rank = ranked[index]
                 frequencies[rank] += 1
                 frequency = frequencies[rank]
-                if (
-                    frequency > best_frequency
-                    or frequency == best_frequency
-                    and rank < best_rank
-                ):
+                if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
                     best_rank = rank
                     best_frequency = frequency
                 if (index + 1) % block_size == 0 or index == n - 1:
@@ -59,11 +55,7 @@ class Solution:
                     rank = ranked[index]
                     frequency = frequencies.get(rank, 0) + 1
                     frequencies[rank] = frequency
-                    if (
-                        frequency > best_frequency
-                        or frequency == best_frequency
-                        and rank < best_rank
-                    ):
+                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
                         best_rank = rank
                         best_frequency = frequency
             else:
@@ -81,11 +73,7 @@ class Solution:
                         continue
                     seen.add(rank)
                     frequency = range_frequency(rank, left, right)
-                    if (
-                        frequency > best_frequency
-                        or frequency == best_frequency
-                        and rank < best_rank
-                    ):
+                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
                         best_rank = rank
                         best_frequency = frequency
 
@@ -95,16 +83,10 @@ class Solution:
                         continue
                     seen.add(rank)
                     frequency = range_frequency(rank, left, right)
-                    if (
-                        frequency > best_frequency
-                        or frequency == best_frequency
-                        and rank < best_rank
-                    ):
+                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
                         best_rank = rank
                         best_frequency = frequency
 
-            answers.append(
-                values[best_rank] if best_frequency >= threshold else -1
-            )
+            answers.append(values[best_rank] if best_frequency >= threshold else -1)
 
         return answers

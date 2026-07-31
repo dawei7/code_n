@@ -1,5 +1,6 @@
 from math import lcm
 
+
 class Solution:
     def findKthSmallest(self, coins: List[int], k: int) -> int:
         reduced = []
@@ -17,16 +18,10 @@ class Solution:
                     multiple = lcm(multiple, coin)
                     parity ^= 1
             if multiple <= upper:
-                coefficients[multiple] = (
-                    coefficients.get(multiple, 0)
-                    + (1 if parity else -1)
-                )
+                coefficients[multiple] = coefficients.get(multiple, 0) + (1 if parity else -1)
 
         def count(limit: int) -> int:
-            return sum(
-                coefficient * (limit // multiple)
-                for multiple, coefficient in coefficients.items()
-            )
+            return sum(coefficient * (limit // multiple) for multiple, coefficient in coefficients.items())
 
         low, high = 1, upper
         while low < high:

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def stringIndices(
-        self, wordsContainer: List[str], wordsQuery: List[str]
-    ) -> List[int]:
+    def stringIndices(self, wordsContainer: List[str], wordsQuery: List[str]) -> List[int]:
         children = [{}]
         best = [-1]
 

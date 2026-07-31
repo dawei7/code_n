@@ -1,5 +1,5 @@
 class Solution:
-    def tree2str(self, root: 'TreeNode') -> str:
+    def tree2str(self, root: "TreeNode") -> str:
         if root is None:
             return ""
 
@@ -30,4 +30,3 @@ class Solution:
                 actions.append(("text", "("))
 
         return "".join(tokens)
-

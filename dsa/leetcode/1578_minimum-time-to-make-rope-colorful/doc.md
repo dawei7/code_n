@@ -21,7 +21,7 @@ Choose any balloons to remove and return the minimum total removal time that mak
 **Inputs**
 
 - `colors`: A lowercase English string of length $N$, where $1 \le N \le 10^5$.
-- `needed_time`: An integer array of the same length, where $1 \le \texttt{needed_time[i]} \le 10^4$.
+- `neededTime`: An integer array of the same length, where $1 \le \texttt{neededTime[i]} \le 10^4$.
 
 **Return value**
 
@@ -30,15 +30,15 @@ Return the minimum total time required to leave no equal adjacent balloon colors
 ### Examples
 **Example 1**
 
-- Input: `colors = "abaac", needed_time = [1, 2, 3, 4, 5]`
+- Input: `colors = "abaac", neededTime = [1, 2, 3, 4, 5]`
 - Output: `3`
 
 **Example 2**
 
-- Input: `colors = "abc", needed_time = [1, 2, 3]`
+- Input: `colors = "abc", neededTime = [1, 2, 3]`
 - Output: `0`
 
 **Example 3**
 
-- Input: `colors = "aabaa", needed_time = [1, 2, 3, 4, 1]`
+- Input: `colors = "aabaa", neededTime = [1, 2, 3, 4, 1]`
 - Output: `2`

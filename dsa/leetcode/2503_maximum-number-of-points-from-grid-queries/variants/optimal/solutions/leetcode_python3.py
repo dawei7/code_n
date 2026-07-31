@@ -16,8 +16,7 @@ class Solution:
                 reached += 1
                 for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                     next_row, next_column = row + dr, column + dc
-                    if (0 <= next_row < rows and 0 <= next_column < columns
-                            and (next_row, next_column) not in seen):
+                    if 0 <= next_row < rows and 0 <= next_column < columns and (next_row, next_column) not in seen:
                         seen.add((next_row, next_column))
                         heapq.heappush(frontier, (grid[next_row][next_column], next_row, next_column))
             answer[query_index] = reached

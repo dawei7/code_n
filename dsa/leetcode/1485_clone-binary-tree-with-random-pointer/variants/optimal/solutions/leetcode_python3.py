@@ -1,7 +1,5 @@
 class Solution:
-    def copyRandomBinaryTree(
-        self, root: "Optional[Node]"
-    ) -> "Optional[NodeCopy]":
+    def copyRandomBinaryTree(self, root: "Optional[Node]") -> "Optional[NodeCopy]":
         if root is None:
             return None
 

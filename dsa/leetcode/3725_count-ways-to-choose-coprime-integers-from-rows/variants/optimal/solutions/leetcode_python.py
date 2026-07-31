@@ -13,13 +13,8 @@ class Solution:
                 frequency[value] += 1
 
             for divisor in range(1, maximum + 1):
-                divisible_count = sum(
-                    frequency[multiple]
-                    for multiple in range(divisor, maximum + 1, divisor)
-                )
-                divisible_ways[divisor] = (
-                    divisible_ways[divisor] * divisible_count
-                ) % modulo
+                divisible_count = sum(frequency[multiple] for multiple in range(divisor, maximum + 1, divisor))
+                divisible_ways[divisor] = (divisible_ways[divisor] * divisible_count) % modulo
 
         exact_gcd = [0] * (maximum + 1)
         for divisor in range(maximum, 0, -1):

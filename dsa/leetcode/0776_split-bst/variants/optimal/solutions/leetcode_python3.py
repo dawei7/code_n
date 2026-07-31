@@ -10,9 +10,7 @@ from typing import List, Optional
 
 
 class Solution:
-    def splitBST(
-        self, root: "Optional[TreeNode]", target: int
-    ) -> "List[Optional[TreeNode]]":
+    def splitBST(self, root: "Optional[TreeNode]", target: int) -> "List[Optional[TreeNode]]":
         if root is None:
             return [None, None]
         if root.val <= target:

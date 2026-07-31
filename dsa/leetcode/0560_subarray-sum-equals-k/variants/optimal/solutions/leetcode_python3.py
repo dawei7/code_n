@@ -10,9 +10,6 @@ class Solution:
         for value in nums:
             prefix += value
             answer += prefix_frequency.get(prefix - k, 0)
-            prefix_frequency[prefix] = (
-                prefix_frequency.get(prefix, 0) + 1
-            )
+            prefix_frequency[prefix] = prefix_frequency.get(prefix, 0) + 1
 
         return answer
-

@@ -1,12 +1,15 @@
 /**
- * Resolve a promise after the requested number of milliseconds.
- *
  * @param {number} millis
- * @return {Promise<void>}
+ * @return {Promise}
  */
 async function sleep(millis) {
     return new Promise(resolve => setTimeout(resolve, millis));
 }
+
+/**
+ * let t = Date.now()
+ * sleep(100).then(() => console.log(Date.now() - t)) // 100
+ */
 
 async function solve(millis) {
     await sleep(millis);

@@ -1,9 +1,8 @@
 from typing import List
 
+
 class Solution:
-    def maxTargetNodes(
-        self, edges1: List[List[int]], edges2: List[List[int]]
-    ) -> List[int]:
+    def maxTargetNodes(self, edges1: List[List[int]], edges2: List[List[int]]) -> List[int]:
         def color_tree(edges: List[List[int]]) -> tuple[List[int], List[int]]:
             node_count = len(edges) + 1
             graph = [[] for _ in range(node_count)]

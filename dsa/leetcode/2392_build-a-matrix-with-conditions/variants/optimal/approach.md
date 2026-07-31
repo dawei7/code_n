@@ -10,7 +10,7 @@ Every row condition holds by the topological row order, and every column conditi
 
 ## Complexity detail
 
-Let $r = \lvert\texttt{row_conditions}\rvert$ and $c = \lvert\texttt{col_conditions}\rvert$. The two graph traversals take $O(k+r+c)$ time and space. Initializing the required $k \times k$ output takes $O(k^2)$ time and space, giving $O(k^2+r+c)$ overall for both.
+Let $r = \lvert\texttt{rowConditions}\rvert$ and $c = \lvert\texttt{colConditions}\rvert$. The two graph traversals take $O(k+r+c)$ time and space. Initializing the required $k \times k$ output takes $O(k^2)$ time and space, giving $O(k^2+r+c)$ overall for both.
 
 ## Alternatives and edge cases
 

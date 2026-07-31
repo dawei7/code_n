@@ -15,7 +15,7 @@
           "monitor",
           "mousepad"
         ],
-        "search_word": "mouse"
+        "searchWord": "mouse"
       },
       "expected": [
         [
@@ -55,7 +55,7 @@
         "products": [
           "havana"
         ],
-        "search_word": "havana"
+        "searchWord": "havana"
       },
       "expected": [
         [
@@ -95,7 +95,7 @@
           "apply",
           "banana"
         ],
-        "search_word": "app"
+        "searchWord": "app"
       },
       "expected": [
         [
@@ -129,7 +129,7 @@
           "havana",
           "hammer"
         ],
-        "search_word": "hat"
+        "searchWord": "hat"
       },
       "expected": [
         [
@@ -160,7 +160,7 @@
           "ab",
           "b"
         ],
-        "search_word": "aa"
+        "searchWord": "aa"
       },
       "expected": [
         [
@@ -191,7 +191,7 @@
           "box",
           "cloths"
         ],
-        "search_word": "bags"
+        "searchWord": "bags"
       },
       "expected": [
         [
@@ -231,7 +231,7 @@
           "cargo",
           "dog"
         ],
-        "search_word": "care"
+        "searchWord": "care"
       },
       "expected": [
         [
@@ -269,7 +269,7 @@
           "alpha",
           "beta"
         ],
-        "search_word": "zoo"
+        "searchWord": "zoo"
       },
       "expected": [
         [],

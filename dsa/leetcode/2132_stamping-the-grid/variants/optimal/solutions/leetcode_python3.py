@@ -15,21 +15,14 @@ class Solution:
             running = 0
             for column in range(columns):
                 running += grid[row][column]
-                occupied[row + 1][column + 1] = (
-                    occupied[row][column + 1] + running
-                )
+                occupied[row + 1][column + 1] = occupied[row][column + 1] + running
 
         difference = [[0] * (columns + 1) for _ in range(rows + 1)]
         for top in range(rows - stampHeight + 1):
             bottom = top + stampHeight
             for left in range(columns - stampWidth + 1):
                 right = left + stampWidth
-                total = (
-                    occupied[bottom][right]
-                    - occupied[top][right]
-                    - occupied[bottom][left]
-                    + occupied[top][left]
-                )
+                total = occupied[bottom][right] - occupied[top][right] - occupied[bottom][left] + occupied[top][left]
                 if total == 0:
                     difference[top][left] += 1
                     difference[bottom][left] -= 1
@@ -43,9 +36,7 @@ class Solution:
                 if column:
                     difference[row][column] += difference[row][column - 1]
                 if row and column:
-                    difference[row][column] -= (
-                        difference[row - 1][column - 1]
-                    )
+                    difference[row][column] -= difference[row - 1][column - 1]
                 if grid[row][column] == 0 and difference[row][column] == 0:
                     return False
         return True

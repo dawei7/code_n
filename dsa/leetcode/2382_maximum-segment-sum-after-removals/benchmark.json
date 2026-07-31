@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_2382",
-  "measurement_note": "Size is the shared length N of nums and remove_queries. Reverse activation performs at most two disjoint-set unions per position, while rescanning all N positions after each of N removals performs quadratic work.",
+  "measurement_note": "Size is the shared length N of nums and removeQueries. Reverse activation performs at most two disjoint-set unions per position, while rescanning all N positions after each of N removals performs quadratic work.",
   "cases": [
     {
       "id": "benchmark-scale-1",
@@ -140,7 +140,7 @@
           1,
           2
         ],
-        "remove_queries": [
+        "removeQueries": [
           63,
           64,
           62,
@@ -667,7 +667,7 @@
           3,
           4
         ],
-        "remove_queries": [
+        "removeQueries": [
           127,
           128,
           126,
@@ -1706,7 +1706,7 @@
           7,
           1
         ],
-        "remove_queries": [
+        "removeQueries": [
           255,
           256,
           254,

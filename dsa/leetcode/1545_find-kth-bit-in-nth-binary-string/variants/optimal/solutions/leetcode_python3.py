@@ -12,4 +12,3 @@ class Solution:
         mirrored = (1 << n) - k
         bit = self.findKthBit(n - 1, mirrored)
         return "1" if bit == "0" else "0"
-

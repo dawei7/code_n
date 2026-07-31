@@ -1,5 +1,6 @@
 from math import isqrt
 
+
 class Solution:
     def findValidSplit(self, nums: List[int]) -> int:
         if len(nums) < 2:

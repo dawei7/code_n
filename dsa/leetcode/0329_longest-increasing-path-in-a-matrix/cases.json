@@ -200,7 +200,7 @@
           ]
         ]
       },
-      "expected": 5,
+      "expected": 6,
       "tags": [
         "hidden",
         "duplicates"

@@ -1,11 +1,7 @@
 class Solution:
     def validSubarrays(self, nums: list[int], k: int) -> int:
         n = len(nums)
-        peaks = [
-            i
-            for i in range(1, n - 1)
-            if nums[i] > nums[i - 1] and nums[i] > nums[i + 1]
-        ]
+        peaks = [i for i in range(1, n - 1) if nums[i] > nums[i - 1] and nums[i] > nums[i + 1]]
 
         answer = 0
 

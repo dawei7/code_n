@@ -28,11 +28,7 @@ class Solution:
             chosen_low = low
             chosen_high = count - chosen_low
             high_sum = prefix[length] - prefix[length - chosen_high]
-            loss = (
-                prefix[chosen_low]
-                + 2 * threshold * chosen_high
-                - high_sum
-            )
+            loss = prefix[chosen_low] + 2 * threshold * chosen_high - high_sum
             answer.append(loss)
 
         return answer

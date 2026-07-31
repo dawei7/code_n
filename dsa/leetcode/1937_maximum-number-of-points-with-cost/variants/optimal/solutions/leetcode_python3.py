@@ -18,9 +18,6 @@ class Solution:
             for column in range(column_count - 2, -1, -1):
                 right[column] = max(previous[column], right[column + 1] - 1)
 
-            previous = [
-                row[column] + max(left[column], right[column])
-                for column in range(column_count)
-            ]
+            previous = [row[column] + max(left[column], right[column]) for column in range(column_count)]
 
         return max(previous)

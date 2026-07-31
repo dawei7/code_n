@@ -29,11 +29,7 @@ class Solution:
                     distances[neighbor][1] = distances[neighbor][0]
                     distances[neighbor][0] = next_steps
                     queue.append((neighbor, next_steps))
-                elif (
-                    distances[neighbor][0]
-                    < next_steps
-                    < distances[neighbor][1]
-                ):
+                elif distances[neighbor][0] < next_steps < distances[neighbor][1]:
                     distances[neighbor][1] = next_steps
                     queue.append((neighbor, next_steps))
 

@@ -3,7 +3,6 @@ from heapq import heappop, heappush
 
 
 class StatisticsTracker:
-
     def __init__(self):
         self.numbers = deque()
         self.total = 0

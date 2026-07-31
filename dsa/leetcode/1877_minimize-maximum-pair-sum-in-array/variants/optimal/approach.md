@@ -12,7 +12,7 @@ Let $a$ be the smallest remaining value and $b$ the largest. Consider any pairin
 After fixing $(a,b)$, remove both values. The same argument applies to the smallest and largest values still unpaired. Repeating it constructs every opposite-rank pair without worsening an optimum, so the maximum sum produced by the two-pointer scan is globally minimal. Equal values cause no difficulty because exchanges involving them may simply leave the sums unchanged.
 
 ## Complexity detail
-Sorting the $N$ values takes $O(N\log N)$ time, and examining the $N/2$ opposite-rank pairs takes $O(N)$ time. The app-local implementation creates a sorted copy, requiring $O(N)$ space. Its two indices and running maximum use only constant additional storage.
+Sorting the $N$ values in place takes $O(N\log N)$ time, and examining the $N/2$ opposite-rank pairs takes $O(N)$ time. Python's Timsort may use $O(N)$ auxiliary workspace in the worst case; the pair scan itself uses constant additional state.
 
 ## Alternatives and edge cases
 - **Frequency counting:** Since every value is at most $10^5$, a frequency array and two opposing value pointers can form the same pairs in $O(N+10^5)$ time and $O(10^5)$ space.

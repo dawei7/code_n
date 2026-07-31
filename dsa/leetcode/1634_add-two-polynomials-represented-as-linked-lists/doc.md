@@ -19,7 +19,10 @@ Given the heads `poly1` and `poly2`, add terms with equal powers and preserve ev
 ### Function Contract
 **Inputs**
 
-- `poly1` and `poly2`: polynomial linked lists, serialized by cOde(n) as `[coefficient,power]` pairs in strictly decreasing power order.
+- `poly1`: the head `PolyNode` of the first polynomial linked list.
+- `poly2`: the head `PolyNode` of the second polynomial linked list.
+
+JSON fixtures serialize each linked list as `[coefficient,power]` pairs in strictly decreasing power order. The cOde(n) harness constructs the actual `PolyNode` objects before calling `solve(poly1, poly2)`.
 - Each list has at most $10^4$ nodes; let their lengths be $n$ and $m$.
 - Coefficients are nonzero integers from $-10^9$ through $10^9$, and powers range from 0 through $10^9$.
 

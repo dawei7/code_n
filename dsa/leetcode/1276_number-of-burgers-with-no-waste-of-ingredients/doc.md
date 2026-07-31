@@ -22,26 +22,26 @@ Given the available numbers of tomato and cheese slices, determine nonnegative c
 
 **Inputs**
 
-- `tomato_slices`: the available tomato-slice count, where $0 \le \texttt{tomato_slices} \le 10^7$.
-- `cheese_slices`: the available cheese-slice count, where $0 \le \texttt{cheese_slices} \le 10^7$.
+- `tomatoSlices`: the available tomato-slice count, where $0 \le \texttt{tomatoSlices} \le 10^7$.
+- `cheeseSlices`: the available cheese-slice count, where $0 \le \texttt{cheeseSlices} \le 10^7$.
 
 **Return value**
 
-- Return `[jumbo, small]` when nonnegative integers satisfy both $4\,\textit{jumbo}+2\,\textit{small}=\texttt{tomato_slices}$ and $\textit{jumbo}+\textit{small}=\texttt{cheese_slices}$. Return `[]` if no such counts exist.
+- Return `[jumbo, small]` when nonnegative integers satisfy both $4\,\textit{jumbo}+2\,\textit{small}=\texttt{tomatoSlices}$ and $\textit{jumbo}+\textit{small}=\texttt{cheeseSlices}$. Return `[]` if no such counts exist.
 
 ### Examples
 
 **Example 1**
 
-- Input: `tomato_slices = 16, cheese_slices = 7`
+- Input: `tomatoSlices = 16, cheeseSlices = 7`
 - Output: `[1,6]`
 
 **Example 2**
 
-- Input: `tomato_slices = 17, cheese_slices = 4`
+- Input: `tomatoSlices = 17, cheeseSlices = 4`
 - Output: `[]`
 
 **Example 3**
 
-- Input: `tomato_slices = 4, cheese_slices = 17`
+- Input: `tomatoSlices = 4, cheeseSlices = 17`
 - Output: `[]`

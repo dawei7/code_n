@@ -1,14 +1,14 @@
 {
   "challenge_id": "lc_2662",
   "cases": [
-    {"id":"sample-chain-two-roads","name":"sample: chain two special roads","kind":"sample","visible":true,"input":{"start":[1,1],"target":[4,5],"special_roads":[[1,2,3,3,2],[3,4,4,5,1]]},"expected":5,"tags":["sample","chain"]},
-    {"id":"sample-direct-is-best","name":"sample: directed reverse road cannot help","kind":"sample","visible":true,"input":{"start":[3,2],"target":[5,7],"special_roads":[[5,7,3,2,1],[3,2,3,4,4],[3,3,5,5,5],[3,4,5,6,6]]},"expected":7,"tags":["sample","direction"]},
-    {"id":"sample-one-useful-road","name":"sample: approach and leave one useful road","kind":"sample","visible":true,"input":{"start":[1,1],"target":[10,4],"special_roads":[[4,2,1,1,3],[1,2,7,4,4],[10,3,6,1,2],[6,1,1,2,3]]},"expected":8,"tags":["sample","mixed-travel"]},
-    {"id":"trial-start-equals-target","name":"trial: destination already reached","kind":"trial","visible":true,"input":{"start":[5,5],"target":[5,5],"special_roads":[[5,5,5,5,1]]},"expected":0,"tags":["boundary","zero-cost"]},
-    {"id":"trial-road-from-start","name":"trial: special road starts at initial position","kind":"trial","visible":true,"input":{"start":[1,1],"target":[10,10],"special_roads":[[1,1,9,9,3]]},"expected":5,"tags":["single-road","departure"]},
-    {"id":"real-three-road-chain","name":"hidden: three roads form the cheapest chain","kind":"real","visible":false,"input":{"start":[1,1],"target":[20,20],"special_roads":[[2,1,7,7,2],[8,7,14,14,2],[14,15,20,20,1],[1,1,20,20,50]]},"expected":8,"tags":["hidden","chain"]},
-    {"id":"real-cheapest-duplicate-end","name":"hidden: competing roads share a destination","kind":"real","visible":false,"input":{"start":[1,1],"target":[12,12],"special_roads":[[1,2,8,8,20],[2,1,8,8,3],[8,8,12,12,2]]},"expected":6,"tags":["hidden","duplicate-destination"]},
-    {"id":"real-beneficial-road-cost-capped","name":"hidden: expensive road is no better than walking","kind":"real","visible":false,"input":{"start":[1,1],"target":[9,9],"special_roads":[[2,2,8,8,100],[3,3,7,7,20]]},"expected":16,"tags":["hidden","dominated-road"]},
-    {"id":"real-direction-cycle","name":"hidden: cheap reverse edges do not reverse direction","kind":"real","visible":false,"input":{"start":[1,1],"target":[10,10],"special_roads":[[9,9,2,2,1],[2,2,8,8,3],[8,8,2,2,1]]},"expected":9,"tags":["hidden","direction","cycle"]}
+    {"id":"sample-chain-two-roads","name":"sample: chain two special roads","kind":"sample","visible":true,"input":{"start":[1,1],"target":[4,5],"specialRoads":[[1,2,3,3,2],[3,4,4,5,1]]},"expected":5,"tags":["sample","chain"]},
+    {"id":"sample-direct-is-best","name":"sample: directed reverse road cannot help","kind":"sample","visible":true,"input":{"start":[3,2],"target":[5,7],"specialRoads":[[5,7,3,2,1],[3,2,3,4,4],[3,3,5,5,5],[3,4,5,6,6]]},"expected":7,"tags":["sample","direction"]},
+    {"id":"sample-one-useful-road","name":"sample: approach and leave one useful road","kind":"sample","visible":true,"input":{"start":[1,1],"target":[10,4],"specialRoads":[[4,2,1,1,3],[1,2,7,4,4],[10,3,6,1,2],[6,1,1,2,3]]},"expected":8,"tags":["sample","mixed-travel"]},
+    {"id":"trial-start-equals-target","name":"trial: destination already reached","kind":"trial","visible":true,"input":{"start":[5,5],"target":[5,5],"specialRoads":[[5,5,5,5,1]]},"expected":0,"tags":["boundary","zero-cost"]},
+    {"id":"trial-road-from-start","name":"trial: special road starts at initial position","kind":"trial","visible":true,"input":{"start":[1,1],"target":[10,10],"specialRoads":[[1,1,9,9,3]]},"expected":5,"tags":["single-road","departure"]},
+    {"id":"real-three-road-chain","name":"hidden: three roads form the cheapest chain","kind":"real","visible":false,"input":{"start":[1,1],"target":[20,20],"specialRoads":[[2,1,7,7,2],[8,7,14,14,2],[14,15,20,20,1],[1,1,20,20,50]]},"expected":8,"tags":["hidden","chain"]},
+    {"id":"real-cheapest-duplicate-end","name":"hidden: competing roads share a destination","kind":"real","visible":false,"input":{"start":[1,1],"target":[12,12],"specialRoads":[[1,2,8,8,20],[2,1,8,8,3],[8,8,12,12,2]]},"expected":6,"tags":["hidden","duplicate-destination"]},
+    {"id":"real-beneficial-road-cost-capped","name":"hidden: expensive road is no better than walking","kind":"real","visible":false,"input":{"start":[1,1],"target":[9,9],"specialRoads":[[2,2,8,8,100],[3,3,7,7,20]]},"expected":16,"tags":["hidden","dominated-road"]},
+    {"id":"real-direction-cycle","name":"hidden: cheap reverse edges do not reverse direction","kind":"real","visible":false,"input":{"start":[1,1],"target":[10,10],"specialRoads":[[9,9,2,2,1],[2,2,8,8,3],[8,8,2,2,1]]},"expected":9,"tags":["hidden","direction","cycle"]}
   ]
 }

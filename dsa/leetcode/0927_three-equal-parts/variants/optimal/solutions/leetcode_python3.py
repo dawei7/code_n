@@ -33,4 +33,3 @@ class Solution:
         if k == len(arr):
             return [i - 1, j]
         return [-1, -1]
-

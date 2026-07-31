@@ -1,7 +1,5 @@
 class Solution:
-    def maxActiveSectionsAfterTrade(
-        self, s: str, queries: List[List[int]]
-    ) -> List[int]:
+    def maxActiveSectionsAfterTrade(self, s: str, queries: List[List[int]]) -> List[int]:
         n = len(s)
         starts = []
         ends = []
@@ -64,14 +62,8 @@ class Solution:
             best_gain = 0
 
             if first <= last:
-                first_gain = (
-                    starts[first] - max(left, starts[first - 1])
-                    + min(right, ends[first + 1]) - ends[first]
-                )
-                last_gain = (
-                    starts[last] - max(left, starts[last - 1])
-                    + min(right, ends[last + 1]) - ends[last]
-                )
+                first_gain = starts[first] - max(left, starts[first - 1]) + min(right, ends[first + 1]) - ends[first]
+                last_gain = starts[last] - max(left, starts[last - 1]) + min(right, ends[last + 1]) - ends[last]
                 best_gain = max(
                     first_gain,
                     last_gain,

@@ -3,7 +3,7 @@ from heapq import heapify, heappop, heappush
 
 class Solution:
     def longestDiverseString(self, a: int, b: int, c: int) -> str:
-        heap = [(-count, letter) for count, letter in ((a, 'a'), (b, 'b'), (c, 'c')) if count]
+        heap = [(-count, letter) for count, letter in ((a, "a"), (b, "b"), (c, "c")) if count]
         heapify(heap)
         result = []
         while heap:
@@ -22,4 +22,4 @@ class Solution:
                 count += 1
                 if count:
                     heappush(heap, (count, letter))
-        return ''.join(result)
+        return "".join(result)

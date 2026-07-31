@@ -3,8 +3,9 @@
 #     def haveSameCategory(self, a: int, b: int) -> bool:
 #         pass
 
+
 class Solution:
-    def numberOfCategories(self, n: int, categoryHandler: Optional['CategoryHandler']) -> int:
+    def numberOfCategories(self, n: int, categoryHandler: Optional["CategoryHandler"]) -> int:
         categories = 0
 
         for i in range(n):

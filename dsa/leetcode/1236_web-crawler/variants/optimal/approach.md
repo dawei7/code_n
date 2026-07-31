@@ -1,7 +1,7 @@
 ## General
-**Fix the allowed hostname once.** Extract the hostname from `start_url` before traversal. Comparing the entire URL prefix is insufficient because hostnames such as `news.example.com` and `news.example.com.evil` can share characters without being equal.
+**Fix the allowed hostname once.** Extract the hostname from `startUrl` before traversal. Comparing the entire URL prefix is insufficient because hostnames such as `news.example.com` and `news.example.com.evil` can share characters without being equal.
 
-**Traverse only accepted pages.** Put `start_url` in both a stack and a hash set. Repeatedly remove one URL, request or look up its outgoing links, and inspect each neighbor. If its hostname differs, ignore it. If it has the same hostname and is not in the visited set, mark it immediately and add it to the stack. Marking on insertion prevents cycles and duplicate links from scheduling the same page more than once.
+**Traverse only accepted pages.** Put `startUrl` in both a stack and a hash set. Repeatedly remove one URL, request its outgoing links through `htmlParser.getUrls`, and inspect each neighbor. If its hostname differs, ignore it. If it has the same hostname and is not in the visited set, mark it immediately and add it to the stack. Marking on insertion prevents cycles and duplicate links from scheduling the same page more than once.
 
 Every scheduled URL is reachable through a chain of same-host links, so the traversal never adds an invalid page. Conversely, whenever a reachable same-host page has a predecessor that is processed, its link is inspected and the page is scheduled unless already visited. Induction along a reachability path therefore shows that the final visited set contains every and only required URL.
 
@@ -16,4 +16,4 @@ Each of the $V$ visited URLs is processed once, and all $E$ outgoing links from 
 - **Duplicate links:** The visited set ensures repeated references yield one result entry.
 - **Off-host bridge:** Do not enqueue an off-host page, even if that page could link back to the original hostname.
 - **Hostname lookalike:** Compare the parsed hostname, not an arbitrary textual prefix.
-- **No outgoing links:** Return a list containing only `start_url`.
+- **No outgoing links:** Return a list containing only `startUrl`.

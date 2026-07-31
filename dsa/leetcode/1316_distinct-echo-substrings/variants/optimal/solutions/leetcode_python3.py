@@ -10,16 +10,11 @@ class Solution:
             value = ord(character) - ord("a") + 1
             for table, modulus in enumerate(moduli):
                 powers[table][index + 1] = powers[table][index] * base % modulus
-                prefixes[table][index + 1] = (
-                    prefixes[table][index] * base + value
-                ) % modulus
+                prefixes[table][index + 1] = (prefixes[table][index] * base + value) % modulus
 
         def range_hash(table: int, left: int, right: int) -> int:
             modulus = moduli[table]
-            return (
-                prefixes[table][right]
-                - prefixes[table][left] * powers[table][right - left]
-            ) % modulus
+            return (prefixes[table][right] - prefixes[table][left] * powers[table][right - left]) % modulus
 
         echoes = set()
         for half_length in range(1, n // 2 + 1):

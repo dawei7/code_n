@@ -87,6 +87,85 @@ log = logging.getLogger(__name__)
 # bounded in both paths.
 _STEP_LIMIT = 100_000
 _RUNTIME_STEP_LIMIT = 1_000_000
+_VALIDATED_CASE_STEP_LIMIT_OVERRIDES = {
+    # The accepted palindrome-root enumeration reaches roughly 200,000 line
+    # events at the legal upper bound while still completing quickly.
+    "lc_906": _RUNTIME_STEP_LIMIT,
+    # The accepted bounded-width digit DP examines up to len(str(k)) prefixes
+    # at each of 100,000 legal positions; it terminates in linear time but
+    # crosses the general-purpose line-event guard on that maximum input.
+    "lc_1416": 10_000_000,
+    # The accepted nested ternary search deliberately performs 70 iterations
+    # per axis to meet the floating-point error bound.
+    "lc_1515": 10_000_000,
+    # The accepted O(n^2 k) compression DP reaches the legal n = 100 case.
+    "lc_1531": _RUNTIME_STEP_LIMIT,
+    # The accepted base-three assignment DP explores the legal slot-state
+    # space with an explicit loop and crosses the generic line-event guard.
+    "lc_2172": _RUNTIME_STEP_LIMIT,
+    # The legal segment-tree update stream performs O(q log n) terminating
+    # merge work and can exceed the benchmark line-event guard.
+    "lc_2213": 10_000_000,
+    # The accepted smallest-prime-factor sieve scans the legal value domain
+    # with nested terminating loops and crosses the generic line-event guard.
+    "lc_2584": 10_000_000,
+    # The accepted five-state digit DP explores the complete legal bound when
+    # memoized states cannot be pruned by an app-only optimization.
+    "lc_2827": _RUNTIME_STEP_LIMIT,
+    # The accepted end-indexed dynamic program visits all 100,000 legal house
+    # positions even when the offer list is sparse.
+    "lc_2830": _RUNTIME_STEP_LIMIT,
+    # The accepted bitmask DP checks every value for every subset at legal
+    # n = 12, which is bounded but exceeds the generic traced-line guard.
+    "lc_2992": _RUNTIME_STEP_LIMIT,
+    # The accepted 26-by-26 matrix exponentiation performs the complete
+    # logarithmic squaring loop even for a short input string.
+    "lc_3337": 10_000_000,
+    # The accepted two-state adjacency DP fills every (position, pair-count)
+    # state at the legal n = 750 bound and exceeds the generic trace cap.
+    "lc_3339": 10_000_000,
+    # The accepted digit DP enumerates every feasible digit-sum target and its
+    # memoized factor states across the complete nine-digit legal domain.
+    "lc_3490": 10_000_000,
+    # The accepted pair of Walsh-Hadamard transforms visits every butterfly
+    # at the legal 2,048-value spectrum width.
+    "lc_3514": _RUNTIME_STEP_LIMIT,
+    # The accepted unbounded-change DP scans the available prime prefix for
+    # every total through the legal target n = 1,000.
+    "lc_3610": _RUNTIME_STEP_LIMIT,
+    # The accepted forward-length and reverse-index passes each scan the legal
+    # 100,000-character operation string once.
+    "lc_3614": _RUNTIME_STEP_LIMIT,
+    # The accepted record-minimum scan visits all 100,000 legal student ranks.
+    "lc_3616": _RUNTIME_STEP_LIMIT,
+    # The accepted index sieve and partition sum scan the full 100,000-element
+    # legal array even when every value is zero.
+    "lc_3618": _RUNTIME_STEP_LIMIT,
+    # The accepted island scan examines every cell of the legal 100,000-cell
+    # grid, including an all-water instance with no early component work.
+    "lc_3619": _RUNTIME_STEP_LIMIT,
+    # The accepted totient sieve visits prime multiples through the legal
+    # value bound before processing divisor-indexed Fenwick updates.
+    "lc_3671": 10_000_000,
+    # The accepted smallest-prime-factor and square-free-kernel tables cover
+    # every value through the legal maximum of 100,000.
+    "lc_3715": 10_000_000,
+    # The accepted primality sieve and backward next-prime table scan through
+    # twice the legal maximum value before processing the input array.
+    "lc_3896": _RUNTIME_STEP_LIMIT,
+    # The accepted modular evaluator visits every bit in the legal
+    # 200,000-bit concatenation after sorting its run descriptors.
+    "lc_3897": _RUNTIME_STEP_LIMIT,
+    # The clear accepted prefix/suffix-loop interpolation DP deliberately keeps
+    # its O(n^3) transitions explicit across the complete legal n = 200 domain.
+    "lc_3916": 25_000_000,
+    # The accepted divisor sieve scans the complete legal value domain even
+    # when only a small number of values are present as candidate divisors.
+    "lc_3927": _RUNTIME_STEP_LIMIT,
+    # The accepted divisor-count and smallest-prime-factor sieves cover every
+    # value through the legal maximum before evaluating all candidates.
+    "lc_3953": 10_000_000,
+}
 _RUNTIME_TARGET_SECONDS = 0.05
 _RUNTIME_MAX_WALL_SECONDS = 2.0
 _RUNTIME_MIN_TRIALS = 7
@@ -175,6 +254,7 @@ class _JudgeTreeNode:
         self.val = val
         self.left = left
         self.right = right
+        self.next: _JudgeTreeNode | None = None
         self.parent: _JudgeTreeNode | None = None
 
 
@@ -182,6 +262,130 @@ class _JudgeListNode:
     def __init__(self, val: Any = 0, next: "_JudgeListNode | None" = None):
         self.val = val
         self.next = next
+
+
+class _JudgePolyNode:
+    def __init__(
+        self,
+        coefficient: int = 0,
+        power: int = 0,
+        next: "_JudgePolyNode | None" = None,
+    ):
+        self.coefficient = coefficient
+        self.power = power
+        self.next = next
+
+
+class _JudgeRopeTreeNode:
+    def __init__(
+        self,
+        len: int = 0,
+        val: str = "",
+        left: "_JudgeRopeTreeNode | None" = None,
+        right: "_JudgeRopeTreeNode | None" = None,
+    ):
+        self.len = len
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+class _JudgeStreet:
+    def __init__(self, doors: list[Any]):
+        self._doors = [bool(value) for value in doors]
+        self._position = 0
+
+    def openDoor(self) -> None:
+        self._doors[self._position] = True
+
+    def closeDoor(self) -> None:
+        self._doors[self._position] = False
+
+    def isDoorOpen(self) -> bool:
+        return self._doors[self._position]
+
+    def moveRight(self) -> None:
+        self._position = (self._position + 1) % len(self._doors)
+
+    def moveLeft(self) -> None:
+        self._position = (self._position - 1) % len(self._doors)
+
+
+class _JudgeCategoryHandler:
+    def __init__(self, categories: list[Any]):
+        self._categories = categories
+
+    def haveSameCategory(self, a: int, b: int) -> bool:
+        if not (0 <= a < len(self._categories) and 0 <= b < len(self._categories)):
+            return False
+        return self._categories[a] == self._categories[b]
+
+
+class _JudgeBigArray:
+    def __init__(self, values: list[Any]):
+        self._values = values
+
+    def size(self) -> int:
+        return len(self._values)
+
+    def at(self, index: int) -> Any:
+        return self._values[index]
+
+
+class _JudgeNode:
+    """Mutable compatibility node for judge interfaces with generic ``Node``."""
+
+    def __init__(
+        self,
+        val: Any = 0,
+        next: "_JudgeNode | None" = None,
+        random: "_JudgeNode | None" = None,
+    ):
+        self.val = val
+        self.next = next
+        self.prev: _JudgeNode | None = None
+        self.child: _JudgeNode | None = None
+        self.left: _JudgeNode | None = None
+        self.right: _JudgeNode | None = None
+        self.parent: _JudgeNode | None = None
+        self.random = random
+        self.neighbors: list[_JudgeNode] = []
+        self.children: list[_JudgeNode] = []
+
+
+class _JudgeNestedInteger:
+    """Compatibility object for LeetCode's read-only ``NestedInteger`` API."""
+
+    def __init__(self, value: Any = None):
+        if isinstance(value, int) and not isinstance(value, bool):
+            self._integer: int | None = value
+            self._list: list[_JudgeNestedInteger] | None = None
+        else:
+            self._integer = None
+            self._list = (
+                []
+                if value is None
+                else [_JudgeNestedInteger(item) for item in value]
+            )
+
+    def isInteger(self) -> bool:
+        return self._integer is not None
+
+    def getInteger(self) -> int | None:
+        return self._integer
+
+    def add(self, element: "_JudgeNestedInteger") -> None:
+        if self._list is None:
+            self._integer = None
+            self._list = []
+        self._list.append(element)
+
+    def setInteger(self, value: int) -> None:
+        self._integer = value
+        self._list = None
+
+    def getList(self) -> list["_JudgeNestedInteger"] | None:
+        return self._list
 
 
 class _JudgeImmutableListNode:
@@ -293,6 +497,88 @@ class _JudgeRobot:
                     pending.append(cell)
         return frozenset(reachable)
 
+
+class _JudgeGridMaster:
+    """Stateful hidden-grid simulator for LeetCode's GridMaster API."""
+
+    _DIRECTIONS = {
+        "U": (-1, 0),
+        "R": (0, 1),
+        "D": (1, 0),
+        "L": (0, -1),
+    }
+
+    def __init__(
+        self,
+        grid: list[list[int]],
+        *,
+        start: list[int] | tuple[int, int] | None = None,
+        target: list[int] | tuple[int, int] | None = None,
+        weighted: bool = False,
+    ):
+        if not grid or not all(isinstance(row, list) and row for row in grid):
+            raise ValueError("GridMaster grid must be a nonempty matrix")
+        width = len(grid[0])
+        if any(len(row) != width for row in grid):
+            raise ValueError("GridMaster grid must be rectangular")
+
+        marker_start = None
+        marker_target = None
+        for row, values in enumerate(grid):
+            for column, value in enumerate(values):
+                if value == -1:
+                    marker_start = (row, column)
+                elif value == 2 and not weighted:
+                    marker_target = (row, column)
+
+        self._grid = grid
+        self._weighted = weighted
+        self._position = self._coordinate(start, marker_start, "start")
+        self._target = self._coordinate(target, marker_target, "target")
+        if not self._is_open(*self._position) or not self._is_open(*self._target):
+            raise ValueError("GridMaster start and target must be open cells")
+
+    @staticmethod
+    def _coordinate(
+        supplied: list[int] | tuple[int, int] | None,
+        marker: tuple[int, int] | None,
+        name: str,
+    ) -> tuple[int, int]:
+        value = supplied if supplied is not None else marker
+        if (
+            not isinstance(value, (list, tuple))
+            or len(value) != 2
+            or any(not isinstance(item, int) or isinstance(item, bool) for item in value)
+        ):
+            raise ValueError(f"GridMaster {name} must be a two-integer coordinate")
+        return int(value[0]), int(value[1])
+
+    def _is_open(self, row: int, column: int) -> bool:
+        return (
+            0 <= row < len(self._grid)
+            and 0 <= column < len(self._grid[0])
+            and self._grid[row][column] != 0
+        )
+
+    def _neighbor(self, direction: str) -> tuple[int, int]:
+        if direction not in self._DIRECTIONS:
+            raise ValueError("GridMaster direction must be U, R, D, or L")
+        row_delta, column_delta = self._DIRECTIONS[direction]
+        return self._position[0] + row_delta, self._position[1] + column_delta
+
+    def canMove(self, direction: str) -> bool:
+        return self._is_open(*self._neighbor(direction))
+
+    def move(self, direction: str) -> bool | int:
+        neighbor = self._neighbor(direction)
+        if not self._is_open(*neighbor):
+            return -1 if self._weighted else False
+        self._position = neighbor
+        return self._grid[neighbor[0]][neighbor[1]] if self._weighted else True
+
+    def isTarget(self) -> bool:
+        return self._position == self._target
+
     def __repr__(self) -> str:
         return f"Robot(cleaned={len(self._cleaned)}/{len(self.reachable_cells)})"
 
@@ -332,9 +618,14 @@ class _JudgeSea:
 
     def hasShips(self, topRight: _JudgePoint, bottomLeft: _JudgePoint) -> bool:
         def parse_point(point: Any, name: str) -> tuple[int, int]:
-            if not isinstance(point, _JudgePoint):
-                raise ValueError(f"{name} must be a Point")
-            return point.x, point.y
+            try:
+                x = point.x
+                y = point.y
+            except AttributeError as exc:
+                raise ValueError(f"{name} must be a Point") from exc
+            if any(not isinstance(value, int) or isinstance(value, bool) for value in (x, y)):
+                raise ValueError(f"{name} must contain integer coordinates")
+            return x, y
 
         right, top = parse_point(topRight, "topRight")
         left, bottom = parse_point(bottomLeft, "bottomLeft")
@@ -542,6 +833,99 @@ class _JudgeFontInfo:
         return f"FontInfo(fonts={len(self._heights)}, queries={self._query_count})"
 
 
+class _JudgeMountainArray:
+    """Read-only mountain-array simulator for LeetCode 1095."""
+
+    def __init__(self, values: list[int], max_queries: int = 100):
+        if not isinstance(values, list) or len(values) < 3:
+            raise ValueError("MountainArray requires at least three values")
+        if any(not isinstance(value, int) or isinstance(value, bool) for value in values):
+            raise ValueError("MountainArray values must be integers")
+        if not isinstance(max_queries, int) or isinstance(max_queries, bool) or max_queries < 0:
+            raise ValueError("MountainArray max_queries must be a non-negative integer")
+        self.__values = tuple(values)
+        self._max_queries = max_queries
+        self._query_count = 0
+
+    def get(self, index: int) -> int:
+        if not isinstance(index, int) or isinstance(index, bool):
+            raise ValueError("MountainArray index must be an integer")
+        if not 0 <= index < len(self.__values):
+            raise ValueError("MountainArray index is outside the array")
+        self._query_count += 1
+        if self._query_count > self._max_queries:
+            raise RuntimeError(
+                f"MountainArray.get exceeded the {self._max_queries}-query limit"
+            )
+        return self.__values[index]
+
+    def length(self) -> int:
+        return len(self.__values)
+
+    @property
+    def query_count(self) -> int:
+        return self._query_count
+
+    def __repr__(self) -> str:
+        return f"MountainArray(length={len(self.__values)}, queries={self._query_count})"
+
+
+class _JudgeHtmlParser:
+    """URL-adjacency simulator for LeetCode 1236."""
+
+    def __init__(self, urls: list[str], edges: list[list[int]]):
+        if not isinstance(urls, list) or any(not isinstance(url, str) for url in urls):
+            raise ValueError("HtmlParser urls must be a list of strings")
+        if len(set(urls)) != len(urls):
+            raise ValueError("HtmlParser urls must be unique")
+        self.__outgoing = {url: [] for url in urls}
+        if not isinstance(edges, list):
+            raise ValueError("HtmlParser edges must be a list")
+        for edge in edges:
+            if (
+                not isinstance(edge, list)
+                or len(edge) != 2
+                or any(not isinstance(index, int) or isinstance(index, bool) for index in edge)
+            ):
+                raise ValueError("HtmlParser edges must contain two integer indices")
+            source, destination = edge
+            if not (0 <= source < len(urls) and 0 <= destination < len(urls)):
+                raise ValueError("HtmlParser edge index is outside the URL list")
+            self.__outgoing[urls[source]].append(urls[destination])
+
+    def getUrls(self, url: str) -> list[str]:
+        return list(self.__outgoing.get(url, ()))
+
+    def __repr__(self) -> str:
+        return f"HtmlParser(pages={len(self.__outgoing)})"
+
+
+class _JudgeCustomFunction:
+    """Monotone-function simulator for LeetCode 1237."""
+
+    def __init__(self, function_id: int):
+        if not isinstance(function_id, int) or isinstance(function_id, bool):
+            raise ValueError("CustomFunction id must be an integer")
+        if not 1 <= function_id <= 9:
+            raise ValueError("CustomFunction id must be between 1 and 9")
+        self._function_id = function_id
+
+    def f(self, x: int, y: int) -> int:
+        functions = (
+            None,
+            lambda a, b: a + b,
+            lambda a, b: a * b,
+            lambda a, b: a * a + b,
+            lambda a, b: a + b * b,
+            lambda a, b: a * a + b * b,
+            lambda a, b: (a + b) * (a + b),
+            lambda a, b: a * a * a + b * b * b,
+            lambda a, b: a * a * b,
+            lambda a, b: a * b * b,
+        )
+        return functions[self._function_id](x, y)
+
+
 class _JudgeArrayReader:
     """Hidden-array simulator for LeetCode 1533's sum-comparison API."""
 
@@ -705,19 +1089,50 @@ def _returns_list_node(returns_hint: str) -> bool:
     text = returns_hint.lower()
     return (
         "listnode" in text
+        or "polynode" in text
         or "list node" in text
         or "linked list" in text
         or "linked-list" in text
+        or re.search(
+            r"\breturns?\s+(?:the\s+)?(?:new\s+|modified\s+|original\s+|resulting\s+)?head\b",
+            text,
+        )
+        is not None
     )
 
 
 def _tree_param_names(spec: Any) -> list[str]:
     inputs = dict(getattr(spec, "inputs", {}) or {})
+    target_names = set(_tree_node_target_param_names(spec))
     names: list[str] = []
     for name, hint in inputs.items():
+        if str(name) in target_names:
+            continue
         text = str(hint).lower()
+        normalized_text = text.replace("-", " ")
         root_node_hint = re.search(r"(?<!non-)root node", text) is not None
-        if "treenode" in text or "tree node" in text or root_node_hint or "root of" in text:
+        if (
+            "treenode" in text
+            or "tree node" in normalized_text
+            or re.search(r"\btree root\b", normalized_text) is not None
+            or root_node_hint
+            or "root of" in text
+        ):
+            names.append(str(name))
+    return names
+
+
+def _tree_node_target_param_names(spec: Any) -> list[str]:
+    inputs = dict(getattr(spec, "inputs", {}) or {})
+    names: list[str] = []
+    for name, hint in inputs.items():
+        lowered_name = str(name).lower()
+        text = str(hint).lower()
+        names_target_node = lowered_name in {"p", "q", "u", "target", "leaf"}
+        describes_target_node = "target" in text
+        if "root" not in lowered_name and (names_target_node or describes_target_node) and (
+            "treenode" in text or "tree node" in text or ("node" in text and "tree" in text)
+        ):
             names.append(str(name))
     return names
 
@@ -738,16 +1153,81 @@ def _list_node_param_names(spec: Any) -> list[str]:
             or "list node" in text
             or "head node" in text
             or "linked-list" in text
+            or "doubly linked list" in text
         )
         if (node_shaped_name and ("linked list" in text or "linked-list" in text)) or node_shaped_hint:
             names.append(str(name))
     return names
 
 
+def _list_node_collection_param_names(spec: Any) -> list[str]:
+    inputs = dict(getattr(spec, "inputs", {}) or {})
+    names: list[str] = []
+    for name, hint in inputs.items():
+        text = str(hint).lower()
+        if (
+            ("linked-list heads" in text or "linked list heads" in text)
+            and ("array" in text or "list" in text)
+        ):
+            names.append(str(name))
+    return names
+
+
+def _nary_node_param_names(spec: Any) -> list[str]:
+    inputs = dict(getattr(spec, "inputs", {}) or {})
+    names: list[str] = []
+    for name, hint in inputs.items():
+        text = str(hint).lower().replace("–", "-")
+        if "n-ary" in text and ("node" in text or "root" in text):
+            names.append(str(name))
+    return names
+
+
+def _nary_node_collection_param_names(spec: Any) -> list[str]:
+    inputs = dict(getattr(spec, "inputs", {}) or {})
+    names: list[str] = []
+    for name, hint in inputs.items():
+        text = str(hint).lower().replace("–", "-")
+        if "n-ary" in text and "node" in text and (
+            "list of" in text or "collection" in text
+        ):
+            names.append(str(name))
+    return names
+
+
+def _random_binary_tree_param_names(spec: Any) -> list[str]:
+    inputs = dict(getattr(spec, "inputs", {}) or {})
+    names: list[str] = []
+    for name, hint in inputs.items():
+        text = str(hint).lower()
+        if "random" in text and "node" in text and "tree" in text:
+            names.append(str(name))
+    return names
+
+
+def _big_array_param_names(spec: Any) -> list[str]:
+    inputs = dict(getattr(spec, "inputs", {}) or {})
+    return [
+        str(name)
+        for name, hint in inputs.items()
+        if "bigarray" in str(hint).lower()
+    ]
+
+
 def _list_node_from_values(values: Any) -> Any:
     if values is None:
         return None
     cycle_position = -1
+    if isinstance(values, dict) and set(values) >= {"values", "node_index"}:
+        raw_values = values.get("values")
+        node_index = values.get("node_index")
+        if not isinstance(raw_values, list) or not isinstance(node_index, int):
+            return values
+        nodes = [_JudgeNode(value) for value in raw_values]
+        for index in range(1, len(nodes)):
+            nodes[index - 1].next = nodes[index]
+            nodes[index].prev = nodes[index - 1]
+        return nodes[node_index] if 0 <= node_index < len(nodes) else values
     if isinstance(values, dict):
         raw_values = values.get("values")
         raw_position = values.get("pos", -1)
@@ -757,12 +1237,204 @@ def _list_node_from_values(values: Any) -> Any:
         cycle_position = raw_position
     if not isinstance(values, list):
         return values
+    if all(
+        isinstance(entry, list)
+        and len(entry) == 2
+        and isinstance(entry[1], list)
+        for entry in values
+    ):
+        return _multilevel_list_from_fixture(values)
     nodes = [_JudgeListNode(value) for value in values]
     for index in range(1, len(nodes)):
         nodes[index - 1].next = nodes[index]
     if nodes and 0 <= cycle_position < len(nodes):
         nodes[-1].next = nodes[cycle_position]
     return nodes[0] if nodes else None
+
+
+def _poly_node_from_terms(terms: Any) -> Any:
+    if terms is None:
+        return None
+    if not isinstance(terms, list):
+        return terms
+    dummy = _JudgePolyNode()
+    tail = dummy
+    for term in terms:
+        if (
+            not isinstance(term, list)
+            or len(term) != 2
+            or any(
+                not isinstance(value, int) or isinstance(value, bool)
+                for value in term
+            )
+        ):
+            return terms
+        tail.next = _JudgePolyNode(term[0], term[1])
+        tail = tail.next
+    return dummy.next
+
+
+def _multilevel_list_from_fixture(entries: list[Any]) -> Any:
+    head: _JudgeNode | None = None
+    previous: _JudgeNode | None = None
+    for value, child_entries in entries:
+        node = _JudgeNode(value)
+        node.prev = previous
+        node.child = _multilevel_list_from_fixture(child_entries) if child_entries else None
+        if previous is None:
+            head = node
+        else:
+            previous.next = node
+        previous = node
+    return head
+
+
+def _nary_nodes_from_records(records: Any) -> tuple[Any, dict[Any, Any], list[Any]]:
+    if not isinstance(records, list) or not all(
+        isinstance(record, list)
+        and len(record) == 2
+        and isinstance(record[1], list)
+        for record in records
+    ):
+        return records, {}, []
+    nodes = {record[0]: _JudgeNode(record[0]) for record in records}
+    child_values: set[Any] = set()
+    ordered_nodes: list[Any] = []
+    for value, children in records:
+        node = nodes[value]
+        node.children = [nodes[child] for child in children]
+        child_values.update(children)
+        ordered_nodes.append(node)
+    root_value = next((value for value in nodes if value not in child_values), None)
+    return nodes.get(root_value), nodes, ordered_nodes
+
+
+def _nary_node_from_fixture(fixture: Any) -> Any:
+    if fixture is None:
+        return None
+    if fixture and isinstance(fixture, list) and isinstance(fixture[0], list):
+        root, _nodes, _ordered = _nary_nodes_from_records(fixture)
+        return root
+    if (
+        not isinstance(fixture, list)
+        or len(fixture) != 2
+        or not isinstance(fixture[1], list)
+    ):
+        return fixture
+    node = _JudgeNode(fixture[0])
+    node.children = [_nary_node_from_fixture(child) for child in fixture[1]]
+    return node
+
+
+def _nested_integer_list_from_fixture(fixture: Any) -> Any:
+    if not isinstance(fixture, list):
+        return fixture
+    return [_JudgeNestedInteger(value) for value in fixture]
+
+
+def _nested_integer_to_fixture(value: Any) -> Any:
+    if not hasattr(value, "isInteger"):
+        return value
+    if value.isInteger():
+        return value.getInteger()
+    nested = value.getList()
+    return [] if nested is None else [_nested_integer_to_fixture(item) for item in nested]
+
+
+def _nary_node_to_fixture(root: Any) -> Any:
+    if root is None:
+        return None
+    if not hasattr(root, "val") or not isinstance(getattr(root, "children", None), list):
+        return root
+    return [
+        getattr(root, "val"),
+        [_nary_node_to_fixture(child) for child in getattr(root, "children")],
+    ]
+
+
+def _nary_node_to_records(root: Any) -> Any:
+    if root is None:
+        return []
+    records: list[list[Any]] = []
+    queue = [root]
+    for node in queue:
+        children = list(getattr(node, "children", []))
+        records.append([getattr(node, "val"), [getattr(child, "val") for child in children]])
+        queue.extend(children)
+    return records
+
+
+def _random_binary_tree_from_fixture(values: Any) -> Any:
+    if not isinstance(values, list):
+        return values
+    nodes = [
+        None if entry is None else _JudgeNode(entry[0])
+        for entry in values
+    ]
+    child_index = 1
+    for node in nodes:
+        if node is None:
+            continue
+        if child_index < len(nodes):
+            node.left = nodes[child_index]
+            child_index += 1
+        if child_index < len(nodes):
+            node.right = nodes[child_index]
+            child_index += 1
+    for index, entry in enumerate(values):
+        if nodes[index] is None or entry is None:
+            continue
+        random_index = entry[1]
+        nodes[index].random = (
+            nodes[random_index]
+            if isinstance(random_index, int) and 0 <= random_index < len(nodes)
+            else None
+        )
+    return nodes[0] if nodes else None
+
+
+def _random_binary_tree_to_fixture(root: Any) -> Any:
+    if root is None:
+        return []
+    nodes: list[Any] = [root]
+    cursor = 0
+    while cursor < len(nodes):
+        node = nodes[cursor]
+        cursor += 1
+        if node is None:
+            continue
+        nodes.append(getattr(node, "left", None))
+        nodes.append(getattr(node, "right", None))
+    while nodes and nodes[-1] is None:
+        nodes.pop()
+    indices = {id(node): index for index, node in enumerate(nodes) if node is not None}
+    return [
+        None
+        if node is None
+        else [
+            getattr(node, "val"),
+            indices.get(id(getattr(node, "random", None))),
+        ]
+        for node in nodes
+    ]
+
+
+def _node_graphs_are_disjoint(first: Any, second: Any) -> bool:
+    def identities(root: Any) -> set[int]:
+        seen: set[int] = set()
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node is None or id(node) in seen:
+                continue
+            seen.add(id(node))
+            stack.extend(
+                getattr(node, attribute, None)
+                for attribute in ("left", "right", "random")
+            )
+        return seen
+
+    return identities(first).isdisjoint(identities(second))
 
 
 def _immutable_list_node_from_values(values: Any) -> Any:
@@ -834,9 +1506,38 @@ def _list_node_to_values(head: Any) -> Any:
     return result
 
 
+def _poly_node_to_terms(head: Any) -> Any:
+    if head is None:
+        return []
+    if not all(hasattr(head, attr) for attr in ("coefficient", "power", "next")):
+        return head
+    result: list[list[int]] = []
+    seen: set[int] = set()
+    node = head
+    while node is not None:
+        marker = id(node)
+        if marker in seen:
+            break
+        seen.add(marker)
+        result.append([getattr(node, "coefficient"), getattr(node, "power")])
+        node = getattr(node, "next", None)
+    return result
+
+
 def _tree_from_level_order(values: Any) -> Any:
     if values is None:
         return None
+    if isinstance(values, dict) and {"len", "val", "left", "right"} <= set(values):
+        return _JudgeRopeTreeNode(
+            values["len"],
+            values["val"],
+            _tree_from_level_order(values["left"]),
+            _tree_from_level_order(values["right"]),
+        )
+    corruption = None
+    if isinstance(values, dict) and "values" in values:
+        corruption = values.get("corrupt_right")
+        values = values["values"]
     if not isinstance(values, list):
         return values
     if not values:
@@ -852,7 +1553,38 @@ def _tree_from_level_order(values: Any) -> Any:
         if child_index < len(nodes):
             node.right = nodes[child_index]
             child_index += 1
-    return nodes[0]
+    root = nodes[0]
+    if corruption is not None:
+        if not isinstance(corruption, dict) or set(corruption) != {
+            "from_value",
+            "to_value",
+        }:
+            raise ValueError(
+                "corrupt_right must contain exactly from_value and to_value"
+            )
+        source = _tree_node_with_value(root, corruption["from_value"])
+        target = _tree_node_with_value(root, corruption["to_value"])
+        if source is None or target is None:
+            raise ValueError("corrupt_right endpoints must occur in the tree")
+        source.right = target
+    return root
+
+
+def _tree_node_with_value(root: Any, value: Any) -> Any:
+    if root is None:
+        return None
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if getattr(node, "val", object()) == value:
+            return node
+        right = getattr(node, "right", None)
+        left = getattr(node, "left", None)
+        if right is not None:
+            stack.append(right)
+        if left is not None:
+            stack.append(left)
+    return None
 
 
 def _quad_tree_from_fixture(fixture: Any) -> Any:
@@ -1129,6 +1861,33 @@ def _unordered_string_match(actual: Any, expected: Any) -> bool:
     if not isinstance(actual, str) or not isinstance(expected, str):
         return False
     return sorted(actual) == sorted(expected)
+
+
+def _alien_dictionary_order_match(
+    actual: Any,
+    expected: Any,
+    words: Any,
+) -> bool:
+    if not isinstance(actual, str) or not isinstance(words, list):
+        return False
+    if expected == "":
+        return actual == ""
+    if not all(isinstance(word, str) for word in words):
+        return False
+
+    characters = {character for word in words for character in word}
+    if len(actual) != len(characters) or set(actual) != characters:
+        return False
+    position = {character: index for index, character in enumerate(actual)}
+    for first, second in zip(words, words[1:]):
+        if len(first) > len(second) and first.startswith(second):
+            return False
+        for left, right in zip(first, second):
+            if left != right:
+                if position[left] >= position[right]:
+                    return False
+                break
+    return True
 
 
 def _character_pair_rearrangement_match(
@@ -3873,6 +4632,29 @@ def _unique_monotone_path_grid_match(
 def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> bool:
     validator = case.validator or {}
     kind = str(validator.get("kind") or "")
+    if kind == "in_place_prefix":
+        if not isinstance(actual, dict) or not isinstance(expected, dict):
+            return False
+        if actual.get("return_value") != expected.get("return_value"):
+            return False
+        actual_prefix = actual.get("prefix")
+        expected_prefix = expected.get("prefix")
+        if validator.get("unordered") is True:
+            return _unordered_list_matches(actual_prefix, expected_prefix)
+        return actual_prefix == expected_prefix
+    if kind == "nary_tree":
+        return _nary_node_to_fixture(actual) == expected
+    if kind == "nary_tree_records":
+        return _nary_node_to_records(actual) == expected
+    if kind == "nested_integer":
+        return _nested_integer_to_fixture(actual) == expected
+    if kind == "alien_dictionary_order":
+        return _alien_dictionary_order_match(actual, expected, case.input.get("words"))
+    if kind == "random_binary_tree_copy":
+        if not isinstance(actual, dict):
+            return False
+        expected_tree = expected.get("tree") if isinstance(expected, dict) else expected
+        return actual.get("tree") == expected_tree and actual.get("independent") is True
     if kind == "json_object":
         return _json_object_match(actual, expected)
     if kind == "generated_schedule":
@@ -4086,8 +4868,8 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     if kind == "random_flip_matrix_trace":
         return _random_flip_matrix_trace_match(
             actual,
-            case.input.get(str(validator.get("rows_param") or "rows")),
-            case.input.get(str(validator.get("cols_param") or "cols")),
+            case.input.get(str(validator.get("rows_param") or "m")),
+            case.input.get(str(validator.get("cols_param") or "n")),
             case.input.get(str(validator.get("operations_param") or "operations")),
         )
     if kind == "random_pick_indices":
@@ -4174,8 +4956,8 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     if kind == "distance_order_cells":
         rows_param = str(validator.get("rows_param") or "rows")
         cols_param = str(validator.get("cols_param") or "cols")
-        r_param = str(validator.get("r_center_param") or "r_center")
-        c_param = str(validator.get("c_center_param") or "c_center")
+        r_param = str(validator.get("r_center_param") or "rCenter")
+        c_param = str(validator.get("c_center_param") or "cCenter")
         return _distance_order_cells_match(
             actual,
             case.input.get(rows_param),
@@ -4283,14 +5065,22 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(str(validator.get("edges_param") or "edges")),
         )
     if kind == "condition_matrix":
+        row_conditions_param = str(
+            validator.get("row_conditions_param")
+            or ("rowConditions" if "rowConditions" in case.input else "row_conditions")
+        )
+        column_conditions_param = str(
+            validator.get("column_conditions_param")
+            or ("colConditions" if "colConditions" in case.input else "col_conditions")
+        )
         return _condition_matrix_match(
             actual,
             case.input.get(str(validator.get("k_param") or "k")),
-            case.input.get(str(validator.get("row_conditions_param") or "row_conditions")),
-            case.input.get(str(validator.get("column_conditions_param") or "col_conditions")),
+            case.input.get(row_conditions_param),
+            case.input.get(column_conditions_param),
         )
     if kind == "group_people":
-        values_param = str(validator.get("values_param") or "group_sizes")
+        values_param = str(validator.get("values_param") or "groupSizes")
         return _group_people_match(actual, case.input.get(values_param))
     if kind == "unique_sum_zero":
         n_param = str(validator.get("n_param") or "n")
@@ -4423,7 +5213,22 @@ def _prepare_validated_kwargs(
     kwargs: dict[str, Any],
     tree_param_names: list[str] | tuple[str, ...],
     list_node_param_names: list[str] | tuple[str, ...] = (),
+    list_node_collection_param_names: list[str] | tuple[str, ...] = (),
+    nary_node_param_names: list[str] | tuple[str, ...] = (),
+    nary_node_collection_param_names: list[str] | tuple[str, ...] = (),
+    random_binary_tree_param_names: list[str] | tuple[str, ...] = (),
+    tree_node_target_param_names: list[str] | tuple[str, ...] = (),
+    big_array_param_names: list[str] | tuple[str, ...] = (),
 ) -> dict[str, Any]:
+    street_fixture = kwargs.get("street")
+    if isinstance(street_fixture, list) and street_fixture:
+        kwargs["street"] = _JudgeStreet(street_fixture)
+    category_fixture = kwargs.get("categoryHandler")
+    if isinstance(category_fixture, list):
+        kwargs["categoryHandler"] = _JudgeCategoryHandler(category_fixture)
+    for name in big_array_param_names:
+        if isinstance(kwargs.get(name), list):
+            kwargs[name] = _JudgeBigArray(kwargs[name])
     parent_pair = _parent_tree_pair_from_fixtures(kwargs.get("p"), kwargs.get("q"))
     if parent_pair is not None:
         kwargs["p"], kwargs["q"] = parent_pair
@@ -4459,13 +5264,24 @@ def _prepare_validated_kwargs(
             int(robot_fixture.get("col", 0)),
             int(robot_fixture.get("direction", 0)),
         )
+    grid_master_fixture = kwargs.get("master")
+    if isinstance(grid_master_fixture, dict) and "grid" in grid_master_fixture:
+        mode = str(grid_master_fixture.get("mode") or "unweighted")
+        if mode not in {"unweighted", "weighted"}:
+            raise ValueError("GridMaster mode must be unweighted or weighted")
+        kwargs["master"] = _JudgeGridMaster(
+            grid_master_fixture["grid"],
+            start=grid_master_fixture.get("start"),
+            target=grid_master_fixture.get("target"),
+            weighted=mode == "weighted",
+        )
     sea_fixture = kwargs.get("sea")
     if isinstance(sea_fixture, dict) and "ships" in sea_fixture:
         kwargs["sea"] = _JudgeSea(
             sea_fixture["ships"],
             int(sea_fixture.get("max_queries", 400)),
         )
-        for corner_name in ("top_right", "bottom_left"):
+        for corner_name in ("topRight", "bottomLeft", "top_right", "bottom_left"):
             corner = kwargs.get(corner_name)
             if isinstance(corner, list) and len(corner) == 2:
                 kwargs[corner_name] = _JudgePoint(corner[0], corner[1])
@@ -4502,6 +5318,36 @@ def _prepare_validated_kwargs(
             font_info_fixture.get("uniform_widths"),
             int(font_info_fixture.get("max_queries", 100_000)),
         )
+    mountain_fixture = kwargs.get("mountainArr")
+    if isinstance(mountain_fixture, list):
+        kwargs["mountainArr"] = _JudgeMountainArray(mountain_fixture)
+    elif isinstance(mountain_fixture, dict) and "values" in mountain_fixture:
+        kwargs["mountainArr"] = _JudgeMountainArray(
+            mountain_fixture["values"],
+            int(mountain_fixture.get("max_queries", 100)),
+        )
+    html_parser_fixture = kwargs.get("htmlParser")
+    if (
+        isinstance(html_parser_fixture, dict)
+        and "urls" in html_parser_fixture
+        and "edges" in html_parser_fixture
+    ):
+        kwargs["htmlParser"] = _JudgeHtmlParser(
+            html_parser_fixture["urls"],
+            html_parser_fixture["edges"],
+        )
+    custom_function_fixture = kwargs.get("customfunction")
+    if isinstance(custom_function_fixture, int) and not isinstance(
+        custom_function_fixture, bool
+    ):
+        kwargs["customfunction"] = _JudgeCustomFunction(custom_function_fixture)
+    elif (
+        isinstance(custom_function_fixture, dict)
+        and "function_id" in custom_function_fixture
+    ):
+        kwargs["customfunction"] = _JudgeCustomFunction(
+            custom_function_fixture["function_id"]
+        )
     reader_fixture = kwargs.get("reader")
     if isinstance(reader_fixture, dict) and "array" in reader_fixture:
         if reader_fixture.get("api") == "majority":
@@ -4526,9 +5372,16 @@ def _prepare_validated_kwargs(
     for name, fixture in list(kwargs.items()):
         if isinstance(fixture, dict) and set(fixture) == {"immutable_values"}:
             kwargs[name] = _immutable_list_node_from_values(fixture["immutable_values"])
+    if "nestedList" in kwargs:
+        kwargs["nestedList"] = _nested_integer_list_from_fixture(
+            kwargs["nestedList"]
+        )
     for name in tree_param_names:
         if name in kwargs:
             fixture = kwargs[name]
+            if name in random_binary_tree_param_names:
+                kwargs[name] = _random_binary_tree_from_fixture(fixture)
+                continue
             if (
                 isinstance(fixture, list)
                 and fixture
@@ -4537,12 +5390,53 @@ def _prepare_validated_kwargs(
                 kwargs[name] = [_tree_from_level_order(tree) for tree in fixture]
             else:
                 kwargs[name] = _tree_from_level_order(fixture)
+    root = kwargs.get("root")
+    for name in tree_node_target_param_names:
+        if name in kwargs and not hasattr(kwargs[name], "val"):
+            fixture = kwargs[name]
+            if isinstance(fixture, dict) and set(fixture) == {"path_from_root"}:
+                path = fixture["path_from_root"]
+                if not isinstance(path, str) or any(step not in "LR" for step in path):
+                    raise ValueError("tree target path must contain only L and R")
+                target = root
+                for step in path:
+                    target = getattr(target, "left" if step == "L" else "right", None)
+                    if target is None:
+                        raise ValueError("tree target path does not select a node")
+                kwargs[name] = target
+            else:
+                kwargs[name] = _tree_node_with_value(root, fixture)
+    for name in ("poly1", "poly2"):
+        if name in kwargs:
+            kwargs[name] = _poly_node_from_terms(kwargs[name])
     shared_list_names = _prepare_shared_list_nodes(kwargs, list_node_param_names)
     for name in list_node_param_names:
         if name in shared_list_names:
             continue
         if name in kwargs:
-            kwargs[name] = _list_node_from_values(kwargs[name])
+            if name in list_node_collection_param_names:
+                fixtures = kwargs[name]
+                if isinstance(fixtures, list):
+                    kwargs[name] = [
+                        _list_node_from_values(fixture) for fixture in fixtures
+                    ]
+            else:
+                kwargs[name] = _list_node_from_values(kwargs[name])
+    for name in nary_node_param_names:
+        if name in kwargs:
+            root, nodes, ordered_nodes = _nary_nodes_from_records(kwargs[name])
+            if nodes:
+                kwargs[name] = (
+                    ordered_nodes
+                    if name in nary_node_collection_param_names
+                    else root
+                )
+                for target_name in ("p", "q"):
+                    target_value = kwargs.get(target_name)
+                    if target_value in nodes:
+                        kwargs[target_name] = nodes[target_value]
+            else:
+                kwargs[name] = _nary_node_from_fixture(kwargs[name])
     for name, value in list(kwargs.items()):
         if isinstance(value, dict) and isinstance(value.get("leaf"), bool):
             kwargs[name] = _quad_tree_from_fixture(value)
@@ -4555,6 +5449,10 @@ def _normalize_validated_value(
     returns_tree: bool = False,
     returns_list_node: bool = False,
 ) -> Any:
+    if value is not None and all(
+        hasattr(value, attr) for attr in ("coefficient", "power", "next")
+    ):
+        return _poly_node_to_terms(value)
     if returns_tree:
         return _tree_to_level_order(value)
     if returns_list_node:
@@ -4611,12 +5509,17 @@ def _median(values: list[float]) -> Optional[float]:
     return (ordered[middle - 1] + ordered[middle]) / 2
 
 
-def _timed_traced_call(func: Any, kwargs: dict[str, Any]) -> tuple[Any, float]:
+def _timed_traced_call(
+    func: Any,
+    kwargs: dict[str, Any],
+    *,
+    step_limit: int = _RUNTIME_STEP_LIMIT,
+) -> tuple[Any, float]:
     start = time.perf_counter()
     result, _trace = run_with_trace(
         func,
         kwargs,
-        step_limit=_RUNTIME_STEP_LIMIT,
+        step_limit=step_limit,
         capture=False,
     )
     return result, (time.perf_counter() - start) * 1000.0
@@ -4626,6 +5529,7 @@ def _actual_result(
     result: Any,
     kwargs: dict[str, Any],
     *,
+    case: ValidatedCase | None = None,
     returns_in_place: bool = False,
     param_names: list[str] | tuple[str, ...] = (),
     returns_tree: bool = False,
@@ -4636,7 +5540,36 @@ def _actual_result(
         first_param = param_names[0]
         if first_param in kwargs:
             actual = kwargs[first_param]
-    return _normalize_validated_value(actual, returns_tree=returns_tree, returns_list_node=returns_list_node)
+    validator = case.validator if case is not None else {}
+    validator_kind = str(validator.get("kind") or "")
+    if validator_kind == "master_guessed" and result is None:
+        return kwargs.get("master")
+    if validator_kind == "random_binary_tree_copy":
+        root_param = str(validator.get("root_param") or "root")
+        return {
+            "tree": _random_binary_tree_to_fixture(actual),
+            "independent": _node_graphs_are_disjoint(actual, kwargs.get(root_param)),
+        }
+    if validator_kind in {"nary_tree", "nary_tree_records", "node_value"}:
+        return actual
+    actual = _normalize_validated_value(
+        actual,
+        returns_tree=returns_tree,
+        returns_list_node=returns_list_node,
+    )
+    if validator_kind == "in_place_prefix":
+        values_param = str(validator.get("values_param") or (param_names[0] if param_names else "nums"))
+        values = _normalize_validated_value(kwargs.get(values_param))
+        prefix = None
+        if (
+            isinstance(actual, int)
+            and not isinstance(actual, bool)
+            and isinstance(values, list)
+            and 0 <= actual <= len(values)
+        ):
+            prefix = values[:actual]
+        return {"return_value": actual, "prefix": prefix}
+    return actual
 
 
 def _timed_reference_iterations(
@@ -4644,10 +5577,12 @@ def _timed_reference_iterations(
     kwargs: dict[str, Any],
     iterations: int,
     *,
+    case: ValidatedCase | None = None,
     returns_in_place: bool = False,
     param_names: list[str] | tuple[str, ...] = (),
     returns_tree: bool = False,
     returns_list_node: bool = False,
+    step_limit: int = _RUNTIME_STEP_LIMIT,
 ) -> tuple[Any, float]:
     last_result: Any = None
     last_kwargs: dict[str, Any] = kwargs
@@ -4657,12 +5592,17 @@ def _timed_reference_iterations(
     total_iterations = max(1, iterations)
     for index in range(total_iterations):
         call_kwargs = copy.deepcopy(kwargs) if index + 1 < total_iterations else kwargs
-        last_result, call_ms = _timed_traced_call(func, call_kwargs)
+        last_result, call_ms = _timed_traced_call(
+            func,
+            call_kwargs,
+            step_limit=step_limit,
+        )
         last_kwargs = call_kwargs
         elapsed_ms += call_ms
     return _actual_result(
         last_result,
         last_kwargs,
+        case=case,
         returns_in_place=returns_in_place,
         param_names=param_names,
         returns_tree=returns_tree,
@@ -4683,7 +5623,10 @@ def _load_python_optimal_solve(challenge: Any) -> tuple[Optional[Any], str]:
         "__name__": f"optimal.{challenge.info.id}",
         "__file__": f"{challenge.info.id}_optimal.py",
         "__package__": None,
+        "ListNode": _JudgeListNode,
+        "Node": _JudgeNode,
         "Point": _JudgePoint,
+        "TreeNode": _JudgeTreeNode,
     }
     filename = f"{challenge.info.id}_optimal.py"
     try:
@@ -4707,7 +5650,13 @@ def _expected_for_case(
     returns_in_place: bool = False,
     param_names: list[str] | tuple[str, ...] = (),
     tree_param_names: list[str] | tuple[str, ...] = (),
+    tree_node_target_param_names: list[str] | tuple[str, ...] = (),
     list_node_param_names: list[str] | tuple[str, ...] = (),
+    list_node_collection_param_names: list[str] | tuple[str, ...] = (),
+    nary_node_param_names: list[str] | tuple[str, ...] = (),
+    nary_node_collection_param_names: list[str] | tuple[str, ...] = (),
+    random_binary_tree_param_names: list[str] | tuple[str, ...] = (),
+    big_array_param_names: list[str] | tuple[str, ...] = (),
     returns_tree: bool = False,
     returns_list_node: bool = False,
 ) -> tuple[Any, str]:
@@ -4722,11 +5671,22 @@ def _expected_for_case(
     import copy
 
     try:
-        kwargs = _prepare_validated_kwargs(copy.deepcopy(case.input), tree_param_names, list_node_param_names)
+        kwargs = _prepare_validated_kwargs(
+            copy.deepcopy(case.input),
+            tree_param_names,
+            list_node_param_names,
+            list_node_collection_param_names,
+            nary_node_param_names,
+            nary_node_collection_param_names,
+            random_binary_tree_param_names,
+            tree_node_target_param_names,
+            big_array_param_names,
+        )
         result = reference_solve(**kwargs)
         return _actual_result(
             result,
             kwargs,
+            case=case,
             returns_in_place=returns_in_place,
             param_names=param_names,
             returns_tree=returns_tree,
@@ -4744,7 +5704,13 @@ def _run_python_solution_on_case(
     returns_in_place: bool = False,
     param_names: list[str] | tuple[str, ...] = (),
     tree_param_names: list[str] | tuple[str, ...] = (),
+    tree_node_target_param_names: list[str] | tuple[str, ...] = (),
     list_node_param_names: list[str] | tuple[str, ...] = (),
+    list_node_collection_param_names: list[str] | tuple[str, ...] = (),
+    nary_node_param_names: list[str] | tuple[str, ...] = (),
+    nary_node_collection_param_names: list[str] | tuple[str, ...] = (),
+    random_binary_tree_param_names: list[str] | tuple[str, ...] = (),
+    big_array_param_names: list[str] | tuple[str, ...] = (),
     returns_tree: bool = False,
     returns_list_node: bool = False,
     step_limit: int = _STEP_LIMIT,
@@ -4757,7 +5723,13 @@ def _run_python_solution_on_case(
         returns_in_place=returns_in_place,
         param_names=param_names,
         tree_param_names=tree_param_names,
+        tree_node_target_param_names=tree_node_target_param_names,
         list_node_param_names=list_node_param_names,
+        list_node_collection_param_names=list_node_collection_param_names,
+        nary_node_param_names=nary_node_param_names,
+        nary_node_collection_param_names=nary_node_collection_param_names,
+        random_binary_tree_param_names=random_binary_tree_param_names,
+        big_array_param_names=big_array_param_names,
         returns_tree=returns_tree,
         returns_list_node=returns_list_node,
     )
@@ -4783,17 +5755,32 @@ def _run_python_solution_on_case(
 
     start = time.perf_counter()
     try:
-        call_kwargs = _prepare_validated_kwargs(copy.deepcopy(case.input), tree_param_names, list_node_param_names)
+        call_kwargs = _prepare_validated_kwargs(
+            copy.deepcopy(case.input),
+            tree_param_names,
+            list_node_param_names,
+            list_node_collection_param_names,
+            nary_node_param_names,
+            nary_node_collection_param_names,
+            random_binary_tree_param_names,
+            tree_node_target_param_names,
+            big_array_param_names,
+        )
         result, _trace = run_with_trace(
             solve_fn,
             call_kwargs,
-            step_limit=_RUNTIME_STEP_LIMIT if case.kind == "benchmark" else step_limit,
+            step_limit=(
+                max(_RUNTIME_STEP_LIMIT, step_limit)
+                if case.kind == "benchmark"
+                else step_limit
+            ),
             capture=False,
         )
         elapsed_ms = (time.perf_counter() - start) * 1000.0
         actual = _actual_result(
             result,
             call_kwargs,
+            case=case,
             returns_in_place=returns_in_place,
             param_names=param_names,
             returns_tree=returns_tree,
@@ -4870,9 +5857,16 @@ def _runtime_check_python_cases(
     returns_in_place: bool = False,
     param_names: list[str] | tuple[str, ...] = (),
     tree_param_names: list[str] | tuple[str, ...] = (),
+    tree_node_target_param_names: list[str] | tuple[str, ...] = (),
     list_node_param_names: list[str] | tuple[str, ...] = (),
+    list_node_collection_param_names: list[str] | tuple[str, ...] = (),
+    nary_node_param_names: list[str] | tuple[str, ...] = (),
+    nary_node_collection_param_names: list[str] | tuple[str, ...] = (),
+    random_binary_tree_param_names: list[str] | tuple[str, ...] = (),
+    big_array_param_names: list[str] | tuple[str, ...] = (),
     returns_tree: bool = False,
     returns_list_node: bool = False,
+    step_limit: int = _RUNTIME_STEP_LIMIT,
 ) -> RuntimeCheck:
     if reference_solve is None:
         return RuntimeCheck(
@@ -4900,9 +5894,16 @@ def _runtime_check_python_cases(
                 returns_in_place=returns_in_place,
                 param_names=param_names,
                 tree_param_names=tree_param_names,
+                tree_node_target_param_names=tree_node_target_param_names,
                 list_node_param_names=list_node_param_names,
+                list_node_collection_param_names=list_node_collection_param_names,
+                nary_node_param_names=nary_node_param_names,
+                nary_node_collection_param_names=nary_node_collection_param_names,
+                random_binary_tree_param_names=random_binary_tree_param_names,
+                big_array_param_names=big_array_param_names,
                 returns_tree=returns_tree,
                 returns_list_node=returns_list_node,
+                step_limit=step_limit,
             )
             if not measurement.checked or not measurement.benchmark_correct:
                 return measurement
@@ -4932,7 +5933,13 @@ def _runtime_check_python_cases(
             returns_in_place=returns_in_place,
             param_names=param_names,
             tree_param_names=tree_param_names,
+            tree_node_target_param_names=tree_node_target_param_names,
             list_node_param_names=list_node_param_names,
+            list_node_collection_param_names=list_node_collection_param_names,
+            nary_node_param_names=nary_node_param_names,
+            nary_node_collection_param_names=nary_node_collection_param_names,
+            random_binary_tree_param_names=random_binary_tree_param_names,
+            big_array_param_names=big_array_param_names,
             returns_tree=returns_tree,
             returns_list_node=returns_list_node,
         )
@@ -4954,12 +5961,24 @@ def _runtime_check_python_cases(
             try:
                 result, elapsed_ms = _timed_reference_iterations(
                     func,
-                    _prepare_validated_kwargs(copy.deepcopy(case.input), tree_param_names, list_node_param_names),
+                    _prepare_validated_kwargs(
+                        copy.deepcopy(case.input),
+                        tree_param_names,
+                        list_node_param_names,
+                        list_node_collection_param_names,
+                        nary_node_param_names,
+                        nary_node_collection_param_names,
+                        random_binary_tree_param_names,
+                        tree_node_target_param_names,
+                        big_array_param_names,
+                    ),
                     iterations,
+                    case=case,
                     returns_in_place=returns_in_place,
                     param_names=param_names,
                     returns_tree=returns_tree,
                     returns_list_node=returns_list_node,
+                    step_limit=step_limit,
                 )
             except Exception as exc:
                 return False, total_ms, f"{type(exc).__name__}: {exc}"
@@ -5167,7 +6186,10 @@ def _run_python_validated_cases(
             "__name__": "player_solution",
             "__file__": player_filename,
             "__package__": None,
+            "ListNode": _JudgeListNode,
+            "Node": _JudgeNode,
             "Point": _JudgePoint,
+            "TreeNode": _JudgeTreeNode,
         }
         exec(  # noqa: S102 - player solution is intentionally executed by the local judge
             compile(player_source, player_filename, "exec", dont_inherit=True),
@@ -5188,14 +6210,23 @@ def _run_python_validated_cases(
     returns_list_node = _returns_list_node(str(getattr(spec, "returns", "") or ""))
     param_names = list(getattr(spec, "params", []) or [])
     tree_param_names = _tree_param_names(spec)
+    tree_node_target_param_names = _tree_node_target_param_names(spec)
     list_node_param_names = _list_node_param_names(spec)
+    list_node_collection_param_names = _list_node_collection_param_names(spec)
+    nary_node_param_names = _nary_node_param_names(spec)
+    nary_node_collection_param_names = _nary_node_collection_param_names(spec)
+    random_binary_tree_param_names = _random_binary_tree_param_names(spec)
+    big_array_param_names = _big_array_param_names(spec)
 
     case_results: list[RunCaseResult] = []
     first_result: Any = None
     first_expected: Any = None
     error_message = ""
     certificate_complete = leetcode_complexity_certificate_status(challenge.info.id).complete
-    case_step_limit = _RUNTIME_STEP_LIMIT if certificate_complete else _STEP_LIMIT
+    case_step_limit = _VALIDATED_CASE_STEP_LIMIT_OVERRIDES.get(
+        challenge.info.id,
+        _RUNTIME_STEP_LIMIT if certificate_complete else _STEP_LIMIT,
+    )
     for case in run_cases:
         case_result, result, expected, message, _elapsed_ms = _run_python_solution_on_case(
             solve_fn=solve_fn,
@@ -5204,7 +6235,13 @@ def _run_python_validated_cases(
             returns_in_place=returns_in_place,
             param_names=param_names,
             tree_param_names=tree_param_names,
+            tree_node_target_param_names=tree_node_target_param_names,
             list_node_param_names=list_node_param_names,
+            list_node_collection_param_names=list_node_collection_param_names,
+            nary_node_param_names=nary_node_param_names,
+            nary_node_collection_param_names=nary_node_collection_param_names,
+            random_binary_tree_param_names=random_binary_tree_param_names,
+            big_array_param_names=big_array_param_names,
             returns_tree=returns_tree,
             returns_list_node=returns_list_node,
             step_limit=case_step_limit,
@@ -5237,9 +6274,16 @@ def _run_python_validated_cases(
             returns_in_place=returns_in_place,
             param_names=param_names,
             tree_param_names=tree_param_names,
+            tree_node_target_param_names=tree_node_target_param_names,
             list_node_param_names=list_node_param_names,
+            list_node_collection_param_names=list_node_collection_param_names,
+            nary_node_param_names=nary_node_param_names,
+            nary_node_collection_param_names=nary_node_collection_param_names,
+            random_binary_tree_param_names=random_binary_tree_param_names,
+            big_array_param_names=big_array_param_names,
             returns_tree=returns_tree,
             returns_list_node=returns_list_node,
+            step_limit=max(_RUNTIME_STEP_LIMIT, case_step_limit),
         )
     elif correct:
         complexity_check = _complexity_certificate_check(challenge.info.id)

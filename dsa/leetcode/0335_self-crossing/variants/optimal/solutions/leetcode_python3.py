@@ -4,10 +4,7 @@ from typing import List
 class Solution:
     def isSelfCrossing(self, distance: List[int]) -> bool:
         for index in range(3, len(distance)):
-            if (
-                distance[index] >= distance[index - 2]
-                and distance[index - 1] <= distance[index - 3]
-            ):
+            if distance[index] >= distance[index - 2] and distance[index - 1] <= distance[index - 3]:
                 return True
             if (
                 index >= 4

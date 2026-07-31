@@ -22,7 +22,7 @@ Return the maximum total value of the selected cards. Choices at the two ends in
 
 **Inputs**
 
-- `card_points`: an array of $n$ positive card values, where $1 \le n \le 10^5$ and $1 \le \texttt{card_points[i]} \le 10^4$.
+- `cardPoints`: an array of $n$ positive card values, where $1 \le n \le 10^5$ and $1 \le \texttt{cardPoints[i]} \le 10^4$.
 - `k`: the exact number of cards to take, where $1 \le k \le n$.
 
 **Return value**
@@ -33,15 +33,15 @@ Return the maximum total value of the selected cards. Choices at the two ends in
 
 **Example 1**
 
-- Input: `card_points = [1,2,3,4,5,6,1], k = 3`
+- Input: `cardPoints = [1,2,3,4,5,6,1], k = 3`
 - Output: `12`
 
 **Example 2**
 
-- Input: `card_points = [2,2,2], k = 2`
+- Input: `cardPoints = [2,2,2], k = 2`
 - Output: `4`
 
 **Example 3**
 
-- Input: `card_points = [9,7,7,9,7,7,9], k = 7`
+- Input: `cardPoints = [9,7,7,9,7,7,9], k = 7`
 - Output: `55`

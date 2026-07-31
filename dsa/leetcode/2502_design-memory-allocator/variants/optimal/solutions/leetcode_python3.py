@@ -9,7 +9,7 @@ class Allocator:
                 free += 1
                 if free == size:
                     start = index - size + 1
-                    self.memory[start:index + 1] = [mID] * size
+                    self.memory[start : index + 1] = [mID] * size
                     return start
             else:
                 free = 0

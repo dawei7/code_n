@@ -26,10 +26,7 @@ class SnakeGame:
             self.game_over = True
             return -1
 
-        eating = (
-            self.food_index < len(self.food)
-            and self.food[self.food_index] == [new_row, new_col]
-        )
+        eating = self.food_index < len(self.food) and self.food[self.food_index] == [new_row, new_col]
         if not eating:
             tail = self.body.popleft()
             self.occupied.remove(tail)

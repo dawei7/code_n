@@ -618,6 +618,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "benchmark",
         "scaling",
@@ -2968,6 +2969,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "benchmark",
         "scaling",
@@ -12230,6 +12232,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "benchmark",
         "scaling",

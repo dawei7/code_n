@@ -28,10 +28,7 @@ class Solution:
             for orientation in transformed:
                 minimum_x = min(x for x, _ in orientation)
                 minimum_y = min(y for _, y in orientation)
-                normalized.append(frozenset(
-                    (x - minimum_x, y - minimum_y)
-                    for x, y in orientation
-                ))
+                normalized.append(frozenset((x - minimum_x, y - minimum_y) for x, y in orientation))
             return frozenset(normalized)
 
         for start_row in range(rows):

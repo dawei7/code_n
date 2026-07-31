@@ -8,7 +8,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "function_id": 1,
+        "customfunction": 1,
         "z": 5
       },
       "expected": [
@@ -43,7 +43,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "function_id": 2,
+        "customfunction": 2,
         "z": 5
       },
       "expected": [
@@ -70,7 +70,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "function_id": 5,
+        "customfunction": 5,
         "z": 25
       },
       "expected": [
@@ -96,7 +96,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "function_id": 6,
+        "customfunction": 6,
         "z": 10
       },
       "expected": [],
@@ -113,7 +113,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "function_id": 7,
+        "customfunction": 7,
         "z": 9
       },
       "expected": [
@@ -140,7 +140,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "function_id": 8,
+        "customfunction": 8,
         "z": 36
       },
       "expected": [
@@ -175,7 +175,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "function_id": 9,
+        "customfunction": 9,
         "z": 36
       },
       "expected": [

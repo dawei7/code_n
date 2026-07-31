@@ -19,4 +19,3 @@ class Solution:
         for node in tree:
             if node.val == root_value:
                 return node
-

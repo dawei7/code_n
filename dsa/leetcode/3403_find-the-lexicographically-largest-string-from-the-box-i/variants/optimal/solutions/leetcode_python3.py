@@ -18,4 +18,4 @@ class Solution:
                 offset = 0
 
         maximum_length = length - numFriends + 1
-        return word[left:left + maximum_length]
+        return word[left : left + maximum_length]

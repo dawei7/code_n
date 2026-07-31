@@ -1,10 +1,10 @@
 ## General
 **Turning the strength definition into an ordered geometry problem**
 
-The median cannot be determined from the original positions, so first sort a copy of `arr` in ascending order and read
+The median cannot be determined from the original positions, so first sort `arr` in place in ascending order and read
 
 $$
-m=\texttt{ordered}\!\left[\left\lfloor\frac{n-1}{2}\right\rfloor\right].
+m=\texttt{arr}\!\left[\left\lfloor\frac{n-1}{2}\right\rfloor\right].
 $$
 
 After sorting, values smaller than or equal to $m$ become farther from the median as their indices move left, while values greater than or equal to $m$ become farther as their indices move right. Thus, among any still-unselected contiguous interval of the sorted array, a strongest remaining value must be at one of its two endpoints. No interior value can be farther from $m$ than both extremes.
@@ -13,7 +13,7 @@ After sorting, values smaller than or equal to $m$ become farther from the media
 
 Maintain pointers `left` and `right` at the current interval endpoints. Compare the endpoint strengths by their distances from $m$.
 
-- If $\lvert\texttt{ordered[left]}-m\rvert$ is larger, select the left value and advance `left`.
+- If $\lvert\texttt{arr[left]}-m\rvert$ is larger, select the left value and advance `left`.
 - If the right distance is larger, select the right value and decrement `right`.
 - If the distances tie, select the right value. Because the array is sorted, the right endpoint is at least as large as the left endpoint, exactly implementing the larger-value tie-breaker.
 
@@ -28,7 +28,7 @@ After one endpoint is removed, all remaining occurrences still form a contiguous
 ## Complexity detail
 Sorting the $n$ values costs $O(n\log n)$ time. The two-pointer selection performs exactly $k$ constant-time comparisons and removals, adding $O(k)$ time; because $k \le n$, the total remains $O(n\log n)$.
 
-The app-local implementation sorts a copy so that callers retain their input, requiring $O(n)$ storage. The returned list holds $k$ values and is also bounded by $O(n)$. If input mutation is allowed, an in-place sort can reduce auxiliary storage apart from the output to the sorting implementation's own stack or workspace.
+The accepted algorithm sorts `arr` in place. Python's sorting workspace and the returned list use $O(n)$ total additional space in the worst case; the result itself contains exactly $k$ values.
 
 ## Alternatives and edge cases
 - **Sort directly by strength:** Compute the median, then sort all values by `(abs(value - median), value)` in descending order. This is correct and has the same asymptotic bounds, but it performs another full sort and repeatedly evaluates the ranking key instead of exploiting the already sorted order.

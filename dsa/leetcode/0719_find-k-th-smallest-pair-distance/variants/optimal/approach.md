@@ -5,7 +5,7 @@ After sorting the values, every distance lies between zero and `W = maximum - mi
 
 **Count pairs beneath one threshold**
 
-For each right endpoint in sorted order, move a left pointer forward until `values[right] - values[left]` is at most the candidate threshold. Every index from that left pointer through `right - 1` forms a qualifying pair with `right`, contributing `right - left` pairs. The left pointer never moves backward, so one count takes linear time.
+For each right endpoint in sorted order, move a left pointer forward until `nums[right] - nums[left]` is at most the candidate threshold. Every index from that left pointer through `right - 1` forms a qualifying pair with `right`, contributing `right - left` pairs. The left pointer never moves backward, so one count takes linear time.
 
 **Use the monotone rank predicate**
 
@@ -16,7 +16,7 @@ Increasing the threshold cannot remove a qualifying pair, so the predicate “at
 At convergence, fewer than `k` pairs have distance below the boundary, while at least `k` pairs have distance at most the boundary. Therefore the sorted multiset's `k`-th element equals that boundary. Counting index pairs rather than distinct numeric differences also preserves multiplicity from duplicates.
 
 ## Complexity detail
-Sorting takes $O(n \log n)$ time. Each of $O(\log W)$ distance checks scans the sorted array once, adding $O(n \log W)$ time. Keeping a sorted copy uses $O(n)$ space.
+Sorting `nums` in place takes $O(n \log n)$ time. Each of $O(\log W)$ distance checks scans the sorted array once, adding $O(n \log W)$ time. The reference creates no input copy, though Python's sorting implementation can use $O(n)$ auxiliary memory.
 
 ## Alternatives and edge cases
 - **Enumerate and sort every distance:** it directly exposes the rank but stores $O(n^2)$ values and takes $O(n^2 \log n)$ time.

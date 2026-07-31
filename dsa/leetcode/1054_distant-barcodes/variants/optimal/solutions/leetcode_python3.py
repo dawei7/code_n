@@ -5,10 +5,7 @@ from typing import List
 
 class Solution:
     def rearrangeBarcodes(self, barcodes: List[int]) -> List[int]:
-        heap = [
-            (-count, value)
-            for value, count in Counter(barcodes).items()
-        ]
+        heap = [(-count, value) for value, count in Counter(barcodes).items()]
         heapify(heap)
 
         result = []
@@ -26,4 +23,3 @@ class Solution:
             previous_value = value
 
         return result
-

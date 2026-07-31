@@ -9,7 +9,7 @@
       "visible": true,
       "input": {
         "k": 3,
-        "row_conditions": [
+        "rowConditions": [
           [
             1,
             2
@@ -19,7 +19,7 @@
             2
           ]
         ],
-        "col_conditions": [
+        "colConditions": [
           [
             2,
             1
@@ -62,7 +62,7 @@
       "visible": true,
       "input": {
         "k": 3,
-        "row_conditions": [
+        "rowConditions": [
           [
             1,
             2
@@ -80,7 +80,7 @@
             3
           ]
         ],
-        "col_conditions": [
+        "colConditions": [
           [
             2,
             1
@@ -103,7 +103,7 @@
       "visible": true,
       "input": {
         "k": 2,
-        "row_conditions": [
+        "rowConditions": [
           [
             1,
             2
@@ -113,7 +113,7 @@
             2
           ]
         ],
-        "col_conditions": [
+        "colConditions": [
           [
             1,
             2
@@ -148,13 +148,13 @@
       "visible": true,
       "input": {
         "k": 4,
-        "row_conditions": [
+        "rowConditions": [
           [
             1,
             2
           ]
         ],
-        "col_conditions": [
+        "colConditions": [
           [
             3,
             4
@@ -201,7 +201,7 @@
       "visible": false,
       "input": {
         "k": 4,
-        "row_conditions": [
+        "rowConditions": [
           [
             1,
             2
@@ -211,7 +211,7 @@
             1
           ]
         ],
-        "col_conditions": [
+        "colConditions": [
           [
             1,
             3
@@ -238,7 +238,7 @@
       "visible": false,
       "input": {
         "k": 4,
-        "row_conditions": [
+        "rowConditions": [
           [
             1,
             2
@@ -248,7 +248,7 @@
             4
           ]
         ],
-        "col_conditions": [
+        "colConditions": [
           [
             2,
             3
@@ -275,7 +275,7 @@
       "visible": false,
       "input": {
         "k": 5,
-        "row_conditions": [
+        "rowConditions": [
           [
             1,
             3
@@ -289,7 +289,7 @@
             5
           ]
         ],
-        "col_conditions": [
+        "colConditions": [
           [
             5,
             4

@@ -14,7 +14,9 @@ class Solution:
                     if left[row][middle] == 0:
                         continue
                     for column in range(10):
-                        product[row][column] = (product[row][column] + left[row][middle] * right[middle][column]) % modulus
+                        product[row][column] = (
+                            product[row][column] + left[row][middle] * right[middle][column]
+                        ) % modulus
             return product
 
         def apply(matrix, vector):

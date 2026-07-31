@@ -16,4 +16,3 @@ class Solution:
 
         leaf_height(root)
         return rounds
-

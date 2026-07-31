@@ -2,9 +2,9 @@
 
 Count valid subarrays by their right endpoint. While scanning index `index`, remember three positions:
 
-- `last_invalid`, the latest element outside the inclusive interval from `min_k` to `max_k`;
-- `last_minimum`, the latest occurrence of `min_k`;
-- `last_maximum`, the latest occurrence of `max_k`.
+- `last_invalid`, the latest element outside the inclusive interval from `minK` to `maxK`;
+- `last_minimum`, the latest occurrence of `minK`;
+- `last_maximum`, the latest occurrence of `maxK`.
 
 Any subarray ending at `index` must start after `last_invalid`; otherwise it contains a value smaller than the required minimum or larger than the required maximum. It must also start no later than both remembered bound positions so that it contains at least one occurrence of each required value.
 
@@ -30,7 +30,7 @@ The answer can be as large as $n(n+1)/2$, so fixed-width implementations must us
 
 - **Enumerate all subarrays:** Updating a running minimum and maximum for every start/end pair is correct but costs $O(n^2)$ time.
 - **Two at-most counts:** Inclusion-exclusion over subarrays constrained by thresholds can solve the problem, but the last-position formulation is more direct.
-- **Equal bounds:** When `min_k == max_k`, the two last-seen positions update together and every all-equal run contributes all of its subarrays.
+- **Equal bounds:** When `minK == maxK`, the two last-seen positions update together and every all-equal run contributes all of its subarrays.
 - **Out-of-range value:** It invalidates every subarray crossing its position and resets the earliest allowed start.
 - **Missing bound:** Until both required values have appeared after the latest invalid element, the contribution is zero.
 - **Repeated bounds:** Only the latest occurrences matter for counting all valid starts at the current endpoint.

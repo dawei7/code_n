@@ -1,7 +1,7 @@
 ## General
 **Reduce three inequalities to one**
 
-Sort a copy of the lengths. For indices `left < right < largest`, the two values at `left` and `right` cannot exceed the value at `largest`. With nonnegative sorted values, the only triangle inequality that can fail is therefore `values[left] + values[right] > values[largest]`.
+Sort `nums` in place. For indices `left < right < largest`, the two values at `left` and `right` cannot exceed the value at `largest`. With nonnegative sorted values, the only triangle inequality that can fail is therefore `nums[left] + nums[right] > nums[largest]`.
 
 **Fix the largest side and sweep inward**
 
@@ -9,12 +9,12 @@ Choose each index from the end as `largest`, then place `left` at the beginning 
 
 **Count a whole valid range**
 
-When `values[left] + values[right] > values[largest]`, replacing `left` by any index between `left` and `right - 1` only makes the smaller-side sum at least as large. Thus all `right - left` pairs ending at `right` are valid with this largest side. Add that count and decrement `right`; every pair is counted exactly once at its right endpoint.
+When `nums[left] + nums[right] > nums[largest]`, replacing `left` by any index between `left` and `right - 1` only makes the smaller-side sum at least as large. Thus all `right - left` pairs ending at `right` are valid with this largest side. Add that count and decrement `right`; every pair is counted exactly once at its right endpoint.
 
 The sweep terminates after the pointers cross. Repeating it for every largest-side index covers every index triple once, because every triple has one unique greatest index in sorted order.
 
 ## Complexity detail
-Sorting costs $O(n \log n)$ time. For each of $O(n)$ choices of the largest index, the two pointers move inward at most `n` times in total, so the sweeps cost $O(n^2)$ and dominate. Sorting a copy preserves the caller's list and uses $O(n)$ space.
+Sorting costs $O(n \log n)$ time. For each of $O(n)$ choices of the largest index, the two pointers move inward at most `n` times in total, so the sweeps cost $O(n^2)$ and dominate. The reference creates no input copy, though Python's in-place sorting implementation can use $O(n)$ auxiliary memory.
 
 ## Alternatives and edge cases
 - **Enumerate every triple:** directly testing all three chosen values is simple and correct but costs $O(n^3)$ time.

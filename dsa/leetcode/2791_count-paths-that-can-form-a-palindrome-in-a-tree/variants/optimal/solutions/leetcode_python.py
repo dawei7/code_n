@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def countPalindromePaths(self, parent: List[int], s: str) -> int:
         n = len(parent)

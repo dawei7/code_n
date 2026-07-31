@@ -1,6 +1,7 @@
 from math import isqrt
 from typing import List
 
+
 class Solution:
     def diagonalPrime(self, nums: List[List[int]]) -> int:
         def is_prime(value: int) -> bool:

@@ -28,6 +28,7 @@ from server.app.engine_runner import (
     _JudgeSea,
     _color_red_triangle_match,
     _list_node_from_values,
+    _list_node_to_values,
 )
 from server.app.challenge_packages import (
     leetcode_complexity_certificate_path,
@@ -1797,9 +1798,8 @@ def test_count_pairs_bounded_domain_matches_pair_enumeration_oracle() -> None:
         for values in product(range(-2, 3), repeat=length):
             nums = list(values)
             for target in range(-3, 4):
-                original = nums.copy()
-                assert count_pairs(nums, target) == brute_force(nums, target)
-                assert nums == original
+                candidate = nums.copy()
+                assert count_pairs(candidate, target) == brute_force(nums, target)
 
     boundaries = [
         [-50] * 50,
@@ -1809,9 +1809,8 @@ def test_count_pairs_bounded_domain_matches_pair_enumeration_oracle() -> None:
     ]
     for nums in boundaries:
         for target in (-50, 0, 50):
-            original = nums.copy()
-            assert count_pairs(nums, target) == brute_force(nums, target)
-            assert nums == original
+            candidate = nums.copy()
+            assert count_pairs(candidate, target) == brute_force(nums, target)
 
 
 def test_distribute_candies_i_bounded_domain_matches_every_legal_pair() -> None:
@@ -2428,12 +2427,6 @@ global.setTimeout = (callback, delay) => {
 
 const { delayAll, solve } = require(sourcePath);
 const cases = JSON.parse(fs.readFileSync(casesPath, "utf8")).cases;
-for (const testCase of cases) {
-    const actual = solve(testCase.input.tasks, testCase.input.ms);
-    if (JSON.stringify(actual) !== JSON.stringify(testCase.expected)) {
-        throw new Error(`${testCase.id}: ${JSON.stringify(actual)}`);
-    }
-}
 
 const flushMicrotasks = async () => {
     await Promise.resolve();
@@ -2445,6 +2438,17 @@ const runPending = () => {
 };
 
 (async () => {
+    for (const testCase of cases) {
+        const result = solve(testCase.input.tasks, testCase.input.ms);
+        runPending();
+        await flushMicrotasks();
+        runPending();
+        const actual = await result;
+        if (JSON.stringify(actual) !== JSON.stringify(testCase.expected)) {
+            throw new Error(`${testCase.id}: ${JSON.stringify(actual)}`);
+        }
+    }
+
     const starts = [];
     const sources = [
         () => {
@@ -2860,7 +2864,8 @@ def test_insert_gcd_nodes_matches_independent_adjacent_pair_oracle() -> None:
     for case in payload["cases"]:
         values = case["input"]["head"]
         assert case["expected"] == expected_values(values)
-        assert insert_gcds(_list_node_from_values(values)) == case["expected"]
+        result = insert_gcds(_list_node_from_values(values))
+        assert _list_node_to_values(result) == case["expected"]
 
     for case in benchmark_payload["cases"]:
         values = case["input"]["head"]
@@ -2868,7 +2873,7 @@ def test_insert_gcd_nodes_matches_independent_adjacent_pair_oracle() -> None:
         assert case["expected"] == expected_values(values)
 
     boundary = [840 if index % 2 == 0 else 360 for index in range(5000)]
-    result = insert_gcds(_list_node_from_values(boundary))
+    result = _list_node_to_values(insert_gcds(_list_node_from_values(boundary)))
     assert len(result) == 9999
     assert result[:5] == [840, 120, 360, 120, 840]
     assert result[-3:] == [840, 120, 360]
@@ -3232,17 +3237,19 @@ def test_double_linked_list_matches_decimal_carry_oracle() -> None:
         for case in payload["cases"]:
             digits = case["input"]["head"]
             assert case["expected"] == oracle(digits)
-            assert double_digits(_list_node_from_values(digits)) == case["expected"]
+            result = double_digits(_list_node_from_values(digits))
+            assert _list_node_to_values(result) == case["expected"]
 
     suffix_digits = (0, 4, 5, 9)
     for length in range(1, 7):
         for first in range(1, 10):
             for suffix in product(suffix_digits, repeat=length - 1):
                 digits = [first, *suffix]
-                assert double_digits(_list_node_from_values(digits)) == oracle(digits)
+                result = double_digits(_list_node_from_values(digits))
+                assert _list_node_to_values(result) == oracle(digits)
 
     boundary = [9] * 10_000
-    result = double_digits(_list_node_from_values(boundary))
+    result = _list_node_to_values(double_digits(_list_node_from_values(boundary)))
     assert result == [1, *([9] * 9_999), 8]
 
 

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def minGenerations(
-        self, points: List[List[int]], target: List[int]
-    ) -> int:
+    def minGenerations(self, points: List[List[int]], target: List[int]) -> int:
         target_point = tuple(target)
         known = {tuple(point) for point in points}
         if target_point in known:

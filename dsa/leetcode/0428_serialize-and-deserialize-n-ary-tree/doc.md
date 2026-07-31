@@ -17,11 +17,13 @@ Design a codec for an N-ary tree whose nodes contain values and ordered child li
 ### Function Contract
 **Inputs**
 
-- `tree`: the app representation of an N-ary root as `[value, children]`, recursively, or `None` for an empty tree
+- `root`: The N-ary `Node` root, or `None` for an empty tree. Each node exposes `val` and an ordered `children` list.
+
+Authored JSON cases encode a node recursively as `[value, children]`; the runner constructs the `Node` objects before calling `solve`.
 
 **Return value**
 
-- Serialize the tree, deserialize that data, and return the reconstructed nested representation. The native LeetCode artifact exposes the required `Codec.serialize(root)` and `Codec.deserialize(data)` methods.
+- Serialize the tree, deserialize that data, and return the reconstructed `Node` root. The native LeetCode artifact exposes the required `Codec.serialize(root)` and `Codec.deserialize(data)` methods.
 
 ### Examples
 **Example 1**

@@ -8,13 +8,7 @@ class Solution:
         mentors: List[List[int]],
     ) -> int:
         count = len(students)
-        scores = [
-            [
-                sum(a == b for a, b in zip(student, mentor))
-                for mentor in mentors
-            ]
-            for student in students
-        ]
+        scores = [[sum(a == b for a, b in zip(student, mentor)) for mentor in mentors] for student in students]
 
         dp = [-1] * (1 << count)
         dp[0] = 0

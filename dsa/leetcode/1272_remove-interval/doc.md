@@ -23,25 +23,25 @@ Given this list and another half-open interval `toBeRemoved`, subtract every num
 **Inputs**
 
 - `intervals`: a sorted list of $n$ disjoint pairs `[start, end]`, with $1 \le n \le 10^4$ and $-10^9 \le \texttt{start} < \texttt{end} \le 10^9$.
-- `to_be_removed`: a pair `[remove_start, remove_end]` representing the half-open interval to subtract.
+- `toBeRemoved`: a pair `[remove_start, remove_end]` representing the half-open interval to subtract.
 
 **Return value**
 
-- Return the sorted disjoint half-open intervals representing the original union minus `to_be_removed`.
+- Return the sorted disjoint half-open intervals representing the original union minus `toBeRemoved`.
 
 ### Examples
 
 **Example 1**
 
-- Input: `intervals = [[0,2],[3,4],[5,7]], to_be_removed = [1,6]`
+- Input: `intervals = [[0,2],[3,4],[5,7]], toBeRemoved = [1,6]`
 - Output: `[[0,1],[6,7]]`
 
 **Example 2**
 
-- Input: `intervals = [[0,5]], to_be_removed = [2,3]`
+- Input: `intervals = [[0,5]], toBeRemoved = [2,3]`
 - Output: `[[0,2],[3,5]]`
 
 **Example 3**
 
-- Input: `intervals = [[-5,-4],[-3,-2],[1,2],[3,5],[8,9]], to_be_removed = [-1,4]`
+- Input: `intervals = [[-5,-4],[-3,-2],[1,2],[3,5],[8,9]], toBeRemoved = [-1,4]`
 - Output: `[[-5,-4],[-3,-2],[4,5],[8,9]]`

@@ -18,10 +18,7 @@ class Solution:
             if i + 3 <= n:
                 for char in range(26):
                     value = (
-                        abs(values[i] - char)
-                        + abs(values[i + 1] - char)
-                        + abs(values[i + 2] - char)
-                        + dp[char][i + 3]
+                        abs(values[i] - char) + abs(values[i + 1] - char) + abs(values[i + 2] - char) + dp[char][i + 3]
                     )
                     if value < best_value:
                         second_value = best_value
@@ -38,12 +35,7 @@ class Solution:
         best_cost = inf
         first_char = 0
         for char in range(26):
-            cost = (
-                abs(values[0] - char)
-                + abs(values[1] - char)
-                + abs(values[2] - char)
-                + dp[char][3]
-            )
+            cost = abs(values[0] - char) + abs(values[1] - char) + abs(values[2] - char) + dp[char][3]
             if cost < best_cost:
                 best_cost = cost
                 first_char = char
@@ -62,10 +54,7 @@ class Solution:
                     if char == last:
                         continue
                     cost = (
-                        abs(values[i] - char)
-                        + abs(values[i + 1] - char)
-                        + abs(values[i + 2] - char)
-                        + dp[char][i + 3]
+                        abs(values[i] - char) + abs(values[i + 1] - char) + abs(values[i + 2] - char) + dp[char][i + 3]
                     )
                     if cost == target:
                         chosen = min(chosen, char)

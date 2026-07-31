@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def getModifiedArray(
-        self, length: int, updates: List[List[int]]
-    ) -> List[int]:
+    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:
         difference = [0] * length
 
         for start, end, increment in updates:
@@ -17,4 +15,3 @@ class Solution:
             running += difference[index]
             difference[index] = running
         return difference
-

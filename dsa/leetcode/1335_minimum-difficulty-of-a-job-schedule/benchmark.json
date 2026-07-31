@@ -10,7 +10,7 @@
       "visible": false,
       "size": 16,
       "input": {
-        "job_difficulty": [
+        "jobDifficulty": [
           0,
           92,
           222,
@@ -44,7 +44,7 @@
       "visible": false,
       "size": 32,
       "input": {
-        "job_difficulty": [
+        "jobDifficulty": [
           0,
           92,
           222,
@@ -94,7 +94,7 @@
       "visible": false,
       "size": 64,
       "input": {
-        "job_difficulty": [
+        "jobDifficulty": [
           0,
           92,
           222,

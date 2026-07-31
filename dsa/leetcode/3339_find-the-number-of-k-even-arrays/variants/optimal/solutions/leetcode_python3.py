@@ -14,18 +14,11 @@ class Solution:
             next_odd = [0] * (k + 1)
 
             for even_pairs in range(k + 1):
-                next_odd[even_pairs] = (
-                    (end_even[even_pairs] + end_odd[even_pairs]) * odd_values
-                ) % mod
+                next_odd[even_pairs] = ((end_even[even_pairs] + end_odd[even_pairs]) * odd_values) % mod
 
-                next_even[even_pairs] = (
-                    end_odd[even_pairs] * even_values
-                ) % mod
+                next_even[even_pairs] = (end_odd[even_pairs] * even_values) % mod
                 if even_pairs > 0:
-                    next_even[even_pairs] = (
-                        next_even[even_pairs]
-                        + end_even[even_pairs - 1] * even_values
-                    ) % mod
+                    next_even[even_pairs] = (next_even[even_pairs] + end_even[even_pairs - 1] * even_values) % mod
 
             end_even = next_even
             end_odd = next_odd

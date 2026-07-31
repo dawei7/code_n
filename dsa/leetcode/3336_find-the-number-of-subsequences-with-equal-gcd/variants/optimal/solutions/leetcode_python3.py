@@ -19,12 +19,8 @@ class Solution:
                         continue
 
                     next_second = gcd(gcd_second, value)
-                    next_dp[next_first][gcd_second] = (
-                        next_dp[next_first][gcd_second] + ways
-                    ) % mod
-                    next_dp[gcd_first][next_second] = (
-                        next_dp[gcd_first][next_second] + ways
-                    ) % mod
+                    next_dp[next_first][gcd_second] = (next_dp[next_first][gcd_second] + ways) % mod
+                    next_dp[gcd_first][next_second] = (next_dp[gcd_first][next_second] + ways) % mod
             dp = next_dp
 
         return sum(dp[g][g] for g in range(1, max_value + 1)) % mod

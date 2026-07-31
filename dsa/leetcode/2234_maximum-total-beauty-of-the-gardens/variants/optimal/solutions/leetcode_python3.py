@@ -22,10 +22,7 @@ class Solution:
 
         for complete_count in range(already_complete, count + 1):
             incomplete_count = count - complete_count
-            completion_cost = (
-                complete_count * target
-                - (prefix[count] - prefix[incomplete_count])
-            )
+            completion_cost = complete_count * target - (prefix[count] - prefix[incomplete_count])
             if completion_cost > newFlowers:
                 break
 

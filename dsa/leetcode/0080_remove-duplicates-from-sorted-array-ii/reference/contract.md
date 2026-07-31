@@ -6,4 +6,4 @@
 
 **Return value**
 
-The native LeetCode method returns `k` after writing the retained values to `nums[:k]`. The app adapter returns that retained prefix directly.
+Return $k$, the number of retained values after limiting each distinct value to at most two copies. The same call mutates `nums` in place so `nums[:k]` contains those retained values in non-decreasing order. Values at indices $k$ and beyond are unspecified.

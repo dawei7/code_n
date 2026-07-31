@@ -9,4 +9,4 @@ class Solution:
         k %= total
         flat = [value for row in grid for value in row]
         shifted = flat[-k:] + flat[:-k] if k else flat
-        return [shifted[index:index + columns] for index in range(0, total, columns)]
+        return [shifted[index : index + columns] for index in range(0, total, columns)]

@@ -5,5 +5,4 @@ JOIN Employees AS direct_manager
 JOIN Employees AS upper_manager
   ON direct_manager.manager_id = upper_manager.employee_id
 WHERE candidate.employee_id <> 1
-  AND upper_manager.manager_id = 1
-ORDER BY candidate.employee_id;
+  AND upper_manager.manager_id = 1;

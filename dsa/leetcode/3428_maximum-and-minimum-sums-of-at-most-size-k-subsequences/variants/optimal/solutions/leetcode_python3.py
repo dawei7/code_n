@@ -12,13 +12,9 @@ class Solution:
         answer = 0
         for i in range(n):
             ways = sum(combinations) % mod
-            answer = (
-                answer + (values[i] + values[n - 1 - i]) * ways
-            ) % mod
+            answer = (answer + (values[i] + values[n - 1 - i]) * ways) % mod
 
             for chosen in range(min(i + 1, limit), 0, -1):
-                combinations[chosen] = (
-                    combinations[chosen] + combinations[chosen - 1]
-                ) % mod
+                combinations[chosen] = (combinations[chosen] + combinations[chosen - 1]) % mod
 
         return answer

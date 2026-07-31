@@ -25,7 +25,7 @@ Use only these pairwise equality answers to determine how many distinct categori
 - `n`: The number of elements, where $1 \le n \le 100$.
 - `categoryHandler`: An interactive object exposing `haveSameCategory(a, b)`. It returns `true` exactly when valid indices `a` and `b` belong to the same category. It returns `false` if either index lies outside $[0,n-1]$.
 
-The app-local fixture represents `categoryHandler` as an integer array of length $n$ whose equal values model the oracle's category equivalence. The reference algorithm uses those values only through an internal same-category comparison, matching the native interaction semantics.
+The app judge constructs the `CategoryHandler` object from the integer array shown in a case input; equal array values model the oracle's hidden category equivalence. The solution itself accesses those values only through `haveSameCategory(a, b)`.
 
 **Return value**
 

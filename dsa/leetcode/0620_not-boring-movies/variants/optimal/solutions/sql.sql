@@ -1,5 +1,5 @@
 SELECT id, movie, description, rating
 FROM Cinema
-WHERE id % 2 = 1
+WHERE MOD(id, 2) = 1
   AND description <> 'boring'
 ORDER BY rating DESC, id ASC;

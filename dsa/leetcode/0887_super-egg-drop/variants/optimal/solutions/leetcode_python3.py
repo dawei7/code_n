@@ -4,9 +4,7 @@ class Solution:
             combinations = 1
             covered = 0
             for used_eggs in range(1, min(k, moves) + 1):
-                combinations = (
-                    combinations * (moves - used_eggs + 1) // used_eggs
-                )
+                combinations = combinations * (moves - used_eggs + 1) // used_eggs
                 covered += combinations
                 if covered >= n:
                     return True

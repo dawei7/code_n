@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "be8abd4d5d344c1f189580dd5c65eec718745cfe1d1877e427c085c2022eb476",
+    "native_sha256": "809ee0ff0c0a63ca01588f4ba67f9c53be49cbd53f4657ef8031948b045f8322",
+    "solution_variants_sha256": "dd86f96d7a24ae8bfae9c559afa47168f265408e81eafc5f4505a69eb2929b52",
+    "approach_sha256": "bbd027da1e5b634a0abaa55c897cff7130a0a8f64734cbeb0323074e81ff6764"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "order-month formatting",
+      "native": "MySQL derives the YYYY-MM projection and grouping key with DATE_FORMAT(order_date, '%Y-%m').",
+      "app": "SQLite derives the identical projection and grouping key with strftime('%Y-%m', order_date).",
+      "rationale": "SQLite does not implement MySQL's DATE_FORMAT function. The invoice filter, order count, distinct-customer count, aliases, and grouping otherwise match exactly."
+    }
+  ]
+}

@@ -3,11 +3,11 @@ from typing import Optional
 
 
 class Solution:
-    def pathSum(self, root: Optional['TreeNode'], targetSum: int) -> int:
+    def pathSum(self, root: Optional["TreeNode"], targetSum: int) -> int:
         prefix_counts = defaultdict(int)
         prefix_counts[0] = 1
 
-        def count_paths(node: Optional['TreeNode'], current_sum: int) -> int:
+        def count_paths(node: Optional["TreeNode"], current_sum: int) -> int:
             if node is None:
                 return 0
             current_sum += node.val

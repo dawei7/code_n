@@ -17,9 +17,7 @@ class Solution:
                 maximums.pop()
             maximums.append(right)
 
-            while (
-                nums[maximums[0]] - nums[minimums[0]]
-            ) * (right - left + 1) > k:
+            while (nums[maximums[0]] - nums[minimums[0]]) * (right - left + 1) > k:
                 if minimums[0] == left:
                     minimums.popleft()
                 if maximums[0] == left:

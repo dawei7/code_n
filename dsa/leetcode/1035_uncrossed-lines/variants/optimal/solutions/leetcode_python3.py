@@ -16,4 +16,3 @@ class Solution:
                     current[index] = max(previous[index], current[index - 1])
             previous = current
         return previous[-1]
-

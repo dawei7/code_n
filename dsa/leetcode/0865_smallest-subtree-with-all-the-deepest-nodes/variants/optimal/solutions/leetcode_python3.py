@@ -2,9 +2,7 @@ from typing import Optional
 
 
 class Solution:
-    def subtreeWithAllDeepest(
-        self, root: Optional["TreeNode"]
-    ) -> Optional["TreeNode"]:
+    def subtreeWithAllDeepest(self, root: Optional["TreeNode"]) -> Optional["TreeNode"]:
         def summarize(node):
             if node is None:
                 return 0, None

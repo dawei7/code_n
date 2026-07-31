@@ -26,7 +26,7 @@ Let $n$ be the length of the circular street.
 
 **Inputs**
 
-- `street`: A circular interactive object whose initial door states contain at least one open door. In the app-local adapter, this is represented by a nonempty array of `0` and `1` values.
+- `street`: A circular `Street` object whose initial door states contain at least one open door. The app judge constructs this object from the nonempty array of `0` and `1` values shown in a case input.
 - `k`: A positive integer upper bound satisfying $n \le k \le 10^5$.
 
 The interactive object provides `closeDoor()`, `isDoorOpen()`, and `moveRight()`.

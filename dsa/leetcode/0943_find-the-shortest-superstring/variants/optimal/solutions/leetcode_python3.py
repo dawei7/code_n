@@ -49,5 +49,5 @@ class Solution:
 
         result = words[order[0]]
         for left, right in zip(order, order[1:]):
-            result += words[right][overlap[left][right]:]
+            result += words[right][overlap[left][right] :]
         return result

@@ -59,7 +59,7 @@ approved, sponsored, or endorsed cOde(n).
 
 ## Project status
 
-Version `0.2.0` is an active corpus migration, not a claim that every package is
+Version `0.2.1` is an active corpus migration, not a claim that every package is
 finished. The repository indexes its final corpus of 4,005 canonical frontend
 IDs. At this checkpoint, 3,722 packages are locally complete and remotely
 verified, package authoring has reached the permanent frontend-ID ceiling of
@@ -110,7 +110,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
       approach.md
       submission.json              # present after remote verification
       solutions/
-        python.py                   # app-local solve(...) implementation
+        solve.py                    # app-local Python solve(...) implementation
         leetcode_python3.py         # native candidate when available
     simplified/                     # optional, only after reviewed verification
       approach.md

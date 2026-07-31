@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def digArtifacts(
-        self, n: int, artifacts: List[List[int]], dig: List[List[int]]
-    ) -> int:
+    def digArtifacts(self, n: int, artifacts: List[List[int]], dig: List[List[int]]) -> int:
         dug = {(row, column) for row, column in dig}
         extracted = 0
 

@@ -16,5 +16,4 @@ LEFT JOIN latest_change AS latest
     ON latest.product_id = p.product_id
 LEFT JOIN Products AS changed
     ON changed.product_id = latest.product_id
-    AND changed.change_date = latest.change_date
-ORDER BY p.product_id;
+    AND changed.change_date = latest.change_date;

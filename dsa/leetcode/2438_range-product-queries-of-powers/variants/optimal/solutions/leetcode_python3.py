@@ -13,7 +13,4 @@ class Solution:
             bit_index += 1
 
         modulo = 1_000_000_007
-        return [
-            pow(2, exponent_prefix[right + 1] - exponent_prefix[left], modulo)
-            for left, right in queries
-        ]
+        return [pow(2, exponent_prefix[right + 1] - exponent_prefix[left], modulo) for left, right in queries]

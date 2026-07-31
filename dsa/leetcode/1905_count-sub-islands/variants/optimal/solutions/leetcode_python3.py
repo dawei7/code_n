@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def countSubIslands(
-        self, grid1: List[List[int]], grid2: List[List[int]]
-    ) -> int:
+    def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
         rows = len(grid1)
         columns = len(grid1[0])
         sub_islands = 0
@@ -27,11 +25,7 @@ class Solution:
                         (row, column - 1),
                         (row, column + 1),
                     ):
-                        if (
-                            0 <= next_row < rows
-                            and 0 <= next_column < columns
-                            and grid2[next_row][next_column] == 1
-                        ):
+                        if 0 <= next_row < rows and 0 <= next_column < columns and grid2[next_row][next_column] == 1:
                             grid2[next_row][next_column] = 0
                             stack.append((next_row, next_column))
                 sub_islands += contained

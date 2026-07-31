@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def shortestAlternatingPaths(
-        self, n: int, redEdges: List[List[int]], blueEdges: List[List[int]]
-    ) -> List[int]:
+    def shortestAlternatingPaths(self, n: int, redEdges: List[List[int]], blueEdges: List[List[int]]) -> List[int]:
         adjacency = [[[] for _ in range(n)] for _ in range(2)]
         for source, target in redEdges:
             adjacency[0][source].append(target)

@@ -10,9 +10,9 @@
       "visible": false,
       "size": 1,
       "input": {
-        "begin_word": "a",
-        "end_word": "b",
-        "word_list": [
+        "beginWord": "a",
+        "endWord": "b",
+        "wordList": [
           "b"
         ]
       },
@@ -29,9 +29,9 @@
       "visible": false,
       "size": 31,
       "input": {
-        "begin_word": "aaaaa",
-        "end_word": "bbbbb",
-        "word_list": [
+        "beginWord": "aaaaa",
+        "endWord": "bbbbb",
+        "wordList": [
           "baaaa",
           "abaaa",
           "bbaaa",
@@ -78,9 +78,9 @@
       "visible": false,
       "size": 127,
       "input": {
-        "begin_word": "aaaaaaa",
-        "end_word": "bbbbbbb",
-        "word_list": [
+        "beginWord": "aaaaaaa",
+        "endWord": "bbbbbbb",
+        "wordList": [
           "baaaaaa",
           "abaaaaa",
           "bbaaaaa",

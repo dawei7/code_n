@@ -38,9 +38,7 @@ class Solution:
                 partial_rows = partial_end - full_rows
                 invalid = full_rows * right_choices
                 invalid += partial_rows * required_extension
-                invalid -= (
-                    (full_rows + partial_end - 1) * partial_rows // 2
-                )
+                invalid -= (full_rows + partial_end - 1) * partial_rows // 2
                 answer += left_choices * right_choices - invalid
 
         return answer

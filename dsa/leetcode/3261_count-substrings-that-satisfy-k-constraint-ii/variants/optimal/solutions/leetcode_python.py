@@ -20,19 +20,14 @@ class Solution:
                 rightmost_valid[left] = right - 1
                 counts[int(s[left])] -= 1
                 left += 1
-            valid_suffix_prefix[right + 1] = (
-                valid_suffix_prefix[right] + right - left + 1
-            )
+            valid_suffix_prefix[right + 1] = valid_suffix_prefix[right] + right - left + 1
 
         answer = []
         for query_left, query_right in queries:
             prefix_end = min(query_right, rightmost_valid[query_left])
             prefix_length = prefix_end - query_left + 1
             prefix_count = prefix_length * (prefix_length + 1) // 2
-            tail_count = (
-                valid_suffix_prefix[query_right + 1]
-                - valid_suffix_prefix[prefix_end + 1]
-            )
+            tail_count = valid_suffix_prefix[query_right + 1] - valid_suffix_prefix[prefix_end + 1]
             answer.append(prefix_count + tail_count)
 
         return answer

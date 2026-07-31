@@ -15,8 +15,4 @@ class Solution:
                     break
                 representations[total] = representations.get(total, 0) + 1
 
-        return sorted(
-            total
-            for total, count in representations.items()
-            if count >= 2
-        )
+        return sorted(total for total, count in representations.items() if count >= 2)

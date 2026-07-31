@@ -13,7 +13,7 @@ class Solution:
         else:
             left, right = length + k, length - 1
 
-        window = sum(code[left:right + 1])
+        window = sum(code[left : right + 1])
         for index in range(length):
             decrypted[index] = window
             window -= code[left % length]

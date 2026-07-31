@@ -11,9 +11,7 @@ class Solution:
             graph[source].append(target)
             indegree[target] += 1
 
-        queue = deque(
-            node for node, degree in enumerate(indegree) if degree == 0
-        )
+        queue = deque(node for node, degree in enumerate(indegree) if degree == 0)
         counts = [[0] * 26 for _ in range(node_count)]
         processed = 0
         answer = 0
@@ -27,9 +25,7 @@ class Solution:
 
             for neighbor in graph[node]:
                 for index in range(26):
-                    counts[neighbor][index] = max(
-                        counts[neighbor][index], counts[node][index]
-                    )
+                    counts[neighbor][index] = max(counts[neighbor][index], counts[node][index])
                 indegree[neighbor] -= 1
                 if indegree[neighbor] == 0:
                     queue.append(neighbor)

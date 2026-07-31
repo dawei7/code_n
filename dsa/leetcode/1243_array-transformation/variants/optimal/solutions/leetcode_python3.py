@@ -9,15 +9,9 @@ class Solution:
         while active:
             changes = []
             for index in active:
-                if (
-                    values[index] < values[index - 1]
-                    and values[index] < values[index + 1]
-                ):
+                if values[index] < values[index - 1] and values[index] < values[index + 1]:
                     changes.append((index, 1))
-                elif (
-                    values[index] > values[index - 1]
-                    and values[index] > values[index + 1]
-                ):
+                elif values[index] > values[index - 1] and values[index] > values[index + 1]:
                     changes.append((index, -1))
             if not changes:
                 break

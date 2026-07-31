@@ -4,7 +4,7 @@ class Solution:
         needed = 0
 
         for character in s:
-            if character == '(':
+            if character == "(":
                 if needed % 2 == 1:
                     insertions += 1
                     needed -= 1

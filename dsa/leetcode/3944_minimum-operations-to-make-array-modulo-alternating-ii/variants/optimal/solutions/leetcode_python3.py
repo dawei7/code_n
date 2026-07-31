@@ -7,10 +7,7 @@ class Solution:
         def build_costs(frequencies: list[int]) -> list[int]:
             total = sum(frequencies)
             costs = [0] * k
-            costs[0] = sum(
-                count * min(remainder, k - remainder)
-                for remainder, count in enumerate(frequencies)
-            )
+            costs[0] = sum(count * min(remainder, k - remainder) for remainder, count in enumerate(frequencies))
 
             half = k // 2
             nearer_clockwise = sum(frequencies[1 : half + 1])
@@ -22,10 +19,7 @@ class Solution:
                     current -= frequencies[(target + half + 1) % k]
                 costs[target + 1] = current
 
-                nearer_clockwise += (
-                    frequencies[(target + half + 1) % k]
-                    - frequencies[(target + 1) % k]
-                )
+                nearer_clockwise += frequencies[(target + half + 1) % k] - frequencies[(target + 1) % k]
 
             return costs
 
@@ -44,11 +38,6 @@ class Solution:
                 second_best_odd = cost
 
         return min(
-            cost
-            + (
-                second_best_odd
-                if remainder == best_odd_remainder
-                else best_odd
-            )
+            cost + (second_best_odd if remainder == best_odd_remainder else best_odd)
             for remainder, cost in enumerate(even_costs)
         )

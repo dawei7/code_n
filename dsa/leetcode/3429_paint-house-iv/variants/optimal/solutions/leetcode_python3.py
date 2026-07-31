@@ -8,9 +8,7 @@ class Solution:
         for left_color in range(3):
             for right_color in range(3):
                 if left_color != right_color:
-                    dp[left_color][right_color] = (
-                        cost[0][left_color] + cost[n - 1][right_color]
-                    )
+                    dp[left_color][right_color] = cost[0][left_color] + cost[n - 1][right_color]
 
         for left in range(1, n // 2):
             right = n - 1 - left
@@ -22,19 +20,10 @@ class Solution:
                         if left_color == previous_left:
                             continue
                         for right_color in range(3):
-                            if (
-                                right_color == previous_right
-                                or right_color == left_color
-                            ):
+                            if right_color == previous_right or right_color == left_color:
                                 continue
-                            candidate = (
-                                current
-                                + cost[left][left_color]
-                                + cost[right][right_color]
-                            )
-                            next_dp[left_color][right_color] = min(
-                                next_dp[left_color][right_color], candidate
-                            )
+                            candidate = current + cost[left][left_color] + cost[right][right_color]
+                            next_dp[left_color][right_color] = min(next_dp[left_color][right_color], candidate)
             dp = next_dp
 
         return min(map(min, dp))

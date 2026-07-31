@@ -27,11 +27,7 @@ class Solution:
                 (row, column - 1),
                 (row, column + 1),
             ):
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and image[next_row][next_column] == original
-                ):
+                if 0 <= next_row < rows and 0 <= next_column < columns and image[next_row][next_column] == original:
                     image[next_row][next_column] = color
                     queue.append((next_row, next_column))
 

@@ -20,4 +20,3 @@ class Solution:
                     return (index + len(a)) // len(a)
 
         return -1
-

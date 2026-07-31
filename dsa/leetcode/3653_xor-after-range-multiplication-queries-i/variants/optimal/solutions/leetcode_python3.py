@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def xorAfterQueries(
-        self, nums: List[int], queries: List[List[int]]
-    ) -> int:
+    def xorAfterQueries(self, nums: List[int], queries: List[List[int]]) -> int:
         modulus = 1_000_000_007
 
         for left, right, step, multiplier in queries:

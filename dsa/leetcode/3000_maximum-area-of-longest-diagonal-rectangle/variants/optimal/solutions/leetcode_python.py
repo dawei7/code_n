@@ -9,9 +9,7 @@ class Solution:
         for length, width in dimensions:
             diagonal = length * length + width * width
             area = length * width
-            if diagonal > best_diagonal or (
-                diagonal == best_diagonal and area > best_area
-            ):
+            if diagonal > best_diagonal or (diagonal == best_diagonal and area > best_area):
                 best_diagonal = diagonal
                 best_area = area
 

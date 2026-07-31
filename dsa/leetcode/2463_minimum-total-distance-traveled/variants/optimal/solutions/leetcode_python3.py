@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def minimumTotalDistance(
-        self, robot: List[int], factory: List[List[int]]
-    ) -> int:
+    def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
         robots = sorted(robot)
         factories = sorted(factory)
         robot_count = len(robots)
@@ -22,9 +20,7 @@ class Solution:
 
             for count in range(robot_count + 1):
                 value = previous[count] - prefix[count]
-                while choices and (
-                    previous[choices[-1]] - prefix[choices[-1]] >= value
-                ):
+                while choices and (previous[choices[-1]] - prefix[choices[-1]] >= value):
                     choices.pop()
                 choices.append(count)
 
@@ -32,9 +28,7 @@ class Solution:
                     choices.popleft()
 
                 start = choices[0]
-                current[count] = (
-                    prefix[count] + previous[start] - prefix[start]
-                )
+                current[count] = prefix[count] + previous[start] - prefix[start]
 
             previous = current
 

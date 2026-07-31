@@ -5,5 +5,4 @@ SELECT
         MAX(department_id)
     ) AS department_id
 FROM Employee
-GROUP BY employee_id
-ORDER BY employee_id;
+GROUP BY employee_id;

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maximumPoints(
-        self, enemyEnergies: List[int], currentEnergy: int
-    ) -> int:
+    def maximumPoints(self, enemyEnergies: List[int], currentEnergy: int) -> int:
         minimum_energy = min(enemyEnergies)
         if currentEnergy < minimum_energy:
             return 0

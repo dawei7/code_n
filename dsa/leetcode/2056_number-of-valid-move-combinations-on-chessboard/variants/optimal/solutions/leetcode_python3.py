@@ -11,8 +11,14 @@ class Solution:
             "rook": ((1, 0), (-1, 0), (0, 1), (0, -1)),
             "bishop": ((1, 1), (1, -1), (-1, 1), (-1, -1)),
             "queen": (
-                (1, 0), (-1, 0), (0, 1), (0, -1),
-                (1, 1), (1, -1), (-1, 1), (-1, -1),
+                (1, 0),
+                (-1, 0),
+                (0, 1),
+                (0, -1),
+                (1, 1),
+                (1, -1),
+                (-1, 1),
+                (-1, -1),
             ),
         }
 
@@ -21,10 +27,7 @@ class Solution:
             moves = [(0, 0, 0)]
             for row_step, column_step in directions[piece]:
                 distance = 1
-                while (
-                    1 <= row + row_step * distance <= 8
-                    and 1 <= column + column_step * distance <= 8
-                ):
+                while 1 <= row + row_step * distance <= 8 and 1 <= column + column_step * distance <= 8:
                     moves.append((row_step, column_step, distance))
                     distance += 1
             all_moves.append(moves)
@@ -33,10 +36,8 @@ class Solution:
             [
                 tuple(
                     (
-                        positions[piece_index][0]
-                        + move[0] * min(time, move[2]),
-                        positions[piece_index][1]
-                        + move[1] * min(time, move[2]),
+                        positions[piece_index][0] + move[0] * min(time, move[2]),
+                        positions[piece_index][1] + move[1] * min(time, move[2]),
                     )
                     for time in range(8)
                 )
@@ -70,8 +71,7 @@ class Solution:
             valid = 0
             for move_index in range(len(all_moves[piece_index])):
                 if all(
-                    (chosen[previous], move_index)
-                    in compatibility[previous, piece_index]
+                    (chosen[previous], move_index) in compatibility[previous, piece_index]
                     for previous in range(piece_index)
                 ):
                     chosen.append(move_index)

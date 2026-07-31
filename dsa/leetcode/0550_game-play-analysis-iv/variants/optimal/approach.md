@@ -11,6 +11,8 @@ Left-join each first-login row back to `Activity` for the same player and the da
 
 Count joined activity rows for the numerator and all first-login rows for the denominator. Multiplying by a floating-point value before division preserves the fractional result, and `ROUND(..., 2)` produces the requested precision.
 
+The native MySQL query uses `DATE_ADD(first_login, INTERVAL 1 DAY)` and MySQL's division behavior. The offline SQLite query expresses the same operations as `date(first_login, '+1 day')` and multiplies the numerator by `1.0` to force non-integer division.
+
 **Why every player is counted correctly**
 
 The grouped date is the unique earliest activity date for its player. Because the join requires both the same player and exactly the next calendar date, it matches if and only if that player returned on the required day. The table key permits at most one activity per player and date, so each player contributes either zero or one to the numerator and exactly one to the denominator.

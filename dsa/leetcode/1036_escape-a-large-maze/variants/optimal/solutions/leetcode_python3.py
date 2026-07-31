@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def isEscapePossible(
-        self, blocked: List[List[int]], source: List[int], target: List[int]
-    ) -> bool:
+    def isEscapePossible(self, blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
         grid_size = 1_000_000
         blocked_set = {tuple(cell) for cell in blocked}
         enclosure_limit = len(blocked) * (len(blocked) - 1) // 2
@@ -34,4 +32,3 @@ class Solution:
         source_cell = tuple(source)
         target_cell = tuple(target)
         return escapes(source_cell, target_cell) and escapes(target_cell, source_cell)
-

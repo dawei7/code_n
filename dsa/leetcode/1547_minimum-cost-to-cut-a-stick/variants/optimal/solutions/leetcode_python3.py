@@ -11,12 +11,8 @@ class Solution:
             for left in range(count - width):
                 right = left + width
                 cost[left][right] = min(
-                    cost[left][middle]
-                    + cost[middle][right]
-                    + points[right]
-                    - points[left]
+                    cost[left][middle] + cost[middle][right] + points[right] - points[left]
                     for middle in range(left + 1, right)
                 )
 
         return cost[0][-1]
-

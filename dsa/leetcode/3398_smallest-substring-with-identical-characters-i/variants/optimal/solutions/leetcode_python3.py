@@ -13,10 +13,7 @@ class Solution:
 
         def can_limit(longest: int) -> bool:
             if longest == 1:
-                mismatches = sum(
-                    character != ("0" if index % 2 == 0 else "1")
-                    for index, character in enumerate(s)
-                )
+                mismatches = sum(character != ("0" if index % 2 == 0 else "1") for index, character in enumerate(s))
                 return min(mismatches, len(s) - mismatches) <= numOps
 
             required = sum(length // (longest + 1) for length in runs)

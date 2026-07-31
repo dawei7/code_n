@@ -15,13 +15,8 @@ class Solution:
                     stack.pop()
                     continue
 
-                collision_time = (
-                    (ahead_position - position) / (speed - ahead_speed)
-                )
-                if (
-                    collision_times[ahead] < 0
-                    or collision_time <= collision_times[ahead]
-                ):
+                collision_time = (ahead_position - position) / (speed - ahead_speed)
+                if collision_times[ahead] < 0 or collision_time <= collision_times[ahead]:
                     collision_times[index] = collision_time
                     break
                 stack.pop()

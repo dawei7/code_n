@@ -11,7 +11,4 @@ class Solution:
     ) -> List[int]:
         nums.sort()
         prefix_sums = list(accumulate(nums))
-        return [
-            bisect_right(prefix_sums, query)
-            for query in queries
-        ]
+        return [bisect_right(prefix_sums, query) for query in queries]

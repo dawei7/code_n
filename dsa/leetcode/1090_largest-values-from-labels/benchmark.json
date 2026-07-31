@@ -46,8 +46,8 @@
           14,
           15
         ],
-        "num_wanted": 16,
-        "use_limit": 1
+        "numWanted": 16,
+        "useLimit": 1
       },
       "expected": 4616,
       "tags": [
@@ -195,8 +195,8 @@
           62,
           63
         ],
-        "num_wanted": 64,
-        "use_limit": 1
+        "numWanted": 64,
+        "useLimit": 1
       },
       "expected": 75296,
       "tags": [
@@ -616,8 +616,8 @@
           198,
           199
         ],
-        "num_wanted": 200,
-        "use_limit": 1
+        "numWanted": 200,
+        "useLimit": 1
       },
       "expected": 738500,
       "tags": [

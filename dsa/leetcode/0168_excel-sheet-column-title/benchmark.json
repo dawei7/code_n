@@ -10,7 +10,7 @@
       "visible": false,
       "size": 1,
       "input": {
-        "column_number": 1
+        "columnNumber": 1
       },
       "expected": "A",
       "tags": [
@@ -25,7 +25,7 @@
       "visible": false,
       "size": 4,
       "input": {
-        "column_number": 18279
+        "columnNumber": 18279
       },
       "expected": "AAAA",
       "tags": [
@@ -40,7 +40,7 @@
       "visible": false,
       "size": 7,
       "input": {
-        "column_number": 321272407
+        "columnNumber": 321272407
       },
       "expected": "AAAAAAA",
       "tags": [

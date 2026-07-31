@@ -1,7 +1,5 @@
 class Solution:
-    def remainingMethods(
-        self, n: int, k: int, invocations: List[List[int]]
-    ) -> List[int]:
+    def remainingMethods(self, n: int, k: int, invocations: List[List[int]]) -> List[int]:
         graph = [[] for _ in range(n)]
         for source, target in invocations:
             graph[source].append(target)

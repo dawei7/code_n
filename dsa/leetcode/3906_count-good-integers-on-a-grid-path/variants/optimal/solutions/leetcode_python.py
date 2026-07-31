@@ -2,9 +2,7 @@ from functools import cache
 
 
 class Solution:
-    def countGoodIntegersOnPath(
-        self, l: int, r: int, directions: str
-    ) -> int:
+    def countGoodIntegersOnPath(self, l: int, r: int, directions: str) -> int:
         path_positions = {0}
         row = 0
         column = 0
@@ -23,9 +21,7 @@ class Solution:
             digits = [int(digit) for digit in f"{limit:016d}"]
 
             @cache
-            def count(
-                position: int, tight: bool, previous_path_digit: int
-            ) -> int:
+            def count(position: int, tight: bool, previous_path_digit: int) -> int:
                 if position == 16:
                     return 1
 
@@ -38,11 +34,7 @@ class Solution:
                     first_digit = 0
 
                 for digit in range(first_digit, upper + 1):
-                    next_previous = (
-                        digit
-                        if position in path_positions
-                        else previous_path_digit
-                    )
+                    next_previous = digit if position in path_positions else previous_path_digit
                     total += count(
                         position + 1,
                         tight and digit == digits[position],

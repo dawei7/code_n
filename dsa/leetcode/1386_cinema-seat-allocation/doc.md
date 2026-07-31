@@ -14,7 +14,7 @@
 
 ### Goal
 
-A cinema has `n` rows, each containing seats numbered from `1` through `10`. Some seats are already listed in `reserved_seats`. Seat as many four-person families as possible without using a reserved seat or assigning one seat to two families.
+A cinema has `n` rows, each containing seats numbered from `1` through `10`. Some seats are already listed in `reservedSeats`. Seat as many four-person families as possible without using a reserved seat or assigning one seat to two families.
 
 Within one row, a family may occupy seats `2-5`, `4-7`, or `6-9`. These are the only permitted four-seat blocks, including the arrangements that place two family members on each side of an aisle. Return the maximum number of families over all rows.
 
@@ -23,7 +23,7 @@ Within one row, a family may occupy seats `2-5`, `4-7`, or `6-9`. These are the 
 **Inputs**
 
 - `n`: the number of cinema rows, which may be as large as $10^9$.
-- `reserved_seats`: $r$ distinct `[row, seat]` reservations.
+- `reservedSeats`: $r$ distinct `[row, seat]` reservations.
 
 **Return value**
 
@@ -33,15 +33,15 @@ Within one row, a family may occupy seats `2-5`, `4-7`, or `6-9`. These are the 
 
 **Example 1**
 
-- Input: `n = 3, reserved_seats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]]`
+- Input: `n = 3, reservedSeats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]]`
 - Output: `4`
 
 **Example 2**
 
-- Input: `n = 2, reserved_seats = [[2,1],[1,8],[2,6]]`
+- Input: `n = 2, reservedSeats = [[2,1],[1,8],[2,6]]`
 - Output: `2`
 
 **Example 3**
 
-- Input: `n = 4, reserved_seats = [[4,3],[1,4],[4,6],[1,7]]`
+- Input: `n = 4, reservedSeats = [[4,3],[1,4],[4,6],[1,7]]`
 - Output: `4`

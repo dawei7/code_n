@@ -10,7 +10,7 @@
       "visible": false,
       "size": 63,
       "input": {
-        "root": [
+        "root": {"values": [
           1,
           2,
           3,
@@ -74,9 +74,7 @@
           61,
           62,
           63
-        ],
-        "fromNode": 32,
-        "toNode": 63
+        ], "corrupt_right": {"from_value": 32, "to_value": 63}}
       },
       "expected": [
         1,
@@ -151,7 +149,7 @@
       "visible": false,
       "size": 511,
       "input": {
-        "root": [
+        "root": {"values": [
           1,
           2,
           3,
@@ -663,9 +661,7 @@
           509,
           510,
           511
-        ],
-        "fromNode": 256,
-        "toNode": 511
+        ], "corrupt_right": {"from_value": 256, "to_value": 511}}
       },
       "expected": [
         1,
@@ -1188,7 +1184,7 @@
       "visible": false,
       "size": 4095,
       "input": {
-        "root": [
+        "root": {"values": [
           1,
           2,
           3,
@@ -5284,9 +5280,7 @@
           4093,
           4094,
           4095
-        ],
-        "fromNode": 2048,
-        "toNode": 4095
+        ], "corrupt_right": {"from_value": 2048, "to_value": 4095}}
       },
       "expected": [
         1,

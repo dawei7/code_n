@@ -18,11 +18,7 @@ class Solution:
             for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                 next_row = row + row_delta
                 next_column = column + column_delta
-                if (
-                    0 <= next_row < side
-                    and 0 <= next_column < side
-                    and (next_row, next_column) not in visited
-                ):
+                if 0 <= next_row < side and 0 <= next_column < side and (next_row, next_column) not in visited:
                     visited.add((next_row, next_column))
                     heapq.heappush(
                         frontier,

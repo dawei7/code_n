@@ -24,25 +24,15 @@ class Solution:
                 for digit in range(limit + 1):
                     next_tight = tight and digit == limit
                     if previous == -1 and digit == 0:
-                        suffix_ways, suffix_waviness = count(
-                            position + 1, next_tight, -1, -1
-                        )
+                        suffix_ways, suffix_waviness = count(position + 1, next_tight, -1, -1)
                         added = 0
                     else:
-                        suffix_ways, suffix_waviness = count(
-                            position + 1, next_tight, previous, digit
-                        )
+                        suffix_ways, suffix_waviness = count(position + 1, next_tight, previous, digit)
                         added = int(
                             previous_previous != -1
                             and (
-                                (
-                                    previous > previous_previous
-                                    and previous > digit
-                                )
-                                or (
-                                    previous < previous_previous
-                                    and previous < digit
-                                )
+                                (previous > previous_previous and previous > digit)
+                                or (previous < previous_previous and previous < digit)
                             )
                         )
                     ways += suffix_ways

@@ -8,7 +8,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "A",
             "B"
@@ -60,7 +60,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "A",
             "B"
@@ -111,7 +111,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "self"
           ],
@@ -153,7 +153,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "root"
           ],
@@ -198,7 +198,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "A"
           ],
@@ -233,7 +233,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "root"
           ],
@@ -283,7 +283,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "root"
           ],

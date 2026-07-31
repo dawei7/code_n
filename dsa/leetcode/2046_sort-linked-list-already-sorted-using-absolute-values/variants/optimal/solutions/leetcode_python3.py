@@ -2,9 +2,7 @@ from typing import Optional
 
 
 class Solution:
-    def sortLinkedList(
-        self, head: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    def sortLinkedList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         current = head
 
         while current.next is not None:

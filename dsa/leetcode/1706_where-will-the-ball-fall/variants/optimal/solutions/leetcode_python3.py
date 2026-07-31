@@ -10,11 +10,7 @@ class Solution:
             column = start
             for row in grid:
                 next_column = column + row[column]
-                if (
-                    next_column < 0
-                    or next_column >= columns
-                    or row[next_column] != row[column]
-                ):
+                if next_column < 0 or next_column >= columns or row[next_column] != row[column]:
                     column = -1
                     break
                 column = next_column

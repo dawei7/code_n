@@ -10,7 +10,7 @@
       "visible": false,
       "size": 16,
       "input": {
-        "nested_list": [
+        "nestedList": [
           [
             [
               [
@@ -58,7 +58,7 @@
       "visible": false,
       "size": 64,
       "input": {
-        "nested_list": [
+        "nestedList": [
           [
             [
               [
@@ -202,7 +202,7 @@
       "visible": false,
       "size": 256,
       "input": {
-        "nested_list": [
+        "nestedList": [
           [
             [
               [

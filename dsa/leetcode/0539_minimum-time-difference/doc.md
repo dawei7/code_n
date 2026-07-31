@@ -17,7 +17,7 @@ Return the minimum difference in minutes over every pair of time points. Duplica
 ### Function Contract
 **Inputs**
 
-- `time_points`: at least two valid times formatted as `HH:MM`
+- `timePoints`: at least two valid times formatted as `HH:MM`
 
 **Return value**
 
@@ -26,15 +26,15 @@ Return the minimum difference in minutes over every pair of time points. Duplica
 ### Examples
 **Example 1**
 
-- Input: `time_points = ["23:59", "00:00"]`
+- Input: `timePoints = ["23:59", "00:00"]`
 - Output: `1`
 
 **Example 2**
 
-- Input: `time_points = ["00:00", "23:59", "00:00"]`
+- Input: `timePoints = ["00:00", "23:59", "00:00"]`
 - Output: `0`
 
 **Example 3**
 
-- Input: `time_points = ["01:01", "02:01"]`
+- Input: `timePoints = ["01:01", "02:01"]`
 - Output: `60`

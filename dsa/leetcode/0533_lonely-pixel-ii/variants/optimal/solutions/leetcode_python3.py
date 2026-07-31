@@ -20,8 +20,5 @@ class Solution:
         answer = 0
         for pattern, frequency in patterns.items():
             if frequency == target:
-                answer += target * sum(
-                    pixel == "B" and col_counts[col] == target
-                    for col, pixel in enumerate(pattern)
-                )
+                answer += target * sum(pixel == "B" and col_counts[col] == target for col, pixel in enumerate(pattern))
         return answer

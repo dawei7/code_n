@@ -1,13 +1,13 @@
 class Solution:
     def generateTag(self, caption: str) -> str:
-        tag = ['#']
+        tag = ["#"]
         seen_word = False
         inside_word = False
 
         for char in caption:
             if len(tag) == 100:
                 break
-            if char == ' ':
+            if char == " ":
                 inside_word = False
                 continue
 
@@ -18,4 +18,4 @@ class Solution:
             else:
                 tag.append(char.lower())
 
-        return ''.join(tag)
+        return "".join(tag)

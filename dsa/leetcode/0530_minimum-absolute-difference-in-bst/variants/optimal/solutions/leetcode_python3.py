@@ -8,7 +8,7 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def getMinimumDifference(self, root: Optional['TreeNode']) -> int:
+    def getMinimumDifference(self, root: Optional["TreeNode"]) -> int:
         stack = []
         node = root
         previous = None

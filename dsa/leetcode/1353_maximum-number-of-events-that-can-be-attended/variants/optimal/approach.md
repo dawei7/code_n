@@ -8,7 +8,7 @@ If the heap is empty, jump the current day directly to the next event's start; e
 The sweep repeats until neither unseen nor active events remain, so every counted event has a distinct valid day and the exchange argument proves the count is maximum.
 
 ## Complexity detail
-Sorting costs $O(n \log n)$. Each event is pushed into and removed from the heap at most once, adding $O(n \log n)$ time. The sorted list and heap hold at most $n$ events, giving $O(n)$ auxiliary space when the input is not reused.
+Sorting costs $O(n \log n)$. Each event is pushed into and removed from the heap at most once, adding $O(n \log n)$ time. The accepted algorithm sorts `events` in place, and the heap holds at most $n$ event end days, giving $O(n)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Repeated linear deadline selection:** Scanning all remaining events to choose one each day is correct with the same greedy rule but costs $O(n^2)$ time.

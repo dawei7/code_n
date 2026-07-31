@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_1476",
-  "measurement_note": "Size is d for a d by d matrix. The legal 20/50/100 tiers span 5x and issue exactly 5d calls: four single-cell updates and one point query per round, reaching the 500-call limit at d = 100. Copying the input once and applying covered cells directly costs O(d^2) on this workload. A correct design that copies the entire matrix before every update costs O(d^3), completes normally at d = 100, and is rejected by scaling.",
+  "measurement_note": "Size is d for a d by d matrix. The legal 20/50/100 tiers span 5x and issue exactly 5d calls: four single-cell updates and one point query per round, reaching the 500-call limit at d = 100. Retaining the supplied matrix and applying the covered cells directly costs O(d) after fixture construction on this workload. A correct design that copies the entire matrix before every update costs O(d^3), completes normally at d = 100, and is rejected by scaling.",
   "cases": [
     {
       "id": "benchmark-scale-1",

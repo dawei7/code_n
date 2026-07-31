@@ -3,16 +3,11 @@ from typing import List
 
 
 class Solution:
-    def kSmallestPairs(
-        self, nums1: List[int], nums2: List[int], k: int
-    ) -> List[List[int]]:
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
         if not nums1 or not nums2 or k <= 0:
             return []
 
-        heap = [
-            (nums1[index] + nums2[0], index, 0)
-            for index in range(min(k, len(nums1)))
-        ]
+        heap = [(nums1[index] + nums2[0], index, 0) for index in range(min(k, len(nums1)))]
         heapify(heap)
         pairs = []
 
@@ -31,4 +26,3 @@ class Solution:
                 )
 
         return pairs
-

@@ -27,7 +27,7 @@ Return the head of the remaining list. Nodes whose values occurred exactly once 
 
 **Return value**
 
-- Return the first node after removing all nodes whose value occurred two or more times in the original list.
+- Return the `ListNode` head after removing all nodes whose value occurred two or more times in the original list.
 - Return an empty list when no value was unique.
 
 ### Examples

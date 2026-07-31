@@ -35,11 +35,7 @@ class Solution:
             return result
 
         horizontal = "".join("".join(row) for row in grid)
-        vertical = "".join(
-            grid[row][column]
-            for column in range(columns)
-            for row in range(rows)
-        )
+        vertical = "".join(grid[row][column] for column in range(columns) for row in range(rows))
         horizontal_cells = covered(horizontal)
         vertical_cells = covered(vertical)
 

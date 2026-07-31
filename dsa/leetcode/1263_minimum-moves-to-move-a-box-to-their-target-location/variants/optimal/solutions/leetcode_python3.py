@@ -8,9 +8,12 @@ class Solution:
         box = player = target = None
         for row in range(rows):
             for column in range(columns):
-                if grid[row][column] == "B": box = (row, column)
-                elif grid[row][column] == "S": player = (row, column)
-                elif grid[row][column] == "T": target = (row, column)
+                if grid[row][column] == "B":
+                    box = (row, column)
+                elif grid[row][column] == "S":
+                    player = (row, column)
+                elif grid[row][column] == "T":
+                    target = (row, column)
 
         def free(cell, blocked_box):
             row, column = cell

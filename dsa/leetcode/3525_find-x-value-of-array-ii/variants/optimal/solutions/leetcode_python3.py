@@ -21,8 +21,10 @@ class Solution:
 
         def pull(node):
             products[node], counts[node] = merge(
-                products[2 * node], counts[2 * node],
-                products[2 * node + 1], counts[2 * node + 1],
+                products[2 * node],
+                counts[2 * node],
+                products[2 * node + 1],
+                counts[2 * node + 1],
             )
 
         for node in range(size - 1, 0, -1):
@@ -48,15 +50,11 @@ class Solution:
 
             while left < right:
                 if left % 2:
-                    left_product, left_counts = merge(
-                        left_product, left_counts, products[left], counts[left]
-                    )
+                    left_product, left_counts = merge(left_product, left_counts, products[left], counts[left])
                     left += 1
                 if right % 2:
                     right -= 1
-                    right_product, right_counts = merge(
-                        products[right], counts[right], right_product, right_counts
-                    )
+                    right_product, right_counts = merge(products[right], counts[right], right_product, right_counts)
                 left //= 2
                 right //= 2
 

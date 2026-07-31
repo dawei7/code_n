@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maxRemovals(
-        self, source: str, pattern: str, targetIndices: List[int]
-    ) -> int:
+    def maxRemovals(self, source: str, pattern: str, targetIndices: List[int]) -> int:
         removable = [False] * len(source)
         for index in targetIndices:
             removable[index] = True

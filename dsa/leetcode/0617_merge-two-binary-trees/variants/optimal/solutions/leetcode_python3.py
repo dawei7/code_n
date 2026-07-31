@@ -19,10 +19,7 @@ class Solution:
         if root1 is None and root2 is None:
             return None
 
-        result = TreeNode(
-            (root1.val if root1 is not None else 0)
-            + (root2.val if root2 is not None else 0)
-        )
+        result = TreeNode((root1.val if root1 is not None else 0) + (root2.val if root2 is not None else 0))
         queue = deque([(result, root1, root2)])
 
         while queue:

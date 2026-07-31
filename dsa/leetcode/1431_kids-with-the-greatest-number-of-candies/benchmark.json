@@ -32,7 +32,7 @@
           19,
           100
         ],
-        "extra_candies": 1
+        "extraCandies": 1
       },
       "expected": [
         false,
@@ -121,7 +121,7 @@
           49,
           100
         ],
-        "extra_candies": 1
+        "extraCandies": 1
       },
       "expected": [
         false,
@@ -290,7 +290,7 @@
           1,
           100
         ],
-        "extra_candies": 1
+        "extraCandies": 1
       },
       "expected": [
         false,

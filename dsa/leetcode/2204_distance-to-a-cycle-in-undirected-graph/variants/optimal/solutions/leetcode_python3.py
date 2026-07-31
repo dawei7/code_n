@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def distanceToCycle(
-        self, n: int, edges: List[List[int]]
-    ) -> List[int]:
+    def distanceToCycle(self, n: int, edges: List[List[int]]) -> List[int]:
         graph = [[] for _ in range(n)]
         degree = [0] * n
         for first, second in edges:

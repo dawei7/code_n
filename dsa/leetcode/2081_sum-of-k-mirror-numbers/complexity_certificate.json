@@ -3,8 +3,8 @@
   "challenge_id": "lc_2081",
   "status": "verified",
   "method": "bounded_domain",
-  "required_time": "O(1)",
-  "summary": "The legal contract has exactly 240 input pairs, and the app-local reference answers each pair by one lookup in a fixed verified prefix-sum table, so no unbounded runtime variable exists for scaling.",
+  "required_time": "O(PD)",
+  "summary": "The legal contract has exactly 240 input pairs, so the Accepted on-demand palindrome generator cannot be scaled beyond its source domain for an honest asymptotic runtime verdict.",
   "workload_bound": {
     "symbol": "B",
     "maximum": 240,
@@ -14,11 +14,11 @@
   "replacement_checks": [
     {
       "kind": "bounded_work_proof",
-      "evidence": "The fixed table has eight rows of thirty prefix sums, and solve performs one row lookup and one indexed lookup."
+      "evidence": "The exact Accepted algorithm enumerates ordered decimal palindromes, tests at most a finite contract-bounded prefix, and stops after at most thirty matches."
     },
     {
       "kind": "exhaustive_domain",
-      "evidence": "The certificate regression checks all 240 legal pairs against an independent numeric palindrome generator."
+      "evidence": "The certificate regression checks all 240 legal pairs against independently verified expected sums while the package cases exercise the exact on-demand generator."
     }
   ]
 }

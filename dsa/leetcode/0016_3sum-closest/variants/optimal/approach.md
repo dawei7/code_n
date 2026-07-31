@@ -22,7 +22,7 @@ Fixing the first sorted index leaves a monotone pair-sum search. If the current 
 Each move removes only candidates dominated in the direction required to approach the target, while every evaluated total updates the smallest absolute difference seen. Repeating for every possible first index covers every triple that could improve the answer. An exact target match has zero distance and can return immediately.
 
 ## Complexity detail
-Sorting costs $O(n \log n)$. Each fixed index performs one linear two-pointer sweep, so the dominant running time is $O(n^2)$. The sorted copy uses $O(n)$ auxiliary space in the canonical implementation; an in-place sort can reduce explicit extra storage subject to the language's sorting implementation.
+Sorting costs $O(n \log n)$. Each fixed index performs one linear two-pointer sweep, so the dominant running time is $O(n^2)$. Python's in-place list sort may use $O(n)$ temporary workspace in the worst case.
 
 ## Alternatives and edge cases
 - **Three nested loops:** checks every triple in $O(n^3)$ time.

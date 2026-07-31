@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 class Solution:
     def minimumSeconds(self, nums: List[int]) -> int:
         positions = defaultdict(list)

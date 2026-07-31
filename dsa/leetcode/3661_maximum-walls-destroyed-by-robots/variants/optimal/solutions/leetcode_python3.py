@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def maxWalls(
-        self, robots: List[int], distance: List[int], walls: List[int]
-    ) -> int:
+    def maxWalls(self, robots: List[int], distance: List[int], walls: List[int]) -> int:
         ordered = sorted(zip(robots, distance))
         positions = [position for position, _ in ordered]
         ranges = [shot_range for _, shot_range in ordered]
@@ -37,7 +35,5 @@ class Solution:
             next_right = max(dp_left, dp_right + from_left)
             dp_left, dp_right = next_left, next_right
 
-        right_exterior = count_between(
-            positions[-1], positions[-1] + ranges[-1]
-        )
+        right_exterior = count_between(positions[-1], positions[-1] + ranges[-1])
         return fixed + max(dp_left, dp_right + right_exterior)

@@ -1,5 +1,4 @@
 class Logger:
-
     def __init__(self):
         self.next_allowed = {}
 
@@ -8,4 +7,3 @@ class Logger:
             return False
         self.next_allowed[message] = timestamp + 10
         return True
-

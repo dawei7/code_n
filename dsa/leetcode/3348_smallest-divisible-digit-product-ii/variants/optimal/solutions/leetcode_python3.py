@@ -49,36 +49,20 @@ class Solution:
                 if next_twos == twos and next_threes == threes:
                     continue
 
-                candidate = "".join(
-                    sorted(
-                        str(digit)
-                        + pack_twos_threes(next_twos, next_threes)
-                    )
-                )
+                candidate = "".join(sorted(str(digit) + pack_twos_threes(next_twos, next_threes)))
                 if best is None or (len(candidate), candidate) < (len(best), best):
                     best = candidate
 
             return best
 
         def deficits(exponents):
-            return tuple(
-                max(0, required[index] - exponents[index])
-                for index in range(4)
-            )
+            return tuple(max(0, required[index] - exponents[index]) for index in range(4))
 
         def minimum_digits(missing):
-            return (
-                len(pack_twos_threes(missing[0], missing[1]))
-                + missing[2]
-                + missing[3]
-            )
+            return len(pack_twos_threes(missing[0], missing[1])) + missing[2] + missing[3]
 
         def smallest_suffix(length, missing):
-            packed = (
-                pack_twos_threes(missing[0], missing[1])
-                + "5" * missing[2]
-                + "7" * missing[3]
-            )
+            packed = pack_twos_threes(missing[0], missing[1]) + "5" * missing[2] + "7" * missing[3]
             packed = "".join(sorted(packed))
             return "1" * (length - len(packed)) + packed
 
@@ -93,9 +77,7 @@ class Solution:
             for prime_index in range(4):
                 total[prime_index] += factors[prime_index]
 
-        if first_zero == len(num) and all(
-            total[index] >= required[index] for index in range(4)
-        ):
+        if first_zero == len(num) and all(total[index] >= required[index] for index in range(4)):
             return num
 
         start = min(first_zero, len(num) - 1)
@@ -115,17 +97,10 @@ class Solution:
             current = ord(num[index]) - ord("0")
             for digit in range(current + 1, 10):
                 factors = DIGIT_FACTORS[digit]
-                covered = tuple(
-                    prefix[prime_index] + factors[prime_index]
-                    for prime_index in range(4)
-                )
+                covered = tuple(prefix[prime_index] + factors[prime_index] for prime_index in range(4))
                 missing = deficits(covered)
                 if minimum_digits(missing) <= suffix_length:
-                    return (
-                        num[:index]
-                        + str(digit)
-                        + smallest_suffix(suffix_length, missing)
-                    )
+                    return num[:index] + str(digit) + smallest_suffix(suffix_length, missing)
 
         missing = tuple(required)
         answer_length = max(

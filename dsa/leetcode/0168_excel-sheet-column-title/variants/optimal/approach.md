@@ -3,7 +3,7 @@ Excel titles resemble base 26, but they are **bijective base 26**: the symbols r
 
 Before extracting each digit, subtract one from the current number. This shifts the valid digit range `1..26` onto the ordinary remainder range `0..25`. Then
 
-`quotient, remainder = divmod(column_number - 1, 26)`
+`quotient, remainder = divmod(columnNumber - 1, 26)`
 
 maps remainder `0` to `A`, remainder `1` to `B`, and so on through remainder `25` to `Z`. Append that letter and continue with the quotient. As with ordinary positional conversion, division discovers the least-significant character first, so reverse the accumulated characters at the end.
 

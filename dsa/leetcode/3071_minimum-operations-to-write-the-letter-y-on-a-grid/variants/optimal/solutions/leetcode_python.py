@@ -6,9 +6,8 @@ class Solution:
 
         for row in range(n):
             for column in range(n):
-                belongs_to_y = (
-                    (row <= middle and (column == row or column == n - 1 - row))
-                    or (row >= middle and column == middle)
+                belongs_to_y = (row <= middle and (column == row or column == n - 1 - row)) or (
+                    row >= middle and column == middle
                 )
                 counts[belongs_to_y][grid[row][column]] += 1
 

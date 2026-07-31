@@ -8,10 +8,7 @@ class Solution:
 
         for destination in range(1, len(nums)):
             for source in range(destination):
-                if (
-                    maximum_jumps[source] != -1
-                    and abs(nums[destination] - nums[source]) <= target
-                ):
+                if maximum_jumps[source] != -1 and abs(nums[destination] - nums[source]) <= target:
                     maximum_jumps[destination] = max(
                         maximum_jumps[destination],
                         maximum_jumps[source] + 1,

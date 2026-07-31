@@ -31,9 +31,7 @@ class Solution:
             for used_mask, ways in enumerate(dp):
                 if used_mask & value_mask == 0:
                     combined = used_mask | value_mask
-                    next_dp[combined] = (
-                        next_dp[combined] + ways * frequency
-                    ) % mod
+                    next_dp[combined] = (next_dp[combined] + ways * frequency) % mod
             dp = next_dp
 
         return (sum(dp) * pow(2, counts[1], mod) - 1) % mod

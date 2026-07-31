@@ -10,4 +10,3 @@ class Solution:
         while right:
             left, right = right, left % right
         return target % left == 0
-

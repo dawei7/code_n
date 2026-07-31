@@ -2,9 +2,7 @@ from typing import List, Optional
 
 
 class Solution:
-    def createBinaryTree(
-        self, descriptions: List[List[int]]
-    ) -> Optional[TreeNode]:
+    def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]:
         nodes = {}
         children = set()
 

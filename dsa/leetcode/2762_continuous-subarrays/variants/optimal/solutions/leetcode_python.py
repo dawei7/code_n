@@ -27,4 +27,3 @@ class Solution:
             total += right - left + 1
 
         return total
-

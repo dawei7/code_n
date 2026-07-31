@@ -22,3 +22,4 @@ Each input pointer advances monotonically and visits every run once, giving $O(M
 - **Equal neighboring products:** Merge them even when the underlying input values changed.
 - **One run against many:** The longer run remains active while the opposite pointer advances several times.
 - **Large frequencies:** Never loop once per represented element.
+- **Input mutation:** Remaining frequencies are tracked by decrementing the supplied encoded pairs, matching the native Accepted implementation; callers should not expect those frequency fields to remain unchanged.

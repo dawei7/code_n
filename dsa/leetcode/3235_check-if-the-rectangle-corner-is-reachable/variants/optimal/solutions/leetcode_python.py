@@ -44,12 +44,9 @@ class Solution:
                 other_x, other_y, other_radius = circles[other]
                 radius_sum = radius + other_radius
                 if (
-                    (x - other_x) ** 2 + (y - other_y) ** 2
-                    <= radius_sum * radius_sum
-                    and x * other_radius + other_x * radius
-                    < xCorner * radius_sum
-                    and y * other_radius + other_y * radius
-                    < yCorner * radius_sum
+                    (x - other_x) ** 2 + (y - other_y) ** 2 <= radius_sum * radius_sum
+                    and x * other_radius + other_x * radius < xCorner * radius_sum
+                    and y * other_radius + other_y * radius < yCorner * radius_sum
                 ):
                     union(index, other)
 

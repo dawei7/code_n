@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def findMaxSum(
-        self, nums1: List[int], nums2: List[int], k: int
-    ) -> List[int]:
+    def findMaxSum(self, nums1: List[int], nums2: List[int], k: int) -> List[int]:
         indices = sorted(range(len(nums1)), key=nums1.__getitem__)
         answer = [0] * len(nums1)
         largest_values = []
@@ -15,10 +13,7 @@ class Solution:
         while group_start < len(indices):
             group_end = group_start + 1
             group_value = nums1[indices[group_start]]
-            while (
-                group_end < len(indices)
-                and nums1[indices[group_end]] == group_value
-            ):
+            while group_end < len(indices) and nums1[indices[group_end]] == group_value:
                 group_end += 1
 
             for position in range(group_start, group_end):

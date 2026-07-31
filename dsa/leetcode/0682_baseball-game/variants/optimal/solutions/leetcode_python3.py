@@ -18,4 +18,3 @@ class Solution:
                 scores.append(score)
                 total += score
         return total
-

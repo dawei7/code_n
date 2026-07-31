@@ -9,4 +9,3 @@ class Solution:
             left, right = (left ^ right) & mask, ((left & right) << 1) & mask
 
         return left if left <= maximum_positive else ~(left ^ mask)
-

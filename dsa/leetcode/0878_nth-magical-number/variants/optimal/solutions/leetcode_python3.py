@@ -10,11 +10,7 @@ class Solution:
 
         while low < high:
             middle = (low + high) // 2
-            count = (
-                middle // a
-                + middle // b
-                - middle // least_common_multiple
-            )
+            count = middle // a + middle // b - middle // least_common_multiple
             if count >= n:
                 high = middle
             else:

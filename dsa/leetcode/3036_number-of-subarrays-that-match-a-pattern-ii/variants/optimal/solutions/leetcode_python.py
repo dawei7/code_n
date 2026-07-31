@@ -17,9 +17,7 @@ class Solution:
         matched = 0
 
         for index in range(len(nums) - 1):
-            relation = (nums[index + 1] > nums[index]) - (
-                nums[index + 1] < nums[index]
-            )
+            relation = (nums[index + 1] > nums[index]) - (nums[index + 1] < nums[index])
             while matched and relation != pattern[matched]:
                 matched = prefix[matched - 1]
             if relation == pattern[matched]:

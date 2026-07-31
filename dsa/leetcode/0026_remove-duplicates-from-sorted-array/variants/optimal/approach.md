@@ -3,7 +3,7 @@
 
 The first value is always unique, so set `write = 1`. Scan subsequent values with a read pointer. Whenever the current value differs from `nums[write - 1]`, copy it to `nums[write]` and advance `write`. Equal values are skipped.
 
-The app returns `nums[:write]` for observable testing. LeetCode's platform method performs the same writes and returns `write` because its judge inspects that prefix in place.
+Return `write` after the scan. The judge verifies both that returned length and the mutated prefix `nums[:write]`.
 
 **Sorted adjacency makes the last written value sufficient**
 
@@ -22,7 +22,7 @@ Sorted order makes every equal value one contiguous run. The first value of a ne
 Consequently the written prefix contains one representative of every completed run in original sorted order. After the final read, all runs have been processed, so the prefix is complete, unique, and exactly the required length.
 
 ## Complexity detail
-The read pointer visits each of the `n` elements once, and each accepted distinct value causes one constant-time write, so time is $O(n)$. The compaction uses only read and write indices, giving $O(1)$ auxiliary space. The app's returned slice is the observable result representation rather than workspace used by the core algorithm.
+The read pointer visits each of the `n` elements once, and each accepted distinct value causes one constant-time write, so time is $O(n)$. The compaction uses only read and write indices, giving $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Set conversion:** removes duplicates but uses $O(n)$ storage and does not naturally preserve the required in-place prefix contract.

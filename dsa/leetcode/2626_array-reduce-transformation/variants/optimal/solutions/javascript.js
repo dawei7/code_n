@@ -1,3 +1,17 @@
+/**
+ * @param {number[]} nums
+ * @param {Function} fn
+ * @param {number} init
+ * @return {number}
+ */
+var reduce = function(nums, fn, init) {
+    let result = init;
+    for (const value of nums) {
+        result = fn(result, value);
+    }
+    return result;
+};
+
 const REDUCERS = {
     sum: (accumulator, current) => accumulator + current,
     sumSquares: (accumulator, current) => accumulator + current * current,
@@ -6,14 +20,6 @@ const REDUCERS = {
     maximum: (accumulator, current) => Math.max(accumulator, current),
     zero: () => 0,
 };
-
-function reduce(nums, fn, init) {
-    let result = init;
-    for (const value of nums) {
-        result = fn(result, value);
-    }
-    return result;
-}
 
 function solve(nums, fnName, init) {
     const fn = REDUCERS[fnName];

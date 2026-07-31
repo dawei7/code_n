@@ -2,9 +2,7 @@ from typing import List, Optional
 
 
 class Solution:
-    def splitCircularLinkedList(
-        self, list: Optional[ListNode]
-    ) -> List[Optional[ListNode]]:
+    def splitCircularLinkedList(self, list: Optional[ListNode]) -> List[Optional[ListNode]]:
         slow = list
         fast = list
 

@@ -21,13 +21,9 @@ class Solution:
                 if s[left] == s[right]:
                     outer = ord(s[left]) - ord("a")
                     best_inner = max(
-                        length_minus_two[left + 1][letter]
-                        for letter in range(alphabet_size)
-                        if letter != outer
+                        length_minus_two[left + 1][letter] for letter in range(alphabet_size) if letter != outer
                     )
-                    current[left][outer] = max(
-                        current[left][outer], 2 + best_inner
-                    )
+                    current[left][outer] = max(current[left][outer], 2 + best_inner)
 
             length_minus_two, length_minus_one = length_minus_one, current
 

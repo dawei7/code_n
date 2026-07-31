@@ -26,4 +26,3 @@ class Solution:
             else:
                 low = middle + 1
         return low
-

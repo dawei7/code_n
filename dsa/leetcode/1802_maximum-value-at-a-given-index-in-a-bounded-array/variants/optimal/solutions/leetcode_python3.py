@@ -8,11 +8,7 @@ class Solution:
             return descending * (descending + 1) // 2 + length - descending
 
         def required_sum(peak: int) -> int:
-            return (
-                peak
-                + side_sum(peak, index)
-                + side_sum(peak, n - index - 1)
-            )
+            return peak + side_sum(peak, index) + side_sum(peak, n - index - 1)
 
         low, high = 1, maxSum
         while low < high:

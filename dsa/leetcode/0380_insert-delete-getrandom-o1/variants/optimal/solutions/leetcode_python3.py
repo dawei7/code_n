@@ -2,7 +2,6 @@ from random import choice
 
 
 class RandomizedSet:
-
     def __init__(self):
         self.values = []
         self.indices = {}
@@ -28,4 +27,3 @@ class RandomizedSet:
 
     def getRandom(self) -> int:
         return choice(self.values)
-

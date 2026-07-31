@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/solve.py",
+  "native_source": "solutions/leetcode_python.py",
+  "hashes": {
+    "app_sha256": "6f9a05978cddbd9cc69ea12d95337c0f370b37c665a1b9910b81d3fdc43a1537",
+    "native_sha256": "1dc05d03403fe15af96d34dfdd04b5417e8b2c72c745db5929d9471d09b53f9c",
+    "solution_variants_sha256": "cf5982dc761a1d4ab1adaad755529d458c7289c9dd59417e3f3f53e2c9df2080",
+    "approach_sha256": "4da23d5f12ce8839a112fdff9b977e8eb98e5670f4b94d40867458b4cc26b90d"
+  },
+  "classifications": ["app_execution_adapter", "platform_signature"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "app entry point and DataFrame index serialization",
+      "native": "LeetCode calls pivotTable(weather), whose exact body returns the pivoted DataFrame with month as its named index.",
+      "app": "The identical pivotTable function is retained, while solve calls it and resets the named index so the JSON table result includes month as an ordinary output column.",
+      "rationale": "The app runner invokes solve and serializes DataFrame columns rather than pandas indexes. reset_index changes only the transport representation; the pivot operation, row labels, city columns, values, ordering, and complexity remain anchored to the exact native function."
+    }
+  ]
+}

@@ -43,10 +43,7 @@ class Solution:
                                 column - value,
                                 column + value,
                             ):
-                                if (
-                                    0 <= corner_column < columns
-                                    and matrix[corner_row][corner_column] > value
-                                ):
+                                if 0 <= corner_column < columns and matrix[corner_row][corner_column] > value:
                                     larger -= 1
 
                     if larger == 0:

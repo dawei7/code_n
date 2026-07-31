@@ -7,8 +7,8 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "initial_energy": 5,
-        "initial_experience": 3,
+        "initialEnergy": 5,
+        "initialExperience": 3,
         "energy": [
           1,
           4,
@@ -34,8 +34,8 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "initial_energy": 2,
-        "initial_experience": 4,
+        "initialEnergy": 2,
+        "initialExperience": 4,
         "energy": [
           1
         ],
@@ -55,8 +55,8 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "initial_energy": 5,
-        "initial_experience": 5,
+        "initialEnergy": 5,
+        "initialExperience": 5,
         "energy": [
           5
         ],
@@ -75,8 +75,8 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "initial_energy": 1,
-        "initial_experience": 100,
+        "initialEnergy": 1,
+        "initialExperience": 100,
         "energy": [
           1,
           2,
@@ -99,8 +99,8 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "initial_energy": 100,
-        "initial_experience": 2,
+        "initialEnergy": 100,
+        "initialExperience": 2,
         "energy": [
           1,
           1,
@@ -124,8 +124,8 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "initial_energy": 1,
-        "initial_experience": 1,
+        "initialEnergy": 1,
+        "initialExperience": 1,
         "energy": [
           1,
           1,
@@ -151,8 +151,8 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "initial_energy": 1,
-        "initial_experience": 1,
+        "initialEnergy": 1,
+        "initialExperience": 1,
         "energy": [
           100,
           100,

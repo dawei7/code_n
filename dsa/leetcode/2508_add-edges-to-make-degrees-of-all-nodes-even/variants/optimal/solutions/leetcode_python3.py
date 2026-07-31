@@ -17,12 +17,7 @@ class Solution:
             if b not in graph[a]:
                 return True
             for middle in range(1, n + 1):
-                if (
-                    middle != a
-                    and middle != b
-                    and middle not in graph[a]
-                    and middle not in graph[b]
-                ):
+                if middle != a and middle != b and middle not in graph[a] and middle not in graph[b]:
                     return True
             return False
 

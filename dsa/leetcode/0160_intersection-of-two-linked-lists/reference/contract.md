@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `head_a`: The first `ListNode` head, encoded in app cases with its private prefix and the shared tail.
-- `head_b`: The second `ListNode` head, encoded with its own prefix and the same shared tail. The runner constructs one shared set of node objects for that tail.
+- `headA`: The first `ListNode` head, encoded in app cases with its private prefix and the shared tail.
+- `headB`: The second `ListNode` head, encoded with its own prefix and the same shared tail. The runner constructs one shared set of node objects for that tail.
 
 **Return value**
 

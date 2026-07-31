@@ -1,4 +1,8 @@
-function curry(fn) {
+/**
+ * @param {Function} fn
+ * @return {Function}
+ */
+var curry = function(fn) {
     function extend(previous, count) {
         return function curried(...nextArgs) {
             const node = { previous, values: nextArgs };
@@ -22,7 +26,13 @@ function curry(fn) {
     }
 
     return extend(null, 0);
-}
+};
+
+/**
+ * function sum(a, b) { return a + b; }
+ * const csum = curry(sum);
+ * csum(1)(2) // 3
+ */
 
 function createFunction(fnName, arity) {
     const implementations = {

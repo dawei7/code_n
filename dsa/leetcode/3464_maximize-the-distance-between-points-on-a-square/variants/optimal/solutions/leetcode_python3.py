@@ -15,9 +15,7 @@ class Solution:
 
         positions.sort()
         count = len(positions)
-        extended = positions + [
-            position + perimeter for position in positions
-        ]
+        extended = positions + [position + perimeter for position in positions]
         doubled_count = 2 * count
         levels = (k - 1).bit_length()
 
@@ -29,20 +27,14 @@ class Solution:
                 if right <= left:
                     right = left + 1
                 target = extended[left] + minimum
-                while (
-                    right < doubled_count
-                    and extended[right] < target
-                ):
+                while right < doubled_count and extended[right] < target:
                     right += 1
                 next_index[left] = right
 
             jumps = [next_index]
             for _ in range(1, levels):
                 previous = jumps[-1]
-                jumps.append([
-                    previous[previous[index]]
-                    for index in range(doubled_count + 1)
-                ])
+                jumps.append([previous[previous[index]] for index in range(doubled_count + 1)])
 
             for start in range(count):
                 current = start
@@ -54,11 +46,7 @@ class Solution:
                     remaining >>= 1
                     bit += 1
 
-                if (
-                    current < doubled_count
-                    and extended[current]
-                    <= positions[start] + perimeter - minimum
-                ):
+                if current < doubled_count and extended[current] <= positions[start] + perimeter - minimum:
                     return True
 
             return False

@@ -23,7 +23,5 @@ class Solution:
             return min(total // 2, total - largest)
 
         return max(
-            side_score(first, allocated)
-            + side_score(second, centers - allocated)
-            for allocated in range(centers + 1)
+            side_score(first, allocated) + side_score(second, centers - allocated) for allocated in range(centers + 1)
         )

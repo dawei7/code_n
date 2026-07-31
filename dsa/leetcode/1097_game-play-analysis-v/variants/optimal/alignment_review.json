@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "5bd2bf6700fd4db267418d3cadfe3ffca81d93bc9aa62076292a9dd14653729d",
+    "native_sha256": "3ae1443e08151d439ddfca714592b0cc9303ec4ce68e285807abb5421fcaa40f",
+    "solution_variants_sha256": "3217ca058cfd28f6e69ade0d2a15eee87304bc1e6a590103970ed38deb7232dc",
+    "approach_sha256": "d09cec26700a433e7b37aa0a07889890b329f17df2390846ef361b3af06e7c30"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "one-day date arithmetic",
+      "native": "MySQL computes the day after installation with DATE_ADD(i.install_dt, INTERVAL 1 DAY).",
+      "app": "SQLite computes the same date with date(i.install_dt, '+1 day').",
+      "rationale": "The installed SQL runner uses SQLite, which does not implement MySQL's DATE_ADD ... INTERVAL syntax. The CTE, join, aggregation, aliases, and grouping otherwise match exactly."
+    }
+  ]
+}

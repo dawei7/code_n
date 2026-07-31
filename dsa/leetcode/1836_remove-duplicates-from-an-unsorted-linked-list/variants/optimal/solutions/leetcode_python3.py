@@ -3,9 +3,7 @@ from typing import Optional
 
 
 class Solution:
-    def deleteDuplicatesUnsorted(
-        self, head: Optional["ListNode"]
-    ) -> Optional["ListNode"]:
+    def deleteDuplicatesUnsorted(self, head: Optional["ListNode"]) -> Optional["ListNode"]:
         frequencies = Counter()
         current = head
         while current is not None:

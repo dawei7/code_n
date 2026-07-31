@@ -10,6 +10,4 @@ class Solution:
                 return False
             counts[value] += 1
 
-        return counts[n] == 2 and all(
-            counts[value] == 1 for value in range(1, n)
-        )
+        return counts[n] == 2 and all(counts[value] == 1 for value in range(1, n))

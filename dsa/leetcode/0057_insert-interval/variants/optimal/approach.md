@@ -31,4 +31,4 @@ Each original interval is examined and copied at most once, giving $O(n)$ time. 
 - **Repeated pairwise merging:** can require quadratic comparisons and list shifts.
 - **Modify the original list in place:** can reduce allocations in some environments but violates this contract's nonmutation requirement.
 - Empty input produces a list containing only the new interval. An insertion entirely before or after the input is handled by an empty left or overlap region.
-- Copy endpoints into a working interval if the input must remain unchanged; mutating `new_interval` or an original interval would violate the stated contract.
+- Copy endpoints into a working interval if the input must remain unchanged; mutating `newInterval` or an original interval would violate the stated contract.

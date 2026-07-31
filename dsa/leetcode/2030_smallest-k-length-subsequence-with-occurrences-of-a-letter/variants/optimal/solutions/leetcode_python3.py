@@ -1,7 +1,5 @@
 class Solution:
-    def smallestSubsequence(
-        self, s: str, k: int, letter: str, repetition: int
-    ) -> str:
+    def smallestSubsequence(self, s: str, k: int, letter: str, repetition: int) -> str:
         remaining_letter = s.count(letter)
         selected_letter = 0
         stack: list[str] = []
@@ -11,10 +9,7 @@ class Solution:
                 stack
                 and character < stack[-1]
                 and len(stack) - 1 + len(s) - index >= k
-                and (
-                    stack[-1] != letter
-                    or selected_letter - 1 + remaining_letter >= repetition
-                )
+                and (stack[-1] != letter or selected_letter - 1 + remaining_letter >= repetition)
             ):
                 removed = stack.pop()
                 if removed == letter:

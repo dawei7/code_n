@@ -14,11 +14,7 @@ class Solution:
             index = bit.bit_length() - 1
             previous = mask ^ bit
             subset_xor[mask] = subset_xor[previous] ^ nums[index]
-            subset_and[mask] = (
-                nums[index]
-                if previous == 0
-                else subset_and[previous] & nums[index]
-            )
+            subset_and[mask] = nums[index] if previous == 0 else subset_and[previous] & nums[index]
 
         answer = 0
         value_mask = (1 << 30) - 1

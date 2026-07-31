@@ -1,4 +1,8 @@
-function expect(val) {
+/**
+ * @param {string} val
+ * @return {Object}
+ */
+var expect = function(val) {
     return {
         toBe(other) {
             if (val !== other) {
@@ -13,7 +17,7 @@ function expect(val) {
             return true;
         }
     };
-}
+};
 
 function solve(val, method, other) {
     try {

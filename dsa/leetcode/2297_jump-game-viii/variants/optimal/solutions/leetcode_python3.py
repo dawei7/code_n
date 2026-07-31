@@ -12,15 +12,11 @@ class Solution:
         for index, value in enumerate(nums):
             while nonincreasing and nums[nonincreasing[-1]] <= value:
                 source = nonincreasing.pop()
-                best[index] = min(
-                    best[index], best[source] + costs[index]
-                )
+                best[index] = min(best[index], best[source] + costs[index])
 
             while increasing and nums[increasing[-1]] > value:
                 source = increasing.pop()
-                best[index] = min(
-                    best[index], best[source] + costs[index]
-                )
+                best[index] = min(best[index], best[source] + costs[index])
 
             nonincreasing.append(index)
             increasing.append(index)

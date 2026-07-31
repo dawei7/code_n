@@ -23,8 +23,8 @@ Given `topRight` and `bottomLeft`, return the exact number of ships in that rect
 **Inputs**
 
 - `sea`: a hidden `Sea` object exposing only `hasShips(topRight, bottomLeft)` for rectangular existence queries.
-- `top_right`: a `Point` whose `x` and `y` fields give the target rectangle's upper-right coordinate $(x_2,y_2)$.
-- `bottom_left`: a `Point` whose fields give the lower-left coordinate $(x_1,y_1)$, where $0 \le x_1 \le x_2 \le 1000$ and $0 \le y_1 \le y_2 \le 1000$.
+- `topRight`: a `Point` whose `x` and `y` fields give the target rectangle's upper-right coordinate $(x_2,y_2)$.
+- `bottomLeft`: a `Point` whose fields give the lower-left coordinate $(x_1,y_1)$, where $0 \le x_1 \le x_2 \le 1000$ and $0 \le y_1 \le y_2 \le 1000$.
 - At most $s=10$ distinct ships lie in the target rectangle. Let $C=\max(x_2-x_1+1,y_2-y_1+1)$ be its larger side length.
 
 **Return value**
@@ -35,15 +35,15 @@ Given `topRight` and `bottomLeft`, return the exact number of ships in that rect
 
 **Example 1**
 
-- Input: `ships = [[1,1],[2,2],[3,3],[5,5]], top_right = [4,4], bottom_left = [0,0]`
+- Input: `ships = [[1,1],[2,2],[3,3],[5,5]], topRight = [4,4], bottomLeft = [0,0]`
 - Output: `3`
 
 **Example 2**
 
-- Input: `ships = [[1,1],[2,2],[3,3]], top_right = [1000,1000], bottom_left = [0,0]`
+- Input: `ships = [[1,1],[2,2],[3,3]], topRight = [1000,1000], bottomLeft = [0,0]`
 - Output: `3`
 
 **Example 3**
 
-- Input: `ships = [], top_right = [7,9], bottom_left = [2,4]`
+- Input: `ships = [], topRight = [7,9], bottomLeft = [2,4]`
 - Output: `0`

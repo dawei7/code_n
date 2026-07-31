@@ -23,10 +23,7 @@ class Solution:
                         smaller_neighbors[row][column] += 1
 
         queue = deque(
-            (row, column)
-            for row in range(rows)
-            for column in range(columns)
-            if smaller_neighbors[row][column] == 0
+            (row, column) for row in range(rows) for column in range(columns) if smaller_neighbors[row][column] == 0
         )
 
         while queue:
@@ -40,8 +37,7 @@ class Solution:
                     and grid[next_row][next_column] > grid[row][column]
                 ):
                     path_count[next_row][next_column] = (
-                        path_count[next_row][next_column]
-                        + path_count[row][column]
+                        path_count[next_row][next_column] + path_count[row][column]
                     ) % modulus
                     smaller_neighbors[next_row][next_column] -= 1
                     if smaller_neighbors[next_row][next_column] == 0:

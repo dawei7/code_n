@@ -21,7 +21,5 @@ class Solution:
         if total_unknown % 2 == 1:
             return True
 
-        balance = 2 * (left_sum - right_sum) + 9 * (
-            left_unknown - right_unknown
-        )
+        balance = 2 * (left_sum - right_sum) + 9 * (left_unknown - right_unknown)
         return balance != 0

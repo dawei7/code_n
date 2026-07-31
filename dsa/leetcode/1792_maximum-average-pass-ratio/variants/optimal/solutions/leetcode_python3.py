@@ -8,10 +8,7 @@ class Solution:
         classes: List[List[int]],
         extraStudents: int,
     ) -> float:
-        heap = [
-            (-(total - passed) / (total * (total + 1)), passed, total)
-            for passed, total in classes
-        ]
+        heap = [(-(total - passed) / (total * (total + 1)), passed, total) for passed, total in classes]
         heapify(heap)
 
         for _ in range(extraStudents):

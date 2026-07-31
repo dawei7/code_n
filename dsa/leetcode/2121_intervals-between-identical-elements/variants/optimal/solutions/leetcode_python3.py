@@ -21,12 +21,7 @@ class Solution:
             count_right = total_count[value] - count_left - 1
             sum_right = total_index[value] - sum_left - index
 
-            answer[index] = (
-                index * count_left
-                - sum_left
-                + sum_right
-                - index * count_right
-            )
+            answer[index] = index * count_left - sum_left + sum_right - index * count_right
             left_count[value] += 1
             left_index[value] += index
 

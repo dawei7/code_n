@@ -1,4 +1,8 @@
-function jsonToMatrix(arr) {
+/**
+ * @param {Array} arr
+ * @return {(string | number | boolean | null)[][]}
+ */
+var jsonToMatrix = function(arr) {
     const rows = arr.map((item) => {
         const flattened = {};
 
@@ -19,13 +23,15 @@ function jsonToMatrix(arr) {
 
     const columns = [...new Set(rows.flatMap((row) => Object.keys(row)))].sort();
     const matrix = [columns];
+
     for (const row of rows) {
         matrix.push(columns.map((column) =>
             Object.prototype.hasOwnProperty.call(row, column) ? row[column] : ""
         ));
     }
+
     return matrix;
-}
+};
 
 function solve(arr) {
     return jsonToMatrix(arr);

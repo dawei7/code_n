@@ -20,9 +20,7 @@ class Solution:
                     continue
                 from_above = dp[column]
                 from_left = dp[column - 1] if column else infinity
-                original_row, original_column = (
-                    (column, row) if transposed else (row, column)
-                )
+                original_row, original_column = (column, row) if transposed else (row, column)
                 dp[column] = (
                     min(from_above, from_left)
                     + (original_row + 1) * (original_column + 1)

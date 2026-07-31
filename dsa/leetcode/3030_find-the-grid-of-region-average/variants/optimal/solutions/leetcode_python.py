@@ -25,11 +25,7 @@ class Solution:
                 if not valid:
                     continue
 
-                average = sum(
-                    image[row][col]
-                    for row in range(top, top + 3)
-                    for col in range(left, left + 3)
-                ) // 9
+                average = sum(image[row][col] for row in range(top, top + 3) for col in range(left, left + 3)) // 9
 
                 for row in range(top, top + 3):
                     for col in range(left, left + 3):
@@ -37,11 +33,6 @@ class Solution:
                         counts[row][col] += 1
 
         return [
-            [
-                totals[row][col] // counts[row][col]
-                if counts[row][col]
-                else image[row][col]
-                for col in range(cols)
-            ]
+            [totals[row][col] // counts[row][col] if counts[row][col] else image[row][col] for col in range(cols)]
             for row in range(rows)
         ]

@@ -11,8 +11,6 @@ A coordinate is recorded only after a legal physical move, so every mapped cell 
 
 The mapped component is a graph with at most four edges per vertex. Traversing an edge into coordinate $v$ costs the stored entry cost of $v$, and the start distance is zero. All weights are positive, so Dijkstra's algorithm is applicable. Repeatedly remove the coordinate with the smallest tentative distance from a min-heap and relax its mapped neighbors. The first non-stale removal of the target has minimum total cost. If exploration never encounters the target, return `-1`.
 
-The app-local adapter receives the matrix and endpoints directly, so it skips physical discovery and runs the same Dijkstra relaxation over legal matrix neighbors.
-
 ## Complexity detail
 Native discovery tests four directions for each of the $V$ reachable cells and traverses every discovery edge only a constant number of times, taking $O(V)$ time. The grid graph has $O(V)$ edges. Dijkstra performs $O(V)$ heap removals and $O(V)$ successful relaxations, each costing $O(\log V)$, for $O(V\log V)$ total time. The mapped costs, exploration stack, distance map, and heap use $O(V)$ space.
 

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def distanceK(
-        self, root: "TreeNode", target: "TreeNode", k: int
-    ) -> List[int]:
+    def distanceK(self, root: "TreeNode", target: "TreeNode", k: int) -> List[int]:
         parents = {root: None}
         stack = [root]
 

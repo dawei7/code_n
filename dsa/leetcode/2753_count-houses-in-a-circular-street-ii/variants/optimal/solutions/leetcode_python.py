@@ -1,5 +1,5 @@
 class Solution:
-    def houseCount(self, street: Optional['Street'], k: int) -> int:
+    def houseCount(self, street: Optional["Street"], k: int) -> int:
         found_first = False
         first_open_step = 0
         answer = 0
@@ -15,4 +15,3 @@ class Solution:
             street.moveRight()
 
         return answer
-

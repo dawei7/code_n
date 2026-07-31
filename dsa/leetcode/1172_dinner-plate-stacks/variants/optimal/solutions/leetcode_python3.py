@@ -9,8 +9,7 @@ class DinnerPlates:
 
     def push(self, val: int) -> None:
         while self.available and (
-            self.available[0] >= len(self.stacks)
-            or len(self.stacks[self.available[0]]) == self.capacity
+            self.available[0] >= len(self.stacks) or len(self.stacks[self.available[0]]) == self.capacity
         ):
             heapq.heappop(self.available)
 

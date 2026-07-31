@@ -1,14 +1,14 @@
 ## General
 **Generate all twelve months.** A recursive common table expression creates the fixed month spine from 1 through 12. Starting from it ensures that months with no drivers or rides remain present.
 
-**Aggregate distinct working drivers by request month.** Join `AcceptedRides` to `Rides` by `ride_id`, restrict requests to 2020, group by the numeric request month, and count distinct `driver_id` values. The request date controls the month because the acceptance table has no separate completion date. Distinct counting prevents several rides by one driver from inflating the percentage.
+**Count distinct working drivers inside each month's range.** For every generated month, a correlated subquery joins `AcceptedRides` to `Rides` by `ride_id` and restricts `requested_at` to that month's half-open date interval. The request date controls the month because the acceptance table has no separate completion date. Distinct counting prevents several rides by one driver from inflating the percentage.
 
-**Use the month-end active population as denominator.** For month $m$, count driver rows whose `join_date` is earlier than the first day of month $m+1$. This exclusive cutoff correctly includes every join date in month $m$ and all earlier drivers. Divide the month's working count by that active count, guarding a zero denominator, round, and order the month spine.
+**Use the month-end active population as denominator.** A second correlated subquery counts driver rows whose `join_date` is earlier than the first day of month $m+1$. This exclusive cutoff correctly includes every join date in month $m$ and all earlier drivers. Divide the working-driver count by that active count, guard a zero denominator with `NULLIF` and `IFNULL`, round, and order the month spine.
 
-The two aggregates match the numerator and denominator definitions independently. Their fixed twelve-month join therefore produces every required month exactly once, including zero-activity months.
+The two correlated counts match the numerator and denominator definitions independently. Evaluating them from the fixed twelve-month spine produces every required month exactly once, including zero-activity months.
 
 ## Complexity detail
-The month spine has constant size. With ordinary join and grouping support, the driver relation and the ride/acceptance join require $O(d+r+a)$ total input processing. The accepted-ride grouping can retain up to $O(a)$ state for distinct driver/month combinations; the twelve month rows use constant space.
+The month spine has constant size. Its twelve correlated evaluations are still a constant number of scans, so processing the driver relation and the ride/acceptance join takes $O(d+r+a)$ time. Distinct counting can retain up to $O(a)$ driver identifiers for a month; the twelve month rows use constant space.
 
 ## Alternatives and edge cases
 - **Count accepted rides:** Counting rows rather than distinct drivers overstates months in which one driver completes multiple rides.

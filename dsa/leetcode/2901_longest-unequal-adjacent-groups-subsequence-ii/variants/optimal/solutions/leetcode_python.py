@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def getWordsInLongestSubsequence(
-        self, words: List[str], groups: List[int]
-    ) -> List[str]:
+    def getWordsInLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
         count = len(words)
         lengths = [1] * count
         previous = [-1] * count

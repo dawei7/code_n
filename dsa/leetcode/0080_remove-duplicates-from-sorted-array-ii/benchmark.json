@@ -45,15 +45,22 @@
           1
         ]
       },
-      "expected": [
-        1,
-        1
-      ],
+      "expected": {
+        "return_value": 2,
+        "prefix": [
+          1,
+          1
+        ]
+      },
       "tags": [
         "benchmark",
         "scale-small",
         "shift-separator"
-      ]
+      ],
+      "validator": {
+        "kind": "in_place_prefix",
+        "values_param": "nums"
+      }
     },
     {
       "id": "benchmark-scale-2",
@@ -321,15 +328,22 @@
           1
         ]
       },
-      "expected": [
-        1,
-        1
-      ],
+      "expected": {
+        "return_value": 2,
+        "prefix": [
+          1,
+          1
+        ]
+      },
       "tags": [
         "benchmark",
         "scale-medium",
         "shift-separator"
-      ]
+      ],
+      "validator": {
+        "kind": "in_place_prefix",
+        "values_param": "nums"
+      }
     },
     {
       "id": "benchmark-scale-3",
@@ -2389,15 +2403,22 @@
           1
         ]
       },
-      "expected": [
-        1,
-        1
-      ],
+      "expected": {
+        "return_value": 2,
+        "prefix": [
+          1,
+          1
+        ]
+      },
       "tags": [
         "benchmark",
         "scale-large",
         "shift-separator"
-      ]
+      ],
+      "validator": {
+        "kind": "in_place_prefix",
+        "values_param": "nums"
+      }
     }
   ]
 }

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def executeInstructions(
-        self, n: int, startPos: List[int], s: str
-    ) -> List[int]:
+    def executeInstructions(self, n: int, startPos: List[int], s: str) -> List[int]:
         moves = {
             "L": (0, -1),
             "R": (0, 1),

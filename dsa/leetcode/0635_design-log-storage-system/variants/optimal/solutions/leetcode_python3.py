@@ -20,8 +20,4 @@ class LogSystem:
         length = self.prefix_length[granularity]
         lower = start[:length]
         upper = end[:length]
-        return [
-            identifier
-            for identifier, timestamp in self.logs
-            if lower <= timestamp[:length] <= upper
-        ]
+        return [identifier for identifier, timestamp in self.logs if lower <= timestamp[:length] <= upper]

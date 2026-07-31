@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def maxRectangleArea(
-        self, xCoord: List[int], yCoord: List[int]
-    ) -> int:
+    def maxRectangleArea(self, xCoord: List[int], yCoord: List[int]) -> int:
         points = list(zip(xCoord, yCoord))
         columns = defaultdict(list)
         for x, y in points:
@@ -26,10 +24,7 @@ class Solution:
         if not candidates:
             return -1
 
-        y_rank = {
-            value: index + 1
-            for index, value in enumerate(sorted(set(yCoord)))
-        }
+        y_rank = {value: index + 1 for index, value in enumerate(sorted(set(yCoord)))}
         size = len(y_rank)
         tree = [0] * (size + 1)
 
@@ -58,10 +53,7 @@ class Solution:
         point_index = 0
         counts = [0] * len(candidates)
         for limit, query_index, sign, lower, upper in events:
-            while (
-                point_index < len(sorted_points)
-                and sorted_points[point_index][0] <= limit
-            ):
+            while point_index < len(sorted_points) and sorted_points[point_index][0] <= limit:
                 add(y_rank[sorted_points[point_index][1]])
                 point_index += 1
             counts[query_index] += sign * range_count(lower, upper)

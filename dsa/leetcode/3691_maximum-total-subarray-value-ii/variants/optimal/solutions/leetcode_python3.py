@@ -40,10 +40,7 @@ class Solution:
             suffix_low[index] = min(nums[index], suffix_low[index + 1])
             suffix_high[index] = max(nums[index], suffix_high[index + 1])
 
-        heap = [
-            (-(suffix_high[left] - suffix_low[left]), left, n - 1)
-            for left in range(n)
-        ]
+        heap = [(-(suffix_high[left] - suffix_low[left]), left, n - 1) for left in range(n)]
         heapify(heap)
         answer = 0
 

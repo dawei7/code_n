@@ -20,7 +20,7 @@ Remove that one node by reconnecting its predecessor to its successor, and retur
 
 ### Function Contract
 
-**Input**
+**Inputs**
 
 - `head`: the first node of a singly linked list with $1$ through $10^5$ nodes.
 - Every node value is between $1$ and $10^5$.

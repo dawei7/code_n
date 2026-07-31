@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maximumBobPoints(
-        self, numArrows: int, aliceArrows: List[int]
-    ) -> List[int]:
+    def maximumBobPoints(self, numArrows: int, aliceArrows: List[int]) -> List[int]:
         best_score = -1
         best_allocation = [0] * 12
 

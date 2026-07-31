@@ -14,10 +14,7 @@ class Solution:
             for character in word:
                 counts[ord(character) - ord("a")] += 1
 
-            if (
-                all(counts[index] >= required[index] for index in range(26))
-                and (not best or len(word) < len(best))
-            ):
+            if all(counts[index] >= required[index] for index in range(26)) and (not best or len(word) < len(best)):
                 best = word
 
         return best

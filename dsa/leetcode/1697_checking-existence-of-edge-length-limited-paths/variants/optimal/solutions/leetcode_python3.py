@@ -28,10 +28,7 @@ class Solution:
             size[first_root] += size[second_root]
 
         edges = sorted(edgeList, key=lambda edge: edge[2])
-        ordered_queries = sorted(
-            (limit, first, second, index)
-            for index, (first, second, limit) in enumerate(queries)
-        )
+        ordered_queries = sorted((limit, first, second, index) for index, (first, second, limit) in enumerate(queries))
         answers = [False] * len(queries)
         edge_index = 0
 

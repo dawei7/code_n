@@ -12,7 +12,7 @@ If a distance is feasible, every smaller nonnegative distance is feasible. If it
 When the midpoint is feasible, search above it; otherwise search below it. At termination, the last feasible value is the largest achievable minimum force.
 
 ## Complexity detail
-Sorting a copied list of $n$ coordinates costs $O(n \log n)$ time and $O(n)$ space for the copy. Each feasibility scan costs $O(n)$ and binary search performs $O(\log R)$ scans, giving $O(n \log n+n \log R)$ total time. Beyond the sorted copy, the scan and search use $O(1)$ state.
+Sorting `position` in place costs $O(n \log n)$ time and uses $O(n)$ workspace in Python's worst case. Each feasibility scan costs $O(n)$ and binary search performs $O(\log R)$ scans, giving $O(n \log n+n \log R)$ total time. Beyond sorting, the scan and search use $O(1)$ state. The Accepted algorithm mutates the input order.
 
 ## Alternatives and edge cases
 - **Try every integer distance:** reuse the greedy feasibility test but check distances one by one, which can take $O(nR)$ time.

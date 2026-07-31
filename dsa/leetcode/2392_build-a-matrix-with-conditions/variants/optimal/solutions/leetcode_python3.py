@@ -17,11 +17,7 @@ class Solution:
                 adjacency[before].append(after)
                 indegree[after] += 1
 
-            queue = deque(
-                value
-                for value in range(1, k + 1)
-                if indegree[value] == 0
-            )
+            queue = deque(value for value in range(1, k + 1) if indegree[value] == 0)
             order = []
 
             while queue:
@@ -39,14 +35,8 @@ class Solution:
         if not row_order or not column_order:
             return []
 
-        row_position = {
-            value: index
-            for index, value in enumerate(row_order)
-        }
-        column_position = {
-            value: index
-            for index, value in enumerate(column_order)
-        }
+        row_position = {value: index for index, value in enumerate(row_order)}
+        column_position = {value: index for index, value in enumerate(column_order)}
         matrix = [[0] * k for _ in range(k)]
 
         for value in range(1, k + 1):

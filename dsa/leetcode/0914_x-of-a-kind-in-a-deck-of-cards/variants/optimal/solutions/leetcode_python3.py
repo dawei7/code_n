@@ -11,4 +11,3 @@ class Solution:
             if group_size == 1:
                 return False
         return group_size > 1
-

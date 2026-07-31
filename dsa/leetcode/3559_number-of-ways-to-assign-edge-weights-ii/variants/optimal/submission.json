@@ -1,14 +1,14 @@
 {
-  "schema_version": 1,
-  "provider": "leetcode.com",
-  "status": "verified",
-  "question_id": "3842",
-  "frontend_id": "3559",
-  "title_slug": "number-of-ways-to-assign-edge-weights-ii",
-  "paid_only": false,
-  "language": "python3",
-  "source": "solutions/leetcode_python3.py",
-  "native_entrypoint": "Solution.assignEdgeWeights",
-  "verified_submission_id": "2083038831",
-  "verified_at": "2026-07-27T07:58:00Z"
+    "schema_version":  1,
+    "provider":  "leetcode.com",
+    "status":  "verified",
+    "question_id":  "3842",
+    "frontend_id":  "3559",
+    "title_slug":  "number-of-ways-to-assign-edge-weights-ii",
+    "paid_only":  false,
+    "language":  "python3",
+    "source":  "solutions/leetcode_python3.py",
+    "native_entrypoint":  "Solution.assignEdgeWeights",
+    "verified_submission_id":  "2089301097",
+    "verified_at":  "2026-07-31T21:22:20.423+00:00"
 }

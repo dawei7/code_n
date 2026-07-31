@@ -8,4 +8,3 @@ class Solution:
                 cost += min(index, length - index)
 
         return cost
-

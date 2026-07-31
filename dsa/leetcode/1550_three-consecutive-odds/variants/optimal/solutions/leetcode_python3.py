@@ -14,4 +14,3 @@ class Solution:
                 streak = 0
 
         return False
-

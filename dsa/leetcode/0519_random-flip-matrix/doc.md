@@ -17,7 +17,7 @@ Design an $m \times n$ binary matrix whose cells all start at `0`. Each `flip()`
 ### Function Contract
 **Inputs**
 
-- `rows`, `cols`: the matrix dimensions
+- `m`, `n`: the matrix row and column counts
 - `random_values`, `operations`: the app adapter uses a repeatable uniform-value stream and a chronological list of `"flip"` and `"reset"` calls
 
 **Return value**
@@ -27,15 +27,15 @@ Design an $m \times n$ binary matrix whose cells all start at `0`. Each `flip()`
 ### Examples
 **Example 1**
 
-- Input: `rows = 2, cols = 2, operations = ["flip", "flip", "reset", "flip"]`
+- Input: `m = 2, n = 2, operations = ["flip", "flip", "reset", "flip"]`
 - Output: one valid trace is `[[0,0], [1,1], null, [0,0]]`
 
 **Example 2**
 
-- Input: `rows = 1, cols = 1, operations = ["flip", "reset", "flip"]`
+- Input: `m = 1, n = 1, operations = ["flip", "reset", "flip"]`
 - Output: `[[0,0], null, [0,0]]`
 
 **Example 3**
 
-- Input: `rows = 1, cols = 3, operations = ["flip", "flip"]`
+- Input: `m = 1, n = 3, operations = ["flip", "flip"]`
 - Output: any two distinct coordinates in that row

@@ -13,5 +13,4 @@ WITH Ranked AS (
 )
 SELECT Department, Employee, Salary
 FROM Ranked
-WHERE salary_rank <= 3
-ORDER BY Department, Salary DESC, Employee;
+WHERE salary_rank <= 3;

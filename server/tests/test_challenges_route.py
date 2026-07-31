@@ -181,7 +181,7 @@ class ChallengesRouteTest(conftest._Base):
         path = organized_solution_path("lc_1", "python")
         self.assertIsNotNone(path)
         self.assertTrue(path.is_file())
-        self.assertEqual(path.name, "python.py")
+        self.assertEqual(path.name, "solve.py")
 
     def test_details_expose_coden_and_exact_verified_native_submissions(self) -> None:
         for challenge_id, expected_language in (
@@ -300,7 +300,7 @@ class ChallengesRouteTest(conftest._Base):
         )
         self.assertTrue(optimal and optimal.is_file())
         self.assertTrue(simplified and simplified.is_file())
-        self.assertFalse((package / "solutions" / "python.py").is_file())
+        self.assertFalse((package / "solutions" / "solve.py").is_file())
         self.assertFalse((package / "submission.json").is_file())
 
     def test_1502_both_branches_pass_the_unchanged_shared_real_test(self) -> None:

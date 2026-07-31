@@ -1,10 +1,7 @@
 class Solution:
     def shortestWay(self, source: str, target: str) -> int:
         source_length = len(source)
-        next_position = [
-            [-1] * 26
-            for _ in range(source_length + 1)
-        ]
+        next_position = [[-1] * 26 for _ in range(source_length + 1)]
 
         for index in range(source_length - 1, -1, -1):
             next_position[index] = next_position[index + 1][:]
@@ -24,4 +21,3 @@ class Solution:
             source_index = position + 1
 
         return subsequences
-

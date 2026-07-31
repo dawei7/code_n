@@ -1,14 +1,14 @@
 {
-  "schema_version": 1,
-  "provider": "leetcode.com",
-  "status": "verified",
-  "question_id": "3894",
-  "frontend_id": "3572",
-  "title_slug": "maximize-ysum-by-picking-a-triplet-of-distinct-xvalues",
-  "paid_only": false,
-  "language": "python3",
-  "source": "solutions/leetcode_python3.py",
-  "native_entrypoint": "Solution.maxSumDistinctTriplet",
-  "verified_submission_id": "2083184312",
-  "verified_at": "2026-07-27T10:02:58Z"
+    "schema_version":  1,
+    "provider":  "leetcode.com",
+    "status":  "verified",
+    "question_id":  "3894",
+    "frontend_id":  "3572",
+    "title_slug":  "maximize-ysum-by-picking-a-triplet-of-distinct-xvalues",
+    "paid_only":  false,
+    "language":  "python3",
+    "source":  "solutions/leetcode_python3.py",
+    "native_entrypoint":  "Solution.maxSumDistinctTriplet",
+    "verified_submission_id":  "2089302078",
+    "verified_at":  "2026-07-31T21:22:20.423+00:00"
 }

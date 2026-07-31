@@ -21,10 +21,7 @@ class Solution:
         distances = [[0] * (pawns + 1) for _ in range(pawns + 1)]
 
         for source_index, (source_x, source_y) in enumerate(points[:-1]):
-            targets = {
-                tuple(points[target_index]): target_index
-                for target_index in range(source_index + 1, pawns + 1)
-            }
+            targets = {tuple(points[target_index]): target_index for target_index in range(source_index + 1, pawns + 1)}
             board = [[-1] * 50 for _ in range(50)]
             board[source_x][source_y] = 0
             queue = deque([(source_x, source_y)])
@@ -42,11 +39,7 @@ class Solution:
                 for dx, dy in moves:
                     next_x = x + dx
                     next_y = y + dy
-                    if (
-                        0 <= next_x < 50
-                        and 0 <= next_y < 50
-                        and board[next_x][next_y] == -1
-                    ):
+                    if 0 <= next_x < 50 and 0 <= next_y < 50 and board[next_x][next_y] == -1:
                         board[next_x][next_y] = board[x][y] + 1
                         queue.append((next_x, next_y))
 
@@ -62,9 +55,7 @@ class Solution:
             while choices:
                 pawn_bit = choices & -choices
                 pawn_index = pawn_bit.bit_length() - 1
-                total = distances[current][pawn_index] + play(
-                    pawn_index, remaining ^ pawn_bit
-                )
+                total = distances[current][pawn_index] + play(pawn_index, remaining ^ pawn_bit)
 
                 if alice_turn:
                     result = max(result, total)

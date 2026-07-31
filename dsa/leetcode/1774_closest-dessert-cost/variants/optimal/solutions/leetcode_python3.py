@@ -10,11 +10,7 @@ class Solution:
     ) -> int:
         topping_sums = {0}
         for cost in toppingCosts:
-            topping_sums |= {
-                current + copies * cost
-                for current in tuple(topping_sums)
-                for copies in (1, 2)
-            }
+            topping_sums |= {current + copies * cost for current in tuple(topping_sums) for copies in (1, 2)}
 
         answer = baseCosts[0]
         for base in baseCosts:

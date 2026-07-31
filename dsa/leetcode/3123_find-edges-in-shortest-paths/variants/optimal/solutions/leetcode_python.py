@@ -9,7 +9,7 @@ class Solution:
             graph[end].append((start, weight))
 
         def distances(source: int) -> List[int]:
-            result = [float('inf')] * n
+            result = [float("inf")] * n
             result[source] = 0
             heap = [(0, source)]
 
@@ -30,7 +30,7 @@ class Solution:
         shortest = from_start[n - 1]
 
         return [
-            shortest < float('inf')
+            shortest < float("inf")
             and (
                 from_start[start] + weight + from_end[end] == shortest
                 or from_start[end] + weight + from_end[start] == shortest

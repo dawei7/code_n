@@ -26,10 +26,7 @@ class Solution:
 
             right_pairs -= right_middle
             sum_left_right -= left_middle
-            sum_left_right_squared += left_middle * (
-                right_middle * right_middle
-                - old_right_middle * old_right_middle
-            )
+            sum_left_right_squared += left_middle * (right_middle * right_middle - old_right_middle * old_right_middle)
             sum_left_squared_right -= left_middle * left_middle
             right[middle] = right_middle
 
@@ -41,26 +38,16 @@ class Solution:
             other_left_pairs = left_pairs - choose_two(left_middle)
             other_right_pairs = right_pairs - choose_two(right_middle)
             other_cross = sum_left_right - left_middle * right_middle
-            other_left_right_squared = (
-                sum_left_right_squared
-                - left_middle * right_middle * right_middle
-            )
-            other_left_squared_right = (
-                sum_left_squared_right
-                - left_middle * left_middle * right_middle
-            )
+            other_left_right_squared = sum_left_right_squared - left_middle * right_middle * right_middle
+            other_left_squared_right = sum_left_squared_right - left_middle * left_middle * right_middle
 
             total = choose_two(left_size) * choose_two(right_size)
             invalid = choose_two(left_other) * choose_two(right_other)
             invalid += left_middle * (
-                left_other * other_right_pairs
-                + right_other * other_cross
-                - other_left_right_squared
+                left_other * other_right_pairs + right_other * other_cross - other_left_right_squared
             )
             invalid += right_middle * (
-                right_other * other_left_pairs
-                + left_other * other_cross
-                - other_left_squared_right
+                right_other * other_left_pairs + left_other * other_cross - other_left_squared_right
             )
             answer = (answer + total - invalid) % modulus
 

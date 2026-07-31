@@ -9,9 +9,7 @@ class Solution:
 
         for row, values in enumerate(grid, 1):
             for column, value in enumerate(values, 1):
-                down_right[row][column] = (
-                    down_right[row - 1][column - 1] + value
-                )
+                down_right[row][column] = down_right[row - 1][column - 1] + value
                 down_left[row][column] = down_left[row - 1][column + 1] + value
 
         biggest = set()
@@ -31,22 +29,10 @@ class Solution:
                     columns - column,
                 )
                 for radius in range(1, max_radius + 1):
-                    lower_left = (
-                        down_right[row + radius][column]
-                        - down_right[row][column - radius]
-                    )
-                    upper_right = (
-                        down_right[row][column + radius]
-                        - down_right[row - radius][column]
-                    )
-                    upper_left = (
-                        down_left[row][column - radius]
-                        - down_left[row - radius][column]
-                    )
-                    lower_right = (
-                        down_left[row + radius][column]
-                        - down_left[row][column + radius]
-                    )
+                    lower_left = down_right[row + radius][column] - down_right[row][column - radius]
+                    upper_right = down_right[row][column + radius] - down_right[row - radius][column]
+                    upper_left = down_left[row][column - radius] - down_left[row - radius][column]
+                    lower_right = down_left[row + radius][column] - down_left[row][column + radius]
                     border_sum = (
                         lower_left
                         + upper_right

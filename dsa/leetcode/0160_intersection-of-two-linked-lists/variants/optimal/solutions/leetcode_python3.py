@@ -2,9 +2,7 @@ from typing import Optional
 
 
 class Solution:
-    def getIntersectionNode(
-        self, headA: Optional["ListNode"], headB: Optional["ListNode"]
-    ) -> Optional["ListNode"]:
+    def getIntersectionNode(self, headA: Optional["ListNode"], headB: Optional["ListNode"]) -> Optional["ListNode"]:
         first = headA
         second = headB
         while first is not second:

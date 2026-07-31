@@ -5,7 +5,7 @@ class Solution:
         answer = 0
 
         for right, character in enumerate(s):
-            index = ord(character) - ord('a')
+            index = ord(character) - ord("a")
             left = max(left, last_seen[index] + 1)
             last_seen[index] = right
             answer += right - left + 1

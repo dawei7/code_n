@@ -10,10 +10,7 @@ class Solution:
 
         while low < high:
             middle = (low + high) // 2
-            not_greater = sum(
-                bisect_right(row, middle)
-                for row in grid
-            )
+            not_greater = sum(bisect_right(row, middle) for row in grid)
             if not_greater < target:
                 low = middle + 1
             else:

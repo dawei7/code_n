@@ -12,8 +12,6 @@ class Solution:
             prefix_sum += value
             remainder = length % k
             answer = max(answer, prefix_sum - minimum_prefix[remainder])
-            minimum_prefix[remainder] = min(
-                minimum_prefix[remainder], prefix_sum
-            )
+            minimum_prefix[remainder] = min(minimum_prefix[remainder], prefix_sum)
 
         return int(answer)

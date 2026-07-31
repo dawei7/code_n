@@ -22,11 +22,7 @@ class Solution:
                 for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                     next_row = row + row_step
                     next_column = column + column_step
-                    if (
-                        0 <= next_row < size
-                        and 0 <= next_column < size
-                        and not seen[next_row][next_column]
-                    ):
+                    if 0 <= next_row < size and 0 <= next_column < size and not seen[next_row][next_column]:
                         seen[next_row][next_column] = True
                         queue.append((next_row, next_column))
             distance += 1

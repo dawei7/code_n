@@ -5,10 +5,7 @@ class Solution:
         rocks: List[int],
         additionalRocks: int,
     ) -> int:
-        deficits = sorted(
-            maximum - current
-            for maximum, current in zip(capacity, rocks)
-        )
+        deficits = sorted(maximum - current for maximum, current in zip(capacity, rocks))
         full_bags = 0
 
         for deficit in deficits:

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "dae9e7514873f539f48be2065ea85d0960fb96dd7eea3a5f35891b01ef330b6d",
+    "native_sha256": "d5e191bc3803fa70ae885582ad734362329054a726b6590af6f6e6f9962d9048",
+    "solution_variants_sha256": "67fc6d5257442f7d12a5e0c2428bd0732f1925771dbe6283d385781bbe7c1af5",
+    "approach_sha256": "7251ca3a9290c1cfcca07d484881855a8b74b53b8b1451e5e7139928da8bef2f"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "relative month dates",
+      "native": "MySQL constructs the monthly bounds with DATE_ADD and INTERVAL.",
+      "app": "SQLite constructs the identical bounds with date and printf modifiers.",
+      "rationale": "SQLite does not implement MySQL's DATE_ADD or INTERVAL syntax. Both queries use the same two correlated counts and the same half-open month boundaries."
+    },
+    {
+      "aspect": "percentage division",
+      "native": "MySQL's numeric rules make the literal 100 produce the required fractional percentage.",
+      "app": "SQLite uses 100.0 to prevent integer division before rounding.",
+      "rationale": "The real-valued literal is required only by SQLite's arithmetic semantics; it does not alter the formula or data flow."
+    }
+  ]
+}

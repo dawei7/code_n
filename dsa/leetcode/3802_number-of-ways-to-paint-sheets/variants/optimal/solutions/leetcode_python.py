@@ -17,11 +17,7 @@ class Solution:
         for value in capacities:
             first = bisect_right(capacities, threshold - value)
             partner_count = color_count - first
-            ways += (
-                partner_count * (value - threshold)
-                + prefix[color_count]
-                - prefix[first]
-            )
+            ways += partner_count * (value - threshold) + prefix[color_count] - prefix[first]
             ways -= max(0, 2 * value - threshold)
 
         return ways % modulo

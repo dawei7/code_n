@@ -20,10 +20,7 @@ class Solution:
             if (
                 maximum_frequency == 1
                 or maximum_frequency * frequency_counts[maximum_frequency] + 1 == length
-                or (maximum_frequency - 1)
-                * (frequency_counts[maximum_frequency - 1] + 1)
-                + 1
-                == length
+                or (maximum_frequency - 1) * (frequency_counts[maximum_frequency - 1] + 1) + 1 == length
             ):
                 answer = length
         return answer

@@ -4,9 +4,9 @@ from typing import Optional
 class Solution:
     def addTwoNumbers(
         self,
-        l1: Optional['ListNode'],
-        l2: Optional['ListNode'],
-    ) -> Optional['ListNode']:
+        l1: Optional["ListNode"],
+        l2: Optional["ListNode"],
+    ) -> Optional["ListNode"]:
         first = []
         second = []
         while l1 is not None:

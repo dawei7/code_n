@@ -36,10 +36,7 @@ class Solution:
                             if isInfected[next_row][next_column] == 0:
                                 frontier.add((next_row, next_column))
                                 wall_count += 1
-                            elif (
-                                isInfected[next_row][next_column] == 1
-                                and (next_row, next_column) not in seen
-                            ):
+                            elif isInfected[next_row][next_column] == 1 and (next_row, next_column) not in seen:
                                 seen.add((next_row, next_column))
                                 stack.append((next_row, next_column))
 

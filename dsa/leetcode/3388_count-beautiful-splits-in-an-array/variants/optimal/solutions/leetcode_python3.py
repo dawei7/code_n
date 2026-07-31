@@ -15,8 +15,7 @@ class Solution:
                 )
             while (
                 position + prefix_matches[position] < n
-                and nums[prefix_matches[position]]
-                == nums[position + prefix_matches[position]]
+                and nums[prefix_matches[position]] == nums[position + prefix_matches[position]]
             ):
                 prefix_matches[position] += 1
             if position + prefix_matches[position] - 1 > right:
@@ -27,22 +26,14 @@ class Solution:
         next_lcp = [0] * (n + 1)
         for first_cut in range(n - 2, 0, -1):
             current_lcp = [0] * (n + 1)
-            first_can_prefix_second = (
-                prefix_matches[first_cut] >= first_cut
-            )
+            first_can_prefix_second = prefix_matches[first_cut] >= first_cut
             for second_cut in range(n - 1, first_cut, -1):
                 if nums[first_cut] == nums[second_cut]:
-                    current_lcp[second_cut] = (
-                        1 + next_lcp[second_cut + 1]
-                    )
+                    current_lcp[second_cut] = 1 + next_lcp[second_cut + 1]
 
                 second_length = second_cut - first_cut
-                if (
-                    first_can_prefix_second
-                    and first_cut <= second_length
-                ) or (
-                    second_length <= n - second_cut
-                    and current_lcp[second_cut] >= second_length
+                if (first_can_prefix_second and first_cut <= second_length) or (
+                    second_length <= n - second_cut and current_lcp[second_cut] >= second_length
                 ):
                     answer += 1
             next_lcp = current_lcp

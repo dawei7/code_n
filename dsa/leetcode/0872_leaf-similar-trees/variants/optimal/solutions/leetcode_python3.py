@@ -9,9 +9,7 @@ from typing import Iterator, Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def leafSimilar(
-        self, root1: Optional[TreeNode], root2: Optional[TreeNode]
-    ) -> bool:
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
         def leaf_values(root: Optional[TreeNode]) -> Iterator[int]:
             stack = [root] if root is not None else []
             while stack:

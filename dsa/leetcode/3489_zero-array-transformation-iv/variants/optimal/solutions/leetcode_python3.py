@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def minZeroArray(
-        self, nums: List[int], queries: List[List[int]]
-    ) -> int:
+    def minZeroArray(self, nums: List[int], queries: List[List[int]]) -> int:
         length = len(nums)
         possible = [1] * length
         masks = [(1 << (target + 1)) - 1 for target in nums]

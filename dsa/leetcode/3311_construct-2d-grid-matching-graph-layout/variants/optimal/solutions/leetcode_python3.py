@@ -2,9 +2,7 @@ from collections import deque
 
 
 class Solution:
-    def constructGridLayout(
-        self, n: int, edges: List[List[int]]
-    ) -> List[List[int]]:
+    def constructGridLayout(self, n: int, edges: List[List[int]]) -> List[List[int]]:
         graph = [[] for _ in range(n)]
         for first, second in edges:
             graph[first].append(second)

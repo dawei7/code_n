@@ -17,7 +17,4 @@ class Solution:
                     if len(best_neighbors[right]) > k:
                         heapq.heappop(best_neighbors[right])
 
-        return max(
-            vals[node] + sum(best_neighbors[node])
-            for node in range(len(vals))
-        )
+        return max(vals[node] + sum(best_neighbors[node]) for node in range(len(vals)))

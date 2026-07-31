@@ -11,7 +11,7 @@
       "size": 1,
       "input": {
         "s": "a",
-        "word_dict": [
+        "wordDict": [
           "a",
           "aa"
         ]
@@ -35,7 +35,7 @@
       "size": 6,
       "input": {
         "s": "aaaaaa",
-        "word_dict": [
+        "wordDict": [
           "a",
           "aa"
         ]
@@ -71,7 +71,7 @@
       "size": 10,
       "input": {
         "s": "aaaaaaaaaa",
-        "word_dict": [
+        "wordDict": [
           "a",
           "aa"
         ]

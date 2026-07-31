@@ -16,14 +16,6 @@ class Solution:
                     tails[position] = y
             return len(tails)
 
-        lower = [
-            point
-            for point in coordinates
-            if point[0] < target_x and point[1] < target_y
-        ]
-        upper = [
-            point
-            for point in coordinates
-            if point[0] > target_x and point[1] > target_y
-        ]
+        lower = [point for point in coordinates if point[0] < target_x and point[1] < target_y]
+        upper = [point for point in coordinates if point[0] > target_x and point[1] > target_y]
         return longest_chain(lower) + 1 + longest_chain(upper)

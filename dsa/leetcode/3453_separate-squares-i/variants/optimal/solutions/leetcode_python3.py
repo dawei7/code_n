@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def separateSquares(self, squares: List[List[int]]) -> float:
         total_area = sum(side * side for _, _, side in squares)

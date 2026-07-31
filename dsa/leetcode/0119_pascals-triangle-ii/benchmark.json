@@ -10,7 +10,7 @@
       "visible": false,
       "size": 1,
       "input": {
-        "row_index": 0
+        "rowIndex": 0
       },
       "expected": [
         1
@@ -27,7 +27,7 @@
       "visible": false,
       "size": 16,
       "input": {
-        "row_index": 15
+        "rowIndex": 15
       },
       "expected": [
         1,
@@ -59,7 +59,7 @@
       "visible": false,
       "size": 34,
       "input": {
-        "row_index": 33
+        "rowIndex": 33
       },
       "expected": [
         1,

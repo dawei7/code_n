@@ -16,7 +16,4 @@ class Solution:
             direct.add((left, right))
             direct.add((right, left))
 
-        return all(
-            first == second or (first, second) in direct
-            for first, second in zip(sentence1, sentence2)
-        )
+        return all(first == second or (first, second) in direct for first, second in zip(sentence1, sentence2))

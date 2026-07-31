@@ -19,4 +19,3 @@ class Solution:
             previous = current
 
         return len(word1) + len(word2) - 2 * previous[-1]
-

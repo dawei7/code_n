@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def findMissingAndRepeatedValues(
-        self, grid: List[List[int]]
-    ) -> List[int]:
+    def findMissingAndRepeatedValues(self, grid: List[List[int]]) -> List[int]:
         n = len(grid)
         limit = n * n
         observed_sum = 0

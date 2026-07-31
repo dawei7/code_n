@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def canMakePaliQueries(
-        self, s: str, queries: List[List[int]]
-    ) -> List[bool]:
+    def canMakePaliQueries(self, s: str, queries: List[List[int]]) -> List[bool]:
         masks = [0]
         for character in s:
             masks.append(masks[-1] ^ (1 << (ord(character) - ord("a"))))

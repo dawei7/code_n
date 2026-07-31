@@ -1,7 +1,5 @@
 class Solution:
-    def subtreeInversionSum(
-        self, edges: list[list[int]], nums: list[int], k: int
-    ) -> int:
+    def subtreeInversionSum(self, edges: list[list[int]], nums: list[int], k: int) -> int:
         n = len(nums)
         graph = [[] for _ in range(n)]
         for first, second in edges:
@@ -16,7 +14,7 @@ class Solution:
                     parent[neighbor] = node
                     order.append(neighbor)
 
-        negative_infinity = -10**30
+        negative_infinity = -(10**30)
         positive_infinity = 10**30
         pending_max = {}
         pending_min = {}
@@ -39,51 +37,31 @@ class Solution:
             child_suffix_max = lifted_max[:]
             child_suffix_min = lifted_min[:]
             for distance in range(k - 1, -1, -1):
-                current_suffix_max[distance] = max(
-                    current_suffix_max[distance], current_suffix_max[distance + 1]
-                )
-                current_suffix_min[distance] = min(
-                    current_suffix_min[distance], current_suffix_min[distance + 1]
-                )
-                child_suffix_max[distance] = max(
-                    child_suffix_max[distance], child_suffix_max[distance + 1]
-                )
-                child_suffix_min[distance] = min(
-                    child_suffix_min[distance], child_suffix_min[distance + 1]
-                )
+                current_suffix_max[distance] = max(current_suffix_max[distance], current_suffix_max[distance + 1])
+                current_suffix_min[distance] = min(current_suffix_min[distance], current_suffix_min[distance + 1])
+                child_suffix_max[distance] = max(child_suffix_max[distance], child_suffix_max[distance + 1])
+                child_suffix_min[distance] = min(child_suffix_min[distance], child_suffix_min[distance + 1])
 
             merged_max = [negative_infinity] * (k + 1)
             merged_min = [positive_infinity] * (k + 1)
             for distance in range(k + 1):
                 threshold = max(distance, k - distance)
-                if (
-                    current_max[distance] != negative_infinity
-                    and child_suffix_max[threshold] != negative_infinity
-                ):
+                if current_max[distance] != negative_infinity and child_suffix_max[threshold] != negative_infinity:
                     merged_max[distance] = max(
                         merged_max[distance],
                         current_max[distance] + child_suffix_max[threshold],
                     )
-                if (
-                    lifted_max[distance] != negative_infinity
-                    and current_suffix_max[threshold] != negative_infinity
-                ):
+                if lifted_max[distance] != negative_infinity and current_suffix_max[threshold] != negative_infinity:
                     merged_max[distance] = max(
                         merged_max[distance],
                         lifted_max[distance] + current_suffix_max[threshold],
                     )
-                if (
-                    current_min[distance] != positive_infinity
-                    and child_suffix_min[threshold] != positive_infinity
-                ):
+                if current_min[distance] != positive_infinity and child_suffix_min[threshold] != positive_infinity:
                     merged_min[distance] = min(
                         merged_min[distance],
                         current_min[distance] + child_suffix_min[threshold],
                     )
-                if (
-                    lifted_min[distance] != positive_infinity
-                    and current_suffix_min[threshold] != positive_infinity
-                ):
+                if lifted_min[distance] != positive_infinity and current_suffix_min[threshold] != positive_infinity:
                     merged_min[distance] = min(
                         merged_min[distance],
                         lifted_min[distance] + current_suffix_min[threshold],
@@ -115,8 +93,6 @@ class Solution:
             else:
                 ancestor_max = pending_max[ancestor]
                 ancestor_min = pending_min[ancestor]
-            pending_max[ancestor], pending_min[ancestor] = merge(
-                ancestor_max, ancestor_min, node_max, node_min
-            )
+            pending_max[ancestor], pending_min[ancestor] = merge(ancestor_max, ancestor_min, node_max, node_min)
 
         raise AssertionError("tree traversal did not reach the root")

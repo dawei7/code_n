@@ -23,11 +23,7 @@ class Solution:
                     stack.append((node.left, False))
                 continue
 
-            current_sum = (
-                node.val
-                + subtree_sum.get(node.left, 0)
-                + subtree_sum.get(node.right, 0)
-            )
+            current_sum = node.val + subtree_sum.get(node.left, 0) + subtree_sum.get(node.right, 0)
             subtree_sum[node] = current_sum
             sums.append(current_sum)
 

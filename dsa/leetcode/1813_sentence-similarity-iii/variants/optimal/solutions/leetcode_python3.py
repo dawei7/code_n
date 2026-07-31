@@ -10,10 +10,7 @@ class Solution:
             prefix += 1
 
         suffix = 0
-        while (
-            suffix < len(first) - prefix
-            and first[-1 - suffix] == second[-1 - suffix]
-        ):
+        while suffix < len(first) - prefix and first[-1 - suffix] == second[-1 - suffix]:
             suffix += 1
 
         return prefix + suffix == len(first)

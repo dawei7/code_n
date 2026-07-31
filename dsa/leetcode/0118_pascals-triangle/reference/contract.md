@@ -2,7 +2,7 @@
 
 **Inputs**
 
-- `num_rows`: The positive number of rows to generate.
+- `numRows`: The positive number of rows to generate.
 
 **Return value**
 

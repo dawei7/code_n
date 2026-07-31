@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def deleteTreeNodes(
-        self, nodes: int, parent: List[int], value: List[int]
-    ) -> int:
+    def deleteTreeNodes(self, nodes: int, parent: List[int], value: List[int]) -> int:
         children = [[] for _ in range(nodes)]
         for node in range(1, nodes):
             children[parent[node]].append(node)

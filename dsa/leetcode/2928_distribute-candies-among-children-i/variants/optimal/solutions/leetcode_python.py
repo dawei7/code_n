@@ -7,8 +7,5 @@ class Solution:
 
         step = limit + 1
         return (
-            unrestricted(n)
-            - 3 * unrestricted(n - step)
-            + 3 * unrestricted(n - 2 * step)
-            - unrestricted(n - 3 * step)
+            unrestricted(n) - 3 * unrestricted(n - step) + 3 * unrestricted(n - 2 * step) - unrestricted(n - 3 * step)
         )

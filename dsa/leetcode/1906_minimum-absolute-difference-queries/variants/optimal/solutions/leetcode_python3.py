@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def minDifference(
-        self, nums: List[int], queries: List[List[int]]
-    ) -> List[int]:
+    def minDifference(self, nums: List[int], queries: List[List[int]]) -> List[int]:
         prefix = [[0] * 101]
         for number in nums:
             counts = prefix[-1].copy()

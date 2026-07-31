@@ -8,13 +8,7 @@ class Solution:
             else:
                 runs.append([character, 1])
 
-            if (
-                character == ")"
-                and len(runs) >= 2
-                and runs[-1][1] == k
-                and runs[-2][0] == "("
-                and runs[-2][1] >= k
-            ):
+            if character == ")" and len(runs) >= 2 and runs[-1][1] == k and runs[-2][0] == "(" and runs[-2][1] >= k:
                 runs.pop()
                 runs[-1][1] -= k
                 if runs[-1][1] == 0:

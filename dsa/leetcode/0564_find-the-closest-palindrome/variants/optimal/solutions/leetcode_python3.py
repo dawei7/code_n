@@ -19,12 +19,9 @@ class Solution:
             candidates.add(int(palindrome))
 
         candidates.discard(value)
-        candidates = {
-            candidate for candidate in candidates if candidate >= 0
-        }
+        candidates = {candidate for candidate in candidates if candidate >= 0}
         best = min(
             candidates,
             key=lambda candidate: (abs(candidate - value), candidate),
         )
         return str(best)
-

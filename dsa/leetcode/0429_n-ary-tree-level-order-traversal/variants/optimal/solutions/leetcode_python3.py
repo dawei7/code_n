@@ -3,7 +3,7 @@ from typing import List
 
 
 class Solution:
-    def levelOrder(self, root: 'Node') -> List[List[int]]:
+    def levelOrder(self, root: "Node") -> List[List[int]]:
         if root is None:
             return []
 

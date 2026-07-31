@@ -1,8 +1,14 @@
-function cancellable(fn, args, t) {
+/**
+ * @param {Function} fn
+ * @param {Array} args
+ * @param {number} t
+ * @return {Function}
+ */
+var cancellable = function(fn, args, t) {
     fn(...args);
     const intervalId = setInterval(() => fn(...args), t);
     return () => clearInterval(intervalId);
-}
+};
 
 function solve(operation, args, t, cancelTimeMs) {
     let fn;
@@ -11,11 +17,35 @@ function solve(operation, args, t, cancelTimeMs) {
     else if (operation === "sum") fn = (...values) => values.reduce((total, value) => total + value, 0);
     else throw new Error(`Unsupported operation: ${operation}`);
 
+    const originalSetInterval = globalThis.setInterval;
+    const originalClearInterval = globalThis.clearInterval;
+    let intervalCallback = null;
+    let intervalActive = false;
+    let logicalTime = 0;
+    globalThis.setInterval = (callback) => {
+        intervalCallback = callback;
+        intervalActive = true;
+        return 1;
+    };
+    globalThis.clearInterval = () => {
+        intervalActive = false;
+    };
+
     const calls = [];
-    for (let time = 0; time < cancelTimeMs; time += t) {
-        calls.push({ time, returned: fn(...args) });
+    const invoke = (...values) => {
+        calls.push({ time: logicalTime, returned: fn(...values) });
+    };
+    try {
+        const cancel = cancellable(invoke, args, t);
+        for (logicalTime = t; logicalTime < cancelTimeMs; logicalTime += t) {
+            if (intervalActive) intervalCallback();
+        }
+        cancel();
+        return calls;
+    } finally {
+        globalThis.setInterval = originalSetInterval;
+        globalThis.clearInterval = originalClearInterval;
     }
-    return calls;
 }
 
 module.exports = { cancellable, solve };

@@ -7,11 +7,7 @@ class Solution:
         values = set()
 
         for mask in range(1, 1 << 7):
-            digits = "".join(
-                str(digit) * digit
-                for digit in range(1, 8)
-                if mask & (1 << (digit - 1))
-            )
+            digits = "".join(str(digit) * digit for digit in range(1, 8) if mask & (1 << (digit - 1)))
             if len(digits) <= 7:
                 values.update(int("".join(order)) for order in permutations(digits))
 

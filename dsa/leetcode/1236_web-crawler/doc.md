@@ -14,43 +14,44 @@
 
 ### Goal
 
-A collection of web pages is represented by URLs and directed links. Starting from `start_url`, crawl every page that is reachable by following links, but include a page only when its hostname is exactly the same as the hostname of `start_url`. A hostname is the portion between the `http://` prefix and the next `"/"`, if any.
+A collection of web pages is represented by URLs and directed links. Starting from `startUrl`, crawl every page that is reachable by following links, but include a page only when its hostname is exactly the same as the hostname of `startUrl`. A hostname is the portion between the `http://` prefix and the next `"/"`, if any.
 
-Each reachable same-host page must appear exactly once in the result, including `start_url`, and the URLs may be returned in any order. Links may form cycles, may point back to pages already visited, and may lead to another hostname; do not crawl beyond an off-host URL. In cOde(n), `urls` and index pairs in `edges` provide the deterministic graph used by LeetCode's `HtmlParser.getUrls` interface.
+Each reachable same-host page must appear exactly once in the result, including `startUrl`, and the URLs may be returned in any order. Links may form cycles, may point back to pages already visited, and may lead to another hostname; do not crawl beyond an off-host URL. The read-only `HtmlParser.getUrls(url)` interface supplies the outgoing links for a page.
 
 ### Function Contract
 
 **Inputs**
 
-- `urls`: A list of unique page URLs; index $i$ identifies page `urls[i]`.
-- `edges`: Directed pairs `[from_index, to_index]` indicating that the first page links to the second.
-- `start_url`: A URL contained in `urls` from which the crawl begins.
+- `startUrl`: The URL from which the crawl begins.
+- `htmlParser`: A read-only `HtmlParser` object whose `getUrls(url)` method returns the URLs linked from `url`.
+
+Authored JSON cases construct `htmlParser` from a fixture containing unique `urls` and directed index pairs `edges`; these are fixture fields, not additional function parameters.
 
 Let $V$ be the number of reachable same-host URLs and $E$ the number of outgoing links inspected from those URLs.
 
 **Return value**
 
-- Every URL reachable from `start_url` without leaving its hostname, in any order and without duplicates.
+- Every URL reachable from `startUrl` without leaving its hostname, in any order and without duplicates.
 
 ### Examples
 
 **Example 1**
 
-- Input: `urls = ["http://news.yahoo.com","http://news.yahoo.com/news","http://news.yahoo.com/news/topics/","http://news.google.com","http://news.yahoo.com/us"]`, `edges = [[2,0],[2,1],[3,2],[3,1],[0,4]]`, `start_url = "http://news.yahoo.com/news/topics/"`
+- Input: `startUrl = "http://news.yahoo.com/news/topics/"`, `htmlParser = {"urls":["http://news.yahoo.com","http://news.yahoo.com/news","http://news.yahoo.com/news/topics/","http://news.google.com","http://news.yahoo.com/us"],"edges":[[2,0],[2,1],[3,2],[3,1],[0,4]]}`
 - Output: `["http://news.yahoo.com/news/topics/","http://news.yahoo.com","http://news.yahoo.com/news","http://news.yahoo.com/us"]`
 
 The three Yahoo pages reached through links stay within the starting hostname.
 
 **Example 2**
 
-- Input: `urls = ["http://news.yahoo.com","http://news.yahoo.com/news","http://news.yahoo.com/news/topics/","http://news.google.com"]`, `edges = [[0,2],[2,1],[3,2],[3,1],[3,0]]`, `start_url = "http://news.google.com"`
+- Input: `startUrl = "http://news.google.com"`, `htmlParser = {"urls":["http://news.yahoo.com","http://news.yahoo.com/news","http://news.yahoo.com/news/topics/","http://news.google.com"],"edges":[[0,2],[2,1],[3,2],[3,1],[3,0]]}`
 - Output: `["http://news.google.com"]`
 
 Every outgoing link changes the hostname, so none is followed.
 
 **Example 3**
 
-- Input: `urls = ["http://a.com","http://a.com/x","http://a.com/y"]`, `edges = [[0,1],[1,2],[2,0]]`, `start_url = "http://a.com"`
+- Input: `startUrl = "http://a.com"`, `htmlParser = {"urls":["http://a.com","http://a.com/x","http://a.com/y"],"edges":[[0,1],[1,2],[2,0]]}`
 - Output: `["http://a.com","http://a.com/x","http://a.com/y"]`
 
 The visited set terminates the cycle while retaining each page once.

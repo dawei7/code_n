@@ -10,9 +10,10 @@ sooner without changing the set of complete distributions.
 **Prune branches that cannot improve the answer**
 
 Initialize the best unfairness with the valid distribution that gives every
-bag to one child. If a partial assignment's largest load is already at least
-that best value, positive remaining bags cannot reduce it, so discard the
-branch. At a complete assignment, replace the incumbent with its maximum load.
+bag to one child. Before placing the current bag on a child, skip that choice
+when the resulting child load would already be at least the incumbent. Positive
+remaining bags cannot lower that load, and an equal result cannot improve the
+answer. At a complete assignment, replace the incumbent with its maximum load.
 
 **Remove symmetric choices**
 

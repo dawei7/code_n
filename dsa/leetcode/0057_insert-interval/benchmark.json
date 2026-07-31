@@ -140,7 +140,7 @@
             62
           ]
         ],
-        "new_interval": [
+        "newInterval": [
           -1,
           64
         ]
@@ -1190,7 +1190,7 @@
             510
           ]
         ],
-        "new_interval": [
+        "newInterval": [
           -1,
           512
         ]
@@ -9408,7 +9408,7 @@
             4094
           ]
         ],
-        "new_interval": [
+        "newInterval": [
           -1,
           4096
         ]

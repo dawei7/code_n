@@ -7,9 +7,7 @@ class Solution:
         suffix_minimum = [float("inf")] * (length + 1)
 
         for index in range(length - 1, -1, -1):
-            suffix_minimum[index] = min(
-                nums[index], suffix_minimum[index + 1]
-            )
+            suffix_minimum[index] = min(nums[index], suffix_minimum[index + 1])
 
         beauty = 0
         prefix_maximum = nums[0]

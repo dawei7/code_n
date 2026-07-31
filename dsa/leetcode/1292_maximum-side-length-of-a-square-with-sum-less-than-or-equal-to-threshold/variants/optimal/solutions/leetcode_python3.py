@@ -9,10 +9,7 @@ class Solution:
         for row in range(rows):
             for column in range(columns):
                 prefix[row + 1][column + 1] = (
-                    mat[row][column]
-                    + prefix[row][column + 1]
-                    + prefix[row + 1][column]
-                    - prefix[row][column]
+                    mat[row][column] + prefix[row][column + 1] + prefix[row + 1][column] - prefix[row][column]
                 )
 
         def square_sum(row: int, column: int, side: int) -> int:
@@ -26,10 +23,6 @@ class Solution:
         best = 0
         for row in range(rows):
             for column in range(columns):
-                while (
-                    row + best < rows
-                    and column + best < columns
-                    and square_sum(row, column, best + 1) <= threshold
-                ):
+                while row + best < rows and column + best < columns and square_sum(row, column, best + 1) <= threshold:
                     best += 1
         return best

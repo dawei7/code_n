@@ -9,9 +9,7 @@ class Solution:
         for _ in range(point_count):
             next_point = -1
             for point in range(point_count):
-                if not in_tree[point] and (
-                    next_point == -1 or best_distance[point] < best_distance[next_point]
-                ):
+                if not in_tree[point] and (next_point == -1 or best_distance[point] < best_distance[next_point]):
                     next_point = point
 
             in_tree[next_point] = True

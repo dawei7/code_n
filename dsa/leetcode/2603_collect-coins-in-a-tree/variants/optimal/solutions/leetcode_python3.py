@@ -14,9 +14,7 @@ class Solution:
             degree[second] += 1
 
         remaining_edges = n - 1
-        leaves = deque(
-            node for node in range(n) if degree[node] == 1 and coins[node] == 0
-        )
+        leaves = deque(node for node in range(n) if degree[node] == 1 and coins[node] == 0)
         while leaves:
             leaf = leaves.popleft()
             degree[leaf] = 0

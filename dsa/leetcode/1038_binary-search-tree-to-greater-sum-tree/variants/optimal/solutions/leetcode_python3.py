@@ -17,4 +17,3 @@ class Solution:
             node = node.left
 
         return root
-

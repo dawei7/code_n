@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def sameEndSubstringCount(
-        self, s: str, queries: List[List[int]]
-    ) -> List[int]:
+    def sameEndSubstringCount(self, s: str, queries: List[List[int]]) -> List[int]:
         prefix = [[0] * 26]
 
         for character in s:

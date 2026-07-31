@@ -2,20 +2,15 @@ from functools import cmp_to_key
 
 
 class Solution:
-    def minDamage(
-        self, power: int, damage: List[int], health: List[int]
-    ) -> int:
+    def minDamage(self, power: int, damage: List[int], health: List[int]) -> int:
         enemies = [
-            ((enemy_health + power - 1) // power, enemy_damage)
-            for enemy_damage, enemy_health in zip(damage, health)
+            ((enemy_health + power - 1) // power, enemy_damage) for enemy_damage, enemy_health in zip(damage, health)
         ]
 
         def compare(first: tuple[int, int], second: tuple[int, int]) -> int:
             first_before = first[0] * second[1]
             second_before = second[0] * first[1]
-            return (first_before > second_before) - (
-                first_before < second_before
-            )
+            return (first_before > second_before) - (first_before < second_before)
 
         enemies.sort(key=cmp_to_key(compare))
 

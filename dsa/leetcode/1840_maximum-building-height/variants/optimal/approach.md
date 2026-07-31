@@ -40,4 +40,5 @@ There are $r+2$ stored limits. Sorting them takes $O(r\log r)$ time; the two pro
 - **Zero-height interior cap:** The profile may rise on both sides of that building but must meet zero there.
 - **Odd interval surplus:** Integer division floors the meeting height when the two slopes cannot meet on one integer building.
 - **Unsorted input restrictions:** Sort by ID before propagation.
+- **Input mutation:** The augmented limit list reuses the supplied restriction pairs, so tightening their height fields is observable to the caller just as in the native Accepted implementation.
 - **Large coordinates and caps:** Use arithmetic wide enough for sums involving values near $10^9$.

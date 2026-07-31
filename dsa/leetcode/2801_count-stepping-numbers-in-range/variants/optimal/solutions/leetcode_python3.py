@@ -2,6 +2,7 @@ from functools import lru_cache
 
 MOD = 10**9 + 7
 
+
 class Solution:
     def countSteppingNumbers(self, low: str, high: str) -> int:
         def count_at_most(bound: str) -> int:

@@ -14,41 +14,18 @@ class Solution:
                 for k in range(j, len(values)):
                     third = values[k]
                     total = first + second + third
-                    divisible = (
-                        (total % first == 0)
-                        + (total % second == 0)
-                        + (total % third == 0)
-                    )
+                    divisible = (total % first == 0) + (total % second == 0) + (total % third == 0)
                     if divisible != 1:
                         continue
 
                     if first == third:
-                        ways = (
-                            frequency[first]
-                            * (frequency[first] - 1)
-                            * (frequency[first] - 2)
-                        )
+                        ways = frequency[first] * (frequency[first] - 1) * (frequency[first] - 2)
                     elif first == second:
-                        ways = (
-                            3
-                            * frequency[first]
-                            * (frequency[first] - 1)
-                            * frequency[third]
-                        )
+                        ways = 3 * frequency[first] * (frequency[first] - 1) * frequency[third]
                     elif second == third:
-                        ways = (
-                            3
-                            * frequency[first]
-                            * frequency[second]
-                            * (frequency[second] - 1)
-                        )
+                        ways = 3 * frequency[first] * frequency[second] * (frequency[second] - 1)
                     else:
-                        ways = (
-                            6
-                            * frequency[first]
-                            * frequency[second]
-                            * frequency[third]
-                        )
+                        ways = 6 * frequency[first] * frequency[second] * frequency[third]
                     answer += ways
 
         return answer

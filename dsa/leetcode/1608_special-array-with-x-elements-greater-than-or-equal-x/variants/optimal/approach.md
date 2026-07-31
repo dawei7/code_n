@@ -6,7 +6,7 @@
 If no boundary satisfies both conditions, no positive candidate works. The value $x=0$ cannot work for a nonempty non-negative array because all $n$ elements are at least zero, so returning `-1` is then correct.
 
 ## Complexity detail
-Sorting $n$ values costs $O(n\log n)$ time, and the boundary scan costs $O(n)$. The app-local implementation creates a sorted copy, using $O(n)$ space and leaving the supplied array unchanged.
+Sorting $n$ values costs $O(n\log n)$ time, and the boundary scan costs $O(n)$. The Accepted implementation sorts `nums` in place; Python's sorting workspace uses $O(n)$ auxiliary space in the worst case.
 
 ## Alternatives and edge cases
 - **Count separately for every candidate:** Trying every $x$ from 0 through $n$ and rescanning the array is correct but takes $O(n^2)$ time.

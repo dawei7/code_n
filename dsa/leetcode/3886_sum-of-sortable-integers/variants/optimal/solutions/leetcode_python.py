@@ -25,10 +25,7 @@ class Solution:
 
         answer = 0
         for block_length in divisors:
-            if any(
-                not good_cut[cut]
-                for cut in range(block_length, n, block_length)
-            ):
+            if any(not good_cut[cut] for cut in range(block_length, n, block_length)):
                 continue
 
             sortable = True

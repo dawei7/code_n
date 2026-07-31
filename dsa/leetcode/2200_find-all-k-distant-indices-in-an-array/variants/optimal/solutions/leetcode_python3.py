@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def findKDistantIndices(
-        self, nums: List[int], key: int, k: int
-    ) -> List[int]:
+    def findKDistantIndices(self, nums: List[int], key: int, k: int) -> List[int]:
         answer = []
         next_uncovered = 0
 

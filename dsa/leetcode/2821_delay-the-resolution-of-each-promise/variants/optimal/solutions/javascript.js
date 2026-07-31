@@ -1,4 +1,9 @@
-function delayAll(functions, ms) {
+/**
+ * @param {Array<Function>} functions
+ * @param {number} ms
+ * @return {Array<Function>}
+ */
+var delayAll = function(functions, ms) {
     return functions.map((fn) => () =>
         fn().then(
             (value) =>
@@ -11,24 +16,34 @@ function delayAll(functions, ms) {
                 })
         )
     );
-}
+};
 
-function solve(tasks, ms) {
-    return tasks.map((task) => {
-        const completionTime = task.delay + ms;
-        if (Object.prototype.hasOwnProperty.call(task, "reject")) {
+async function solve(tasks, ms) {
+    const functions = tasks.map((task) => () => new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (Object.prototype.hasOwnProperty.call(task, "reject")) {
+                reject(task.reject);
+            } else {
+                resolve(task.value);
+            }
+        }, task.delay);
+    }));
+    const delayed = delayAll(functions, ms);
+    return Promise.all(delayed.map(async (fn, index) => {
+        try {
+            return {
+                status: "resolved",
+                value: await fn(),
+                completionTime: tasks[index].delay + ms,
+            };
+        } catch (reason) {
             return {
                 status: "rejected",
-                reason: task.reject,
-                completionTime,
+                reason,
+                completionTime: tasks[index].delay + ms,
             };
         }
-        return {
-            status: "resolved",
-            value: task.value,
-            completionTime,
-        };
-    });
+    }));
 }
 
 module.exports = { delayAll, solve };

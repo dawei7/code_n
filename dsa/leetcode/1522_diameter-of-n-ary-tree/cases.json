@@ -8,7 +8,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [
@@ -54,7 +54,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [
@@ -103,7 +103,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "tree": [
+        "root": [
           [
             7,
             []
@@ -122,7 +122,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "tree": [
+        "root": [
           [
             10,
             [
@@ -165,7 +165,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [
@@ -211,7 +211,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [
@@ -265,7 +265,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "tree": [
+        "root": [
           [
             4,
             []
@@ -313,7 +313,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [
@@ -390,7 +390,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "tree": [
+        "root": [
           [
             9,
             [
@@ -428,7 +428,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "tree": [
+        "root": [
           [
             1,
             [

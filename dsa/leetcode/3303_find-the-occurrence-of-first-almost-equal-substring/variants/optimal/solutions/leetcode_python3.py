@@ -8,10 +8,7 @@ class Solution:
             for index in range(1, len(text)):
                 if index <= right:
                     values[index] = min(right - index + 1, values[index - left])
-                while (
-                    index + values[index] < len(text)
-                    and text[values[index]] == text[index + values[index]]
-                ):
+                while index + values[index] < len(text) and text[values[index]] == text[index + values[index]]:
                     values[index] += 1
                 if index + values[index] - 1 > right:
                     left = index

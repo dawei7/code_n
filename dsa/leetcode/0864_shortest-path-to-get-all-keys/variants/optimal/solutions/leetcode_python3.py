@@ -32,9 +32,7 @@ class Solution:
                 cell = grid[next_row][next_column]
                 if cell == "#":
                     continue
-                if "A" <= cell <= "F" and not (
-                    key_mask & (1 << (ord(cell) - ord("A")))
-                ):
+                if "A" <= cell <= "F" and not (key_mask & (1 << (ord(cell) - ord("A")))):
                     continue
 
                 next_mask = key_mask

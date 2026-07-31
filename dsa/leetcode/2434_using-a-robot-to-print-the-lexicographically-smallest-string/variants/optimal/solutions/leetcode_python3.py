@@ -14,10 +14,7 @@ class Solution:
             remaining[index] -= 1
             while smallest < 26 and remaining[smallest] == 0:
                 smallest += 1
-            while stack and (
-                smallest == 26
-                or ord(stack[-1]) - ord("a") <= smallest
-            ):
+            while stack and (smallest == 26 or ord(stack[-1]) - ord("a") <= smallest):
                 written.append(stack.pop())
 
         return "".join(written)

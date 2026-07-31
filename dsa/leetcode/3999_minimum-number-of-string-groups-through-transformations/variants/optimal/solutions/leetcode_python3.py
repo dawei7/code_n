@@ -27,13 +27,15 @@ class Solution:
                 offset = 0
 
             start = min(first, second)
-            return doubled[start:start + length]
+            return doubled[start : start + length]
 
         signatures = set()
         for word in words:
-            signatures.add((
-                minimal_rotation(word[::2]),
-                minimal_rotation(word[1::2]),
-            ))
+            signatures.add(
+                (
+                    minimal_rotation(word[::2]),
+                    minimal_rotation(word[1::2]),
+                )
+            )
 
         return len(signatures)

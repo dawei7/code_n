@@ -11,9 +11,7 @@ class TweetCounts:
     def recordTweet(self, tweetName: str, time: int) -> None:
         self.times[tweetName].append(time)
 
-    def getTweetCountsPerFrequency(
-        self, freq: str, tweetName: str, startTime: int, endTime: int
-    ) -> List[int]:
+    def getTweetCountsPerFrequency(self, freq: str, tweetName: str, startTime: int, endTime: int) -> List[int]:
         width = self._WIDTHS[freq]
         counts = [0] * ((endTime - startTime) // width + 1)
         for time in self.times.get(tweetName, ()):

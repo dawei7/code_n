@@ -6,9 +6,7 @@ def digit_signature(value):
     return tuple(counts)
 
 
-POWER_OF_TWO_SIGNATURES = {
-    digit_signature(1 << exponent) for exponent in range(34)
-}
+POWER_OF_TWO_SIGNATURES = {digit_signature(1 << exponent) for exponent in range(34)}
 
 
 class Solution:

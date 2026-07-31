@@ -33,7 +33,7 @@ A candidate that is not a bridge lies on a cycle of current-weight edges in the 
 
 Only after every edge in the weight group has been classified, union all of the group's endpoints in the global DSU. This records connectivity available to heavier groups without letting arbitrary order inside the current group distort its bridge structure.
 
-Finally, sort the two index lists for deterministic app output. The semantic validator keeps the critical and pseudo-critical categories in place while accepting any index order within each.
+Return the two index lists after the final weight group. Their internal order follows the Accepted traversal; the semantic validator keeps the critical and pseudo-critical categories in place while accepting any valid index order within each.
 
 **Why every edge is classified exactly once**
 

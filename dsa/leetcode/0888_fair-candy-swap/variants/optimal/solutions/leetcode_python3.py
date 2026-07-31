@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def fairCandySwap(
-        self, aliceSizes: List[int], bobSizes: List[int]
-    ) -> List[int]:
+    def fairCandySwap(self, aliceSizes: List[int], bobSizes: List[int]) -> List[int]:
         difference = (sum(aliceSizes) - sum(bobSizes)) // 2
         bob_boxes = set(bobSizes)
         for alice_box in aliceSizes:

@@ -14,5 +14,4 @@ SELECT c.activity
 FROM activity_counts AS c
 CROSS JOIN bounds AS b
 WHERE c.participants > b.minimum_count
-  AND c.participants < b.maximum_count
-ORDER BY c.activity;
+  AND c.participants < b.maximum_count;

@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def findMinimumTime(self, strength: List[int], k: int) -> int:
         lock_count = len(strength)

@@ -5,7 +5,7 @@ class Solution:
         for index, value in enumerate(nums):
             prefix[index + 1] = prefix[index] + value
 
-        negative_infinity = -10**30
+        negative_infinity = -(10**30)
         previous = [0] * (n + 1)
 
         for chosen in range(1, k + 1):

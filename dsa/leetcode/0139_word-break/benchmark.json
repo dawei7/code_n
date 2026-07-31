@@ -11,7 +11,7 @@
       "size": 2,
       "input": {
         "s": "ab",
-        "word_dict": [
+        "wordDict": [
           "a",
           "aa",
           "aaa",
@@ -32,7 +32,7 @@
       "size": 16,
       "input": {
         "s": "aaaaaaaaaaaaaaab",
-        "word_dict": [
+        "wordDict": [
           "a",
           "aa",
           "aaa",
@@ -53,7 +53,7 @@
       "size": 64,
       "input": {
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
-        "word_dict": [
+        "wordDict": [
           "a",
           "aa",
           "aaa",

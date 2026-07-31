@@ -4,8 +4,4 @@ class Solution:
         for character in s:
             frequencies[ord(character) - ord("a")] += 1
 
-        return sum(
-            1 if frequency % 2 == 1 else 2
-            for frequency in frequencies
-            if frequency > 0
-        )
+        return sum(1 if frequency % 2 == 1 else 2 for frequency in frequencies if frequency > 0)

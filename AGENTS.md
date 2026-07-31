@@ -89,7 +89,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
       approach.md
       submission.json
       solutions/
-        python.py               # canonical app-friendly reference
+        solve.py                # canonical app-friendly Python reference
         <language>.<extension>  # optional same-language references
         leetcode_<lang>.<ext>   # optional native submission candidate
     simplified/              # optional; authored in a later reviewed pass
@@ -129,6 +129,11 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   structure. Keep identity, contract, cases, and legal benchmarks shared;
   separate each branch's Required Complexity, approach, app-local source,
   native source, and evidence. The Optimal branch stays first and default.
+- `SOLUTION_ALIGNMENT.md` is authoritative for proving that each app-local
+  Optimal source and its exact Accepted native source use the same algorithm,
+  data flow, helper logic, permitted naming, and stated complexity. Structural
+  differences remain in its ascending review queue unless a permitted,
+  unavoidable adapter or dialect difference has a current hash-bound review.
 - Publish a simplified branch only for an Elo-eligible Easy or Medium problem
   after it passes the unchanged shared judge and its exact native source is
   remotely Accepted. If that source is rejected, remove the simplified branch
@@ -444,6 +449,13 @@ lives under Electron `app.getPath('userData')`.
 - Generated starter signatures must come from the executable contract: prefer
   the authored app-local `solve(...)` signature, then authored `cases.json`
   input keys. Never infer parameters from unconstrained prose bullets.
+- LeetCode may show source-native models such as `TreeNode`, `ListNode`, `Node`,
+  or `Point` as comments because its judge injects them. An app-local Python
+  reference that uses such a model must define the minimal class explicitly,
+  mark it with a `Local equivalent of ...` class docstring, and include it in
+  the generated editable user starter. Never rely on an invisible runner
+  global or hide an undefined model name with `# noqa: F821`; runner injection
+  exists only for backward compatibility with already saved user files.
 - Under `Function Contract` -> `Inputs`, format only real parameters as
   ``- `name`: ...`` entries. Put shared constraints and semantic notes in
   paragraphs or subordinate prose so they cannot be mistaken for parameters.

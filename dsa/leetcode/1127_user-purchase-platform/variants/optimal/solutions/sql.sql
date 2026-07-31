@@ -7,28 +7,20 @@ WITH user_days AS (
     FROM Spending
     GROUP BY user_id, spend_date
 ),
-dates AS (
-    SELECT DISTINCT spend_date
-    FROM Spending
-),
-platforms(platform) AS (
-    VALUES ('desktop'), ('mobile'), ('both')
+platforms AS (
+    SELECT DISTINCT spend_date, 'desktop' AS platform FROM Spending
+    UNION ALL
+    SELECT DISTINCT spend_date, 'mobile' AS platform FROM Spending
+    UNION ALL
+    SELECT DISTINCT spend_date, 'both' AS platform FROM Spending
 )
 SELECT
-    dates.spend_date,
+    platforms.spend_date,
     platforms.platform,
     COALESCE(SUM(user_days.amount), 0) AS total_amount,
     COUNT(user_days.user_id) AS total_users
-FROM dates
-CROSS JOIN platforms
+FROM platforms
 LEFT JOIN user_days
-    ON user_days.spend_date = dates.spend_date
+    ON user_days.spend_date = platforms.spend_date
    AND user_days.platform = platforms.platform
-GROUP BY dates.spend_date, platforms.platform
-ORDER BY
-    dates.spend_date,
-    CASE platforms.platform
-        WHEN 'desktop' THEN 1
-        WHEN 'mobile' THEN 2
-        ELSE 3
-    END;
+GROUP BY platforms.spend_date, platforms.platform;

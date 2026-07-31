@@ -16,15 +16,9 @@ class Solution:
             best = max(best, right - left + 1)
         return best
 
-    def _cost(
-        self, values: List[int], prefix: List[int], left: int, right: int
-    ) -> int:
+    def _cost(self, values: List[int], prefix: List[int], left: int, right: int) -> int:
         middle = (left + right) // 2
         median = values[middle]
         left_cost = median * (middle - left) - (prefix[middle] - prefix[left])
-        right_cost = (
-            prefix[right + 1]
-            - prefix[middle + 1]
-            - median * (right - middle)
-        )
+        right_cost = prefix[right + 1] - prefix[middle + 1] - median * (right - middle)
         return left_cost + right_cost

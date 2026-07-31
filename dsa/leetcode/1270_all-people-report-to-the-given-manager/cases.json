@@ -15,12 +15,14 @@
         {"employee_id": 77, "employee_name": "Robert", "manager_id": 1}
       ]}},
       "expected": {"columns": ["employee_id"], "rows": [[2], [4], [7], [77]]},
+      "validator": {"kind": "unordered_table"},
       "tags": ["sample", "mixed-hierarchies"]
     },
     {
       "id": "sample-head-only", "name": "sample: no employees report to the head", "kind": "sample", "visible": true,
       "input": {"tables": {"Employees": [{"employee_id": 1, "employee_name": "Boss", "manager_id": 1}]}},
       "expected": {"columns": ["employee_id"], "rows": []},
+      "validator": {"kind": "unordered_table"},
       "tags": ["sample", "empty"]
     },
     {
@@ -32,6 +34,7 @@
         {"employee_id": 4, "employee_name": "C", "manager_id": 3}
       ]}},
       "expected": {"columns": ["employee_id"], "rows": [[2], [3], [4]]},
+      "validator": {"kind": "unordered_table"},
       "tags": ["trial", "maximum-depth"]
     },
     {
@@ -41,6 +44,7 @@
         {"employee_id": 10, "employee_name": "Direct", "manager_id": 1}
       ]}},
       "expected": {"columns": ["employee_id"], "rows": [[10]]},
+      "validator": {"kind": "unordered_table"},
       "tags": ["trial", "direct"]
     },
     {
@@ -52,6 +56,7 @@
         {"employee_id": 21, "employee_name": "OtherWorker", "manager_id": 20}
       ]}},
       "expected": {"columns": ["employee_id"], "rows": [[2]]},
+      "validator": {"kind": "unordered_table"},
       "tags": ["hidden", "separate-hierarchy"]
     },
     {
@@ -65,6 +70,7 @@
         {"employee_id": 6, "employee_name": "E", "manager_id": 4}
       ]}},
       "expected": {"columns": ["employee_id"], "rows": [[2], [3], [4], [5], [6]]},
+      "validator": {"kind": "unordered_table"},
       "tags": ["hidden", "branching"]
     }
   ]

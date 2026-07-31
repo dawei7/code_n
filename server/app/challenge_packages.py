@@ -19,10 +19,12 @@ frontend-ID order:
     ``benchmark.json``
     ``complexity_certificate.json``
     ``guided_example.md`` (optional)
-    ``solutions/<language>.<ext>``
+    ``solutions/solve.py`` for Python or ``solutions/<language>.<ext>`` for
+    other app-local languages
     ``solution_variants.json`` (optional)
     ``variants/<variant>/approach.md`` (optional)
-    ``variants/<variant>/solutions/<language>.<ext>`` (optional)
+    ``variants/<variant>/solutions/solve.py`` for Python or
+    ``variants/<variant>/solutions/<language>.<ext>`` for other languages
 
 These packages are the sole source for challenge metadata and artifacts.
 """
@@ -39,7 +41,7 @@ from engine.complexity_certificates import (
     ComplexityCertificateStatus,
     validate_complexity_certificate,
 )
-from engine.languages import language_extension, normalize_language
+from engine.languages import app_solution_filename, normalize_language
 from engine.solution_variants import SolutionVariantStatus, validate_solution_variants
 from server.app.config import LEETCODE_ROOT
 
@@ -440,17 +442,15 @@ def leetcode_variant_solution_path(
     if variant_dir is None:
         return None
     language_id = normalize_language(language)
-    extension = language_extension(language_id)
-    return variant_dir / "solutions" / f"{language_id}.{extension}"
+    return variant_dir / "solutions" / app_solution_filename(language_id)
 
 
 def leetcode_solution_path(challenge_id: str, language: str | None = "python") -> Path | None:
     language_id = normalize_language(language)
-    extension = language_extension(language_id)
     default_variant = _variant_directory(challenge_id)
     if default_variant is None:
         return None
-    return default_variant / "solutions" / f"{language_id}.{extension}"
+    return default_variant / "solutions" / app_solution_filename(language_id)
 
 
 def leetcode_cases_path(challenge_id: str) -> Path | None:

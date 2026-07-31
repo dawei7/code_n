@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def shortestDistance(
-        self, maze: List[List[int]], start: List[int], destination: List[int]
-    ) -> int:
+    def shortestDistance(self, maze: List[List[int]], start: List[int], destination: List[int]) -> int:
         rows = len(maze)
         cols = len(maze[0])
         left = [[0] * cols for _ in range(rows)]

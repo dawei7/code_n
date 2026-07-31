@@ -28,9 +28,7 @@ class Solution:
 
             without_zero = [
                 even_without | (odd_without >> value),
-                odd_without
-                | ((even_without << value) & mask)
-                | (1 << (offset + value)),
+                odd_without | ((even_without << value) & mask) | (1 << (offset + value)),
             ]
             with_zero = [
                 even_with | (odd_with >> value),

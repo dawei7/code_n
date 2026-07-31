@@ -250,7 +250,7 @@ def process_file(doc_path: Path, api_key: str) -> bool:
         # Write the shared document and Optimal branch artifacts.
         doc_path.write_text(markdown_content + "\n", encoding="utf-8")
         approach_path.write_text(approach_markdown + "\n", encoding="utf-8")
-        solution_path = optimal_root / "solutions" / "python.py"
+        solution_path = optimal_root / "solutions" / "solve.py"
         solution_path.parent.mkdir(parents=True, exist_ok=True)
         solution_path.write_text(python_content + "\n", encoding="utf-8")
         optimal["time_complexity"] = time_complexity

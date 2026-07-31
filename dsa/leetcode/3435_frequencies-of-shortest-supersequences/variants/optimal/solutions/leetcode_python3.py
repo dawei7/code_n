@@ -50,9 +50,7 @@ class Solution:
                     continue
                 frequencies = [0] * 26
                 for letter, vertex in index.items():
-                    frequencies[ord(letter) - ord("a")] = 1 + (
-                        doubled >> vertex & 1
-                    )
+                    frequencies[ord(letter) - ord("a")] = 1 + (doubled >> vertex & 1)
                 answers.append(frequencies)
 
             if answers:

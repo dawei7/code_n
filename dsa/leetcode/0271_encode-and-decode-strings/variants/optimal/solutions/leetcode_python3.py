@@ -12,6 +12,6 @@ class Codec:
             separator = data.index("#", cursor)
             length = int(data[cursor:separator])
             start = separator + 1
-            values.append(data[start:start + length])
+            values.append(data[start : start + length])
             cursor = start + length
         return values

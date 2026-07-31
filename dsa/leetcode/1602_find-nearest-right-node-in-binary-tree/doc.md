@@ -22,7 +22,7 @@ Return that neighboring node when it exists. If `u` is already the rightmost nod
 **Inputs**
 
 - `root`: the root node of a non-empty binary tree.
-- `target_path`: the app-local identity of `u`, encoded as `L` and `R` moves from `root`; the empty string selects the root.
+- `u`: the actual target `TreeNode` from the same tree as `root`. JSON fixtures preserve its identity with a `path_from_root` descriptor before the runner constructs both objects.
 
 **Return value**
 
@@ -31,15 +31,15 @@ Return the nearest right tree node on the target's level, or `null` if no such n
 ### Examples
 **Example 1**
 
-- Input: `root = [1,2,3,null,4,5,6]`, target path `"LR"` selecting node `4`.
+- Input: `root = [1,2,3,null,4,5,6]`, with `u` selecting node `4` by path `"LR"`.
 - Output: the node `5`.
 
 **Example 2**
 
-- Input: `root = [3,null,4,2]`, target path `"RL"` selecting node `2`.
+- Input: `root = [3,null,4,2]`, with `u` selecting node `2` by path `"RL"`.
 - Output: `null`.
 
 **Example 3**
 
-- Input: a single-node tree with the empty target path.
+- Input: a single-node tree with `u` equal to `root`.
 - Output: `null`.

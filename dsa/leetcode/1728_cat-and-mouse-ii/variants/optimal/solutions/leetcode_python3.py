@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def canMouseWin(
-        self, grid: List[str], catJump: int, mouseJump: int
-    ) -> bool:
+    def canMouseWin(self, grid: List[str], catJump: int, mouseJump: int) -> bool:
         rows = len(grid)
         columns = len(grid[0])
         cells = []
@@ -65,11 +63,7 @@ class Solution:
             for cat in range(nodes):
                 for turn in range(2):
                     current = state(mouse, cat, turn)
-                    remaining[current] = (
-                        len(mouse_moves[mouse])
-                        if turn == 0
-                        else len(cat_moves[cat])
-                    )
+                    remaining[current] = len(mouse_moves[mouse]) if turn == 0 else len(cat_moves[cat])
 
                     if cat == food or cat == mouse:
                         winner[current] = 2
@@ -88,16 +82,10 @@ class Solution:
             child_winner = winner[child]
 
             if turn == 1:
-                predecessors = (
-                    state(previous_mouse, cat, 0)
-                    for previous_mouse in mouse_moves[mouse]
-                )
+                predecessors = (state(previous_mouse, cat, 0) for previous_mouse in mouse_moves[mouse])
                 mover = 1
             else:
-                predecessors = (
-                    state(mouse, previous_cat, 1)
-                    for previous_cat in cat_moves[cat]
-                )
+                predecessors = (state(mouse, previous_cat, 1) for previous_cat in cat_moves[cat])
                 mover = 2
 
             for previous in predecessors:
@@ -111,9 +99,7 @@ class Solution:
                     continue
 
                 remaining[previous] -= 1
-                longest_child[previous] = max(
-                    longest_child[previous], child_distance
-                )
+                longest_child[previous] = max(longest_child[previous], child_distance)
                 if remaining[previous] == 0:
                     winner[previous] = child_winner
                     distance[previous] = longest_child[previous] + 1

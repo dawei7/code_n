@@ -1,11 +1,9 @@
 /**
- * Return whether obj has classFunction.prototype in its method-lookup chain.
- *
  * @param {*} obj
  * @param {*} classFunction
  * @return {boolean}
  */
-function checkIfInstanceOf(obj, classFunction) {
+var checkIfInstanceOf = function(obj, classFunction) {
     if (obj == null || typeof classFunction !== "function") {
         return false;
     }
@@ -19,7 +17,11 @@ function checkIfInstanceOf(obj, classFunction) {
         prototype = Object.getPrototypeOf(prototype);
     }
     return false;
-}
+};
+
+/**
+ * checkIfInstanceOf(new Date(), Date); // true
+ */
 
 class Animal {}
 class Dog extends Animal {}

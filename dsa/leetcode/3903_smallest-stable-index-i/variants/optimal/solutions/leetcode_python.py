@@ -5,9 +5,7 @@ class Solution:
         suffix_minimum[-1] = nums[-1]
 
         for index in range(n - 2, -1, -1):
-            suffix_minimum[index] = min(
-                nums[index], suffix_minimum[index + 1]
-            )
+            suffix_minimum[index] = min(nums[index], suffix_minimum[index + 1])
 
         prefix_maximum = nums[0]
         for index, value in enumerate(nums):

@@ -16,4 +16,3 @@ class Solution:
             best = max(best, length)
 
         return best
-

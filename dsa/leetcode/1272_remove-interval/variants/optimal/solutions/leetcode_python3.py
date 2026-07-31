@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def removeInterval(
-        self, intervals: List[List[int]], toBeRemoved: List[int]
-    ) -> List[List[int]]:
+    def removeInterval(self, intervals: List[List[int]], toBeRemoved: List[int]) -> List[List[int]]:
         remove_start, remove_end = toBeRemoved
         answer = []
 

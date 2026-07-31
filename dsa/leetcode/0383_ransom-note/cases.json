@@ -8,7 +8,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "ransom_note": "a",
+        "ransomNote": "a",
         "magazine": "b"
       },
       "expected": false,
@@ -23,7 +23,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "ransom_note": "aa",
+        "ransomNote": "aa",
         "magazine": "ab"
       },
       "expected": false,
@@ -38,7 +38,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "ransom_note": "aa",
+        "ransomNote": "aa",
         "magazine": "aab"
       },
       "expected": true,
@@ -53,7 +53,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "ransom_note": "",
+        "ransomNote": "",
         "magazine": "abc"
       },
       "expected": true,
@@ -68,7 +68,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "ransom_note": "cabba",
+        "ransomNote": "cabba",
         "magazine": "abcab"
       },
       "expected": true,
@@ -83,7 +83,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "ransom_note": "leetcode",
+        "ransomNote": "leetcode",
         "magazine": "code"
       },
       "expected": false,
@@ -98,7 +98,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "ransom_note": "zzzzzy",
+        "ransomNote": "zzzzzy",
         "magazine": "yzzzzx"
       },
       "expected": false,
@@ -113,7 +113,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "ransom_note": "algorithm",
+        "ransomNote": "algorithm",
         "magazine": "logarithmxyz"
       },
       "expected": true,

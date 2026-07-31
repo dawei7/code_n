@@ -33,11 +33,7 @@ class Solution:
                 if letter in assignment:
                     return search(column, row + 1, total + assignment[letter])
 
-                digits = (
-                    range(9, -1, -1)
-                    if len(addends) == 2 and coefficients[letter] > 0
-                    else range(10)
-                )
+                digits = range(9, -1, -1) if len(addends) == 2 and coefficients[letter] > 0 else range(10)
                 for digit in digits:
                     if used[digit] or (digit == 0 and letter in leading):
                         continue

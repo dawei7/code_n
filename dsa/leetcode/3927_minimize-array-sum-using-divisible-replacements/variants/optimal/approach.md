@@ -4,17 +4,17 @@ Every value that ever appears in the array was present initially: an operation c
 
 That bound is attainable. Let $d$ be the smallest initially present divisor of $x$. If some smaller present value divided $d$, it would also divide $x$, contradicting the choice of $d$. Thus an occurrence of $d$ never needs to be reduced to attain its own minimum and can remain available as a donor. Copying it directly into every original multiple assigned to $d$ realizes all per-position minima simultaneously.
 
-Record the distinct values in a set, sort them, and process those present divisors from smallest to largest. For each divisor, visit its multiples through $V$ and update only multiples that belong to the set. The first improvement assigns the smallest possible present divisor. Finally, replace each array value conceptually with its stored divisor and sum those minima. No simulation or operation ordering is required.
+Record presence in a Boolean table through the maximum value $V$. Process candidate divisors from `1` through $V`; skip absent values. For each present divisor, visit its multiples and assign it only to present multiples that do not yet have an answer. Because divisors are processed in increasing order, the first assignment is the smallest possible present divisor. Finally, sum the stored divisor for every original occurrence. No simulation or operation ordering is required.
 
 ## Complexity detail
 
-Let $n$ be the array length, $V$ its maximum value, and $N=\max(n,V)$. Building the presence table and summing the answer take $O(n)$ time. The sieve visits at most
+Let $n$ be the array length and $V$ its maximum value. Building the presence table and summing the answer take $O(n)$ time. The sieve visits at most
 
 $$
 V\left(1 + \frac12 + \frac13 + \cdots + \frac1V\right)=O(V\log V)
 $$
 
-divisor-multiple pairs. Sorting the distinct values costs $O(n\log n)$. The total $O(n\log n + V\log V)$ time is $O(N\log N)$ under the single combined bound used by the app. The set and minimum-divisor map use $O(n)$ space, hence $O(N)$ space.
+divisor-multiple pairs. The total time is $O(n+V\log V)$, which is $O(N\log N)$ for $N=\max(n,V)$. The presence and minimum-divisor arrays use $O(V)$ auxiliary space.
 
 ## Alternatives and edge cases
 

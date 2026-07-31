@@ -1,4 +1,7 @@
-function createInfiniteObject() {
+/**
+ * @return {Object}
+ */
+var createInfiniteObject = function() {
     return new Proxy({}, {
         get: function(target, property) {
             return function() {
@@ -6,7 +9,7 @@ function createInfiniteObject() {
             };
         }
     });
-}
+};
 
 function solve(method) {
     const object = createInfiniteObject();

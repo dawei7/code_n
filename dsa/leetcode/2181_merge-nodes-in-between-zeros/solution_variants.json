@@ -10,7 +10,7 @@
       "directory": "variants/optimal",
       "summary": "Accumulates each separator-delimited group once and overwrites the consumed prefix with its sums.",
       "time_complexity": "O(n)",
-      "space_complexity": "O(n)"
+      "space_complexity": "O(1)"
     }
   ]
 }

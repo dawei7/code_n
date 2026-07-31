@@ -1,13 +1,22 @@
 class Solution:
- def lexicographicallySmallestString(self,s):
-  n=len(s);d=[[0]*(n+1)for _ in range(n+1)]
-  for i in range(n+1):d[i][i]=1
-  for l in range(2,n+1,2):
-   for i in range(n-l+1):
-    j=i+l
-    for k in range(i+1,j,2):
-     if abs(ord(s[i])-ord(s[k]))in(1,25)and d[i+1][k]and d[k+1][j]:d[i][j]=1;break
-  a=['']*(n+1)
-  for i in range(n-1,-1,-1):
-   if not d[i][n]:a[i]=min(s[j]+a[j+1]for j in range(i,n)if d[i][j])
-  return a[0]
+    def lexicographicallySmallestString(self, s: str) -> str:
+        length = len(s)
+        removable = [[False] * (length + 1) for _ in range(length + 1)]
+        for index in range(length + 1):
+            removable[index][index] = True
+        for interval_length in range(2, length + 1, 2):
+            for left in range(length - interval_length + 1):
+                right = left + interval_length
+                for partner in range(left + 1, right, 2):
+                    consecutive = abs(ord(s[left]) - ord(s[partner])) in (1, 25)
+                    if consecutive and removable[left + 1][partner] and removable[partner + 1][right]:
+                        removable[left][right] = True
+                        break
+        best = [""] * (length + 1)
+        for left in range(length - 1, -1, -1):
+            if removable[left][length]:
+                continue
+            best[left] = min(
+                (s[survivor] + best[survivor + 1] for survivor in range(left, length) if removable[left][survivor])
+            )
+        return best[0]

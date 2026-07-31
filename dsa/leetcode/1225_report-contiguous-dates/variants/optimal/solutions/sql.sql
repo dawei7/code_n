@@ -7,17 +7,14 @@ WITH periods AS (
     FROM Succeeded
     WHERE success_date BETWEEN '2019-01-01' AND '2019-12-31'
 ),
-numbered AS (
-    SELECT period_state,
-           period_date,
-           ROW_NUMBER() OVER (PARTITION BY period_state ORDER BY period_date) AS sequence_number
-    FROM periods
-),
 islands AS (
     SELECT period_state,
            period_date,
-           DATE(period_date, PRINTF('-%d day', sequence_number)) AS island_key
-    FROM numbered
+           DATE(
+               period_date,
+               PRINTF('-%d day', ROW_NUMBER() OVER (PARTITION BY period_state ORDER BY period_date))
+           ) AS island_key
+    FROM periods
 )
 SELECT period_state,
        MIN(period_date) AS start_date,

@@ -28,7 +28,7 @@ In sorted order, every valid triplet has a first value. The outer scan eventuall
 For a fixed value, a sum below zero can be repaired only by moving the left pointer to a no-smaller value, while a sum above zero can be repaired only by moving the right pointer to a no-larger value. Those moves discard no possible zero-sum pair. When a match is found, advancing past equal pointer values removes only duplicate spellings of the same triplet. The scan therefore finds every valid value triplet and emits each exactly once.
 
 ## Complexity detail
-Sorting costs $O(n \log n)$. For each of at most `n` fixed indices, the two pointers cross the remaining suffix once, costing $O(n)$; the total is therefore $O(n^2)$. A language's in-place sort may use $O(\log n)$ stack space, while implementations that copy or whose sort allocates working storage use up to $O(n)$ auxiliary space. The returned triplets are output space and are not avoidable.
+Sorting costs $O(n \log n)$. For each of at most `n` fixed indices, the two pointers cross the remaining suffix once, costing $O(n)$; the total is therefore $O(n^2)$. Python's in-place list sort may use $O(n)$ temporary workspace in the worst case. The returned triplets are output space and are not avoidable.
 
 ## Alternatives and edge cases
 - **Three nested loops:** straightforward but requires $O(n^3)$ time, plus deduplication.

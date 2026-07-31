@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def countRectangles(
-        self, rectangles: List[List[int]], points: List[List[int]]
-    ) -> List[int]:
+    def countRectangles(self, rectangles: List[List[int]], points: List[List[int]]) -> List[int]:
         widths_by_height = [[] for _ in range(101)]
         for width, height in rectangles:
             widths_by_height[height].append(width)

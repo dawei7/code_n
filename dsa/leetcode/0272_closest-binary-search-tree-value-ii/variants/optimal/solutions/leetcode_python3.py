@@ -40,10 +40,7 @@ class Solution:
 
         closest = []
         for _ in range(k):
-            if not successors or (
-                predecessors
-                and target - predecessors[-1].val <= successors[-1].val - target
-            ):
+            if not successors or (predecessors and target - predecessors[-1].val <= successors[-1].val - target):
                 closest.append(previous())
             else:
                 closest.append(following())

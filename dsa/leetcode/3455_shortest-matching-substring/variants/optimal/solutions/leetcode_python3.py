@@ -35,10 +35,7 @@ class Solution:
         first_index = 0
         last_index = 0
         for middle_start in middle_starts:
-            while (
-                first_index < len(first_starts)
-                and first_starts[first_index] + len(first) <= middle_start
-            ):
+            while first_index < len(first_starts) and first_starts[first_index] + len(first) <= middle_start:
                 first_index += 1
             if first_index == 0:
                 continue

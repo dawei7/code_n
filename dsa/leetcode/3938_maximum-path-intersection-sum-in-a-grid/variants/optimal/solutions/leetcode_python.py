@@ -2,7 +2,7 @@ class Solution:
     def maxScore(self, grid: list[list[int]]) -> int:
         rows = len(grid)
         cols = len(grid[0])
-        best = -10**18
+        best = -(10**18)
 
         for row in grid:
             ending = row[0] + row[1]

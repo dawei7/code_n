@@ -21,4 +21,3 @@ class Solution:
             size[left_root] += size[right_root]
 
         return []
-

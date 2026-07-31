@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def countStableSubarrays(
-        self, nums: List[int], queries: List[List[int]]
-    ) -> List[int]:
+    def countStableSubarrays(self, nums: List[int], queries: List[List[int]]) -> List[int]:
         n = len(nums)
         prefix = [0] * (n + 1)
         run_start = 0

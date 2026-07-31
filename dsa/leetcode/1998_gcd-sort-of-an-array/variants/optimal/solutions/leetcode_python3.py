@@ -35,7 +35,4 @@ class Solution:
                 while remaining % prime == 0:
                     remaining //= prime
 
-        return all(
-            find(value) == find(target)
-            for value, target in zip(nums, sorted(nums))
-        )
+        return all(find(value) == find(target) for value, target in zip(nums, sorted(nums)))

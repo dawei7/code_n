@@ -13,4 +13,3 @@ class Solution:
             common_columns = min(common_columns, columns)
 
         return common_rows * common_columns
-

@@ -5,7 +5,7 @@ class Solution:
     def getLargestOutlier(self, nums: List[int]) -> int:
         total = sum(nums)
         counts = Counter(nums)
-        answer = -10**9
+        answer = -(10**9)
 
         for outlier in counts:
             remaining = total - outlier

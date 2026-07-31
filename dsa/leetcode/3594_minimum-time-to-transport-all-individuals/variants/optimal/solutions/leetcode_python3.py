@@ -50,9 +50,7 @@ class Solution:
                             returner_bit = returners & -returners
                             person = returner_bit.bit_length() - 1
                             return_time = time[person] * mul[next_stage]
-                            final_stage = (
-                                next_stage + int(return_time + 1e-9)
-                            ) % m
+                            final_stage = (next_stage + int(return_time + 1e-9)) % m
                             next_mask = remaining | returner_bit
                             total_time = arrival_time + return_time
 

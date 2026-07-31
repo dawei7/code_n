@@ -1,6 +1,11 @@
-function sortBy(arr, fn) {
+/**
+ * @param {Array} arr
+ * @param {Function} fn
+ * @return {Array}
+ */
+var sortBy = function(arr, fn) {
     return arr.sort((left, right) => fn(left) - fn(right));
-}
+};
 
 function solve(arr, selector) {
     let fn;

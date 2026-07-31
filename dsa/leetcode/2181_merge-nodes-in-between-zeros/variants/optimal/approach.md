@@ -2,17 +2,17 @@
 
 **Use each separator to finish one group**
 
-Skip the leading zero and scan the remaining nodes from left to right. Add
-every positive value to a running group sum. Encountering a zero means the
-current group is complete, so write its sum into the next output position,
-reset the accumulator, and continue with the following group.
+Keep a read pointer at the first node after the leading zero and a write
+pointer at that leading node. Starting from `read`, add values until reaching
+the next zero. That separator finishes one group, so overwrite `write.val`
+with the accumulated sum.
 
 **Emit one compact value per group**
 
-The app adapter appends each completed sum to the serialized result list. The
-native linked-list source applies the same scan while reusing early input
-nodes: sums overwrite nodes whose original values have already been consumed,
-and the final output node is disconnected from the unused suffix.
+Advance `read` beyond the separator. If another group remains, advance
+`write` once and repeat. After the final group, set `write.next = None` so the
+last output node is disconnected from the consumed suffix. Return the original
+head, which now begins the compact list of group sums.
 
 Every positive node belongs to exactly one interval between consecutive
 zeros, and its value is added once before that interval's closing separator.
@@ -23,9 +23,8 @@ does not retain a separator.
 ## Complexity detail
 
 Let $n$ be the number of input nodes. The read pointer visits each node once,
-so the time complexity is $O(n)$. The serialized app result can contain
-$O(n)$ group sums, giving an $O(n)$ space bound. The native linked-list source
-instead reuses input nodes and needs only $O(1)$ auxiliary space.
+so the time complexity is $O(n)$. The algorithm reuses input nodes and stores
+only pointers and one running sum, giving $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 

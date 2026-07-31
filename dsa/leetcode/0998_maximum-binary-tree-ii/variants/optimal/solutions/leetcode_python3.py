@@ -8,9 +8,7 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def insertIntoMaxTree(
-        self, root: Optional[TreeNode], val: int
-    ) -> Optional[TreeNode]:
+    def insertIntoMaxTree(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         inserted = TreeNode(val)
 
         if val > root.val:

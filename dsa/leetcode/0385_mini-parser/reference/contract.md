@@ -6,4 +6,4 @@
 
 **Return value**
 
-The cOde(n) adapter returns the equivalent hierarchy of ordinary integers and lists. The native LeetCode method returns the same structure through `NestedInteger` objects.
+Return one `NestedInteger` containing the parsed integer or list hierarchy. The runner serializes that object to ordinary integers and arrays for display and validation.

@@ -32,11 +32,7 @@ class Solution:
             if target >= current:
                 rotations = alive.prefix_sum(target) - alive.prefix_sum(current)
             else:
-                rotations = (
-                    alive.prefix_sum(n)
-                    - alive.prefix_sum(current)
-                    + alive.prefix_sum(target)
-                )
+                rotations = alive.prefix_sum(n) - alive.prefix_sum(current) + alive.prefix_sum(target)
 
             operations += rotations + 1
             alive.add(target + 1, -1)

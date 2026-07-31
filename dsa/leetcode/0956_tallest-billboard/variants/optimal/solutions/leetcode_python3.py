@@ -12,8 +12,6 @@ class Solution:
 
                 balanced_difference = abs(difference - rod)
                 balanced_shorter = shorter + min(difference, rod)
-                updated[balanced_difference] = max(
-                    updated.get(balanced_difference, -1), balanced_shorter
-                )
+                updated[balanced_difference] = max(updated.get(balanced_difference, -1), balanced_shorter)
             best_shorter = updated
         return best_shorter[0]

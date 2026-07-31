@@ -27,12 +27,8 @@ class Solution:
                 for restricted_first, restricted_second in restrictions:
                     restricted_first_root = find(restricted_first)
                     restricted_second_root = find(restricted_second)
-                    if (
-                        restricted_first_root == first_root
-                        and restricted_second_root == second_root
-                    ) or (
-                        restricted_first_root == second_root
-                        and restricted_second_root == first_root
+                    if (restricted_first_root == first_root and restricted_second_root == second_root) or (
+                        restricted_first_root == second_root and restricted_second_root == first_root
                     ):
                         allowed = False
                         break

@@ -19,13 +19,7 @@ class Solution:
 
                 if index + 1 < len(s1):
                     next_original = int(s1[index + 1])
-                    pair_cost = (
-                        cost
-                        + (1 - current)
-                        + (1 - next_original)
-                        + 1
-                        + target
-                    )
+                    pair_cost = cost + (1 - current) + (1 - next_original) + 1 + target
                     next_cleared = min(next_cleared, pair_cost)
 
             no_pair, cleared = next_no_pair, next_cleared

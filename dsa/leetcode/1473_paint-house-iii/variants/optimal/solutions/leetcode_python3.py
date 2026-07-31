@@ -49,9 +49,7 @@ class Solution:
 
                     if groups > 1:
                         smallest, second_smallest, smallest_color = best[groups - 1]
-                        different_color = (
-                            smallest if smallest_color != color else second_smallest
-                        )
+                        different_color = smallest if smallest_color != color else second_smallest
                         predecessor = min(predecessor, different_color)
 
                     if predecessor == infinity:

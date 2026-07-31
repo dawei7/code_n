@@ -6,7 +6,5 @@ class Solution:
 
         vowels = {0, 4, 8, 14, 20}
         max_vowel = max(counts[index] for index in vowels)
-        max_consonant = max(
-            counts[index] for index in range(26) if index not in vowels
-        )
+        max_consonant = max(counts[index] for index in range(26) if index not in vowels)
         return max_vowel + max_consonant

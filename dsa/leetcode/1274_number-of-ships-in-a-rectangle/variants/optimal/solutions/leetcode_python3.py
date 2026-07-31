@@ -1,7 +1,5 @@
 class Solution:
-    def countShips(
-        self, sea: "Sea", topRight: "Point", bottomLeft: "Point"
-    ) -> int:
+    def countShips(self, sea: "Sea", topRight: "Point", bottomLeft: "Point") -> int:
         def count(right: int, top: int, left: int, bottom: int) -> int:
             if left > right or bottom > top:
                 return 0

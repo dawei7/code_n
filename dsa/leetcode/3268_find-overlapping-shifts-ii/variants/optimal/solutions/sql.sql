@@ -36,7 +36,10 @@ SELECT
     employee_id,
     MAX(active_shifts) AS max_overlapping_shifts,
     SUM(
-        CAST(ROUND((julianday(next_time) - julianday(event_time)) * 1440) AS INTEGER)
+        (
+            CAST(strftime('%s', next_time) AS INTEGER)
+            - CAST(strftime('%s', event_time) AS INTEGER)
+        ) / 60
         * active_shifts * (active_shifts - 1) / 2
     ) AS total_overlap_duration
 FROM active_timeline

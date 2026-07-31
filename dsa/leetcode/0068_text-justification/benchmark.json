@@ -20,7 +20,7 @@
           "a",
           "a"
         ],
-        "max_width": 20
+        "maxWidth": 20
       },
       "expected": null,
       "tags": [
@@ -102,7 +102,7 @@
           "a",
           "a"
         ],
-        "max_width": 20
+        "maxWidth": 20
       },
       "expected": null,
       "tags": [
@@ -376,7 +376,7 @@
           "a",
           "a"
         ],
-        "max_width": 20
+        "maxWidth": 20
       },
       "expected": null,
       "tags": [

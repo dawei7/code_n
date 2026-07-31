@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "fbfb71a5070192860217295ff5735a1293412bb635665bef17d6d0fb8547a3b6",
+    "native_sha256": "67e94abd3410c75632964e7d01f8b6063c513e8913d67183f913ae1d1fb6d275",
+    "solution_variants_sha256": "88fb8622ed6e68e6e0925c05c33e5fdbee81be074f0acb72311912527ae2beb6",
+    "approach_sha256": "5125886f4d90fbd1bc2ee4ac100b3f250116ce3b020ff1c21febb8dda11cd1c3"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {"same_algorithm": true, "same_data_flow": true, "same_helper_logic": true, "complexity_matches": true, "naming_consistent_where_interfaces_permit": true, "difference_is_unavoidable": true},
+  "differences": [{"aspect": "day-of-month and weekday extraction", "native": "MySQL uses DAY, DAYOFWEEK, and FLOOR.", "app": "SQLite uses strftime for the day fields and an INTEGER cast for the nonnegative quotient.", "rationale": "SQLite does not implement the MySQL date functions. Both forms select Fridays, derive the same one-based week of November, aggregate each date, and order by week identically."}]
+}

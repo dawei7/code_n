@@ -16,9 +16,4 @@ class Solution:
                     if second + weight <= w2:
                         reachable[first][second + weight] = True
 
-        return max(
-            first + second
-            for first in range(w1 + 1)
-            for second in range(w2 + 1)
-            if reachable[first][second]
-        )
+        return max(first + second for first in range(w1 + 1) for second in range(w2 + 1) if reachable[first][second])

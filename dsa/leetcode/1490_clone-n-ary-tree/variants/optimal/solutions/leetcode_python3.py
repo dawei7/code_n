@@ -1,5 +1,5 @@
 class Solution:
-    def cloneTree(self, root: 'Node') -> 'Node':
+    def cloneTree(self, root: "Node") -> "Node":
         if root is None:
             return None
 
@@ -14,4 +14,3 @@ class Solution:
                 stack.append((child, child_clone))
 
         return cloned_root
-

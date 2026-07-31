@@ -9,7 +9,7 @@
       "visible": true,
       "input": {
         "characters": "abc",
-        "combination_length": 2,
+        "combinationLength": 2,
         "operations": [
           [
             "next",
@@ -57,7 +57,7 @@
       "visible": true,
       "input": {
         "characters": "abcd",
-        "combination_length": 3,
+        "combinationLength": 3,
         "operations": [
           [
             "next",
@@ -85,7 +85,7 @@
       "visible": true,
       "input": {
         "characters": "xy",
-        "combination_length": 2,
+        "combinationLength": 2,
         "operations": [
           [
             "hasNext",
@@ -118,7 +118,7 @@
       "visible": true,
       "input": {
         "characters": "ace",
-        "combination_length": 1,
+        "combinationLength": 1,
         "operations": [
           [
             "next",
@@ -156,7 +156,7 @@
       "visible": true,
       "input": {
         "characters": "abcd",
-        "combination_length": 2,
+        "combinationLength": 2,
         "operations": [
           [
             "hasNext",
@@ -194,7 +194,7 @@
       "visible": false,
       "input": {
         "characters": "abcde",
-        "combination_length": 3,
+        "combinationLength": 3,
         "operations": [
           [
             "next",
@@ -237,7 +237,7 @@
       "visible": false,
       "input": {
         "characters": "abcd",
-        "combination_length": 2,
+        "combinationLength": 2,
         "operations": [
           [
             "next",

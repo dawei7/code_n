@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def minAbsoluteSumDiff(
-        self, nums1: List[int], nums2: List[int]
-    ) -> int:
+    def minAbsoluteSumDiff(self, nums1: List[int], nums2: List[int]) -> int:
         ordered = sorted(nums1)
         total = 0
         best_reduction = 0

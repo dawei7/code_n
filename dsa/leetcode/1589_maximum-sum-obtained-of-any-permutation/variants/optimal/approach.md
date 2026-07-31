@@ -30,6 +30,8 @@ Processing $R$ requests and prefix-summing coverage takes $O(N+R)$ time. Sorting
 
 The difference/coverage storage and sorted arrays require $O(N)$ auxiliary space.
 
+The Accepted implementation sorts `nums` in place; `coverage` is the separate sorted array represented in the $O(N)$ bound.
+
 ## Alternatives and edge cases
 - **Endpoint-event map:** store `+1` and `-1` events in a dictionary and sweep all indices. It has the same asymptotic complexity and is an independent form of the difference-array method.
 - **Increment every requested index:** directly add one throughout each range. It is correct but can require $O(NR)$ time when many requests span most of the array.

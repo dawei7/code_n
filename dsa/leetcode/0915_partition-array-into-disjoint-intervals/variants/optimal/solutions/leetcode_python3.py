@@ -14,4 +14,3 @@ class Solution:
                 left_max = seen_max
 
         return boundary + 1
-

@@ -5,8 +5,7 @@ class Solution:
         dp = [infinity] * (n + 1)
         dp[0] = 0
         prepared = [
-            (pattern, replacement, cost + pattern.count("*"))
-            for (pattern, replacement), cost in zip(rules, costs)
+            (pattern, replacement, cost + pattern.count("*")) for (pattern, replacement), cost in zip(rules, costs)
         ]
 
         for index in range(n):
@@ -20,8 +19,7 @@ class Solution:
                 if end > n or not target.startswith(replacement, index):
                     continue
                 if all(
-                    pattern[offset] == "*"
-                    or pattern[offset] == source[index + offset]
+                    pattern[offset] == "*" or pattern[offset] == source[index + offset]
                     for offset in range(len(pattern))
                 ):
                     dp[end] = min(dp[end], dp[index] + total_cost)

@@ -4,7 +4,6 @@ from typing import List
 
 
 class FileSharing:
-
     def __init__(self, m: int):
         self.next_id = 1
         self.available_ids = []

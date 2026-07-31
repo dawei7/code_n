@@ -18,30 +18,30 @@ Given the values in `hand` and the required group size, determine whether all ca
 **Inputs**
 
 - `hand`: an integer array of length $n$, where $1 \leq n \leq 10^4$ and $0 \leq \texttt{hand[i]} \leq 10^9$.
-- `group_size`: the app-local name for LeetCode's `groupSize`, with $1 \leq \texttt{group\_size} \leq n$.
+- `groupSize`: the required number of cards per group, with $1 \leq \texttt{groupSize} \leq n$.
 
 **Return value**
 
-Return `true` if all cards can be rearranged into groups of `group_size` consecutive values; otherwise return `false`.
+Return `true` if all cards can be rearranged into groups of `groupSize` consecutive values; otherwise return `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `hand = [1,2,3,6,2,3,4,7,8], group_size = 3`
+- Input: `hand = [1,2,3,6,2,3,4,7,8], groupSize = 3`
 - Output: `true`
 
 One valid partition is `[1,2,3]`, `[2,3,4]`, and `[6,7,8]`.
 
 **Example 2**
 
-- Input: `hand = [1,2,3,4,5], group_size = 4`
+- Input: `hand = [1,2,3,4,5], groupSize = 4`
 - Output: `false`
 
 Five cards cannot all be placed into groups of four.
 
 **Example 3**
 
-- Input: `hand = [1,2,2,3,3,4], group_size = 3`
+- Input: `hand = [1,2,2,3,3,4], groupSize = 3`
 - Output: `true`
 
 The cards form `[1,2,3]` and `[2,3,4]`.

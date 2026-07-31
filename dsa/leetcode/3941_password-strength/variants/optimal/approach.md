@@ -1,6 +1,6 @@
 ## General
 
-**Separate identity from category.** A character's weight depends on its category, but its number of contributions depends only on whether that exact character has appeared. Maintain a `seen` set while scanning the password. Skip a character already present; otherwise insert it and score that first occurrence.
+**Separate identity from category.** A character's weight depends on its category, but its number of contributions depends only on whether that exact character appears. Build `set(password)` and iterate those distinct characters, so every identity is scored exactly once.
 
 For each character, test the four disjoint source categories in order:
 
@@ -9,7 +9,7 @@ For each character, test the four disjoint source categories in order:
 - `"0" <= character <= "9"` adds three;
 - the remaining legal symbols are exactly `!`, `@`, `#`, and `$`, so the final branch adds five.
 
-The set removes repeated contributions but keeps case-sensitive identities, meaning `a` and `A` remain separate. Every distinct character reaches exactly one category branch on its first occurrence, so it contributes its prescribed weight exactly once. Repeated occurrences are skipped and absent characters are never visited. Summing these contributions therefore produces precisely the defined password strength.
+The set removes repeated contributions but keeps case-sensitive identities, meaning `a` and `A` remain separate. Every distinct character reaches exactly one category branch, so it contributes its prescribed weight exactly once. Repeated occurrences collapse into the set and absent characters are never visited. Summing these contributions therefore produces precisely the defined password strength.
 
 ## Complexity detail
 
@@ -28,6 +28,7 @@ comparisons, exposing $O(n^2)$ growth while still completing inside the legal so
 ## Alternatives and edge cases
 
 - **Fixed seen table:** A 128-entry Boolean table indexed by the ASCII code also gives $O(n)$ time and $O(1)$ auxiliary space; it is independently benchmarked but encodes the character representation more directly.
+- **One-pass seen set:** Scan the original string, insert each first occurrence into a set, and score it immediately. This has the same bounds but needs an explicit duplicate check in the loop.
 - **Repeated prefix scans:** Checking every prior position to decide whether each character is new is correct, but takes $O(n^2)$ time when the scan is not stopped after a match.
 - **Count category occurrences instead of identities:** Adding points for every position overcounts repeated characters; deduplication must happen per exact character.
 - **Case sensitivity:** Lowercase and uppercase versions are different symbols with different weights and may both contribute.

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "d8d1fbd560ed00d6521a25fca062f2c41c5fd696e39bf5f7c912fcce6178b40f",
+    "native_sha256": "43a0696f0c46fe0e008ee5b78fad9c9d0c9d22fdfdca6ad83cd82ea09987d2fa",
+    "solution_variants_sha256": "1a04038ad945c52ff70ac84910988709278b4cce744d04e82b0efeab19e2f060",
+    "approach_sha256": "b9b0e24e31d640a7681a11d6d400deb94c6b9e333452bcc4a0d96bdaa4e3f851"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {"same_algorithm": true, "same_data_flow": true, "same_helper_logic": true, "complexity_matches": true, "naming_consistent_where_interfaces_permit": true, "difference_is_unavoidable": true},
+  "differences": [{"aspect": "non-integer weighted division", "native": "MySQL's aggregate quotient preserves the required fractional value.", "app": "SQLite multiplies the numerator by 1.0 before division.", "rationale": "SQLite otherwise performs integer division when both aggregate operands are integers. The weighted sum, occurrence sum, two-decimal rounding, alias, and result are identical."}]
+}

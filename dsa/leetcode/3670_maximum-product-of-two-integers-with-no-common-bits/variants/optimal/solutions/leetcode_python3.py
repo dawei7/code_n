@@ -20,7 +20,4 @@ class Solution:
                         best_submask[upper] = best_submask[lower]
 
         full_mask = size - 1
-        return max(
-            value * best_submask[full_mask ^ value]
-            for value in nums
-        )
+        return max(value * best_submask[full_mask ^ value] for value in nums)

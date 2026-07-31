@@ -17,10 +17,7 @@ class Solution:
                         suffix_character = chr(suffix_code)
                         if suffix_character == characters[suffix_index - 1]:
                             continue
-                        if (
-                            suffix_index >= 2
-                            and suffix_character == characters[suffix_index - 2]
-                        ):
+                        if suffix_index >= 2 and suffix_character == characters[suffix_index - 2]:
                             continue
                         characters[suffix_index] = suffix_character
                         break

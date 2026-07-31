@@ -12,7 +12,7 @@ Sort heater positions. For a house, binary-search the first heater not left of i
 Any radius below the largest nearest-heater distance leaves that particular house uncovered. Choosing the largest distance covers each house by the heater that established its local minimum, so no larger radius is necessary.
 
 ## Complexity detail
-Sorting `t` heaters costs $O(t \log t)$, and `h` binary searches cost $O(h \log t)$, within $O((h + t) \log(h + t))$. The sorted copy uses $O(t)$ space.
+Sorting `t` heaters in place costs $O(t \log t)$, and `h` binary searches cost $O(h \log t)$, within $O((h + t) \log(h + t))$. Python's sorting implementation can use $O(t)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Sort houses and use two pointers:** advances a heater pointer toward the nearest position in $O(h \log h + t \log t)$ total time.

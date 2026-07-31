@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "7746da68e89f66086bbca2e83122fb83baca1a8f924578abf854ea3825c2dcb9",
+    "native_sha256": "977abbfba65aeb7def912d7830916a8a7b15de0a615a2694ae350d07ed97b324",
+    "solution_variants_sha256": "cacda9ad50e9be65766e03fd5015bde11c2c0d05be1d47a66587d33153c34fc9",
+    "approach_sha256": "36d2d62d35e45d7a59758dfb613f2e0d3a1d9eb680c71d23d77948c0576fec29"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "sale-month formatting",
+      "native": "MySQL derives the YYYY-MM grouping key with DATE_FORMAT(sale_date, '%Y-%m').",
+      "app": "SQLite derives the identical key with strftime('%Y-%m', sale_date).",
+      "rationale": "SQLite does not implement MySQL's DATE_FORMAT function. Product normalization, grouping expressions, count, aliases, and ordering otherwise match exactly."
+    }
+  ]
+}

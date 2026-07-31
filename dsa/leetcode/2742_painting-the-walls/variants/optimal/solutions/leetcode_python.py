@@ -1,7 +1,7 @@
 class Solution:
     def paintWalls(self, cost: List[int], time: List[int]) -> int:
         n = len(cost)
-        dp = [float('inf')] * (n + 1)
+        dp = [float("inf")] * (n + 1)
         dp[0] = 0
 
         for price, duration in zip(cost, time):

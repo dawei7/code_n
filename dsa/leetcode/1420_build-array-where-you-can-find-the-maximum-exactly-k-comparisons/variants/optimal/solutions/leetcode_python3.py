@@ -12,12 +12,8 @@ class Solution:
             for cost in range(1, k + 1):
                 smaller_prefix = 0
                 for maximum in range(1, m + 1):
-                    following[cost][maximum] = (
-                        current[cost][maximum] * maximum + smaller_prefix
-                    ) % modulus
-                    smaller_prefix = (
-                        smaller_prefix + current[cost - 1][maximum]
-                    ) % modulus
+                    following[cost][maximum] = (current[cost][maximum] * maximum + smaller_prefix) % modulus
+                    smaller_prefix = (smaller_prefix + current[cost - 1][maximum]) % modulus
             current = following
 
         return sum(current[k]) % modulus

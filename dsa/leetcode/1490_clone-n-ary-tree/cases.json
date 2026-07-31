@@ -65,7 +65,10 @@
         "sample",
         "branching",
         "child-order"
-      ]
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
     },
     {
       "id": "sample-2",
@@ -206,7 +209,10 @@
         "sample",
         "uneven",
         "deep-branch"
-      ]
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
     },
     {
       "id": "sample-3",
@@ -220,7 +226,10 @@
       "tags": [
         "sample",
         "empty"
-      ]
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
     },
     {
       "id": "trial-single",
@@ -241,7 +250,10 @@
         "trial",
         "single-node",
         "leaf"
-      ]
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
     },
     {
       "id": "trial-duplicate-values",
@@ -306,7 +318,10 @@
         "trial",
         "duplicate-values",
         "identity"
-      ]
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
     },
     {
       "id": "trial-wide",
@@ -377,7 +392,10 @@
         "trial",
         "wide",
         "child-order"
-      ]
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
     },
     {
       "id": "real-deep-chain",
@@ -468,7 +486,10 @@
         "real",
         "deep",
         "chain"
-      ]
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
     },
     {
       "id": "real-mixed-empty-children",
@@ -561,8 +582,10 @@
         "real",
         "uneven",
         "leaves"
-      ]
+      ],
+      "validator": {
+        "kind": "nary_tree"
+      }
     }
   ]
 }
-

@@ -11,7 +11,7 @@
       "size": 63,
       "input": {
         "target": 64,
-        "mountain_arr": [
+        "mountainArr": [
           0,
           1,
           2,
@@ -92,7 +92,7 @@
       "size": 511,
       "input": {
         "target": 512,
-        "mountain_arr": [
+        "mountainArr": [
           0,
           1,
           2,
@@ -621,7 +621,7 @@
       "size": 4095,
       "input": {
         "target": 4096,
-        "mountain_arr": [
+        "mountainArr": [
           0,
           1,
           2,

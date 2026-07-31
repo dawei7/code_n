@@ -1,4 +1,8 @@
-function jsonStringify(object) {
+/**
+ * @param {null|boolean|number|string|Array|Object} object
+ * @return {string}
+ */
+var jsonStringify = function(object) {
     const output = [];
 
     function write(value) {
@@ -30,7 +34,7 @@ function jsonStringify(object) {
 
     write(object);
     return output.join('');
-}
+};
 
 function expandValue(value, valuePlan) {
     if (valuePlan === null) return value;

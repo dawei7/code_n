@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def popcountDepth(
-        self, nums: List[int], queries: List[List[int]]
-    ) -> List[int]:
+    def popcountDepth(self, nums: List[int], queries: List[List[int]]) -> List[int]:
         size = len(nums)
         trees = [[0] * (size + 1) for _ in range(6)]
         depths = []
@@ -45,10 +43,7 @@ class Solution:
             if query[0] == 1:
                 _, left, right, wanted_depth = query
                 tree = trees[wanted_depth]
-                answer.append(
-                    prefix_sum(tree, right + 1)
-                    - prefix_sum(tree, left)
-                )
+                answer.append(prefix_sum(tree, right + 1) - prefix_sum(tree, left))
             else:
                 _, index, value = query
                 new_depth = depth(value)

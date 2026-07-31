@@ -13,10 +13,7 @@ class Solution:
         del height, width
 
         def distance(first: List[int], second: List[int]) -> int:
-            return (
-                abs(first[0] - second[0])
-                + abs(first[1] - second[1])
-            )
+            return abs(first[0] - second[0]) + abs(first[1] - second[1])
 
         baseline = 0
         best_saving = float("-inf")
@@ -30,4 +27,3 @@ class Solution:
             )
 
         return int(baseline - best_saving)
-

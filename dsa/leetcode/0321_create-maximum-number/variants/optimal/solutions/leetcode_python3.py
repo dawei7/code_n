@@ -12,19 +12,11 @@ def _maximum_subsequence(nums: List[int], length: int) -> List[int]:
     return stack[:length]
 
 
-def _suffix_is_greater(
-    left: List[int], left_index: int, right: List[int], right_index: int
-) -> bool:
-    while (
-        left_index < len(left)
-        and right_index < len(right)
-        and left[left_index] == right[right_index]
-    ):
+def _suffix_is_greater(left: List[int], left_index: int, right: List[int], right_index: int) -> bool:
+    while left_index < len(left) and right_index < len(right) and left[left_index] == right[right_index]:
         left_index += 1
         right_index += 1
-    return right_index == len(right) or (
-        left_index < len(left) and left[left_index] > right[right_index]
-    )
+    return right_index == len(right) or (left_index < len(left) and left[left_index] > right[right_index])
 
 
 def _merge_maximum(left: List[int], right: List[int]) -> List[int]:

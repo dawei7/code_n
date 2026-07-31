@@ -4,7 +4,7 @@ Let $n$ be the number of nodes in the doubly linked list.
 
 **Follow the forward chain**
 
-Start a cursor at `head`. While the cursor is not `None`, append its `val` to the result and replace the cursor with its `next` neighbor. Reaching `None` means the tail has been processed.
+Start a cursor at `root`. While the cursor is not `None`, append its `val` to the result and replace the cursor with its `next` neighbor. Reaching `None` means the tail has been processed.
 
 The `prev` links are not needed: the required order starts at the head and moves forward. The list's unique forward chain visits every node exactly once and in precisely the order requested. Appending on each visit therefore puts each value in its matching array position, including any duplicates.
 

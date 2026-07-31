@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maxFreeTime(
-        self, eventTime: int, k: int, startTime: List[int], endTime: List[int]
-    ) -> int:
+    def maxFreeTime(self, eventTime: int, k: int, startTime: List[int], endTime: List[int]) -> int:
         gaps = [startTime[0]]
         gaps.extend(startTime[i] - endTime[i - 1] for i in range(1, len(startTime)))
         gaps.append(eventTime - endTime[-1])

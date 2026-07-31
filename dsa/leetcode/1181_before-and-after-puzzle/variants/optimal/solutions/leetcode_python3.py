@@ -11,7 +11,7 @@ class Solution:
         for index, phrase in enumerate(phrases):
             words = phrase.split()
             last_words.append(words[-1])
-            suffixes.append(phrase[len(words[0]):])
+            suffixes.append(phrase[len(words[0]) :])
             by_first[words[0]].append(index)
 
         merged = set()

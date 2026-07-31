@@ -13,4 +13,3 @@ class Solution:
             min(servers, (cash + servers * sale) // (cost + sale))
             for servers, cost, sale, cash in zip(count, upgrade, sell, money)
         ]
-

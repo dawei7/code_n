@@ -17,11 +17,13 @@ Design a codec that maps an N-ary tree, whose nodes may have any number of order
 ### Function Contract
 **Inputs**
 
-- `tree`: the app representation of an N-ary node as `[value, children]`, recursively, or `None` for an empty tree
+- `root`: The N-ary `Node` root, or `None` for an empty tree. Each node exposes `val` and an ordered `children` list.
+
+Authored JSON cases encode a node recursively as `[value, children]`; the runner constructs the `Node` objects before calling `solve`.
 
 **Return value**
 
-- Encode the N-ary structure as a binary structure, decode it, and return the reconstructed nested representation. The native artifact exposes the required `Codec.encode(root)` and `Codec.decode(data)` methods.
+- Encode the N-ary structure as a `TreeNode` structure, decode it, and return the reconstructed N-ary `Node` root. The native artifact exposes the required `Codec.encode(root)` and `Codec.decode(data)` methods.
 
 ### Examples
 **Example 1**

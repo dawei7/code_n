@@ -32,11 +32,7 @@ class Solution:
                     for next_goal in (0, target):
                         surplus = max(frequency - current_goal, 0)
                         deficit = max(next_goal - next_frequency, 0)
-                        cost = (
-                            abs(frequency - current_goal)
-                            + abs(next_frequency - next_goal)
-                            - min(surplus, deficit)
-                        )
+                        cost = abs(frequency - current_goal) + abs(next_frequency - next_goal) - min(surplus, deficit)
                         pair_cost = min(pair_cost, cost)
 
                 dp[index + 2] = min(

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def validateBinaryTreeNodes(
-        self, n: int, leftChild: List[int], rightChild: List[int]
-    ) -> bool:
+    def validateBinaryTreeNodes(self, n: int, leftChild: List[int], rightChild: List[int]) -> bool:
         indegree = [0] * n
         for child in leftChild + rightChild:
             if child == -1:

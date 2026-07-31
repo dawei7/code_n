@@ -1,9 +1,8 @@
-WITH fridays(week_of_month, purchase_date) AS (
-    VALUES
-        (1, '2023-11-03'),
-        (2, '2023-11-10'),
-        (3, '2023-11-17'),
-        (4, '2023-11-24')
+WITH fridays AS (
+    SELECT 1 AS week_of_month, DATE('2023-11-03') AS purchase_date
+    UNION ALL SELECT 2, DATE('2023-11-10')
+    UNION ALL SELECT 3, DATE('2023-11-17')
+    UNION ALL SELECT 4, DATE('2023-11-24')
 )
 SELECT
     friday.week_of_month,

@@ -3,7 +3,7 @@
 **Inputs**
 
 - `s`: The string to segment.
-- `word_dict`: The available non-empty dictionary words.
+- `wordDict`: The available non-empty dictionary words.
 
 **Return value**
 

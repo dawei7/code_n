@@ -23,12 +23,9 @@ class Solution:
                         next_row = row + dr
                         next_column = column + dc
                         if 0 <= next_row < m and 0 <= next_column < n:
-                            next_counts[next_row][next_column] = (
-                                next_counts[next_row][next_column] + ways
-                            ) % mod
+                            next_counts[next_row][next_column] = (next_counts[next_row][next_column] + ways) % mod
                         else:
                             escaped = (escaped + ways) % mod
             current = next_counts
 
         return escaped
-

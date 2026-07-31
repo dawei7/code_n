@@ -9,7 +9,7 @@
       "kind": "benchmark",
       "visible": false,
       "input": {
-        "group_sizes": [
+        "groupSizes": [
           1,
           1,
           1,
@@ -158,7 +158,7 @@
       "kind": "benchmark",
       "visible": false,
       "input": {
-        "group_sizes": [
+        "groupSizes": [
           1,
           1,
           1,
@@ -691,7 +691,7 @@
       "kind": "benchmark",
       "visible": false,
       "input": {
-        "group_sizes": [
+        "groupSizes": [
           1,
           1,
           1,

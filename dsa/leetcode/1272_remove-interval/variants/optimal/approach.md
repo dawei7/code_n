@@ -13,7 +13,7 @@ Each of the $n$ intervals is examined once and emits at most two pieces, so the 
 ## Alternatives and edge cases
 - **Front insertion followed by reversal:** It can preserve the same final order, but repeatedly shifting an expanding list takes $O(n^2)$ time.
 - **Endpoint-event sweep:** Treating all endpoints as events generalizes to many set operations but adds sorting and bookkeeping that the sorted disjoint input does not need.
-- **Complete coverage:** An interval entirely inside `to_be_removed` emits no piece.
+- **Complete coverage:** An interval entirely inside `toBeRemoved` emits no piece.
 - **Removal strictly inside one interval:** Both residual sides are nonempty and must be emitted.
 - **Touching endpoints:** `[a,b)` and `[b,c)` do not overlap, so the original interval remains unchanged.
 - **Removal outside the represented set:** Every interval is copied unchanged.

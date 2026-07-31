@@ -21,11 +21,7 @@ class Solution:
                     if count == 0:
                         continue
                     for current in range(1, 7):
-                        if (
-                            current != previous
-                            and current != last
-                            and gcd(last, current) == 1
-                        ):
+                        if current != previous and current != last and gcd(last, current) == 1:
                             next_counts[last][current] += count
             counts = next_counts
 

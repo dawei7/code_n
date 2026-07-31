@@ -9,9 +9,7 @@ class Solution:
             neighbors[left].append(right)
             neighbors[right].append(left)
 
-        current = next(
-            value for value, adjacent in neighbors.items() if len(adjacent) == 1
-        )
+        current = next(value for value, adjacent in neighbors.items() if len(adjacent) == 1)
         restored = [current]
         previous = None
 

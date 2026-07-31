@@ -12,11 +12,7 @@ class Solution:
 
         coprime_values = [[] for _ in range(51)]
         for value in range(1, 51):
-            coprime_values[value] = [
-                candidate
-                for candidate in range(1, 51)
-                if gcd(value, candidate) == 1
-            ]
+            coprime_values[value] = [candidate for candidate in range(1, 51) if gcd(value, candidate) == 1]
 
         active_by_value = [[] for _ in range(51)]
         answer = [-1] * node_count
@@ -32,10 +28,7 @@ class Solution:
 
             best_depth = -1
             for candidate in coprime_values[value]:
-                if (
-                    active_by_value[candidate]
-                    and active_by_value[candidate][-1][1] > best_depth
-                ):
+                if active_by_value[candidate] and active_by_value[candidate][-1][1] > best_depth:
                     answer[node], best_depth = active_by_value[candidate][-1]
 
             active_by_value[value].append((node, depth))

@@ -8,9 +8,7 @@ class Solution:
         for value in nums:
             full_or |= value
 
-        bit_positions = [
-            bit for bit in range(full_or.bit_length()) if full_or & (1 << bit)
-        ]
+        bit_positions = [bit for bit in range(full_or.bit_length()) if full_or & (1 << bit)]
         state_count = 1 << len(bit_positions)
         subset_counts = [0] * state_count
 

@@ -65,11 +65,7 @@ class Solution:
         for games, choice in zip(all_rounds, choices):
             first, last = choice
             order = [first]
-            order.extend(
-                index
-                for index in range(len(games))
-                if index not in (first, last)
-            )
+            order.extend(index for index in range(len(games)) if index not in (first, last))
             order.append(last)
             schedule.extend([list(games[index]) for index in order])
 

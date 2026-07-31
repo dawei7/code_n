@@ -26,12 +26,8 @@ class Solution:
             for right in range(length, len(path)):
                 outgoing = path[right - length] + 1
                 incoming = path[right] + 1
-                hash_one = (
-                    hash_one * base + incoming - outgoing * power_one
-                ) % modulus_one
-                hash_two = (
-                    hash_two * base + incoming - outgoing * power_two
-                ) % modulus_two
+                hash_one = (hash_one * base + incoming - outgoing * power_one) % modulus_one
+                hash_two = (hash_two * base + incoming - outgoing * power_two) % modulus_two
                 result.add((hash_one, hash_two))
 
             return result

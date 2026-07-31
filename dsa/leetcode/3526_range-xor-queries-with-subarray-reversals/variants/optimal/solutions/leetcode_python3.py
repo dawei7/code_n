@@ -51,9 +51,7 @@ class Solution:
                 first, node.left = split(node.left, count)
                 pull(node)
                 return first, node
-            node.right, second = split(
-                node.right, count - node_size(node.left) - 1
-            )
+            node.right, second = split(node.right, count - node_size(node.left) - 1)
             pull(node)
             return node, second
 

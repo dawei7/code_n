@@ -10,11 +10,7 @@ class Solution:
             for right in range(len(nums) + 1):
                 while stack and (
                     right == len(nums)
-                    or (
-                        nums[stack[-1]] < nums[right]
-                        if as_maximum
-                        else nums[stack[-1]] > nums[right]
-                    )
+                    or (nums[stack[-1]] < nums[right] if as_maximum else nums[stack[-1]] > nums[right])
                 ):
                     middle = stack.pop()
                     left = stack[-1] if stack else -1

@@ -21,4 +21,3 @@ class Solution:
 
         result = int("".join(digits))
         return result if result <= 2_147_483_647 else -1
-

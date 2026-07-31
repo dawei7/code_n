@@ -1,7 +1,7 @@
 ## General
 **Bound the possible distance:** The farthest two cells in a `rows` by `cols` matrix differ by at most `rows - 1` vertically and `cols - 1` horizontally. Every center-to-cell distance is therefore an integer from $0$ through `rows + cols - 2`.
 
-**Group cells by exact distance:** Allocate one bucket for each possible distance. Visit every coordinate `[row, col]`, compute `distance = abs(row - r_center) + abs(col - c_center)`, and append the coordinate to that bucket.
+**Group cells by exact distance:** Allocate one bucket for each possible distance. Visit every coordinate `[row, col]`, compute `distance = abs(row - rCenter) + abs(col - cCenter)`, and append the coordinate to that bucket.
 
 **Emit buckets in increasing order:** Concatenating bucket zero, bucket one, and so on includes every cell exactly once. All coordinates in an earlier bucket have a smaller distance than all coordinates in a later bucket; ties remain unrestricted, so the result satisfies the complete ordering contract.
 

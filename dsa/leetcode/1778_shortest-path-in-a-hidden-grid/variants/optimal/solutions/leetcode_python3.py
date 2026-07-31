@@ -21,9 +21,7 @@ class Solution:
                     master.move(back_direction)
                 continue
 
-            direction, row_delta, column_delta, opposite = directions[
-                next_direction
-            ]
+            direction, row_delta, column_delta, opposite = directions[next_direction]
             stack[-1][2] += 1
             neighbor = (row + row_delta, column + column_delta)
             if neighbor in reachable or not master.canMove(direction):

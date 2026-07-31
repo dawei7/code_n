@@ -4,17 +4,11 @@ from typing import List
 class Solution:
     def splitArray(self, nums: List[int]) -> int:
         increasing_end = 0
-        while (
-            increasing_end + 1 < len(nums)
-            and nums[increasing_end] < nums[increasing_end + 1]
-        ):
+        while increasing_end + 1 < len(nums) and nums[increasing_end] < nums[increasing_end + 1]:
             increasing_end += 1
 
         decreasing_start = len(nums) - 1
-        while (
-            decreasing_start > 0
-            and nums[decreasing_start - 1] > nums[decreasing_start]
-        ):
+        while decreasing_start > 0 and nums[decreasing_start - 1] > nums[decreasing_start]:
             decreasing_start -= 1
 
         total = sum(nums)

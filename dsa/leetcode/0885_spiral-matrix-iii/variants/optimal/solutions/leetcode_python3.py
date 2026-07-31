@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def spiralMatrixIII(
-        self, rows: int, cols: int, rStart: int, cStart: int
-    ) -> List[List[int]]:
+    def spiralMatrixIII(self, rows: int, cols: int, rStart: int, cStart: int) -> List[List[int]]:
         result = [[rStart, cStart]]
         target = rows * cols
         if target == 1:

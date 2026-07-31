@@ -14,11 +14,7 @@ class Solution:
                 if row_length > k:
                     break
 
-                row_cost = (
-                    0
-                    if end == word_count - 1
-                    else (k - row_length) ** 2
-                )
+                row_cost = 0 if end == word_count - 1 else (k - row_length) ** 2
                 best[end + 1] = min(
                     best[end + 1],
                     best[start] + row_cost,

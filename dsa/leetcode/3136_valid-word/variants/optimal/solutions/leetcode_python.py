@@ -8,9 +8,7 @@ class Solution:
         has_consonant = False
 
         for character in word:
-            is_letter = (
-                "a" <= character <= "z" or "A" <= character <= "Z"
-            )
+            is_letter = "a" <= character <= "z" or "A" <= character <= "Z"
             is_digit = "0" <= character <= "9"
 
             if not is_letter and not is_digit:

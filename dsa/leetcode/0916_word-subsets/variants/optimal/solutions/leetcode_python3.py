@@ -21,4 +21,3 @@ class Solution:
                 universal.append(word)
 
         return universal
-

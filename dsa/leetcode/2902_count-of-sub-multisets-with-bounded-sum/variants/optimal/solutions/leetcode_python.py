@@ -16,13 +16,9 @@ class Solution:
             window_width = (multiplicity + 1) * value
 
             for total in range(value, r + 1):
-                next_dp[total] = (
-                    next_dp[total] + next_dp[total - value]
-                ) % modulus
+                next_dp[total] = (next_dp[total] + next_dp[total - value]) % modulus
                 if total >= window_width:
-                    next_dp[total] = (
-                        next_dp[total] - dp[total - window_width]
-                    ) % modulus
+                    next_dp[total] = (next_dp[total] - dp[total - window_width]) % modulus
 
             dp = next_dp
 

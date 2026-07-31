@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def colorBorder(
-        self, grid: List[List[int]], row: int, col: int, color: int
-    ) -> List[List[int]]:
+    def colorBorder(self, grid: List[List[int]], row: int, col: int, color: int) -> List[List[int]]:
         rows, cols = len(grid), len(grid[0])
         original = grid[row][col]
         seen = {(row, col)}
@@ -30,4 +28,3 @@ class Solution:
         for border_row, border_col in border:
             grid[border_row][border_col] = color
         return grid
-

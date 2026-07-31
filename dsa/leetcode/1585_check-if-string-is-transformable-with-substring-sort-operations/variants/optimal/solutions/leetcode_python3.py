@@ -12,10 +12,7 @@ class Solution:
 
             source_index = positions[digit][used[digit]]
             for smaller in range(digit):
-                if (
-                    used[smaller] < len(positions[smaller])
-                    and positions[smaller][used[smaller]] < source_index
-                ):
+                if used[smaller] < len(positions[smaller]) and positions[smaller][used[smaller]] < source_index:
                     return False
 
             used[digit] += 1

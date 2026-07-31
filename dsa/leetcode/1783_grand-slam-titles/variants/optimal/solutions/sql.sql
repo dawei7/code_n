@@ -13,5 +13,4 @@ JOIN (
     SELECT Au_open AS player_id FROM Championships
 ) AS winners
     ON winners.player_id = p.player_id
-GROUP BY p.player_id, p.player_name
-ORDER BY p.player_id;
+GROUP BY p.player_id, p.player_name;

@@ -25,9 +25,7 @@ class BookMyShow:
             return False
 
         while k:
-            row = self._first_with_at_least(
-                1, 0, self._rows - 1, maxRow, 1
-            )
+            row = self._first_with_at_least(1, 0, self._rows - 1, maxRow, 1)
             booked = min(k, self._remaining[row])
             self._remaining[row] -= booked
             k -= booked
@@ -46,16 +44,10 @@ class BookMyShow:
         self._pull(node)
 
     def _pull(self, node: int) -> None:
-        self._maximum[node] = max(
-            self._maximum[node * 2], self._maximum[node * 2 + 1]
-        )
-        self._total[node] = (
-            self._total[node * 2] + self._total[node * 2 + 1]
-        )
+        self._maximum[node] = max(self._maximum[node * 2], self._maximum[node * 2 + 1])
+        self._total[node] = self._total[node * 2] + self._total[node * 2 + 1]
 
-    def _update(
-        self, node: int, left: int, right: int, index: int
-    ) -> None:
+    def _update(self, node: int, left: int, right: int, index: int) -> None:
         if left == right:
             self._maximum[node] = self._remaining[index]
             self._total[node] = self._remaining[index]
@@ -80,24 +72,16 @@ class BookMyShow:
         if left == right:
             return left
         middle = (left + right) // 2
-        result = self._first_with_at_least(
-            node * 2, left, middle, max_row, needed
-        )
+        result = self._first_with_at_least(node * 2, left, middle, max_row, needed)
         if result != -1:
             return result
-        return self._first_with_at_least(
-            node * 2 + 1, middle + 1, right, max_row, needed
-        )
+        return self._first_with_at_least(node * 2 + 1, middle + 1, right, max_row, needed)
 
-    def _prefix_total(
-        self, node: int, left: int, right: int, max_row: int
-    ) -> int:
+    def _prefix_total(self, node: int, left: int, right: int, max_row: int) -> int:
         if right <= max_row:
             return self._total[node]
         middle = (left + right) // 2
         total = self._prefix_total(node * 2, left, middle, max_row)
         if max_row > middle:
-            total += self._prefix_total(
-                node * 2 + 1, middle + 1, right, max_row
-            )
+            total += self._prefix_total(node * 2 + 1, middle + 1, right, max_row)
         return total

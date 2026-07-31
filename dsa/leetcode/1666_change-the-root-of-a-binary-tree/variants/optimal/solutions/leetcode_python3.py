@@ -8,7 +8,7 @@
 
 
 class Solution:
-    def flipBinaryTree(self, root: 'Node', leaf: 'Node') -> 'Node':
+    def flipBinaryTree(self, root: "Node", leaf: "Node") -> "Node":
         current = leaf
         parent = current.parent
 

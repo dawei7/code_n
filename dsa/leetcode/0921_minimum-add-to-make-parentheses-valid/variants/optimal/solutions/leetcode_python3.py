@@ -12,4 +12,3 @@ class Solution:
                 additions += 1
 
         return additions + open_count
-

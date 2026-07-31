@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Solution:
     def countVisitedNodes(self, edges: List[int]) -> List[int]:
         n = len(edges)

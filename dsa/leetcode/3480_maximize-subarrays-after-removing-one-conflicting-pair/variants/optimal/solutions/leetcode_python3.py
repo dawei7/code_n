@@ -25,8 +25,6 @@ class Solution:
 
             valid_subarrays += right - largest_left
             if largest_pair_id != -1:
-                removal_gain[largest_pair_id] += (
-                    largest_left - second_largest_left
-                )
+                removal_gain[largest_pair_id] += largest_left - second_largest_left
 
         return valid_subarrays + max(removal_gain)
