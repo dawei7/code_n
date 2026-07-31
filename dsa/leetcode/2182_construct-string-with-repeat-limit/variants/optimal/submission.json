@@ -7,7 +7,7 @@
   "title_slug": "construct-string-with-repeat-limit",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.repeatLimitedString",
   "verified_submission_id": "2073743934",
   "verified_at": "2026-07-19T17:22:31.088018+00:00"

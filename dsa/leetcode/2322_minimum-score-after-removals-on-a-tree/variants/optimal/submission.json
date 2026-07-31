@@ -7,7 +7,7 @@
   "title_slug": "minimum-score-after-removals-on-a-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumScore",
   "verified_submission_id": "2074397813",
   "verified_at": "2026-07-20T09:47:39.872388+00:00"

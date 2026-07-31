@@ -1,6 +1,6 @@
 # Optimal Solution Alignment
 
-Generated: 2026-07-31T22:07:41.279357+00:00
+Generated: 2026-07-31T22:51:18.309197+00:00
 
 All canonical Optimal app/native source pairs through frontend ID 4005. Structural alignment is local evidence, not a substitute for remote acceptance.
 

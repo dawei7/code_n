@@ -7,7 +7,7 @@
   "title_slug": "distinct-echo-substrings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.distinctEchoSubstrings",
   "verified_submission_id": "2068474022",
   "verified_at": "2026-07-15T10:23:52.057120+00:00"

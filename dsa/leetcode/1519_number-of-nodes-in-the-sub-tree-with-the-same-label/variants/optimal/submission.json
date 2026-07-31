@@ -7,7 +7,7 @@
   "title_slug": "number-of-nodes-in-the-sub-tree-with-the-same-label",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countSubTrees",
   "verified_submission_id": "2069527776",
   "verified_at": "2026-07-16T07:16:12.474795+00:00"

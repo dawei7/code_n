@@ -7,7 +7,7 @@
   "title_slug": "minimum-recolors-to-get-k-consecutive-black-blocks",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumRecolors",
   "verified_submission_id": "2074495515",
   "verified_at": "2026-07-20T11:26:18.900595+00:00"

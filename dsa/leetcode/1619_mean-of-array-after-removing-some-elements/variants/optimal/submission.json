@@ -7,7 +7,7 @@
   "title_slug": "mean-of-array-after-removing-some-elements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.trimMean",
   "verified_submission_id": "2070426983",
   "verified_at": "2026-07-16T21:53:36.894002+00:00"

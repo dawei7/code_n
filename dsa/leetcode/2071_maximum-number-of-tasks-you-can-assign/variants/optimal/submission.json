@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-tasks-you-can-assign",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxTaskAssign",
   "verified_submission_id": "2073000090",
   "verified_at": "2026-07-19T03:42:14.385416+00:00"

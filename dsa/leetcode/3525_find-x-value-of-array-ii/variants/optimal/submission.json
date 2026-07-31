@@ -7,7 +7,7 @@
   "title_slug": "find-x-value-of-array-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.resultArray",
   "verified_submission_id": "2082599040",
   "verified_at": "2026-07-26T22:17:00Z"

@@ -7,7 +7,7 @@
   "title_slug": "make-array-non-decreasing-or-non-increasing",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.convertArray",
   "verified_submission_id": "2073948885",
   "verified_at": "2026-07-20T00:28:50.140553+00:00"

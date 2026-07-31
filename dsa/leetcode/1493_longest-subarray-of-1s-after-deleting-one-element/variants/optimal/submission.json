@@ -7,7 +7,7 @@
   "title_slug": "longest-subarray-of-1s-after-deleting-one-element",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.longestSubarray",
   "verified_submission_id": "2074768058",
   "verified_at": "2026-07-20T15:51:08.188391+00:00"

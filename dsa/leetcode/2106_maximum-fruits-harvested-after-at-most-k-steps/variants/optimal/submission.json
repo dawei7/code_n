@@ -7,7 +7,7 @@
   "title_slug": "maximum-fruits-harvested-after-at-most-k-steps",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxTotalFruits",
   "verified_submission_id": "2073291757",
   "verified_at": "2026-07-19T09:23:02.388766+00:00"

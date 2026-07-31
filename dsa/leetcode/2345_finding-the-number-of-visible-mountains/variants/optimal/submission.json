@@ -7,7 +7,7 @@
   "title_slug": "finding-the-number-of-visible-mountains",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.visibleMountains",
   "verified_submission_id": "2080721750",
   "verified_at": "2026-07-25T12:28:46.3546065Z"

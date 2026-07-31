@@ -209,7 +209,7 @@ def test_review_must_bind_every_alignment_artifact(tmp_path: Path) -> None:
     solutions = branch / "solutions"
     solutions.mkdir(parents=True)
     app_path = solutions / "solve.py"
-    native_path = solutions / "leetcode_python3.py"
+    native_path = solutions / "leetcode.py"
     app_source = "def solve(values):\n    return values\n"
     native_source = "class Solution:\n    def run(self, head):\n        return head\n"
     app_path.write_text(app_source, encoding="utf-8")
@@ -224,7 +224,7 @@ def test_review_must_bind_every_alignment_artifact(tmp_path: Path) -> None:
         "schema_version": 1,
         "status": "reviewed",
         "app_source": "solutions/solve.py",
-        "native_source": "solutions/leetcode_python3.py",
+        "native_source": "solutions/leetcode.py",
         "hashes": {
             "app_sha256": _sha256(app_source),
             "native_sha256": _sha256(native_source),

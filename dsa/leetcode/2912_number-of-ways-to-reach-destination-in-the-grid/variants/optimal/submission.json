@@ -7,7 +7,7 @@
   "title_slug": "number-of-ways-to-reach-destination-in-the-grid",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numberOfWays",
   "verified_submission_id": "2078119116",
   "verified_at": "2026-07-23T08:23:12.085033+00:00"

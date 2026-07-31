@@ -7,7 +7,7 @@
   "title_slug": "maximum-total-sum-of-k-selected-elements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxSum",
   "verified_submission_id": "2088016152",
   "verified_at": "2026-07-30T19:51:39.012144+00:00"

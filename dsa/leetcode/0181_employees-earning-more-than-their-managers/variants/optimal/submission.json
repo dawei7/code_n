@@ -7,7 +7,7 @@
   "title_slug": "employees-earning-more-than-their-managers",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "verified_submission_id": "2064193553",
   "verified_at": "2026-07-11T18:24:58.544196+00:00"
 }

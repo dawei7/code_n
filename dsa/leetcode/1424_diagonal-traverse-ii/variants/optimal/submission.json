@@ -7,7 +7,7 @@
   "title_slug": "diagonal-traverse-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.findDiagonalOrder",
   "verified_submission_id": "2074388001",
   "verified_at": "2026-07-20T09:38:58.260522+00:00"

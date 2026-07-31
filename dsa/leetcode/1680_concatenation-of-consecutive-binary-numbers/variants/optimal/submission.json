@@ -7,7 +7,7 @@
   "title_slug": "concatenation-of-consecutive-binary-numbers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.concatenatedBinary",
   "verified_submission_id": "2070535209",
   "verified_at": "2026-07-17T03:14:51.506791+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-time-to-complete-trips",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumTime",
   "verified_submission_id": "2073776537",
   "verified_at": "2026-07-19T17:51:50.368121+00:00"

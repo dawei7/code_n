@@ -7,7 +7,7 @@
   "title_slug": "minimum-moves-to-reach-target-score",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minMoves",
   "verified_submission_id": "2073454856",
   "verified_at": "2026-07-19T12:35:29.756525+00:00"

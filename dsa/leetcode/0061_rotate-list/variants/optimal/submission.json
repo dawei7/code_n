@@ -7,7 +7,7 @@
   "title_slug": "rotate-list",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064133918",
   "verified_at": "2026-07-11T17:32:53.372712+00:00"
 }

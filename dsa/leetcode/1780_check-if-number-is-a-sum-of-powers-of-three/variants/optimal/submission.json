@@ -7,7 +7,7 @@
   "title_slug": "check-if-number-is-a-sum-of-powers-of-three",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.checkPowersOfThree",
   "verified_submission_id": "2071119878",
   "verified_at": "2026-07-17T12:57:10.632861+00:00"

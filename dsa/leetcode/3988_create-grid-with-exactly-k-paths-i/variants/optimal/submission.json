@@ -7,7 +7,7 @@
   "title_slug": "create-grid-with-exactly-k-paths-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.createGrid",
   "verified_submission_id": "2088113059",
   "verified_at": "2026-07-31T00:26:01.5313825Z"

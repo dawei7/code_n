@@ -7,7 +7,7 @@
   "title_slug": "invalid-tweets-ii",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2079780075",
   "verified_at": "2026-07-24T18:01:00+02:00"

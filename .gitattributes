@@ -9,3 +9,7 @@
 *.jsx text working-tree-encoding=UTF-8
 *.css text working-tree-encoding=UTF-8
 *.html text working-tree-encoding=UTF-8
+
+# Canonical LeetCode documents and hash-bound solution evidence must have the
+# same bytes on every platform. This also matches Ruff's configured LF output.
+dsa/leetcode/** text=auto eol=lf working-tree-encoding=UTF-8

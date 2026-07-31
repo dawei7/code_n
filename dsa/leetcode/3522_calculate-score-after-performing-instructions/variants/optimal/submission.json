@@ -7,7 +7,7 @@
   "title_slug": "calculate-score-after-performing-instructions",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.calculateScore",
   "verified_submission_id": "2082592797",
   "verified_at": "2026-07-26T21:59:00Z"

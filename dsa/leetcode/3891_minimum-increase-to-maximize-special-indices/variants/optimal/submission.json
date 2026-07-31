@@ -7,7 +7,7 @@
   "title_slug": "minimum-increase-to-maximize-special-indices",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minIncrease",
   "verified_submission_id": "2086722861",
   "verified_at": "2026-07-29T21:49:44.394866+00:00"

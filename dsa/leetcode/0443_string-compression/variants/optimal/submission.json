@@ -7,7 +7,7 @@
   "title_slug": "string-compression",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064829055",
   "verified_at": "2026-07-12T09:35:22.749934+00:00"
 }

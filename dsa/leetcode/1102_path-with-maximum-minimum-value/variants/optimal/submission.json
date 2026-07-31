@@ -7,7 +7,7 @@
   "title_slug": "path-with-maximum-minimum-value",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maximumMinimumPath",
   "verified_submission_id": "2067644786",
   "verified_at": "2026-07-14T16:55:16.093625+00:00"

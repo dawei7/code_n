@@ -7,7 +7,7 @@
   "title_slug": "count-palindromic-subsequences",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countPalindromes",
   "verified_submission_id": "2088526752",
   "verified_at": "2026-07-31T08:30:54.7775007Z"

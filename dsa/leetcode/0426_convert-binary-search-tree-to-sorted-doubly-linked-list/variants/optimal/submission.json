@@ -7,7 +7,7 @@
   "title_slug": "convert-binary-search-tree-to-sorted-doubly-linked-list",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064781361",
   "verified_at": "2026-07-12T08:34:00.255367+00:00"
 }

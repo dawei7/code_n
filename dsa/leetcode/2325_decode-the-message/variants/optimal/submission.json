@@ -7,7 +7,7 @@
   "title_slug": "decode-the-message",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.decodeMessage",
   "verified_submission_id": "2074398272",
   "verified_at": "2026-07-20T09:48:05.058767+00:00"

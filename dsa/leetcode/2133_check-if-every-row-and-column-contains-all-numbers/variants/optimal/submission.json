@@ -7,7 +7,7 @@
   "title_slug": "check-if-every-row-and-column-contains-all-numbers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.checkValid",
   "verified_submission_id": "2073426189",
   "verified_at": "2026-07-19T12:02:25.626090+00:00"

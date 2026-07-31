@@ -7,7 +7,7 @@
   "title_slug": "longest-balanced-substring-after-one-swap",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.longestBalanced",
   "verified_submission_id": "2086762683",
   "verified_at": "2026-07-30T00:07:16.363398+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "smallest-string-with-a-given-numeric-value",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.getSmallestString",
   "verified_submission_id": "2070494581",
   "verified_at": "2026-07-17T01:44:25.037727+00:00"

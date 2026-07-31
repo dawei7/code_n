@@ -7,7 +7,7 @@
   "title_slug": "filter-occupied-intervals",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.filterOccupiedIntervals",
   "verified_submission_id": "2088022515",
   "verified_at": "2026-07-30T20:02:47.9448026+00:00"

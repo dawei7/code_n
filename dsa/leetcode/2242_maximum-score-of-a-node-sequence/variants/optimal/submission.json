@@ -7,7 +7,7 @@
   "title_slug": "maximum-score-of-a-node-sequence",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maximumScore",
   "verified_submission_id": "2073922395",
   "verified_at": "2026-07-19T22:44:15.777025+00:00"

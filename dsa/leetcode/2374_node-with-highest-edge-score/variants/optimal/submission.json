@@ -7,7 +7,7 @@
   "title_slug": "node-with-highest-edge-score",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.edgeScore",
   "verified_submission_id": "2074471997",
   "verified_at": "2026-07-20T10:59:43.483799+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "container-with-most-water",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2089309486",
   "verified_at": "2026-07-31T21:44:53.964+00:00"
 }

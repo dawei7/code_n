@@ -122,10 +122,14 @@ class DynamicDocsTest(conftest._Base):
         self.assertEqual(response.status_code, 200, response.text)
         self.assertIn("# cOde(n)", response.text)
 
-    def test_translation_request_falls_back_to_canonical_doc(self) -> None:
-        response = self.client.get("/api/docs/by-id/lc_1?lang=de")
+    def test_documentation_endpoints_have_no_natural_language_selector(self) -> None:
+        response = self.client.get("/openapi.json")
         self.assertEqual(response.status_code, 200, response.text)
-        self.assertIn("# Two Sum", response.text)
+        paths = response.json()["paths"]
+
+        for route in ("/api/docs/overview", "/api/docs/by-id/{challenge_id}"):
+            parameters = paths[route]["get"].get("parameters", [])
+            self.assertNotIn("lang", {parameter["name"] for parameter in parameters})
 
     def test_docs_index_contains_only_registry_challenges(self) -> None:
         response = self.client.get("/api/docs/index")

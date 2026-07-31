@@ -7,7 +7,7 @@
   "title_slug": "count-special-integers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countSpecialNumbers",
   "verified_submission_id": "2074480866",
   "verified_at": "2026-07-20T11:09:46.232934+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "longest-palindromic-subsequence-after-at-most-k-operations",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.longestPalindromicSubsequence",
   "verified_submission_id": "2082123980",
   "verified_at": "2026-07-26T14:06:00Z"

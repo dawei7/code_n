@@ -121,3 +121,25 @@ def test_candidate_branch_is_not_publishable(tmp_path: Path) -> None:
     assert not status.complete
     assert any("must be remotely verified" in error for error in status.errors)
     assert status.variants[1].submission_status == "candidate"
+
+
+def test_submission_source_requires_canonical_leetcode_filename(tmp_path: Path) -> None:
+    package = tmp_path / PACKAGE.name
+    shutil.copytree(PACKAGE, package)
+    branch = package / "variants" / "optimal"
+    submission_path = branch / "submission.json"
+    submission = json.loads(submission_path.read_text(encoding="utf-8"))
+    canonical_source = branch / submission["source"]
+    legacy_source = canonical_source.with_name("leetcode_python3.py")
+    canonical_source.rename(legacy_source)
+    submission["source"] = "solutions/leetcode_python3.py"
+    submission_path.write_text(json.dumps(submission, indent=2) + "\n", encoding="utf-8")
+
+    status = validate_solution_variants(
+        package / "solution_variants.json",
+        metadata=_metadata(package),
+        expected_challenge_id="lc_1502",
+    )
+
+    assert not status.complete
+    assert any("solutions/leetcode.py" in error for error in status.errors)

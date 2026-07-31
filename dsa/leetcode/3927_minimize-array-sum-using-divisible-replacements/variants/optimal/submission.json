@@ -7,7 +7,7 @@
   "title_slug": "minimize-array-sum-using-divisible-replacements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minArraySum",
   "verified_submission_id": "2087070229",
   "verified_at": "2026-07-30T06:29:55.931641+00:00"

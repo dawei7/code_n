@@ -7,7 +7,7 @@
   "title_slug": "dynamic-unpivoting-of-a-table",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "native_entrypoint": "UnpivotProducts",
   "verified_submission_id": "2073936201",
   "verified_at": "2026-07-19T23:41:03.355549+00:00"

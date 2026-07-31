@@ -7,7 +7,7 @@
   "title_slug": "minimize-the-difference-between-target-and-chosen-elements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimizeTheDifference",
   "verified_submission_id": "2072786725",
   "verified_at": "2026-07-18T20:36:37.308790+00:00"

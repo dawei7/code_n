@@ -7,7 +7,7 @@
   "title_slug": "check-if-there-is-a-valid-parentheses-string-path",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.hasValidPath",
   "verified_submission_id": "2073955187",
   "verified_at": "2026-07-20T00:50:34.953305+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "count-subarrays-with-majority-element-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countMajoritySubarrays",
   "verified_submission_id": "2085212405",
   "verified_at": "2026-07-28T18:14:35.714835+00:00"

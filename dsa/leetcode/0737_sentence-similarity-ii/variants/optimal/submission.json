@@ -7,7 +7,7 @@
   "title_slug": "sentence-similarity-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.areSentencesSimilarTwo",
   "verified_submission_id": "2065830532",
   "verified_at": "2026-07-13T07:35:35.523356+00:00"

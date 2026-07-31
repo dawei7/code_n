@@ -7,7 +7,7 @@
   "title_slug": "number-of-closed-islands",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.closedIsland",
   "verified_submission_id": "2068010494",
   "verified_at": "2026-07-15T03:12:30.258084+00:00"

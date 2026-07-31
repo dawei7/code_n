@@ -7,7 +7,7 @@
   "title_slug": "check-if-word-equals-summation-of-two-words",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.isSumEqual",
   "verified_submission_id": "2071859226",
   "verified_at": "2026-07-18T06:27:07.422185+00:00"

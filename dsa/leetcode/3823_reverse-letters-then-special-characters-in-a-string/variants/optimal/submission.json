@@ -7,7 +7,7 @@
   "title_slug": "reverse-letters-then-special-characters-in-a-string",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.reverseByType",
   "verified_submission_id": "2085623152",
   "verified_at": "2026-07-29T05:31:03.607196+00:00"

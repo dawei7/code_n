@@ -7,7 +7,7 @@
   "title_slug": "count-student-number-in-departments",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "verified_submission_id": "2065429509",
   "verified_at": "2026-07-12T20:27:19.395761+00:00"
 }

@@ -87,3 +87,10 @@ def app_solution_filename(language: str | None) -> str:
     if language_id == "python":
         return "solve.py"
     return f"{language_id}.{SUPPORTED_LANGUAGES[language_id].extension}"
+
+
+def leetcode_solution_filename(language: str | None) -> str:
+    """Return the canonical source-native LeetCode filename for a language."""
+
+    language_id = normalize_language(language)
+    return f"leetcode.{SUPPORTED_LANGUAGES[language_id].extension}"

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "reviewed",
   "app_source": "solutions/sql.sql",
-  "native_source": "solutions/leetcode_mysql.sql",
+  "native_source": "solutions/leetcode.sql",
   "hashes": {
     "app_sha256": "c3392208b2d02b3ae613fa1e605e9a47c6334262dec0f171176daa81c35aa2f6",
     "native_sha256": "66d7d7bd4a607514acc9db81e74cf2d5de8cab3a57ffe7848702c9b085be93cb",

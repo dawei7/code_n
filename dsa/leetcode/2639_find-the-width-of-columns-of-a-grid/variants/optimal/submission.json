@@ -7,7 +7,7 @@
   "title_slug": "find-the-width-of-columns-of-a-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.findColumnWidth",
   "verified_submission_id": "2076171509",
   "verified_at": "2026-07-21T17:23:00+00:00"

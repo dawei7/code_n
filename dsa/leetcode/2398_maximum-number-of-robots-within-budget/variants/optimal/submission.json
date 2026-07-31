@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-robots-within-budget",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maximumRobots",
   "verified_submission_id": "2074593314",
   "verified_at": "2026-07-20T13:18:19.386047+00:00"

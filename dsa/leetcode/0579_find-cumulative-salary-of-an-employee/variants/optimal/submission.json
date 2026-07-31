@@ -7,7 +7,7 @@
   "title_slug": "find-cumulative-salary-of-an-employee",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "verified_submission_id": "2065428048",
   "verified_at": "2026-07-12T20:24:28.811261+00:00"
 }

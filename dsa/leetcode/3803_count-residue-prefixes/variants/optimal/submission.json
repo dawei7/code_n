@@ -7,7 +7,7 @@
   "title_slug": "count-residue-prefixes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.residuePrefixes",
   "verified_submission_id": "2085446658",
   "verified_at": "2026-07-29T01:56:05.005536+00:00"

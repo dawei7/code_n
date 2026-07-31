@@ -7,7 +7,7 @@
   "title_slug": "most-frequent-subtree-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065154234",
   "verified_at": "2026-07-12T15:38:33.156632+00:00"
 }

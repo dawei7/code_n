@@ -7,7 +7,7 @@
   "title_slug": "maximum-total-importance-of-roads",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maximumImportance",
   "verified_submission_id": "2073993508",
   "verified_at": "2026-07-20T02:40:06.165680+00:00"

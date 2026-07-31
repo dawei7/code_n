@@ -7,7 +7,7 @@
   "title_slug": "find-three-consecutive-integers-that-sum-to-a-given-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.sumOfThree",
   "verified_submission_id": "2073708460",
   "verified_at": "2026-07-19T16:51:46.991246+00:00"

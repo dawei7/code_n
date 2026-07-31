@@ -7,7 +7,7 @@
   "title_slug": "robot-bounded-in-circle",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.isRobotBounded",
   "verified_submission_id": "2067373374",
   "verified_at": "2026-07-14T13:00:13.103751+00:00"

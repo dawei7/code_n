@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-make-the-array-alternating",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumOperations",
   "verified_submission_id": "2073650803",
   "verified_at": "2026-07-19T15:59:09.455959+00:00"

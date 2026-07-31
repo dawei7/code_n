@@ -7,7 +7,7 @@
   "title_slug": "guess-number-higher-or-lower",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064632183",
   "verified_at": "2026-07-12T05:50:38.962704+00:00"
 }

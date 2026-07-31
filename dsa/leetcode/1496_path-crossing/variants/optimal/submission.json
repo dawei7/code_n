@@ -7,7 +7,7 @@
   "title_slug": "path-crossing",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.isPathCrossing",
   "verified_submission_id": "2069341486",
   "verified_at": "2026-07-16T04:52:32.787752+00:00"

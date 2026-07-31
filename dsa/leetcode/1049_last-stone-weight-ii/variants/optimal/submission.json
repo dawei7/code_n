@@ -7,7 +7,7 @@
   "title_slug": "last-stone-weight-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.lastStoneWeightII",
   "verified_submission_id": "2067407002",
   "verified_at": "2026-07-14T13:32:44.168285+00:00"

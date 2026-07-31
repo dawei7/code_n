@@ -7,7 +7,7 @@
   "title_slug": "final-prices-with-a-special-discount-in-a-shop",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.finalPrices",
   "verified_submission_id": "2074754454",
   "verified_at": "2026-07-20T15:40:13.223196+00:00"

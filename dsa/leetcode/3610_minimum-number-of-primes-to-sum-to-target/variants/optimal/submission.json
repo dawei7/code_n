@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-primes-to-sum-to-target",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minNumberOfPrimes",
   "verified_submission_id": "2083603279",
   "verified_at": "2026-07-27T16:02:15.627422+00:00"

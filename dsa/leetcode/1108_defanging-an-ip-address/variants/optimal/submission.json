@@ -7,7 +7,7 @@
   "title_slug": "defanging-an-ip-address",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.defangIPaddr",
   "verified_submission_id": "2067678676",
   "verified_at": "2026-07-14T17:19:27.039122+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "my-calendar-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065768589",
   "verified_at": "2026-07-13T06:38:02.168481+00:00"
 }

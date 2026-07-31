@@ -7,7 +7,7 @@
   "title_slug": "number-of-pairs-after-increment",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numberOfPairs",
   "verified_submission_id": "2087456567",
   "verified_at": "2026-07-30T12:05:53.461416+00:00"

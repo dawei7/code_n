@@ -7,7 +7,7 @@
   "title_slug": "cherry-pickup",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.cherryPickup",
   "verified_submission_id": "2065852164",
   "verified_at": "2026-07-13T08:00:33.851013+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "array-of-objects-to-matrix",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode_javascript.js",
+  "source": "solutions/leetcode.js",
   "native_entrypoint": "jsonToMatrix",
   "verified_submission_id": "2076358751",
   "verified_at": "2026-07-21T20:26:00+00:00"

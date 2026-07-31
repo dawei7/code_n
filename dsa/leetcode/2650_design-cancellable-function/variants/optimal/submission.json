@@ -7,7 +7,7 @@
   "title_slug": "design-cancellable-function",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode_javascript.js",
+  "source": "solutions/leetcode.js",
   "native_entrypoint": "cancellable",
   "verified_submission_id": "2076253748",
   "verified_at": "2026-07-21T18:20:00+00:00"

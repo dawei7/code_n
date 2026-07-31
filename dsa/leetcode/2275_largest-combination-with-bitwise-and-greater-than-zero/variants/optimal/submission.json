@@ -7,7 +7,7 @@
   "title_slug": "largest-combination-with-bitwise-and-greater-than-zero",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.largestCombination",
   "verified_submission_id": "2073969717",
   "verified_at": "2026-07-20T01:36:10.231433+00:00"

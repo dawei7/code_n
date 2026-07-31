@@ -7,7 +7,7 @@
   "title_slug": "maximum-total-sum-with-threshold-constraints",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxSum",
   "verified_submission_id": "2085351055",
   "verified_at": "2026-07-28T21:05:43.227699+00:00"

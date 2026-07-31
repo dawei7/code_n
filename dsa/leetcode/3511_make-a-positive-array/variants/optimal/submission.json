@@ -7,7 +7,7 @@
   "title_slug": "make-a-positive-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.makeArrayPositive",
   "verified_submission_id": "2082543840",
   "verified_at": "2026-07-26T20:10:00Z"

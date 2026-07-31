@@ -7,7 +7,7 @@
   "title_slug": "length-of-the-longest-increasing-path",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxPathLength",
   "verified_submission_id": "2080738705",
   "verified_at": "2026-07-25T12:48:43.4152018Z"

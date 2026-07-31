@@ -7,7 +7,7 @@
   "title_slug": "minimum-prefix-removal-to-make-array-strictly-increasing",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumPrefixLength",
   "verified_submission_id": "2085562763",
   "verified_at": "2026-07-29T04:42:45.795197+00:00"

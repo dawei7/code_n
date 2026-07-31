@@ -7,7 +7,7 @@
   "title_slug": "queens-that-can-attack-the-king",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.queensAttacktheKing",
   "verified_submission_id": "2067951117",
   "verified_at": "2026-07-15T01:07:04.302694+00:00"

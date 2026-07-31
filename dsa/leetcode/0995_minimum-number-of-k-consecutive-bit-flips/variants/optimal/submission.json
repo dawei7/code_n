@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-k-consecutive-bit-flips",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minKBitFlips",
   "verified_submission_id": "2067234464",
   "verified_at": "2026-07-14T10:25:23.591679+00:00"

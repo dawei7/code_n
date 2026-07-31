@@ -7,7 +7,7 @@
   "title_slug": "apply-transform-over-each-element-in-array",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode_javascript.js",
+  "source": "solutions/leetcode.js",
   "native_entrypoint": "map",
   "verified_submission_id": "2076135434",
   "verified_at": "2026-07-21T16:59:00+00:00"

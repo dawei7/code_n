@@ -228,7 +228,7 @@ def test_internal_angles_bounded_domain_matches_heron_oracle() -> None:
     package = leetcode_package_dir("lc_3899")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_internal_angles = native_namespace["Solution"]().internalAngles
 
@@ -296,7 +296,7 @@ def test_valid_digit_bounded_domain_matches_complete_string_oracle() -> None:
     package = leetcode_package_dir("lc_3908")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_valid_digit = native_namespace["Solution"]().validDigit
 
@@ -329,7 +329,7 @@ def test_find_degrees_optimality_matches_upper_triangle_oracle() -> None:
     package = leetcode_package_dir("lc_3898")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_find_degrees = native_namespace["Solution"]().findDegrees
 
@@ -396,7 +396,7 @@ def test_count_digit_appearances_optimality_matches_decimal_oracle() -> None:
     package = leetcode_package_dir("lc_3895")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_count = native_namespace["Solution"]().countDigitOccurrences
 
@@ -434,7 +434,7 @@ def test_traffic_signal_color_bounded_domain_covers_every_legal_timer() -> None:
     package = leetcode_package_dir("lc_3894")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_traffic_signal = native_namespace["Solution"]().trafficSignal
 
@@ -2032,7 +2032,7 @@ def test_repeat_string_certificate_covers_binary_doubling_contract() -> None:
     script = r"""
 const fs = require('fs');
 const path = './dsa/leetcode/2796_repeat-string';
-const nativeSource = fs.readFileSync(`${path}/variants/optimal/solutions/leetcode_javascript.js`, 'utf8');
+const nativeSource = fs.readFileSync(`${path}/variants/optimal/solutions/leetcode.js`, 'utf8');
 if (/\.repeat\s*\(/.test(nativeSource)) {
     throw new Error('accepted source calls the prohibited built-in repeat method');
 }
@@ -5050,7 +5050,7 @@ def test_adjacent_digit_differences_matches_exhaustive_numeric_oracle() -> None:
     package = leetcode_package_dir("lc_3931")
     assert package is not None
     native_path = (
-        package / "variants" / "optimal" / "solutions" / "leetcode_python.py"
+        package / "variants" / "optimal" / "solutions" / "leetcode.py"
     )
     namespace: dict[str, object] = {}
     source = native_path.read_text(encoding="utf-8")
@@ -5083,7 +5083,7 @@ def test_elapsed_seconds_bounded_domain_matches_fixed_position_oracle() -> None:
     package = leetcode_package_dir("lc_3986")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_elapsed_seconds = native_namespace["Solution"]().secondsBetweenTimes
 
@@ -5136,7 +5136,7 @@ def test_exact_path_grid_bounded_domain_validates_every_legal_tuple() -> None:
     package = leetcode_package_dir("lc_3988")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_create_grid = native_namespace["Solution"]().createGrid
 
@@ -5180,7 +5180,7 @@ def test_bounded_exact_path_grid_ii_validates_every_legal_input() -> None:
     package = leetcode_package_dir("lc_3990")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_create_grid = native_namespace["Solution"]().createGrid
 
@@ -5235,7 +5235,7 @@ def test_exactly_one_consecutive_set_bits_matches_complete_domain_oracle() -> No
     package = leetcode_package_dir("lc_3950")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native = native_namespace["Solution"]().consecutiveSetBits
 
@@ -5257,7 +5257,7 @@ def test_compatible_numbers_in_range_matches_complete_domain_oracle() -> None:
     package = leetcode_package_dir("lc_3954")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native = native_namespace["Solution"]().sumOfGoodIntegers
 
@@ -5277,7 +5277,7 @@ def test_valid_binary_strings_matches_complete_domain_oracle() -> None:
     package = leetcode_package_dir("lc_3955")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native = native_namespace["Solution"]().generateValidStrings
 
@@ -5303,7 +5303,7 @@ def test_check_good_integer_matches_decimal_digit_oracle() -> None:
     package = leetcode_package_dir("lc_3959")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native = native_namespace["Solution"]().checkGoodInteger
 
@@ -5328,7 +5328,7 @@ def test_create_grid_has_exactly_one_path_for_every_legal_dimension() -> None:
     package = leetcode_package_dir("lc_3963")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native = native_namespace["Solution"]().createGrid
 
@@ -5357,7 +5357,7 @@ def test_good_integer_range_count_matches_enumeration_and_digit_recurrence() -> 
     package = leetcode_package_dir("lc_3966")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native = native_namespace["Solution"]().goodIntegers
 
@@ -6461,7 +6461,7 @@ def test_even_knight_moves_bounded_domain_matches_every_cell_pair() -> None:
     package = leetcode_package_dir("lc_3996")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_can_reach = native_namespace["Solution"]().canReach
 
@@ -6524,7 +6524,7 @@ def test_largest_integer_bounded_domain_matches_exhaustive_enumeration() -> None
     package = leetcode_package_dir("lc_4000")
     assert package is not None
     native_namespace = runpy.run_path(
-        str(package / "variants" / "optimal" / "solutions" / "leetcode_python3.py")
+        str(package / "variants" / "optimal" / "solutions" / "leetcode.py")
     )
     native_largest_integer = native_namespace["Solution"]().largestInteger
 

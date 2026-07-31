@@ -7,7 +7,7 @@
   "title_slug": "number-of-steps-to-reduce-a-number-in-binary-representation-to-one",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numSteps",
   "verified_submission_id": "2068897433",
   "verified_at": "2026-07-15T16:54:25.339811+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-white-tiles-after-covering-with-carpets",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "class Solution.minimumWhiteTiles",
   "verified_submission_id": "2073870761",
   "verified_at": "2026-07-19T19:51:49.472870+00:00"

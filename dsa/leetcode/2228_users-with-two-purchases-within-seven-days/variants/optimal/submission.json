@@ -7,7 +7,7 @@
   "title_slug": "users-with-two-purchases-within-seven-days",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2073905525",
   "verified_at": "2026-07-19T21:30:39.629322+00:00"

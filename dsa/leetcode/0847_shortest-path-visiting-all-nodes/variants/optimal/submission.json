@@ -7,7 +7,7 @@
   "title_slug": "shortest-path-visiting-all-nodes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.shortestPathLength",
   "verified_submission_id": "2066708785",
   "verified_at": "2026-07-13T23:37:47.069810+00:00"

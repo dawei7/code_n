@@ -7,7 +7,7 @@
   "title_slug": "check-if-move-is-legal",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.checkMove",
   "verified_submission_id": "2072710684",
   "verified_at": "2026-07-18T18:43:12.160939+00:00"

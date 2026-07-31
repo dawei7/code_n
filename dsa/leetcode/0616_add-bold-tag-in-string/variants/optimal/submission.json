@@ -7,7 +7,7 @@
   "title_slug": "add-bold-tag-in-string",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065476941",
   "verified_at": "2026-07-12T22:33:20.192795+00:00"
 }

@@ -11,7 +11,6 @@ import { getAlgorithmSetLabel, getAlgorithmSetOption } from '../lib/algorithmSet
 
 export function Workspace() {
   const detail = useAppStore((s) => s.currentDetail);
-  const language = useAppStore((s) => s.language);
   const activeSet = useAppStore((s) => s.activeSet);
   const activeTopic = useAppStore((s) => s.activeTopic);
   const setActiveTopic = useAppStore((s) => s.setActiveTopic);
@@ -58,7 +57,7 @@ export function Workspace() {
   }
 
   const topics: { id: Topic; label: ReactNode; title: string; className?: string }[] = [
-    { id: 'reference', label: '≡', title: language === 'en' ? 'Reference' : 'Referenz', className: 'font-serif text-lg' },
+    { id: 'reference', label: '≡', title: 'Reference', className: 'font-serif text-lg' },
     { id: 'complexity', label: 'O', title: 'Complexity Analysis', className: 'font-serif italic text-lg' },
     { id: 'coden', label: '</>', title: 'cOde(n)', className: 'font-mono text-sm tracking-tight' },
     ...(detail.has_guided_example

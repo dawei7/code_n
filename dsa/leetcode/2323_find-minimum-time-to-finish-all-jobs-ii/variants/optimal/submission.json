@@ -7,7 +7,7 @@
   "title_slug": "find-minimum-time-to-finish-all-jobs-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumTime",
   "verified_submission_id": "2080705807",
   "verified_at": "2026-07-25T12:11:08.9159313Z"

@@ -7,7 +7,7 @@
   "title_slug": "count-sub-islands",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countSubIslands",
   "verified_submission_id": "2072056067",
   "verified_at": "2026-07-18T09:49:32.193336+00:00"

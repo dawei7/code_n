@@ -7,7 +7,7 @@
   "title_slug": "how-many-apples-can-you-put-into-the-basket",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxNumberOfApples",
   "verified_submission_id": "2067919741",
   "verified_at": "2026-07-14T23:25:43.525616+00:00"

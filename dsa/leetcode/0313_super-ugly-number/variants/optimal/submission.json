@@ -7,7 +7,7 @@
   "title_slug": "super-ugly-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064371210",
   "verified_at": "2026-07-12T01:38:41.271392+00:00"
 }

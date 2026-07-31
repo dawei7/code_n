@@ -7,7 +7,7 @@
   "title_slug": "distance-to-a-cycle-in-undirected-graph",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.distanceToCycle",
   "verified_submission_id": "2073857705",
   "verified_at": "2026-07-19T19:24:53.206100+00:00"

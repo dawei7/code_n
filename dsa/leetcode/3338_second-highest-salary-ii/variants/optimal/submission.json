@@ -7,7 +7,7 @@
   "title_slug": "second-highest-salary-ii",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2081083037",
   "verified_at": "2026-07-25T17:54:00Z"

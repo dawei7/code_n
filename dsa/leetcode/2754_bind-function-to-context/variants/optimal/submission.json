@@ -7,7 +7,7 @@
   "title_slug": "bind-function-to-context",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/leetcode_javascript.js",
+  "source": "solutions/leetcode.js",
   "native_entrypoint": "Function.prototype.bindPolyfill",
   "verified_submission_id": "2076516326",
   "verified_at": "2026-07-22T03:23:00+00:00"

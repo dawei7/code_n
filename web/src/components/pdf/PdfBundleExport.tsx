@@ -62,7 +62,6 @@ export type PdfTocNode =
 
 type ExportPdfBundleOptions = {
   challenges: ChallengeSummary[];
-  language: 'en' | 'de';
   title: string;
   suggestedFilename: string;
   toc: PdfTocNode[];
@@ -73,7 +72,6 @@ type ExportPdfBundleOptions = {
 
 export async function exportChallengePdfBundle({
   challenges,
-  language,
   title,
   suggestedFilename,
   toc,
@@ -88,7 +86,6 @@ export async function exportChallengePdfBundle({
 
   const documents = await loadDocuments(
     orderedChallenges,
-    language,
     includeSolution,
     onProgress,
   );
@@ -334,7 +331,6 @@ function PdfMarkdown({ challengeId, markdown }: { challengeId: string; markdown:
 
 async function loadDocuments(
   challenges: ChallengeSummary[],
-  language: 'en' | 'de',
   includeSolution: boolean,
   onProgress?: (progress: PdfBundleProgress) => void,
 ): Promise<PdfDocument[]> {
@@ -357,9 +353,7 @@ async function loadDocuments(
       if (index >= challenges.length) return;
       const challenge = challenges[index]!;
 
-      const reference = await apiText(
-        `/docs/by-id/${encodeURIComponent(challenge.id)}?lang=${language}`,
-      );
+      const reference = await apiText(`/docs/by-id/${encodeURIComponent(challenge.id)}`);
       results[index]!.push({
         challenge,
         kind: 'reference',

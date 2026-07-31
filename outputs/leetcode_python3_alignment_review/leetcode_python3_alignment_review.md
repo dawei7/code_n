@@ -1,4 +1,4 @@
-# Reassessment of the 20 recovered `leetcode_python3.py` sources
+# Reassessment of the 20 recovered `leetcode.py` sources
 
 ## Outcome
 

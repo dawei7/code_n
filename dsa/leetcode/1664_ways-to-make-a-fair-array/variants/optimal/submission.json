@@ -7,7 +7,7 @@
   "title_slug": "ways-to-make-a-fair-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.waysToMakeFair",
   "verified_submission_id": "2070496223",
   "verified_at": "2026-07-17T01:48:47.310638+00:00"

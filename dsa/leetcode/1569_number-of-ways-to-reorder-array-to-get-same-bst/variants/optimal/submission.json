@@ -7,7 +7,7 @@
   "title_slug": "number-of-ways-to-reorder-array-to-get-same-bst",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numOfWays",
   "verified_submission_id": "2069845927",
   "verified_at": "2026-07-16T12:26:48.343624+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximum-difference-between-even-and-odd-frequency-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxDifference",
   "verified_submission_id": "2081836385",
   "verified_at": "2026-07-26T09:35:00Z"

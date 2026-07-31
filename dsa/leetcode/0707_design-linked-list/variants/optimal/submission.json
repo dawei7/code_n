@@ -7,7 +7,7 @@
   "title_slug": "design-linked-list",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065625167",
   "verified_at": "2026-07-13T04:26:55.916357+00:00"
 }

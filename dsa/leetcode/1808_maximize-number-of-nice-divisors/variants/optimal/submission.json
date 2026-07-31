@@ -7,7 +7,7 @@
   "title_slug": "maximize-number-of-nice-divisors",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxNiceDivisors",
   "verified_submission_id": "2071619971",
   "verified_at": "2026-07-17T23:28:45.465076+00:00"

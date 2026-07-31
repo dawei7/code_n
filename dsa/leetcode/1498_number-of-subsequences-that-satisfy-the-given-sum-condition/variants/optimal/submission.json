@@ -7,7 +7,7 @@
   "title_slug": "number-of-subsequences-that-satisfy-the-given-sum-condition",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numSubseq",
   "verified_submission_id": "2069354834",
   "verified_at": "2026-07-16T05:03:02.482652+00:00"

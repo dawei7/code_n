@@ -7,7 +7,7 @@
   "title_slug": "count-the-number-of-houses-at-a-certain-distance-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countOfPairs",
   "verified_submission_id": "2080727116",
   "verified_at": "2026-07-25T12:34:49.3941241Z"

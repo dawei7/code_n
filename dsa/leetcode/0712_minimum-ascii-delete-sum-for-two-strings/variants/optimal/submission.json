@@ -7,7 +7,7 @@
   "title_slug": "minimum-ascii-delete-sum-for-two-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065642697",
   "verified_at": "2026-07-13T04:45:28.186343+00:00"
 }

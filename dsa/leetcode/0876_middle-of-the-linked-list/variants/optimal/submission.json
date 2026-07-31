@@ -7,7 +7,7 @@
   "title_slug": "middle-of-the-linked-list",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.middleNode",
   "verified_submission_id": "2066747162",
   "verified_at": "2026-07-14T01:39:20.512475+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-time-to-visit-disappearing-nodes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumTime",
   "verified_submission_id": "2079425128",
   "verified_at": "2026-07-24T12:03:00+02:00"

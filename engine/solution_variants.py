@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from engine.languages import app_solution_filename, normalize_language
+from engine.languages import app_solution_filename, leetcode_solution_filename, normalize_language
 
 
 VARIANT_KINDS = {"optimal", "simplified", "alternative"}
@@ -122,6 +122,16 @@ def _submission_status(
             errors.append("submission source must stay inside its variant")
         if not source.is_file():
             errors.append("submission source file is missing")
+        try:
+            expected_source = variant_root / "solutions" / leetcode_solution_filename(payload.get("language"))
+        except ValueError as exc:
+            errors.append(f"submission language is invalid: {exc}")
+        else:
+            if source != expected_source.resolve():
+                errors.append(
+                    "submission source must use the canonical "
+                    f"solutions/{expected_source.name} path"
+                )
     verified_submission_id = str(payload.get("verified_submission_id") or "")
     if status == "verified" and not verified_submission_id:
         errors.append("submission verified_submission_id is missing")

@@ -7,7 +7,7 @@
   "title_slug": "rotate-function",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064695856",
   "verified_at": "2026-07-12T06:54:58.635435+00:00"
 }

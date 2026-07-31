@@ -7,7 +7,7 @@
   "title_slug": "compute-alternating-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.alternatingSum",
   "verified_submission_id": "2084848667",
   "verified_at": "2026-07-28T14:03:38.796353+00:00"

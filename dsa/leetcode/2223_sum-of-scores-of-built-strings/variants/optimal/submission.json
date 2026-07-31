@@ -7,7 +7,7 @@
   "title_slug": "sum-of-scores-of-built-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "class Solution.sumScores",
   "verified_submission_id": "2073898312",
   "verified_at": "2026-07-19T21:03:47.345376+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "check-distances-between-same-letters",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.checkDistances",
   "verified_submission_id": "2074597999",
   "verified_at": "2026-07-20T13:22:51.280053+00:00"

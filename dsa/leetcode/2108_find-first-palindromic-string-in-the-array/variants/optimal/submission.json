@@ -7,7 +7,7 @@
   "title_slug": "find-first-palindromic-string-in-the-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.firstPalindrome",
   "verified_submission_id": "2073302396",
   "verified_at": "2026-07-19T09:35:33.475681+00:00"

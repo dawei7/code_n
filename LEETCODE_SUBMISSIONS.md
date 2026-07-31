@@ -38,7 +38,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
     optimal/
       submission.json
       solutions/
-        leetcode_python3.py
+        leetcode.py
 ```
 
 The source must use LeetCode's native declaration exactly—for example

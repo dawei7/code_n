@@ -7,7 +7,7 @@
   "title_slug": "longest-increasing-subsequence-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.lengthOfLIS",
   "verified_submission_id": "2074642004",
   "verified_at": "2026-07-20T14:03:21.521081+00:00"

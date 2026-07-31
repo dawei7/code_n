@@ -7,7 +7,7 @@
   "title_slug": "split-concatenated-strings",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065368263",
   "verified_at": "2026-07-12T18:52:25.013427+00:00"
 }

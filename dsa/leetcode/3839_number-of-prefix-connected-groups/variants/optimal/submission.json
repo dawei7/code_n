@@ -7,7 +7,7 @@
   "title_slug": "number-of-prefix-connected-groups",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.prefixConnected",
   "verified_submission_id": "2085907581",
   "verified_at": "2026-07-29T09:32:14.359078+00:00"
