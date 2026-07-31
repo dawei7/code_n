@@ -7,7 +7,7 @@ class Solution:
         for right in range(len(word)):
             earliest = max(left, right - 9)
             for start in range(right, earliest - 1, -1):
-                if word[start:right + 1] in forbidden_set:
+                if word[start : right + 1] in forbidden_set:
                     left = start + 1
                     break
 

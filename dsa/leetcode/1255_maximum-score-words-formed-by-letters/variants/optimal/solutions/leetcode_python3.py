@@ -6,7 +6,9 @@ class Solution:
     def maxScoreWords(self, words: List[str], letters: List[str], score: List[int]) -> int:
         available = Counter(letters)
         word_counts = [Counter(word) for word in words]
-        word_scores = [sum(score[ord(char) - ord("a")] * count for char, count in counts.items()) for counts in word_counts]
+        word_scores = [
+            sum(score[ord(char) - ord("a")] * count for char, count in counts.items()) for counts in word_counts
+        ]
 
         def search(index: int, remaining: Counter) -> int:
             if index == len(words):

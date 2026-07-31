@@ -1,4 +1,8 @@
-function makeImmutable(obj) {
+/**
+ * @param {Object|Array} obj
+ * @return {Object|Array} immutable obj
+ */
+var makeImmutable = function(obj) {
     const mutatingMethods = new Set([
         "pop", "push", "shift", "unshift",
         "splice", "sort", "reverse"
@@ -45,7 +49,7 @@ function makeImmutable(obj) {
     }
 
     return wrap(obj);
-}
+};
 
 function followPath(root, path) {
     let value = root;

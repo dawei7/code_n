@@ -12,19 +12,14 @@ class Solution:
                 if seat == ".":
                     usable |= 1 << column
 
-            valid_masks = [
-                mask
-                for mask in range(1 << columns)
-                if mask & ~usable == 0 and mask & (mask << 1) == 0
-            ]
+            valid_masks = [mask for mask in range(1 << columns) if mask & ~usable == 0 and mask & (mask << 1) == 0]
             next_dp = {}
             for mask in valid_masks:
                 students = mask.bit_count()
                 next_dp[mask] = max(
                     total + students
                     for previous, total in dp.items()
-                    if mask & (previous << 1) == 0
-                    and mask & (previous >> 1) == 0
+                    if mask & (previous << 1) == 0 and mask & (previous >> 1) == 0
                 )
             dp = next_dp
 

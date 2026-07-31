@@ -78,3 +78,12 @@ def normalize_language(language: str | None) -> SupportedLanguage:
 
 def language_extension(language: str | None) -> str:
     return SUPPORTED_LANGUAGES[normalize_language(language)].extension
+
+
+def app_solution_filename(language: str | None) -> str:
+    """Return the canonical app-local reference filename for a language."""
+
+    language_id = normalize_language(language)
+    if language_id == "python":
+        return "solve.py"
+    return f"{language_id}.{SUPPORTED_LANGUAGES[language_id].extension}"

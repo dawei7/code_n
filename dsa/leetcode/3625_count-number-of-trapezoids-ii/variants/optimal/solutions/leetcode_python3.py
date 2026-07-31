@@ -30,15 +30,12 @@ class Solution:
                 diagonals_by_midpoint[midpoint] += 1
                 diagonals_by_midpoint_and_slope[(midpoint, slope)] += 1
 
-        parallel_side_pairs = sum(
-            count * (count - 1) // 2 for count in segments_by_slope.values()
-        ) - sum(count * (count - 1) // 2 for count in segments_by_line.values())
+        parallel_side_pairs = sum(count * (count - 1) // 2 for count in segments_by_slope.values()) - sum(
+            count * (count - 1) // 2 for count in segments_by_line.values()
+        )
 
-        parallelograms = sum(
-            count * (count - 1) // 2 for count in diagonals_by_midpoint.values()
-        ) - sum(
-            count * (count - 1) // 2
-            for count in diagonals_by_midpoint_and_slope.values()
+        parallelograms = sum(count * (count - 1) // 2 for count in diagonals_by_midpoint.values()) - sum(
+            count * (count - 1) // 2 for count in diagonals_by_midpoint_and_slope.values()
         )
 
         return parallel_side_pairs - parallelograms

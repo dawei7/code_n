@@ -22,25 +22,27 @@ Special care is required when `q` belongs to the subtree rooted at `p`: attachin
 
 Let $n$ be the number of nodes.
 
-- `tree`: The app-local representation of the original tree as $n$ records `[value, child_values]`. Values are unique, every non-root value appears in exactly one child list, and child-list order is significant.
-- `p`: The unique value of the subtree root to move.
-- `q`: The unique value of the new parent; `p` and `q` are distinct and both occur in `tree`.
+- `root`: The root `Node` of the original N-ary tree. Node values are unique, and child-list order is significant.
+- `p`: The existing `Node` whose subtree must move.
+- `q`: The distinct existing `Node` that must become `p`'s parent.
 - The source contract guarantees $2 \leq n \leq 1000$.
+
+JSON cases encode `root` as breadth-first `[value, child_values]` records and identify `p` and `q` by their unique values. The runner resolves all three arguments to nodes in the same object graph before calling `solve(root, p, q)`.
 
 **Return value**
 
-Return the adjusted tree as breadth-first `[value, child_values]` records beginning with its possibly changed root. The order inside each child list must match the adjusted N-ary tree.
+Return the root `Node` of the adjusted tree. The runner serializes it as breadth-first `[value, child_values]` records for display and validation.
 
 ### Examples
 **Example 1**
 
-- Input: `tree = [[1, [2, 3]], [2, [4, 5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]], p = 4, q = 1`
+- Input: `root = [[1, [2, 3]], [2, [4, 5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]], p = 4, q = 1`
 - Output: `[[1, [2, 3, 4]], [2, [5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]]`
 - Explanation: Node 4 leaves node 2 and becomes node 1's last child, carrying nodes 7 and 8 with it.
 
 **Example 2**
 
-- Input: `tree = [[1, [2, 3]], [2, [4, 5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]], p = 7, q = 4`
+- Input: `root = [[1, [2, 3]], [2, [4, 5]], [3, [6]], [4, [7, 8]], [5, []], [6, []], [7, []], [8, []]], p = 7, q = 4`
 - Output: the same tree
 - Explanation: Node 7 is already a direct child of node 4, so no reordering occurs.
 

@@ -30,9 +30,7 @@ class Solution:
             maximum[node] = 0
             node //= 2
             while node:
-                maximum[node] = max(
-                    maximum[2 * node], maximum[2 * node + 1]
-                )
+                maximum[node] = max(maximum[2 * node], maximum[2 * node + 1])
                 node //= 2
 
         return unplaced

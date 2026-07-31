@@ -20,13 +20,14 @@ Find and return the one node that is the root. The input is guaranteed to descri
 
 Let $N$ be the number of nodes in the tree.
 
-- Native `findRoot(tree)` receives an array of all $N$ node objects in arbitrary order. Every node exposes a unique integer `val` and a `children` list containing references to its children.
+- `tree`: A list of all $N$ N-ary `Node` objects in arbitrary order. Every node exposes a unique integer `val` and a `children` list containing references to its children.
 - The directed references form one valid N-ary tree: the root has no parent and every other node appears exactly once among all child lists.
-- The app-local `solve(tree)` receives the same information as `[value, child_values]` records. Values identify nodes unambiguously because they are unique.
+
+JSON cases encode the node collection as `[value, child_values]` records. The runner reconstructs the shared `Node` objects and child references before calling `solve(tree)`.
 
 **Return value**
 
-Return the root node. The app-local adapter returns that node's integer value.
+Return the root `Node`. The runner displays and validates its integer `val`.
 
 ### Examples
 **Example 1**

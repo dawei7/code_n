@@ -7,7 +7,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0,
@@ -33,7 +33,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0,
@@ -59,7 +59,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0,
@@ -85,7 +85,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0,
@@ -121,7 +121,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               1
@@ -142,7 +142,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0
@@ -163,7 +163,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0,

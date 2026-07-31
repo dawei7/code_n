@@ -28,14 +28,8 @@ class Solution:
                     for bob in range(3):
                         if bob != previous:
                             index = offset + difference + score(bob, alice)
-                            next_dp[bob][index] = (
-                                next_dp[bob][index] + ways
-                            ) % modulus
+                            next_dp[bob][index] = (next_dp[bob][index] + ways) % modulus
 
             dp = next_dp
 
-        return sum(
-            dp[last][offset + difference]
-            for last in range(3)
-            for difference in range(1, n + 1)
-        ) % modulus
+        return sum(dp[last][offset + difference] for last in range(3) for difference in range(1, n + 1)) % modulus

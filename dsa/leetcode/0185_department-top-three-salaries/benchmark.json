@@ -133,7 +133,10 @@
       "tags": [
         "benchmark",
         "scale-small"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "benchmark-scale-2",
@@ -621,7 +624,10 @@
       "tags": [
         "benchmark",
         "scale-medium"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     },
     {
       "id": "benchmark-scale-3",
@@ -2261,7 +2267,10 @@
       "tags": [
         "benchmark",
         "scale-large"
-      ]
+      ],
+      "validator": {
+        "kind": "unordered_table"
+      }
     }
   ]
 }

@@ -1,7 +1,5 @@
 class Solution:
-    def minimumWhiteTiles(
-        self, floor: str, numCarpets: int, carpetLen: int
-    ) -> int:
+    def minimumWhiteTiles(self, floor: str, numCarpets: int, carpetLen: int) -> int:
         length = len(floor)
         previous = [0] * (length + 1)
         for index, tile in enumerate(floor, 1):

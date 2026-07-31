@@ -1,9 +1,6 @@
 class Solution:
     def sumDistance(self, nums: List[int], s: str, d: int) -> int:
-        positions = sorted(
-            position + d if direction == "R" else position - d
-            for position, direction in zip(nums, s)
-        )
+        positions = sorted(position + d if direction == "R" else position - d for position, direction in zip(nums, s))
 
         total = 0
         prefix = 0

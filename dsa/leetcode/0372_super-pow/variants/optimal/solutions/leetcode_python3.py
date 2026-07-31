@@ -8,10 +8,5 @@ class Solution:
         result = 1
 
         for digit in b:
-            result = (
-                pow(result, 10, modulus)
-                * pow(base, digit, modulus)
-                % modulus
-            )
+            result = pow(result, 10, modulus) * pow(base, digit, modulus) % modulus
         return result
-

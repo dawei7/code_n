@@ -26,8 +26,7 @@ class Solution:
         while stack:
             node = stack.pop()
             if node.word is not None and (
-                len(node.word) > len(best)
-                or (len(node.word) == len(best) and node.word < best)
+                len(node.word) > len(best) or (len(node.word) == len(best) and node.word < best)
             ):
                 best = node.word
 

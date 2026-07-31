@@ -10,10 +10,7 @@ class Solution:
             size <<= 1
 
         negative_infinity = -(10**30)
-        tree = [
-            (0, negative_infinity, negative_infinity, negative_infinity)
-            for _ in range(2 * size)
-        ]
+        tree = [(0, negative_infinity, negative_infinity, negative_infinity) for _ in range(2 * size)]
 
         def make_node(value: int) -> tuple[int, int, int, int]:
             return (value, value, value, value)

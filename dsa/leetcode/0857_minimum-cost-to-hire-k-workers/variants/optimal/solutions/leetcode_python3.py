@@ -3,12 +3,9 @@ from typing import List
 
 
 class Solution:
-    def mincostToHireWorkers(
-        self, quality: List[int], wage: List[int], k: int
-    ) -> float:
+    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
         workers = sorted(
-            (minimum_wage / worker_quality, worker_quality)
-            for worker_quality, minimum_wage in zip(quality, wage)
+            (minimum_wage / worker_quality, worker_quality) for worker_quality, minimum_wage in zip(quality, wage)
         )
 
         largest_qualities = []

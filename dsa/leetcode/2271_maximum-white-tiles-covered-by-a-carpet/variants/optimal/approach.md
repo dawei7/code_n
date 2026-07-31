@@ -38,8 +38,8 @@ possible because the carpet contains only that many integer positions.
 
 Let $n=\lvert\texttt{tiles}\rvert$. Sorting takes $O(n\log n)$ time. Each
 interval enters the window once and leaves it at most once, so the sweep is
-$O(n)$. The total time is $O(n\log n)$. Storing the sorted interval order uses
-$O(n)$ auxiliary space in the app-local implementation.
+$O(n)$. The total time is $O(n\log n)$. Python's in-place sort may use $O(n)$
+auxiliary storage.
 
 ## Alternatives and edge cases
 

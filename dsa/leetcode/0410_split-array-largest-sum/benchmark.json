@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_410",
-  "measurement_note": "Size is the array length with m fixed at two. Answer-space binary search performs linear feasibility scans, while partition dynamic programming evaluates every possible cut for both endpoints and grows quadratically.",
+  "measurement_note": "Size is the array length with k fixed at two. Answer-space binary search performs linear feasibility scans, while partition dynamic programming evaluates every possible cut for both endpoints and grows quadratically.",
   "cases": [
     {
       "id": "benchmark-scale-1",
@@ -44,7 +44,7 @@
           1,
           1
         ],
-        "m": 2
+        "k": 2
       },
       "expected": 16,
       "tags": [
@@ -158,7 +158,7 @@
           1,
           1
         ],
-        "m": 2
+        "k": 2
       },
       "expected": 48,
       "tags": [
@@ -432,7 +432,7 @@
           1,
           1
         ],
-        "m": 2
+        "k": 2
       },
       "expected": 128,
       "tags": [

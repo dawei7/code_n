@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def numOfSubarrays(
-        self, arr: List[int], k: int, threshold: int
-    ) -> int:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
         target = k * threshold
         window_sum = sum(arr[:k])
         qualifying = int(window_sum >= target)

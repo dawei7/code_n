@@ -23,9 +23,6 @@ class Solution:
         two_back = 1
         one_back = single_count(s[0])
         for index in range(1, len(s)):
-            current = (
-                single_count(s[index]) * one_back
-                + pair_count(s[index - 1], s[index]) * two_back
-            ) % modulus
+            current = (single_count(s[index]) * one_back + pair_count(s[index - 1], s[index]) * two_back) % modulus
             two_back, one_back = one_back, current
         return one_back

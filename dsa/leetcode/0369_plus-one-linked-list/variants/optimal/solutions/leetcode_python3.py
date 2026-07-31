@@ -24,4 +24,3 @@ class Solution:
             current.val = 0
             current = current.next
         return head
-

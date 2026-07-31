@@ -19,11 +19,9 @@ class Solution:
                 if boxes[index] == boxes[right]:
                     answer = max(
                         answer,
-                        best(left, index, carried + 1)
-                        + best(index + 1, right - 1, 0),
+                        best(left, index, carried + 1) + best(index + 1, right - 1, 0),
                     )
 
             return answer
 
         return best(0, len(boxes) - 1, 0)
-

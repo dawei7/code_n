@@ -22,11 +22,7 @@ class Solution:
                 ):
                     next_row = row + row_change
                     next_column = column + column_change
-                    if (
-                        0 <= next_row < rows
-                        and 0 <= next_column < columns
-                        and grid[next_row][next_column] == 1
-                    ):
+                    if 0 <= next_row < rows and 0 <= next_column < columns and grid[next_row][next_column] == 1:
                         neighbors.append(next_row * columns + next_column)
                 adjacency[vertex] = neighbors
 
@@ -58,10 +54,7 @@ class Solution:
         def augment(vertex: int) -> bool:
             for neighbor in adjacency[vertex]:
                 mate = pair_right.get(neighbor, -1)
-                if mate == -1 or (
-                    distance.get(mate) == distance[vertex] + 1
-                    and augment(mate)
-                ):
+                if mate == -1 or (distance.get(mate) == distance[vertex] + 1 and augment(mate)):
                     pair_left[vertex] = neighbor
                     pair_right[neighbor] = vertex
                     return True

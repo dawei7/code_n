@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def shortestDistanceColor(
-        self, colors: List[int], queries: List[List[int]]
-    ) -> List[int]:
+    def shortestDistanceColor(self, colors: List[int], queries: List[List[int]]) -> List[int]:
         n = len(colors)
         nearest = [[n, n, n] for _ in range(n)]
 
@@ -18,11 +16,6 @@ class Solution:
         for index in range(n - 1, -1, -1):
             following[colors[index] - 1] = index
             for target in range(3):
-                nearest[index][target] = min(
-                    nearest[index][target], following[target] - index
-                )
+                nearest[index][target] = min(nearest[index][target], following[target] - index)
 
-        return [
-            nearest[index][color - 1] if nearest[index][color - 1] < n else -1
-            for index, color in queries
-        ]
+        return [nearest[index][color - 1] if nearest[index][color - 1] < n else -1 for index, color in queries]

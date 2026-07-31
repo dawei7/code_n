@@ -13,9 +13,6 @@ class Solution:
         for parts in range(1, k + 1):
             current = [float("inf")] * (length + 1)
             for end in range(parts, length + 1):
-                current[end] = min(
-                    previous[start] + cost[start][end - 1]
-                    for start in range(parts - 1, end)
-                )
+                current[end] = min(previous[start] + cost[start][end - 1] for start in range(parts - 1, end))
             previous = current
         return previous[length]

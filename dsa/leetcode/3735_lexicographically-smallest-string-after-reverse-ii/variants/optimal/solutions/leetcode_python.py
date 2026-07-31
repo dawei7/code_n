@@ -16,9 +16,7 @@ class Solution:
             for text in sources:
                 prefix = [0] * (n + 1)
                 for index, character in enumerate(text):
-                    prefix[index + 1] = (
-                        prefix[index] * base + ord(character) - ord("a") + 1
-                    ) % modulus
+                    prefix[index + 1] = (prefix[index] * base + ord(character) - ord("a") + 1) % modulus
                 source_hashes.append(prefix)
             powers.append(power)
             hashes.append(source_hashes)
@@ -31,10 +29,7 @@ class Solution:
         ) -> int:
             modulus = moduli[modulus_index]
             prefix = hashes[modulus_index][source]
-            return (
-                prefix[right]
-                - prefix[left] * powers[modulus_index][right - left]
-            ) % modulus
+            return (prefix[right] - prefix[left] * powers[modulus_index][right - left]) % modulus
 
         # A candidate is (source1, left1, right1, source2, left2, right2).
         def prefix_hash(candidate: tuple[int, ...], length: int, modulus_index: int) -> int:
@@ -45,8 +40,7 @@ class Solution:
             remainder = length - first_length
             modulus = moduli[modulus_index]
             return (
-                substring_hash(modulus_index, source1, left1, right1)
-                * powers[modulus_index][remainder]
+                substring_hash(modulus_index, source1, left1, right1) * powers[modulus_index][remainder]
                 + substring_hash(modulus_index, source2, left2, left2 + remainder)
             ) % modulus
 
@@ -62,10 +56,9 @@ class Solution:
             high = n
             while low < high:
                 middle = (low + high + 1) // 2
-                if (
-                    prefix_hash(candidate, middle, 0) == prefix_hash(current, middle, 0)
-                    and prefix_hash(candidate, middle, 1) == prefix_hash(current, middle, 1)
-                ):
+                if prefix_hash(candidate, middle, 0) == prefix_hash(current, middle, 0) and prefix_hash(
+                    candidate, middle, 1
+                ) == prefix_hash(current, middle, 1):
                     low = middle
                 else:
                     high = middle - 1

@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def furthestBuilding(
-        self, heights: List[int], bricks: int, ladders: int
-    ) -> int:
+    def furthestBuilding(self, heights: List[int], bricks: int, ladders: int) -> int:
         ladder_climbs: List[int] = []
 
         for index in range(len(heights) - 1):

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def lowestCommonAncestor(
-        self, root: "TreeNode", nodes: List["TreeNode"]
-    ) -> "TreeNode":
+    def lowestCommonAncestor(self, root: "TreeNode", nodes: List["TreeNode"]) -> "TreeNode":
         targets = set(nodes)
 
         def search(node: "TreeNode") -> "TreeNode":

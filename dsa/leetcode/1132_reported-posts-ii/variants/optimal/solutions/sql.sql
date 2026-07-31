@@ -6,8 +6,7 @@ WITH spam_posts AS (
 daily_percentages AS (
     SELECT
         spam_posts.action_date,
-        100.0 * SUM(CASE WHEN Removals.post_id IS NOT NULL THEN 1 ELSE 0 END)
-            / COUNT(*) AS daily_percent
+        100.0 * COUNT(Removals.post_id) / COUNT(*) AS daily_percent
     FROM spam_posts
     LEFT JOIN Removals ON Removals.post_id = spam_posts.post_id
     GROUP BY spam_posts.action_date

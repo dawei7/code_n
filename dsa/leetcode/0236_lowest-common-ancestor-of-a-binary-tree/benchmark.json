@@ -47,6 +47,7 @@
         "q": 31
       },
       "expected": 1,
+      "validator": {"kind": "node_value"},
       "tags": [
         "benchmark",
         "scale-small"
@@ -192,6 +193,7 @@
         "q": 127
       },
       "expected": 1,
+      "validator": {"kind": "node_value"},
       "tags": [
         "benchmark",
         "scale-medium"
@@ -721,6 +723,7 @@
         "q": 511
       },
       "expected": 1,
+      "validator": {"kind": "node_value"},
       "tags": [
         "benchmark",
         "scale-large"

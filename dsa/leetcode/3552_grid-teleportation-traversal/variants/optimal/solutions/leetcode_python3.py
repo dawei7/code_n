@@ -1,18 +1,30 @@
-from collections import*
+from collections import defaultdict, deque
+
+
 class Solution:
- def minMoves(s,a):
-  m,n=len(a),len(a[0]);p=defaultdict(list)
-  for i in range(m):
-   for j in range(n):p[a[i][j]]+=(i,j),
-  q=deque([(0,0,0)]);v=set()
-  while q:
-   i,j,d=q.popleft()
-   if (i,j) in v:continue
-   v.add((i,j))
-   if i==m-1 and j==n-1:return d
-   c=a[i][j]
-   if c>'@':
-    for x,y in p.pop(c,()):q.appendleft((x,y,d))
-   for x,y in ((i-1,j),(i+1,j),(i,j-1),(i,j+1)):
-    if 0<=x<m and 0<=y<n and a[x][y]!='#':q.append((x,y,d+1))
-  return -1
+    def minMoves(self, matrix: list[str]) -> int:
+        rows, columns = (len(matrix), len(matrix[0]))
+        portals: dict[str, list[tuple[int, int]]] = defaultdict(list)
+        for row in range(rows):
+            for column in range(columns):
+                cell = matrix[row][column]
+                if cell.isalpha():
+                    portals[cell].append((row, column))
+        queue = deque([(0, 0, 0)])
+        finalized: set[tuple[int, int]] = set()
+        while queue:
+            row, column, distance = queue.popleft()
+            position = (row, column)
+            if position in finalized:
+                continue
+            finalized.add(position)
+            if position == (rows - 1, columns - 1):
+                return distance
+            cell = matrix[row][column]
+            if cell.isalpha():
+                for portal_row, portal_column in portals.pop(cell, []):
+                    queue.appendleft((portal_row, portal_column, distance))
+            for next_row, next_column in ((row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1)):
+                if 0 <= next_row < rows and 0 <= next_column < columns and (matrix[next_row][next_column] != "#"):
+                    queue.append((next_row, next_column, distance + 1))
+        return -1

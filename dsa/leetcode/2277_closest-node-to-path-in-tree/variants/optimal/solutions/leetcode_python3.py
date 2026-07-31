@@ -26,9 +26,7 @@ class Solution:
 
         for level in range(1, levels):
             for node in range(n):
-                parent[level][node] = parent[level - 1][
-                    parent[level - 1][node]
-                ]
+                parent[level][node] = parent[level - 1][parent[level - 1][node]]
 
         def lca(first: int, second: int) -> int:
             if depth[first] < depth[second]:

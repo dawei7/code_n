@@ -16,5 +16,4 @@ HAVING SUM(
 AND SUM(
     CASE WHEN o.order_date >= '2020-07-01'
          THEN o.quantity * p.price ELSE 0 END
-) >= 100
-ORDER BY c.customer_id;
+) >= 100;

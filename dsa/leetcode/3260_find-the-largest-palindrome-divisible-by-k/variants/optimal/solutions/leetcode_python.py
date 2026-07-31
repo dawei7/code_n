@@ -20,9 +20,7 @@ class Solution:
             for suffix_remainder in range(k):
                 if reachable[index + 1][suffix_remainder]:
                     for digit in range(10):
-                        reachable[index][
-                            (digit * weight + suffix_remainder) % k
-                        ] = 1
+                        reachable[index][(digit * weight + suffix_remainder) % k] = 1
 
         half = []
         prefix_remainder = 0

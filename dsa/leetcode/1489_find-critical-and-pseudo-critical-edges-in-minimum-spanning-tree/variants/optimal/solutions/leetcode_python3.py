@@ -27,13 +27,8 @@ class DisjointSet:
 
 
 class Solution:
-    def findCriticalAndPseudoCriticalEdges(
-        self, n: int, edges: List[List[int]]
-    ) -> List[List[int]]:
-        indexed = sorted(
-            (weight, first, second, index)
-            for index, (first, second, weight) in enumerate(edges)
-        )
+    def findCriticalAndPseudoCriticalEdges(self, n: int, edges: List[List[int]]) -> List[List[int]]:
+        indexed = sorted((weight, first, second, index) for index, (first, second, weight) in enumerate(edges))
         components = DisjointSet(n)
         critical = []
         pseudo_critical = []

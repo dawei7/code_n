@@ -9,9 +9,7 @@ class Solution:
 
         for employee, end_time in logs:
             duration = end_time - previous_end
-            if duration > best_duration or (
-                duration == best_duration and employee < best_employee
-            ):
+            if duration > best_duration or (duration == best_duration and employee < best_employee):
                 best_duration = duration
                 best_employee = employee
             previous_end = end_time

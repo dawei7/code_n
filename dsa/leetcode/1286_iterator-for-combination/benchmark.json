@@ -10,7 +10,7 @@
       "visible": false,
       "input": {
         "characters": "abcdefghijklmno",
-        "combination_length": 7,
+        "combinationLength": 7,
         "operations": [
           [
             "next",
@@ -110,7 +110,7 @@
       "visible": false,
       "input": {
         "characters": "abcdefghijklmno",
-        "combination_length": 7,
+        "combinationLength": 7,
         "operations": [
           [
             "next",
@@ -450,7 +450,7 @@
       "visible": false,
       "input": {
         "characters": "abcdefghijklmno",
-        "combination_length": 7,
+        "combinationLength": 7,
         "operations": [
           [
             "next",

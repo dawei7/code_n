@@ -25,16 +25,10 @@ class Solution:
                 if parent[child] != node:
                     continue
                 base += without_parent[child]
-                gains.append(
-                    weight + with_parent[child] - without_parent[child]
-                )
+                gains.append(weight + with_parent[child] - without_parent[child])
 
             gains.sort(reverse=True)
-            without_parent[node] = base + sum(
-                gain for gain in gains[:k] if gain > 0
-            )
-            with_parent[node] = base + sum(
-                gain for gain in gains[:k - 1] if gain > 0
-            )
+            without_parent[node] = base + sum(gain for gain in gains[:k] if gain > 0)
+            with_parent[node] = base + sum(gain for gain in gains[: k - 1] if gain > 0)
 
         return without_parent[0]

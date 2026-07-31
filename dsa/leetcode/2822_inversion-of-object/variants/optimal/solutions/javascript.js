@@ -1,4 +1,8 @@
-function invertObject(obj) {
+/**
+ * @param {Object|Array} obj
+ * @return {Object}
+ */
+var invertObject = function(obj) {
     const inverted = new Map();
 
     for (const [key, value] of Object.entries(obj)) {
@@ -16,7 +20,7 @@ function invertObject(obj) {
     }
 
     return Object.fromEntries(inverted);
-}
+};
 
 function solve(obj) {
     return invertObject(obj);

@@ -12,7 +12,7 @@ The chosen number is feasible: it is positive, no greater than the current origi
 No valid arrangement of the same processed prefix can end higher. The current original element bounds its contribution by `value`; independently, the best previous prefix bound permits at most one additional unit. Therefore their minimum is an upper bound, and the greedy assignment reaches it. Induction over the sorted values proves that the final `maximum` is globally optimal.
 
 ## Complexity detail
-Sorting $n$ values takes $O(n\log n)$ time, and the greedy scan takes $O(n)$. The app-local implementation creates a sorted copy using $O(n)$ space. An in-place sort can reduce additional storage according to the language's sorting implementation.
+Sorting $n$ values in place takes $O(n\log n)$ time, and the greedy scan takes $O(n)$. Python's Timsort may use $O(n)$ auxiliary workspace in the worst case.
 
 ## Alternatives and edge cases
 - **Frequency counting:** Clamp values above $n$ and count occurrences to obtain an $O(n)$-time alternative with $O(n)$ extra space, since the answer cannot exceed $n$.

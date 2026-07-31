@@ -34,10 +34,7 @@ class Solution:
                     maximum_length.append(maximum_length[state] + 1)
                     occurrences.append(0)
 
-                    while (
-                        state != -1
-                        and transitions[state].get(value) == target
-                    ):
+                    while state != -1 and transitions[state].get(value) == target:
                         transitions[state][value] = clone
                         state = suffix_link[state]
 

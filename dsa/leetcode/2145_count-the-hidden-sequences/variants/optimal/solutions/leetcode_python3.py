@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def numberOfArrays(
-        self, differences: List[int], lower: int, upper: int
-    ) -> int:
+    def numberOfArrays(self, differences: List[int], lower: int, upper: int) -> int:
         offset = 0
         minimum_offset = 0
         maximum_offset = 0

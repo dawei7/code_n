@@ -236,9 +236,9 @@
             1
           ]
         ],
-        "vegan_friendly": 0,
-        "max_price": 1,
-        "max_distance": 1
+        "veganFriendly": 0,
+        "maxPrice": 1,
+        "maxDistance": 1
       },
       "expected": [
         19,
@@ -1185,9 +1185,9 @@
             1
           ]
         ],
-        "vegan_friendly": 0,
-        "max_price": 1,
-        "max_distance": 1
+        "veganFriendly": 0,
+        "maxPrice": 1,
+        "maxDistance": 1
       },
       "expected": [
         83,
@@ -4918,9 +4918,9 @@
             1
           ]
         ],
-        "vegan_friendly": 0,
-        "max_price": 1,
-        "max_distance": 1
+        "veganFriendly": 0,
+        "maxPrice": 1,
+        "maxDistance": 1
       },
       "expected": [
         83,

@@ -3,9 +3,7 @@ from itertools import combinations
 
 
 class Solution:
-    def mostVisitedPattern(
-        self, username: List[str], timestamp: List[int], website: List[str]
-    ) -> List[str]:
+    def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:
         histories = defaultdict(list)
         for _, user, site in sorted(zip(timestamp, username, website)):
             histories[user].append(site)

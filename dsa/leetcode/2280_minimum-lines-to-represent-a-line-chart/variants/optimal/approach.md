@@ -34,8 +34,8 @@ Thus counting those runs gives the minimum.
 ## Complexity detail
 
 Let $n$ be the number of points. Sorting takes $O(n \log n)$ time, and the
-slope-change scan takes $O(n)$ time. The app-local implementation creates a
-sorted copy, using $O(n)$ auxiliary space.
+slope-change scan takes $O(n)$ time. Python's in-place sort may use $O(n)$
+auxiliary storage.
 
 ## Alternatives and edge cases
 

@@ -24,4 +24,4 @@ A hash aggregation examines each of the $R$ membership rows once and performs co
 - **Several departments:** Use the flagged row even when its department ID is not an extremum.
 - **Input row order:** The primary row may occur before, after, or between nonprimary memberships.
 - **Interleaved employees:** Grouping uses identifiers rather than relying on adjacent source rows.
-- **Output order:** The platform accepts any order. The app-local query sorts by `employee_id` only for deterministic fixtures.
+- **Output order:** The contract accepts any order, so no final sort is required.

@@ -2,9 +2,7 @@ from heapq import heapify, heapreplace
 
 
 class Solution:
-    def getFinalState(
-        self, nums: List[int], k: int, multiplier: int
-    ) -> List[int]:
+    def getFinalState(self, nums: List[int], k: int, multiplier: int) -> List[int]:
         heap = [(value, index) for index, value in enumerate(nums)]
         heapify(heap)
 

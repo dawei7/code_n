@@ -2,7 +2,6 @@ from collections import deque
 
 
 class PhoneDirectory:
-
     def __init__(self, maxNumbers: int):
         self.available = deque(range(maxNumbers))
         self.is_available = [True] * maxNumbers
@@ -21,4 +20,3 @@ class PhoneDirectory:
         if not self.is_available[number]:
             self.is_available[number] = True
             self.available.append(number)
-

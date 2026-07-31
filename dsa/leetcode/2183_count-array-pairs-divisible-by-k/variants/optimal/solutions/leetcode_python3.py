@@ -10,11 +10,7 @@ class Solution:
 
         for value in nums:
             current_gcd = gcd(value, k)
-            answer += sum(
-                count
-                for previous_gcd, count in gcd_counts.items()
-                if (current_gcd * previous_gcd) % k == 0
-            )
+            answer += sum(count for previous_gcd, count in gcd_counts.items() if (current_gcd * previous_gcd) % k == 0)
             gcd_counts[current_gcd] += 1
 
         return answer

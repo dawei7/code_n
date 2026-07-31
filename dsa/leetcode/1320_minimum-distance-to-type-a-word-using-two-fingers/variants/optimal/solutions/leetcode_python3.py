@@ -13,12 +13,8 @@ class Solution:
         for target in letters[1:]:
             next_costs = [float("inf")] * 27
             for other, cost in enumerate(costs):
-                next_costs[other] = min(
-                    next_costs[other], cost + distance(previous, target)
-                )
-                next_costs[previous] = min(
-                    next_costs[previous], cost + distance(other, target)
-                )
+                next_costs[other] = min(next_costs[other], cost + distance(previous, target))
+                next_costs[previous] = min(next_costs[previous], cost + distance(other, target))
             costs = next_costs
             previous = target
 

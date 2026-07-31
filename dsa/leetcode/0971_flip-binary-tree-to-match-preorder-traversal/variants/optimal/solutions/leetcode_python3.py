@@ -13,11 +13,7 @@ class Solution:
                 return [-1]
             index += 1
 
-            should_flip = (
-                node.left is not None
-                and index < len(voyage)
-                and node.left.val != voyage[index]
-            )
+            should_flip = node.left is not None and index < len(voyage) and node.left.val != voyage[index]
             if should_flip:
                 flips.append(node.val)
                 if node.left is not None:

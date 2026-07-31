@@ -29,10 +29,7 @@ class Solution:
                     if other_diagonal != target:
                         continue
 
-                    if any(
-                        row_prefix[row][right] - row_prefix[row][left] != target
-                        for row in range(top, bottom)
-                    ):
+                    if any(row_prefix[row][right] - row_prefix[row][left] != target for row in range(top, bottom)):
                         continue
                     if any(
                         column_prefix[bottom][column] - column_prefix[top][column] != target

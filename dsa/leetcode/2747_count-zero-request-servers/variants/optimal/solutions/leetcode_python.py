@@ -1,7 +1,5 @@
 class Solution:
-    def countServers(
-        self, n: int, logs: List[List[int]], x: int, queries: List[int]
-    ) -> List[int]:
+    def countServers(self, n: int, logs: List[List[int]], x: int, queries: List[int]) -> List[int]:
         logs.sort(key=lambda entry: entry[1])
         ordered_queries = sorted((time, index) for index, time in enumerate(queries))
         answer = [0] * len(queries)

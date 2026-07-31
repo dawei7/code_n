@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def jobScheduling(
-        self, startTime: List[int], endTime: List[int], profit: List[int]
-    ) -> int:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
         jobs = sorted(zip(startTime, endTime, profit))
         starts = [start for start, _, _ in jobs]
         best = [0] * (len(jobs) + 1)

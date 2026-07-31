@@ -9,8 +9,8 @@ class Solution:
 
         answer = 0
         for source, target in zip(s, t):
-            start = ord(source) - ord('a')
-            end = ord(target) - ord('a')
+            start = ord(source) - ord("a")
+            end = ord(target) - ord("a")
 
             if end >= start:
                 forward = next_prefix[end] - next_prefix[start]
@@ -20,11 +20,7 @@ class Solution:
             if end <= start:
                 backward = previous_prefix[start + 1] - previous_prefix[end + 1]
             else:
-                backward = (
-                    previous_prefix[start + 1]
-                    + previous_prefix[26]
-                    - previous_prefix[end + 1]
-                )
+                backward = previous_prefix[start + 1] + previous_prefix[26] - previous_prefix[end + 1]
 
             answer += min(forward, backward)
 

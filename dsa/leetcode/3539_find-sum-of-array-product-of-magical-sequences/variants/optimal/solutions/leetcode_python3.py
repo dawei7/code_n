@@ -5,26 +5,20 @@ class Solution:
     def magicalSum(self, m: int, k: int, nums: List[int]) -> int:
         modulus = 1_000_000_007
 
-        combinations = [
-            [0] * (m + 1)
-            for _ in range(m + 1)
-        ]
+        combinations = [[0] * (m + 1) for _ in range(m + 1)]
         for total in range(m + 1):
             combinations[total][0] = 1
             combinations[total][total] = 1
             for chosen in range(1, total):
                 combinations[total][chosen] = (
-                    combinations[total - 1][chosen - 1]
-                    + combinations[total - 1][chosen]
+                    combinations[total - 1][chosen - 1] + combinations[total - 1][chosen]
                 ) % modulus
 
         powers = []
         for value in nums:
             row = [1] * (m + 1)
             for count in range(1, m + 1):
-                row[count] = (
-                    row[count - 1] * value
-                ) % modulus
+                row[count] = (row[count - 1] * value) % modulus
             powers.append(row)
 
         @cache
@@ -35,10 +29,7 @@ class Solution:
             carry: int,
         ) -> int:
             if index == len(nums):
-                return int(
-                    remaining == 0
-                    and set_bits + carry.bit_count() == k
-                )
+                return int(remaining == 0 and set_bits + carry.bit_count() == k)
 
             answer = 0
             for take in range(remaining + 1):

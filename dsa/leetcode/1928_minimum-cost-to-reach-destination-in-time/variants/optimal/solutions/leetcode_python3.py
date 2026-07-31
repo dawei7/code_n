@@ -10,10 +10,7 @@ class Solution:
     ) -> int:
         city_count = len(passingFees)
         infinity = 10**18
-        costs = [
-            [infinity] * city_count
-            for _ in range(maxTime + 1)
-        ]
+        costs = [[infinity] * city_count for _ in range(maxTime + 1)]
         costs[0][0] = passingFees[0]
 
         for elapsed in range(1, maxTime + 1):

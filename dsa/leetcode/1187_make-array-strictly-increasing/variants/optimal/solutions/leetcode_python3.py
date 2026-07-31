@@ -11,16 +11,12 @@ class Solution:
             next_states = {}
             for previous, operations in states.items():
                 if value > previous:
-                    next_states[value] = min(
-                        next_states.get(value, float("inf")), operations
-                    )
+                    next_states[value] = min(next_states.get(value, float("inf")), operations)
 
                 replacement_index = bisect_right(candidates, previous)
                 if replacement_index < len(candidates):
                     replacement = candidates[replacement_index]
-                    next_states[replacement] = min(
-                        next_states.get(replacement, float("inf")), operations + 1
-                    )
+                    next_states[replacement] = min(next_states.get(replacement, float("inf")), operations + 1)
 
             best_cost = float("inf")
             states = {}

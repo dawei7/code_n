@@ -7,7 +7,7 @@
       "name": "sample: two nested child levels",
       "kind": "sample",
       "visible": true,
-      "input": {"nodes": [[1, []], [2, []], [3, [[7, []], [8, [[11, []], [12, []]]], [9, []], [10, []]]], [4, []], [5, []], [6, []]]},
+      "input": {"head": [[1, []], [2, []], [3, [[7, []], [8, [[11, []], [12, []]]], [9, []], [10, []]]], [4, []], [5, []], [6, []]]},
       "expected": [1, 2, 3, 7, 8, 11, 12, 9, 10, 4, 5, 6],
       "validator": {"kind": "flattened_multilevel_list"},
       "tags": ["sample", "nested"]
@@ -17,7 +17,7 @@
       "name": "sample: child precedes saved sibling",
       "kind": "sample",
       "visible": true,
-      "input": {"nodes": [[1, [[3, []]]], [2, []]]},
+      "input": {"head": [[1, [[3, []]]], [2, []]]},
       "expected": [1, 3, 2],
       "validator": {"kind": "flattened_multilevel_list"},
       "tags": ["sample", "splice"]
@@ -27,7 +27,7 @@
       "name": "sample: empty structure",
       "kind": "sample",
       "visible": true,
-      "input": {"nodes": []},
+      "input": {"head": []},
       "expected": [],
       "validator": {"kind": "flattened_multilevel_list"},
       "tags": ["sample", "empty"]
@@ -37,7 +37,7 @@
       "name": "trial: no node has a child",
       "kind": "trial",
       "visible": true,
-      "input": {"nodes": [[1, []], [2, []], [3, []]]},
+      "input": {"head": [[1, []], [2, []], [3, []]]},
       "expected": [1, 2, 3],
       "validator": {"kind": "flattened_multilevel_list"},
       "tags": ["trial", "flat"]
@@ -47,7 +47,7 @@
       "name": "trial: one node",
       "kind": "trial",
       "visible": true,
-      "input": {"nodes": [[9, []]]},
+      "input": {"head": [[9, []]]},
       "expected": [9],
       "validator": {"kind": "flattened_multilevel_list"},
       "tags": ["trial", "single"]
@@ -57,7 +57,7 @@
       "name": "hidden: each node is the previous node's child",
       "kind": "real",
       "visible": false,
-      "input": {"nodes": [[1, [[2, [[3, [[4, []]]]]]]]]},
+      "input": {"head": [[1, [[2, [[3, [[4, []]]]]]]]]},
       "expected": [1, 2, 3, 4],
       "validator": {"kind": "flattened_multilevel_list"},
       "tags": ["hidden", "deep"]
@@ -67,7 +67,7 @@
       "name": "hidden: separate parents each own a child",
       "kind": "real",
       "visible": false,
-      "input": {"nodes": [[1, [[4, []]]], [2, [[5, []], [6, []]]], [3, []]]},
+      "input": {"head": [[1, [[4, []]]], [2, [[5, []], [6, []]]], [3, []]]},
       "expected": [1, 4, 2, 5, 6, 3],
       "validator": {"kind": "flattened_multilevel_list"},
       "tags": ["hidden", "multiple-children"]

@@ -15,4 +15,3 @@ class Solution:
                 best_hour = hour
 
         return best_hour
-

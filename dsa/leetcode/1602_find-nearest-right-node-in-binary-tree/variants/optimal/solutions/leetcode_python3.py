@@ -5,9 +5,9 @@ from typing import Optional
 class Solution:
     def findNearestRightNode(
         self,
-        root: 'TreeNode',
-        u: 'TreeNode',
-    ) -> Optional['TreeNode']:
+        root: "TreeNode",
+        u: "TreeNode",
+    ) -> Optional["TreeNode"]:
         queue = deque([root])
         while queue:
             level_size = len(queue)

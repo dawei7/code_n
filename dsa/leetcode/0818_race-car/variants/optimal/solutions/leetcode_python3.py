@@ -16,12 +16,7 @@ class Solution:
             for backward_accelerations in range(accelerations - 1):
                 backward_distance = (1 << backward_accelerations) - 1
                 remaining = distance - forward_position + backward_distance
-                candidate = (
-                    accelerations
-                    + backward_accelerations
-                    + 1
-                    + dp[remaining]
-                )
+                candidate = accelerations + backward_accelerations + 1 + dp[remaining]
                 best = min(best, candidate)
 
             dp[distance] = best

@@ -23,10 +23,6 @@ class Solution:
                     previous.add(0)
 
                 value = grid[row][col]
-                reachable[col] = {
-                    ones + value
-                    for ones in previous
-                    if ones + value <= target
-                }
+                reachable[col] = {ones + value for ones in previous if ones + value <= target}
 
         return target in reachable[-1]

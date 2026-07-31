@@ -8,21 +8,13 @@ class Solution:
 
         for modulus_index, modulus in enumerate(moduli):
             for index, character in enumerate(s):
-                powers[modulus_index][index + 1] = (
-                    powers[modulus_index][index] * base % modulus
-                )
-                prefixes[modulus_index][index + 1] = (
-                    prefixes[modulus_index][index] * base + ord(character)
-                ) % modulus
+                powers[modulus_index][index + 1] = powers[modulus_index][index] * base % modulus
+                prefixes[modulus_index][index + 1] = (prefixes[modulus_index][index] * base + ord(character)) % modulus
 
         def window_hash(start: int, window_length: int):
             end = start + window_length
             return tuple(
-                (
-                    prefixes[modulus_index][end]
-                    - prefixes[modulus_index][start]
-                    * powers[modulus_index][window_length]
-                )
+                (prefixes[modulus_index][end] - prefixes[modulus_index][start] * powers[modulus_index][window_length])
                 % modulus
                 for modulus_index, modulus in enumerate(moduli)
             )
@@ -32,9 +24,7 @@ class Solution:
             for start in range(length - window_length + 1):
                 signature = window_hash(start, window_length)
                 for previous in starts_by_hash.get(signature, []):
-                    if s[previous : previous + window_length] == s[
-                        start : start + window_length
-                    ]:
+                    if s[previous : previous + window_length] == s[start : start + window_length]:
                         return True
                 starts_by_hash.setdefault(signature, []).append(start)
             return False

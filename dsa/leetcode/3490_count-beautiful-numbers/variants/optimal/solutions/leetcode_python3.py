@@ -42,11 +42,7 @@ class Solution:
                     started: bool,
                 ) -> int:
                     if position == length:
-                        return int(
-                            started
-                            and digit_sum == target_sum
-                            and missing_factor == 1
-                        )
+                        return int(started and digit_sum == target_sum and missing_factor == 1)
 
                     remaining = length - position
                     if digit_sum > target_sum or digit_sum + 9 * remaining < target_sum:
@@ -79,10 +75,6 @@ class Solution:
             return answer
 
         def count(bound: int) -> int:
-            return (
-                bound
-                - count_without_zero(bound)
-                + count_nonzero_beautiful(bound)
-            )
+            return bound - count_without_zero(bound) + count_nonzero_beautiful(bound)
 
         return count(r) - count(l - 1)

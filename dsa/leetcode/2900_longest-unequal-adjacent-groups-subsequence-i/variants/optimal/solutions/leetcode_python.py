@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def getLongestSubsequence(
-        self, words: List[str], groups: List[int]
-    ) -> List[str]:
+    def getLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
         answer = [words[0]]
         last_group = groups[0]
 

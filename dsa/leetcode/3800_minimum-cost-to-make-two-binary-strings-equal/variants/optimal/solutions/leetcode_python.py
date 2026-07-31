@@ -23,8 +23,4 @@ class Solution:
         opposite_cost = min(swapCost, 2 * flipCost)
         same_cost = min(crossCost + swapCost, 2 * flipCost)
 
-        return (
-            opposite_pairs * opposite_cost
-            + (remainder // 2) * same_cost
-            + (remainder % 2) * flipCost
-        )
+        return opposite_pairs * opposite_cost + (remainder // 2) * same_cost + (remainder % 2) * flipCost

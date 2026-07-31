@@ -10,10 +10,7 @@ class Solution:
         for row in range(rows):
             for column in range(columns):
                 prefix[row + 1][column + 1] = (
-                    mat[row][column]
-                    + prefix[row][column + 1]
-                    + prefix[row + 1][column]
-                    - prefix[row][column]
+                    mat[row][column] + prefix[row][column + 1] + prefix[row + 1][column] - prefix[row][column]
                 )
 
         answer = [[0] * columns for _ in range(rows)]
@@ -24,10 +21,7 @@ class Solution:
                 left = max(0, column - k)
                 right = min(columns, column + k + 1)
                 answer[row][column] = (
-                    prefix[bottom][right]
-                    - prefix[top][right]
-                    - prefix[bottom][left]
-                    + prefix[top][left]
+                    prefix[bottom][right] - prefix[top][right] - prefix[bottom][left] + prefix[top][left]
                 )
 
         return answer

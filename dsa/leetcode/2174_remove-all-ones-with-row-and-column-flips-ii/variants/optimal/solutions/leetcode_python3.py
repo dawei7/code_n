@@ -25,9 +25,7 @@ class Solution:
             if mask == 0:
                 return 0
             return 1 + min(
-                best(mask & ~clear_masks[position])
-                for position in range(cell_count)
-                if mask & (1 << position)
+                best(mask & ~clear_masks[position]) for position in range(cell_count) if mask & (1 << position)
             )
 
         return best(initial_mask)

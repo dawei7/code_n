@@ -9,10 +9,7 @@ class Solution:
             neighbors[first].append(second)
             neighbors[second].append(first)
 
-        best_neighbors = [
-            nlargest(3, adjacent, key=scores.__getitem__)
-            for adjacent in neighbors
-        ]
+        best_neighbors = [nlargest(3, adjacent, key=scores.__getitem__) for adjacent in neighbors]
 
         answer = -1
         for second, third in edges:
@@ -21,9 +18,6 @@ class Solution:
                     if len({first, second, third, fourth}) == 4:
                         answer = max(
                             answer,
-                            scores[first]
-                            + scores[second]
-                            + scores[third]
-                            + scores[fourth],
+                            scores[first] + scores[second] + scores[third] + scores[fourth],
                         )
         return answer

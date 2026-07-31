@@ -32,9 +32,7 @@ class Router:
     def getCount(self, destination: int, startTime: int, endTime: int) -> int:
         values = self.timestamps.get(destination, [])
         left = self.left_index.get(destination, 0)
-        return bisect_right(values, endTime, lo=left) - bisect_left(
-            values, startTime, lo=left
-        )
+        return bisect_right(values, endTime, lo=left) - bisect_left(values, startTime, lo=left)
 
     def _remove_oldest(self):
         packet = self.queue.popleft()

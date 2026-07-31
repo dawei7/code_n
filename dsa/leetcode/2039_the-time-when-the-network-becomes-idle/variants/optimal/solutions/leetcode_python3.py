@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def networkBecomesIdle(
-        self, edges: List[List[int]], patience: List[int]
-    ) -> int:
+    def networkBecomesIdle(self, edges: List[List[int]], patience: List[int]) -> int:
         graph = [[] for _ in patience]
         for first, second in edges:
             graph[first].append(second)
@@ -25,9 +23,7 @@ class Solution:
         last_arrival = 0
         for server in range(1, len(patience)):
             round_trip = 2 * distance[server]
-            last_send = (
-                (round_trip - 1) // patience[server]
-            ) * patience[server]
+            last_send = ((round_trip - 1) // patience[server]) * patience[server]
             last_arrival = max(last_arrival, last_send + round_trip)
 
         return last_arrival + 1

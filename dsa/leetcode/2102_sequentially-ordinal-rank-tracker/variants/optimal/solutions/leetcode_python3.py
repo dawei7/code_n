@@ -23,12 +23,8 @@ class SORTracker:
             best_remaining_score, best_remaining_name = self.remaining[0]
             worst_best = self.best[0]
             candidate_score = -best_remaining_score
-            candidate_is_better = (
-                candidate_score > worst_best.score
-                or (
-                    candidate_score == worst_best.score
-                    and best_remaining_name < worst_best.name
-                )
+            candidate_is_better = candidate_score > worst_best.score or (
+                candidate_score == worst_best.score and best_remaining_name < worst_best.name
             )
             if candidate_is_better:
                 heapq.heappop(self.remaining)

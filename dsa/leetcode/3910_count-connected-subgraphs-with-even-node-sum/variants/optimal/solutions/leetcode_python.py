@@ -1,7 +1,5 @@
 class Solution:
-    def evenSumSubgraphs(
-        self, nums: list[int], edges: list[list[int]]
-    ) -> int:
+    def evenSumSubgraphs(self, nums: list[int], edges: list[list[int]]) -> int:
         n = len(nums)
         adjacency = [0] * n
         for u, v in edges:

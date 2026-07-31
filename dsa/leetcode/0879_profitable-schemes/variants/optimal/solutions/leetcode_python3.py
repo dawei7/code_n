@@ -20,8 +20,6 @@ class Solution:
                     if count == 0:
                         continue
                     next_profit = min(minProfit, earned + gain)
-                    schemes[used + members][next_profit] = (
-                        schemes[used + members][next_profit] + count
-                    ) % modulus
+                    schemes[used + members][next_profit] = (schemes[used + members][next_profit] + count) % modulus
 
         return sum(row[minProfit] for row in schemes) % modulus

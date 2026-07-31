@@ -3,11 +3,7 @@ from collections import Counter
 
 class Solution:
     def longestSubsequenceRepeatedK(self, s: str, k: int) -> str:
-        eligible = sorted(
-            character
-            for character, frequency in Counter(s).items()
-            if frequency >= k
-        )
+        eligible = sorted(character for character, frequency in Counter(s).items() if frequency >= k)
 
         def is_repeated(candidate: str) -> bool:
             index = 0

@@ -28,11 +28,7 @@ class Solution:
                     for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                         next_row = current_row + row_step
                         next_column = current_column + column_step
-                        if (
-                            0 <= next_row < side
-                            and 0 <= next_column < side
-                            and not blocked[next_row][next_column]
-                        ):
+                        if 0 <= next_row < side and 0 <= next_column < side and not blocked[next_row][next_column]:
                             blocked[next_row][next_column] = True
                             stack.append((next_row, next_column))
         return regions

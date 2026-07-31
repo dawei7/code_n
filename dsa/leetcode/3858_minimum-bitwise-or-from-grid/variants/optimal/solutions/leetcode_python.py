@@ -10,10 +10,7 @@ class Solution:
         for bit in range(highest_bit, -1, -1):
             candidate_forbidden = forbidden_bits | (1 << bit)
 
-            if all(
-                any((value & candidate_forbidden) == 0 for value in row)
-                for row in grid
-            ):
+            if all(any((value & candidate_forbidden) == 0 for value in row) for row in grid):
                 forbidden_bits = candidate_forbidden
             else:
                 result |= 1 << bit

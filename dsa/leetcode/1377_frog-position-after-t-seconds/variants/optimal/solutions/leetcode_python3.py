@@ -30,8 +30,6 @@ class Solution:
             next_probability = probability / children
             for adjacent in neighbors[node]:
                 if adjacent != parent:
-                    stack.append(
-                        (adjacent, node, elapsed + 1, next_probability)
-                    )
+                    stack.append((adjacent, node, elapsed + 1, next_probability))
 
         return 0.0

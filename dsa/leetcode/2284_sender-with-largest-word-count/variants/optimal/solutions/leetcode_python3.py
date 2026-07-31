@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def largestWordCount(
-        self, messages: List[str], senders: List[str]
-    ) -> str:
+    def largestWordCount(self, messages: List[str], senders: List[str]) -> str:
         totals = defaultdict(int)
         for message, sender in zip(messages, senders):
             totals[sender] += message.count(" ") + 1

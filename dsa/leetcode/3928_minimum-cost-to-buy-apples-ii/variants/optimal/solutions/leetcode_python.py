@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def minCost(
-        self, n: int, prices: List[int], roads: List[List[int]]
-    ) -> List[int]:
+    def minCost(self, n: int, prices: List[int], roads: List[List[int]]) -> List[int]:
         graph = [[] for _ in range(n)]
         for left, right, cost, tax in roads:
             graph[left].append((right, cost, cost * tax))
@@ -33,12 +31,5 @@ class Solution:
         for start in range(n):
             empty_distances = shortest(start, False)
             loaded_distances = shortest(start, True)
-            answer.append(
-                min(
-                    empty_distances[shop]
-                    + prices[shop]
-                    + loaded_distances[shop]
-                    for shop in range(n)
-                )
-            )
+            answer.append(min(empty_distances[shop] + prices[shop] + loaded_distances[shop] for shop in range(n)))
         return answer

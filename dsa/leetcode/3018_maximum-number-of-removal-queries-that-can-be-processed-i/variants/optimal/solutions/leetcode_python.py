@@ -16,12 +16,8 @@ class Solution:
 
                 right = left + length - 1
                 answer = max(answer, processed)
-                take_left = processed + int(
-                    processed < query_count and nums[left] >= queries[processed]
-                )
-                take_right = processed + int(
-                    processed < query_count and nums[right] >= queries[processed]
-                )
+                take_left = processed + int(processed < query_count and nums[left] >= queries[processed])
+                take_right = processed + int(processed < query_count and nums[right] >= queries[processed])
 
                 following[left + 1] = max(following[left + 1], processed, take_left)
                 following[left] = max(following[left], processed, take_right)

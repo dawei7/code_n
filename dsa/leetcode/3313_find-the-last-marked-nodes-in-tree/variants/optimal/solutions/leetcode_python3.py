@@ -31,7 +31,4 @@ class Solution:
         endpoint_b, dist_a = distances(endpoint_a)
         _, dist_b = distances(endpoint_b)
 
-        return [
-            endpoint_a if dist_a[node] > dist_b[node] else endpoint_b
-            for node in range(n)
-        ]
+        return [endpoint_a if dist_a[node] > dist_b[node] else endpoint_b for node in range(n)]

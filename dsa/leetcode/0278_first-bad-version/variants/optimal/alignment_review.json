@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/solve.py",
+  "native_source": "solutions/leetcode_python3.py",
+  "hashes": {
+    "app_sha256": "5e00c4d8d935bb49f72a0d348700fe3e186b93f3a4d3a1858b5cfa41460889bc",
+    "native_sha256": "382b0032d0a715ffbbd2a91fd254bb8aebcee6322a7a07d3a2807008e76ed0a7",
+    "solution_variants_sha256": "8367fd8ae8e4993a863677d1428d1adb64405cacebf0e939ab7200880975a42a",
+    "approach_sha256": "aca5ac2fa269245692dac9d9c9c8aaf752adec3c85e19c3f59832eaa436d7a23"
+  },
+  "classifications": [
+    "judge_environment",
+    "app_execution_adapter",
+    "platform_signature"
+  ],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "judge-supplied monotone predicate",
+      "native": "LeetCode calls firstBadVersion(n) and supplies the global isBadVersion(version) predicate.",
+      "app": "solve(n, bad) receives the authored JSON boundary and defines isBadVersion(version) as version >= bad.",
+      "rationale": "The offline runner must expose the hidden boundary as explicit deterministic case data. After this one-line environment adapter, both artifacts execute the same boundary-preserving binary search and make the same number of predicate calls."
+    }
+  ]
+}

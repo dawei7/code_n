@@ -1,5 +1,5 @@
 class Solution:
-    def guessMajority(self, reader: 'ArrayReader') -> int:
+    def guessMajority(self, reader: "ArrayReader") -> int:
         n = reader.length()
         baseline = reader.query(0, 1, 2, 3)
         comparison = reader.query(0, 1, 2, 4)

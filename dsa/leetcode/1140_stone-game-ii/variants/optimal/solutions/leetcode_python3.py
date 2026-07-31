@@ -13,10 +13,7 @@ class Solution:
         def best(index: int, m: int) -> int:
             if index + 2 * m >= n:
                 return suffix[index]
-            opponent = min(
-                best(index + taken, max(m, taken))
-                for taken in range(1, 2 * m + 1)
-            )
+            opponent = min(best(index + taken, max(m, taken)) for taken in range(1, 2 * m + 1))
             return suffix[index] - opponent
 
         return best(0, 1)

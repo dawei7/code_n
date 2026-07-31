@@ -15,4 +15,3 @@ class Solution:
             else:
                 right = middle - 1
         return False
-

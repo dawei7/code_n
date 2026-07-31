@@ -1,4 +1,9 @@
-function deepFilter(obj, fn) {
+/**
+ * @param {Object|Array} obj
+ * @param {Function} fn
+ * @return {Object|Array|undefined}
+ */
+var deepFilter = function(obj, fn) {
     const isArray = Array.isArray(obj);
     const filtered = isArray ? [] : {};
     const add = (key, value) => {
@@ -24,7 +29,7 @@ function deepFilter(obj, fn) {
     }
 
     return Object.keys(filtered).length > 0 ? filtered : undefined;
-}
+};
 
 const predicates = {
     positive: (value) => value > 0,

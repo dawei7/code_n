@@ -1,4 +1,8 @@
-function* inorderTraversal(arr) {
+/**
+ * @param {Array} arr
+ * @return {Generator}
+ */
+var inorderTraversal = function*(arr) {
     const stack = [{ array: arr, index: 0 }];
 
     while (stack.length > 0) {
@@ -16,7 +20,14 @@ function* inorderTraversal(arr) {
             yield value;
         }
     }
-}
+};
+
+/**
+ * const gen = inorderTraversal([1, [2, 3]]);
+ * gen.next().value; // 1
+ * gen.next().value; // 2
+ * gen.next().value; // 3
+ */
 
 function solve(arr) {
     return [...inorderTraversal(arr)];

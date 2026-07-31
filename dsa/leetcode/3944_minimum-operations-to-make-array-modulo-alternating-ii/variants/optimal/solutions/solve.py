@@ -1,0 +1,42 @@
+def solve(nums: list[int], k: int) -> int:
+    group_frequencies = [[0] * k for _ in range(2)]
+    for index, value in enumerate(nums):
+        group_frequencies[index & 1][value % k] += 1
+
+    def build_costs(frequencies: list[int]) -> list[int]:
+        total = sum(frequencies)
+        costs = [0] * k
+        costs[0] = sum(count * min(remainder, k - remainder) for remainder, count in enumerate(frequencies))
+
+        half = k // 2
+        nearer_clockwise = sum(frequencies[1 : half + 1])
+        current = costs[0]
+
+        for target in range(k - 1):
+            current += total - 2 * nearer_clockwise
+            if k % 2:
+                current -= frequencies[(target + half + 1) % k]
+            costs[target + 1] = current
+
+            nearer_clockwise += frequencies[(target + half + 1) % k] - frequencies[(target + 1) % k]
+
+        return costs
+
+    even_costs = build_costs(group_frequencies[0])
+    odd_costs = build_costs(group_frequencies[1])
+
+    infinity = 10**30
+    best_odd = second_best_odd = infinity
+    best_odd_remainder = -1
+    for remainder, cost in enumerate(odd_costs):
+        if cost < best_odd:
+            second_best_odd = best_odd
+            best_odd = cost
+            best_odd_remainder = remainder
+        elif cost < second_best_odd:
+            second_best_odd = cost
+
+    return min(
+        cost + (second_best_odd if remainder == best_odd_remainder else best_odd)
+        for remainder, cost in enumerate(even_costs)
+    )

@@ -18,9 +18,7 @@ class Solution:
                     substring = word[start:end]
                     if owner_counts[substring] != 1:
                         continue
-                    if not best or len(substring) < len(best) or (
-                        len(substring) == len(best) and substring < best
-                    ):
+                    if not best or len(substring) < len(best) or (len(substring) == len(best) and substring < best):
                         best = substring
             answer.append(best)
 

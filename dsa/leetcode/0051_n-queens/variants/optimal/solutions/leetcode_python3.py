@@ -9,10 +9,7 @@ class Solution:
 
         def place(columns: int, descending: int, ascending: int) -> None:
             if len(positions) == n:
-                solutions.append([
-                    "." * column + "Q" + "." * (n - column - 1)
-                    for column in positions
-                ])
+                solutions.append(["." * column + "Q" + "." * (n - column - 1) for column in positions])
                 return
 
             free = board_mask & ~(columns | descending | ascending)

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def advantageCount(
-        self, nums1: List[int], nums2: List[int]
-    ) -> List[int]:
+    def advantageCount(self, nums1: List[int], nums2: List[int]) -> List[int]:
         available = sorted(nums1)
         opponents = sorted(
             ((value, index) for index, value in enumerate(nums2)),

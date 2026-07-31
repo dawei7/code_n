@@ -20,4 +20,3 @@ class Solution:
             stack.extend(children[process])
 
         return killed
-

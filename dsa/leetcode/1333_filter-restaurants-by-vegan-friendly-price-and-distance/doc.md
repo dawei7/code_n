@@ -20,9 +20,9 @@ Return the selected restaurant IDs ordered by decreasing rating. If two selected
 **Inputs**
 
 - `restaurants`: an array of $n$ five-integer records, where $1\le n\le10^4$. In each record, the distinct ID, rating, price, and distance are between 1 and $10^5$, and the vegan-friendly field is 0 or 1.
-- `vegan_friendly`: either 0 to allow every restaurant or 1 to require a vegan-friendly record.
-- `max_price`: an inclusive price limit between 1 and $10^5$.
-- `max_distance`: an inclusive distance limit between 1 and $10^5$.
+- `veganFriendly`: either 0 to allow every restaurant or 1 to require a vegan-friendly record.
+- `maxPrice`: an inclusive price limit between 1 and $10^5$.
+- `maxDistance`: an inclusive distance limit between 1 and $10^5$.
 
 **Return value**
 
@@ -31,15 +31,15 @@ The IDs of all qualifying restaurants, sorted by rating descending and then ID d
 ### Examples
 **Example 1**
 
-- Input: `restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]]`, `vegan_friendly = 1`, `max_price = 50`, `max_distance = 10`
+- Input: `restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]]`, `veganFriendly = 1`, `maxPrice = 50`, `maxDistance = 10`
 - Output: `[3,1,5]`
 
 **Example 2**
 
-- Input: `restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]]`, `vegan_friendly = 0`, `max_price = 50`, `max_distance = 10`
+- Input: `restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]]`, `veganFriendly = 0`, `maxPrice = 50`, `maxDistance = 10`
 - Output: `[4,3,2,1,5]`
 
 **Example 3**
 
-- Input: `restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]]`, `vegan_friendly = 0`, `max_price = 30`, `max_distance = 3`
+- Input: `restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]]`, `veganFriendly = 0`, `maxPrice = 30`, `maxDistance = 3`
 - Output: `[4,5]`

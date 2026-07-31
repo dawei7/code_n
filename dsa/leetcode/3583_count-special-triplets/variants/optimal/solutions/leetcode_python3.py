@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 class Solution:
     def specialTriplets(self, nums: List[int]) -> int:
         modulo = 1_000_000_007

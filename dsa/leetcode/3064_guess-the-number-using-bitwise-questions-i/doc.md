@@ -26,9 +26,9 @@ Determine and return the exact hidden number $n$ using the information supplied 
 
 - `n`: The hidden integer, satisfying $1 \le n \le 2^{30}-1$.
 
-In LeetCode's native interactive interface, `findNumber()` receives no explicit parameter. It learns about $n$ only by calling `commonSetBits(num)`. The cOde(n) adapter exposes `n` so it can provide the same deterministic oracle locally.
+In LeetCode's native interactive interface, `findNumber()` receives no explicit parameter. It learns about $n$ only by calling `commonSetBits(num)`. The cOde(n) adapter exposes `n` and constructs the explicit `CommonSetBitsAPI` callable so the same deterministic oracle is available locally.
 
-For every legal query $0 \le 	exttt{num} \le 2^{30}-1$, the oracle returns the population count of `n & num`.
+For every legal query $0 \le \texttt{num} \le 2^{30}-1$, the oracle returns the population count of `n & num`.
 
 **Return value**
 

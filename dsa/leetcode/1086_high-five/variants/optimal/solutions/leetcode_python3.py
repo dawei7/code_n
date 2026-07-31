@@ -13,7 +13,4 @@ class Solution:
             elif score > scores[0]:
                 heappushpop(scores, score)
 
-        return [
-            [student_id, sum(best[student_id]) // 5]
-            for student_id in sorted(best)
-        ]
+        return [[student_id, sum(best[student_id]) // 5] for student_id in sorted(best)]

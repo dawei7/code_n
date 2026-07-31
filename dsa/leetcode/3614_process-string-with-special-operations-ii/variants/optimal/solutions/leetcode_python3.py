@@ -4,26 +4,26 @@ class Solution:
 
         for character in s:
             length = lengths[-1]
-            if character == '*':
+            if character == "*":
                 length = max(0, length - 1)
-            elif character == '#':
+            elif character == "#":
                 length *= 2
-            elif character != '%':
+            elif character != "%":
                 length += 1
             lengths.append(length)
 
         if k >= lengths[-1]:
-            return '.'
+            return "."
 
         for index in range(len(s) - 1, -1, -1):
             character = s[index]
             previous_length = lengths[index]
 
-            if character == '#':
+            if character == "#":
                 k %= previous_length
-            elif character == '%':
+            elif character == "%":
                 k = previous_length - 1 - k
-            elif character != '*' and k == previous_length:
+            elif character != "*" and k == previous_length:
                 return character
 
-        return '.'
+        return "."

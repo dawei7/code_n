@@ -8,7 +8,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             1,
             4,
@@ -47,7 +47,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             3,
             3,
@@ -97,7 +97,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             1,
             2,
@@ -118,7 +118,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             5,
             5,
@@ -148,7 +148,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             5,
             5,
@@ -178,7 +178,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             2,
             2,
@@ -211,7 +211,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             4,
             4,
@@ -254,7 +254,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             9,
             9,

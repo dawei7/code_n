@@ -1,7 +1,5 @@
 class Solution:
-    def kthRemainingInteger(
-        self, nums: list[int], queries: list[list[int]]
-    ) -> list[int]:
+    def kthRemainingInteger(self, nums: list[int], queries: list[list[int]]) -> list[int]:
         even_ranks = []
         even_prefix = [0]
         for value in nums:

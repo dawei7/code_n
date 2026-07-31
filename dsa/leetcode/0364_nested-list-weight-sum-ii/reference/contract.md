@@ -2,8 +2,10 @@
 
 **Inputs**
 
-- `nested_list`: The cOde(n) representation of `nestedList`, using ordinary lists whose elements are integers or further lists.
+- `nestedList`: A list of `NestedInteger` objects. Each object either stores one integer or a nested list of more `NestedInteger` objects.
+
+JSON cases use ordinary nested arrays and integers. The runner reconstructs the `NestedInteger` interface objects before calling `solve(nestedList)`.
 
 **Return value**
 
-Return the inverse-depth weighted sum. LeetCode supplies the same logical input through its native `NestedInteger` interface.
+Return the inverse-depth weighted sum.

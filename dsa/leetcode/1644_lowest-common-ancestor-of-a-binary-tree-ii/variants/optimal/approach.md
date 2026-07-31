@@ -15,5 +15,5 @@ Each of the $n$ nodes is visited once and performs constant work, so time is $O(
 - If one target is an ancestor of the other, that target is the LCA.
 - If either or both targets are absent, the required answer is `null`.
 - Targets are distinct, so the found count cannot reach two by matching one node twice.
-- Unique node values make the app-local value representation unambiguous; the native artifact compares node identity.
+- JSON fixtures use unique node values only to reconstruct `p` and `q`; the solution itself compares node identity, exactly like the native artifact.
 - A one-node tree cannot contain both distinct targets.

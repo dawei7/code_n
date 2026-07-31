@@ -5,9 +5,7 @@ class Solution:
         palindrome_length = [0] * limit
 
         for mask in range(1, limit):
-            subsequence = [
-                s[index] for index in range(length) if mask & (1 << index)
-            ]
+            subsequence = [s[index] for index in range(length) if mask & (1 << index)]
             if subsequence == subsequence[::-1]:
                 palindrome_length[mask] = len(subsequence)
 
@@ -22,7 +20,4 @@ class Solution:
                     )
 
         full_mask = limit - 1
-        return max(
-            palindrome_length[mask] * best_submask[full_mask ^ mask]
-            for mask in range(limit)
-        )
+        return max(palindrome_length[mask] * best_submask[full_mask ^ mask] for mask in range(limit))

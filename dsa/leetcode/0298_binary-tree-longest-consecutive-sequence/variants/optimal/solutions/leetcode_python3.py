@@ -9,11 +9,7 @@ class Solution:
         stack = [(root, None, 0)]
         while stack:
             node, parent_value, parent_length = stack.pop()
-            length = (
-                parent_length + 1
-                if parent_value is not None and node.val == parent_value + 1
-                else 1
-            )
+            length = parent_length + 1 if parent_value is not None and node.val == parent_value + 1 else 1
             best = max(best, length)
             if node.right is not None:
                 stack.append((node.right, node.val, length))

@@ -19,10 +19,7 @@ class Solution:
 
             pairs = 0
             for value in nums:
-                pairs += (
-                    prefix_sum(bisect_right(values, value + threshold))
-                    - prefix_sum(bisect_right(values, value))
-                )
+                pairs += prefix_sum(bisect_right(values, value + threshold)) - prefix_sum(bisect_right(values, value))
                 if pairs >= k:
                     return pairs
 

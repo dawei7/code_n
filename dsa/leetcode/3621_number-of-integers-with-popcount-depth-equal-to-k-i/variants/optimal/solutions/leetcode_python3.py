@@ -28,11 +28,7 @@ class Solution:
 
             return total
 
-        answer = sum(
-            count_with_ones(ones)
-            for ones in range(1, bit_count + 1)
-            if depth[ones] == k - 1
-        )
+        answer = sum(count_with_ones(ones) for ones in range(1, bit_count + 1) if depth[ones] == k - 1)
 
         if k == 1:
             answer -= 1

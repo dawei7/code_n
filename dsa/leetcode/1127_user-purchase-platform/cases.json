@@ -95,6 +95,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "sample",
         "all-categories",
@@ -146,6 +147,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "trial",
         "single-user"
@@ -202,6 +204,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "trial",
         "both"
@@ -264,6 +267,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "trial",
         "user-count"
@@ -344,6 +348,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "real",
         "date-isolation"
@@ -424,6 +429,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "real",
         "aggregation"
@@ -528,6 +534,7 @@
           ]
         ]
       },
+      "validator": {"kind": "unordered_table"},
       "tags": [
         "real",
         "multiple-dates"

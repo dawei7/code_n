@@ -1,0 +1,66 @@
+def solve(nums: list[int], k: int, queries: list[list[int]]) -> list[int]:
+    n = len(nums)
+    size = 1
+    while size < n:
+        size *= 2
+
+    products = [1 % k] * (2 * size)
+    counts = [[0] * k for _ in range(2 * size)]
+
+    for index, value in enumerate(nums):
+        remainder = value % k
+        products[size + index] = remainder
+        counts[size + index][remainder] = 1
+
+    def merge(left_product, left_counts, right_product, right_counts):
+        merged_counts = left_counts.copy()
+        for remainder, count in enumerate(right_counts):
+            merged_counts[(left_product * remainder) % k] += count
+        return (left_product * right_product) % k, merged_counts
+
+    def pull(node):
+        products[node], counts[node] = merge(
+            products[2 * node],
+            counts[2 * node],
+            products[2 * node + 1],
+            counts[2 * node + 1],
+        )
+
+    for node in range(size - 1, 0, -1):
+        pull(node)
+
+    def update(index, value):
+        node = size + index
+        remainder = value % k
+        products[node] = remainder
+        counts[node] = [0] * k
+        counts[node][remainder] = 1
+        node //= 2
+        while node:
+            pull(node)
+            node //= 2
+
+    def suffix_summary(start):
+        left_product = right_product = 1 % k
+        left_counts = [0] * k
+        right_counts = [0] * k
+        left = size + start
+        right = size + n
+
+        while left < right:
+            if left % 2:
+                left_product, left_counts = merge(left_product, left_counts, products[left], counts[left])
+                left += 1
+            if right % 2:
+                right -= 1
+                right_product, right_counts = merge(products[right], counts[right], right_product, right_counts)
+            left //= 2
+            right //= 2
+
+        return merge(left_product, left_counts, right_product, right_counts)
+
+    result = []
+    for index, value, start, x in queries:
+        update(index, value)
+        result.append(suffix_summary(start)[1][x])
+    return result

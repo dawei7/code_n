@@ -9,10 +9,10 @@
     "symbol": "B",
     "maximum": 1024,
     "unit": "LED masks",
-    "source_constraint": "turned_on is an integer from 0 through 10"
+    "source_constraint": "turnedOn is an integer from 0 through 10"
   },
   "replacement_checks": [
     {"kind": "bounded_work_proof", "evidence": "Four hour LEDs and six minute LEDs produce exactly 2^10 possible masks."},
-    {"kind": "exhaustive_domain", "evidence": "The certificate regression evaluates every turned_on value from 0 through 10 against a direct clock enumeration."}
+    {"kind": "exhaustive_domain", "evidence": "The certificate regression evaluates every turnedOn value from 0 through 10 against a direct clock enumeration."}
   ]
 }

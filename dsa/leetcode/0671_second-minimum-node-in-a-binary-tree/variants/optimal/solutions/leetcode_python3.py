@@ -17,4 +17,3 @@ class Solution:
             return min(left, right)
 
         return second_in_subtree(root)
-

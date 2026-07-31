@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def minMaxWeight(
-        self, n: int, edges: List[List[int]], threshold: int
-    ) -> int:
+    def minMaxWeight(self, n: int, edges: List[List[int]], threshold: int) -> int:
         reverse_graph = [[] for _ in range(n)]
         for source, destination, weight in edges:
             reverse_graph[destination].append((source, weight))

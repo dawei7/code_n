@@ -9,7 +9,7 @@
       "visible": true,
       "input": {
         "sentence": "i love eating burger",
-        "search_word": "burg"
+        "searchWord": "burg"
       },
       "expected": 4,
       "tags": [
@@ -24,7 +24,7 @@
       "visible": true,
       "input": {
         "sentence": "this problem is an easy problem",
-        "search_word": "pro"
+        "searchWord": "pro"
       },
       "expected": 2,
       "tags": [
@@ -39,7 +39,7 @@
       "visible": true,
       "input": {
         "sentence": "i am tired",
-        "search_word": "you"
+        "searchWord": "you"
       },
       "expected": -1,
       "tags": [
@@ -54,7 +54,7 @@
       "visible": true,
       "input": {
         "sentence": "alpha beta gamma",
-        "search_word": "alp"
+        "searchWord": "alp"
       },
       "expected": 1,
       "tags": [
@@ -69,7 +69,7 @@
       "visible": true,
       "input": {
         "sentence": "we code daily",
-        "search_word": "code"
+        "searchWord": "code"
       },
       "expected": 2,
       "tags": [
@@ -84,7 +84,7 @@
       "visible": false,
       "input": {
         "sentence": "hamburger fries",
-        "search_word": "burger"
+        "searchWord": "burger"
       },
       "expected": -1,
       "tags": [
@@ -99,7 +99,7 @@
       "visible": false,
       "input": {
         "sentence": "a ab abc",
-        "search_word": "abcd"
+        "searchWord": "abcd"
       },
       "expected": -1,
       "tags": [
@@ -114,7 +114,7 @@
       "visible": false,
       "input": {
         "sentence": "prefix",
-        "search_word": "pre"
+        "searchWord": "pre"
       },
       "expected": 1,
       "tags": [
@@ -129,7 +129,7 @@
       "visible": false,
       "input": {
         "sentence": "zero preview other prefix",
-        "search_word": "pre"
+        "searchWord": "pre"
       },
       "expected": 2,
       "tags": [

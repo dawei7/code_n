@@ -10,7 +10,7 @@
       "visible": false,
       "size": 3,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             100,
             100,
@@ -42,7 +42,7 @@
       "visible": false,
       "size": 6,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             100,
             100,
@@ -107,7 +107,7 @@
       "visible": false,
       "size": 12,
       "input": {
-        "height_map": [
+        "heightMap": [
           [
             100,
             100,

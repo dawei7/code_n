@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def maximumBeauty(
-        self, items: List[List[int]], queries: List[int]
-    ) -> List[int]:
+    def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:
         items.sort()
         prices = []
         prefix_beauty = []

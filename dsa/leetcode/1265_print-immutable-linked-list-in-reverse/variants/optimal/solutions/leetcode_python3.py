@@ -3,8 +3,9 @@
 #     def printValue(self) -> None: ...
 #     def getNext(self) -> 'ImmutableListNode': ...
 
+
 class Solution:
-    def printLinkedListInReverse(self, head: 'ImmutableListNode') -> None:
+    def printLinkedListInReverse(self, head: "ImmutableListNode") -> None:
         nodes = []
         current = head
         while current is not None:

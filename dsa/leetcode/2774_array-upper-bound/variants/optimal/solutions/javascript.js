@@ -1,6 +1,4 @@
 /**
- * Add the source-native upperBound method to every array.
- *
  * @param {number} target
  * @return {number}
  */
@@ -20,6 +18,10 @@ Array.prototype.upperBound = function(target) {
     const candidate = left - 1;
     return candidate >= 0 && this[candidate] === target ? candidate : -1;
 };
+
+// [3,4,5].upperBound(5); // 2
+// [1,4,5].upperBound(2); // -1
+// [3,4,6,6,6,6,7].upperBound(6) // 5
 
 function solve(nums, target) {
     return nums.upperBound(target);

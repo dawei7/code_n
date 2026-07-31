@@ -22,8 +22,8 @@ After each victory, your energy decreases by the opponent's energy, while your e
 
 **Inputs**
 
-- `initial_energy`: Your positive starting energy.
-- `initial_experience`: Your positive starting experience.
+- `initialEnergy`: Your positive starting energy.
+- `initialExperience`: Your positive starting experience.
 - `energy`: A list of $n$ opponents' energy values.
 - `experience`: A list of the same $n$ opponents' experience values.
 
@@ -43,12 +43,12 @@ Here $1 \le n \le 100$, and every initial or opponent value lies between 1 and 1
 
 **Example 1**
 
-- Input: `initial_energy = 5, initial_experience = 3, energy = [1,4,3,2], experience = [2,6,3,1]`
+- Input: `initialEnergy = 5, initialExperience = 3, energy = [1,4,3,2], experience = [2,6,3,1]`
 - Output: `8`
 - Explanation: Six energy hours and two experience hours provide enough strength to win all four encounters in order.
 
 **Example 2**
 
-- Input: `initial_energy = 2, initial_experience = 4, energy = [1], experience = [3]`
+- Input: `initialEnergy = 2, initialExperience = 4, energy = [1], experience = [3]`
 - Output: `0`
 - Explanation: Both starting statistics are already strictly greater than the only opponent's values.

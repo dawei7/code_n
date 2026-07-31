@@ -11,11 +11,7 @@ class Solution:
             if remaining_ones == 0:
                 break
 
-            with_zero = (
-                comb(position, remaining_ones)
-                if remaining_ones <= position
-                else 0
-            )
+            with_zero = comb(position, remaining_ones) if remaining_ones <= position else 0
 
             if remaining_rank > with_zero:
                 answer |= 1 << position

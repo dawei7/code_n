@@ -7,7 +7,7 @@
 
 
 class FindElements:
-    def __init__(self, root: 'TreeNode'):
+    def __init__(self, root: "TreeNode"):
         self.values = set()
         root.val = 0
         stack = [root]

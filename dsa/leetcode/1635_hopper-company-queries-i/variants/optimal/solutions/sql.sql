@@ -1,30 +1,26 @@
-WITH RECURSIVE months(month) AS (
-    SELECT 1
+WITH RECURSIVE Months AS (
+    SELECT 1 AS month
     UNION ALL
     SELECT month + 1
-    FROM months
+    FROM Months
     WHERE month < 12
-),
-accepted_by_month AS (
-    SELECT
-        CAST(strftime('%m', r.requested_at) AS INTEGER) AS month,
-        COUNT(*) AS accepted_rides
-    FROM Rides AS r
-    INNER JOIN AcceptedRides AS ar
-        ON ar.ride_id = r.ride_id
-    WHERE r.requested_at >= '2020-01-01'
-      AND r.requested_at < '2021-01-01'
-    GROUP BY CAST(strftime('%m', r.requested_at) AS INTEGER)
 )
 SELECT
     m.month,
     (
         SELECT COUNT(*)
         FROM Drivers AS d
-        WHERE d.join_date < date('2020-01-01', printf('+%d months', m.month))
+        WHERE d.join_date < date(
+            '2020-01-01',
+            printf('+%d months', m.month)
+        )
     ) AS active_drivers,
-    COALESCE(a.accepted_rides, 0) AS accepted_rides
-FROM months AS m
-LEFT JOIN accepted_by_month AS a
-    ON a.month = m.month
+    COUNT(ar.ride_id) AS accepted_rides
+FROM Months AS m
+LEFT JOIN Rides AS r
+    ON CAST(strftime('%Y', r.requested_at) AS INTEGER) = 2020
+   AND CAST(strftime('%m', r.requested_at) AS INTEGER) = m.month
+LEFT JOIN AcceptedRides AS ar
+    ON ar.ride_id = r.ride_id
+GROUP BY m.month
 ORDER BY m.month;

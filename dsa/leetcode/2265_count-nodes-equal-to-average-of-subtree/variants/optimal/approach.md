@@ -31,11 +31,9 @@ visits every node once, the accumulated match count is the requested answer.
 
 ## Complexity detail
 
-Let $n$ be the number of nodes. Each node is entered and combined once, so the
-running time is $O(n)$. The traversal stack and stored subtree summaries use
-$O(n)$ auxiliary space in the worst case; a recursive implementation uses
-$O(h)$ call-stack space for tree height $h$, which is also $O(n)$ for a skewed
-tree.
+Let $n$ be the number of nodes and $h$ the tree height. Each node is entered
+and combined once, so the running time is $O(n)$. The recursive calls use
+$O(h)$ auxiliary stack space, which is $O(n)$ for a skewed tree.
 
 ## Alternatives and edge cases
 
@@ -44,5 +42,5 @@ tree.
 - **Leaf node:** Its subtree average equals its own value, so every leaf qualifies.
 - **Rounded-down average:** Use integer floor division; do not compare against a floating-point mean or round to the nearest integer.
 - **Zero values:** A subtree sum and average may both be zero, and such nodes must be counted normally.
-- **Skewed tree:** An iterative postorder traversal avoids dependence on the language's recursion-depth limit.
+- **Iterative postorder for a skewed tree:** An explicit stack avoids dependence on the language's recursion-depth limit but needs additional bookkeeping for completed child summaries.
 - **Repeated values:** Several ancestors may all qualify; each node contributes separately.

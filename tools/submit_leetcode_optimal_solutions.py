@@ -232,7 +232,7 @@ def _strip_leetcode_definition_classes(source: str, snippet: str) -> str:
     """Drop local copies of LeetCode-provided node classes before submission."""
     provided_names = {
         name
-        for name in ("ListNode", "TreeNode", "Node")
+        for name in ("ListNode", "TreeNode", "RopeTreeNode", "Street", "CategoryHandler", "BigArray", "Node")
         if re.search(rf"\bclass\s+{name}\b|\b{name}\b", snippet)
     }
     if not provided_names:
@@ -261,7 +261,7 @@ def _design_class_from_snippet(snippet: str) -> str:
     class_names = [
         name
         for name in re.findall(r"(?m)^class\s+([A-Za-z_]\w*)\s*(?:\([^)]*\))?\s*:", snippet)
-        if name not in {"ListNode", "TreeNode", "Node"}
+        if name not in {"ListNode", "TreeNode", "RopeTreeNode", "Street", "CategoryHandler", "BigArray", "Node"}
     ]
     if "Solution" in class_names:
         raise UnsupportedProblemShape("Normal Solution snippets should use solve() wrapping.")

@@ -2,9 +2,7 @@ from heapq import heapify, heapreplace
 
 
 class Solution:
-    def getFinalState(
-        self, nums: List[int], k: int, multiplier: int
-    ) -> List[int]:
+    def getFinalState(self, nums: List[int], k: int, multiplier: int) -> List[int]:
         modulo = 1_000_000_007
         if multiplier == 1:
             return [value % modulo for value in nums]
@@ -23,8 +21,6 @@ class Solution:
         answer = [0] * len(nums)
         for position, (value, index) in enumerate(heap):
             exponent = full_rounds + (position < extra)
-            answer[index] = value % modulo * pow(
-                multiplier, exponent, modulo
-            ) % modulo
+            answer[index] = value % modulo * pow(multiplier, exponent, modulo) % modulo
 
         return answer

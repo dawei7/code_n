@@ -15,11 +15,7 @@ class Solution:
             for column_shift in range(1 - side, side):
                 overlap = 0
                 for row in range(row_start, row_stop):
-                    shifted = (
-                        rows1[row] << column_shift
-                        if column_shift >= 0
-                        else rows1[row] >> -column_shift
-                    )
+                    shifted = rows1[row] << column_shift if column_shift >= 0 else rows1[row] >> -column_shift
                     overlap += (shifted & rows2[row + row_shift]).bit_count()
                 best = max(best, overlap)
 

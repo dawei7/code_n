@@ -20,5 +20,4 @@ first_and_last AS (
 )
 SELECT DISTINCT user_id
 FROM first_and_last
-WHERE first_person = last_person
-ORDER BY user_id;
+WHERE first_person = last_person;

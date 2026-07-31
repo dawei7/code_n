@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def maximumAmount(self, coins: List[List[int]]) -> int:
-        negative_infinity = -10**18
+        negative_infinity = -(10**18)
         rows = len(coins)
         columns = len(coins[0])
         dp = [[negative_infinity] * 3 for _ in range(columns)]
@@ -16,9 +16,7 @@ class Solution:
                     incoming = [
                         max(
                             dp[column][used],
-                            dp[column - 1][used]
-                            if column > 0
-                            else negative_infinity,
+                            dp[column - 1][used] if column > 0 else negative_infinity,
                         )
                         for used in range(3)
                     ]
@@ -27,9 +25,7 @@ class Solution:
                 current = [score + value for score in incoming]
                 if value < 0:
                     for used in range(2):
-                        current[used + 1] = max(
-                            current[used + 1], incoming[used]
-                        )
+                        current[used + 1] = max(current[used + 1], incoming[used])
 
                 dp[column] = current
 

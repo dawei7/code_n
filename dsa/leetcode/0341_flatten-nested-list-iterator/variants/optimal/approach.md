@@ -6,8 +6,8 @@ Flattening everything in the constructor is simple, but it performs all work and
 Represent each active nesting level by an iterator over that list. The stack begins with an iterator over the outermost list. To prepare the next value, inspect the iterator at the top:
 
 - If that level is exhausted, pop it and resume its parent.
-- If its next element is another list, push an iterator for the child list.
-- If its next element is an integer, cache that integer and stop.
+- If `isInteger()` is false, push an iterator over `getList()`.
+- Otherwise, cache `getInteger()` and stop.
 
 **Separate lookahead from consumption**
 

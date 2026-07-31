@@ -5,7 +5,7 @@ A valid watch time has an hour from 0 through 11 and a minute from 0 through 59,
 
 **Count lit LEDs through the represented values**
 
-The hour LEDs encode the hour's binary bits and the minute LEDs encode the minute's bits. Therefore the display has exactly `bit_count(hour) + bit_count(minute)` lit LEDs. Keep a pair when that sum equals `turned_on`.
+The hour LEDs encode the hour's binary bits and the minute LEDs encode the minute's bits. Therefore the display has exactly `bit_count(hour) + bit_count(minute)` lit LEDs. Keep a pair when that sum equals `turnedOn`.
 
 **Format only accepted times**
 

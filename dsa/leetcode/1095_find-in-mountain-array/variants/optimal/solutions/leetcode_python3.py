@@ -8,7 +8,7 @@
 
 
 class Solution:
-    def findInMountainArray(self, target: int, mountainArr: 'MountainArray') -> int:
+    def findInMountainArray(self, target: int, mountainArr: "MountainArray") -> int:
         length = mountainArr.length()
         left, right = 0, length - 1
         while left < right:

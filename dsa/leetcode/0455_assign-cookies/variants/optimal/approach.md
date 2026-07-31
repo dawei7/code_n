@@ -12,7 +12,7 @@ When a cookie can satisfy the least greedy remaining child, assigning it is safe
 If a cookie is smaller than the least remaining greed, it is also too small for every later child because the requirements are sorted. No future assignment can use it, so advancing only the cookie pointer loses nothing.
 
 ## Complexity detail
-Sorting takes $O(g \log g + s \log s)$ time for `g` children and `s` cookies. The two-pointer scan is $O(g + s)$. Sorted copies use $O(g + s)$ auxiliary space; in-place sorting reduces explicit copy space.
+Sorting takes $O(g \log g + s \log s)$ time for `g` children and `s` cookies. The two-pointer scan is $O(g + s)$. The reference sorts both inputs in place; Python's sorting implementation can still use $O(g + s)$ auxiliary memory.
 
 ## Alternatives and edge cases
 - **Match from largest to largest:** satisfying the greediest child with the largest adequate cookie is the symmetric greedy strategy.

@@ -6,7 +6,7 @@
 When the heap has one element, exactly $n-1$ connections have occurred and the accumulated total contains every paid sum once. A single input stick skips the loop and correctly returns zero.
 
 ## Complexity detail
-Heap construction takes $O(n)$ time. Each of the $n-1$ merges performs two removals and one insertion, each costing $O(\log n)$, for $O(n \log n)$ total time. The heap stores $O(n)$ current lengths and therefore uses $O(n)$ space.
+Heap construction takes $O(n)$ time. Each of the $n-1$ merges performs two removals and one insertion, each costing $O(\log n)$, for $O(n \log n)$ total time. Heapifying the input list reuses its storage, so the algorithm uses $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Sort after every merge:** Selecting the two shortest sticks remains correct, but repeatedly sorting the entire collection can take $O(n^2 \log n)$ time.
@@ -14,4 +14,4 @@ Heap construction takes $O(n)$ time. Each of the $n-1$ merges performs two remov
 - **Choose the two longest:** Charging large lengths early is the opposite of the needed greedy rule and can be much more expensive.
 - **Single stick:** No merge is performed, so the cost is `0`.
 - **Equal lengths:** Any two current minimum sticks may be chosen; ties do not affect optimality.
-- **Input mutation:** Heapifying a copy preserves the caller's array while retaining the same asymptotic bounds.
+- **Input mutation:** The accepted implementation heapifies `sticks` itself to avoid a second $O(n)$ array. Copy first when the caller must retain the original ordering, at the cost of $O(n)$ auxiliary space.

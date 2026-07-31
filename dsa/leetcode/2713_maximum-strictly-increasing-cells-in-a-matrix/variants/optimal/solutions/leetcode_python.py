@@ -24,4 +24,3 @@ class Solution:
                 column_best[column] = max(column_best[column], length)
 
         return answer
-

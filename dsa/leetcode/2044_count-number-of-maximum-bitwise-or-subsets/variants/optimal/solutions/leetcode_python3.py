@@ -13,8 +13,6 @@ class Solution:
             if index == len(nums):
                 return 0
 
-            return count(index + 1, current) + count(
-                index + 1, current | nums[index]
-            )
+            return count(index + 1, current) + count(index + 1, current | nums[index])
 
         return count(0, 0)

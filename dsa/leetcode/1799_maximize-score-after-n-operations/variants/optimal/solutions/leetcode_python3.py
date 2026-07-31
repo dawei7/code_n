@@ -5,10 +5,7 @@ from math import gcd
 class Solution:
     def maxScore(self, nums: list[int]) -> int:
         length = len(nums)
-        pair_gcd = [
-            [gcd(nums[i], nums[j]) for j in range(length)]
-            for i in range(length)
-        ]
+        pair_gcd = [[gcd(nums[i], nums[j]) for j in range(length)] for i in range(length)]
 
         @cache
         def best(mask: int) -> int:

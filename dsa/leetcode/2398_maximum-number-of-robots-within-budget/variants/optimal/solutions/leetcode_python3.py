@@ -16,18 +16,13 @@ class Solution:
 
         for right, charge_time in enumerate(chargeTimes):
             running_sum += runningCosts[right]
-            while (
-                maximum_charge_indices
-                and chargeTimes[maximum_charge_indices[-1]] <= charge_time
-            ):
+            while maximum_charge_indices and chargeTimes[maximum_charge_indices[-1]] <= charge_time:
                 maximum_charge_indices.pop()
             maximum_charge_indices.append(right)
 
             while (
                 maximum_charge_indices
-                and chargeTimes[maximum_charge_indices[0]]
-                + (right - left + 1) * running_sum
-                > budget
+                and chargeTimes[maximum_charge_indices[0]] + (right - left + 1) * running_sum > budget
             ):
                 if maximum_charge_indices[0] == left:
                     maximum_charge_indices.popleft()

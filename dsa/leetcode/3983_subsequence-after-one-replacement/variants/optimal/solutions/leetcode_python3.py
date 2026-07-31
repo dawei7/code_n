@@ -11,11 +11,7 @@ class Solution:
             previous_exact = exact
             previous_changed = changed
 
-            if (
-                previous_changed >= 0
-                and previous_changed < target_length
-                and s[previous_changed] == character
-            ):
+            if previous_changed >= 0 and previous_changed < target_length and s[previous_changed] == character:
                 changed = previous_changed + 1
 
             if previous_exact < target_length:

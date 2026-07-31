@@ -12,13 +12,9 @@ class Solution:
             factorial[value] = factorial[value - 1] * value % modulus
 
         inverse_factorial = [1] * (maximum_length + 1)
-        inverse_factorial[maximum_length] = pow(
-            factorial[maximum_length], modulus - 2, modulus
-        )
+        inverse_factorial[maximum_length] = pow(factorial[maximum_length], modulus - 2, modulus)
         for value in range(maximum_length, 0, -1):
-            inverse_factorial[value - 1] = (
-                inverse_factorial[value] * value % modulus
-            )
+            inverse_factorial[value - 1] = inverse_factorial[value] * value % modulus
 
         answer = 1
         for word in words:

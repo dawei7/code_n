@@ -24,4 +24,3 @@ class Solution:
             level += 1
 
         return best_level
-

@@ -1,4 +1,8 @@
-function solve(str) {
+/**
+ * @param {string} str
+ * @return {null|boolean|number|string|Array|Object}
+ */
+var jsonParse = function(str) {
     let index = 0;
 
     const skipWhitespace = () => {
@@ -117,5 +121,10 @@ function solve(str) {
     };
 
     return parseValue();
+};
+
+function solve(str) {
+    return jsonParse(str);
 }
 
+module.exports = { jsonParse, solve };

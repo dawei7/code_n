@@ -25,12 +25,9 @@ class Solution:
             first_slope, first_intercept = first
             middle_slope, middle_intercept = middle
             last_slope, last_intercept = last
-            return (
-                (middle_intercept - first_intercept)
-                * (middle_slope - last_slope)
-                >= (last_intercept - middle_intercept)
-                * (first_slope - middle_slope)
-            )
+            return (middle_intercept - first_intercept) * (middle_slope - last_slope) >= (
+                last_intercept - middle_intercept
+            ) * (first_slope - middle_slope)
 
         for groups in range(1, k + 1):
             current = [infinity] * (n + 1)
@@ -41,33 +38,25 @@ class Solution:
                 [
                     (
                         -start_sum,
-                        previous[start]
-                        + (start_sum * start_sum - start_sum) // 2,
+                        previous[start] + (start_sum * start_sum - start_sum) // 2,
                     )
                 ]
             )
 
             for end in range(groups, n + 1):
                 total = prefix[end]
-                while len(hull) >= 2 and evaluate(hull[0], total) >= evaluate(
-                    hull[1], total
-                ):
+                while len(hull) >= 2 and evaluate(hull[0], total) >= evaluate(hull[1], total):
                     hull.popleft()
 
-                current[end] = (
-                    (total * total + total) // 2 + evaluate(hull[0], total)
-                )
+                current[end] = (total * total + total) // 2 + evaluate(hull[0], total)
 
                 if previous[end] < infinity:
                     split_sum = prefix[end]
                     new_line = (
                         -split_sum,
-                        previous[end]
-                        + (split_sum * split_sum - split_sum) // 2,
+                        previous[end] + (split_sum * split_sum - split_sum) // 2,
                     )
-                    while len(hull) >= 2 and is_redundant(
-                        hull[-2], hull[-1], new_line
-                    ):
+                    while len(hull) >= 2 and is_redundant(hull[-2], hull[-1], new_line):
                         hull.pop()
                     hull.append(new_line)
 

@@ -32,9 +32,7 @@ class Solution:
             for used_mask in range(len(ways) - 1, -1, -1):
                 if used_mask & value_mask == 0:
                     combined = used_mask | value_mask
-                    ways[combined] = (
-                        ways[combined] + ways[used_mask] * count
-                    ) % modulo
+                    ways[combined] = (ways[combined] + ways[used_mask] * count) % modulo
 
         nonempty_products = sum(ways[1:]) % modulo
         return nonempty_products * pow(2, frequencies[1], modulo) % modulo

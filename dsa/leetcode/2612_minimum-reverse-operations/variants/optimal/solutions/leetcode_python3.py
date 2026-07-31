@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def minReverseOperations(
-        self, n: int, p: int, banned: List[int], k: int
-    ) -> List[int]:
+    def minReverseOperations(self, n: int, p: int, banned: List[int], k: int) -> List[int]:
         values = [list(range(parity, n, 2)) for parity in range(2)]
         parent = [list(range(len(values[parity]) + 1)) for parity in range(2)]
 

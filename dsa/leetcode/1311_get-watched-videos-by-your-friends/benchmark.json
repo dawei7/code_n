@@ -10,7 +10,7 @@
       "visible": false,
       "size": 32,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "root"
           ],
@@ -107,7 +107,7 @@
       "visible": false,
       "size": 128,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "root"
           ],
@@ -402,7 +402,7 @@
       "visible": false,
       "size": 512,
       "input": {
-        "watched_videos": [
+        "watchedVideos": [
           [
             "root"
           ],

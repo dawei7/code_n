@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "c3392208b2d02b3ae613fa1e605e9a47c6334262dec0f171176daa81c35aa2f6",
+    "native_sha256": "66d7d7bd4a607514acc9db81e74cf2d5de8cab3a57ffe7848702c9b085be93cb",
+    "solution_variants_sha256": "cb11eb067bffa56e7b28acf6677e08792875060e7466d2fd333bad22f24c12b6",
+    "approach_sha256": "fa7a977a3109daa90cbf65aaee276dfcf2d98c8b39810780bc3dcd3d232ee663"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "one-day date comparison",
+      "native": "MySQL uses DATEDIFF(current.recordDate, previous.recordDate) = 1.",
+      "app": "SQLite compares julianday values with a difference of one.",
+      "rationale": "Both self-join exactly consecutive calendar dates and apply the identical temperature predicate, projection, aliases, and complexity."
+    }
+  ]
+}

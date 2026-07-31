@@ -6,4 +6,4 @@
 
 **Return value**
 
-The native LeetCode method mutates `matrix` in place and returns no value. The app adapter returns that same rotated matrix so its contents can be validated directly.
+Return `None`; rotate `matrix` $90^\circ$ clockwise in place.

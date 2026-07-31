@@ -1,7 +1,5 @@
 class Solution:
-    def countGoodStrings(
-        self, low: int, high: int, zero: int, one: int
-    ) -> int:
+    def countGoodStrings(self, low: int, high: int, zero: int, one: int) -> int:
         modulus = 1_000_000_007
         ways = [0] * (high + 1)
         ways[0] = 1

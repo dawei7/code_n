@@ -3,10 +3,7 @@ class Solution:
         rows = len(targetGrid)
         columns = len(targetGrid[0])
         colors = {color for row in targetGrid for color in row}
-        bounds = {
-            color: [rows, columns, -1, -1]
-            for color in colors
-        }
+        bounds = {color: [rows, columns, -1, -1] for color in colors}
 
         for row in range(rows):
             for column in range(columns):

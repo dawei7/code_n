@@ -17,7 +17,7 @@ Starting from person `id`, consider only people whose shortest friendship-path d
 ### Function Contract
 **Inputs**
 
-- `watched_videos`: $n$ nonempty video lists, one for each person.
+- `watchedVideos`: $n$ nonempty video lists, one for each person.
 - `friends`: an undirected adjacency list of the same length, with no out-of-range IDs.
 - $2\le n\le100$; each person has between 1 and 100 watched videos.
 - Every video name is a nonempty string of at most 8 characters.

@@ -1,5 +1,5 @@
 class Solution:
-    def search(self, reader: 'ArrayReader', target: int) -> int:
+    def search(self, reader: "ArrayReader", target: int) -> int:
         left = 0
         right = 1
 

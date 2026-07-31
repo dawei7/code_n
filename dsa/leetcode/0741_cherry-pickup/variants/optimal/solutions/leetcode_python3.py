@@ -4,7 +4,7 @@ from typing import List
 class Solution:
     def cherryPickup(self, grid: List[List[int]]) -> int:
         size = len(grid)
-        unreachable = -10**9
+        unreachable = -(10**9)
         previous = [[unreachable] * size for _ in range(size)]
         previous[0][0] = grid[0][0]
 

@@ -4,13 +4,9 @@ class Solution:
         backward_prefix = [0]
 
         for distance in forward:
-            forward_prefix.append(
-                forward_prefix[-1] + distance
-            )
+            forward_prefix.append(forward_prefix[-1] + distance)
         for distance in backward:
-            backward_prefix.append(
-                backward_prefix[-1] + distance
-            )
+            backward_prefix.append(backward_prefix[-1] + distance)
 
         forward_total = forward_prefix[-1]
         backward_total = backward_prefix[-1]
@@ -18,14 +14,8 @@ class Solution:
         current = 0
 
         for target in queries:
-            forward_distance = (
-                forward_prefix[target]
-                - forward_prefix[current]
-            ) % forward_total
-            backward_distance = (
-                backward_prefix[current + 1]
-                - backward_prefix[target + 1]
-            ) % backward_total
+            forward_distance = (forward_prefix[target] - forward_prefix[current]) % forward_total
+            backward_distance = (backward_prefix[current + 1] - backward_prefix[target + 1]) % backward_total
 
             answer += min(
                 forward_distance,

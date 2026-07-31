@@ -17,8 +17,10 @@ Return the number of distinct paths whose node values sum exactly to the target.
 ### Function Contract
 **Inputs**
 
-- `root`: the app's level-order array representation of the binary tree, using `None` for missing children
+- `root`: the binary tree's `TreeNode` root, or `None`
 - `targetSum`: the required sum of a counted downward path
+
+JSON cases encode `root` as a level-order array, using `None` for missing children. The runner reconstructs the tree before calling `solve(root, targetSum)`.
 
 **Return value**
 

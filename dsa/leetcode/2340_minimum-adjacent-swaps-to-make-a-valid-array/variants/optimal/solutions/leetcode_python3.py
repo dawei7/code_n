@@ -7,8 +7,4 @@ class Solution:
                 minimum_index = index
             if nums[index] >= nums[maximum_index]:
                 maximum_index = index
-        return (
-            minimum_index
-            + len(nums) - 1 - maximum_index
-            - (minimum_index > maximum_index)
-        )
+        return minimum_index + len(nums) - 1 - maximum_index - (minimum_index > maximum_index)

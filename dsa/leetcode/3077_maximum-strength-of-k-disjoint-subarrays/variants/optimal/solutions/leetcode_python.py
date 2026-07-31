@@ -1,6 +1,6 @@
 class Solution:
     def maximumStrength(self, nums: List[int], k: int) -> int:
-        negative_infinity = -10**30
+        negative_infinity = -(10**30)
         best = [negative_infinity] * (k + 1)
         ending = [negative_infinity] * (k + 1)
         best[0] = 0

@@ -4,10 +4,7 @@ from typing import List
 
 class Solution:
     def findCrossingTime(self, n: int, k: int, time: List[List[int]]) -> int:
-        waiting_left = [
-            (-(row[0] + row[2]), -worker, worker)
-            for worker, row in enumerate(time)
-        ]
+        waiting_left = [(-(row[0] + row[2]), -worker, worker) for worker, row in enumerate(time)]
         heapify(waiting_left)
         waiting_right = []
         working_left = []

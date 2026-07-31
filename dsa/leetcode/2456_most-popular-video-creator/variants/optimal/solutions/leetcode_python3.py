@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def mostPopularCreator(
-        self, creators: List[str], ids: List[str], views: List[int]
-    ) -> List[List[str]]:
+    def mostPopularCreator(self, creators: List[str], ids: List[str], views: List[int]) -> List[List[str]]:
         totals = defaultdict(int)
         best = {}
 
@@ -19,8 +17,4 @@ class Solution:
                 best[creator] = (view_count, video_id)
 
         maximum = max(totals.values())
-        return [
-            [creator, best[creator][1]]
-            for creator, total in totals.items()
-            if total == maximum
-        ]
+        return [[creator, best[creator][1]] for creator, total in totals.items() if total == maximum]

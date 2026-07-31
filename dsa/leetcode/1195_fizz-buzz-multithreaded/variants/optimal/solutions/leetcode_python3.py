@@ -19,14 +19,14 @@ class FizzBuzz:
                 self.current += 1
                 self.condition.notify_all()
 
-    def fizz(self, printFizz: 'Callable[[], None]') -> None:
+    def fizz(self, printFizz: "Callable[[], None]") -> None:
         self._run(lambda value: value % 3 == 0 and value % 5 != 0, lambda _: printFizz())
 
-    def buzz(self, printBuzz: 'Callable[[], None]') -> None:
+    def buzz(self, printBuzz: "Callable[[], None]") -> None:
         self._run(lambda value: value % 5 == 0 and value % 3 != 0, lambda _: printBuzz())
 
-    def fizzbuzz(self, printFizzBuzz: 'Callable[[], None]') -> None:
+    def fizzbuzz(self, printFizzBuzz: "Callable[[], None]") -> None:
         self._run(lambda value: value % 15 == 0, lambda _: printFizzBuzz())
 
-    def number(self, printNumber: 'Callable[[int], None]') -> None:
+    def number(self, printNumber: "Callable[[int], None]") -> None:
         self._run(lambda value: value % 3 != 0 and value % 5 != 0, printNumber)

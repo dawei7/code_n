@@ -5,7 +5,7 @@ In a valid tree, every non-root node occurs twice across the supplied informatio
 
 Bitwise XOR cancels equal values because $x \mathbin{\mathrm{XOR}} x = 0$, while zero is neutral. XOR every node value into one accumulator, then XOR every referenced child value into the same accumulator. Each non-root value cancels with its second occurrence. The sole value left is the root's value.
 
-The app-local representation stores child values directly, so it performs this cancellation without reconstructing node objects. The platform-native implementation makes a second linear pass to return the actual node whose `val` equals the remaining value.
+Make a second linear pass through `tree` and return the actual node whose `val` equals the remaining value.
 
 **Why order and shape do not affect the result**
 

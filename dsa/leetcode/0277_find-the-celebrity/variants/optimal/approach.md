@@ -13,6 +13,8 @@ Each query `knows(candidate, person)` safely eliminates one endpoint: a true res
 
 No eliminated person can be the celebrity: either they know someone or someone does not know them. Hence a real celebrity, if present, is the sole possible survivor. The second pass checks the two properties that elimination did not establish globally, rejecting the survivor when no celebrity exists.
 
+LeetCode supplies `knows(a, b)` as a hidden judge API. The offline app receives the same relation as `knows_matrix` and defines a local `knows` lookup over that fixture; the elimination and verification logic then use the same API calls as the native solution.
+
 ## Complexity detail
 Elimination uses $n - 1$ queries and verification uses at most $2(n - 1)$, for $O(n)$ time and $O(1)$ space.
 

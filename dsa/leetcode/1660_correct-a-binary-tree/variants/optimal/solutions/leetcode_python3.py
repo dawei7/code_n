@@ -7,7 +7,7 @@
 
 
 class Solution:
-    def correctBinaryTree(self, root: 'TreeNode') -> 'TreeNode':
+    def correctBinaryTree(self, root: "TreeNode") -> "TreeNode":
         seen = set()
 
         def repair(node):

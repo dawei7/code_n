@@ -1,4 +1,9 @@
-function join(arr1, arr2) {
+/**
+ * @param {Array} arr1
+ * @param {Array} arr2
+ * @return {Array}
+ */
+var join = function(arr1, arr2) {
     const merged = new Map();
 
     for (const object of arr1) {
@@ -9,7 +14,7 @@ function join(arr1, arr2) {
     }
 
     return Array.from(merged.values()).sort((left, right) => left.id - right.id);
-}
+};
 
 function solve(arr1, arr2) {
     return join(arr1, arr2);

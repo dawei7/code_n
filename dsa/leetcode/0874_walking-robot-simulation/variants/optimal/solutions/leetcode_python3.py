@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def robotSim(
-        self, commands: List[int], obstacles: List[List[int]]
-    ) -> int:
+    def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:
         blocked = {tuple(obstacle) for obstacle in obstacles}
         directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
         direction = 0

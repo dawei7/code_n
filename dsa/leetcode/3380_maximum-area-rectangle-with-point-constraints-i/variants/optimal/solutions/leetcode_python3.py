@@ -19,12 +19,7 @@ class Solution:
 
                 left, right = sorted((x1, x2))
                 bottom, top = sorted((y1, y2))
-                blocked = any(
-                    left <= x <= right
-                    and bottom <= y <= top
-                    and (x, y) not in corners
-                    for x, y in points
-                )
+                blocked = any(left <= x <= right and bottom <= y <= top and (x, y) not in corners for x, y in points)
                 if not blocked:
                     best = max(best, (right - left) * (top - bottom))
 

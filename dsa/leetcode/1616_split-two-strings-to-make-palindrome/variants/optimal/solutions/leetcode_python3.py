@@ -14,8 +14,6 @@ class Solution:
             while left < right and prefix_source[left] == suffix_source[right]:
                 left += 1
                 right -= 1
-            return is_palindrome(prefix_source, left, right) or is_palindrome(
-                suffix_source, left, right
-            )
+            return is_palindrome(prefix_source, left, right) or is_palindrome(suffix_source, left, right)
 
         return can_combine(a, b) or can_combine(b, a)

@@ -2,7 +2,7 @@
 
 **Inputs**
 
-- `column_number`: A positive integer column number.
+- `columnNumber`: A positive integer column number.
 
 **Return value**
 

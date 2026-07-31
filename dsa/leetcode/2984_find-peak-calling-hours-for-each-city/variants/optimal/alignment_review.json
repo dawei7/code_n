@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "ee2817788b9a9696295fa54ec599865a5dd5decb3df46997a24595f80b07ae39",
+    "native_sha256": "985eadb00bc93f79acc37cee08f3291f94377c6943373a06ed57202cfd21b4f1",
+    "solution_variants_sha256": "a91031666b9723207de27fd5946bd2b665bc6e749f260a87daad09a347a2321a",
+    "approach_sha256": "59c7b97afe17b13a37a977dcc6891040e1e7202de16835926b3b32c4797600b6"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {"same_algorithm": true, "same_data_flow": true, "same_helper_logic": true, "complexity_matches": true, "naming_consistent_where_interfaces_permit": true, "difference_is_unavoidable": true},
+  "differences": [{"aspect": "hour extraction", "native": "MySQL extracts the hour with HOUR(call_time).", "app": "SQLite extracts %H with strftime and casts it to INTEGER.", "rationale": "SQLite does not implement HOUR. Both queries group by the same city and numeric hour, count calls, apply the same rank, and return the same peak rows and ordering."}]
+}

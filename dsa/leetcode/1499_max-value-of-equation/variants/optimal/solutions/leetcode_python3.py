@@ -5,7 +5,7 @@ from typing import List
 class Solution:
     def findMaxValueOfEquation(self, points: List[List[int]], k: int) -> int:
         candidates = deque()
-        best = -10**30
+        best = -(10**30)
 
         for x, y in points:
             while candidates and x - candidates[0][0] > k:

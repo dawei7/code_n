@@ -1,5 +1,5 @@
 class Solution:
-    def postorder(self, root: 'Node') -> list[int]:
+    def postorder(self, root: "Node") -> list[int]:
         if root is None:
             return []
 
@@ -12,4 +12,3 @@ class Solution:
 
         reversed_postorder.reverse()
         return reversed_postorder
-

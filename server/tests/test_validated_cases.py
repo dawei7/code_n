@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 from challenges.registry import CHALLENGE_REGISTRY
 from server.app.engine_runner import (
+    _actual_result,
     _absolute_value_sorted_match,
     _balanced_factor_decomposition_match,
     _accounts_merge_match,
@@ -54,6 +55,7 @@ from server.app.engine_runner import (
     _immutable_list_print_match,
     _k_smallest_pairs_match,
     _list_node_param_names,
+    _list_node_collection_param_names,
     _list_node_from_values,
     _list_node_to_values,
     _longest_happy_string_match,
@@ -71,6 +73,15 @@ from server.app.engine_runner import (
     _master_guessed_match,
     _most_similar_path_match,
     _next_right_pointers_match,
+    _nested_integer_list_from_fixture,
+    _nested_integer_to_fixture,
+    _normalize_validated_value,
+    _nary_node_from_fixture,
+    _nary_node_collection_param_names,
+    _nary_node_param_names,
+    _nary_node_to_records,
+    _nary_node_to_fixture,
+    _node_graphs_are_disjoint,
     _neither_min_nor_max_match,
     _not_average_neighbors_match,
     _ordered_unordered_groups_match,
@@ -85,6 +96,9 @@ from server.app.engine_runner import (
     _prepare_validated_kwargs,
     _randomized_set_trace_match,
     _randomized_collection_trace_match,
+    _random_binary_tree_from_fixture,
+    _random_binary_tree_param_names,
+    _random_binary_tree_to_fixture,
     _random_pick_indices_match,
     _random_flip_matrix_trace_match,
     _queue_reconstruction_match,
@@ -106,6 +120,7 @@ from server.app.engine_runner import (
     _returns_list_node,
     _returns_tree,
     _tree_param_names,
+    _tree_node_target_param_names,
     _tree_from_level_order,
     _tree_root_and_targets_from_fixtures,
     _three_equal_binary_parts_match,
@@ -115,6 +130,10 @@ from server.app.engine_runner import (
     _JudgeFontInfo,
     _JudgePoint,
     _JudgeMaster,
+    _JudgeMountainArray,
+    _JudgeHtmlParser,
+    _JudgeCustomFunction,
+    _JudgeGridMaster,
     _unique_bsts_match,
     _unordered_nested_list_matches,
     _unordered_string_match,
@@ -401,6 +420,68 @@ class ValidatedCasesTest(conftest._Base):
         self.assertIs(root.left.right.left, targets[0])
         self.assertIs(root.left.right.right, targets[1])
 
+    def test_tree_target_path_fixture_becomes_a_node_from_the_constructed_root(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {
+                "root": [1, 2, 3, None, 4, 5, 6],
+                "u": {"path_from_root": "LR"},
+            },
+            ["root"],
+            tree_node_target_param_names=["u"],
+        )
+
+        self.assertEqual(kwargs["u"].val, 4)
+        self.assertIs(kwargs["u"], kwargs["root"].left.right)
+
+    def test_corrupted_tree_fixture_installs_the_source_native_pointer(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {
+                "root": {
+                    "values": [1, 2, 3],
+                    "corrupt_right": {"from_value": 2, "to_value": 3},
+                }
+            },
+            ["root"],
+        )
+
+        self.assertIs(kwargs["root"].left.right, kwargs["root"].right)
+
+    def test_grid_master_fixtures_expose_stateful_native_controls(self) -> None:
+        unweighted = _JudgeGridMaster(
+            [[-1, 2]],
+            weighted=False,
+        )
+        self.assertTrue(unweighted.canMove("R"))
+        self.assertIs(unweighted.move("R"), True)
+        self.assertTrue(unweighted.isTarget())
+
+        weighted = _JudgeGridMaster(
+            [[9, 7]],
+            start=[0, 0],
+            target=[0, 1],
+            weighted=True,
+        )
+        self.assertEqual(weighted.move("R"), 7)
+        self.assertTrue(weighted.isTarget())
+
+    def test_polynomial_terms_become_source_native_linked_nodes(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {"poly1": [[3, 4], [2, 1]], "poly2": [[-3, 4], [5, 0]]},
+            [],
+        )
+
+        self.assertEqual(kwargs["poly1"].coefficient, 3)
+        self.assertEqual(kwargs["poly1"].power, 4)
+        self.assertEqual(kwargs["poly1"].next.coefficient, 2)
+        self.assertEqual(_normalize_validated_value(kwargs["poly2"]), [[-3, 4], [5, 0]])
+
+        spec = CHALLENGE_REGISTRY["lc_1634"]()._spec
+        self.assertTrue(_returns_list_node(spec.returns))
+        self.assertEqual(
+            _normalize_validated_value(None, returns_list_node=True),
+            [],
+        )
+
     def test_parent_tree_pair_fixture_shares_ancestor_objects(self) -> None:
         p, q = _parent_tree_pair_from_fixtures(
             {"tree": [3, 5, 1, 6, 2, 0, 8, None, None, 7, 4], "target_index": 1},
@@ -429,11 +510,76 @@ class ValidatedCasesTest(conftest._Base):
         self.assertEqual(master.guess("ccbazz"), 3)
         self.assertEqual(master.guess("acckzz"), 6)
         self.assertTrue(_master_guessed_match(master))
+        case = ValidatedCase(
+            id="master",
+            name="master",
+            kind="real",
+            input={},
+            validator={"kind": "master_guessed"},
+        )
+        self.assertIs(_actual_result(None, {"master": master}, case=case), master)
 
         over_budget = _JudgeMaster("acckzz", words, 1)
         over_budget.guess("ccbazz")
         over_budget.guess("acckzz")
         self.assertFalse(_master_guessed_match(over_budget))
+
+    def test_mountain_array_adapter_enforces_the_source_native_interface(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {"target": 3, "mountainArr": [1, 2, 4, 3, 1]},
+            (),
+            (),
+            (),
+            (),
+            (),
+            (),
+            (),
+        )
+        mountain = kwargs["mountainArr"]
+        self.assertIsInstance(mountain, _JudgeMountainArray)
+        self.assertEqual(mountain.length(), 5)
+        self.assertEqual(mountain.get(3), 3)
+        self.assertEqual(mountain.query_count, 1)
+
+    def test_html_parser_adapter_exposes_authored_graph_edges(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {
+                "startUrl": "http://a.com",
+                "htmlParser": {
+                    "urls": ["http://a.com", "http://a.com/x", "http://b.com"],
+                    "edges": [[0, 1], [0, 2], [1, 0]],
+                },
+            },
+            (),
+            (),
+            (),
+            (),
+            (),
+            (),
+            (),
+        )
+        parser = kwargs["htmlParser"]
+        self.assertIsInstance(parser, _JudgeHtmlParser)
+        self.assertEqual(
+            parser.getUrls("http://a.com"),
+            ["http://a.com/x", "http://b.com"],
+        )
+        self.assertEqual(parser.getUrls("http://b.com"), [])
+
+    def test_custom_function_adapter_exposes_the_source_native_api(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {"customfunction": 5, "z": 25},
+            (),
+            (),
+            (),
+            (),
+            (),
+            (),
+            (),
+        )
+        function = kwargs["customfunction"]
+        self.assertIsInstance(function, _JudgeCustomFunction)
+        self.assertEqual(function.f(3, 4), 25)
 
     def test_fibonacci_split_validator_accepts_any_valid_full_split(self) -> None:
         digits = "1101111"
@@ -607,6 +753,13 @@ ORDER BY activity.player_id;
         self.assertIsInstance(sea, _JudgeSea)
         self.assertTrue(sea.hasShips(_JudgePoint(3, 2), _JudgePoint(3, 2)))
         self.assertFalse(sea.hasShips(_JudgePoint(2, 2), _JudgePoint(1, 1)))
+
+        class Point:
+            def __init__(self, x: int, y: int):
+                self.x = x
+                self.y = y
+
+        self.assertTrue(_JudgeSea([[3, 2]]).hasShips(Point(3, 2), Point(3, 2)))
         self.assertEqual(sea.query_count, 2)
         with self.assertRaisesRegex(RuntimeError, "2-query limit"):
             sea.hasShips(_JudgePoint(0, 0), _JudgePoint(0, 0))
@@ -1480,9 +1633,9 @@ def solve(nums):
 
     def test_distance_order_validator_accepts_alternate_tie_order(self) -> None:
         source = '''
-def solve(rows, cols, r_center, c_center):
+def solve(rows, cols, rCenter, cCenter):
     cells = [[row, col] for row in range(rows) for col in range(cols)]
-    cells.sort(key=lambda cell: (abs(cell[0] - r_center) + abs(cell[1] - c_center), -cell[0], -cell[1]))
+    cells.sort(key=lambda cell: (abs(cell[0] - rCenter) + abs(cell[1] - cCenter), -cell[0], -cell[1]))
     return cells
 '''
         response = self.client.post(
@@ -1596,10 +1749,10 @@ def solve(barcodes):
 
     def test_group_people_validator_accepts_alternate_group_order(self) -> None:
         source = '''
-def solve(group_sizes):
+def solve(groupSizes):
     buckets = {}
     groups = []
-    for index, size in enumerate(group_sizes):
+    for index, size in enumerate(groupSizes):
         bucket = buckets.setdefault(size, [])
         bucket.append(index)
         if len(bucket) == size:
@@ -2150,6 +2303,20 @@ def solve(n):
         spec = CHALLENGE_REGISTRY["lc_2326"]()._spec
         self.assertEqual(_list_node_param_names(spec), ["head"])
 
+    def test_linked_list_head_collection_is_converted_per_list(self) -> None:
+        spec = CHALLENGE_REGISTRY["lc_23"]()._spec
+        self.assertEqual(_list_node_collection_param_names(spec), ["lists"])
+        values = _prepare_validated_kwargs(
+            {"lists": [[1, 4], [], [2, 3]]},
+            (),
+            ("lists",),
+            ("lists",),
+        )
+        self.assertEqual(
+            [_list_node_to_values(head) for head in values["lists"]],
+            [[1, 4], [], [2, 3]],
+        )
+
     def test_linked_list_return_is_normalized_for_validated_cases(self) -> None:
         class ListNode:
             def __init__(self, val=0, next=None):
@@ -2169,6 +2336,9 @@ def solve(n):
         self.assertEqual(_list_node_to_values(parts), [[1, 2], [], [3]])
         self.assertEqual(_list_node_to_values([[1, 2], [], [3]]), [[1, 2], [], [3]])
         self.assertTrue(_returns_list_node("a list of linked-list heads"))
+        self.assertTrue(_returns_list_node("Return the head after reversing nodes."))
+        self.assertTrue(_returns_list_node("Return the new head after filtering nodes."))
+        self.assertTrue(_returns_list_node("Return the original head after insertion."))
 
     def test_cyclic_linked_list_encoding_builds_requested_cycle(self) -> None:
         head = _list_node_from_values({"values": [3, 2, 0, -4], "pos": 1})
@@ -2230,6 +2400,10 @@ def solve(n):
         spec = CHALLENGE_REGISTRY["lc_2458"]()._spec
         self.assertEqual(_tree_param_names(spec), ["root"])
 
+    def test_binary_tree_root_hint_is_converted_for_validated_cases(self) -> None:
+        spec = CHALLENGE_REGISTRY["lc_100"]()._spec
+        self.assertEqual(_tree_param_names(spec), ["p", "q"])
+
     def test_parent_array_with_non_root_nodes_is_not_converted_to_tree_nodes(self) -> None:
         spec = CHALLENGE_REGISTRY["lc_3575"]()._spec
         self.assertEqual(_tree_param_names(spec), [])
@@ -2247,6 +2421,118 @@ def solve(n):
         spec = CHALLENGE_REGISTRY["lc_1932"]()._spec
         self.assertEqual(_tree_param_names(spec), ["trees"])
         self.assertTrue(_returns_tree(spec.returns))
+
+    def test_tree_target_values_resolve_to_nodes_in_the_same_graph(self) -> None:
+        spec = CHALLENGE_REGISTRY["lc_235"]()._spec
+        self.assertEqual(_tree_param_names(spec), ["root"])
+        self.assertEqual(_tree_node_target_param_names(spec), ["p", "q"])
+
+        kwargs = _prepare_validated_kwargs(
+            {"root": [6, 2, 8, 0, 4, 7, 9], "p": 2, "q": 8},
+            ("root",),
+            tree_node_target_param_names=("p", "q"),
+        )
+        self.assertIs(kwargs["root"].left, kwargs["p"])
+        self.assertIs(kwargs["root"].right, kwargs["q"])
+
+    def test_subtree_root_is_converted_as_an_independent_tree(self) -> None:
+        spec = CHALLENGE_REGISTRY["lc_572"]()._spec
+        self.assertEqual(_tree_param_names(spec), ["root", "subRoot"])
+        self.assertEqual(_tree_node_target_param_names(spec), [])
+
+    def test_nary_node_fixture_round_trips_and_contract_is_detected(self) -> None:
+        spec = CHALLENGE_REGISTRY["lc_429"]()._spec
+        self.assertEqual(_nary_node_param_names(spec), ["root"])
+
+        fixture = [1, [[2, []], [3, [[4, []]]]]]
+        root = _nary_node_from_fixture(fixture)
+        self.assertEqual((root.val, [child.val for child in root.children]), (1, [2, 3]))
+        self.assertEqual(_nary_node_to_fixture(root), fixture)
+
+        case = ValidatedCase(
+            id="nary-tree",
+            name="nary tree",
+            kind="trial",
+            input={"root": fixture},
+            expected=fixture,
+            validator={"kind": "nary_tree"},
+        )
+        self.assertTrue(_validated_case_matches(case, root, fixture))
+
+    def test_nested_integer_fixture_exposes_read_and_write_api(self) -> None:
+        values = _nested_integer_list_from_fixture([1, [2, []]])
+        self.assertTrue(values[0].isInteger())
+        self.assertEqual(values[0].getInteger(), 1)
+        self.assertFalse(values[1].isInteger())
+        self.assertEqual(_nested_integer_to_fixture(values[1]), [2, []])
+
+        nested = values[1]
+        nested.add(type(values[0])(3))
+        self.assertEqual(_nested_integer_to_fixture(nested), [2, [], 3])
+        nested.setInteger(9)
+        self.assertEqual(_nested_integer_to_fixture(nested), 9)
+
+    def test_nary_record_fixtures_preserve_shared_node_identities(self) -> None:
+        collection_spec = CHALLENGE_REGISTRY["lc_1506"]()._spec
+        self.assertEqual(
+            _nary_node_collection_param_names(collection_spec),
+            ["tree"],
+        )
+
+        records = [[3, []], [1, [2, 3]], [2, []]]
+        kwargs = _prepare_validated_kwargs(
+            {"tree": records},
+            (),
+            nary_node_param_names=("tree",),
+            nary_node_collection_param_names=("tree",),
+        )
+        nodes = kwargs["tree"]
+        by_value = {node.val: node for node in nodes}
+        self.assertIs(by_value[1].children[0], by_value[2])
+        self.assertIs(by_value[1].children[1], by_value[3])
+
+        move_kwargs = _prepare_validated_kwargs(
+            {"root": records, "p": 2, "q": 3},
+            (),
+            nary_node_param_names=("root",),
+        )
+        self.assertIs(move_kwargs["root"].children[0], move_kwargs["p"])
+        self.assertIs(move_kwargs["root"].children[1], move_kwargs["q"])
+        self.assertEqual(_nary_node_to_records(move_kwargs["root"]), [[1, [2, 3]], [2, []], [3, []]])
+
+    def test_random_binary_tree_copy_observation_checks_independence(self) -> None:
+        spec = CHALLENGE_REGISTRY["lc_1485"]()._spec
+        self.assertEqual(_random_binary_tree_param_names(spec), ["root"])
+
+        fixture = [[1, 2], [2, 0], [3, 2]]
+        original = _random_binary_tree_from_fixture(fixture)
+        cloned = _random_binary_tree_from_fixture(fixture)
+        self.assertEqual(_random_binary_tree_to_fixture(cloned), fixture)
+        self.assertTrue(_node_graphs_are_disjoint(original, cloned))
+
+        case = ValidatedCase(
+            id="random-copy",
+            name="random copy",
+            kind="trial",
+            input={"root": fixture},
+            expected=fixture,
+            validator={"kind": "random_binary_tree_copy"},
+        )
+        observation = _actual_result(cloned, {"root": original}, case=case)
+        self.assertTrue(_validated_case_matches(case, observation, fixture))
+
+        shared_observation = _actual_result(original, {"root": original}, case=case)
+        self.assertFalse(_validated_case_matches(case, shared_observation, fixture))
+
+    def test_multilevel_and_doubly_linked_fixtures_create_real_nodes(self) -> None:
+        head = _list_node_from_values([[1, [[2, []]]], [3, []]])
+        self.assertEqual((head.val, head.child.val, head.next.val), (1, 2, 3))
+        self.assertIs(head.next.prev, head)
+
+        selected = _list_node_from_values(
+            {"values": [10, 20, 30], "node_index": 1}
+        )
+        self.assertEqual((selected.prev.val, selected.val, selected.next.val), (10, 20, 30))
 
     def test_tree_root_return_hint_is_normalized_for_validated_cases(self) -> None:
         spec = CHALLENGE_REGISTRY["lc_226"]()._spec
@@ -2269,3 +2555,35 @@ def solve(n):
         self.assertTrue(_returns_in_place("Returns `None`; mutate the board in place."))
         self.assertTrue(_returns_in_place("Return nothing. Mutate `nums` in place."))
         self.assertTrue(_returns_in_place("No value is returned; `arr` is changed in place."))
+
+    def test_in_place_prefix_observes_return_value_and_mutated_prefix(self) -> None:
+        case = ValidatedCase(
+            id="prefix",
+            name="prefix",
+            kind="trial",
+            input={"nums": [1, 1, 2]},
+            expected={"return_value": 2, "prefix": [1, 2]},
+            validator={"kind": "in_place_prefix", "values_param": "nums"},
+        )
+        actual = _actual_result(2, {"nums": [1, 2, 2]}, case=case, param_names=["nums"])
+        self.assertEqual(actual, {"return_value": 2, "prefix": [1, 2]})
+        self.assertTrue(_validated_case_matches(case, actual, case.expected))
+
+    def test_in_place_prefix_can_ignore_platform_unspecified_order(self) -> None:
+        case = ValidatedCase(
+            id="unordered-prefix",
+            name="unordered prefix",
+            kind="trial",
+            input={"nums": [3, 2, 2, 3]},
+            expected={"return_value": 2, "prefix": [2, 2]},
+            validator={"kind": "in_place_prefix", "values_param": "nums", "unordered": True},
+        )
+        actual = _actual_result(2, {"nums": [2, 2, 3, 3]}, case=case, param_names=["nums"])
+        self.assertTrue(_validated_case_matches(case, actual, case.expected))
+        self.assertFalse(
+            _validated_case_matches(
+                case,
+                {"return_value": 2, "prefix": [2, 3]},
+                case.expected,
+            )
+        )

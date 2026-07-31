@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def reachableNodes(
-        self, n: int, edges: List[List[int]], restricted: List[int]
-    ) -> int:
+    def reachableNodes(self, n: int, edges: List[List[int]], restricted: List[int]) -> int:
         blocked = set(restricted)
         graph = [[] for _ in range(n)]
         for first, second in edges:

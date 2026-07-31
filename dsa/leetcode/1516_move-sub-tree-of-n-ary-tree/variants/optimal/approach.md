@@ -1,7 +1,7 @@
 ## General
 **Record every parent before changing the tree**
 
-Traverse all nodes once and map each non-root node to its parent. This also identifies the root as the only value that never appears in a child list. The parent map makes it possible to detach either target in constant time once its child-list position is found, and it provides an upward path from `q` for determining whether `q` lies inside `p`'s subtree.
+Traverse from `root` once and map every node to its parent. The parent map makes it possible to detach either target once its child-list position is found, and it provides an upward path from `q` for determining whether `q` lies inside `p`'s subtree.
 
 Check the no-op rule first. If `parent[q]` is not relevant but `parent[p] == q`, the contract requires returning the tree unchanged even when `p` is not currently `q`'s last child.
 
@@ -15,7 +15,7 @@ If the upward walk does not reach `p`, moving `p` cannot put one of its ancestor
 
 **Serialize without changing semantics**
 
-After rewiring, perform breadth-first traversal from the resulting root and emit each value with its ordered child-value list. This app-local serialization is deterministic; the native Accepted artifact performs the same pointer rewiring and returns the actual root node.
+Return the resulting root node after rewiring. The execution harness alone serializes that graph for deterministic case comparison; serialization is not part of the solution algorithm.
 
 ## Complexity detail
 Building child and parent maps visits every node and edge once. The ancestor walk, list removals or replacement search, and final breadth-first serialization each take at most $O(n)$ time, so the total is $O(n)$.

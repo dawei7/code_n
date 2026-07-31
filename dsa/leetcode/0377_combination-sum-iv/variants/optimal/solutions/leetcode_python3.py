@@ -11,4 +11,3 @@ class Solution:
                 if number <= total:
                     ways[total] += ways[total - number]
         return ways[target]
-

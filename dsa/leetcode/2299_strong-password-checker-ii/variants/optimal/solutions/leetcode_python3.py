@@ -17,9 +17,4 @@ class Solution:
             has_digit |= character.isdigit()
             has_special |= character in special
 
-        return (
-            has_lowercase
-            and has_uppercase
-            and has_digit
-            and has_special
-        )
+        return has_lowercase and has_uppercase and has_digit and has_special

@@ -2,9 +2,7 @@ MODULO = 1_000_000_007
 
 
 class Solution:
-    def maxTotalValue(
-        self, value: list[int], decay: list[int], m: int
-    ) -> int:
+    def maxTotalValue(self, value: list[int], decay: list[int], m: int) -> int:
         selections = 0
         for initial, step in zip(value, decay):
             selections += (initial - 1) // step + 1

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def countSubTrees(
-        self, n: int, edges: List[List[int]], labels: str
-    ) -> List[int]:
+    def countSubTrees(self, n: int, edges: List[List[int]], labels: str) -> List[int]:
         graph = [[] for _ in range(n)]
         for first, second in edges:
             graph[first].append(second)

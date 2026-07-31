@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "d287ffe3211377ca58a3a667ec6398dccc817c500060cae140cfee28c89ef146",
+    "native_sha256": "a548e843acced813cee3e6c271d8d73242791c73ee44aeb5bf4c7fed6e0358de",
+    "solution_variants_sha256": "05d2ed4b09f02c79444d900d383e97e9e0a38a3c8cae2a4489f283296721e8f5",
+    "approach_sha256": "f3b899b102fdb73e02290c2a5bdabdf84280c8d2cbcb70f3facea372276d328c"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "season extraction",
+      "native": "MySQL maps the numeric month with MONTH, MOD, integer DIV, and ELT.",
+      "app": "SQLite extracts the month with strftime, casts it to an integer, and selects the same season with CASE membership tests.",
+      "rationale": "MySQL's ELT and DIV functions are unavailable in SQLite. Both expressions implement the identical December-through-February Winter mapping and leave the join, aggregation, ranking, tie-breakers, projection, and ordering unchanged."
+    }
+  ]
+}

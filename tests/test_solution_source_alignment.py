@@ -1,4 +1,9 @@
-"""Regression checks for direct app/native solution adapters."""
+"""Narrow naming regression for already-direct app/native adapters.
+
+This module does not establish corpus-wide implementation alignment.  The
+authoritative structural queue is produced by
+``tools/audit_leetcode_solution_alignment.py``.
+"""
 
 from __future__ import annotations
 
@@ -131,11 +136,11 @@ def _native_functions(
     return methods or functions
 
 
-def test_alpha_equivalent_direct_adapters_preserve_native_local_names() -> None:
+def test_already_direct_adapters_preserve_native_local_names() -> None:
     divergent: list[str] = []
     for package in sorted(LEETCODE_ROOT.iterdir()):
         manifest_path = package / "variants" / "optimal" / "submission.json"
-        app_path = manifest_path.parent / "solutions" / "python.py"
+        app_path = manifest_path.parent / "solutions" / "solve.py"
         if not manifest_path.is_file() or not app_path.is_file():
             continue
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))

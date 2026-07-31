@@ -18,8 +18,7 @@ class Solution:
             parts = queryIP.split(":")
             hexadecimal = set("0123456789abcdefABCDEF")
             if len(parts) == 8 and all(
-                1 <= len(part) <= 4 and all(character in hexadecimal for character in part)
-                for part in parts
+                1 <= len(part) <= 4 and all(character in hexadecimal for character in part) for part in parts
             ):
                 return "IPv6"
         return "Neither"

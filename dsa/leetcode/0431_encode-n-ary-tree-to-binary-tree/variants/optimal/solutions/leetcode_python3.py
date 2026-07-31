@@ -1,5 +1,5 @@
 class Codec:
-    def encode(self, root: 'Node') -> 'TreeNode':
+    def encode(self, root: "Node") -> "TreeNode":
         if root is None:
             return None
         binary = TreeNode(root.val)
@@ -13,7 +13,7 @@ class Codec:
             previous = encoded_child
         return binary
 
-    def decode(self, data: 'TreeNode') -> 'Node':
+    def decode(self, data: "TreeNode") -> "Node":
         if data is None:
             return None
         children = []

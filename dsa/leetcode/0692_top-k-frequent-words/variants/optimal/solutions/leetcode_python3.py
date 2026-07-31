@@ -14,15 +14,10 @@ class Solution:
                 heappush(heap, candidate)
             else:
                 worst_frequency, _, worst_word = heap[0]
-                if (
-                    frequency > worst_frequency
-                    or frequency == worst_frequency
-                    and word < worst_word
-                ):
+                if frequency > worst_frequency or frequency == worst_frequency and word < worst_word:
                     heapreplace(heap, candidate)
 
         return sorted(
             (entry[2] for entry in heap),
             key=lambda word: (-counts[word], word),
         )
-

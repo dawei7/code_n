@@ -2,7 +2,7 @@
 
 **Inputs**
 
-- `num_courses`: The number of courses, labeled from `0` through `num_courses - 1`.
+- `numCourses`: The number of courses, labeled from `0` through `numCourses - 1`.
 - `prerequisites`: Pairs `[course, prerequisite]` describing the required order.
 
 **Return value**

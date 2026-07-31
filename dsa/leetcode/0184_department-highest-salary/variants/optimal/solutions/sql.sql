@@ -13,5 +13,4 @@ WITH Ranked AS (
 )
 SELECT Department, Employee, Salary
 FROM Ranked
-WHERE salary_rank = 1
-ORDER BY Department, Employee;
+WHERE salary_rank = 1;

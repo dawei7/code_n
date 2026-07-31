@@ -3,12 +3,8 @@ from typing import List
 
 
 class Solution:
-    def numberOfPairs(
-        self, nums1: List[int], nums2: List[int], diff: int
-    ) -> int:
-        differences = [
-            first - second for first, second in zip(nums1, nums2)
-        ]
+    def numberOfPairs(self, nums1: List[int], nums2: List[int], diff: int) -> int:
+        differences = [first - second for first, second in zip(nums1, nums2)]
         coordinates = sorted(set(differences))
         tree = [0] * (len(coordinates) + 1)
 

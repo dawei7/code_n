@@ -86,7 +86,7 @@ class LeetCodeSubmissionTest(conftest._Base):
         native_tree = ast.parse(
             (manifest_path.parent / manifest["source"]).read_text(encoding="utf-8")
         )
-        app_tree = ast.parse((solution_directory / "python.py").read_text(encoding="utf-8"))
+        app_tree = ast.parse((solution_directory / "solve.py").read_text(encoding="utf-8"))
 
         solution_class = next(
             node

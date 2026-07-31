@@ -4,12 +4,7 @@ class Solution:
         nums.sort()
         n = len(nums)
 
-        differences = sorted({
-            nums[j] - nums[i]
-            for i in range(n)
-            for j in range(i + 1, n)
-            if nums[j] > nums[i]
-        })
+        differences = sorted({nums[j] - nums[i] for i in range(n) for j in range(i + 1, n) if nums[j] > nums[i]})
 
         def count_with_minimum_gap(gap: int) -> int:
             previous = [1] * n

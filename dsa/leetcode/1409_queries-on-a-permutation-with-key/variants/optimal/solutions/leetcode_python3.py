@@ -4,10 +4,12 @@ from typing import List
 class Fenwick:
     def __init__(self, size):
         self.tree = [0] * (size + 1)
+
     def add(self, index, delta):
         while index < len(self.tree):
             self.tree[index] += delta
             index += index & -index
+
     def prefix_sum(self, index):
         total = 0
         while index:

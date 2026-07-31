@@ -1,6 +1,7 @@
 from collections import deque
 from heapq import heappop, heappush
 
+
 class Solution:
     def maximumSafenessFactor(self, grid: List[List[int]]) -> int:
         n = len(grid)

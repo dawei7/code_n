@@ -3,9 +3,7 @@ import heapq
 
 
 class Solution:
-    def minimumCost(
-        self, start: List[int], target: List[int], specialRoads: List[List[int]]
-    ) -> int:
+    def minimumCost(self, start: List[int], target: List[int], specialRoads: List[List[int]]) -> int:
         roads = []
         for x1, y1, x2, y2, cost in specialRoads:
             cost = min(cost, abs(x2 - x1) + abs(y2 - y1))

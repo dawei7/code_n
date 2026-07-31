@@ -2,11 +2,7 @@ class Solution:
     def hasValidPath(self, grid: List[List[str]]) -> bool:
         rows, columns = len(grid), len(grid[0])
         path_length = rows + columns - 1
-        if (
-            path_length % 2 == 1
-            or grid[0][0] == ")"
-            or grid[-1][-1] == "("
-        ):
+        if path_length % 2 == 1 or grid[0][0] == ")" or grid[-1][-1] == "(":
             return False
 
         states = [set() for _ in range(columns)]
@@ -23,10 +19,6 @@ class Solution:
 
                 delta = 1 if grid[row][column] == "(" else -1
                 remaining = rows - row - 1 + columns - column - 1
-                states[column] = {
-                    balance + delta
-                    for balance in previous
-                    if 0 <= balance + delta <= remaining
-                }
+                states[column] = {balance + delta for balance in previous if 0 <= balance + delta <= remaining}
 
         return 0 in states[-1]

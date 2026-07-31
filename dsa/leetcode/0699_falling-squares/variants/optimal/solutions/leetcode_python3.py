@@ -3,15 +3,8 @@ from typing import List
 
 class Solution:
     def fallingSquares(self, positions: List[List[int]]) -> List[int]:
-        coordinates = sorted({
-            coordinate
-            for left, side in positions
-            for coordinate in (left, left + side)
-        })
-        coordinate_index = {
-            coordinate: index
-            for index, coordinate in enumerate(coordinates)
-        }
+        coordinates = sorted({coordinate for left, side in positions for coordinate in (left, left + side)})
+        coordinate_index = {coordinate: index for index, coordinate in enumerate(coordinates)}
         segment_count = len(coordinates) - 1
         tree = [0] * (4 * segment_count)
         lazy = [None] * (4 * segment_count)
@@ -92,13 +85,16 @@ class Solution:
         for left, side in positions:
             query_left = coordinate_index[left]
             query_right = coordinate_index[left + side] - 1
-            top = query(
-                1,
-                0,
-                segment_count - 1,
-                query_left,
-                query_right,
-            ) + side
+            top = (
+                query(
+                    1,
+                    0,
+                    segment_count - 1,
+                    query_left,
+                    query_right,
+                )
+                + side
+            )
             assign(
                 1,
                 0,

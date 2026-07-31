@@ -7,4 +7,4 @@
 
 **Return value**
 
-The native LeetCode interface mutates `nums` and returns $k$. The cOde(n) adapter returns the retained prefix as a list; its canonical implementation preserves the input order, which is one valid order under the source contract.
+Return $k$, the count of values not equal to `val`. The same call mutates `nums` in place so that `nums[:k]` contains exactly those retained values; their order is not constrained. Values at indices $k$ and beyond are unspecified.

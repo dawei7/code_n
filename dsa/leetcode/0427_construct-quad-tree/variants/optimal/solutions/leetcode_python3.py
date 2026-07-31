@@ -2,8 +2,8 @@ from typing import List
 
 
 class Solution:
-    def construct(self, grid: List[List[int]]) -> 'Node':
-        def build(row: int, column: int, size: int) -> 'Node':
+    def construct(self, grid: List[List[int]]) -> "Node":
+        def build(row: int, column: int, size: int) -> "Node":
             if size == 1:
                 return Node(bool(grid[row][column]), True)
 

@@ -68,14 +68,9 @@ class Solution:
         for source, target in zip(flowFrom, flowTo):
             source_component = component[source]
             target_component = component[target]
-            if (
-                source_component != target_component
-                and not component_reachable[target_component]
-            ):
+            if source_component != target_component and not component_reachable[target_component]:
                 has_unreachable_incoming[target_component] = True
 
         return sum(
-            not component_reachable[index]
-            and not has_unreachable_incoming[index]
-            for index in range(component_count)
+            not component_reachable[index] and not has_unreachable_incoming[index] for index in range(component_count)
         )

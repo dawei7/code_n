@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def countMentions(
-        self, numberOfUsers: int, events: List[List[str]]
-    ) -> List[int]:
+    def countMentions(self, numberOfUsers: int, events: List[List[str]]) -> List[int]:
         events.sort(key=lambda event: (int(event[1]), event[0] == "MESSAGE"))
 
         direct = [0] * numberOfUsers

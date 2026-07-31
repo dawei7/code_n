@@ -73,9 +73,7 @@ class Solution:
                     operation_base = -current_base
                     operation_coefficient = 1 - current_coefficient
 
-                    if not require_nonnegative(
-                        operation_coefficient, operation_base
-                    ):
+                    if not require_nonnegative(operation_coefficient, operation_base):
                         return -1
 
                     row_bases[column] = operation_base
@@ -86,9 +84,7 @@ class Solution:
                     coefficient_window += operation_coefficient
                     base_total += operation_base
                     coefficient_total += operation_coefficient
-                elif not require_zero(
-                    current_coefficient - 1, current_base
-                ):
+                elif not require_zero(current_coefficient - 1, current_base):
                     return -1
 
             recent_rows.append((row_bases, row_coefficients))

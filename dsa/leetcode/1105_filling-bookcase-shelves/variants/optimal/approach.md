@@ -1,7 +1,7 @@
 ## General
 **Define optimal prefix states.** Let `dp[i]` be the minimum height needed for the first `i` books, with `dp[0] = 0`. Any arrangement counted by `dp[i]` has some final shelf containing a consecutive suffix of those books.
 
-**Enumerate the last shelf backward.** For each endpoint `i`, scan books `i - 1`, `i - 2`, and so on. Maintain the suffix's cumulative `width` and maximum `height`. Stop as soon as the width exceeds `shelf_width`, since adding more positive thickness can never restore feasibility.
+**Enumerate the last shelf backward.** For each endpoint `i`, scan books `i - 1`, `i - 2`, and so on. Maintain the suffix's cumulative `width` and maximum `height`. Stop as soon as the width exceeds `shelfWidth`, since adding more positive thickness can never restore feasibility.
 
 **Join the suffix to an optimal prefix.** If the last shelf begins at index `j`, the preceding books contribute `dp[j]` and this shelf contributes its maintained maximum height. Update `dp[i]` with `dp[j] + height` whenever that total is smaller.
 

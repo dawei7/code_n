@@ -2,9 +2,9 @@
 
 **Inputs**
 
-- `begin_word`: The first word in the transformation sequence.
-- `end_word`: The required final word.
-- `word_list`: The allowed words after `begin_word`.
+- `beginWord`: The first word in the transformation sequence.
+- `endWord`: The required final word.
+- `wordList`: The allowed words after `beginWord`.
 
 **Return value**
 

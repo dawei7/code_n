@@ -6,4 +6,4 @@
 
 **Return value**
 
-The native LeetCode interface mutates `nums` and returns $k$. The cOde(n) adapter returns `nums[:k]`, the verified non-decreasing prefix containing each distinct value once.
+Return $k$, the number of distinct values written to the start of `nums`. The same call mutates `nums` in place, and `nums[:k]` is the non-decreasing prefix containing each distinct value once. Values at indices $k$ and beyond are unspecified.

@@ -1,3 +1,22 @@
+/**
+ * @param {Function[]} functions
+ * @return {Function}
+ */
+var compose = function(functions) {
+    return function(x) {
+        let result = x;
+        for (let index = functions.length - 1; index >= 0; index -= 1) {
+            result = functions[index](result);
+        }
+        return result;
+    };
+};
+
+/**
+ * const fn = compose([x => x + 1, x => 2 * x])
+ * fn(4) // 9
+ */
+
 const NAMED_FUNCTIONS = {
     addOne: value => value + 1,
     addFive: value => value + 5,
@@ -8,16 +27,6 @@ const NAMED_FUNCTIONS = {
     negate: value => -value,
     zero: () => 0,
 };
-
-function compose(functions) {
-    return function(x) {
-        let result = x;
-        for (let index = functions.length - 1; index >= 0; index -= 1) {
-            result = functions[index](result);
-        }
-        return result;
-    };
-}
 
 function functionFromSpec(spec) {
     if (typeof spec === 'number') return value => value + spec;

@@ -14,7 +14,7 @@ If the next sorted coin satisfies $c>r$, value $r$ cannot be formed. The process
 Repeatedly applying the extension rule proves that the maintained interval contains every value it claims. The gap argument proves that stopping cannot miss another representation, establishing the greedy method's correctness.
 
 ## Complexity detail
-Sorting $n$ coins takes $O(n \log n)$ time, and the greedy scan takes $O(n)$ time. The app-local implementation creates a sorted copy, which uses $O(n)$ auxiliary space and leaves its input unchanged.
+Sorting $n$ coins in place takes $O(n \log n)$ time, and the greedy scan takes $O(n)$ time. Python's in-place Timsort may use $O(n)$ auxiliary workspace in the worst case.
 
 ## Alternatives and edge cases
 - **Subset-sum set:** Explicitly insert every reachable sum, but the number of distinct sums can grow with the total coin value and is unnecessary when only the first gap matters.

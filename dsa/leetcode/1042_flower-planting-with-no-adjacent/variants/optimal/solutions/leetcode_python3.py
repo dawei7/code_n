@@ -19,4 +19,3 @@ class Solution:
                     break
 
         return flowers
-

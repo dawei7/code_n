@@ -10,9 +10,7 @@ class Solution:
             starts = [left for left, _, _ in intervals]
             prefix = [0] * (n + 1)
             for index, (left, right, value) in enumerate(intervals):
-                prefix[index + 1] = (
-                    prefix[index] + (right - left + 1) * value
-                )
+                prefix[index + 1] = prefix[index] + (right - left + 1) * value
 
             answer = 0
             for index in range(n):

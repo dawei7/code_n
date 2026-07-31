@@ -2,9 +2,11 @@
 
 For a fixed path, omitting one edge minimizes the remaining sum precisely when the omitted edge has maximum weight. If several path edges share that maximum, omitting the first one or any other tied one produces the same numerical cost. Therefore the problem is equivalent to finding a path whose traversal may make exactly one edge free.
 
-Run ordinary Dijkstra searches from node `0` and from node `n - 1`. Let the resulting distances be `from_start` and `from_target`. If an edge `(u, v)` is made free and traversed from `u` to `v`, the best corresponding cost is `from_start[u] + from_target[v]`; the reverse orientation costs `from_start[v] + from_target[u]`. Evaluate both orientations of every edge and take the minimum.
+Represent each graph node with two states: `(node, 0)` before an edge has been excluded and `(node, 1)` afterward. From either state, traversing an edge normally adds its weight. From an unused state, one additional transition crosses that same edge at zero cost and enters the used state.
 
-Each evaluated expression constructs a source-to-target walk with one free edge. Since every paid edge has positive weight, deleting any cycle cannot increase its cost; if simplification removes the designated free edge, some remaining path edge can instead be omitted and only improve the result. Conversely, every legal path appears among the candidates when its omitted maximum edge is evaluated in its traversal direction. The minimum candidate is consequently exactly the requested minimum path cost.
+Run Dijkstra's algorithm on this two-layer state graph. All transition costs are non-negative, so when `(n - 1, 1)` is removed from the priority queue with its current best distance, that cost is final. Requiring the second layer at the destination also enforces that exactly one path edge was excluded.
+
+Every route in the expanded graph projects to a source-to-target walk with one free edge. Removing positive-cost cycles cannot worsen it, so some simple path has no greater cost. Conversely, any legal path is represented by taking paid transitions for all of its edges except the chosen maximum edge, where it takes the free transition. The state search therefore considers an optimal realization of every legal path and returns the requested minimum.
 
 ## Complexity detail
 
@@ -12,7 +14,7 @@ Let $N$ be the number of nodes and $E$ the number of edges. Two adjacency-list D
 
 ## Alternatives and edge cases
 
-- **Two-layer Dijkstra:** Track `(node, exclusion_used)` states, with ordinary paid transitions and one zero-cost transition before the exclusion is used. This has the same asymptotic bounds and is the exact native Accepted formulation.
+- **Two ordinary Dijkstra runs:** Compute distances from both endpoints, then scan every edge as the free edge in both orientations. This has the same asymptotic bounds, but the two-layer state graph expresses the one-time exclusion directly.
 - **Repeated minimum selection:** Replacing each priority queue with a linear search over unsettled nodes remains correct but raises Dijkstra's cost to $O(N^2+E)$.
 - **Single-edge path:** Its only edge is necessarily excluded, so a direct edge from `0` to `n - 1` makes the answer `0`.
 - **Tied maximum edges:** Only one is omitted. Choosing the first tied occurrence satisfies the rule, while all later equal-weight edges remain paid.

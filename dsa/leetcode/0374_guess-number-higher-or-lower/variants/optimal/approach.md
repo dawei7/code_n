@@ -3,7 +3,7 @@
 
 Start with the inclusive interval `[1,n]`. Query its midpoint. If the midpoint is the hidden number, return it. If the response says the hidden value is lower, discard the midpoint and everything above it. If the response says it is higher, discard the midpoint and everything below it.
 
-The offline app adapter performs the same three-way comparison directly against `pick`; the native submission calls LeetCode's oracle.
+LeetCode supplies `guess(num)` as a hidden judge API. The offline app receives the same hidden value as the explicit `pick` fixture and defines a local `guess` function with the same three-way result. Both forms then execute the same binary-search statements.
 
 **Why each response safely removes half**
 

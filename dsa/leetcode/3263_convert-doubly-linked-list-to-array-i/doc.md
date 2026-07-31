@@ -16,13 +16,13 @@
 
 You receive the head node of a non-empty doubly linked list. Every node stores an integer value and has both `next` and `prev` links to its neighbors.
 
-Create an integer array containing the list's values in their forward order, beginning at `head` and following `next` until the tail. Repeated values remain repeated, and the linked list itself must not be reordered to form the result.
+Create an integer array containing the list's values in their forward order, beginning at `root` and following `next` until the tail. Repeated values remain repeated, and the linked list itself must not be reordered to form the result.
 
 ### Function Contract
 
 **Inputs**
 
-- `head`: The first node of a doubly linked list containing $n$ nodes, where $1 \le n \le 50$. Every node value is between 1 and 50 inclusive.
+- `root`: The first node of a doubly linked list containing $n$ nodes, where $1 \le n \le 50$. Every node value is between 1 and 50 inclusive.
 
 **Return value**
 
@@ -32,15 +32,15 @@ Create an integer array containing the list's values in their forward order, beg
 
 **Example 1**
 
-- Input: `head = [1,2,3,4,3,2,1]`
+- Input: `root = [1,2,3,4,3,2,1]`
 - Output: `[1,2,3,4,3,2,1]`
 
 **Example 2**
 
-- Input: `head = [2,2,2,2,2]`
+- Input: `root = [2,2,2,2,2]`
 - Output: `[2,2,2,2,2]`
 
 **Example 3**
 
-- Input: `head = [3,2,3,2,3,2]`
+- Input: `root = [3,2,3,2,3,2]`
 - Output: `[3,2,3,2,3,2]`

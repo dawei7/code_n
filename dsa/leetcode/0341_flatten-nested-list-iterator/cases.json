@@ -7,7 +7,7 @@
       "name": "sample: sibling lists around an integer",
       "kind": "sample",
       "visible": true,
-      "input": {"nested_list": [[1, 1], 2, [1, 1]]},
+      "input": {"nestedList": [[1, 1], 2, [1, 1]]},
       "expected": [1, 1, 2, 1, 1],
       "tags": ["sample"]
     },
@@ -16,7 +16,7 @@
       "name": "sample: increasing nesting depth",
       "kind": "sample",
       "visible": true,
-      "input": {"nested_list": [1, [4, [6]]]},
+      "input": {"nestedList": [1, [4, [6]]]},
       "expected": [1, 4, 6],
       "tags": ["sample", "depth"]
     },
@@ -25,7 +25,7 @@
       "name": "sample: only empty branches",
       "kind": "sample",
       "visible": true,
-      "input": {"nested_list": [[], [[]]]},
+      "input": {"nestedList": [[], [[]]]},
       "expected": [],
       "tags": ["sample", "empty"]
     },
@@ -34,7 +34,7 @@
       "name": "trial: empty outer list",
       "kind": "trial",
       "visible": false,
-      "input": {"nested_list": []},
+      "input": {"nestedList": []},
       "expected": [],
       "tags": ["trial", "empty"]
     },
@@ -43,7 +43,7 @@
       "name": "trial: one integer",
       "kind": "trial",
       "visible": false,
-      "input": {"nested_list": [7]},
+      "input": {"nestedList": [7]},
       "expected": [7],
       "tags": ["trial", "boundary"]
     },
@@ -52,7 +52,7 @@
       "name": "hidden: empty branches do not interrupt order",
       "kind": "real",
       "visible": false,
-      "input": {"nested_list": [[], 1, [[], 2], [[]], 3]},
+      "input": {"nestedList": [[], 1, [[], 2], [[]], 3]},
       "expected": [1, 2, 3],
       "tags": ["hidden", "empty"]
     },
@@ -61,7 +61,7 @@
       "name": "hidden: zero and negative integers",
       "kind": "real",
       "visible": false,
-      "input": {"nested_list": [[-1], 0, [2, [-3]]]},
+      "input": {"nestedList": [[-1], 0, [2, [-3]]]},
       "expected": [-1, 0, 2, -3],
       "tags": ["hidden", "signed"]
     },
@@ -70,7 +70,7 @@
       "name": "hidden: preserve depth-first left-to-right order",
       "kind": "real",
       "visible": false,
-      "input": {"nested_list": [1, [2, [3], 4], 5]},
+      "input": {"nestedList": [1, [2, [3], 4], 5]},
       "expected": [1, 2, 3, 4, 5],
       "tags": ["hidden", "order"]
     }

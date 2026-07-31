@@ -11,14 +11,7 @@ class Solution:
         @lru_cache(None)
         def search(i: int, mask: int) -> int:
             if i == first:
-                return sum(
-                    cheapest_to_second[j]
-                    for j in range(second)
-                    if not mask & (1 << j)
-                )
-            return min(
-                cost[i][j] + search(i + 1, mask | (1 << j))
-                for j in range(second)
-            )
+                return sum(cheapest_to_second[j] for j in range(second) if not mask & (1 << j))
+            return min(cost[i][j] + search(i + 1, mask | (1 << j)) for j in range(second))
 
         return search(0, 0)

@@ -19,7 +19,5 @@ class Solution:
 
         collect(nestedList, 1)
         return sum(
-            depth_sum * (maximum_integer_depth - depth + 1)
-            for depth, depth_sum in enumerate(depth_sums, start=1)
+            depth_sum * (maximum_integer_depth - depth + 1) for depth, depth_sum in enumerate(depth_sums, start=1)
         )
-

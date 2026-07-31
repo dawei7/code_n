@@ -30,7 +30,7 @@ At each step, either the endpoint sum is valid or it is not. In the valid case, 
 The interval shrinks after every decision. By induction, all and only valid non-empty index subsets are counted when the pointers cross.
 
 ## Complexity detail
-Sorting takes $O(N \log N)$ time. Building the powers table and moving both pointers take $O(N)$ additional time. The powers table and sorted copy use $O(N)$ auxiliary space.
+Sorting `nums` in place takes $O(N \log N)$ time. Building the powers table and moving both pointers take $O(N)$ additional time. The powers table and Python's sorting workspace use $O(N)$ auxiliary space in the worst case.
 
 The benchmark uses arrays of ones with `target = 1`, so no non-empty subsequence is valid. The reference moves the right pointer across the array once. A correct alternative that restarts a right-end search for every possible minimum performs $O(N^2)$ work, completes every tier, and is rejected by scaling.
 
@@ -44,4 +44,5 @@ The benchmark uses arrays of ones with `target = 1`, so no non-empty subsequence
 - **Every subsequence valid:** if the smallest-plus-largest condition holds for the whole sorted array, the answer is $2^N-1$ modulo $M$.
 - **Modulo discipline:** reduce every accumulated power and answer update modulo $10^9+7$.
 - **Input order:** sorting is valid for counting index subsets even though a subsequence normally preserves original order, because each selected index set has exactly one sorted-image index set.
+- **Input mutation:** the Accepted algorithm sorts `nums` in place, so callers that need its original order must copy it before the call.
 - **Pointer equality:** when `left == right`, the contribution is $2^0=1$, representing the singleton at that position.

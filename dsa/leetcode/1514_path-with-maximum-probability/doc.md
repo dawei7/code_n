@@ -22,26 +22,26 @@ Let $e$ be the number of edges.
 
 - `n`: The node count, satisfying $2 \leq n \leq 10^4$.
 - `edges`: A length-$e$ list of undirected endpoint pairs `[a, b]`. There are no self-loops and at most one edge between a pair of nodes.
-- `succ_prob`: A length-$e$ list where `succ_prob[i]` is the traversal probability of `edges[i]` and lies in $[0,1]$.
-- `start`, `end`: Distinct valid node labels. The native interface names them `start_node` and `end_node`.
+- `succProb`: A length-$e$ list where `succProb[i]` is the traversal probability of `edges[i]` and lies in $[0,1]$.
+- `start_node`, `end_node`: Distinct valid node labels.
 
 **Return value**
 
-Return the maximum product of edge probabilities along a path from `start` to `end`, or `0.0` if no such path exists.
+Return the maximum product of edge probabilities along a path from `start_node` to `end_node`, or `0.0` if no such path exists.
 
 ### Examples
 **Example 1**
 
-- Input: `n = 3, edges = [[0, 1], [1, 2], [0, 2]], succ_prob = [0.5, 0.5, 0.2], start = 0, end = 2`
+- Input: `n = 3, edges = [[0, 1], [1, 2], [0, 2]], succProb = [0.5, 0.5, 0.2], start_node = 0, end_node = 2`
 - Output: `0.25`
 - Explanation: The two-edge path succeeds with probability $0.5\cdot0.5=0.25$, exceeding the direct edge's 0.2.
 
 **Example 2**
 
-- Input: `n = 3, edges = [[0, 1], [1, 2], [0, 2]], succ_prob = [0.5, 0.5, 0.3], start = 0, end = 2`
+- Input: `n = 3, edges = [[0, 1], [1, 2], [0, 2]], succProb = [0.5, 0.5, 0.3], start_node = 0, end_node = 2`
 - Output: `0.3`
 
 **Example 3**
 
-- Input: `n = 3, edges = [[0, 1]], succ_prob = [0.5], start = 0, end = 2`
+- Input: `n = 3, edges = [[0, 1]], succProb = [0.5], start_node = 0, end_node = 2`
 - Output: `0.0`

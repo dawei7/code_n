@@ -13,10 +13,7 @@ class Solution:
         for end, value in enumerate(nums, start=1):
             prefix[end] = prefix[end - 1] + value
 
-            while (
-                len(candidates) > 1
-                and prefix[candidates[1]] + last_sum[candidates[1]] <= prefix[end]
-            ):
+            while len(candidates) > 1 and prefix[candidates[1]] + last_sum[candidates[1]] <= prefix[end]:
                 candidates.popleft()
 
             previous = candidates[0]
@@ -24,10 +21,7 @@ class Solution:
             last_sum[end] = prefix[end] - prefix[previous]
             threshold = prefix[end] + last_sum[end]
 
-            while (
-                candidates
-                and prefix[candidates[-1]] + last_sum[candidates[-1]] >= threshold
-            ):
+            while candidates and prefix[candidates[-1]] + last_sum[candidates[-1]] >= threshold:
                 candidates.pop()
             candidates.append(end)
 

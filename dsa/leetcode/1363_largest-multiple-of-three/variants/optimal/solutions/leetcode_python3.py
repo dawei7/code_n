@@ -36,9 +36,7 @@ class Solution:
             if not remove_one(2):
                 remove_two(1)
 
-        answer = "".join(
-            str(digit) * counts[digit] for digit in range(9, -1, -1)
-        )
+        answer = "".join(str(digit) * counts[digit] for digit in range(9, -1, -1))
         if not answer:
             return ""
         return "0" if answer[0] == "0" else answer

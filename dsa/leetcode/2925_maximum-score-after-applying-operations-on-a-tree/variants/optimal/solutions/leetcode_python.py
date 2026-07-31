@@ -24,11 +24,7 @@ class Solution:
 
         minimum_retained = [0] * n
         for node in reversed(order):
-            child_loss = sum(
-                minimum_retained[neighbor]
-                for neighbor in graph[node]
-                if parent[neighbor] == node
-            )
+            child_loss = sum(minimum_retained[neighbor] for neighbor in graph[node] if parent[neighbor] == node)
             if child_loss == 0:
                 minimum_retained[node] = values[node]
             else:

@@ -22,10 +22,7 @@ class Solution:
             current = [0] * n
             for city in range(n):
                 predecessor = min(graph[city], key=previous.__getitem__)
-                current[city] = (
-                    previous[predecessor]
-                    + int(names[city] != targetPath[index])
-                )
+                current[city] = previous[predecessor] + int(names[city] != targetPath[index])
                 parent[index][city] = predecessor
             previous = current
 
@@ -36,4 +33,3 @@ class Solution:
             path.append(city)
 
         return path[::-1]
-

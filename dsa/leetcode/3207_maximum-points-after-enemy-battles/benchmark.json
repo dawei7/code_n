@@ -9,7 +9,7 @@
       "visible": false,
       "size": 32,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           2,
           7938,
           15908,
@@ -43,7 +43,7 @@
           52890,
           1
         ],
-        "current_energy": 1
+        "currentEnergy": 1
       },
       "expected": 1443349,
       "tags": [
@@ -59,7 +59,7 @@
       "visible": false,
       "size": 128,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           2,
           7938,
           15908,
@@ -189,7 +189,7 @@
           67796,
           1
         ],
-        "current_energy": 1
+        "currentEnergy": 1
       },
       "expected": 6237115,
       "tags": [
@@ -205,7 +205,7 @@
       "visible": false,
       "size": 400,
       "input": {
-        "enemy_energies": [
+        "enemyEnergies": [
           2,
           7938,
           15908,
@@ -607,7 +607,7 @@
           45154,
           1
         ],
-        "current_energy": 1
+        "currentEnergy": 1
       },
       "expected": 19965776,
       "tags": [

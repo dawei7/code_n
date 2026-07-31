@@ -23,10 +23,7 @@ class Solution:
         frequencies = Counter()
 
         def encode(node: Node, is_root: bool = False) -> int:
-            signature = tuple(
-                (name, encode(child))
-                for name, child in sorted(node.children.items())
-            )
+            signature = tuple((name, encode(child)) for name, child in sorted(node.children.items()))
             if signature:
                 signature_id = signature_ids.setdefault(
                     signature,
@@ -43,10 +40,7 @@ class Solution:
 
         def collect(node: Node, path: List[str]) -> None:
             for name, child in sorted(node.children.items()):
-                if (
-                    child.signature_id
-                    and frequencies[child.signature_id] > 1
-                ):
+                if child.signature_id and frequencies[child.signature_id] > 1:
                     continue
                 path.append(name)
                 answer.append(path.copy())

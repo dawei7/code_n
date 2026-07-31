@@ -12,9 +12,7 @@ class Solution:
                 row_prefix[row][column + 1] = row_prefix[row][column] + grid[row][column]
         for column in range(columns):
             for row in range(rows):
-                column_prefix[column][row + 1] = (
-                    column_prefix[column][row] + grid[row][column]
-                )
+                column_prefix[column][row + 1] = column_prefix[column][row] + grid[row][column]
 
         @lru_cache(maxsize=None)
         def area(top: int, bottom: int, left: int, right: int) -> int:

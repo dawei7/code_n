@@ -23,10 +23,7 @@ class Solution:
             compressed_left = nonzero_count[left]
             compressed_right = nonzero_count[right + 1]
             length = compressed_right - compressed_left
-            value = (
-                prefix_value[compressed_right]
-                - prefix_value[compressed_left] * powers_of_ten[length]
-            ) % modulo
+            value = (prefix_value[compressed_right] - prefix_value[compressed_left] * powers_of_ten[length]) % modulo
             digit_sum = prefix_sum[compressed_right] - prefix_sum[compressed_left]
             answer.append(value * digit_sum % modulo)
 

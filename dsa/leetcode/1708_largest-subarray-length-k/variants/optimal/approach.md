@@ -7,10 +7,10 @@ A length-`k` subarray beginning at index `i` ends at `i + k - 1`, so its start m
 
 Every pair of candidates has different first elements because all values in `nums` are distinct. Their lexicographic comparison is therefore decided immediately at position zero; no later element can overturn it. The candidate whose starting value is greatest is the unique largest candidate.
 
-Track the index of the greatest value among `nums[0]` through `nums[n-k]`. Once the scan finishes, return the `k` consecutive elements starting at that index. The scan considers every legal candidate, and the distinctness guarantee proves that the chosen starting value beats every other candidate at their first comparison position.
+Use `max` over the legal starting-index range with `nums.__getitem__` as the key, selecting the index of the greatest value among `nums[0]` through `nums[n-k]`. Then return the `k` consecutive elements starting at that index. The maximization considers every legal candidate, and the distinctness guarantee proves that the chosen starting value beats every other candidate at their first comparison position.
 
 ## Complexity detail
-Scanning the $n-k+1$ legal starting positions and copying the $k$ result elements takes $O(n-k+1+k)=O(n)$ time. Apart from the returned length-$k$ list, the scan stores only one index, so total space is $O(k)$ and auxiliary space is $O(1)$.
+Maximizing over the $n-k+1$ legal starting positions and copying the $k$ result elements takes $O(n-k+1+k)=O(n)$ time. Apart from the returned length-$k$ list, the operation stores only the range iterator and chosen index, so total space is $O(k)$ and auxiliary space is $O(1)$.
 
 ## Alternatives and edge cases
 - **Materialize and compare every window:** generating all slices and taking their maximum is direct, but copying $k$ elements for each of $n-k+1$ windows costs $O((n-k+1)k)$ time and space across the generated candidates.

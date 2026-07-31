@@ -14,9 +14,7 @@ class Solution:
             for multiple in range(factor, n + 1, factor):
                 divisible_counts[factor] += factor_frequencies[multiple]
 
-        boosted_batches = sorted(
-            (price, divisible_counts[factor] - 1) for factor, price in items
-        )
+        boosted_batches = sorted((price, divisible_counts[factor] - 1) for factor, price in items)
 
         answer = 0
         remaining = budget

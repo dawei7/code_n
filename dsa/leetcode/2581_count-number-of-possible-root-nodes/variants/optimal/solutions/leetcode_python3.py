@@ -24,9 +24,7 @@ class Solution:
         for node in order[1:]:
             previous_root = parent[node]
             correct[node] = (
-                correct[previous_root]
-                - ((previous_root, node) in guess_set)
-                + ((node, previous_root) in guess_set)
+                correct[previous_root] - ((previous_root, node) in guess_set) + ((node, previous_root) in guess_set)
             )
             answer += correct[node] >= k
 

@@ -13,7 +13,7 @@
   },
   "review": {"status": "verified", "files": {
     "reference/description.md": "0484bacdc2dd7ea4c544e99b5d3824897fa24e64487bac75bffd8f886b93c52d",
-    "reference/contract.md": "444ce7853a3d8984f425e5dd1f00bbb0034de5e83a537a7879aa3af212ec9bf7",
+    "reference/contract.md": "e69b07c92e3cc0e230a4184d9a833789a2403cf7cb9041ae2cbc5f4d3e6896cc",
     "reference/examples.md": "bae56dd52315e73c305b8efa1e0360ee317b4bdfa30ff67de5112f0ad7b55e59",
     "reference/constraints.md": "b0db7677d1e2fa22809080888e9df11dc6ab3572106e593455672b9141ee30f0"
   }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}

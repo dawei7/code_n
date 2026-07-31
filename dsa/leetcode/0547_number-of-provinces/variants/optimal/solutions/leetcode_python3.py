@@ -23,4 +23,3 @@ class Solution:
                         stack.append(neighbor)
 
         return provinces
-

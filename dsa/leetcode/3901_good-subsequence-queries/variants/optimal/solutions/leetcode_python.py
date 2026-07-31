@@ -2,9 +2,7 @@ from math import gcd
 
 
 class Solution:
-    def countGoodSubseq(
-        self, nums: list[int], p: int, queries: list[list[int]]
-    ) -> int:
+    def countGoodSubseq(self, nums: list[int], p: int, queries: list[list[int]]) -> int:
         n = len(nums)
         factor_limit = 1
         for value in nums:
@@ -112,9 +110,7 @@ class Solution:
                 tree[node] = gcd(tree[2 * node], tree[2 * node + 1])
                 node //= 2
 
-            if tree[1] == 1 and (
-                active_count < n or len(critical_indices) < n
-            ):
+            if tree[1] == 1 and (active_count < n or len(critical_indices) < n):
                 answer += 1
 
         return answer

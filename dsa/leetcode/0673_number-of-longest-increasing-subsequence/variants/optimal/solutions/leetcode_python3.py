@@ -29,4 +29,3 @@ class Solution:
             update(current_rank, (length + 1, count if length else 1))
 
         return query(len(values))[1]
-

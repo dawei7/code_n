@@ -4,19 +4,11 @@ class Solution:
         prime_digits = set("2357")
         length = len(s)
 
-        if (
-            s[0] not in prime_digits
-            or s[-1] in prime_digits
-            or k * minLength > length
-        ):
+        if s[0] not in prime_digits or s[-1] in prime_digits or k * minLength > length:
             return 0
 
         def is_boundary(index: int) -> bool:
-            return (
-                index == 0
-                or index == length
-                or (s[index - 1] not in prime_digits and s[index] in prime_digits)
-            )
+            return index == 0 or index == length or (s[index - 1] not in prime_digits and s[index] in prime_digits)
 
         ways = [0] * (length + 1)
         ways[0] = 1

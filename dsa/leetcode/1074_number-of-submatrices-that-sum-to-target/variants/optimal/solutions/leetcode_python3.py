@@ -15,11 +15,7 @@ class Solution:
             compressed = [0] * larger
             for second_boundary in range(first_boundary, smaller):
                 for index in range(larger):
-                    value = (
-                        matrix[second_boundary][index]
-                        if pair_rows
-                        else matrix[index][second_boundary]
-                    )
+                    value = matrix[second_boundary][index] if pair_rows else matrix[index][second_boundary]
                     compressed[index] += value
 
                 prefix_counts = Counter({0: 1})

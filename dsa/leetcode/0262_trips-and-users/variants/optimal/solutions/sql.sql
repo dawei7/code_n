@@ -1,6 +1,6 @@
 SELECT
     t.request_at AS Day,
-    ROUND(AVG(CASE WHEN t.status = 'completed' THEN 0.0 ELSE 1.0 END), 2) AS "Cancellation Rate"
+    ROUND(AVG(CASE WHEN t.status = 'completed' THEN 0 ELSE 1 END), 2) AS `Cancellation Rate`
 FROM Trips AS t
 JOIN Users AS client
     ON client.users_id = t.client_id

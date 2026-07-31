@@ -8,7 +8,7 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def convertBST(self, root: Optional['TreeNode']) -> Optional['TreeNode']:
+    def convertBST(self, root: Optional["TreeNode"]) -> Optional["TreeNode"]:
         total = 0
         stack = []
         node = root

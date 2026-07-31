@@ -14,7 +14,7 @@ $10^{10}$.
 
 **Binary-search the sorted potions**
 
-Sort a copy of `potions`. For each spell, find the first potion not smaller
+Sort `potions` in place. For each spell, find the first potion not smaller
 than its required threshold. Every potion from that position to the end is
 successful, while every earlier potion is too weak. Subtract the boundary
 index from $m$ and append the count in the original spell order.
@@ -28,8 +28,9 @@ that spell.
 
 Let $n=\lvert\texttt{spells}\rvert$ and
 $m=\lvert\texttt{potions}\rvert$. Sorting costs $O(m\log m)$, and $n$ binary
-searches cost $O(n\log m)$, for $O(m\log m+n\log m)$ total time. The sorted
-copy uses $O(m)$ auxiliary space; the returned $O(n)$ array is output space.
+searches cost $O(n\log m)$, for $O(m\log m+n\log m)$ total time. Python's
+in-place sort may use $O(m)$ auxiliary storage; the returned $O(n)$ array is
+output space.
 
 ## Alternatives and edge cases
 

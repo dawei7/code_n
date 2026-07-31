@@ -28,4 +28,3 @@ class Solution:
             stack.append(node)
 
         return stack[0]
-

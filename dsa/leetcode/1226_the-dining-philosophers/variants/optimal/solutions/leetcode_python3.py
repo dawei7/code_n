@@ -9,11 +9,11 @@ class DiningPhilosophers:
     def wantsToEat(
         self,
         philosopher: int,
-        pickLeftFork: 'Callable[[], None]',
-        pickRightFork: 'Callable[[], None]',
-        eat: 'Callable[[], None]',
-        putLeftFork: 'Callable[[], None]',
-        putRightFork: 'Callable[[], None]',
+        pickLeftFork: "Callable[[], None]",
+        pickRightFork: "Callable[[], None]",
+        eat: "Callable[[], None]",
+        putLeftFork: "Callable[[], None]",
+        putRightFork: "Callable[[], None]",
     ) -> None:
         with self.transaction:
             pickLeftFork()

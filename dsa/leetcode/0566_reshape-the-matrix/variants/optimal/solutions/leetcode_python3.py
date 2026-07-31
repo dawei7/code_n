@@ -23,4 +23,3 @@ class Solution:
                 flat_index += 1
 
         return reshaped
-

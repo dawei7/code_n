@@ -9,8 +9,8 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Subrectangle Queries and meets the required complexity bound.",
-      "time_complexity": "O(RC+U+Q)",
-      "space_complexity": "O(RC)"
+      "time_complexity": "O(U+Q)",
+      "space_complexity": "O(1)"
     }
   ]
 }

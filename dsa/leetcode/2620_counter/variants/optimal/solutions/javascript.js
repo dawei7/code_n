@@ -1,14 +1,19 @@
 /**
- * Create a closure whose successive calls return consecutive integers.
- *
  * @param {number} n
- * @return {Function}
+ * @return {Function} counter
  */
-function createCounter(n) {
+var createCounter = function(n) {
     return function() {
         return n++;
     };
-}
+};
+
+/**
+ * const counter = createCounter(10)
+ * counter() // 10
+ * counter() // 11
+ * counter() // 12
+ */
 
 function solve(n, calls) {
     const counter = createCounter(n);

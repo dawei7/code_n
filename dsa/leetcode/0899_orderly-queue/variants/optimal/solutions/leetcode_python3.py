@@ -30,6 +30,4 @@ class Solution:
         counts = [0] * 26
         for character in s:
             counts[ord(character) - ord("a")] += 1
-        return "".join(
-            chr(ord("a") + index) * count for index, count in enumerate(counts)
-        )
+        return "".join(chr(ord("a") + index) * count for index, count in enumerate(counts))

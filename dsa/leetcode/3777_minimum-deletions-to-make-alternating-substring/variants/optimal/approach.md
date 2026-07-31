@@ -4,7 +4,7 @@ Define an edge indicator for every index $i>0$: it is one when `s[i - 1] == s[i]
 
 To see why, divide the substring into maximal runs of equal characters. Consecutive runs necessarily alternate between `'A'` and `'B'`. Keeping one character from every run therefore produces an alternating subsequence, deleting exactly the run length minus one from each run. Those deletions total the number of equal adjacent pairs. No alternating subsequence can retain two characters from one run without selecting an intervening opposite character that does not exist inside that run, so no smaller deletion count is possible.
 
-Store the edge indicators in a point-update, range-sum structure such as a Fenwick tree or segment tree. A type-2 query becomes one range sum. Flipping `s[j]` can change only the edges joining `j` to `j - 1` and `j + 1`; recompute those valid indicators and update their stored values.
+Store the edge indicators in a Fenwick tree. A type-2 query becomes the difference of two prefix sums. Flipping `s[j]` can change only the edges joining `j` to `j - 1` and `j + 1`; subtract each affected edge's old indicator, flip the character, and add each edge's new indicator.
 
 Because a range query never changes the character array and a flip repairs precisely the two potentially stale edges, the structure always represents the current string. Each returned sum is consequently the proven minimum for the requested current substring.
 
@@ -14,7 +14,7 @@ Let $N=\lvert s\rvert$ and $Q=\lvert\texttt{queries}\rvert$. Building and proces
 
 ## Alternatives and edge cases
 
-- **Fenwick tree:** It offers the same $O(\log N)$ point updates and range sums with a compact array; the exact native submission uses this representation.
+- **Segment tree:** It offers the same $O(\log N)$ point updates and range sums, but uses a larger array and more update bookkeeping than the Fenwick tree used here.
 - **Direct substring scan:** Counting equal adjacent pairs separately for every type-2 query is simple and correct but may require $O(NQ)$ time.
 - **Length-one range:** It contains no internal edge, so its answer is always `0`.
 - **Endpoint flip:** Flipping index `0` or `N - 1` changes only one edge rather than two.

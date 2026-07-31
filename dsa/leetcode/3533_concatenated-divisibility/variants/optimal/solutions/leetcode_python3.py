@@ -17,9 +17,7 @@ class Solution:
             for index in order:
                 bit = 1 << index
                 if not mask & bit:
-                    next_remainder = (
-                        remainder * shifts[index] + nums[index]
-                    ) % k
+                    next_remainder = (remainder * shifts[index] + nums[index]) % k
                     if can_finish(mask | bit, next_remainder):
                         memo[state] = 2
                         return True
@@ -38,9 +36,7 @@ class Solution:
             for index in order:
                 bit = 1 << index
                 if not mask & bit:
-                    next_remainder = (
-                        remainder * shifts[index] + nums[index]
-                    ) % k
+                    next_remainder = (remainder * shifts[index] + nums[index]) % k
                     if can_finish(mask | bit, next_remainder):
                         answer.append(nums[index])
                         mask |= bit

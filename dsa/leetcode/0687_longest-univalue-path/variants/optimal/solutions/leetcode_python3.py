@@ -22,4 +22,3 @@ class Solution:
 
         downward(root)
         return longest
-

@@ -11,11 +11,7 @@ class Solution:
 
         def apply(node: int, left: int, right: int, increment: int) -> None:
             length = right - left + 1
-            square_sums[node] = (
-                square_sums[node]
-                + 2 * increment * sums[node]
-                + increment * increment * length
-            ) % mod
+            square_sums[node] = (square_sums[node] + 2 * increment * sums[node] + increment * increment * length) % mod
             sums[node] = (sums[node] + increment * length) % mod
             lazy[node] += increment
 
@@ -45,9 +41,7 @@ class Solution:
             if middle < query_right:
                 add(node * 2 + 1, middle + 1, right, query_left, query_right)
             sums[node] = (sums[node * 2] + sums[node * 2 + 1]) % mod
-            square_sums[node] = (
-                square_sums[node * 2] + square_sums[node * 2 + 1]
-            ) % mod
+            square_sums[node] = (square_sums[node * 2] + square_sums[node * 2 + 1]) % mod
 
         last_position = {}
         answer = 0

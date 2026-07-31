@@ -21,12 +21,8 @@ The dictionary establishes a one-to-one correspondence from each reachable origi
 
 Every assigned non-null pointer targets an object created in `copies`, never an original object. The returned root is therefore structurally equivalent to the input and shares no node identity with it.
 
-**How the app-local encoding corresponds**
-
-The encoded `nodes` array already expresses child placement through level-order positions and random edges through indices. The app-local reference creates a new outer list and a new pair for every non-null entry, retaining null slots and immutable index values. This is the serialization-level counterpart of allocating independent nodes while preserving all relationships; the platform-native artifact performs the actual object-graph construction.
-
 ## Complexity detail
-Each of the $N$ nodes is allocated once, pushed at most once, and processed once. Examining its three pointer fields is constant work, so native cloning takes $O(N)$ time. The identity map, work stack, and $N$ new nodes use $O(N)$ space. Copying the encoded app representation also visits and allocates each position once, giving the same bounds.
+Each of the $N$ nodes is allocated once, pushed at most once, and processed once. Examining its three pointer fields is constant work, so cloning takes $O(N)$ time. The identity map, work stack, and $N$ new nodes use $O(N)$ space.
 
 ## Alternatives and edge cases
 - **Two-pass tree traversal:** First clone only the child structure and build an original-to-copy map; then traverse again to assign every random pointer. This is also $O(N)$ time and space, but requires two coordinated passes.
@@ -34,7 +30,7 @@ Each of the $N$ nodes is allocated once, pushed at most once, and processed once
 - **Clone child edges without a map:** This copies the binary-tree shape but cannot translate arbitrary random targets and may leave pointers into the original tree.
 - **Match nodes by value:** Values need not be unique, so value-based lookup can connect a random edge to the wrong node.
 - **Serialized equality alone:** Matching `[value, random_index]` output proves relationship equivalence but not object independence; the native solution must allocate distinct `NodeCopy` instances.
-- **Empty tree:** Return null, represented by an empty app-local encoding.
+- **Empty tree:** Return null.
 - **Null random pointers:** Preserve them as null.
 - **Self-random pointer:** The clone points to itself through the previously recorded mapping.
 - **Random cycle:** Memoization prevents repeated allocation and preserves the cycle among copied nodes.

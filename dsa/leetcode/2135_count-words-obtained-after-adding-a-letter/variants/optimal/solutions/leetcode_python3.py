@@ -17,9 +17,6 @@ class Solution:
         answer = 0
         for word in targetWords:
             target = mask(word)
-            if any(
-                (target ^ (1 << (ord(letter) - ord("a")))) in starts
-                for letter in word
-            ):
+            if any((target ^ (1 << (ord(letter) - ord("a")))) in starts for letter in word):
                 answer += 1
         return answer

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def shortestDistanceAfterQueries(
-        self, n: int, queries: List[List[int]]
-    ) -> List[int]:
+    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
         next_city = list(range(1, n + 1))
         distance = n - 1
         answer = []

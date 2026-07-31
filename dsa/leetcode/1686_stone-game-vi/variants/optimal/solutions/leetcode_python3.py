@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def stoneGameVI(
-        self, aliceValues: List[int], bobValues: List[int]
-    ) -> int:
+    def stoneGameVI(self, aliceValues: List[int], bobValues: List[int]) -> int:
         order = sorted(
             range(len(aliceValues)),
             key=lambda index: aliceValues[index] + bobValues[index],

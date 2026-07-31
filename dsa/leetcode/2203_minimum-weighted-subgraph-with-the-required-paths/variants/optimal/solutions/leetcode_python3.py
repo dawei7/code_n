@@ -37,8 +37,5 @@ class Solution:
         from_second = dijkstra(src2, graph)
         to_destination = dijkstra(dest, reverse)
 
-        answer = min(
-            from_first[node] + from_second[node] + to_destination[node]
-            for node in range(n)
-        )
+        answer = min(from_first[node] + from_second[node] + to_destination[node] for node in range(n))
         return -1 if answer == float("inf") else answer

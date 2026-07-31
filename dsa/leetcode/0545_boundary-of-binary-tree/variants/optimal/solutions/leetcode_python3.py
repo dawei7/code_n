@@ -8,11 +8,11 @@ from typing import List, Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def boundaryOfBinaryTree(self, root: Optional['TreeNode']) -> List[int]:
+    def boundaryOfBinaryTree(self, root: Optional["TreeNode"]) -> List[int]:
         if root is None:
             return []
 
-        def is_leaf(node: 'TreeNode') -> bool:
+        def is_leaf(node: "TreeNode") -> bool:
             return node.left is None and node.right is None
 
         boundary = [root.val]
@@ -44,4 +44,3 @@ class Solution:
 
         boundary.extend(reversed(right_boundary))
         return boundary
-

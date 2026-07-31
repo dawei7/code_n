@@ -16,8 +16,7 @@ class Solution:
         block_count = (length + block_size - 1) // block_size
         lazy = [0] * block_count
         block_frequencies = [
-            Counter(nums2[start : min(start + block_size, length)])
-            for start in range(0, length, block_size)
+            Counter(nums2[start : min(start + block_size, length)]) for start in range(0, length, block_size)
         ]
 
         def update_boundary(block: int, left: int, right: int, delta: int) -> None:

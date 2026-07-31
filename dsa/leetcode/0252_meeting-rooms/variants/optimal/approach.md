@@ -10,7 +10,7 @@ Before inspecting index `i`, all meetings through $i - 1$ are mutually compatibl
 If the next meeting overlaps the previous sorted meeting, the schedule is immediately impossible. Otherwise, assume the earlier prefix was compatible. Its meetings finish in the same nonoverlapping sequence before the previous meeting starts, and the previous meeting finishes no later than the new start. The extended prefix is therefore also compatible. Induction makes the adjacent checks sufficient for the entire schedule.
 
 ## Complexity detail
-Sorting costs $O(n \log n)$ and the scan costs $O(n)$. Creating a sorted copy uses $O(n)$ space.
+Sorting costs $O(n \log n)$ and the scan costs $O(n)$. Python's in-place list sort may use $O(n)$ temporary workspace in the worst case.
 
 ## Alternatives and edge cases
 - **Compare every pair:** is correct but takes $O(n^2)$ time.

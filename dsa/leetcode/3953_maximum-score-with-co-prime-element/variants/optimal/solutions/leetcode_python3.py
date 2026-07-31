@@ -7,10 +7,7 @@ class Solution:
 
         divisible_count = [0] * (limit + 1)
         for divisor in range(1, limit + 1):
-            divisible_count[divisor] = sum(
-                frequency[multiple]
-                for multiple in range(divisor, limit + 1, divisor)
-            )
+            divisible_count[divisor] = sum(frequency[multiple] for multiple in range(divisor, limit + 1, divisor))
 
         smallest_prime = list(range(limit + 1))
         factor = 2
@@ -37,15 +34,9 @@ class Solution:
 
             signed_products = [(1, -1)]
             for prime in prime_factors:
-                signed_products += [
-                    (product * prime, -sign)
-                    for product, sign in signed_products
-                ]
+                signed_products += [(product * prime, -sign) for product, sign in signed_products]
 
-            shared_factor_count = sum(
-                sign * divisible_count[product]
-                for product, sign in signed_products[1:]
-            )
+            shared_factor_count = sum(sign * divisible_count[product] for product, sign in signed_products[1:])
 
             if frequency[selected_value] > 0:
                 modification_cost = shared_factor_count

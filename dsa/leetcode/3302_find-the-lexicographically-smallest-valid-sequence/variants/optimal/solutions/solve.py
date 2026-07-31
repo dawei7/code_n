@@ -1,0 +1,28 @@
+def solve(word1: str, word2: str) -> list[int]:
+    source_length = len(word1)
+    target_length = len(word2)
+    suffix_matches = [0] * (source_length + 1)
+    matched = 0
+
+    for index in range(source_length - 1, -1, -1):
+        if matched < target_length and word1[index] == word2[target_length - matched - 1]:
+            matched += 1
+        suffix_matches[index] = matched
+
+    answer = []
+    target_index = 0
+    mismatch_available = True
+
+    for index, character in enumerate(word1):
+        if target_index == target_length:
+            break
+
+        if character == word2[target_index]:
+            answer.append(index)
+            target_index += 1
+        elif mismatch_available and suffix_matches[index + 1] >= target_length - target_index - 1:
+            answer.append(index)
+            target_index += 1
+            mismatch_available = False
+
+    return answer if target_index == target_length else []

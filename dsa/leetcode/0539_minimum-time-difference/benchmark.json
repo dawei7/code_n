@@ -10,7 +10,7 @@
       "visible": false,
       "size": 32,
       "input": {
-        "time_points": [
+        "timePoints": [
           "00:00",
           "00:01",
           "00:02",
@@ -59,7 +59,7 @@
       "visible": false,
       "size": 128,
       "input": {
-        "time_points": [
+        "timePoints": [
           "00:00",
           "00:01",
           "00:02",
@@ -204,7 +204,7 @@
       "visible": false,
       "size": 512,
       "input": {
-        "time_points": [
+        "timePoints": [
           "00:00",
           "00:01",
           "00:02",

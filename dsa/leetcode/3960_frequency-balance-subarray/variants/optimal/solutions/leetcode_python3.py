@@ -24,9 +24,7 @@ class Solution:
 
                 new_frequency = old_frequency + 1
                 counts[value] = new_frequency
-                frequency_counts[new_frequency] = (
-                    frequency_counts.get(new_frequency, 0) + 1
-                )
+                frequency_counts[new_frequency] = frequency_counts.get(new_frequency, 0) + 1
 
                 if len(counts) == 1:
                     answer = max(answer, right - left + 1)

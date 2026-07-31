@@ -48,12 +48,7 @@ class Solution:
                 left_node = left_bit.bit_length() - 1
                 unused_left -= left_bit
 
-                unused_right = (
-                    adjacency[right_endpoint]
-                    & ~mask
-                    & label_masks[label[left_node]]
-                    & ~left_bit
-                )
+                unused_right = adjacency[right_endpoint] & ~mask & label_masks[label[left_node]] & ~left_bit
                 while unused_right:
                     right_bit = unused_right & -unused_right
                     right_node = right_bit.bit_length() - 1

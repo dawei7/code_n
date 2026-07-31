@@ -8,10 +8,7 @@ class Solution:
             counts_b[ord(character) - ord("a")] += 1
 
         total = len(a) + len(b)
-        answer = total - max(
-            counts_a[index] + counts_b[index]
-            for index in range(26)
-        )
+        answer = total - max(counts_a[index] + counts_b[index] for index in range(26))
 
         prefix_a = 0
         prefix_b = 0

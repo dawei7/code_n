@@ -16,5 +16,4 @@ WHERE NOT EXISTS (
     FROM Likes AS own
     WHERE own.user_id = 1
       AND own.page_id = likes.page_id
-)
-ORDER BY recommended_page;
+);

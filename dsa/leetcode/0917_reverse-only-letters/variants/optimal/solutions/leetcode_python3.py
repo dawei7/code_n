@@ -15,4 +15,3 @@ class Solution:
                 right -= 1
 
         return "".join(characters)
-

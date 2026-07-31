@@ -1,5 +1,5 @@
 class Solution:
-    def expTree(self, s: str) -> 'Node':
+    def expTree(self, s: str) -> "Node":
         nodes = []
         operators = []
         precedence = {"+": 1, "-": 1, "*": 2, "/": 2}
@@ -20,11 +20,7 @@ class Solution:
                     combine()
                 operators.pop()
             else:
-                while (
-                    operators
-                    and operators[-1] != "("
-                    and precedence[operators[-1]] >= precedence[token]
-                ):
+                while operators and operators[-1] != "(" and precedence[operators[-1]] >= precedence[token]:
                     combine()
                 operators.append(token)
 

@@ -10,7 +10,7 @@
       "visible": false,
       "size": 32,
       "input": {
-        "time_series": [
+        "timeSeries": [
           0,
           32,
           64,
@@ -60,7 +60,7 @@
       "visible": false,
       "size": 128,
       "input": {
-        "time_series": [
+        "timeSeries": [
           0,
           128,
           256,
@@ -206,7 +206,7 @@
       "visible": false,
       "size": 512,
       "input": {
-        "time_series": [
+        "timeSeries": [
           0,
           512,
           1024,

@@ -34,4 +34,3 @@ class Solution:
             current = following
 
         return sum(map(sum, current))
-

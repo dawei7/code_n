@@ -12,7 +12,7 @@ A strictly increasing positive integer is determined by choosing a nonempty subs
 
 **Count good digit sums below one bound**
 
-For a nonnegative bound, write its digits from most significant to least significant. Maintain a map from `(tight, digit_sum)` to the number of prefixes in that state. For the next position, try every digit allowed by `tight`, add its value to the sum, and accumulate the resulting state in a fresh map. After the last position, add the counts of precisely those states whose digit sum is good.
+For a positive bound, write its digits from most significant to least significant. A memoized function stores `(index, tight, digit_sum)`. At the current position, try every digit through the tight upper limit, add it to the running sum, and recurse to the next position with the updated tight flag. At the end, return one exactly when the accumulated digit sum belongs to the good-sum set.
 
 Leading zeroes in this fixed-width representation do not change a digit sum, so they require no separate started flag. The all-zero representation contributes nothing because `0` is absent from the good-sum set. Prefix subtraction therefore counts $A$ in `[l,r]` as `count_sum_good(r) - count_sum_good(l - 1)`.
 

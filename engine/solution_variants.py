@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from engine.languages import language_extension, normalize_language
+from engine.languages import app_solution_filename, normalize_language
 
 
 VARIANT_KINDS = {"optimal", "simplified", "alternative"}
@@ -277,8 +277,7 @@ def validate_solution_variants(
 
         solution_paths: dict[str, Path] = {}
         for language in supported_languages:
-            extension = language_extension(language)
-            candidate = variant_root / "solutions" / f"{language}.{extension}"
+            candidate = variant_root / "solutions" / app_solution_filename(language)
             if candidate.is_file():
                 solution_paths[language] = candidate
         if primary_language not in solution_paths:

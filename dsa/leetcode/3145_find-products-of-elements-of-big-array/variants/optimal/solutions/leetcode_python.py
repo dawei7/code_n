@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def findProductsOfElements(self, queries: List[List[int]]) -> List[int]:
         def statistics(number: int) -> tuple[int, int]:

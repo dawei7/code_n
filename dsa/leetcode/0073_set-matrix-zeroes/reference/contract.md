@@ -6,4 +6,4 @@
 
 **Return value**
 
-The native LeetCode method mutates `matrix` in place and returns no value. The app adapter returns the mutated matrix for direct validation.
+Return `None`; mutate `matrix` in place so every row and column containing an original zero is filled with zeroes.

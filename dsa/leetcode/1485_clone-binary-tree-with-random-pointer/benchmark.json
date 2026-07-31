@@ -10,7 +10,7 @@
       "visible": false,
       "size": 16,
       "input": {
-        "nodes": [
+        "root": [
           [
             1,
             11
@@ -143,6 +143,7 @@
           6
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "benchmark",
         "scaling",
@@ -157,7 +158,7 @@
       "visible": false,
       "size": 64,
       "input": {
-        "nodes": [
+        "root": [
           [
             1,
             11
@@ -674,6 +675,7 @@
           38
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "benchmark",
         "scaling",
@@ -688,7 +690,7 @@
       "visible": false,
       "size": 256,
       "input": {
-        "nodes": [
+        "root": [
           [
             1,
             11
@@ -2741,6 +2743,7 @@
           230
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "benchmark",
         "scaling",

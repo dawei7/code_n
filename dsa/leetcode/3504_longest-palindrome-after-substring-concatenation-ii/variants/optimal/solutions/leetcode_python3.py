@@ -6,15 +6,9 @@ class Solution:
             left, right = 0, -1
 
             for center in range(length):
-                radius = (
-                    1
-                    if center > right
-                    else min(odd[left + right - center], right - center + 1)
-                )
+                radius = 1 if center > right else min(odd[left + right - center], right - center + 1)
                 while (
-                    center - radius >= 0
-                    and center + radius < length
-                    and text[center - radius] == text[center + radius]
+                    center - radius >= 0 and center + radius < length and text[center - radius] == text[center + radius]
                 ):
                     radius += 1
                 odd[center] = radius
@@ -25,11 +19,7 @@ class Solution:
             even = [0] * length
             left, right = 0, -1
             for center in range(length):
-                radius = (
-                    0
-                    if center > right
-                    else min(even[left + right - center + 1], right - center + 1)
-                )
+                radius = 0 if center > right else min(even[left + right - center + 1], right - center + 1)
                 while (
                     center - radius - 1 >= 0
                     and center + radius < length

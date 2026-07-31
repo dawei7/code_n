@@ -7,15 +7,15 @@ class Solution:
         is_reversed = False
 
         for character in s:
-            if character == '*':
+            if character == "*":
                 if result:
                     if is_reversed:
                         result.popleft()
                     else:
                         result.pop()
-            elif character == '#':
+            elif character == "#":
                 result.extend(list(result))
-            elif character == '%':
+            elif character == "%":
                 is_reversed = not is_reversed
             elif is_reversed:
                 result.appendleft(character)
@@ -23,5 +23,5 @@ class Solution:
                 result.append(character)
 
         if is_reversed:
-            return ''.join(reversed(result))
-        return ''.join(result)
+            return "".join(reversed(result))
+        return "".join(result)

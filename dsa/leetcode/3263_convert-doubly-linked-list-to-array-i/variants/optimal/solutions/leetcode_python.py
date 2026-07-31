@@ -9,7 +9,7 @@ class Node:
 
 
 class Solution:
-    def toArray(self, root: 'Optional[Node]') -> List[int]:
+    def toArray(self, root: "Optional[Node]") -> List[int]:
         values = []
         current = root
         while current is not None:

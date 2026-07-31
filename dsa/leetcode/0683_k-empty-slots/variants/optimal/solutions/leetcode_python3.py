@@ -18,4 +18,3 @@ class Solution:
             index += 1
 
         return -1 if answer > len(bulbs) else answer
-

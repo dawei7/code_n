@@ -11,15 +11,11 @@ class Solution:
             for (left, right), total in current.items():
                 append_key = (left, last)
                 append_length = total + length - (right == first)
-                next_states[append_key] = min(
-                    next_states.get(append_key, float("inf")), append_length
-                )
+                next_states[append_key] = min(next_states.get(append_key, float("inf")), append_length)
 
                 prepend_key = (first, right)
                 prepend_length = total + length - (last == left)
-                next_states[prepend_key] = min(
-                    next_states.get(prepend_key, float("inf")), prepend_length
-                )
+                next_states[prepend_key] = min(next_states.get(prepend_key, float("inf")), prepend_length)
 
             current = next_states
 

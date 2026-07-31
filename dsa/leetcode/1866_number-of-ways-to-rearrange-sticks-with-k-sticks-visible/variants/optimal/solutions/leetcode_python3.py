@@ -7,10 +7,7 @@ class Solution:
         for stick_count in range(1, n + 1):
             current = [0] * (k + 1)
             for visible in range(1, min(stick_count, k) + 1):
-                current[visible] = (
-                    previous[visible - 1]
-                    + (stick_count - 1) * previous[visible]
-                ) % modulo
+                current[visible] = (previous[visible - 1] + (stick_count - 1) * previous[visible]) % modulo
             previous = current
 
         return previous[k]

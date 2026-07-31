@@ -14,9 +14,7 @@ class Solution:
         for mouse in range(n):
             for cat in range(1, n):
                 degree[mouse][cat][MOUSE_TURN] = len(graph[mouse])
-                degree[mouse][cat][CAT_TURN] = sum(
-                    neighbor != 0 for neighbor in graph[cat]
-                )
+                degree[mouse][cat][CAT_TURN] = sum(neighbor != 0 for neighbor in graph[cat])
 
         queue = deque()
         for cat in range(1, n):
@@ -33,16 +31,9 @@ class Solution:
             mouse, cat, turn, winner = queue.popleft()
 
             if turn == MOUSE_TURN:
-                parents = (
-                    (mouse, previous_cat, CAT_TURN)
-                    for previous_cat in graph[cat]
-                    if previous_cat != 0
-                )
+                parents = ((mouse, previous_cat, CAT_TURN) for previous_cat in graph[cat] if previous_cat != 0)
             else:
-                parents = (
-                    (previous_mouse, cat, MOUSE_TURN)
-                    for previous_mouse in graph[mouse]
-                )
+                parents = ((previous_mouse, cat, MOUSE_TURN) for previous_mouse in graph[mouse])
 
             for parent_mouse, parent_cat, parent_turn in parents:
                 if outcome[parent_mouse][parent_cat][parent_turn] != DRAW:
@@ -60,4 +51,3 @@ class Solution:
                     queue.append((parent_mouse, parent_cat, parent_turn, winner))
 
         return outcome[1][2][MOUSE_TURN]
-

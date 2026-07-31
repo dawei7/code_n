@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def criticalConnections(
-        self, n: int, connections: List[List[int]]
-    ) -> List[List[int]]:
+    def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
         adjacency = [[] for _ in range(n)]
         for first, second in connections:
             adjacency[first].append(second)

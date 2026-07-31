@@ -15,7 +15,5 @@ class Solution:
                 if width > shelfWidth:
                     break
                 shelf_height = max(shelf_height, height)
-                minimum_height[end] = min(
-                    minimum_height[end], minimum_height[start] + shelf_height
-                )
+                minimum_height[end] = min(minimum_height[end], minimum_height[start] + shelf_height)
         return minimum_height[book_count]

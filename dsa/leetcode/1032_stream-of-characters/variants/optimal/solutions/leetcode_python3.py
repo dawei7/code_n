@@ -23,4 +23,3 @@ class StreamChecker:
             if "$" in node:
                 return True
         return False
-

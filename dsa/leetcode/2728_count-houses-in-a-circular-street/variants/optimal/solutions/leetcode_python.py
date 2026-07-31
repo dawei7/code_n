@@ -1,5 +1,5 @@
 class Solution:
-    def houseCount(self, street: Optional['Street'], k: int) -> int:
+    def houseCount(self, street: Optional["Street"], k: int) -> int:
         for _ in range(k):
             street.closeDoor()
             street.moveRight()

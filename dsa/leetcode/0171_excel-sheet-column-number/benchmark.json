@@ -10,7 +10,7 @@
       "visible": false,
       "size": 1,
       "input": {
-        "column_title": "A"
+        "columnTitle": "A"
       },
       "expected": 1,
       "tags": [
@@ -25,7 +25,7 @@
       "visible": false,
       "size": 4,
       "input": {
-        "column_title": "AAAA"
+        "columnTitle": "AAAA"
       },
       "expected": 18279,
       "tags": [
@@ -40,7 +40,7 @@
       "visible": false,
       "size": 7,
       "input": {
-        "column_title": "AAAAAAA"
+        "columnTitle": "AAAAAAA"
       },
       "expected": 321272407,
       "tags": [

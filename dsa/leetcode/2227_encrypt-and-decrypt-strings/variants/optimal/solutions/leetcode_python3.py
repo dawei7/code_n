@@ -10,11 +10,7 @@ class Encrypter:
         dictionary: List[str],
     ):
         self.mapping = dict(zip(keys, values))
-        self.encrypted_dictionary = Counter(
-            encrypted
-            for word in dictionary
-            if (encrypted := self.encrypt(word))
-        )
+        self.encrypted_dictionary = Counter(encrypted for word in dictionary if (encrypted := self.encrypt(word)))
 
     def encrypt(self, word1: str) -> str:
         try:

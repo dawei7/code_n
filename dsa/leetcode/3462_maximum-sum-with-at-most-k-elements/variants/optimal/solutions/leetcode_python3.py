@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def maxSum(
-        self, grid: List[List[int]], limits: List[int], k: int
-    ) -> int:
+    def maxSum(self, grid: List[List[int]], limits: List[int], k: int) -> int:
         heap = []
 
         for row_index, row in enumerate(grid):

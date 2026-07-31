@@ -2,8 +2,10 @@
 
 **Inputs**
 
-- `root`: The BST root, encoded in app cases as a level-order array.
+- `root`: The BST's `TreeNode` root, or `null`.
 - `operations`: A sequence beginning with `BSTIterator`, followed by `next` and `hasNext` calls.
+
+JSON cases encode `root` as a level-order array. The runner reconstructs the tree before passing it to `BSTIterator`.
 
 **Return value**
 

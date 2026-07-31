@@ -21,11 +21,7 @@ class Solution:
                 (row, col - 1),
                 (row, col + 1),
             ):
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_col < cols
-                    and distances[next_row][next_col] == -1
-                ):
+                if 0 <= next_row < rows and 0 <= next_col < cols and distances[next_row][next_col] == -1:
                     distances[next_row][next_col] = distances[row][col] + 1
                     queue.append((next_row, next_col))
         return distances

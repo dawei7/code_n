@@ -3,9 +3,7 @@ from typing import Dict, List
 
 class SparseVector:
     def __init__(self, nums: List[int]):
-        self.values: Dict[int, int] = {
-            index: value for index, value in enumerate(nums) if value != 0
-        }
+        self.values: Dict[int, int] = {index: value for index, value in enumerate(nums) if value != 0}
 
     def dotProduct(self, vec: "SparseVector") -> int:
         smaller = self.values

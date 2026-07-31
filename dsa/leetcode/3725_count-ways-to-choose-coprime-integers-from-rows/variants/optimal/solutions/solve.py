@@ -1,0 +1,22 @@
+def solve(mat: list[list[int]]) -> int:
+    modulo = 1_000_000_007
+    maximum = max(map(max, mat))
+    divisible_ways = [1] * (maximum + 1)
+
+    for row in mat:
+        frequency = [0] * (maximum + 1)
+        for value in row:
+            frequency[value] += 1
+
+        for divisor in range(1, maximum + 1):
+            divisible_count = sum(frequency[multiple] for multiple in range(divisor, maximum + 1, divisor))
+            divisible_ways[divisor] = (divisible_ways[divisor] * divisible_count) % modulo
+
+    exact_gcd = [0] * (maximum + 1)
+    for divisor in range(maximum, 0, -1):
+        exact_gcd[divisor] = divisible_ways[divisor]
+        for multiple in range(divisor * 2, maximum + 1, divisor):
+            exact_gcd[divisor] -= exact_gcd[multiple]
+        exact_gcd[divisor] %= modulo
+
+    return exact_gcd[1]

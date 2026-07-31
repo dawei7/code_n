@@ -7,7 +7,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "head": [
+        "root": [
           1,
           2,
           3,
@@ -37,7 +37,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "head": [
+        "root": [
           2,
           2,
           2,
@@ -63,7 +63,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "head": [
+        "root": [
           3,
           2,
           3,
@@ -91,7 +91,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "head": [
+        "root": [
           1
         ]
       },
@@ -109,7 +109,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "head": [
+        "root": [
           50
         ]
       },
@@ -127,7 +127,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "head": [
+        "root": [
           7,
           19
         ]
@@ -147,7 +147,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "head": [
+        "root": [
           1,
           2,
           3,
@@ -183,7 +183,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "head": [
+        "root": [
           10,
           9,
           8,
@@ -219,7 +219,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "head": [
+        "root": [
           1,
           50,
           1,
@@ -251,7 +251,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "head": [
+        "root": [
           8,
           8,
           3,
@@ -285,7 +285,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "head": [
+        "root": [
           5,
           12,
           23,
@@ -313,7 +313,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "head": [
+        "root": [
           1,
           18,
           35,

@@ -2,14 +2,14 @@ from typing import Optional
 
 
 class Solution:
-    def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
+    def treeToDoublyList(self, root: "Optional[Node]") -> "Optional[Node]":
         if root is None:
             return None
 
         first = None
         previous = None
 
-        def inorder(node: 'Optional[Node]') -> None:
+        def inorder(node: "Optional[Node]") -> None:
             nonlocal first, previous
             if node is None:
                 return

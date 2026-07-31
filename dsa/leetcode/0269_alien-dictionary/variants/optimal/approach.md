@@ -5,7 +5,7 @@ Create a graph node for every observed character. For each adjacent word pair, t
 
 **Emit characters whose prerequisites are satisfied**
 
-Track indegrees and repeatedly remove zero-indegree characters, decrementing their outgoing neighbors. A min-heap makes the app reference deterministic when several valid choices exist.
+Track indegrees and repeatedly remove zero-indegree characters from a queue, decrementing their outgoing neighbors. When several characters are available, any of their valid topological orders satisfies the contract.
 
 Every emitted character currently has no unmet predecessor. Removing it deletes exactly its satisfied outgoing constraints, so remaining indegrees count precisely the unmet prerequisites.
 
@@ -14,7 +14,7 @@ Every emitted character currently has no unmet predecessor. Removing it deletes 
 At the first unequal characters of adjacent words, the earlier word proves one directed precedence relation; later characters cannot add constraints because lexicographic comparison is already decided. If no difference exists, a longer word preceding its own prefix is impossible. For all other inputs, Kahn's algorithm emits only characters whose predecessors are already placed, so its complete result satisfies every edge. Failure to emit all nodes means the remaining constraints contain a cycle and no alphabet order exists.
 
 ## Complexity detail
-Adjacent comparisons inspect at most `c` total relevant characters and graph processing is $O(a + e)$ apart from the small deterministic heap factor. Graph and indegree storage use $O(a + e)$ space.
+Adjacent comparisons inspect at most `c` total relevant characters, and graph processing is $O(a + e)$. Graph, indegree, and queue storage use $O(a + e)$ space.
 
 ## Alternatives and edge cases
 - **Compare every word pair:** adds unnecessary quadratic work.

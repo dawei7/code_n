@@ -1,0 +1,63 @@
+from collections import defaultdict
+
+
+def solve(xCoord: list[int], yCoord: list[int]) -> int:
+    points = list(zip(xCoord, yCoord))
+    columns = defaultdict(list)
+    for x, y in points:
+        columns[x].append(y)
+
+    segment_columns = defaultdict(list)
+    for x, ys in columns.items():
+        ys.sort()
+        for lower, upper in zip(ys, ys[1:]):
+            segment_columns[lower, upper].append(x)
+
+    candidates = []
+    for (lower, upper), xs in segment_columns.items():
+        xs.sort()
+        for left, right in zip(xs, xs[1:]):
+            candidates.append((left, right, lower, upper))
+
+    if not candidates:
+        return -1
+
+    y_rank = {value: index + 1 for index, value in enumerate(sorted(set(yCoord)))}
+    size = len(y_rank)
+    tree = [0] * (size + 1)
+
+    def add(index: int) -> None:
+        while index <= size:
+            tree[index] += 1
+            index += index & -index
+
+    def prefix(index: int) -> int:
+        total = 0
+        while index:
+            total += tree[index]
+            index -= index & -index
+        return total
+
+    def range_count(lower: int, upper: int) -> int:
+        return prefix(y_rank[upper]) - prefix(y_rank[lower] - 1)
+
+    events = []
+    for query_index, (left, right, lower, upper) in enumerate(candidates):
+        events.append((right, query_index, 1, lower, upper))
+        events.append((left - 1, query_index, -1, lower, upper))
+    events.sort()
+
+    sorted_points = sorted(points)
+    point_index = 0
+    counts = [0] * len(candidates)
+    for limit, query_index, sign, lower, upper in events:
+        while point_index < len(sorted_points) and sorted_points[point_index][0] <= limit:
+            add(y_rank[sorted_points[point_index][1]])
+            point_index += 1
+        counts[query_index] += sign * range_count(lower, upper)
+
+    answer = -1
+    for count, (left, right, lower, upper) in zip(counts, candidates):
+        if count == 4:
+            answer = max(answer, (right - left) * (upper - lower))
+    return answer

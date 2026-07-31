@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maxSubgraphScore(
-        self, n: int, edges: List[List[int]], good: List[int]
-    ) -> List[int]:
+    def maxSubgraphScore(self, n: int, edges: List[List[int]], good: List[int]) -> List[int]:
         graph = [[] for _ in range(n)]
         for first, second in edges:
             graph[first].append(second)

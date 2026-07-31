@@ -17,16 +17,10 @@ class Solution:
                     build_row(next_position, seams | (1 << next_position))
 
         build_row(0, 0)
-        compatible = [
-            [previous for previous, other in enumerate(row_masks) if mask & other == 0]
-            for mask in row_masks
-        ]
+        compatible = [[previous for previous, other in enumerate(row_masks) if mask & other == 0] for mask in row_masks]
 
         ways = [1] * len(row_masks)
         for _ in range(1, height):
-            ways = [
-                sum(ways[previous] for previous in predecessors) % modulus
-                for predecessors in compatible
-            ]
+            ways = [sum(ways[previous] for previous in predecessors) % modulus for predecessors in compatible]
 
         return sum(ways) % modulus

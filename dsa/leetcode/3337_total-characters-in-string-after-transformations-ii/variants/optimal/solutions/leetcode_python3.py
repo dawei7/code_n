@@ -14,9 +14,7 @@ class Solution:
                     if left_value == 0:
                         continue
                     for destination, right_value in enumerate(right[middle]):
-                        product_row[destination] = (
-                            product_row[destination] + left_value * right_value
-                        ) % mod
+                        product_row[destination] = (product_row[destination] + left_value * right_value) % mod
             return product
 
         def multiply_vector(vector, matrix):
@@ -25,9 +23,7 @@ class Solution:
                 if count == 0:
                     continue
                 for destination, ways in enumerate(matrix[source]):
-                    product[destination] = (
-                        product[destination] + count * ways
-                    ) % mod
+                    product[destination] = (product[destination] + count * ways) % mod
             return product
 
         transition = [[0] * alphabet_size for _ in range(alphabet_size)]

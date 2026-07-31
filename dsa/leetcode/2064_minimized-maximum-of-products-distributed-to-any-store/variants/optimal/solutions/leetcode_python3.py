@@ -8,9 +8,7 @@ class Solution:
 
         while low < high:
             limit = (low + high) // 2
-            stores_needed = sum(
-                (quantity + limit - 1) // limit for quantity in quantities
-            )
+            stores_needed = sum((quantity + limit - 1) // limit for quantity in quantities)
             if stores_needed <= n:
                 high = limit
             else:

@@ -13,8 +13,6 @@ class Solution:
         for index in range(5):
             answer += abs(frequencies[index] - frequencies[9 - index])
         for index in range(13):
-            answer += abs(
-                frequencies[10 + index] - frequencies[35 - index]
-            )
+            answer += abs(frequencies[10 + index] - frequencies[35 - index])
 
         return answer

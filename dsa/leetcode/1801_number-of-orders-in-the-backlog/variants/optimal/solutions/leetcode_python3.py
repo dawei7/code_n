@@ -28,7 +28,4 @@ class Solution:
                 if amount:
                     heappush(sells, (price, amount))
 
-        return (
-            sum(amount for _, amount in buys)
-            + sum(amount for _, amount in sells)
-        ) % 1_000_000_007
+        return (sum(amount for _, amount in buys) + sum(amount for _, amount in sells)) % 1_000_000_007

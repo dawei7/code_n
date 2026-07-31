@@ -8,7 +8,7 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def findTilt(self, root: Optional['TreeNode']) -> int:
+    def findTilt(self, root: Optional["TreeNode"]) -> int:
         if root is None:
             return 0
 
@@ -40,4 +40,3 @@ class Solution:
                         parent[3] = subtree_sum
 
         return total_tilt
-

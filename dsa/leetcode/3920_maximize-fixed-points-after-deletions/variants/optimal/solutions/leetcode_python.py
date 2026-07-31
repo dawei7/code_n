@@ -3,11 +3,7 @@ from bisect import bisect_left
 
 class Solution:
     def maxFixedPoints(self, nums: list[int]) -> int:
-        points = sorted(
-            (index - value, value)
-            for index, value in enumerate(nums)
-            if value <= index
-        )
+        points = sorted((index - value, value) for index, value in enumerate(nums) if value <= index)
 
         tails = []
         for _, value in points:

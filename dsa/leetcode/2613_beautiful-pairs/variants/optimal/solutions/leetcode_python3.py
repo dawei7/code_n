@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def beautifulPair(self, nums1: List[int], nums2: List[int]) -> List[int]:
         n = len(nums1)
@@ -24,9 +25,7 @@ class Solution:
             tree[position] = better(tree[position], index, sign)
             position //= 2
             while position:
-                tree[position] = better(
-                    tree[2 * position], tree[2 * position + 1], sign
-                )
+                tree[position] = better(tree[2 * position], tree[2 * position + 1], sign)
                 position //= 2
 
         def query(left: int, right: int, sign: int) -> int:

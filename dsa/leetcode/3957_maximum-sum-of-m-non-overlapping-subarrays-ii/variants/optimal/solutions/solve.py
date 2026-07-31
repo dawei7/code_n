@@ -1,0 +1,84 @@
+from collections import deque
+
+
+def solve(nums: list[int], m: int, l: int, r: int) -> int:
+    n = len(nums)
+    prefix = [0] * (n + 1)
+    positive_sum = 0
+    for index, value in enumerate(nums):
+        prefix[index + 1] = prefix[index] + value
+        positive_sum += max(value, 0)
+
+    minimum_prefixes = deque()
+    best_single = -(10**30)
+    for end in range(1, n + 1):
+        start = end - l
+        if start >= 0:
+            while minimum_prefixes and prefix[minimum_prefixes[-1]] >= prefix[start]:
+                minimum_prefixes.pop()
+            minimum_prefixes.append(start)
+
+        while minimum_prefixes and minimum_prefixes[0] < end - r:
+            minimum_prefixes.popleft()
+
+        if minimum_prefixes:
+            best_single = max(
+                best_single,
+                prefix[end] - prefix[minimum_prefixes[0]],
+            )
+
+    def penalized(penalty: int) -> tuple[int, int]:
+        values = [0] * (n + 1)
+        counts = [0] * (n + 1)
+        candidates = deque()
+
+        for end in range(1, n + 1):
+            start = end - l
+            if start >= 0:
+                new_key = (values[start] - prefix[start], -counts[start])
+                while candidates:
+                    previous_start = candidates[-1]
+                    previous_key = (
+                        values[previous_start] - prefix[previous_start],
+                        -counts[previous_start],
+                    )
+                    if previous_key > new_key:
+                        break
+                    candidates.pop()
+                candidates.append(start)
+
+            while candidates and candidates[0] < end - r:
+                candidates.popleft()
+
+            values[end] = values[end - 1]
+            counts[end] = counts[end - 1]
+            if candidates:
+                previous_start = candidates[0]
+                candidate_value = prefix[end] - penalty + values[previous_start] - prefix[previous_start]
+                candidate_count = counts[previous_start] + 1
+                if (candidate_value, -candidate_count) > (
+                    values[end],
+                    -counts[end],
+                ):
+                    values[end] = candidate_value
+                    counts[end] = candidate_count
+
+        return values[n], counts[n]
+
+    adjusted_value, selected_count = penalized(0)
+    if selected_count <= m:
+        if selected_count == 0:
+            return best_single
+        return adjusted_value
+
+    low = 1
+    high = positive_sum + 1
+    while low < high:
+        penalty = (low + high) // 2
+        if penalized(penalty)[1] <= m:
+            high = penalty
+        else:
+            low = penalty + 1
+
+    adjusted_value, _ = penalized(low)
+    return max(best_single, adjusted_value + low * m)

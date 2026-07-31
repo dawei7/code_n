@@ -31,10 +31,7 @@ class Solution:
         for index in range(len(nums) - 1, -1, -1):
             prefix_nums -= nums[index]
             prefix_cost -= cost[index]
-            while (
-                len(lines) >= 2
-                and value(lines[0], prefix_cost) >= value(lines[1], prefix_cost)
-            ):
+            while len(lines) >= 2 and value(lines[0], prefix_cost) >= value(lines[1], prefix_cost):
                 lines.popleft()
             answer = value(lines[0], prefix_cost)
             add_line(

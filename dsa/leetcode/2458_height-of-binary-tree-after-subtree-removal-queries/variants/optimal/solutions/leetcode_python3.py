@@ -9,7 +9,9 @@ from typing import List, Optional
 #         self.right = right
 class Solution:
     def treeQueries(
-        self, root: Optional[TreeNode], queries: List[int]  # noqa: F821
+        self,
+        root: Optional[TreeNode],
+        queries: List[int],  # noqa: F821
     ) -> List[int]:
         heights = {}
         stack = [(root, False)]

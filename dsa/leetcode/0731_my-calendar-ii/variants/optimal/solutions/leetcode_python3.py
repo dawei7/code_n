@@ -50,13 +50,16 @@ class MyCalendarTwo:
 
     def book(self, start: int, end: int) -> bool:
         query_right = end - 1
-        if self._query(
-            self.root,
-            self.DOMAIN_LEFT,
-            self.DOMAIN_RIGHT,
-            start,
-            query_right,
-        ) >= 2:
+        if (
+            self._query(
+                self.root,
+                self.DOMAIN_LEFT,
+                self.DOMAIN_RIGHT,
+                start,
+                query_right,
+            )
+            >= 2
+        ):
             return False
         self._add(
             self.root,

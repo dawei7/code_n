@@ -66,12 +66,7 @@ class _SlidingMedian:
 
     def cost(self) -> int:
         median = -self.lower[0]
-        return (
-            median * self.lower_size
-            - self.lower_sum
-            + self.upper_sum
-            - median * self.upper_size
-        )
+        return median * self.lower_size - self.lower_sum + self.upper_sum - median * self.upper_size
 
 
 class Solution:

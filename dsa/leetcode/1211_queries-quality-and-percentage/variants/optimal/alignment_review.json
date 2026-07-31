@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "1f22cb9be127e9ff53cbbdf741e0f8ebac54308ec519b6524590875f0b471141",
+    "native_sha256": "16ca088c9db6dda2093205afcaa8d06a1ec9557cf7dbeecfb0502b9dc7c972aa",
+    "solution_variants_sha256": "9d5251c4f763e66749ad0ac27dcba28941c0ffa4f5f0cfb46b926c80d28d40d2",
+    "approach_sha256": "1844b51ba95540f6805f5cfb8fa85351516e409a03c1abf33050d796b132d927"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "non-integral rating division",
+      "native": "MySQL evaluates rating / position with its native division semantics.",
+      "app": "SQLite promotes the numerator with 1.0 * rating / position.",
+      "rationale": "SQLite divides two integer operands as integers, which would truncate the quality ratio. The explicit real promotion preserves MySQL's value; the poor-query expression, both aggregates, rounding, aliases, and grouping otherwise match exactly."
+    }
+  ]
+}

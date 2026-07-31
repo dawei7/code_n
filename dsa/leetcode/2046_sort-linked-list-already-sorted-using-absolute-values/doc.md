@@ -35,8 +35,8 @@ Let $N$ be the number of nodes.
 
 **Return value**
 
-- The head of the same nodes relinked in non-decreasing order by their signed
-  values.
+- Return the `ListNode` head of the same nodes relinked in non-decreasing order
+  by their signed values.
 
 ### Examples
 

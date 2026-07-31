@@ -17,4 +17,3 @@ class Solution:
                 seen.add(prefix)
 
         return answer
-

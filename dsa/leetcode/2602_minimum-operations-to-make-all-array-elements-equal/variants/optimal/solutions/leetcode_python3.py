@@ -18,4 +18,3 @@ class Solution:
             answer.append(left_cost + right_cost)
 
         return answer
-

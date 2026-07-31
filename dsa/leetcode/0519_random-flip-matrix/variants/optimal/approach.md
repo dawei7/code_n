@@ -15,6 +15,8 @@ There is no physical array of all cells. Each flip creates at most one active re
 
 The virtual active prefix contains every unflipped flat index exactly once: initially it is the identity sequence, and each flip swaps the chosen value with the last active value before shrinking the prefix. A uniform ticket therefore selects each remaining cell with probability `1 / remaining`. Removal prevents repeats until reset, while reset reestablishes the initial invariant.
 
+LeetCode supplies `randrange(remaining)` through the language runtime and calls `flip` or `reset` on a persistent object. The offline app receives unit-interval `random_values` and the operation trace explicitly, derives the same integer tickets, and runs the same flip and reset statements deterministically.
+
 ## Complexity detail
 For `q` adapter operations, expected hash-map work is $O(q)$ time; each native flip and reset is expected $O(1)$. At most one remapping is retained per flip since the latest reset, so space is $O(f)$ for `f` currently flipped cells rather than $O(rows \cdot cols)$.
 

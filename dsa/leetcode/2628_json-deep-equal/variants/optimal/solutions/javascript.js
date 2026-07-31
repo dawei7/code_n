@@ -1,4 +1,9 @@
-function areDeeplyEqual(o1, o2) {
+/**
+ * @param {null|boolean|number|string|Array|Object} o1
+ * @param {null|boolean|number|string|Array|Object} o2
+ * @return {boolean}
+ */
+var areDeeplyEqual = function(o1, o2) {
     if (o1 === o2) return true;
     if (o1 === null || o2 === null || typeof o1 !== 'object' || typeof o2 !== 'object') {
         return false;
@@ -23,7 +28,7 @@ function areDeeplyEqual(o1, o2) {
         }
     }
     return true;
-}
+};
 
 function solve(o1, o2) {
     return areDeeplyEqual(o1, o2);

@@ -17,19 +17,14 @@ class Solution:
         parent_edge_chosen = [0] * n
 
         for node in reversed(order):
-            baseline = sum(
-                parent_edge_free[child]
-                for child, _ in children[node]
-            )
+            baseline = sum(parent_edge_free[child] for child, _ in children[node])
             parent_edge_chosen[node] = baseline
 
             best_gain = 0
             for child, weight in children[node]:
                 best_gain = max(
                     best_gain,
-                    weight
-                    + parent_edge_chosen[child]
-                    - parent_edge_free[child],
+                    weight + parent_edge_chosen[child] - parent_edge_free[child],
                 )
             parent_edge_free[node] = baseline + best_gain
 

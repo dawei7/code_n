@@ -8,7 +8,4 @@ class Solution:
                 if len(mismatches) > 2:
                     return False
 
-        return not mismatches or (
-            len(mismatches) == 2
-            and mismatches[0] == mismatches[1][::-1]
-        )
+        return not mismatches or (len(mismatches) == 2 and mismatches[0] == mismatches[1][::-1])

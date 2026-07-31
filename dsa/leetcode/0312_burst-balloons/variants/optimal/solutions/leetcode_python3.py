@@ -7,9 +7,7 @@ def _max_coins(nums: list[int]) -> int:
             right = left + width
             boundary_product = values[left] * values[right]
             best[left][right] = max(
-                best[left][last]
-                + boundary_product * values[last]
-                + best[last][right]
+                best[left][last] + boundary_product * values[last] + best[last][right]
                 for last in range(left + 1, right)
             )
     return best[0][size - 1]

@@ -8,10 +8,7 @@ class Solution:
         n = len(nums) // 2
         left = nums[:n]
         right = nums[n:]
-        right_sums = [
-            sorted(sum(group) for group in combinations(right, count))
-            for count in range(n + 1)
-        ]
+        right_sums = [sorted(sum(group) for group in combinations(right, count)) for count in range(n + 1)]
 
         total = sum(nums)
         answer = float("inf")

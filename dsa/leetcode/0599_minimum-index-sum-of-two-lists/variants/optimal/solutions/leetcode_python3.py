@@ -4,10 +4,7 @@ class Solution:
         list1: list[str],
         list2: list[str],
     ) -> list[str]:
-        first_indices = {
-            value: index
-            for index, value in enumerate(list1)
-        }
+        first_indices = {value: index for index, value in enumerate(list1)}
         best_sum = float("inf")
         answers = []
 
@@ -24,4 +21,3 @@ class Solution:
                 answers.append(value)
 
         return answers
-

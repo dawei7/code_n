@@ -39,11 +39,7 @@ class Solution:
         def clean_top():
             while top_min:
                 f, value, stamp = top_min[0]
-                if (
-                    side.get(value) is True
-                    and version[value] == stamp
-                    and frequency[value] == f
-                ):
+                if side.get(value) is True and version[value] == stamp and frequency[value] == f:
                     return
                 heappop(top_min)
 
@@ -51,11 +47,7 @@ class Solution:
             while rest_max:
                 negative_f, negative_value, stamp = rest_max[0]
                 value = -negative_value
-                if (
-                    side.get(value) is False
-                    and version[value] == stamp
-                    and frequency[value] == -negative_f
-                ):
+                if side.get(value) is False and version[value] == stamp and frequency[value] == -negative_f:
                     return
                 heappop(rest_max)
 

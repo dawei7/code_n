@@ -12,11 +12,7 @@ class Solution:
             for column, value in enumerate(values):
                 prefix[column + 1] = (prefix[column] + value) % modulo
             return [
-                (
-                    prefix[min(width, column + radius + 1)]
-                    - prefix[max(0, column - radius)]
-                )
-                % modulo
+                (prefix[min(width, column + radius + 1)] - prefix[max(0, column - radius)]) % modulo
                 if cell == "."
                 else 0
                 for column, cell in enumerate(row)

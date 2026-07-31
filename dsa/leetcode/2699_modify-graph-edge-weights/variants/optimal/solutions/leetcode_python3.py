@@ -2,7 +2,9 @@ from heapq import heappop, heappush
 
 
 class Solution:
-    def modifiedGraphEdges(self, n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
+    def modifiedGraphEdges(
+        self, n: int, edges: List[List[int]], source: int, destination: int, target: int
+    ) -> List[List[int]]:
         edges = [edge[:] for edge in edges]
         graph = [[] for _ in range(n)]
         for index, (u, v, _) in enumerate(edges):

@@ -3,15 +3,10 @@ from typing import List
 
 class Solution:
     def maxProfit(self, prices: List[int], strategy: List[int], k: int) -> int:
-        original = sum(
-            action * price for action, price in zip(strategy, prices)
-        )
+        original = sum(action * price for action, price in zip(strategy, prices))
         half = k // 2
-        gain = sum(
-            -strategy[index] * prices[index] for index in range(half)
-        ) + sum(
-            (1 - strategy[index]) * prices[index]
-            for index in range(half, k)
+        gain = sum(-strategy[index] * prices[index] for index in range(half)) + sum(
+            (1 - strategy[index]) * prices[index] for index in range(half, k)
         )
         best_gain = max(0, gain)
 

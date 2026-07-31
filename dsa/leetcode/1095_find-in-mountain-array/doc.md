@@ -23,7 +23,7 @@ Given `target` and a `MountainArray`, return the minimum index whose value equal
 **Inputs**
 
 - `target`: an integer to locate, with $0 \leq \texttt{target} \leq 10^9$.
-- `mountain_arr`: a mountain array of length $n$, where $3 \leq n \leq 10^4$ and every value lies in $[0,10^9]$. LeetCode exposes it through `get(index)` and `length()`; the app-local adapter receives the same values as a list.
+- `mountainArr`: a mountain array of length $n$, where $3 \leq n \leq 10^4$ and every value lies in $[0,10^9]$. LeetCode exposes it through `get(index)` and `length()`; the app-local adapter receives the same values as a list.
 
 **Return value**
 
@@ -33,12 +33,12 @@ The smallest index containing `target`, or `-1` if no such index exists.
 
 **Example 1**
 
-- Input: `target = 3, mountain_arr = [1, 2, 3, 4, 5, 3, 1]`
+- Input: `target = 3, mountainArr = [1, 2, 3, 4, 5, 3, 1]`
 - Output: `2`
 
 The target occurs on both slopes at indices 2 and 5, so the smaller index is required.
 
 **Example 2**
 
-- Input: `target = 3, mountain_arr = [0, 1, 2, 4, 2, 1]`
+- Input: `target = 3, mountainArr = [0, 1, 2, 4, 2, 1]`
 - Output: `-1`

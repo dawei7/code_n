@@ -10,7 +10,7 @@
       "visible": false,
       "size": 32,
       "input": {
-        "weights": [
+        "w": [
           1,
           1,
           1,
@@ -126,7 +126,7 @@
       "visible": false,
       "size": 128,
       "input": {
-        "weights": [
+        "w": [
           1,
           1,
           1,
@@ -530,7 +530,7 @@
       "visible": false,
       "size": 512,
       "input": {
-        "weights": [
+        "w": [
           1,
           1,
           1,

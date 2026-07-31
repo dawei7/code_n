@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def longestRepeating(
-        self, s: str, queryCharacters: str, queryIndices: List[int]
-    ) -> List[int]:
+    def longestRepeating(self, s: str, queryCharacters: str, queryIndices: List[int]) -> List[int]:
         def merge(left, right):
             if left[0] == 0:
                 return right
@@ -33,15 +31,13 @@ class Solution:
             size *= 2
         empty = (0, "", "", 0, 0, 0)
         tree = [empty for _ in range(2 * size)]
-        characters = list(s)
-        for index, character in enumerate(characters):
+        for index, character in enumerate(s):
             tree[size + index] = (1, character, character, 1, 1, 1)
         for node in range(size - 1, 0, -1):
             tree[node] = merge(tree[2 * node], tree[2 * node + 1])
 
         answers = []
         for index, character in zip(queryIndices, queryCharacters):
-            characters[index] = character
             node = size + index
             tree[node] = (1, character, character, 1, 1, 1)
             node //= 2

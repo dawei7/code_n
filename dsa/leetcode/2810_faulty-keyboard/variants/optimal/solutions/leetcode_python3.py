@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Solution:
     def finalString(self, s: str) -> str:
         text = deque()

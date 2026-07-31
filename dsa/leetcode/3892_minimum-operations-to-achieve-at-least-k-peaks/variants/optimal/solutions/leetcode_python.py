@@ -7,9 +7,7 @@ class Solution:
             return -1
 
         def peak_cost(index: int) -> int:
-            required = max(
-                nums[(index - 1) % n], nums[(index + 1) % n]
-            ) + 1
+            required = max(nums[(index - 1) % n], nums[(index + 1) % n]) + 1
             return max(0, required - nums[index])
 
         infinity = 10**30

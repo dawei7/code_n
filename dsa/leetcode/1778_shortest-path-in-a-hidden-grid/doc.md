@@ -18,18 +18,15 @@ A robot occupies the starting cell of a hidden $m \times n$ grid. Every cell is 
 
 The native interface supplies a `GridMaster`. `canMove(direction)` reports whether the robot can move one cell in `"U"`, `"R"`, `"D"`, or `"L"`; `move(direction)` performs a legal move and otherwise leaves the robot in place; and `isTarget()` reports whether its current cell is the target. Discover enough of the hidden grid to return the minimum number of moves from the starting cell to the target, or `-1` if no path exists.
 
-For deterministic app-local execution, the same contract is represented by `grid`: `-1` marks the unique start, `2` the unique target, `1` an open cell, and `0` a blocked cell.
+For deterministic app-local execution, cOde(n) reconstructs that same stateful interface from a `master` fixture. Its matrix uses `-1` for the unique start, `2` for the unique target, `1` for an open cell, and `0` for a blocked cell. The solution still receives only a `GridMaster`, never the matrix.
 
 ### Function Contract
 
-**Native input**
+**Inputs**
 
-- `master`: a stateful `GridMaster` positioned at the start.
+- `master`: the stateful `GridMaster` positioned at the start.
 - Grid dimensions satisfy $1 \le m,n \le 500$.
-
-**App-local input**
-
-- `grid`: a rectangular matrix containing exactly one `-1` and one `2`; every other value is `0` or `1`.
+- JSON fixtures store its hidden matrix under `master.grid` and set `master.mode` to `"unweighted"`; this is harness configuration rather than an additional solution parameter.
 - Movement is permitted only between orthogonally adjacent nonzero cells.
 - Let $V$ be the number of open cells reachable from the start.
 
@@ -41,18 +38,18 @@ Return the number of edges in a shortest start-to-target path, or `-1` when the 
 
 **Example 1**
 
-- Input: `grid = [[-1,2]]`
+- Input fixture: `master = {"mode":"unweighted","grid":[[-1,2]]}`
 - Output: `1`
 - Explanation: The target is one legal move to the right.
 
 **Example 2**
 
-- Input: `grid = [[0,0,-1],[1,1,1],[2,0,0]]`
+- Input fixture: `master = {"mode":"unweighted","grid":[[0,0,-1],[1,1,1],[2,0,0]]}`
 - Output: `4`
 - Explanation: The robot moves left across the middle row and then down to the target.
 
 **Example 3**
 
-- Input: `grid = [[-1,0],[0,2]]`
+- Input fixture: `master = {"mode":"unweighted","grid":[[-1,0],[0,2]]}`
 - Output: `-1`
 - Explanation: Blocked cells isolate the target from the start.

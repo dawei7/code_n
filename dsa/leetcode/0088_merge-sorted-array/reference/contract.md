@@ -9,4 +9,4 @@
 
 **Return value**
 
-The native LeetCode method writes the merge into `nums1` and returns no value. The app adapter returns the mutated `nums1` for direct validation.
+Return `None`; merge the two non-decreasing sequences in place into `nums1`, using its trailing capacity for the final $m+n$ values.

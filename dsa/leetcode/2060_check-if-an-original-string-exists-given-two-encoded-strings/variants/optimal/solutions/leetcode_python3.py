@@ -27,17 +27,9 @@ class Solution:
                         return True
 
             if balance > 0:
-                return (
-                    second < len(s2)
-                    and s2[second].isalpha()
-                    and compatible(first, second + 1, balance - 1)
-                )
+                return second < len(s2) and s2[second].isalpha() and compatible(first, second + 1, balance - 1)
             if balance < 0:
-                return (
-                    first < len(s1)
-                    and s1[first].isalpha()
-                    and compatible(first + 1, second, balance + 1)
-                )
+                return first < len(s1) and s1[first].isalpha() and compatible(first + 1, second, balance + 1)
             return (
                 first < len(s1)
                 and second < len(s2)

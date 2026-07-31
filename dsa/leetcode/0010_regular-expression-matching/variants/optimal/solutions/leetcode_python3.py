@@ -12,9 +12,7 @@ class Solution:
                 token = p[j - 1]
                 if token == "*":
                     repeated = p[j - 2]
-                    current[j] = current[j - 2] or (
-                        (repeated == "." or repeated == char) and previous[j]
-                    )
+                    current[j] = current[j - 2] or ((repeated == "." or repeated == char) and previous[j])
                 else:
                     current[j] = previous[j - 1] and (token == "." or token == char)
             previous = current

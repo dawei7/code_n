@@ -37,23 +37,19 @@ class Solution:
                     diameter(second, third),
                 ]
                 return min(
-                    (circle for circle in candidates if all(contains(circle, point) for point in (first, second, third))),
+                    (
+                        circle
+                        for circle in candidates
+                        if all(contains(circle, point) for point in (first, second, third))
+                    ),
                     key=lambda circle: circle[2],
                 )
 
             first_norm = ax * ax + ay * ay
             second_norm = bx * bx + by * by
             third_norm = cx * cx + cy * cy
-            center_x = (
-                first_norm * (by - cy)
-                + second_norm * (cy - ay)
-                + third_norm * (ay - by)
-            ) / divisor
-            center_y = (
-                first_norm * (cx - bx)
-                + second_norm * (ax - cx)
-                + third_norm * (bx - ax)
-            ) / divisor
+            center_x = (first_norm * (by - cy) + second_norm * (cy - ay) + third_norm * (ay - by)) / divisor
+            center_y = (first_norm * (cx - bx) + second_norm * (ax - cx) + third_norm * (bx - ax)) / divisor
             return center_x, center_y, hypot(center_x - ax, center_y - ay)
 
         circle = (points[0][0], points[0][1], 0.0)

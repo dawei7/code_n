@@ -13,10 +13,7 @@ class Solution:
             for index in range(1, len(combined)):
                 if index <= right:
                     z[index] = min(right - index + 1, z[index - left])
-                while (
-                    index + z[index] < len(combined)
-                    and combined[z[index]] == combined[index + z[index]]
-                ):
+                while index + z[index] < len(combined) and combined[z[index]] == combined[index + z[index]]:
                     z[index] += 1
                 if index + z[index] - 1 > right:
                     left = index

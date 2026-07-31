@@ -8,7 +8,5 @@ class Solution:
         return [
             value
             for value, count in frequencies.items()
-            if count == 1
-            and value - 1 not in frequencies
-            and value + 1 not in frequencies
+            if count == 1 and value - 1 not in frequencies and value + 1 not in frequencies
         ]

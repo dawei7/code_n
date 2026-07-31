@@ -26,8 +26,5 @@ class Solution:
             mod_two = int((index & (steps - index)) == 0)
             mod_five = binomial_mod_five(steps, index)
             coefficient = mod_five if mod_five % 2 == mod_two else mod_five + 5
-            difference = (
-                difference
-                + coefficient * (ord(s[index]) - ord(s[index + 1]))
-            ) % 10
+            difference = (difference + coefficient * (ord(s[index]) - ord(s[index + 1]))) % 10
         return difference == 0

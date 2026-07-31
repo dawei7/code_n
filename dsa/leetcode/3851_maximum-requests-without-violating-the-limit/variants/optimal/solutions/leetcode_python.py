@@ -2,9 +2,7 @@ from collections import defaultdict, deque
 
 
 class Solution:
-    def maxRequests(
-        self, requests: list[list[int]], k: int, window: int
-    ) -> int:
+    def maxRequests(self, requests: list[list[int]], k: int, window: int) -> int:
         times_by_user = defaultdict(list)
 
         for user, time in requests:

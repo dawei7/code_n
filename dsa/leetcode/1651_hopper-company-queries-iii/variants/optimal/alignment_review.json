@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "3491ac5bd6121d54c631a8c3c758f6007da7b802563992022240502bfd931e30",
+    "native_sha256": "59b920e2212c99e976dac6299c7fe8bfaedb99c94d45846febc67e14bfc863da",
+    "solution_variants_sha256": "a5ec225064e8167a42082af2f630f6b1604175296214e83e66b14b8dc0ffe806",
+    "approach_sha256": "48875708eb82c8b7b01590798fa78c25406cf1f99115d73fa37693cb1406f2c5"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "request year and month extraction",
+      "native": "MySQL selects 2020 requests with YEAR and MONTH.",
+      "app": "SQLite extracts the same year and numeric month with strftime and CAST.",
+      "rationale": "SQLite does not implement MySQL's YEAR or MONTH functions. The recursive month spine, monthly aggregation, forward window averages, filtering, aliases, and ordering otherwise match."
+    }
+  ]
+}

@@ -73,7 +73,7 @@
             1
           ]
         ],
-        "succ_prob": [
+        "succProb": [
           0.999,
           0.999,
           0.999,
@@ -90,8 +90,8 @@
           0.999,
           0.999
         ],
-        "start": 0,
-        "end": 15
+        "start_node": 0,
+        "end_node": 15
       },
       "expected": 0.985104546362002,
       "validator": {
@@ -367,7 +367,7 @@
             1
           ]
         ],
-        "succ_prob": [
+        "succProb": [
           0.999,
           0.999,
           0.999,
@@ -432,8 +432,8 @@
           0.999,
           0.999
         ],
-        "start": 0,
-        "end": 63
+        "start_node": 0,
+        "end_node": 63
       },
       "expected": 0.9389138777035491,
       "validator": {
@@ -1477,7 +1477,7 @@
             1
           ]
         ],
-        "succ_prob": [
+        "succProb": [
           0.999,
           0.999,
           0.999,
@@ -1734,8 +1734,8 @@
           0.999,
           0.999
         ],
-        "start": 0,
-        "end": 255
+        "start_node": 0,
+        "end_node": 255
       },
       "expected": 0.7748176364970051,
       "validator": {

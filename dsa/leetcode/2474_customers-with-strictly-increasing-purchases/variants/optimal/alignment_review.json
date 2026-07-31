@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "0ab9f0a8f9ef2c590ffc735097b4d256f36fd4a202d5554ddb96309739e5e426",
+    "native_sha256": "0570a007c9d022a6b834ce9acc8a24c9b9c474a9d9a7ba023ac09a042514a12d",
+    "solution_variants_sha256": "46325372ebac51e6f3560301282b6bd9a3289b02b3025f38d8911135b9827689",
+    "approach_sha256": "69d84e0e8efac5efac75096fc74ab33dcf81b7477b151ccf5102003648f7049c"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "calendar-year extraction",
+      "native": "MySQL groups orders by YEAR(order_date).",
+      "app": "SQLite groups by the integer cast of strftime('%Y', order_date).",
+      "rationale": "SQLite has no YEAR function. The yearly totals, consecutive-year comparison, customer qualification, grouping, and ordering otherwise match exactly."
+    }
+  ]
+}

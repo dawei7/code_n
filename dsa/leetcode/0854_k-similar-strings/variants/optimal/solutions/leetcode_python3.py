@@ -11,9 +11,7 @@ class Solution:
 
         while queue:
             current, swaps = queue.popleft()
-            first_mismatch = next(
-                index for index in range(len(current)) if current[index] != s2[index]
-            )
+            first_mismatch = next(index for index in range(len(current)) if current[index] != s2[index])
 
             for index in range(first_mismatch + 1, len(current)):
                 if current[index] != s2[first_mismatch] or current[index] == s2[index]:

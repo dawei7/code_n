@@ -12,9 +12,7 @@ class Solution:
         components = 0
         current = head
         while current is not None:
-            if current.val in selected and (
-                current.next is None or current.next.val not in selected
-            ):
+            if current.val in selected and (current.next is None or current.next.val not in selected):
                 components += 1
             current = current.next
         return components

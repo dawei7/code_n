@@ -1,7 +1,11 @@
-function ImmutableHelper(obj) {
+var ImmutableHelper = function(obj) {
     this.obj = obj;
-}
+};
 
+/**
+ * @param {Function} mutator
+ * @return {JSON} clone of obj
+ */
 ImmutableHelper.prototype.produce = function(mutator) {
     function shallowCopy(value) {
         return Array.isArray(value) ? value.slice() : { ...value };

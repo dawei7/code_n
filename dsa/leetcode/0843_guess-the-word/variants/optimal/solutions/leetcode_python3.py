@@ -11,13 +11,9 @@ class Solution:
         while candidates:
             guess = min(
                 candidates,
-                key=lambda word: max(
-                    Counter(matches(word, candidate) for candidate in candidates).values()
-                ),
+                key=lambda word: max(Counter(matches(word, candidate) for candidate in candidates).values()),
             )
             score = master.guess(guess)
             if score == 6:
                 return
-            candidates = [
-                candidate for candidate in candidates if matches(guess, candidate) == score
-            ]
+            candidates = [candidate for candidate in candidates if matches(guess, candidate) == score]

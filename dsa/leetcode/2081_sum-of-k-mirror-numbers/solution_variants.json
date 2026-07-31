@@ -9,8 +9,8 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Sum of k-Mirror Numbers and meets the required complexity bound.",
-      "time_complexity": "O(1)",
-      "space_complexity": "O(1)"
+      "time_complexity": "O(PD)",
+      "space_complexity": "O(D)"
     }
   ]
 }

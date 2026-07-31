@@ -7,7 +7,7 @@
       "name": "sample: four returning walks in a two-position array",
       "kind": "sample",
       "visible": true,
-      "input": {"steps": 3, "arr_len": 2},
+      "input": {"steps": 3, "arrLen": 2},
       "expected": 4,
       "tags": ["sample", "stay-and-move"]
     },
@@ -16,7 +16,7 @@
       "name": "sample: distant positions are unreachable",
       "kind": "sample",
       "visible": true,
-      "input": {"steps": 2, "arr_len": 4},
+      "input": {"steps": 2, "arrLen": 4},
       "expected": 2,
       "tags": ["sample", "reachable-prefix"]
     },
@@ -25,7 +25,7 @@
       "name": "sample: repeated boundary interactions",
       "kind": "sample",
       "visible": true,
-      "input": {"steps": 4, "arr_len": 2},
+      "input": {"steps": 4, "arrLen": 2},
       "expected": 8,
       "tags": ["sample", "right-boundary"]
     },
@@ -34,7 +34,7 @@
       "name": "trial: every move must stay",
       "kind": "trial",
       "visible": true,
-      "input": {"steps": 500, "arr_len": 1},
+      "input": {"steps": 500, "arrLen": 1},
       "expected": 1,
       "tags": ["trial", "single-position", "maximum-steps"]
     },
@@ -43,7 +43,7 @@
       "name": "trial: one step can only stay to return",
       "kind": "trial",
       "visible": true,
-      "input": {"steps": 1, "arr_len": 100},
+      "input": {"steps": 1, "arrLen": 100},
       "expected": 1,
       "tags": ["trial", "minimum-steps"]
     },
@@ -52,7 +52,7 @@
       "name": "hidden: the reachable prefix includes index two",
       "kind": "real",
       "visible": false,
-      "input": {"steps": 4, "arr_len": 3},
+      "input": {"steps": 4, "arrLen": 3},
       "expected": 9,
       "tags": ["hidden", "reachable-boundary"]
     },
@@ -61,7 +61,7 @@
       "name": "hidden: all positions are potentially reachable",
       "kind": "real",
       "visible": false,
-      "input": {"steps": 6, "arr_len": 4},
+      "input": {"steps": 6, "arrLen": 4},
       "expected": 51,
       "tags": ["hidden", "full-reachable-prefix"]
     },
@@ -70,7 +70,7 @@
       "name": "hidden: a long walk exercises repeated modular transitions",
       "kind": "real",
       "visible": false,
-      "input": {"steps": 100, "arr_len": 997},
+      "input": {"steps": 100, "arrLen": 997},
       "expected": 345787718,
       "tags": ["hidden", "modulo", "long-walk", "irrelevant-tail"]
     }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "challenge_id": "lc_1105",
-  "measurement_note": "Size is n, the book count. Every thickness is 1 and shelf_width is n, so every candidate suffix remains feasible. The optimal DP updates width and height incrementally in O(n^2), while the calibrated slower implementation recomputes both values across each suffix in O(n^3).",
+  "measurement_note": "Size is n, the book count. Every thickness is 1 and shelfWidth is n, so every candidate suffix remains feasible. The optimal DP updates width and height incrementally in O(n^2), while the calibrated slower implementation recomputes both values across each suffix in O(n^3).",
   "cases": [
     {
       "id": "benchmark-scale-1",
@@ -76,7 +76,7 @@
             1
           ]
         ],
-        "shelf_width": 16
+        "shelfWidth": 16
       },
       "expected": 1,
       "tags": [
@@ -222,7 +222,7 @@
             1
           ]
         ],
-        "shelf_width": 32
+        "shelfWidth": 32
       },
       "expected": 1,
       "tags": [
@@ -496,7 +496,7 @@
             1
           ]
         ],
-        "shelf_width": 64
+        "shelfWidth": 64
       },
       "expected": 1,
       "tags": [

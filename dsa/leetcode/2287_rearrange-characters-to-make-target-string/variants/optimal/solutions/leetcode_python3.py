@@ -8,8 +8,4 @@ class Solution:
         for character in target:
             required[ord(character) - ord("a")] += 1
 
-        return min(
-            available[index] // required[index]
-            for index in range(26)
-            if required[index]
-        )
+        return min(available[index] // required[index] for index in range(26) if required[index])

@@ -1,1 +1,49 @@
-import zlib,base64;exec(zlib.decompress(base64.b85decode(b'cwS9WL2iRE5WM#l&ZUB2nv$bk=hO!vap=LaA_xw)6dZ?u0(pHsK&qa0XLmfiJ3d{?`<)cm%h21aV{fF^XVO|{+oAo@wlRHlr<&g4&>~J;w2O3{WV{hls`IrYM`9i6O4sPf#VU|cENMj_XlT~RQY9h^IHtUj6+j6Ps7A<7wROA}Ml!|y5(-pbLJ%o1dxonjH0K(zXHsp12lhc*l-wW~49$3ryhi@uMItK9%!TwX_5ZtnRJK2c^P1j7ahk=<2cjJ38%OZG;&~!GG~m&9xT2a}AtRkc07%0=COrBwa#9TSiH@j01<EPPuUjnjvqNrZbyxN}$`>_gJP!x^p0QD2gH?Cjh-o3<_53!MjHTIX1vsF?j&(R71)2$?$b+$~V5j?`b7VFLHl_P*y|k8&jFtlvgcCv)LcH7U|33JH6>jPmRTZhn')))
+class Solution:
+    def minimumWeight(self, edges: list[list[int]], queries: list[list[int]]) -> list[int]:
+        node_count = len(edges) + 1
+        graph: list[list[tuple[int, int]]] = [[] for _ in range(node_count)]
+        for first, second, weight in edges:
+            graph[first].append((second, weight))
+            graph[second].append((first, weight))
+        depth = [0] * node_count
+        root_distance = [0] * node_count
+        parent = [0] * node_count
+        traversal = [0]
+        for node in traversal:
+            for neighbor, weight in graph[node]:
+                if neighbor == parent[node]:
+                    continue
+                parent[neighbor] = node
+                depth[neighbor] = depth[node] + 1
+                root_distance[neighbor] = root_distance[node] + weight
+                traversal.append(neighbor)
+        level_count = node_count.bit_length()
+        ancestors = [parent]
+        for _ in range(1, level_count):
+            previous = ancestors[-1]
+            ancestors.append([previous[previous[node]] for node in range(node_count)])
+
+        def lowest_common_ancestor(first: int, second: int) -> int:
+            if depth[first] < depth[second]:
+                first, second = (second, first)
+            difference = depth[first] - depth[second]
+            for level in range(level_count):
+                if difference & 1 << level:
+                    first = ancestors[level][first]
+            if first == second:
+                return first
+            for level in range(level_count - 1, -1, -1):
+                if ancestors[level][first] != ancestors[level][second]:
+                    first = ancestors[level][first]
+                    second = ancestors[level][second]
+            return ancestors[0][first]
+
+        def distance(first: int, second: int) -> int:
+            ancestor = lowest_common_ancestor(first, second)
+            return root_distance[first] + root_distance[second] - 2 * root_distance[ancestor]
+
+        answer = []
+        for first, second, destination in queries:
+            pairwise_sum = distance(first, second) + distance(first, destination) + distance(second, destination)
+            answer.append(pairwise_sum // 2)
+        return answer

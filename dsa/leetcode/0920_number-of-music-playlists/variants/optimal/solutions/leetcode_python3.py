@@ -13,4 +13,3 @@ class Solution:
             previous = current
 
         return previous[n]
-

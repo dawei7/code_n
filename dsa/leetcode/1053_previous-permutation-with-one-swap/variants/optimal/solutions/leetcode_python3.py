@@ -18,4 +18,3 @@ class Solution:
 
         arr[pivot], arr[target] = arr[target], arr[pivot]
         return arr
-

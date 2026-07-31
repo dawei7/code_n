@@ -20,7 +20,12 @@ class Solution:
                     component_sum += grid[row][col]
                     component_size += 1
                     for next_row, next_col in ((row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)):
-                        if 0 <= next_row < n and 0 <= next_col < n and grid[next_row][next_col] != -1 and not visited[next_row][next_col]:
+                        if (
+                            0 <= next_row < n
+                            and 0 <= next_col < n
+                            and grid[next_row][next_col] != -1
+                            and not visited[next_row][next_col]
+                        ):
                             visited[next_row][next_col] = True
                             stack.append((next_row, next_col))
 

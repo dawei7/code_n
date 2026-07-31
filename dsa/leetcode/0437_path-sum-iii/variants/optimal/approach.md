@@ -16,7 +16,7 @@ After both child calls return, decrement the current prefix frequency. Otherwise
 Every downward path has one ending node and one prefix immediately before its starting node. When DFS visits that endpoint, the starting prefix is active and contributes exactly once through the frequency lookup. Nonancestor prefixes have already been removed or have not yet been visited, so no invalid cross-branch path contributes.
 
 ## Complexity detail
-The app reconstructs and traverses each of `n` nodes once. Hash-map work is average constant time per node, so total time is $O(n)$. The reconstructed nodes, active prefix counts, and recursion stack use $O(n)$ space in the worst case.
+The algorithm traverses each of `n` nodes once. Hash-map work is average constant time per node, so total time is $O(n)$. The active prefix counts and recursion stack use $O(n)$ space in the worst case.
 
 ## Alternatives and edge cases
 - **Start a sum search at every node:** explores every downward path directly and takes $O(n^2)$ time on a skewed tree.

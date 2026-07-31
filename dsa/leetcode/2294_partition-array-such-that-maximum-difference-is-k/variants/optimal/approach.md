@@ -24,8 +24,8 @@ original indices to form a valid subsequence.
 ## Complexity detail
 
 Let $n = \lvert\texttt{nums}\rvert$. Sorting takes $O(n \log n)$ time, and
-the greedy scan takes $O(n)$ additional time. Copying and sorting the values
-uses $O(n)$ auxiliary space in the app-friendly implementation.
+the greedy scan takes $O(n)$ additional time. Python's in-place sort may use
+$O(n)$ auxiliary storage.
 
 ## Alternatives and edge cases
 

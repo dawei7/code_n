@@ -9,7 +9,7 @@ For column `store1`, a `CASE` expression returns `price` only when `store = 'sto
 
 **Preserve missing prices as NULL**
 
-If a product has no row for one store, every value supplied to that store's aggregate is `NULL`, so the aggregate result is also `NULL`. This distinguishes an unavailable product-store pair from any actual stored price. Ordering by `product_id` is optional for LeetCode but makes the app-local output deterministic.
+If a product has no row for one store, every value supplied to that store's aggregate is `NULL`, so the aggregate result is also `NULL`. This distinguishes an unavailable product-store pair from any actual stored price. The contract accepts the grouped rows in any order, so the query does not impose an unnecessary sort.
 
 ## Complexity detail
 A hash-aggregation plan examines each of the $R$ source rows once, giving $O(R)$ logical time. It keeps three fixed aggregate slots for each of the $P$ product groups, so its auxiliary grouping state is $O(P)$. A database may choose a sort-based physical plan with different implementation costs.

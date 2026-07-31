@@ -1,6 +1,6 @@
 class Solution:
     def maximumProfit(self, prices: List[int], k: int) -> int:
-        neg = -10**30
+        neg = -(10**30)
         flat = [neg] * (k + 1)
         long = [neg] * k
         short = [neg] * k

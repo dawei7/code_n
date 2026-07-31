@@ -16,7 +16,4 @@ class Solution:
             else:
                 parent[first_root] = second_root
 
-        return "".join(
-            chr(find(ord(character) - ord("a")) + ord("a"))
-            for character in baseStr
-        )
+        return "".join(chr(find(ord(character) - ord("a")) + ord("a")) for character in baseStr)

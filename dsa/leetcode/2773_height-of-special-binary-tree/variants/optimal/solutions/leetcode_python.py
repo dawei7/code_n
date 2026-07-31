@@ -14,9 +14,7 @@ class Solution:
             height = max(height, depth)
 
             is_single_leaf = node.left is None and node.right is None
-            is_linked_leaf = (
-                node.left is not None and node.left.right is node
-            )
+            is_linked_leaf = node.left is not None and node.left.right is node
             if is_single_leaf or is_linked_leaf:
                 continue
 

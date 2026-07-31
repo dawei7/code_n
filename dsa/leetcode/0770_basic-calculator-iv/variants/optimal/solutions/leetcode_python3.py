@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def basicCalculatorIV(
-        self, expression: str, evalvars: List[str], evalints: List[int]
-    ) -> List[str]:
+    def basicCalculatorIV(self, expression: str, evalvars: List[str], evalints: List[int]) -> List[str]:
         substitutions = dict(zip(evalvars, evalints))
         tokens = re.findall(r"[a-z]+|\d+|[()+\-*]", expression)
         position = 0
@@ -65,7 +63,4 @@ class Solution:
 
         polynomial = parse_expression()
         ordered = sorted(polynomial, key=lambda monomial: (-len(monomial), monomial))
-        return [
-            str(polynomial[monomial]) + ("*" + "*".join(monomial) if monomial else "")
-            for monomial in ordered
-        ]
+        return [str(polynomial[monomial]) + ("*" + "*".join(monomial) if monomial else "") for monomial in ordered]

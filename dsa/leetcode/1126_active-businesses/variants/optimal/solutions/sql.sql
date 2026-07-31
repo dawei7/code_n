@@ -9,5 +9,4 @@ SELECT business_id
 FROM event_activity
 WHERE occurrences > average_occurrences
 GROUP BY business_id
-HAVING COUNT(*) > 1
-ORDER BY business_id;
+HAVING COUNT(*) > 1;

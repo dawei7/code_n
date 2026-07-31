@@ -1,13 +1,13 @@
 ## General
 **Pack the longest consecutive word prefix that fits**
 
-Starting at the next unused word, keep adding words while their total letter count plus one mandatory space for each existing gap remains at most `max_width`. When considering another word, the fit test must include the new gap before that word. Stop immediately before the first word that would exceed the width.
+Starting at the next unused word, keep adding words while their total letter count plus one mandatory space for each existing gap remains at most `maxWidth`. When considering another word, the fit test must include the new gap before that word. Stop immediately before the first word that would exceed the width.
 
 This packing decision is independent of later space distribution. The problem explicitly requires greedy line breaks, so a shorter aesthetically balanced line is not an alternative.
 
 **Full justification is quotient-and-remainder distribution**
 
-For a nonfinal line with at least two words, let `spaces = max_width - total_letters` and `gaps = word_count - 1`. Integer division gives:
+For a nonfinal line with at least two words, let `spaces = maxWidth - total_letters` and `gaps = word_count - 1`. Integer division gives:
 
 ```text
 base, extra = divmod(spaces, gaps)
@@ -17,7 +17,7 @@ Every gap receives `base` spaces, and the first `extra` gaps receive one additio
 
 **Last and single-word lines follow a different rule**
 
-The final line is joined with one space per gap and padded entirely on the right. A one-word line has no internal gap to divide by and uses the same right-padding form even when it is not final. Both cases must produce exactly `max_width` characters.
+The final line is joined with one space per gap and padded entirely on the right. A one-word line has no internal gap to divide by and uses the same right-padding form even when it is not final. Both cases must produce exactly `maxWidth` characters.
 
 **Words are consumed once and never reordered**
 

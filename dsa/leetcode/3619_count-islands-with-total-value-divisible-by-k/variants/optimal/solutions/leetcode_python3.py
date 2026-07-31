@@ -18,9 +18,7 @@ class Solution:
 
                 while stack:
                     current_row, current_column = stack.pop()
-                    total_modulo = (
-                        total_modulo - grid[current_row][current_column]
-                    ) % k
+                    total_modulo = (total_modulo - grid[current_row][current_column]) % k
 
                     for next_row, next_column in (
                         (current_row - 1, current_column),
@@ -28,11 +26,7 @@ class Solution:
                         (current_row, current_column - 1),
                         (current_row, current_column + 1),
                     ):
-                        if (
-                            0 <= next_row < rows
-                            and 0 <= next_column < columns
-                            and grid[next_row][next_column] > 0
-                        ):
+                        if 0 <= next_row < rows and 0 <= next_column < columns and grid[next_row][next_column] > 0:
                             grid[next_row][next_column] = -grid[next_row][next_column]
                             stack.append((next_row, next_column))
 

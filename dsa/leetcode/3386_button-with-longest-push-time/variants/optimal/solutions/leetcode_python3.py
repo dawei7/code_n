@@ -9,9 +9,7 @@ class Solution:
         for position in range(1, len(events)):
             button, time = events[position]
             duration = time - events[position - 1][1]
-            if duration > longest_duration or (
-                duration == longest_duration and button < answer
-            ):
+            if duration > longest_duration or (duration == longest_duration and button < answer):
                 longest_duration = duration
                 answer = button
 

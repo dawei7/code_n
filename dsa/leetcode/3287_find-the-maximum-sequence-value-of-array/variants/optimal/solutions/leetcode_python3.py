@@ -10,9 +10,7 @@ class Solution:
 
             for value in values:
                 for count in range(k, 0, -1):
-                    dp[count].update(
-                        current | value for current in dp[count - 1]
-                    )
+                    dp[count].update(current | value for current in dp[count - 1])
                 snapshots.append(dp[k].copy())
 
             return snapshots

@@ -5,10 +5,7 @@ class Solution:
         difference = 0
 
         for index in range(steps + 1):
-            difference = (
-                difference
-                + coefficient * (ord(s[index]) - ord(s[index + 1]))
-            ) % 10
+            difference = (difference + coefficient * (ord(s[index]) - ord(s[index + 1]))) % 10
             if index < steps:
                 coefficient = coefficient * (steps - index) // (index + 1)
 

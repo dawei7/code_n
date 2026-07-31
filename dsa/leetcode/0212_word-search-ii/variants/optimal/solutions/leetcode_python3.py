@@ -20,7 +20,7 @@ class Solution:
             if None in child:
                 found.add(child[None])
             board[row][column] = "#"
-            for next_row, next_column in ((row-1,column),(row+1,column),(row,column-1),(row,column+1)):
+            for next_row, next_column in ((row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1)):
                 if 0 <= next_row < rows and 0 <= next_column < columns and board[next_row][next_column] != "#":
                     visit(next_row, next_column, child)
             board[row][column] = character

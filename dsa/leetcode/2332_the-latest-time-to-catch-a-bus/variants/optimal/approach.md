@@ -30,8 +30,8 @@ both feasible and maximal.
 ## Complexity detail
 
 Sorting costs $O(b\log b+p\log p)$ time. The boarding pointer and final retreat
-are linear, so sorting dominates. Sorted copies and the occupied-time set use
-$O(b+p)$ space.
+are linear, so sorting dominates. The occupied-time set and Python's in-place
+sorting storage use $O(b+p)$ space.
 
 ## Alternatives and edge cases
 

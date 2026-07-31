@@ -7,6 +7,6 @@ class Solution:
 
         for value in nums:
             index = value - 1
-            longest[index] = 1 + max(longest[:index + 1])
+            longest[index] = 1 + max(longest[: index + 1])
 
         return len(nums) - max(longest)

@@ -22,10 +22,7 @@ class Solution:
             ):
                 next_row = row + row_step
                 next_column = column + column_step
-                if not (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                ):
+                if not (0 <= next_row < rows and 0 <= next_column < columns):
                     continue
 
                 weight = grid[next_row][next_column]

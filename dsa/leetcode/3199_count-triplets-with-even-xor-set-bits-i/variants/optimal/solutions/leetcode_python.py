@@ -8,9 +8,4 @@ class Solution:
         even_b, odd_b = parity_counts(b)
         even_c, odd_c = parity_counts(c)
 
-        return (
-            even_a * even_b * even_c
-            + even_a * odd_b * odd_c
-            + odd_a * even_b * odd_c
-            + odd_a * odd_b * even_c
-        )
+        return even_a * even_b * even_c + even_a * odd_b * odd_c + odd_a * even_b * odd_c + odd_a * odd_b * even_c

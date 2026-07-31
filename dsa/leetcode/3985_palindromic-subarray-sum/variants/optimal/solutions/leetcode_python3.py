@@ -14,16 +14,8 @@ class Solution:
         right = -1
 
         for center in range(n):
-            radius = (
-                1
-                if center > right
-                else min(odd[left + right - center], right - center + 1)
-            )
-            while (
-                center - radius >= 0
-                and center + radius < n
-                and nums[center - radius] == nums[center + radius]
-            ):
+            radius = 1 if center > right else min(odd[left + right - center], right - center + 1)
+            while center - radius >= 0 and center + radius < n and nums[center - radius] == nums[center + radius]:
                 radius += 1
 
             odd[center] = radius
@@ -40,15 +32,9 @@ class Solution:
         right = -1
 
         for center in range(n):
-            radius = (
-                0
-                if center > right
-                else min(even[left + right - center + 1], right - center + 1)
-            )
+            radius = 0 if center > right else min(even[left + right - center + 1], right - center + 1)
             while (
-                center - radius - 1 >= 0
-                and center + radius < n
-                and nums[center - radius - 1] == nums[center + radius]
+                center - radius - 1 >= 0 and center + radius < n and nums[center - radius - 1] == nums[center + radius]
             ):
                 radius += 1
 

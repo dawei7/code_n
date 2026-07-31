@@ -10,7 +10,7 @@
       "visible": false,
       "size": 16,
       "input": {
-        "stone_value": [
+        "stoneValue": [
           1,
           1,
           1,
@@ -44,7 +44,7 @@
       "visible": false,
       "size": 32,
       "input": {
-        "stone_value": [
+        "stoneValue": [
           1,
           1,
           1,
@@ -94,7 +94,7 @@
       "visible": false,
       "size": 64,
       "input": {
-        "stone_value": [
+        "stoneValue": [
           1,
           1,
           1,

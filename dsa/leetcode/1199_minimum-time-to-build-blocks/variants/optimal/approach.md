@@ -6,7 +6,7 @@
 **Implement the greedy merge order.** Store all completion times in a min-heap. Remove the two smallest values; discard the smaller and insert `larger + split`, which is their combined completion time. Repeat until one plan remains. The exchange argument makes each merge safe, and the last heap value is the minimum elapsed time for the full worker-splitting tree.
 
 ## Complexity detail
-Heap construction takes $O(n)$. The algorithm performs $n-1$ merges, each with two removals and one insertion costing $O(\log n)$, for $O(n\log n)$ total time. The heap contains at most $n$ completion times and therefore uses $O(n)$ auxiliary space.
+Heap construction takes $O(n)$. The algorithm performs $n-1$ merges, each with two removals and one insertion costing $O(\log n)$, for $O(n\log n)$ total time. Heapifying `blocks` reuses the input list, so the algorithm uses $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Explicit two-minimum scan:** Finding the two smallest plans by a full scan before every merge is correct but takes $O(n^2)$ time.
@@ -17,3 +17,4 @@ Heap construction takes $O(n)$. The algorithm performs $n-1$ merges, each with t
 - **One very long block:** Greedy merging leaves it until late so shorter blocks can be prepared in parallel without repeatedly delaying it.
 - **Parallel splits:** Separate workers may split simultaneously; elapsed time follows the maximum branch depth, not the sum over all split operations.
 - **Positive costs:** Every build and split time is positive, so unnecessary splits cannot improve a completed plan.
+- **Input mutation:** The in-place heap does not preserve the original order of `blocks`; copy it first if a surrounding caller requires an immutable input, which raises auxiliary space to $O(n)$.

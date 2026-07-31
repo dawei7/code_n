@@ -15,4 +15,3 @@ class Solution:
                 maximum = value
 
         return (total - minimum - maximum) / (len(salary) - 2)
-

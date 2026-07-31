@@ -11,8 +11,7 @@ class Solution:
         previous_mana = mana[0]
         for current_mana in mana[1:]:
             start = max(
-                start + previous_mana * prefix[wizard + 1]
-                - current_mana * prefix[wizard]
+                start + previous_mana * prefix[wizard + 1] - current_mana * prefix[wizard]
                 for wizard in range(len(skill))
             )
             previous_mana = current_mana

@@ -5,11 +5,7 @@ class Solution:
     def minScore(self, grid: List[List[int]]) -> List[List[int]]:
         rows = len(grid)
         cols = len(grid[0])
-        cells = sorted(
-            (grid[row][col], row, col)
-            for row in range(rows)
-            for col in range(cols)
-        )
+        cells = sorted((grid[row][col], row, col) for row in range(rows) for col in range(cols))
         row_max = [0] * rows
         col_max = [0] * cols
         answer = [[0] * cols for _ in range(rows)]

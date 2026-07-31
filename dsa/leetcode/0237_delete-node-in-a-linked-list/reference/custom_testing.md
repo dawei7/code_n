@@ -4,4 +4,4 @@
 - The judge constructs the list and passes only that node to the function.
 - After the function returns, the judge displays the entire resulting list as the output.
 
-The app-local adapter represents the same direct-node contract by passing the suffix that starts at `node`; it does not give the solution access to the preceding link.
+In JSON cases, the runner represents that direct-node contract with the suffix beginning at `node`. It reconstructs the linked nodes before calling `solve(node)`, so the solution still receives only the node object and cannot access a preceding link.

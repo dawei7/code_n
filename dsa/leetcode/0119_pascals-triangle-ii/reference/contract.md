@@ -2,7 +2,7 @@
 
 **Inputs**
 
-- `row_index`: The zero-based Pascal's triangle row to return.
+- `rowIndex`: The zero-based Pascal's triangle row to return.
 
 **Return value**
 

@@ -1,4 +1,9 @@
-function flat(arr, n) {
+/**
+ * @param {any[]} arr
+ * @param {number} n
+ * @return {any[]}
+ */
+var flat = function (arr, n) {
     const result = [];
 
     const visit = (values, depth) => {
@@ -13,7 +18,7 @@ function flat(arr, n) {
 
     visit(arr, 0);
     return result;
-}
+};
 
 function solve(arr, n) {
     return flat(arr, n);

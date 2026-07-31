@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def unmarkedSumArray(
-        self, nums: List[int], queries: List[List[int]]
-    ) -> List[int]:
+    def unmarkedSumArray(self, nums: List[int], queries: List[List[int]]) -> List[int]:
         ordered = sorted((value, index) for index, value in enumerate(nums))
         marked = [False] * len(nums)
         remaining_sum = sum(nums)

@@ -14,7 +14,7 @@
           6,
           1
         ],
-        "remove_queries": [
+        "removeQueries": [
           0,
           3,
           2,
@@ -46,7 +46,7 @@
           11,
           1
         ],
-        "remove_queries": [
+        "removeQueries": [
           3,
           2,
           1,
@@ -73,7 +73,7 @@
         "nums": [
           7
         ],
-        "remove_queries": [
+        "removeQueries": [
           0
         ]
       },
@@ -98,7 +98,7 @@
           3,
           2
         ],
-        "remove_queries": [
+        "removeQueries": [
           2,
           0,
           4,
@@ -130,7 +130,7 @@
           2,
           10
         ],
-        "remove_queries": [
+        "removeQueries": [
           0,
           3,
           1,
@@ -159,7 +159,7 @@
           1000000000,
           1000000000
         ],
-        "remove_queries": [
+        "removeQueries": [
           1,
           0,
           2
@@ -189,7 +189,7 @@
           5,
           3
         ],
-        "remove_queries": [
+        "removeQueries": [
           1,
           4,
           3,

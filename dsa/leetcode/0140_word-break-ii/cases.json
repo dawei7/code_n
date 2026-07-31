@@ -8,7 +8,7 @@
       "visible": true,
       "input": {
         "s": "catsanddog",
-        "word_dict": [
+        "wordDict": [
           "cat",
           "cats",
           "and",
@@ -35,7 +35,7 @@
       "visible": true,
       "input": {
         "s": "pineapplepenapple",
-        "word_dict": [
+        "wordDict": [
           "apple",
           "pen",
           "applepen",
@@ -62,7 +62,7 @@
       "visible": true,
       "input": {
         "s": "catsandog",
-        "word_dict": [
+        "wordDict": [
           "cats",
           "dog",
           "sand",
@@ -86,7 +86,7 @@
       "visible": true,
       "input": {
         "s": "a",
-        "word_dict": ["a"]
+        "wordDict": ["a"]
       },
       "expected": ["a"],
       "validator": {
@@ -101,7 +101,7 @@
       "visible": false,
       "input": {
         "s": "aaaa",
-        "word_dict": [
+        "wordDict": [
           "a",
           "aa",
           "aaa"

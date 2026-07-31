@@ -10,8 +10,8 @@ from typing import Optional
 class Solution:
     def isSubtree(
         self,
-        root: Optional['TreeNode'],
-        subRoot: Optional['TreeNode'],
+        root: Optional["TreeNode"],
+        subRoot: Optional["TreeNode"],
     ) -> bool:
         def serialize(tree):
             tokens = []
@@ -49,4 +49,3 @@ class Solution:
                     return True
 
         return False
-

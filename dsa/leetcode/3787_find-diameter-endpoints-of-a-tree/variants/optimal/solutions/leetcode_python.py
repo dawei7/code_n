@@ -28,7 +28,4 @@ class Solution:
         from_b = distances(endpoint_b)
         diameter = from_a[endpoint_b]
 
-        return "".join(
-            "1" if max(from_a[node], from_b[node]) == diameter else "0"
-            for node in range(n)
-        )
+        return "".join("1" if max(from_a[node], from_b[node]) == diameter else "0" for node in range(n))

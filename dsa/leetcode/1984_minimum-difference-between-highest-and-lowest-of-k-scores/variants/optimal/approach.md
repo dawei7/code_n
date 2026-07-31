@@ -23,10 +23,10 @@ This examines every form an optimal selection needs to take, so the smallest
 recorded spread is globally optimal.
 
 ## Complexity detail
-Sorting $N$ scores costs $O(N\log N)$ time. The subsequent scan examines
-$N-k+1$ windows in $O(N)$ time, so sorting dominates. Keeping a separate sorted
-copy uses $O(N)$ space. An in-place sort may reduce explicit array storage, but
-the sorting implementation can still require auxiliary memory.
+Sorting the supplied $N$ scores in place costs $O(N\log N)$ time. The
+subsequent scan examines $N-k+1$ windows in $O(N)$ time, so sorting dominates.
+Python's Timsort may use $O(N)$ auxiliary workspace in the worst case; the
+window scan itself uses constant state.
 
 ## Alternatives and edge cases
 - **Enumerate all selections:** Checking every group of `k` positions is

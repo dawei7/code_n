@@ -16,9 +16,7 @@ class Solution:
             for previous, count in states.items():
                 combined = previous // gcd(previous, value) * value
                 if k % combined == 0:
-                    next_states[combined] = (
-                        next_states.get(combined, 0) + count
-                    )
+                    next_states[combined] = next_states.get(combined, 0) + count
 
             states = next_states
             answer += states.get(k, 0)

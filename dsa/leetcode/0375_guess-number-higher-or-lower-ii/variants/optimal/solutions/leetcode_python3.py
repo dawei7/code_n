@@ -15,4 +15,3 @@ class Solution:
                 costs[left][right] = int(best)
 
         return costs[1][n]
-

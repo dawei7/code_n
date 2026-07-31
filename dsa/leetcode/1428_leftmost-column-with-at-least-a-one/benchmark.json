@@ -10,7 +10,7 @@
       "visible": false,
       "size": 10,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0,
@@ -65,7 +65,7 @@
       "visible": false,
       "size": 40,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0,
@@ -525,7 +525,7 @@
       "visible": false,
       "size": 200,
       "input": {
-        "binary_matrix": {
+        "binaryMatrix": {
           "matrix": [
             [
               0,

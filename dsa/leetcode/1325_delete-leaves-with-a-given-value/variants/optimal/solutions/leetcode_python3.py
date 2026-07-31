@@ -2,9 +2,7 @@ from typing import Optional
 
 
 class Solution:
-    def removeLeafNodes(
-        self, root: Optional[TreeNode], target: int
-    ) -> Optional[TreeNode]:
+    def removeLeafNodes(self, root: Optional[TreeNode], target: int) -> Optional[TreeNode]:
         result = root
         stack = [(root, None, None, False)]
         while stack:

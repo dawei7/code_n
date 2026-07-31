@@ -2,7 +2,7 @@ class Solution:
     def maxCollectedFruits(self, fruits: List[List[int]]) -> int:
         n = len(fruits)
         answer = sum(fruits[index][index] for index in range(n))
-        negative = -10**18
+        negative = -(10**18)
 
         previous = [negative] * n
         previous[n - 1] = fruits[0][n - 1]

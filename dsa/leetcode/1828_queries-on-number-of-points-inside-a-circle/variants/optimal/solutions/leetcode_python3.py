@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def countPoints(
-        self, points: List[List[int]], queries: List[List[int]]
-    ) -> List[int]:
+    def countPoints(self, points: List[List[int]], queries: List[List[int]]) -> List[int]:
         answer = []
         for center_x, center_y, radius in queries:
             radius_squared = radius * radius

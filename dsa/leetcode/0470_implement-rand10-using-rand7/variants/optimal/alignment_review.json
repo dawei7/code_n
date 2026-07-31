@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/solve.py",
+  "native_source": "solutions/leetcode_python3.py",
+  "hashes": {
+    "app_sha256": "625517ac41cb83df553cb151daf7c7096e91dd565a7c44341be8a3ffd652f10d",
+    "native_sha256": "837716209fa650482aec5ebe38b61d5830b7b7a305f0445645268785f7afe100",
+    "solution_variants_sha256": "5249f2cfda44da553df2d9e6de1b11050eb1e3e0a09d75d2e3d1cb580a0a6d2a",
+    "approach_sha256": "7f112360ffb8557ec35570326efda8eaa4ac3e1ce7cd0c677a15f0da21f96caa"
+  },
+  "classifications": [
+    "judge_environment",
+    "app_execution_adapter",
+    "platform_signature"
+  ],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "judge-supplied random API and repeated app execution",
+      "native": "LeetCode calls rand10() once per request and supplies the hidden global rand7() random API.",
+      "app": "solve(rand7_values, draws) defines rand7() over an authored deterministic cyclic stream, defines the same single-result rand10() rejection sampler, and calls it for the requested number of outputs.",
+      "rationale": "The offline runner must expose hidden randomness as reproducible case data and return a finite trace for validation. Each app rand10() call executes the same two-oracle-call cell construction, rejection condition, output mapping, and expected constant work as the native method."
+    }
+  ]
+}

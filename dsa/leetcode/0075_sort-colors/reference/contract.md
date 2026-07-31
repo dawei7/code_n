@@ -6,4 +6,4 @@
 
 **Return value**
 
-The native LeetCode method sorts `nums` in place and returns no value. The app adapter returns the same reordered array for validation.
+Return `None`; reorder `nums` in place so all `0` values come first, followed by all `1` values and then all `2` values.

@@ -15,6 +15,4 @@ class FindSumPairs:
         self.nums2_frequency[self.nums2[index]] += 1
 
     def count(self, tot: int) -> int:
-        return sum(
-            self.nums2_frequency[tot - value] for value in self.nums1
-        )
+        return sum(self.nums2_frequency[tot - value] for value in self.nums1)

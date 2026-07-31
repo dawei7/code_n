@@ -31,11 +31,7 @@ class Solution:
             unordered[cycle_length // 2] += cycle_length // 2
 
         for cycle_distance in range(1, cycle_length // 2 + 1):
-            multiplicity = (
-                1
-                if cycle_length % 2 == 0 and cycle_distance == cycle_length // 2
-                else 2
-            )
+            multiplicity = 1 if cycle_length % 2 == 0 and cycle_distance == cycle_length // 2 else 2
             add_range(cycle_distance + 1, cycle_distance + left_length, multiplicity)
             add_range(cycle_distance + 1, cycle_distance + right_length, multiplicity)
 

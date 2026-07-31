@@ -17,7 +17,9 @@ Return the values in exactly that visitation order. An empty tree produces an em
 ### Function Contract
 **Inputs**
 
-- `root`: the app representation of an N-ary node as `[value, children]`, recursively, or `None` for an empty tree
+- `root`: The N-ary `Node` root, or `None` for an empty tree. Each node exposes `val` and an ordered `children` list.
+
+Authored JSON cases encode a node recursively as `[value, children]`; the runner constructs the `Node` objects before calling `solve`.
 
 **Return value**
 

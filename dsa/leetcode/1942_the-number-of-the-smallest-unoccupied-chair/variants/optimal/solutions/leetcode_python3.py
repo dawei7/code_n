@@ -8,10 +8,7 @@ class Solution:
         times: List[List[int]],
         targetFriend: int,
     ) -> int:
-        arrivals = sorted(
-            (arrival, leaving, friend)
-            for friend, (arrival, leaving) in enumerate(times)
-        )
+        arrivals = sorted((arrival, leaving, friend) for friend, (arrival, leaving) in enumerate(times))
         available: List[int] = []
         occupied: List[tuple[int, int]] = []
         next_chair = 0

@@ -17,7 +17,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Each element is inspected at most once, givin
 
 ## Alternatives and edge cases
 
-- **Frequency countdown:** Count all values once, then remove at most three elements per operation while tracking how many frequencies exceed one. This is also expected $O(N)$ time and is used by the app-local reference.
+- **Frequency countdown:** Count all values once, then remove at most three elements per operation while tracking how many frequencies exceed one. This is also expected $O(N)$ time, but carries more state than the reverse suffix scan.
 - **Repeated distinctness checks:** Rebuilding a set after every three-element removal is correct but can take $O(N^2)$ total time.
 - **Initially distinct:** No operation is allowed or needed once the stopping condition already holds, so return `0`.
 - **Fewer than three elements:** If such an array contains a duplicate, its first operation removes the entire array.

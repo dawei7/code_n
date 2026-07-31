@@ -21,6 +21,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from engine.complexity_certificates import validate_complexity_certificate  # noqa: E402
+from engine.languages import app_solution_filename  # noqa: E402
 from engine.solution_variants import validate_solution_variants  # noqa: E402
 from tools.leetcode_source_fidelity import validate_source_fidelity  # noqa: E402
 
@@ -51,19 +52,6 @@ BASE_REFERENCE_HEADINGS = (
 )
 MIN_GOAL_WORDS = 60
 MIN_GOAL_PARAGRAPHS = 2
-EXTENSIONS = {
-    "python": "py",
-    "cpp": "cpp",
-    "java": "java",
-    "csharp": "cs",
-    "javascript": "js",
-    "go": "go",
-    "kotlin": "kt",
-    "sql": "sql",
-    "bash": "sh",
-}
-
-
 def _load_json(path: Path) -> Any:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -256,16 +244,19 @@ def _solution_status(package: Path, metadata: dict[str, Any]) -> dict[str, Any]:
     if not primary:
         supported = metadata.get("supported_languages")
         primary = str(supported[0]).lower() if isinstance(supported, list) and supported else ""
-    extension = EXTENSIONS.get(primary, "")
     variant_root = _default_variant_root(package, metadata)
     solution_root = (
         variant_root / "solutions"
         if variant_root is not None
         else package / "__missing_optimal_variant__" / "solutions"
     )
-    path = solution_root / f"{primary}.{extension}" if extension else solution_root / primary
+    try:
+        filename = app_solution_filename(primary)
+    except ValueError:
+        filename = primary
+    path = solution_root / filename
     return {
-        "complete": bool(extension and path.is_file() and path.stat().st_size > 0),
+        "complete": bool(filename and path.is_file() and path.stat().st_size > 0),
         "language": primary,
         "path": str(path.relative_to(ROOT)).replace("\\", "/"),
     }

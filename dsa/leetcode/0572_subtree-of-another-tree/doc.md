@@ -17,8 +17,8 @@ Return `True` if some node in `root` begins a tree that is identical to `subRoot
 ### Function Contract
 **Inputs**
 
-- `root`: the root of the main binary tree
-- `sub_root`: the root of the candidate subtree
+- `root`: the root `TreeNode` of the main binary tree
+- `subRoot`: the root `TreeNode` of the candidate subtree
 
 **Return value**
 

@@ -8,11 +8,9 @@ class Solution:
             return []
 
         def angle(opposite: int, adjacent_1: int, adjacent_2: int) -> float:
-            cosine = (
-                adjacent_1 * adjacent_1
-                + adjacent_2 * adjacent_2
-                - opposite * opposite
-            ) / (2 * adjacent_1 * adjacent_2)
+            cosine = (adjacent_1 * adjacent_1 + adjacent_2 * adjacent_2 - opposite * opposite) / (
+                2 * adjacent_1 * adjacent_2
+            )
             return math.degrees(math.acos(max(-1.0, min(1.0, cosine))))
 
         return [

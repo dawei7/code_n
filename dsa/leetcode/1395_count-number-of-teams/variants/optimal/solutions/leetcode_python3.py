@@ -13,7 +13,7 @@ class Solution:
                     left_smaller += 1
                 else:
                     left_greater += 1
-            for candidate in rating[middle + 1:]:
+            for candidate in rating[middle + 1 :]:
                 if candidate < middle_rating:
                     right_smaller += 1
                 else:

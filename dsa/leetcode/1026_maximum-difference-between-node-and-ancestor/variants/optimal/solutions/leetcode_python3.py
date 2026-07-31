@@ -17,4 +17,3 @@ class Solution:
                 stack.append((node.right, next_min, next_max))
 
         return answer
-

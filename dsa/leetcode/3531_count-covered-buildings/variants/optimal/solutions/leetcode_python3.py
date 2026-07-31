@@ -17,7 +17,6 @@ class Solution:
                 column_bounds[y] = [x, x]
 
         return sum(
-            row_bounds[x][0] < y < row_bounds[x][1]
-            and column_bounds[y][0] < x < column_bounds[y][1]
+            row_bounds[x][0] < y < row_bounds[x][1] and column_bounds[y][0] < x < column_bounds[y][1]
             for x, y in buildings
         )

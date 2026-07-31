@@ -9,8 +9,8 @@
       "kind": "optimal",
       "directory": "variants/optimal",
       "summary": "Uses the canonical optimal approach for Pascal's Triangle II and meets the required complexity bound.",
-      "time_complexity": "O(row_index)",
-      "space_complexity": "O(row_index)"
+      "time_complexity": "O(rowIndex)",
+      "space_complexity": "O(rowIndex)"
     }
   ]
 }

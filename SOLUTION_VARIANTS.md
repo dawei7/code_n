@@ -37,13 +37,13 @@ variants/
     approach.md
     submission.json
     solutions/
-      python.py
+      solve.py
       leetcode_python3.py
   simplified/
     approach.md
     submission.json
     solutions/
-      python.py
+      solve.py
       leetcode_python3.py
 ```
 

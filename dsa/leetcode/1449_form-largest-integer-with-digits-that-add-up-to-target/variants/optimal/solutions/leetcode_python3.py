@@ -22,11 +22,7 @@ class Solution:
         remaining = target
         for digit in range(9, 0, -1):
             price = cost[digit - 1]
-            while (
-                remaining >= price
-                and maximum_digits[remaining]
-                == maximum_digits[remaining - price] + 1
-            ):
+            while remaining >= price and maximum_digits[remaining] == maximum_digits[remaining - price] + 1:
                 answer.append(str(digit))
                 remaining -= price
 

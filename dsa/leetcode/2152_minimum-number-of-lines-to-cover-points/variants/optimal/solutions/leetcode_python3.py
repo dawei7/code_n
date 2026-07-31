@@ -23,20 +23,11 @@ class Solution:
             if covered == all_covered:
                 return 0
 
-            first = next(
-                index for index in range(count) if not (covered >> index) & 1
-            )
-            others = [
-                index
-                for index in range(first + 1, count)
-                if not (covered >> index) & 1
-            ]
+            first = next(index for index in range(count) if not (covered >> index) & 1)
+            others = [index for index in range(first + 1, count) if not (covered >> index) & 1]
             if not others:
                 return 1
 
-            return 1 + min(
-                minimum_lines(covered | line_masks[first][second])
-                for second in others
-            )
+            return 1 + min(minimum_lines(covered | line_masks[first][second]) for second in others)
 
         return minimum_lines(0)

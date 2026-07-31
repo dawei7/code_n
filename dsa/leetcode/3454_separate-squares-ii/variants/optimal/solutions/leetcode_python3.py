@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def separateSquares(self, squares: List[List[int]]) -> float:
         x_values = sorted({edge for x, _, side in squares for edge in (x, x + side)})

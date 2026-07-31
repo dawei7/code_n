@@ -2,9 +2,7 @@ from typing import Optional
 
 
 class Solution:
-    def kthLargestPerfectSubtree(
-        self, root: Optional[TreeNode], k: int
-    ) -> int:
+    def kthLargestPerfectSubtree(self, root: Optional[TreeNode], k: int) -> int:
         heights = {}
         sizes = []
         stack = [(root, False)]

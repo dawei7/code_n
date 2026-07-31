@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def mostProfitablePath(
-        self, edges: List[List[int]], bob: int, amount: List[int]
-    ) -> int:
+    def mostProfitablePath(self, edges: List[List[int]], bob: int, amount: List[int]) -> int:
         node_count = len(amount)
         graph = [[] for _ in range(node_count)]
         for first, second in edges:
@@ -29,7 +27,7 @@ class Solution:
             node = parent[node]
             time += 1
 
-        best_income = -10**18
+        best_income = -(10**18)
         stack = [(0, -1, 0, 0)]
         while stack:
             node, previous, time, income = stack.pop()

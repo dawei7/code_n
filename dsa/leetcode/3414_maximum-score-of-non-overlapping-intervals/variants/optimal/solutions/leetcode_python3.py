@@ -4,16 +4,11 @@ from typing import List
 
 class Solution:
     def maximumWeight(self, intervals: List[List[int]]) -> List[int]:
-        ordered = sorted(
-            (right, left, weight, index)
-            for index, (left, right, weight) in enumerate(intervals)
-        )
+        ordered = sorted((right, left, weight, index) for index, (left, right, weight) in enumerate(intervals))
         ends = [item[0] for item in ordered]
         n = len(ordered)
         impossible = (-1, ())
-        dp = [[(0, ())] * (n + 1)] + [
-            [impossible] * (n + 1) for _ in range(4)
-        ]
+        dp = [[(0, ())] * (n + 1)] + [[impossible] * (n + 1) for _ in range(4)]
 
         for chosen in range(1, 5):
             for i in range(1, n + 1):
@@ -27,9 +22,7 @@ class Solution:
                         score + weight,
                         tuple(sorted((*indices, original_index))),
                     )
-                    if candidate[0] > best[0] or (
-                        candidate[0] == best[0] and candidate[1] < best[1]
-                    ):
+                    if candidate[0] > best[0] or (candidate[0] == best[0] and candidate[1] < best[1]):
                         best = candidate
 
                 dp[chosen][i] = best
@@ -37,9 +30,7 @@ class Solution:
         answer = (0, ())
         for chosen in range(1, 5):
             candidate = dp[chosen][n]
-            if candidate[0] > answer[0] or (
-                candidate[0] == answer[0] and candidate[1] < answer[1]
-            ):
+            if candidate[0] > answer[0] or (candidate[0] == answer[0] and candidate[1] < answer[1]):
                 answer = candidate
 
         return list(answer[1])

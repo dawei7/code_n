@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "58bbe0a724739479e47ab828074c0770c324f031a5fac87309a3d9fd7cfbb659",
+    "native_sha256": "8a094ef6a031417adabadf3fff0bb574176fc83d4f370db8a84b117c9d563fc0",
+    "solution_variants_sha256": "5f448a6825b3db8dcb5791a60379c28ec53f517d456c9b1e8d718a238ea635c9",
+    "approach_sha256": "c4f9584b7a7eed69dfc2b4160451d74405f3159d7afc65351d2396337ae907ca"
+  },
+  "classifications": ["app_execution_adapter", "platform_signature"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "mutation result exposure",
+      "native": "LeetCode observes the Salary table after the single UPDATE statement and therefore needs no result query.",
+      "app": "The offline runner executes the identical UPDATE and then selects Salary in id order so authored cases can observe the mutated table.",
+      "rationale": "The appended read-only SELECT is required by the function-style offline result channel. It does not alter the update expression, affected rows, stored values, or linear mutation complexity."
+    }
+  ]
+}

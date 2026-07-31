@@ -27,4 +27,3 @@ class Solution:
                 high = middle - 1
 
         return high
-

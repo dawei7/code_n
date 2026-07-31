@@ -12,8 +12,4 @@ class Solution:
                 index += 1
             frequency[ord(letter) - ord("a")] += count
 
-        return "".join(
-            chr(ord("a") + offset) + str(count)
-            for offset, count in enumerate(frequency)
-            if count
-        )
+        return "".join(chr(ord("a") + offset) + str(count) for offset, count in enumerate(frequency) if count)

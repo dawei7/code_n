@@ -3,7 +3,7 @@ class Solution:
         state = [0] * 26
 
         for character in word:
-            index = ord(character.lower()) - ord('a')
+            index = ord(character.lower()) - ord("a")
             if character.islower():
                 if state[index] >= 2:
                     state[index] = 3

@@ -23,12 +23,7 @@ class Solution:
                     ):
                         outdegree[row][column] += 1
 
-        queue = deque(
-            (row, column)
-            for row in range(rows)
-            for column in range(columns)
-            if outdegree[row][column] == 0
-        )
+        queue = deque((row, column) for row in range(rows) for column in range(columns) if outdegree[row][column] == 0)
         layers = 0
         while queue:
             layers += 1

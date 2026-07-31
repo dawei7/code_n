@@ -8,9 +8,7 @@ from typing import List, Optional
 
 
 class Solution:
-    def findPattern(
-        self, stream: Optional["InfiniteStream"], pattern: List[int]
-    ) -> int:
+    def findPattern(self, stream: Optional["InfiniteStream"], pattern: List[int]) -> int:
         prefix = [0] * len(pattern)
         matched = 0
 

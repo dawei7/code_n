@@ -32,7 +32,7 @@ Every sorted quadruplet has a first and second value. The nested loops eventuall
 With the first two values fixed, the remaining target is a sorted two-sum problem. A sum that is too small can only be raised by moving the left pointer, and a sum that is too large can only be lowered by moving the right pointer, so the sweep cannot skip a matching pair. After a match, advancing over equal pointer values removes only repeated spellings of that same quadruplet. Every distinct solution is therefore found and emitted once.
 
 ## Complexity detail
-Sorting costs $O(n \log n)$. The two fixed-index loops select $O(n^2)$ prefixes, and each launches an $O(n)$ two-pointer sweep, so worst-case time is $O(n^3)$. A copied sorted array uses $O(n)$ auxiliary space; in-place sorting has language-dependent stack or workspace costs. The result list is output space.
+Sorting costs $O(n \log n)$. The two fixed-index loops select $O(n^2)$ prefixes, and each launches an $O(n)$ two-pointer sweep, so worst-case time is $O(n^3)$. Python's in-place list sort may use $O(n)$ temporary workspace in the worst case. The result list is output space.
 
 ## Alternatives and edge cases
 - **Four nested loops:** checks all index quadruples in $O(n^4)$ time and still needs value deduplication.

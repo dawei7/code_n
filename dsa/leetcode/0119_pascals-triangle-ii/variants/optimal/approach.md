@@ -32,11 +32,11 @@ $\binom{n}{k+1} = \binom{n}{k} \cdot (n-k) / (k+1)$
 maps each coefficient exactly to its successor; divisibility is guaranteed by the binomial formula. Repeating the ratio from $k = 0$ generates all $n + 1$ entries in order with no need for earlier rows.
 
 ## Complexity detail
-The algorithm performs one exact arithmetic update for each of `row_index` remaining coefficients, giving $O(row_index)$ time. The returned row uses $O(row_index)$ space and auxiliary storage is $O(1)$.
+The algorithm performs one exact arithmetic update for each of `rowIndex` remaining coefficients, giving $O(rowIndex)$ time. The returned row uses $O(rowIndex)$ space and auxiliary storage is $O(1)$.
 
 ## Alternatives and edge cases
-- **Build all preceding rows:** takes $O(row_index^2)$ time and storage.
+- **Build all preceding rows:** takes $O(rowIndex^2)$ time and storage.
 - **One-row in-place Pascal DP:** uses optimal output space but still takes quadratic time.
 - **Factorials per coefficient:** repeats large multiplications and divisions unnecessarily.
-- `row_index = 0` returns `[1]` without entering the loop.
+- `rowIndex = 0` returns `[1]` without entering the loop.
 - Coefficient symmetry appears naturally from the recurrence; copying the first half is optional and complicates odd/even center handling without improving the linear bound.

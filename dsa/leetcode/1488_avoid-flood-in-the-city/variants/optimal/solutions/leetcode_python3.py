@@ -34,10 +34,7 @@ class Solution:
 
             while deadlines:
                 deadline, urgent_lake = deadlines[0]
-                if (
-                    urgent_lake in full
-                    and current_deadline.get(urgent_lake) == deadline
-                ):
+                if urgent_lake in full and current_deadline.get(urgent_lake) == deadline:
                     break
                 heappop(deadlines)
 

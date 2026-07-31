@@ -1,0 +1,59 @@
+def solve(nums: list[int], k: int, limit: int) -> int:
+    total = sum(nums)
+    if abs(k) > total:
+        return -1
+
+    offset = total
+    width = 2 * total + 1
+    mask = (1 << width) - 1
+
+    without_zero = [0, 0]
+    with_zero = [0, 0]
+    products: dict[int, list[int]] = {}
+
+    for value in nums:
+        even_without, odd_without = without_zero
+        even_with, odd_with = with_zero
+
+        if value == 0:
+            with_zero = [
+                even_with | odd_with | odd_without,
+                odd_with | even_with | even_without | (1 << offset),
+            ]
+            continue
+
+        without_zero = [
+            even_without | (odd_without >> value),
+            odd_without | ((even_without << value) & mask) | (1 << (offset + value)),
+        ]
+        with_zero = [
+            even_with | (odd_with >> value),
+            odd_with | ((even_with << value) & mask),
+        ]
+
+        additions: dict[int, list[int]] = {}
+        if value <= limit:
+            additions[value] = [0, 1 << (offset + value)]
+
+        for product, (even_sums, odd_sums) in list(products.items()):
+            next_product = product * value
+            if next_product > limit:
+                continue
+            target = additions.setdefault(next_product, [0, 0])
+            target[0] |= odd_sums >> value
+            target[1] |= (even_sums << value) & mask
+
+        for product, (even_sums, odd_sums) in additions.items():
+            target = products.setdefault(product, [0, 0])
+            target[0] |= even_sums
+            target[1] |= odd_sums
+
+    target_bit = 1 << (offset + k)
+    answer = -1
+    for product, (even_sums, odd_sums) in products.items():
+        if (even_sums | odd_sums) & target_bit:
+            answer = max(answer, product)
+
+    if answer != -1:
+        return answer
+    return 0 if (with_zero[0] | with_zero[1]) & target_bit else -1

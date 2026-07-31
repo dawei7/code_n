@@ -10,5 +10,4 @@ WITH OrderedRequests AS (
 )
 SELECT DISTINCT user_id
 FROM OrderedRequests
-WHERE previous_time IS NOT NULL
-  AND time_stamp <= datetime(previous_time, '+24 hours');
+WHERE time_stamp <= datetime(previous_time, '+24 hours');

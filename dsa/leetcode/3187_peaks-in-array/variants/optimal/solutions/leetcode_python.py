@@ -30,11 +30,7 @@ class Solution:
         peaks = FenwickTree(n)
 
         def is_peak(index: int) -> int:
-            return int(
-                0 < index < n - 1
-                and nums[index] > nums[index - 1]
-                and nums[index] > nums[index + 1]
-            )
+            return int(0 < index < n - 1 and nums[index] > nums[index - 1] and nums[index] > nums[index + 1])
 
         for index in range(1, n - 1):
             peak[index] = is_peak(index)

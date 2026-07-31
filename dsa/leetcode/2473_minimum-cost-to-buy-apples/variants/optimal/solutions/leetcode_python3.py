@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def minCost(
-        self, n: int, roads: List[List[int]], appleCost: List[int], k: int
-    ) -> List[int]:
+    def minCost(self, n: int, roads: List[List[int]], appleCost: List[int], k: int) -> List[int]:
         graph = [[] for _ in range(n)]
         for city_a, city_b, travel_cost in roads:
             city_a -= 1

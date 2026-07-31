@@ -28,11 +28,7 @@ class Solution:
             median = ones[mid]
 
             cost = median * (mid - left) - (prefix[mid] - prefix[left])
-            cost += (
-                prefix[right]
-                - prefix[mid + 1]
-                - median * (right - mid - 1)
-            )
+            cost += prefix[right] - prefix[mid + 1] - median * (right - mid - 1)
             best = min(best, cost)
 
         return best + 2 * maxChanges

@@ -20,10 +20,7 @@ class Solution:
 
         while current.next is not None:
             next_node = current.next
-            if (
-                previous.val < current.val > next_node.val
-                or previous.val > current.val < next_node.val
-            ):
+            if previous.val < current.val > next_node.val or previous.val > current.val < next_node.val:
                 if first_critical == -1:
                     first_critical = index
                 else:

@@ -14,9 +14,7 @@ class Solution:
         for left_height in range(heights):
             for right_height in range(heights):
                 if right_height > left_height:
-                    dp[left_height][right_height] = (
-                        prefix[0][right_height] - prefix[0][left_height]
-                    )
+                    dp[left_height][right_height] = prefix[0][right_height] - prefix[0][left_height]
 
         for column in range(1, n - 1):
             next_dp = [[0] * heights for _ in range(heights)]

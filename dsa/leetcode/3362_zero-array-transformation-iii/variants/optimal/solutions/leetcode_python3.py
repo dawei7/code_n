@@ -27,4 +27,3 @@ class Solution:
                 selected += 1
 
         return len(queries) - selected
-

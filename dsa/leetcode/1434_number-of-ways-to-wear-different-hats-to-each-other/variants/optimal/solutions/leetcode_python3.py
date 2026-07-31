@@ -21,9 +21,7 @@ class Solution:
                     bit = 1 << person
                     if mask & bit == 0:
                         next_mask = mask | bit
-                        next_dp[next_mask] = (
-                            next_dp[next_mask] + count
-                        ) % modulus
+                        next_dp[next_mask] = (next_dp[next_mask] + count) % modulus
             dp = next_dp
 
         return dp[-1]

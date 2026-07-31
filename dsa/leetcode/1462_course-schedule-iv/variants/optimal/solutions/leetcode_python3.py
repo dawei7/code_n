@@ -15,11 +15,7 @@ class Solution:
             graph[prerequisite].append(course)
             indegree[course] += 1
 
-        queue = deque(
-            course
-            for course in range(numCourses)
-            if indegree[course] == 0
-        )
+        queue = deque(course for course in range(numCourses) if indegree[course] == 0)
         order = []
 
         while queue:
@@ -36,7 +32,4 @@ class Solution:
                 reachable[prerequisite].add(course)
                 reachable[prerequisite].update(reachable[course])
 
-        return [
-            course in reachable[prerequisite]
-            for prerequisite, course in queries
-        ]
+        return [course in reachable[prerequisite] for prerequisite, course in queries]

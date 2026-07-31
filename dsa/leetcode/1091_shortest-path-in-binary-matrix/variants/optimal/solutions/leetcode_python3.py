@@ -20,11 +20,7 @@ class Solution:
                         continue
                     next_row = row + row_step
                     next_column = column + column_step
-                    if (
-                        0 <= next_row < side
-                        and 0 <= next_column < side
-                        and grid[next_row][next_column] == 0
-                    ):
+                    if 0 <= next_row < side and 0 <= next_column < side and grid[next_row][next_column] == 0:
                         grid[next_row][next_column] = 1
                         queue.append((next_row, next_column, distance + 1))
         return -1

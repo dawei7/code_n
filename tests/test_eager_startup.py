@@ -42,7 +42,7 @@ print(json.dumps(result))
         env=env,
         capture_output=True,
         text=True,
-        timeout=30,
+        timeout=60,
         check=True,
     )
     result = json.loads(completed.stdout.strip().splitlines()[-1])

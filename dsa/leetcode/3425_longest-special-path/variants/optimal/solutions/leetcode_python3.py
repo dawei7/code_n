@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def longestSpecialPath(
-        self, edges: List[List[int]], nums: List[int]
-    ) -> List[int]:
+    def longestSpecialPath(self, edges: List[List[int]], nums: List[int]) -> List[int]:
         graph = [[] for _ in nums]
         for u, v, length in edges:
             graph[u].append((v, length))

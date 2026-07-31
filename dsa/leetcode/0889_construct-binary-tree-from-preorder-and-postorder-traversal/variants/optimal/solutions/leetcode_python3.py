@@ -2,12 +2,8 @@ from typing import List, Optional
 
 
 class Solution:
-    def constructFromPrePost(
-        self, preorder: List[int], postorder: List[int]
-    ) -> Optional["TreeNode"]:
-        postorder_index = {
-            value: index for index, value in enumerate(postorder)
-        }
+    def constructFromPrePost(self, preorder: List[int], postorder: List[int]) -> Optional["TreeNode"]:
+        postorder_index = {value: index for index, value in enumerate(postorder)}
         preorder_index = 0
 
         def build(left: int, right: int) -> "TreeNode":

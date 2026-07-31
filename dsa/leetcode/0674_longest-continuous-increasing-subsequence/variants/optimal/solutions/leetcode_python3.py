@@ -9,4 +9,3 @@ class Solution:
                 current = 1
             longest = max(longest, current)
         return longest
-

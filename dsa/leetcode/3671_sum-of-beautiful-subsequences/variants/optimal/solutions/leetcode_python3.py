@@ -55,7 +55,4 @@ class Solution:
                     if other != divisor:
                         extend(other, value)
 
-        return sum(
-            phi[divisor] * divisible_counts[divisor]
-            for divisor in range(1, maximum + 1)
-        ) % mod
+        return sum(phi[divisor] * divisible_counts[divisor] for divisor in range(1, maximum + 1)) % mod

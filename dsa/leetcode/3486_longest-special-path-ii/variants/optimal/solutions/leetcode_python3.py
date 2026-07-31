@@ -6,9 +6,7 @@ sys.setrecursionlimit(100000)
 
 
 class Solution:
-    def longestSpecialPath(
-        self, edges: List[List[int]], nums: List[int]
-    ) -> List[int]:
+    def longestSpecialPath(self, edges: List[List[int]], nums: List[int]) -> List[int]:
         node_count = len(nums)
         graph: list[list[tuple[int, int]]] = [[] for _ in range(node_count)]
         for first_node, second_node, length in edges:

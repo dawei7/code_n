@@ -23,4 +23,3 @@ class Solution:
                 best_time = f"{hour:02d}:{minute:02d}"
 
         return best_time
-

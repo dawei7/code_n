@@ -19,7 +19,7 @@ class Solution:
                 break
 
             node[s[end]] = {}
-            segments.append(s[start:end + 1])
+            segments.append(s[start : end + 1])
             start = end + 1
 
         return segments

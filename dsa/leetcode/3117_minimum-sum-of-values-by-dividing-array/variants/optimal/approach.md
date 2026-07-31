@@ -2,7 +2,7 @@
 
 **Represent every decision at a prefix boundary.** After consuming some prefix of `nums`, a state `(segment, current_and)` records which target the open subarray must match and the bitwise AND accumulated in that open subarray. The state's value is the minimum sum of endpoints of all subarrays already closed. The sentinel `current_and = -1` means exactly `segment` subarrays have been completed and the next consumed element will start a new one; $-1$ is the identity for bitwise AND.
 
-Process `nums` from left to right. AND the next `value` into every running state. Keeping the subarray open carries its endpoint cost forward unchanged. If the new AND equals `and_values[segment]`, there is also a valid choice to close the subarray at this element, advance to the next target, reset the running AND to $-1$, and add `value` to the endpoint sum.
+Process `nums` from left to right. AND the next `value` into every running state. Keeping the subarray open carries its endpoint cost forward unchanged. If the new AND equals `andValues[segment]`, there is also a valid choice to close the subarray at this element, advance to the next target, reset the running AND to $-1$, and add `value` to the endpoint sum.
 
 **Discard states that can never recover.** Bitwise AND can clear set bits but can never restore them. If the running value lacks any bit required by the current target, expressed by `current_and & target != target`, no extension can reach that target. Removing the state is therefore safe. Reaching the target does not force an immediate cut: later elements may preserve it, and delaying the endpoint can lead to a better global partition.
 
@@ -12,7 +12,7 @@ Every legal partition determines a unique sequence of continue-or-close transiti
 
 ## Complexity detail
 
-Let $n$ be the length of `nums`, $m$ the length of `and_values`, and $V=\max(\texttt{nums})$. For subarrays ending at one position, each distinct running AND after the first must clear at least one previously set bit. There are therefore $O(\log V)$ distinct AND values per target position and $O(m\log V)$ states in a layer. Each element processes that layer once, giving $O(nm\log V)$ time and $O(m\log V)$ auxiliary space for the current and next dictionaries. Under the given value bound, there are at most 17 relevant bit positions.
+Let $n$ be the length of `nums`, $m$ the length of `andValues`, and $V=\max(\texttt{nums})$. For subarrays ending at one position, each distinct running AND after the first must clear at least one previously set bit. There are therefore $O(\log V)$ distinct AND values per target position and $O(m\log V)$ states in a layer. Each element processes that layer once, giving $O(nm\log V)$ time and $O(m\log V)$ auxiliary space for the current and next dictionaries. Under the given value bound, there are at most 17 relevant bit positions.
 
 ## Alternatives and edge cases
 

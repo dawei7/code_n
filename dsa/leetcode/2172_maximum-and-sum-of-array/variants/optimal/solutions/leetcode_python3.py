@@ -16,8 +16,7 @@ class Solution:
                 if (mask // power) % 3 < 2:
                     answer = max(
                         answer,
-                        (nums[index] & slot)
-                        + best(index + 1, mask + power),
+                        (nums[index] & slot) + best(index + 1, mask + power),
                     )
             return answer
 

@@ -14,4 +14,3 @@ class Solution:
                 heappush(heap, -(heaviest - second_heaviest))
 
         return -heap[0] if heap else 0
-

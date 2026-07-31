@@ -11,9 +11,7 @@ class Solution:
 
         for index, current in enumerate(company_sets):
             contained = any(
-                index != other_index
-                and len(current) < len(candidate)
-                and current.issubset(candidate)
+                index != other_index and len(current) < len(candidate) and current.issubset(candidate)
                 for other_index, candidate in enumerate(company_sets)
             )
             if not contained:

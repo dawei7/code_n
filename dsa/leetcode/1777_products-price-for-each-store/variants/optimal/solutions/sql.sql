@@ -4,5 +4,4 @@ SELECT
     MAX(CASE WHEN store = 'store2' THEN price END) AS store2,
     MAX(CASE WHEN store = 'store3' THEN price END) AS store3
 FROM Products
-GROUP BY product_id
-ORDER BY product_id;
+GROUP BY product_id;

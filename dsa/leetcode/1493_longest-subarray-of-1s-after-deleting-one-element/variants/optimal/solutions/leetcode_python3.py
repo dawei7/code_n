@@ -19,4 +19,3 @@ class Solution:
             best = max(best, right - left)
 
         return best
-

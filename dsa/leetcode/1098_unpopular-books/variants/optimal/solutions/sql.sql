@@ -5,5 +5,4 @@ LEFT JOIN Orders AS o
    AND o.dispatch_date BETWEEN '2018-06-23' AND '2019-06-23'
 WHERE b.available_from < '2019-05-23'
 GROUP BY b.book_id, b.name
-HAVING COALESCE(SUM(o.quantity), 0) < 10
-ORDER BY b.book_id;
+HAVING COALESCE(SUM(o.quantity), 0) < 10;

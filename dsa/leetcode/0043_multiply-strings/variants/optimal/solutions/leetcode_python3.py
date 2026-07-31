@@ -5,10 +5,7 @@ class Solution:
         digits = [0] * (len(num1) + len(num2))
         for left in range(len(num1) - 1, -1, -1):
             for right in range(len(num2) - 1, -1, -1):
-                total = (
-                    (ord(num1[left]) - ord("0")) * (ord(num2[right]) - ord("0"))
-                    + digits[left + right + 1]
-                )
+                total = (ord(num1[left]) - ord("0")) * (ord(num2[right]) - ord("0")) + digits[left + right + 1]
                 digits[left + right + 1] = total % 10
                 digits[left + right] += total // 10
         first = 0

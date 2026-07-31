@@ -4,9 +4,7 @@ class Solution:
             return -1
 
         def arrives(speed: int) -> bool:
-            elapsed = sum(
-                (distance + speed - 1) // speed for distance in dist[:-1]
-            )
+            elapsed = sum((distance + speed - 1) // speed for distance in dist[:-1])
             return elapsed + dist[-1] / speed <= hour
 
         low, high = 1, 10_000_000

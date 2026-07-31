@@ -7,11 +7,7 @@ WITH friendships AS (
 )
 SELECT
     user1,
-    ROUND(
-        COUNT(*) * 100.0 /
-        (SELECT COUNT(DISTINCT user1) FROM friendships),
-        2
-    ) AS percentage_popularity
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(DISTINCT user1) FROM friendships), 2) AS percentage_popularity
 FROM friendships
 GROUP BY user1
 ORDER BY user1;

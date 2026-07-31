@@ -48,15 +48,7 @@ class Solution:
                 )
                 for horizontal in range(2):
                     for vertical in range(2):
-                        twos = (
-                            horizontal_twos[horizontal]
-                            + vertical_twos[vertical]
-                            - cell_twos
-                        )
-                        fives = (
-                            horizontal_fives[horizontal]
-                            + vertical_fives[vertical]
-                            - cell_fives
-                        )
+                        twos = horizontal_twos[horizontal] + vertical_twos[vertical] - cell_twos
+                        fives = horizontal_fives[horizontal] + vertical_fives[vertical] - cell_fives
                         answer = max(answer, min(twos, fives))
         return answer

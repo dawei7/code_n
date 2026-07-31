@@ -14,8 +14,6 @@ class Solution:
             if n == 0:
                 break
             n -= 1
-            state = (0,) + tuple(
-                int(state[index - 1] == state[index + 1]) for index in range(1, 7)
-            ) + (0,)
+            state = (0,) + tuple(int(state[index - 1] == state[index + 1]) for index in range(1, 7)) + (0,)
 
         return list(state)

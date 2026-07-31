@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def shortestDistanceAfterQueries(
-        self, n: int, queries: List[List[int]]
-    ) -> List[int]:
+    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
         graph = [[city + 1] for city in range(n - 1)] + [[]]
         answer = []
 

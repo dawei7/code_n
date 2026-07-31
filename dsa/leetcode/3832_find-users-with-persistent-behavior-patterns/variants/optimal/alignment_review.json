@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "8558d0c0a271bc5962dfd135d33cf49bcd4219e2b25cafd63a2ca595079a2bb9",
+    "native_sha256": "4c3c5ec5e81aca0949285a4bd1e9278a75bd35884f300399446c4959484ce44e",
+    "solution_variants_sha256": "190b8807c2421bac772dd39a444a3eca2bfee01e2088d1f80f1fa5bf649330a7",
+    "approach_sha256": "4258f0636949bb10534b074fb6a2acc45285e4a48003a7fa45ba2cba3b30ca25"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "consecutive-date island key",
+      "native": "MySQL groups each numbered row by DATE_SUB(action_date, INTERVAL day_number DAY).",
+      "app": "SQLite groups each numbered row by julianday(action_date) - day_number.",
+      "rationale": "Both subtract the row ordinal from the calendar date to produce one constant key per consecutive-day streak; SQLite has no MySQL DATE_SUB ... INTERVAL syntax."
+    }
+  ]
+}

@@ -29,13 +29,9 @@ class Solution:
                     remaining //= prime
 
             for prime in factors:
-                best_start[prime] = min(
-                    best_start.get(prime, infinity), splits[index]
-                )
+                best_start[prime] = min(best_start.get(prime, infinity), splits[index])
 
             if factors:
-                splits[index + 1] = 1 + min(
-                    best_start[prime] for prime in factors
-                )
+                splits[index + 1] = 1 + min(best_start[prime] for prime in factors)
 
         return -1 if splits[n] > n else splits[n]

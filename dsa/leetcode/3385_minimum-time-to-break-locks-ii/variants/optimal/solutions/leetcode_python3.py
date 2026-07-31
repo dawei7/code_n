@@ -24,14 +24,8 @@ class Solution:
                 for candidate in range(1, n + 1):
                     if used[candidate]:
                         continue
-                    cost = (
-                        strength[current_row - 1] + candidate - 1
-                    ) // candidate
-                    slack = (
-                        cost
-                        - row_potential[current_row]
-                        - column_potential[candidate]
-                    )
+                    cost = (strength[current_row - 1] + candidate - 1) // candidate
+                    slack = cost - row_potential[current_row] - column_potential[candidate]
                     if slack < minimum_slack[candidate]:
                         minimum_slack[candidate] = slack
                         previous_column[candidate] = column

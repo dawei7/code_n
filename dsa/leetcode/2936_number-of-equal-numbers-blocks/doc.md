@@ -28,7 +28,7 @@ boundaries with a small number of queries rather than inspect every index.
 
 **Inputs**
 
-- `nums`: A read-only `BigArray` supporting `size()` and zero-indexed `at(index)` access. The app adapter receives the equivalent serialized integer list.
+- `nums`: A read-only `BigArray` supporting `size()` and zero-indexed `at(index)` access. The app judge constructs this object from the serialized integer list shown in a case input.
 
 Let $n=\texttt{nums.size()}$ and let $b$ be the number of maximal equal-value
 blocks. The constraints are $1\le n\le10^{15}$ and

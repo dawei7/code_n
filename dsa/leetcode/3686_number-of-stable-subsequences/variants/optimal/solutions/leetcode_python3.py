@@ -9,15 +9,9 @@ class Solution:
         for value in nums:
             parity = value & 1
             other = parity ^ 1
-            new_run_one = (
-                1 + endings[other][0] + endings[other][1]
-            ) % modulo
+            new_run_one = (1 + endings[other][0] + endings[other][1]) % modulo
             new_run_two = endings[parity][0]
-            endings[parity][0] = (
-                endings[parity][0] + new_run_one
-            ) % modulo
-            endings[parity][1] = (
-                endings[parity][1] + new_run_two
-            ) % modulo
+            endings[parity][0] = (endings[parity][0] + new_run_one) % modulo
+            endings[parity][1] = (endings[parity][1] + new_run_two) % modulo
 
         return sum(map(sum, endings)) % modulo

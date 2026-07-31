@@ -23,10 +23,7 @@ class Solution:
 
             for first in range(10):
                 for second in range(10):
-                    answer += (
-                        left_pairs[first][second]
-                        * right_pairs[second][first]
-                    )
+                    answer += left_pairs[first][second] * right_pairs[second][first]
             answer %= MODULUS
 
             for first in range(10):

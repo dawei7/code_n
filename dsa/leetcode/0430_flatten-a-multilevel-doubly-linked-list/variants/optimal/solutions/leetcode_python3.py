@@ -1,5 +1,5 @@
 class Solution:
-    def flatten(self, head: 'Node') -> 'Node':
+    def flatten(self, head: "Node") -> "Node":
         if head is None:
             return None
 

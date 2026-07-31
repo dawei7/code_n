@@ -14,4 +14,3 @@ class Solution:
                 best = max(best, dp[i][difference])
 
         return best
-

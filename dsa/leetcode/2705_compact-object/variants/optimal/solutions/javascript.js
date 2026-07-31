@@ -1,4 +1,8 @@
-function compactObject(obj) {
+/**
+ * @param {Object|Array} obj
+ * @return {Object|Array}
+ */
+var compactObject = function(obj) {
     if (Array.isArray(obj)) {
         const compact = [];
         for (const value of obj) {
@@ -18,7 +22,7 @@ function compactObject(obj) {
         compact[key] = typeof value === "object" ? compactObject(value) : value;
     }
     return compact;
-}
+};
 
 function solve(obj) {
     return compactObject(obj);

@@ -22,11 +22,10 @@ neighbors' average. Swapping positions changes no values or multiplicities, so
 the result is also a permutation of the input.
 
 ## Complexity detail
-Here $N$ is the number of input values. Sorting costs $O(N\log N)$ time, and
-the adjacent-pair pass costs $O(N)$ time. The returned list requires $O(N)$
-space under the app contract. The pair swaps themselves use $O(1)$ auxiliary
-space; a language's sorting routine may use additional implementation-specific
-working memory.
+Here $N$ is the number of input values. Sorting the supplied list in place
+costs $O(N\log N)$ time, and the adjacent-pair pass costs $O(N)$ time. The pair
+swaps use $O(1)$ auxiliary state; Python's Timsort may use $O(N)$ working
+memory in the worst case.
 
 ## Alternatives and edge cases
 - **Split and interleave sorted halves:** Alternating values from the lower and

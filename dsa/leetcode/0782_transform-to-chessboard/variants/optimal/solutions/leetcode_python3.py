@@ -15,9 +15,7 @@ class Solution:
             if abs(side - 2 * ones) > 1:
                 return -1
 
-            mismatch_zero = sum(
-                value != index % 2 for index, value in enumerate(labels)
-            )
+            mismatch_zero = sum(value != index % 2 for index, value in enumerate(labels))
             if side % 2 == 0:
                 mismatches = min(mismatch_zero, side - mismatch_zero)
             elif mismatch_zero % 2 == 0:

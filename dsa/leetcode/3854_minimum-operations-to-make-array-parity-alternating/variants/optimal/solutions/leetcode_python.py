@@ -5,7 +5,7 @@ class Solution:
     def makeParityAlternating(self, nums: List[int]) -> List[int]:
         def evaluate(first_parity: int) -> tuple[int, int]:
             operations = 0
-            largest_lower_choice = -10**10
+            largest_lower_choice = -(10**10)
             smallest_upper_choice = 10**10
 
             for index, value in enumerate(nums):
@@ -25,9 +25,7 @@ class Solution:
             if len(nums) == 1:
                 minimum_range = 0
             else:
-                minimum_range = max(
-                    1, largest_lower_choice - smallest_upper_choice
-                )
+                minimum_range = max(1, largest_lower_choice - smallest_upper_choice)
 
             return operations, minimum_range
 
@@ -35,9 +33,7 @@ class Solution:
         odd_first = evaluate(1)
         minimum_operations = min(even_first[0], odd_first[0])
         minimum_range = min(
-            range_value
-            for operations, range_value in (even_first, odd_first)
-            if operations == minimum_operations
+            range_value for operations, range_value in (even_first, odd_first) if operations == minimum_operations
         )
 
         return [minimum_operations, minimum_range]

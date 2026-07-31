@@ -23,12 +23,12 @@ Return the number of distinct roll sequences that satisfy every face's consecuti
 **Inputs**
 
 - `n`: The number of rolls in a sequence, where $1\le n\le5000$.
-- `roll_max`: Six consecutive-run limits corresponding to faces `1` through `6`; each value lies from `1` through `15`. This is the app-local form of LeetCode's `rollMax` parameter.
+- `rollMax`: Six consecutive-run limits corresponding to faces `1` through `6`; each value lies from `1` through `15`. This is the app-local form of LeetCode's `rollMax` parameter.
 
 Define the total number of run-length states as
 
 $$
-R=\sum_{f=0}^{5}\texttt{roll\_max[f]}.
+R=\sum_{f=0}^{5}\texttt{rollMax[f]}.
 $$
 
 **Return value**
@@ -39,19 +39,19 @@ $$
 
 **Example 1**
 
-- Input: `n = 2`, `roll_max = [1,1,2,2,2,3]`
+- Input: `n = 2`, `rollMax = [1,1,2,2,2,3]`
 - Output: `34`
 
 Of the `36` two-roll sequences, `11` and `22` violate their limits.
 
 **Example 2**
 
-- Input: `n = 2`, `roll_max = [1,1,1,1,1,1]`
+- Input: `n = 2`, `rollMax = [1,1,1,1,1,1]`
 - Output: `30`
 
 The second roll must differ from the first, giving `6 * 5` choices.
 
 **Example 3**
 
-- Input: `n = 3`, `roll_max = [1,1,1,2,2,3]`
+- Input: `n = 3`, `rollMax = [1,1,1,2,2,3]`
 - Output: `181`

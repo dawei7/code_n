@@ -10,8 +10,6 @@ class Solution:
                 if source == target:
                     current.append(previous[column - 1])
                 else:
-                    current.append(
-                        1 + min(previous[column], current[-1], previous[column - 1])
-                    )
+                    current.append(1 + min(previous[column], current[-1], previous[column - 1]))
             previous = current
         return previous[-1]

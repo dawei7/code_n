@@ -40,7 +40,4 @@ class Solution:
             pending = 1
             index -= 1
 
-        return "".join(
-            atom + (str(counts[atom]) if counts[atom] > 1 else "")
-            for atom in sorted(counts)
-        )
+        return "".join(atom + (str(counts[atom]) if counts[atom] > 1 else "") for atom in sorted(counts))

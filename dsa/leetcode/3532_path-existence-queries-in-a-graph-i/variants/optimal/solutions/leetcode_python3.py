@@ -7,7 +7,4 @@ class Solution:
             if nums[index] - nums[index - 1] > maxDiff:
                 component[index] += 1
 
-        return [
-            component[source] == component[target]
-            for source, target in queries
-        ]
+        return [component[source] == component[target] for source, target in queries]

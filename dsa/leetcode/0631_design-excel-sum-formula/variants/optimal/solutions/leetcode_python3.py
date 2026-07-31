@@ -58,10 +58,7 @@ class Excel:
         self.remove_formula(cell)
 
         formula = self.references(numbers)
-        value = sum(
-            self.values[source[0]][source[1]] * multiplicity
-            for source, multiplicity in formula.items()
-        )
+        value = sum(self.values[source[0]][source[1]] * multiplicity for source, multiplicity in formula.items())
         self.formulas[cell] = formula
         for source, multiplicity in formula.items():
             self.dependents[source][cell] += multiplicity

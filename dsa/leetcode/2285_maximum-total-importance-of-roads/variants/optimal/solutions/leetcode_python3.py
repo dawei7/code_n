@@ -9,6 +9,4 @@ class Solution:
             degrees[second] += 1
 
         degrees.sort()
-        return sum(
-            value * degree for value, degree in enumerate(degrees, start=1)
-        )
+        return sum(value * degree for value, degree in enumerate(degrees, start=1))

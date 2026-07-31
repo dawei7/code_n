@@ -1,7 +1,7 @@
 ## General
 **Write only values that survive the filter**
 
-Set `write = 0` and scan every value. When a value differs from `val`, assign it to `nums[write]` and increment `write`. Matching values cause no write. The app returns `nums[:write]`; the official method returns `write` after the identical in-place compaction.
+Set `write = 0` and scan every value. When a value differs from `val`, assign it to `nums[write]` and increment `write`. Matching values cause no write. Return `write` after the in-place compaction; the judge verifies both that count and the retained prefix.
 
 **The prefix is a stable filter of everything already read**
 
@@ -18,7 +18,7 @@ Each read position is classified exactly once. A target value leaves the write p
 When the read scan ends, every source value has been classified. No target can appear in the prefix and no non-target can be missing, so `write` is both the correct new length and the boundary of the required retained multiset.
 
 ## Complexity detail
-Every array element is read once and every retained value is written at most once, so time is $O(n)$. The two-pointer compaction uses $O(1)$ auxiliary space. The app returns the retained prefix for direct testing; the native LeetCode method instead returns its length.
+Every array element is read once and every retained value is written at most once, so time is $O(n)$. The two-pointer compaction uses $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
 - **Swap targets with the end:** also uses linear time and constant space and can reduce writes when targets are rare, but does not preserve order.

@@ -392,6 +392,38 @@ def _solution_contract_params(doc_path: Path) -> list[str] | None:
     return params
 
 
+def _python_starter_preamble(doc_path: Path) -> str:
+    """Copy explicitly marked judge models into the editable Python starter.
+
+    App-local references mark source-native compatibility models with a
+    ``Local equivalent of ...`` class docstring.  Only those small model
+    declarations are copied; solution and algorithm-helper classes are never
+    exposed through the starter.
+    """
+
+    challenge_id = leetcode_package_id(doc_path.parent)
+    solution_path = leetcode_solution_path(challenge_id, "python") if challenge_id else None
+    if solution_path is None or not solution_path.is_file():
+        return ""
+    try:
+        source = solution_path.read_text(encoding="utf-8")
+        tree = ast.parse(source)
+    except (OSError, SyntaxError):
+        return ""
+
+    declarations: list[str] = []
+    for node in tree.body:
+        if not isinstance(node, ast.ClassDef):
+            continue
+        docstring = ast.get_docstring(node, clean=False) or ""
+        if not docstring.startswith("Local equivalent of "):
+            continue
+        declaration = ast.get_source_segment(source, node)
+        if declaration:
+            declarations.append(declaration.strip())
+    return "\n\n".join(declarations)
+
+
 def _case_contract_params(doc_path: Path) -> list[str] | None:
     """Read ordered input names from the first authored validated case."""
 
@@ -685,6 +717,7 @@ def _build_spec(path: Path, text: str | None = None) -> AlgorithmSpec | None:
             "primary_language": str(package_metadata.get("primary_language") or ""),
             "runnable_in_coden": runnable_in_coden,
             "starter_sources": starter_sources,
+            "python_starter_preamble": _python_starter_preamble(path),
             "subsets": package_metadata.get("subsets") if isinstance(package_metadata.get("subsets"), list) else [],
             "tags": package_metadata.get("tags") if isinstance(package_metadata.get("tags"), list) else [],
             "topics": package_metadata.get("topics") if isinstance(package_metadata.get("topics"), list) else [],

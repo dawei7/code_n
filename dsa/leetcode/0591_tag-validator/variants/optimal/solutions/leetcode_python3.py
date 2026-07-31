@@ -1,10 +1,7 @@
 class Solution:
     def isValid(self, code: str) -> bool:
         def valid_name(name):
-            return (
-                1 <= len(name) <= 9
-                and all("A" <= char <= "Z" for char in name)
-            )
+            return 1 <= len(name) <= 9 and all("A" <= char <= "Z" for char in name)
 
         stack = []
         opened_root = False
@@ -26,11 +23,7 @@ class Solution:
                 if end == -1:
                     return False
                 name = code[index + 2 : end]
-                if (
-                    not valid_name(name)
-                    or not stack
-                    or stack[-1] != name
-                ):
+                if not valid_name(name) or not stack or stack[-1] != name:
                     return False
                 stack.pop()
                 index = end + 1
@@ -50,4 +43,3 @@ class Solution:
                 index += 1
 
         return opened_root and not stack
-

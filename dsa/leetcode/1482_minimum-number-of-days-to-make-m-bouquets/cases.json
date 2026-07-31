@@ -7,7 +7,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           1,
           10,
           3,
@@ -30,7 +30,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           1,
           10,
           3,
@@ -53,7 +53,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           7,
           7,
           7,
@@ -77,7 +77,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           2,
           4,
           2,
@@ -102,7 +102,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           999999999
         ],
         "m": 1,
@@ -121,7 +121,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           6,
           6,
           6,
@@ -143,7 +143,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           1,
           2,
           3,
@@ -166,7 +166,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           1,
           10,
           1,
@@ -190,7 +190,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           5,
           1,
           4,
@@ -213,7 +213,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           1,
           1000000000
         ],
@@ -233,7 +233,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "bloom_day": [
+        "bloomDay": [
           3,
           3,
           3,

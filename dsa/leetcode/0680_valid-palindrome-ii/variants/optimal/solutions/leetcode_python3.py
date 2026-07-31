@@ -14,9 +14,4 @@ class Solution:
             left += 1
             right -= 1
 
-        return (
-            left >= right
-            or is_palindrome(left + 1, right)
-            or is_palindrome(left, right - 1)
-        )
-
+        return left >= right or is_palindrome(left + 1, right) or is_palindrome(left, right - 1)

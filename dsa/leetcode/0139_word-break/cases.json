@@ -8,7 +8,7 @@
       "visible": true,
       "input": {
         "s": "leetcode",
-        "word_dict": [
+        "wordDict": [
           "leet",
           "code"
         ]
@@ -26,7 +26,7 @@
       "visible": true,
       "input": {
         "s": "applepenapple",
-        "word_dict": [
+        "wordDict": [
           "apple",
           "pen"
         ]
@@ -43,7 +43,7 @@
       "visible": true,
       "input": {
         "s": "catsandog",
-        "word_dict": [
+        "wordDict": [
           "cats",
           "dog",
           "sand",
@@ -64,7 +64,7 @@
       "visible": true,
       "input": {
         "s": "a",
-        "word_dict": ["b"]
+        "wordDict": ["b"]
       },
       "expected": false,
       "tags": ["boundary", "negative"]
@@ -76,7 +76,7 @@
       "visible": false,
       "input": {
         "s": "aaaaaaa",
-        "word_dict": [
+        "wordDict": [
           "aaaa",
           "aaa"
         ]

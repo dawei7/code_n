@@ -17,7 +17,7 @@ Return the total number of seconds during which the enemy is poisoned. If anothe
 ### Function Contract
 **Inputs**
 
-- `time_series`: attack times in nondecreasing order
+- `timeSeries`: attack times in nondecreasing order
 - `duration`: the positive poison duration caused by each attack
 
 **Return value**
@@ -27,15 +27,15 @@ Return the total number of seconds during which the enemy is poisoned. If anothe
 ### Examples
 **Example 1**
 
-- Input: `time_series = [1, 4], duration = 2`
+- Input: `timeSeries = [1, 4], duration = 2`
 - Output: `4`
 
 **Example 2**
 
-- Input: `time_series = [1, 2], duration = 2`
+- Input: `timeSeries = [1, 2], duration = 2`
 - Output: `3`
 
 **Example 3**
 
-- Input: `time_series = [1], duration = 5`
+- Input: `timeSeries = [1], duration = 5`
 - Output: `5`

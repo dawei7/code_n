@@ -7,12 +7,10 @@ class Solution:
     def countFancy(self, l: int, r: int) -> int:
         def is_good(value: int) -> bool:
             digits = str(value)
-            return len(digits) == 1 or all(
-                digits[index] < digits[index + 1]
-                for index in range(len(digits) - 1)
-            ) or all(
-                digits[index] > digits[index + 1]
-                for index in range(len(digits) - 1)
+            return (
+                len(digits) == 1
+                or all(digits[index] < digits[index + 1] for index in range(len(digits) - 1))
+                or all(digits[index] > digits[index + 1] for index in range(len(digits) - 1))
             )
 
         good_sums = {value for value in range(1, 145) if is_good(value)}
@@ -31,9 +29,7 @@ class Solution:
                     good_numbers.add(value)
 
         ordered_good = sorted(good_numbers)
-        ordered_overlap = sorted(
-            value for value in good_numbers if sum(map(int, str(value))) in good_sums
-        )
+        ordered_overlap = sorted(value for value in good_numbers if sum(map(int, str(value))) in good_sums)
 
         def count_sum_good(bound: int) -> int:
             if bound <= 0:
@@ -62,8 +58,5 @@ class Solution:
             return bisect_right(values, r) - bisect_left(values, l)
 
         return (
-            count_sum_good(r)
-            - count_sum_good(l - 1)
-            + count_in_range(ordered_good)
-            - count_in_range(ordered_overlap)
+            count_sum_good(r) - count_sum_good(l - 1) + count_in_range(ordered_good) - count_in_range(ordered_overlap)
         )

@@ -5,8 +5,8 @@ The nested input is naturally a forest: each integer is a value node, while each
 
 Begin with depth `1` for the outermost list. For each element:
 
-- If it is an integer, add `integer * depth` to the running total.
-- If it is a list, recursively process its children at `depth + 1`.
+- If `isInteger()` is true, add `getInteger() * depth` to the running total.
+- Otherwise, recursively process `getList()` at `depth + 1`.
 
 **Trace one chain of nested lists**
 

@@ -5,10 +5,7 @@ class Solution:
     def luckyNumbers(self, matrix: List[List[int]]) -> List[int]:
         rows = len(matrix)
         columns = len(matrix[0])
-        column_maxima = [
-            max(matrix[row][column] for row in range(rows))
-            for column in range(columns)
-        ]
+        column_maxima = [max(matrix[row][column] for row in range(rows)) for column in range(columns)]
 
         lucky = []
         for row in matrix:

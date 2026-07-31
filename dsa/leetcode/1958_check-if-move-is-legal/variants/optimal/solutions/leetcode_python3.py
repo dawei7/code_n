@@ -20,21 +20,12 @@ class Solution:
                 column = cMove + column_step
                 has_middle = False
 
-                while (
-                    0 <= row < 8
-                    and 0 <= column < 8
-                    and board[row][column] == opposite
-                ):
+                while 0 <= row < 8 and 0 <= column < 8 and board[row][column] == opposite:
                     has_middle = True
                     row += row_step
                     column += column_step
 
-                if (
-                    has_middle
-                    and 0 <= row < 8
-                    and 0 <= column < 8
-                    and board[row][column] == color
-                ):
+                if has_middle and 0 <= row < 8 and 0 <= column < 8 and board[row][column] == color:
                     return True
 
         return False

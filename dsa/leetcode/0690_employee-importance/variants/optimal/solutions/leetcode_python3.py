@@ -1,5 +1,5 @@
 class Solution:
-    def getImportance(self, employees: list['Employee'], id: int) -> int:
+    def getImportance(self, employees: list["Employee"], id: int) -> int:
         by_id = {employee.id: employee for employee in employees}
         total = 0
         stack = [id]
@@ -8,4 +8,3 @@ class Solution:
             total += employee.importance
             stack.extend(employee.subordinates)
         return total
-

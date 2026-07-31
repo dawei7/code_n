@@ -654,6 +654,7 @@
         ]
       },
       "expected": 100000,
+      "validator": {"kind": "node_value"},
       "tags": [
         "benchmark",
         "scaling",
@@ -3232,6 +3233,7 @@
         ]
       },
       "expected": 100000,
+      "validator": {"kind": "node_value"},
       "tags": [
         "benchmark",
         "scaling",
@@ -13490,6 +13492,7 @@
         ]
       },
       "expected": 100000,
+      "validator": {"kind": "node_value"},
       "tags": [
         "benchmark",
         "scaling",

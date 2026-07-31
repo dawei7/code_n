@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "0e58a1b5bd2c73e81fd9c85b9c69569cba86b8e9cc59f74c203f1785bbba1a14",
+    "native_sha256": "fe63279f850f660fa24e4c240c91d4745cde6b03297bc4362d632ead0b71fa33",
+    "solution_variants_sha256": "cfcfaad60ecfc1fd24b499ab2b3d7f32cf1e4a28bb338d97a1e34afc92a38bb6",
+    "approach_sha256": "89a3e78dbac3a9ea39fa0a5fc6a785138d57d3b62d74e4a07add575bff194756"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "compound-query output alias",
+      "native": "MySQL resolves ORDER BY employee_id from the unaliased qualified projections in both UNION branches.",
+      "app": "SQLite requires each qualified projection to expose the common result-column name explicitly with AS employee_id.",
+      "rationale": "The explicit aliases are required for SQLite to resolve the compound query's ORDER BY term. The two anti-joins, UNION duplicate elimination, filters, result ordering, and complexity otherwise match exactly."
+    }
+  ]
+}

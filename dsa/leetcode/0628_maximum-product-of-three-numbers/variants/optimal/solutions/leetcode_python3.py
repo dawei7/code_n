@@ -19,7 +19,9 @@ class Solution:
             elif value < smallest2:
                 smallest2 = value
 
-        return int(max(
-            largest1 * largest2 * largest3,
-            largest1 * smallest1 * smallest2,
-        ))
+        return int(
+            max(
+                largest1 * largest2 * largest3,
+                largest1 * smallest1 * smallest2,
+            )
+        )

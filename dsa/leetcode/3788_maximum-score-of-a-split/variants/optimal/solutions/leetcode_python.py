@@ -6,7 +6,7 @@ class Solution:
         total = sum(nums)
         suffix_sum = nums[-1]
         suffix_minimum = nums[-1]
-        answer = -10**30
+        answer = -(10**30)
 
         for index in range(len(nums) - 2, -1, -1):
             prefix_sum = total - suffix_sum

@@ -6,9 +6,7 @@ class Solution:
         ways[1] = 2
 
         for length in range(2, bit_count + 1):
-            ways[length] = (
-                ways[length - 1] + ways[length - 2]
-            )
+            ways[length] = ways[length - 1] + ways[length - 2]
 
         answer = 0
         previous_bit = 0
@@ -23,4 +21,3 @@ class Solution:
                 previous_bit = 0
 
         return answer + 1
-

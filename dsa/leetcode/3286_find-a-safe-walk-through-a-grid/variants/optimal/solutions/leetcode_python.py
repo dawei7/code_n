@@ -20,10 +20,7 @@ class Solution:
                 (row, column - 1),
                 (row, column + 1),
             ):
-                if not (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                ):
+                if not (0 <= next_row < rows and 0 <= next_column < columns):
                     continue
 
                 candidate = current + grid[next_row][next_column]

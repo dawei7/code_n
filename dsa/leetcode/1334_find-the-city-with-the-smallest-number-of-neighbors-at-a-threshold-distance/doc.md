@@ -19,7 +19,7 @@ For each city, count how many other cities can be reached by a path whose total 
 
 - `n`: the number of cities, where $2\le n\le100$.
 - `edges`: between 1 and $n(n-1)/2$ distinct undirected edges `[from, to, weight]`, with $0\le\texttt{from}<\texttt{to}<n$ and $1\le\texttt{weight}\le10^4$.
-- `distance_threshold`: the inclusive maximum path distance, between 1 and $10^4$.
+- `distanceThreshold`: the inclusive maximum path distance, between 1 and $10^4$.
 
 **Return value**
 
@@ -28,16 +28,16 @@ The greatest-indexed city among those having the fewest other cities reachable w
 ### Examples
 **Example 1**
 
-- Input: `n = 4`, `edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]]`, `distance_threshold = 4`
+- Input: `n = 4`, `edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]]`, `distanceThreshold = 4`
 - Output: `3`
 
 **Example 2**
 
-- Input: `n = 5`, `edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]]`, `distance_threshold = 2`
+- Input: `n = 5`, `edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]]`, `distanceThreshold = 2`
 - Output: `0`
 
 **Example 3**
 
-- Input: `n = 3`, `edges = [[0,1,5],[1,2,5],[0,2,20]]`, `distance_threshold = 10`
+- Input: `n = 3`, `edges = [[0,1,5],[1,2,5],[0,2,20]]`, `distanceThreshold = 10`
 - Output: `2`
 - Explanation: Every city can reach both others, so the greatest index wins the tie.

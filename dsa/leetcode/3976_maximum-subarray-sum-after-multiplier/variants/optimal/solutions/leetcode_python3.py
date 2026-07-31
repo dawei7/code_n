@@ -9,7 +9,7 @@ class Solution:
         no_operation = value
         multiplying = value * k
         dividing = divided
-        finished = -10**30
+        finished = -(10**30)
         answer = max(no_operation, multiplying, dividing)
 
         for value in nums[1:]:

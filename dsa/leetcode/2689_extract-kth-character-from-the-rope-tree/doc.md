@@ -24,7 +24,7 @@ Given the rope root and a valid one-based position `k`, return the $k$-th charac
 
 **Inputs**
 
-- `root`: The app-local JSON form of a rope node, with fields `len`, `val`, `left`, and `right`. Children are nested rope nodes or `null`. The tree has at most $10^3$ nodes, leaf strings have lengths from 1 through 50, and internal lengths are at most $10^4$.
+- `root`: The root `RopeTreeNode`. Each node exposes `len`, `val`, `left`, and `right`; each child is another `RopeTreeNode` or `None`. The app judge constructs this node tree from the nested object shown in a case input. The tree has at most $10^3$ nodes, leaf strings have lengths from 1 through 50, and internal lengths are at most $10^4$.
 - `k`: A one-based character position satisfying $1 \le k \le \lvert S[\texttt{root}]\rvert$.
 
 **Return value**

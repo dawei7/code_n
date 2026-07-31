@@ -20,11 +20,7 @@ class Solution:
                     block = state[left:right]
                     remaining = state[:left] + state[right:]
                     for position in range(len(remaining) + 1):
-                        next_state = (
-                            remaining[:position]
-                            + block
-                            + remaining[position:]
-                        )
+                        next_state = remaining[:position] + block + remaining[position:]
                         if next_state == target:
                             return operations + 1
                         if next_state not in seen:

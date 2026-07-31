@@ -11,7 +11,7 @@
       "size": 16,
       "input": {
         "n": 16,
-        "roll_max": [
+        "rollMax": [
           1,
           1,
           1,
@@ -35,7 +35,7 @@
       "size": 64,
       "input": {
         "n": 64,
-        "roll_max": [
+        "rollMax": [
           1,
           1,
           1,
@@ -59,7 +59,7 @@
       "size": 192,
       "input": {
         "n": 192,
-        "roll_max": [
+        "rollMax": [
           1,
           1,
           1,

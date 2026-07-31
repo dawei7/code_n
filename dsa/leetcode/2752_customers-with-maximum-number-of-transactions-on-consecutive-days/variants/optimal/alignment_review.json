@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "c61f02d792d33287c8a9487e0a388cdd1c7b8feae3de44f3669ad0ac1c9ef991",
+    "native_sha256": "f06c4102cde06741a05995b6eeb4e8d920d561c8c6c9dd3a536d611788e533d6",
+    "solution_variants_sha256": "087415cadda80b562d06f81159cd7eee9b1e4ce89bcea48ce145c54cf4768f4f",
+    "approach_sha256": "c3df96d389d9ce8b417bf84dbd111d2602258e6aeb65cac7389233321d1aa0b5"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "date-to-day-number conversion",
+      "native": "MySQL converts each transaction date with TO_DAYS.",
+      "app": "SQLite converts julianday(transaction_date) to an integer.",
+      "rationale": "SQLite does not implement MySQL's TO_DAYS function. Both conversions assign consecutive integer values to consecutive dates, so subtracting the same per-customer row number produces identical islands; all later grouping, ranking, and output logic is identical."
+    }
+  ]
+}

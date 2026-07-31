@@ -25,25 +25,16 @@ class Solution:
                 next_smaller_or_equal[index] = stack[-1]
             stack.append(index)
 
-        prefix_of_prefix = list(
-            accumulate(accumulate(strength, initial=0), initial=0)
-        )
+        prefix_of_prefix = list(accumulate(accumulate(strength, initial=0), initial=0))
 
         answer = 0
         for index, value in enumerate(strength):
             left = previous_smaller[index]
             right = next_smaller_or_equal[index]
 
-            right_sums = (
-                prefix_of_prefix[right + 1] - prefix_of_prefix[index + 1]
-            )
-            left_sums = (
-                prefix_of_prefix[index + 1] - prefix_of_prefix[left + 1]
-            )
-            total_subarray_sums = (
-                right_sums * (index - left)
-                - left_sums * (right - index)
-            )
+            right_sums = prefix_of_prefix[right + 1] - prefix_of_prefix[index + 1]
+            left_sums = prefix_of_prefix[index + 1] - prefix_of_prefix[left + 1]
+            total_subarray_sums = right_sums * (index - left) - left_sums * (right - index)
             answer = (answer + value * total_subarray_sums) % modulo
 
         return answer

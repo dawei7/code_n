@@ -26,9 +26,7 @@ class Solution:
                 word = terminal_word[next_node]
                 if word is None:
                     continue
-                if len(word) > len(answer) or (
-                    len(word) == len(answer) and word < answer
-                ):
+                if len(word) > len(answer) or (len(word) == len(answer) and word < answer):
                     answer = word
                 stack.append(next_node)
 

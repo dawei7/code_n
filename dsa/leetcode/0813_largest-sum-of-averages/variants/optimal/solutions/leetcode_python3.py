@@ -16,8 +16,7 @@ class Solution:
             next_dp = [0.0] * (n + 1)
             for end in range(groups, n + 1):
                 next_dp[end] = max(
-                    dp[split] + (prefix[end] - prefix[split]) / (end - split)
-                    for split in range(groups - 1, end)
+                    dp[split] + (prefix[end] - prefix[split]) / (end - split) for split in range(groups - 1, end)
                 )
             dp = next_dp
         return dp[n]

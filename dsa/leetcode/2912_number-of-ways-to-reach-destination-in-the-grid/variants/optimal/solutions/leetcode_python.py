@@ -22,12 +22,7 @@ class Solution:
                 (same_row + same_col) % mod,
                 (at_dest * (m - 1) + same_row * (m - 2) + neither) % mod,
                 (at_dest * (n - 1) + same_col * (n - 2) + neither) % mod,
-                (
-                    same_row * (n - 1)
-                    + same_col * (m - 1)
-                    + neither * (n + m - 4)
-                )
-                % mod,
+                (same_row * (n - 1) + same_col * (m - 1) + neither * (n + m - 4)) % mod,
             )
 
         return at_dest

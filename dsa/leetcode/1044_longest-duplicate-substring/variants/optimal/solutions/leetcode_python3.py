@@ -20,12 +20,8 @@ class Solution:
             for start in range(1, string_length - length + 1):
                 outgoing = values[start - 1]
                 incoming = values[start + length - 1]
-                hash_one = (
-                    hash_one * base - outgoing * power_one + incoming
-                ) % modulus_one
-                hash_two = (
-                    hash_two * base - outgoing * power_two + incoming
-                ) % modulus_two
+                hash_one = (hash_one * base - outgoing * power_one + incoming) % modulus_one
+                hash_two = (hash_two * base - outgoing * power_two + incoming) % modulus_two
                 key = (hash_one, hash_two)
 
                 for previous in starts_by_hash.get(key, ()):
@@ -51,4 +47,3 @@ class Solution:
                 high = length - 1
 
         return s[best_start : best_start + best_length]
-

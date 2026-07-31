@@ -14,14 +14,9 @@ class Solution:
         following[-1] = -1
         active = [True] * size
 
-        heap = [
-            (values[index] + values[index + 1], index, index + 1)
-            for index in range(size - 1)
-        ]
+        heap = [(values[index] + values[index + 1], index, index + 1) for index in range(size - 1)]
         heapq.heapify(heap)
-        inversions = sum(
-            values[index] > values[index + 1] for index in range(size - 1)
-        )
+        inversions = sum(values[index] > values[index + 1] for index in range(size - 1))
 
         operations = 0
         while inversions:
@@ -52,9 +47,7 @@ class Solution:
 
             if before != -1:
                 inversions += values[before] > values[left]
-                heapq.heappush(
-                    heap, (values[before] + values[left], before, left)
-                )
+                heapq.heappush(heap, (values[before] + values[left], before, left))
             if after != -1:
                 inversions += values[left] > values[after]
                 heapq.heappush(heap, (values[left] + values[after], left, after))

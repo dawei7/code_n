@@ -9,7 +9,7 @@ A coordinate is added only after `canMove` confirms an edge and `move` traverses
 
 **Separate discovery from shortest-path search**
 
-Depth-first exploration efficiently discovers the component but does not guarantee shortest distances. Once exploration finishes, run breadth-first search over the recorded coordinates from `(0, 0)`. BFS visits cells in nondecreasing distance, so the first visit to the target has the minimum number of moves. If exploration never observes `isTarget()`, return `-1`. The app-local adapter already has the matrix and performs this BFS directly.
+Depth-first exploration efficiently discovers the component but does not guarantee shortest distances. Once exploration finishes, run breadth-first search over the recorded coordinates from `(0, 0)`. BFS visits cells in nondecreasing distance, so the first visit to the target has the minimum number of moves. If exploration never observes `isTarget()`, return `-1`.
 
 ## Complexity detail
 The native exploration enters each of the $V$ reachable cells once and tests four directions per cell. Its backtracking traverses each discovery edge a constant number of times. BFS also processes each reachable cell and at most four incident edges once, so total time is $O(V)$. The discovered-coordinate set, exploration stack, BFS queue, and visited set use $O(V)$ space.

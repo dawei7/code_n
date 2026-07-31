@@ -1,4 +1,4 @@
-SELECT COALESCE(ROUND(AVG(session_count), 2), 0) AS average_sessions_per_user
+SELECT IFNULL(ROUND(AVG(session_count), 2), 0) AS average_sessions_per_user
 FROM (
     SELECT user_id, COUNT(DISTINCT session_id) AS session_count
     FROM Activity

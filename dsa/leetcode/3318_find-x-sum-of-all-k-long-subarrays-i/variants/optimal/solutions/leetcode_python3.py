@@ -13,8 +13,6 @@ class Solution:
                 key=lambda item: (item[1], item[0]),
                 reverse=True,
             )
-            answer.append(
-                sum(value * count for value, count in ranked[:x])
-            )
+            answer.append(sum(value * count for value, count in ranked[:x]))
 
         return answer

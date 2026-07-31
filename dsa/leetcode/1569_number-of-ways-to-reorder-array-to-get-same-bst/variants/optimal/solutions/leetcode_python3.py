@@ -13,9 +13,7 @@ class Solution:
         inverse_factorial = [1] * (size + 1)
         inverse_factorial[size] = pow(factorial[size], modulus - 2, modulus)
         for value in range(size, 0, -1):
-            inverse_factorial[value - 1] = (
-                inverse_factorial[value] * value % modulus
-            )
+            inverse_factorial[value - 1] = inverse_factorial[value] * value % modulus
 
         insertion_time = [0] * size
         for time, key in enumerate(nums):
@@ -55,9 +53,7 @@ class Solution:
             left_size = subtree_size[left] if left != -1 else 0
             right_size = subtree_size[right] if right != -1 else 0
             interleavings = (
-                factorial[left_size + right_size]
-                * inverse_factorial[left_size]
-                * inverse_factorial[right_size]
+                factorial[left_size + right_size] * inverse_factorial[left_size] * inverse_factorial[right_size]
             ) % modulus
 
             subtree_size[node] = left_size + right_size + 1

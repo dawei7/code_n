@@ -11,12 +11,7 @@ class Solution:
         for row in matrix:
             current = [0] * (columns + 1)
             for column, value in enumerate(row, start=1):
-                prefix = (
-                    value
-                    ^ previous[column]
-                    ^ current[column - 1]
-                    ^ previous[column - 1]
-                )
+                prefix = value ^ previous[column] ^ current[column - 1] ^ previous[column - 1]
                 current[column] = prefix
                 if len(largest) < k:
                     heapq.heappush(largest, prefix)

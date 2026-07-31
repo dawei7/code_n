@@ -6,8 +6,14 @@ class Solution:
         occupied = {tuple(queen) for queen in queens}
         answer = []
         directions = (
-            (1, 0), (-1, 0), (0, 1), (0, -1),
-            (1, 1), (1, -1), (-1, 1), (-1, -1),
+            (1, 0),
+            (-1, 0),
+            (0, 1),
+            (0, -1),
+            (1, 1),
+            (1, -1),
+            (-1, 1),
+            (-1, -1),
         )
         for row_change, column_change in directions:
             row, column = king[0] + row_change, king[1] + column_change

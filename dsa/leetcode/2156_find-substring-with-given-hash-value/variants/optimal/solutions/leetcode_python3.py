@@ -12,16 +12,11 @@ class Solution:
         answer_start = 0
 
         for index in range(len(s) - 1, -1, -1):
-            rolling_hash = (
-                rolling_hash * power + ord(s[index]) - ord("a") + 1
-            ) % modulo
+            rolling_hash = (rolling_hash * power + ord(s[index]) - ord("a") + 1) % modulo
 
             outgoing = index + k
             if outgoing < len(s):
-                rolling_hash = (
-                    rolling_hash
-                    - (ord(s[outgoing]) - ord("a") + 1) * power_k
-                ) % modulo
+                rolling_hash = (rolling_hash - (ord(s[outgoing]) - ord("a") + 1) * power_k) % modulo
 
             if index + k <= len(s) and rolling_hash == hashValue:
                 answer_start = index

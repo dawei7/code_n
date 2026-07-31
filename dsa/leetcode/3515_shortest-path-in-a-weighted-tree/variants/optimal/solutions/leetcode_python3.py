@@ -1,7 +1,5 @@
 class Solution:
-    def treeQueries(
-        self, n: int, edges: List[List[int]], queries: List[List[int]]
-    ) -> List[int]:
+    def treeQueries(self, n: int, edges: List[List[int]], queries: List[List[int]]) -> List[int]:
         adjacency = [[] for _ in range(n + 1)]
         weights = {}
         for left, right, weight in edges:

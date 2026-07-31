@@ -5,7 +5,7 @@ class Solution:
     def maxScore(self, grid: List[List[int]]) -> int:
         columns = len(grid[0])
         prefix_minimum = [10**18] * columns
-        answer = -10**18
+        answer = -(10**18)
 
         for row in grid:
             left_minimum = 10**18

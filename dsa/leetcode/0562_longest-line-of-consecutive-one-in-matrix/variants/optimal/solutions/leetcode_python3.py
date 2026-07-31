@@ -25,14 +25,8 @@ class Solution:
 
                 horizontal += 1
                 vertical[column] += 1
-                next_diagonal[column] = 1 + (
-                    diagonal[column - 1] if column > 0 else 0
-                )
-                next_anti_diagonal[column] = 1 + (
-                    anti_diagonal[column + 1]
-                    if column + 1 < columns
-                    else 0
-                )
+                next_diagonal[column] = 1 + (diagonal[column - 1] if column > 0 else 0)
+                next_anti_diagonal[column] = 1 + (anti_diagonal[column + 1] if column + 1 < columns else 0)
                 longest = max(
                     longest,
                     horizontal,
@@ -45,4 +39,3 @@ class Solution:
             anti_diagonal = next_anti_diagonal
 
         return longest
-

@@ -7,10 +7,10 @@ Let $n$ be the number of tree nodes and $w$ its maximum level width.
 
 Breadth-first traversal visits nodes in increasing depth and left-to-right order within each depth. The fixed `level_size` boundary separates same-level nodes from children appended during processing. Therefore the first queue element after a non-final target is exactly its immediate right neighbor, while a final target has none. Identity comparison ensures a different node with the same value cannot trigger the answer.
 
-**Adapting identity for local fixtures.** The app follows `target_path` from the already constructed root to recover the exact target object, then applies the same breadth-first logic as the native solution. This makes duplicate-value cases unambiguous without changing the platform artifact.
+**Preserving identity in local fixtures.** The app-facing `solve(root, u)` receives the same two-object interface as the native method. Before the call, the runner resolves each fixture's `path_from_root` descriptor against the constructed tree, so duplicate values remain unambiguous without adding path traversal to the solution algorithm.
 
 ## Complexity detail
-Each node enters and leaves the queue at most once, so time is $O(n)$. The queue holds at most one level plus children being assembled for the next, bounded by $O(w)$ nodes. Following the target path uses time proportional to the tree height and $O(1)$ extra space.
+Each node enters and leaves the queue at most once, so time is $O(n)$. The queue holds at most one level plus children being assembled for the next, bounded by $O(w)$ nodes.
 
 ## Alternatives and edge cases
 - **Store complete level lists:** Building each BFS level and searching it for `u` is also $O(n)$ but allocates an additional list for the frontier.

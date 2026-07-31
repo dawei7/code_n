@@ -1,6 +1,4 @@
 /**
- * Add the source-native replicate method to every string.
- *
  * @param {number} times
  * @return {string}
  */

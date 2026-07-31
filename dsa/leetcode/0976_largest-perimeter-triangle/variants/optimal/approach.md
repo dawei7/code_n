@@ -8,7 +8,7 @@
 If the scan finishes without finding one, every possible choice fails: for each potential largest side, its two greatest remaining companions were already insufficient.
 
 ## Complexity detail
-Sorting $N$ lengths costs $O(N\log N)$ time, and the subsequent scan is $O(N)$. Python's sorted copy uses $O(N)$ space. The scan itself uses constant additional space.
+Sorting $N$ lengths in place costs $O(N\log N)$ time, and the subsequent scan is $O(N)$. Python's list sort may use $O(N)$ temporary space. The scan itself uses constant additional space.
 
 ## Alternatives and edge cases
 - **Enumerate all triples:** Testing every three-index combination is direct but costs $O(N^3)$ time.

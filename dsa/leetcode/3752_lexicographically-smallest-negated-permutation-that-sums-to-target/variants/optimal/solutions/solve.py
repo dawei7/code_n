@@ -1,0 +1,16 @@
+from typing import List
+
+
+def solve(n: int, target: int) -> List[int]:
+    total = n * (n + 1) // 2
+    if abs(target) > total or (total - target) % 2 != 0:
+        return []
+    negative_sum = (total - target) // 2
+    is_negative = [False] * (n + 1)
+    for value in range(n, 0, -1):
+        if negative_sum >= value:
+            is_negative[value] = True
+            negative_sum -= value
+    answer = [-value for value in range(n, 0, -1) if is_negative[value]]
+    answer.extend((value for value in range(1, n + 1) if not is_negative[value]))
+    return answer

@@ -68,8 +68,7 @@ class Solution:
                 node = second
                 for bit in range(levels - 1, -1, -1):
                     candidate = up[bit][node]
-                    if (depth[candidate] >= depth[common] and
-                            2 * (distance[candidate] - distance[common]) >= required):
+                    if depth[candidate] >= depth[common] and 2 * (distance[candidate] - distance[common]) >= required:
                         node = candidate
                 answer.append(node)
 

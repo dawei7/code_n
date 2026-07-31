@@ -36,9 +36,7 @@ class Solution:
 
         answer = 0
         for node in range(n):
-            first, second, third = sorted(
-                (distance_x[node], distance_y[node], distance_z[node])
-            )
+            first, second, third = sorted((distance_x[node], distance_y[node], distance_z[node]))
             if first * first + second * second == third * third:
                 answer += 1
 

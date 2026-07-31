@@ -24,7 +24,7 @@ Sorting and the prefix sums are shared by all queries. A query only performs one
 
 Let $n = \lvert\texttt{nums}\rvert$ and $m = \lvert\texttt{queries}\rvert$. Sorting costs $O(n \log n)$, building prefix sums costs $O(n)$, and the $m$ binary searches cost $O(m \log n)$ in total. Therefore the full running time is $O(n \log n + m \log n)$.
 
-The sorted values and their prefix sums require $O(n)$ auxiliary space. The returned $m$-element answer is output space and is not included in that bound.
+The prefix sums and Python's in-place sorting storage require $O(n)$ auxiliary space. The returned $m$-element answer is output space and is not included in that bound.
 
 ## Alternatives and edge cases
 
@@ -33,4 +33,3 @@ The sorted values and their prefix sums require $O(n)$ auxiliary space. The retu
 - **Targets outside the value range:** A target below the minimum leaves the left side empty; a target above the maximum leaves the right side empty. The same formulas handle both cases.
 - **Duplicate values:** Equal values may fall on the right side of the lower-bound partition, but their zero contribution keeps the result unchanged.
 - **Large totals:** Although each input value is at most $10^9$, an answer can be much larger, so fixed-width implementations must use 64-bit arithmetic.
-

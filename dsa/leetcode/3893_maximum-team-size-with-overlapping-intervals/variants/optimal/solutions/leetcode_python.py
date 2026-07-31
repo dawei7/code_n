@@ -2,9 +2,7 @@ from bisect import bisect_left, bisect_right
 
 
 class Solution:
-    def maximumTeamSize(
-        self, startTime: list[int], endTime: list[int]
-    ) -> int:
+    def maximumTeamSize(self, startTime: list[int], endTime: list[int]) -> int:
         sorted_starts = sorted(startTime)
         sorted_ends = sorted(endTime)
 

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "774e26ef907956fd40e7b5a55b0f949cb0fa1d317835afe2f1250e259cfc18fd",
+    "native_sha256": "fe9931b9413e5dca7811b6b9271b9e4cd4c8f0d36d1ac4c7b4483a7bb3506014",
+    "solution_variants_sha256": "b8fd7d06afe828bbdf756d1433df6f18fb9469a87abd8d60c5cc3c34443b4921",
+    "approach_sha256": "f767182a8b41d32bc6bcbfff21755b5112f41544537e932d0c5fb185ad36cebb"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "trailing source comment",
+      "native": "The Accepted MySQL source ends with a # comment after the final statement.",
+      "app": "The SQLite source omits that non-executable comment.",
+      "rationale": "The # comment marker is MySQL-specific and is rejected by SQLite. The two SELECT branches, LIKE patterns, UNION ALL, aliases, and results are otherwise textually identical."
+    }
+  ]
+}

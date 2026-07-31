@@ -1,13 +1,13 @@
 ## General
 **Unweighted transformation edges make BFS the shortest-path method**
 
-Treat each legal one-character transformation as an unweighted graph edge. Start a queue with `begin_word` at sequence length one because the return value counts words, not edges. FIFO order processes all shorter sequences before any longer one.
+Treat each legal one-character transformation as an unweighted graph edge. Start a queue with `beginWord` at sequence length one because the return value counts words, not edges. FIFO order processes all shorter sequences before any longer one.
 
 **Generate neighbors without building the full quadratic graph**
 
 For each dequeued word, replace each of its `L` positions with each of `A` alphabet characters and test set membership. This generates only potential outgoing neighbors on demand rather than comparing every pair of dictionary words.
 
-If `end_word` is absent from the dictionary, return zero immediately under the contract that every post-start word must be listed.
+If `endWord` is absent from the dictionary, return zero immediately under the contract that every post-start word must be listed.
 
 **First discovery fixes a word's minimum distance**
 

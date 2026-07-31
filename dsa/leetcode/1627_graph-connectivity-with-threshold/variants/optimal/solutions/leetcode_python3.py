@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def areConnected(
-        self, n: int, threshold: int, queries: List[List[int]]
-    ) -> List[bool]:
+    def areConnected(self, n: int, threshold: int, queries: List[List[int]]) -> List[bool]:
         parent = list(range(n + 1))
         size = [1] * (n + 1)
 

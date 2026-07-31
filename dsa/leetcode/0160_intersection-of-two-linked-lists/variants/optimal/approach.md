@@ -1,7 +1,7 @@
 ## General
 **Each pointer walks both list lengths in opposite order**
 
-Start `pointer_a` at `head_a` and `pointer_b` at `head_b`. On every iteration, advance each one node; when a pointer is null, redirect it to the other list's head. Stop when the two references are identical, including the shared null result for disjoint lists.
+Start `pointer_a` at `headA` and `pointer_b` at `headB`. On every iteration, advance each one node; when a pointer is null, redirect it to the other list's head. Stop when the two references are identical, including the shared null result for disjoint lists.
 
 **Switching cancels unequal private-prefix lengths automatically**
 

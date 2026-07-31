@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def sortTransformedArray(
-        self, nums: List[int], a: int, b: int, c: int
-    ) -> List[int]:
+    def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:
         def transform(value: int) -> int:
             return a * value * value + b * value + c
 
@@ -38,4 +36,3 @@ class Solution:
                 write += 1
 
         return result
-

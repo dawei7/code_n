@@ -3,6 +3,8 @@
 
 Join `Salary` to `Employee` by `employee_id`, and derive `pay_month` from `pay_date`. Each resulting row is now a salary amount with both grouping dimensions needed by the result.
 
+The verified MySQL source derives the month with `DATE_FORMAT(pay_date, '%Y-%m')`; the offline SQLite source uses the dialect-equivalent `strftime('%Y-%m', pay_date)`. Every subsequent CTE, window partition, grouping key, comparison, and output column is identical.
+
 **Compute the company average at the row level**
 
 Use `AVG(amount) OVER (PARTITION BY pay_month)` so every payment row carries the one company-wide average for its month. This aggregate includes all departments and is computed independently for each month.

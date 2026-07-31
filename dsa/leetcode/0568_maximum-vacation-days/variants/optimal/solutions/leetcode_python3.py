@@ -20,10 +20,7 @@ class Solution:
                 if totals[origin] == unreachable:
                     continue
                 for destination in range(city_count):
-                    if (
-                        origin == destination
-                        or flights[origin][destination]
-                    ):
+                    if origin == destination or flights[origin][destination]:
                         next_totals[destination] = max(
                             next_totals[destination],
                             totals[origin] + days[destination][week],
@@ -32,4 +29,3 @@ class Solution:
             totals = next_totals
 
         return int(max(totals))
-

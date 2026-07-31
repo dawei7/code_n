@@ -26,7 +26,7 @@ Every query must also satisfy $0 \le \texttt{num} \le 2^{30}-1$; a result obtain
 
 - `n`: The initial hidden integer, satisfying $0 \le n \le 2^{30}-1$.
 
-In LeetCode's native interactive interface, `findNumber()` receives no explicit parameter. It observes the hidden state only through `commonBits(num)`. The cOde(n) adapter exposes the initial `n` so it can reproduce that stateful oracle locally.
+In LeetCode's native interactive interface, `findNumber()` receives no explicit parameter. It observes the hidden state only through `commonBits(num)`. The cOde(n) adapter exposes the initial `n` and constructs the explicit stateful `CommonBitsAPI` callable locally.
 
 For each legal query, the oracle counts equal digits across the first 30 bit positions, updates its hidden state with XOR by the query, and returns the count calculated before that update.
 

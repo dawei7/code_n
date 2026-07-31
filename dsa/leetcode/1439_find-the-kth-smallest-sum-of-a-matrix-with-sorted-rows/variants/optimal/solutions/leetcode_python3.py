@@ -6,10 +6,7 @@ class Solution:
     def kthSmallest(self, mat: List[List[int]], k: int) -> int:
         sums = [0]
         for row in mat:
-            heap = [
-                (base + row[0], index, 0)
-                for index, base in enumerate(sums)
-            ]
+            heap = [(base + row[0], index, 0) for index, base in enumerate(sums)]
             heapq.heapify(heap)
             merged = []
             while heap and len(merged) < k:

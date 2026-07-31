@@ -21,4 +21,3 @@ class Solution:
                     best = candidate
 
         return best
-

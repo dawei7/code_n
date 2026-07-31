@@ -27,4 +27,3 @@ class Solution:
                 cooldown.append((index + k, count, character))
 
         return "".join(result)
-

@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def findNumOfValidWords(
-        self, words: List[str], puzzles: List[str]
-    ) -> List[int]:
+    def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:
         counts = Counter()
         for word in words:
             mask = 0

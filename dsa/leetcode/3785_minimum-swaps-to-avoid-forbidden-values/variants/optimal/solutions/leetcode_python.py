@@ -11,11 +11,7 @@ class Solution:
         if any(nums_count[value] + forbidden_count[value] > n for value in nums_count):
             return -1
 
-        bad_count = Counter(
-            nums[i]
-            for i in range(n)
-            if nums[i] == forbidden[i]
-        )
+        bad_count = Counter(nums[i] for i in range(n) if nums[i] == forbidden[i])
         total_bad = sum(bad_count.values())
         largest_bad_group = max(bad_count.values(), default=0)
         return max(largest_bad_group, (total_bad + 1) // 2)

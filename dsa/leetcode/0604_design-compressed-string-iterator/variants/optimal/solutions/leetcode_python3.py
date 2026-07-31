@@ -10,13 +10,8 @@ class StringIterator:
         self.index += 1
 
         count = 0
-        while (
-            self.index < len(self.compressed)
-            and self.compressed[self.index].isdigit()
-        ):
-            count = (
-                count * 10 + int(self.compressed[self.index])
-            )
+        while self.index < len(self.compressed) and self.compressed[self.index].isdigit():
+            count = count * 10 + int(self.compressed[self.index])
             self.index += 1
         self.remaining = count
 
@@ -29,8 +24,4 @@ class StringIterator:
         return self.character
 
     def hasNext(self) -> bool:
-        return (
-            self.remaining > 0
-            or self.index < len(self.compressed)
-        )
-
+        return self.remaining > 0 or self.index < len(self.compressed)

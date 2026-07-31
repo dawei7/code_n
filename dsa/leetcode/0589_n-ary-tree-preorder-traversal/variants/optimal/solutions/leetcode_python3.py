@@ -1,5 +1,5 @@
 class Solution:
-    def preorder(self, root: 'Node') -> list[int]:
+    def preorder(self, root: "Node") -> list[int]:
         if root is None:
             return []
 
@@ -11,4 +11,3 @@ class Solution:
             stack.extend(reversed(node.children))
 
         return traversal
-

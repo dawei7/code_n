@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def findTheCity(
-        self, n: int, edges: List[List[int]], distanceThreshold: int
-    ) -> int:
+    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
         infinity = float("inf")
         distances = [[infinity] * n for _ in range(n)]
 
@@ -30,10 +28,7 @@ class Solution:
         answer = -1
         fewest = n
         for city, row in enumerate(distances):
-            reachable = sum(
-                other != city and distance <= distanceThreshold
-                for other, distance in enumerate(row)
-            )
+            reachable = sum(other != city and distance <= distanceThreshold for other, distance in enumerate(row))
             if reachable <= fewest:
                 fewest = reachable
                 answer = city

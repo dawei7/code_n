@@ -7,7 +7,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "row_index": 3
+        "rowIndex": 3
       },
       "expected": [
         1,
@@ -26,7 +26,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "row_index": 0
+        "rowIndex": 0
       },
       "expected": [
         1
@@ -42,7 +42,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "row_index": 1
+        "rowIndex": 1
       },
       "expected": [
         1,
@@ -58,7 +58,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "row_index": 5
+        "rowIndex": 5
       },
       "expected": [
         1,

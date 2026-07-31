@@ -1,7 +1,5 @@
 class Solution:
-    def goodBinaryStrings(
-        self, minLength: int, maxLength: int, oneGroup: int, zeroGroup: int
-    ) -> int:
+    def goodBinaryStrings(self, minLength: int, maxLength: int, oneGroup: int, zeroGroup: int) -> int:
         modulus = 1_000_000_007
         ways = [0] * (maxLength + 1)
         ways[0] = 1

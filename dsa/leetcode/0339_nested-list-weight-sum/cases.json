@@ -7,7 +7,7 @@
       "name": "sample: sibling lists around an integer",
       "kind": "sample",
       "visible": true,
-      "input": {"nested_list": [[1, 1], 2, [1, 1]]},
+      "input": {"nestedList": [[1, 1], 2, [1, 1]]},
       "expected": 10,
       "tags": ["sample"]
     },
@@ -16,7 +16,7 @@
       "name": "sample: three distinct depths",
       "kind": "sample",
       "visible": true,
-      "input": {"nested_list": [1, [4, [6]]]},
+      "input": {"nestedList": [1, [4, [6]]]},
       "expected": 27,
       "tags": ["sample", "depth"]
     },
@@ -25,7 +25,7 @@
       "name": "sample: zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nested_list": [0]},
+      "input": {"nestedList": [0]},
       "expected": 0,
       "tags": ["sample", "zero"]
     },
@@ -34,7 +34,7 @@
       "name": "trial: empty outer list",
       "kind": "trial",
       "visible": false,
-      "input": {"nested_list": []},
+      "input": {"nestedList": []},
       "expected": 0,
       "tags": ["trial", "empty"]
     },
@@ -43,7 +43,7 @@
       "name": "trial: negative values retain their sign",
       "kind": "trial",
       "visible": false,
-      "input": {"nested_list": [-1, [2, [-3]]]},
+      "input": {"nestedList": [-1, [2, [-3]]]},
       "expected": -6,
       "tags": ["trial", "negative"]
     },
@@ -52,7 +52,7 @@
       "name": "hidden: nested empty lists",
       "kind": "real",
       "visible": false,
-      "input": {"nested_list": [[], [[]], 5]},
+      "input": {"nestedList": [[], [[]], 5]},
       "expected": 5,
       "tags": ["hidden", "empty"]
     },
@@ -61,8 +61,8 @@
       "name": "hidden: values across several branches",
       "kind": "real",
       "visible": false,
-      "input": {"nested_list": [5, [1, 1], [[2]], 3]},
-      "expected": 16,
+      "input": {"nestedList": [5, [1, 1], [[2]], 3]},
+      "expected": 18,
       "tags": ["hidden", "mixed"]
     },
     {
@@ -70,7 +70,7 @@
       "name": "hidden: zero between nonzero depths",
       "kind": "real",
       "visible": false,
-      "input": {"nested_list": [1, [0, [2]]]},
+      "input": {"nestedList": [1, [0, [2]]]},
       "expected": 7,
       "tags": ["hidden", "depth", "zero"]
     }

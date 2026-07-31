@@ -18,12 +18,7 @@ class Solution:
 
         for count in range(1, n + 1):
             split = bisect_right(negated, -count, lo=count)
-            available = (
-                count * (count - 1)
-                + (split - count) * count
-                + prefix[n]
-                - prefix[split]
-            )
+            available = count * (count - 1) + (split - count) * count + prefix[n] - prefix[split]
             if prefix[count] > available:
                 return False
 

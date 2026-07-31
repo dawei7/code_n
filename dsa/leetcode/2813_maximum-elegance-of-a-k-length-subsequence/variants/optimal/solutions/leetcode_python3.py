@@ -1,5 +1,6 @@
 from heapq import heappop, heappush
 
+
 class Solution:
     def findMaximumElegance(self, items: List[List[int]], k: int) -> int:
         items.sort(reverse=True)

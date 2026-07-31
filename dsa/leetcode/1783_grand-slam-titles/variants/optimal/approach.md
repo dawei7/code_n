@@ -30,4 +30,4 @@ The normalized relation, aggregation state, and result require $O(C + K)$ space 
 - **Player with no titles:** The player must not appear with a zero; the inner join omits that row.
 - **Tied totals:** Players with equal counts remain separate groups.
 - **Noncontiguous identifiers:** Group and join by the stored `player_id`; no numeric sequence is implied.
-- **Output order:** The platform accepts any row order. The app-local query adds `ORDER BY player_id` only to keep local fixtures deterministic.
+- **Output order:** The contract accepts any row order, so no final sort is required.

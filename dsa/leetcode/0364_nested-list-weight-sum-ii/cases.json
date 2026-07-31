@@ -8,7 +8,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nested_list": [
+        "nestedList": [
           [
             1,
             1
@@ -32,7 +32,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nested_list": [
+        "nestedList": [
           1,
           [
             4,
@@ -54,7 +54,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nested_list": [
+        "nestedList": [
           0
         ]
       },
@@ -70,7 +70,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nested_list": [
+        "nestedList": [
           -1,
           [
             2,
@@ -92,7 +92,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nested_list": [
+        "nestedList": [
           [],
           [
             []
@@ -112,7 +112,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "nested_list": [
+        "nestedList": [
           5,
           [
             1,
@@ -138,7 +138,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "nested_list": [
+        "nestedList": [
           [],
           [
             []
@@ -157,7 +157,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "nested_list": [
+        "nestedList": [
           [
             [
               [

@@ -22,9 +22,9 @@ Return the smallest column index that contains at least one `1` anywhere in the 
 
 **Inputs**
 
-- `binary_matrix`: a read-only `BinaryMatrix` containing $m$ rows and $n$ columns, where $1 \le m,n \le 100$.
-- `binary_matrix.dimensions()` returns `[m, n]`.
-- `binary_matrix.get(row, col)` returns the binary value at a valid zero-based position.
+- `binaryMatrix`: a read-only `BinaryMatrix` containing $m$ rows and $n$ columns, where $1 \le m,n \le 100$.
+- `binaryMatrix.dimensions()` returns `[m, n]`.
+- `binaryMatrix.get(row, col)` returns the binary value at a valid zero-based position.
 - Each row is sorted in non-decreasing order, and at most 1000 calls to `get` may be made.
 
 **Return value**
@@ -35,15 +35,15 @@ Return the smallest column index that contains at least one `1` anywhere in the 
 
 **Example 1**
 
-- Input: `binary_matrix = [[0,0],[1,1]]`
+- Input: `binaryMatrix = [[0,0],[1,1]]`
 - Output: `0`
 
 **Example 2**
 
-- Input: `binary_matrix = [[0,0],[0,1]]`
+- Input: `binaryMatrix = [[0,0],[0,1]]`
 - Output: `1`
 
 **Example 3**
 
-- Input: `binary_matrix = [[0,0],[0,0]]`
+- Input: `binaryMatrix = [[0,0],[0,0]]`
 - Output: `-1`

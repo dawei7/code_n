@@ -22,11 +22,7 @@ class Solution:
             following = [n] * n
             stack: list[int] = []
             for i, value in enumerate(nums):
-                while stack and (
-                    nums[stack[-1]] <= value
-                    if maximum
-                    else nums[stack[-1]] >= value
-                ):
+                while stack and (nums[stack[-1]] <= value if maximum else nums[stack[-1]] >= value):
                     stack.pop()
                 if stack:
                     previous[i] = stack[-1]
@@ -34,11 +30,7 @@ class Solution:
 
             stack.clear()
             for i in range(n - 1, -1, -1):
-                while stack and (
-                    nums[stack[-1]] < nums[i]
-                    if maximum
-                    else nums[stack[-1]] > nums[i]
-                ):
+                while stack and (nums[stack[-1]] < nums[i] if maximum else nums[stack[-1]] > nums[i]):
                     stack.pop()
                 if stack:
                     following[i] = stack[-1]

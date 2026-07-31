@@ -13,11 +13,7 @@ class Solution:
                 for right_value in (0, 1):
                     base = left[left_value] + right[right_value]
                     for chosen_operator in ("&", "|"):
-                        result = (
-                            left_value & right_value
-                            if chosen_operator == "&"
-                            else left_value | right_value
-                        )
+                        result = left_value & right_value if chosen_operator == "&" else left_value | right_value
                         costs[result] = min(
                             costs[result],
                             base + (chosen_operator != operator),

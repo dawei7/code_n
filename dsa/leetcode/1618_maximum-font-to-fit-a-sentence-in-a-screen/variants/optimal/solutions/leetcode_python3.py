@@ -16,10 +16,7 @@ class Solution:
         def fits(font: int) -> bool:
             if fontInfo.getHeight(font) > h:
                 return False
-            width = sum(
-                frequency * fontInfo.getWidth(font, character)
-                for character, frequency in frequencies.items()
-            )
+            width = sum(frequency * fontInfo.getWidth(font, character) for character, frequency in frequencies.items())
             return width <= w
 
         left = 0

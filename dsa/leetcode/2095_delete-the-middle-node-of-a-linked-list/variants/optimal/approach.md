@@ -1,13 +1,13 @@
 ## General
 **Positioning a pointer before the node to remove**
 
-Use a slow pointer that advances one node per iteration and a fast pointer that advances two. Start the slow pointer at the head and the fast pointer two nodes ahead. When the fast pointer reaches the end, the slow pointer is immediately before index $\lfloor n/2 \rfloor$.
+Create a sentinel whose `next` points to the head. Start the slow pointer at this sentinel and the fast pointer at the head. For every two links advanced by `fast`, advance `slow` by one. When `fast` reaches the end, `slow` is immediately before index $\lfloor n/2 \rfloor$, so bypass the middle with `slow.next = slow.next.next`.
 
-The one-node list is handled separately because its middle is the head itself and no predecessor exists. For all longer lists, bypass the middle with `slow.next = slow.next.next`.
+The sentinel makes the same update valid for a one-node list: `slow` remains before the head, and bypassing `slow.next` leaves `dummy.next` equal to `None`.
 
 **Why the even case chooses the second center**
 
-For length $2q$, the fast pointer can make $q-1$ two-node advances from index `2` before stopping, leaving slow at index $q-1$ and deleting index $q$. For length $2q+1$, it leaves slow at the same predecessor index and deletes index $q$. These are exactly the required floors.
+For length $2q$, the fast pointer makes $q$ two-node advances while the slow pointer moves from the sentinel to index $q-1$, so index $q$ is deleted. For length $2q+1$, the final unpaired node stops the loop with `slow` at the same predecessor index. These are exactly the required floors.
 
 **Why the remaining links are preserved**
 

@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maxArea(
-        self, height: int, positions: List[int], directions: str
-    ) -> int:
+    def maxArea(self, height: int, positions: List[int], directions: str) -> int:
         period = 2 * height
         events = {}
         slope = 0

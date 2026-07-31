@@ -1,16 +1,12 @@
 ## General
 
-Only each value's remainder modulo three matters for validity. Three selected remainders sum to a multiple of three in exactly four unordered patterns:
+Track the best attainable sum for every selected-element count and remainder. Let `best[c][r]` be the largest sum formed from exactly `c` processed values whose remainder modulo three is `r`. Initialize only `best[0][0]` to zero; use `-1` for every unreachable state because all input values are positive.
 
-$$
-(0,0,0),\quad(1,1,1),\quad(2,2,2),\quad(0,1,2).
-$$
+For each value, process `c` from two down to zero. If `best[c][r]` is reachable, adding the value proposes a sum for `best[c + 1][(r + value % 3) % 3]`. Descending count order is essential: it prevents the current value from being selected more than once during the same iteration.
 
-For each remainder class, retain its three largest values while scanning the array. No smaller value from a class can improve any pattern, because a valid triplet uses at most three values from that class and replacing a chosen value by a larger value of the same remainder preserves divisibility.
+After all values are processed, `best[3][0]` is the largest sum made from exactly three positions and divisible by three. Return it when reachable, and otherwise return `0`.
 
-After the scan, evaluate every remainder pattern for which the required bucket sizes exist. Sum the required largest values and return the greatest candidate. If none of the four patterns is available, retain the default answer `0`.
-
-These patterns exhaust all three-remainder multisets whose sum is congruent to zero, and each candidate uses the greatest possible values for its pattern. Their maximum is therefore the greatest valid triplet sum.
+Inductively, each state stores the greatest sum among all selections with its exact count and remainder: skipping the current value preserves the old state, while every selection using it arises from exactly one predecessor state. The final state therefore covers every legal triplet and retains the greatest one.
 
 ## Complexity detail
 
@@ -18,7 +14,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Each input value updates a bucket of at most 
 
 ## Alternatives and edge cases
 
-- **Count-and-remainder dynamic programming:** Track the greatest sum for each chosen count from zero through three and each remainder. This is also $O(N)$ time and $O(1)$ space and is the exact native Accepted formulation.
+- **Largest values by residue:** Retain the three greatest values in each remainder class, then evaluate `(0,0,0)`, `(1,1,1)`, `(2,2,2)`, and `(0,1,2)`. This is also $O(N)$ time and $O(1)$ space, but encodes the four valid residue patterns separately.
 - **Fully sorted remainder buckets:** Sorting or incrementally inserting every value in its bucket is correct but requires more than linear time or space than retaining only three maxima.
 - **Exactly three:** A divisible sum formed by fewer elements is irrelevant; every candidate must use three distinct positions.
 - **Repeated values:** Equal values remain separate selectable elements when they occupy separate indices.

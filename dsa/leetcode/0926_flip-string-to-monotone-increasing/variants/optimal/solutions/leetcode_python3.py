@@ -10,4 +10,3 @@ class Solution:
                 flips = min(flips + 1, ones_seen)
 
         return flips
-

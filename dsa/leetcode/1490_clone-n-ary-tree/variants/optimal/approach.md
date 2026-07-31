@@ -26,7 +26,7 @@ A recursive depth-first clone expresses the same recurrence elegantly, but N-ary
 ## Complexity detail
 Every one of the $N$ original nodes is paired, pushed, popped, and copied once. Across the whole traversal, all child lists contain exactly $N-1$ edges, so scanning and appending those edges takes $O(N)$ time.
 
-The returned tree itself contains $N$ newly allocated nodes and is required output. Excluding output, the explicit stack can contain $O(N)$ pending pairs for a wide tree. The app-local nested lists likewise require $O(N)$ output space. Therefore the stated total space bound is $O(N)$.
+The returned tree itself contains $N$ newly allocated nodes and is required output. Excluding output, the explicit stack can contain $O(N)$ pending pairs for a wide tree. Therefore the stated total space bound is $O(N)$.
 
 ## Alternatives and edge cases
 - **Recursive depth-first clone:** return a new node whose child list is formed by recursively cloning each original child. This is also $O(N)$ time, but a very deep tree can overflow the call stack.

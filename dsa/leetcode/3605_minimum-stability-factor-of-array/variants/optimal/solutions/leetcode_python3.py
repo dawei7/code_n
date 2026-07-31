@@ -16,10 +16,7 @@ class Solution:
             half = 1 << (power - 1)
             width = 1 << power
             previous = sparse_table[-1]
-            sparse_table.append([
-                gcd(previous[left], previous[left + half])
-                for left in range(n - width + 1)
-            ])
+            sparse_table.append([gcd(previous[left], previous[left + half]) for left in range(n - width + 1)])
             power += 1
 
         def range_gcd(left: int, right: int) -> int:

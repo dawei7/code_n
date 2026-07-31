@@ -1,7 +1,7 @@
 class Solution:
     def minCost(self, nums: List[int], k: int) -> int:
         n = len(nums)
-        dp = [0] + [float('inf')] * n
+        dp = [0] + [float("inf")] * n
 
         for right in range(n):
             frequency = [0] * n

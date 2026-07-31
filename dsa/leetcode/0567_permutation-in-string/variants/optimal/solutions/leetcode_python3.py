@@ -11,10 +11,7 @@ class Solution:
             target[ord(s1[index]) - ord("a")] += 1
             window[ord(s2[index]) - ord("a")] += 1
 
-        matches = sum(
-            target[index] == window[index]
-            for index in range(26)
-        )
+        matches = sum(target[index] == window[index] for index in range(26))
         if matches == 26:
             return True
 
@@ -36,4 +33,3 @@ class Solution:
                 return True
 
         return False
-

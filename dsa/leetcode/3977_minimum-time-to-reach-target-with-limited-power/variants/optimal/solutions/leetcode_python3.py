@@ -38,9 +38,5 @@ class Solution:
         if minimum_time == infinity:
             return [-1, -1]
 
-        maximum_power = max(
-            remaining
-            for remaining, elapsed in enumerate(best_time[target])
-            if elapsed == minimum_time
-        )
+        maximum_power = max(remaining for remaining, elapsed in enumerate(best_time[target]) if elapsed == minimum_time)
         return [minimum_time, maximum_power]

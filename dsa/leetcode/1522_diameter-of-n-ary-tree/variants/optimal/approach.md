@@ -9,7 +9,7 @@ Any path whose highest node is the current node uses at most two child branches.
 
 First traverse from the root and record nodes in parent-before-child order. Process that list in reverse, so every child height is available before its parent. At each node, retain only the two largest downward candidates rather than sorting all children.
 
-The native Accepted artifact applies this logic to node objects. The app-local adapter infers the root as the only value absent from all child lists and performs the same postorder calculation over value records. An explicit stack avoids recursion failure near the permitted depth of 1000.
+Apply the calculation directly to the supplied node objects. An explicit stack avoids recursion failure near the permitted depth of 1000.
 
 ## Complexity detail
 The initial traversal and reverse postorder each visit every node and child edge once. Selecting the two largest child branches is constant work per edge, so total time is $O(n)$.

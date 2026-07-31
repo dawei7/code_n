@@ -16,7 +16,7 @@ Any even size-$k$ choice differing from the unrestricted top `k` must make enoug
 Consequently, the better of the two boundary exchanges is globally optimal. If neither exchange type is available, no size-$k$ selection can change the odd total to even, so return `-1`.
 
 ## Complexity detail
-Sorting $n$ values takes $O(n \log n)$ time. The selected and unselected scans take $O(n)$ additional time. The sorted copy or language sorting storage uses $O(n)$ space under the app contract, while the parity candidate records use constant extra space.
+Sorting $n$ values takes $O(n \log n)$ time. The selected and unselected scans take $O(n)$ additional time. Python's in-place sort may use $O(n)$ auxiliary storage, while the parity candidate records use constant extra space.
 
 ## Alternatives and edge cases
 - **Separate parity lists:** Sort even and odd values independently, build prefix sums, and try every feasible even count of selected odd values. This is also $O(n \log n)$ but uses more bookkeeping.

@@ -17,12 +17,12 @@ Return the possibly changed root. Deleting the root may select a new root, and d
 ### Function Contract
 **Inputs**
 
-- `root`: the app's level-order array representation of a BST, using `None` for missing children
+- `root`: the root `TreeNode` of a BST, or `None` for an empty tree
 - `key`: the value to delete
 
 **Return value**
 
-- The resulting BST in level-order form. If `key` is absent, return the unchanged tree. The native artifact accepts and returns `TreeNode` objects.
+- Return the resulting root `TreeNode`. If `key` is absent, return the unchanged tree.
 
 ### Examples
 **Example 1**

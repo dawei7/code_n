@@ -1,4 +1,9 @@
-function throttle(fn, t) {
+/**
+ * @param {Function} fn
+ * @param {number} t
+ * @return {Function}
+ */
+var throttle = function(fn, t) {
     let waiting = false;
     let pending = null;
 
@@ -7,6 +12,7 @@ function throttle(fn, t) {
             waiting = false;
             return;
         }
+
         const call = pending;
         pending = null;
         fn.apply(call.context, call.args);
@@ -22,7 +28,7 @@ function throttle(fn, t) {
             pending = { context: this, args };
         }
     };
-}
+};
 
 function solve(t, calls) {
     const queue = calls.map((call, order) => ({

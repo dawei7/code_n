@@ -2,9 +2,7 @@ import sys
 
 
 class Solution:
-    def countPairsOfConnectableServers(
-        self, edges: List[List[int]], signalSpeed: int
-    ) -> List[int]:
+    def countPairsOfConnectableServers(self, edges: List[List[int]], signalSpeed: int) -> List[int]:
         n = len(edges) + 1
         graph = [[] for _ in range(n)]
         for first, second, weight in edges:

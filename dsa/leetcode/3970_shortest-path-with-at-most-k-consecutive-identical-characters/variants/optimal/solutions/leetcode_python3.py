@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def shortestPath(
-        self, n: int, edges: List[List[int]], labels: str, k: int
-    ) -> int:
+    def shortestPath(self, n: int, edges: List[List[int]], labels: str, k: int) -> int:
         graph = [[] for _ in range(n)]
         for source, destination, weight in edges:
             graph[source].append((destination, weight))
@@ -23,11 +21,7 @@ class Solution:
                 return cost
 
             for neighbor, weight in graph[node]:
-                next_run = (
-                    run_length + 1
-                    if labels[node] == labels[neighbor]
-                    else 1
-                )
+                next_run = run_length + 1 if labels[node] == labels[neighbor] else 1
                 if next_run > k:
                     continue
 

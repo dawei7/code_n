@@ -8,4 +8,4 @@ class Solution:
                 left = middle + 1
             else:
                 right = middle
-        return arr[left:left + k]
+        return arr[left : left + k]

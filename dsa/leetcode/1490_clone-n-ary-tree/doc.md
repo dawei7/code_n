@@ -18,10 +18,9 @@ The returned root must belong to a newly allocated tree. For every original node
 ### Function Contract
 **Inputs**
 
-Let $N$ be the number of nodes and $H$ the tree height.
+- `root`: The N-ary `Node` root, or `None` for an empty tree. Each node exposes `val` and an ordered `children` list.
 
-- Native `cloneTree(root)` receives the root of an N-ary tree whose nodes expose `val` and an ordered `children` list.
-- The structure is a tree: every non-root node occurs in exactly one parent's child list.
+Let $N$ be the number of nodes and $H$ the tree height. Authored JSON cases encode a node recursively as `[value, children]`; the runner constructs the `Node` objects before calling `solve`. Every non-root node occurs in exactly one parent's child list.
 - A node may be a leaf with an empty child list, and `root` may be null.
 - The app-local `solve(root)` receives the same structure serialized recursively as `[value, children]`, where every element of `children` is another encoded node.
 

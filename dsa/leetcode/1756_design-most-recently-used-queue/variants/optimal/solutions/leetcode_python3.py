@@ -6,8 +6,7 @@ class MRUQueue:
     def __init__(self, n: int):
         self.block_size = isqrt(n - 1) + 1
         self.blocks = [
-            deque(range(start, min(start + self.block_size, n + 1)))
-            for start in range(1, n + 1, self.block_size)
+            deque(range(start, min(start + self.block_size, n + 1))) for start in range(1, n + 1, self.block_size)
         ]
 
     def fetch(self, k: int) -> int:

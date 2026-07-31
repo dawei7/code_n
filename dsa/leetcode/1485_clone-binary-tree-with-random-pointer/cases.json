@@ -7,7 +7,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nodes": [
+        "root": [
           [
             1,
             null
@@ -38,6 +38,7 @@
           0
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "sample",
         "sparse",
@@ -50,7 +51,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nodes": [
+        "root": [
           [
             1,
             4
@@ -91,6 +92,7 @@
           5
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "sample",
         "duplicate-values",
@@ -103,7 +105,7 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "nodes": [
+        "root": [
           [
             1,
             6
@@ -164,6 +166,7 @@
           0
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "sample",
         "cross-subtree",
@@ -176,7 +179,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "nodes": [
+        "root": [
           [
             42,
             0
@@ -189,6 +192,7 @@
           0
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "trial",
         "single-node",
@@ -201,9 +205,10 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "nodes": []
+        "root": []
       },
       "expected": [],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "hidden",
         "boundary",
@@ -216,7 +221,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "nodes": [
+        "root": [
           [
             10,
             4
@@ -255,6 +260,7 @@
           4
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "hidden",
         "sparse",
@@ -267,7 +273,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "nodes": [
+        "root": [
           [
             5,
             1
@@ -296,6 +302,7 @@
           2
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "hidden",
         "duplicate-values",
@@ -308,7 +315,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "nodes": [
+        "root": [
           [
             1,
             null
@@ -369,6 +376,7 @@
           null
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "hidden",
         "null-random",
@@ -381,7 +389,7 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "nodes": [
+        "root": [
           [
             100,
             2
@@ -420,6 +428,7 @@
           0
         ]
       ],
+      "validator": {"kind": "random_binary_tree_copy"},
       "tags": [
         "hidden",
         "cycle",

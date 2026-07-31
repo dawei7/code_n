@@ -26,9 +26,7 @@ class Solution:
             next_counts = [0] * len(states)
             for state_index, count in enumerate(counts):
                 for next_index in compatible[state_index]:
-                    next_counts[next_index] = (
-                        next_counts[next_index] + count
-                    ) % modulo
+                    next_counts[next_index] = (next_counts[next_index] + count) % modulo
             counts = next_counts
 
         return sum(counts) % modulo

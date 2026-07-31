@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "reviewed",
+  "app_source": "solutions/sql.sql",
+  "native_source": "solutions/leetcode_mysql.sql",
+  "hashes": {
+    "app_sha256": "beccde98e1f4230f436e7f5bfd197537eb3b753d6d25fc9931d1d4ea5e5382c7",
+    "native_sha256": "47d85cbde37c2ecbc27407a4dec0c4ef9b3fa4183c9ade8ba35f83e6889e774c",
+    "solution_variants_sha256": "0c78f123f7bc781954d86c18caaa4ed54095679fdbbed50e86ab2dc51d3f2d5c",
+    "approach_sha256": "99db1a14ce5e6784fecb3a21ac2c94761b14a62a4505411c0558e57265cdfca1"
+  },
+  "classifications": ["sql_dialect"],
+  "assertions": {
+    "same_algorithm": true,
+    "same_data_flow": true,
+    "same_helper_logic": true,
+    "complexity_matches": true,
+    "naming_consistent_where_interfaces_permit": true,
+    "difference_is_unavoidable": true
+  },
+  "differences": [
+    {
+      "aspect": "character-length function",
+      "native": "MySQL counts characters with CHAR_LENGTH.",
+      "app": "SQLite counts characters with LENGTH.",
+      "rationale": "SQLite does not implement MySQL's CHAR_LENGTH function. The selected column, strict threshold predicate, and unordered result semantics otherwise match exactly."
+    }
+  ]
+}

@@ -8,17 +8,17 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           2,
           3
         ],
-        "end_time": [
+        "endTime": [
           3,
           2,
           7
         ],
-        "query_time": 4
+        "queryTime": 4
       },
       "expected": 1,
       "tags": [
@@ -32,13 +32,13 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "start_time": [
+        "startTime": [
           4
         ],
-        "end_time": [
+        "endTime": [
           4
         ],
-        "query_time": 4
+        "queryTime": 4
       },
       "expected": 1,
       "tags": [
@@ -52,17 +52,17 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           2,
           5
         ],
-        "end_time": [
+        "endTime": [
           2,
           5,
           6
         ],
-        "query_time": 5
+        "queryTime": 5
       },
       "expected": 2,
       "tags": [
@@ -76,17 +76,17 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "start_time": [
+        "startTime": [
           9,
           8,
           7
         ],
-        "end_time": [
+        "endTime": [
           10,
           9,
           8
         ],
-        "query_time": 6
+        "queryTime": 6
       },
       "expected": 0,
       "tags": [
@@ -100,19 +100,19 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           2,
           3,
           4
         ],
-        "end_time": [
+        "endTime": [
           10,
           9,
           8,
           7
         ],
-        "query_time": 5
+        "queryTime": 5
       },
       "expected": 4,
       "tags": [
@@ -126,17 +126,17 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "start_time": [
+        "startTime": [
           1,
           10,
           20
         ],
-        "end_time": [
+        "endTime": [
           5,
           15,
           25
         ],
-        "query_time": 30
+        "queryTime": 30
       },
       "expected": 0,
       "tags": [
@@ -150,21 +150,21 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "start_time": [
+        "startTime": [
           6,
           1,
           6,
           5,
           7
         ],
-        "end_time": [
+        "endTime": [
           6,
           10,
           6,
           5,
           9
         ],
-        "query_time": 6
+        "queryTime": 6
       },
       "expected": 3,
       "tags": [
@@ -179,17 +179,17 @@
       "kind": "real",
       "visible": false,
       "input": {
-        "start_time": [
+        "startTime": [
           999,
           1000,
           1
         ],
-        "end_time": [
+        "endTime": [
           1000,
           1000,
           999
         ],
-        "query_time": 1000
+        "queryTime": 1000
       },
       "expected": 2,
       "tags": [

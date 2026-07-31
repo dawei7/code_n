@@ -4,10 +4,7 @@ from typing import List
 class Solution:
     def oddString(self, words: List[str]) -> str:
         def difference(word: str) -> tuple[int, ...]:
-            return tuple(
-                ord(word[index + 1]) - ord(word[index])
-                for index in range(len(word) - 1)
-            )
+            return tuple(ord(word[index + 1]) - ord(word[index]) for index in range(len(word) - 1))
 
         first = difference(words[0])
         second = difference(words[1])

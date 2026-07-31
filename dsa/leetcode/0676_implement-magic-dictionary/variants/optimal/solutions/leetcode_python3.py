@@ -30,4 +30,3 @@ class MagicDictionary:
             return False
 
         return matches(self.root, 0, False)
-

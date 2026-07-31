@@ -21,14 +21,8 @@ class Solution:
                 for new2 in range(1, n2 + 1):
                     prefix = (prefix + dp[last1][new2 - 1]) % modulo
                     if word2[new2 - 1] == needed:
-                        next_dp[last1][new2] = (
-                            next_dp[last1][new2] + prefix
-                        ) % modulo
+                        next_dp[last1][new2] = (next_dp[last1][new2] + prefix) % modulo
 
             dp = next_dp
 
-        return sum(
-            dp[last1][last2]
-            for last1 in range(1, n1 + 1)
-            for last2 in range(1, n2 + 1)
-        ) % modulo
+        return sum(dp[last1][last2] for last1 in range(1, n1 + 1) for last2 in range(1, n2 + 1)) % modulo

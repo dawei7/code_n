@@ -22,12 +22,7 @@ class Solution:
 
             backward = position - b
             backward_state = (backward, True)
-            if (
-                not last_was_backward
-                and backward >= 0
-                and backward not in blocked
-                and backward_state not in visited
-            ):
+            if not last_was_backward and backward >= 0 and backward not in blocked and backward_state not in visited:
                 visited.add(backward_state)
                 queue.append((backward, True, jumps + 1))
 

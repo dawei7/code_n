@@ -33,19 +33,13 @@ class FenwickTree:
 
 
 class Solution:
-    def numberOfAlternatingGroups(
-        self, colors: List[int], queries: List[List[int]]
-    ) -> List[int]:
+    def numberOfAlternatingGroups(self, colors: List[int], queries: List[List[int]]) -> List[int]:
         tile_count = len(colors)
         breakpoints = FenwickTree(tile_count)
         length_counts = FenwickTree(tile_count + 1)
         length_sums = FenwickTree(tile_count + 1)
 
-        bad_edges = [
-            index
-            for index in range(tile_count)
-            if colors[index] == colors[(index + 1) % tile_count]
-        ]
+        bad_edges = [index for index in range(tile_count) if colors[index] == colors[(index + 1) % tile_count]]
         bad_count = len(bad_edges)
 
         for edge in bad_edges:
@@ -71,12 +65,8 @@ class Solution:
                 return
 
             rank_before = breakpoints.prefix_sum(edge - 1)
-            predecessor = breakpoints.find_by_order(
-                rank_before if rank_before else bad_count
-            )
-            successor = breakpoints.find_by_order(
-                rank_before + 1 if rank_before < bad_count else 1
-            )
+            predecessor = breakpoints.find_by_order(rank_before if rank_before else bad_count)
+            successor = breakpoints.find_by_order(rank_before + 1 if rank_before < bad_count else 1)
 
             change_length(arc_length(predecessor, successor), -1)
             change_length(arc_length(predecessor, edge), 1)
@@ -122,10 +112,7 @@ class Solution:
                 continue
 
             affected_edges = ((index - 1) % tile_count, index)
-            was_bad = [
-                colors[edge] == colors[(edge + 1) % tile_count]
-                for edge in affected_edges
-            ]
+            was_bad = [colors[edge] == colors[(edge + 1) % tile_count] for edge in affected_edges]
             colors[index] = new_color
 
             for edge, old_status in zip(affected_edges, was_bad):

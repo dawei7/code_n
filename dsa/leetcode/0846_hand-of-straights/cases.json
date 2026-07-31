@@ -19,7 +19,7 @@
           7,
           8
         ],
-        "group_size": 3
+        "groupSize": 3
       },
       "expected": true,
       "tags": [
@@ -40,7 +40,7 @@
           4,
           5
         ],
-        "group_size": 4
+        "groupSize": 4
       },
       "expected": false,
       "tags": [
@@ -62,7 +62,7 @@
           3,
           4
         ],
-        "group_size": 3
+        "groupSize": 3
       },
       "expected": true,
       "tags": [
@@ -84,7 +84,7 @@
           7,
           5
         ],
-        "group_size": 3
+        "groupSize": 3
       },
       "expected": true,
       "tags": [
@@ -104,7 +104,7 @@
           9,
           100
         ],
-        "group_size": 1
+        "groupSize": 1
       },
       "expected": true,
       "tags": [
@@ -126,7 +126,7 @@
           4,
           4
         ],
-        "group_size": 3
+        "groupSize": 3
       },
       "expected": false,
       "tags": [
@@ -146,7 +146,7 @@
           11,
           2
         ],
-        "group_size": 2
+        "groupSize": 2
       },
       "expected": true,
       "tags": [
@@ -166,7 +166,7 @@
           1,
           2
         ],
-        "group_size": 2
+        "groupSize": 2
       },
       "expected": true,
       "tags": [
@@ -188,7 +188,7 @@
           2,
           3
         ],
-        "group_size": 3
+        "groupSize": 3
       },
       "expected": false,
       "tags": [
@@ -208,7 +208,7 @@
           3,
           1
         ],
-        "group_size": 4
+        "groupSize": 4
       },
       "expected": true,
       "tags": [
@@ -226,7 +226,7 @@
           5,
           5
         ],
-        "group_size": 2
+        "groupSize": 2
       },
       "expected": false,
       "tags": [
@@ -251,7 +251,7 @@
           3,
           3
         ],
-        "group_size": 3
+        "groupSize": 3
       },
       "expected": true,
       "tags": [

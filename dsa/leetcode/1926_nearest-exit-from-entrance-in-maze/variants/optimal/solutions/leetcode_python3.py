@@ -19,12 +19,7 @@ class Solution:
                     continue
                 if maze[next_row][next_column] != ".":
                     continue
-                if (
-                    next_row == 0
-                    or next_row == rows - 1
-                    or next_column == 0
-                    or next_column == columns - 1
-                ):
+                if next_row == 0 or next_row == rows - 1 or next_column == 0 or next_column == columns - 1:
                     return distance + 1
                 maze[next_row][next_column] = "+"
                 queue.append((next_row, next_column, distance + 1))

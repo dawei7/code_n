@@ -23,4 +23,4 @@ FROM ranked_products
 INNER JOIN Products AS products
   ON products.product_id = ranked_products.product_id
 WHERE ranked_products.frequency_rank = 1
-ORDER BY ranked_products.customer_id, ranked_products.product_id;
+;

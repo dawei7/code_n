@@ -21,7 +21,7 @@ Binary-search the smallest feasible $T$. A bound of $2\cdot10^9$ is always suffi
 
 Let $n=\lvert\texttt{hens}\rvert$, $m=\lvert\texttt{grains}\rvert$, and let $C=2\cdot10^9+1$ denote the binary-search range size. Sorting costs $O(n\log n+m\log m)$. Each feasibility test advances monotonically through both arrays in $O(n+m)$ time, and binary search performs $O(\log C)$ tests. The total time is $O(n\log n+m\log m+(n+m)\log C)$.
 
-The app-local implementation stores sorted copies of both inputs, using $O(n+m)$ auxiliary space.
+Python's in-place sorts may use $O(n+m)$ auxiliary storage.
 
 ## Alternatives and edge cases
 

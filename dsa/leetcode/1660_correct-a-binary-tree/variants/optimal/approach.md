@@ -16,6 +16,6 @@ Each of the $N$ nodes is inserted into and queried against a hash set a constant
 - **Ordinary left-first DFS:** The target to the invalid node's right may not have been visited yet, so the sideways pointer can be followed as though it were a child.
 - The invalid node may be a leaf, in which case only that single node is detached.
 - The invalid node may have a large genuine left subtree, all of which must be removed with it.
-- `toNode` is not part of the removed subtree even though the corrupted pointer reaches it.
-- Unique values let the local adapter identify custom-test endpoints, but the repair itself relies on object identity rather than values.
+- The erroneous pointer's target is not part of the removed subtree even though the corrupted pointer reaches it.
+- Unique values let the JSON fixture identify the two corruption endpoints while building `root`; `solve(root)` receives the finished object graph and the repair itself relies only on object identity.
 - Extreme positive or negative node values do not affect traversal or pointer detection.

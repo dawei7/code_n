@@ -9,7 +9,7 @@
       "kind": "benchmark",
       "visible": false,
       "input": {
-        "function_id": 1,
+        "customfunction": 1,
         "z": 25
       },
       "expected": [
@@ -126,7 +126,7 @@
       "kind": "benchmark",
       "visible": false,
       "input": {
-        "function_id": 1,
+        "customfunction": 1,
         "z": 50
       },
       "expected": [
@@ -343,7 +343,7 @@
       "kind": "benchmark",
       "visible": false,
       "input": {
-        "function_id": 1,
+        "customfunction": 1,
         "z": 100
       },
       "expected": [

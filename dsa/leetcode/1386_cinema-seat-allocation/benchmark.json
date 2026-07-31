@@ -11,7 +11,7 @@
       "size": 1000,
       "input": {
         "n": 1000,
-        "reserved_seats": [
+        "reservedSeats": [
           [
             1,
             1
@@ -33,7 +33,7 @@
       "size": 10000,
       "input": {
         "n": 10000,
-        "reserved_seats": [
+        "reservedSeats": [
           [
             1,
             1
@@ -55,7 +55,7 @@
       "size": 100000,
       "input": {
         "n": 100000,
-        "reserved_seats": [
+        "reservedSeats": [
           [
             1,
             1

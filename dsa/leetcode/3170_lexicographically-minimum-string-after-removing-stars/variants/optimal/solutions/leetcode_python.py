@@ -13,8 +13,4 @@ class Solution:
             else:
                 positions[ord(character) - ord("a")].append(index)
 
-        return "".join(
-            character
-            for index, character in enumerate(s)
-            if not removed[index]
-        )
+        return "".join(character for index, character in enumerate(s) if not removed[index])

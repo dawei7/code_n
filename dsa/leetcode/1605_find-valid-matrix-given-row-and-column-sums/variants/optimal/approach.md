@@ -5,6 +5,8 @@
 
 Every placed value is non-negative and never exceeds either active remainder, so no row or column can be overfilled. Completed margins never change again. The total unfinished row supply always equals the total unfinished column demand because each placement subtracts the same amount from both sides. Consequently, when one pointer reaches the end, the other side also has no positive remainder, and the constructed matrix has exactly all requested margins.
 
+The Accepted implementation stores those remainders directly in `rowSum` and `colSum`, so both input arrays are consumed to all zeroes as the matrix is built.
+
 ## Complexity detail
 Creating the returned $m \times n$ matrix costs $O(mn)$ time and space. The two pointers advance at most $m+n$ times, so the greedy filling phase costs $O(m+n)$ additional time and $O(1)$ auxiliary state. The required output therefore dominates the total bounds.
 
@@ -16,3 +18,4 @@ Creating the returned $m \times n$ matrix costs $O(mn)$ time and space. The two 
 - When both active remainders are equal, both the row and column become complete at the same cell.
 - A one-row or one-column input determines the matrix directly.
 - The returned matrix may differ from a displayed example; correctness depends on non-negativity, dimensions, and margins rather than exact cell equality.
+- **Input mutation:** `rowSum` and `colSum` are working remainder arrays and are modified in place.

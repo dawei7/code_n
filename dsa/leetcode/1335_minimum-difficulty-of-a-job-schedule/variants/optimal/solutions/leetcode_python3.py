@@ -20,9 +20,7 @@ class Solution:
                 last_cut = job_count - day_count
                 for cut in range(start, last_cut + 1):
                     hardest = max(hardest, jobDifficulty[cut])
-                    next_dp[start] = min(
-                        next_dp[start], hardest + dp[cut + 1]
-                    )
+                    next_dp[start] = min(next_dp[start], hardest + dp[cut + 1])
             dp = next_dp
 
         return dp[0]

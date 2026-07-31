@@ -14,12 +14,8 @@ class Solution:
             current[-second] += 1
 
             for difference, count in ending.items():
-                current[difference + first] = (
-                    current[difference + first] + count
-                ) % modulo
-                current[difference - second] = (
-                    current[difference - second] + count
-                ) % modulo
+                current[difference + first] = (current[difference + first] + count) % modulo
+                current[difference - second] = (current[difference - second] + count) % modulo
 
             ending = current
             answer = (answer + ending[0]) % modulo

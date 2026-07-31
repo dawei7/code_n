@@ -8,10 +8,7 @@ class Solution:
             return
         empty = 2147483647
         queue = deque(
-            (row, column)
-            for row in range(len(rooms))
-            for column in range(len(rooms[0]))
-            if rooms[row][column] == 0
+            (row, column) for row in range(len(rooms)) for column in range(len(rooms[0])) if rooms[row][column] == 0
         )
         while queue:
             row, column = queue.popleft()

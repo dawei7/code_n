@@ -24,10 +24,7 @@ class Solution:
             if character == word2[target_index]:
                 answer.append(index)
                 target_index += 1
-            elif (
-                mismatch_available
-                and suffix_matches[index + 1] >= target_length - target_index - 1
-            ):
+            elif mismatch_available and suffix_matches[index + 1] >= target_length - target_index - 1:
                 answer.append(index)
                 target_index += 1
                 mismatch_available = False

@@ -13,14 +13,10 @@ class Solution:
         vertical = sorted([1, n, *vFences])
 
         horizontal_spans = {
-            horizontal[right] - horizontal[left]
-            for right in range(1, len(horizontal))
-            for left in range(right)
+            horizontal[right] - horizontal[left] for right in range(1, len(horizontal)) for left in range(right)
         }
         vertical_spans = {
-            vertical[right] - vertical[left]
-            for right in range(1, len(vertical))
-            for left in range(right)
+            vertical[right] - vertical[left] for right in range(1, len(vertical)) for left in range(right)
         }
 
         common = horizontal_spans & vertical_spans

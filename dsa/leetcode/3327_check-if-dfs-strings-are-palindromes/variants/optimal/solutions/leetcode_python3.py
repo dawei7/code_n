@@ -35,18 +35,11 @@ class Solution:
                 mirror = 2 * center - index
                 radius[index] = min(right - index, radius[mirror])
 
-            while (
-                transformed[index + radius[index] + 1]
-                == transformed[index - radius[index] - 1]
-            ):
+            while transformed[index + radius[index] + 1] == transformed[index - radius[index] - 1]:
                 radius[index] += 1
 
             if index + radius[index] > right:
                 center = index
                 right = index + radius[index]
 
-        return [
-            radius[starts[node] + ends[node] + 1]
-            >= ends[node] - starts[node]
-            for node in range(node_count)
-        ]
+        return [radius[starts[node] + ends[node] + 1] >= ends[node] - starts[node] for node in range(node_count)]

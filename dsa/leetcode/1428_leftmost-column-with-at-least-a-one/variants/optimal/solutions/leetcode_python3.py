@@ -9,7 +9,7 @@ from typing import List
 
 
 class Solution:
-    def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
+    def leftMostColumnWithOne(self, binaryMatrix: "BinaryMatrix") -> int:
         rows, cols = binaryMatrix.dimensions()
         row = 0
         col = cols - 1

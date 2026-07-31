@@ -46,7 +46,12 @@ class Solution:
                 continue
             if (row, col) == target:
                 return path
-            endpoints = (("d", bottom[row][col], col), ("l", row, left[row][col]), ("r", row, right[row][col]), ("u", top[row][col], col))
+            endpoints = (
+                ("d", bottom[row][col], col),
+                ("l", row, left[row][col]),
+                ("r", row, right[row][col]),
+                ("u", top[row][col], col),
+            )
             for direction, next_row, next_col in endpoints:
                 if direction == "d" and col == target[1] and row < target[0] <= next_row:
                     next_row = target[0]

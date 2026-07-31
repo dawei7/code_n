@@ -3,6 +3,6 @@ from typing import List
 
 class Solution:
     def divideString(self, s: str, k: int, fill: str) -> List[str]:
-        groups = [s[start:start + k] for start in range(0, len(s), k)]
+        groups = [s[start : start + k] for start in range(0, len(s), k)]
         groups[-1] += fill * (k - len(groups[-1]))
         return groups

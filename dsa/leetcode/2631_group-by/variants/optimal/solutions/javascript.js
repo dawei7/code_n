@@ -1,7 +1,11 @@
-function groupBy(array, fn) {
+/**
+ * @param {Function} fn
+ * @return {Object}
+ */
+Array.prototype.groupBy = function(fn) {
     const groups = {};
 
-    for (const item of array) {
+    for (const item of this) {
         const key = fn(item);
         if (!Object.prototype.hasOwnProperty.call(groups, key)) {
             Object.defineProperty(groups, key, {
@@ -15,7 +19,11 @@ function groupBy(array, fn) {
     }
 
     return groups;
-}
+};
+
+/**
+ * [1,2,3].groupBy(String) // {"1":[1],"2":[2],"3":[3]}
+ */
 
 function selector(fnName, fnArg) {
     const selectors = {
@@ -51,8 +59,8 @@ function summarize(groups) {
 }
 
 function solve(array, fnName, fnArg, arrayPlan) {
-    const groups = groupBy(expandArray(array, arrayPlan), selector(fnName, fnArg));
+    const groups = expandArray(array, arrayPlan).groupBy(selector(fnName, fnArg));
     return arrayPlan === null ? groups : summarize(groups);
 }
 
-module.exports = { expandArray, groupBy, selector, solve, summarize };
+module.exports = { expandArray, selector, solve, summarize };

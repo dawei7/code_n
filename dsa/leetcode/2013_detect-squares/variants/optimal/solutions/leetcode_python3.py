@@ -21,15 +21,7 @@ class DetectSquares:
             if side == 0:
                 continue
 
-            squares += (
-                horizontal_count
-                * self.points[(x, y + side)]
-                * self.points[(other_x, y + side)]
-            )
-            squares += (
-                horizontal_count
-                * self.points[(x, y - side)]
-                * self.points[(other_x, y - side)]
-            )
+            squares += horizontal_count * self.points[(x, y + side)] * self.points[(other_x, y + side)]
+            squares += horizontal_count * self.points[(x, y - side)] * self.points[(other_x, y - side)]
 
         return squares

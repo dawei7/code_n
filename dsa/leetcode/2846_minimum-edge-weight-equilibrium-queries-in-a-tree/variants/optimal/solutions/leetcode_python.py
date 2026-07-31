@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def minOperationsQueries(
-        self, n: int, edges: List[List[int]], queries: List[List[int]]
-    ) -> List[int]:
+    def minOperationsQueries(self, n: int, edges: List[List[int]], queries: List[List[int]]) -> List[int]:
         adjacency = [[] for _ in range(n)]
         for first, second, weight in edges:
             adjacency[first].append((second, weight))
@@ -56,9 +54,7 @@ class Solution:
             ancestor = lowest_common_ancestor(first, second)
             path_length = depth[first] + depth[second] - 2 * depth[ancestor]
             largest_frequency = max(
-                prefix_counts[first][weight]
-                + prefix_counts[second][weight]
-                - 2 * prefix_counts[ancestor][weight]
+                prefix_counts[first][weight] + prefix_counts[second][weight] - 2 * prefix_counts[ancestor][weight]
                 for weight in range(26)
             )
             answer.append(path_length - largest_frequency)

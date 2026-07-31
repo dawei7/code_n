@@ -2,8 +2,10 @@
 
 **Inputs**
 
-- `nested_list`: The app-local representation of the recursively nested integers; LeetCode's native constructor receives the equivalent `nestedList` through its `NestedInteger` interface.
+- `nestedList`: A list of `NestedInteger` objects. Each object either stores one integer or a nested list of more `NestedInteger` objects.
+
+JSON cases use ordinary nested arrays and integers. The runner reconstructs the `NestedInteger` interface objects before constructing `NestedIterator(nestedList)`.
 
 **Return value**
 
-The app adapter returns all integers in iterator order. The native `NestedIterator` instead exposes them one at a time through `next()` while `hasNext()` reports availability.
+`NestedIterator.next()` returns the next integer, while `hasNext()` reports whether one remains. The app's `solve` dispatcher exhausts that same iterator so validated cases can display the complete sequence.

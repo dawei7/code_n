@@ -28,7 +28,6 @@ $$
 - Every entry satisfies $1 \le \texttt{bloomDay[i]} \le 10^9$.
 - `m`: the required number of bouquets, with $1 \le m \le 10^6$.
 - `k`: the number of adjacent flowers per bouquet, with $1 \le k \le N$.
-- In the app-local `solve` contract, the corresponding parameter name is `bloom_day`.
 
 **Return value**
 

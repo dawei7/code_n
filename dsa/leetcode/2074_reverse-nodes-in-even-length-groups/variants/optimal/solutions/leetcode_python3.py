@@ -2,9 +2,7 @@ from typing import Optional
 
 
 class Solution:
-    def reverseEvenLengthGroups(
-        self, head: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    def reverseEvenLengthGroups(self, head: Optional[ListNode]) -> Optional[ListNode]:
         group_tail = head
         target_length = 2
 

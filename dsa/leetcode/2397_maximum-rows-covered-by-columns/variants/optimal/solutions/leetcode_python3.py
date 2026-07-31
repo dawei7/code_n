@@ -20,10 +20,7 @@ class Solution:
             for column in selected_columns:
                 selected_mask |= 1 << column
 
-            covered = sum(
-                row_mask & selected_mask == row_mask
-                for row_mask in row_masks
-            )
+            covered = sum(row_mask & selected_mask == row_mask for row_mask in row_masks)
             maximum = max(maximum, covered)
 
         return maximum

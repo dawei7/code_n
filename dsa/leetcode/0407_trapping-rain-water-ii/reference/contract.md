@@ -2,7 +2,7 @@
 
 **Inputs**
 
-- `height_map`: The cOde(n) name for the rectangular nonnegative elevation matrix `heightMap`.
+- `heightMap`: The rectangular nonnegative elevation matrix.
 
 **Return value**
 

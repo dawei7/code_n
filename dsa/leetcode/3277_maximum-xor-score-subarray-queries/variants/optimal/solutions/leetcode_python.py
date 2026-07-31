@@ -2,9 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maximumSubarrayXor(
-        self, nums: List[int], queries: List[List[int]]
-    ) -> List[int]:
+    def maximumSubarrayXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:
         length = len(nums)
         best = [[0] * length for _ in range(length)]
 
@@ -13,10 +11,7 @@ class Solution:
 
         scores = nums[:]
         for width in range(2, length + 1):
-            next_scores = [
-                scores[start] ^ scores[start + 1]
-                for start in range(length - width + 1)
-            ]
+            next_scores = [scores[start] ^ scores[start + 1] for start in range(length - width + 1)]
 
             for start, score in enumerate(next_scores):
                 end = start + width - 1

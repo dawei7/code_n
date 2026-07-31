@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def findMaxPathScore(
-        self, edges: List[List[int]], online: List[bool], k: int
-    ) -> int:
+    def findMaxPathScore(self, edges: List[List[int]], online: List[bool], k: int) -> int:
         node_count = len(online)
         adjacency = [[] for _ in range(node_count)]
         indegree = [0] * node_count
@@ -14,9 +12,7 @@ class Solution:
             adjacency[source].append((target, cost))
             indegree[target] += 1
 
-        queue = deque(
-            node for node in range(node_count) if indegree[node] == 0
-        )
+        queue = deque(node for node in range(node_count) if indegree[node] == 0)
         topological_order = []
         while queue:
             node = queue.popleft()

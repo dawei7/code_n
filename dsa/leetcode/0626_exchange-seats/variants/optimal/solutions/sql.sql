@@ -1,7 +1,7 @@
 SELECT
     id,
     CASE
-        WHEN id % 2 = 1 THEN COALESCE(
+        WHEN MOD(id, 2) = 1 THEN COALESCE(
             LEAD(student) OVER (ORDER BY id),
             student
         )

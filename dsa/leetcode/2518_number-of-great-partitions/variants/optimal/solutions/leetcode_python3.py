@@ -10,9 +10,7 @@ class Solution:
 
         for value in nums:
             for subtotal in range(k - 1, value - 1, -1):
-                ways_by_sum[subtotal] = (
-                    ways_by_sum[subtotal] + ways_by_sum[subtotal - value]
-                ) % mod
+                ways_by_sum[subtotal] = (ways_by_sum[subtotal] + ways_by_sum[subtotal - value]) % mod
 
         bad_groups = sum(ways_by_sum) % mod
         return (pow(2, len(nums), mod) - 2 * bad_groups) % mod

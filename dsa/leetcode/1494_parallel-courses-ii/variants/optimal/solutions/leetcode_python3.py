@@ -3,9 +3,7 @@ from typing import List
 
 
 class Solution:
-    def minNumberOfSemesters(
-        self, n: int, relations: List[List[int]], k: int
-    ) -> int:
+    def minNumberOfSemesters(self, n: int, relations: List[List[int]], k: int) -> int:
         if not relations:
             return (n + k - 1) // k
 
@@ -25,26 +23,18 @@ class Solution:
             available_bits = []
             for course in range(n):
                 bit = 1 << course
-                if (
-                    done & bit == 0
-                    and prerequisites[course] & done == prerequisites[course]
-                ):
+                if done & bit == 0 and prerequisites[course] & done == prerequisites[course]:
                     available_bits.append(bit)
 
             if len(available_bits) <= k:
                 take = sum(available_bits)
                 next_state = done | take
-                semesters[next_state] = min(
-                    semesters[next_state], semesters[done] + 1
-                )
+                semesters[next_state] = min(semesters[next_state], semesters[done] + 1)
                 continue
 
             for chosen in combinations(available_bits, k):
                 take = sum(chosen)
                 next_state = done | take
-                semesters[next_state] = min(
-                    semesters[next_state], semesters[done] + 1
-                )
+                semesters[next_state] = min(semesters[next_state], semesters[done] + 1)
 
         return semesters[full_mask]
-

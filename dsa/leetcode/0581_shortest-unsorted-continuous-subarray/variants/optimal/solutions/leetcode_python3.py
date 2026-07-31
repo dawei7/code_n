@@ -18,4 +18,3 @@ class Solution:
                 suffix_min = nums[reverse_index]
 
         return 0 if right == -1 else right - left + 1
-
