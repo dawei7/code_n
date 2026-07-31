@@ -13,6 +13,10 @@ or external memory.
   canonical LeetCode packages, never copied challenge datasets.
 - Preserve LeetCode identity: numeric frontend id, title slug, official URL,
   supported language, category, and source-native execution semantics.
+- The canonical application corpus ends permanently at frontend ID 4005 and
+  contains exactly 4,005 packages once that final import is present. Never add
+  frontend ID 4006 or later, even when LeetCode publishes more problems; all
+  import and refresh workflows must preserve this frozen ceiling.
 - The installed application is offline-first. Canonical resources are
   read-only; progress and personal solutions must be written to Electron's
   user-data directory.
@@ -65,8 +69,15 @@ Each problem is stored once:
 ```text
 dsa/leetcode/<frontend_id:04d>_<slug>/
   metadata.json
-  doc.md
+  doc.md                    # legacy document or section-mode compatibility anchor
   doc_de.md                 # optional translation
+  reference/                # optional section-authored Reference document
+    description.md
+    contract.md
+    examples.md
+    constraints.md
+    follow_up.md            # optional source-native section
+  source_fidelity.json      # optional reviewed structure and factual evidence
   cases.json
   benchmark.json             # normal complexity-verification path
   complexity_certificate.json # only when legal scaling is inapplicable
@@ -126,6 +137,13 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   candidate must remain blocked until the exact source is remotely Accepted and
   its manifest is promoted to `verified`; never infer verification from local
   correctness alone.
+- A native source referenced by a `verified` submission manifest is immutable
+  evidence. Never edit or replace that file in place. Stage a proposed
+  replacement separately, submit those exact staged bytes, and keep the current
+  source and manifest untouched on every rejection or verification failure.
+  Only after LeetCode reports Accepted may the staged source replace the
+  canonical native file and the manifest be updated with that submission's id
+  and timestamp.
 - During canonical migration, follow the early-verification authoring order in
   `LEETCODE_SUBMISSIONS.md`: confirm contract and native interface, minimally
   sanity-check the exact native source, obtain remote Accepted evidence, then
@@ -135,11 +153,47 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   cases, expected outputs, both solution forms, and affected benchmark claims
   together, then rerun every gate.
 
+## Active corpus work order
+
+The migration has two deliberately ordered phases. Do not switch between them
+based on whichever report happens to show the smallest frontend ID:
+
+1. **Verified-solution completion:** first finish every canonical package whose
+   Optimal branch lacks `variants/optimal/submission.json` with `status` equal
+   to `verified`. Process this queue in ascending numeric frontend-ID order,
+   except when a recorded blocker requires moving to the next actionable
+   package. Follow the early-verification order above and never substitute
+   local correctness for remote Accepted evidence.
+2. **Legacy Reference migration:** only after the verified-solution queue is
+   empty, resume the corpus-wide conversion of already completed legacy
+   documents to section-authored, source-fidelity-verified References.
+
+Run `tools/audit_leetcode_migration.py` at the start of every migration session
+and after every completed package or batch. For phase 1, the authoritative queue
+pointer is `first_unverified_optimal_submission`; do not use a document-only or
+generic local-completion pointer to restart work on a package that already has
+remote Accepted evidence. Reopen the refreshed JSON report before selecting
+the next package. If the pointer and the manifests disagree, inspect the live
+manifest files and repair the audit before continuing.
+
+Every package imported or completed during phase 1 must use the current modular
+Reference approach in the same package pass. Author `reference/description.md`,
+`contract.md`, `examples.md`, `constraints.md`, and every additional
+source-native section; retain `doc.md` only as the composition anchor; and add a
+reviewed `source_fidelity.json`. Do not postpone that package's Reference to the
+later legacy-document phase. Verify public and Premium statements against the
+live LeetCode source, using the authenticated read-only bridge for Premium
+content, and keep the manifest unverified when direct source evidence is
+unavailable.
+
 ## Documentation
 
 - `README.md` is served by `/api/docs/overview` and packaged with the app.
-- Per-problem documentation exists only at
-  `dsa/leetcode/<frontend_id:04d>_<slug>/doc.md`.
+- Per-problem documentation exists only inside its canonical
+  `dsa/leetcode/<frontend_id:04d>_<slug>/` package. Legacy packages use
+  `doc.md`; section-authored packages use `reference/description.md`,
+  `contract.md`, `examples.md`, and `constraints.md`, with `doc.md` retained
+  only as a compatibility anchor during migration.
 - Mathematical explanation belongs in the canonical problem document; there
   is no separate mathematical-doc tree or tab.
 - Do not create a parallel `docs/algorithms`, `docs/mathematical`, provider, or
@@ -149,16 +203,60 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
 - A complete problem document should state the contract, give clear examples,
   explain underlying algorithms, and provide time/space complexity without
   leaking the full answer unless that artifact intentionally contains it.
-- Follow `dsa/leetcode/_template.md`. The metadata table owns the only official
-  problem link and labels it `LeetCode` so the UI renders a clickable LeetCode
-  symbol. Do not repeat an external link below `Problem Description`.
-- Use `Goal`, `Function Contract`, and `Examples` in that order. Do not add
-  Required Complexity, Approach, Solution, or Reference Implementations to the
-  shared problem document. Branch artifacts live under `variants/<id>/`.
+- Follow `dsa/leetcode/_template.md` for legacy documents. In section mode, use
+  `Description`, `Function Contract`, `Examples`, and `Constraints` in that
+  order, with one matching level-two heading per file. The server generates the
+  metadata table and its sole official `LeetCode` link when it composes those
+  files. Add source-native sections such as `Follow-up` after `Constraints`
+  when the live statement contains them. Do not repeat an external link in a
+  reference section.
+- Source fidelity is a separate review dimension from package completion. A
+  package is only source-fidelity verified when its `source_fidelity.json`
+  passes `tools/leetcode_source_fidelity.py`; a missing manifest means
+  unverified, not implicitly correct. The manifest stores statement structure,
+  factual example literals, counts, review assertions, and a live-content hash,
+  never the provider's prose or HTML. The review also hashes every composed
+  local section file so later edits invalidate verification until the package
+  is reviewed again.
+- Preserve every source example in the same order with the same input and
+  output facts. Preserve whether each example has an explanation and rephrase
+  that explanation without dropping any reasoning step or material detail. Do
+  not invent replacements or normalize every problem to three examples. Put
+  genuinely useful additions under a separately labelled `Additional Examples`
+  section, never inside the canonical source example sequence.
+- Preserve every constraint, note, follow-up, list, and other source-native
+  section in its original logical position. Recreate tables with the same data
+  and schema in Markdown. For source images or diagrams, create an independent
+  local diagram or an equivalently complete accessible table; do not copy the
+  provider asset. Record source and local visual/table counts in the fidelity
+  manifest and manually verify their informational equivalence.
+- Preserve source presentation when it carries meaning: the same signpost
+  sequence, comparable paragraph depth, example grouping, explanatory steps,
+  table columns and rows, diagram relationships, notes, and material emphasis.
+  This is structural and pedagogical fidelity, not cosmetic imitation. Do not
+  copy provider prose, HTML, CSS, icons, or branding, and do not claim that an
+  independently written Reference is verbatim. A Reference can be
+  source-fidelity verified only when it is both factually accurate and
+  equivalently clear and extensive.
+- Use fenced `mermaid` blocks for graph, tree, flow, and relationship diagrams
+  that Mermaid can express clearly. Every block must include `accTitle` and
+  `accDescr`, must rely on the app's site-level theme and security settings
+  rather than per-diagram initialization, and must remain understandable from
+  the surrounding prose. Layout-only frontmatter may tune `flowchart.padding`,
+  `nodeSpacing`, and `rankSpacing` when the default geometry is not readable in
+  both the app and VS Code preview; do not override the site theme or security
+  level. The Reference, Guided Example, and PDF renderers share this path. Run
+  `npm.cmd run test:mermaid --prefix web` after adding or editing a diagram.
+  Reserve package-local images for visuals Mermaid cannot represent faithfully.
+- Do not add Required Complexity, Approach, Solution, or Reference
+  Implementations to the shared problem document or its section files. Branch
+  artifacts live under `variants/<id>/`.
 - Required Complexity belongs to each row of `solution_variants.json` and is
   rendered inside the selected top tab. The corresponding explanation lives in
-  `variants/<id>/approach.md`. Do not duplicate either section in `doc.md`.
-- Give `Goal` an original, source-faithful problem narrative with depth and
+  `variants/<id>/approach.md`. Do not duplicate either section in `doc.md` or
+  `reference/`.
+- Give `Goal` in legacy documents, or `Description` in section-authored
+  documents, an original, source-faithful problem narrative with depth and
   length proportionate to the public statement. Follow the original problem's
   logical order as closely as independent wording permits: introduce the same
   scenario or data model, state every operation rule and guarantee that affects
@@ -172,9 +270,9 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   surrounding sentences, not mathematical relations or named concepts. Do not
   rewrite merely to make the prose different: every departure from the source
   should improve clarity, sequencing, semantic coverage, or explanation of a
-  material boundary condition. Keep source wording and structure when they are
-  already the clearest independently usable formulation. Never compress a rich
-  statement into a one-sentence summary.
+  material boundary condition. Keep exact technical terms, literals, and
+  mathematical facts, but independently write expressive prose. Never compress
+  a rich statement into a one-sentence summary.
 - Write mathematical expressions as LaTeX using `$...$` inline or `$$...$$`
   for a display equation. Use conventional notation such as `\lvert x \rvert`,
   `\lfloor x \rfloor`, `\lceil x \rceil`, `\min`, `\max`, `\sum`, and
@@ -216,7 +314,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   correctness proof, or fixed number of points when that structure does not
   improve the explanation. Explain why the method is correct within the
   derivation; never use `Correctness`, `Correctness argument`, or comparable
-  generic proof slots. `0001_two-sum/doc.md` is a
+  generic proof slots. `0001_two-sum/variants/optimal/approach.md` is a
   quality exemplar, not a mandatory prose schema. Match depth to difficulty: concise reasoning is
   appropriate for a genuinely simple observation, while complex algorithms
   must receive longer derivations, state definitions, transitions, examples,
@@ -233,10 +331,20 @@ For dataset documentation work:
 
 ```powershell
 .\.venv\Scripts\python.exe tools\check_leetcode_dataset.py
+.\.venv\Scripts\python.exe tools\audit_leetcode_source_fidelity.py
 .\.venv\Scripts\python.exe -m pytest server\tests\test_dynamic_docs.py -q
 ```
 
+The source-fidelity audit defaults to the currently reviewed low-ID batch. For
+a newly completed higher-ID package, also run it with
+`--max-frontend-id <completed-id>` or validate that package directly; never
+mistake exclusion from the default scope for successful review.
+
 Always reopen the refreshed completion report before selecting the next batch.
+During verified-solution completion, also reopen
+`two_sum_migration_progress.json` and follow
+`first_unverified_optimal_submission`; the documentation completion report does
+not own that queue.
 
 ## Runtime benchmark authoring
 
@@ -281,19 +389,30 @@ Always reopen the refreshed completion report before selecting the next batch.
   runtime prerequisites, regression evidence, and blocker-clearing procedure.
   Do not reclassify those packages from an old chat summary.
 
-## Mutable LeetCode metadata and weekly imports
+## Frozen LeetCode metadata and the final corpus import
 
 `LEETCODE_METADATA.md` is authoritative for Frequency, estimated Elo, and
 newly published problem imports. Read it before changing these fields.
 
-- Refresh real Elo, authenticated LeetCode Frequency, current acceptance data,
-  and every stored estimate with:
-  `.\.venv\Scripts\python.exe tools\update_leetcode_metrics.py --refresh-zerotrac`
-- Import only frontend IDs absent from the canonical index with:
+- LeetCode metadata is frozen as of 2026-07-29. Do not refresh official
+  difficulty, acceptance, Premium Frequency, company/list relevance,
+  ZeroTrac ratings, or estimated Elo unless the user explicitly replaces the
+  freeze policy.
+- Treat every bundled company signal as a historical snapshot, never as a
+  claim about current or future company interview relevance.
+- The final refresh used the authenticated 4,005-row LeetCode snapshot and
+  ZeroTrac revision `a99138e145f303597b85290519aaf3d219b3a3e7` (2,545 real
+  ratings, upstream updated 2026-07-24). The other 1,460 values are explicitly
+  estimated.
+- Import only frontend IDs absent from the canonical index through the
+  permanent frontend-ID ceiling of 4005 with:
   `.\.venv\Scripts\python.exe tools\import_new_leetcode_problems.py`
+- Once the index contains all 4,005 packages, treat that command as a freeze
+  audit: it may report later upstream IDs, but it must never create a package
+  or index entry above 4005.
 - Never hand-edit `frequency`, `elo_rating`, or `estimated_elo_rating`. The
-  updater validates the complete source corpus before atomically writing
-  package metadata and the index. Real and estimated Elo are mutually
+  historical updater validates the complete source corpus before atomically
+  writing package metadata and the index. Real and estimated Elo are mutually
   exclusive in each problem record.
 - LeetCode Frequency requires a valid signed-in Premium session. An expired or
   non-Premium session must fail without replacing values with zeros.
@@ -340,8 +459,14 @@ lives under Electron `app.getPath('userData')`.
 
 Language metadata is centralized in `engine/languages.py`.
 
-- Python, C++, Java, C#, JavaScript, Go, and Kotlin use function-call harnesses
-  where the challenge supports them.
+- Each problem exposes exactly one user-facing language, derived from its
+  verified LeetCode submission and normalized to Python, JavaScript, SQL, or
+  Bash. Do not expose alternate-language editors or reference solutions.
+- Legacy runner implementations and personal solution files for other
+  languages may remain internally for compatibility, but they are not
+  user-facing language choices and must not be deleted during this migration.
+- Python and JavaScript use function-call harnesses where the challenge
+  supports them.
 - SQL receives authored table fixtures and runs in an isolated database.
 - pandas is Python with DataFrames created from authored table fixtures.
 - Bash receives raw stdin and package-authored files in a temporary directory.

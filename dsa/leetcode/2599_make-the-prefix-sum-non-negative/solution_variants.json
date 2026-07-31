@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Make the Prefix Sum Non-negative and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans prefixes and defers the most negative value seen whenever the retained sum becomes negative.",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

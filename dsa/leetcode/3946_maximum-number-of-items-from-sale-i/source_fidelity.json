@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3946",
+    "frontend_id": "3946",
+    "title_slug": "maximum-number-of-items-from-sale-i",
+    "url": "https://leetcode.com/problems/maximum-number-of-items-from-sale-i/description/",
+    "paid_only": false,
+    "content_sha256": "276f4716e04fcf31ef010a19c31e681a0f385fbe5d7d9a4857b6089d4133e0d8",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "items = [[6,2],[2,6],[3,4]], budget = 9",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "items = [[2,4],[3,2],[4,1],[6,4],[12,4]], budget = 8",
+        "output": "10",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "58284b013190eeff1fee0f95b2aebb0f8e721a3755e04b7ff4ff62237bf30837",
+      "reference/contract.md": "9c8c0223713f0b9e6831ee0f8a3ad5f93b914e1e533f51196224c021ac2d9489",
+      "reference/examples.md": "9f2036f580ad32a278f47072f79468ae7977d65da048b5d544784cd5e2c3becd",
+      "reference/constraints.md": "f908d42e4b99014e7b349ea7e1f87bf4576ef485215be3cf101fc2cf62168a3b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

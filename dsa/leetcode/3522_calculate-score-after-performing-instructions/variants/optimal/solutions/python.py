@@ -1,20 +1,14 @@
-def solve(s: str) -> int:
-    """
-    Calculates the score by simulating the instruction stack.
-    'L' maps to 1, 'R' maps to 2. 'U' removes the top element.
-    """
-    stack = []
+def solve(instructions: list[str], values: list[int]) -> int:
     score = 0
-    
-    # Mapping for character values
-    values = {'L': 1, 'R': 2}
-    
-    for char in s:
-        if char == 'U':
-            if stack:
-                last_char = stack.pop()
-                score += values[last_char]
+    index = 0
+    visited: set[int] = set()
+
+    while 0 <= index < len(instructions) and index not in visited:
+        visited.add(index)
+        if instructions[index] == "add":
+            score += values[index]
+            index += 1
         else:
-            stack.append(char)
-            
+            index += values[index]
+
     return score

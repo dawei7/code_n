@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2141",
+  "measurement_note": "Size is the maximum simultaneous runtime T. Two batteries each have capacity T, so the answer equals size. Binary search takes O(log T) time with constant m, while checking every duration in order completes all tiers and fails only by linear scaling.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: runtime 64", "kind": "benchmark", "visible": false, "size": 64, "input": {"n": 2, "batteries": [64,64]}, "expected": 64, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: runtime 256", "kind": "benchmark", "visible": false, "size": 256, "input": {"n": 2, "batteries": [256,256]}, "expected": 256, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: runtime 1024", "kind": "benchmark", "visible": false, "size": 1024, "input": {"n": 2, "batteries": [1024,1024]}, "expected": 1024, "tags": ["benchmark", "scale-large"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4102",
+  "frontend_id": "3924",
+  "title_slug": "minimum-threshold-path-with-limited-heavy-edges",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minimumThreshold",
+  "verified_submission_id": "2086999812",
+  "verified_at": "2026-07-30T05:43:46.344453+00:00"
+}

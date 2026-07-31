@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2456",
+  "frontend_id": "2375",
+  "title_slug": "construct-smallest-number-from-di-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestNumber",
+  "verified_submission_id": "2074475845",
+  "verified_at": "2026-07-20T11:04:03.391032+00:00"
+}

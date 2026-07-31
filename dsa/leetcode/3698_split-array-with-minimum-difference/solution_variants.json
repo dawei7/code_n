@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Split Array With Minimum Difference and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Intersects the valid increasing-prefix and decreasing-suffix boundary ranges while maintaining a prefix sum.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

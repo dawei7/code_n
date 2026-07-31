@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | Math, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [split-with-minimum-sum](https://leetcode.com/problems/split-with-minimum-sum/) |
+| LeetCode | [Split With Minimum Sum](https://leetcode.com/problems/split-with-minimum-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/split-with-minimum-sum/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a positive integer `num`, redistribute all of its decimal digits between two non-negative integers `num1` and `num2`. Across the two results, every digit must occur exactly as many times as it does in `num`; their digit order does not need to match the original order.
+
+Either constructed integer may contain leading zeroes. The input itself has no leading zeroes.
+
+Return the minimum possible value of `num1 + num2`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num`: A positive integer satisfying $10 \leq \texttt{num} \leq 10^9$.
+
+Let $d$ be the number of decimal digits in `num`, so $2 \leq d \leq 10$.
 
 **Return value**
 
-TODO
+- The smallest sum obtainable by distributing every digit of `num` between two non-negative integers.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 4325`
+- Output: `59`
+- Explanation: The digits can form `24` and `35`, whose sum is $59$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num = 687`
+- Output: `75`
+- Explanation: The digits can form `68` and `7`, whose sum is $75$.

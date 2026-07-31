@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3726",
+  "cases": [
+    {
+      "id": "sample-multiple-zero-runs",
+      "name": "sample: remove separated and consecutive zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1020030
+      },
+      "expected": 123,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "internal-zeros",
+        "trailing-zero"
+      ]
+    },
+    {
+      "id": "sample-single-digit",
+      "name": "sample: a nonzero single digit is unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-digit",
+        "no-zeros"
+      ]
+    },
+    {
+      "id": "trial-no-zeros",
+      "name": "trial: a multi-digit number without zeros is unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 987654321
+      },
+      "expected": 987654321,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "no-zeros"
+      ]
+    },
+    {
+      "id": "trial-consecutive-internal-zeros",
+      "name": "trial: internal zero runs leave adjacent retained digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1002003
+      },
+      "expected": 123,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "consecutive-zeros"
+      ]
+    },
+    {
+      "id": "trial-trailing-zeros",
+      "name": "trial: every trailing zero is removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 123000
+      },
+      "expected": 123,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "trailing-zeros"
+      ]
+    },
+    {
+      "id": "trial-alternating-zeros",
+      "name": "trial: zeros between every retained digit disappear",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1010101
+      },
+      "expected": 1111,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "alternating-zeros"
+      ]
+    },
+    {
+      "id": "real-power-of-ten",
+      "name": "hidden: a power of ten reduces to one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "power-of-ten",
+        "trailing-zeros"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: the maximum legal power of ten reduces to one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000000000
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "upper-bound",
+        "power-of-ten"
+      ]
+    },
+    {
+      "id": "real-largest-no-zero-value",
+      "name": "hidden: a large all-nonzero value is preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 999999999999999
+      },
+      "expected": 999999999999999,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-value",
+        "no-zeros"
+      ]
+    },
+    {
+      "id": "real-alternating-full-width",
+      "name": "hidden: alternating digits span the full fifteen-digit width",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 101010101010101
+      },
+      "expected": 11111111,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-value",
+        "alternating-zeros"
+      ]
+    },
+    {
+      "id": "real-long-internal-run",
+      "name": "hidden: a long internal zero run joins its boundary digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 900000009
+      },
+      "expected": 99,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "long-zero-run"
+      ]
+    },
+    {
+      "id": "real-separated-boundary-ones",
+      "name": "hidden: retained digits at both ends survive a long zero run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100000000000001
+      },
+      "expected": 11,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-value",
+        "long-zero-run"
+      ]
+    }
+  ]
+}

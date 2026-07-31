@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Two Pointers, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [rearrange-array-elements-by-sign](https://leetcode.com/problems/rearrange-array-elements-by-sign/) |
+| LeetCode | [rearrange-array-elements-by-sign](https://leetcode.com/problems/rearrange-array-elements-by-sign/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/rearrange-array-elements-by-sign/).
 
 ### Goal
-Rearrange an equal number of positive and negative integers so signs alternate, starting with a positive value. Preserve the original relative order among positive values and among negative values.
+
+You are given a 0-indexed integer array `nums` of even length containing no
+zeros. It has the same number of positive and negative integers.
+
+Rearrange all elements so that adjacent values always have opposite signs and
+the first value is positive. Among the positive values, preserve their original
+relative order; preserve the original relative order of the negative values as
+well. Return the resulting array. The input does not need to be modified
+in-place.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: a nonzero integer array containing equally many positive and negative values.
+- `nums`: An even-length integer array of length $n$, where
+  $2 \leq n \leq 2 \cdot 10^5$, $1 \leq \lvert\texttt{nums[i]}\rvert \leq
+  10^5$, and positive and negative values occur equally often.
 
 **Return value**
 
-The rearranged array with positive values at even indices and negative values at odd indices.
+Return all input elements with positives at even indices, negatives at odd
+indices, and the relative order within each sign unchanged.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [3, 1, -2, -5, 2, -4]`
 - Output: `[3, -2, 1, -5, 2, -4]`
+- Explanation: The positive subsequence `[3, 1, 2]` and negative subsequence
+  `[-2, -5, -4]` are interleaved without changing either order.
 
 **Example 2**
 
 - Input: `nums = [-1, 1]`
 - Output: `[1, -1]`
-
-**Example 3**
-
-- Input: `nums = [-3, 4, -2, 5]`
-- Output: `[4, -3, 5, -2]`
-
----
-
-## Solution
-### Approach
-Allocate the result and maintain the next even slot for positive values and next odd slot for negative values. Scan `nums` once, writing each value to its sign's next slot and advancing that slot by two. The single scan preserves both relative orders.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)` for the returned arrangement
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: The only positive value must precede the only negative value.

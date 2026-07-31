@@ -8,95 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Two Pointers, Heap (Priority Queue), Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [total-cost-to-hire-k-workers](https://leetcode.com/problems/total-cost-to-hire-k-workers/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/total-cost-to-hire-k-workers/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/total-cost-to-hire-k-workers/).
 
 ### Goal
-Given an array of worker costs, you must hire exactly `k` workers. In each of the `k` sessions, you choose the worker with the lowest cost from either the first `candidates` elements or the last `candidates` elements of the current array. If there is a tie in cost, the worker with the smaller index is chosen. Once a worker is hired, they are removed from the pool, and the remaining workers shift to fill the gap. Calculate the total cost of hiring `k` workers.
+
+You are given a 0-indexed integer array `costs`, where `costs[i]` is the price of hiring the worker whose current index is $i$. You must hire exactly `k` workers over `k` sessions, selecting one worker per session. A hired worker is removed and cannot be selected again, so the remaining workers' displayed indices may change.
+
+During a session, consider the first `candidates` remaining workers and the last `candidates` remaining workers. Hire the eligible worker with the lowest cost; if several eligible workers have that cost, choose the one with the smallest current index. When fewer than `candidates` workers remain, all of them are eligible. Return the total cost of the `k` hires.
 
 ### Function Contract
+
 **Inputs**
 
-- `costs`: A list of integers representing the hiring cost of each worker.
-- `k`: An integer representing the total number of workers to hire.
-- `candidates`: An integer representing the number of workers to consider from the front and back ends of the array.
+- `costs`: A list in which `costs[i]` is the hiring cost of worker $i$.
+- `k`: The exact number of workers to hire.
+- `candidates`: The number of remaining workers exposed from each end in a session.
+
+The constraints are $1\le\lvert\texttt{costs}\rvert\le10^5$, $1\le\texttt{costs[i]}\le10^5$, and $1\le k,\texttt{candidates}\le\lvert\texttt{costs}\rvert$.
 
 **Return value**
 
-- An integer representing the total cost incurred after hiring `k` workers.
+- The total cost produced by the required sequence of exactly `k` hiring sessions.
 
 ### Examples
+
 **Example 1**
 
-- Input: `costs = [17,12,10,2,7,2,11,20,8], k = 3, candidates = 4`
+- Input: `costs = [17, 12, 10, 2, 7, 2, 11, 20, 8], k = 3, candidates = 4`
 - Output: `11`
+- Explanation: The selected costs are `2`, `2`, and `7` as the two candidate regions are replenished.
 
 **Example 2**
 
-- Input: `costs = [1,2,4,1], k = 3, candidates = 3`
+- Input: `costs = [1, 2, 4, 1], k = 3, candidates = 3`
 - Output: `4`
-
-**Example 3**
-
-- Input: `costs = [1,2,4,1], k = 3, candidates = 1`
-- Output: `4`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Two-Pointer** approach combined with two **Min-Heaps** (Priority Queues). We maintain two heaps: one for the `candidates` workers at the front and one for the `candidates` workers at the back. By comparing the minimums of both heaps, we greedily select the cheapest worker. If the heaps overlap or are exhausted, we replenish them using the two pointers until all `k` workers are selected.
-
-### Complexity Analysis
-- **Time Complexity**: `O(k * log(candidates))`. Each of the `k` hiring sessions involves heap operations (pop and potentially push) which take logarithmic time relative to the number of candidates.
-- **Space Complexity**: `O(candidates)`. We store at most `2 * candidates` elements in the two heaps at any given time.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import heapq
-
-def solve(costs: list[int], k: int, candidates: int) -> int:
-    n = len(costs)
-    left_heap = []
-    right_heap = []
-
-    left_ptr = 0
-    right_ptr = n - 1
-
-    # Fill the heaps initially
-    # We use (cost, index) to handle tie-breaking by index automatically
-    while len(left_heap) < candidates and left_ptr <= right_ptr:
-        heapq.heappush(left_heap, (costs[left_ptr], left_ptr))
-        left_ptr += 1
-
-    while len(right_heap) < candidates and left_ptr <= right_ptr:
-        heapq.heappush(right_heap, (costs[right_ptr], right_ptr))
-        right_ptr -= 1
-
-    total_cost = 0
-    for _ in range(k):
-        # Determine which heap has the smaller minimum
-        # If one heap is empty, we must pick from the other
-        if not right_heap or (left_heap and left_heap[0] <= right_heap[0]):
-            cost, idx = heapq.heappop(left_heap)
-            total_cost += cost
-            # Replenish left heap if possible
-            if left_ptr <= right_ptr:
-                heapq.heappush(left_heap, (costs[left_ptr], left_ptr))
-                left_ptr += 1
-        else:
-            cost, idx = heapq.heappop(right_heap)
-            total_cost += cost
-            # Replenish right heap if possible
-            if left_ptr <= right_ptr:
-                heapq.heappush(right_heap, (costs[right_ptr], right_ptr))
-                right_ptr -= 1
-
-    return total_cost
-```
-</details>
+- Explanation: The candidate regions overlap, so each worker is considered only once; the selected costs are `1`, `1`, and `2`.

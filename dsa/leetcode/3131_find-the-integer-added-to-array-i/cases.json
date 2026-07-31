@@ -3,142 +3,111 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: positive offset",
+      "name": "sample: positive offset and rearrangement",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums1": [
-          2,
-          6,
-          4
-        ],
-        "nums2": [
-          9,
-          7,
-          5
-        ]
-      },
+      "input": {"nums1": [2, 6, 4], "nums2": [9, 7, 5]},
       "expected": 3,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "positive", "permutation"]
     },
     {
       "id": "sample-2",
       "name": "sample: negative offset",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums1": [
-          10
-        ],
-        "nums2": [
-          5
-        ]
-      },
+      "input": {"nums1": [10], "nums2": [5]},
       "expected": -5,
-      "tags": [
-        "sample",
-        "negative"
-      ]
+      "tags": ["sample", "negative", "singleton"]
     },
     {
       "id": "sample-3",
       "name": "sample: zero offset with duplicates",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums1": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "nums2": [
-          1,
-          1,
-          1,
-          1
-        ]
-      },
+      "input": {"nums1": [1, 1, 1, 1], "nums2": [1, 1, 1, 1]},
       "expected": 0,
-      "tags": [
-        "sample",
-        "zero"
-      ]
+      "tags": ["sample", "zero", "duplicates"]
     },
     {
       "id": "trial-unsorted-duplicates",
-      "name": "trial: unsorted arrays with repeated values",
+      "name": "trial: repeated values in different orders",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums1": [
-          8,
-          1,
-          8,
-          3
-        ],
-        "nums2": [
-          5,
-          12,
-          5,
-          7
-        ]
-      },
+      "input": {"nums1": [8, 1, 8, 3], "nums2": [5, 12, 12, 7]},
       "expected": 4,
-      "tags": [
-        "duplicates"
-      ]
+      "tags": ["duplicates", "permutation"]
     },
     {
-      "id": "real-large-negative-values",
-      "name": "real: shifted negative values",
+      "id": "trial-singleton-maximum-positive",
+      "name": "trial: largest positive singleton shift",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [0], "nums2": [1000]},
+      "expected": 1000,
+      "tags": ["boundary", "positive", "singleton"]
+    },
+    {
+      "id": "trial-singleton-maximum-negative",
+      "name": "trial: largest negative singleton shift",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1000], "nums2": [0]},
+      "expected": -1000,
+      "tags": ["boundary", "negative", "singleton"]
+    },
+    {
+      "id": "real-large-negative-offset",
+      "name": "real: negative shift preserves nonnegative values",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums1": [
-          -10,
-          -3,
-          0,
-          7
-        ],
-        "nums2": [
-          -14,
-          -7,
-          -4,
-          3
-        ]
-      },
-      "expected": -4,
-      "tags": [
-        "real",
-        "negative"
-      ]
+      "input": {"nums1": [900, 700, 850], "nums2": [250, 300, 100]},
+      "expected": -600,
+      "tags": ["real", "negative", "permutation"]
     },
     {
       "id": "real-large-positive-offset",
-      "name": "real: larger positive offset",
+      "name": "real: positive shift reaches upper boundary",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums1": [
-          100,
-          50,
-          75,
-          50
-        ],
-        "nums2": [
-          130,
-          105,
-          80,
-          80
-        ]
-      },
-      "expected": 30,
-      "tags": [
-        "real"
-      ]
+      "input": {"nums1": [0, 0, 100], "nums2": [1000, 900, 900]},
+      "expected": 900,
+      "tags": ["real", "positive", "duplicates", "boundary"]
+    },
+    {
+      "id": "real-minimum-not-first",
+      "name": "real: minimum values occur away from the first position",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [500, 120, 900, 300], "nums2": [147, 927, 327, 527]},
+      "expected": 27,
+      "tags": ["real", "permutation"]
+    },
+    {
+      "id": "real-all-equal-negative",
+      "name": "real: all equal values with a negative shift",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [777, 777, 777, 777, 777], "nums2": [222, 222, 222, 222, 222]},
+      "expected": -555,
+      "tags": ["real", "duplicates", "negative"]
+    },
+    {
+      "id": "real-zero-offset-permuted",
+      "name": "real: zero shift with a nontrivial permutation",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [4, 1, 9, 1, 6], "nums2": [1, 6, 4, 9, 1]},
+      "expected": 0,
+      "tags": ["real", "zero", "permutation", "duplicates"]
+    },
+    {
+      "id": "real-boundary-span",
+      "name": "real: values span both input boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [0, 1000, 500], "nums2": [500, 0, 1000]},
+      "expected": 0,
+      "tags": ["real", "boundary", "zero"]
     }
   ]
 }

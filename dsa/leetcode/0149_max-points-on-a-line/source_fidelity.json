@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_149", "frontend_id": "149", "title_slug": "max-points-on-a-line", "url": "https://leetcode.com/problems/max-points-on-a-line/description/", "paid_only": false, "content_sha256": "22f480148484eebd580464e967d09cadd26f3134ee54490439c0d00d8384bac2", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "points = [[1,1],[2,2],[3,3]]", "output": "3", "has_explanation": false},
+      {"ordinal": 2, "input": "points = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]", "output": "4", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "9d6f30f1a67d6e3b8faaa92d639d0eb41263e001713a2d5526a3ba8fd5e0edb3", "reference/contract.md": "48569559a0c822a8ff40ca329606b7b5c8996816272cff436771b940fbbc5e7c", "reference/examples.md": "5947b338abb969a059e2aaff3b101e74ded501fa22e0027dc738c3a48b5cae01", "reference/constraints.md": "e3e72a0d18c83e550da5abcd9305e1164a350f022b75ddf8671567cd6ea0e69a"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

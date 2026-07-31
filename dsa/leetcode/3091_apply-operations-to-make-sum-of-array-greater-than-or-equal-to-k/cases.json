@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3091",
+  "cases": [
+    {
+      "id": "sample-eleven",
+      "name": "sample: balance value four across three copies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 11
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "non-square"
+      ]
+    },
+    {
+      "id": "sample-already-enough",
+      "name": "sample: initial sum meets the target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-operations",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-single-duplicate",
+      "name": "trial: duplicate the initial one once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "one-operation"
+      ]
+    },
+    {
+      "id": "trial-perfect-square",
+      "name": "trial: equal factors for a perfect square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 9
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "perfect-square",
+        "balanced-factors"
+      ]
+    },
+    {
+      "id": "real-small-nonsquare",
+      "name": "hidden: first target needing unequal factors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "small",
+        "unequal-factors"
+      ]
+    },
+    {
+      "id": "real-above-square",
+      "name": "hidden: target immediately above a square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 10
+      },
+      "expected": 5,
+      "tags": [
+        "above-square",
+        "ceiling-division"
+      ]
+    },
+    {
+      "id": "real-balanced-rectangle",
+      "name": "hidden: adjacent factors hit the target exactly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 12
+      },
+      "expected": 5,
+      "tags": [
+        "adjacent-factors",
+        "exact-product"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "hidden: largest legal target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 100000
+      },
+      "expected": 631,
+      "tags": [
+        "maximum-k",
+        "constraint-boundary"
+      ]
+    }
+  ]
+}

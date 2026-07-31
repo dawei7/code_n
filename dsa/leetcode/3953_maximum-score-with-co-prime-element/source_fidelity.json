@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3953",
+    "frontend_id": "3953",
+    "title_slug": "maximum-score-with-co-prime-element",
+    "url": "https://leetcode.com/problems/maximum-score-with-co-prime-element/description/",
+    "paid_only": false,
+    "content_sha256": "07172ff3b98ab02a36c4eb297d78d75cf36ba735a4e7d537cd2bcfc0a0385690",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [3,4,6], maxVal = 5",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,3], maxVal = 4",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [2,2], maxVal = 1",
+        "output": "1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "eefc6d54b7a02c07cdc7279d9d79ddeeaeb893711bd4133cd60fcccf5ade80cd",
+      "reference/contract.md": "05a9b2b5aedc3e3b478a61e72b63e30ef5c389e99598e04c1f577399e27d5202",
+      "reference/examples.md": "f636f538e0c2795d8999858c04ade6d06b1fb5d4c8f013cb2af7040dabb14ebb",
+      "reference/constraints.md": "3ad9d46018083baee0bc0e619441a471776d8533f40f2f677a7cd0f3de154a4f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

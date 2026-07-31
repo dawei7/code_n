@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3130",
+  "cases": [
+    { "id": "sample-1", "name": "sample: one zero and one one", "kind": "sample", "visible": true, "input": { "zero": 1, "one": 1, "limit": 2 }, "expected": 2, "tags": ["sample"] },
+    { "id": "sample-2", "name": "sample: alternation is forced", "kind": "sample", "visible": true, "input": { "zero": 1, "one": 2, "limit": 1 }, "expected": 1, "tags": ["sample", "alternating"] },
+    { "id": "sample-3", "name": "sample: balanced counts with run limit two", "kind": "sample", "visible": true, "input": { "zero": 3, "one": 3, "limit": 2 }, "expected": 14, "tags": ["sample"] },
+    { "id": "trial-minimum", "name": "trial: minimum legal parameters", "kind": "trial", "visible": true, "input": { "zero": 1, "one": 1, "limit": 1 }, "expected": 2, "tags": ["trial", "minimum"] },
+    { "id": "trial-alternating-balanced", "name": "trial: two balanced alternating arrays", "kind": "trial", "visible": true, "input": { "zero": 2, "one": 2, "limit": 1 }, "expected": 2, "tags": ["trial", "alternating"] },
+    { "id": "trial-limit-dominates-counts", "name": "trial: a very large limit permits every arrangement", "kind": "trial", "visible": true, "input": { "zero": 5, "one": 5, "limit": 1000 }, "expected": 252, "tags": ["trial", "maximum-limit", "binomial"] },
+    { "id": "trial-exact-separator-capacity", "name": "trial: one separator splits two maximal zero runs", "kind": "trial", "visible": true, "input": { "zero": 4, "one": 1, "limit": 2 }, "expected": 1, "tags": ["trial", "boundary"] },
+    { "id": "real-maximum-impossible-skew", "name": "hidden: maximum zero count cannot be separated", "kind": "real", "visible": false, "input": { "zero": 1000, "one": 1, "limit": 1 }, "expected": 0, "tags": ["real", "maximum", "impossible"] },
+    { "id": "real-symmetric-skew", "name": "hidden: symmetric lone-zero boundary", "kind": "real", "visible": false, "input": { "zero": 1, "one": 4, "limit": 2 }, "expected": 1, "tags": ["real", "symmetry"] },
+    { "id": "real-balanced-four", "name": "hidden: multiple run decompositions", "kind": "real", "visible": false, "input": { "zero": 4, "one": 4, "limit": 2 }, "expected": 34, "tags": ["real", "balanced"] },
+    { "id": "real-modulo", "name": "hidden: the count needs modular reduction", "kind": "real", "visible": false, "input": { "zero": 20, "one": 20, "limit": 5 }, "expected": 89895606, "tags": ["real", "modulo"] },
+    { "id": "real-large-alternation", "name": "hidden: larger balanced counts under limit one", "kind": "real", "visible": false, "input": { "zero": 100, "one": 100, "limit": 1 }, "expected": 2, "tags": ["real", "large", "alternating"] }
+  ]
+}

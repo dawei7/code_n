@@ -5,52 +5,48 @@
 | Source | LeetCode |
 | Frontend ID | 2246 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, String, Tree, Depth-First Search, Graph Theory, Topological Sort |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-path-with-different-adjacent-characters](https://leetcode.com/problems/longest-path-with-different-adjacent-characters/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/longest-path-with-different-adjacent-characters/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-path-with-different-adjacent-characters/).
 
 ### Goal
-Find the longest path in a rooted tree such that every adjacent pair of nodes has different assigned characters. The path may begin and end anywhere.
+
+A connected, undirected, acyclic graph with $n$ nodes is rooted at node $0$.
+The 0-indexed array `parent` describes that rooted tree: `parent[0]` is `-1`,
+and for every other node `i`, `parent[i]` is the node directly above it. A
+string `s` assigns lowercase character `s[i]` to node `i`.
+
+Consider any simple path in the tree. It is valid when every pair of adjacent
+nodes on the path has different assigned characters; nonadjacent nodes may
+share a character. Return the greatest possible number of nodes in such a
+path.
 
 ### Function Contract
+
 **Inputs**
 
-- `parent`: parent indices, with `parent[0] = -1` for the root.
-- `s`: node characters, where `s[i]` belongs to node `i`.
+- `parent`: A length-$n$ array representing a valid tree rooted at `0`, where $1\le n\le10^5$, `parent[0] = -1`, and every later entry is a node index.
+- `s`: A length-$n$ string of lowercase English letters, with `s[i]` assigned to node `i`.
 
 **Return value**
 
-The maximum number of nodes on a valid path.
+Return the number of nodes in the longest simple tree path whose adjacent
+characters are all different.
 
 ### Examples
+
 **Example 1**
 
-- Input: `parent = [-1, 0, 0, 1, 1, 2]`, `s = "abacbe"`
+- Input: `parent = [-1,0,0,1,1,2], s = "abacbe"`
 - Output: `3`
 
 **Example 2**
 
-- Input: `parent = [-1, 0, 0, 0]`, `s = "aabc"`
+- Input: `parent = [-1,0,0,0], s = "aabc"`
 - Output: `3`
 
 **Example 3**
 
-- Input: `parent = [-1, 0, 1, 2]`, `s = "abcd"`
-- Output: `4`
-
----
-
-## Solution
-### Approach
-Build child lists and run postorder depth-first search. For each node, obtain the longest downward valid chain from every child whose character differs, keep the two largest, and combine them through the node for a path candidate. Return the largest chain plus the node to the parent while tracking the global best combined path.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `parent = [-1], s = "z"`
+- Output: `1`

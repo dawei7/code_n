@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3986",
+    "frontend_id": "3986",
+    "title_slug": "number-of-elapsed-seconds-between-two-times",
+    "url": "https://leetcode.com/problems/number-of-elapsed-seconds-between-two-times/description/",
+    "paid_only": false,
+    "content_sha256": "2f241108ec2974d655d4019564ac893ec0e9b83001cc5cab2b2ec2809be1f501",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "startTime = \"01:00:00\", endTime = \"01:00:25\"",
+        "output": "25",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "startTime = \"12:34:56\", endTime = \"13:00:00\"",
+        "output": "1504",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9d62804317460033d3054470609cd4dc8f17d72e526a429f40c49eea914de65b",
+      "reference/contract.md": "257a641bbccc855f1d4829578c04aa29071da9ef30ab99fe8b79651fc729edcb",
+      "reference/examples.md": "3647d5b0d82cbe2db422f58cf479ea8a4b97b1134b43b46cab20a0a844a289ae",
+      "reference/constraints.md": "88919d83bf79cec4d0d6c9b3f1f4e43a496bf43d0ea6847ceb9ebac67e35a3ba"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

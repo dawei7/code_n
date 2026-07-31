@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3872",
+  "cases": [
+    {
+      "id": "sample-bridge-entire-array",
+      "name": "sample: one interior replacement bridges the complete array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [9, 7, 5, 10, 1]},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "interior-bridge"]
+    },
+    {
+      "id": "sample-change-endpoint",
+      "name": "sample: an unrestricted negative replacement extends a prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 6, 7]},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "endpoint", "negative-replacement"]
+    },
+    {
+      "id": "trial-already-arithmetic",
+      "name": "trial: no replacement is needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "unchanged", "increasing"]
+    },
+    {
+      "id": "trial-replace-first",
+      "name": "trial: replacing the first element extends the right run",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [10, 2, 4, 6, 8]},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "first-element", "one-sided-extension"]
+    },
+    {
+      "id": "trial-replace-last",
+      "name": "trial: replacing the last element extends the left run",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 3, 5, 7, 100]},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "last-element", "one-sided-extension"]
+    },
+    {
+      "id": "trial-even-gap-bridge",
+      "name": "trial: an even neighbor gap joins matching runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 3, 5, 100, 9, 11]},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "even-gap", "two-sided-bridge"]
+    },
+    {
+      "id": "trial-odd-gap",
+      "name": "trial: an odd neighbor gap blocks an integer bridge",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 3, 5, 100, 10, 12]},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "odd-gap", "parity"]
+    },
+    {
+      "id": "real-left-compatible-only",
+      "name": "hidden: only the left arithmetic run matches the bridge difference",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 3, 5, 100, 9, 20]},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "left-compatible", "one-sided-run"]
+    },
+    {
+      "id": "real-right-compatible-only",
+      "name": "hidden: only the right arithmetic run matches the bridge difference",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [20, 1, 100, 5, 7, 9]},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "right-compatible", "one-sided-run"]
+    },
+    {
+      "id": "real-even-gap-mismatched-runs",
+      "name": "hidden: even neighbors do not make incompatible outer runs merge",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 4, 100, 8, 12, 16]},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "even-gap", "difference-mismatch"]
+    },
+    {
+      "id": "real-zero-difference",
+      "name": "hidden: a constant array is arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 5, 5, 5, 5, 5]},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "zero-difference", "unchanged"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: minimum and maximum source values alternate",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 100000, 1, 100000]},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "minimum-value", "maximum-value"]
+    },
+    {
+      "id": "real-decreasing-full-bridge",
+      "name": "hidden: one replacement restores a descending complete array",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000, 80000, 60000, 1, 20000]},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "decreasing", "large-difference"]
+    },
+    {
+      "id": "real-long-unchanged",
+      "name": "hidden: a longer arithmetic array remains intact",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 8, 13, 18, 23, 28, 33, 38]},
+      "expected": 8,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "long-run", "unchanged"]
+    },
+    {
+      "id": "real-bridge-near-center",
+      "name": "hidden: a central off-by-one value joins equal differences",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 4, 7, 11, 13, 16, 19]},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "central-replacement", "complete-array"]
+    }
+  ]
+}

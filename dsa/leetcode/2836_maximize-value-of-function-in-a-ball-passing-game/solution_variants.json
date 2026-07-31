@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Value of Function in a Ball Passing Game and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Composes doubled pass blocks while advancing every possible start according to the set bits of k.",
+      "time_complexity": "O(n log k)",
+      "space_complexity": "O(n)"
     }
   ]
 }

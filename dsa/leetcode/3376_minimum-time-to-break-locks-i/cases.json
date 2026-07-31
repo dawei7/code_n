@@ -2,12 +2,12 @@
   "challenge_id": "lc_3376",
   "cases": [
     {
-      "id": "sample-three-locks-k-one",
-      "name": "sample: break low strength first with k one",
+      "id": "sample-official-one",
+      "name": "sample: factor grows by one",
       "kind": "sample",
       "visible": true,
       "input": {
-        "locks": [
+        "strength": [
           3,
           4,
           1
@@ -17,16 +17,16 @@
       "expected": 4,
       "tags": [
         "sample",
-        "bitmask-dp"
+        "ordering"
       ]
     },
     {
-      "id": "sample-three-locks-k-two",
-      "name": "sample: larger factor increment changes order",
+      "id": "sample-official-two",
+      "name": "sample: factor grows by two",
       "kind": "sample",
       "visible": true,
       "input": {
-        "locks": [
+        "strength": [
           2,
           5,
           4
@@ -36,16 +36,16 @@
       "expected": 5,
       "tags": [
         "sample",
-        "bitmask-dp"
+        "ceiling"
       ]
     },
     {
-      "id": "trial-minutes-not-energy",
-      "name": "trial: add minutes needed, not accumulated energy",
+      "id": "trial-ceiling-regression",
+      "name": "trial: energy overshoot still consumes whole minutes",
       "kind": "trial",
       "visible": true,
       "input": {
-        "locks": [
+        "strength": [
           6,
           7
         ],
@@ -53,49 +53,109 @@
       },
       "expected": 8,
       "tags": [
-        "regression",
-        "minutes"
+        "ceiling",
+        "regression"
       ]
     },
     {
       "id": "trial-single-lock",
-      "name": "trial: single lock uses initial factor only",
+      "name": "trial: one lock uses the initial factor",
       "kind": "trial",
       "visible": true,
       "input": {
-        "locks": [
+        "strength": [
           11
         ],
         "k": 5
       },
       "expected": 11,
       "tags": [
-        "edge",
-        "single"
+        "single-lock",
+        "boundary"
       ]
     },
     {
-      "id": "real-eight-locks",
-      "name": "real: full n equals eight bitmask case",
+      "id": "trial-equal-strengths",
+      "name": "trial: equal-strength locks remain separate tasks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strength": [
+          5,
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "duplicates",
+        "equal-strength"
+      ]
+    },
+    {
+      "id": "real-seven-locks",
+      "name": "hidden: seven-lock subset state space",
       "kind": "real",
       "visible": false,
       "input": {
-        "locks": [
+        "strength": [
           9,
           17,
           4,
           23,
           11,
           30,
-          6,
-          14
+          6
         ],
         "k": 3
       },
-      "expected": 15,
+      "expected": 14,
       "tags": [
-        "real",
+        "hidden",
         "bitmask-dp"
+      ]
+    },
+    {
+      "id": "real-large-strengths",
+      "name": "hidden: maximum-scale strengths and rapid factor growth",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strength": [
+          1000000,
+          999999,
+          1
+        ],
+        "k": 10
+      },
+      "expected": 138530,
+      "tags": [
+        "hidden",
+        "upper-bound",
+        "ceiling"
+      ]
+    },
+    {
+      "id": "real-unsorted-mixed",
+      "name": "hidden: mixed strengths defeat a fixed input-order assumption",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strength": [
+          18,
+          2,
+          27,
+          7,
+          13,
+          4
+        ],
+        "k": 4
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "ordering"
       ]
     }
   ]

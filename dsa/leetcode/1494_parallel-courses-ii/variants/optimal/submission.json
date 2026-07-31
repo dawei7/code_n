@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1587",
+  "frontend_id": "1494",
+  "title_slug": "parallel-courses-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minNumberOfSemesters",
+  "verified_submission_id": "2074768633",
+  "verified_at": "2026-07-20T15:51:36.113462+00:00"
+}

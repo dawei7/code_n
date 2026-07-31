@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_320", "frontend_id": "320", "title_slug": "generalized-abbreviation", "url": "https://leetcode.com/problems/generalized-abbreviation/description/", "paid_only": true, "content_sha256": "700d749db10c28b153032c61ab0c0c46f18aed33132bbb482868da6b08c91952", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "word = \"word\"", "output": "[\"4\",\"3d\",\"2r1\",\"2rd\",\"1o2\",\"1o1d\",\"1or1\",\"1ord\",\"w3\",\"w2d\",\"w1r1\",\"w1rd\",\"wo2\",\"wo1d\",\"wor1\",\"word\"]", "has_explanation": false},
+      {"ordinal": 2, "input": "word = \"a\"", "output": "[\"1\",\"a\"]", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "5b2c7ef9ef10a38c2f352e283d074b2408f35b36fc5a0f84dc73e6d54b894d55",
+    "reference/contract.md": "e7f20ca3d7468dd8e67604f0bbb88f40f30a292da62038257dd6d8007dea1ce5",
+    "reference/examples.md": "ee4ef1753bc86665e684a9f11edade22f795fbc7c1bb7e5dda9288c6a981135a",
+    "reference/constraints.md": "3a96dea127720023188b2d4d32b9567045e30d97b6f5afae0c5e5f7ebdc13b65"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

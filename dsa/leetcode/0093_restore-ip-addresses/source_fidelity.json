@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_93", "frontend_id": "93",
+    "title_slug": "restore-ip-addresses",
+    "url": "https://leetcode.com/problems/restore-ip-addresses/description/",
+    "paid_only": false, "content_sha256": "c7587e23bb927cac2df5b98d3319958eefeaa2271c9e3f21d94348da358f9a42", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"25525511135\"", "output": "[\"255.255.11.135\",\"255.255.111.35\"]", "has_explanation": false},
+      {"ordinal": 2, "input": "s = \"0000\"", "output": "[\"0.0.0.0\"]", "has_explanation": false},
+      {"ordinal": 3, "input": "s = \"101023\"", "output": "[\"1.0.10.23\",\"1.0.102.3\",\"10.1.0.23\",\"10.10.2.3\",\"101.0.2.3\"]", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e0a08c02c559f9ae2e77700219dbfc7cdfc80c72cc9e33b66c78c76e98a3ec89",
+      "reference/contract.md": "bdc366f513d3d33903bcccee8e0ff4816cb96e25c839476850c51f7462a569a2",
+      "reference/examples.md": "4c5a24c06012011df43608962df2c363a274739b349512ec38b88074f8ffa0ff",
+      "reference/constraints.md": "9540f5e478183787e5f42fcb76d7ae3bbd1c025792725759298ad718ac608a10"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

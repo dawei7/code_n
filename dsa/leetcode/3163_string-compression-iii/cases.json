@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_3163",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: every character forms a unit chunk",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word": "abcde"},
+      "expected": "1a1b1c1d1e",
+      "tags": ["sample", "unit-runs"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: a long run splits at nine",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word": "aaaaaaaaaaaaaabb"},
+      "expected": "9a5a2b",
+      "tags": ["sample", "split-run"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one input character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "a"},
+      "expected": "1a",
+      "tags": ["single", "minimum-length"]
+    },
+    {
+      "id": "trial-exactly-nine",
+      "name": "trial: a run of exactly nine needs one chunk",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "bbbbbbbbb"},
+      "expected": "9b",
+      "tags": ["chunk-boundary", "exact-nine"]
+    },
+    {
+      "id": "trial-ten-copies",
+      "name": "trial: the tenth copy begins another chunk",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "bbbbbbbbbb"},
+      "expected": "9b1b",
+      "tags": ["chunk-boundary", "split-run"]
+    },
+    {
+      "id": "trial-mixed-runs",
+      "name": "trial: changing characters and a ten-character run",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "aaabbccccccccccdde"},
+      "expected": "3a2b9c1c2d1e",
+      "tags": ["mixed-runs", "split-run"]
+    },
+    {
+      "id": "real-alternating-characters",
+      "name": "real: alternating characters expand to unit chunks",
+      "kind": "real",
+      "visible": false,
+      "input": {"word": "abababab"},
+      "expected": "1a1b1a1b1a1b1a1b",
+      "tags": ["real", "alternating"]
+    },
+    {
+      "id": "real-eighteen-copies",
+      "name": "real: an exact multiple of nine has no remainder chunk",
+      "kind": "real",
+      "visible": false,
+      "input": {"word": "aaaaaaaaaaaaaaaaaa"},
+      "expected": "9a9a",
+      "tags": ["real", "multiple-of-nine"]
+    },
+    {
+      "id": "real-nineteen-copies",
+      "name": "real: two full chunks and one remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {"word": "aaaaaaaaaaaaaaaaaaa"},
+      "expected": "9a9a1a",
+      "tags": ["real", "remainder"]
+    },
+    {
+      "id": "real-separated-same-character",
+      "name": "real: equal characters separated by another run stay separate",
+      "kind": "real",
+      "visible": false,
+      "input": {"word": "aaaaabaaaaa"},
+      "expected": "5a1b5a",
+      "tags": ["real", "run-boundary"]
+    },
+    {
+      "id": "real-distinct-lowercase-letters",
+      "name": "real: distinct lowercase letters remain ordered",
+      "kind": "real",
+      "visible": false,
+      "input": {"word": "abcxyz"},
+      "expected": "1a1b1c1x1y1z",
+      "tags": ["real", "lowercase"]
+    },
+    {
+      "id": "real-five-full-chunks",
+      "name": "real: a long run emits repeated full chunks",
+      "kind": "real",
+      "visible": false,
+      "input": {"word": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"},
+      "expected": "9z9z9z9z9z",
+      "tags": ["real", "long-run"]
+    }
+  ]
+}

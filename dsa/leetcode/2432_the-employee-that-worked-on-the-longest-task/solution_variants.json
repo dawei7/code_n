@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for The Employee That Worked on the Longest Task and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans chronological end times while retaining the best duration and tie-breaking employee.",
+      "time_complexity": "O(m)",
+      "space_complexity": "O(1)"
     }
   ]
 }

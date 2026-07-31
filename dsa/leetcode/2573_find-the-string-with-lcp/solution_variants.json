@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the String with LCP and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Greedily labels the equality classes implied by positive LCP entries, then validates every matrix entry with the suffix recurrence.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n)"
     }
   ]
 }

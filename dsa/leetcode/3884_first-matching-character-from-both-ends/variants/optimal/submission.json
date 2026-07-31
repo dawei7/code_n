@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4264",
+  "frontend_id": "3884",
+  "title_slug": "first-matching-character-from-both-ends",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.firstMatchingIndex",
+  "verified_submission_id": "2086669615",
+  "verified_at": "2026-07-29T19:59:04.919517+00:00"
+}

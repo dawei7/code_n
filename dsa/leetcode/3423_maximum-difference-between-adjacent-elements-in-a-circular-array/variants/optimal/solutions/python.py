@@ -1,14 +1,5 @@
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    n = len(nums)
-    max_diff = 0
-    
-    # Iterate through the array to compare adjacent elements
-    for i in range(n):
-        # Use modulo operator to handle the circular adjacency (last element to first)
-        diff = abs(nums[i] - nums[(i + 1) % n])
-        if diff > max_diff:
-            max_diff = diff
-            
-    return max_diff
+def solve(nums: list[int]) -> int:
+    answer = abs(nums[0] - nums[-1])
+    for index in range(1, len(nums)):
+        answer = max(answer, abs(nums[index] - nums[index - 1]))
+    return answer

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Check If Digits Are Equal in String After Operations II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Expresses the final digit difference with binomial weights, evaluates each weight modulo 2 and 5 using Lucas's theorem, and combines the residues modulo 10.",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -8,48 +8,47 @@
 | Category | Algorithms |
 | Topics | String, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-chairs-in-a-waiting-room](https://leetcode.com/problems/minimum-number-of-chairs-in-a-waiting-room/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-chairs-in-a-waiting-room/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-chairs-in-a-waiting-room/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A waiting room starts empty. A string `s` records one event at each second. An `E` means that one person enters and immediately takes a chair, while an `L` means that one person leaves and makes their chair available again.
+
+Determine the minimum number of chairs the room must contain so that every arriving person can sit immediately throughout this valid sequence of entries and exits. The room need not be empty after the final event.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A valid sequence containing only the characters `E` and `L`.
+
+Let $n = \lvert\texttt{s}\rvert$. The constraints satisfy $1 \le n \le 50$. Validity guarantees that no exit occurs when the waiting room is empty.
 
 **Return value**
 
-TODO
+- The minimum number of chairs needed to serve every entry event.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "EEEEEEE"`
+- Output: `7`
+
+Seven people enter without any intervening departure, so all seven need chairs simultaneously.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "ELELEEL"`
+- Output: `2`
+
+The occupancy alternates between zero and one until two consecutive entries raise it to two.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "ELEELEELLL"`
+- Output: `3`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The greatest number of people present at the same time is three.

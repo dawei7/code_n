@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_195", "frontend_id": "195", "title_slug": "tenth-line", "url": "https://leetcode.com/problems/tenth-line/description/", "paid_only": false, "content_sha256": "ae89dceb40f39c2b1182d004db3a0a727f32513b5d7e7dd689697b3f9f44e52a", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "note"],
+    "examples": [{"ordinal": 1, "input": "file.txt = \"Line 1\\nLine 2\\nLine 3\\nLine 4\\nLine 5\\nLine 6\\nLine 7\\nLine 8\\nLine 9\\nLine 10\"", "output": "Line 10", "has_explanation": false}],
+    "constraint_count": 0,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 2, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "eeea9910116cc40adb178c102e4b8ec2a4fef19132a19e43ad345f674c8dd120", "reference/contract.md": "84dbb5dc937561130292c2ac11bbeaa2567e5a43d2c25b9c384d9798410841d7", "reference/examples.md": "0f13f4fb65f5be298976b5fd35d32874a9dc6265bdb679fc22b80d5c5081c935", "reference/note.md": "9d302ff8fb1202791b26e288759f34766a30f0a20412d5745238dbd30fcafc19"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

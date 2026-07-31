@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-four-by-four",
-      "name": "sample: three children collect non-overlapping best paths",
+      "name": "sample: three children collect complementary paths",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,12 +37,12 @@
       "expected": 100,
       "tags": [
         "sample",
-        "dp"
+        "three-paths"
       ]
     },
     {
       "id": "sample-two-by-two",
-      "name": "sample: all four rooms collected once",
+      "name": "sample: all four rooms are collected once",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -60,12 +60,74 @@
       "expected": 4,
       "tags": [
         "sample",
-        "edge"
+        "minimum-grid"
       ]
     },
     {
-      "id": "trial-avoid-double-count-final",
-      "name": "trial: final and diagonal cells are counted once",
+      "id": "trial-zero-grid",
+      "name": "trial: an empty dungeon contributes zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "zero-values"
+      ]
+    },
+    {
+      "id": "trial-diagonal-only",
+      "name": "trial: only the forced diagonal contains fruit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            10,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            30,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            40
+          ]
+        ]
+      },
+      "expected": 100,
+      "tags": [
+        "edge",
+        "forced-diagonal"
+      ]
+    },
+    {
+      "id": "trial-avoid-double-count",
+      "name": "trial: shared diagonal and destination rooms count once",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -95,7 +157,7 @@
     },
     {
       "id": "trial-heavy-side-paths",
-      "name": "trial: side children should stay off the diagonal before the end",
+      "name": "trial: side children remain outside the diagonal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,11 +191,130 @@
       "expected": 249,
       "tags": [
         "regression",
-        "side-paths"
+        "strict-triangles"
       ]
     },
     {
-      "id": "real-five-by-five",
+      "id": "real-all-ones",
+      "name": "real: three by three uniform grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "uniform"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "real: maximum fruit counts in a four by four grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          [
+            1000,
+            1000,
+            1000,
+            1000
+          ]
+        ]
+      },
+      "expected": 10000,
+      "tags": [
+        "real",
+        "maximum-values"
+      ]
+    },
+    {
+      "id": "real-turning-paths",
+      "name": "real: both side paths change direction to reach high-value rooms",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          [
+            1,
+            0,
+            0,
+            0,
+            10
+          ],
+          [
+            0,
+            1,
+            0,
+            20,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            30,
+            0
+          ],
+          [
+            0,
+            21,
+            31,
+            1,
+            40
+          ],
+          [
+            11,
+            0,
+            0,
+            41,
+            1
+          ]
+        ]
+      },
+      "expected": 209,
+      "tags": [
+        "real",
+        "direction-changes"
+      ]
+    },
+    {
+      "id": "real-varied-five-by-five",
       "name": "real: varied five by five grid",
       "kind": "real",
       "visible": false,
@@ -179,7 +360,7 @@
       "expected": 98,
       "tags": [
         "real",
-        "dp"
+        "dynamic-programming"
       ]
     }
   ]

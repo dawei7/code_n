@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3701",
+  "cases": [
+    {
+      "id": "sample-four-values",
+      "name": "sample: odd-indexed values outweigh even-indexed values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 3, 5, 7]},
+      "expected": -4,
+      "tags": ["sample", "negative-result"]
+    },
+    {
+      "id": "sample-single-maximum",
+      "name": "sample: one even-indexed value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [100]},
+      "expected": 100,
+      "tags": ["sample", "single-element"]
+    },
+    {
+      "id": "trial-single-minimum",
+      "name": "trial: minimum value and minimum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": 1,
+      "tags": ["trial", "minimum-boundary"]
+    },
+    {
+      "id": "trial-two-values",
+      "name": "trial: subtract the second element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 2]},
+      "expected": 3,
+      "tags": ["trial", "even-length"]
+    },
+    {
+      "id": "trial-three-values",
+      "name": "trial: the final even index is added",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3]},
+      "expected": 2,
+      "tags": ["trial", "odd-length"]
+    },
+    {
+      "id": "trial-equal-values-odd-length",
+      "name": "trial: paired equal values cancel before the final addition",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7, 7, 7, 7, 7]},
+      "expected": 7,
+      "tags": ["trial", "equal-values", "odd-length"]
+    },
+    {
+      "id": "trial-positive-total",
+      "name": "trial: large even-indexed values produce a positive result",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [100, 1, 100, 1]},
+      "expected": 198,
+      "tags": ["trial", "positive-result"]
+    },
+    {
+      "id": "real-odd-index-dominance",
+      "name": "hidden: a large middle value makes the result negative",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 100, 3]},
+      "expected": -95,
+      "tags": ["hidden", "negative-result"]
+    },
+    {
+      "id": "real-five-values",
+      "name": "hidden: several alternating contributions with a final addition",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10, 20, 30, 40, 50]},
+      "expected": 30,
+      "tags": ["hidden", "odd-length"]
+    },
+    {
+      "id": "real-paired-decrease",
+      "name": "hidden: each even-odd pair contributes negatively",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 100, 2, 99, 3, 98]},
+      "expected": -291,
+      "tags": ["hidden", "negative-result", "even-length"]
+    },
+    {
+      "id": "real-max-length-equal",
+      "name": "hidden: one hundred equal values cancel in pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 0,
+      "tags": ["hidden", "maximum-length", "equal-values"]
+    },
+    {
+      "id": "real-max-values-odd-length",
+      "name": "hidden: maximum values cancel in pairs and leave one value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100,100,100,100,100,100,100]},
+      "expected": 100,
+      "tags": ["hidden", "maximum-value", "odd-length"]
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2818",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: prime score chooses high values",
+      "id": "sample-first",
+      "name": "sample: repeated selection of nine",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,15 +17,15 @@
         ],
         "k": 2
       },
+      "expected": 81,
       "tags": [
         "sample",
-        "prime-score"
-      ],
-      "expected": 81
+        "repeated-winner"
+      ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: one operation",
+      "id": "sample-second",
+      "name": "sample: three different high values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,69 +39,143 @@
         ],
         "k": 3
       },
+      "expected": 4788,
       "tags": [
         "sample",
-        "monotonic"
-      ],
-      "expected": 4788
+        "mixed-scores"
+      ]
     },
     {
-      "id": "trial-single-value",
-      "name": "trial: one subarray only",
+      "id": "trial-tie-leftmost",
+      "name": "trial: equal prime scores use the smaller index",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          30
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one subarray and one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
         ],
         "k": 1
       },
+      "expected": 7,
       "tags": [
         "trial",
-        "edge"
-      ],
-      "expected": 30
+        "minimum-length"
+      ]
     },
     {
-      "id": "trial-tie-prime-score-leftmost",
-      "name": "trial: equal prime score uses leftmost subarray winner",
+      "id": "trial-high-score-center",
+      "name": "trial: center value owns four subarrays",
       "kind": "trial",
       "visible": true,
+      "input": {
+        "nums": [
+          6,
+          30,
+          7
+        ],
+        "k": 4
+      },
+      "expected": 810000,
+      "tags": [
+        "trial",
+        "prime-score-dominance"
+      ]
+    },
+    {
+      "id": "real-one-score-zero",
+      "name": "hidden: ones have prime score zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "value-one"
+      ]
+    },
+    {
+      "id": "real-all-equal-scores",
+      "name": "hidden: equal prime scores assign subarrays leftward",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
           6,
           10,
           15
         ],
-        "k": 4
+        "k": 3
       },
+      "expected": 1500,
       "tags": [
-        "trial",
-        "tie"
-      ],
-      "expected": 9000
+        "hidden",
+        "equal-scores"
+      ]
     },
     {
-      "id": "real-mixed-prime-scores",
-      "name": "hidden: mixed prime scores and values",
+      "id": "real-mixed-ties",
+      "name": "hidden: strict and non-strict boundaries both matter",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          2,
-          12,
-          7,
-          18,
-          25,
-          30
+          4,
+          6,
+          15,
+          7
         ],
-        "k": 8
+        "k": 6
       },
+      "expected": 340200,
       "tags": [
         "hidden",
-        "mixed"
-      ],
-      "expected": 49997704
+        "boundary-asymmetry"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: repeated maximum legal values exercise modulo powers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000
+        ],
+        "k": 6
+      },
+      "expected": 999657007,
+      "tags": [
+        "hidden",
+        "modulo",
+        "value-boundary"
+      ]
     }
   ]
 }

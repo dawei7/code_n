@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3985",
+    "frontend_id": "3985",
+    "title_slug": "palindromic-subarray-sum",
+    "url": "https://leetcode.com/problems/palindromic-subarray-sum/description/",
+    "paid_only": false,
+    "content_sha256": "fa4c26cc29fbfd08750a5e7124e72cbede46cf71d11d8c2f1863fa8f95112b36",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [10,10]",
+        "output": "20",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,3,2,1,5,6]",
+        "output": "9",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [7,1,2,1,7,3,4,3,4]",
+        "output": "18",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 4,
+        "input": "nums = [1,2,3,4,5]",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 5,
+        "input": "nums = [1000]",
+        "output": "1000",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7400fe12abd469997c26852b5f9d7dc3ccd17a15527097bd7a3a206fd63fdd43",
+      "reference/contract.md": "daf3305ed5b1986cb3dcff278d74a4edcd4a56a22340f58d062a00fa2e6ecad7",
+      "reference/examples.md": "f3f6cb006a940a1ec2f47799ca8b8b457a8609705b8fac128b1568275018ebb8",
+      "reference/constraints.md": "b12fa83a45b99326848df828ca82644b9e50f7f5ca14b9a3ceac8bf5de661998"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

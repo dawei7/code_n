@@ -3,79 +3,93 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: triple equal then consecutive triple",
+      "name": "sample: equal pair followed by consecutive triple",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          4,
-          4,
-          4,
-          5,
-          6
-        ]
-      },
+      "input": {"nums": [4, 4, 4, 5, 6]},
       "expected": true,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
+      "tags": ["sample", "dynamic-programming"]
     },
     {
       "id": "sample-2",
-      "name": "sample: trailing singleton",
+      "name": "sample: unavoidable trailing singleton",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          2
-        ]
-      },
+      "input": {"nums": [1, 1, 1, 2]},
       "expected": false,
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "tags": ["sample", "edge"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one triple",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          3,
-          3,
-          3
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-three-equal-pairs",
-      "name": "hidden: partition into equal pairs",
+      "id": "real-minimum-valid",
+      "name": "hidden: minimum equal pair",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          1,
-          2,
-          2,
-          3,
-          3
-        ]
-      },
+      "input": {"nums": [8, 8]},
       "expected": true,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "minimum"]
+    },
+    {
+      "id": "real-minimum-invalid",
+      "name": "hidden: unequal pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 9]},
+      "expected": false,
+      "tags": ["hidden", "minimum"]
+    },
+    {
+      "id": "real-three-equal",
+      "name": "hidden: one equal triple",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 3, 3]},
+      "expected": true,
+      "tags": ["hidden", "triple"]
+    },
+    {
+      "id": "trial-consecutive-triple",
+      "name": "one consecutive increasing triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [999998, 999999, 1000000]},
+      "expected": true,
+      "tags": ["hidden", "boundary"]
+    },
+    {
+      "id": "real-increasing-not-consecutive",
+      "name": "hidden: increasing gaps are not consecutive",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 3, 5]},
+      "expected": false,
+      "tags": ["hidden", "semantic"]
+    },
+    {
+      "id": "real-mixed-valid-blocks",
+      "name": "hidden: equal triple and equal pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 2, 7, 7]},
+      "expected": true,
+      "tags": ["hidden", "mixed"]
+    },
+    {
+      "id": "trial-choice-needs-reachability",
+      "name": "locally available triple must not force a greedy cut",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 1, 1]},
+      "expected": true,
+      "tags": ["hidden", "dynamic-programming"]
+    },
+    {
+      "id": "real-late-failure",
+      "name": "hidden: valid prefix with invalid suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4, 4, 6]},
+      "expected": false,
+      "tags": ["hidden", "suffix"]
     }
   ]
 }

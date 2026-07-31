@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Concatenated Divisibility and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Memoize suffix feasibility by used-index mask and current remainder, then greedily reconstruct the smallest feasible next value.",
+      "time_complexity": "O(n * k * 2^n)",
+      "space_complexity": "O(k * 2^n)"
     }
   ]
 }

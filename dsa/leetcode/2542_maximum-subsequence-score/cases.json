@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: choose three values with minimum multiplier three",
+      "name": "sample: balance summand size against the multiplier",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -29,7 +29,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: k one picks the best product pair",
+      "name": "sample: one index maximizes its direct product",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -51,13 +51,36 @@
       },
       "expected": 30,
       "tags": [
-        "sample"
+        "sample",
+        "single-selection"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: large nums1 values with lower multiplier",
-      "kind": "sample",
+      "id": "trial-select-all",
+      "name": "trial: every index must be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "select-all"
+      ]
+    },
+    {
+      "id": "trial-lower-multiplier",
+      "name": "trial: large summands justify a lower multiplier",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums1": [
@@ -76,47 +99,76 @@
       },
       "expected": 168,
       "tags": [
-        "sample"
+        "trial",
+        "tradeoff"
       ]
     },
     {
-      "id": "trial-single-index",
-      "name": "trial: one selected index multiplies directly",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums1": [
-          5
-        ],
-        "nums2": [
-          4
-        ],
-        "k": 1
-      },
-      "expected": 20,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-select-all",
-      "name": "hidden: selecting all values uses the global minimum multiplier",
+      "id": "real-zero-summands",
+      "name": "hidden: zero summands can preserve a high multiplier",
       "kind": "real",
       "visible": false,
       "input": {
         "nums1": [
+          0,
+          0,
+          5
+        ],
+        "nums2": [
+          100,
           1,
           2
         ],
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-equal-multipliers",
+      "name": "hidden: equal multipliers choose largest summands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5,
+          4,
+          3
+        ],
         "nums2": [
-          3,
-          4
+          2,
+          2,
+          2
         ],
         "k": 2
       },
-      "expected": 9,
+      "expected": 18,
       "tags": [
-        "hidden"
+        "hidden",
+        "ties"
+      ]
+    },
+    {
+      "id": "real-singleton",
+      "name": "hidden: one available index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          100000
+        ],
+        "nums2": [
+          100000
+        ],
+        "k": 1
+      },
+      "expected": 10000000000,
+      "tags": [
+        "hidden",
+        "upper-bound"
       ]
     }
   ]

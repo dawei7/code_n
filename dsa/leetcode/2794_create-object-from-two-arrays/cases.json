@@ -1,0 +1,293 @@
+{
+  "challenge_id": "lc_2794",
+  "cases": [
+    {
+      "id": "sample-distinct-strings",
+      "name": "sample: three distinct string keys",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "keysArr": [
+          "a",
+          "b",
+          "c"
+        ],
+        "valuesArr": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": {
+        "a": 1,
+        "b": 2,
+        "c": 3
+      },
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "sample-converted-duplicate",
+      "name": "sample: number collides with an earlier string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "keysArr": [
+          "1",
+          1,
+          false
+        ],
+        "valuesArr": [
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": {
+        "1": 4,
+        "false": 6
+      },
+      "validator": {
+        "kind": "json_object"
+      },
+      "tags": [
+        "sample",
+        "conversion",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: empty parallel arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "keysArr": [],
+        "valuesArr": []
+      },
+      "expected": {},
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-boolean-collisions",
+      "name": "trial: booleans collide with matching strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "keysArr": [
+          true,
+          "true",
+          false,
+          "false"
+        ],
+        "valuesArr": [
+          "first-true",
+          "later-true",
+          "first-false",
+          "later-false"
+        ]
+      },
+      "expected": {
+        "true": "first-true",
+        "false": "first-false"
+      },
+      "tags": [
+        "trial",
+        "conversion",
+        "first-occurrence"
+      ]
+    },
+    {
+      "id": "trial-null-collision",
+      "name": "trial: null collides with its string form",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "keysArr": [
+          null,
+          "null",
+          "x"
+        ],
+        "valuesArr": [
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": {
+        "null": 7,
+        "x": 9
+      },
+      "tags": [
+        "trial",
+        "null",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "real-prototype-names",
+      "name": "hidden: inherited names become own properties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keysArr": [
+          "toString",
+          "constructor",
+          "hasOwnProperty"
+        ],
+        "valuesArr": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": {
+        "toString": 1,
+        "constructor": 2,
+        "hasOwnProperty": 3
+      },
+      "tags": [
+        "hidden",
+        "prototype-names"
+      ]
+    },
+    {
+      "id": "real-proto-property",
+      "name": "hidden: __proto__ is an own data property",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keysArr": [
+          "__proto__",
+          "safe",
+          "__proto__"
+        ],
+        "valuesArr": [
+          {
+            "polluted": true
+          },
+          5,
+          99
+        ]
+      },
+      "expected": {
+        "__proto__": {
+          "polluted": true
+        },
+        "safe": 5
+      },
+      "tags": [
+        "hidden",
+        "prototype-safety",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "real-object-conversion",
+      "name": "hidden: object keys collide after String conversion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keysArr": [
+          {
+            "a": 1
+          },
+          {
+            "b": 2
+          },
+          "[object Object]"
+        ],
+        "valuesArr": [
+          "first",
+          "second",
+          "third"
+        ]
+      },
+      "expected": {
+        "[object Object]": "first"
+      },
+      "tags": [
+        "hidden",
+        "object-conversion",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "real-array-conversion",
+      "name": "hidden: arrays can share a converted property name",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keysArr": [
+          [
+            1,
+            2
+          ],
+          [
+            "1",
+            "2"
+          ],
+          "1,2"
+        ],
+        "valuesArr": [
+          10,
+          20,
+          30
+        ]
+      },
+      "expected": {
+        "1,2": 10
+      },
+      "tags": [
+        "hidden",
+        "array-conversion",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "real-values-preserved",
+      "name": "hidden: JSON values are stored without transformation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keysArr": [
+          "array",
+          "object",
+          "nil",
+          "flag"
+        ],
+        "valuesArr": [
+          [
+            1,
+            2
+          ],
+          {
+            "x": 3
+          },
+          null,
+          false
+        ]
+      },
+      "expected": {
+        "array": [
+          1,
+          2
+        ],
+        "object": {
+          "x": 3
+        },
+        "nil": null,
+        "flag": false
+      },
+      "tags": [
+        "hidden",
+        "value-types"
+      ]
+    }
+  ]
+}

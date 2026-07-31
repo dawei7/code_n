@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2170",
+  "cases": [
+    {"id": "sample-mixed", "name": "sample: preserve the dominant even value", "kind": "sample", "visible": true, "input": {"nums": [3, 1, 3, 2, 4, 3]}, "expected": 3, "tags": ["sample", "mixed"]},
+    {"id": "sample-colliding-mode", "name": "sample: the most common odd value conflicts", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 2, 2, 2]}, "expected": 2, "tags": ["sample", "mode-conflict"]},
+    {"id": "trial-single", "name": "one element is already alternating", "kind": "trial", "visible": true, "input": {"nums": [1]}, "expected": 0, "tags": ["minimum-length"]},
+    {"id": "trial-two-distinct", "name": "two distinct values need no change", "kind": "trial", "visible": true, "input": {"nums": [1, 2]}, "expected": 0, "tags": ["two-elements", "already-alternating"]},
+    {"id": "trial-two-equal", "name": "equal adjacent values require one change", "kind": "trial", "visible": true, "input": {"nums": [7, 7]}, "expected": 1, "tags": ["two-elements", "equal"]},
+    {"id": "trial-all-equal", "name": "replace one parity of an all-equal array", "kind": "trial", "visible": true, "input": {"nums": [1, 1, 1, 1]}, "expected": 2, "tags": ["all-equal", "new-value"]},
+    {"id": "trial-already-alternating", "name": "two repeated parity values are already valid", "kind": "trial", "visible": true, "input": {"nums": [1, 2, 1, 2]}, "expected": 0, "tags": ["already-alternating"]},
+    {"id": "real-both-modes-collide", "name": "hidden: compare both second-best resolutions", "kind": "real", "visible": false, "input": {"nums": [1, 1, 1, 1, 2, 3]}, "expected": 3, "tags": ["hidden", "mode-conflict", "runner-up"]},
+    {"id": "real-odd-length", "name": "hidden: valid alternating array has an extra even index", "kind": "real", "visible": false, "input": {"nums": [5, 6, 5, 6, 5]}, "expected": 0, "tags": ["hidden", "odd-length", "already-alternating"]}
+  ]
+}

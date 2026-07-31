@@ -1,0 +1,164 @@
+{
+  "challenge_id": "lc_3154",
+  "cases": [
+    {
+      "id": "sample-zero",
+      "name": "sample: reach stair zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 0
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-starting-stair",
+      "name": "sample: reach stair one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "start"
+      ]
+    },
+    {
+      "id": "trial-stair-two",
+      "name": "trial: several short sequences reach two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "trial-stair-three",
+      "name": "trial: three ways reach stair three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "trial-stair-four",
+      "name": "trial: two ways reach stair four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "trial-stair-five",
+      "name": "trial: four ways reach stair five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 5
+      },
+      "expected": 4,
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "real-power-of-two",
+      "name": "real: exact power-of-two target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 8
+      },
+      "expected": 1,
+      "tags": [
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-unreachable-after-power",
+      "name": "real: target immediately above a power is unreachable",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 9
+      },
+      "expected": 0,
+      "tags": [
+        "zero-ways"
+      ]
+    },
+    {
+      "id": "real-before-power",
+      "name": "real: target immediately below sixteen",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 15
+      },
+      "expected": 5,
+      "tags": [
+        "combinations"
+      ]
+    },
+    {
+      "id": "real-sixteen",
+      "name": "real: reach sixteen with only upward moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 16
+      },
+      "expected": 1,
+      "tags": [
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-before-thirty-two",
+      "name": "real: six placements reach thirty-one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 31
+      },
+      "expected": 6,
+      "tags": [
+        "combinations"
+      ]
+    },
+    {
+      "id": "real-maximum-target",
+      "name": "real: maximum allowed target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 1000000000
+      },
+      "expected": 0,
+      "tags": [
+        "maximum",
+        "zero-ways"
+      ]
+    }
+  ]
+}

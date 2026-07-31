@@ -1,16 +1,1 @@
-{
-  "schema_version": 1,
-  "challenge_id": "lc_3734",
-  "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Lexicographically Smallest Palindromic Permutation Greater Than Target and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_3734","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Builds the forced palindrome half, preserves the target prefix when possible, then performs the rightmost minimal lexicographic increase.","time_complexity":"O(n)","space_complexity":"O(n)"}]}

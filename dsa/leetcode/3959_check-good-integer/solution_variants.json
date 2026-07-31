@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Check Good Integer and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Extracts each decimal digit and accumulates its direct contribution to squareSum - digitSum.",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

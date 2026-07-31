@@ -1,0 +1,552 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3657",
+  "cases": [
+    {
+      "id": "sample-loyal-customers",
+      "name": "sample: two loyal customers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "customer_transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 101,
+              "transaction_date": "2024-01-05",
+              "amount": 150,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 101,
+              "transaction_date": "2024-01-15",
+              "amount": 200,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 101,
+              "transaction_date": "2024-02-10",
+              "amount": 180,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 101,
+              "transaction_date": "2024-02-20",
+              "amount": 250,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 102,
+              "transaction_date": "2024-01-10",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 6,
+              "customer_id": 102,
+              "transaction_date": "2024-01-12",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 7,
+              "customer_id": 102,
+              "transaction_date": "2024-01-15",
+              "amount": 100,
+              "transaction_type": "refund"
+            },
+            {
+              "transaction_id": 8,
+              "customer_id": 102,
+              "transaction_date": "2024-01-18",
+              "amount": 100,
+              "transaction_type": "refund"
+            },
+            {
+              "transaction_id": 9,
+              "customer_id": 102,
+              "transaction_date": "2024-02-15",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 10,
+              "customer_id": 103,
+              "transaction_date": "2024-01-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 11,
+              "customer_id": 103,
+              "transaction_date": "2024-01-02",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 12,
+              "customer_id": 103,
+              "transaction_date": "2024-01-03",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 13,
+              "customer_id": 104,
+              "transaction_date": "2024-01-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 14,
+              "customer_id": 104,
+              "transaction_date": "2024-02-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 15,
+              "customer_id": 104,
+              "transaction_date": "2024-02-15",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 16,
+              "customer_id": 104,
+              "transaction_date": "2024-03-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 17,
+              "customer_id": 104,
+              "transaction_date": "2024-03-10",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 18,
+              "customer_id": 104,
+              "transaction_date": "2024-03-15",
+              "amount": 100,
+              "transaction_type": "refund"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            101
+          ],
+          [
+            104
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "all-criteria",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-exact-purchase-and-day-thresholds",
+      "name": "trial: exactly three purchases over exactly 30 days",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "customer_transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 7,
+              "transaction_date": "2024-04-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 7,
+              "transaction_date": "2024-04-16",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 7,
+              "transaction_date": "2024-05-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "inclusive-boundaries"
+      ]
+    },
+    {
+      "id": "trial-refund-rate-equals-twenty-percent",
+      "name": "trial: exactly twenty percent refunds is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "customer_transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 8,
+              "transaction_date": "2024-01-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 8,
+              "transaction_date": "2024-01-10",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 8,
+              "transaction_date": "2024-01-20",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 8,
+              "transaction_date": "2024-02-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 8,
+              "transaction_date": "2024-02-10",
+              "amount": 100,
+              "transaction_type": "refund"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "strict-refund-boundary",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-too-few-purchases",
+      "name": "trial: refunds do not satisfy the purchase count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "customer_transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 9,
+              "transaction_date": "2024-01-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 9,
+              "transaction_date": "2024-02-10",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 9,
+              "transaction_date": "2024-02-20",
+              "amount": 100,
+              "transaction_type": "refund"
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 9,
+              "transaction_date": "2024-03-01",
+              "amount": 100,
+              "transaction_type": "refund"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "purchase-count",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-refund-extends-activity",
+      "name": "hidden: a refund can establish the latest activity date",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "customer_transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 21,
+              "transaction_date": "2024-01-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 21,
+              "transaction_date": "2024-01-02",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 21,
+              "transaction_date": "2024-01-03",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 21,
+              "transaction_date": "2024-01-04",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 21,
+              "transaction_date": "2024-01-05",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 6,
+              "customer_id": 21,
+              "transaction_date": "2024-01-31",
+              "amount": 100,
+              "transaction_type": "refund"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            21
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "all-transactions-activity",
+        "refund-under-twenty"
+      ]
+    },
+    {
+      "id": "real-one-day-short",
+      "name": "hidden: twenty-nine active days is excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "customer_transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 22,
+              "transaction_date": "2024-06-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 22,
+              "transaction_date": "2024-06-15",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 22,
+              "transaction_date": "2024-06-30",
+              "amount": 100,
+              "transaction_type": "purchase"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "activity-boundary",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-mixed-customer-order",
+      "name": "hidden: filters are independent and result is sorted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "customer_transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 30,
+              "transaction_date": "2024-01-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 30,
+              "transaction_date": "2024-01-15",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 30,
+              "transaction_date": "2024-01-31",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 11,
+              "transaction_date": "2024-02-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 11,
+              "transaction_date": "2024-02-15",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 6,
+              "customer_id": 11,
+              "transaction_date": "2024-03-02",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 7,
+              "customer_id": 25,
+              "transaction_date": "2024-01-01",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 8,
+              "customer_id": 25,
+              "transaction_date": "2024-01-10",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 9,
+              "customer_id": 25,
+              "transaction_date": "2024-02-05",
+              "amount": 100,
+              "transaction_type": "purchase"
+            },
+            {
+              "transaction_id": 10,
+              "customer_id": 25,
+              "transaction_date": "2024-02-06",
+              "amount": 100,
+              "transaction_type": "refund"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            11
+          ],
+          [
+            30
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "mixed-filters"
+      ]
+    }
+  ]
+}

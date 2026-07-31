@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3881",
+    "frontend_id": "3881",
+    "title_slug": "direction-assignments-with-exactly-k-visible-people",
+    "url": "https://leetcode.com/problems/direction-assignments-with-exactly-k-visible-people/description/",
+    "paid_only": false,
+    "content_sha256": "2c085369c5f63f1fd8fa382aebce5064519064253f161dc3b2fae96c54b47a13",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 3, pos = 1, k = 0",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 3, pos = 2, k = 1",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 1, pos = 0, k = 0",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e3f4f5156531dfa295f32e8e4ab147a2935db29ca09c69fc62bc5e88cb49ad7b",
+      "reference/contract.md": "2dd92c0b2f192e90e27fe56f3e19b386b666929fdb09a0035de380f2f9957c0e",
+      "reference/examples.md": "0755629212843e7ea17272ff8c234a06cc7acaa351928e81b591e341d1b33734",
+      "reference/constraints.md": "b2a6679da29b2be5ae825b99796ea383df2f7b8d00a78d03a6d8fd9097caa3c4"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

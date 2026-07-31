@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Sortable Integers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Tests every divisor using globally valid cuts and the strict descents around each circular block.",
+      "time_complexity": "O(nD)",
+      "space_complexity": "O(n)"
     }
   ]
 }

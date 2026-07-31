@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_229", "frontend_id": "229", "title_slug": "majority-element-ii", "url": "https://leetcode.com/problems/majority-element-ii/description/", "paid_only": false, "content_sha256": "b76cc6459d0be807c3983e6c5c9711bf15bf05a8e99ae65a639a538374f9ca40", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [{"ordinal": 1, "input": "nums = [3,2,3]", "output": "[3]", "has_explanation": false}, {"ordinal": 2, "input": "nums = [1]", "output": "[1]", "has_explanation": false}, {"ordinal": 3, "input": "nums = [1,2]", "output": "[1,2]", "has_explanation": false}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "bdae2984e62a1c02631d4ce1d984f242ed01df6caad76a1608254f580d47dddf", "reference/contract.md": "cf7515f5a4da343c2b0725c0e18de6c6bf99dca03565ca13917e297e4d9103dc", "reference/examples.md": "8f4a2ba83665b98f8217e54de257a3153cff768f7bbd283d6921a9462aa593ea", "reference/constraints.md": "6a3dfee306bf33922d8c924dd31d08fa59d01259d89a5d70286247ab9b049829", "reference/follow_up.md": "344ff9afb1209fc500fd48c1a2c57f2c710cb4dc9fc4882a82f1b980b12210f3"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

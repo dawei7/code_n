@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Stores with Inventory Imbalance and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Rank each store's price extremes once, count distinct products, and filter and order the joined extreme rows.",
+      "time_complexity": "O(R log R + S log S)",
+      "space_complexity": "O(R + S)"
     }
   ]
 }

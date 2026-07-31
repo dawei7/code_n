@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_60", "frontend_id": "60",
+    "title_slug": "permutation-sequence",
+    "url": "https://leetcode.com/problems/permutation-sequence/description/",
+    "paid_only": false, "content_sha256": "7439a7c59814cede4cd3fbe31ec0c44440030cb3126dc9038e69c47a87393a36", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 3, k = 3", "output": "\"213\"", "has_explanation": false},
+      {"ordinal": 2, "input": "n = 4, k = 9", "output": "\"2314\"", "has_explanation": false},
+      {"ordinal": 3, "input": "n = 3, k = 1", "output": "\"123\"", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7d320735edd7553d2a1a0c23e4b8c6f9ebd4d702c2c7151eff86fbdd87cbb7d9",
+      "reference/contract.md": "ad611f5a6f0579cb8098442e651de5340b66353bcea94d7a03e4f1378581fb3c",
+      "reference/examples.md": "b15a3c343093c3e5fd87ecd5eaaa65cac530aea431e288c3a65b9bc6dee80856",
+      "reference/constraints.md": "91b8b9d86742d11f7ae76c1bafdc9eda15c7d694e5a5a0d1ed8a3ee047433a07"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

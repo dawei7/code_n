@@ -8,72 +8,39 @@
 | Category | Algorithms |
 | Topics | Array, Sorting, Matrix |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sort-the-students-by-their-kth-score](https://leetcode.com/problems/sort-the-students-by-their-kth-score/) |
+| LeetCode | [sort-the-students-by-their-kth-score](https://leetcode.com/problems/sort-the-students-by-their-kth-score/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sort-the-students-by-their-kth-score/).
 
 ### Goal
-Given a 2D matrix representing the examination scores of students (where each row corresponds to a student and each column to a subject), reorder the rows such that the students are sorted in descending order based on their scores in a specific column `k`.
+
+A class has $m$ students who each completed $n$ exams. Their results are stored in a 0-indexed $m \times n$ integer matrix `score`: row `i` belongs to student $i$, and `score[i][j]` is that student's result on exam $j$. Every integer in the matrix is distinct.
+
+Given a 0-indexed exam index `k`, reorder the students, including all of each student's scores, from the highest score on exam `k` to the lowest. Return the matrix with its rows in that order.
 
 ### Function Contract
+
 **Inputs**
 
-- `score`: A list of lists of integers (`List[List[int]]`), where `score[i][j]` represents the score of the $i$-th student in the $j$-th subject.
-- `k`: An integer representing the index of the subject to be used as the sorting criterion.
+- `score`: An $m \times n$ integer matrix whose rows represent students and whose columns represent exams.
+- `k`: The 0-indexed exam column used to rank the rows.
+
+Both $m$ and $n$ are between 1 and 250, every score is between 1 and $10^5$, all scores are distinct, and $0 \le k < n$.
 
 **Return value**
 
-- A list of lists of integers (`List[List[int]]`) representing the matrix rows rearranged by the $k$-th column values in descending order.
+Return all rows of `score` ordered by their value at column `k` in strictly descending order.
 
 ### Examples
+
 **Example 1**
 
 - Input: `score = [[10,6,9,1],[7,5,11,2],[4,8,3,15]], k = 2`
 - Output: `[[7,5,11,2],[10,6,9,1],[4,8,3,15]]`
+- Explanation: The selected exam scores are 11, 9, and 3 in descending order.
 
 **Example 2**
 
 - Input: `score = [[3,4],[5,6]], k = 0`
 - Output: `[[5,6],[3,4]]`
-
-**Example 3**
-
-- Input: `score = [[1,2,3],[4,5,6]], k = 1`
-- Output: `[[4,5,6],[1,2,3]]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a stable sorting algorithm (Timsort in Python). By providing a custom key to the sorting function that targets the $k$-th index of each row, we can efficiently reorder the rows based on the specified column.
-
-### Complexity Analysis
-- **Time Complexity**: $O(M \cdot N + M \log M)$, where $M$ is the number of students (rows) and $N$ is the number of subjects (columns). We iterate through the rows to sort them, and the sorting operation takes $O(M \log M)$ comparisons.
-- **Space Complexity**: $O(M)$ or $O(M \cdot N)$ depending on the implementation of the sort (Python's `sort` creates a new list of references, effectively $O(M)$ additional space).
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(score: List[List[int]], k: int) -> List[List[int]]:
-    """
-    Sorts the students based on their score in the k-th subject in descending order.
-
-    Args:
-        score: A 2D list of integers representing student scores.
-        k: The index of the subject to sort by.
-
-    Returns:
-        The sorted 2D list.
-    """
-    # Python's sort is stable and uses Timsort.
-    # We sort the list of rows using the k-th element of each row as the key.
-    # reverse=True ensures descending order.
-    score.sort(key=lambda row: row[k], reverse=True)
-    return score
-```
-</details>
+- Explanation: Student 1 scored 5 on exam 0, ahead of student 0's score of 3.

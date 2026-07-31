@@ -5,51 +5,44 @@
 | Source | LeetCode |
 | Frontend ID | 2508 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Hash Table, Graph Theory |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [add-edges-to-make-degrees-of-all-nodes-even](https://leetcode.com/problems/add-edges-to-make-degrees-of-all-nodes-even/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/add-edges-to-make-degrees-of-all-nodes-even/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/add-edges-to-make-degrees-of-all-nodes-even/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+An undirected graph has `n` nodes numbered from `1` through `n`. Each pair `edges[i] = [a_i, b_i]` represents an edge between two nodes, and the graph is allowed to be disconnected.
+
+You may add no more than two edges. Every added edge must join two different nodes, and it must not duplicate an edge already present or another edge added during the operation.
+
+Determine whether the additions can make every node's degree even. A node's degree is the number of edges incident to it.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: The number of graph nodes, labeled from `1` through `n`.
+- `edges`: A list of distinct undirected edges, each represented by two different endpoint labels.
+
+The constraints are $3 \le n \le 10^5$, $2 \le \lvert\texttt{edges}\rvert \le 10^5$, and every endpoint lies in $[1,n]$.
 
 **Return value**
 
-TODO
+`True` if adding at most two valid edges can make every node's degree even; otherwise, `False`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, edges = [[1,2],[2,3],[3,4],[4,2],[1,4],[2,5]]`
+- Output: `true`
+- Explanation: Nodes `1` and `3` are the only odd-degree nodes and are not already adjacent, so adding their edge makes every degree even.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4, edges = [[1,2],[3,4]]`
+- Output: `true`
+- Explanation: All four nodes have odd degree. Two missing edges can pair them so that every node receives one additional incident edge.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 4, edges = [[1,2],[1,3],[1,4]]`
+- Output: `false`
+- Explanation: All four nodes have odd degree, but every pairing would require joining node `1` to a leaf that is already adjacent to it.

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Good Subsequence Queries and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains the normalized array GCD and the prime evidence that characterizes every valid proper subsequence under point updates.",
+      "time_complexity": "O(M log log M + (N + Q)(log N + log M))",
+      "space_complexity": "O(N + M)"
     }
   ]
 }

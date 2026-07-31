@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3919",
+    "frontend_id": "3919",
+    "title_slug": "minimum-cost-to-move-between-indices",
+    "url": "https://leetcode.com/problems/minimum-cost-to-move-between-indices/description/",
+    "paid_only": false,
+    "content_sha256": "b2287a8b93dc9b9ff752b2accbf980c226a195f894f4bbb8f20b319f2f0649cf",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [-5,-2,3], queries = [[0,2],[2,0],[1,2]]",
+        "output": "[6,2,5]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [0,2,3,9], queries = [[3,0],[1,2],[2,0]]",
+        "output": "[4,1,3]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c84808506efbe3dee4a40f8f836cb00c4e1e363d4e2790a52e3121c989c2c8dd",
+      "reference/contract.md": "7ed63446d0ac88b05cf9ec97c861856360161159a13558b3eb7689af1c2906ce",
+      "reference/examples.md": "aacdcf1a9a456a608f615f5c16c1309810ce94daf4259029e82ff61876481129",
+      "reference/constraints.md": "d5ba3b847cb1bf41b1bf31b64b067687a06a9e300f5731b91b61173e9a64b7ed"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

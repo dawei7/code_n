@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Prefix Scores of Strings and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts how many words pass through every trie node, then sums those counts along each word's path.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(S)"
     }
   ]
 }

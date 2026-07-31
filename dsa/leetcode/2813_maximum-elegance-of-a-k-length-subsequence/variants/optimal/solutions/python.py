@@ -1,31 +1,22 @@
+from heapq import heappop, heappush
+
+
 def solve(items: list[list[int]], k: int) -> int:
-    # Sort items by profit descending
-    items.sort(key=lambda x: x[0], reverse=True)
-    
+    items = sorted(items, reverse=True)
+    selected_categories: set[int] = set()
+    duplicate_profits: list[int] = []
     total_profit = 0
-    seen_categories = set()
-    duplicates = []
-    
-    # Initial selection of top k items
-    for i in range(k):
-        profit, category = items[i]
+    for profit, category in items[:k]:
         total_profit += profit
-        if category in seen_categories:
-            duplicates.append(profit)
+        if category in selected_categories:
+            heappush(duplicate_profits, profit)
         else:
-            seen_categories.add(category)
-            
-    max_elegance = total_profit + len(seen_categories) ** 2
-    
-    # Try to swap duplicates for new categories from the remaining items
-    for i in range(k, len(items)):
-        profit, category = items[i]
-        # Only swap if we have a duplicate to remove and the new item is a new category
-        if category not in seen_categories and duplicates:
-            seen_categories.add(category)
-            # Remove the smallest profit duplicate
-            total_profit -= duplicates.pop()
-            total_profit += profit
-            max_elegance = max(max_elegance, total_profit + len(seen_categories) ** 2)
-            
-    return max_elegance
+            selected_categories.add(category)
+    answer = total_profit + len(selected_categories) ** 2
+    for profit, category in items[k:]:
+        if category in selected_categories or not duplicate_profits:
+            continue
+        total_profit += profit - heappop(duplicate_profits)
+        selected_categories.add(category)
+        answer = max(answer, total_profit + len(selected_categories) ** 2)
+    return answer

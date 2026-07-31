@@ -1,18 +1,13 @@
+"""Optimal solution for LeetCode 3024: Type of Triangle."""
+
+
 def solve(nums: list[int]) -> str:
-    # Sort the sides to easily check the triangle inequality
     nums.sort()
-    a, b, c = nums
-    
-    # Triangle Inequality Theorem: sum of two smaller sides must be > largest side
-    if a + b <= c:
+
+    if nums[0] + nums[1] <= nums[2]:
         return "none"
-    
-    # Count unique sides using a set
-    unique_sides = len(set(nums))
-    
-    if unique_sides == 1:
+    if nums[0] == nums[2]:
         return "equilateral"
-    elif unique_sides == 2:
+    if nums[0] == nums[1] or nums[1] == nums[2]:
         return "isosceles"
-    else:
-        return "scalene"
+    return "scalene"

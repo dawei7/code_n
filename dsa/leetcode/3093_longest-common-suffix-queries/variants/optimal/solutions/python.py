@@ -1,40 +1,42 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        # Stores (length_of_word, index_in_container)
-        self.best = (float('inf'), float('inf'))
+def solve(
+    wordsContainer: list[str], wordsQuery: list[str]
+) -> list[int]:
+    children: list[dict[str, int]] = [{}]
+    best = [-1]
 
-def solve(wordsContainer, wordsQuery):
-    root = TrieNode()
-    
-    def insert(word, index):
-        length = len(word)
-        node = root
-        # Update root if this word is better than current best
-        if (length, index) < node.best:
-            node.best = (length, index)
-            
-        # Insert reversed word
+    for index, word in enumerate(wordsContainer):
+        node = 0
+        priority = (len(word), index)
+
+        if best[node] == -1 or priority < (
+            len(wordsContainer[best[node]]),
+            best[node],
+        ):
+            best[node] = index
+
         for char in reversed(word):
-            if char not in node.children:
-                node.children[char] = TrieNode()
-            node = node.children[char]
-            if (length, index) < node.best:
-                node.best = (length, index)
+            next_node = children[node].get(char)
+            if next_node is None:
+                next_node = len(children)
+                children[node][char] = next_node
+                children.append({})
+                best.append(-1)
 
-    # Build the Trie
-    for i, word in enumerate(wordsContainer):
-        insert(word, i)
-        
-    results = []
+            node = next_node
+            if best[node] == -1 or priority < (
+                len(wordsContainer[best[node]]),
+                best[node],
+            ):
+                best[node] = index
+
+    answer = []
     for query in wordsQuery:
-        node = root
-        # Traverse Trie with reversed query
+        node = 0
         for char in reversed(query):
-            if char in node.children:
-                node = node.children[char]
-            else:
+            next_node = children[node].get(char)
+            if next_node is None:
                 break
-        results.append(node.best[1])
-        
-    return results
+            node = next_node
+        answer.append(best[node])
+
+    return answer

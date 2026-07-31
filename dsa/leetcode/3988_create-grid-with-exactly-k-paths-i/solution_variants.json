@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Create Grid With Exactly K Paths I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds a constant-size block with k paths, then connects its exit to the destination through one forced corridor.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(mn)"
     }
   ]
 }

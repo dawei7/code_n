@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Network Recovery Pathways and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-search distinct bottleneck thresholds and test each with a budgeted shortest-path pass in topological order.",
+      "time_complexity": "O((n + m) log m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

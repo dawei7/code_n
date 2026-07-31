@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2116",
+  "cases": [
+    {
+      "id": "sample-editable-mix",
+      "name": "sample: editable positions repair locked closings",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "))()))", "locked": "010100"},
+      "expected": true,
+      "tags": ["sample", "mixed-locks"]
+    },
+    {
+      "id": "sample-all-editable",
+      "name": "sample: an all-editable even string is feasible",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "()()", "locked": "0000"},
+      "expected": true,
+      "tags": ["sample", "all-editable"]
+    },
+    {
+      "id": "sample-odd-length",
+      "name": "sample: one position cannot form a pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": ")", "locked": "0"},
+      "expected": false,
+      "tags": ["sample", "odd-length"]
+    },
+    {
+      "id": "sample-two-edits",
+      "name": "sample: two editable openings become closings",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "(((())(((())", "locked": "111111010111"},
+      "expected": true,
+      "tags": ["sample", "suffix-balance"]
+    },
+    {
+      "id": "trial-locked-leading-close",
+      "name": "a locked closing parenthesis cannot start a valid prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": ")(()", "locked": "1100"},
+      "expected": false,
+      "tags": ["prefix", "locked"]
+    },
+    {
+      "id": "trial-fully-locked-valid",
+      "name": "an already valid fully locked string remains valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "(()())", "locked": "111111"},
+      "expected": true,
+      "tags": ["fully-locked", "valid"]
+    },
+    {
+      "id": "real-too-many-locked-opens",
+      "name": "hidden: editable positions cannot close every locked opening",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "(((())", "locked": "111100"},
+      "expected": false,
+      "tags": ["hidden", "minimum-balance"]
+    },
+    {
+      "id": "real-flexible-boundaries",
+      "name": "hidden: editable endpoints satisfy both directions",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": ")()())", "locked": "011110"},
+      "expected": true,
+      "tags": ["hidden", "editable-endpoints"]
+    }
+  ]
+}

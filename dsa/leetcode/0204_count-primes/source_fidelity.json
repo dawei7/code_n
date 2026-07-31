@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_204", "frontend_id": "204", "title_slug": "count-primes", "url": "https://leetcode.com/problems/count-primes/description/", "paid_only": false, "content_sha256": "05d45278c7f8de37c1f56a7eb5b6fe8117587b2cf75552ab5519b20f598eba96", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "n = 10", "output": "4", "has_explanation": true}, {"ordinal": 2, "input": "n = 0", "output": "0", "has_explanation": false}, {"ordinal": 3, "input": "n = 1", "output": "0", "has_explanation": false}],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "fb967ac6961a91bd0f1c6c6827311ebdad807d7e1fcc0cffa45974a22bb324be", "reference/contract.md": "b445e5f0aeaf605d910230d3f07cf65ec49c568a20fb52defa2574520d195fe6", "reference/examples.md": "490fc32e3c1de9c150e6301040f39705e86af0beedd9223952037dd8794c67e2", "reference/constraints.md": "0304364a232d4e79eca2a39f125b9944c88b4956bdfc687017090939375169d6"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3920",
+    "frontend_id": "3920",
+    "title_slug": "maximize-fixed-points-after-deletions",
+    "url": "https://leetcode.com/problems/maximize-fixed-points-after-deletions/description/",
+    "paid_only": false,
+    "content_sha256": "dfde3f75f5fb0ccf9abe2330690d14ffa8419c9df5421affd6f97f72d02d5835",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [0,2,1]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [3,1,2]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,0,1,2]",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f13634907f08a2bf134561ad79d569627d37d0a5b1e4f8585a13e27746907876",
+      "reference/contract.md": "25176cc1c8fc4d9aecdb9024f186dad3fbb0a05f07892bc5d0fd4e9e565fb450",
+      "reference/examples.md": "59a4e9467626d572b8dad8ce45a3906248f4074e9cebc25ea918c3950257fc27",
+      "reference/constraints.md": "5182b45f12803335a6058c1ba5997ba89b05121e202ec61a5a9c17398f020201"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

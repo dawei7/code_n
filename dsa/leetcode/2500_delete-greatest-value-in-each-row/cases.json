@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two rows with three delete rounds",
+      "name": "sample: two rows with three deletion rounds",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -28,7 +28,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: one cell grid",
+      "name": "sample: one cell",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -40,29 +40,8 @@
       },
       "expected": 10,
       "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: two rows and two delete rounds",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            9,
-            8
-          ],
-          [
-            1,
-            6
-          ]
-        ]
-      },
-      "expected": 17,
-      "tags": [
-        "sample"
+        "sample",
+        "single-cell"
       ]
     },
     {
@@ -73,35 +52,141 @@
       "input": {
         "grid": [
           [
+            4,
             1,
-            3,
-            2
+            7,
+            3
           ]
         ]
       },
-      "expected": 6,
+      "expected": 15,
       "tags": [
-        "trial"
+        "trial",
+        "one-row"
+      ]
+    },
+    {
+      "id": "trial-tied-maxima",
+      "name": "trial: duplicate greatest values may be removed arbitrarily",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            5,
+            1
+          ],
+          [
+            5,
+            2,
+            2
+          ],
+          [
+            4,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "trial",
+        "ties"
       ]
     },
     {
       "id": "real-one-column",
-      "name": "hidden: one column contributes only the largest row value",
+      "name": "hidden: one operation across several rows",
       "kind": "real",
       "visible": false,
       "input": {
         "grid": [
           [
-            5
+            4
+          ],
+          [
+            9
           ],
           [
             2
           ]
         ]
       },
-      "expected": 5,
+      "expected": 9,
       "tags": [
-        "hidden"
+        "hidden",
+        "one-column"
+      ]
+    },
+    {
+      "id": "real-rectangular",
+      "name": "hidden: rectangular matrix with interleaved row orders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            7,
+            1,
+            3,
+            6
+          ],
+          [
+            2,
+            9,
+            8,
+            4
+          ],
+          [
+            5,
+            5,
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "hidden",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: every deletion has the same value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          [
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          [
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        ]
+      },
+      "expected": 500,
+      "tags": [
+        "hidden",
+        "ties",
+        "maximum-value"
       ]
     }
   ]

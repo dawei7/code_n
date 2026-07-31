@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Subarrays in a Valid Split and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Indexes the best prefix split by prime factors shared with each possible ending value.",
+      "time_complexity": "O(M\\log\\log M+n\\log M)",
+      "space_complexity": "O(M+n)"
     }
   ]
 }

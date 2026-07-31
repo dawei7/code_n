@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sort Integers by Binary Reflection and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Computes each value's reversed-bit key and sorts by reflection followed by the original value.",
+      "time_complexity": "O(N log N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

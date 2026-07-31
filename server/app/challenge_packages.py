@@ -6,8 +6,15 @@ frontend-ID order:
 
 ``dsa/leetcode/<frontend_id:04d>_<slug>/``
     ``metadata.json``
-    ``doc.md``
+    ``doc.md`` (legacy document or compatibility anchor)
     ``doc_de.md`` (optional)
+    ``reference/`` (optional section-authored document)
+        ``description.md``
+        ``contract.md``
+        ``examples.md``
+        ``constraints.md``
+        ``follow_up.md`` (optional source-native section)
+    ``source_fidelity.json`` (optional reviewed structure and factual evidence)
     ``cases.json``
     ``benchmark.json``
     ``complexity_certificate.json``
@@ -39,6 +46,13 @@ from server.app.config import LEETCODE_ROOT
 
 LEETCODE_ID_PREFIX = "lc_"
 LEETCODE_PACKAGE_ID_WIDTH = 4
+LEETCODE_REFERENCE_REQUIRED_SECTIONS = (
+    "description.md",
+    "contract.md",
+    "examples.md",
+    "constraints.md",
+)
+LEETCODE_SOURCE_SECTION_ID = re.compile(r"^[a-z][a-z0-9_]*$")
 
 
 def is_leetcode_id(challenge_id: str) -> bool:
@@ -150,16 +164,169 @@ def leetcode_runnable_in_coden(challenge_id: str) -> bool:
     return bool(metadata.get("runnable_in_coden"))
 
 
+def _reviewed_source_section_files(package_dir: Path) -> tuple[str, ...] | None:
+    manifest_path = package_dir / "source_fidelity.json"
+    if not manifest_path.is_file():
+        return None
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    structure = manifest.get("structure") if isinstance(manifest, dict) else None
+    review = manifest.get("review") if isinstance(manifest, dict) else None
+    sections = structure.get("sections") if isinstance(structure, dict) else None
+    if not isinstance(review, dict) or review.get("status") != "verified":
+        return None
+    if not isinstance(sections, list) or not sections:
+        return None
+    constraint_count = structure.get("constraint_count")
+    section_ids = [str(section) for section in sections]
+    if (
+        len(section_ids) != len(set(section_ids))
+        or not all(LEETCODE_SOURCE_SECTION_ID.fullmatch(section) for section in section_ids)
+        or not all(section in section_ids for section in ("description", "examples"))
+        or not isinstance(constraint_count, int)
+        or constraint_count < 0
+        or (constraint_count > 0 and "constraints" not in section_ids)
+    ):
+        return None
+    filenames: list[str] = []
+    for section in section_ids:
+        filenames.append(f"{section}.md")
+        if section == "description":
+            filenames.append("contract.md")
+    return tuple(filenames)
+
+
+def _reference_section_paths(package_dir: Path, lang: str) -> tuple[Path, ...] | None:
+    reference_dir = package_dir / "reference"
+    if lang != "en":
+        reference_dir /= lang
+    reviewed_files = _reviewed_source_section_files(package_dir) if lang == "en" else None
+    filenames = reviewed_files or LEETCODE_REFERENCE_REQUIRED_SECTIONS
+    paths = tuple(reference_dir / filename for filename in filenames)
+    return paths if all(path.is_file() for path in paths) else None
+
+
+def _markdown_table_value(value: object) -> str:
+    return str(value).strip().replace("|", "\\|")
+
+
+def _reference_primary_language_name(metadata: dict[str, Any]) -> str:
+    configured_language = str(metadata.get("primary_language") or "").strip().lower()
+    if not configured_language:
+        category = str(metadata.get("category") or "").strip().lower()
+        configured_language = {
+            "database": "sql",
+            "shell": "bash",
+            "javascript": "javascript",
+        }.get(category, "python")
+    try:
+        primary_language = normalize_language(configured_language)
+    except ValueError:
+        primary_language = "python"
+    language_name = {
+        "python": "Python",
+        "javascript": "JavaScript",
+        "sql": "SQL",
+        "bash": "Bash",
+    }.get(primary_language, "Python")
+    return language_name
+
+
+def _normalize_legacy_reference_header(markdown: str, metadata: dict[str, Any]) -> str:
+    language_name = _reference_primary_language_name(metadata)
+    return re.sub(
+        r"^\|\s*Supported Languages?\s*\|.*\|\s*$",
+        f"| Supported Language | {language_name} |",
+        markdown,
+        flags=re.MULTILINE,
+    )
+
+
+def _reference_header(metadata: dict[str, Any]) -> str:
+    topics = metadata.get("topics")
+    topic_names = [
+        str(topic.get("name") or "").strip()
+        for topic in topics
+        if isinstance(topic, dict) and str(topic.get("name") or "").strip()
+    ] if isinstance(topics, list) else []
+    language_name = _reference_primary_language_name(metadata)
+    url = str(metadata.get("url") or "").strip()
+    contest_source = str(metadata.get("contest_source") or "").strip()
+    contest_problem_index = str(metadata.get("contest_problem_index") or "").strip()
+    fields = (
+        ("Source", "LeetCode"),
+        ("Frontend ID", metadata.get("frontend_id") or ""),
+        ("Difficulty", metadata.get("difficulty") or ""),
+        ("Contest Source", contest_source),
+        ("Contest Problem", contest_problem_index if contest_source else ""),
+        ("Category", metadata.get("category_title") or metadata.get("category") or ""),
+        ("Topics", ", ".join(topic_names)),
+        ("Supported Language", language_name),
+        ("Official Link", f"[LeetCode]({url})" if url else ""),
+    )
+    rows = [
+        f"| {_markdown_table_value(label)} | {_markdown_table_value(value)} |"
+        for label, value in fields
+        if str(value).strip()
+    ]
+    title = _markdown_table_value(metadata.get("title") or "Untitled LeetCode Problem")
+    return "\n".join((f"# {title}", "", "| Field | Value |", "|---|---|", *rows))
+
+
 def leetcode_doc_path(challenge_id: str, lang: str = "en") -> Path | None:
     package_dir = leetcode_package_dir(challenge_id)
     if package_dir is None:
         return None
     if lang == "de":
+        translated_sections = _reference_section_paths(package_dir, lang)
+        if translated_sections is not None:
+            return translated_sections[0]
         translated = package_dir / "doc_de.md"
         if translated.is_file():
             return translated
+    canonical_sections = _reference_section_paths(package_dir, "en")
+    if canonical_sections is not None:
+        return canonical_sections[0]
     doc = package_dir / "doc.md"
     return doc if doc.is_file() else None
+
+
+def leetcode_doc_markdown(challenge_id: str, lang: str = "en") -> str | None:
+    """Return one composed section document or a legacy monolithic document."""
+
+    package_dir = leetcode_package_dir(challenge_id)
+    if package_dir is None:
+        return None
+    if lang == "de":
+        translated_sections = _reference_section_paths(package_dir, lang)
+        if translated_sections is not None:
+            return "\n\n".join(
+                (_reference_header(leetcode_metadata(challenge_id)),)
+                + tuple(path.read_text(encoding="utf-8").strip() for path in translated_sections)
+            ) + "\n"
+        translated = package_dir / "doc_de.md"
+        if translated.is_file():
+            return _normalize_legacy_reference_header(
+                translated.read_text(encoding="utf-8"),
+                leetcode_metadata(challenge_id),
+            )
+    canonical_sections = _reference_section_paths(package_dir, "en")
+    if canonical_sections is not None:
+        return "\n\n".join(
+            (_reference_header(leetcode_metadata(challenge_id)),)
+            + tuple(path.read_text(encoding="utf-8").strip() for path in canonical_sections)
+        ) + "\n"
+    doc = package_dir / "doc.md"
+    return (
+        _normalize_legacy_reference_header(
+            doc.read_text(encoding="utf-8"),
+            leetcode_metadata(challenge_id),
+        )
+        if doc.is_file()
+        else None
+    )
 
 
 def leetcode_guided_example_path(challenge_id: str) -> Path | None:
@@ -345,7 +512,13 @@ def iter_leetcode_package_dirs() -> list[Path]:
 
 
 def iter_leetcode_doc_paths() -> list[Path]:
-    return [path / "doc.md" for path in iter_leetcode_package_dirs() if (path / "doc.md").is_file()]
+    paths: list[Path] = []
+    for package_dir in iter_leetcode_package_dirs():
+        challenge_id = leetcode_package_id(package_dir)
+        doc = leetcode_doc_path(challenge_id) if challenge_id else None
+        if doc is not None:
+            paths.append(doc)
+    return paths
 
 
 def leetcode_package_id(package_dir: Path) -> str | None:

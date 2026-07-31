@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3397",
+  "frontend_id": "3131",
+  "title_slug": "find-the-integer-added-to-array-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.addedInteger",
+  "verified_submission_id": "2079586332",
+  "verified_at": "2026-07-24T15:00:00+02:00"
+}

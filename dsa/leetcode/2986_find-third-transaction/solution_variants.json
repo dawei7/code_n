@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Third Transaction and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Orders each user's transactions once and compares exactly the third spend with its two predecessors.",
+      "time_complexity": "O(R log R)",
+      "space_complexity": "O(R)"
     }
   ]
 }

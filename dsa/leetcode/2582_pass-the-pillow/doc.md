@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | Math, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [pass-the-pillow](https://leetcode.com/problems/pass-the-pillow/) |
+| LeetCode | [Pass the Pillow](https://leetcode.com/problems/pass-the-pillow/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/pass-the-pillow/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+There are `n` people standing in a line, numbered from $1$ through $n$. At time zero, person `1` holds a pillow.
+
+Once per second, the current holder passes the pillow to the adjacent person in the current direction. Passing begins toward increasing labels. Whenever the pillow reaches either end of the line, the direction reverses, so no pass goes beyond person `1` or person `n`.
+
+Return the label of the person holding the pillow after exactly `time` seconds.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The number of people in the line.
+- `time`: The number of one-second passes to perform.
+
+The constraints are $2 \leq n \leq 1000$ and $1 \leq \texttt{time} \leq 1000$.
 
 **Return value**
 
-TODO
+- The label of the person holding the pillow after exactly `time` seconds.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4, time = 5`
+- Output: `2`
+- Explanation: The holders are `1 -> 2 -> 3 -> 4 -> 3 -> 2`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 3, time = 2`
+- Output: `3`
+- Explanation: After two passes, the pillow has just reached the right endpoint.

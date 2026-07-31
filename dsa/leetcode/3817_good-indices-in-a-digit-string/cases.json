@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3817",
+  "cases": [
+    {
+      "id": "sample-separated-good-indices",
+      "name": "sample: zero and two multi-digit indices match",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "0234567890112"},
+      "expected": [0, 11, 12],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "zero-index", "multi-digit"]
+    },
+    {
+      "id": "sample-every-index-good",
+      "name": "sample: every one-digit index matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "01234"},
+      "expected": [0, 1, 2, 3, 4],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "all-good", "one-digit"]
+    },
+    {
+      "id": "sample-no-good-index",
+      "name": "sample: no ending substring represents its index",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "12345"},
+      "expected": [],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "empty-result"]
+    },
+    {
+      "id": "trial-minimum-zero",
+      "name": "trial: the minimum string represents index zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "0"},
+      "expected": [0],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "zero-index"]
+    },
+    {
+      "id": "trial-minimum-mismatch",
+      "name": "trial: a nonzero character does not represent index zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "9"},
+      "expected": [],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "empty-result"]
+    },
+    {
+      "id": "trial-one-digit-boundary",
+      "name": "trial: indices zero and nine match",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "0000000009"},
+      "expected": [0, 9],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "one-digit-boundary"]
+    },
+    {
+      "id": "trial-first-two-digit-index",
+      "name": "trial: the first two-digit index matches its ending pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "00000000010"},
+      "expected": [0, 10],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "two-digit-boundary", "index-ten"]
+    },
+    {
+      "id": "real-two-digit-eleven",
+      "name": "hidden: index eleven matches after earlier zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "000000000111"},
+      "expected": [0, 11],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "two-digit", "index-eleven"]
+    },
+    {
+      "id": "real-leading-zero-is-not-a-representation",
+      "name": "hidden: an ending pair with a leading zero does not match",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "000000000010"},
+      "expected": [0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "leading-zero", "exact-string-equality"]
+    },
+    {
+      "id": "real-only-index-eleven",
+      "name": "hidden: a later pair matches while every one-digit index fails",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "909090909011"},
+      "expected": [11],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "multi-digit-only"]
+    },
+    {
+      "id": "real-repeated-nines-cross-power",
+      "name": "hidden: repeated nines match indices nine and ninety-nine",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"},
+      "expected": [9, 99],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "power-of-ten-boundary", "repeated-digit"]
+    },
+    {
+      "id": "real-mixed-overlapping-candidates",
+      "name": "hidden: one-digit matches coexist with a later two-digit match",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "012345678901234567890"},
+      "expected": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "mixed-width", "overlap"]
+    }
+  ]
+}

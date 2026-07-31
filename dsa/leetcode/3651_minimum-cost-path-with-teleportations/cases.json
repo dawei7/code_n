@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3651",
+  "cases": [
+    {
+      "id": "sample-teleport-to-target",
+      "name": "sample: one useful teleport reaches target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            3,
+            3
+          ],
+          [
+            2,
+            5,
+            4
+          ],
+          [
+            4,
+            3,
+            5
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "useful-teleport"
+      ]
+    },
+    {
+      "id": "sample-increasing-grid",
+      "name": "sample: teleport cannot improve increasing values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "unused-teleport"
+      ]
+    },
+    {
+      "id": "trial-no-teleports",
+      "name": "trial: ordinary right-down path only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "zero-k"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: equal-valued target is directly reachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "trial-high-start",
+      "name": "trial: high start teleports to lower target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            9,
+            8
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "direct-teleport"
+      ]
+    },
+    {
+      "id": "real-maximum-k-unused",
+      "name": "real: extra teleport allowance need not be used",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 10
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "maximum-k"
+      ]
+    },
+    {
+      "id": "real-one-teleport-cost",
+      "name": "real: one teleport leaves cost twelve",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            3,
+            3,
+            9,
+            4
+          ],
+          [
+            1,
+            4,
+            9,
+            9
+          ],
+          [
+            4,
+            7,
+            9,
+            6
+          ],
+          [
+            6,
+            8,
+            5,
+            9
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "one-teleport"
+      ]
+    },
+    {
+      "id": "real-second-teleport-helps",
+      "name": "real: second teleport lowers optimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            3,
+            3,
+            9,
+            4
+          ],
+          [
+            1,
+            4,
+            9,
+            9
+          ],
+          [
+            4,
+            7,
+            9,
+            6
+          ],
+          [
+            6,
+            8,
+            5,
+            9
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "multiple-teleports"
+      ]
+    },
+    {
+      "id": "real-zero-valued-route",
+      "name": "real: zero-valued destinations allow zero cost",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            10,
+            0
+          ],
+          [
+            10,
+            10,
+            10
+          ],
+          [
+            0,
+            10,
+            0
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "zero-values"
+      ]
+    },
+    {
+      "id": "real-rectangular-grid",
+      "name": "real: rectangular grid uses same layered recurrence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            4,
+            1,
+            7
+          ],
+          [
+            6,
+            2,
+            5
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "real: equal maximum target permits direct teleport",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            10000,
+            0
+          ],
+          [
+            0,
+            10000
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "maximum-value"
+      ]
+    }
+  ]
+}

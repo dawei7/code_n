@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Length of the Longest Subsequence That Sums to Target and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses descending 0/1 knapsack updates to retain the greatest subsequence length for every reachable sum through the target.",
+      "time_complexity": "O(n target)",
+      "space_complexity": "O(target)"
     }
   ]
 }

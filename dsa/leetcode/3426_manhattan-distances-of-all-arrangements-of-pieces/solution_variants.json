@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Manhattan Distances of All Arrangements of Pieces and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sums every cell pair's Manhattan distance in closed form and multiplies by the number of arrangements containing that pair.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(1)"
     }
   ]
 }

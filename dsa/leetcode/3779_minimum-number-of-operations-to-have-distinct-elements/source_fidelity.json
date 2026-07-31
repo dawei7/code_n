@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3779",
+    "frontend_id": "3779",
+    "title_slug": "minimum-number-of-operations-to-have-distinct-elements",
+    "url": "https://leetcode.com/problems/minimum-number-of-operations-to-have-distinct-elements/description/",
+    "paid_only": false,
+    "content_sha256": "e8677c0c33cad913755befc99498fb990cf2f7b2b33e8d28f4603f266a9eb073",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal":1,"input":"`nums = [3,8,3,6,5,8]`","output":"`1`","has_explanation":true},
+      {"ordinal":2,"input":"`nums = [2,2]`","output":"`1`","has_explanation":true},
+      {"ordinal":3,"input":"`nums = [4,3,5,1,2]`","output":"`0`","has_explanation":true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c83bfd00ce65b0865c989dd930f26a1a367557322f6b75919d07d41e698f70e2",
+      "reference/contract.md": "58b10f32e41ad668988a5ee193c9a0f20544e9f8341a0382118bb2f268af729c",
+      "reference/examples.md": "07c2874737594a12c663cc2205cfdae1238d9bf9434d791038e99b28505ea87c",
+      "reference/constraints.md": "5736b04f250158e926cd1f12d13f04602cf2b0e7efa483e56dc469bcd10b7e31"
+    },
+    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2105",
+  "cases": [
+    {
+      "id": "sample-one-refill",
+      "name": "sample: Bob refills once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "plants": [2, 2, 3, 3],
+        "capacityA": 5,
+        "capacityB": 5
+      },
+      "expected": 1,
+      "tags": ["sample", "even-length"]
+    },
+    {
+      "id": "sample-both-refill",
+      "name": "sample: both gardeners refill",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "plants": [2, 2, 3, 3],
+        "capacityA": 3,
+        "capacityB": 4
+      },
+      "expected": 2,
+      "tags": ["sample", "both-sides"]
+    },
+    {
+      "id": "sample-single-plant",
+      "name": "sample: Alice has more water at the meeting plant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "plants": [5],
+        "capacityA": 10,
+        "capacityB": 8
+      },
+      "expected": 0,
+      "tags": ["sample", "minimum-length", "meeting-plant"]
+    },
+    {
+      "id": "trial-exact-middle-water",
+      "name": "exactly enough water remains for the middle plant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plants": [3, 3, 3],
+        "capacityA": 6,
+        "capacityB": 6
+      },
+      "expected": 0,
+      "tags": ["meeting-plant", "exact-capacity", "tie"]
+    },
+    {
+      "id": "trial-inner-refills",
+      "name": "both gardeners refill for their inner plants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plants": [1, 1, 1, 1],
+        "capacityA": 1,
+        "capacityB": 1
+      },
+      "expected": 2,
+      "tags": ["repeated-refills", "even-length"]
+    },
+    {
+      "id": "real-middle-refill",
+      "name": "hidden: earlier refill and meeting-plant refill",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "plants": [2, 4, 5, 1, 2],
+        "capacityA": 5,
+        "capacityB": 5
+      },
+      "expected": 2,
+      "tags": ["hidden", "meeting-plant", "unequal-remaining"]
+    },
+    {
+      "id": "real-tie-selects-alice",
+      "name": "hidden: equal remaining amounts select Alice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "plants": [2, 5, 2],
+        "capacityA": 6,
+        "capacityB": 6
+      },
+      "expected": 1,
+      "tags": ["hidden", "meeting-plant", "tie"]
+    }
+  ]
+}

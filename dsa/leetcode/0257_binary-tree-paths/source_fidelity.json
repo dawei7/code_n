@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_257", "frontend_id": "257", "title_slug": "binary-tree-paths", "url": "https://leetcode.com/problems/binary-tree-paths/description/", "paid_only": false, "content_sha256": "8a3ac6dcea36accb4bc266d46deec0fe96df0e86558f658c122e2233ed39bdf8", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "root = [1,2,3,null,5]", "output": "[\"1->2->5\",\"1->3\"]", "has_explanation": false}, {"ordinal": 2, "input": "root = [1]", "output": "[\"1\"]", "has_explanation": false}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "80c3d055b83900e9259fa7518b87fe01bc61449554901f3472bccffaff9a84c4", "reference/contract.md": "e2bfccb9767203e0e1348ff61682e502801441e97cddee32e9b0111968a7e695", "reference/examples.md": "d29bd4244b798fd24d1c1513c89cae2045ca6989995da152aea9b7fde5fe99cc", "reference/constraints.md": "66b7de971758906b8c88e0aca98d0875c5f945d4afd0c7fbaae799bef5727b8a"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

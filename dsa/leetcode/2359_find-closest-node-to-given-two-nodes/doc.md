@@ -6,50 +6,54 @@
 | Frontend ID | 2359 |
 | Difficulty | Medium |
 | Category | Algorithms |
-| Topics | Depth-First Search, Graph Theory |
+| Topics | Depth-First Search, Graph |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-closest-node-to-given-two-nodes](https://leetcode.com/problems/find-closest-node-to-given-two-nodes/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-closest-node-to-given-two-nodes/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-closest-node-to-given-two-nodes/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A directed graph contains $n$ nodes numbered from 0 through $n-1$, and every
+node has at most one outgoing edge. The array `edges` represents that edge:
+`edges[i]` is the destination from node $i$, while `-1` means that $i$ has no
+outgoing edge. The graph may contain directed cycles.
+
+Given starting nodes `node1` and `node2`, find a node reachable from both that
+minimizes the larger of its two directed-path distances from the starts. If
+several common reachable nodes have the same minimum maximum distance, return
+the smallest node index. Return `-1` when the two reachable sets do not
+intersect.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `edges`: A list of $n$ integers encoding at most one outgoing edge per node.
+- `node1`: The first starting node.
+- `node2`: The second starting node.
+
+The constraints are $2 \le n \le 10^5$,
+$-1 \le \texttt{edges[i]} < n$, `edges[i] != i`, and
+$0 \le \texttt{node1},\texttt{node2} < n$.
 
 **Return value**
 
-TODO
+Return the smallest-index common reachable node minimizing the maximum of its
+two directed distances, or `-1` if no node is reachable from both starts.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `edges = [2,2,3,-1], node1 = 0, node2 = 1`
+- Output: `2`
+
+Both starts reach node 2 in one step.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `edges = [1,2,-1], node1 = 0, node2 = 2`
+- Output: `2`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Node 2 is two steps from node 0 and zero steps from itself.

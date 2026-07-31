@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2625",
+  "cases": [
+    {
+      "id": "sample-depth-zero",
+      "name": "sample: depth zero preserves nesting",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], "n": 0},
+      "expected": [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]],
+      "tags": ["sample", "zero-depth"]
+    },
+    {
+      "id": "sample-depth-one",
+      "name": "sample: flatten one nesting level",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], "n": 1},
+      "expected": [1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11], 12, 13, 14, 15],
+      "tags": ["sample", "one-level"]
+    },
+    {
+      "id": "sample-depth-two",
+      "name": "sample: flatten all present levels",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": [[1, 2, 3], [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], "n": 2},
+      "expected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "tags": ["sample", "fully-flat"]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty input",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [], "n": 5},
+      "expected": [],
+      "tags": ["trial", "empty"]
+    },
+    {
+      "id": "trial-exact-cutoff",
+      "name": "trial: array at cutoff remains nested",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [[[[1]], 2], 3], "n": 2},
+      "expected": [[1], 2, 3],
+      "tags": ["trial", "depth-boundary"]
+    },
+    {
+      "id": "real-limit-exceeds-depth",
+      "name": "real: oversized limit completely flattens",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": [-1, [[0, [1]]], 2], "n": 1000},
+      "expected": [-1, 0, 1, 2],
+      "tags": ["real", "maximum-limit", "negative-values"]
+    },
+    {
+      "id": "real-empty-subarrays",
+      "name": "real: expanded empty subarrays contribute no entries",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": [[], 1, [[], 2], []], "n": 2},
+      "expected": [1, 2],
+      "tags": ["real", "empty-subarrays"]
+    },
+    {
+      "id": "real-order-through-branches",
+      "name": "real: depth-first expansion preserves global order",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": [[1, [2, 3]], 4, [[5], 6]], "n": 1},
+      "expected": [1, [2, 3], 4, [5], 6],
+      "tags": ["real", "order", "multiple-branches"]
+    }
+  ]
+}

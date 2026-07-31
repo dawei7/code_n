@@ -5,51 +5,40 @@
 | Source | LeetCode |
 | Frontend ID | 3518 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Hash Table, Math, String, Combinatorics, Counting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [smallest-palindromic-rearrangement-ii](https://leetcode.com/problems/smallest-palindromic-rearrangement-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/smallest-palindromic-rearrangement-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/smallest-palindromic-rearrangement-ii/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a palindromic lowercase English string `s` and a positive integer `k`. Consider every distinct palindrome that can be formed by rearranging all characters of `s`, and order those strings lexicographically.
+
+Return the $k$-th string in that ordering, using one-based rank. Rearrangements that produce the same final string count only once, even when equal character occurrences could be exchanged in multiple ways. If the multiset of `s` produces fewer than `k` distinct palindromes, return the empty string.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A palindromic lowercase English string with $1 \le \lvert s \rvert \le 10^4$.
+- `k`: The requested one-based lexicographic rank, where $1 \le k \le 10^6$.
 
 **Return value**
 
-TODO
+Return the $k$-th lexicographically smallest distinct palindromic permutation of `s`, or `""` when that rank does not exist.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abba", k = 2`
+- Output: `"baab"`
+- Explanation: The distinct palindromes are `"abba"` and `"baab"` in lexicographic order.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aa", k = 2`
+- Output: `""`
+- Explanation: Only `"aa"` can be formed, so rank 2 is absent.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "bacab", k = 1`
+- Output: `"abcba"`
+- Explanation: `"abcba"` precedes the other distinct palindrome, `"bacab"`.

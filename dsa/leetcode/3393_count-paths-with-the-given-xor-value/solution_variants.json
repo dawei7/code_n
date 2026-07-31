@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Paths With the Given XOR Value and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Propagates all 16 possible XOR states from above and left while rolling the dynamic program into one row.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(n)"
     }
   ]
 }

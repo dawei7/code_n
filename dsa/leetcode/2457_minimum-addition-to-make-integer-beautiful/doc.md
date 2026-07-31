@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Math, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-addition-to-make-integer-beautiful](https://leetcode.com/problems/minimum-addition-to-make-integer-beautiful/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-addition-to-make-integer-beautiful/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-addition-to-make-integer-beautiful/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given positive integers `n` and `target`. Call an integer beautiful when the sum of its decimal digits is at most `target`. For example, the digit sum of `467` is $4+6+7=17$, whereas the digit sum of `500` is $5$.
+
+Find the minimum non-negative integer `x` for which `n + x` is beautiful. Returning `0` is required when `n` already satisfies the digit-sum limit. The inputs guarantee that a suitable addition always exists.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: A positive integer whose digit sum may exceed the limit.
+- `target`: A positive upper bound for the resulting digit sum.
+
+The bounds are $1\le n\le 10^{12}$ and $1\le\texttt{target}\le150$.
 
 **Return value**
 
-TODO
+- The smallest non-negative `x` such that the decimal digit sum of `n + x` is at most `target`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 16, target = 6`
+- Output: `4`
+- Explanation: Adding `4` produces `20`, whose digit sum is $2$. No smaller non-negative addition works.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 467, target = 6`
+- Output: `33`
+- Explanation: Adding `33` produces `500`, whose digit sum is $5$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 1, target = 1`
+- Output: `0`
+- Explanation: The original number is already beautiful.

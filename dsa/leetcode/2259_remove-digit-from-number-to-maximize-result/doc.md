@@ -5,51 +5,48 @@
 | Source | LeetCode |
 | Frontend ID | 2259 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | String, Greedy, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [remove-digit-from-number-to-maximize-result](https://leetcode.com/problems/remove-digit-from-number-to-maximize-result/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/remove-digit-from-number-to-maximize-result/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/remove-digit-from-number-to-maximize-result/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A string `number` represents a positive decimal integer using digits from `1`
+through `9`. A separate one-character string `digit` is guaranteed to occur in
+`number`.
+
+Remove exactly one occurrence of `digit`. The remaining characters keep their
+original order and form another decimal representation with one fewer digit.
+Among every valid occurrence that could be removed, choose the result with the
+greatest numerical value and return that result as a string. Repeated
+occurrences are separate choices even when some choices produce equal strings.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `number`: A string of $n$ digits from `1` through `9`, where $2\le n\le100$.
+- `digit`: One digit from `1` through `9` that occurs at least once in `number`.
 
 **Return value**
 
-TODO
+Return the length-$n-1$ string obtained by deleting exactly one occurrence of
+`digit` whose decimal value is greatest.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `number = "123", digit = "3"`
+- Output: `"12"`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `number = "1231", digit = "1"`
+- Output: `"231"`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `number = "551", digit = "5"`
+- Output: `"51"`

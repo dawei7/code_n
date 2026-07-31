@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3978",
+    "frontend_id": "3978",
+    "title_slug": "unique-middle-element",
+    "url": "https://leetcode.com/problems/unique-middle-element/description/",
+    "paid_only": false,
+    "content_sha256": "5e8cf54a775182a9d1bc60aed3367d9a9f64baecbfff0fca7408cfe2007351b7",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,2]",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4a67bd934fd1fce6fca75b03d494e0f4a443dd792b74901cde1d07553188ae94",
+      "reference/contract.md": "2154305809ea9b40fb4635dc17778a0308d9d3701996ff6c1905621ef9549500",
+      "reference/examples.md": "95c212edaace40a9190c68c22fefcc3faf617664650f60492cdd549bc0eace21",
+      "reference/constraints.md": "d72a1537ecf135e45e84dd1d9cc0a129f647adaa7848bc27cb03d2770cd85804"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

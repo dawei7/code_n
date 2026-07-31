@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_245", "frontend_id": "245", "title_slug": "shortest-word-distance-iii", "url": "https://leetcode.com/problems/shortest-word-distance-iii/description/", "paid_only": true, "content_sha256": "3ae441b78cb8f0b60e88101733f0252b781d0cd34df27a17f5408a682f365418", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "wordsDict = [\"practice\",\"makes\",\"perfect\",\"coding\",\"makes\"], word1 = \"makes\", word2 = \"coding\"", "output": "1", "has_explanation": false}, {"ordinal": 2, "input": "wordsDict = [\"practice\",\"makes\",\"perfect\",\"coding\",\"makes\"], word1 = \"makes\", word2 = \"makes\"", "output": "3", "has_explanation": false}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "454a933ba45194709dd463e3b83cb278960b21b3779a077b335f0046494440a3", "reference/contract.md": "fcc3563682776d8f4b3780f4ef78b62a48a41704a5ce2f3ac0bba2de77e942e7", "reference/examples.md": "3dbc881df55904f8e2a7eca0645e9e586cf8e60a7161bef998932968e43c97d9", "reference/constraints.md": "34e2aa5dec1193c118411a103595847a016a97ba8db717c2b514a9198fb501d5"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

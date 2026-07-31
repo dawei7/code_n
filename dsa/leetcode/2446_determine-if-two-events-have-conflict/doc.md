@@ -8,71 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [determine-if-two-events-have-conflict](https://leetcode.com/problems/determine-if-two-events-have-conflict/) |
+| LeetCode | [Determine if Two Events Have Conflict](https://leetcode.com/problems/determine-if-two-events-have-conflict/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/determine-if-two-events-have-conflict/).
 
 ### Goal
-Given two time intervals representing events, each defined by a start and end time in "HH:MM" format, determine if the two events overlap. An overlap occurs if there is any point in time that belongs to both intervals, including their boundaries.
+
+Two inclusive events occur on the same day. Each event is represented as `[startTime, endTime]`, and every endpoint is a valid 24-hour time string in fixed-width `"HH:MM"` format. Each start time is no later than its corresponding end time.
+
+The events conflict when their inclusive time intervals have a non-empty intersection, meaning at least one moment belongs to both events. Return `true` when such a common moment exists and `false` otherwise. Sharing only an endpoint still counts as a conflict.
 
 ### Function Contract
+
 **Inputs**
 
-- `event1`: A list of two strings representing the start and end time of the first event (e.g., `["01:15", "02:00"]`).
-- `event2`: A list of two strings representing the start and end time of the second event (e.g., `["02:00", "03:00"]`).
+- `event1`: Two `"HH:MM"` strings giving the inclusive start and end of the first same-day event.
+- `event2`: Two `"HH:MM"` strings giving the inclusive start and end of the second same-day event.
+
+Each string has length five, uses valid 24-hour time, and each event's start is no later than its end.
 
 **Return value**
 
-- `bool`: Returns `True` if the intervals overlap, otherwise `False`.
+- `true` if the inclusive events share at least one moment; otherwise `false`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `event1 = ["01:15", "02:00"], event2 = ["02:00", "03:00"]`
-- Output: `True`
+- Output: `true`
+- Explanation: Both events include `"02:00"`.
 
 **Example 2**
 
-- Input: `event1 = ["01:00", "02:00"], event2 = ["02:12", "03:00"]`
-- Output: `False`
+- Input: `event1 = ["01:00", "02:00"], event2 = ["01:20", "03:00"]`
+- Output: `true`
+- Explanation: Their common interval runs from `"01:20"` through `"02:00"`.
 
 **Example 3**
 
 - Input: `event1 = ["10:00", "11:00"], event2 = ["14:00", "15:00"]`
-- Output: `False`
-
----
-
-## Solution
-### Approach
-The problem relies on interval comparison logic. Since the time strings are in "HH:MM" format, they are lexicographically sortable. Two intervals `[start1, end1]` and `[start2, end2]` overlap if and only if the maximum of the start times is less than or equal to the minimum of the end times (i.e., `max(start1, start2) <= min(end1, end2)`).
-
-### Complexity Analysis
-- **Time Complexity**: `O(1)`, as the input size is fixed (two intervals with two strings each), and string comparison takes constant time.
-- **Space Complexity**: `O(1)`, as no additional data structures proportional to input size are required.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(event1: List[str], event2: List[str]) -> bool:
-    """
-    Determines if two time intervals overlap.
-    Since the time format is HH:MM, lexicographical comparison is equivalent
-    to chronological comparison.
-    """
-    start1, end1 = event1
-    start2, end2 = event2
-
-    # Two intervals [s1, e1] and [s2, e2] overlap if:
-    # The start of one is before or at the end of the other,
-    # AND the start of the other is before or at the end of the first.
-    # Simplified: max(start1, start2) <= min(end1, end2)
-
-    return max(start1, start2) <= min(end1, end2)
-```
-</details>
+- Output: `false`
+- Explanation: The first event ends before the second begins.

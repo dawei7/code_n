@@ -1,0 +1,83 @@
+{
+  "challenge_id": "lc_2801",
+  "cases": [
+    {
+      "id": "sample-one-through-eleven",
+      "name": "sample: single digits and ten are stepping numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"low": "1", "high": "11"},
+      "expected": 10,
+      "tags": ["sample", "single-digit", "inclusive-range"]
+    },
+    {
+      "id": "sample-ninety-through-one-hundred-one",
+      "name": "sample: two stepping numbers cross a digit boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {"low": "90", "high": "101"},
+      "expected": 2,
+      "tags": ["sample", "digit-boundary"]
+    },
+    {
+      "id": "trial-single-stepping",
+      "name": "trial: singleton interval contains a stepping number",
+      "kind": "trial",
+      "visible": true,
+      "input": {"low": "10", "high": "10"},
+      "expected": 1,
+      "tags": ["trial", "singleton", "inclusive"]
+    },
+    {
+      "id": "trial-single-nonstepping",
+      "name": "trial: singleton interval contains no stepping number",
+      "kind": "trial",
+      "visible": true,
+      "input": {"low": "11", "high": "11"},
+      "expected": 0,
+      "tags": ["trial", "singleton", "invalid-adjacency"]
+    },
+    {
+      "id": "real-through-one-hundred",
+      "name": "hidden: range includes every one- and two-digit stepping number",
+      "kind": "real",
+      "visible": false,
+      "input": {"low": "1", "high": "100"},
+      "expected": 26,
+      "tags": ["hidden", "prefix-count", "digit-boundary"]
+    },
+    {
+      "id": "real-hundred-through-thousand",
+      "name": "hidden: decrementing a power-of-ten lower endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {"low": "100", "high": "1000"},
+      "expected": 32,
+      "tags": ["hidden", "borrow", "lower-bound"]
+    },
+    {
+      "id": "real-long-stepping-singleton",
+      "name": "hidden: a long alternating value is stepping",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "low": "10101010101010101010101010101010101010101010101010",
+        "high": "10101010101010101010101010101010101010101010101010"
+      },
+      "expected": 1,
+      "tags": ["hidden", "long-input", "singleton"]
+    },
+    {
+      "id": "real-full-legal-prefix",
+      "name": "hidden: maximum-width prefix count requires modulo reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "low": "1",
+        "high": "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"
+      },
+      "expected": 125046265,
+      "tags": ["hidden", "maximum-digits", "modulo"]
+    }
+  ]
+}

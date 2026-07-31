@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3605",
+  "cases": [
+    {
+      "id": "sample-break-pair",
+      "name": "sample: one change breaks the length-two stable region",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          10
+        ],
+        "maxC": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-two-changes",
+      "name": "sample: two changes reduce the maximum to one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          6,
+          8
+        ],
+        "maxC": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "multiple-changes"
+      ]
+    },
+    {
+      "id": "sample-disjoint-pairs",
+      "name": "sample: one change cannot hit two disjoint pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          9,
+          6
+        ],
+        "maxC": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "disjoint-windows"
+      ]
+    },
+    {
+      "id": "trial-one-is-not-stable",
+      "name": "trial: a lone one has stability factor zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "maxC": 0
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-element",
+        "gcd-one"
+      ]
+    },
+    {
+      "id": "trial-stable-singleton",
+      "name": "trial: an unchanged singleton at least two is stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "maxC": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-element",
+        "stable"
+      ]
+    },
+    {
+      "id": "real-no-change-full-array",
+      "name": "real: the entire array shares a common factor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          12,
+          18,
+          24
+        ],
+        "maxC": 0
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "no-changes",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "real-change-every-element",
+      "name": "real: enough changes eliminate stable singletons",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          12
+        ],
+        "maxC": 2
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "zero-answer",
+        "full-budget"
+      ]
+    },
+    {
+      "id": "real-one-index-hits-two",
+      "name": "real: one middle edit covers two overlapping stable pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15
+        ],
+        "maxC": 1
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "interval-stabbing",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-ones-separate-regions",
+      "name": "real: existing ones split stable regions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          1,
+          6,
+          9
+        ],
+        "maxC": 0
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "gcd-one",
+        "separate-regions"
+      ]
+    },
+    {
+      "id": "real-long-power-chain",
+      "name": "real: one edit bisects a long stable region",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "maxC": 1
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "long-region",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "real-large-coprime-values",
+      "name": "real: large coprime neighbors are not jointly stable",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999937
+        ],
+        "maxC": 0
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "large-values",
+        "coprime"
+      ]
+    }
+  ]
+}

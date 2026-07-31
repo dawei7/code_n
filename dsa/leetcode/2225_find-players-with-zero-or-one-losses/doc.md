@@ -5,25 +5,26 @@
 | Source | LeetCode |
 | Frontend ID | 2225 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, Sorting, Counting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-players-with-zero-or-one-losses](https://leetcode.com/problems/find-players-with-zero-or-one-losses/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-players-with-zero-or-one-losses/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-players-with-zero-or-one-losses/).
-
 ### Goal
-From match results, list all participating players who never lost and all participating players who lost exactly once. Sort both lists increasingly.
+
+Each pair `[winner, loser]` records the outcome of one match between two different players. Match outcomes are unique, although a player may participate in many matches as a winner, loser, or both.
+
+Return two groups considering only players who participated in at least one recorded match. The first group contains every player with no losses, and the second contains every player with exactly one loss. Values in each group must appear in increasing order; players with two or more losses belong to neither group.
 
 ### Function Contract
 **Inputs**
 
-- `matches`: pairs `[winner, loser]`.
+- `matches`: A nonempty list of unique `[winner, loser]` pairs with different positive player identifiers.
+
+Let $m=\lvert\texttt{matches}\rvert$ and let $p$ be the number of distinct participating players.
 
 **Return value**
 
-`[zero_loss_players, one_loss_players]`, with each inner list sorted.
+Return `[zero_loss_players, one_loss_players]`, with both inner lists sorted in increasing order.
 
 ### Examples
 **Example 1**
@@ -40,16 +41,3 @@ From match results, list all participating players who never lost and all partic
 
 - Input: `matches = [[1, 2]]`
 - Output: `[[1], [2]]`
-
----
-
-## Solution
-### Approach
-Record every participant and count losses for each loser. Players absent from the loss map have zero losses; players with loss count one form the second group. Sort both selected groups before returning them.
-
-### Complexity Analysis
-- **Time Complexity**: `O(m + p log p)`, where `p` is the number of distinct players
-- **Space Complexity**: `O(p)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

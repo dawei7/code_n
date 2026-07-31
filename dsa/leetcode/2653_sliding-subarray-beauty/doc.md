@@ -8,85 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sliding-subarray-beauty](https://leetcode.com/problems/sliding-subarray-beauty/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sliding-subarray-beauty/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sliding-subarray-beauty/).
 
 ### Goal
-Given an integer array, identify the "beauty" value of every contiguous subarray of length `k`. The beauty of a subarray is defined as the `x`-th smallest number in that subarray, provided that this number is negative; otherwise, the beauty is 0.
+
+Given an integer array `nums` of length $n$, inspect every contiguous, non-empty subarray of exactly `k` elements. For each window, order its values and identify its $x$-th smallest integer. The window's beauty is that integer when it is negative; otherwise its beauty is `0`. Equivalently, a window containing fewer than `x` negative values has beauty `0`.
+
+Return the $n-k+1$ beauty values in window order, beginning with the subarray at index `0` and advancing its start by one position each time. Repeated negative values occupy separate positions in the ordering, so their frequencies affect which value is the $x$-th smallest.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers.
-- `k`: An integer representing the size of the sliding window.
-- `x`: An integer representing the rank of the smallest number to retrieve.
+- `nums`: An integer array of length $n$, where $1 \le n \le 10^5$ and $-50 \le \texttt{nums[i]} \le 50$.
+- `k`: The fixed window length, where $1 \le k \le n$.
+- `x`: The one-based order statistic requested within each window, where $1 \le x \le k$.
 
 **Return value**
 
-- A list of integers representing the beauty value for each sliding window of size `k`.
+- Return an integer array of length $n-k+1$ containing each window's beauty from left to right.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1,-2,-3,-4,5], k = 2, x = 2`
-- Output: `[-3,-3,-4]`
+- Input: `nums = [1,-1,-3,-2,3], k = 3, x = 2`
+- Output: `[-1,-2,-2]`
+- Explanation: The second-smallest values of the three windows are `-1`, `-2`, and `-2`, and all are negative.
 
 **Example 2**
 
-- Input: `nums = [-1,-2,-3,-4,5], k = 2, x = 2`
-- Output: `[-2,-3,-4]`
+- Input: `nums = [-1,-2,-3,-4,-5], k = 2, x = 2`
+- Output: `[-1,-2,-3,-4]`
+- Explanation: Each window contains two negatives, so its larger value is its second-smallest value and its beauty.
 
 **Example 3**
 
 - Input: `nums = [-3,1,2,-3,0,-3], k = 2, x = 1`
 - Output: `[-3,0,-3,-3,-3]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Sliding Window** combined with a **Frequency Array** (or Fenwick Tree/Binary Indexed Tree). Since the range of values in `nums` is constrained between -50 and 50, we can maintain a frequency map of the current window's elements. For each window, we iterate through the frequency map to find the `x`-th smallest negative number, which takes constant time O(50).
-
-### Complexity Analysis
-- **Time Complexity**: O(n * 50), where `n` is the length of the input array. Since the range of values is fixed (101 possible values), the inner loop over the frequency map is effectively O(1).
-- **Space Complexity**: O(1), as the frequency map size is fixed at 101 regardless of the input size `n`.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], k: int, x: int) -> list[int]:
-    # The range of values is [-50, 50].
-    # We map these to indices [0, 100] by adding 50.
-    freq = [0] * 101
-
-    def get_xth_smallest(x):
-        count = 0
-        for i in range(50):  # Only consider negative numbers (indices 0 to 49)
-            count += freq[i]
-            if count >= x:
-                return i - 50
-        return 0
-
-    res = []
-    # Initialize the first window
-    for i in range(k):
-        freq[nums[i] + 50] += 1
-
-    res.append(get_xth_smallest(x))
-
-    # Slide the window
-    for i in range(k, len(nums)):
-        # Remove the element sliding out
-        freq[nums[i - k] + 50] -= 1
-        # Add the element sliding in
-        freq[nums[i] + 50] += 1
-
-        res.append(get_xth_smallest(x))
-
-    return res
-```
-</details>
+- Explanation: The window `[1,2]` has no negative value and therefore contributes `0`; every other window has `-3` as its smallest value.

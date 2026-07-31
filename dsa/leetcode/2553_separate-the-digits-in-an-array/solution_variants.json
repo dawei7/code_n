@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Separate the Digits in an Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Visits each decimal digit once and appends it directly to the output in input order.",
+      "time_complexity": "O(D)",
+      "space_complexity": "O(D)"
     }
   ]
 }

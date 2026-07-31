@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one flip can disconnect the only path",
+      "name": "sample: one interior bottleneck disconnects the grid",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -28,12 +28,12 @@
       "expected": true,
       "tags": [
         "sample",
-        "grid"
+        "bottleneck"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: two independent paths remain",
+      "name": "sample: two internally disjoint paths survive one flip",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -57,44 +57,36 @@
       },
       "expected": false,
       "tags": [
-        "sample"
+        "sample",
+        "disjoint-paths"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: all-open rectangle has multiple paths",
-      "kind": "sample",
+      "id": "trial-already-disconnected",
+      "name": "trial: zero flips suffice when no path exists",
+      "kind": "trial",
       "visible": true,
       "input": {
         "grid": [
           [
             1,
-            1,
-            1,
-            1
+            0
           ],
           [
-            1,
-            1,
-            1,
-            1
-          ],
-          [
-            1,
-            1,
-            1,
+            0,
             1
           ]
         ]
       },
-      "expected": false,
+      "expected": true,
       "tags": [
-        "sample"
+        "trial",
+        "already-disconnected"
       ]
     },
     {
-      "id": "trial-two-by-two-open",
-      "name": "trial: two-by-two grid has two paths",
+      "id": "trial-open-two-by-two",
+      "name": "trial: endpoint-only alternatives cannot be cut",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,12 +103,33 @@
       },
       "expected": false,
       "tags": [
-        "trial"
+        "trial",
+        "endpoint-protection"
+      ]
+    },
+    {
+      "id": "trial-single-row-bottleneck",
+      "name": "trial: an interior cell cuts a one-row path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "single-row"
       ]
     },
     {
       "id": "real-single-cell",
-      "name": "hidden: start and end cannot be removed",
+      "name": "hidden: one cell is both protected endpoints",
       "kind": "real",
       "visible": false,
       "input": {
@@ -128,7 +141,54 @@
       },
       "expected": false,
       "tags": [
-        "hidden"
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-two-endpoints",
+      "name": "hidden: a two-cell path has no legal flip",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "endpoint-protection"
+      ]
+    },
+    {
+      "id": "real-single-column-bottleneck",
+      "name": "hidden: an interior cell cuts a one-column path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "single-column"
       ]
     }
   ]

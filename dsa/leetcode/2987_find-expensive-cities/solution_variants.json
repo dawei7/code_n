@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Expensive Cities and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Groups listings by city and compares each city average with one scalar national average.",
+      "time_complexity": "O(R log R)",
+      "space_complexity": "O(R)"
     }
   ]
 }

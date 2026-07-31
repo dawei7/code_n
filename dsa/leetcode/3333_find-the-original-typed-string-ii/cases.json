@@ -1,0 +1,127 @@
+{
+  "challenge_id": "lc_3333",
+  "cases": [
+    {
+      "id": "official-example-one",
+      "name": "official example: four two-character runs and threshold seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aabbccdd",
+        "k": 7
+      },
+      "tags": [
+        "sample",
+        "threshold"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "official-example-two",
+      "name": "official example: only the displayed word reaches eight",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aabbccdd",
+        "k": 8
+      },
+      "tags": [
+        "sample",
+        "maximum-length"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "official-example-three",
+      "name": "official example: every run-length combination is valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aaabbb",
+        "k": 3
+      },
+      "tags": [
+        "sample",
+        "all-valid"
+      ],
+      "expected": 8
+    },
+    {
+      "id": "single-run",
+      "name": "single run has a direct valid-length interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaa",
+        "k": 3
+      },
+      "tags": [
+        "single-run",
+        "boundary"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "threshold-above-display",
+      "name": "threshold exceeds the displayed length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abc",
+        "k": 4
+      },
+      "tags": [
+        "impossible",
+        "boundary"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "distinct-characters",
+      "name": "every run has fixed intended length one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdef",
+        "k": 5
+      },
+      "tags": [
+        "all-distinct",
+        "early-exit"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "nontrivial-invalid-complement",
+      "name": "several short tuples fall below the threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aaaabbbcc",
+        "k": 7
+      },
+      "tags": [
+        "real",
+        "dynamic-programming",
+        "complement"
+      ],
+      "expected": 9
+    },
+    {
+      "id": "modular-product",
+      "name": "many independent runs require modular arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabb",
+        "k": 1
+      },
+      "tags": [
+        "real",
+        "modulo",
+        "early-exit"
+      ],
+      "expected": 536396504
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3582",
+  "measurement_note": "Size S is the caption length. Legal tiers 16, 64, and 150 span more than 9x. Each workload alternates one-letter words with spaces, so the tag remains below its 100-character cap and the accepted state machine scans all S characters in O(S). A correct calibrated alternative repeatedly scans the preceding caption prefix to classify every letter, taking O(S^2); it must pass all outputs and fail only the scaling verdict.",
+  "cases": [
+    {
+      "id": "benchmark-one-letter-words-16",
+      "name": "benchmark: scan 16 caption characters across one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "caption": "a a a a a a a a "
+      },
+      "expected": "#aAAAAAAA",
+      "tags": [
+        "benchmark",
+        "streaming-scan",
+        "repeated-prefix-rescan",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-one-letter-words-64",
+      "name": "benchmark: scan 64 caption characters across one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "caption": "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a "
+      },
+      "expected": "#aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "tags": [
+        "benchmark",
+        "streaming-scan",
+        "repeated-prefix-rescan",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-one-letter-words-150",
+      "name": "benchmark: scan 150 caption characters across one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 150,
+      "input": {
+        "caption": "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a "
+      },
+      "expected": "#aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "tags": [
+        "benchmark",
+        "streaming-scan",
+        "repeated-prefix-rescan",
+        "scale-large"
+      ]
+    }
+  ]
+}

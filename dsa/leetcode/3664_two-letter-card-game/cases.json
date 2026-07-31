@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3664",
+  "cases": [
+    {
+      "id": "sample-two-points",
+      "name": "sample: center supports the second family",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cards": [
+          "aa",
+          "ab",
+          "ba",
+          "ac"
+        ],
+        "x": "a"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "center-allocation"
+      ]
+    },
+    {
+      "id": "sample-one-point",
+      "name": "sample: three usable cards yield one pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cards": [
+          "aa",
+          "ab",
+          "ba"
+        ],
+        "x": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "odd-card-count"
+      ]
+    },
+    {
+      "id": "sample-cross-family-incompatible",
+      "name": "sample: two cards differ in both positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cards": [
+          "aa",
+          "ab",
+          "ba",
+          "ac"
+        ],
+        "x": "b"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "cross-family"
+      ]
+    },
+    {
+      "id": "trial-only-centers",
+      "name": "trial: identical center cards cannot pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          "aa",
+          "aa",
+          "aa",
+          "aa"
+        ],
+        "x": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "only-centers"
+      ]
+    },
+    {
+      "id": "trial-balanced-first-family",
+      "name": "trial: two categories pair without centers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          "ab",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "x": "a"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "complete-multipartite"
+      ]
+    },
+    {
+      "id": "trial-dominant-category",
+      "name": "trial: dominant duplicates leave cards unmatched",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ac",
+          "ad"
+        ],
+        "x": "a"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "largest-category-bound"
+      ]
+    },
+    {
+      "id": "real-two-independent-families",
+      "name": "hidden: both noncentral families score independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cards": [
+          "ab",
+          "ac",
+          "ba",
+          "ca"
+        ],
+        "x": "a"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "two-families"
+      ]
+    },
+    {
+      "id": "real-center-split",
+      "name": "hidden: centers must be allocated across family demands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cards": [
+          "ab",
+          "ab",
+          "ab",
+          "ba",
+          "aa",
+          "aa"
+        ],
+        "x": "a"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "center-allocation",
+        "dominant-category"
+      ]
+    },
+    {
+      "id": "real-ignore-unusable",
+      "name": "hidden: cards without x do not participate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cards": [
+          "bc",
+          "de",
+          "ab",
+          "ac",
+          "fg"
+        ],
+        "x": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "ignored-cards"
+      ]
+    },
+    {
+      "id": "real-upper-alphabet-letter",
+      "name": "hidden: x at the upper character bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cards": [
+          "ja",
+          "jb",
+          "aj",
+          "cj",
+          "jj"
+        ],
+        "x": "j"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "alphabet-bound",
+        "center"
+      ]
+    }
+  ]
+}

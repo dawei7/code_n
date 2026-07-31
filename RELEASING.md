@@ -90,7 +90,7 @@ npm run dist:dry       # packages the .exe WITHOUT publishing
 
 This should produce both:
 
-- `electron/release/cOde(n)-Setup-0.1.0.exe` (the NSIS installer, ~95 MB)
+- `electron/release/cOde(n)-Setup-0.2.0.exe` (the NSIS installer, ~95 MB)
 - `electron/release/win-unpacked/cOde(n).exe` (the portable folder, ~170 MB)
 
 If this fails, you have a build-pipeline bug — fix that before
@@ -191,10 +191,10 @@ cd "c:/dawei7/code_n"
 # Make sure $GH_TOKEN is set in this shell.
 echo $GH_TOKEN   # sanity check; should print your token
 
-# Cut a minor release: 0.1.0 -> 0.2.0
+# Cut the next minor release: 0.2.0 -> 0.3.0
 .venv/Scripts/python.exe release.py
 
-# Or a patch release: 0.1.0 -> 0.1.1
+# Or a patch release: 0.2.0 -> 0.2.1
 .venv/Scripts/python.exe release.py --patch
 
 # Or an explicit version: 1.0.0-rc1, etc.

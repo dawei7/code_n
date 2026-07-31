@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2699",
+  "frontend_id": "2627",
+  "title_slug": "debounce",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "debounce",
+  "verified_submission_id": "2076074995",
+  "verified_at": "2026-07-21T16:19:00+00:00"
+}

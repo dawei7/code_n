@@ -5,51 +5,39 @@
 | Source | LeetCode |
 | Frontend ID | 2223 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | String, Binary Search, Rolling Hash, Suffix Array, String Matching, Hash Function |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sum-of-scores-of-built-strings](https://leetcode.com/problems/sum-of-scores-of-built-strings/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sum-of-scores-of-built-strings/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sum-of-scores-of-built-strings/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Build a final string `s` by prepending one character at a time. The intermediate string of length $i$ is named $s_i$, and $s_n$ is the complete string. Equivalently, the intermediate strings are all suffixes of the final string.
+
+The score of $s_i$ is the length of its longest common prefix with the complete string $s_n$. Return the sum of the scores of all $n$ intermediate strings, including the full string's score of $n$.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A nonempty string of lowercase English letters.
+
+Let $n=\lvert s\rvert$.
 
 **Return value**
 
-TODO
+Return the sum, over every suffix of `s`, of the suffix's longest common prefix length with `s`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "babab"`
+- Output: `9`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "azbazbzaz"`
+- Output: `14`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "aaaa"`
+- Output: `10`

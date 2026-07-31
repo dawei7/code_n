@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3254",
+  "frontend_id": "2964",
+  "title_slug": "number-of-divisible-triplet-sums",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.divisibleTripletCount",
+  "verified_submission_id": "2078424831",
+  "verified_at": "2026-07-23T13:20:50.928889+00:00"
+}

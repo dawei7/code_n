@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3923",
+    "frontend_id": "3923",
+    "title_slug": "minimum-generations-to-target-point",
+    "url": "https://leetcode.com/problems/minimum-generations-to-target-point/description/",
+    "paid_only": false,
+    "content_sha256": "dc66122d2daf336335d982c0e50ac4f208a62f413693922dca14d79144ab6e05",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "points = [[0,0,0],[6,6,6]], target = [3,3,3]",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "points = [[0,0,0],[5,5,5]], target = [1,1,1]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "points = [[0,0,0],[2,2,2],[3,3,3]], target = [2,2,2]",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 4,
+        "input": "points = [[1,2,3]], target = [5,5,5]",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4a1094caed415798cac54bd4610d8d5666f519a6a8784df5b63c2b103c1ecf4d",
+      "reference/contract.md": "bcfb62be03c3bf16c6acac269c41050c730749db5f5f88c449a407647aa32f55",
+      "reference/examples.md": "3711f0dca8460579547b46ff998464b561e547b2e29d5c15fd2a6ec63c3eeb66",
+      "reference/constraints.md": "1a48d2bccbaf76044fd522cb022fe853fc89554918f51bd2b8582572724b24ef"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

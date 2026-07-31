@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-the-digits-that-divide-a-number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-the-digits-that-divide-a-number/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a positive integer `num`. Examine every decimal digit appearing in `num` and determine whether that digit divides the original number evenly.
+
+Return how many digit occurrences pass this test. Repeated digits are counted separately: if the same divisor appears twice, both positions contribute to the answer. The input is guaranteed not to contain zero, so every digit can safely be used as a divisor.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num`: An integer satisfying $1 \le \texttt{num} \le 10^9$ whose decimal representation contains no zero.
+
+Let $d$ be the number of decimal digits in `num`; the constraints imply $1 \le d \le 9$.
 
 **Return value**
 
-TODO
+Return the number of digit occurrences `digit` in `num` for which `num % digit == 0`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 7`
+- Output: `1`
+- Explanation: The only digit is `7`, which divides the original number.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 121`
+- Output: `2`
+- Explanation: Each occurrence of `1` divides `121`, while `2` does not.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num = 1248`
+- Output: `4`
+- Explanation: The original number is divisible by each of its four digits.

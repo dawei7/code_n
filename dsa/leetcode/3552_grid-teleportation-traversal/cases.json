@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3552",
+  "cases": [
+    {
+      "id": "sample-start-portal",
+      "name": "sample: start portal saves two moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {"matrix": ["A..", ".A.", "..."]},
+      "expected": 2,
+      "tags": ["sample", "portal", "zero-cost"]
+    },
+    {
+      "id": "sample-obstacle-detour",
+      "name": "sample: route around obstacles",
+      "kind": "sample",
+      "visible": true,
+      "input": {"matrix": [".#...", ".#.#.", ".#.#.", "...#."]},
+      "expected": 13,
+      "tags": ["sample", "obstacles", "no-portals"]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: start equals destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {"matrix": ["."]},
+      "expected": 0,
+      "tags": ["trial", "minimum-grid"]
+    },
+    {
+      "id": "trial-direct-portal",
+      "name": "trial: portal connects opposite corners",
+      "kind": "trial",
+      "visible": true,
+      "input": {"matrix": ["Z.", ".Z"]},
+      "expected": 0,
+      "tags": ["trial", "portal", "zero-cost"]
+    },
+    {
+      "id": "trial-blocked-destination",
+      "name": "trial: destination is an obstacle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"matrix": ["A#"]},
+      "expected": -1,
+      "tags": ["trial", "unreachable", "obstacle"]
+    },
+    {
+      "id": "real-portal-around-wall",
+      "name": "real: teleport past a wall barrier",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": ["A#.", ".#A", "..."]},
+      "expected": 1,
+      "tags": ["real", "portal", "obstacles"]
+    },
+    {
+      "id": "real-many-identical-portals",
+      "name": "real: choose any copy of one portal letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": ["AAAAA"]},
+      "expected": 0,
+      "tags": ["real", "portal-group", "zero-cost"]
+    },
+    {
+      "id": "real-unreachable-region",
+      "name": "real: walls isolate the destination",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": ["..#", "###", "#.."]},
+      "expected": -1,
+      "tags": ["real", "unreachable", "obstacles"]
+    },
+    {
+      "id": "real-portal-is-optional",
+      "name": "real: ordinary movement remains available on portals",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": ["A..", "##A", "..."]},
+      "expected": 1,
+      "tags": ["real", "portal", "optional"]
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3897",
+  "cases": [
+    {
+      "id": "sample-pure-ones-first",
+      "name": "sample: the all-one segment precedes the mixed segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1, 2], "nums0": [1, 0]},
+      "expected": 14,
+      "tags": ["sample", "pure-ones", "reordering"]
+    },
+    {
+      "id": "sample-longer-one-prefix-first",
+      "name": "sample: the longer leading-one prefix is first",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [3, 1], "nums0": [0, 3]},
+      "expected": 120,
+      "tags": ["sample", "leading-ones", "reordering"]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one all-one segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1], "nums0": [0]},
+      "expected": 1,
+      "tags": ["trial", "minimum-length", "pure-ones"]
+    },
+    {
+      "id": "trial-single-zero-run",
+      "name": "trial: one all-zero segment has value zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [0], "nums0": [4]},
+      "expected": 0,
+      "tags": ["trial", "minimum-length", "pure-zeros"]
+    },
+    {
+      "id": "trial-short-pure-one-before-mixed",
+      "name": "trial: a short pure-one segment outranks a longer mixed segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1, 3], "nums0": [0, 2]},
+      "expected": 60,
+      "tags": ["trial", "pure-ones", "category-order"]
+    },
+    {
+      "id": "trial-equal-one-runs",
+      "name": "trial: fewer zeros breaks an equal leading-one tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [2, 2], "nums0": [3, 1]},
+      "expected": 216,
+      "tags": ["trial", "tie-break", "trailing-zeros"]
+    },
+    {
+      "id": "trial-three-mixed-segments",
+      "name": "trial: mixed segments sort by decreasing leading-one count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1, 3, 2], "nums0": [1, 1, 1]},
+      "expected": 474,
+      "tags": ["trial", "mixed-segments", "leading-ones"]
+    },
+    {
+      "id": "trial-all-segment-categories",
+      "name": "trial: pure-one, mixed, and pure-zero groups combine",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [0, 2, 1, 3], "nums0": [2, 2, 0, 0]},
+      "expected": 1008,
+      "tags": ["trial", "all-categories", "group-order"]
+    },
+    {
+      "id": "real-all-pure-ones",
+      "name": "hidden: all pure-one segments merge into one run",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [3, 1, 4], "nums0": [0, 0, 0]},
+      "expected": 255,
+      "tags": ["hidden", "pure-ones", "ties"]
+    },
+    {
+      "id": "real-all-pure-zeros",
+      "name": "hidden: every possible concatenation represents zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [0, 0, 0], "nums0": [1, 3, 2]},
+      "expected": 0,
+      "tags": ["hidden", "pure-zeros", "zero-value"]
+    },
+    {
+      "id": "real-identical-mixed-segments",
+      "name": "hidden: identical mixed segments are a true tie",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [2, 2, 2], "nums0": [2, 2, 2]},
+      "expected": 3276,
+      "tags": ["hidden", "identical-segments", "ties"]
+    },
+    {
+      "id": "real-interleaved-categories",
+      "name": "hidden: input order interleaves every segment category",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 2, 0, 4, 2], "nums0": [3, 2, 5, 0, 1]},
+      "expected": 1038592,
+      "tags": ["hidden", "all-categories", "unsorted-input"]
+    },
+    {
+      "id": "real-many-equal-one-runs",
+      "name": "hidden: ascending zero counts resolve a four-way tie",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [3, 3, 3, 3], "nums0": [4, 1, 3, 2]},
+      "expected": 3906672,
+      "tags": ["hidden", "tie-break", "trailing-zeros"]
+    },
+    {
+      "id": "real-long-all-one-value",
+      "name": "hidden: a twenty-thousand-bit all-one value requires modulo reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [10000, 10000], "nums0": [0, 0]},
+      "expected": 614428879,
+      "tags": ["hidden", "modulo", "long-runs"]
+    },
+    {
+      "id": "real-maximum-total-length",
+      "name": "hidden: the total bit count reaches its upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "nums0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000]
+      },
+      "expected": 568171769,
+      "tags": ["hidden", "upper-bound", "modulo", "all-categories"]
+    },
+    {
+      "id": "real-large-mixed-runs",
+      "name": "hidden: large unequal mixed runs exercise both ordering keys",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [10000, 9999, 1], "nums0": [1, 2, 10000]},
+      "expected": 530122693,
+      "tags": ["hidden", "large-runs", "mixed-segments", "modulo"]
+    },
+    {
+      "id": "real-zero-runs-interspersed",
+      "name": "hidden: zero-only segments move behind every segment containing ones",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [0, 1, 0, 2], "nums0": [1, 1, 4, 0]},
+      "expected": 448,
+      "tags": ["hidden", "pure-zeros", "unsorted-input"]
+    }
+  ]
+}

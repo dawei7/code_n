@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3232",
   "cases": [
     {
-      "id": "sample-single-digits-win",
-      "name": "sample: single digit sum wins",
+      "id": "sample-equal-sums",
+      "name": "sample: equal group sums",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,13 +19,101 @@
       "expected": false,
       "tags": [
         "sample",
-        "digits"
+        "tie"
       ]
     },
     {
-      "id": "sample-balanced-loss",
-      "name": "sample: equal sums cannot win",
+      "id": "sample-single-digits-win",
+      "name": "sample: single-digit sum wins",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          14
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "sample-double-digits-win",
+      "name": "sample: double-digit sum wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          25
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "double-digit"
+      ]
+    },
+    {
+      "id": "trial-one-single-digit",
+      "name": "trial: only one single-digit value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-one-double-digit",
+      "name": "trial: only one double-digit value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-digit-boundaries",
+      "name": "trial: digit-length boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          99
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-balanced-duplicates",
+      "name": "trial: duplicate singles balance a double",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -35,20 +124,40 @@
       },
       "expected": false,
       "tags": [
-        "sample",
-        "balance"
+        "duplicates",
+        "tie"
       ]
     },
     {
-      "id": "trial-double-digits-win",
-      "name": "trial: double digit sum wins",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-all-single-digits",
+      "name": "real: only single-digit values",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
           1,
-          1,
-          22
+          3,
+          5,
+          7,
+          9
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "single-digit"
+      ]
+    },
+    {
+      "id": "real-all-double-digits",
+      "name": "real: only double-digit values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30,
+          40
         ]
       },
       "expected": true,
@@ -57,43 +166,67 @@
       ]
     },
     {
-      "id": "trial-all-single",
-      "name": "trial: only single digit numbers",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          9,
-          2
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "edge"
-      ]
-    },
-    {
-      "id": "real-many-values",
-      "name": "real: mixed one and two digit values",
+      "id": "real-many-values-tie",
+      "name": "real: repeated values produce an exact tie",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          8,
-          12,
-          7,
-          33,
-          4,
-          25,
-          9,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           10
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "duplicates",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-boundary-heavy",
+      "name": "real: repeated minimum and maximum values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          99
         ]
       },
       "expected": true,
       "tags": [
-        "real",
-        "digits"
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-single-group-barely-wins",
+      "name": "real: single-digit group wins by one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          4,
+          30
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "strict",
+        "single-digit"
       ]
     }
   ]

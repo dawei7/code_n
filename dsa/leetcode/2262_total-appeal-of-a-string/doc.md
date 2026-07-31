@@ -5,51 +5,52 @@
 | Source | LeetCode |
 | Frontend ID | 2262 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Hash Table, String, Dynamic Programming |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [total-appeal-of-a-string](https://leetcode.com/problems/total-appeal-of-a-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/total-appeal-of-a-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/total-appeal-of-a-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The appeal of a string is the number of distinct characters it contains. For
+example, repeated copies of the same letter contribute only one to that
+string's appeal.
+
+Consider every substring of `s`, where a substring is a nonempty contiguous
+sequence selected by its start and end positions. Equal substring values from
+different positions are still separate substrings and each contributes its own
+appeal. Return the sum of the appeal values over all such index ranges.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A lowercase-English-letter string of length $n$, where $1\le n\le10^5$.
 
 **Return value**
 
-TODO
+Return
+
+$$
+\sum_{0\le i\le j<n}
+\left\lvert\left\{\,\texttt{s[t]}:i\le t\le j\,\right\}\right\rvert,
+$$
+
+the total distinct-character count across every substring.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abbca"`
+- Output: `28`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "code"`
+- Output: `20`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "aaaa"`
+- Output: `10`

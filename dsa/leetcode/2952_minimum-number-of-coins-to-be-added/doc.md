@@ -8,80 +8,50 @@
 | Category | Algorithms |
 | Topics | Array, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-coins-to-be-added](https://leetcode.com/problems/minimum-number-of-coins-to-be-added/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-coins-to-be-added/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-coins-to-be-added/).
-
 ### Goal
-Given an array of integers representing available coin denominations and a target integer `target`, determine the minimum number of additional coins required to ensure that every integer value from 1 to `target` can be formed by summing a subset of the available coins.
+You are given a 0-indexed array `coins` containing the values of the available
+coins and a positive integer `target`. An integer is obtainable when some
+nonempty subsequence of the array has that sum. Each coin occurrence may be
+selected at most once, and deleting elements to form a subsequence does not
+change the relative order of those retained.
+
+You may add coins of any positive values to the array. Determine the minimum
+number of added coins needed so that every integer in the inclusive range
+$[1,\texttt{target}]$ is obtainable from the resulting collection.
 
 ### Function Contract
 **Inputs**
 
-- `coins`: A list of integers representing the denominations of the coins currently available.
-- `target`: An integer representing the upper bound of the range [1, target] that must be representable.
+- `coins`: the positive values of the currently available coins
+- `target`: the inclusive upper endpoint of the sums that all must be obtainable
+
+Let $N=\lvert\texttt{coins}\rvert$. The contract guarantees
+$1\le N\le10^5$, $1\le\texttt{target}\le10^5$, and
+$1\le\texttt{coins[i]}\le\texttt{target}$.
 
 **Return value**
 
-- An integer representing the minimum count of coins that must be added to the collection.
+The minimum count of additional coins required to make every sum from `1`
+through `target` obtainable.
 
 ### Examples
 **Example 1**
 
-- Input: `coins = [1, 4, 10], target = 19`
+- Input: `coins = [1,4,10], target = 19`
 - Output: `2`
+- Explanation: Adding coins `2` and `8` makes every required sum obtainable.
 
 **Example 2**
 
-- Input: `coins = [1, 4, 10, 5, 7, 19], target = 19`
+- Input: `coins = [1,4,10,5,7,19], target = 19`
 - Output: `1`
+- Explanation: Adding only coin `2` closes the first gap and the existing coins cover the rest.
 
 **Example 3**
 
-- Input: `coins = [1, 1, 1], target = 20`
+- Input: `coins = [1,1,1], target = 20`
 - Output: `3`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Greedy approach**. We maintain a variable `reachable`, representing the maximum value such that all integers in the range `[1, reachable]` can be formed. Initially, `reachable = 0`. We sort the coins and iterate through them. If the current coin `c` is less than or equal to `reachable + 1`, we can extend our range to `reachable + c`. If `c > reachable + 1`, we have a gap, and we must add a coin of value `reachable + 1` to bridge it, incrementing our count and updating `reachable` accordingly.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log N)` where `N` is the number of coins, primarily due to the sorting step. The subsequent linear scan takes `O(N + log(target))` time.
-- **Space Complexity**: `O(1)` or `O(N)` depending on the sorting implementation's space requirements.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(coins: List[int], target: int) -> int:
-    """
-    Calculates the minimum number of coins to add to make all values
-    from 1 to target representable.
-    """
-    coins.sort()
-    reachable = 0
-    added_count = 0
-    i = 0
-    n = len(coins)
-
-    while reachable < target:
-        # If the next coin is within the reachable range + 1,
-        # we can extend the range to reachable + coins[i]
-        if i < n and coins[i] <= reachable + 1:
-            reachable += coins[i]
-            i += 1
-        else:
-            # Otherwise, we must add a coin of value (reachable + 1)
-            # to bridge the gap and extend the range to (2 * reachable + 1)
-            reachable += (reachable + 1)
-            added_count += 1
-
-    return added_count
-```
-</details>
+- Explanation: Coins `4`, `8`, and `16` are sufficient, and fewer additions cannot cover the whole range.

@@ -8,48 +8,58 @@
 | Category | Algorithms |
 | Topics | String, Sliding Window, Rolling Hash, Hash Function |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-substring-with-given-hash-value](https://leetcode.com/problems/find-substring-with-given-hash-value/) |
+| LeetCode | [Open](https://leetcode.com/problems/find-substring-with-given-hash-value/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-substring-with-given-hash-value/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+For a lowercase string $t$ of length $k$, define
+$\operatorname{val}(\texttt{a})=1$ through
+$\operatorname{val}(\texttt{z})=26$. Given integers $p$ and $m$, its hash is
+
+$$
+\operatorname{hash}(t,p,m)
+=
+\left(
+\sum_{j=0}^{k-1}
+\operatorname{val}(t[j])p^j
+\right)
+\bmod m.
+$$
+
+Given a lowercase string `s` and the values `power`, `modulo`, `k`, and
+`hashValue`, find the first contiguous substring of `s` whose length is
+exactly `k` and whose hash under this definition equals `hashValue`. A matching
+substring is guaranteed to exist.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a lowercase English string with length from $1$ through $2\cdot10^4$.
+- `power`: the hash base, where $1 \le \texttt{power} \le 10^9$.
+- `modulo`: the modulus, where $1 \le \texttt{modulo} \le 10^9$.
+- `k`: the required substring length, where $1 \le k \le \lvert s\rvert$.
+- `hashValue`: the required residue, where
+  $0 \le \texttt{hashValue} < \texttt{modulo}$.
 
 **Return value**
 
-TODO
+The leftmost length-`k` substring whose defined hash equals `hashValue`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "leetcode", power = 7, modulo = 20, k = 2, hashValue = 0`
+- Output: `"ee"`
+- Explanation: The hash is `(5 * 1 + 5 * 7) % 20 = 0`, and `"ee"` is the
+  first matching length-two substring.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "fbxzaad", power = 31, modulo = 100, k = 3, hashValue = 32`
+- Output: `"fbx"`
+- Explanation: Both `"fbx"` and the later substring `"bxz"` hash to `32`, so
+  the earlier one is returned.

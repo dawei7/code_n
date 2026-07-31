@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3825",
+  "frontend_id": "3481",
+  "title_slug": "apply-substitutions",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.applySubstitutions",
+  "verified_submission_id": "2082213926",
+  "verified_at": "2026-07-26T15:24:00Z"
+}

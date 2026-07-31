@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Number of Coins for Fruits II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Computes the suffix purchase dynamic program while a monotonic deque supplies each transition range's minimum in amortized constant time.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

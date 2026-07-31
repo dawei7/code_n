@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2307",
+  "cases": [
+    {"id":"sample-consistent","name":"sample: a three-equation cycle is consistent","kind":"sample","visible":true,"input":{"equations":[["a","b"],["b","c"],["a","c"]],"values":[3.0,0.5,1.5]},"expected":false,"tags":["sample","consistent-cycle"]},
+    {"id":"sample-contradiction","name":"sample: an indirect ratio conflicts with the final equation","kind":"sample","visible":true,"input":{"equations":[["le","et"],["le","code"],["code","et"]],"values":[2.0,5.0,0.5]},"expected":true,"tags":["sample","contradiction"]},
+    {"id":"trial-single","name":"one equation cannot contradict itself","kind":"trial","visible":true,"input":{"equations":[["x","y"]],"values":[2.5]},"expected":false,"tags":["single-equation"]},
+    {"id":"trial-reversed","name":"a reciprocal equation agrees with the first","kind":"trial","visible":true,"input":{"equations":[["a","b"],["b","a"]],"values":[4.0,0.25]},"expected":false,"tags":["reciprocal"]},
+    {"id":"trial-disconnected","name":"separate consistent components remain independent","kind":"trial","visible":true,"input":{"equations":[["a","b"],["c","d"],["b","a"],["d","c"]],"values":[2.0,3.0,0.5,0.3333333333]},"expected":false,"tags":["disconnected"]},
+    {"id":"real-repeated-conflict","name":"hidden: a repeated equation changes its value","kind":"real","visible":false,"input":{"equations":[["aa","bb"],["aa","bb"]],"values":[1.25,1.5]},"expected":true,"tags":["hidden","duplicate"]},
+    {"id":"real-long-chain","name":"hidden: a longer chain supports a consistent shortcut","kind":"real","visible":false,"input":{"equations":[["a","b"],["b","c"],["c","d"],["d","e"],["a","e"]],"values":[2.0,3.0,0.5,4.0,12.0]},"expected":false,"tags":["hidden","chain"]},
+    {"id":"real-self-conflict","name":"hidden: a variable divided by itself must equal one","kind":"real","visible":false,"input":{"equations":[["same","same"]],"values":[1.01]},"expected":true,"tags":["hidden","self-ratio"]},
+    {"id":"real-within-tolerance","name":"hidden: a discrepancy below the tolerance is accepted","kind":"real","visible":false,"input":{"equations":[["a","b"],["a","b"]],"values":[1.0,1.000009]},"expected":false,"tags":["hidden","tolerance"]},
+    {"id":"real-at-tolerance","name":"hidden: a discrepancy at the tolerance is contradictory","kind":"real","visible":false,"input":{"equations":[["a","b"],["a","b"]],"values":[1.0,1.00001]},"expected":true,"tags":["hidden","tolerance-boundary"]}
+  ]
+}

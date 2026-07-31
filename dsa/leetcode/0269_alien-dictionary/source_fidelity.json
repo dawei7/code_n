@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_269", "frontend_id": "269", "title_slug": "alien-dictionary", "url": "https://leetcode.com/problems/alien-dictionary/description/", "paid_only": true, "content_sha256": "ee77bfbfd1a00afe0b4f4c2c096118a97e228acc5231b332a8e0fa5355b53d9b", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]", "output": "\"wertf\"", "has_explanation": false}, {"ordinal": 2, "input": "words = [\"z\",\"x\"]", "output": "\"zx\"", "has_explanation": false}, {"ordinal": 3, "input": "words = [\"z\",\"x\",\"z\"]", "output": "\"\"", "has_explanation": true}],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "b103d4bd636eea91edfbbbfecfa7b675dbe6f8ddec2278e27bc019f29de16f9c", "reference/contract.md": "37bb94de7b3d5f52fd8f6f050ecb08c39d2331273eb52b572d3afaaf79999fea", "reference/examples.md": "19cf45604eb48ab1bb86b666a351828c25be274de9b58c50be5b8f81950fb621", "reference/constraints.md": "5b4252b116ffb65b084e1dda84bfdc9012acf451dc27e0c0f37dff77c926c6b3"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

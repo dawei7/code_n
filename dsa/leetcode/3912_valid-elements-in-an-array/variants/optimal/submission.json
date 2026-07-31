@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4290",
+  "frontend_id": "3912",
+  "title_slug": "valid-elements-in-an-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.findValidElements",
+  "verified_submission_id": "2086838297",
+  "verified_at": "2026-07-30T03:08:49.254682+00:00"
+}

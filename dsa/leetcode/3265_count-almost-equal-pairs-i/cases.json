@@ -2,8 +2,8 @@
   "challenge_id": "lc_3265",
   "cases": [
     {
-      "id": "sample-leading-zero-swap",
-      "name": "sample: swap can introduce leading zero",
+      "id": "sample-leading-zero-and-swap",
+      "name": "sample: two qualifying pairs",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,8 +22,8 @@
       ]
     },
     {
-      "id": "sample-equal-values",
-      "name": "sample: equal values count",
+      "id": "sample-all-identical",
+      "name": "sample: five equal values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -31,76 +31,206 @@
           1,
           1,
           1,
+          1,
           1
         ]
       },
-      "expected": 6,
+      "expected": 10,
       "tags": [
         "sample",
         "duplicates"
       ]
     },
     {
-      "id": "trial-one-swap-cluster",
-      "name": "trial: one-swap cluster",
-      "kind": "trial",
+      "id": "sample-three-cycle",
+      "name": "sample: a three-cycle needs two swaps",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
           123,
-          132,
-          213,
-          321,
-          456
+          231
         ]
       },
-      "expected": 3,
+      "expected": 0,
       "tags": [
-        "swap"
+        "sample",
+        "not-almost-equal"
       ]
     },
     {
-      "id": "trial-different-lengths",
-      "name": "trial: different digit lengths with padding",
+      "id": "trial-minimum-pair",
+      "name": "trial: two equal minimum values",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          10,
           1,
-          100,
-          1000,
-          11
+          1
         ]
       },
-      "expected": 6,
+      "expected": 1,
       "tags": [
-        "padding"
+        "minimum",
+        "equal"
       ]
     },
     {
-      "id": "real-mixed-pairs",
-      "name": "real: mixed hidden pair groups",
+      "id": "trial-simple-swap",
+      "name": "trial: reversed two-digit values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          21
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-swap"
+      ]
+    },
+    {
+      "id": "trial-leading-zero-chain",
+      "name": "trial: several zero-collapse relationships",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          30,
+          300
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "leading-zero",
+        "different-lengths"
+      ]
+    },
+    {
+      "id": "trial-repeated-digits",
+      "name": "trial: swaps among repeated digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          112,
+          121,
+          211
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "repeated-digits",
+        "swaps"
+      ]
+    },
+    {
+      "id": "real-touching-anagrams",
+      "name": "real: anagrams are not automatically one swap apart",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          1023,
-          1203,
-          3210,
-          2301,
-          909,
-          990,
-          99,
-          9009,
           1234,
+          2143,
+          4321,
           1243
         ]
       },
-      "expected": 7,
+      "expected": 2,
       "tags": [
-        "real",
-        "pairs"
+        "anagrams",
+        "multiple-swaps"
+      ]
+    },
+    {
+      "id": "real-zeros-and-duplicates",
+      "name": "real: duplicate powers of ten and reductions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          10,
+          100,
+          1000,
+          10,
+          1
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "zeros",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-mixed-lengths",
+      "name": "real: qualifying and nonqualifying mixed lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          70,
+          700,
+          107,
+          170,
+          701
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "mixed",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "real-seven-digits",
+      "name": "real: maximum digit count and value bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          1,
+          10,
+          100,
+          1000000
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "seven-digits",
+        "bounds"
+      ]
+    },
+    {
+      "id": "real-large-mixed",
+      "name": "real: repeated swap families and unrelated values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          123456,
+          123465,
+          623451,
+          654321,
+          120345,
+          102345,
+          999999,
+          999999,
+          456123,
+          321456
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "mixed",
+        "duplicates"
       ]
     }
   ]

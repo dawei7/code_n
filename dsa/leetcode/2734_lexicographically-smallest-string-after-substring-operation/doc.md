@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | String, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [lexicographically-smallest-string-after-substring-operation](https://leetcode.com/problems/lexicographically-smallest-string-after-substring-operation/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/lexicographically-smallest-string-after-substring-operation/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/lexicographically-smallest-string-after-substring-operation/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a lowercase English string, perform exactly one operation on a nonempty contiguous substring. Replace every selected letter with the letter immediately preceding it in the alphabet: `b` becomes `a`, `c` becomes `b`, and so on, while `a` wraps around to `z`.
+
+Return the lexicographically smallest string obtainable after that single operation. The chosen substring may contain one character or the entire string, but it cannot be empty; consequently, even a string made entirely of `a` characters must be changed somewhere.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string with $1 \le \lvert s \rvert \le 3\cdot10^5$.
 
 **Return value**
 
-TODO
+Return the lexicographically smallest string obtainable by decrementing every character of exactly one nonempty substring, using alphabetic wraparound from `a` to `z`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "cbabc"`
+- Output: `"baabc"`
+- Explanation: Decrementing the prefix `"cb"` changes it to `"ba"`; extending through the following `a` would wrap that position to `z`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aa"`
+- Output: `"az"`
+- Explanation: Some character must change, and changing the last `a` delays the unavoidable `z` as far right as possible.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "acbbc"`
+- Output: `"abaab"`
+- Explanation: The first `a` is skipped and the remaining non-`a` suffix is decremented.

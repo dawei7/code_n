@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3560",
+  "measurement_note": "Size is k, the truck capacity and the range a split-enumeration solution must scan. Legal tiers 100, 1000, and 10000 span 100x. Each overlong log has length k+1, giving k feasible integer cuts, so the O(1) boundary formula is stable while correct enumeration is O(k) and must fail only scaling without reaching the safety cap.",
+  "cases": [
+    {
+      "id": "benchmark-one-excess-100",
+      "name": "benchmark: one-unit excess at capacity 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"n": 101, "m": 100, "k": 100},
+      "expected": 100,
+      "tags": ["benchmark", "one-unit-excess", "scale-small"]
+    },
+    {
+      "id": "benchmark-one-excess-1000",
+      "name": "benchmark: one-unit excess at capacity 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"n": 1001, "m": 1000, "k": 1000},
+      "expected": 1000,
+      "tags": ["benchmark", "one-unit-excess", "scale-medium"]
+    },
+    {
+      "id": "benchmark-one-excess-10000",
+      "name": "benchmark: one-unit excess at capacity 10000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {"n": 10001, "m": 10000, "k": 10000},
+      "expected": 10000,
+      "tags": ["benchmark", "one-unit-excess", "scale-large"]
+    }
+  ]
+}

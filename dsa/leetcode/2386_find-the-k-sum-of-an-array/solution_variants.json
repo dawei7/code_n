@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the K-Sum of an Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Transforms every subsequence sum into a loss from the maximum sum and enumerates the smallest losses with a min-heap.",
+      "time_complexity": "O(n log n + k log k)",
+      "space_complexity": "O(n + k)"
     }
   ]
 }

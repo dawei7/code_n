@@ -1,96 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3045",
   "cases": [
     {
       "id": "sample-nested-prefix-suffix",
-      "name": "sample: trie counts nested prefix-suffix words",
+      "name": "sample: nested prefix-suffix words",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "words": [
-          "a",
-          "aba",
-          "ababa",
-          "aa",
-          "a"
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "sample"
-      ]
+      "input": {"words": ["a", "aba", "ababa", "aa"]},
+      "expected": 4,
+      "tags": ["sample"]
     },
     {
-      "id": "sample-identical",
-      "name": "sample: identical words pair by earlier occurrence",
+      "id": "sample-two-independent-pairs",
+      "name": "sample: two independent pairs",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "words": [
-          "abc",
-          "abc",
-          "abc"
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-pal-like",
-      "name": "trial: prefix and suffix pair paths share characters",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "words": [
-          "ab",
-          "abab",
-          "abxxab",
-          "baab"
-        ]
-      },
+      "input": {"words": ["pa", "papa", "ma", "mama"]},
       "expected": 2,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["sample"]
     },
     {
-      "id": "trial-no-pairs",
-      "name": "trial: no pair satisfies both sides",
+      "id": "sample-earlier-word-longer",
+      "name": "sample: earlier word is longer",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["abab", "ab"]},
+      "expected": 0,
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "trial: one word has no pair",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "words": [
-          "ab",
-          "bc",
-          "ca"
-        ]
-      },
+      "input": {"words": ["a"]},
       "expected": 0,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "boundary"]
     },
     {
-      "id": "real-many-overlaps",
-      "name": "real: multiple overlapping pair paths",
+      "id": "trial-repeated-word",
+      "name": "trial: repeated and nested words count by index order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["x", "x", "xx", "xxx"]},
+      "expected": 6,
+      "tags": ["trial", "duplicates"]
+    },
+    {
+      "id": "real-earlier-longer",
+      "name": "real: longer earlier word cannot match a shorter later word",
       "kind": "real",
       "visible": false,
-      "input": {
-        "words": [
-          "x",
-          "xyx",
-          "xyzyx",
-          "xx",
-          "x"
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "real",
-        "trie"
-      ]
+      "input": {"words": ["abcd", "ab", "abcab"]},
+      "expected": 1,
+      "tags": ["real", "length-order"]
+    },
+    {
+      "id": "real-overlapping",
+      "name": "real: overlapping prefix-suffix relationships",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["a", "aa", "aaa", "aaaa", "baba", "ba"]},
+      "expected": 6,
+      "tags": ["real", "overlap"]
+    },
+    {
+      "id": "real-one-sided-matches",
+      "name": "real: prefix-only and suffix-only matches do not count",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["ab", "aba", "zab", "abzab"]},
+      "expected": 1,
+      "tags": ["real", "one-sided"]
     }
   ]
 }

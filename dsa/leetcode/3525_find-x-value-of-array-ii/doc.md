@@ -8,98 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Math, Segment Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-x-value-of-array-ii](https://leetcode.com/problems/find-x-value-of-array-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-x-value-of-array-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-x-value-of-array-ii/).
 
 ### Goal
-Given an array of integers, determine the "X value" of the array, which is defined by a specific bitwise transformation process. The process involves calculating the XOR sum of all possible subarrays and then performing a secondary aggregation based on the bitwise properties of these sums. The goal is to compute this value efficiently, typically requiring an approach that avoids the $O(N^2)$ brute-force subarray enumeration.
+
+You are given an array of positive integers `nums`, a positive integer `k`, and a list of queries. A query `[index, value, start, x]` first assigns `nums[index] = value`; this update persists and affects every later query. It then requires the prefix `nums[0..start - 1]` to be removed, where `start = 0` means removing an empty prefix.
+
+After that required removal, choose a suffix to remove while leaving at least one element. The query's x-value is the number of choices whose remaining prefix of `nums[start..]` has a product congruent to $x$ modulo $k$. Return one x-value per query. This version counts prefixes of the selected suffix range, rather than all subarrays as in Find X Value of Array I.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the input array.
-- `k`: An integer representing the threshold or bitwise constraint parameter.
+- `nums`: An array of positive integers updated in place conceptually across queries.
+- `k`: The modulus used for all product remainders.
+- `queries`: A list whose entries are `[index, value, start, x]`.
+
+The constraints are $1 \le \lvert\texttt{nums}\rvert \le 10^5$, $1 \le k \le 5$, and $1 \le \lvert\texttt{queries}\rvert \le 2 \cdot 10^4$. Array and update values are between $1$ and $10^9$; indices and starts are valid array positions, and $0 \le x < k$.
 
 **Return value**
 
-- An integer representing the calculated X value of the array.
+- An integer array in query order, containing the requested x-value after each persistent update.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 3], k = 1`
-- Output: `2`
+- Input: `nums = [1, 2, 3, 4, 5], k = 3, queries = [[2, 2, 0, 2], [3, 3, 3, 0], [0, 1, 0, 1]]`
+- Output: `[2, 2, 2]`
 
 **Example 2**
 
-- Input: `nums = [4, 5, 6], k = 2`
-- Output: `0`
+- Input: `nums = [1, 2, 4, 8, 16, 32], k = 4, queries = [[0, 2, 0, 2], [0, 2, 0, 1]]`
+- Output: `[1, 0]`
 
 **Example 3**
 
-- Input: `nums = [1, 1, 1], k = 3`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-The problem is solved using a combination of **Bitwise Prefix Sums** and **Segment Tree** (or Fenwick Tree) data structures. Since XOR operations are independent for each bit, we can process each bit position (0 to 30) separately. By maintaining the count of set bits in prefix XOR arrays, we can determine the number of subarrays whose XOR sum has a specific bit set in $O(N \log N)$ or $O(N)$ time.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \cdot \log(\max(nums)))$, where $N$ is the length of the array. We iterate through each bit position and perform linear scans or logarithmic tree operations.
-- **Space Complexity**: $O(N)$ to store prefix XOR counts or the segment tree structure.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], k: int) -> int:
-    """
-    Calculates the X value of the array by analyzing bitwise contributions
-    of all subarrays.
-    """
-    n = len(nums)
-    ans = 0
-
-    # We process each bit position independently.
-    # For each bit, we count how many subarrays have an XOR sum
-    # with that bit set.
-    for bit in range(31):
-        # Current bit contribution
-        count_ones = 0
-
-        # Prefix XORs for the current bit
-        # prefix_xor[i] is the XOR sum of nums[0...i-1]
-        # We only care about the 'bit'-th bit.
-        current_prefix = 0
-
-        # Track counts of prefix XORs seen so far (0 or 1)
-        # count[0] is number of prefixes with bit 0, count[1] with bit 1
-        counts = [1, 0]
-
-        total_subarrays_with_bit = 0
-
-        for x in nums:
-            # Update prefix XOR for this bit
-            if (x >> bit) & 1:
-                current_prefix ^= 1
-
-            # If current_prefix is 1, we need previous prefix to be 0
-            # If current_prefix is 0, we need previous prefix to be 1
-            total_subarrays_with_bit += counts[1 - current_prefix]
-
-            # Update counts
-            counts[current_prefix] += 1
-
-        # If the number of subarrays with this bit set satisfies the condition
-        # (e.g., divisible by k or similar logic depending on specific problem variant)
-        if total_subarrays_with_bit % k == 0:
-            ans |= (1 << bit)
-
-    return ans
-```
-</details>
+- Input: `nums = [1, 1, 2, 1, 1], k = 2, queries = [[2, 1, 0, 1]]`
+- Output: `[5]`

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Ways to Assign Edge Weights II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Preprocesses binary ancestors and depths, derives every path length through its lowest common ancestor, and converts that length to the odd-parity assignment count.",
+      "time_complexity": "O((n+q) log n)",
+      "space_complexity": "O(n log n)"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2814",
+  "frontend_id": "2757",
+  "title_slug": "generate-circular-array-values",
+  "paid_only": true,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "cycleGenerator",
+  "verified_submission_id": "2076528328",
+  "verified_at": "2026-07-22T03:40:00+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2693",
+  "frontend_id": "2548",
+  "title_slug": "maximum-price-to-fill-a-bag",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxPrice",
+  "verified_submission_id": "2075382751",
+  "verified_at": "2026-07-21T05:56:00+00:00"
+}

@@ -2,113 +2,85 @@
   "challenge_id": "lc_3378",
   "cases": [
     {
-      "id": "sample-four-components",
-      "name": "sample: one small lcm edge and three isolated nodes",
+      "id": "sample-official-one",
+      "name": "sample: one edge and three isolated nodes",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          4,
-          8,
-          3,
-          9
-        ],
-        "threshold": 5
-      },
+      "input": {"nums": [2, 4, 8, 3, 9], "threshold": 5},
       "expected": 4,
-      "tags": [
-        "sample",
-        "lcm",
-        "dsu"
-      ]
+      "tags": ["sample", "lcm"]
     },
     {
-      "id": "sample-two-components",
-      "name": "sample: transitive lcm connections below threshold",
+      "id": "sample-official-two",
+      "name": "sample: transitive component and one isolated node",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          4,
-          8,
-          3,
-          9,
-          12
-        ],
-        "threshold": 10
-      },
+      "input": {"nums": [2, 4, 8, 3, 9, 12], "threshold": 10},
       "expected": 2,
-      "tags": [
-        "sample",
-        "lcm",
-        "dsu"
-      ]
+      "tags": ["sample", "transitive-connectivity"]
     },
     {
       "id": "trial-values-above-threshold",
-      "name": "trial: values above threshold are isolated components",
+      "name": "trial: every value above threshold is isolated",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          6,
-          30,
-          35
-        ],
-        "threshold": 12
-      },
+      "input": {"nums": [2, 6, 30, 35], "threshold": 12},
       "expected": 3,
-      "tags": [
-        "regression",
-        "above-threshold"
-      ]
+      "tags": ["above-threshold", "isolation"]
     },
     {
-      "id": "trial-common-multiple-bridge",
-      "name": "trial: connection through a common multiple not present in nums",
+      "id": "trial-common-multiple-not-present",
+      "name": "trial: absent common multiple still creates edges",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          6,
-          10,
-          15,
-          77
-        ],
-        "threshold": 30
-      },
+      "input": {"nums": [6, 10, 15, 77], "threshold": 30},
       "expected": 2,
-      "tags": [
-        "regression",
-        "common-multiple"
-      ]
+      "tags": ["common-multiple", "dsu"]
+    },
+    {
+      "id": "trial-transitive-bridge",
+      "name": "trial: endpoints connect only through a third value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 6, 9], "threshold": 18},
+      "expected": 1,
+      "tags": ["transitive-connectivity", "bridge"]
+    },
+    {
+      "id": "trial-strict-threshold",
+      "name": "trial: lcm just above threshold creates no edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6, 10], "threshold": 29},
+      "expected": 2,
+      "tags": ["strict-boundary", "lcm"]
+    },
+    {
+      "id": "real-one-connects-domain",
+      "name": "hidden: value one connects all values within threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 199, 200], "threshold": 200},
+      "expected": 1,
+      "tags": ["hidden", "value-one", "connected-domain"]
+    },
+    {
+      "id": "real-single-large-value",
+      "name": "hidden: one large node remains one component",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000], "threshold": 200000},
+      "expected": 1,
+      "tags": ["hidden", "single-node", "maximum-value", "maximum-threshold"]
     },
     {
       "id": "real-mixed-components",
-      "name": "real: mixed connected and isolated lcm groups",
+      "name": "hidden: mixed connected and isolated lcm groups",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          4,
-          6,
-          9,
-          14,
-          21,
-          25,
-          49,
-          121
-        ],
-        "threshold": 42
-      },
+      "input": {"nums": [4, 6, 9, 14, 21, 25, 49, 121], "threshold": 42},
       "expected": 4,
-      "tags": [
-        "real",
-        "lcm"
-      ]
+      "tags": ["hidden", "mixed-components"]
     }
   ]
 }

@@ -5,51 +5,42 @@
 | Source | LeetCode |
 | Frontend ID | 3630 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Math, Greedy, Bit Manipulation, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [partition-array-for-maximum-xor-and-and](https://leetcode.com/problems/partition-array-for-maximum-xor-and-and/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/partition-array-for-maximum-xor-and-and/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/partition-array-for-maximum-xor-and-and/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an integer array `nums`, assign every element to exactly one of three subsequences `A`, `B`, and `C`. Any of the three subsequences may be empty, and the original relative order within a subsequence does not affect its bitwise aggregate.
+
+The value of a partition is `XOR(A) + AND(B) + XOR(C)`. The XOR of an empty subsequence and the AND of an empty subsequence are both defined as zero for this problem. Determine the greatest value obtainable over all valid assignments of the array elements.
+
+Only the maximum numeric value is required. If several partitions achieve it, any of them is equally valid.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ positive integers, where $1 \le n \le 19$ and $1 \le \texttt{nums[i]} \le 10^9$.
 
 **Return value**
 
-TODO
+Return an integer equal to the maximum possible value of `XOR(A) + AND(B) + XOR(C)` over all three-way partitions.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 3]`
+- Output: `5`
+- Explanation: Put 3 in `A`, 2 in `B`, and leave `C` empty to obtain $3+2+0=5$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 2]`
+- Output: `6`
+- Explanation: The singleton groups `A = [1]`, `B = [2]`, and `C = [3]` contribute $1+2+3=6$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [2, 3, 6, 7]`
+- Output: `15`
+- Explanation: One optimum uses `A = [7]`, `B = [2, 3]`, and `C = [6]`, giving $7+2+6=15$.

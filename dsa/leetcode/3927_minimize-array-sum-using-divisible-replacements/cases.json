@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3927",
+  "cases": [
+    {
+      "id": "sample-one-replacement",
+      "name": "sample: one divisible value is reduced",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 6, 2]},
+      "expected": 7,
+      "tags": ["sample", "single-replacement"]
+    },
+    {
+      "id": "sample-shared-donor",
+      "name": "sample: one donor reduces two multiples",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 2, 8, 3]},
+      "expected": 9,
+      "tags": ["sample", "shared-divisor"]
+    },
+    {
+      "id": "sample-no-divisible-pair",
+      "name": "sample: no operation reduces the array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7, 5, 9]},
+      "expected": 21,
+      "tags": ["sample", "irreducible"]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one element already has the minimum value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": 1,
+      "tags": ["trial", "minimum-length", "one"]
+    },
+    {
+      "id": "trial-one-reduces-everything",
+      "name": "trial: an existing one reduces every position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6, 10, 15, 1]},
+      "expected": 4,
+      "tags": ["trial", "one", "global-divisor"]
+    },
+    {
+      "id": "trial-duplicates-contribute-separately",
+      "name": "trial: duplicate values each contribute to the sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [8, 4, 4, 2, 6]},
+      "expected": 10,
+      "tags": ["trial", "duplicates", "shared-divisor"]
+    },
+    {
+      "id": "trial-absent-gcd",
+      "name": "trial: an absent gcd cannot be introduced",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6, 10]},
+      "expected": 16,
+      "tags": ["trial", "absent-value", "gcd-trap"]
+    },
+    {
+      "id": "trial-chain-has-direct-minimum",
+      "name": "trial: a divisor chain reaches the same direct minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [36, 18, 12, 6]},
+      "expected": 24,
+      "tags": ["trial", "divisor-chain", "transitivity"]
+    },
+    {
+      "id": "trial-different-minimum-divisors",
+      "name": "trial: values choose different smallest present divisors",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3, 4, 9, 18]},
+      "expected": 12,
+      "tags": ["trial", "multiple-divisors", "mixed-minima"]
+    },
+    {
+      "id": "trial-no-common-divisor-present",
+      "name": "trial: pairwise gcds do not help without a present donor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6, 10, 15]},
+      "expected": 31,
+      "tags": ["trial", "gcd-trap", "irreducible"]
+    },
+    {
+      "id": "hidden-partial-reduction",
+      "name": "hidden: only one connected divisibility family reduces",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 6, 15, 25]},
+      "expected": 44,
+      "tags": ["hidden", "partial-reduction", "absent-divisors"]
+    },
+    {
+      "id": "hidden-maximum-value",
+      "name": "hidden: maximum values use the smallest present divisor",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [99991, 100000, 50000, 25000]},
+      "expected": 174991,
+      "tags": ["hidden", "maximum-value", "large-prime"]
+    },
+    {
+      "id": "hidden-all-equal",
+      "name": "hidden: equal values cannot reduce one another",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]},
+      "expected": 2000000,
+      "tags": ["hidden", "duplicates", "large-sum"]
+    },
+    {
+      "id": "hidden-smallest-divisor-not-nearest",
+      "name": "hidden: the smallest divisor beats a closer larger divisor",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [72, 24, 18, 12, 9]},
+      "expected": 51,
+      "tags": ["hidden", "smallest-divisor", "multiple-divisors"]
+    },
+    {
+      "id": "hidden-disjoint-families",
+      "name": "hidden: independent divisor families minimize separately",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [14, 7, 22, 11, 49, 121]},
+      "expected": 54,
+      "tags": ["hidden", "disjoint-families", "duplicates-after-replacement"]
+    }
+  ]
+}

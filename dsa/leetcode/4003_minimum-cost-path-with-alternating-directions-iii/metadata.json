@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_4003",
+  "source": "leetcode",
+  "frontend_id": "4003",
+  "slug": "minimum-cost-path-with-alternating-directions-iii",
+  "title": "Minimum Cost Path with Alternating Directions III",
+  "difficulty": "Hard",
+  "acceptance_rate": 60.74697912852435,
+  "frequency": 1.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1999.539318,
+  "contest_source": null,
+  "contest_slug": null,
+  "contest_problem_index": null,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/minimum-cost-path-with-alternating-directions-iii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

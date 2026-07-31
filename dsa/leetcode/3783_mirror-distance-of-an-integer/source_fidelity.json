@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3783",
+    "frontend_id": "3783",
+    "title_slug": "mirror-distance-of-an-integer",
+    "url": "https://leetcode.com/problems/mirror-distance-of-an-integer/description/",
+    "paid_only": false,
+    "content_sha256": "71dc6bfa76fdad8f7fc7de841ed99b8c27704873b64546872d2562d10798a9e6",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal":1,"input":"`n = 25`","output":"`27`","has_explanation":true},
+      {"ordinal":2,"input":"`n = 10`","output":"`9`","has_explanation":true},
+      {"ordinal":3,"input":"`n = 7`","output":"`0`","has_explanation":true}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "46bccffbdc2276008fa80bab73ee221a4bf09aded50f40c60a0d7ff0f15f40d2",
+      "reference/contract.md": "6d7d0e5700fa9b1e3552d951d3688ac7eb5245026fdd65f66f453ae1f8dcc6b6",
+      "reference/examples.md": "5338ec09bb14b85b64703ed56b8e8af72bc2849c2eea033995de2a5349206f3c",
+      "reference/constraints.md": "fac7ef0277259701ae96a1d369e67002712623c2aca447b7cae70f13c129e0d2"
+    },
+    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+  }
+}

@@ -1,18 +1,30 @@
-def solve(s: str, t: str, nextCost: list[int], prevCost: list[int]) -> int:
-    n = 26
-    dist = [[10**30] * n for _ in range(n)]
+def solve(s: str, t: str, nextCost: list[int], previousCost: list[int]) -> int:
+    next_prefix = [0] * 27
+    previous_prefix = [0] * 27
 
-    for i in range(n):
-        dist[i][i] = 0
-        dist[i][(i + 1) % n] = min(dist[i][(i + 1) % n], nextCost[i])
-        dist[i][(i - 1) % n] = min(dist[i][(i - 1) % n], prevCost[i])
+    for i in range(26):
+        next_prefix[i + 1] = next_prefix[i] + nextCost[i]
+        previous_prefix[i + 1] = previous_prefix[i] + previousCost[i]
 
-    for mid in range(n):
-        for start in range(n):
-            via_mid = dist[start][mid]
-            for end in range(n):
-                candidate = via_mid + dist[mid][end]
-                if candidate < dist[start][end]:
-                    dist[start][end] = candidate
+    answer = 0
+    for source, target in zip(s, t):
+        start = ord(source) - ord("a")
+        end = ord(target) - ord("a")
 
-    return sum(dist[ord(source) - 97][ord(target) - 97] for source, target in zip(s, t))
+        if end >= start:
+            forward = next_prefix[end] - next_prefix[start]
+        else:
+            forward = next_prefix[26] - next_prefix[start] + next_prefix[end]
+
+        if end <= start:
+            backward = previous_prefix[start + 1] - previous_prefix[end + 1]
+        else:
+            backward = (
+                previous_prefix[start + 1]
+                + previous_prefix[26]
+                - previous_prefix[end + 1]
+            )
+
+        answer += min(forward, backward)
+
+    return answer

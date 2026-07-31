@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3870",
+  "frontend_id": "3568",
+  "title_slug": "minimum-moves-to-clean-the-classroom",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minMoves",
+  "verified_submission_id": "2083134711",
+  "verified_at": "2026-07-27T09:23:55Z"
+}

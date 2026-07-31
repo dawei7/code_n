@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Ways to Choose Coprime Integers from Rows and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Multiplies per-row divisor counts and inverts multiples to isolate selections with exact GCD one.",
+      "time_complexity": "O(mn + m V log V)",
+      "space_complexity": "O(V)"
     }
   ]
 }

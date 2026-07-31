@@ -3,153 +3,99 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two value-three endpoints connect",
+      "name": "sample: value-three endpoints connect",
       "kind": "sample",
       "visible": true,
       "input": {
-        "vals": [
-          1,
-          3,
-          2,
-          1,
-          3
-        ],
-        "edges": [
-          [
-            0,
-            1
-          ],
-          [
-            0,
-            2
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            2,
-            4
-          ]
-        ]
+        "vals": [1, 3, 2, 1, 3],
+        "edges": [[0, 1], [0, 2], [2, 3], [2, 4]]
       },
       "expected": 6,
-      "tags": [
-        "sample",
-        "union-find"
-      ]
+      "tags": ["sample", "lower-interior"]
     },
     {
       "id": "sample-2",
-      "name": "sample: pair of value-one endpoints",
+      "name": "sample: two non-singleton paths",
       "kind": "sample",
       "visible": true,
       "input": {
-        "vals": [
-          1,
-          1,
-          2,
-          2,
-          3
-        ],
-        "edges": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            2,
-            4
-          ]
-        ]
+        "vals": [1, 1, 2, 2, 3],
+        "edges": [[0, 1], [1, 2], [2, 3], [2, 4]]
       },
       "expected": 7,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "multiple-values"]
     },
     {
       "id": "sample-3",
-      "name": "sample: single node",
+      "name": "sample: singleton tree",
       "kind": "sample",
       "visible": true,
       "input": {
-        "vals": [
-          1
-        ],
+        "vals": [1],
         "edges": []
       },
       "expected": 1,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "singleton"]
     },
     {
       "id": "trial-all-same-chain",
-      "name": "trial: all same values on a chain",
+      "name": "trial: every path in an equal chain is good",
       "kind": "trial",
       "visible": true,
       "input": {
-        "vals": [
-          1,
-          1,
-          1
-        ],
-        "edges": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            2
-          ]
-        ]
+        "vals": [1, 1, 1, 1],
+        "edges": [[0, 1], [1, 2], [2, 3]]
       },
-      "expected": 6,
-      "tags": [
-        "trial"
-      ]
+      "expected": 10,
+      "tags": ["trial", "all-equal"]
     },
     {
-      "id": "real-same-values-through-low-center",
-      "name": "hidden: high endpoints connect through lower center",
+      "id": "real-larger-interior-blocker",
+      "name": "hidden: larger middle node blocks equal endpoints",
       "kind": "real",
       "visible": false,
       "input": {
-        "vals": [
-          2,
-          1,
-          2,
-          2
-        ],
-        "edges": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            1,
-            3
-          ]
-        ]
+        "vals": [1, 2, 1],
+        "edges": [[0, 1], [1, 2]]
+      },
+      "expected": 3,
+      "tags": ["hidden", "blocker"]
+    },
+    {
+      "id": "real-lower-center-connects-three",
+      "name": "hidden: lower center connects three equal leaves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "vals": [1, 2, 2, 2, 3],
+        "edges": [[0, 1], [0, 2], [0, 3], [0, 4]]
+      },
+      "expected": 8,
+      "tags": ["hidden", "component-counting"]
+    },
+    {
+      "id": "real-independent-equal-components",
+      "name": "hidden: same value occurs in separate threshold components",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "vals": [2, 1, 2, 3, 2, 1, 2],
+        "edges": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
+      },
+      "expected": 9,
+      "tags": ["hidden", "separate-components"]
+    },
+    {
+      "id": "real-zero-values",
+      "name": "hidden: zero-valued endpoints and duplicate orientation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "vals": [0, 0, 1, 0],
+        "edges": [[0, 1], [1, 2], [1, 3]]
       },
       "expected": 7,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "zero", "unordered-paths"]
     }
   ]
 }

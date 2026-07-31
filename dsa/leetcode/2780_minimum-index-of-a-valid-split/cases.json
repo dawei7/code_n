@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: earliest valid split is index two",
+      "name": "sample: first valid split is index two",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,13 +16,13 @@
       },
       "tags": [
         "sample",
-        "dominant"
+        "minimum-index"
       ],
       "expected": 2
     },
     {
       "id": "sample-2",
-      "name": "sample: no valid split despite global dominant",
+      "name": "sample: balanced five-element sides",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,22 +41,97 @@
       },
       "tags": [
         "sample",
-        "none"
+        "interleaved"
       ],
       "expected": 4
     },
     {
-      "id": "trial-first-index",
-      "name": "trial: split immediately after first element",
+      "id": "sample-3",
+      "name": "sample: global dominant cannot dominate both sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3,
+          7,
+          2,
+          2
+        ]
+      },
+      "tags": [
+        "sample",
+        "no-valid-split"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: no legal split for one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ]
+      },
+      "tags": [
+        "trial",
+        "minimum-length"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-two-equal",
+      "name": "trial: two equal values split immediately",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           5,
-          5,
-          5,
-          1,
           5
+        ]
+      },
+      "tags": [
+        "trial",
+        "two-elements"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "tags": [
+        "trial",
+        "all-equal"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-early-interleaved",
+      "name": "trial: dominant value survives an early suffix distraction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          1,
+          1
         ]
       },
       "tags": [
@@ -66,45 +141,45 @@
       "expected": 0
     },
     {
-      "id": "trial-no-global-dominant",
-      "name": "trial: no global dominant value",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "tags": [
-        "trial",
-        "none"
-      ],
-      "expected": -1
-    },
-    {
-      "id": "real-late-valid-split",
-      "name": "hidden: valid split appears after several values",
+      "id": "real-no-split-blocks",
+      "name": "hidden: dominant prefix followed by another-value block",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          9,
-          1,
-          9,
-          2,
-          9,
-          9,
-          3,
+          7,
+          7,
+          7,
+          7,
+          8,
           9,
           9
         ]
       },
       "tags": [
         "hidden",
-        "late"
+        "strict-majority"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          3,
+          1000000000,
+          1000000000,
+          4,
+          1000000000
+        ]
+      },
+      "tags": [
+        "hidden",
+        "large-values"
       ],
       "expected": 0
     }

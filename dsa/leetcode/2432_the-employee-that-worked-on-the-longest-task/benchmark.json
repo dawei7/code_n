@@ -1,36 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2432",
+  "measurement_note": "Size is m, the number of task logs. Every task lasts one unit and employee ids descend, so the full input must be considered to apply the smallest-id tie break. A single scan takes O(m) time, while comparing every candidate task against every log takes O(m^2).",
   "cases": [
     {
-      "id": "benchmark-middle-longest",
-      "name": "benchmark: middle task has longest duration",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: four tied task durations",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "n": 5,
-        "logs": [
-          [
-            4,
-            4
-          ],
-          [
-            1,
-            9
-          ],
-          [
-            3,
-            15
-          ],
-          [
-            2,
-            16
-          ]
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 4,
+      "input": {"n": 4, "logs": [[3,1],[2,2],[1,3],[0,4]]},
+      "expected": 0,
+      "tags": ["benchmark", "all-tied", "pairwise-comparison"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: sixteen tied task durations",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"n": 16, "logs": [[15,1],[14,2],[13,3],[12,4],[11,5],[10,6],[9,7],[8,8],[7,9],[6,10],[5,11],[4,12],[3,13],[2,14],[1,15],[0,16]]},
+      "expected": 0,
+      "tags": ["benchmark", "all-tied", "pairwise-comparison"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixty-four tied task durations",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"n": 64, "logs": [[63,1],[62,2],[61,3],[60,4],[59,5],[58,6],[57,7],[56,8],[55,9],[54,10],[53,11],[52,12],[51,13],[50,14],[49,15],[48,16],[47,17],[46,18],[45,19],[44,20],[43,21],[42,22],[41,23],[40,24],[39,25],[38,26],[37,27],[36,28],[35,29],[34,30],[33,31],[32,32],[31,33],[30,34],[29,35],[28,36],[27,37],[26,38],[25,39],[24,40],[23,41],[22,42],[21,43],[20,44],[19,45],[18,46],[17,47],[16,48],[15,49],[14,50],[13,51],[12,52],[11,53],[10,54],[9,55],[8,56],[7,57],[6,58],[5,59],[4,60],[3,61],[2,62],[1,63],[0,64]]},
+      "expected": 0,
+      "tags": ["benchmark", "all-tied", "pairwise-comparison"]
     }
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_82", "frontend_id": "82",
+    "title_slug": "remove-duplicates-from-sorted-list-ii",
+    "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/description/",
+    "paid_only": false, "content_sha256": "353116e1711062ab583f79fb9da16de3011da0b8878a08c23149618d47b53ab0", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [1,2,3,3,4,4,5]", "output": "[1,2,5]", "has_explanation": false},
+      {"ordinal": 2, "input": "head = [1,1,1,2,3]", "output": "[2,3]", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "99f4ea180e9fc182b400a296ff2d093a8b421cc567b5ea5e95ad13168215cffc",
+      "reference/contract.md": "98a22e2fa0c20f62d3947266a9c15c626e6cfd76a339fd9076ed8309892f62ff",
+      "reference/examples.md": "a8652404455fd265e01db6cef6610a9e24d4bfd6142ccd8d9ff4535bf2e04839",
+      "reference/constraints.md": "e38bf4b82562de0afd09535487c7fff3ce1db8b908dbeef969662816f1a1c556"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3960",
+  "cases": [
+    {
+      "id": "sample-mixed-frequencies",
+      "name": "sample: a length-five window has one and two occurrences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-frequency-levels",
+        "mixed-values"
+      ]
+    },
+    {
+      "id": "sample-one-distinct",
+      "name": "sample: the all-equal array is fully balanced",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-distinct",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "sample-all-distinct",
+      "name": "sample: equal singleton frequencies do not form two levels",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-distinct",
+        "singletons-only"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one element is balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          42
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-distinct"
+      ]
+    },
+    {
+      "id": "trial-two-equal",
+      "name": "trial: two equal values use the special rule",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-distinct",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-two-distinct",
+      "name": "trial: two equal frequencies are not enough",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "one-frequency-level",
+        "invalid-pair"
+      ]
+    },
+    {
+      "id": "trial-ratio-two",
+      "name": "trial: counts two and one balance the whole array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "frequency-ratio",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-equal-pairs",
+      "name": "trial: an interior length-three window beats equal pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equal-frequencies",
+        "proper-subarray"
+      ]
+    },
+    {
+      "id": "real-ratio-four-two",
+      "name": "hidden: frequency levels four and two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "frequency-ratio",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "real-equal-whole-invalid",
+      "name": "hidden: a proper window wins when the full array has one level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "proper-subarray",
+        "equal-whole-frequencies"
+      ]
+    },
+    {
+      "id": "real-three-values",
+      "name": "hidden: three values change frequency buckets repeatedly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          8,
+          7,
+          8,
+          7,
+          9,
+          9
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "three-values",
+        "bucket-updates"
+      ]
+    },
+    {
+      "id": "real-blocked-groups",
+      "name": "hidden: grouped values still require a proper window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "grouped-values",
+        "proper-subarray"
+      ]
+    },
+    {
+      "id": "real-higher-frequency",
+      "name": "hidden: counts four and two appear inside a longer sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "frequency-ratio",
+        "proper-subarray"
+      ]
+    },
+    {
+      "id": "real-value-boundary",
+      "name": "hidden: maximum values participate by equality only",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          1
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "frequency-ratio"
+      ]
+    },
+    {
+      "id": "real-thirty-two-balanced",
+      "name": "hidden: a longer whole array has counts sixteen and eight",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 32,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "longer-array",
+        "frequency-ratio"
+      ]
+    }
+  ]
+}
+

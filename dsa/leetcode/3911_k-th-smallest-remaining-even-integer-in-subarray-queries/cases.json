@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3911",
+  "cases": [
+    {
+      "id": "sample-mixed-removals",
+      "name": "sample: mixed removals and an odd-only subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 4, 7], "queries": [[0, 2, 1], [1, 1, 2], [0, 0, 3]]},
+      "expected": [2, 6, 6],
+      "tags": ["sample", "mixed-parity", "query-boundaries"]
+    },
+    {
+      "id": "sample-two-even-values",
+      "name": "sample: different subarrays remove different even values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 5, 8], "queries": [[0, 1, 2], [1, 2, 1], [0, 2, 4]]},
+      "expected": [6, 2, 12],
+      "tags": ["sample", "multiple-queries", "rank-shifts"]
+    },
+    {
+      "id": "sample-remove-six",
+      "name": "sample: removing six leaves the first two evens intact",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 6], "queries": [[0, 1, 1], [1, 1, 3]]},
+      "expected": [2, 8],
+      "tags": ["sample", "single-removed-even", "odd-value"]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "trial: an odd singleton removes no sequence value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "queries": [[0, 0, 1], [0, 0, 5], [0, 0, 10]]},
+      "expected": [2, 10, 20],
+      "tags": ["trial", "single-element", "no-removals"]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: removing two shifts every requested rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2], "queries": [[0, 0, 1], [0, 0, 2], [0, 0, 10]]},
+      "expected": [4, 6, 22],
+      "tags": ["trial", "single-element", "removed-first-rank"]
+    },
+    {
+      "id": "trial-all-odd",
+      "name": "trial: every selected value is irrelevant to the even sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 3, 5, 7], "queries": [[0, 3, 4], [1, 2, 6]]},
+      "expected": [8, 12],
+      "tags": ["trial", "all-odd", "multiple-subarrays"]
+    },
+    {
+      "id": "trial-consecutive-evens",
+      "name": "trial: consecutive removed ranks create one continuous gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 4, 6, 8], "queries": [[0, 3, 1], [0, 3, 3], [1, 2, 2], [2, 2, 3]]},
+      "expected": [10, 14, 8, 8],
+      "tags": ["trial", "all-even", "consecutive-ranks"]
+    },
+    {
+      "id": "trial-gapped-removals",
+      "name": "trial: separated even removals leave intervening candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 4, 7, 10, 13], "queries": [[0, 4, 1], [0, 4, 2], [0, 4, 4], [1, 3, 4]]},
+      "expected": [2, 6, 12, 12],
+      "tags": ["trial", "gapped-ranks", "mixed-parity"]
+    },
+    {
+      "id": "trial-distant-even",
+      "name": "trial: a large removed even may lie beyond the requested rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 100, 101], "queries": [[1, 2, 2], [0, 2, 2], [0, 0, 2]]},
+      "expected": [4, 6, 6],
+      "tags": ["trial", "distant-removal", "subarray-scope"]
+    },
+    {
+      "id": "hidden-index-boundaries",
+      "name": "hidden: adjacent ranges select different removed prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 4, 6, 8, 10], "queries": [[2, 4, 1], [0, 1, 1], [1, 3, 3]]},
+      "expected": [2, 6, 12],
+      "tags": ["hidden", "inclusive-range", "all-even"]
+    },
+    {
+      "id": "hidden-mixed-values",
+      "name": "hidden: mixed values exercise several removed-rank slices",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 3, 4, 9, 12, 15, 20], "queries": [[0, 6, 1], [0, 6, 4], [2, 5, 3], [3, 6, 5]]},
+      "expected": [6, 14, 8, 10],
+      "tags": ["hidden", "mixed-parity", "overlapping-queries"]
+    },
+    {
+      "id": "hidden-removed-prefix",
+      "name": "hidden: long consecutive prefix of positive evens is removed",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 4, 6, 8, 10, 12, 14, 16, 18, 20], "queries": [[0, 9, 1], [0, 9, 5], [3, 7, 2]]},
+      "expected": [22, 30, 4],
+      "tags": ["hidden", "consecutive-ranks", "prefix-removal"]
+    },
+    {
+      "id": "hidden-billion-k",
+      "name": "hidden: maximum k and a removal at rank five hundred million",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [999999999, 1000000000], "queries": [[0, 1, 1], [1, 1, 500000000], [0, 1, 1000000000]]},
+      "expected": [2, 1000000002, 2000000002],
+      "tags": ["hidden", "maximum-k", "maximum-value", "wide-answer"]
+    },
+    {
+      "id": "hidden-two-large-evens",
+      "name": "hidden: two adjacent high even ranks shift a large query twice",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [999999998, 999999999, 1000000000], "queries": [[1, 1, 1], [0, 2, 500000000], [0, 0, 499999999]]},
+      "expected": [2, 1000000004, 1000000000],
+      "tags": ["hidden", "large-values", "adjacent-removed-ranks", "wide-answer"]
+    }
+  ]
+}

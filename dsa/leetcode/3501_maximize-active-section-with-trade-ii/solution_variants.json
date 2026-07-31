@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Active Section with Trade II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Run-length encodes the string, handles the two query-boundary candidates exactly, and range-maxes fully covered interior trades with a segment tree.",
+      "time_complexity": "O(n + q log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

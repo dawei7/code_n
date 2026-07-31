@@ -1,30 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2433",
+  "measurement_note": "Size is n, the prefix-array length. Every prefix is zero, so all outputs are zero. Adjacent-prefix cancellation takes O(n) time, while recomputing the XOR of every previously recovered prefix for each position takes O(n^2).",
   "cases": [
     {
-      "id": "benchmark-mixed-prefixes",
-      "name": "benchmark: mixed prefix xor values",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: eight zero prefixes",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "pref": [
-          10,
-          5,
-          12,
-          12,
-          7
-        ]
-      },
-      "expected": [
-        10,
-        15,
-        9,
-        0,
-        11
-      ],
-      "tags": [
-        "benchmark"
-      ]
+      "size": 8,
+      "input": {"pref": [0,0,0,0,0,0,0,0]},
+      "expected": [0,0,0,0,0,0,0,0],
+      "tags": ["benchmark", "quadratic-reconstruction"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: thirty-two zero prefixes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"pref": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+      "expected": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "tags": ["benchmark", "quadratic-reconstruction"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixty-two zero prefixes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 62,
+      "input": {"pref": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+      "expected": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "tags": ["benchmark", "quadratic-reconstruction"]
     }
   ]
 }

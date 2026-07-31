@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_2885",
+  "cases": [
+    {
+      "id": "sample-five-students",
+      "name": "sample: rename all four columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"students": [{"id": 1, "first": "Mason", "last": "King", "age": 6}, {"id": 2, "first": "Ava", "last": "Wright", "age": 7}, {"id": 3, "first": "Taylor", "last": "Hall", "age": 16}, {"id": 4, "first": "Georgia", "last": "Thompson", "age": 18}, {"id": 5, "first": "Thomas", "last": "Moore", "age": 10}]}},
+      "expected": {"columns": ["student_id", "first_name", "last_name", "age_in_years"], "rows": [[1, "Mason", "King", 6], [2, "Ava", "Wright", 7], [3, "Taylor", "Hall", 16], [4, "Georgia", "Thompson", 18], [5, "Thomas", "Moore", 10]]},
+      "tags": ["sample", "four-column-mapping"]
+    },
+    {
+      "id": "trial-single-student",
+      "name": "single student row",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"students": [{"id": 9, "first": "Ada", "last": "Lovelace", "age": 17}]}},
+      "expected": {"columns": ["student_id", "first_name", "last_name", "age_in_years"], "rows": [[9, "Ada", "Lovelace", 17]]},
+      "tags": ["boundary", "single-row"]
+    },
+    {
+      "id": "trial-repeated-first-name",
+      "name": "repeated first names preserve complete rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"students": [{"id": 10, "first": "Lee", "last": "Kim", "age": 12}, {"id": 11, "first": "Lee", "last": "Park", "age": 15}]}},
+      "expected": {"columns": ["student_id", "first_name", "last_name", "age_in_years"], "rows": [[10, "Lee", "Kim", 12], [11, "Lee", "Park", 15]]},
+      "tags": ["repeated-value", "data-preservation"]
+    },
+    {
+      "id": "real-varied-values",
+      "name": "hidden: varied values and order remain unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"students": [{"id": 42, "first": "Iris", "last": "Ng", "age": 5}, {"id": 7, "first": "Bo", "last": "Diaz", "age": 20}, {"id": 99, "first": "Mina", "last": "Rao", "age": 13}]}},
+      "expected": {"columns": ["student_id", "first_name", "last_name", "age_in_years"], "rows": [[42, "Iris", "Ng", 5], [7, "Bo", "Diaz", 20], [99, "Mina", "Rao", 13]]},
+      "tags": ["hidden", "order", "values"]
+    }
+  ]
+}

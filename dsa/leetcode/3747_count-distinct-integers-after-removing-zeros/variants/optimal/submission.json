@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4054",
+  "frontend_id": "3747",
+  "title_slug": "count-distinct-integers-after-removing-zeros",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.countDistinct",
+  "verified_submission_id": "2085281280",
+  "verified_at": "2026-07-28T19:15:29.472312+00:00"
+}

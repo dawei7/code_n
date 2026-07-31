@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Most Frequent Prime and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates every fixed-direction path once, caches primality results, and counts qualifying primes.",
+      "time_complexity": "O(m n l sqrt(V))",
+      "space_complexity": "O(m n l)"
     }
   ]
 }

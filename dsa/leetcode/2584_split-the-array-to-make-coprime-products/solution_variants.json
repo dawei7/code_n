@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Split the Array to Make Coprime Products and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Factors every value with a smallest-prime-factor sieve and tracks the furthest occurrence reached by each prefix prime.",
+      "time_complexity": "O(M log log M + n log M)",
+      "space_complexity": "O(M + n)"
     }
   ]
 }

@@ -6,6 +6,10 @@ import remarkMath from 'remark-math';
 import 'katex/dist/katex.min.css';
 
 import { getGuidedExample } from '../../../api/guidedExamples';
+import {
+  MermaidDiagram,
+  mermaidSourceFromPreChildren,
+} from '../../markdown/MermaidDiagram';
 import { useAppStore } from '../../../store/useAppStore';
 
 
@@ -94,9 +98,15 @@ export function GuidedExampleTab() {
                 className="mx-auto my-5 max-h-[560px] max-w-full border border-coden-border bg-coden-bg object-contain"
               />
             ),
-            pre: ({ node, ...props }) => (
-              <pre {...props} aria-label="Worked-example diagram" />
-            ),
+            pre: ({ children, ...props }) => {
+              const diagram = mermaidSourceFromPreChildren(children);
+              if (diagram) return <MermaidDiagram source={diagram} />;
+              return (
+                <pre {...props} aria-label="Worked-example diagram">
+                  {children}
+                </pre>
+              );
+            },
             table: ({ node, ...props }) => (
               <div className="my-4 overflow-x-auto">
                 <table

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3969",
+    "frontend_id": "3969",
+    "title_slug": "valid-subarrays-with-matching-sum-digits-i",
+    "url": "https://leetcode.com/problems/valid-subarrays-with-matching-sum-digits-i/description/",
+    "paid_only": false,
+    "content_sha256": "9e6d37dfbc7ffd29ba5514f6799d56130cf6ab0994126c1ea4d80d55a86e6984",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,100,1], x = 1",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1], x = 2",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "767852b40f73388715b532faeeb899100ce65a8c8d39f4de742d45f77a5259d0",
+      "reference/contract.md": "d6e21680a9b58c69b9765a06f01734f13b9db5bd4f36f9a469fd1e02ec81c6f6",
+      "reference/examples.md": "8df37112e001473414059a7771eeb91c06293a0b6ad74f3e966515bcecccffd4",
+      "reference/constraints.md": "8c488d1ab0ab28d2933ee91417ada951cdb63bdea50e399c821e065f07ff501a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

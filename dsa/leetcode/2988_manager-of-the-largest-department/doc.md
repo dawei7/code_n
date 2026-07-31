@@ -8,48 +8,43 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [manager-of-the-largest-department](https://leetcode.com/problems/manager-of-the-largest-department/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/manager-of-the-largest-department/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/manager-of-the-largest-department/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+The `Employees` table stores each uniquely identified employee's name,
+department, and position. A department's size is the number of employee rows
+having its `dep_id`.
+
+Find the largest department size and return the manager of every department
+that attains it. Several departments may tie and all of their managers must be
+included. Output the manager's name as `manager_name` together with `dep_id`,
+ordered by ascending department ID.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `Employees(emp_id, emp_name, dep_id, position)`: uniquely identified employees and their departments and positions
+
+Let $R$ be the number of employee rows.
 
 **Return value**
 
-TODO
+Return the manager name and department ID for every largest department,
+ordered by `dep_id` ascending.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: Departments `100` and `101` contain four employees each; department `107` contains three.
+- Output: `[("Joseph",100),("Isabella",101)]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: A single department with one manager and two other employees.
+- Output: That manager and department.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: Three departments tied at the same size.
+- Output: All three managers in ascending department order.

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Calculate Compressed Mean and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Computes the occurrence-weighted item total and divides it by the total represented order count.",
+      "time_complexity": "O(R)",
+      "space_complexity": "O(1)"
     }
   ]
 }

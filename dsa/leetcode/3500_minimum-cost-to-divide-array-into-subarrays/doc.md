@@ -8,111 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-cost-to-divide-array-into-subarrays](https://leetcode.com/problems/minimum-cost-to-divide-array-into-subarrays/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-cost-to-divide-array-into-subarrays/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-cost-to-divide-array-into-subarrays/).
 
 ### Goal
-Given an integer array `nums` and an integer `k`, partition the array into exactly `k` non-empty contiguous subarrays such that the sum of the costs of these subarrays is minimized. The cost of a subarray is defined as the sum of its first element and its last element.
+
+You are given equally sized integer arrays `nums` and `cost`, together with an integer `k`. Divide both arrays at the same boundaries so that `nums` becomes one or more non-empty contiguous subarrays covering every element in order. Number the resulting subarrays from $1$ in their left-to-right order.
+
+If the $i$th subarray spans indices $l$ through $r$, its cost is the sum of `nums` from index $0$ through $r$, plus $k i$, multiplied by the sum of `cost` from $l$ through $r$. Add this value for every chosen subarray. Return the minimum total over all valid divisions; the number of subarrays is part of the choice rather than an input requirement.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the array to be partitioned.
-- `k`: An integer representing the exact number of subarrays required.
+- `nums`: A list of $n$ positive integers.
+- `cost`: A list of $n$ positive integers whose indices align with `nums`.
+- `k`: A positive integer used in the order-dependent term of each subarray.
+
+The constraints are $1 \le n \le 1000$ and $1 \le \texttt{nums[i]}, \texttt{cost[i]}, k \le 1000$.
 
 **Return value**
 
-- An integer representing the minimum total cost of the partition.
+Return the minimum possible total cost as an integer.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 1, 2, 1], k = 3`
-- Output: `6`
-- Explanation: Partition into `[1, 2], [1, 2], [1]` (costs: 1+2, 1+2, 1+1 = 3+3+2 = 8) or `[1], [2, 1], [2, 1]` (costs: 1+1, 2+1, 2+1 = 2+3+3 = 8). Wait, the optimal is `[1, 2, 1], [2], [1]`? No, the cost is `nums[0] + nums[last]`. For `[1, 2, 1]`, cost is `1+1=2`. For `[2]`, cost is `2+2=4`. For `[1]`, cost is `1+1=2`. Total = 8. Actually, for `[1], [2, 1, 2], [1]`, cost is `1+1 + 2+2 + 1+1 = 8`.
+- Input: `nums = [3,1,4], cost = [4,6,6], k = 1`
+- Output: `110`
+- Explanation: Divide after index $1$. The first subarray costs `(3 + 1 + 1 * 1) * (4 + 6) = 50`, and the second costs `(3 + 1 + 4 + 1 * 2) * 6 = 60`.
 
 **Example 2**
 
-- Input: `nums = [1, 3, 1], k = 2`
-- Output: `5`
-- Explanation: Partition into `[1, 3]` and `[1]`. Cost: `(1+3) + (1+1) = 4 + 2 = 6`. Or `[1]` and `[3, 1]`. Cost: `(1+1) + (3+1) = 2 + 4 = 6`.
+- Input: `nums = [4,8,5,1,14,2,2,12,1], cost = [7,2,8,4,2,2,1,1,2], k = 7`
+- Output: `985`
+- Explanation: One optimal division is `[4,8,5,1]`, `[14,2,2]`, and `[12,1]`, whose respective costs are `525`, `250`, and `210`.
 
 **Example 3**
 
-- Input: `nums = [5, 4, 3], k = 3`
-- Output: `18`
-- Explanation: Each element must be its own subarray. Cost: `(5+5) + (4+4) + (3+3) = 10 + 8 + 6 = 24`.
-
----
-
-## Solution
-### Approach
-The problem is solved using Dynamic Programming. Let `dp[i][j]` be the minimum cost to partition the prefix `nums[0...i]` into `j` subarrays. The transition involves iterating over the possible split points for the last subarray. Given the constraints, we optimize the state space and transition using the observation that the first element of the first subarray is always `nums[0]`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2 * k)` where `n` is the length of the array. This can be optimized to `O(n^2)` if `k` is treated as a constant or via space-optimized DP.
-- **Space Complexity**: `O(n * k)` to store the DP table, which can be reduced to `O(n)` using two rows.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], cost: list[int], k: int) -> int:
-    n = len(nums)
-    prefix_nums = [0] * (n + 1)
-    prefix_cost = [0] * (n + 1)
-    for index, (num, cst) in enumerate(zip(nums, cost), start=1):
-        prefix_nums[index] = prefix_nums[index - 1] + num
-        prefix_cost[index] = prefix_cost[index - 1] + cst
-
-    inf = 10**30
-    previous = [inf] * (n + 1)
-    previous[0] = 0
-    answer = inf
-
-    def value(line: tuple[int, int], x: int) -> int:
-        return line[0] * x + line[1]
-
-    def intersection(first: tuple[int, int], second: tuple[int, int]) -> float:
-        return (first[1] - second[1]) / (second[0] - first[0])
-
-    for part in range(1, n + 1):
-        current = [inf] * (n + 1)
-        lines: list[tuple[int, int]] = []
-        starts: list[float] = []
-        pointer = 0
-
-        for end in range(part, n + 1):
-            start = end - 1
-            if previous[start] < inf:
-                line = (-prefix_cost[start], previous[start])
-                begin = float("-inf")
-                while lines:
-                    begin = intersection(lines[-1], line)
-                    if begin <= starts[-1]:
-                        lines.pop()
-                        starts.pop()
-                        if pointer > len(lines) - 1:
-                            pointer = max(0, len(lines) - 1)
-                    else:
-                        break
-                if not lines:
-                    begin = float("-inf")
-                lines.append(line)
-                starts.append(begin)
-
-            x = prefix_nums[end] + k * part
-            while pointer + 1 < len(lines) and starts[pointer + 1] <= x:
-                pointer += 1
-            current[end] = x * prefix_cost[end] + value(lines[pointer], x)
-
-        if current[n] < answer:
-            answer = current[n]
-        previous = current
-
-    return answer
-```
-</details>
+- Input: `nums = [2], cost = [3], k = 5`
+- Output: `21`
+- Explanation: The only subarray has cost `(2 + 5 * 1) * 3 = 21`.

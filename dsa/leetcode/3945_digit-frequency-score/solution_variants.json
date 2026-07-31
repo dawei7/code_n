@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Digit Frequency Score and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sums each decimal digit directly while removing it from the number, avoiding a frequency table that the weighted sum does not require.",
+      "time_complexity": "O(D)",
+      "space_complexity": "O(1)"
     }
   ]
 }

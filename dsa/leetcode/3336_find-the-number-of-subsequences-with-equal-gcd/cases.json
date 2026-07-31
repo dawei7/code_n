@@ -2,115 +2,94 @@
   "challenge_id": "lc_3336",
   "cases": [
     {
-      "id": "sample-one-two-three",
-      "name": "sample: small mixed gcds",
+      "id": "sample-mixed-small-values",
+      "name": "sample: mixed values produce ten gcd-one pairs",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "gcd-dp"
-      ]
+      "input": { "nums": [1, 2, 3, 4] },
+      "expected": 10,
+      "tags": ["sample", "gcd-dp"]
     },
     {
-      "id": "sample-tens",
+      "id": "sample-common-factor-values",
       "name": "sample: common factor values",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          10,
-          20,
-          30
-        ]
-      },
+      "input": { "nums": [10, 20, 30] },
       "expected": 2,
-      "tags": [
-        "sample",
-        "gcd-dp"
-      ]
+      "tags": ["sample", "gcd-dp"]
     },
     {
       "id": "sample-all-ones",
-      "name": "sample: all choices share gcd one",
+      "name": "sample: every nonempty disjoint pair has gcd one",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          1
-        ]
-      },
+      "input": { "nums": [1, 1, 1, 1] },
       "expected": 50,
-      "tags": [
-        "sample",
-        "gcd-dp"
-      ]
+      "tags": ["sample", "repeated-values"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one index cannot make two nonempty disjoint subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": { "nums": [7] },
+      "expected": 0,
+      "tags": ["boundary", "disjoint-subsequences"]
     },
     {
       "id": "trial-two-equal-values",
-      "name": "trial: two equal values form two ordered non-empty subsequences",
+      "name": "trial: equal values can be assigned in either order",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1
-        ]
-      },
+      "input": { "nums": [7, 7] },
       "expected": 2,
-      "tags": [
-        "regression",
-        "disjoint-subsequences"
-      ]
+      "tags": ["ordered-pairs", "repeated-values"]
     },
     {
-      "id": "trial-mixed-composites",
-      "name": "trial: composite values with several matching gcd pairs",
+      "id": "trial-two-unequal-values",
+      "name": "trial: unequal singleton gcds do not match",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          6,
-          10,
-          15,
-          30
-        ]
-      },
+      "input": { "nums": [2, 3] },
       "expected": 0,
-      "tags": [
-        "test",
-        "number-theory"
-      ]
+      "tags": ["gcd", "zero-answer"]
     },
     {
-      "id": "real-equal-gcd-composites",
-      "name": "real: composite values with repeated gcd states",
+      "id": "real-repeated-one-around-two",
+      "name": "real: distinct equal-valued indices remain separate choices",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          2,
-          4,
-          6,
-          8,
-          12
-        ]
-      },
+      "input": { "nums": [1, 2, 1] },
+      "expected": 6,
+      "tags": ["real", "index-identity"]
+    },
+    {
+      "id": "real-composite-gcd-states",
+      "name": "real: composite values create and merge several gcd states",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [2, 4, 6, 8, 12] },
       "expected": 32,
-      "tags": [
-        "real",
-        "gcd-dp"
-      ]
+      "tags": ["real", "gcd-dp"]
+    },
+    {
+      "id": "real-no-equal-composite-gcd",
+      "name": "real: apparent shared factors still yield no valid pair",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [6, 10, 15, 30] },
+      "expected": 0,
+      "tags": ["real", "zero-answer"]
+    },
+    {
+      "id": "real-modulo-many-ones",
+      "name": "real: maximum length requires modulo reduction",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+      "expected": 930031032,
+      "tags": ["real", "modulo", "repeated-values"]
     }
   ]
 }

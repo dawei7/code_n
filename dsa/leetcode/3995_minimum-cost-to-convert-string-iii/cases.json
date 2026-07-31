@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_3995",
+  "cases": [
+    {
+      "id": "sample-two-disjoint-rules",
+      "name": "sample: two disjoint rules transform the full string",
+      "kind": "sample",
+      "visible": true,
+      "input": {"source": "hello", "target": "world", "rules": [["he", "wo"], ["llo", "rld"]], "costs": [3, 4]},
+      "expected": 7,
+      "tags": ["sample", "disjoint-ranges", "no-wildcards"]
+    },
+    {
+      "id": "sample-one-wildcard",
+      "name": "sample: one wildcard adds one to the base cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {"source": "cat", "target": "dog", "rules": [["c*t", "dog"]], "costs": [2]},
+      "expected": 3,
+      "tags": ["sample", "wildcard-cost", "whole-string-rule"]
+    },
+    {
+      "id": "sample-two-wildcards",
+      "name": "sample: two wildcards add two to the base cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {"source": "test", "target": "next", "rules": [["*e*t", "next"]], "costs": [4]},
+      "expected": 6,
+      "tags": ["sample", "wildcard-cost", "whole-string-rule"]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: replacement does not produce the target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"source": "ab", "target": "bc", "rules": [["a*", "bd"]], "costs": [9]},
+      "expected": -1,
+      "tags": ["sample", "impossible", "replacement-mismatch"]
+    },
+    {
+      "id": "trial-identical-strings",
+      "name": "trial: every position remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": "abc", "target": "abc", "rules": [["a", "z"]], "costs": [5]},
+      "expected": 0,
+      "tags": ["trial", "unchanged", "zero-cost"]
+    },
+    {
+      "id": "trial-single-direct-rule",
+      "name": "trial: one character uses one exact rule",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": "a", "target": "b", "rules": [["a", "b"]], "costs": [7]},
+      "expected": 7,
+      "tags": ["trial", "single-character", "exact-pattern"]
+    },
+    {
+      "id": "trial-single-wildcard",
+      "name": "trial: one wildcard and one letter cover two characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": "az", "target": "bc", "rules": [["a*", "bc"]], "costs": [2]},
+      "expected": 3,
+      "tags": ["trial", "wildcard-cost", "two-characters"]
+    },
+    {
+      "id": "trial-cheaper-long-rule",
+      "name": "trial: one long rule beats several short rules",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": "aaaa", "target": "bbbb", "rules": [["a", "b"], ["a*a*", "bbbb"]], "costs": [3, 2]},
+      "expected": 4,
+      "tags": ["trial", "minimum-cost-choice", "wildcards"]
+    },
+    {
+      "id": "trial-duplicate-rules",
+      "name": "trial: the cheaper duplicate rule is selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": "ab", "target": "cd", "rules": [["ab", "cd"], ["ab", "cd"]], "costs": [9, 4]},
+      "expected": 4,
+      "tags": ["trial", "duplicate-rules", "minimum-cost-choice"]
+    },
+    {
+      "id": "trial-no-overlap-chaining",
+      "name": "trial: two rules cannot chain on one used position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": "a", "target": "c", "rules": [["a", "b"], ["b", "c"]], "costs": [1, 1]},
+      "expected": -1,
+      "tags": ["trial", "no-reuse", "impossible"]
+    },
+    {
+      "id": "trial-two-adjacent-rules",
+      "name": "trial: two adjacent ranges are allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": "abcd", "target": "wxyz", "rules": [["ab", "wx"], ["cd", "yz"]], "costs": [2, 3]},
+      "expected": 5,
+      "tags": ["trial", "adjacent-ranges", "disjoint-rules"]
+    },
+    {
+      "id": "trial-unchanged-gaps",
+      "name": "trial: rules are separated by unchanged positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"source": "abcde", "target": "axcye", "rules": [["b", "x"], ["d", "y"]], "costs": [4, 5]},
+      "expected": 9,
+      "tags": ["trial", "unchanged-gaps", "disjoint-rules"]
+    },
+    {
+      "id": "real-short-rules-beat-long",
+      "name": "hidden: two short rules beat one overlapping long rule",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": "abcd", "target": "wxyz", "rules": [["abcd", "wxyz"], ["ab", "wx"], ["cd", "yz"]], "costs": [20, 3, 4]},
+      "expected": 7,
+      "tags": ["hidden", "overlapping-options", "minimum-cost-choice"]
+    },
+    {
+      "id": "real-pattern-mismatch",
+      "name": "hidden: a non-wildcard pattern mismatch blocks the rule",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": "abc", "target": "xyz", "rules": [["adc", "xyz"]], "costs": [1]},
+      "expected": -1,
+      "tags": ["hidden", "pattern-mismatch", "impossible"]
+    },
+    {
+      "id": "real-target-mismatch",
+      "name": "hidden: an otherwise matching rule has the wrong replacement",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": "abc", "target": "xyz", "rules": [["a*c", "xyq"]], "costs": [1]},
+      "expected": -1,
+      "tags": ["hidden", "replacement-mismatch", "impossible"]
+    },
+    {
+      "id": "real-wildcard-any-character",
+      "name": "hidden: wildcards match distinct arbitrary characters",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": "azby", "target": "wxyz", "rules": [["a*b*", "wxyz"]], "costs": [6]},
+      "expected": 8,
+      "tags": ["hidden", "multiple-wildcards", "arbitrary-matches"]
+    },
+    {
+      "id": "real-four-wildcards",
+      "name": "hidden: a six-character pattern contains four wildcards",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": "abcdef", "target": "zzzzzz", "rules": [["a****f", "zzzzzz"]], "costs": [3]},
+      "expected": 7,
+      "tags": ["hidden", "four-wildcards", "long-pattern"]
+    },
+    {
+      "id": "real-maximum-wildcards",
+      "name": "hidden: a legal pattern uses five wildcards and one letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": "zzzzza", "target": "bbbbbb", "rules": [["*****a", "bbbbbb"]], "costs": [1]},
+      "expected": 6,
+      "tags": ["hidden", "maximum-wildcards", "whole-string-rule"]
+    },
+    {
+      "id": "real-reuse-rule-disjointly",
+      "name": "hidden: one rule is reused on four disjoint positions",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": "aaaa", "target": "bbbb", "rules": [["a", "b"]], "costs": [2]},
+      "expected": 8,
+      "tags": ["hidden", "rule-reuse", "disjoint-positions"]
+    },
+    {
+      "id": "real-one-uncovered-position",
+      "name": "hidden: one mismatching position cannot be covered",
+      "kind": "real",
+      "visible": false,
+      "input": {"source": "abcde", "target": "abzde", "rules": [["ab", "ab"], ["de", "de"]], "costs": [1, 1]},
+      "expected": -1,
+      "tags": ["hidden", "uncovered-position", "impossible"]
+    }
+  ]
+}

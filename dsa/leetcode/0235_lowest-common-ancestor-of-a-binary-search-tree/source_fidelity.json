@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_235", "frontend_id": "235", "title_slug": "lowest-common-ancestor-of-a-binary-search-tree", "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/", "paid_only": false, "content_sha256": "9be939f165a04cbe1edcbc027084786fd82bc3a07574b94706cc30ea8934fabf", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8", "output": "6", "has_explanation": true}, {"ordinal": 2, "input": "root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4", "output": "2", "has_explanation": true}, {"ordinal": 3, "input": "root = [2,1], p = 2, q = 1", "output": "2", "has_explanation": false}],
+    "constraint_count": 5,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "edfd3739b5345086c009119a95163569e6111a736e09bf0960848e83dab4d6a5", "reference/contract.md": "98b90f5aba1551f439d5ad34dc8ad07e8d1f74c7c32daa566f577aa4f8df6ad2", "reference/examples.md": "c653513caf585693e0c848137cdab9e6d2675a32e7144db10cf64804945b2d7f", "reference/constraints.md": "a3a3efa87adb965f8646c8b9d9888804df8c8bb3580ed0b3d123b8541a7cacd4"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

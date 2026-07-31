@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3361",
+  "frontend_id": "3114",
+  "title_slug": "latest-time-you-can-obtain-after-replacing-characters",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.findLatestTime",
+  "verified_submission_id": "2079447225",
+  "verified_at": "2026-07-24T12:24:00+02:00"
+}

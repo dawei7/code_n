@@ -9,7 +9,7 @@ def solve(bookings: list[list[int]], n: int) -> list[int]:
 
     answer = []
     current = 0
-    for i in range(n):
-        current += diff[i]
+    for index in range(n):
+        current += diff[index]
         answer.append(current)
     return answer

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Beautiful Integers in the Range and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts valid prefixes with digit dynamic programming over divisibility, parity balance, and bound state.",
+      "time_complexity": "O(D^2 k)",
+      "space_complexity": "O(D^2 k)"
     }
   ]
 }

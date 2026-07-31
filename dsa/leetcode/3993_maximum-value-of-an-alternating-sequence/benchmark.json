@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_3993",
+  "measurement_note": "Size is n, the sequence length. The accepted formula performs constant work at every tier. A correct cube-block accumulation alternative groups the pairwise gain into blocks of roughly n^(2/3) terms and performs O(cuberoot(n)) additions; these tiers expose that unnecessary growth while keeping every legal input below the safety cap.",
+  "cases": [
+    {
+      "id": "benchmark-sixty-four-elements",
+      "name": "benchmark: sixty-four alternating elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"n": 64, "s": 1, "m": 100000},
+      "expected": 3199970,
+      "tags": ["benchmark", "scale-small", "maximum-m"]
+    },
+    {
+      "id": "benchmark-two-hundred-sixty-two-thousand-one-hundred-forty-four-elements",
+      "name": "benchmark: two hundred sixty-two thousand one hundred forty-four alternating elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 262144,
+      "input": {"n": 262144, "s": 1, "m": 100000},
+      "expected": 13107068930,
+      "tags": ["benchmark", "scale-medium", "maximum-m"]
+    },
+    {
+      "id": "benchmark-one-billion-elements",
+      "name": "benchmark: one billion alternating elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000000000,
+      "input": {"n": 1000000000, "s": 1, "m": 100000},
+      "expected": 49999500000002,
+      "tags": ["benchmark", "scale-large", "maximum-n", "maximum-m"]
+    }
+  ]
+}

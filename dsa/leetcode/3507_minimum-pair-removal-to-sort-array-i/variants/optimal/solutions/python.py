@@ -1,11 +1,11 @@
 def solve(nums: list[int]) -> int:
-    values = list(nums)
+    values = nums[:]
     operations = 0
 
-    def is_sorted() -> bool:
-        return all(values[i] <= values[i + 1] for i in range(len(values) - 1))
-
-    while not is_sorted():
+    while any(
+        values[index] > values[index + 1]
+        for index in range(len(values) - 1)
+    ):
         best_index = 0
         best_sum = values[0] + values[1]
         for index in range(1, len(values) - 1):
@@ -13,7 +13,9 @@ def solve(nums: list[int]) -> int:
             if pair_sum < best_sum:
                 best_sum = pair_sum
                 best_index = index
-        values[best_index : best_index + 2] = [best_sum]
+
+        values[best_index] = best_sum
+        values.pop(best_index + 1)
         operations += 1
 
     return operations

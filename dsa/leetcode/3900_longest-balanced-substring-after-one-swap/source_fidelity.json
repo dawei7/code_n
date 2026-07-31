@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3900",
+    "frontend_id": "3900",
+    "title_slug": "longest-balanced-substring-after-one-swap",
+    "url": "https://leetcode.com/problems/longest-balanced-substring-after-one-swap/description/",
+    "paid_only": false,
+    "content_sha256": "aa9874af637aeb4c1974d0b4da3a88c0a6eec2edf9e4bf491e22009bc2eaecc1",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"100001\"",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"111\"",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3290676ebb4892171e44f617562a5357a3288329f49eb488e06d7a2863b706cd",
+      "reference/contract.md": "1e28a9614b6e1b7fc0c4ebf7c289c03f3a50754ad3cc3e4d3d7f057b4b82ff57",
+      "reference/examples.md": "4fae17cf5909e04d871053ad253fbdbbf5d0dc67954e3fbfa846d27a34ea7be9",
+      "reference/constraints.md": "4cbc8930875f669b80adaace3039b175369371c0fc6cab1047aa732319944c04"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

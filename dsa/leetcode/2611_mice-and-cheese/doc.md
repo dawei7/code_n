@@ -8,75 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Greedy, Sorting, Heap (Priority Queue) |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [mice-and-cheese](https://leetcode.com/problems/mice-and-cheese/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/mice-and-cheese/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/mice-and-cheese/).
 
 ### Goal
-Two mice are tasked with eating $n$ pieces of cheese. Each piece of cheese has a specific point value if eaten by the first mouse and a different point value if eaten by the second mouse. Given that the first mouse must eat exactly $k$ pieces of cheese, determine the maximum total points achievable by both mice combined.
+
+There are two mice and $n$ different types of cheese. Every cheese type must be eaten by exactly one mouse. If the first mouse eats cheese type $i$, it contributes `reward1[i]` points; if the second mouse eats it, it contributes `reward2[i]` points instead.
+
+Choose an assignment that makes the first mouse eat exactly `k` cheese types and maximizes the combined score earned by both mice. The second mouse eats every type not assigned to the first mouse.
 
 ### Function Contract
+
 **Inputs**
 
-- `reward1`: A list of integers representing the points gained if the first mouse eats the $i$-th piece of cheese.
-- `reward2`: A list of integers representing the points gained if the second mouse eats the $i$-th piece of cheese.
-- `k`: An integer representing the exact number of pieces the first mouse must consume.
+- `reward1`: A positive integer array of length $n$ containing the first mouse's reward for each cheese type.
+- `reward2`: A positive integer array of the same length containing the second mouse's reward for each cheese type.
+- `k`: The exact number of cheese types assigned to the first mouse, where $0 \leq k \leq n$.
+
+The shared constraints are $1 \leq n \leq 10^5$ and $1 \leq \texttt{reward1[i]}, \texttt{reward2[i]} \leq 1000$.
 
 **Return value**
 
-- An integer representing the maximum total points possible.
+Return the maximum total points obtainable under the exact-`k` assignment rule.
 
 ### Examples
+
 **Example 1**
 
-- Input: `reward1 = [1,1,3,4], reward2 = [4,4,1,1], k = 2`
+- Input: `reward1 = [1, 1, 3, 4], reward2 = [4, 4, 1, 1], k = 2`
 - Output: `15`
+- Explanation: Assigning indices `2` and `3` to the first mouse gives `3 + 4`; the second mouse receives indices `0` and `1`, adding `4 + 4`.
 
 **Example 2**
 
-- Input: `reward1 = [1,1], reward2 = [1,1], k = 2`
+- Input: `reward1 = [1, 1], reward2 = [1, 1], k = 2`
 - Output: `2`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Greedy Strategy**. We assume initially that the second mouse eats all $n$ pieces of cheese, yielding a base sum of all values in `reward2`. To satisfy the constraint that the first mouse eats exactly $k$ pieces, we calculate the "gain" of switching a piece from the second mouse to the first: `gain = reward1[i] - reward2[i]`. By selecting the $k$ pieces with the largest positive gains, we maximize the total score.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n \log n)$ due to the sorting of the gain differences, where $n$ is the number of cheese pieces.
-- **Space Complexity**: $O(n)$ to store the list of gain differences.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(reward1: List[int], reward2: List[int], k: int) -> int:
-    """
-    Calculates the maximum total points by greedily selecting the k pieces
-    that provide the highest relative advantage for the first mouse.
-    """
-    n = len(reward1)
-
-    # Calculate the net gain of choosing mouse 1 over mouse 2 for each piece
-    gains = []
-    for i in range(n):
-        gains.append(reward1[i] - reward2[i])
-
-    # Sort gains in descending order to pick the best k pieces for mouse 1
-    gains.sort(reverse=True)
-
-    # Start with the assumption that mouse 2 eats everything
-    total_points = sum(reward2)
-
-    # Add the top k gains to the base sum
-    for i in range(k):
-        total_points += gains[i]
-
-    return total_points
-```
-</details>
+- Explanation: The first mouse must eat both cheese types, and each contributes one point.

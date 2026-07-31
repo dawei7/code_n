@@ -1,23 +1,36 @@
 {
   "challenge_id": "lc_2594",
+  "measurement_note": "Size is c, the number of cars, while the two-mechanic rank list remains fixed. For these even sizes, the answer is exactly (c / 2)^2. Binary search uses logarithmically many capacity checks, while a correct event-by-event priority-queue scheduler performs one operation per car and therefore scales linearly in c.",
   "cases": [
     {
-      "id": "benchmark-wide-rank-range",
-      "name": "benchmark: mechanics with widely different ranks",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 128 cars",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "ranks": [
-          1,
-          10,
-          100
-        ],
-        "cars": 25
-      },
-      "expected": 360,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 128,
+      "input": { "ranks": [1, 1], "cars": 128 },
+      "expected": 4096,
+      "tags": ["benchmark", "scale-small", "equal-ranks"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 512 cars",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": { "ranks": [1, 1], "cars": 512 },
+      "expected": 65536,
+      "tags": ["benchmark", "scale-medium", "equal-ranks"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 2048 cars",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": { "ranks": [1, 1], "cars": 2048 },
+      "expected": 1048576,
+      "tags": ["benchmark", "scale-large", "equal-ranks"]
     }
   ]
 }

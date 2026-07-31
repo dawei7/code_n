@@ -1,0 +1,26 @@
+def solve(nums: list[int], k: int) -> list[bool]:
+    n = len(nums)
+    frequency = [0] * (n + 1)
+    for value in nums:
+        frequency[value] += 1
+
+    reachable = 1
+    mask = (1 << (k + 1)) - 1
+    fixed_count = 0
+    answer: list[bool] = []
+
+    for cap in range(1, n + 1):
+        for _ in range(frequency[cap]):
+            reachable |= reachable << cap
+            reachable &= mask
+
+        fixed_count += frequency[cap]
+        capped_count = n - fixed_count
+        possible = False
+        for copies in range(min(capped_count, k // cap) + 1):
+            if (reachable >> (k - copies * cap)) & 1:
+                possible = True
+                break
+        answer.append(possible)
+
+    return answer

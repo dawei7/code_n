@@ -5,51 +5,44 @@
 | Source | LeetCode |
 | Frontend ID | 3639 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Binary Search |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-time-to-activate-string](https://leetcode.com/problems/minimum-time-to-activate-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-to-activate-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-time-to-activate-string/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a string `s` of length $n$ and a permutation `order` of its indices. At time $t$, beginning with $t=0$, replace the character at index `order[t]` by `"*"`. Replacements from earlier times remain in place.
+
+A nonempty substring is valid when it contains at least one asterisk. The current string is active once the total number of valid substrings is at least `k`.
+
+Return the earliest time when the string becomes active. If even replacing every character cannot provide `k` valid substrings, return `-1`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string of length $n$, where $1 \le n \le 10^5$.
+- `order`: A permutation of all indices from 0 through $n-1$.
+- `k`: The required number of valid substrings, where $1 \le k \le 10^9$.
 
 **Return value**
 
-TODO
+Return the smallest zero-based activation time $t$ for which at least `k` substrings contain an activated position, or `-1` when impossible.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc", order = [1, 0, 2], k = 2`
+- Output: `0`
+- Explanation: Activating the middle character immediately creates four valid substrings.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "cat", order = [0, 2, 1], k = 6`
+- Output: `2`
+- Explanation: All six substrings become valid only after every position is activated.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "xy", order = [0, 1], k = 4`
+- Output: `-1`
+- Explanation: A length-two string has only three nonempty substrings.

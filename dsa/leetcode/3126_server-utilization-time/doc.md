@@ -8,48 +8,30 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [server-utilization-time](https://leetcode.com/problems/server-utilization-time/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/server-utilization-time/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/server-utilization-time/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Servers` table records when identified servers start and stop running. Each row contains a server identifier, the time of the event, and a `session_status` value of either `start` or `stop`. For each server, its chronologically corresponding start and stop events delimit running sessions.
+
+Find the total running time accumulated across every session of every server. Convert that combined duration to days and round it down, so only complete 24-hour periods are counted. Return the resulting number as `total_uptime_days`; the result has one row, so row order is immaterial.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+The query reads `Servers(server_id, status_time, session_status)`. The combination `(server_id, status_time, session_status)` is unique, `status_time` is a datetime, and `session_status` is either `start` or `stop`.
 
 **Return value**
 
-TODO
+Return one column named `total_uptime_days` containing the floor of the total server uptime in seconds divided by 86,400.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 2**
-
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `Servers` contains ten start/stop pairs across server IDs 1, 3, 4, and 5, including three sessions for server 3 and four for server 4.
+- Output: `[[1]]`
+- Explanation: The sessions total approximately 44.46 hours. This contains one complete day, with the remaining hours discarded.

@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-length-of-string-after-operations](https://leetcode.com/problems/minimum-length-of-string-after-operations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-length-of-string-after-operations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-length-of-string-after-operations/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a lowercase English string `s`. In one operation, choose an occurrence whose character also appears somewhere to its left and somewhere to its right. Delete the closest equal occurrence on each side, while keeping the chosen middle occurrence.
+
+You may repeat this operation in any valid order. Return the smallest length that the string can have after all beneficial operations. Each operation deletes exactly two copies of one character; characters of other values remain in their relative order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string with $1 \leq \lvert\texttt{s}\rvert \leq 2\cdot10^5$.
 
 **Return value**
 
-TODO
+Return the minimum achievable length after applying the operation any number of times.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abaacbcbb"`
+- Output: `5`
+- Explanation: The counts of `a`, `b`, and `c` reduce respectively to `1`, `2`, and `2`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aa"`
+- Output: `2`
+- Explanation: No occurrence has an equal character on both sides.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "aaaaa"`
+- Output: `1`
+- Explanation: Two operations remove four copies while preserving one middle copy.

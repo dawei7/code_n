@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | String, Greedy, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-operations-to-move-ones-to-the-end](https://leetcode.com/problems/maximum-number-of-operations-to-move-ones-to-the-end/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-operations-to-move-ones-to-the-end/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-operations-to-move-ones-to-the-end/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a binary string `s`. An operation may choose an adjacent `"10"` pair. Remove that `1` from its position and move it right across the entire consecutive block of zeroes, stopping immediately before the next `1` or at the end of the string.
+
+Operations may be performed in any order and may move the same `1` more than once as later zero blocks become reachable. Return the maximum total number of operations that can be performed before no `"10"` boundary remains.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A binary string with $1 \leq \lvert\texttt{s}\rvert \leq 10^5$.
 
 **Return value**
 
-TODO
+Return the maximum possible number of valid move operations.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "1001101"`
+- Output: `4`
+- Explanation: The two zero blocks can be crossed by one and three preceding `1` characters respectively.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "00111"`
+- Output: `0`
+- Explanation: No `1` has a zero immediately to its right.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "10"`
+- Output: `1`
+- Explanation: The single `1` moves across the final zero block once.

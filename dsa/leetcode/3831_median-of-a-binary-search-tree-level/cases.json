@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3831",
+  "cases": [
+    {
+      "id": "sample-single-target-node",
+      "name": "sample: a single node occupies the requested level",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [4, null, 5, null, 7], "level": 2},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "single-node-level", "right-skewed"]
+    },
+    {
+      "id": "sample-upper-median",
+      "name": "sample: two values use the upper median",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [6, 3, 8], "level": 1},
+      "expected": 8,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "even-width", "upper-median"]
+    },
+    {
+      "id": "sample-missing-level",
+      "name": "sample: the requested level does not exist",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [2, 1], "level": 2},
+      "expected": -1,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "missing-level"]
+    },
+    {
+      "id": "trial-root-level",
+      "name": "trial: level zero returns the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [42, 11, 90], "level": 0},
+      "expected": 42,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "root-level"]
+    },
+    {
+      "id": "trial-perfect-even-level",
+      "name": "trial: four sorted level values select the third",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [8, 4, 12, 2, 6, 10, 14], "level": 2},
+      "expected": 10,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "perfect-tree", "even-width", "upper-median"]
+    },
+    {
+      "id": "trial-sparse-odd-level",
+      "name": "trial: a sparse level has an odd number of nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [8, 4, 12, 2, 6, null, 14], "level": 2},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "sparse-tree", "odd-width"]
+    },
+    {
+      "id": "real-single-maximum",
+      "name": "hidden: a maximum-valued singleton root",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [1000000], "level": 0},
+      "expected": 1000000,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "single-node", "maximum-value"]
+    },
+    {
+      "id": "real-right-skewed-deep",
+      "name": "hidden: a deep right-skewed level contains one node",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [1, null, 2, null, 3, null, 4, null, 5], "level": 4},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "right-skewed", "deep-level"]
+    },
+    {
+      "id": "real-left-skewed-deep",
+      "name": "hidden: a deep left-skewed level contains one node",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [5, 4, null, 3, null, 2, null, 1], "level": 4},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "left-skewed", "deep-level"]
+    },
+    {
+      "id": "real-four-value-upper-median",
+      "name": "hidden: a complete four-value level chooses its upper middle",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [10, 5, 15, 2, 7, 12, 18], "level": 2},
+      "expected": 12,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "even-width", "upper-median"]
+    },
+    {
+      "id": "real-six-value-sparse-level",
+      "name": "hidden: a sparse six-value level remains ordered",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [20, 10, 30, 5, 15, 25, 35, null, 7, 13, 17, 23, 27, 33, null], "level": 3},
+      "expected": 23,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "sparse-tree", "even-width", "bst-order"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: level values span both numeric boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [999999, 1, 1000000], "level": 1},
+      "expected": 1000000,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "minimum-value", "maximum-value", "upper-median"]
+    },
+    {
+      "id": "real-maximum-missing-level",
+      "name": "hidden: the maximum requested level lies beyond a small tree",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [4, 2, 6], "level": 200000},
+      "expected": -1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-level", "missing-level"]
+    },
+    {
+      "id": "real-uneven-six-value-level",
+      "name": "hidden: an uneven tree preserves sorted level order",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [50, 20, 80, 10, 30, 60, 90, 5, null, 25, 35, null, 70, 85, 95], "level": 3},
+      "expected": 70,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "uneven-tree", "even-width", "bst-order"]
+    }
+  ]
+}

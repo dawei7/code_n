@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_3994",
+  "cases": [
+    {
+      "id": "sample-one-swap",
+      "name": "sample: exchange one misplaced middle and low value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 3, 2, 4, 5, 6], "a": 3, "b": 4},
+      "expected": 1,
+      "tags": ["sample", "one-swap", "all-groups"]
+    },
+    {
+      "id": "sample-five-swaps",
+      "name": "sample: high value starts before middle and low values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [9, 7, 5, 3], "a": 4, "b": 8},
+      "expected": 5,
+      "tags": ["sample", "five-swaps", "all-groups"]
+    },
+    {
+      "id": "sample-already-good",
+      "name": "sample: already partitioned array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 7, 5, 9], "a": 4, "b": 8},
+      "expected": 0,
+      "tags": ["sample", "already-good"]
+    },
+    {
+      "id": "trial-single-low",
+      "name": "trial: one value in the low group",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "a": 2, "b": 3},
+      "expected": 0,
+      "tags": ["trial", "single-element", "low-group"]
+    },
+    {
+      "id": "trial-single-lower-boundary",
+      "name": "trial: one value equals the lower boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2], "a": 2, "b": 3},
+      "expected": 0,
+      "tags": ["trial", "single-element", "inclusive-boundary"]
+    },
+    {
+      "id": "trial-single-upper-boundary",
+      "name": "trial: one value equals the upper boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [3], "a": 2, "b": 3},
+      "expected": 0,
+      "tags": ["trial", "single-element", "inclusive-boundary"]
+    },
+    {
+      "id": "trial-single-high",
+      "name": "trial: one value in the high group",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4], "a": 2, "b": 3},
+      "expected": 0,
+      "tags": ["trial", "single-element", "high-group"]
+    },
+    {
+      "id": "trial-all-low",
+      "name": "trial: only the first part is nonempty",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 1], "a": 2, "b": 3},
+      "expected": 0,
+      "tags": ["trial", "empty-parts", "low-group"]
+    },
+    {
+      "id": "trial-all-middle",
+      "name": "trial: only the middle part is nonempty",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3, 2], "a": 2, "b": 3},
+      "expected": 0,
+      "tags": ["trial", "empty-parts", "middle-group"]
+    },
+    {
+      "id": "trial-all-high",
+      "name": "trial: only the third part is nonempty",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 5, 4], "a": 2, "b": 3},
+      "expected": 0,
+      "tags": ["trial", "empty-parts", "high-group"]
+    },
+    {
+      "id": "trial-middle-empty-good",
+      "name": "trial: empty middle part already has low before high",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 4], "a": 2, "b": 3},
+      "expected": 0,
+      "tags": ["trial", "empty-middle", "already-good"]
+    },
+    {
+      "id": "trial-high-before-low",
+      "name": "trial: one high-low inversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 1], "a": 2, "b": 3},
+      "expected": 1,
+      "tags": ["trial", "high-low-inversion"]
+    },
+    {
+      "id": "trial-high-before-middle",
+      "name": "trial: one high-middle inversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 3], "a": 2, "b": 3},
+      "expected": 1,
+      "tags": ["trial", "high-middle-inversion"]
+    },
+    {
+      "id": "trial-middle-before-low",
+      "name": "trial: one middle-low inversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 1], "a": 2, "b": 3},
+      "expected": 1,
+      "tags": ["trial", "middle-low-inversion"]
+    },
+    {
+      "id": "real-duplicate-middle-values",
+      "name": "hidden: duplicate middle values remain equivalent",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 2, 2, 1], "a": 2, "b": 3},
+      "expected": 5,
+      "tags": ["hidden", "duplicates", "all-inversion-types"]
+    },
+    {
+      "id": "real-mixed-groups",
+      "name": "hidden: several inversion types are interleaved",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 1, 3, 5, 7, 2], "a": 3, "b": 5},
+      "expected": 7,
+      "tags": ["hidden", "interleaved", "all-groups"]
+    },
+    {
+      "id": "real-both-boundaries",
+      "name": "hidden: both inclusive boundaries precede a low value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 5, 1, 6], "a": 2, "b": 5},
+      "expected": 2,
+      "tags": ["hidden", "inclusive-boundaries"]
+    },
+    {
+      "id": "real-one-value-per-edge",
+      "name": "hidden: one low, two boundary values, and one high are ordered",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 5, 6], "a": 2, "b": 5},
+      "expected": 0,
+      "tags": ["hidden", "already-good", "inclusive-boundaries"]
+    },
+    {
+      "id": "real-maximum-value-range",
+      "name": "hidden: maximum value and wide thresholds",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 1, 500000000], "a": 2, "b": 999999999},
+      "expected": 2,
+      "tags": ["hidden", "maximum-value", "wide-range"]
+    },
+    {
+      "id": "real-balanced-descending-groups",
+      "name": "hidden: balanced descending groups maximize inversions",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [9, 9, 9, 9, 5, 5, 5, 5, 1, 1, 1, 1], "a": 4, "b": 8},
+      "expected": 48,
+      "tags": ["hidden", "descending-groups", "all-inversion-types"]
+    }
+  ]
+}

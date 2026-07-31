@@ -8,48 +8,49 @@
 | Category | Algorithms |
 | Topics | String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-changes-to-make-binary-string-beautiful](https://leetcode.com/problems/minimum-number-of-changes-to-make-binary-string-beautiful/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-changes-to-make-binary-string-beautiful/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-changes-to-make-binary-string-beautiful/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A binary string of even length is beautiful when it can be divided into one or
+more contiguous substrings such that every part has even length and consists
+entirely of `0` characters or entirely of `1` characters. The partition may
+use parts of different even lengths, but it must cover the whole string without
+reordering or omitting characters.
+
+You may replace any character of `s` with either binary digit. Determine the
+minimum number of individual character changes needed so that some valid
+beautiful partition exists. A character already holding the desired digit
+does not need to be changed.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A binary string of even length $n$, where $2\le n\le10^5$.
 
 **Return value**
 
-TODO
+Return the minimum number of character changes required to make `s` beautiful.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "1001"`
+- Output: `2`
+- Explanation: Changing the result to `"1100"` permits the partition `"11|00"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "10"`
+- Output: `1`
+- Explanation: One character must change so that the only length-two part is uniform.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "0000"`
+- Output: `0`
+- Explanation: The whole string is already one even-length uniform part.

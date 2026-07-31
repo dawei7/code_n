@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2756",
+  "status": "verified",
+  "method": "bounded_concurrency",
+  "required_time": "O(c)",
+  "summary": "The public schedule contains at most ten unique getValue calls, while correctness depends on timer ordering and overlapping asynchronous queries rather than a scalable runtime domain. The implementation queues and resolves each request once.",
+  "workload_bound": {
+    "symbol": "c",
+    "maximum": 10,
+    "unit": "scheduled getValue calls",
+    "source_constraint": "The calls array contains between zero and ten entries, all with unique keys."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each request is appended once, removed in one batch, mapped to one query key, and resolved once. Across the complete schedule, JavaScript bookkeeping is O(c) time and O(c) pending storage."
+    },
+    {
+      "kind": "scheduler_stress",
+      "evidence": "Cases cover calls inside, outside, and across consecutive throttle windows; a maximum ten-call burst; query latencies longer than the throttle; and overlapping in-flight batches."
+    },
+    {
+      "kind": "semantic_validator",
+      "evidence": "Remote acceptance of the exact native source confirms immediate first dispatch, ordered key-to-value mapping, throttle spacing between query starts, and independence from query completion time."
+    },
+    {
+      "kind": "deadlock_timeout",
+      "evidence": "Every queued request is flushed by the single cooldown timer and every batch result resolves its matching promises; bounded schedules complete without polling, rejection, or a wait cycle."
+    }
+  ]
+}

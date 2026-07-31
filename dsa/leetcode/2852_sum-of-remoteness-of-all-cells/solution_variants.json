@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Remoteness of All Cells and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Traverses each nonblocked component once and combines its size and value sum with the global sum.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n^2)"
     }
   ]
 }

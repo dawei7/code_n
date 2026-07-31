@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_323", "frontend_id": "323", "title_slug": "number-of-connected-components-in-an-undirected-graph", "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/description/", "paid_only": true, "content_sha256": "29fcb6e69ed3360ded2f65708f079efa7920009925f4686cb3f527aee391fc53", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 5, edges = [[0,1],[1,2],[3,4]]", "output": "2", "has_explanation": false},
+      {"ordinal": 2, "input": "n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]", "output": "1", "has_explanation": false}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "7667e8b7f722351f19fa48b7383a502f7c9bf2e084deb7c489c6adaad96f1c1b",
+    "reference/contract.md": "cb516a534021745a8dba07a0967eab4c2141476ad135b0dff50f00c8855f52bb",
+    "reference/examples.md": "15552d8364836946c7d4a953bbd79cb190df8ca65901694fe8c2f6106fed449e",
+    "reference/constraints.md": "7e50696b514756b84f33b513dd4662a59d5f3b2b02bc1225dd6023c14331c2d1"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

@@ -1,12 +1,10 @@
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    total_sum = 0
+def solve(nums: list[int]) -> int:
+    total = 0
     count = 0
-    
-    for num in nums:
-        if num % 6 == 0:
-            total_sum += num
+
+    for value in nums:
+        if value % 6 == 0:
+            total += value
             count += 1
-            
-    return total_sum // count if count > 0 else 0
+
+    return total // count if count else 0

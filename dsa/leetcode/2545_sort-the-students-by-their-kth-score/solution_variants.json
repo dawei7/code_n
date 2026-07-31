@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sort the Students by Their Kth Score and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts whole student rows by the selected exam score in descending order.",
+      "time_complexity": "O(m log m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

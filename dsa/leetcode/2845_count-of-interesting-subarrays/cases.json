@@ -3,111 +3,102 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: odd-count subarrays",
+      "name": "sample: subarrays with an odd qualifying count",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          2,
-          4
-        ],
-        "modulo": 2,
-        "k": 1
-      },
-      "tags": [
-        "sample",
-        "prefix"
-      ],
-      "expected": 3
+      "input": {"nums": [3, 2, 4], "modulo": 2, "k": 1},
+      "expected": 3,
+      "tags": ["sample", "prefix-remainder"]
     },
     {
       "id": "sample-2",
-      "name": "sample: count divisible by three",
+      "name": "sample: qualifying count divisible by three",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          1,
-          9,
-          6
-        ],
-        "modulo": 3,
-        "k": 0
-      },
-      "tags": [
-        "sample",
-        "zero-remainder"
-      ],
-      "expected": 2
+      "input": {"nums": [3, 1, 9, 6], "modulo": 3, "k": 0},
+      "expected": 2,
+      "tags": ["sample", "zero-target"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one matching decimal remainder",
-      "kind": "sample",
+      "id": "trial-two-separated-qualifiers",
+      "name": "trial: each subarray must contain exactly one qualifier",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          11,
-          12,
-          21,
-          14
-        ],
-        "modulo": 10,
-        "k": 1
-      },
-      "tags": [
-        "sample",
-        "prefix"
-      ],
-      "expected": 6
+      "input": {"nums": [11, 12, 21, 14], "modulo": 10, "k": 1},
+      "expected": 6,
+      "tags": ["trial", "separated-qualifiers"]
     },
     {
       "id": "trial-no-interesting-subarray",
-      "name": "trial: every candidate count misses the target remainder",
+      "name": "trial: zero qualifying elements misses a nonzero target",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          10,
-          15,
-          20
-        ],
-        "modulo": 5,
-        "k": 0
-      },
-      "tags": [
-        "trial",
-        "none"
-      ],
-      "expected": 0
+      "input": {"nums": [2, 4, 6], "modulo": 2, "k": 1},
+      "expected": 0,
+      "tags": ["trial", "none"]
     },
     {
-      "id": "real-mixed-prefix-remainders",
-      "name": "hidden: repeated prefix remainders create many ranges",
+      "id": "real-modulo-one",
+      "name": "hidden: every subarray is interesting modulo one",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          4,
-          7,
-          10,
-          13,
-          16,
-          19,
-          22,
-          25
-        ],
-        "modulo": 3,
-        "k": 1
-      },
-      "tags": [
-        "hidden",
-        "prefix"
-      ],
-      "expected": 15
+      "input": {"nums": [5, 7, 9, 11], "modulo": 1, "k": 0},
+      "expected": 10,
+      "tags": ["hidden", "minimum-modulo"]
+    },
+    {
+      "id": "real-single-qualifier",
+      "name": "hidden: one element produces the target count remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4], "modulo": 3, "k": 1},
+      "expected": 1,
+      "tags": ["hidden", "single-element"]
+    },
+    {
+      "id": "real-single-misses-count-target",
+      "name": "hidden: element qualifies but its count has another remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5], "modulo": 3, "k": 2},
+      "expected": 0,
+      "tags": ["hidden", "condition-distinction"]
+    },
+    {
+      "id": "real-all-zero-counts",
+      "name": "hidden: no element qualifies and every subarray targets zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1], "modulo": 1000000000, "k": 0},
+      "expected": 36,
+      "tags": ["hidden", "maximum-modulo", "maximum-count"]
+    },
+    {
+      "id": "real-repeated-prefix-cycles",
+      "name": "hidden: all elements qualify and prefix remainders repeat",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 7, 10, 13, 16, 19, 22, 25], "modulo": 3, "k": 1},
+      "expected": 15,
+      "tags": ["hidden", "prefix-cycles"]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: maximum value participates in the element test",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 999999999, 1], "modulo": 1000000000, "k": 0},
+      "expected": 3,
+      "tags": ["hidden", "maximum-value"]
+    },
+    {
+      "id": "real-all-qualify-odd-count",
+      "name": "hidden: odd-length ranges over five qualifying elements",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 3, 5, 7, 9], "modulo": 2, "k": 1},
+      "expected": 9,
+      "tags": ["hidden", "all-qualify"]
     }
   ]
 }

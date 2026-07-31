@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3749",
+  "frontend_id": "3406",
+  "title_slug": "find-the-lexicographically-largest-string-from-the-box-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.answerString",
+  "verified_submission_id": "2081477710",
+  "verified_at": "2026-07-26T03:51:00Z"
+}

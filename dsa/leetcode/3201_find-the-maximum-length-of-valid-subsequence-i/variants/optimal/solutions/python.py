@@ -1,18 +1,20 @@
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    count_even = 0
-    count_odd = 0
+def solve(nums: list[int]) -> int:
+    even_count = 0
+    odd_count = 0
     alternating_end_even = 0
     alternating_end_odd = 0
 
-    for x in nums:
-        parity = x % 2
-        if parity == 0:
-            count_even += 1
+    for value in nums:
+        if value % 2 == 0:
+            even_count += 1
             alternating_end_even = alternating_end_odd + 1
         else:
-            count_odd += 1
+            odd_count += 1
             alternating_end_odd = alternating_end_even + 1
 
-    return max(count_even, count_odd, alternating_end_even, alternating_end_odd)
+    return max(
+        even_count,
+        odd_count,
+        alternating_end_even,
+        alternating_end_odd,
+    )

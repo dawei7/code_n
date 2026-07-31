@@ -1,82 +1,14 @@
 {
   "challenge_id": "lc_2932",
   "cases": [
-    {
-      "id": "sample-small-chain",
-      "name": "sample: small strong chain",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "expected": 7,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-no-distinct-strong-pair",
-      "name": "trial: only self pairs qualify",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          10,
-          100
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "edge"
-      ]
-    },
-    {
-      "id": "sample-separated-groups",
-      "name": "sample: separated strong groups",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          5,
-          6,
-          25,
-          30
-        ]
-      },
-      "expected": 7,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-power-boundaries",
-      "name": "real: power boundaries",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          1,
-          1,
-          2,
-          4,
-          8,
-          16,
-          17,
-          31,
-          32,
-          63
-        ]
-      },
-      "expected": 63,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-small-chain","name":"sample: overlapping strong pairs","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5]},"expected":7,"tags":["sample"]},
+    {"id":"sample-only-self-pairs","name":"sample: distinct values are too far apart","kind":"sample","visible":true,"input":{"nums":[10,100]},"expected":0,"tags":["sample","self-pair"]},
+    {"id":"sample-separated-groups","name":"sample: choose the stronger XOR group","kind":"sample","visible":true,"input":{"nums":[5,6,25,30]},"expected":7,"tags":["sample"]},
+    {"id":"trial-single-value","name":"trial: singleton uses its self-pair","kind":"trial","visible":true,"input":{"nums":[42]},"expected":0,"tags":["minimum","self-pair"]},
+    {"id":"trial-equality-boundary","name":"trial: larger value is exactly twice the smaller","kind":"trial","visible":true,"input":{"nums":[4,8]},"expected":12,"tags":["inclusive-boundary"]},
+    {"id":"trial-outside-boundary","name":"trial: one step beyond twice the smaller","kind":"trial","visible":true,"input":{"nums":[4,9]},"expected":0,"tags":["exclusive-outside"]},
+    {"id":"real-duplicates","name":"hidden: duplicate values add only zero XOR","kind":"real","visible":false,"input":{"nums":[7,7,7]},"expected":0,"tags":["hidden","duplicates"]},
+    {"id":"real-bit-boundaries","name":"hidden: nearby powers of two maximize XOR","kind":"real","visible":false,"input":{"nums":[1,1,2,4,8,16,17,31,32,63]},"expected":63,"tags":["hidden","bit-boundary"]},
+    {"id":"real-maximum-values","name":"hidden: compare an equality pair with a larger XOR","kind":"real","visible":false,"input":{"nums":[50,75,100]},"expected":121,"tags":["hidden","value-boundary"]}
   ]
 }

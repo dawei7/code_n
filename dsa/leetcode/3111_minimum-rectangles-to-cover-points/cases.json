@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-two-rectangles",
-      "name": "sample: points covered by two width-limited rectangles",
+      "name": "sample: points covered by two width-one rectangles",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,8 +41,8 @@
       ]
     },
     {
-      "id": "sample-one-rectangle",
-      "name": "sample: all x coordinates fit one rectangle",
+      "id": "sample-seven-points",
+      "name": "sample: three width-two rectangles",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,80 +58,153 @@
           [
             2,
             2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
           ]
         ],
         "w": 2
       },
-      "expected": 1,
+      "expected": 3,
       "tags": [
         "sample"
       ]
     },
     {
-      "id": "trial-zero-width",
-      "name": "trial: zero width groups identical x coordinates",
-      "kind": "trial",
+      "id": "sample-zero-width",
+      "name": "sample: zero width separates distinct x coordinates",
+      "kind": "sample",
       "visible": true,
       "input": {
         "points": [
           [
-            0,
-            1
+            2,
+            3
           ],
           [
-            0,
+            1,
             2
-          ],
-          [
-            3,
-            1
-          ],
-          [
-            3,
-            4
           ]
         ],
         "w": 0
       },
       "expected": 2,
       "tags": [
-        "trial"
+        "sample"
       ]
     },
     {
-      "id": "trial-gaps",
-      "name": "trial: gaps force new rectangles",
+      "id": "trial-single-point",
+      "name": "trial: one point needs one rectangle",
       "kind": "trial",
       "visible": true,
       "input": {
         "points": [
           [
-            0,
-            0
-          ],
-          [
-            2,
-            0
-          ],
-          [
-            5,
-            0
-          ],
-          [
-            6,
-            0
+            7,
+            9
           ]
         ],
-        "w": 2
+        "w": 0
       },
-      "expected": 2,
+      "expected": 1,
       "tags": [
-        "trial"
+        "trial",
+        "boundary"
       ]
     },
     {
-      "id": "real-unsorted-points",
-      "name": "real: unsorted points with repeated x values",
+      "id": "trial-shared-x",
+      "name": "trial: zero width covers all points sharing x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            100
+          ]
+        ],
+        "w": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "repeated-x"
+      ]
+    },
+    {
+      "id": "real-right-boundary",
+      "name": "real: point on the right boundary is covered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            8
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "w": 5
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "real-just-outside",
+      "name": "real: point beyond the right boundary needs another rectangle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            8
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "w": 5
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-unsorted-repeated-x",
+      "name": "real: unsorted points with repeated x coordinates",
       "kind": "real",
       "visible": false,
       "input": {
@@ -159,6 +232,10 @@
           [
             2,
             3
+          ],
+          [
+            3,
+            7
           ]
         ],
         "w": 3
@@ -166,7 +243,153 @@
       "expected": 2,
       "tags": [
         "real",
+        "unsorted",
+        "repeated-x"
+      ]
+    },
+    {
+      "id": "real-greedy-clusters",
+      "name": "real: every new rectangle starts at the leftmost uncovered point",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            6,
+            4
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "w": 2
+      },
+      "expected": 3,
+      "tags": [
+        "real",
         "greedy"
+      ]
+    },
+    {
+      "id": "real-y-irrelevant",
+      "name": "real: vertical separation does not affect coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            10,
+            0
+          ],
+          [
+            11,
+            1000000000
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            30,
+            999999999
+          ]
+        ],
+        "w": 2
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "vertical"
+      ]
+    },
+    {
+      "id": "real-full-coordinate-span",
+      "name": "real: maximum width covers the complete coordinate span",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            1000000000,
+            1000000000
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            500000000,
+            7
+          ]
+        ],
+        "w": 1000000000
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-many-duplicates-and-gaps",
+      "name": "real: shared x coordinates do not require extra rectangles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            20,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            14,
+            6
+          ],
+          [
+            15,
+            7
+          ],
+          [
+            20,
+            8
+          ]
+        ],
+        "w": 5
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "repeated-x",
+        "gaps"
       ]
     }
   ]

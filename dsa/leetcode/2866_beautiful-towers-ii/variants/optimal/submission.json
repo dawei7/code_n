@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3113",
+  "frontend_id": "2866",
+  "title_slug": "beautiful-towers-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maximumSumOfHeights",
+  "verified_submission_id": "2077644459",
+  "verified_at": "2026-07-22T20:23:00+00:00"
+}

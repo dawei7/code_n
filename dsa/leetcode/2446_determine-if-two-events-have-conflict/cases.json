@@ -1,106 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2446",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: endpoints touch",
+      "name": "sample: inclusive endpoints touch",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "event1": [
-          "01:15",
-          "02:00"
-        ],
-        "event2": [
-          "02:00",
-          "03:00"
-        ]
-      },
+      "input": {"event1": ["01:15", "02:00"], "event2": ["02:00", "03:00"]},
       "expected": true,
-      "tags": [
-        "sample",
-        "interval"
-      ]
+      "tags": ["sample", "inclusive-endpoint"]
     },
     {
       "id": "sample-2",
-      "name": "sample: separated by twelve minutes",
+      "name": "sample: intervals overlap internally",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "event1": [
-          "01:00",
-          "02:00"
-        ],
-        "event2": [
-          "02:12",
-          "03:00"
-        ]
-      },
-      "expected": false,
-      "tags": [
-        "sample"
-      ]
+      "input": {"event1": ["01:00", "02:00"], "event2": ["01:20", "03:00"]},
+      "expected": true,
+      "tags": ["sample", "overlap"]
     },
     {
       "id": "sample-3",
-      "name": "sample: disjoint daytime events",
+      "name": "sample: separated daytime events",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "event1": [
-          "10:00",
-          "11:00"
-        ],
-        "event2": [
-          "14:00",
-          "15:00"
-        ]
-      },
+      "input": {"event1": ["10:00", "11:00"], "event2": ["14:00", "15:00"]},
       "expected": false,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "disjoint"]
     },
     {
-      "id": "trial-touching-reversed-order",
-      "name": "trial: touching endpoint with event order reversed",
+      "id": "trial-identical-point",
+      "name": "trial: identical point events conflict",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "event1": [
-          "02:00",
-          "03:00"
-        ],
-        "event2": [
-          "01:00",
-          "02:00"
-        ]
-      },
+      "input": {"event1": ["12:34", "12:34"], "event2": ["12:34", "12:34"]},
       "expected": true,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "point-event"]
     },
     {
-      "id": "real-contained-event",
-      "name": "hidden: one event contains the other",
+      "id": "trial-one-minute-gap",
+      "name": "trial: one-minute gap is disjoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"event1": ["08:00", "08:59"], "event2": ["09:00", "09:30"]},
+      "expected": false,
+      "tags": ["trial", "gap"]
+    },
+    {
+      "id": "real-contained",
+      "name": "hidden: first event contains second",
       "kind": "real",
       "visible": false,
-      "input": {
-        "event1": [
-          "09:00",
-          "17:00"
-        ],
-        "event2": [
-          "12:30",
-          "13:00"
-        ]
-      },
+      "input": {"event1": ["09:00", "17:00"], "event2": ["12:30", "13:00"]},
       "expected": true,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "containment"]
+    },
+    {
+      "id": "real-full-day-boundary",
+      "name": "hidden: full-day event contains final point",
+      "kind": "real",
+      "visible": false,
+      "input": {"event1": ["00:00", "23:59"], "event2": ["23:59", "23:59"]},
+      "expected": true,
+      "tags": ["hidden", "day-boundary"]
+    },
+    {
+      "id": "real-reversed-order",
+      "name": "hidden: later event supplied first",
+      "kind": "real",
+      "visible": false,
+      "input": {"event1": ["18:00", "19:00"], "event2": ["06:00", "07:00"]},
+      "expected": false,
+      "tags": ["hidden", "order-independent"]
     }
   ]
 }

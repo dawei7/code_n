@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-composite-reduces",
-      "name": "sample: composite can reduce enough",
+      "name": "sample: composite reduces enough",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,12 +15,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "spf"
+        "smallest-prime-factor"
       ]
     },
     {
       "id": "sample-prime-impossible",
-      "name": "sample: prime cannot reduce enough",
+      "name": "sample: prime inversion is impossible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -33,13 +33,14 @@
       "expected": -1,
       "tags": [
         "sample",
+        "prime",
         "impossible"
       ]
     },
     {
-      "id": "trial-already-nondecreasing",
-      "name": "trial: already non-decreasing",
-      "kind": "trial",
+      "id": "sample-already-ordered",
+      "name": "sample: already non-decreasing",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -51,12 +52,31 @@
       },
       "expected": 0,
       "tags": [
-        "edge"
+        "sample",
+        "no-operations"
       ]
     },
     {
-      "id": "trial-composite-to-prime-factor",
-      "name": "trial: composite reduces to smallest prime factor",
+      "id": "trial-two-forced-reductions",
+      "name": "trial: adjacent inversions force two reductions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          4,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "greedy",
+        "multiple-operations"
+      ]
+    },
+    {
+      "id": "trial-single-composite",
+      "name": "trial: one composite becomes its smallest prime factor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -68,27 +88,42 @@
       },
       "expected": 1,
       "tags": [
-        "operation"
+        "composite",
+        "factor"
       ]
     },
     {
-      "id": "real-mixed-decreasing",
-      "name": "real: hidden mixed decreasing suffix",
+      "id": "real-prime-above-one",
+      "name": "real: prime cannot be lowered to one",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          49,
-          21,
-          14,
-          7,
-          11
+          2,
+          1
         ]
       },
       "expected": -1,
       "tags": [
-        "real",
-        "greedy"
+        "prime",
+        "minimum-boundary"
+      ]
+    },
+    {
+      "id": "real-large-square",
+      "name": "real: maximum-scale prime square reduces once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          982081,
+          991
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "large-value",
+        "prime-square"
       ]
     }
   ]

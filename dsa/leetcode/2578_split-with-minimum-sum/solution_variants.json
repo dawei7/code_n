@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Split With Minimum Sum and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts the digits and appends them alternately to two balanced numbers so the smallest digits receive the largest place values.",
+      "time_complexity": "O(d log d)",
+      "space_complexity": "O(d)"
     }
   ]
 }

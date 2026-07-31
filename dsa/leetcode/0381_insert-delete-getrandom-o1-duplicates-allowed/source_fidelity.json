@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_381", "frontend_id": "381", "title_slug": "insert-delete-getrandom-o1-duplicates-allowed", "url": "https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/description/", "paid_only": false, "content_sha256": "9bd645ce11d8f6cceb8636b0d361730b382db8b633046072f43417a7df36be05", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "operations = [\"RandomizedCollection\",\"insert\",\"insert\",\"insert\",\"getRandom\",\"remove\",\"getRandom\"], arguments = [[],[1],[1],[2],[],[1],[]]", "output": "[null,true,false,true,2,true,1]", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "c1671facced6739dffaa3d4bb105b43274583dbf81eed7521c3110dc5dae259b",
+    "reference/contract.md": "e9d0ec7668c0c938acf69b3d8e4a160104b40af64ded15af3f6e7b84bf95f1c2",
+    "reference/note.md": "eddb63acf3159bfda748590e283a373f71f55aa229211036d28d7f056cda5252",
+    "reference/examples.md": "59f7edcb0b17fff6fce5d88c8fff545e2d69a7a1decacb75ad8c23d844e1e947",
+    "reference/constraints.md": "1857c585db916c52ae3be4fcdc329263dbeb8d01e3552c4dad776ea49df37b66"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

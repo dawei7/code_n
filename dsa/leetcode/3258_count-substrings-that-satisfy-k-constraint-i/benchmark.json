@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3258",
+  "measurement_note": "String length n is the workload size. Alternating bits make many substrings cross both count limits; the sliding window advances each boundary once, while direct substring enumeration performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-quadratic-scan-scale-1",
+      "name": "benchmark: 8-bit alternating string with k = 1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "01010101",
+        "k": 1
+      },
+      "expected": 21,
+      "tags": [
+        "benchmark",
+        "alternating",
+        "scale-1"
+      ]
+    },
+    {
+      "id": "benchmark-quadratic-scan-scale-2",
+      "name": "benchmark: 24-bit alternating string with k = 1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "s": "010101010101010101010101",
+        "k": 1
+      },
+      "expected": 69,
+      "tags": [
+        "benchmark",
+        "alternating",
+        "scale-2"
+      ]
+    },
+    {
+      "id": "benchmark-quadratic-scan-scale-3",
+      "name": "benchmark: 48-bit alternating string with k = 1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "s": "010101010101010101010101010101010101010101010101",
+        "k": 1
+      },
+      "expected": 141,
+      "tags": [
+        "benchmark",
+        "alternating",
+        "scale-3"
+      ]
+    }
+  ]
+}

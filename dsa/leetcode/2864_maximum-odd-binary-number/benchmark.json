@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2864",
+  "cases": [
+    {
+      "id": "benchmark-single-one-8",
+      "name": "benchmark: one set bit among 8 bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"s": "00000001"},
+      "expected": "00000001",
+      "tags": ["benchmark", "small", "quadratic-ordering", "legal-constraints"]
+    },
+    {
+      "id": "benchmark-single-one-32",
+      "name": "benchmark: one set bit among 32 bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s": "00000000000000000000000000000001"},
+      "expected": "00000000000000000000000000000001",
+      "tags": ["benchmark", "medium", "quadratic-ordering", "legal-constraints"]
+    },
+    {
+      "id": "benchmark-single-one-100",
+      "name": "benchmark: one set bit at the maximum length",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"s": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001"},
+      "expected": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "tags": ["benchmark", "large", "quadratic-ordering", "legal-constraints"]
+    }
+  ]
+}

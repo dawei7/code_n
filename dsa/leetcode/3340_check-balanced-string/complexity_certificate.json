@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3340",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Every digit can independently change whether the alternating sums are equal, giving an Omega(n) inspection lower bound matched by the accepted one-pass scan.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Starting from an all-zero balanced string, changing any one unchecked digit to 1 makes exactly one side's sum larger. A correct algorithm must therefore inspect every digit in the worst case, while the accepted implementation processes each digit exactly once."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "For every index, changing that digit alone in an all-zero string changes the answer from balanced to unbalanced."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The accepted implementation performs one conversion and one signed accumulation per digit."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhausts digit strings over 0 through 3 for lengths 2 through 6 and checks leading zeroes, odd and even lengths, and maximum-length balanced and unbalanced strings."
+    }
+  ]
+}

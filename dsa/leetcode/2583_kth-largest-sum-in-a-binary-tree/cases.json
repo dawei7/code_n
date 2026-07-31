@@ -1,0 +1,223 @@
+{
+  "challenge_id": "lc_2583",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: second-largest among four level sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          8,
+          9,
+          2,
+          1,
+          3,
+          7,
+          4,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "multiple-levels"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: largest sum in a left-skewed tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          null,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "skewed-tree"
+      ]
+    },
+    {
+      "id": "trial-duplicate-level-sums",
+      "name": "trial: equal level sums keep separate ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          1,
+          2,
+          1,
+          null,
+          null,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "duplicate-sums"
+      ]
+    },
+    {
+      "id": "trial-minimum-tree",
+      "name": "trial: minimum tree asks for its largest level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          2,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "real-middle-rank",
+      "name": "hidden: middle rank in a partially filled tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "partial-level"
+      ]
+    },
+    {
+      "id": "real-too-few-levels",
+      "name": "hidden: k exceeds the number of levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "insufficient-levels"
+      ]
+    },
+    {
+      "id": "real-right-skewed",
+      "name": "hidden: every node forms its own level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          4,
+          null,
+          9,
+          null,
+          1,
+          null,
+          7
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "skewed-tree"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: level sums require wide integer arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000
+        ],
+        "k": 2
+      },
+      "expected": 2000000,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-uneven-tree",
+      "name": "hidden: missing children do not split a level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          10,
+          2,
+          3,
+          null,
+          4,
+          null,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "sparse-tree"
+      ]
+    },
+    {
+      "id": "real-equal-ranks",
+      "name": "hidden: duplicate sums occupy first and second ranks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          7,
+          3,
+          4,
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "duplicate-sums"
+      ]
+    }
+  ]
+}

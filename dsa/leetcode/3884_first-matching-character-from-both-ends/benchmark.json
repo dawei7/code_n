@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3884",
+  "measurement_note": "Size is n, the string length. Each even-length tier places only 'a' in the left half and only 'b' in the right half, so no mirrored pair matches and every correct search must reach its full no-match path.",
+  "cases": [
+    {
+      "id": "benchmark-no-match-n-8",
+      "name": "benchmark: no mirrored match at length 8",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "aaaabbbb"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "no-match",
+        "full-scan",
+        "scale-small"
+      ],
+      "size": 8
+    },
+    {
+      "id": "benchmark-no-match-n-32",
+      "name": "benchmark: no mirrored match at length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbb"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "no-match",
+        "full-scan",
+        "scale-medium"
+      ],
+      "size": 32
+    },
+    {
+      "id": "benchmark-no-match-n-100",
+      "name": "benchmark: no mirrored match at length 100",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "no-match",
+        "full-scan",
+        "scale-large"
+      ],
+      "size": 100
+    }
+  ]
+}

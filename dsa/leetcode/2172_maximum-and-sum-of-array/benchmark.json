@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2172",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: full ternary state space for m=2",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {"nums": [4, 11, 3, 10], "numSlots": 2},
+      "expected": 5,
+      "tags": ["benchmark", "scale-small", "full-capacity", "ternary-states"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: full ternary state space for m=4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 81,
+      "input": {"nums": [4, 11, 3, 10, 2, 9, 1, 8], "numSlots": 4},
+      "expected": 16,
+      "tags": ["benchmark", "scale-medium", "full-capacity", "ternary-states"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: full ternary state space for m=6",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 729,
+      "input": {"nums": [4, 11, 3, 10, 2, 9, 1, 8, 15, 7, 14, 6], "numSlots": 6},
+      "expected": 38,
+      "tags": ["benchmark", "scale-large", "full-capacity", "ternary-states"]
+    }
+  ]
+}

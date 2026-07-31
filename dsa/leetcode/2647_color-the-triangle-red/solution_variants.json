@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Color the Triangle Red and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds the minimum percolating set with a repeating four-row coordinate pattern.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n^2)"
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Cost of a Path With Special Roads and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Runs Dijkstra's algorithm on special-road destinations while allowing Manhattan travel to every road entrance and the target.",
+      "time_complexity": "O(r^2 log r)",
+      "space_complexity": "O(r^2)"
     }
   ]
 }

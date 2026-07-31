@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3890",
+    "frontend_id": "3890",
+    "title_slug": "integers-with-multiple-sum-of-two-cubes",
+    "url": "https://leetcode.com/problems/integers-with-multiple-sum-of-two-cubes/description/",
+    "paid_only": false,
+    "content_sha256": "1b12c67642f0ec6b4af12feb55c670d35b2ea00c2cc9594bdbf793f0fabc6a68",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 4104",
+        "output": "[1729,4104]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 578",
+        "output": "[]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "39fd9767ca696a532a0e2e329a5b30cf71420d1b24750c2785ebe6100a110941",
+      "reference/contract.md": "2fb9cb15085edc88be9cdb085e59c3982f88fce573d53a502a9c8a2be8459d7a",
+      "reference/examples.md": "aef9cc4e8b361fc36685abd4256401ce59803f48d64751755d2f655c9a000a06",
+      "reference/constraints.md": "cb3df2b25fc30000af2ebdc67febec9b47b281f09de689eb8e8d1b5dc081c856"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}
+

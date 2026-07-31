@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Maximum Factor Score of Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines prefix and suffix GCD/LCM aggregates to evaluate every optional deletion in constant aggregate work.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(n)"
     }
   ]
 }

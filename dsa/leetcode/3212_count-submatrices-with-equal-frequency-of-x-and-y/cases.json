@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3212",
   "cases": [
     {
-      "id": "sample-balanced-prefixes",
-      "name": "sample: balanced X and Y prefixes",
+      "id": "sample-three-rectangles",
+      "name": "sample: three anchored rectangles balance X and Y",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,26 +17,47 @@
           [
             "Y",
             ".",
-            "X"
+            "."
           ]
         ]
       },
-      "expected": 4,
+      "expected": 3,
       "tags": [
-        "sample",
-        "prefix"
+        "sample"
       ]
     },
     {
-      "id": "sample-no-x",
-      "name": "sample: equal counts without X does not count",
+      "id": "sample-no-equal-frequency",
+      "name": "sample: every anchored rectangle has more X",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "X",
+            "X"
+          ],
+          [
+            "X",
+            "Y"
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-dots",
+      "name": "sample: equal zero frequencies do not qualify",
       "kind": "sample",
       "visible": true,
       "input": {
         "grid": [
           [
             ".",
-            "Y"
+            "."
           ],
           [
             ".",
@@ -46,12 +68,46 @@
       "expected": 0,
       "tags": [
         "sample",
-        "edge"
+        "all-dots"
+      ]
+    },
+    {
+      "id": "trial-single-x",
+      "name": "trial: one X lacks a matching Y",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "X"
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-single-y",
+      "name": "trial: one Y also lacks a positive X count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "Y"
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-cell"
       ]
     },
     {
       "id": "trial-single-row",
-      "name": "trial: single row prefixes",
+      "name": "trial: balanced prefixes in one row are counted",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -59,32 +115,35 @@
           [
             "X",
             "Y",
-            "Y",
+            ".",
             "X",
-            "."
+            "Y"
           ]
         ]
       },
       "expected": 3,
       "tags": [
-        "row"
+        "single-row"
       ]
     },
     {
-      "id": "trial-single-column",
-      "name": "trial: single column prefixes",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-single-column",
+      "name": "real: balanced vertical prefixes are counted",
+      "kind": "real",
+      "visible": false,
       "input": {
         "grid": [
-          [
-            "X"
-          ],
           [
             "."
           ],
           [
+            "X"
+          ],
+          [
             "Y"
+          ],
+          [
+            "."
           ],
           [
             "X"
@@ -94,14 +153,116 @@
           ]
         ]
       },
-      "expected": 2,
+      "expected": 3,
       "tags": [
-        "column"
+        "single-column",
+        "top-left-dot"
       ]
     },
     {
-      "id": "real-four-by-four",
-      "name": "real: mixed four by four grid",
+      "id": "real-top-left-dot",
+      "name": "real: a dot at the origin permits later balanced rectangles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            ".",
+            "X"
+          ],
+          [
+            "Y",
+            "."
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "top-left-dot"
+      ]
+    },
+    {
+      "id": "real-dots-preserve-balance",
+      "name": "real: dots extend already balanced anchored rectangles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "X",
+            "Y",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            "."
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "dots"
+      ]
+    },
+    {
+      "id": "real-multiple-balanced-prefixes",
+      "name": "real: different bottom-right corners share the same balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "X",
+            ".",
+            "Y"
+          ],
+          [
+            "Y",
+            "X",
+            "."
+          ],
+          [
+            ".",
+            "Y",
+            "X"
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "multiple-prefixes"
+      ]
+    },
+    {
+      "id": "real-only-y-and-dots",
+      "name": "real: no X means no rectangle qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "Y",
+            "."
+          ],
+          [
+            ".",
+            "Y"
+          ],
+          [
+            "Y",
+            "."
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "no-x"
+      ]
+    },
+    {
+      "id": "real-mixed-three-by-four",
+      "name": "real: mixed letters and dots exercise both dimensions",
       "kind": "real",
       "visible": false,
       "input": {
@@ -116,26 +277,19 @@
             "Y",
             "X",
             ".",
-            "."
+            "Y"
           ],
           [
             ".",
             "Y",
             "X",
-            "Y"
-          ],
-          [
-            "X",
-            ".",
-            ".",
-            "Y"
+            "."
           ]
         ]
       },
       "expected": 8,
       "tags": [
-        "real",
-        "prefix"
+        "mixed"
       ]
     }
   ]

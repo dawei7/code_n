@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_78", "frontend_id": "78",
+    "title_slug": "subsets",
+    "url": "https://leetcode.com/problems/subsets/description/",
+    "paid_only": false, "content_sha256": "3848bc76dd7bdfd38d9e9f8166768c34d105d90ee3d1e69c82d1ee558ff5b95e", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,2,3]", "output": "[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]", "has_explanation": false},
+      {"ordinal": 2, "input": "nums = [0]", "output": "[[],[0]]", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4120eb331b8124058315f764f50b6ff1ed83f9cc0d6616971ff5e5b0e1e4ff67",
+      "reference/contract.md": "536d0d9357a55f4cc683fe4565e43ccee6a504eb536cb575baa9d5c55a1498ec",
+      "reference/examples.md": "a8d31111e24b4ca1a24c621c7bf5d81d671f35985ea7a4cbc76f4cd26041c82f",
+      "reference/constraints.md": "c254790f1b380474aad5c89d03828ff216f07ed0e244f12579c4657c8ec75f3b"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

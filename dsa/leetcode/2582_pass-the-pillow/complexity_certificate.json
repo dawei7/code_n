@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2582",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The complete legal input domain contains only 999000 pairs, while timing constant-size arithmetic cannot produce an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "p",
+    "maximum": 999000,
+    "unit": "legal (n, time) pairs",
+    "source_constraint": "n is between 2 and 1000 inclusive and time is between 1 and 1000 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference performs one division with remainder, one parity test, and one constant-size arithmetic return, establishing O(1) time and O(1) auxiliary space for every legal input."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "An independent periodic-cycle oracle checked all 999000 legal (n, time) pairs against the reference formula."
+    }
+  ]
+}

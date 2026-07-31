@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3953",
+  "cases": [
+    {
+      "id": "sample-create-five",
+      "name": "sample: create five and modify one incompatible value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 4, 6], "maxVal": 5},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "created-selected-value", "one-modification"]
+    },
+    {
+      "id": "sample-existing-three",
+      "name": "sample: an existing value is already co-prime with all others",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3], "maxVal": 4},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "existing-selected-value", "zero-cost"]
+    },
+    {
+      "id": "sample-limit-one",
+      "name": "sample: changing one duplicate to one enables the other",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 2], "maxVal": 1},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "limit-one", "duplicates"]
+    },
+    {
+      "id": "trial-single-existing-above-limit",
+      "name": "trial: a sole original value may remain above the replacement limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7], "maxVal": 1},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "single-element", "above-limit"]
+    },
+    {
+      "id": "trial-single-created-maximum",
+      "name": "trial: changing the only element can raise the score",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7], "maxVal": 10},
+      "expected": 9,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "single-element", "created-selected-value"]
+    },
+    {
+      "id": "trial-one-changed-to-maximum-limit",
+      "name": "trial: the replacement limit may reach its maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "maxVal": 100000},
+      "expected": 99999,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "single-element", "selected-one"]
+    },
+    {
+      "id": "trial-create-coprime-three",
+      "name": "trial: an absent co-prime value costs one change",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 2], "maxVal": 3},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "created-selected-value", "coprime"]
+    },
+    {
+      "id": "trial-existing-fifteen-above-limit",
+      "name": "trial: retaining a large value beats creating a bounded one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6, 10, 15], "maxVal": 7},
+      "expected": 13,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "above-limit", "multiple-modifications"]
+    },
+    {
+      "id": "trial-created-nine",
+      "name": "trial: a created composite shares one prime factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3, 5, 7], "maxVal": 10},
+      "expected": 8,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "created-selected-value", "inclusion-exclusion"]
+    },
+    {
+      "id": "real-existing-twenty-one",
+      "name": "hidden: an original value pays for every shared prime factor conflict",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 10, 15, 21], "maxVal": 20},
+      "expected": 19,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "existing-selected-value", "shared-factors"]
+    },
+    {
+      "id": "real-coprime-large-pair",
+      "name": "hidden: the maximum original value needs no modification",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [99991, 100000], "maxVal": 1},
+      "expected": 100000,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "boundary", "large-coprime-values"]
+    },
+    {
+      "id": "real-duplicate-maximum",
+      "name": "hidden: one duplicate maximum must change",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000, 100000], "maxVal": 1},
+      "expected": 99999,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "boundary", "duplicates"]
+    },
+    {
+      "id": "real-existing-one-hundred-five",
+      "name": "hidden: an above-limit value conflicts through several primes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [30, 42, 70, 105], "maxVal": 100},
+      "expected": 102,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "above-limit", "multiple-prime-factors"]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "hidden: ones never conflict with a created maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1], "maxVal": 10},
+      "expected": 9,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "ones", "created-selected-value"]
+    },
+    {
+      "id": "real-power-of-two-run",
+      "name": "hidden: retaining the largest power pays for two conflicts",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 4, 8], "maxVal": 3},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "single-prime-factor", "above-limit"]
+    }
+  ]
+}

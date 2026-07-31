@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2861",
+  "frontend_id": "2794",
+  "title_slug": "create-object-from-two-arrays",
+  "paid_only": true,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "createObject",
+  "verified_submission_id": "2077006211",
+  "verified_at": "2026-07-22T10:52:00+00:00"
+}
+

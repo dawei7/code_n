@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_309", "frontend_id": "309", "title_slug": "best-time-to-buy-and-sell-stock-with-cooldown", "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/", "paid_only": false, "content_sha256": "da4006914979a2aed0f80f0bf05ffce04dfb22c7917fed284cf3ba346d352081", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "prices = [1,2,3,0,2]", "output": "3", "has_explanation": true},
+      {"ordinal": 2, "input": "prices = [1]", "output": "0", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "7f87c0f69786411e37f96fe7dc11859d2899781ac0a85ef573bdba0722c5f377",
+    "reference/contract.md": "3c37be5f55608ba2eacabbca1e8248faa740bbe1a82e056071b29b31e05ac407",
+    "reference/note.md": "708461d6187d5d28a036f2347d1006f167cda3038f49d4ac6b68f63d8da7eda7",
+    "reference/examples.md": "b58816dce6d85827a1b92aa77e13b91f351893a833b03606e2a5df211bd63c06",
+    "reference/constraints.md": "31b4ca23ee236d370675c7e7281e80dde4b72fdb52feb3c73d13fb16d8ba66e4"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

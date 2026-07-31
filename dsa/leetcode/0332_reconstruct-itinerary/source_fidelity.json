@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_332", "frontend_id": "332", "title_slug": "reconstruct-itinerary", "url": "https://leetcode.com/problems/reconstruct-itinerary/description/", "paid_only": false, "content_sha256": "69bcb950f572789f081ea037063997e92c0e6031b4ea95fdd6d5e3c0baccb15a", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "tickets = [[\"MUC\",\"LHR\"],[\"JFK\",\"MUC\"],[\"SFO\",\"SJC\"],[\"LHR\",\"SFO\"]]", "output": "[\"JFK\",\"MUC\",\"LHR\",\"SFO\",\"SJC\"]", "has_explanation": false},
+      {"ordinal": 2, "input": "tickets = [[\"JFK\",\"SFO\"],[\"JFK\",\"ATL\"],[\"SFO\",\"ATL\"],[\"ATL\",\"JFK\"],[\"ATL\",\"SFO\"]]", "output": "[\"JFK\",\"ATL\",\"JFK\",\"SFO\",\"ATL\",\"SFO\"]", "has_explanation": true}
+    ],
+    "constraint_count": 6,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "8b16bfc9a3cdacbd8264f8c9d23415db5226b03906ddf4127605dc752736d098",
+    "reference/contract.md": "993e24035d578c8433659eef98780110ced76da4ec1c04b1a27d2aca2bb070e0",
+    "reference/examples.md": "03b3020df99117c79eb9af0e6e1a136ba3b4f8bdc7fd344b9412c739b468efb3",
+    "reference/constraints.md": "70ca1efd0b7cee0d3c14686f8d2074052cfa637b93bb9c36f60267913c6472f6"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

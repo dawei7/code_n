@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2795",
+  "frontend_id": "2755",
+  "title_slug": "deep-merge-of-two-objects",
+  "paid_only": true,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "deepMerge",
+  "verified_submission_id": "2076519760",
+  "verified_at": "2026-07-22T03:28:00+00:00"
+}

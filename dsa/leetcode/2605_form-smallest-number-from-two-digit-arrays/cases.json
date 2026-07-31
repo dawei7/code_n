@@ -20,7 +20,7 @@
       "expected": 15,
       "tags": [
         "sample",
-        "digits"
+        "two-digit"
       ]
     },
     {
@@ -38,36 +38,13 @@
         "nums2": [
           3,
           1,
-          7,
-          5
+          7
         ]
       },
       "expected": 3,
       "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: smaller digit from second array",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums1": [
-          6,
-          4,
-          3,
-          2
-        ],
-        "nums2": [
-          1,
-          5,
-          8
-        ]
-      },
-      "expected": 12,
-      "tags": [
-        "sample"
+        "sample",
+        "common-digit"
       ]
     },
     {
@@ -86,29 +63,82 @@
       "expected": 89,
       "tags": [
         "trial",
-        "small"
+        "singletons"
       ]
     },
     {
-      "id": "real-common-high-digit",
-      "name": "hidden: common digit beats two-digit number",
+      "id": "trial-second-array-leading",
+      "name": "trial: smaller digit comes from the second array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          6,
+          4,
+          3,
+          2
+        ],
+        "nums2": [
+          1,
+          5,
+          8
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "digit-order"
+      ]
+    },
+    {
+      "id": "real-smallest-common",
+      "name": "hidden: choose the smallest of several shared digits",
       "kind": "real",
       "visible": false,
       "input": {
         "nums1": [
-          8,
+          9,
           6,
-          7
+          2,
+          4
         ],
         "nums2": [
           7,
-          2,
-          9
+          6,
+          4,
+          2
         ]
       },
-      "expected": 7,
+      "expected": 2,
       "tags": [
-        "hidden"
+        "hidden",
+        "multiple-common"
+      ]
+    },
+    {
+      "id": "real-disjoint-full-sides",
+      "name": "hidden: disjoint digit groups use their minima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          9,
+          7,
+          5,
+          3,
+          1
+        ],
+        "nums2": [
+          8,
+          6,
+          4,
+          2
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "maximum-total-length"
       ]
     }
   ]

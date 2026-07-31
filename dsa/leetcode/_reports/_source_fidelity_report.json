@@ -1,0 +1,6526 @@
+{
+  "scope": {
+    "frontend_id_max": 500,
+    "package_count": 500
+  },
+  "counts": {
+    "verified": 407,
+    "unverified": 93,
+    "invalid": 0
+  },
+  "triage": {
+    "without_constraints_section": 109,
+    "without_marked_example_explanations": 240,
+    "with_exactly_three_examples": 238,
+    "with_local_images": 0,
+    "with_non_metadata_tables": 28,
+    "with_local_diagrams": 142
+  },
+  "meaning": {
+    "verified": "reviewed against a hashed live source and structurally validated",
+    "unverified": "package may be complete, but source fidelity has not been reviewed",
+    "invalid": "a claimed review manifest is inconsistent with its package"
+  },
+  "entries": [
+    {
+      "frontend_id": 1,
+      "package": "dsa/leetcode/0001_two-sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 2,
+      "package": "dsa/leetcode/0002_add-two-numbers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 3,
+      "package": "dsa/leetcode/0003_longest-substring-without-repeating-characters",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 4,
+      "package": "dsa/leetcode/0004_median-of-two-sorted-arrays",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 5,
+      "package": "dsa/leetcode/0005_longest-palindromic-substring",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 6,
+      "package": "dsa/leetcode/0006_zigzag-conversion",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 7,
+      "package": "dsa/leetcode/0007_reverse-integer",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 8,
+      "package": "dsa/leetcode/0008_string-to-integer-atoi",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 5,
+        "explained_example_count": 5,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 4,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 9,
+      "package": "dsa/leetcode/0009_palindrome-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 10,
+      "package": "dsa/leetcode/0010_regular-expression-matching",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 11,
+      "package": "dsa/leetcode/0011_container-with-most-water",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 12,
+      "package": "dsa/leetcode/0012_integer-to-roman",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 13,
+      "package": "dsa/leetcode/0013_roman-to-integer",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 14,
+      "package": "dsa/leetcode/0014_longest-common-prefix",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 15,
+      "package": "dsa/leetcode/0015_3sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 16,
+      "package": "dsa/leetcode/0016_3sum-closest",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 17,
+      "package": "dsa/leetcode/0017_letter-combinations-of-a-phone-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 18,
+      "package": "dsa/leetcode/0018_4sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 19,
+      "package": "dsa/leetcode/0019_remove-nth-node-from-end-of-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 20,
+      "package": "dsa/leetcode/0020_valid-parentheses",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 5,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 21,
+      "package": "dsa/leetcode/0021_merge-two-sorted-lists",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 22,
+      "package": "dsa/leetcode/0022_generate-parentheses",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 23,
+      "package": "dsa/leetcode/0023_merge-k-sorted-lists",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 24,
+      "package": "dsa/leetcode/0024_swap-nodes-in-pairs",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 4,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 25,
+      "package": "dsa/leetcode/0025_reverse-nodes-in-k-group",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 26,
+      "package": "dsa/leetcode/0026_remove-duplicates-from-sorted-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 27,
+      "package": "dsa/leetcode/0027_remove-element",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 28,
+      "package": "dsa/leetcode/0028_find-the-index-of-the-first-occurrence-in-a-string",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 29,
+      "package": "dsa/leetcode/0029_divide-two-integers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 30,
+      "package": "dsa/leetcode/0030_substring-with-concatenation-of-all-words",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 31,
+      "package": "dsa/leetcode/0031_next-permutation",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 32,
+      "package": "dsa/leetcode/0032_longest-valid-parentheses",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 33,
+      "package": "dsa/leetcode/0033_search-in-rotated-sorted-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 34,
+      "package": "dsa/leetcode/0034_find-first-and-last-position-of-element-in-sorted-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 35,
+      "package": "dsa/leetcode/0035_search-insert-position",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 36,
+      "package": "dsa/leetcode/0036_valid-sudoku",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 37,
+      "package": "dsa/leetcode/0037_sudoku-solver",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 38,
+      "package": "dsa/leetcode/0038_count-and-say",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 39,
+      "package": "dsa/leetcode/0039_combination-sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 40,
+      "package": "dsa/leetcode/0040_combination-sum-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 41,
+      "package": "dsa/leetcode/0041_first-missing-positive",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 42,
+      "package": "dsa/leetcode/0042_trapping-rain-water",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 43,
+      "package": "dsa/leetcode/0043_multiply-strings",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 44,
+      "package": "dsa/leetcode/0044_wildcard-matching",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 45,
+      "package": "dsa/leetcode/0045_jump-game-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 46,
+      "package": "dsa/leetcode/0046_permutations",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 47,
+      "package": "dsa/leetcode/0047_permutations-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 48,
+      "package": "dsa/leetcode/0048_rotate-image",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 49,
+      "package": "dsa/leetcode/0049_group-anagrams",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 50,
+      "package": "dsa/leetcode/0050_powx-n",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 51,
+      "package": "dsa/leetcode/0051_n-queens",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 52,
+      "package": "dsa/leetcode/0052_n-queens-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 53,
+      "package": "dsa/leetcode/0053_maximum-subarray",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 54,
+      "package": "dsa/leetcode/0054_spiral-matrix",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 55,
+      "package": "dsa/leetcode/0055_jump-game",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 56,
+      "package": "dsa/leetcode/0056_merge-intervals",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 57,
+      "package": "dsa/leetcode/0057_insert-interval",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 58,
+      "package": "dsa/leetcode/0058_length-of-last-word",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 59,
+      "package": "dsa/leetcode/0059_spiral-matrix-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 60,
+      "package": "dsa/leetcode/0060_permutation-sequence",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 61,
+      "package": "dsa/leetcode/0061_rotate-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 62,
+      "package": "dsa/leetcode/0062_unique-paths",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 63,
+      "package": "dsa/leetcode/0063_unique-paths-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 64,
+      "package": "dsa/leetcode/0064_minimum-path-sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 65,
+      "package": "dsa/leetcode/0065_valid-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 66,
+      "package": "dsa/leetcode/0066_plus-one",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 67,
+      "package": "dsa/leetcode/0067_add-binary",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 68,
+      "package": "dsa/leetcode/0068_text-justification",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 69,
+      "package": "dsa/leetcode/0069_sqrtx",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 70,
+      "package": "dsa/leetcode/0070_climbing-stairs",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 71,
+      "package": "dsa/leetcode/0071_simplify-path",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 5,
+        "explained_example_count": 5,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 72,
+      "package": "dsa/leetcode/0072_edit-distance",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 73,
+      "package": "dsa/leetcode/0073_set-matrix-zeroes",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 74,
+      "package": "dsa/leetcode/0074_search-a-2d-matrix",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 75,
+      "package": "dsa/leetcode/0075_sort-colors",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 76,
+      "package": "dsa/leetcode/0076_minimum-window-substring",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 77,
+      "package": "dsa/leetcode/0077_combinations",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 78,
+      "package": "dsa/leetcode/0078_subsets",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 79,
+      "package": "dsa/leetcode/0079_word-search",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 80,
+      "package": "dsa/leetcode/0080_remove-duplicates-from-sorted-array-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 81,
+      "package": "dsa/leetcode/0081_search-in-rotated-sorted-array-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 82,
+      "package": "dsa/leetcode/0082_remove-duplicates-from-sorted-list-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 83,
+      "package": "dsa/leetcode/0083_remove-duplicates-from-sorted-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 84,
+      "package": "dsa/leetcode/0084_largest-rectangle-in-histogram",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 85,
+      "package": "dsa/leetcode/0085_maximal-rectangle",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 86,
+      "package": "dsa/leetcode/0086_partition-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 87,
+      "package": "dsa/leetcode/0087_scramble-string",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 88,
+      "package": "dsa/leetcode/0088_merge-sorted-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 89,
+      "package": "dsa/leetcode/0089_gray-code",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 90,
+      "package": "dsa/leetcode/0090_subsets-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 91,
+      "package": "dsa/leetcode/0091_decode-ways",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 92,
+      "package": "dsa/leetcode/0092_reverse-linked-list-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 93,
+      "package": "dsa/leetcode/0093_restore-ip-addresses",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 94,
+      "package": "dsa/leetcode/0094_binary-tree-inorder-traversal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 4,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 95,
+      "package": "dsa/leetcode/0095_unique-binary-search-trees-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 96,
+      "package": "dsa/leetcode/0096_unique-binary-search-trees",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 97,
+      "package": "dsa/leetcode/0097_interleaving-string",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 98,
+      "package": "dsa/leetcode/0098_validate-binary-search-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 99,
+      "package": "dsa/leetcode/0099_recover-binary-search-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 100,
+      "package": "dsa/leetcode/0100_same-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 101,
+      "package": "dsa/leetcode/0101_symmetric-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 102,
+      "package": "dsa/leetcode/0102_binary-tree-level-order-traversal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 103,
+      "package": "dsa/leetcode/0103_binary-tree-zigzag-level-order-traversal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 104,
+      "package": "dsa/leetcode/0104_maximum-depth-of-binary-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 105,
+      "package": "dsa/leetcode/0105_construct-binary-tree-from-preorder-and-inorder-traversal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 106,
+      "package": "dsa/leetcode/0106_construct-binary-tree-from-inorder-and-postorder-traversal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 107,
+      "package": "dsa/leetcode/0107_binary-tree-level-order-traversal-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 108,
+      "package": "dsa/leetcode/0108_convert-sorted-array-to-binary-search-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 109,
+      "package": "dsa/leetcode/0109_convert-sorted-list-to-binary-search-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 110,
+      "package": "dsa/leetcode/0110_balanced-binary-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 111,
+      "package": "dsa/leetcode/0111_minimum-depth-of-binary-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 112,
+      "package": "dsa/leetcode/0112_path-sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 113,
+      "package": "dsa/leetcode/0113_path-sum-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 114,
+      "package": "dsa/leetcode/0114_flatten-binary-tree-to-linked-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 115,
+      "package": "dsa/leetcode/0115_distinct-subsequences",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 2,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 116,
+      "package": "dsa/leetcode/0116_populating-next-right-pointers-in-each-node",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 117,
+      "package": "dsa/leetcode/0117_populating-next-right-pointers-in-each-node-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 118,
+      "package": "dsa/leetcode/0118_pascals-triangle",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 119,
+      "package": "dsa/leetcode/0119_pascals-triangle-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 120,
+      "package": "dsa/leetcode/0120_triangle",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 121,
+      "package": "dsa/leetcode/0121_best-time-to-buy-and-sell-stock",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 122,
+      "package": "dsa/leetcode/0122_best-time-to-buy-and-sell-stock-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 123,
+      "package": "dsa/leetcode/0123_best-time-to-buy-and-sell-stock-iii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 124,
+      "package": "dsa/leetcode/0124_binary-tree-maximum-path-sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 125,
+      "package": "dsa/leetcode/0125_valid-palindrome",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 126,
+      "package": "dsa/leetcode/0126_word-ladder-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 127,
+      "package": "dsa/leetcode/0127_word-ladder",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 128,
+      "package": "dsa/leetcode/0128_longest-consecutive-sequence",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 129,
+      "package": "dsa/leetcode/0129_sum-root-to-leaf-numbers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 130,
+      "package": "dsa/leetcode/0130_surrounded-regions",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 131,
+      "package": "dsa/leetcode/0131_palindrome-partitioning",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 132,
+      "package": "dsa/leetcode/0132_palindrome-partitioning-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 133,
+      "package": "dsa/leetcode/0133_clone-graph",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 134,
+      "package": "dsa/leetcode/0134_gas-station",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 2,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 135,
+      "package": "dsa/leetcode/0135_candy",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 136,
+      "package": "dsa/leetcode/0136_single-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 137,
+      "package": "dsa/leetcode/0137_single-number-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 138,
+      "package": "dsa/leetcode/0138_copy-list-with-random-pointer",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 139,
+      "package": "dsa/leetcode/0139_word-break",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 140,
+      "package": "dsa/leetcode/0140_word-break-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 141,
+      "package": "dsa/leetcode/0141_linked-list-cycle",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 142,
+      "package": "dsa/leetcode/0142_linked-list-cycle-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 143,
+      "package": "dsa/leetcode/0143_reorder-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 144,
+      "package": "dsa/leetcode/0144_binary-tree-preorder-traversal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 4,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 145,
+      "package": "dsa/leetcode/0145_binary-tree-postorder-traversal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 4,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 146,
+      "package": "dsa/leetcode/0146_lru-cache",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 147,
+      "package": "dsa/leetcode/0147_insertion-sort-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 148,
+      "package": "dsa/leetcode/0148_sort-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 149,
+      "package": "dsa/leetcode/0149_max-points-on-a-line",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 150,
+      "package": "dsa/leetcode/0150_evaluate-reverse-polish-notation",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 151,
+      "package": "dsa/leetcode/0151_reverse-words-in-a-string",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 152,
+      "package": "dsa/leetcode/0152_maximum-product-subarray",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 153,
+      "package": "dsa/leetcode/0153_find-minimum-in-rotated-sorted-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 154,
+      "package": "dsa/leetcode/0154_find-minimum-in-rotated-sorted-array-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 155,
+      "package": "dsa/leetcode/0155_min-stack",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 156,
+      "package": "dsa/leetcode/0156_binary-tree-upside-down",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 157,
+      "package": "dsa/leetcode/0157_read-n-characters-given-read4",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 158,
+      "package": "dsa/leetcode/0158_read-n-characters-given-read4-ii-call-multiple-times",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 159,
+      "package": "dsa/leetcode/0159_longest-substring-with-at-most-two-distinct-characters",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 160,
+      "package": "dsa/leetcode/0160_intersection-of-two-linked-lists",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 4
+      }
+    },
+    {
+      "frontend_id": 161,
+      "package": "dsa/leetcode/0161_one-edit-distance",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 162,
+      "package": "dsa/leetcode/0162_find-peak-element",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 163,
+      "package": "dsa/leetcode/0163_missing-ranges",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 164,
+      "package": "dsa/leetcode/0164_maximum-gap",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 165,
+      "package": "dsa/leetcode/0165_compare-version-numbers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 166,
+      "package": "dsa/leetcode/0166_fraction-to-recurring-decimal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 167,
+      "package": "dsa/leetcode/0167_two-sum-ii-input-array-is-sorted",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 168,
+      "package": "dsa/leetcode/0168_excel-sheet-column-title",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 169,
+      "package": "dsa/leetcode/0169_majority-element",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 170,
+      "package": "dsa/leetcode/0170_two-sum-iii-data-structure-design",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 171,
+      "package": "dsa/leetcode/0171_excel-sheet-column-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 172,
+      "package": "dsa/leetcode/0172_factorial-trailing-zeroes",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 173,
+      "package": "dsa/leetcode/0173_binary-search-tree-iterator",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 174,
+      "package": "dsa/leetcode/0174_dungeon-game",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 175,
+      "package": "dsa/leetcode/0175_combine-two-tables",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 5,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 176,
+      "package": "dsa/leetcode/0176_second-highest-salary",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 5,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 177,
+      "package": "dsa/leetcode/0177_nth-highest-salary",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 5,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 178,
+      "package": "dsa/leetcode/0178_rank-scores",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 3,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 179,
+      "package": "dsa/leetcode/0179_largest-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 180,
+      "package": "dsa/leetcode/0180_consecutive-numbers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 3,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 181,
+      "package": "dsa/leetcode/0181_employees-earning-more-than-their-managers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 3,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 182,
+      "package": "dsa/leetcode/0182_duplicate-emails",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 3,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 183,
+      "package": "dsa/leetcode/0183_customers-who-never-order",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 5,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 184,
+      "package": "dsa/leetcode/0184_department-highest-salary",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 5,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 185,
+      "package": "dsa/leetcode/0185_department-top-three-salaries",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 5,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 186,
+      "package": "dsa/leetcode/0186_reverse-words-in-a-string-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 187,
+      "package": "dsa/leetcode/0187_repeated-dna-sequences",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 188,
+      "package": "dsa/leetcode/0188_best-time-to-buy-and-sell-stock-iv",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 189,
+      "package": "dsa/leetcode/0189_rotate-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 190,
+      "package": "dsa/leetcode/0190_reverse-bits",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 2,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 191,
+      "package": "dsa/leetcode/0191_number-of-1-bits",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 192,
+      "package": "dsa/leetcode/0192_word-frequency",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 193,
+      "package": "dsa/leetcode/0193_valid-phone-numbers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 194,
+      "package": "dsa/leetcode/0194_transpose-file",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 195,
+      "package": "dsa/leetcode/0195_tenth-line",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 196,
+      "package": "dsa/leetcode/0196_delete-duplicate-emails",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 3,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 197,
+      "package": "dsa/leetcode/0197_rising-temperature",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 3,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 198,
+      "package": "dsa/leetcode/0198_house-robber",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 199,
+      "package": "dsa/leetcode/0199_binary-tree-right-side-view",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 4,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 200,
+      "package": "dsa/leetcode/0200_number-of-islands",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 201,
+      "package": "dsa/leetcode/0201_bitwise-and-of-numbers-range",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 202,
+      "package": "dsa/leetcode/0202_happy-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 203,
+      "package": "dsa/leetcode/0203_remove-linked-list-elements",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 204,
+      "package": "dsa/leetcode/0204_count-primes",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 205,
+      "package": "dsa/leetcode/0205_isomorphic-strings",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 206,
+      "package": "dsa/leetcode/0206_reverse-linked-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 207,
+      "package": "dsa/leetcode/0207_course-schedule",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 208,
+      "package": "dsa/leetcode/0208_implement-trie-prefix-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 209,
+      "package": "dsa/leetcode/0209_minimum-size-subarray-sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 210,
+      "package": "dsa/leetcode/0210_course-schedule-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 211,
+      "package": "dsa/leetcode/0211_design-add-and-search-words-data-structure",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 212,
+      "package": "dsa/leetcode/0212_word-search-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 213,
+      "package": "dsa/leetcode/0213_house-robber-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 214,
+      "package": "dsa/leetcode/0214_shortest-palindrome",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 215,
+      "package": "dsa/leetcode/0215_kth-largest-element-in-an-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 216,
+      "package": "dsa/leetcode/0216_combination-sum-iii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 217,
+      "package": "dsa/leetcode/0217_contains-duplicate",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 218,
+      "package": "dsa/leetcode/0218_the-skyline-problem",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 219,
+      "package": "dsa/leetcode/0219_contains-duplicate-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 220,
+      "package": "dsa/leetcode/0220_contains-duplicate-iii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 221,
+      "package": "dsa/leetcode/0221_maximal-square",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 222,
+      "package": "dsa/leetcode/0222_count-complete-tree-nodes",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 223,
+      "package": "dsa/leetcode/0223_rectangle-area",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 224,
+      "package": "dsa/leetcode/0224_basic-calculator",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 225,
+      "package": "dsa/leetcode/0225_implement-stack-using-queues",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 226,
+      "package": "dsa/leetcode/0226_invert-binary-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 227,
+      "package": "dsa/leetcode/0227_basic-calculator-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 228,
+      "package": "dsa/leetcode/0228_summary-ranges",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 229,
+      "package": "dsa/leetcode/0229_majority-element-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 230,
+      "package": "dsa/leetcode/0230_kth-smallest-element-in-a-bst",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 231,
+      "package": "dsa/leetcode/0231_power-of-two",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 232,
+      "package": "dsa/leetcode/0232_implement-queue-using-stacks",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 233,
+      "package": "dsa/leetcode/0233_number-of-digit-one",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 234,
+      "package": "dsa/leetcode/0234_palindrome-linked-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 235,
+      "package": "dsa/leetcode/0235_lowest-common-ancestor-of-a-binary-search-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 236,
+      "package": "dsa/leetcode/0236_lowest-common-ancestor-of-a-binary-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 237,
+      "package": "dsa/leetcode/0237_delete-node-in-a-linked-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 238,
+      "package": "dsa/leetcode/0238_product-of-array-except-self",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 239,
+      "package": "dsa/leetcode/0239_sliding-window-maximum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 240,
+      "package": "dsa/leetcode/0240_search-a-2d-matrix-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 241,
+      "package": "dsa/leetcode/0241_different-ways-to-add-parentheses",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 242,
+      "package": "dsa/leetcode/0242_valid-anagram",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 243,
+      "package": "dsa/leetcode/0243_shortest-word-distance",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 244,
+      "package": "dsa/leetcode/0244_shortest-word-distance-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 245,
+      "package": "dsa/leetcode/0245_shortest-word-distance-iii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 246,
+      "package": "dsa/leetcode/0246_strobogrammatic-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 247,
+      "package": "dsa/leetcode/0247_strobogrammatic-number-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 248,
+      "package": "dsa/leetcode/0248_strobogrammatic-number-iii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 249,
+      "package": "dsa/leetcode/0249_group-shifted-strings",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 250,
+      "package": "dsa/leetcode/0250_count-univalue-subtrees",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 251,
+      "package": "dsa/leetcode/0251_flatten-2d-vector",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 252,
+      "package": "dsa/leetcode/0252_meeting-rooms",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 253,
+      "package": "dsa/leetcode/0253_meeting-rooms-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 254,
+      "package": "dsa/leetcode/0254_factor-combinations",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 255,
+      "package": "dsa/leetcode/0255_verify-preorder-sequence-in-binary-search-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 256,
+      "package": "dsa/leetcode/0256_paint-house",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 257,
+      "package": "dsa/leetcode/0257_binary-tree-paths",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 258,
+      "package": "dsa/leetcode/0258_add-digits",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 259,
+      "package": "dsa/leetcode/0259_3sum-smaller",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 260,
+      "package": "dsa/leetcode/0260_single-number-iii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 261,
+      "package": "dsa/leetcode/0261_graph-valid-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 262,
+      "package": "dsa/leetcode/0262_trips-and-users",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 5,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 263,
+      "package": "dsa/leetcode/0263_ugly-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 264,
+      "package": "dsa/leetcode/0264_ugly-number-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 265,
+      "package": "dsa/leetcode/0265_paint-house-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 266,
+      "package": "dsa/leetcode/0266_palindrome-permutation",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 267,
+      "package": "dsa/leetcode/0267_palindrome-permutation-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 268,
+      "package": "dsa/leetcode/0268_missing-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 269,
+      "package": "dsa/leetcode/0269_alien-dictionary",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 270,
+      "package": "dsa/leetcode/0270_closest-binary-search-tree-value",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 271,
+      "package": "dsa/leetcode/0271_encode-and-decode-strings",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 272,
+      "package": "dsa/leetcode/0272_closest-binary-search-tree-value-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 273,
+      "package": "dsa/leetcode/0273_integer-to-english-words",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 274,
+      "package": "dsa/leetcode/0274_h-index",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 275,
+      "package": "dsa/leetcode/0275_h-index-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 276,
+      "package": "dsa/leetcode/0276_paint-fence",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 277,
+      "package": "dsa/leetcode/0277_find-the-celebrity",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 278,
+      "package": "dsa/leetcode/0278_first-bad-version",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 279,
+      "package": "dsa/leetcode/0279_perfect-squares",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 280,
+      "package": "dsa/leetcode/0280_wiggle-sort",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 281,
+      "package": "dsa/leetcode/0281_zigzag-iterator",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 282,
+      "package": "dsa/leetcode/0282_expression-add-operators",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 283,
+      "package": "dsa/leetcode/0283_move-zeroes",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 284,
+      "package": "dsa/leetcode/0284_peeking-iterator",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 285,
+      "package": "dsa/leetcode/0285_inorder-successor-in-bst",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 286,
+      "package": "dsa/leetcode/0286_walls-and-gates",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 287,
+      "package": "dsa/leetcode/0287_find-the-duplicate-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 288,
+      "package": "dsa/leetcode/0288_unique-word-abbreviation",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 289,
+      "package": "dsa/leetcode/0289_game-of-life",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 290,
+      "package": "dsa/leetcode/0290_word-pattern",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 291,
+      "package": "dsa/leetcode/0291_word-pattern-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 292,
+      "package": "dsa/leetcode/0292_nim-game",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 293,
+      "package": "dsa/leetcode/0293_flip-game",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 294,
+      "package": "dsa/leetcode/0294_flip-game-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 295,
+      "package": "dsa/leetcode/0295_find-median-from-data-stream",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 296,
+      "package": "dsa/leetcode/0296_best-meeting-point",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 297,
+      "package": "dsa/leetcode/0297_serialize-and-deserialize-binary-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 298,
+      "package": "dsa/leetcode/0298_binary-tree-longest-consecutive-sequence",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 299,
+      "package": "dsa/leetcode/0299_bulls-and-cows",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 300,
+      "package": "dsa/leetcode/0300_longest-increasing-subsequence",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 301,
+      "package": "dsa/leetcode/0301_remove-invalid-parentheses",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 302,
+      "package": "dsa/leetcode/0302_smallest-rectangle-enclosing-black-pixels",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 303,
+      "package": "dsa/leetcode/0303_range-sum-query-immutable",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 304,
+      "package": "dsa/leetcode/0304_range-sum-query-2d-immutable",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 305,
+      "package": "dsa/leetcode/0305_number-of-islands-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 306,
+      "package": "dsa/leetcode/0306_additive-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 307,
+      "package": "dsa/leetcode/0307_range-sum-query-mutable",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 308,
+      "package": "dsa/leetcode/0308_range-sum-query-2d-mutable",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 309,
+      "package": "dsa/leetcode/0309_best-time-to-buy-and-sell-stock-with-cooldown",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 310,
+      "package": "dsa/leetcode/0310_minimum-height-trees",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 311,
+      "package": "dsa/leetcode/0311_sparse-matrix-multiplication",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 312,
+      "package": "dsa/leetcode/0312_burst-balloons",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 313,
+      "package": "dsa/leetcode/0313_super-ugly-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 314,
+      "package": "dsa/leetcode/0314_binary-tree-vertical-order-traversal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 315,
+      "package": "dsa/leetcode/0315_count-of-smaller-numbers-after-self",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 316,
+      "package": "dsa/leetcode/0316_remove-duplicate-letters",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 317,
+      "package": "dsa/leetcode/0317_shortest-distance-from-all-buildings",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 318,
+      "package": "dsa/leetcode/0318_maximum-product-of-word-lengths",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 319,
+      "package": "dsa/leetcode/0319_bulb-switcher",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 320,
+      "package": "dsa/leetcode/0320_generalized-abbreviation",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 321,
+      "package": "dsa/leetcode/0321_create-maximum-number",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 322,
+      "package": "dsa/leetcode/0322_coin-change",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 323,
+      "package": "dsa/leetcode/0323_number-of-connected-components-in-an-undirected-graph",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 324,
+      "package": "dsa/leetcode/0324_wiggle-sort-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 325,
+      "package": "dsa/leetcode/0325_maximum-size-subarray-sum-equals-k",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 326,
+      "package": "dsa/leetcode/0326_power-of-three",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 327,
+      "package": "dsa/leetcode/0327_count-of-range-sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 328,
+      "package": "dsa/leetcode/0328_odd-even-linked-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 329,
+      "package": "dsa/leetcode/0329_longest-increasing-path-in-a-matrix",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 330,
+      "package": "dsa/leetcode/0330_patching-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 331,
+      "package": "dsa/leetcode/0331_verify-preorder-serialization-of-a-binary-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 332,
+      "package": "dsa/leetcode/0332_reconstruct-itinerary",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 333,
+      "package": "dsa/leetcode/0333_largest-bst-subtree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 334,
+      "package": "dsa/leetcode/0334_increasing-triplet-subsequence",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 335,
+      "package": "dsa/leetcode/0335_self-crossing",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 336,
+      "package": "dsa/leetcode/0336_palindrome-pairs",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 337,
+      "package": "dsa/leetcode/0337_house-robber-iii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 338,
+      "package": "dsa/leetcode/0338_counting-bits",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 339,
+      "package": "dsa/leetcode/0339_nested-list-weight-sum",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 340,
+      "package": "dsa/leetcode/0340_longest-substring-with-at-most-k-distinct-characters",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 341,
+      "package": "dsa/leetcode/0341_flatten-nested-list-iterator",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 342,
+      "package": "dsa/leetcode/0342_power-of-four",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 343,
+      "package": "dsa/leetcode/0343_integer-break",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 344,
+      "package": "dsa/leetcode/0344_reverse-string",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 345,
+      "package": "dsa/leetcode/0345_reverse-vowels-of-a-string",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 346,
+      "package": "dsa/leetcode/0346_moving-average-from-data-stream",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 347,
+      "package": "dsa/leetcode/0347_top-k-frequent-elements",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 348,
+      "package": "dsa/leetcode/0348_design-tic-tac-toe",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 349,
+      "package": "dsa/leetcode/0349_intersection-of-two-arrays",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 350,
+      "package": "dsa/leetcode/0350_intersection-of-two-arrays-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 351,
+      "package": "dsa/leetcode/0351_android-unlock-patterns",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 352,
+      "package": "dsa/leetcode/0352_data-stream-as-disjoint-intervals",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 353,
+      "package": "dsa/leetcode/0353_design-snake-game",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 354,
+      "package": "dsa/leetcode/0354_russian-doll-envelopes",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 355,
+      "package": "dsa/leetcode/0355_design-twitter",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 356,
+      "package": "dsa/leetcode/0356_line-reflection",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 357,
+      "package": "dsa/leetcode/0357_count-numbers-with-unique-digits",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 358,
+      "package": "dsa/leetcode/0358_rearrange-string-k-distance-apart",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 359,
+      "package": "dsa/leetcode/0359_logger-rate-limiter",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 360,
+      "package": "dsa/leetcode/0360_sort-transformed-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 361,
+      "package": "dsa/leetcode/0361_bomb-enemy",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 362,
+      "package": "dsa/leetcode/0362_design-hit-counter",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 363,
+      "package": "dsa/leetcode/0363_max-sum-of-rectangle-no-larger-than-k",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 364,
+      "package": "dsa/leetcode/0364_nested-list-weight-sum-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 365,
+      "package": "dsa/leetcode/0365_water-and-jug-problem",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 366,
+      "package": "dsa/leetcode/0366_find-leaves-of-binary-tree",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 367,
+      "package": "dsa/leetcode/0367_valid-perfect-square",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 368,
+      "package": "dsa/leetcode/0368_largest-divisible-subset",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 369,
+      "package": "dsa/leetcode/0369_plus-one-linked-list",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 370,
+      "package": "dsa/leetcode/0370_range-addition",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 371,
+      "package": "dsa/leetcode/0371_sum-of-two-integers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 372,
+      "package": "dsa/leetcode/0372_super-pow",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 373,
+      "package": "dsa/leetcode/0373_find-k-pairs-with-smallest-sums",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 374,
+      "package": "dsa/leetcode/0374_guess-number-higher-or-lower",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 375,
+      "package": "dsa/leetcode/0375_guess-number-higher-or-lower-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 376,
+      "package": "dsa/leetcode/0376_wiggle-subsequence",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 377,
+      "package": "dsa/leetcode/0377_combination-sum-iv",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 378,
+      "package": "dsa/leetcode/0378_kth-smallest-element-in-a-sorted-matrix",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 379,
+      "package": "dsa/leetcode/0379_design-phone-directory",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 380,
+      "package": "dsa/leetcode/0380_insert-delete-getrandom-o1",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 381,
+      "package": "dsa/leetcode/0381_insert-delete-getrandom-o1-duplicates-allowed",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 382,
+      "package": "dsa/leetcode/0382_linked-list-random-node",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 383,
+      "package": "dsa/leetcode/0383_ransom-note",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 384,
+      "package": "dsa/leetcode/0384_shuffle-an-array",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 385,
+      "package": "dsa/leetcode/0385_mini-parser",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 386,
+      "package": "dsa/leetcode/0386_lexicographical-numbers",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 387,
+      "package": "dsa/leetcode/0387_first-unique-character-in-a-string",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 388,
+      "package": "dsa/leetcode/0388_longest-absolute-file-path",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 389,
+      "package": "dsa/leetcode/0389_find-the-difference",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 390,
+      "package": "dsa/leetcode/0390_elimination-game",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 391,
+      "package": "dsa/leetcode/0391_perfect-rectangle",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 3
+      }
+    },
+    {
+      "frontend_id": 392,
+      "package": "dsa/leetcode/0392_is-subsequence",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 393,
+      "package": "dsa/leetcode/0393_utf-8-validation",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 1,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 394,
+      "package": "dsa/leetcode/0394_decode-string",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 395,
+      "package": "dsa/leetcode/0395_longest-substring-with-at-least-k-repeating-characters",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 396,
+      "package": "dsa/leetcode/0396_rotate-function",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 397,
+      "package": "dsa/leetcode/0397_integer-replacement",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 398,
+      "package": "dsa/leetcode/0398_random-pick-index",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 1,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 399,
+      "package": "dsa/leetcode/0399_evaluate-division",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 400,
+      "package": "dsa/leetcode/0400_nth-digit",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 401,
+      "package": "dsa/leetcode/0401_binary-watch",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 402,
+      "package": "dsa/leetcode/0402_remove-k-digits",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 3,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 403,
+      "package": "dsa/leetcode/0403_frog-jump",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 2,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 404,
+      "package": "dsa/leetcode/0404_sum-of-left-leaves",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 1
+      }
+    },
+    {
+      "frontend_id": 405,
+      "package": "dsa/leetcode/0405_convert-a-number-to-hexadecimal",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 0,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 406,
+      "package": "dsa/leetcode/0406_queue-reconstruction-by-height",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 407,
+      "package": "dsa/leetcode/0407_trapping-rain-water-ii",
+      "status": "verified",
+      "local_structure": {
+        "example_count": 2,
+        "explained_example_count": 1,
+        "has_constraints": true,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 2
+      }
+    },
+    {
+      "frontend_id": 408,
+      "package": "dsa/leetcode/0408_valid-word-abbreviation",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 409,
+      "package": "dsa/leetcode/0409_longest-palindrome",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 410,
+      "package": "dsa/leetcode/0410_split-array-largest-sum",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 411,
+      "package": "dsa/leetcode/0411_minimum-unique-word-abbreviation",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 412,
+      "package": "dsa/leetcode/0412_fizz-buzz",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 413,
+      "package": "dsa/leetcode/0413_arithmetic-slices",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 414,
+      "package": "dsa/leetcode/0414_third-maximum-number",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 415,
+      "package": "dsa/leetcode/0415_add-strings",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 416,
+      "package": "dsa/leetcode/0416_partition-equal-subset-sum",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 417,
+      "package": "dsa/leetcode/0417_pacific-atlantic-water-flow",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 418,
+      "package": "dsa/leetcode/0418_sentence-screen-fitting",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 419,
+      "package": "dsa/leetcode/0419_battleships-in-a-board",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 420,
+      "package": "dsa/leetcode/0420_strong-password-checker",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 421,
+      "package": "dsa/leetcode/0421_maximum-xor-of-two-numbers-in-an-array",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 422,
+      "package": "dsa/leetcode/0422_valid-word-square",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 423,
+      "package": "dsa/leetcode/0423_reconstruct-original-digits-from-english",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 424,
+      "package": "dsa/leetcode/0424_longest-repeating-character-replacement",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 425,
+      "package": "dsa/leetcode/0425_word-squares",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 426,
+      "package": "dsa/leetcode/0426_convert-binary-search-tree-to-sorted-doubly-linked-list",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 427,
+      "package": "dsa/leetcode/0427_construct-quad-tree",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 428,
+      "package": "dsa/leetcode/0428_serialize-and-deserialize-n-ary-tree",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 429,
+      "package": "dsa/leetcode/0429_n-ary-tree-level-order-traversal",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 430,
+      "package": "dsa/leetcode/0430_flatten-a-multilevel-doubly-linked-list",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 431,
+      "package": "dsa/leetcode/0431_encode-n-ary-tree-to-binary-tree",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 432,
+      "package": "dsa/leetcode/0432_all-oone-data-structure",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 433,
+      "package": "dsa/leetcode/0433_minimum-genetic-mutation",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 434,
+      "package": "dsa/leetcode/0434_number-of-segments-in-a-string",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 435,
+      "package": "dsa/leetcode/0435_non-overlapping-intervals",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 436,
+      "package": "dsa/leetcode/0436_find-right-interval",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 437,
+      "package": "dsa/leetcode/0437_path-sum-iii",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 438,
+      "package": "dsa/leetcode/0438_find-all-anagrams-in-a-string",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 439,
+      "package": "dsa/leetcode/0439_ternary-expression-parser",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 440,
+      "package": "dsa/leetcode/0440_k-th-smallest-in-lexicographical-order",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 441,
+      "package": "dsa/leetcode/0441_arranging-coins",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 442,
+      "package": "dsa/leetcode/0442_find-all-duplicates-in-an-array",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 443,
+      "package": "dsa/leetcode/0443_string-compression",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 444,
+      "package": "dsa/leetcode/0444_sequence-reconstruction",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 445,
+      "package": "dsa/leetcode/0445_add-two-numbers-ii",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 446,
+      "package": "dsa/leetcode/0446_arithmetic-slices-ii-subsequence",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 447,
+      "package": "dsa/leetcode/0447_number-of-boomerangs",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 448,
+      "package": "dsa/leetcode/0448_find-all-numbers-disappeared-in-an-array",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 449,
+      "package": "dsa/leetcode/0449_serialize-and-deserialize-bst",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 450,
+      "package": "dsa/leetcode/0450_delete-node-in-a-bst",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 451,
+      "package": "dsa/leetcode/0451_sort-characters-by-frequency",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 452,
+      "package": "dsa/leetcode/0452_minimum-number-of-arrows-to-burst-balloons",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 453,
+      "package": "dsa/leetcode/0453_minimum-moves-to-equal-array-elements",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 454,
+      "package": "dsa/leetcode/0454_4sum-ii",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 455,
+      "package": "dsa/leetcode/0455_assign-cookies",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 456,
+      "package": "dsa/leetcode/0456_132-pattern",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 457,
+      "package": "dsa/leetcode/0457_circular-array-loop",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 458,
+      "package": "dsa/leetcode/0458_poor-pigs",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 459,
+      "package": "dsa/leetcode/0459_repeated-substring-pattern",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 460,
+      "package": "dsa/leetcode/0460_lfu-cache",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 461,
+      "package": "dsa/leetcode/0461_hamming-distance",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 462,
+      "package": "dsa/leetcode/0462_minimum-moves-to-equal-array-elements-ii",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 463,
+      "package": "dsa/leetcode/0463_island-perimeter",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 464,
+      "package": "dsa/leetcode/0464_can-i-win",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 465,
+      "package": "dsa/leetcode/0465_optimal-account-balancing",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 466,
+      "package": "dsa/leetcode/0466_count-the-repetitions",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 467,
+      "package": "dsa/leetcode/0467_unique-substrings-in-wraparound-string",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 468,
+      "package": "dsa/leetcode/0468_validate-ip-address",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 469,
+      "package": "dsa/leetcode/0469_convex-polygon",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 470,
+      "package": "dsa/leetcode/0470_implement-rand10-using-rand7",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 471,
+      "package": "dsa/leetcode/0471_encode-string-with-shortest-length",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 472,
+      "package": "dsa/leetcode/0472_concatenated-words",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 473,
+      "package": "dsa/leetcode/0473_matchsticks-to-square",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 474,
+      "package": "dsa/leetcode/0474_ones-and-zeroes",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 475,
+      "package": "dsa/leetcode/0475_heaters",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 476,
+      "package": "dsa/leetcode/0476_number-complement",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 477,
+      "package": "dsa/leetcode/0477_total-hamming-distance",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 478,
+      "package": "dsa/leetcode/0478_generate-random-point-in-a-circle",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 479,
+      "package": "dsa/leetcode/0479_largest-palindrome-product",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 480,
+      "package": "dsa/leetcode/0480_sliding-window-median",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 481,
+      "package": "dsa/leetcode/0481_magical-string",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 482,
+      "package": "dsa/leetcode/0482_license-key-formatting",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 483,
+      "package": "dsa/leetcode/0483_smallest-good-base",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 484,
+      "package": "dsa/leetcode/0484_find-permutation",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 485,
+      "package": "dsa/leetcode/0485_max-consecutive-ones",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 486,
+      "package": "dsa/leetcode/0486_predict-the-winner",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 487,
+      "package": "dsa/leetcode/0487_max-consecutive-ones-ii",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 488,
+      "package": "dsa/leetcode/0488_zuma-game",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 489,
+      "package": "dsa/leetcode/0489_robot-room-cleaner",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 490,
+      "package": "dsa/leetcode/0490_the-maze",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 491,
+      "package": "dsa/leetcode/0491_non-decreasing-subsequences",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 492,
+      "package": "dsa/leetcode/0492_construct-the-rectangle",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 493,
+      "package": "dsa/leetcode/0493_reverse-pairs",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 494,
+      "package": "dsa/leetcode/0494_target-sum",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 495,
+      "package": "dsa/leetcode/0495_teemo-attacking",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 496,
+      "package": "dsa/leetcode/0496_next-greater-element-i",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 497,
+      "package": "dsa/leetcode/0497_random-point-in-non-overlapping-rectangles",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 498,
+      "package": "dsa/leetcode/0498_diagonal-traverse",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 499,
+      "package": "dsa/leetcode/0499_the-maze-iii",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    },
+    {
+      "frontend_id": 500,
+      "package": "dsa/leetcode/0500_keyboard-row",
+      "status": "unverified",
+      "local_structure": {
+        "example_count": 3,
+        "explained_example_count": 0,
+        "has_constraints": false,
+        "image_count": 0,
+        "table_count": 0,
+        "diagram_count": 0
+      }
+    }
+  ]
+}

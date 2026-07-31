@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [majority-frequency-characters](https://leetcode.com/problems/majority-frequency-characters/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/majority-frequency-characters/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/majority-frequency-characters/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Count how often every distinct lowercase English letter occurs in `s`. Letters with the same occurrence count belong to one frequency group. Select the group containing the greatest number of distinct letters and return a string containing every letter in that group.
+
+The returned letters may appear in any order. When multiple frequency groups contain the same greatest number of distinct letters, choose the tied group with the larger occurrence count. Group size counts different letters, not their total appearances in the original string.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A nonempty string of lowercase English letters with $1 \le \lvert s\rvert \le 100$.
 
 **Return value**
 
-TODO
+Return exactly the distinct letters in the selected frequency group, in any order and with each selected letter appearing once.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaabbbccdddde"`
+- Output: `"ab"`
+
+Two letters occur three times, while every other frequency group contains only one letter.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcd"`
+- Output: `"abcd"`
+
+All four distinct letters belong to the frequency-one group.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "pfpfgi"`
+- Output: `"fp"`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Frequency groups one and two each contain two letters, so the larger frequency wins the tie.

@@ -8,84 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Math, Combinatorics, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [right-triangles](https://leetcode.com/problems/right-triangles/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/right-triangles/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/right-triangles/).
 
 ### Goal
-Given a binary grid, identify all possible right-angled triangles whose vertices are located at cells containing a `1`. A triangle is valid if its vertices are at `(r1, c1)`, `(r1, c2)`, and `(r2, c1)`, where `r1 != r2` and `c1 != c2`. The goal is to count the total number of such triangles that can be formed.
+
+You are given a two-dimensional boolean matrix `grid`. Choose three cells whose values are all `1`. They form a right triangle when one of the chosen cells shares its row with a second chosen cell and shares its column with the third chosen cell.
+
+The three cells do not need to be adjacent. Count every distinct collection of three `1` cells that satisfies this row-and-column relationship, and return the total number of such right triangles.
 
 ### Function Contract
+
+Let $m$ be the number of rows and $n$ the number of columns.
+
 **Inputs**
 
-- `grid`: A 2D list of integers (0 or 1) representing the binary matrix.
+- `grid`: An $m\times n$ matrix whose entries are either `0` or `1`, where $1\le m,n\le1000$.
 
 **Return value**
 
-- An integer representing the total count of valid right-angled triangles.
+Return the number of distinct right triangles whose three selected cells all contain `1`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `grid = [[0,1,0],[0,1,1],[0,1,0]]`
 - Output: `2`
+- Explanation: The middle-right `1` can be paired with either of the other two `1` cells in its column, producing two triangles.
 
 **Example 2**
 
-- Input: `grid = [[1,0,0],[0,1,0],[0,0,1]]`
+- Input: `grid = [[1,0,0,0],[0,1,0,1],[1,0,0,0]]`
 - Output: `0`
+- Explanation: No `1` has both another `1` in its row and another `1` in its column.
 
 **Example 3**
 
 - Input: `grid = [[1,0,1],[1,0,0],[1,0,0]]`
 - Output: `2`
-
----
-
-## Solution
-### Approach
-The problem is solved using a combinatorial counting approach. For every cell `(i, j)` containing a `1`, it can serve as the corner where the right angle is formed. To form a triangle, we need one other `1` in the same row `i` and one other `1` in the same column `j`. If there are `R_i` ones in row `i` and `C_j` ones in column `j`, the number of triangles with the right angle at `(i, j)` is `(R_i - 1) * (C_j - 1)`. We pre-calculate the sum of ones for each row and column to achieve efficient lookups.
-
-### Complexity Analysis
-- **Time Complexity**: `O(M * N)`, where `M` is the number of rows and `N` is the number of columns, as we iterate through the grid twice (once for pre-calculation and once for counting).
-- **Space Complexity**: `O(M + N)` to store the counts of ones for each row and column.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(grid: list[list[int]]) -> int:
-    if not grid or not grid[0]:
-        return 0
-
-    rows = len(grid)
-    cols = len(grid[0])
-
-    row_counts = [0] * rows
-    col_counts = [0] * cols
-
-    # Pre-calculate the number of 1s in each row and column
-    for r in range(rows):
-        for c in range(cols):
-            if grid[r][c] == 1:
-                row_counts[r] += 1
-                col_counts[c] += 1
-
-    total_triangles = 0
-
-    # For each cell containing a 1, treat it as the right-angle vertex
-    # The number of triangles is (ones_in_row - 1) * (ones_in_col - 1)
-    for r in range(rows):
-        for c in range(cols):
-            if grid[r][c] == 1:
-                r_ones = row_counts[r]
-                c_ones = col_counts[c]
-
-                if r_ones > 1 and c_ones > 1:
-                    total_triangles += (r_ones - 1) * (c_ones - 1)
-
-    return total_triangles
-```
-</details>
+- Explanation: The upper-left `1` can use the upper-right cell together with either lower `1` in the first column.

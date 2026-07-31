@@ -5,51 +5,46 @@
 | Source | LeetCode |
 | Frontend ID | 2285 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Greedy, Graph Theory, Sorting, Heap (Priority Queue) |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-total-importance-of-roads](https://leetcode.com/problems/maximum-total-importance-of-roads/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-total-importance-of-roads/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-total-importance-of-roads/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+A country has $n$ cities numbered from 0 through $n-1$. Each pair
+`roads[i] = [a_i, b_i]` describes one bidirectional road between distinct
+cities, and no road is repeated.
+
+Assign the distinct values $1,2,\ldots,n$ to the cities, using every value
+exactly once. A road's importance is the sum of the two values assigned to its
+endpoints. Return the maximum possible sum of importance over all roads after
+choosing the assignment optimally.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: The number of cities.
+- `roads`: An array of distinct undirected endpoint pairs.
+
+Here, $2 \le n \le 5 \cdot 10^4$, there are between 1 and
+$5 \cdot 10^4$ roads, and every endpoint is in $[0,n-1]$.
 
 **Return value**
 
-TODO
+The greatest total road importance attainable by assigning the values from 1
+through $n$ bijectively to the cities.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5`, `roads = [[0, 1], [1, 2], [2, 3], [0, 2], [1, 3], [2, 4]]`
+- Output: `43`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5`, `roads = [[0, 3], [2, 4], [1, 3]]`
+- Output: `20`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 2`, `roads = [[0, 1]]`
+- Output: `3`

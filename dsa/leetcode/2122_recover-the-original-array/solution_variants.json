@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Recover the Original Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates the possible partner of the global minimum and greedily validates each resulting multiset gap.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n)"
     }
   ]
 }

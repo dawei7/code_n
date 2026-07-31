@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3623",
+  "frontend_id": "3299",
+  "title_slug": "sum-of-consecutive-subsequences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getSum",
+  "verified_submission_id": "2080787777",
+  "verified_at": "2026-07-25T13:37:27.7020964Z"
+}

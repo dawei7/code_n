@@ -8,48 +8,48 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String, Bit Manipulation, Union-Find |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [groups-of-strings](https://leetcode.com/problems/groups-of-strings/) |
+| LeetCode | [Open](https://leetcode.com/problems/groups-of-strings/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/groups-of-strings/).
 
 ### Goal
-Group words by connectivity under single-letter transformations. Two words are directly connected when one can be obtained from the other by adding, deleting, or replacing one letter; transformation order does not matter because each word contains distinct letters. Return the number of connected groups and the size of the largest group.
+
+You are given an array `words` of lowercase English strings. Within each word,
+every letter occurs at most once. Treat a word as its set of letters. Two
+strings are directly connected when one letter set can be changed into the
+other by exactly one operation: add one letter, delete one letter, or replace
+one letter with any letter, including the same letter.
+
+Partition all strings into non-overlapping groups so that no string in one
+group is connected, directly or through other group members, to a string in a
+different group. A string with no connection forms a group by itself. Return
+the maximum possible number of groups together with the number of strings in
+the largest group; this grouping is uniquely determined.
 
 ### Function Contract
+
 **Inputs**
 
-- `words`: lowercase words with no repeated letter within a word.
+- `words`: an array of $n$ strings, where $1 \le n \le 2\cdot10^4$. Each word
+  has length from $1$ through $26$, uses only lowercase English letters, and
+  contains no repeated letter.
 
 **Return value**
 
-`[group_count, largest_group_size]`.
+A two-element list `[group_count, largest_group_size]`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `words = ["a", "b", "ab", "cde"]`
 - Output: `[2, 3]`
+- Explanation: `"a"`, `"b"`, and `"ab"` are connected by replacement and
+  addition/deletion operations, while `"cde"` is isolated.
 
 **Example 2**
 
 - Input: `words = ["a", "ab", "abc"]`
 - Output: `[1, 3]`
-
-**Example 3**
-
-- Input: `words = ["ab", "cd"]`
-- Output: `[2, 1]`
-
----
-
-## Solution
-### Approach
-Encode each word as a 26-bit mask and create a disjoint-set node for each mask. Union masks that differ by adding or deleting one set bit. To capture replacement efficiently, remove each present letter and map the resulting 25-bit-or-smaller mask to the first word that produced it; words sharing such a deletion form are one replacement apart and should be unioned. Finally count roots and their component sizes.
-
-### Complexity Analysis
-- **Time Complexity**: `O(26n * alpha(n))`
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: Consecutive words differ by adding one letter, so all three
+  belong to one group.

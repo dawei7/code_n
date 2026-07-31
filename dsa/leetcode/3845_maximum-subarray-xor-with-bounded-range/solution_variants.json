@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Subarray XOR with Bounded Range and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines a min/max monotonic sliding window with a counted binary trie of eligible prefix XOR values.",
+      "time_complexity": "O(N log V)",
+      "space_complexity": "O(N log V)"
     }
   ]
 }

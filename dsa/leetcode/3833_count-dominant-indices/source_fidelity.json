@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3833",
+    "frontend_id": "3833",
+    "title_slug": "count-dominant-indices",
+    "url": "https://leetcode.com/problems/count-dominant-indices/description/",
+    "paid_only": false,
+    "content_sha256": "70d17123aa7dcc376b45cfba914aac4141b93a9cb51ad2b6aa6bcb60697c23d9",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [5,4,3]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,1,2]",
+        "output": "1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "580f81dd5eac28e21c03bece3799921069a4c3f2caadd604852727f32d1b3e0b",
+      "reference/contract.md": "930f768d058fa4bd2b6b5fc30129e1603f94aa9286c427d9a7ec2d0d20f8d893",
+      "reference/note.md": "33a916692ab5a8bea4ec616c371c3ac8afce84efe4e6dc09f99839ef10962ce4",
+      "reference/examples.md": "30a23a54fe1d674674cf5b194bc382d3d2943bdd3e852b3dec0e529df06a5bd9",
+      "reference/constraints.md": "92259ed7c4e49eba42c9a2e7b1b6dc9bdba501a1f959b337e058bd844fe6f7e1"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

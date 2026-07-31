@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2754",
+  "cases": [
+    {
+      "id": "sample-multiply",
+      "name": "sample: bound property participates in multiplication",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "behavior": "multiply",
+        "obj": {
+          "x": 10
+        },
+        "inputs": [
+          5
+        ]
+      },
+      "expected": 50,
+      "tags": [
+        "sample",
+        "context"
+      ]
+    },
+    {
+      "id": "sample-speak",
+      "name": "sample: zero arguments with a bound name",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "behavior": "speak",
+        "obj": {
+          "name": "Kathy"
+        },
+        "inputs": []
+      },
+      "expected": "My name is Kathy",
+      "tags": [
+        "sample",
+        "zero-arguments"
+      ]
+    },
+    {
+      "id": "trial-object-return",
+      "name": "trial: return nested data without conversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "readValue",
+        "obj": {
+          "value": {
+            "ok": true,
+            "count": 3
+          }
+        },
+        "inputs": []
+      },
+      "expected": {
+        "ok": true,
+        "count": 3
+      },
+      "tags": [
+        "object-return",
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-context-mutation",
+      "name": "trial: target mutates the supplied context",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "increment",
+        "obj": {
+          "count": 40
+        },
+        "inputs": [
+          2
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "mutation"
+      ]
+    },
+    {
+      "id": "real-argument-order",
+      "name": "hidden: forwarded argument order is preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "behavior": "join",
+        "obj": {
+          "prefix": "<",
+          "separator": "|",
+          "suffix": ">"
+        },
+        "inputs": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "expected": "<a|b|c>",
+      "tags": [
+        "hidden",
+        "argument-order"
+      ]
+    },
+    {
+      "id": "real-nested-lookup",
+      "name": "hidden: nested context remains reachable",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "behavior": "lookup",
+        "obj": {
+          "data": {
+            "answer": 42,
+            "other": 7
+          }
+        },
+        "inputs": [
+          "answer"
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "hidden",
+        "nested-context"
+      ]
+    },
+    {
+      "id": "real-maximum-arguments",
+      "name": "hidden: all 100 legal arguments are forwarded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "behavior": "sum",
+        "obj": {
+          "start": 10
+        },
+        "inputs": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100
+        ]
+      },
+      "expected": 5060,
+      "tags": [
+        "hidden",
+        "maximum-arguments",
+        "boundary"
+      ]
+    }
+  ]
+}

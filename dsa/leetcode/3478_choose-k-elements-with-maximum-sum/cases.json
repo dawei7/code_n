@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3478",
   "cases": [
     {
       "id": "sample-top-two",
-      "name": "sample: choose top two previous values",
+      "name": "sample: choose the two largest eligible values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -31,13 +32,42 @@
         50
       ],
       "tags": [
-        "sample",
-        "heap"
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-equal",
+      "name": "sample: equal first-array values are never eligible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "nums2": [
+          3,
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample"
       ]
     },
     {
       "id": "trial-fewer-than-k",
-      "name": "trial: fewer than k candidates are allowed",
+      "name": "trial: fewer than k candidates are all selected",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -64,8 +94,8 @@
       ]
     },
     {
-      "id": "trial-equal-nums1",
-      "name": "trial: equal nums1 cannot choose each other",
+      "id": "trial-equal-group-barrier",
+      "name": "trial: an equal-value group cannot select within itself",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -91,12 +121,241 @@
       ],
       "tags": [
         "trial",
-        "ties"
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "real-k-one",
+      "name": "hidden: retain only the largest eligible value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5,
+          1,
+          4,
+          2,
+          3
+        ],
+        "nums2": [
+          2,
+          100,
+          7,
+          40,
+          20
+        ],
+        "k": 1
+      },
+      "expected": [
+        100,
+        0,
+        100,
+        100,
+        100
+      ],
+      "tags": [
+        "hidden",
+        "k-one"
+      ]
+    },
+    {
+      "id": "real-k-n",
+      "name": "hidden: k equal to n keeps every eligible value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          3,
+          1,
+          4,
+          2
+        ],
+        "nums2": [
+          5,
+          7,
+          11,
+          13
+        ],
+        "k": 4
+      },
+      "expected": [
+        20,
+        0,
+        25,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "k-n"
+      ]
+    },
+    {
+      "id": "real-original-order",
+      "name": "hidden: answers return to unsorted original positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          10,
+          2,
+          8,
+          1,
+          6,
+          4
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 2
+      },
+      "expected": [
+        11,
+        4,
+        11,
+        0,
+        10,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "original-order"
+      ]
+    },
+    {
+      "id": "real-discard-small-values",
+      "name": "hidden: heap discards values below the current top k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nums2": [
+          9,
+          1,
+          100,
+          2,
+          90,
+          3
+        ],
+        "k": 3
+      },
+      "expected": [
+        193,
+        0,
+        1,
+        101,
+        103,
+        192
+      ],
+      "tags": [
+        "hidden",
+        "top-k"
+      ]
+    },
+    {
+      "id": "real-duplicate-second-values",
+      "name": "hidden: duplicate nums2 contributions remain distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          8,
+          8,
+          8,
+          8
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        8,
+        16,
+        16
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-single-element",
+      "name": "hidden: one element has no smaller first-array value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          1000000
+        ],
+        "k": 1
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-large-sum",
+      "name": "hidden: answer sum exceeds 32-bit range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nums2": [
+          1,
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000
+        ],
+        "k": 5
+      },
+      "expected": [
+        5000000,
+        0,
+        1000000,
+        2000000,
+        3000000,
+        4000000
+      ],
+      "tags": [
+        "hidden",
+        "large-values"
       ]
     },
     {
       "id": "real-mixed-groups",
-      "name": "real: grouped nums1 values",
+      "name": "hidden: several equal and distinct groups share one heap",
       "kind": "real",
       "visible": false,
       "input": {
@@ -127,8 +386,8 @@
         17
       ],
       "tags": [
-        "real",
-        "heap"
+        "hidden",
+        "groups"
       ]
     }
   ]

@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3661",
+  "cases": [
+    {
+      "id": "sample-single-left",
+      "name": "sample: one robot reaches one wall to the left",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "robots": [
+          4
+        ],
+        "distance": [
+          3
+        ],
+        "walls": [
+          1,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-robot"
+      ]
+    },
+    {
+      "id": "sample-unsorted-and-colocated",
+      "name": "sample: unsorted robots destroy every wall",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "robots": [
+          10,
+          2
+        ],
+        "distance": [
+          5,
+          1
+        ],
+        "walls": [
+          5,
+          2,
+          7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "unsorted",
+        "co-located-wall"
+      ]
+    },
+    {
+      "id": "sample-blocked",
+      "name": "sample: neighboring robot blocks a long shot",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "robots": [
+          1,
+          2
+        ],
+        "distance": [
+          100,
+          1
+        ],
+        "walls": [
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "blocking"
+      ]
+    },
+    {
+      "id": "trial-single-prefers-right",
+      "name": "trial: a single robot chooses its richer side",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "robots": [
+          10
+        ],
+        "distance": [
+          5
+        ],
+        "walls": [
+          5,
+          6,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          20
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "single-robot",
+        "direction-choice"
+      ]
+    },
+    {
+      "id": "trial-overlapping-inward-shots",
+      "name": "trial: overlapping inward shots count unique walls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "robots": [
+          10,
+          20
+        ],
+        "distance": [
+          10,
+          10
+        ],
+        "walls": [
+          12,
+          15,
+          18
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "overlap",
+        "unique-walls"
+      ]
+    },
+    {
+      "id": "trial-only-middle-can-cover-either-gap",
+      "name": "trial: middle robot must choose one neighboring gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "robots": [
+          10,
+          20,
+          30
+        ],
+        "distance": [
+          1,
+          8,
+          1
+        ],
+        "walls": [
+          13,
+          17,
+          23,
+          27
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "orientation-conflict",
+        "dp-state"
+      ]
+    },
+    {
+      "id": "real-all-colocated",
+      "name": "hidden: every wall shares a robot coordinate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "robots": [
+          8,
+          3,
+          20
+        ],
+        "distance": [
+          2,
+          100,
+          4
+        ],
+        "walls": [
+          3,
+          8,
+          20
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "co-located-walls"
+      ]
+    },
+    {
+      "id": "real-range-stops-at-neighbor",
+      "name": "hidden: range beyond a neighbor cannot reach farther walls",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "robots": [
+          10,
+          15
+        ],
+        "distance": [
+          100,
+          1
+        ],
+        "walls": [
+          12,
+          14,
+          16,
+          100
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "blocking",
+        "range-truncation"
+      ]
+    },
+    {
+      "id": "real-gap-and-exterior-tradeoff",
+      "name": "hidden: endpoint choices combine gap and exterior coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "robots": [
+          10,
+          20
+        ],
+        "distance": [
+          5,
+          5
+        ],
+        "walls": [
+          5,
+          12,
+          15,
+          18,
+          25
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "exterior",
+        "gap-union"
+      ]
+    }
+  ]
+}

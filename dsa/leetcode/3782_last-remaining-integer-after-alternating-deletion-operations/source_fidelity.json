@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3782",
+    "frontend_id": "3782",
+    "title_slug": "last-remaining-integer-after-alternating-deletion-operations",
+    "url": "https://leetcode.com/problems/last-remaining-integer-after-alternating-deletion-operations/description/",
+    "paid_only": false,
+    "content_sha256": "70b2be387e8913c1abed5d4def47001e13d343fb1426c87c284454be44e70d8e",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal":1,"input":"`n = 8`","output":"`3`","has_explanation":true},
+      {"ordinal":2,"input":"`n = 5`","output":"`1`","has_explanation":true},
+      {"ordinal":3,"input":"`n = 1`","output":"`1`","has_explanation":true}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6913e9a9d250f165ee6f94afd757955d0ab2f96b30edbc082f1f1a34bd879bba",
+      "reference/contract.md": "585a4d807349717e1daa96741a5f8e9f49763a9be04e298be145c0785340f25c",
+      "reference/examples.md": "f5255794b780343ef43713d75392c2c9b04bb71da29d42b17685e51a824a957d",
+      "reference/constraints.md": "81dbefa1cf023abdca0871b3ebc6f221b180d129f401d161c0a419305e5dbcb9"
+    },
+    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3486",
+  "frontend_id": "3249",
+  "title_slug": "count-the-number-of-good-nodes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.countGoodNodes",
+  "verified_submission_id": "2080281250",
+  "verified_at": "2026-07-25T05:13:47.852428+00:00"
+}

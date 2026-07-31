@@ -1,126 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2509",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three cycle lengths in a heap-indexed tree",
+      "name": "sample: three paths with different ancestors",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "n": 3,
-        "queries": [
-          [
-            5,
-            3
-          ],
-          [
-            4,
-            7
-          ],
-          [
-            2,
-            3
-          ]
-        ]
-      },
-      "expected": [
-        4,
-        5,
-        3
-      ],
-      "tags": [
-        "sample",
-        "tree"
-      ]
+      "input": { "n": 3, "queries": [[5,3],[4,7],[2,3]] },
+      "expected": [4,5,3],
+      "tags": ["sample", "multiple-queries"]
     },
     {
       "id": "sample-2",
-      "name": "sample: root connected to child",
+      "name": "sample: parallel edge creates a length two cycle",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "n": 2,
-        "queries": [
-          [
-            1,
-            2
-          ]
-        ]
-      },
-      "expected": [
-        2
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: leaf connected to root",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "n": 3,
-        "queries": [
-          [
-            7,
-            1
-          ]
-        ]
-      },
-      "expected": [
-        3
-      ],
-      "tags": [
-        "sample"
-      ]
+      "input": { "n": 2, "queries": [[1,2]] },
+      "expected": [2],
+      "tags": ["sample", "parent-child", "parallel-edge"]
     },
     {
       "id": "trial-sibling-leaves",
-      "name": "trial: sibling leaves produce a length three cycle",
+      "name": "trial: sibling leaves share their parent",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "n": 4,
-        "queries": [
-          [
-            8,
-            9
-          ],
-          [
-            14,
-            15
-          ]
-        ]
-      },
-      "expected": [
-        3,
-        3
-      ],
-      "tags": [
-        "trial"
-      ]
+      "input": { "n": 4, "queries": [[8,9],[14,15]] },
+      "expected": [3,3],
+      "tags": ["trial", "siblings"]
     },
     {
-      "id": "real-two-children-of-root",
-      "name": "hidden: children of the root meet at node one",
+      "id": "trial-root-to-leaf",
+      "name": "trial: one endpoint is the root",
+      "kind": "trial",
+      "visible": true,
+      "input": { "n": 4, "queries": [[1,15]] },
+      "expected": [4],
+      "tags": ["trial", "ancestor", "root"]
+    },
+    {
+      "id": "trial-unequal-depths",
+      "name": "trial: endpoints begin at unequal depths",
+      "kind": "trial",
+      "visible": true,
+      "input": { "n": 5, "queries": [[10,25]] },
+      "expected": [8],
+      "tags": ["trial", "unequal-depths"]
+    },
+    {
+      "id": "real-children-of-root",
+      "name": "hidden: both endpoints meet at the root",
       "kind": "real",
       "visible": false,
-      "input": {
-        "n": 2,
-        "queries": [
-          [
-            2,
-            3
-          ]
-        ]
-      },
-      "expected": [
-        3
-      ],
-      "tags": [
-        "hidden"
-      ]
+      "input": { "n": 2, "queries": [[2,3]] },
+      "expected": [3],
+      "tags": ["hidden", "lowest-common-ancestor"]
+    },
+    {
+      "id": "real-mixed-batch",
+      "name": "hidden: preserve answers for varied query shapes",
+      "kind": "real",
+      "visible": false,
+      "input": { "n": 6, "queries": [[32,63],[17,34],[11,27],[7,28]] },
+      "expected": [11,2,8,3],
+      "tags": ["hidden", "batch", "ancestor"]
+    },
+    {
+      "id": "real-maximum-label",
+      "name": "hidden: maximum label and its parent at maximum height",
+      "kind": "real",
+      "visible": false,
+      "input": { "n": 30, "queries": [[1073741823,536870911]] },
+      "expected": [2],
+      "tags": ["hidden", "maximum-height", "parent-child"]
     }
   ]
 }

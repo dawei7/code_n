@@ -1,0 +1,182 @@
+{
+  "challenge_id": "lc_2880",
+  "cases": [
+    {
+      "id": "sample-select-ulysses",
+      "name": "sample: select student 101 and project two columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 101,
+              "name": "Ulysses",
+              "age": 13
+            },
+            {
+              "student_id": 53,
+              "name": "William",
+              "age": 10
+            },
+            {
+              "student_id": 128,
+              "name": "Henry",
+              "age": 6
+            },
+            {
+              "student_id": 3,
+              "name": "Henry",
+              "age": 11
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            "Ulysses",
+            13
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "filter",
+        "projection"
+      ]
+    },
+    {
+      "id": "trial-target-middle",
+      "name": "target row appears in the middle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 7,
+              "name": "Ada",
+              "age": 14
+            },
+            {
+              "student_id": 101,
+              "name": "Lin",
+              "age": 16
+            },
+            {
+              "student_id": 8,
+              "name": "Bo",
+              "age": 12
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            "Lin",
+            16
+          ]
+        ]
+      },
+      "tags": [
+        "position"
+      ]
+    },
+    {
+      "id": "trial-target-first",
+      "name": "target row appears first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 101,
+              "name": "Mia",
+              "age": 20
+            },
+            {
+              "student_id": 42,
+              "name": "Noah",
+              "age": 18
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            "Mia",
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "first-row"
+      ]
+    },
+    {
+      "id": "real-target-last",
+      "name": "hidden: target row appears last",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "name": "A",
+              "age": 9
+            },
+            {
+              "student_id": 2,
+              "name": "B",
+              "age": 10
+            },
+            {
+              "student_id": 3,
+              "name": "C",
+              "age": 11
+            },
+            {
+              "student_id": 101,
+              "name": "Target",
+              "age": 17
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "age"
+        ],
+        "rows": [
+          [
+            "Target",
+            17
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "last-row"
+      ]
+    }
+  ]
+}

@@ -1,23 +1,32 @@
-from bisect import bisect_left
+from collections import deque
+
 
 def solve(nums: list[int]) -> int:
-    n = len(nums)
-    prefix_sum = [0] * (n + 1)
-    for i, num in enumerate(nums):
-        prefix_sum[i + 1] = prefix_sum[i] + num
+    length = len(nums)
+    prefix = [0] * (length + 1)
+    groups = [0] * (length + 1)
+    last_sum = [0] * (length + 1)
+    candidates = deque([0])
 
-    dp = [0] * (n + 1)
-    best_previous = [0] * (n + 2)
+    for end, value in enumerate(nums, start=1):
+        prefix[end] = prefix[end - 1] + value
 
-    for i in range(1, n + 1):
-        best_previous[i] = max(best_previous[i], best_previous[i - 1])
-        previous = best_previous[i]
-        dp[i] = dp[previous] + 1
+        while (
+            len(candidates) > 1
+            and prefix[candidates[1]] + last_sum[candidates[1]] <= prefix[end]
+        ):
+            candidates.popleft()
 
-        current_sum = prefix_sum[i] - prefix_sum[previous]
-        next_prefix = prefix_sum[i] + current_sum
-        next_index = bisect_left(prefix_sum, next_prefix)
-        if next_index <= n:
-            best_previous[next_index] = max(best_previous[next_index], i)
+        previous = candidates[0]
+        groups[end] = groups[previous] + 1
+        last_sum[end] = prefix[end] - prefix[previous]
+        threshold = prefix[end] + last_sum[end]
 
-    return dp[n]
+        while (
+            candidates
+            and prefix[candidates[-1]] + last_sum[candidates[-1]] >= threshold
+        ):
+            candidates.pop()
+        candidates.append(end)
+
+    return groups[length]

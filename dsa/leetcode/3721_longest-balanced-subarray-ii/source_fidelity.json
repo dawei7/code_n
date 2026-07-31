@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3721",
+    "frontend_id": "3721",
+    "title_slug": "longest-balanced-subarray-ii",
+    "url": "https://leetcode.com/problems/longest-balanced-subarray-ii/description/",
+    "paid_only": false,
+    "content_sha256": "8afb4eabc18232275ccf05c312408381ffad4e40fe4f8b0f2c78b5d1c9339f93",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [2,5,4,3]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [3,2,2,5,4]",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,2,3,2]",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4046cbf1334b8a0e4e7877bdc294da589c2b54d8510822cfba6818b1d4443c4d",
+      "reference/contract.md": "1c0658b2a371252215294af7c668cce795111ce1ccbd528cc2622924cb3a0ed5",
+      "reference/examples.md": "3c7ae71d3da41e53b3a6ba454be405e995666b2acf10e0dc9e70810e1c563bdb",
+      "reference/constraints.md": "f2452492b601783ed5dfb977954c508e6cb0901e007cb23282322f20d1bc762c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

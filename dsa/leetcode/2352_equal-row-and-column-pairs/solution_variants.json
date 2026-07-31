@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Equal Row and Column Pairs and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts row tuples, builds each column tuple once, and adds the matching row frequency.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n^2)"
     }
   ]
 }

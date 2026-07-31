@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4107",
+  "frontend_id": "3731",
+  "title_slug": "find-missing-elements",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.findMissingElements",
+  "verified_submission_id": "2085137141",
+  "verified_at": "2026-07-28T17:25:49.203864+00:00"
+}

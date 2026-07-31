@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_3474",
+  "cases": [
+    {
+      "id": "sample-alternating-windows",
+      "name": "sample: alternating equal and unequal windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {"str1": "TFTF", "str2": "ab"},
+      "expected": "ababa",
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "sample-inconsistent-overlap",
+      "name": "sample: overlapping true windows conflict",
+      "kind": "sample",
+      "visible": true,
+      "input": {"str1": "TFTF", "str2": "abc"},
+      "expected": "",
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "sample-single-false",
+      "name": "sample: smallest letter differs from the pattern",
+      "kind": "sample",
+      "visible": true,
+      "input": {"str1": "F", "str2": "d"},
+      "expected": "a",
+      "tags": ["sample", "single-window"]
+    },
+    {
+      "id": "trial-break-repeated-pattern",
+      "name": "trial: avoid a repeated-letter pattern at every start",
+      "kind": "trial",
+      "visible": true,
+      "input": {"str1": "FFF", "str2": "aa"},
+      "expected": "abab",
+      "tags": ["trial", "self-overlap"]
+    },
+    {
+      "id": "trial-consistent-true-overlaps",
+      "name": "trial: every overlapping true window agrees",
+      "kind": "trial",
+      "visible": true,
+      "input": {"str1": "TTT", "str2": "aaa"},
+      "expected": "aaaaa",
+      "tags": ["trial", "forced"]
+    },
+    {
+      "id": "real-two-true-conflict",
+      "name": "real: adjacent true windows cannot both match",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "TT", "str2": "ab"},
+      "expected": "",
+      "tags": ["real", "conflict"]
+    },
+    {
+      "id": "real-separated-true-windows",
+      "name": "real: false windows lie between forced matches",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "TFFT", "str2": "ab"},
+      "expected": "abaab",
+      "tags": ["real", "mixed-conditions"]
+    },
+    {
+      "id": "real-single-letter-all-false",
+      "name": "real: every free position must avoid letter a",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "FFF", "str2": "a"},
+      "expected": "bbb",
+      "tags": ["real", "single-letter-pattern"]
+    },
+    {
+      "id": "real-non-a-pattern",
+      "name": "real: all-a word avoids a different single letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "FFF", "str2": "z"},
+      "expected": "aaa",
+      "tags": ["real", "lexicographic"]
+    },
+    {
+      "id": "real-break-after-forced-window",
+      "name": "real: free suffix breaks a false overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "TF", "str2": "aa"},
+      "expected": "aab",
+      "tags": ["real", "forced-prefix"]
+    },
+    {
+      "id": "real-break-before-forced-window",
+      "name": "real: free prefix breaks a false overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "FT", "str2": "aa"},
+      "expected": "baa",
+      "tags": ["real", "forced-suffix"]
+    },
+    {
+      "id": "real-forced-false-contradiction",
+      "name": "real: true overlaps force a forbidden middle match",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "TFT", "str2": "aaa"},
+      "expected": "",
+      "tags": ["real", "impossible", "forced"]
+    },
+    {
+      "id": "real-kmp-overlap",
+      "name": "real: pattern prefix and suffix overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {"str1": "FTFF", "str2": "aba"},
+      "expected": "aabaaa",
+      "tags": ["real", "kmp", "self-overlap"]
+    }
+  ]
+}

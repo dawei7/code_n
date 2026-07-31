@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2121",
+  "cases": [
+    {"id": "sample-three-groups", "name": "sample: repeated values form three independent groups", "kind": "sample", "visible": true, "input": {"arr": [2, 1, 3, 1, 2, 3, 3]}, "expected": [4, 2, 7, 2, 4, 4, 5], "tags": ["sample", "multiple-groups"]},
+    {"id": "sample-one-unique", "name": "sample: one value occurs once among repetitions", "kind": "sample", "visible": true, "input": {"arr": [10, 5, 10, 10]}, "expected": [5, 0, 3, 4], "tags": ["sample", "singleton-group"]},
+    {"id": "trial-single-element", "name": "one index has no positive distance", "kind": "trial", "visible": true, "input": {"arr": [7]}, "expected": [0], "tags": ["minimum", "singleton"]},
+    {"id": "trial-all-identical", "name": "all indices contribute within one group", "kind": "trial", "visible": true, "input": {"arr": [4, 4, 4, 4]}, "expected": [6, 4, 4, 6], "tags": ["all-identical", "symmetry"]},
+    {"id": "real-all-distinct", "name": "hidden: every value forms a singleton group", "kind": "real", "visible": false, "input": {"arr": [1, 2, 3, 4, 5]}, "expected": [0, 0, 0, 0, 0], "tags": ["hidden", "all-distinct"]},
+    {"id": "real-interleaved-groups", "name": "hidden: several groups are interleaved unevenly", "kind": "real", "visible": false, "input": {"arr": [1, 2, 1, 3, 2, 1, 3, 1]}, "expected": [14, 3, 10, 3, 3, 10, 3, 14], "tags": ["hidden", "interleaved"]},
+    {"id": "real-two-endpoints", "name": "hidden: matching values occur only at opposite ends", "kind": "real", "visible": false, "input": {"arr": [9, 1, 2, 3, 9]}, "expected": [4, 0, 0, 0, 4], "tags": ["hidden", "endpoints"]}
+  ]
+}

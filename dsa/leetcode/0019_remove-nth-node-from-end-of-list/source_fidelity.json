@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_19",
+    "frontend_id": "19",
+    "title_slug": "remove-nth-node-from-end-of-list",
+    "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/",
+    "paid_only": false,
+    "content_sha256": "75f9a11ddbbb3049dc6f5c0ce508d9c1d716568d1f402345213d53883b5c15c1",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [1,2,3,4,5], n = 2", "output": "[1,2,3,5]", "has_explanation": false},
+      {"ordinal": 2, "input": "head = [1], n = 1", "output": "[]", "has_explanation": false},
+      {"ordinal": 3, "input": "head = [1,2], n = 1", "output": "[1]", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3526ff50986934297402c6302d646daf7fadf569a4dc8953805b5c872cb5db42",
+      "reference/contract.md": "0a9dde8e505b8b950d56e3795c9b7de2af356018d8aceffbadff203e12537870",
+      "reference/examples.md": "b0cb104e9899c29193d982951362e5a0174e57b69daa54230225ca58c6421186",
+      "reference/constraints.md": "44f5e7f35c0ccf150932e4c8f1f18ac8702863ff73270165e05305c52ecbf1a9",
+      "reference/follow_up.md": "57aa93e8458aba2aaae60db418b25fdca6cbd623dcadb2dcc65589889c9b2962"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_344", "frontend_id": "344", "title_slug": "reverse-string", "url": "https://leetcode.com/problems/reverse-string/description/", "paid_only": false, "content_sha256": "27620c7455d1b12efe192841177a92dec7a89ca867ca1eb11fb66b2237103845", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = [\"h\",\"e\",\"l\",\"l\",\"o\"]", "output": "[\"o\",\"l\",\"l\",\"e\",\"h\"]", "has_explanation": false},
+      {"ordinal": 2, "input": "s = [\"H\",\"a\",\"n\",\"n\",\"a\",\"h\"]", "output": "[\"h\",\"a\",\"n\",\"n\",\"a\",\"H\"]", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "859349d75b04abdc0292951f5f90b7887ce4e24eaa1b8d134d0b0471541c34cb",
+    "reference/contract.md": "11a0cf4398f4c4213a6c8c8d7561b5cbe15dd76b07cc2f91633f2634c3233078",
+    "reference/examples.md": "3288c7c40e5ea73b9f16f71e19721528c183b8b8ead2437412adc0087e7ce0d6",
+    "reference/constraints.md": "da9a474d5b0219666fa9f42fc16e1927491c1f93c64f374e2b71aa895f4b5635"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

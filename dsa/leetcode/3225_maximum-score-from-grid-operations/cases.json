@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3225",
   "cases": [
     {
-      "id": "sample-five-by-five",
-      "name": "sample: official five by five grid",
+      "id": "sample-sparse-five",
+      "name": "sample: sparse exposed values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,13 +48,12 @@
       },
       "expected": 11,
       "tags": [
-        "sample",
-        "dp"
+        "sample"
       ]
     },
     {
-      "id": "sample-second-five-by-five",
-      "name": "sample: official dense grid",
+      "id": "sample-dense-five",
+      "name": "sample: mixed dense values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -97,12 +97,11 @@
       },
       "expected": 94,
       "tags": [
-        "sample",
-        "dp"
+        "sample"
       ]
     },
     {
-      "id": "trial-single-cell",
+      "id": "trial-single",
       "name": "trial: one column has no horizontal neighbor",
       "kind": "trial",
       "visible": true,
@@ -115,12 +114,34 @@
       },
       "expected": 0,
       "tags": [
-        "edge"
+        "single-column"
       ]
     },
     {
-      "id": "trial-two-by-two",
-      "name": "trial: two columns can score across the boundary",
+      "id": "trial-all-zero",
+      "name": "trial: zero grid has zero score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "zero-values"
+      ]
+    },
+    {
+      "id": "trial-two-columns",
+      "name": "trial: expose one boundary column from the other",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,46 +158,230 @@
       },
       "expected": 7,
       "tags": [
-        "small"
+        "two-columns"
       ]
     },
     {
-      "id": "real-four-by-four",
-      "name": "real: four by four mixed grid",
+      "id": "trial-uniform",
+      "name": "trial: uniform three-by-three grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "uniform"
+      ]
+    },
+    {
+      "id": "real-center-value",
+      "name": "real: expose a valuable center-column cell",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "center-column"
+      ]
+    },
+    {
+      "id": "real-boundary-values",
+      "name": "real: expose values in both boundary columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5,
+            0,
+            7
+          ],
+          [
+            4,
+            0,
+            6
+          ],
+          [
+            3,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "boundary-columns"
+      ]
+    },
+    {
+      "id": "real-diagonal",
+      "name": "real: diagonal values need different heights",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "varied-heights"
+      ]
+    },
+    {
+      "id": "real-all-ones-four",
+      "name": "real: uniform four-by-four grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "uniform"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: large cell values require wide totals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1000000000,
+            0
+          ],
+          [
+            0,
+            1000000000
+          ]
+        ]
+      },
+      "expected": 1000000000,
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-mixed-four",
+      "name": "real: mixed four-by-four values",
       "kind": "real",
       "visible": false,
       "input": {
         "grid": [
           [
             3,
-            0,
+            1,
             4,
             1
           ],
           [
-            2,
             5,
-            0,
+            9,
+            2,
             6
           ],
           [
-            0,
-            7,
-            2,
-            3
+            5,
+            3,
+            5,
+            8
           ],
           [
-            4,
-            1,
-            8,
-            0
+            9,
+            7,
+            9,
+            3
           ]
         ]
       },
-      "expected": 27,
+      "expected": 46,
       "tags": [
-        "real",
-        "dp"
+        "mixed"
       ]
     }
   ]

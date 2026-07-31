@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2214",
+  "cases": [
+    {"id":"sample-partial-block","name":"sample: armor partially blocks the largest hit","kind":"sample","visible":true,"input":{"damage":[2,7,4,3],"armor":4},"expected":13,"tags":["sample","partial-block"]},
+    {"id":"sample-armor-exceeds-hit","name":"sample: armor fully blocks the largest hit","kind":"sample","visible":true,"input":{"damage":[2,5,3,4],"armor":7},"expected":10,"tags":["sample","full-block"]},
+    {"id":"sample-zero-armor","name":"sample: zero armor prevents no damage","kind":"sample","visible":true,"input":{"damage":[3,3,3],"armor":0},"expected":10,"tags":["sample","zero-armor"]},
+    {"id":"trial-single-level","name":"one level still requires one surviving health","kind":"trial","visible":true,"input":{"damage":[10],"armor":3},"expected":8,"tags":["single-level"]},
+    {"id":"trial-armor-larger-than-all","name":"oversized armor can erase only one level","kind":"trial","visible":true,"input":{"damage":[1,2,3],"armor":100},"expected":4,"tags":["armor-cap"]},
+    {"id":"real-all-zero","name":"hidden: all zero damage still requires positive health","kind":"real","visible":false,"input":{"damage":[0,0,0],"armor":5},"expected":1,"tags":["hidden","zero-damage"]},
+    {"id":"real-largest-last","name":"hidden: best armor target may be the last level","kind":"real","visible":false,"input":{"damage":[4,1,9],"armor":6},"expected":9,"tags":["hidden","largest-last"]},
+    {"id":"real-tied-maximum","name":"hidden: either tied maximum gives the same saving","kind":"real","visible":false,"input":{"damage":[8,2,8,1],"armor":5},"expected":15,"tags":["hidden","tied-maximum"]},
+    {"id":"real-upper-values","name":"hidden: arithmetic remains exact at large values","kind":"real","visible":false,"input":{"damage":[100000,100000],"armor":100000},"expected":100001,"tags":["hidden","upper-values"]}
+  ]
+}

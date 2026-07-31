@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Unique Flavors After Sharing K Candies and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Slides the shared block while maintaining flavor frequencies only for the candies kept outside it.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(u)"
     }
   ]
 }

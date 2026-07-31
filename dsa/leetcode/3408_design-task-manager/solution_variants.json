@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Task Manager and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines an authoritative task map with a lazily validated max-heap ordered by priority and task ID.",
+      "time_complexity": "O((t + q) log(t + q))",
+      "space_complexity": "O(t + q)"
     }
   ]
 }

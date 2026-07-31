@@ -8,90 +8,55 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Bit Manipulation, Tree, Depth-First Search, Memoization |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-points-after-collecting-coins-from-all-nodes](https://leetcode.com/problems/maximum-points-after-collecting-coins-from-all-nodes/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-points-after-collecting-coins-from-all-nodes/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-points-after-collecting-coins-from-all-nodes/).
 
 ### Goal
-Given a tree rooted at node 0, each node contains a specific number of coins. When visiting a node, you can collect its coins using one of two strategies: either take half the coins (integer division) or take all coins and then halve the coins of all its descendants. Because the halving effect compounds as you move deeper into the tree, the number of coins at any node depends on how many times its ancestors were halved. You must determine the maximum total coins collectable by traversing the tree optimally.
+
+An undirected tree with $n$ nodes is rooted at node 0. The nodes are labeled
+from 0 through $n-1$, `edges` describes its $n-1$ connections, and
+`coins[i]` is the initial number of coins at node `i`. Starting from the
+root, collect every node's coins; a node may be collected only after all of its
+ancestors have been collected.
+
+At each node, choose exactly one of two methods. The first awards the node's
+current coin count minus `k`; this score may be negative. The second awards
+the floor of half the current coin count and also replaces every coin count in
+that node's rooted subtree by its floor after division by two. Multiple second
+methods along an ancestor chain compound. Return the maximum total score after
+all nodes have been collected.
 
 ### Function Contract
+
 **Inputs**
 
-- `edges`: A list of lists representing the tree structure (undirected edges).
-- `coins`: A list of integers where `coins[i]` is the initial value at node `i`.
-- `k`: An integer representing the penalty reduction factor.
+- `edges`: The $n-1$ undirected edges of the tree.
+- `coins`: A list whose entry `coins[i]` is node $i$'s initial coin count.
+- `k`: The penalty charged by the first collection method.
+
+Let $n=\lvert\texttt{coins}\rvert$. The constraints are
+$2\le n\le 10^5$, $0\le\texttt{coins[i]}\le 10^4$,
+$\lvert\texttt{edges}\rvert=n-1$, and $0\le\texttt{k}\le10^4$.
+The edges form a tree and every endpoint lies in $[0,n-1]$.
 
 **Return value**
 
-- An integer representing the maximum total coins that can be collected.
+- The maximum total points obtainable after collecting every node.
 
 ### Examples
+
 **Example 1**
 
-- Input: `edges = [[0,1],[1,2],[2,3]], coins = [10,10,3,3], k = 5`
+- Input: `edges = [[0, 1], [1, 2], [2, 3]], coins = [10, 10, 3, 3], k = 5`
 - Output: `11`
+- Explanation: Use the first method at nodes 0 and 1 for five points each.
+  Use the second method at node 2 for one point; it halves node 3 to one coin,
+  whose second method then yields zero.
 
 **Example 2**
 
-- Input: `edges = [[0,1],[0,2]], coins = [8,4,4], k = 0`
+- Input: `edges = [[0, 1], [0, 2]], coins = [8, 4, 4], k = 0`
 - Output: `16`
-
----
-
-## Solution
-### Approach
-The problem is solved using Tree Dynamic Programming with Memoization. Since the halving effect only matters up to a certain depth (because `coins[i] // 2^14` eventually becomes 0), we can track the state as `(current_node, parent_node, halving_count)`. The `halving_count` is capped at 13 to prevent redundant states.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N * K)`, where `N` is the number of nodes and `K` is the maximum number of effective halving operations (typically 14).
-- **Space Complexity**: `O(N * K)` to store the memoization table.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import sys
-
-# Increase recursion depth for deep trees
-sys.setrecursionlimit(200000)
-
-def solve(edges, coins, k):
-    n = len(coins)
-    adj = [[] for _ in range(n)]
-    for u, v in edges:
-        adj[u].append(v)
-        adj[v].append(u)
-
-    # Memoization table: (node, halving_count)
-    # halving_count is capped at 13 because 10^9 // 2^14 is 0
-    memo = {}
-
-    def dfs(u, p, halving_count):
-        # Cap halving_count at 13
-        state = (u, halving_count)
-        if state in memo:
-            return memo[state]
-
-        # Strategy 1: Take the current coins minus the penalty.
-        # This does not add any new halving effect for descendants.
-        val1 = (coins[u] >> halving_count) - k
-        for v in adj[u]:
-            if v != p:
-                val1 += dfs(v, u, halving_count)
-
-        # Strategy 2: Take half the current coins and halve the descendants.
-        val2 = (coins[u] >> (halving_count + 1))
-        for v in adj[u]:
-            if v != p:
-                val2 += dfs(v, u, min(halving_count + 1, 13))
-
-        res = max(val1, val2)
-        memo[state] = res
-        return res
-
-    return dfs(0, -1, 0)
-```
-</details>
+- Explanation: With no penalty, using the first method at all three nodes
+  collects their full values.

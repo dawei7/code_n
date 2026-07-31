@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Sum of M Non-Overlapping Subarrays II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses WQS binary search over a per-subarray penalty and a monotonic-deque interval DP for each penalty.",
+      "time_complexity": "O(n log S)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -1,36 +1,35 @@
-from collections import defaultdict, deque
+from collections import defaultdict
 
-def solve(initialCurrency, pairs1, rates1, pairs2, rates2):
-    def get_max_rates(pairs, rates, start_node):
+
+def solve(
+    initialCurrency: str,
+    pairs1: list[list[str]],
+    rates1: list[float],
+    pairs2: list[list[str]],
+    rates2: list[float],
+) -> float:
+    def rates_from(
+        pairs: list[list[str]], rates: list[float]
+    ) -> dict[str, float]:
         graph = defaultdict(list)
-        for (u, v), r in zip(pairs, rates):
-            graph[u].append((v, r))
-            graph[v].append((u, 1.0 / r))
-        
-        max_rates = {start_node: 1.0}
-        queue = deque([start_node])
-        
-        while queue:
-            curr = queue.popleft()
-            for neighbor, rate in graph[curr]:
-                if max_rates.get(neighbor, 0) < max_rates[curr] * rate:
-                    max_rates[neighbor] = max_rates[curr] * rate
-                    queue.append(neighbor)
-        return max_rates
+        for (source, target), rate in zip(pairs, rates):
+            graph[source].append((target, rate))
+            graph[target].append((source, 1.0 / rate))
 
-    # Day 1: Find max conversion from initialCurrency to all others
-    day1_rates = get_max_rates(pairs1, rates1, initialCurrency)
-    
-    # Day 2: For every currency reached in Day 1, find max conversion back to initialCurrency
-    max_final_amount = 1.0
-    
-    # We need to check all currencies reachable from initialCurrency in Day 1
-    # and see how much they can convert back to initialCurrency in Day 2
-    for intermediate_currency, amount_after_day1 in day1_rates.items():
-        day2_rates = get_max_rates(pairs2, rates2, intermediate_currency)
-        if initialCurrency in day2_rates:
-            final_amount = amount_after_day1 * day2_rates[initialCurrency]
-            if final_amount > max_final_amount:
-                max_final_amount = final_amount
-                
-    return float(max_final_amount)
+        converted = {initialCurrency: 1.0}
+        stack = [initialCurrency]
+        while stack:
+            currency = stack.pop()
+            for neighbor, rate in graph[currency]:
+                if neighbor not in converted:
+                    converted[neighbor] = converted[currency] * rate
+                    stack.append(neighbor)
+        return converted
+
+    day1 = rates_from(pairs1, rates1)
+    day2 = rates_from(pairs2, rates2)
+    return max(
+        amount / day2[currency]
+        for currency, amount in day1.items()
+        if currency in day2
+    )

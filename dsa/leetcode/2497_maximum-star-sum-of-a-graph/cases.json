@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2497",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: choose the best two positive neighbors",
+      "name": "sample: choose the two best positive neighbors",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,12 +48,13 @@
       "expected": 16,
       "tags": [
         "sample",
-        "graph"
+        "positive-neighbors",
+        "negative-neighbors"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: single negative node",
+      "name": "sample: one negative isolated node",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -64,22 +66,58 @@
       },
       "expected": -5,
       "tags": [
-        "sample"
+        "sample",
+        "singleton",
+        "k-zero"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: center connected to every other node",
-      "kind": "sample",
+      "id": "trial-optional-edges",
+      "name": "trial: using fewer than k edges is optimal",
+      "kind": "trial",
       "visible": true,
       "input": {
         "vals": [
-          1,
-          2,
-          3,
-          4,
+          -8,
+          7,
+          6,
+          -20
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "at-most-k",
+        "negative-neighbors"
+      ]
+    },
+    {
+      "id": "trial-top-k-only",
+      "name": "trial: retain only the largest positive neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "vals": [
           5,
-          6
+          1,
+          10,
+          3,
+          8
         ],
         "edges": [
           [
@@ -97,24 +135,51 @@
           [
             0,
             4
-          ],
-          [
-            0,
-            5
           ]
         ],
         "k": 2
       },
-      "expected": 12,
+      "expected": 23,
       "tags": [
-        "sample"
+        "trial",
+        "top-k",
+        "high-degree"
       ]
     },
     {
-      "id": "trial-all-negative-neighbors",
-      "name": "trial: negative neighbors should be ignored",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-zero-k",
+      "name": "hidden: edges are irrelevant when k is zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "vals": [
+          -3,
+          9,
+          2
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "k": 0
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "k-zero"
+      ]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "hidden: every neighbor is harmful",
+      "kind": "real",
+      "visible": false,
       "input": {
         "vals": [
           -1,
@@ -135,24 +200,103 @@
       },
       "expected": -1,
       "tags": [
-        "trial"
+        "hidden",
+        "all-negative"
       ]
     },
     {
-      "id": "real-single-positive-node",
-      "name": "hidden: one isolated positive node",
+      "id": "real-negative-center-wins",
+      "name": "hidden: positive neighbors can outweigh a negative center",
       "kind": "real",
       "visible": false,
       "input": {
         "vals": [
-          5
+          -5,
+          9,
+          8
         ],
-        "edges": [],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "negative-center"
+      ]
+    },
+    {
+      "id": "real-disconnected",
+      "name": "hidden: disconnected components and an isolated optimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "vals": [
+          1,
+          2,
+          100,
+          -5,
+          4
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
         "k": 1
       },
-      "expected": 5,
+      "expected": 100,
       "tags": [
-        "hidden"
+        "hidden",
+        "disconnected",
+        "isolated"
+      ]
+    },
+    {
+      "id": "real-zero-neighbors",
+      "name": "hidden: zero-valued neighbors do not improve a star",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "vals": [
+          4,
+          0,
+          0,
+          -2
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "zero-values"
       ]
     }
   ]

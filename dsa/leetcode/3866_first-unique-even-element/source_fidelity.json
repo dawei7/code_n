@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3866",
+    "frontend_id": "3866",
+    "title_slug": "first-unique-even-element",
+    "url": "https://leetcode.com/problems/first-unique-even-element/description/",
+    "paid_only": false,
+    "content_sha256": "89cba71848edda6ca2f012c0ed1047c3c25352c9bfb298095e6578e3867bd95d",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [3,4,2,5,4,6]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,4]",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "79a32135b2e0337362f7c3e0af4392e0dc1b9e40b5494c3b0cc7d42b848c03bc",
+      "reference/contract.md": "8ca736c020d3c5dc1437cda8c8d98118bba6d05169e58584bd92abe002e7ff14",
+      "reference/examples.md": "fd41f4c0650d719501b3fda8c2ce0edd5c1bc89c1919088a14609a1780571711",
+      "reference/constraints.md": "d480b7f38de92d9ad960d8cf9fc64d43b26fc8d36acad683fb0cf228af8bab53"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

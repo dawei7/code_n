@@ -1,22 +1,11 @@
-from typing import List
+def solve(happiness: list[int], k: int) -> int:
+    ordered_happiness = sorted(happiness, reverse=True)
+    total = 0
 
-def solve(happiness: List[int], k: int) -> int:
-    """
-    Calculates the maximum happiness by selecting k children greedily.
-    """
-    # Sort happiness in descending order to pick the largest values first
-    sorted_happiness = sorted(happiness, reverse=True)
-
-    total_happiness = 0
-    for i in range(k):
-        # The actual happiness is the initial value minus the number of children already picked
-        # We use max(0, ...) because happiness cannot be negative
-        current_val = sorted_happiness[i] - i
-        if current_val > 0:
-            total_happiness += current_val
-        else:
-            # Since the array is sorted, if current_val <= 0,
-            # all subsequent values will also result in <= 0
+    for turn in range(k):
+        contribution = ordered_happiness[turn] - turn
+        if contribution <= 0:
             break
+        total += contribution
 
-    return total_happiness
+    return total

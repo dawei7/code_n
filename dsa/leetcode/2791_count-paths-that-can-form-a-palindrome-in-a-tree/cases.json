@@ -1,0 +1,236 @@
+{
+  "challenge_id": "lc_2791",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed branches produce eight valid paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2
+        ],
+        "s": "acaabc"
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every all-a path is valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "s": "aaaaa"
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: one node has no pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1
+        ],
+        "s": "z"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-distinct-star",
+      "name": "trial: distinct star edges permit only root paths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "s": "zabc"
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "odd-parity"
+      ]
+    },
+    {
+      "id": "trial-alternating-chain",
+      "name": "trial: repeated parities along a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3
+        ],
+        "s": "aabba"
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-parent-after-child-index",
+      "name": "trial: parent indices need not be topological",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          3,
+          0,
+          2
+        ],
+        "s": "xabc"
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "parent-order"
+      ]
+    },
+    {
+      "id": "real-balanced-masks",
+      "name": "hidden: balanced tree repeats several prefix masks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "s": "zabacba"
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-full-alphabet-star",
+      "name": "hidden: every alphabet letter labels one root edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "s": "zabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 26,
+      "tags": [
+        "hidden",
+        "alphabet"
+      ]
+    },
+    {
+      "id": "real-palindromic-label-chain",
+      "name": "hidden: symmetric labels create seven valid pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "s": "zabcba"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "parity"
+      ]
+    },
+    {
+      "id": "real-all-same-chain",
+      "name": "hidden: every pair in a same-letter chain is valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "s": "zaaaaa"
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "all-valid"
+      ]
+    }
+  ]
+}

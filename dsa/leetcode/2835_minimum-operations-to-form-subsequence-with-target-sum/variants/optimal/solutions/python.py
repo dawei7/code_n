@@ -1,34 +1,32 @@
-from typing import List
+"""App-local reference solution for LeetCode 2835."""
 
-def solve(nums: List[int], target: int) -> int:
+
+def solve(nums: list[int], target: int) -> int:
+    """Return the minimum number of power-of-two split operations."""
     if sum(nums) < target:
         return -1
 
-    max_bit = max(max(nums).bit_length(), target.bit_length()) + 1
-    counts = [0] * (max_bit + 1)
-    for x in nums:
-        counts[x.bit_length() - 1] += 1
+    counts = [0] * 32
+    for value in nums:
+        counts[value.bit_length() - 1] += 1
 
-    ops = 0
+    operations = 0
 
-    for i in range(max_bit):
-        if (target >> i) & 1:
-            if counts[i] > 0:
-                counts[i] -= 1
-            else:
-                j = i + 1
-                while j < max_bit and counts[j] == 0:
-                    j += 1
-                if j == max_bit:
-                    return -1
+    for bit in range(31):
+        if (target >> bit) & 1:
+            if counts[bit] == 0:
+                higher = bit + 1
+                while counts[higher] == 0:
+                    higher += 1
 
-                while j > i:
-                    counts[j] -= 1
-                    counts[j - 1] += 2
-                    ops += 1
-                    j -= 1
-                counts[i] -= 1
+                while higher > bit:
+                    counts[higher] -= 1
+                    counts[higher - 1] += 2
+                    operations += 1
+                    higher -= 1
 
-        counts[i + 1] += counts[i] // 2
+            counts[bit] -= 1
 
-    return ops
+        counts[bit + 1] += counts[bit] // 2
+
+    return operations

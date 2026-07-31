@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for  Check if There Is a Valid Parentheses String Path and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Propagates every feasible unmatched-opening balance through the grid while pruning balances that cannot be closed.",
+      "time_complexity": "O(mn(m + n))",
+      "space_complexity": "O(n(m + n))"
     }
   ]
 }

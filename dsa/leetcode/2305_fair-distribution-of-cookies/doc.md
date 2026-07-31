@@ -5,52 +5,44 @@
 | Source | LeetCode |
 | Frontend ID | 2305 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming, Backtracking, Bit Manipulation, Bitmask |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [fair-distribution-of-cookies](https://leetcode.com/problems/fair-distribution-of-cookies/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/fair-distribution-of-cookies/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/fair-distribution-of-cookies/).
-
 ### Goal
-Assign every indivisible cookie bag to one of `k` children. Minimize unfairness, defined as the largest total number of cookies received by any child.
+`cookies[i]` is the number of cookies in bag $i$. Distribute every bag among
+exactly `k` children. A bag is indivisible: all of its cookies must go to one
+child, although a child may receive several bags or none.
+
+The unfairness of a distribution is the largest total received by any one
+child. Among all possible assignments of bags to children, return the minimum
+achievable unfairness.
 
 ### Function Contract
 **Inputs**
 
-- `cookies`: cookie counts in the bags.
-- `k`: the number of children.
+- `cookies`: An array of $n$ positive bag sizes.
+- `k`: The number of children available to receive bags.
+
+The contract guarantees $2\le n\le8$, $1\le\texttt{cookies[i]}\le10^5$, and
+$2\le k\le n$.
 
 **Return value**
 
-The minimum possible unfairness.
+The smallest possible value of $\max_{0\le j<k} L_j$, where $L_j$ is child
+$j$'s total cookie load after assigning every bag once.
 
 ### Examples
 **Example 1**
 
 - Input: `cookies = [8, 15, 10, 20, 8]`, `k = 2`
 - Output: `31`
+- Explanation: Loads $31$ from `[8, 15, 8]` and $30$ from `[10, 20]` attain
+  unfairness $31$.
 
 **Example 2**
 
 - Input: `cookies = [6, 1, 3, 2, 2, 4, 1, 2]`, `k = 3`
 - Output: `7`
-
-**Example 3**
-
-- Input: `cookies = [1, 2]`, `k = 2`
-- Output: `2`
-
----
-
-## Solution
-### Approach
-Backtrack over bags, assigning each to a child and tracking current loads. Prune any branch whose current maximum already reaches the best known result. Skip children with duplicate current loads to avoid symmetric assignments, and after trying one empty child do not try other empty children.
-
-### Complexity Analysis
-- **Time Complexity**: `O(k^n)` in the worst case
-- **Space Complexity**: `O(k + n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: The bags can produce three loads of $7$: `[6, 1]`,
+  `[3, 2, 2]`, and `[4, 1, 2]`.

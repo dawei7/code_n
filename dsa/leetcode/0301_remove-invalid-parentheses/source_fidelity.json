@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_301", "frontend_id": "301", "title_slug": "remove-invalid-parentheses", "url": "https://leetcode.com/problems/remove-invalid-parentheses/description/", "paid_only": false, "content_sha256": "6e42a77bc417f518c9fb861dea99b2a70c3a241c29337824119399e3ae4e3435", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"()())()\"", "output": "[\"(())()\",\"()()()\"]", "has_explanation": false},
+      {"ordinal": 2, "input": "s = \"(a)())()\"", "output": "[\"(a())()\",\"(a)()()\"]", "has_explanation": false},
+      {"ordinal": 3, "input": "s = \")(\"", "output": "[\"\"]", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ef354c0881f415aa5cd5b784b7e655773017e72690ff0cdde5deb58ee99c1917",
+      "reference/contract.md": "6bcbec9a13efab691a1a0f1aecbb07b2fd12ee895f3687229547dec501d4e3d6",
+      "reference/examples.md": "3dc1fd23c5df90d76402d3b031f2f214e597f8a57bc93c49bf10a04f26896d35",
+      "reference/constraints.md": "c6f661896281fc7ea611df572848821c4175dc051733c7b5813f2c9b7da4cd33"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

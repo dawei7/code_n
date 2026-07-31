@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3443",
+  "measurement_note": "Size is n, the legal movement-string length. Tiers 8, 32, and 128 span 16x and alternate north/south moves with k = n / 4, requiring consideration of every prefix. The accepted coordinate scan is linear; recomputing each prefix displacement from the start must fail only scaling.",
+  "cases": [
+    {"id":"benchmark-cancel-8","name":"benchmark: eight alternating moves","kind":"benchmark","visible":false,"size":8,"input":{"s":"NSNSNSNS","k":2},"expected":5,"tags":["benchmark","scale-small"]},
+    {"id":"benchmark-cancel-32","name":"benchmark: thirty-two alternating moves","kind":"benchmark","visible":false,"size":32,"input":{"s":"NSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNS","k":8},"expected":17,"tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-cancel-128","name":"benchmark: one hundred twenty-eight alternating moves","kind":"benchmark","visible":false,"size":128,"input":{"s":"NSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNSNS","k":32},"expected":65,"tags":["benchmark","scale-large"]}
+  ]
+}

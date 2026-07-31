@@ -48,12 +48,7 @@ function solutionPath(
 ): string {
   const extensionByLanguage: Record<SupportedLanguage, string> = {
     python: 'py',
-    cpp: 'cpp',
-    java: 'java',
-    csharp: 'cs',
     javascript: 'js',
-    go: 'go',
-    kotlin: 'kt',
     sql: 'sql',
     bash: 'sh',
   };

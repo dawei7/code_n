@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3816",
+  "cases": [
+    {
+      "id": "sample-keep-helpful-duplicate",
+      "name": "sample: retaining a duplicate a gives the smallest string",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aaccb"},
+      "expected": "aacb",
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "helpful-duplicate", "delete-first-c"]
+    },
+    {
+      "id": "sample-single-character",
+      "name": "sample: no deletion is possible for one character",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "z"},
+      "expected": "z",
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "minimum-length", "no-operation"]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all equal characters reduce to one copy",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaaa"},
+      "expected": "a",
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "all-equal", "trailing-cleanup"]
+    },
+    {
+      "id": "trial-all-distinct-decreasing",
+      "name": "trial: a decreasing unique string cannot change",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "cba"},
+      "expected": "cba",
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "all-distinct", "no-operation"]
+    },
+    {
+      "id": "trial-leading-duplicates-help",
+      "name": "trial: every leading a improves the prefix before b",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaab"},
+      "expected": "aaab",
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "helpful-leading-duplicates"]
+    },
+    {
+      "id": "trial-trailing-duplicate",
+      "name": "trial: a trailing duplicate only lengthens the result",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "baa"},
+      "expected": "ba",
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "trailing-duplicate", "prefix-rule"]
+    },
+    {
+      "id": "trial-pop-larger-duplicate",
+      "name": "trial: an early c is removed because another c remains",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "cbac"},
+      "expected": "bac",
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "monotonic-pop", "future-copy"]
+    },
+    {
+      "id": "real-multiple-stack-pops",
+      "name": "hidden: repeated future copies permit several improvements",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "bcabc"},
+      "expected": "abc",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "multiple-pops", "distinct-result"]
+    },
+    {
+      "id": "real-interior-duplicate-helpful",
+      "name": "hidden: an interior duplicate can improve the next position",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abac"},
+      "expected": "abac",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "helpful-interior-duplicate"]
+    },
+    {
+      "id": "real-two-descending-blocks",
+      "name": "hidden: later copies allow a smaller starting letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zyxzyx"},
+      "expected": "xzy",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "descending-blocks", "future-copies"]
+    },
+    {
+      "id": "real-complex-overlap",
+      "name": "hidden: overlapping duplicates preserve required letters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "cbacdcbc"},
+      "expected": "acdb",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "overlapping-duplicates", "required-last-copy"]
+    },
+    {
+      "id": "real-entire-alphabet",
+      "name": "hidden: every unique lowercase letter remains unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "expected": "abcdefghijklmnopqrstuvwxyz",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "alphabet", "all-distinct"]
+    }
+  ]
+}

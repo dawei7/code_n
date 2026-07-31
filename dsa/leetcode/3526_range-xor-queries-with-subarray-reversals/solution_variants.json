@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Range XOR Queries with Subarray Reversals and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Represent the sequence with a size- and XOR-augmented implicit treap supporting lazy reversal.",
+      "time_complexity": "O((n + q) log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

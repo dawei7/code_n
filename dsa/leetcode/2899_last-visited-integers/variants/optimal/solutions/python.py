@@ -1,22 +1,20 @@
 from typing import List
 
-def solve(nums: List[str]) -> List[int]:
-    history = []
-    results = []
-    consecutive_prev = 0
-    
-    for item in nums:
-        if item == "prev":
-            consecutive_prev += 1
-            # Check if the k-th last element exists
-            if consecutive_prev <= len(history):
-                # The k-th last element is at index len(history) - k
-                results.append(history[-consecutive_prev])
+
+def solve(nums: List[int]) -> List[int]:
+    seen: list[int] = []
+    answer: list[int] = []
+    consecutive_queries = 0
+
+    for value in nums:
+        if value == -1:
+            consecutive_queries += 1
+            if consecutive_queries <= len(seen):
+                answer.append(seen[-consecutive_queries])
             else:
-                results.append(-1)
+                answer.append(-1)
         else:
-            # Reset consecutive count and add integer to history
-            consecutive_prev = 0
-            history.append(int(item))
-            
-    return results
+            seen.append(value)
+            consecutive_queries = 0
+
+    return answer

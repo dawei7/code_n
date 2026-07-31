@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3627",
+  "cases": [
+    {
+      "id": "sample-first",
+      "name": "sample: mixed duplicates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-tens",
+      "name": "sample: both medians are ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          10,
+          10,
+          10,
+          10
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "large-gap"
+      ]
+    },
+    {
+      "id": "trial-single-group",
+      "name": "trial: one group of three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all values are equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-ascending",
+      "name": "trial: already ascending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "trial",
+        "ascending"
+      ]
+    },
+    {
+      "id": "trial-descending",
+      "name": "trial: descending input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "trial",
+        "descending"
+      ]
+    },
+    {
+      "id": "real-two-value-blocks",
+      "name": "hidden: low fillers and repeated high values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "fillers"
+      ]
+    },
+    {
+      "id": "real-max-values",
+      "name": "hidden: medians can reach the maximum value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 2000000000,
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-many-duplicates",
+      "name": "hidden: duplicate boundaries between fillers and pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-interleaved",
+      "name": "hidden: input order does not affect grouping",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1,
+          90,
+          2,
+          80,
+          3,
+          70,
+          4,
+          60,
+          5,
+          50,
+          6
+        ]
+      },
+      "expected": 215,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-three-groups",
+      "name": "hidden: choose three medians greedily",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          11,
+          4,
+          9,
+          1,
+          8,
+          2,
+          7,
+          3,
+          6
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "greedy"
+      ]
+    },
+    {
+      "id": "real-small-positive",
+      "name": "hidden: all values at the minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "minimum-value"
+      ]
+    }
+  ]
+}

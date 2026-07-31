@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3780",
+    "frontend_id": "3780",
+    "title_slug": "maximum-sum-of-three-numbers-divisible-by-three",
+    "url": "https://leetcode.com/problems/maximum-sum-of-three-numbers-divisible-by-three/description/",
+    "paid_only": false,
+    "content_sha256": "dd3fb2e51bcb8230b897dfa05ca37cc0d9f5c0eb6ae9849edbc61802c6f7cdee",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal":1,"input":"`nums = [4,2,3,1]`","output":"`9`","has_explanation":true},
+      {"ordinal":2,"input":"`nums = [2,1,5]`","output":"`0`","has_explanation":true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "1e6c538b9d15ab2b18425714243569d92d9d19aade82cb15c84d18bce20e77d8",
+      "reference/contract.md": "022e2f6fb1c2550b1855481b152044419782908326454dee0bc915cba5865d48",
+      "reference/examples.md": "21460dca4f59e682acbf1aa20f329d8f913ce1b098d9861481169686892a42cb",
+      "reference/constraints.md": "860e2aa4e985d4e457c9eee4efe5c4aa80d4ad508fa01418cef873ef3b0a5028"
+    },
+    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+  }
+}

@@ -8,48 +8,43 @@
 | Category | Algorithms |
 | Topics | Math, Simulation, Game Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-winning-player-in-coin-game](https://leetcode.com/problems/find-the-winning-player-in-coin-game/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-winning-player-in-coin-game/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-winning-player-in-coin-game/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+There are `x` coins worth `75` each and `y` coins worth `10` each. Alice and Bob alternate turns, with Alice moving first. On every turn, the current player must remove coins whose combined value is exactly `115`.
+
+A player who cannot form that total loses immediately. Both players know the remaining counts and play optimally. Return `"Alice"` or `"Bob"` according to which player wins. Removed coins do not return to the game, and a turn must use whole coins from the two available denominations.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `x`: The number of `75`-value coins, with $1 \leq x \leq 100$.
+- `y`: The number of `10`-value coins, with $1 \leq y \leq 100$.
 
 **Return value**
 
-TODO
+Return the winning player's name, either `"Alice"` or `"Bob"`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `x = 2, y = 7`
+- Output: `"Alice"`
+- Explanation: Alice removes one `75` coin and four `10` coins, after which Bob cannot move.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `x = 4, y = 11`
+- Output: `"Bob"`
+- Explanation: Exactly two turns are possible, so Alice moves first and Bob moves last.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `x = 1, y = 1`
+- Output: `"Bob"`
+- Explanation: Alice cannot total `115` on the first turn.

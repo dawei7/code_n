@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3589",
+  "cases": [
+    {
+      "id": "sample-nonprime-prefix",
+      "name": "sample: a nonprime prefix extends one valid prime interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3], "k": 1},
+      "expected": 2,
+      "tags": ["sample", "boundary-extension", "two-primes"]
+    },
+    {
+      "id": "sample-consecutive-primes",
+      "name": "sample: overlapping prime windows satisfy different gaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 3, 5, 7], "k": 3},
+      "expected": 4,
+      "tags": ["sample", "sliding-window", "prime-extrema"]
+    },
+    {
+      "id": "trial-composite-boundaries",
+      "name": "trial: composites multiply left and right boundary choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 2, 6, 3, 8], "k": 1},
+      "expected": 4,
+      "tags": ["trial", "gap-product", "composites"]
+    },
+    {
+      "id": "trial-repeated-prime-zero-gap",
+      "name": "trial: repeated equal primes qualify when k is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 4, 2, 6, 2], "k": 0},
+      "expected": 5,
+      "tags": ["trial", "duplicate-primes", "k-zero"]
+    },
+    {
+      "id": "trial-fewer-than-two-primes",
+      "name": "trial: one prime cannot balance a subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 2, 6, 8], "k": 50000},
+      "expected": 0,
+      "tags": ["trial", "one-prime", "zero-count"]
+    },
+    {
+      "id": "real-window-shrinks-past-extreme",
+      "name": "real: an outlying prime forces the left boundary forward",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 11, 3], "k": 2},
+      "expected": 0,
+      "tags": ["real", "window-shrink", "monotonic-queues"]
+    },
+    {
+      "id": "real-multiple-valid-left-primes",
+      "name": "real: each rightmost prime accepts several weighted left endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 7, 4, 11, 13], "k": 6},
+      "expected": 9,
+      "tags": ["real", "prefix-gaps", "weighted-left-choices"]
+    },
+    {
+      "id": "real-complex-mixed-array",
+      "name": "real: prime and composite runs create several boundary gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 2, 4, 5, 8, 1, 1, 13, 13, 11], "k": 3},
+      "expected": 25,
+      "tags": ["real", "duplicate-primes", "multiple-windows"]
+    },
+    {
+      "id": "real-larger-prime-values",
+      "name": "real: sieve and gap logic handle larger prime values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [101, 997, 103], "k": 1000},
+      "expected": 3,
+      "tags": ["real", "larger-values", "sieve"]
+    },
+    {
+      "id": "real-no-primes",
+      "name": "real: an array without primes contributes nothing",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 4, 6, 8, 9, 10], "k": 0},
+      "expected": 0,
+      "tags": ["real", "no-primes", "zero-count"]
+    }
+  ]
+}

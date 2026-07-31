@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2357",
+  "frontend_id": "2276",
+  "title_slug": "count-integers-in-intervals",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "CountIntervals",
+  "verified_submission_id": "2073971341",
+  "verified_at": "2026-07-20T01:41:09.639352+00:00"
+}

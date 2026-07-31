@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3465",
+  "frontend_id": "3156",
+  "title_slug": "employee-task-duration-and-concurrent-tasks",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2079850771",
+  "verified_at": "2026-07-24T18:57:00+02:00"
+}
+

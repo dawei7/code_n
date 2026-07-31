@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum GCD-Sum of a Subarray and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Compresses all suffixes ending at each position by their distinct GCD and retains the dominant earliest start.",
+      "time_complexity": "O(N log^2 V)",
+      "space_complexity": "O(log V)"
     }
   ]
 }

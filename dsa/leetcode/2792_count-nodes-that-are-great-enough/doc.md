@@ -8,48 +8,43 @@
 | Category | Algorithms |
 | Topics | Divide and Conquer, Tree, Depth-First Search, Binary Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-nodes-that-are-great-enough](https://leetcode.com/problems/count-nodes-that-are-great-enough/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-nodes-that-are-great-enough/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-nodes-that-are-great-enough/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given the root of a binary tree and a positive integer `k`. A node's subtree contains that node together with every descendant below it.
+
+Call a node *great enough* when its subtree contains at least `k` nodes and the node's value is strictly greater than the values of at least `k` nodes in that subtree. Equal values do not count as smaller. Return the total number of nodes that meet both conditions.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `root`: The root of a non-empty binary tree containing between $1$ and $10^4$ nodes. Every node value is an integer from $1$ through $10^4$.
+- `k`: The required count of strictly smaller subtree values, with $1 \le k \le 10$.
 
 **Return value**
 
-TODO
+Return the number of tree nodes whose values are greater than at least `k` values in their own subtrees.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [7, 6, 5, 4, 3, 2, 1], k = 2`
+- Output: `3`
+- Explanation: The root and its two children each exceed at least two values in their respective subtrees.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [1, 2, 3], k = 1`
+- Output: `0`
+- Explanation: No node has a strictly smaller value below it.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `root = [3, 2, 2], k = 2`
+- Output: `1`
+- Explanation: The root is greater than both child values, while neither leaf has enough smaller subtree values.

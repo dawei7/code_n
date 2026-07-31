@@ -1,0 +1,398 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2756",
+  "cases": [
+    {
+      "id": "sample-immediate-query",
+      "name": "sample: first request is immediate and later requests batch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queryDelay": "none",
+        "t": 100,
+        "calls": [
+          {
+            "key": "a",
+            "time": 10
+          },
+          {
+            "key": "b",
+            "time": 20
+          },
+          {
+            "key": "c",
+            "time": 30
+          }
+        ]
+      },
+      "expected": [
+        {
+          "resolved": "a!",
+          "time": 10
+        },
+        {
+          "resolved": "b!",
+          "time": 110
+        },
+        {
+          "resolved": "c!",
+          "time": 110
+        }
+      ],
+      "tags": [
+        "sample",
+        "batching"
+      ]
+    },
+    {
+      "id": "sample-fixed-latency",
+      "name": "sample: query latency delays resolution but not the next start",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queryDelay": "fixed-100",
+        "t": 100,
+        "calls": [
+          {
+            "key": "a",
+            "time": 10
+          },
+          {
+            "key": "b",
+            "time": 20
+          },
+          {
+            "key": "c",
+            "time": 30
+          }
+        ]
+      },
+      "expected": [
+        {
+          "resolved": "a!",
+          "time": 110
+        },
+        {
+          "resolved": "b!",
+          "time": 210
+        },
+        {
+          "resolved": "c!",
+          "time": 210
+        }
+      ],
+      "tags": [
+        "sample",
+        "query-latency"
+      ]
+    },
+    {
+      "id": "sample-overlapping-queries",
+      "name": "sample: long batches may overlap later query starts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "queryDelay": "per-key-100",
+        "t": 100,
+        "calls": [
+          {
+            "key": "a",
+            "time": 10
+          },
+          {
+            "key": "b",
+            "time": 20
+          },
+          {
+            "key": "c",
+            "time": 30
+          },
+          {
+            "key": "d",
+            "time": 40
+          },
+          {
+            "key": "e",
+            "time": 250
+          },
+          {
+            "key": "f",
+            "time": 300
+          }
+        ]
+      },
+      "expected": [
+        {
+          "resolved": "a!",
+          "time": 110
+        },
+        {
+          "resolved": "e!",
+          "time": 350
+        },
+        {
+          "resolved": "b!",
+          "time": 410
+        },
+        {
+          "resolved": "c!",
+          "time": 410
+        },
+        {
+          "resolved": "d!",
+          "time": 410
+        },
+        {
+          "resolved": "f!",
+          "time": 450
+        }
+      ],
+      "tags": [
+        "sample",
+        "overlap",
+        "resolution-order"
+      ]
+    },
+    {
+      "id": "trial-empty-schedule",
+      "name": "trial: no requests produce no queries or results",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queryDelay": "none",
+        "t": 500,
+        "calls": []
+      },
+      "expected": [],
+      "tags": [
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-sparse-requests",
+      "name": "trial: requests separated by the throttle start immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queryDelay": "none",
+        "t": 50,
+        "calls": [
+          {
+            "key": "left",
+            "time": 0
+          },
+          {
+            "key": "middle",
+            "time": 75
+          },
+          {
+            "key": "right",
+            "time": 150
+          }
+        ]
+      },
+      "expected": [
+        {
+          "resolved": "left!",
+          "time": 0
+        },
+        {
+          "resolved": "middle!",
+          "time": 75
+        },
+        {
+          "resolved": "right!",
+          "time": 150
+        }
+      ],
+      "tags": [
+        "sparse",
+        "immediate"
+      ]
+    },
+    {
+      "id": "real-one-request",
+      "name": "hidden: one request with the maximum throttle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queryDelay": "fixed-100",
+        "t": 1000,
+        "calls": [
+          {
+            "key": "solo",
+            "time": 5
+          }
+        ]
+      },
+      "expected": [
+        {
+          "resolved": "solo!",
+          "time": 105
+        }
+      ],
+      "tags": [
+        "hidden",
+        "single",
+        "maximum-throttle"
+      ]
+    },
+    {
+      "id": "real-two-batches",
+      "name": "hidden: queued requests split across consecutive windows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queryDelay": "none",
+        "t": 40,
+        "calls": [
+          {
+            "key": "a",
+            "time": 0
+          },
+          {
+            "key": "b",
+            "time": 5
+          },
+          {
+            "key": "c",
+            "time": 15
+          },
+          {
+            "key": "d",
+            "time": 45
+          },
+          {
+            "key": "e",
+            "time": 55
+          }
+        ]
+      },
+      "expected": [
+        {
+          "resolved": "a!",
+          "time": 0
+        },
+        {
+          "resolved": "b!",
+          "time": 40
+        },
+        {
+          "resolved": "c!",
+          "time": 40
+        },
+        {
+          "resolved": "d!",
+          "time": 80
+        },
+        {
+          "resolved": "e!",
+          "time": 80
+        }
+      ],
+      "tags": [
+        "hidden",
+        "multiple-batches"
+      ]
+    },
+    {
+      "id": "real-maximum-calls",
+      "name": "hidden: ten unique requests retain key-value correspondence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queryDelay": "none",
+        "t": 25,
+        "calls": [
+          {
+            "key": "k0",
+            "time": 0
+          },
+          {
+            "key": "k1",
+            "time": 2
+          },
+          {
+            "key": "k2",
+            "time": 4
+          },
+          {
+            "key": "k3",
+            "time": 6
+          },
+          {
+            "key": "k4",
+            "time": 8
+          },
+          {
+            "key": "k5",
+            "time": 10
+          },
+          {
+            "key": "k6",
+            "time": 12
+          },
+          {
+            "key": "k7",
+            "time": 14
+          },
+          {
+            "key": "k8",
+            "time": 16
+          },
+          {
+            "key": "k9",
+            "time": 18
+          }
+        ]
+      },
+      "expected": [
+        {
+          "resolved": "k0!",
+          "time": 0
+        },
+        {
+          "resolved": "k1!",
+          "time": 25
+        },
+        {
+          "resolved": "k2!",
+          "time": 25
+        },
+        {
+          "resolved": "k3!",
+          "time": 25
+        },
+        {
+          "resolved": "k4!",
+          "time": 25
+        },
+        {
+          "resolved": "k5!",
+          "time": 25
+        },
+        {
+          "resolved": "k6!",
+          "time": 25
+        },
+        {
+          "resolved": "k7!",
+          "time": 25
+        },
+        {
+          "resolved": "k8!",
+          "time": 25
+        },
+        {
+          "resolved": "k9!",
+          "time": 25
+        }
+      ],
+      "tags": [
+        "hidden",
+        "maximum-calls",
+        "mapping"
+      ]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Graph With Shortest Path Calculator and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores adjacency lists and runs heap-based Dijkstra for each shortest-path query.",
+      "time_complexity": "O((n + e) log n)",
+      "space_complexity": "O(n + e)"
     }
   ]
 }

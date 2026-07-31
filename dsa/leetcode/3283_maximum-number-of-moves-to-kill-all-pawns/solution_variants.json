@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Number of Moves to Kill All Pawns and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes bounded-board knight distances, then solves the alternating capture game with bitmask minimax.",
+      "time_complexity": "O(p B + p^2 2^p)",
+      "space_complexity": "O(B + p 2^p)"
     }
   ]
 }

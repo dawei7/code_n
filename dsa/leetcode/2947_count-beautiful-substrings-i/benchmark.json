@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_2947",
+  "cases": [
+    {
+      "id": "benchmark-length-32",
+      "name": "benchmark: enumerate balanced substrings in 32 alternating letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "abababababababababababababababab",
+        "k": 6
+      },
+      "expected": 30,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-substring-enumeration-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-length-128",
+      "name": "benchmark: enumerate balanced substrings in 128 alternating letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+        "k": 6
+      },
+      "expected": 630,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-substring-enumeration-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-length-512",
+      "name": "benchmark: enumerate balanced substrings in 512 alternating letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+        "k": 6
+      },
+      "expected": 10710,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-substring-enumeration-baseline"
+      ]
+    }
+  ]
+}

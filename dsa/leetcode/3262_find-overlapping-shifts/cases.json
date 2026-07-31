@@ -1,0 +1,607 @@
+{
+  "challenge_id": "lc_3262",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official mixed employees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "08:00:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "11:00:00",
+              "end_time": "15:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "14:00:00",
+              "end_time": "18:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "09:00:00",
+              "end_time": "17:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "16:00:00",
+              "end_time": "20:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "10:00:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "13:00:00",
+              "end_time": "15:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "16:00:00",
+              "end_time": "18:00:00"
+            },
+            {
+              "employee_id": 4,
+              "start_time": "08:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 4,
+              "start_time": "09:00:00",
+              "end_time": "11:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-touching-only",
+      "name": "sample: touching endpoints do not overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "08:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "10:00:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "12:00:00",
+              "end_time": "14:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "sample",
+        "strict-boundary"
+      ]
+    },
+    {
+      "id": "sample-all-nested",
+      "name": "sample: every nested pair overlaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "08:00:00",
+              "end_time": "18:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "09:00:00",
+              "end_time": "17:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "10:00:00",
+              "end_time": "16:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-single-shift",
+      "name": "trial: single shift yields no row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 8,
+              "start_time": "09:00:00",
+              "end_time": "17:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "single",
+        "empty-output"
+      ]
+    },
+    {
+      "id": "trial-multiple-employees",
+      "name": "trial: independent employees sort numerically",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 7,
+              "start_time": "10:00:00",
+              "end_time": "13:00:00"
+            },
+            {
+              "employee_id": 7,
+              "start_time": "12:00:00",
+              "end_time": "14:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "08:00:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "09:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "11:00:00",
+              "end_time": "13:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            2,
+            2
+          ],
+          [
+            7,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "employees",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-overlap-chain",
+      "name": "trial: only adjacent shifts in a chain overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 3,
+              "start_time": "08:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "09:00:00",
+              "end_time": "11:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "10:30:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "11:30:00",
+              "end_time": "13:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "chain",
+        "partial-overlap"
+      ]
+    },
+    {
+      "id": "trial-shared-end",
+      "name": "trial: distinct starts share one end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 4,
+              "start_time": "08:00:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 4,
+              "start_time": "09:00:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 4,
+              "start_time": "10:00:00",
+              "end_time": "12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            4,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "shared-end",
+        "all-overlap"
+      ]
+    },
+    {
+      "id": "real-long-over-islands",
+      "name": "real: one long shift overlaps disjoint short shifts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 6,
+              "start_time": "08:00:00",
+              "end_time": "18:00:00"
+            },
+            {
+              "employee_id": 6,
+              "start_time": "09:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 6,
+              "start_time": "11:00:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 6,
+              "start_time": "13:00:00",
+              "end_time": "14:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            6,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "long-interval",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "real-boundary-and-crossing",
+      "name": "real: touching pair plus a crossing shift",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 9,
+              "start_time": "08:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 9,
+              "start_time": "09:30:00",
+              "end_time": "10:30:00"
+            },
+            {
+              "employee_id": 9,
+              "start_time": "10:00:00",
+              "end_time": "12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            9,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "strict-boundary",
+        "crossing"
+      ]
+    },
+    {
+      "id": "real-five-way-overlap",
+      "name": "real: five concurrent shifts form ten pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 11,
+              "start_time": "08:00:00",
+              "end_time": "18:00:00"
+            },
+            {
+              "employee_id": 11,
+              "start_time": "09:00:00",
+              "end_time": "17:00:00"
+            },
+            {
+              "employee_id": 11,
+              "start_time": "10:00:00",
+              "end_time": "16:00:00"
+            },
+            {
+              "employee_id": 11,
+              "start_time": "11:00:00",
+              "end_time": "15:00:00"
+            },
+            {
+              "employee_id": 11,
+              "start_time": "12:00:00",
+              "end_time": "14:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            11,
+            10
+          ]
+        ]
+      },
+      "tags": [
+        "all-overlap",
+        "dense"
+      ]
+    },
+    {
+      "id": "real-two-clusters",
+      "name": "real: separated overlap clusters add independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 12,
+              "start_time": "08:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 12,
+              "start_time": "09:00:00",
+              "end_time": "11:00:00"
+            },
+            {
+              "employee_id": 12,
+              "start_time": "14:00:00",
+              "end_time": "16:00:00"
+            },
+            {
+              "employee_id": 12,
+              "start_time": "15:00:00",
+              "end_time": "17:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            12,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "clusters",
+        "separated"
+      ]
+    },
+    {
+      "id": "real-interleaved-employees",
+      "name": "real: matching times stay partitioned by employee",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 3,
+              "start_time": "08:00:00",
+              "end_time": "12:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:00",
+              "end_time": "09:00:00"
+            },
+            {
+              "employee_id": 9,
+              "start_time": "15:00:00",
+              "end_time": "17:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "09:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "09:00:00",
+              "end_time": "10:00:00"
+            },
+            {
+              "employee_id": 9,
+              "start_time": "16:00:00",
+              "end_time": "18:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "11:00:00",
+              "end_time": "13:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            3,
+            2
+          ],
+          [
+            9,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "employees",
+        "partitioning"
+      ]
+    }
+  ]
+}

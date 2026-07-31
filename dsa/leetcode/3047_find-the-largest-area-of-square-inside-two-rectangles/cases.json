@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3047",
   "cases": [
     {
-      "id": "sample-overlap-square",
-      "name": "sample: overlapping rectangles contain a square",
+      "id": "sample-first-overlap",
+      "name": "sample: first two rectangles share a unit square",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,16 +16,64 @@
           [
             2,
             2
+          ],
+          [
+            3,
+            1
           ]
         ],
         "topRight": [
+          [
+            3,
+            3
+          ],
           [
             4,
             4
           ],
           [
+            6,
+            6
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-side-two",
+      "name": "sample: adjacent vertical rectangles share a side-two square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bottomLeft": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "topRight": [
+          [
             5,
             5
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            9
           ]
         ]
       },
@@ -34,28 +83,76 @@
       ]
     },
     {
-      "id": "sample-no-positive-area",
-      "name": "sample: touching edges do not form a square",
+      "id": "sample-unit-maximum",
+      "name": "sample: several overlaps are limited to a unit square",
       "kind": "sample",
       "visible": true,
       "input": {
         "bottomLeft": [
-          [
-            0,
-            0
-          ],
-          [
-            1,
-            1
-          ]
-        ],
-        "topRight": [
           [
             1,
             1
           ],
           [
             2,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "topRight": [
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-disjoint",
+      "name": "sample: no pair has a positive-area overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "bottomLeft": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "topRight": [
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
             2
           ]
         ]
@@ -66,15 +163,15 @@
       ]
     },
     {
-      "id": "trial-wide-short-overlap",
-      "name": "trial: square side is limited by height",
+      "id": "trial-touching-edge",
+      "name": "trial: touching along an edge has zero area",
       "kind": "trial",
       "visible": true,
       "input": {
         "bottomLeft": [
           [
-            0,
-            0
+            1,
+            1
           ],
           [
             2,
@@ -83,47 +180,40 @@
         ],
         "topRight": [
           [
-            7,
+            2,
             3
           ],
           [
-            5,
-            5
+            4,
+            3
           ]
         ]
       },
-      "expected": 4,
+      "expected": 0,
       "tags": [
-        "trial"
+        "trial",
+        "boundary"
       ]
     },
     {
-      "id": "trial-multiple-rectangles",
-      "name": "trial: best pair is not adjacent in input",
+      "id": "trial-height-limited",
+      "name": "trial: overlap height limits the square",
       "kind": "trial",
       "visible": true,
       "input": {
         "bottomLeft": [
           [
-            0,
-            0
-          ],
-          [
             1,
             1
           ],
           [
-            4,
-            4
+            3,
+            2
           ]
         ],
         "topRight": [
           [
-            5,
-            5
-          ],
-          [
-            6,
+            8,
             4
           ],
           [
@@ -132,58 +222,93 @@
           ]
         ]
       },
-      "expected": 9,
+      "expected": 4,
       "tags": [
-        "trial"
+        "trial",
+        "thin-overlap"
       ]
     },
     {
-      "id": "real-mixed-overlaps",
-      "name": "real: mixed overlaps with one largest square",
+      "id": "real-large-contained",
+      "name": "real: contained rectangle produces a large 64-bit area",
       "kind": "real",
       "visible": false,
       "input": {
         "bottomLeft": [
           [
-            0,
-            0
+            1,
+            1
+          ],
+          [
+            1000000,
+            2000000
+          ]
+        ],
+        "topRight": [
+          [
+            10000000,
+            10000000
+          ],
+          [
+            4000000,
+            7000000
+          ]
+        ]
+      },
+      "expected": 9000000000000,
+      "tags": [
+        "real",
+        "large-coordinates",
+        "containment"
+      ]
+    },
+    {
+      "id": "real-nonadjacent-pair",
+      "name": "real: best overlap comes from nonadjacent input positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bottomLeft": [
+          [
+            1,
+            1
+          ],
+          [
+            20,
+            20
           ],
           [
             3,
             2
           ],
           [
-            5,
-            1
-          ],
-          [
-            1,
-            4
+            40,
+            40
           ]
         ],
         "topRight": [
           [
-            6,
-            6
+            10,
+            10
           ],
           [
-            8,
-            7
+            21,
+            21
           ],
           [
-            9,
-            5
-          ],
-          [
-            4,
+            12,
             8
+          ],
+          [
+            41,
+            41
           ]
         ]
       },
-      "expected": 9,
+      "expected": 36,
       "tags": [
         "real",
-        "geometry"
+        "pair-order"
       ]
     }
   ]

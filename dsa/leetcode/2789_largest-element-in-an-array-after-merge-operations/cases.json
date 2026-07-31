@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: merge suffix into large value",
+      "name": "sample: merge a large prefix block",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,15 +15,15 @@
           3
         ]
       },
+      "expected": 21,
       "tags": [
         "sample",
-        "merge"
-      ],
-      "expected": 21
+        "greedy"
+      ]
     },
     {
       "id": "sample-2",
-      "name": "sample: no left merge into smaller suffix",
+      "name": "sample: equal suffix unlocks the leading value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -33,15 +33,15 @@
           3
         ]
       },
+      "expected": 11,
       "tags": [
         "sample",
-        "reset"
-      ],
-      "expected": 11
+        "equality"
+      ]
     },
     {
       "id": "trial-single-value",
-      "name": "trial: one value",
+      "name": "trial: one value needs no operation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -49,15 +49,15 @@
           10
         ]
       },
+      "expected": 10,
       "tags": [
         "trial",
-        "edge"
-      ],
-      "expected": 10
+        "boundary"
+      ]
     },
     {
       "id": "trial-all-merge",
-      "name": "trial: every value can merge rightward",
+      "name": "trial: every value joins one block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -68,31 +68,125 @@
           6
         ]
       },
+      "expected": 12,
       "tags": [
         "trial",
-        "all-merge"
-      ],
-      "expected": 12
+        "full-merge"
+      ]
     },
     {
-      "id": "real-reset-then-merge",
-      "name": "hidden: reset then later merge chain",
+      "id": "trial-strictly-decreasing",
+      "name": "trial: no merge is initially legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          7,
+          5,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "no-merge"
+      ]
+    },
+    {
+      "id": "trial-equal-chain",
+      "name": "trial: equality permits a complete chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-large-left-barrier",
+      "name": "hidden: a large first value blocks a smaller suffix",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          10,
+          20,
           1,
-          2,
-          3,
-          4
+          1,
+          1
         ]
       },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "barrier"
+      ]
+    },
+    {
+      "id": "real-suffix-below-prefix",
+      "name": "hidden: mergeable suffix remains below the prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "separate-blocks"
+      ]
+    },
+    {
+      "id": "real-reset-inside-array",
+      "name": "hidden: reset block later absorbs the left prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          10,
+          1,
+          1
+        ]
+      },
+      "expected": 17,
       "tags": [
         "hidden",
         "reset"
-      ],
-      "expected": 20
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: equal maximum values require a wide sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          1000000,
+          1000000
+        ]
+      },
+      "expected": 3000000,
+      "tags": [
+        "hidden",
+        "large-sum"
+      ]
     }
   ]
 }

@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3888",
+  "cases": [
+    {
+      "id": "sample-left-square-twice",
+      "name": "sample: increment the left square twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            3,
+            5
+          ],
+          [
+            3,
+            3,
+            5
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "overlap",
+        "minimum"
+      ]
+    },
+    {
+      "id": "sample-unit-squares",
+      "name": "sample: unit squares raise each cell independently",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "unit-square",
+        "independent-cells"
+      ]
+    },
+    {
+      "id": "trial-target-above-maximum",
+      "name": "trial: overlapping squares force a target above the original maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "forced-target",
+        "overshoot"
+      ]
+    },
+    {
+      "id": "trial-single-cell-already-equal",
+      "name": "trial: a singleton grid needs no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "singleton",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-negative-unit-squares",
+      "name": "trial: unit squares support negative entries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -2,
+            0
+          ],
+          [
+            1,
+            -1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "negative-values",
+        "unit-square"
+      ]
+    },
+    {
+      "id": "trial-full-square-equal",
+      "name": "trial: one full-grid square preserves an already equal grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "full-grid-square",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-full-square-unequal",
+      "name": "trial: one full-grid square cannot repair unequal cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "full-grid-square",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-negative-forced-target",
+      "name": "hidden: overlapping increments force a zero target from negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -1,
+            -2,
+            -1
+          ],
+          [
+            -1,
+            -2,
+            -1
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "negative-values",
+        "forced-target"
+      ]
+    },
+    {
+      "id": "real-boundary-mismatch",
+      "name": "hidden: incompatible uncovered boundary cells make equality impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ]
+        ],
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "boundary",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-dense-overlap",
+      "name": "hidden: four differently repeated squares overlap in the center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            4,
+            2,
+            3
+          ],
+          [
+            1,
+            -1,
+            3
+          ],
+          [
+            2,
+            2,
+            5
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "dense-overlap",
+        "constructed"
+      ]
+    },
+    {
+      "id": "real-perturbed-corner",
+      "name": "hidden: one perturbed finished corner invalidates an overlap construction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            4,
+            2,
+            3
+          ],
+          [
+            1,
+            -1,
+            3
+          ],
+          [
+            2,
+            2,
+            6
+          ]
+        ],
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "boundary",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-equal-rectangle",
+      "name": "hidden: an equal rectangular grid needs no square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            7,
+            7,
+            7,
+            7
+          ],
+          [
+            7,
+            7,
+            7,
+            7
+          ],
+          [
+            7,
+            7,
+            7,
+            7
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "rectangular-grid",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "real-single-row-unit-squares",
+      "name": "hidden: a single row is legal when k is one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -3,
+            2,
+            0,
+            2
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "single-row",
+        "unit-square"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: unit squares span both stated value limits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -100000,
+            100000
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 200000,
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "large-answer"
+      ]
+    },
+    {
+      "id": "real-three-by-three-overlap",
+      "name": "hidden: six operations overlap across a four-by-five grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            9,
+            9,
+            7,
+            8,
+            8
+          ],
+          [
+            9,
+            6,
+            3,
+            4,
+            7
+          ],
+          [
+            9,
+            6,
+            3,
+            4,
+            7
+          ],
+          [
+            10,
+            7,
+            6,
+            6,
+            9
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "dense-overlap",
+        "rectangular-grid"
+      ]
+    }
+  ]
+}
+

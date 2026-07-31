@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3481",
+  "cases": [
+    {"id":"sample-independent-values","name":"sample: independent literal replacements","kind":"sample","visible":true,"input":{"replacements":[["A","abc"],["B","def"]],"text":"%A%_%B%"},"expected":"abc_def","tags":["sample"]},
+    {"id":"sample-nested-placeholder","name":"sample: one value depends on another","kind":"sample","visible":true,"input":{"replacements":[["A","bce"],["B","ace"],["C","abc%B%"]],"text":"%A%_%B%_%C%"},"expected":"bce_ace_abcace","tags":["sample"]},
+    {"id":"trial-single-key","name":"trial: one literal-only key","kind":"trial","visible":true,"input":{"replacements":[["A","z"]],"text":"%A%"},"expected":"z","tags":["trial","boundary"]},
+    {"id":"trial-forward-references","name":"trial: mapping order differs from dependency order","kind":"trial","visible":true,"input":{"replacements":[["C","%B%z"],["A","x"],["B","%A%y"]],"text":"%C%_%B%_%A%"},"expected":"xyz_xy_x","tags":["trial","forward-reference"]},
+    {"id":"trial-repeated-dependency","name":"trial: repeated dependency uses one expansion","kind":"trial","visible":true,"input":{"replacements":[["A","q"],["B","%A%%A%"],["C","x%B%y"]],"text":"%B%_%C%_%A%"},"expected":"qq_xqqy_q","tags":["trial","memoization"]},
+    {"id":"real-dependency-listed-later","name":"hidden: recursive lookup ignores entry order","kind":"real","visible":false,"input":{"replacements":[["A","%C%"],["B","m"],["C","%B%n"]],"text":"%A%_%B%_%C%"},"expected":"mn_m_mn","tags":["hidden","dependency-order"]},
+    {"id":"real-diamond-dependencies","name":"hidden: shared dependency feeds two branches","kind":"real","visible":false,"input":{"replacements":[["A","x"],["B","%A%y"],["C","%A%z"],["D","%B%%C%"]],"text":"%D%_%C%_%B%_%A%"},"expected":"xyxz_xz_xy_x","tags":["hidden","branching"]},
+    {"id":"real-two-distinct-dependencies","name":"hidden: adjacent placeholders expand independently","kind":"real","visible":false,"input":{"replacements":[["A","a"],["B","b"],["C","%A%%B%"],["D","x%C%y"]],"text":"%A%_%B%_%C%_%D%"},"expected":"a_b_ab_xaby","tags":["hidden","multiple-dependencies"]},
+    {"id":"real-maximum-depth","name":"hidden: ten-key dependency chain","kind":"real","visible":false,"input":{"replacements":[["A","a"],["B","%A%b"],["C","%B%c"],["D","%C%d"],["E","%D%e"],["F","%E%f"],["G","%F%g"],["H","%G%h"],["I","%H%i"],["J","%I%j"]],"text":"%J%_%I%_%H%_%G%_%F%_%E%_%D%_%C%_%B%_%A%"},"expected":"abcdefghij_abcdefghi_abcdefgh_abcdefg_abcdef_abcde_abcd_abc_ab_a","tags":["hidden","maximum-keys","deep-chain"]},
+    {"id":"real-all-literals-unordered","name":"hidden: arbitrary key and text order","kind":"real","visible":false,"input":{"replacements":[["D","tail"],["A","one"],["C","three"],["B","two"]],"text":"%B%_%D%_%A%_%C%"},"expected":"two_tail_one_three","tags":["hidden","literal-only"]},
+    {"id":"real-doubling-chain","name":"hidden: repeated expansion grows through a chain","kind":"real","visible":false,"input":{"replacements":[["A","r"],["B","%A%%A%"],["C","%B%%B%"],["D","%C%%C%"],["E","%D%%D%"]],"text":"%E%_%D%_%C%_%B%_%A%"},"expected":"rrrrrrrrrrrrrrrr_rrrrrrrr_rrrr_rr_r","tags":["hidden","output-growth"]},
+    {"id":"real-cross-linked-dag","name":"hidden: several completed values are reused","kind":"real","visible":false,"input":{"replacements":[["A","p"],["B","q"],["C","%A%%B%"],["D","%C%%A%"],["E","%D%%C%"]],"text":"%C%_%E%_%A%_%D%_%B%"},"expected":"pq_pqppq_p_pqp_q","tags":["hidden","dag"]}
+  ]
+}

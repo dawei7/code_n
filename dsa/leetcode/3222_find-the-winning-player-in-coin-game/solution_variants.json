@@ -2,15 +2,13 @@
   "schema_version": 1,
   "challenge_id": "lc_3222",
   "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Winning Player in Coin Game and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+  "variants": [{
+    "id": "optimal",
+    "label": "Optimal",
+    "kind": "optimal",
+    "directory": "variants/optimal",
+    "summary": "Counts the forced one-75-plus-four-10 turns and uses the parity of that count.",
+    "time_complexity": "O(1)",
+    "space_complexity": "O(1)"
+  }]
 }

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_384", "frontend_id": "384", "title_slug": "shuffle-an-array", "url": "https://leetcode.com/problems/shuffle-an-array/description/", "paid_only": false, "content_sha256": "f09fdf3e49a272a298d839710dfb1bf048a111caf133ab99623036a7b551cc01", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "operations = [\"Solution\",\"shuffle\",\"reset\",\"shuffle\"], arguments = [[[1,2,3]],[],[],[]]", "output": "[null,[3,1,2],[1,2,3],[1,3,2]]", "has_explanation": true}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "68f89c64238e9bca918e113277ecfb0e9f04ec996b3007c17cdb7ca26e7e068c",
+    "reference/contract.md": "d1fbecf9c73b753482321d58ef91b4885654d56f373c816bed907a306322ea44",
+    "reference/examples.md": "7ea9203a84d6e5c76cb3fa4a4bf8b7712826f1c075ee0fad1b90fabfebb948d3",
+    "reference/constraints.md": "c39e3d6d4b70293c4874819c5f31c88a629005b754ca087460f28eb92a40e7f9"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

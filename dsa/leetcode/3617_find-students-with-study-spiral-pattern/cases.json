@@ -1,0 +1,1007 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3617",
+  "cases": [
+    {
+      "id": "sample-two-spirals",
+      "name": "sample: four-subject and three-subject cycles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "student_name": "Alice Chen",
+              "major": "Computer Science"
+            },
+            {
+              "student_id": 2,
+              "student_name": "Bob Johnson",
+              "major": "Mathematics"
+            },
+            {
+              "student_id": 3,
+              "student_name": "Carol Davis",
+              "major": "Physics"
+            },
+            {
+              "student_id": 4,
+              "student_name": "David Wilson",
+              "major": "Chemistry"
+            },
+            {
+              "student_id": 5,
+              "student_name": "Emma Brown",
+              "major": "Biology"
+            }
+          ],
+          "study_sessions": [
+            {
+              "session_id": 1,
+              "student_id": 1,
+              "subject": "Math",
+              "session_date": "2023-10-01",
+              "hours_studied": 2.5
+            },
+            {
+              "session_id": 2,
+              "student_id": 1,
+              "subject": "Physics",
+              "session_date": "2023-10-02",
+              "hours_studied": 3.0
+            },
+            {
+              "session_id": 3,
+              "student_id": 1,
+              "subject": "Chemistry",
+              "session_date": "2023-10-03",
+              "hours_studied": 2.0
+            },
+            {
+              "session_id": 4,
+              "student_id": 1,
+              "subject": "Math",
+              "session_date": "2023-10-04",
+              "hours_studied": 2.5
+            },
+            {
+              "session_id": 5,
+              "student_id": 1,
+              "subject": "Physics",
+              "session_date": "2023-10-05",
+              "hours_studied": 3.0
+            },
+            {
+              "session_id": 6,
+              "student_id": 1,
+              "subject": "Chemistry",
+              "session_date": "2023-10-06",
+              "hours_studied": 2.0
+            },
+            {
+              "session_id": 7,
+              "student_id": 2,
+              "subject": "Algebra",
+              "session_date": "2023-10-01",
+              "hours_studied": 4.0
+            },
+            {
+              "session_id": 8,
+              "student_id": 2,
+              "subject": "Calculus",
+              "session_date": "2023-10-02",
+              "hours_studied": 3.5
+            },
+            {
+              "session_id": 9,
+              "student_id": 2,
+              "subject": "Statistics",
+              "session_date": "2023-10-03",
+              "hours_studied": 2.5
+            },
+            {
+              "session_id": 10,
+              "student_id": 2,
+              "subject": "Geometry",
+              "session_date": "2023-10-04",
+              "hours_studied": 3.0
+            },
+            {
+              "session_id": 11,
+              "student_id": 2,
+              "subject": "Algebra",
+              "session_date": "2023-10-05",
+              "hours_studied": 4.0
+            },
+            {
+              "session_id": 12,
+              "student_id": 2,
+              "subject": "Calculus",
+              "session_date": "2023-10-06",
+              "hours_studied": 3.5
+            },
+            {
+              "session_id": 13,
+              "student_id": 2,
+              "subject": "Statistics",
+              "session_date": "2023-10-07",
+              "hours_studied": 2.5
+            },
+            {
+              "session_id": 14,
+              "student_id": 2,
+              "subject": "Geometry",
+              "session_date": "2023-10-08",
+              "hours_studied": 3.0
+            },
+            {
+              "session_id": 15,
+              "student_id": 3,
+              "subject": "Biology",
+              "session_date": "2023-10-01",
+              "hours_studied": 2.0
+            },
+            {
+              "session_id": 16,
+              "student_id": 3,
+              "subject": "Chemistry",
+              "session_date": "2023-10-02",
+              "hours_studied": 2.5
+            },
+            {
+              "session_id": 17,
+              "student_id": 3,
+              "subject": "Biology",
+              "session_date": "2023-10-03",
+              "hours_studied": 2.0
+            },
+            {
+              "session_id": 18,
+              "student_id": 3,
+              "subject": "Chemistry",
+              "session_date": "2023-10-04",
+              "hours_studied": 2.5
+            },
+            {
+              "session_id": 19,
+              "student_id": 4,
+              "subject": "Organic",
+              "session_date": "2023-10-01",
+              "hours_studied": 3.0
+            },
+            {
+              "session_id": 20,
+              "student_id": 4,
+              "subject": "Physical",
+              "session_date": "2023-10-05",
+              "hours_studied": 2.5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name",
+          "major",
+          "cycle_length",
+          "total_study_hours"
+        ],
+        "rows": [
+          [
+            2,
+            "Bob Johnson",
+            "Mathematics",
+            4,
+            26.0
+          ],
+          [
+            1,
+            "Alice Chen",
+            "Computer Science",
+            3,
+            15.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "cycle-order",
+        "total-hours"
+      ]
+    },
+    {
+      "id": "trial-eligibility-boundaries",
+      "name": "trial: gap two qualifies while other minimum rules fail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "student_name": "Gap Two",
+              "major": "Math"
+            },
+            {
+              "student_id": 2,
+              "student_name": "Gap Three",
+              "major": "Physics"
+            },
+            {
+              "student_id": 3,
+              "student_name": "Only Two",
+              "major": "Art"
+            },
+            {
+              "student_id": 4,
+              "student_name": "Too Short",
+              "major": "CS"
+            }
+          ],
+          "study_sessions": [
+            {
+              "session_id": 1,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-01-01",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 2,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-01-03",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 3,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-01-05",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 4,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-01-07",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 5,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-01-09",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 6,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-01-11",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 7,
+              "student_id": 2,
+              "subject": "A",
+              "session_date": "2024-01-01",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 8,
+              "student_id": 2,
+              "subject": "B",
+              "session_date": "2024-01-04",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 9,
+              "student_id": 2,
+              "subject": "C",
+              "session_date": "2024-01-05",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 10,
+              "student_id": 2,
+              "subject": "A",
+              "session_date": "2024-01-06",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 11,
+              "student_id": 2,
+              "subject": "B",
+              "session_date": "2024-01-07",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 12,
+              "student_id": 2,
+              "subject": "C",
+              "session_date": "2024-01-08",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 13,
+              "student_id": 3,
+              "subject": "A",
+              "session_date": "2024-02-01",
+              "hours_studied": 3
+            },
+            {
+              "session_id": 14,
+              "student_id": 3,
+              "subject": "B",
+              "session_date": "2024-02-02",
+              "hours_studied": 3
+            },
+            {
+              "session_id": 15,
+              "student_id": 3,
+              "subject": "A",
+              "session_date": "2024-02-03",
+              "hours_studied": 3
+            },
+            {
+              "session_id": 16,
+              "student_id": 3,
+              "subject": "B",
+              "session_date": "2024-02-04",
+              "hours_studied": 3
+            },
+            {
+              "session_id": 17,
+              "student_id": 3,
+              "subject": "A",
+              "session_date": "2024-02-05",
+              "hours_studied": 3
+            },
+            {
+              "session_id": 18,
+              "student_id": 3,
+              "subject": "B",
+              "session_date": "2024-02-06",
+              "hours_studied": 3
+            },
+            {
+              "session_id": 19,
+              "student_id": 4,
+              "subject": "A",
+              "session_date": "2024-03-01",
+              "hours_studied": 4
+            },
+            {
+              "session_id": 20,
+              "student_id": 4,
+              "subject": "B",
+              "session_date": "2024-03-02",
+              "hours_studied": 4
+            },
+            {
+              "session_id": 21,
+              "student_id": 4,
+              "subject": "C",
+              "session_date": "2024-03-03",
+              "hours_studied": 4
+            },
+            {
+              "session_id": 22,
+              "student_id": 4,
+              "subject": "A",
+              "session_date": "2024-03-04",
+              "hours_studied": 4
+            },
+            {
+              "session_id": 23,
+              "student_id": 4,
+              "subject": "B",
+              "session_date": "2024-03-05",
+              "hours_studied": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name",
+          "major",
+          "cycle_length",
+          "total_study_hours"
+        ],
+        "rows": [
+          [
+            1,
+            "Gap Two",
+            "Math",
+            3,
+            6.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "gap-boundary",
+        "minimum-subjects",
+        "minimum-cycles"
+      ]
+    },
+    {
+      "id": "trial-wrong-rotation",
+      "name": "trial: matching counts do not prove repeating order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "student_name": "Wrong Rotation",
+              "major": "History"
+            }
+          ],
+          "study_sessions": [
+            {
+              "session_id": 1,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-04-01",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 2,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-04-02",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 3,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-04-03",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 4,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-04-04",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 5,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-04-05",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 6,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-04-06",
+              "hours_studied": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name",
+          "major",
+          "cycle_length",
+          "total_study_hours"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "invalid-pattern",
+        "position-check"
+      ]
+    },
+    {
+      "id": "trial-partial-third-cycle",
+      "name": "trial: a matching partial third cycle remains valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "student_name": "Partial Third",
+              "major": "Music"
+            }
+          ],
+          "study_sessions": [
+            {
+              "session_id": 1,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-05-01",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 2,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-05-02",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 3,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-05-03",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 4,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-05-04",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 5,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-05-05",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 6,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-05-06",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 7,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-05-07",
+              "hours_studied": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name",
+          "major",
+          "cycle_length",
+          "total_study_hours"
+        ],
+        "rows": [
+          [
+            1,
+            "Partial Third",
+            "Music",
+            3,
+            14.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "partial-cycle",
+        "at-least-two"
+      ]
+    },
+    {
+      "id": "real-same-date-order",
+      "name": "hidden: session id orders sessions sharing dates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "student_name": "Same Day",
+              "major": "Biology"
+            }
+          ],
+          "study_sessions": [
+            {
+              "session_id": 1,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-06-01",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 2,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-06-01",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 3,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-06-02",
+              "hours_studied": 3
+            },
+            {
+              "session_id": 4,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-06-03",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 5,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-06-03",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 6,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-06-04",
+              "hours_studied": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name",
+          "major",
+          "cycle_length",
+          "total_study_hours"
+        ],
+        "rows": [
+          [
+            1,
+            "Same Day",
+            "Biology",
+            3,
+            12.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "same-date",
+        "session-order"
+      ]
+    },
+    {
+      "id": "real-result-ordering",
+      "name": "hidden: cycle length precedes total hours in ordering",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "student_name": "Cycle Four",
+              "major": "A"
+            },
+            {
+              "student_id": 2,
+              "student_name": "Cycle Three High",
+              "major": "B"
+            },
+            {
+              "student_id": 3,
+              "student_name": "Cycle Three Low",
+              "major": "C"
+            }
+          ],
+          "study_sessions": [
+            {
+              "session_id": 1,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-07-01",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 2,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-07-02",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 3,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-07-03",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 4,
+              "student_id": 1,
+              "subject": "D",
+              "session_date": "2024-07-04",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 5,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-07-05",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 6,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-07-06",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 7,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-07-07",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 8,
+              "student_id": 1,
+              "subject": "D",
+              "session_date": "2024-07-08",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 9,
+              "student_id": 2,
+              "subject": "A",
+              "session_date": "2024-08-01",
+              "hours_studied": 10
+            },
+            {
+              "session_id": 10,
+              "student_id": 2,
+              "subject": "B",
+              "session_date": "2024-08-02",
+              "hours_studied": 10
+            },
+            {
+              "session_id": 11,
+              "student_id": 2,
+              "subject": "C",
+              "session_date": "2024-08-03",
+              "hours_studied": 10
+            },
+            {
+              "session_id": 12,
+              "student_id": 2,
+              "subject": "A",
+              "session_date": "2024-08-04",
+              "hours_studied": 10
+            },
+            {
+              "session_id": 13,
+              "student_id": 2,
+              "subject": "B",
+              "session_date": "2024-08-05",
+              "hours_studied": 10
+            },
+            {
+              "session_id": 14,
+              "student_id": 2,
+              "subject": "C",
+              "session_date": "2024-08-06",
+              "hours_studied": 10
+            },
+            {
+              "session_id": 15,
+              "student_id": 3,
+              "subject": "X",
+              "session_date": "2024-09-01",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 16,
+              "student_id": 3,
+              "subject": "Y",
+              "session_date": "2024-09-02",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 17,
+              "student_id": 3,
+              "subject": "Z",
+              "session_date": "2024-09-03",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 18,
+              "student_id": 3,
+              "subject": "X",
+              "session_date": "2024-09-04",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 19,
+              "student_id": 3,
+              "subject": "Y",
+              "session_date": "2024-09-05",
+              "hours_studied": 2
+            },
+            {
+              "session_id": 20,
+              "student_id": 3,
+              "subject": "Z",
+              "session_date": "2024-09-06",
+              "hours_studied": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name",
+          "major",
+          "cycle_length",
+          "total_study_hours"
+        ],
+        "rows": [
+          [
+            1,
+            "Cycle Four",
+            "A",
+            4,
+            8.0
+          ],
+          [
+            2,
+            "Cycle Three High",
+            "B",
+            3,
+            60.0
+          ],
+          [
+            3,
+            "Cycle Three Low",
+            "C",
+            3,
+            12.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "output-order",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-late-subject-and-missing",
+      "name": "hidden: late distinct subject breaks the modulo pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "student_name": "Late Subject",
+              "major": "Engineering"
+            },
+            {
+              "student_id": 2,
+              "student_name": "No Sessions",
+              "major": "Literature"
+            }
+          ],
+          "study_sessions": [
+            {
+              "session_id": 1,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-10-01",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 2,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-10-02",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 3,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-10-03",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 4,
+              "student_id": 1,
+              "subject": "A",
+              "session_date": "2024-10-04",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 5,
+              "student_id": 1,
+              "subject": "B",
+              "session_date": "2024-10-05",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 6,
+              "student_id": 1,
+              "subject": "C",
+              "session_date": "2024-10-06",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 7,
+              "student_id": 1,
+              "subject": "D",
+              "session_date": "2024-10-07",
+              "hours_studied": 1
+            },
+            {
+              "session_id": 8,
+              "student_id": 1,
+              "subject": "X",
+              "session_date": "2024-10-08",
+              "hours_studied": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "student_name",
+          "major",
+          "cycle_length",
+          "total_study_hours"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "invalid-pattern",
+        "no-sessions"
+      ]
+    }
+  ]
+}

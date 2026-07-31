@@ -23,10 +23,10 @@ class Fenwick:
         index = 0
         bit = 1 << (len(self.tree).bit_length() - 1)
         while bit:
-            nxt = index + bit
-            if nxt < len(self.tree) and self.tree[nxt] < target:
-                target -= self.tree[nxt]
-                index = nxt
+            next_index = index + bit
+            if next_index < len(self.tree) and self.tree[next_index] < target:
+                target -= self.tree[next_index]
+                index = next_index
             bit //= 2
         return index
 
@@ -56,19 +56,23 @@ def solve(nums: list[int], x: int, k: int) -> int:
             right_count = x - left_count
             right_sum = total_sum - left_sum
             window_cost[right - x + 1] = (
-                median * left_count - left_sum + right_sum - median * right_count
+                median * left_count
+                - left_sum
+                + right_sum
+                - median * right_count
             )
 
-    inf = 10**30
+    infinity = 10**30
     previous = [0] * (n + 1)
-    for chosen in range(1, k + 1):
-        current = [inf] * (n + 1)
+    for _ in range(k):
+        current = [infinity] * (n + 1)
         for length in range(1, n + 1):
             current[length] = current[length - 1]
-            if length >= x and previous[length - x] < inf:
+            if length >= x and previous[length - x] < infinity:
                 current[length] = min(
                     current[length],
                     previous[length - x] + window_cost[length - x],
                 )
         previous = current
+
     return previous[n]

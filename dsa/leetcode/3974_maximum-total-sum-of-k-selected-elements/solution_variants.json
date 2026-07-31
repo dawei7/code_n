@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Total Sum of K Selected Elements and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Retains the largest k values with a heap, pairs them with descending profitable multiplier factors, then adds the remainder normally.",
+      "time_complexity": "O(n log(k + 1))",
+      "space_complexity": "O(k)"
     }
   ]
 }

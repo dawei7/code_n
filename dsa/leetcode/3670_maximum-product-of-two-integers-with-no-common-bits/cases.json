@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3670",
+  "cases": [
+    {
+      "id": "sample-seven-values",
+      "name": "sample: three and four maximize product",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "multi-bit"
+      ]
+    },
+    {
+      "id": "sample-no-pair",
+      "name": "sample: every pair intersects",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-pair"
+      ]
+    },
+    {
+      "id": "sample-powers",
+      "name": "sample: largest disjoint powers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          64,
+          8,
+          32
+        ]
+      },
+      "expected": 2048,
+      "tags": [
+        "sample",
+        "powers-of-two"
+      ]
+    },
+    {
+      "id": "trial-two-identical",
+      "name": "trial: identical positive masks cannot pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "duplicates",
+        "no-pair"
+      ]
+    },
+    {
+      "id": "trial-one-valid-pair",
+      "name": "trial: one multi-bit value and its complement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "complement"
+      ]
+    },
+    {
+      "id": "real-product-choice",
+      "name": "hidden: large multi-bit and power values compete",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          7,
+          4,
+          3
+        ]
+      },
+      "expected": 56,
+      "tags": [
+        "hidden",
+        "maximum-product"
+      ]
+    },
+    {
+      "id": "real-duplicates-with-partner",
+      "name": "hidden: duplicates do not change best compatible value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          12,
+          12,
+          3,
+          1
+        ]
+      },
+      "expected": 36,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-high-domain-complements",
+      "name": "hidden: complementary values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          524288,
+          475712,
+          1000000,
+          48575
+        ]
+      },
+      "expected": 249410093056,
+      "tags": [
+        "hidden",
+        "maximum-bit-width",
+        "large-product"
+      ]
+    },
+    {
+      "id": "real-only-one-compatible-small",
+      "name": "hidden: only a small disjoint pair exists",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          15,
+          14,
+          13,
+          8,
+          1
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "sparse-compatibility"
+      ]
+    }
+  ]
+}

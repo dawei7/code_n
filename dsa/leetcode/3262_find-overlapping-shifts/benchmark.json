@@ -1,0 +1,1774 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3262",
+  "measurement_note": "Shift-row count m is the workload size. One employee's distinct starts and common late end make every pair overlap; the event sweep sorts 2m events, while the direct self-join materializes a quadratic number of matching pairs.",
+  "cases": [
+    {
+      "id": "benchmark-pair-join-scale-1",
+      "name": "benchmark: 16 mutually overlapping shifts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "08:00:00",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:01",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:02",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:03",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:04",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:05",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:06",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:07",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:08",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:09",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:10",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:11",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:12",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:13",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:14",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:15",
+              "end_time": "23:59:59"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            1,
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-pair-join-scale-2",
+      "name": "benchmark: 64 mutually overlapping shifts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "08:00:00",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:01",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:02",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:03",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:04",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:05",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:06",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:07",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:08",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:09",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:10",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:11",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:12",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:13",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:14",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:15",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:16",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:17",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:18",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:19",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:20",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:21",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:22",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:23",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:24",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:25",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:26",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:27",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:28",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:29",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:30",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:31",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:32",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:33",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:34",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:35",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:36",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:37",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:38",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:39",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:40",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:41",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:42",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:43",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:44",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:45",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:46",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:47",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:48",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:49",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:50",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:51",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:52",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:53",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:54",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:55",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:56",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:57",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:58",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:59",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:00",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:01",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:02",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:03",
+              "end_time": "23:59:59"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            1,
+            2016
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-pair-join-scale-3",
+      "name": "benchmark: 256 mutually overlapping shifts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "08:00:00",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:01",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:02",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:03",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:04",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:05",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:06",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:07",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:08",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:09",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:10",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:11",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:12",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:13",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:14",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:15",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:16",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:17",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:18",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:19",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:20",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:21",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:22",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:23",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:24",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:25",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:26",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:27",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:28",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:29",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:30",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:31",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:32",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:33",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:34",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:35",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:36",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:37",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:38",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:39",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:40",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:41",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:42",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:43",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:44",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:45",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:46",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:47",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:48",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:49",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:50",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:51",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:52",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:53",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:54",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:55",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:56",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:57",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:58",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:00:59",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:00",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:01",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:02",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:03",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:04",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:05",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:06",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:07",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:08",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:09",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:10",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:11",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:12",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:13",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:14",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:15",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:16",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:17",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:18",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:19",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:20",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:21",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:22",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:23",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:24",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:25",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:26",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:27",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:28",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:29",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:30",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:31",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:32",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:33",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:34",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:35",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:36",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:37",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:38",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:39",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:40",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:41",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:42",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:43",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:44",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:45",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:46",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:47",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:48",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:49",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:50",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:51",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:52",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:53",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:54",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:55",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:56",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:57",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:58",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:01:59",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:00",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:01",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:02",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:03",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:04",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:05",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:06",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:07",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:08",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:09",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:10",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:11",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:12",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:13",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:14",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:15",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:16",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:17",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:18",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:19",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:20",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:21",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:22",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:23",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:24",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:25",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:26",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:27",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:28",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:29",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:30",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:31",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:32",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:33",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:34",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:35",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:36",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:37",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:38",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:39",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:40",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:41",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:42",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:43",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:44",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:45",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:46",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:47",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:48",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:49",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:50",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:51",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:52",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:53",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:54",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:55",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:56",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:57",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:58",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:02:59",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:00",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:01",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:02",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:03",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:04",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:05",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:06",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:07",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:08",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:09",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:10",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:11",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:12",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:13",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:14",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:15",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:16",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:17",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:18",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:19",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:20",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:21",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:22",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:23",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:24",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:25",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:26",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:27",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:28",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:29",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:30",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:31",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:32",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:33",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:34",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:35",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:36",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:37",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:38",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:39",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:40",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:41",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:42",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:43",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:44",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:45",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:46",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:47",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:48",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:49",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:50",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:51",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:52",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:53",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:54",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:55",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:56",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:57",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:58",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:03:59",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:00",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:01",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:02",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:03",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:04",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:05",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:06",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:07",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:08",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:09",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:10",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:11",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:12",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:13",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:14",
+              "end_time": "23:59:59"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "08:04:15",
+              "end_time": "23:59:59"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "overlapping_shifts"
+        ],
+        "rows": [
+          [
+            1,
+            32640
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

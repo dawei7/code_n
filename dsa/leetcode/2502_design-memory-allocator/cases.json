@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: allocations, frees, and a failed large allocation",
+      "name": "sample: repeated identifiers, freeing, reuse, and failed full allocation",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -82,91 +82,8 @@
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: freeing creates the first available block",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "commands": [
-          "Allocator",
-          "allocate",
-          "freeMemory",
-          "allocate"
-        ],
-        "inputs": [
-          [
-            5
-          ],
-          [
-            2,
-            1
-          ],
-          [
-            1
-          ],
-          [
-            3,
-            2
-          ]
-        ]
-      },
-      "expected": [
-        null,
-        0,
-        2,
-        0
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: reusing a fully freed block",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "commands": [
-          "Allocator",
-          "allocate",
-          "freeMemory",
-          "allocate",
-          "freeMemory"
-        ],
-        "inputs": [
-          [
-            10
-          ],
-          [
-            5,
-            1
-          ],
-          [
-            1
-          ],
-          [
-            5,
-            2
-          ],
-          [
-            2
-          ]
-        ]
-      },
-      "expected": [
-        null,
-        0,
-        5,
-        0,
-        5
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-fragmented-memory",
-      "name": "trial: fragmentation prevents a large allocation",
+      "id": "trial-fragmentation",
+      "name": "trial: total free space is not one consecutive block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,7 +96,7 @@
         ],
         "inputs": [
           [
-            4
+            6
           ],
           [
             2,
@@ -206,11 +123,156 @@
         -1
       ],
       "tags": [
-        "trial"
+        "trial",
+        "fragmentation"
       ]
     },
     {
-      "id": "real-free-missing-id",
+      "id": "trial-entire-memory",
+      "name": "trial: allocate and release the entire memory array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "freeMemory",
+          "allocate"
+        ],
+        "inputs": [
+          [
+            4
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            7
+          ],
+          [
+            4,
+            8
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        -1,
+        4,
+        0
+      ],
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-multiple-blocks-one-id",
+      "name": "hidden: one free releases several disjoint blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "allocate",
+          "freeMemory"
+        ],
+        "inputs": [
+          [
+            7
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            5
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        2,
+        4,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "repeated-id"
+      ]
+    },
+    {
+      "id": "real-leftmost-reuse",
+      "name": "hidden: allocation chooses the earliest newly freed run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "allocate",
+          "freeMemory",
+          "allocate"
+        ],
+        "inputs": [
+          [
+            8
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        2,
+        5,
+        3,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "leftmost"
+      ]
+    },
+    {
+      "id": "real-free-missing",
       "name": "hidden: freeing an absent id changes nothing",
       "kind": "real",
       "visible": false,
@@ -239,7 +301,8 @@
         0
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "missing-id"
       ]
     }
   ]

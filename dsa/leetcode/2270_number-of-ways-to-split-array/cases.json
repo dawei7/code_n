@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2270",
+  "cases": [
+    {"id":"sample-mixed-signs","name":"sample: first two of three splits are valid","kind":"sample","visible":true,"input":{"nums":[10,4,-8,7]},"expected":2,"tags":["sample","mixed-sign"]},
+    {"id":"sample-positive","name":"sample: later two splits are valid","kind":"sample","visible":true,"input":{"nums":[2,3,1,0]},"expected":2,"tags":["sample","nonnegative"]},
+    {"id":"trial-two-equal","name":"the only split qualifies by equality","kind":"trial","visible":true,"input":{"nums":[1,1]},"expected":1,"tags":["minimum-length","equality"]},
+    {"id":"trial-two-invalid","name":"the only split has a smaller left sum","kind":"trial","visible":true,"input":{"nums":[-5,10]},"expected":0,"tags":["minimum-length","none"]},
+    {"id":"trial-all-zero","name":"every zero-sum split qualifies","kind":"trial","visible":true,"input":{"nums":[0,0,0,0]},"expected":3,"tags":["zero","equality"]},
+    {"id":"real-negative","name":"hidden: decreasing negative prefix sums still produce valid splits","kind":"real","visible":false,"input":{"nums":[-1,-2,-3,-4]},"expected":2,"tags":["hidden","negative"]},
+    {"id":"real-alternating","name":"hidden: alternating signed values make every split valid","kind":"real","visible":false,"input":{"nums":[1,-1,1,-1]},"expected":3,"tags":["hidden","alternating","equality"]},
+    {"id":"real-value-bounds","name":"hidden: boundary magnitudes retain signed prefix semantics","kind":"real","visible":false,"input":{"nums":[100000,-100000,100000,-100000]},"expected":3,"tags":["hidden","value-bound"]}
+  ]
+}

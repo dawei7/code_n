@@ -1,0 +1,376 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3907",
+  "cases": [
+    {
+      "id": "sample-mixed-five",
+      "name": "sample: mixed suffix counts across five values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          4,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        2,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "mixed-parity",
+        "strictly-smaller"
+      ]
+    },
+    {
+      "id": "sample-repeated-even",
+      "name": "sample: repeated evens count the same smaller odd",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "duplicates",
+        "shared-suffix"
+      ]
+    },
+    {
+      "id": "sample-single-odd",
+      "name": "sample: a singleton has no right-hand values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "singleton",
+        "empty-suffix"
+      ]
+    },
+    {
+      "id": "trial-all-even-decreasing",
+      "name": "trial: decreasing values of one parity never qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          6,
+          4,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "all-even",
+        "parity-filter"
+      ]
+    },
+    {
+      "id": "trial-all-odd-decreasing",
+      "name": "trial: decreasing odd values never qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          7,
+          5,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "all-odd",
+        "parity-filter"
+      ]
+    },
+    {
+      "id": "trial-increasing-alternating",
+      "name": "trial: alternating parity cannot overcome increasing order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "increasing",
+        "strictly-smaller"
+      ]
+    },
+    {
+      "id": "trial-decreasing-alternating",
+      "name": "trial: every smaller suffix alternates parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        4,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "decreasing",
+        "alternating-parity"
+      ]
+    },
+    {
+      "id": "trial-duplicates-and-strictness",
+      "name": "trial: duplicate evens and odds retain separate index counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          3,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "duplicates",
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "trial-nonmonotone-mix",
+      "name": "trial: nonmonotone values exercise both parity trees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          8,
+          3,
+          2,
+          7,
+          4,
+          1,
+          6
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        1,
+        1,
+        2,
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "nonmonotone",
+        "both-parities"
+      ]
+    },
+    {
+      "id": "hidden-minimum-pair",
+      "name": "hidden: an even value counts the smaller minimum odd",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "two-elements",
+        "lower-bound"
+      ]
+    },
+    {
+      "id": "hidden-equal-pattern",
+      "name": "hidden: equal same-parity values remain independent suffix entries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          3,
+          4,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        0,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "duplicates",
+        "index-counting"
+      ]
+    },
+    {
+      "id": "hidden-billion-bound",
+      "name": "hidden: maximum values preserve parity and numeric order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "alternating-parity"
+      ]
+    },
+    {
+      "id": "hidden-large-gaps",
+      "name": "hidden: coordinate gaps do not change rank comparisons",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          999999998,
+          2
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "coordinate-compression",
+        "large-gaps"
+      ]
+    },
+    {
+      "id": "hidden-irregular-ten",
+      "name": "hidden: irregular suffixes combine greater and smaller values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          3,
+          8,
+          5,
+          6,
+          1,
+          4,
+          7,
+          2,
+          9
+        ]
+      },
+      "expected": [
+        5,
+        1,
+        3,
+        2,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "irregular-order",
+        "suffix-counts"
+      ]
+    }
+  ]
+}

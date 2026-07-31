@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shortest Path in a Weighted Tree and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Flattens rooted subtrees with an Euler tour and applies edge-weight deltas through Fenwick range updates and point queries.",
+      "time_complexity": "O((n + q) log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

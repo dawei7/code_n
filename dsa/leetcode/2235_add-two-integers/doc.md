@@ -5,51 +5,47 @@
 | Source | LeetCode |
 | Frontend ID | 2235 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Math |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [add-two-integers](https://leetcode.com/problems/add-two-integers/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/add-two-integers/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/add-two-integers/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The input consists of two integers, `num1` and `num2`. Each value is supplied
+independently and may be positive, negative, or zero. The task does not ask for
+the values to be reordered, transformed, or combined through any operation
+other than ordinary integer addition.
+
+Compute the exact arithmetic sum of the two given values and return that single
+integer. Positive and negative contributions therefore follow their usual
+signs: equal opposite values cancel, two negative values produce a negative
+sum, and adding zero leaves the other value unchanged.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num1`: An integer satisfying $-100\le\texttt{num1}\le 100$.
+- `num2`: An integer satisfying $-100\le\texttt{num2}\le 100$.
 
 **Return value**
 
-TODO
+Return the integer $\texttt{num1}+\texttt{num2}$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 12, num2 = 5`
+- Output: `17`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = -10, num2 = 4`
+- Output: `-6`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num1 = -7, num2 = 7`
+- Output: `0`

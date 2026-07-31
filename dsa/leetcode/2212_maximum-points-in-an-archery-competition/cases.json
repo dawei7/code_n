@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2212",
+  "cases": [
+    {"id":"sample-nine-arrows","name":"sample: optimum score is forty-seven","kind":"sample","visible":true,"input":{"numArrows":9,"aliceArrows":[1,1,0,1,0,0,2,1,0,1,2,0]},"expected":47,"validator":{"kind":"maximum_bob_points"},"tags":["sample","subset"]},
+    {"id":"sample-three-arrows","name":"sample: three high sections score twenty-seven","kind":"sample","visible":true,"input":{"numArrows":3,"aliceArrows":[0,0,1,0,0,0,0,0,0,0,0,2]},"expected":27,"validator":{"kind":"maximum_bob_points"},"tags":["sample","high-sections"]},
+    {"id":"trial-one-arrow","name":"one arrow wins section eleven","kind":"trial","visible":true,"input":{"numArrows":1,"aliceArrows":[1,0,0,0,0,0,0,0,0,0,0,0]},"expected":11,"validator":{"kind":"maximum_bob_points"},"tags":["minimum-arrows"]},
+    {"id":"trial-blocked-eleven","name":"five arrows choose the five best free sections","kind":"trial","visible":true,"input":{"numArrows":5,"aliceArrows":[0,0,0,0,0,0,0,0,0,0,0,5]},"expected":40,"validator":{"kind":"maximum_bob_points"},"tags":["unaffordable-section"]},
+    {"id":"real-uniform-alice","name":"hidden: two arrows per won section select the top six","kind":"real","visible":false,"input":{"numArrows":12,"aliceArrows":[1,1,1,1,1,1,1,1,1,1,1,1]},"expected":51,"validator":{"kind":"maximum_bob_points"},"tags":["hidden","uniform-cost"]},
+    {"id":"real-large-leftover","name":"hidden: all valuable sections are won and leftovers go to zero","kind":"real","visible":false,"input":{"numArrows":100000,"aliceArrows":[100000,0,0,0,0,0,0,0,0,0,0,0]},"expected":66,"validator":{"kind":"maximum_bob_points"},"tags":["hidden","maximum-arrows","leftover"]},
+    {"id":"real-mixed-costs","name":"hidden: subset choice balances scores and costs","kind":"real","visible":false,"input":{"numArrows":20,"aliceArrows":[0,5,0,4,0,3,0,2,0,1,0,5]},"expected":62,"validator":{"kind":"maximum_bob_points"},"tags":["hidden","mixed-costs"]}
+  ]
+}

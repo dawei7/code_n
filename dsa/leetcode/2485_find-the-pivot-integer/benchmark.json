@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2485",
+  "measurement_note": "Size is n, the inclusive upper bound. The optimal perfect-square test uses O(1) arithmetic operations, while checking candidates in order performs O(n) work when no pivot exists.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: no pivot through 48",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {"n": 48},
+      "expected": -1,
+      "tags": ["benchmark", "perfect-square-test", "linear-scan-stressor"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: no pivot through 240",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 240,
+      "input": {"n": 240},
+      "expected": -1,
+      "tags": ["benchmark", "perfect-square-test", "linear-scan-stressor"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: no pivot through 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"n": 1000},
+      "expected": -1,
+      "tags": ["benchmark", "perfect-square-test", "linear-scan-stressor"]
+    }
+  ]
+}

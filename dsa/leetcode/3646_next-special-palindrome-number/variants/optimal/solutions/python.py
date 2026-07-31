@@ -1,0 +1,45 @@
+def solve(n: int) -> int:
+    best = 10**18
+    even_digits = (2, 4, 6, 8)
+
+    for mask in range(1 << len(even_digits)):
+        for middle in (0, 1, 3, 5, 7, 9):
+            half_counts: dict[int, int] = {}
+            total_length = middle
+
+            for bit, digit in enumerate(even_digits):
+                if mask & (1 << bit):
+                    half_counts[digit] = digit // 2
+                    total_length += digit
+
+            if middle:
+                half_counts[middle] = middle // 2
+
+            if total_length == 0 or total_length > 17:
+                continue
+
+            half_length = total_length // 2
+            half: list[int] = []
+
+            def generate() -> None:
+                nonlocal best
+                if len(half) == half_length:
+                    left = "".join(map(str, half))
+                    center = str(middle) if middle else ""
+                    candidate = int(left + center + left[::-1])
+                    if n < candidate < best:
+                        best = candidate
+                    return
+
+                for digit in sorted(half_counts):
+                    if half_counts[digit] == 0:
+                        continue
+                    half_counts[digit] -= 1
+                    half.append(digit)
+                    generate()
+                    half.pop()
+                    half_counts[digit] += 1
+
+            generate()
+
+    return best

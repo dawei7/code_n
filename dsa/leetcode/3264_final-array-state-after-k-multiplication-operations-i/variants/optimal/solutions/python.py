@@ -1,16 +1,14 @@
-import heapq
+from heapq import heapify, heapreplace
+
 
 def solve(nums: list[int], k: int, multiplier: int) -> list[int]:
-    # Create a min-heap of (value, index) tuples
-    # The heap naturally handles the smallest value, and the index
-    # handles the tie-breaking rule (leftmost first).
-    heap = [(val, i) for i, val in enumerate(nums)]
-    heapq.heapify(heap)
-    
+    heap = [(value, index) for index, value in enumerate(nums)]
+    heapify(heap)
+
     for _ in range(k):
-        val, idx = heapq.heappop(heap)
-        new_val = val * multiplier
-        nums[idx] = new_val
-        heapq.heappush(heap, (new_val, idx))
-        
+        value, index = heap[0]
+        updated = value * multiplier
+        nums[index] = updated
+        heapreplace(heap, (updated, index))
+
     return nums

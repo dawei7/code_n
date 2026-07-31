@@ -1,24 +1,28 @@
-import math
+from math import gcd
 
 
 def solve(nums: list[int]) -> int:
-    mod = 10**9 + 7
+    mod = 1_000_000_007
     max_value = max(nums)
     dp = [[0] * (max_value + 1) for _ in range(max_value + 1)]
     dp[0][0] = 1
 
     for value in nums:
         next_dp = [row[:] for row in dp]
-        for g1 in range(max_value + 1):
-            for g2 in range(max_value + 1):
-                count = dp[g1][g2]
-                if count == 0:
+        for gcd_first in range(max_value + 1):
+            next_first = gcd(gcd_first, value)
+            for gcd_second in range(max_value + 1):
+                ways = dp[gcd_first][gcd_second]
+                if ways == 0:
                     continue
 
-                next_g1 = value if g1 == 0 else math.gcd(g1, value)
-                next_g2 = value if g2 == 0 else math.gcd(g2, value)
-                next_dp[next_g1][g2] = (next_dp[next_g1][g2] + count) % mod
-                next_dp[g1][next_g2] = (next_dp[g1][next_g2] + count) % mod
+                next_second = gcd(gcd_second, value)
+                next_dp[next_first][gcd_second] = (
+                    next_dp[next_first][gcd_second] + ways
+                ) % mod
+                next_dp[gcd_first][next_second] = (
+                    next_dp[gcd_first][next_second] + ways
+                ) % mod
         dp = next_dp
 
     return sum(dp[g][g] for g in range(1, max_value + 1)) % mod

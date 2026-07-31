@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_3083",
+  "cases": [
+    {
+      "id": "sample-repeated-letters",
+      "name": "sample: equal adjacent letters survive reversal",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "leetcode"},
+      "expected": true,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-palindrome",
+      "name": "sample: every pair occurs in the reversed palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcba"},
+      "expected": true,
+      "tags": ["sample", "palindrome"]
+    },
+    {
+      "id": "sample-no-reversed-pair",
+      "name": "sample: all adjacent pairs are one-directional",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcd"},
+      "expected": false,
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: no length-two substring exists",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": false,
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-single-self-reversing-pair",
+      "name": "trial: one equal-character pair reverses to itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aa"},
+      "expected": true,
+      "tags": ["trial", "self-reversing"]
+    },
+    {
+      "id": "trial-separated-reverse-pair",
+      "name": "trial: reversed pair occurs far from the original",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abxyzba"},
+      "expected": true,
+      "tags": ["trial", "nonlocal-match"]
+    },
+    {
+      "id": "real-repeated-directed-cycle",
+      "name": "real: repeated directed pairs have no reverse",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcabcabcabc"},
+      "expected": false,
+      "tags": ["real", "duplicates"]
+    },
+    {
+      "id": "real-reverse-pair-at-boundaries",
+      "name": "real: a pair and its reverse occur at opposite ends",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "azbcdefghijklmnza"},
+      "expected": true,
+      "tags": ["real", "boundary"]
+    }
+  ]
+}

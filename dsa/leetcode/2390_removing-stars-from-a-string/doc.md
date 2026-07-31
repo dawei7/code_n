@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | String, Stack, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [removing-stars-from-a-string](https://leetcode.com/problems/removing-stars-from-a-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/removing-stars-from-a-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/removing-stars-from-a-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string `s` containing lowercase English letters and stars, repeatedly choose a star, remove that star, and also remove the closest non-star character to its left. Continue until no stars remain, then return the resulting string.
+
+The input is guaranteed to make every required removal possible: whenever a star must be handled, an unmatched letter exists to its left. Although stars could be selected in different orders, the final string is guaranteed to be unique.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string of length $n$, where $1 \le n \le 10^5$, containing lowercase letters and `'*'`.
 
 **Return value**
 
-TODO
+- Return the letters left after every star and its closest unmatched letter to the left have been removed.
+
+**Removal semantics**
+
+- Each star deletes exactly one preceding letter and itself.
+- A deleted letter cannot be used by a later star.
+- The result may be empty.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "leet**cod*e"`
+- Output: `"lecoe"`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "erase*****"`
+- Output: `""`

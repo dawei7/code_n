@@ -1,0 +1,8 @@
+{
+  "challenge_id": "lc_3129",
+  "cases": [
+    { "id": "benchmark-unrestricted-balanced-12", "name": "benchmark: balanced 12 by 12 state grid", "kind": "benchmark", "visible": false, "size": 144, "input": { "zero": 12, "one": 12, "limit": 12 }, "expected": 2704156, "tags": ["benchmark", "scale-small", "balanced"] },
+    { "id": "benchmark-unrestricted-balanced-24", "name": "benchmark: balanced 24 by 24 state grid", "kind": "benchmark", "visible": false, "size": 576, "input": { "zero": 24, "one": 24, "limit": 24 }, "expected": 603457371, "tags": ["benchmark", "scale-medium", "balanced"] },
+    { "id": "benchmark-unrestricted-balanced-48", "name": "benchmark: balanced 48 by 48 state grid", "kind": "benchmark", "visible": false, "size": 2304, "input": { "zero": 48, "one": 48, "limit": 48 }, "expected": 675792218, "tags": ["benchmark", "scale-large", "balanced"] }
+  ]
+}

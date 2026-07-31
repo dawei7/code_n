@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2912",
+  "cases": [
+    {
+      "id": "sample-two-intermediate-cells",
+      "name": "sample: two two-move routes reach the opposite row and column",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "m": 2, "k": 2, "source": [1, 1], "dest": [2, 2]},
+      "expected": 2,
+      "tags": ["sample", "two-moves"]
+    },
+    {
+      "id": "sample-three-moves",
+      "name": "sample: nine routes reach the destination in three moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "m": 4, "k": 3, "source": [1, 2], "dest": [2, 3]},
+      "expected": 9,
+      "tags": ["sample", "three-moves"]
+    },
+    {
+      "id": "trial-leave-and-return",
+      "name": "starting at the destination still requires exactly two moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "m": 4, "k": 2, "source": [2, 3], "dest": [2, 3]},
+      "expected": 5,
+      "tags": ["exact-moves", "same-cell"]
+    },
+    {
+      "id": "trial-one-move-same-row",
+      "name": "a different cell in the destination row has one direct route",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "m": 7, "k": 1, "source": [3, 2], "dest": [3, 6]},
+      "expected": 1,
+      "tags": ["one-move", "same-row"]
+    },
+    {
+      "id": "trial-one-move-same-column",
+      "name": "a different cell in the destination column has one direct route",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "m": 7, "k": 1, "source": [2, 4], "dest": [5, 4]},
+      "expected": 1,
+      "tags": ["one-move", "same-column"]
+    },
+    {
+      "id": "real-one-move-neither",
+      "name": "hidden: differing row and column cannot reach the destination directly",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "m": 7, "k": 1, "source": [2, 2], "dest": [5, 6]},
+      "expected": 0,
+      "tags": ["hidden", "one-move", "neither"]
+    },
+    {
+      "id": "real-two-by-two-cycle",
+      "name": "hidden: repeated movement on the smallest legal grid",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 2, "m": 2, "k": 4, "source": [1, 1], "dest": [2, 2]},
+      "expected": 8,
+      "tags": ["hidden", "minimum-grid", "cycles"]
+    },
+    {
+      "id": "real-billion-dimension-modulo",
+      "name": "hidden: huge dimensions require aggregation and modular arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000, "m": 1000000000, "k": 10, "source": [1, 1], "dest": [1000000000, 1000000000]},
+      "expected": 296694948,
+      "tags": ["hidden", "large-dimensions", "modulo"]
+    }
+  ]
+}

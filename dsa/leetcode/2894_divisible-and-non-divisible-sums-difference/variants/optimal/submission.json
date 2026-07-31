@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3172",
+  "frontend_id": "2894",
+  "title_slug": "divisible-and-non-divisible-sums-difference",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.differenceOfSums",
+  "verified_submission_id": "2077976551",
+  "verified_at": "2026-07-23T06:11:38.835213+00:00"
+}

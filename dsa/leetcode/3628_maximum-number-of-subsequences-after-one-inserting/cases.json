@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3628",
+  "cases": [
+    {
+      "id": "sample-lmct",
+      "name": "sample: insert L before LMCT",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "LMCT"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "insert-l"
+      ]
+    },
+    {
+      "id": "sample-lcct",
+      "name": "sample: two C choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "LCCT"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "multiple-c"
+      ]
+    },
+    {
+      "id": "sample-single-l",
+      "name": "sample: one insertion cannot complete LCT",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "L"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-existing-lct",
+      "name": "trial: improve an existing LCT",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LCT"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "existing-subsequence"
+      ]
+    },
+    {
+      "id": "trial-insert-middle-c",
+      "name": "trial: insert C between L and T",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LT"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "insert-c"
+      ]
+    },
+    {
+      "id": "trial-no-relevant-letters",
+      "name": "trial: irrelevant letters produce no subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ABCDE"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "irrelevant-letters",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-only-c",
+      "name": "trial: only C letters cannot be completed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "CCCC"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "real-best-insert-t",
+      "name": "hidden: adding T uses all existing LC pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "LLCC"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "insert-t"
+      ]
+    },
+    {
+      "id": "real-best-insert-l",
+      "name": "hidden: adding L uses all existing CT pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "CCTT"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "insert-l"
+      ]
+    },
+    {
+      "id": "real-best-interior-c",
+      "name": "hidden: optimal C position lies inside the string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "LLXXTT"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "insert-c",
+        "irrelevant-letters"
+      ]
+    },
+    {
+      "id": "real-existing-many",
+      "name": "hidden: preserve existing subsequences and add the best gain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "LCLCTT"
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "existing-subsequences"
+      ]
+    },
+    {
+      "id": "real-reversed-order",
+      "name": "hidden: reversed relevant letters need more than one insertion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "TCL"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zero-or-small"
+      ]
+    },
+    {
+      "id": "real-mixed-noise",
+      "name": "hidden: unrelated uppercase letters are ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ALBCTZLXCQT"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "irrelevant-letters",
+        "mixed"
+      ]
+    }
+  ]
+}

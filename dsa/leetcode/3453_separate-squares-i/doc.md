@@ -5,84 +5,37 @@
 | Source | LeetCode |
 | Frontend ID | 3453 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Binary Search |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [separate-squares-i](https://leetcode.com/problems/separate-squares-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/separate-squares-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/separate-squares-i/).
-
 ### Goal
-Given a list of axis-aligned squares defined by their bottom-left coordinates and side lengths, determine the horizontal line $y = k$ that divides the total area of all squares into two equal halves.
+Each entry `squares[i] = [x_i, y_i, l_i]` describes an axis-aligned square whose bottom-left corner is $(x_i, y_i)$ and whose side length is $l_i$. Choose a horizontal line and add, across every square, the portion of its area lying below that line and the portion lying above it.
+
+Find the minimum possible y-coordinate for which those two totals are equal. Squares may overlap, but their areas remain independent contributions: a region covered by several squares is counted once for each covering square. An answer within $10^{-5}$ of the exact minimum is accepted.
 
 ### Function Contract
 **Inputs**
 
-- `squares`: A list of lists, where each inner list `[x, y, l]` represents a square with its bottom-left corner at `(x, y)` and side length `l`.
+- `squares`: A list of $n$ triples `[x_i, y_i, l_i]` describing bottom-left coordinates and positive side lengths.
+
+The constraints are $1 \le n \le 5 \cdot 10^4$, $0 \le x_i, y_i \le 10^9$, and $1 \le l_i \le 10^9$. The sum of all square areas is at most $10^{12}$. Let $R$ be the vertical search range from the lowest bottom edge to the highest top edge.
 
 **Return value**
 
-- A float representing the y-coordinate $k$ such that the sum of the areas of the parts of the squares below $y = k$ equals the sum of the areas of the parts of the squares above $y = k$.
+Return the minimum y-coordinate of a horizontal line for which the total counted area above equals the total counted area below.
 
 ### Examples
 **Example 1**
 
-- Input: `squares = [[0,0,1],[2,2,1]]`
-- Output: `1.5`
+- Input: `squares = [[0, 0, 1], [2, 2, 1]]`
+- Output: `1.00000`
+
+Every height from $1$ through $2$ balances the two unit squares, so the minimum valid height is $1$.
 
 **Example 2**
 
-- Input: `squares = [[0,0,2],[1,1,1]]`
-- Output: `1.1666666667`
+- Input: `squares = [[0, 0, 2], [1, 1, 1]]`
+- Output: `1.16667`
 
-**Example 3**
-
-- Input: `squares = [[0,0,1],[1,1,1]]`
-- Output: `0.5`
-
----
-
-## Solution
-### Approach
-The problem is solved using **Binary Search on the Answer**. Since the total area below a horizontal line $y=k$ is a monotonically increasing function of $k$, we can search for the value $k$ within the range $[min(y), max(y+l)]$. For a chosen $k$, we calculate the area of each square intersecting the line $y=k$ by clipping the square's vertical range $[y, y+l]$ against $[0, k]$.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \log(\frac{max\_coord}{\epsilon}))$, where $N$ is the number of squares, $max\_coord$ is the range of coordinates, and $\epsilon$ is the required precision (typically $10^{-5}$).
-- **Space Complexity**: $O(1)$, as we only store a few variables for the binary search bounds and the calculated area.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(squares: list[list[int]]) -> float:
-    def get_area_below(k: float) -> float:
-        total_area = 0.0
-        for x, y, l in squares:
-            # The square spans [y, y + l]
-            # We want the intersection of [y, y + l] and [0, k]
-            bottom = y
-            top = y + l
-            if k > bottom:
-                overlap = min(k, top) - bottom
-                total_area += overlap * l
-        return total_area
-
-    total_sum = sum(l * l for x, y, l in squares)
-    target = total_sum / 2.0
-
-    low = min(s[1] for s in squares)
-    high = max(s[1] + s[2] for s in squares)
-
-    # Perform binary search for 100 iterations to ensure high precision
-    for _ in range(100):
-        mid = (low + high) / 2
-        if get_area_below(mid) < target:
-            low = mid
-        else:
-            high = mid
-
-    return high
-```
-</details>
+At $y = 7/6$, the counted area on each side is $5/2$; the geometric overlap still contributes once for each square.

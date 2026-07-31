@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Lattice Points Inside a Circle and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates each circle's integer bounding square and inserts exactly its covered lattice points into a union set.",
+      "time_complexity": "O(sum r_i^2)",
+      "space_complexity": "O(P)"
     }
   ]
 }

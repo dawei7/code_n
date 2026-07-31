@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3622",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(log n)",
+  "summary": "The complete legal domain contains only one through seven decimal digits, which is too tightly bounded for a reliable runtime-scaling verdict in the governing digit-count variable.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 7,
+    "unit": "decimal digits of n",
+    "source_constraint": "n is from 1 through 10^6 inclusive, so its decimal representation has at most seven digits"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs exactly one divmod, one addition, and one multiplication per decimal digit, followed by one addition and one remainder test, for at most seven loop iterations on every legal input."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover the minimum and maximum inputs, both samples, one- and seven-digit values, zero-free digits, one and several zero digits, large digit products, and both Boolean outcomes."
+    }
+  ]
+}

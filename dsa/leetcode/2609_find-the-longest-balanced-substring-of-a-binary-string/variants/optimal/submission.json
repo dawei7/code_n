@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2681",
+  "frontend_id": "2609",
+  "title_slug": "find-the-longest-balanced-substring-of-a-binary-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findTheLongestBalancedSubstring",
+  "verified_submission_id": "2075821132",
+  "verified_at": "2026-07-21T12:54:00+00:00"
+}

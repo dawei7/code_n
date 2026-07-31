@@ -8,60 +8,38 @@
 | Category | Algorithms |
 | Topics | Array |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-cost-to-reach-every-position](https://leetcode.com/problems/minimum-cost-to-reach-every-position/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-cost-to-reach-every-position/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-cost-to-reach-every-position/).
 
 ### Goal
-Given an array of costs where `costs[i]` represents the price to visit position `i`, determine the minimum total cost required to visit every position in the array. Since you can start at any position and move to adjacent positions, the goal is to calculate the cumulative cost of visiting all indices exactly once, effectively summing all elements in the array.
+
+There are $n+1$ people standing in a line at positions $0$ through $n$, and you begin at position $n$. For every person in front of you, `cost[i]` is the amount that person charges to swap positions with you. Whenever you swap with somebody ahead of your current position, you must pay that person's listed cost.
+
+A person behind your current position may instead swap with you for free. For every target position $i$ from $0$ through $n-1$, determine the minimum total amount needed to reach exactly that position. Each target is considered independently from the original arrangement. Return all $n$ minimum costs in position order.
 
 ### Function Contract
+
 **Inputs**
 
-- `costs`: A list of integers where `costs[i]` is the non-negative cost to visit position `i`.
+- `cost`: A list of $n$ positive integers; `cost[i]` is the price of swapping with the person initially at position $i$ while that person is in front of you.
+
+The constraints are $1 \le n \le 100$ and $1 \le \texttt{cost[i]} \le 100$.
 
 **Return value**
 
-- An integer representing the total sum of all costs in the input array.
+Return a length-$n$ list `answer` where `answer[i]` is the minimum total cost required to reach position $i$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `costs = [1, 2, 3]`
-- Output: `6`
+- Input: `cost = [5,3,4,1,3,2]`
+- Output: `[5,3,3,1,1,1]`
+- Explanation: Paying person $1$ reaches position $1$ and makes position $2$ reachable for free. Paying person $3$ similarly makes positions $3$, $4$, and $5$ reachable for cost $1$.
 
 **Example 2**
 
-- Input: `costs = [5, 10, 15, 20]`
-- Output: `50`
-
-**Example 3**
-
-- Input: `costs = [0, 0, 0]`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-The problem reduces to a simple summation of all elements in a linear array. Since every position must be visited exactly once, the order of traversal does not affect the total cost, making the summation operation the optimal approach.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the number of elements in the `costs` array, as we must iterate through each element exactly once.
-- **Space Complexity**: `O(1)`, as we only require a single variable to store the running total.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(cost: list[int]) -> list[int]:
-    answer = []
-    best = 10**9
-    for value in cost:
-        best = min(best, value)
-        answer.append(best)
-    return answer
-```
-</details>
+- Input: `cost = [1,2,4,6,7]`
+- Output: `[1,1,1,1,1]`
+- Explanation: After paying person $0$, every later position is behind you and can be reached through a free swap.

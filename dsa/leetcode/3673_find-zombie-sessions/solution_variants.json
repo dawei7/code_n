@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Zombie Sessions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregate each session's duration and event counts once, filter all four zombie criteria with exact integer comparisons, then apply the required ordering.",
+      "time_complexity": "O(N log N + S log S)",
+      "space_complexity": "O(N + S)"
     }
   ]
 }

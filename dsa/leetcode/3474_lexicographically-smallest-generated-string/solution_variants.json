@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Lexicographically Smallest Generated String and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Overlays forced windows, then combines a KMP automaton with suffix feasibility and greedy reconstruction.",
+      "time_complexity": "O((n + m)m)",
+      "space_complexity": "O((n + m)m)"
     }
   ]
 }

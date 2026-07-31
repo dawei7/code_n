@@ -3,86 +3,102 @@
   "cases": [
     {
       "id": "sample-window-three",
-      "name": "sample: largest value in one window",
+      "name": "sample: two qualifying boundary values",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          9,
-          2,
-          1,
-          7
-        ],
-        "k": 3
-      },
+      "input": {"nums": [3, 9, 2, 1, 7], "k": 3},
       "expected": 7,
-      "tags": [
-        "sample",
-        "windows"
-      ]
+      "tags": ["sample", "interior-window"]
     },
     {
-      "id": "trial-single-window",
-      "name": "trial: one window contains every value",
-      "kind": "trial",
+      "id": "sample-repeated-last-value",
+      "name": "sample: repeated last value is disqualified",
+      "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          5,
-          4,
-          3
-        ],
-        "k": 4
-      },
-      "expected": 5,
-      "tags": [
-        "trial",
-        "whole-array"
-      ]
+      "input": {"nums": [3, 9, 7, 2, 1, 7], "k": 4},
+      "expected": 3,
+      "tags": ["sample", "duplicates"]
     },
     {
-      "id": "trial-no-almost-missing",
-      "name": "trial: no value appears in exactly one window",
-      "kind": "trial",
+      "id": "sample-no-singleton-value",
+      "name": "sample: no value belongs to one singleton window",
+      "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          2,
-          2
-        ],
-        "k": 2
-      },
+      "input": {"nums": [0, 0], "k": 1},
       "expected": -1,
-      "tags": [
-        "trial",
-        "duplicates"
-      ]
+      "tags": ["sample", "k-one"]
     },
     {
-      "id": "real-overlapping-duplicates",
-      "name": "real: overlapping duplicate values",
+      "id": "trial-single-element",
+      "name": "trial: one element is also the whole array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [50], "k": 1},
+      "expected": 50,
+      "tags": ["trial", "single-element", "boundary"]
+    },
+    {
+      "id": "trial-whole-array-duplicates",
+      "name": "trial: every distinct value belongs to the sole window",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 5, 4, 3], "k": 4},
+      "expected": 5,
+      "tags": ["trial", "whole-array", "duplicates"]
+    },
+    {
+      "id": "real-largest-unique-singleton",
+      "name": "real: largest globally unique singleton value",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          8,
-          1,
-          8,
-          2,
-          3,
-          2,
-          9
-        ],
-        "k": 3
-      },
+      "input": {"nums": [5, 1, 5, 4], "k": 1},
+      "expected": 4,
+      "tags": ["real", "k-one", "frequency"]
+    },
+    {
+      "id": "real-no-unique-singleton",
+      "name": "real: every value repeats across singleton windows",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 1, 1], "k": 1},
+      "expected": -1,
+      "tags": ["real", "k-one", "duplicates"]
+    },
+    {
+      "id": "real-only-last-endpoint",
+      "name": "real: only the final endpoint is globally unique",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 1, 8, 2, 3, 2, 9], "k": 3},
       "expected": 9,
-      "tags": [
-        "real",
-        "overlap"
-      ]
+      "tags": ["real", "endpoint", "overlap"]
+    },
+    {
+      "id": "real-larger-first-endpoint",
+      "name": "real: both endpoints qualify and the first is larger",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10, 2, 3, 4, 7], "k": 2},
+      "expected": 10,
+      "tags": ["real", "endpoint", "maximum"]
+    },
+    {
+      "id": "real-repeated-first-endpoint",
+      "name": "real: repeated larger endpoint is disqualified",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [9, 1, 2, 9, 7], "k": 3},
+      "expected": 7,
+      "tags": ["real", "endpoint", "duplicates"]
+    },
+    {
+      "id": "real-both-endpoints-repeat",
+      "name": "real: neither endpoint qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 1, 6, 2, 2, 6], "k": 2},
+      "expected": -1,
+      "tags": ["real", "endpoint", "no-answer"]
     }
   ]
 }

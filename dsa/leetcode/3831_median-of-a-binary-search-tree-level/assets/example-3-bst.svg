@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 310" role="img" aria-labelledby="title desc">
+  <title id="title">Example 3 binary search tree</title>
+  <desc id="desc">Node 2 at level zero has left child 1 at level one. The requested level two is empty.</desc>
+  <rect width="460" height="310" rx="20" fill="#f8fafc"/>
+  <g stroke="#cbd5e1" stroke-width="2" stroke-dasharray="7 7">
+    <line x1="78" y1="66" x2="428" y2="66"/>
+    <line x1="78" y1="154" x2="428" y2="154"/>
+  </g>
+  <line x1="78" y1="242" x2="428" y2="242" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8 7"/>
+  <g font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#64748b" text-anchor="end">
+    <text x="66" y="71">level 0</text>
+    <text x="66" y="159">level 1</text>
+    <text x="66" y="247" fill="#b45309">level 2</text>
+  </g>
+  <line x1="275" y1="66" x2="180" y2="154" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+  <g font-family="Inter,Segoe UI,sans-serif" font-size="22" font-weight="700" text-anchor="middle">
+    <circle cx="275" cy="66" r="31" fill="white" stroke="#334155" stroke-width="4"/><text x="275" y="74" fill="#0f172a">2</text>
+    <circle cx="180" cy="154" r="31" fill="white" stroke="#334155" stroke-width="4"/><text x="180" y="162" fill="#0f172a">1</text>
+  </g>
+  <rect x="188" y="221" width="148" height="42" rx="21" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
+  <text x="262" y="248" font-family="Inter,Segoe UI,sans-serif" font-size="15" font-weight="700" fill="#92400e" text-anchor="middle">no nodes</text>
+</svg>

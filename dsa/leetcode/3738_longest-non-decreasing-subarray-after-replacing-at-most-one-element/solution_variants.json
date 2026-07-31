@@ -1,16 +1,1 @@
-{
-  "schema_version": 1,
-  "challenge_id": "lc_3738",
-  "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Non-Decreasing Subarray After Replacing at Most One Element and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_3738","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Combines non-decreasing runs on either side of each possible replacement when their boundary values can be bridged.","time_complexity":"O(n)","space_complexity":"O(n)"}]}

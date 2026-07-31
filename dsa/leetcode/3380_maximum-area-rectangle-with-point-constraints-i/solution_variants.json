@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Area Rectangle With Point Constraints I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates diagonal pairs, verifies the other corners by hash lookup, and scans for forbidden points.",
+      "time_complexity": "O(n^3)",
+      "space_complexity": "O(n)"
     }
   ]
 }

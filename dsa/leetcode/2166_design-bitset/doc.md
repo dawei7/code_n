@@ -8,49 +8,59 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String, Design |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [design-bitset](https://leetcode.com/problems/design-bitset/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/design-bitset/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/design-bitset/).
-
 ### Goal
-Design a fixed-size bitset supporting individual set and clear operations, a global flip, checks for whether all or any bits are set, a count of set bits, and conversion to its binary string representation.
+
+Implement a fixed-size `Bitset` whose bits are initially zero. Individual
+indices can be fixed to `1` or unfixed to `0`; applying either operation to a
+bit that already has the requested value changes nothing. A global `flip`
+operation must exchange every logical zero and one.
+
+The structure must also report whether all bits are one, whether at least one
+bit is one, and how many one bits exist. Its string representation lists bits
+in index order, so character $i$ is the logical value at bit index $i$.
 
 ### Function Contract
 **Inputs**
 
-- `size`: the number of bits, initially all zero.
-- Operations may supply `idx`, a zero-based bit index, for `fix(idx)` or `unfix(idx)`.
+- `Bitset(size)` creates `size` zero bits, where $1\le\texttt{size}\le10^5$.
+- `fix(idx)` sets the bit at valid zero-based index `idx` to one.
+- `unfix(idx)` sets the bit at valid zero-based index `idx` to zero.
+- `flip()` complements every bit.
+- `all()` tests whether every bit is one.
+- `one()` tests whether at least one bit is one.
+- `count()` reports the number of one bits.
+- `toString()` returns the bit values in increasing index order.
+
+At most $Q=10^5$ method calls occur, including at most five `toString()` calls.
 
 **Return value**
 
-Mutating operations return nothing. `all()` and `one()` return booleans, `count()` returns the number of logical `1` bits, and `toString()` returns all bits from index `0` through `size - 1`.
+Construction and mutating methods return no value. The three queries return
+booleans or an integer as described, and `toString()` returns a binary string
+of length `size`. The app-local trace returns one result per operation, using
+`null` for construction and mutating calls.
 
 ### Examples
 **Example 1**
 
-- Input: `size = 5`; operations: `fix(3)`, `fix(1)`, `toString()`, `count()`
-- Output: `"01010"`, then `2`
+- Input: `operations = ["Bitset", "fix", "fix", "flip", "all", "unfix", "flip", "one", "unfix", "count", "toString"]`
+- Arguments: `[[5], [3], [1], [], [], [0], [], [], [0], [], []]`
+- Output: `[null, null, null, null, false, null, null, true, null, 2, "01010"]`
+
+The two flips are represented logically; the final one bits are at indices
+`1` and `3`.
 
 **Example 2**
 
-- Input: `size = 3`; operations: `fix(0)`, `flip()`, `toString()`, `all()`, `one()`
-- Output: `"011"`, then `false`, then `true`
+- Input: construct size `1`, call `flip()`, then `all()`, `count()`, and `toString()`
+- Output: `true`, `1`, and `"1"`
 
 **Example 3**
 
-- Input: `size = 2`; operations: `fix(0)`, `fix(1)`, `unfix(0)`, `count()`, `toString()`
-- Output: `1`, then `"01"`
+- Input: construct size `4`, call `fix(1)` twice, then `unfix(1)` twice
+- Output: final count `0` and string `"0000"`
 
----
-
-## Solution
-### Approach
-Store physical bits, a boolean indicating whether their logical meaning is globally flipped, and the logical count of ones. `fix` and `unfix` compare the requested logical value with the physical value under the flip flag and update only when needed. `flip` toggles the flag and changes the count to `size - count`, making the operation constant time.
-
-### Complexity Analysis
-- **Time Complexity**: `O(1)` per operation except `toString()`, which is `O(size)`
-- **Space Complexity**: `O(size)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Repeated idempotent updates do not change the maintained count.

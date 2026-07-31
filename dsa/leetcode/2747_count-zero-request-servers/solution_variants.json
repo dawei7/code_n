@@ -1,16 +1,1 @@
-{
-  "schema_version": 1,
-  "challenge_id": "lc_2747",
-  "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Zero Request Servers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_2747","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Sorts logs and indexed queries by time, then maintains active server frequencies in one monotone sliding window.","time_complexity":"O(m log m + q log q)","space_complexity":"O(n + q)"}]}

@@ -8,48 +8,49 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [find-all-unique-email-domains](https://leetcode.com/problems/find-all-unique-email-domains/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-all-unique-email-domains/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-all-unique-email-domains/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Each row contains one lowercase email address. Its domain is the portion after
+the `@` separator, and several individuals may share the same domain.
+
+Find every distinct domain whose name ends with the exact suffix `.com`, and
+count how many email rows belong to it. Domains with another ending, even if
+they contain `com` elsewhere, are excluded. Return one row per qualifying
+domain, ordered by the domain text ascending.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Emails(id, email)`: each unique `id` identifies one lowercase email
+  address.
+
+Let $n$ be the number of rows, $S$ the total number of characters across all
+email addresses, and $g$ the number of qualifying distinct domains.
 
 **Return value**
 
-TODO
+- An ordered table with columns `email_domain` and `count`, containing each
+  qualifying `.com` domain and its number of associated individuals.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+The supplied rows contain two addresses at `outlook.com` and one at
+`yahoo.com`. The `.edu` and `.org` domains are ignored, so the two `.com`
+domains are returned alphabetically with counts `2` and `1`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+Different local parts do not create different groups: `a@site.com` and
+`b@site.com` both contribute to the count for `site.com`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+`shop.com.org` is excluded because the complete domain ends in `.org`, not
+`.com`.

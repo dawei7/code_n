@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3710",
+  "frontend_id": "3451",
+  "title_slug": "find-invalid-ip-addresses",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2081925776",
+  "verified_at": "2026-07-26T11:03:36Z"
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Generate Schedule and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Factor all matchups into round-robin matchings, pair each round with its reversed fixtures, and use boundary-state reconstruction to order the matchings without consecutive teams.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n^2)"
     }
   ]
 }

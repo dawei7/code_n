@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2586",
+  "frontend_id": "2501",
+  "title_slug": "longest-square-streak-in-an-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.longestSquareStreak",
+  "verified_submission_id": "2075161620",
+  "verified_at": "2026-07-21T01:02:00+00:00"
+}

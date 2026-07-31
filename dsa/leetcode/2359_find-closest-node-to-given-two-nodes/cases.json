@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2359",
+  "cases": [
+    {
+      "id": "sample-immediate-merge",
+      "name": "sample: both paths merge after one edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [2,2,3,-1], "node1": 0, "node2": 1},
+      "expected": 2,
+      "tags": ["sample","merge"]
+    },
+    {
+      "id": "sample-second-start-is-answer",
+      "name": "sample: one start reaches the other",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [1,2,-1], "node1": 0, "node2": 2},
+      "expected": 2,
+      "tags": ["sample","start-node"]
+    },
+    {
+      "id": "trial-same-start",
+      "name": "identical starts have distance zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [1,2,-1], "node1": 1, "node2": 1},
+      "expected": 1,
+      "tags": ["boundary","same-start"]
+    },
+    {
+      "id": "trial-disjoint-sinks",
+      "name": "disjoint paths have no meeting node",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [-1,-1], "node1": 0, "node2": 1},
+      "expected": -1,
+      "tags": ["disjoint","sink"]
+    },
+    {
+      "id": "trial-cycle-tie",
+      "name": "smallest index breaks a distance tie on a cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [1,2,3,0], "node1": 0, "node2": 2},
+      "expected": 0,
+      "tags": ["cycle","tie"]
+    },
+    {
+      "id": "real-tail-into-cycle",
+      "name": "hidden: paths enter the same cycle at different points",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [2,3,4,4,2], "node1": 0, "node2": 1},
+      "expected": 4,
+      "tags": ["hidden","cycle","merge"]
+    },
+    {
+      "id": "real-common-sink",
+      "name": "hidden: unequal tails meet at a sink",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [2,3,4,4,-1], "node1": 0, "node2": 1},
+      "expected": 4,
+      "tags": ["hidden","sink"]
+    },
+    {
+      "id": "real-one-path-enters-other",
+      "name": "hidden: first common node minimizes the maximum distance",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [1,2,3,4,-1], "node1": 0, "node2": 2},
+      "expected": 2,
+      "tags": ["hidden","chain"]
+    }
+  ]
+}

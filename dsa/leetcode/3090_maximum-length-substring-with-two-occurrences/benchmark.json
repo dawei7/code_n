@@ -1,0 +1,53 @@
+{
+  "challenge_id": "lc_3090",
+  "cases": [
+    {
+      "id": "benchmark-cyclic-6",
+      "name": "benchmark: 6-character cyclic alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cyclic-alphabet"
+      ]
+    },
+    {
+      "id": "benchmark-cyclic-24",
+      "name": "benchmark: 24-character cyclic alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwx"
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cyclic-alphabet"
+      ]
+    },
+    {
+      "id": "benchmark-cyclic-96",
+      "name": "benchmark: 96-character cyclic alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr"
+      },
+      "expected": 52,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cyclic-alphabet"
+      ]
+    }
+  ]
+}

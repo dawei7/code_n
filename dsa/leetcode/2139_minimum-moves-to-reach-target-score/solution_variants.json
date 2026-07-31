@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Moves to Reach Target Score and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Works backward, greedily undoing every usable double before paying the remaining distance with increments.",
+      "time_complexity": "O(log target)",
+      "space_complexity": "O(1)"
     }
   ]
 }

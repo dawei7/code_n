@@ -8,83 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [merge-operations-for-minimum-travel-time](https://leetcode.com/problems/merge-operations-for-minimum-travel-time/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/merge-operations-for-minimum-travel-time/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/merge-operations-for-minimum-travel-time/).
 
 ### Goal
-Given an array of integers representing travel times between consecutive points, you are allowed to merge adjacent elements into their sum. The objective is to perform the minimum number of merge operations such that the resulting array becomes non-decreasing.
+
+A straight road runs from kilometer `0` to kilometer `l`. There are `n` signs at the strictly increasing positions in `position`, including a sign at each endpoint. For every $i<n-1$, `time[i]` is the number of minutes needed to travel one kilometer after passing `position[i]` and before reaching `position[i + 1]`.
+
+Perform exactly `k` merge operations. In one operation, choose two currently adjacent signs at indices `i` and `i + 1`, where the first sign is not the road's starting sign and the second is not beyond the ending sign. Add the first sign's time to the second sign's time, then remove the first sign and its position. Consequently, removing several consecutive original signs accumulates their times into the next sign that remains.
+
+After all merges, each interval between consecutive remaining signs uses the time stored at its left endpoint. Return the minimum possible total minutes required to travel from `0` to `l` after exactly `k` merges.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of positive integers representing the travel times.
+- `l`: The road length in kilometers, where $1 \le l \le 10^5$.
+- `n`: The number of signs, equal to both array lengths, where $2 \le n \le \min(l+1,50)$.
+- `k`: The exact number of merges, where $0 \le k \le \min(n-2,10)$.
+- `position`: Strictly increasing sign positions with `position[0] = 0` and `position[n - 1] = l`.
+- `time`: Positive per-kilometer travel times, each at most $100$, whose total is at most $100$.
 
 **Return value**
 
-- An integer representing the minimum number of merge operations required to make the array non-decreasing.
+- The minimum total travel time in minutes after exactly `k` valid merges.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `0`
+- Input: `l = 10, n = 4, k = 1, position = [0,3,8,10], time = [5,8,3,6]`
+- Output: `62`
+- Explanation: Removing the sign at kilometer `3` changes the time at kilometer `8` to `11`. The remaining intervals cost `8 * 5 + 2 * 11 = 62` minutes.
 
 **Example 2**
 
-- Input: `nums = [4, 3, 2, 1]`
-- Output: `3`
-
-**Example 3**
-
-- Input: `nums = [1, 2, 3, 1]`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Greedy approach combined with a backward traversal. By iterating from the end of the array to the beginning, we maintain the value of the "current segment" that must be less than or equal to the next segment to the right. If the current segment is too large, we merge it with its left neighbor until the condition is satisfied.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we traverse the array once.
-- **Space Complexity**: `O(1)`, as we only use a few variables to track the current state.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int]) -> int:
-    """
-    To make the array non-decreasing with minimum merges, we process the array
-    from right to left. We keep track of the value of the current segment
-    (the rightmost segment of the suffix we are considering) and ensure that
-    the segment to its left is smaller than or equal to it.
-    """
-    n = len(nums)
-    if n <= 1:
-        return 0
-
-    merges = 0
-    # current_val represents the value of the segment we are currently comparing against
-    current_val = nums[-1]
-    # current_sum represents the sum of the segment we are currently building
-    current_sum = 0
-
-    # Iterate backwards from the second to last element
-    for i in range(n - 2, -1, -1):
-        current_sum += nums[i]
-
-        if current_sum <= current_val:
-            # We found a valid segment, update current_val and reset current_sum
-            current_val = current_sum
-            current_sum = 0
-        else:
-            # We must merge the current element with the next one
-            merges += 1
-
-    return merges
-```
-</details>
+- Input: `l = 5, n = 5, k = 1, position = [0,1,2,3,5], time = [8,3,9,3,3]`
+- Output: `34`
+- Explanation: Merging the signs originally at kilometers `1` and `2` leaves interval costs `2 * 8`, `1 * 12`, and `2 * 3`.

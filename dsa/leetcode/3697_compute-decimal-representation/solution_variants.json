@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Compute Decimal Representation and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Extracts each nonzero decimal digit as its unique place-value component.",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(log n)"
     }
   ]
 }

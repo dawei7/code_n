@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_348", "frontend_id": "348", "title_slug": "design-tic-tac-toe", "url": "https://leetcode.com/problems/design-tic-tac-toe/description/", "paid_only": true, "content_sha256": "830179bf33b458515169e133d5c2e886bebba43aa790d1660fb13b618906325a", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "operations = [\"TicTacToe\",\"move\",\"move\",\"move\",\"move\",\"move\",\"move\",\"move\"], arguments = [[3],[0,0,1],[0,2,2],[2,2,1],[1,1,2],[2,0,1],[1,0,2],[2,1,1]]", "output": "[null,0,0,0,0,0,0,1]", "has_explanation": true}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 1, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "fe22a3ad4df562805fd15d9d5314769b4a180ba6fa8d4f029b70c2414896aa90",
+    "reference/contract.md": "8fe043834059fd35af0aee102dcf1f2dfbe6a8d8bc00cccc0bc83859fcf9e047",
+    "reference/examples.md": "677610ba0492f9eface9ef317bd04cf681b1513395e10b8b9e102ed52bcddb3c",
+    "reference/constraints.md": "94986223a8fd360aa09cb75f4fc594065e8802e9f56b186d5ae6a0661ecf32ea",
+    "reference/follow_up.md": "d0e79e37581cb42d824d892e8e009d1056434da4642ec78c6b9ab66e939483ed"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

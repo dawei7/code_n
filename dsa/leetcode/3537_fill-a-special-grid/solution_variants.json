@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Fill a Special Grid and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Recursively assign four consecutive value blocks to the quadrants in their required increasing order.",
+      "time_complexity": "O(k^n)",
+      "space_complexity": "O(k^n)"
     }
   ]
 }

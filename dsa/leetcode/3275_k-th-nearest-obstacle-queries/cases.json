@@ -2,187 +2,112 @@
   "challenge_id": "lc_3275",
   "cases": [
     {
-      "id": "sample-basic-k2",
-      "name": "sample: kth distance becomes available",
+      "id": "sample-changing-second-nearest",
+      "name": "sample: second nearest improves repeatedly",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "queries": [
-          [
-            1,
-            2
-          ],
-          [
-            3,
-            4
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            -3,
-            0
-          ]
-        ],
-        "k": 2
-      },
-      "expected": [
-        -1,
-        7,
-        5,
-        3
-      ],
-      "tags": [
-        "sample",
-        "heap"
-      ]
+      "input": {"queries": [[1, 2], [3, 4], [2, 3], [-3, 0]], "k": 2},
+      "expected": [-1, 7, 5, 3],
+      "tags": ["sample", "changing-answer"]
     },
     {
-      "id": "sample-k1",
-      "name": "sample: nearest obstacle after each query",
+      "id": "sample-nearest-decreases",
+      "name": "sample: each obstacle becomes nearest",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "queries": [
-          [
-            5,
-            5
-          ],
-          [
-            -1,
-            2
-          ],
-          [
-            0,
-            0
-          ]
-        ],
-        "k": 1
-      },
-      "expected": [
-        10,
-        3,
-        0
-      ],
-      "tags": [
-        "sample",
-        "k-one"
-      ]
+      "input": {"queries": [[5, 5], [4, 4], [3, 3]], "k": 1},
+      "expected": [10, 8, 6],
+      "tags": ["sample", "k-one"]
     },
     {
-      "id": "trial-not-enough",
-      "name": "trial: not enough obstacles yet",
+      "id": "trial-not-enough-obstacles",
+      "name": "trial: stream never reaches k obstacles",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "queries": [
-          [
-            1,
-            1
-          ],
-          [
-            2,
-            2
-          ]
-        ],
-        "k": 5
-      },
-      "expected": [
-        -1,
-        -1
-      ],
-      "tags": [
-        "edge"
-      ]
+      "input": {"queries": [[0, 0], [1, 1]], "k": 3},
+      "expected": [-1, -1],
+      "tags": ["insufficient", "origin"]
     },
     {
-      "id": "trial-repeated-distances",
-      "name": "trial: repeated distances",
+      "id": "trial-origin-is-nearest",
+      "name": "trial: origin has zero distance",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "queries": [
-          [
-            1,
-            0
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            -1,
-            0
-          ],
-          [
-            0,
-            -1
-          ],
-          [
-            2,
-            0
-          ]
-        ],
-        "k": 3
-      },
-      "expected": [
-        -1,
-        -1,
-        1,
-        1,
-        1
-      ],
-      "tags": [
-        "ties"
-      ]
+      "input": {"queries": [[0, 0]], "k": 1},
+      "expected": [0],
+      "tags": ["origin", "k-one"]
     },
     {
-      "id": "real-large-coordinates",
-      "name": "real: large coordinate updates",
+      "id": "trial-equal-distances",
+      "name": "trial: distinct obstacles tie in distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {"queries": [[1, 0], [0, 1], [-1, 0], [0, -1]], "k": 2},
+      "expected": [-1, 1, 1, 1],
+      "tags": ["ties", "distinct-coordinates"]
+    },
+    {
+      "id": "trial-negative-coordinates",
+      "name": "trial: negative coordinates use absolute values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"queries": [[-2, -3], [4, -1], [-1, -1]], "k": 2},
+      "expected": [-1, 5, 5],
+      "tags": ["negative", "ties"]
+    },
+    {
+      "id": "trial-k-equals-length",
+      "name": "trial: answer appears only on final query",
+      "kind": "trial",
+      "visible": true,
+      "input": {"queries": [[4, 0], [0, 2], [7, 0]], "k": 3},
+      "expected": [-1, -1, 7],
+      "tags": ["boundary-k", "insufficient"]
+    },
+    {
+      "id": "real-nearest-stays-zero",
+      "name": "real: later obstacles cannot displace the origin",
       "kind": "real",
       "visible": false,
-      "input": {
-        "queries": [
-          [
-            100000,
-            100000
-          ],
-          [
-            -99999,
-            4
-          ],
-          [
-            3,
-            -99998
-          ],
-          [
-            50,
-            60
-          ],
-          [
-            -70,
-            -80
-          ],
-          [
-            0,
-            1
-          ]
-        ],
-        "k": 4
-      },
-      "expected": [
-        -1,
-        -1,
-        -1,
-        200000,
-        100003,
-        100001
-      ],
-      "tags": [
-        "real",
-        "coordinates"
-      ]
+      "input": {"queries": [[9, 9], [0, 0], [-8, 7], [1, 2]], "k": 1},
+      "expected": [18, 0, 0, 0],
+      "tags": ["k-one", "origin"]
+    },
+    {
+      "id": "real-coordinate-limits",
+      "name": "real: maximum coordinate magnitudes",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[1000000000, 1000000000], [-1000000000, 1000000000], [999999999, 0]], "k": 2},
+      "expected": [-1, 2000000000, 2000000000],
+      "tags": ["bounds", "large-distance"]
+    },
+    {
+      "id": "real-far-obstacles-do-not-matter",
+      "name": "real: farther arrivals leave rank unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[2, 0], [0, 3], [10, 10], [-20, 5], [100, 0]], "k": 2},
+      "expected": [-1, 3, 3, 3, 3],
+      "tags": ["discarded-far", "stable-answer"]
+    },
+    {
+      "id": "real-late-near-obstacles",
+      "name": "real: late nearby obstacles lower the rank",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[20, 0], [0, 15], [9, 0], [0, -3], [-2, 0]], "k": 3},
+      "expected": [-1, -1, 20, 15, 9],
+      "tags": ["changing-answer", "negative"]
+    },
+    {
+      "id": "real-origin-enters-second-rank",
+      "name": "real: origin improves the second nearest distance",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[4, 4], [-3, 2], [0, 0], [1, -1]], "k": 2},
+      "expected": [-1, 8, 5, 2],
+      "tags": ["origin", "changing-answer"]
     }
   ]
 }

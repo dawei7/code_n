@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | Array, Math, Two Pointers, Dynamic Programming, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-smooth-descent-periods-of-a-stock](https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/) |
+| LeetCode | [number-of-smooth-descent-periods-of-a-stock](https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/).
 
 ### Goal
-Count contiguous periods where each price after the first is exactly one less than the previous price. Single-day periods also count.
+
+You are given an integer array `prices`, where `prices[i]` is a stock's price on day $i$. A smooth descent period is one or more contiguous days. After its first day, every price in the period must be lower than the immediately preceding price by exactly $1$.
+
+Count every contiguous period satisfying that rule and return the total. The first day of a period has no preceding-day requirement, so each individual day is itself a valid one-day smooth descent period. Equal prices, larger drops, and price increases break any longer period crossing that boundary.
 
 ### Function Contract
+
 **Inputs**
 
-- `prices`: stock prices by day.
+- `prices`: An integer array of length $n$, where $1 \le n \le 10^5$ and $1 \le \texttt{prices[i]} \le 10^5$.
 
 **Return value**
 
-Return the total number of smooth descent periods.
+Return the number of contiguous smooth descent periods in `prices`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `prices = [3,2,1,4]`
+- Input: `prices = [3, 2, 1, 4]`
 - Output: `7`
+- Explanation: The four one-day periods, `[3, 2]`, `[2, 1]`, and `[3, 2, 1]` are valid.
 
 **Example 2**
 
-- Input: `prices = [8,6,7,7]`
+- Input: `prices = [8, 6, 7, 7]`
 - Output: `4`
+- Explanation: Only the four one-day periods qualify; the drop from $8$ to $6$ is not exactly $1$.
 
 **Example 3**
 
 - Input: `prices = [1]`
 - Output: `1`
-
----
-
-## Solution
-### Approach
-Track the length of the smooth descent run ending at each position. Extend it when `prices[i - 1] - prices[i] == 1`; otherwise reset to one. Add each ending-run length to the answer.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-adjacent-swaps-to-make-a-valid-array](https://leetcode.com/problems/minimum-adjacent-swaps-to-make-a-valid-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-adjacent-swaps-to-make-a-valid-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-adjacent-swaps-to-make-a-valid-array/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You may repeatedly swap two adjacent elements of an integer array. An array is valid when a smallest element occupies its leftmost position and a largest element occupies its rightmost position. If either extreme value occurs more than once, any one of its occurrences may serve as the endpoint.
+
+Return the minimum number of adjacent swaps needed to reach a valid arrangement. Elements between the chosen extremes do not otherwise need to be sorted, and their relative order matters only through the swaps used to move the two selected values.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ positive integers.
+
+The length $n$ and every value are between $1$ and $10^5$.
 
 **Return value**
 
-TODO
+Return the smallest number of adjacent swaps that places a minimum value first and a maximum value last.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3,4,5,5,3,1]`
+- Output: `6`
+
+Use the rightmost `5`, move it two steps right, and move `1` five steps left. The two chosen elements cross once, so that crossing contributes to both movements and the total is $2+5-1=6$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [9]`
+- Output: `0`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The only element is simultaneously a minimum and maximum and is already at both endpoints.

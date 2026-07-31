@@ -8,48 +8,36 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree, Merge Sort, Ordered Set |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-index-of-permutation](https://leetcode.com/problems/find-the-index-of-permutation/) |
+| LeetCode | [find-the-index-of-permutation](https://leetcode.com/problems/find-the-index-of-permutation/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-index-of-permutation/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given an array `perm` of length $n$ containing every integer from $1$ through $n$ exactly once. Consider all $n!$ permutations of these integers arranged in lexicographically sorted order. Between two different permutations, the one with the smaller value at their first differing position comes earlier.
+
+Return the zero-based index at which `perm` appears in that ordering. Because the number of preceding permutations can be very large, return the index modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `perm`: A permutation of `[1, 2, ..., n]`, where $1 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+- The zero-based lexicographic index of `perm` among all permutations of `[1, 2, ..., n]`, reduced modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `perm = [1, 2]`
+- Output: `0`
+- Explanation: The two permutations are `[1, 2]` and `[2, 1]`, so the input is first.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `perm = [3, 1, 2]`
+- Output: `4`
+- Explanation: In order, the six permutations are `[1,2,3]`, `[1,3,2]`, `[2,1,3]`, `[2,3,1]`, `[3,1,2]`, and `[3,2,1]`.

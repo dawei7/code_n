@@ -8,66 +8,45 @@
 | Category | Algorithms |
 | Topics | Array |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-exceed-threshold-value-i](https://leetcode.com/problems/minimum-operations-to-exceed-threshold-value-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-exceed-threshold-value-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-exceed-threshold-value-i/).
 
 ### Goal
-Given a collection of integers and a target threshold, determine the minimum number of operations required to ensure that every element in the collection is at least as large as the threshold. An operation consists of removing any single element from the collection.
+
+You are given a zero-indexed integer array `nums` and an integer threshold `k`. One operation removes one occurrence of the smallest value currently present in the array.
+
+Find the minimum number of operations required until every remaining array element is greater than or equal to `k`. The input guarantees that at least one original element already meets the threshold, so completing the process never requires removing the entire array.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the current collection.
-- `k`: An integer representing the minimum value threshold.
+- `nums`: An integer array of length $n$.
+- `k`: The inclusive lower bound that every remaining value must meet.
+
+The constraints are $1 \le n \le 50$, $1 \le \texttt{nums[i]} \le 10^9$, and $1 \le k \le 10^9$. At least one index $i$ satisfies $\texttt{nums[i]} \ge k$.
 
 **Return value**
 
-- An integer representing the count of elements that are strictly less than `k`.
+Return the minimum number of smallest-element removals needed so that every remaining value is at least `k`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [2, 11, 10, 1, 3]`, `k = 10`
+- Input: `nums = [2, 11, 10, 1, 3], k = 10`
 - Output: `3`
+- Explanation: Removing `1`, `2`, and `3` leaves `[11, 10]`, whose values both meet the threshold.
 
 **Example 2**
 
-- Input: `nums = [1, 1, 2, 4, 9]`, `k = 1`
+- Input: `nums = [1, 1, 2, 4, 9], k = 1`
 - Output: `0`
+- Explanation: Every value is already at least `1`.
 
 **Example 3**
 
-- Input: `nums = [1, 1, 2, 4, 9]`, `k = 9`
+- Input: `nums = [1, 1, 2, 4, 9], k = 9`
 - Output: `4`
-
----
-
-## Solution
-### Approach
-The problem is solved using a linear scan (filtering). We iterate through the array once and count how many elements fail to meet the condition `x >= k`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the number of elements in the input list, as we must inspect each element exactly once.
-- **Space Complexity**: `O(1)`, as we only use a single counter variable regardless of the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int], k: int) -> int:
-    """
-    Calculates the number of elements in nums that are strictly less than k.
-    Removing these elements is the minimum operation to satisfy the threshold.
-    """
-    count = 0
-    for num in nums:
-        if num < k:
-            count += 1
-    return count
-```
-</details>
+- Explanation: The four values below `9` must be removed, leaving the single value `9`.

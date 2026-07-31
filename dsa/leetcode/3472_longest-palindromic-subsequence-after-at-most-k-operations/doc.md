@@ -5,51 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 3472 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | String, Dynamic Programming |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-palindromic-subsequence-after-at-most-k-operations](https://leetcode.com/problems/longest-palindromic-subsequence-after-at-most-k-operations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/longest-palindromic-subsequence-after-at-most-k-operations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-palindromic-subsequence-after-at-most-k-operations/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a lowercase English string `s` and an operation budget `k`. One operation replaces the character at any chosen position by its next or previous alphabet letter. The alphabet is cyclic: moving backward from `'a'` reaches `'z'`, and moving forward from `'z'` reaches `'a'`. A position may be changed repeatedly, and no more than `k` operations may be performed in total.
+
+After making any permitted changes, choose a subsequence of the resulting string. A subsequence keeps the relative order of its selected positions but may omit any other positions. Return the maximum possible length of a palindromic subsequence, meaning one that reads identically from left to right and right to left. The transformed string itself and the chosen subsequence do not need to be returned.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: The lowercase English string whose characters may be changed.
+- `k`: The maximum total number of single-letter cyclic changes.
+
+Let $n=\lvert\texttt{s}\rvert$. The constraints are $1\le n\le200$ and $1\le k\le200$.
 
 **Return value**
 
-TODO
+Return the greatest length of a palindromic subsequence obtainable after at most `k` operations.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abced", k = 2`
+- Output: `3`
+
+Changing `'b'` to `'c'` and `'d'` to `'c'` permits a palindromic subsequence of three `'c'` characters.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaazzz", k = 4`
+- Output: `6`
+
+Four cyclic changes are sufficient to make the full six-character string a palindrome.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "az", k = 1`
+- Output: `2`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The two letters are adjacent across the alphabet boundary, so one operation can make them equal.

@@ -1,0 +1,542 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3601",
+  "cases": [
+    {
+      "id": "sample-improving-drivers",
+      "name": "sample: qualifying drivers ordered by improvement",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "drivers": [
+            {
+              "driver_id": 1,
+              "driver_name": "Alice Johnson"
+            },
+            {
+              "driver_id": 2,
+              "driver_name": "Bob Smith"
+            },
+            {
+              "driver_id": 3,
+              "driver_name": "Carol Davis"
+            },
+            {
+              "driver_id": 4,
+              "driver_name": "David Wilson"
+            },
+            {
+              "driver_id": 5,
+              "driver_name": "Emma Brown"
+            }
+          ],
+          "trips": [
+            {
+              "trip_id": 1,
+              "driver_id": 1,
+              "trip_date": "2023-02-15",
+              "distance_km": 120.5,
+              "fuel_consumed": 10.2
+            },
+            {
+              "trip_id": 2,
+              "driver_id": 1,
+              "trip_date": "2023-03-20",
+              "distance_km": 200.0,
+              "fuel_consumed": 16.5
+            },
+            {
+              "trip_id": 3,
+              "driver_id": 1,
+              "trip_date": "2023-08-10",
+              "distance_km": 150.0,
+              "fuel_consumed": 11.0
+            },
+            {
+              "trip_id": 4,
+              "driver_id": 1,
+              "trip_date": "2023-09-25",
+              "distance_km": 180.0,
+              "fuel_consumed": 12.5
+            },
+            {
+              "trip_id": 5,
+              "driver_id": 2,
+              "trip_date": "2023-01-10",
+              "distance_km": 100.0,
+              "fuel_consumed": 9.0
+            },
+            {
+              "trip_id": 6,
+              "driver_id": 2,
+              "trip_date": "2023-04-15",
+              "distance_km": 250.0,
+              "fuel_consumed": 22.0
+            },
+            {
+              "trip_id": 7,
+              "driver_id": 2,
+              "trip_date": "2023-10-05",
+              "distance_km": 200.0,
+              "fuel_consumed": 15.0
+            },
+            {
+              "trip_id": 8,
+              "driver_id": 3,
+              "trip_date": "2023-03-12",
+              "distance_km": 80.0,
+              "fuel_consumed": 8.5
+            },
+            {
+              "trip_id": 9,
+              "driver_id": 3,
+              "trip_date": "2023-05-18",
+              "distance_km": 90.0,
+              "fuel_consumed": 9.2
+            },
+            {
+              "trip_id": 10,
+              "driver_id": 4,
+              "trip_date": "2023-07-22",
+              "distance_km": 160.0,
+              "fuel_consumed": 12.8
+            },
+            {
+              "trip_id": 11,
+              "driver_id": 4,
+              "trip_date": "2023-11-30",
+              "distance_km": 140.0,
+              "fuel_consumed": 11.0
+            },
+            {
+              "trip_id": 12,
+              "driver_id": 5,
+              "trip_date": "2023-02-28",
+              "distance_km": 110.0,
+              "fuel_consumed": 11.5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "driver_id",
+          "driver_name",
+          "first_half_avg",
+          "second_half_avg",
+          "efficiency_improvement"
+        ],
+        "rows": [
+          [
+            2,
+            "Bob Smith",
+            11.24,
+            13.33,
+            2.1
+          ],
+          [
+            1,
+            "Alice Johnson",
+            11.97,
+            14.02,
+            2.05
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "per-trip-average",
+        "output-order"
+      ]
+    },
+    {
+      "id": "trial-june-july-boundary",
+      "name": "trial: June and July belong to opposite halves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "drivers": [
+            {
+              "driver_id": 1,
+              "driver_name": "Boundary"
+            }
+          ],
+          "trips": [
+            {
+              "trip_id": 1,
+              "driver_id": 1,
+              "trip_date": "2024-06-30",
+              "distance_km": 60.0,
+              "fuel_consumed": 10.0
+            },
+            {
+              "trip_id": 2,
+              "driver_id": 1,
+              "trip_date": "2024-07-01",
+              "distance_km": 80.0,
+              "fuel_consumed": 10.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "driver_id",
+          "driver_name",
+          "first_half_avg",
+          "second_half_avg",
+          "efficiency_improvement"
+        ],
+        "rows": [
+          [
+            1,
+            "Boundary",
+            6.0,
+            8.0,
+            2.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "month-boundary"
+      ]
+    },
+    {
+      "id": "trial-per-trip-mean",
+      "name": "trial: arithmetic mean is not a ratio of totals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "drivers": [
+            {
+              "driver_id": 1,
+              "driver_name": "Mean Matters"
+            }
+          ],
+          "trips": [
+            {
+              "trip_id": 1,
+              "driver_id": 1,
+              "trip_date": "2024-01-10",
+              "distance_km": 100.0,
+              "fuel_consumed": 10.0
+            },
+            {
+              "trip_id": 2,
+              "driver_id": 1,
+              "trip_date": "2024-05-10",
+              "distance_km": 100.0,
+              "fuel_consumed": 20.0
+            },
+            {
+              "trip_id": 3,
+              "driver_id": 1,
+              "trip_date": "2024-09-10",
+              "distance_km": 90.0,
+              "fuel_consumed": 10.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "driver_id",
+          "driver_name",
+          "first_half_avg",
+          "second_half_avg",
+          "efficiency_improvement"
+        ],
+        "rows": [
+          [
+            1,
+            "Mean Matters",
+            7.5,
+            9.0,
+            1.5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "arithmetic-mean",
+        "ratio-of-totals-trap"
+      ]
+    },
+    {
+      "id": "real-missing-half",
+      "name": "real: drivers missing either half are excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "drivers": [
+            {
+              "driver_id": 1,
+              "driver_name": "First Only"
+            },
+            {
+              "driver_id": 2,
+              "driver_name": "Second Only"
+            }
+          ],
+          "trips": [
+            {
+              "trip_id": 1,
+              "driver_id": 1,
+              "trip_date": "2024-02-01",
+              "distance_km": 50.0,
+              "fuel_consumed": 5.0
+            },
+            {
+              "trip_id": 2,
+              "driver_id": 2,
+              "trip_date": "2024-10-01",
+              "distance_km": 60.0,
+              "fuel_consumed": 5.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "driver_id",
+          "driver_name",
+          "first_half_avg",
+          "second_half_avg",
+          "efficiency_improvement"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "missing-half",
+        "empty-output"
+      ]
+    },
+    {
+      "id": "real-equal-and-declining",
+      "name": "real: equality and decline are not improvements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "drivers": [
+            {
+              "driver_id": 1,
+              "driver_name": "Equal"
+            },
+            {
+              "driver_id": 2,
+              "driver_name": "Decline"
+            }
+          ],
+          "trips": [
+            {
+              "trip_id": 1,
+              "driver_id": 1,
+              "trip_date": "2024-01-01",
+              "distance_km": 80.0,
+              "fuel_consumed": 10.0
+            },
+            {
+              "trip_id": 2,
+              "driver_id": 1,
+              "trip_date": "2024-08-01",
+              "distance_km": 40.0,
+              "fuel_consumed": 5.0
+            },
+            {
+              "trip_id": 3,
+              "driver_id": 2,
+              "trip_date": "2024-03-01",
+              "distance_km": 100.0,
+              "fuel_consumed": 10.0
+            },
+            {
+              "trip_id": 4,
+              "driver_id": 2,
+              "trip_date": "2024-11-01",
+              "distance_km": 90.0,
+              "fuel_consumed": 10.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "driver_id",
+          "driver_name",
+          "first_half_avg",
+          "second_half_avg",
+          "efficiency_improvement"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "strict-improvement",
+        "empty-output"
+      ]
+    },
+    {
+      "id": "real-round-only-at-end",
+      "name": "real: a sub-cent improvement survives the filter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "drivers": [
+            {
+              "driver_id": 1,
+              "driver_name": "Tiny Gain"
+            }
+          ],
+          "trips": [
+            {
+              "trip_id": 1,
+              "driver_id": 1,
+              "trip_date": "2024-04-01",
+              "distance_km": 1000.0,
+              "fuel_consumed": 100.0
+            },
+            {
+              "trip_id": 2,
+              "driver_id": 1,
+              "trip_date": "2024-10-01",
+              "distance_km": 1000.4,
+              "fuel_consumed": 100.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "driver_id",
+          "driver_name",
+          "first_half_avg",
+          "second_half_avg",
+          "efficiency_improvement"
+        ],
+        "rows": [
+          [
+            1,
+            "Tiny Gain",
+            10.0,
+            10.0,
+            0.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "rounding-boundary",
+        "unrounded-filter"
+      ]
+    },
+    {
+      "id": "real-name-tie-break",
+      "name": "real: names break equal improvement ties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "drivers": [
+            {
+              "driver_id": 1,
+              "driver_name": "Zoe"
+            },
+            {
+              "driver_id": 2,
+              "driver_name": "Aaron"
+            }
+          ],
+          "trips": [
+            {
+              "trip_id": 1,
+              "driver_id": 1,
+              "trip_date": "2024-01-01",
+              "distance_km": 50.0,
+              "fuel_consumed": 10.0
+            },
+            {
+              "trip_id": 2,
+              "driver_id": 1,
+              "trip_date": "2024-07-01",
+              "distance_km": 70.0,
+              "fuel_consumed": 10.0
+            },
+            {
+              "trip_id": 3,
+              "driver_id": 2,
+              "trip_date": "2024-02-01",
+              "distance_km": 80.0,
+              "fuel_consumed": 10.0
+            },
+            {
+              "trip_id": 4,
+              "driver_id": 2,
+              "trip_date": "2024-08-01",
+              "distance_km": 100.0,
+              "fuel_consumed": 10.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "driver_id",
+          "driver_name",
+          "first_half_avg",
+          "second_half_avg",
+          "efficiency_improvement"
+        ],
+        "rows": [
+          [
+            2,
+            "Aaron",
+            8.0,
+            10.0,
+            2.0
+          ],
+          [
+            1,
+            "Zoe",
+            5.0,
+            7.0,
+            2.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "ordering-tie",
+        "driver-name"
+      ]
+    }
+  ]
+}

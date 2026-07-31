@@ -13,7 +13,7 @@
  * Core state:
  *   - Challenge selection (left rail, current detail).
  *   - Source-of-truth model: ``source`` is a display-only
- *     copy of the active language's solution file on disk. The
+ *     copy of the problem's verified primary-language solution file on disk. The
  *     ``run()`` action re-reads that file before sending it to the
  *     server, so editor changes are picked up automatically.
  *   - Run mode and selected validated cases.
@@ -44,6 +44,7 @@ import * as customProblemSetsApi from '../api/customProblemSets';
 import type { AlgorithmSetId } from '../lib/algorithmSets';
 import { getAlgorithmSetOption, normalizeAlgorithmSet } from '../lib/algorithmSets';
 import { DEFAULT_ACCENT_COLORS, normalizeAccentColors } from '../lib/accentColors';
+import { CHEATER_MODE_STORAGE_KEY } from '../lib/cheaterMode';
 
 
 // Re-export so the inline ``import('...')`` in the action
@@ -56,7 +57,6 @@ export type Topic = 'reference' | 'guided_example' | 'complexity' | 'coden' | 'a
 export const MAX_DEBUG_CASES = 9;
 const allTrialCasesId = '__all_trial__';
 
-const solutionLanguageStorageKey = 'coden-solution-language';
 const userCaseStoragePrefix = 'coden-user-cases-v1';
 
 export interface UserTestCase {
@@ -95,6 +95,9 @@ export interface AppState {
   theme: 'light' | 'dark';
   toggleTheme: () => void;
 
+  cheaterMode: boolean;
+  setCheaterMode: (enabled: boolean) => void;
+
   language: 'en' | 'de';
   setLanguage: (lang: 'en' | 'de') => void;
 
@@ -113,7 +116,7 @@ export interface AppState {
   currentDetail: ChallengeDetail | null;
   openChallengeIds: string[];
 
-  // Display-only copy of the active language's solution file. The
+  // Display-only copy of the problem's primary-language solution file. The
   // run() action re-reads the file from disk before sending it to
   // the server, so editor changes are always picked up. The zustand
   // copy is updated after Run (and on challenge select) so the UI
@@ -175,7 +178,6 @@ export interface AppState {
   loadChallenges(): Promise<void>;
   selectChallenge(id: string): Promise<void>;
   closeChallenge(id: string): void;
-  setCodeLanguage(language: SupportedLanguage): Promise<void>;
   setSource(s: string): void;
   saveSource(s: string): Promise<void>;
   clearSolutionStateAfterReset(challengeIds: string[]): void;
@@ -191,7 +193,7 @@ export interface AppState {
   loadProgress(): Promise<void>;
   markDone(): Promise<void>;
   /**
-   * Force a re-read of the active language's solution from disk. The
+   * Force a re-read of the primary-language solution from disk. The
    * file-on-disk model means a regular Run also picks up the
    * latest content — this is just an explicit refresh for the
    * display copy.
@@ -231,6 +233,12 @@ export const useAppStore = create<AppState>((set, get) => ({
     const next = state.theme === 'dark' ? 'light' : 'dark';
     localStorage.setItem('coden-theme', next);
     return { theme: next };
+  }),
+
+  cheaterMode: localStorage.getItem(CHEATER_MODE_STORAGE_KEY) === 'true',
+  setCheaterMode: (enabled) => set(() => {
+    localStorage.setItem(CHEATER_MODE_STORAGE_KEY, enabled ? 'true' : 'false');
+    return { cheaterMode: enabled };
   }),
 
   language: (localStorage.getItem('coden-language') as 'en' | 'de') || 'en',
@@ -278,7 +286,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   currentDetail: null,
   openChallengeIds: [],
   source: '',
-  codeLanguage: (localStorage.getItem(solutionLanguageStorageKey) as SupportedLanguage) || 'python',
+  codeLanguage: 'python',
   activeVersion: 1,
   versions: [],
   versionNames: {},
@@ -371,7 +379,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       // to the starter. The file is the source of truth — the
       // user edits it in cOde(n), the run action reads it from
       // disk, and the cOde(n) UI shows a display copy.
-      const codeLanguage = get().codeLanguage;
+      const codeLanguage = detail.primary_language;
       let source = starterForLanguage(detail, codeLanguage);
       try {
         const saved = await solutionsApi.getSolution(id, codeLanguage);
@@ -392,6 +400,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       const userCases = loadUserCases(id, codeLanguage);
       set({
         currentDetail: detail,
+        codeLanguage,
         source,
         userCases,
         selectedCaseIds: firstVisibleCase ? [firstVisibleCase] : userCases[0] ? [userCases[0].id] : [],
@@ -420,45 +429,6 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
   },
 
-  async setCodeLanguage(language: SupportedLanguage) {
-    localStorage.setItem(solutionLanguageStorageKey, language);
-    const { currentDetail } = get();
-    set({
-      codeLanguage: language,
-      runResult: null,
-      error: null,
-      aiAnalysis: '',
-      aiMessages: [],
-      aiStatus: 'idle',
-      aiError: '',
-    });
-    if (!currentDetail) return;
-    const userCases = loadUserCases(currentDetail.id, language);
-    const firstVisibleCase = currentDetail.test_cases?.[0]?.id;
-    set({
-      userCases,
-      selectedCaseIds: firstVisibleCase ? [firstVisibleCase] : userCases[0] ? [userCases[0].id] : [],
-      customCaseInput: firstVisibleCase ? '' : userCases[0]?.input || '',
-    });
-    try {
-      const saved = await solutionsApi.getSolution(currentDetail.id, language);
-      set({
-        source: saved.source || starterForLanguage(currentDetail, language),
-        activeVersion: saved.active_version,
-        versions: saved.versions,
-        versionNames: saved.version_names,
-        modifiedVersions: saved.modified_versions,
-      });
-    } catch {
-      set({
-        source: starterForLanguage(currentDetail, language),
-        activeVersion: 1,
-        versions: [],
-        versionNames: {},
-        modifiedVersions: [],
-      });
-    }
-  },
   setPaneSize: (scope, size) => set((state) => {
     const next = { ...state.paneSizes, [scope]: size };
     return {

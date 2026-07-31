@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_2863",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: long subarray ends before increasing tail",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7, 6, 5, 4, 3, 2, 1, 6, 10, 11]},
+      "expected": 8,
+      "tags": ["sample", "long-span"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: interior values may rise and fall",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [57, 55, 50, 60, 61, 58, 63, 59, 64, 60, 63]},
+      "expected": 6,
+      "tags": ["sample", "endpoints-only"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: increasing array has no valid subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": 0,
+      "tags": ["sample", "zero-answer"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one element cannot satisfy strict endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5]},
+      "expected": 0,
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-duplicate-starts",
+      "name": "trial: earliest duplicate start gives the longest span",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 5, 5, 4]},
+      "expected": 4,
+      "tags": ["trial", "duplicates", "strict-inequality"]
+    },
+    {
+      "id": "trial-only-adjacent-descent",
+      "name": "trial: only one adjacent pair qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 3, 2, 4]},
+      "expected": 2,
+      "tags": ["trial", "adjacent"]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "hidden: negative endpoints determine the span",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-987, -255, -657, -81, -733, 980]},
+      "expected": 4,
+      "tags": ["hidden", "negative-values"]
+    },
+    {
+      "id": "real-extreme-full-span",
+      "name": "hidden: extreme endpoints span the full array",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 0, 0, -1000000000]},
+      "expected": 4,
+      "tags": ["hidden", "full-span", "value-bounds"]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: equality never satisfies the condition",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 2, 2, 2]},
+      "expected": 0,
+      "tags": ["hidden", "all-equal", "strict-inequality"]
+    }
+  ]
+}

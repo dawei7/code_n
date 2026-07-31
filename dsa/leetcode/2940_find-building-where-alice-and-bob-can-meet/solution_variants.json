@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Building Where Alice and Bob Can Meet and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sweeps buildings left to right while a min-heap tracks deferred queries by required height.",
+      "time_complexity": "O(N + Q log Q)",
+      "space_complexity": "O(N + Q)"
     }
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_2525",
+  "cases": [
+    {"id": "sample-1", "name": "sample: heavy without bulky", "kind": "sample", "visible": true, "input": {"length": 1000, "width": 35, "height": 700, "mass": 300}, "expected": "Heavy", "tags": ["sample", "heavy"]},
+    {"id": "sample-2", "name": "sample: neither condition", "kind": "sample", "visible": true, "input": {"length": 200, "width": 50, "height": 800, "mass": 50}, "expected": "Neither", "tags": ["sample", "neither"]},
+    {"id": "trial-dimension-threshold", "name": "trial: dimension exactly reaches bulky threshold", "kind": "trial", "visible": true, "input": {"length": 10000, "width": 1, "height": 1, "mass": 99}, "expected": "Bulky", "tags": ["trial", "dimension-boundary"]},
+    {"id": "trial-volume-threshold", "name": "trial: volume exactly reaches bulky threshold", "kind": "trial", "visible": true, "input": {"length": 1000, "width": 1000, "height": 1000, "mass": 99}, "expected": "Bulky", "tags": ["trial", "volume-boundary"]},
+    {"id": "real-both-dimension", "name": "hidden: both through dimension and mass equality", "kind": "real", "visible": false, "input": {"length": 9999, "width": 10000, "height": 1, "mass": 100}, "expected": "Both", "tags": ["hidden", "both", "threshold-equality"]},
+    {"id": "real-both-volume", "name": "hidden: both through volume", "kind": "real", "visible": false, "input": {"length": 2000, "width": 1000, "height": 500, "mass": 100}, "expected": "Both", "tags": ["hidden", "both", "volume"]},
+    {"id": "real-just-below", "name": "hidden: all criteria just below thresholds", "kind": "real", "visible": false, "input": {"length": 9999, "width": 10, "height": 10, "mass": 99}, "expected": "Neither", "tags": ["hidden", "strict-boundary"]},
+    {"id": "real-heavy-at-threshold", "name": "hidden: mass equality alone", "kind": "real", "visible": false, "input": {"length": 1, "width": 1, "height": 1, "mass": 100}, "expected": "Heavy", "tags": ["hidden", "mass-boundary"]}
+  ]
+}

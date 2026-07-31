@@ -8,48 +8,48 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [optimal-partition-of-string](https://leetcode.com/problems/optimal-partition-of-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/optimal-partition-of-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/optimal-partition-of-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Partition a lowercase string `s` into one or more contiguous, nonempty
+substrings. Every original character must belong to exactly one part, so the
+parts appear in order and concatenate back to `s`.
+
+Within each substring, every character must be unique: no letter may occur
+twice in the same part. Return the minimum possible number of substrings in a
+partition satisfying this rule.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string with
+  $1 \le n=\lvert\texttt{s}\rvert\le10^5$.
 
 **Return value**
 
-TODO
+Return the smallest number of contiguous substrings whose concatenation is
+`s` and in which each individual substring contains no repeated character.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abacaba"`
+- Output: `4`
+- Explanation: One optimal partition is `("ab", "a", "ca", "ba")`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "ssssss"`
+- Output: `6`
+- Explanation: Every repeated `s` must begin a new substring.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "abcdefghijklmnopqrstuvwxyz"`
+- Output: `1`
+- Explanation: All 26 characters are distinct, so the whole string is valid.

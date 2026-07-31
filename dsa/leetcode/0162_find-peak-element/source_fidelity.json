@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_162", "frontend_id": "162", "title_slug": "find-peak-element", "url": "https://leetcode.com/problems/find-peak-element/description/", "paid_only": false, "content_sha256": "d425d5e23b728968fc995cd983d38638065eec6f8754d5c43da12c7907325932", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,2,3,1]", "output": "2", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [1,2,1,3,5,6,4]", "output": "5", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "b7f70806b3c8224cab46818c98c2e619cfa1c6ca648415f19e51fdc31ae74a29", "reference/contract.md": "6b03b9ccb69e4c387b2cb99238bdb1dbc2b6b5e875e8bfb1d2de0df5b1f96e84", "reference/examples.md": "ec60f8317df369fd0d7f0a1e6a195c670b6778f5ced4887ba88b1b75917e6ba3", "reference/constraints.md": "facd14c16d19c09ddb1044465a562c7be05889fce3cbfa9d12e09f7d56764525"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

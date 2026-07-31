@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Select Cells in Grid With Maximum Score and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Memoizes decisions by distinct value and a row bitmask that enforces both selection restrictions.",
+      "time_complexity": "O(V m 2^m)",
+      "space_complexity": "O(V 2^m)"
     }
   ]
 }

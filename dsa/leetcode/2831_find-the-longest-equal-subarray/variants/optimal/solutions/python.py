@@ -1,27 +1,21 @@
-from collections import defaultdict
+"""App-local reference solution for LeetCode 2831."""
 
-def solve(nums: list[int], k: int) -> int:
-    # Group the indices of each number
-    pos_map = defaultdict(list)
-    for i, num in enumerate(nums):
-        pos_map[num].append(i)
-    
-    max_len = 0
-    
-    # For each number, find the longest window of indices
-    # such that the number of gaps between them is <= k
-    for val in pos_map:
-        indices = pos_map[val]
+from collections import defaultdict
+from typing import List
+
+
+def solve(nums: List[int], k: int) -> int:
+    """Return the longest equal subarray obtainable with at most k deletions."""
+    positions_by_value = defaultdict(list)
+    for index, value in enumerate(nums):
+        positions_by_value[value].append(index)
+
+    best = 0
+    for positions in positions_by_value.values():
         left = 0
-        for right in range(len(indices)):
-            # The number of elements to delete to make the subarray 
-            # from indices[left] to indices[right] equal is:
-            # (total distance between indices) - (number of elements in the window - 1)
-            # which simplifies to: (indices[right] - indices[left]) - (right - left)
-            while (indices[right] - indices[left]) - (right - left) > k:
+        for right in range(len(positions)):
+            while positions[right] - positions[left] - (right - left) > k:
                 left += 1
-            
-            # The length of the equal subarray is the number of elements in the window
-            max_len = max(max_len, right - left + 1)
-            
-    return max_len
+            best = max(best, right - left + 1)
+
+    return best

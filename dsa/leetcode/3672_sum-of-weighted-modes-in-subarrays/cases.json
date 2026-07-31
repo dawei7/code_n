@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3672",
+  "cases": [
+    {
+      "id": "sample-repeated-mode",
+      "name": "sample: repeated two wins both windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "repeated-mode"
+      ]
+    },
+    {
+      "id": "sample-tie",
+      "name": "sample: every window uses smallest tied value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "sample-changing-mode",
+      "name": "sample: mode changes from four to three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          4,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "mode-change"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "trial: singleton windows sum their values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-whole-array-tie",
+      "name": "trial: whole array tie chooses smaller value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "k-equals-n",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: every window has one repeated mode",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 30,
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "real-outgoing-mode",
+      "name": "hidden: removing the mode changes the winner",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          1,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "outgoing-mode",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-value-boundary",
+      "name": "hidden: tied maximum-domain values choose the smaller",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          99999,
+          100000
+        ],
+        "k": 2
+      },
+      "expected": 199998,
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-many-ties",
+      "name": "hidden: increasing distinct windows use their first value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "all-distinct",
+        "sliding"
+      ]
+    }
+  ]
+}

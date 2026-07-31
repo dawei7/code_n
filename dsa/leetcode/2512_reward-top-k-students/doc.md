@@ -5,82 +5,41 @@
 | Source | LeetCode |
 | Frontend ID | 2512 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, String, Sorting, Heap (Priority Queue) |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [reward-top-k-students](https://leetcode.com/problems/reward-top-k-students/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/reward-top-k-students/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/reward-top-k-students/).
-
 ### Goal
-Calculate the total score for each student based on their feedback reports. Positive words add 3 points, negative words subtract 1 point, and neutral words have no effect. Return the IDs of the top K students, sorted by score in descending order. If scores are tied, the student with the smaller ID comes first.
+Two lists identify words with positive and negative meanings. No word appears in both lists. Every student begins with zero points: each occurrence of a positive word in that student's report adds $3$ points, each occurrence of a negative word subtracts $1$ point, and every other word contributes nothing.
+
+The 0-indexed arrays `report` and `student_id` have the same length. Report `report[i]` belongs to the student whose unique identifier is `student_id[i]`.
+
+Rank the students in non-increasing order of their scores. When two students have the same score, the student with the smaller identifier ranks higher. Return the identifiers of the top `k` students in ranking order.
 
 ### Function Contract
 **Inputs**
 
-- `positive_feedback`: A list of strings representing words that increase a student's score.
-- `negative_feedback`: A list of strings representing words that decrease a student's score.
-- `report`: A list of strings where each string contains space-separated words for a specific student.
-- `student_id`: A list of integers representing the unique ID for each student corresponding to the `report` index.
-- `k`: An integer representing the number of top-scoring students to return.
+- `positive_feedback`: A nonempty list of distinct lowercase feedback words worth $3$ points per occurrence.
+- `negative_feedback`: A nonempty list of distinct lowercase feedback words worth $-1$ point per occurrence.
+- `report`: A nonempty list of lowercase, single-space-separated student reports.
+- `student_id`: A list of unique positive student identifiers aligned with `report`.
+- `k`: The number of highest-ranked student identifiers to return.
+
+The two feedback lists are disjoint. Let $n = \lvert\texttt{report}\rvert = \lvert\texttt{student_id}\rvert$; then $1 \le n \le 10^4$ and $1 \le k \le n$. Each report has length from $1$ through $100$, each feedback word has length from $1$ through $100$, and every student identifier is at most $10^9$.
 
 **Return value**
 
-- A list of integers containing the IDs of the top `k` students, ordered by score (descending) and then by ID (ascending).
+A list containing exactly `k` student identifiers, ordered first by decreasing score and then by increasing identifier.
 
 ### Examples
 **Example 1**
 
 - Input: `positive_feedback = ["smart","brilliant","studious"], negative_feedback = ["not"], report = ["this student is studious","the student is smart"], student_id = [1,2], k = 2`
 - Output: `[1,2]`
+- Explanation: Both students earn $3$ points. Student `1` ranks first because its identifier is smaller.
 
 **Example 2**
 
 - Input: `positive_feedback = ["smart","brilliant","studious"], negative_feedback = ["not"], report = ["this student is not studious","the student is smart"], student_id = [1,2], k = 2`
 - Output: `[2,1]`
-
-**Example 3**
-
-- Input: `positive_feedback = ["f"], negative_feedback = ["f"], report = ["f"], student_id = [1], k = 1`
-- Output: `[1]`
-
----
-
-## Solution
-### Approach
-The solution utilizes a Hash Set for O(1) average-time lookups of feedback words. The core logic involves mapping each student to a calculated score and then performing a custom sort (or using a heap) based on the primary key (score descending) and secondary key (ID ascending).
-
-### Complexity Analysis
-- **Time Complexity**: O(N * M + S log S), where N is the number of reports, M is the average number of words per report, and S is the number of students. We iterate through all words once, and then sort the student list.
-- **Space Complexity**: O(P + N), where P is the number of unique feedback words stored in the hash sets and N is the number of students stored in the results list.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(positive_feedback: list[str], negative_feedback: list[str], report: list[str], student_id: list[int], k: int) -> list[int]:
-    pos_set = set(positive_feedback)
-    neg_set = set(negative_feedback)
-
-    student_scores = []
-
-    for i in range(len(student_id)):
-        score = 0
-        words = report[i].split()
-        for word in words:
-            if word in pos_set:
-                score += 3
-            elif word in neg_set:
-                score -= 1
-
-        # We store (-score, id) to use Python's default sort/heap behavior:
-        # Sort by score descending (via negative score) and ID ascending.
-        student_scores.append((-score, student_id[i]))
-
-    student_scores.sort()
-
-    return [student_scores[i][1] for i in range(k)]
-```
-</details>
+- Explanation: Student `1` earns $3-1=2$ points, while student `2` earns $3$ points.

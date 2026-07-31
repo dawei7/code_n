@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Positive Sum Subarray  and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains one sliding window for each allowed length and tracks the smallest strictly positive sum.",
+      "time_complexity": "O(n(r - l + 1))",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_68", "frontend_id": "68",
+    "title_slug": "text-justification",
+    "url": "https://leetcode.com/problems/text-justification/description/",
+    "paid_only": false, "content_sha256": "9ea9b38fc08e8ea143103c8570c38abc731616b315507cac02a069f823b5b3f6", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "words = [\"This\", \"is\", \"an\", \"example\", \"of\", \"text\", \"justification.\"], maxWidth = 16", "output": "[\"This    is    an\", \"example  of text\", \"justification.  \"]", "has_explanation": false},
+      {"ordinal": 2, "input": "words = [\"What\",\"must\",\"be\",\"acknowledgment\",\"shall\",\"be\"], maxWidth = 16", "output": "[\"What   must   be\", \"acknowledgment  \", \"shall be        \"]", "has_explanation": true},
+      {"ordinal": 3, "input": "words = [\"Science\",\"is\",\"what\",\"we\",\"understand\",\"well\",\"enough\",\"to\",\"explain\",\"to\",\"a\",\"computer.\",\"Art\",\"is\",\"everything\",\"else\",\"we\",\"do\"], maxWidth = 20", "output": "[\"Science  is  what we\", \"understand      well\", \"enough to explain to\", \"a  computer.  Art is\", \"everything  else  we\", \"do                  \"]", "has_explanation": false}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d4194d3cac86a653a5df4d97f0fcede807b8d397ad03e2e9518f617497397c08",
+      "reference/contract.md": "9795e75a162a381ef32cdc9552e9060485f79060f55e6122e29eb9cb0741bc29",
+      "reference/note.md": "5fc8d7589c9f678e29f45fa681e26c6636494f03c2ee73ff7d1857d06101f751",
+      "reference/examples.md": "70c021b386a31b1808ce629a3d7874ca32d17dc6eb7bab25cbe0035dd790a9d2",
+      "reference/constraints.md": "bb0ce982f7753005dce530fc7379f03e0b3a925b7019c197ce35e7aa14d1fbf8"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

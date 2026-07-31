@@ -1,0 +1,12 @@
+{"schema_version":1,"challenge_id":"lc_2709","cases":[
+{"id":"sample-factor-bridge","name":"sample: one value bridges two primes","kind":"sample","visible":true,"input":{"nums":[2,3,6]},"expected":true,"tags":["sample","bridge"]},
+{"id":"sample-isolated-prime","name":"sample: prime value remains isolated","kind":"sample","visible":true,"input":{"nums":[3,9,5]},"expected":false,"tags":["sample","disconnected"]},
+{"id":"sample-connected-chain","name":"sample: different shared factors connect every index","kind":"sample","visible":true,"input":{"nums":[4,3,12,8]},"expected":true,"tags":["sample","connected"]},
+{"id":"trial-single-one","name":"trial: a lone one is vacuously connected","kind":"trial","visible":true,"input":{"nums":[1]},"expected":true,"tags":["single-element","one"]},
+{"id":"trial-one-isolated","name":"trial: one is isolated in a larger array","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":false,"tags":["one","disconnected"]},
+{"id":"real-duplicate-composites","name":"hidden: duplicate composite values connect","kind":"real","visible":false,"input":{"nums":[6,6,6]},"expected":true,"tags":["hidden","duplicates"]},
+{"id":"real-indirect-chain","name":"hidden: connectivity uses a chain of primes","kind":"real","visible":false,"input":{"nums":[6,35,10,21]},"expected":true,"tags":["hidden","indirect"]},
+{"id":"real-two-primes","name":"hidden: distinct primes are disconnected","kind":"real","visible":false,"input":{"nums":[97,89]},"expected":false,"tags":["hidden","primes"]},
+{"id":"real-shared-large-prime","name":"hidden: large common factor connects values","kind":"real","visible":false,"input":{"nums":[9973,9973]},"expected":true,"tags":["hidden","large-prime"]},
+{"id":"real-two-components","name":"hidden: internally connected groups remain separate","kind":"real","visible":false,"input":{"nums":[6,10,15,49,77]},"expected":false,"tags":["hidden","components"]}
+]}

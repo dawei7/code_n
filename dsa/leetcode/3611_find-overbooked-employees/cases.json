@@ -1,0 +1,630 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3611",
+  "cases": [
+    {
+      "id": "sample-overbooked-employees",
+      "name": "sample: Alice and David each have two heavy weeks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Alice Johnson",
+              "department": "Engineering"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Bob Smith",
+              "department": "Marketing"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Carol Davis",
+              "department": "Sales"
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "David Wilson",
+              "department": "Engineering"
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "Emma Brown",
+              "department": "HR"
+            }
+          ],
+          "meetings": [
+            {
+              "meeting_id": 1,
+              "employee_id": 1,
+              "meeting_date": "2023-06-05",
+              "meeting_type": "Team",
+              "duration_hours": 8.0
+            },
+            {
+              "meeting_id": 2,
+              "employee_id": 1,
+              "meeting_date": "2023-06-06",
+              "meeting_type": "Client",
+              "duration_hours": 6.0
+            },
+            {
+              "meeting_id": 3,
+              "employee_id": 1,
+              "meeting_date": "2023-06-07",
+              "meeting_type": "Training",
+              "duration_hours": 7.0
+            },
+            {
+              "meeting_id": 4,
+              "employee_id": 1,
+              "meeting_date": "2023-06-12",
+              "meeting_type": "Team",
+              "duration_hours": 12.0
+            },
+            {
+              "meeting_id": 5,
+              "employee_id": 1,
+              "meeting_date": "2023-06-13",
+              "meeting_type": "Client",
+              "duration_hours": 9.0
+            },
+            {
+              "meeting_id": 6,
+              "employee_id": 2,
+              "meeting_date": "2023-06-05",
+              "meeting_type": "Team",
+              "duration_hours": 15.0
+            },
+            {
+              "meeting_id": 7,
+              "employee_id": 2,
+              "meeting_date": "2023-06-06",
+              "meeting_type": "Client",
+              "duration_hours": 8.0
+            },
+            {
+              "meeting_id": 8,
+              "employee_id": 2,
+              "meeting_date": "2023-06-12",
+              "meeting_type": "Training",
+              "duration_hours": 10.0
+            },
+            {
+              "meeting_id": 9,
+              "employee_id": 3,
+              "meeting_date": "2023-06-05",
+              "meeting_type": "Team",
+              "duration_hours": 4.0
+            },
+            {
+              "meeting_id": 10,
+              "employee_id": 3,
+              "meeting_date": "2023-06-06",
+              "meeting_type": "Client",
+              "duration_hours": 3.0
+            },
+            {
+              "meeting_id": 11,
+              "employee_id": 4,
+              "meeting_date": "2023-06-05",
+              "meeting_type": "Team",
+              "duration_hours": 25.0
+            },
+            {
+              "meeting_id": 12,
+              "employee_id": 4,
+              "meeting_date": "2023-06-19",
+              "meeting_type": "Client",
+              "duration_hours": 22.0
+            },
+            {
+              "meeting_id": 13,
+              "employee_id": 5,
+              "meeting_date": "2023-06-05",
+              "meeting_type": "Training",
+              "duration_hours": 2.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "department",
+          "meeting_heavy_weeks"
+        ],
+        "rows": [
+          [
+            1,
+            "Alice Johnson",
+            "Engineering",
+            2
+          ],
+          [
+            4,
+            "David Wilson",
+            "Engineering",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "weekly-aggregation",
+        "output-order"
+      ]
+    },
+    {
+      "id": "trial-strict-threshold",
+      "name": "trial: exactly twenty is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Exact Twenty",
+              "department": "QA"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Just Over",
+              "department": "QA"
+            }
+          ],
+          "meetings": [
+            {
+              "meeting_id": 1,
+              "employee_id": 1,
+              "meeting_date": "2024-02-05",
+              "meeting_type": "Team",
+              "duration_hours": 20.0
+            },
+            {
+              "meeting_id": 2,
+              "employee_id": 1,
+              "meeting_date": "2024-02-12",
+              "meeting_type": "Client",
+              "duration_hours": 20.0
+            },
+            {
+              "meeting_id": 3,
+              "employee_id": 2,
+              "meeting_date": "2024-02-05",
+              "meeting_type": "Team",
+              "duration_hours": 20.1
+            },
+            {
+              "meeting_id": 4,
+              "employee_id": 2,
+              "meeting_date": "2024-02-12",
+              "meeting_type": "Training",
+              "duration_hours": 20.1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "department",
+          "meeting_heavy_weeks"
+        ],
+        "rows": [
+          [
+            2,
+            "Just Over",
+            "QA",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "strict-threshold",
+        "decimal-hours"
+      ]
+    },
+    {
+      "id": "trial-monday-sunday",
+      "name": "trial: Monday through Sunday share one week",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Monday Sunday",
+              "department": "Ops"
+            }
+          ],
+          "meetings": [
+            {
+              "meeting_id": 1,
+              "employee_id": 1,
+              "meeting_date": "2024-01-01",
+              "meeting_type": "Team",
+              "duration_hours": 10.0
+            },
+            {
+              "meeting_id": 2,
+              "employee_id": 1,
+              "meeting_date": "2024-01-07",
+              "meeting_type": "Client",
+              "duration_hours": 11.0
+            },
+            {
+              "meeting_id": 3,
+              "employee_id": 1,
+              "meeting_date": "2024-01-08",
+              "meeting_type": "Training",
+              "duration_hours": 11.0
+            },
+            {
+              "meeting_id": 4,
+              "employee_id": 1,
+              "meeting_date": "2024-01-14",
+              "meeting_type": "Team",
+              "duration_hours": 10.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "department",
+          "meeting_heavy_weeks"
+        ],
+        "rows": [
+          [
+            1,
+            "Monday Sunday",
+            "Ops",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "week-boundary",
+        "monday-start"
+      ]
+    },
+    {
+      "id": "trial-year-boundary",
+      "name": "trial: adjacent weeks remain distinct across New Year",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Year Boundary",
+              "department": "Finance"
+            }
+          ],
+          "meetings": [
+            {
+              "meeting_id": 1,
+              "employee_id": 1,
+              "meeting_date": "2023-12-25",
+              "meeting_type": "Team",
+              "duration_hours": 10.0
+            },
+            {
+              "meeting_id": 2,
+              "employee_id": 1,
+              "meeting_date": "2023-12-31",
+              "meeting_type": "Client",
+              "duration_hours": 11.0
+            },
+            {
+              "meeting_id": 3,
+              "employee_id": 1,
+              "meeting_date": "2024-01-01",
+              "meeting_type": "Training",
+              "duration_hours": 12.0
+            },
+            {
+              "meeting_id": 4,
+              "employee_id": 1,
+              "meeting_date": "2024-01-07",
+              "meeting_type": "Team",
+              "duration_hours": 9.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "department",
+          "meeting_heavy_weeks"
+        ],
+        "rows": [
+          [
+            1,
+            "Year Boundary",
+            "Finance",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "year-boundary"
+      ]
+    },
+    {
+      "id": "real-count-and-name-order",
+      "name": "hidden: count descending then name ascending",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Amy",
+              "department": "A"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Zoe",
+              "department": "B"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Cal",
+              "department": "C"
+            }
+          ],
+          "meetings": [
+            {
+              "meeting_id": 1,
+              "employee_id": 1,
+              "meeting_date": "2024-03-04",
+              "meeting_type": "Team",
+              "duration_hours": 21.0
+            },
+            {
+              "meeting_id": 2,
+              "employee_id": 1,
+              "meeting_date": "2024-03-11",
+              "meeting_type": "Team",
+              "duration_hours": 21.0
+            },
+            {
+              "meeting_id": 3,
+              "employee_id": 2,
+              "meeting_date": "2024-03-04",
+              "meeting_type": "Team",
+              "duration_hours": 21.0
+            },
+            {
+              "meeting_id": 4,
+              "employee_id": 2,
+              "meeting_date": "2024-03-11",
+              "meeting_type": "Team",
+              "duration_hours": 21.0
+            },
+            {
+              "meeting_id": 5,
+              "employee_id": 2,
+              "meeting_date": "2024-03-18",
+              "meeting_type": "Team",
+              "duration_hours": 21.0
+            },
+            {
+              "meeting_id": 6,
+              "employee_id": 3,
+              "meeting_date": "2024-03-04",
+              "meeting_type": "Team",
+              "duration_hours": 21.0
+            },
+            {
+              "meeting_id": 7,
+              "employee_id": 3,
+              "meeting_date": "2024-03-11",
+              "meeting_type": "Team",
+              "duration_hours": 21.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "department",
+          "meeting_heavy_weeks"
+        ],
+        "rows": [
+          [
+            2,
+            "Zoe",
+            "B",
+            3
+          ],
+          [
+            1,
+            "Amy",
+            "A",
+            2
+          ],
+          [
+            3,
+            "Cal",
+            "C",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "output-order",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-nonqualifying-employees",
+      "name": "hidden: one heavy week and no meetings are excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "One Heavy",
+              "department": "Sales"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "No Meetings",
+              "department": "HR"
+            }
+          ],
+          "meetings": [
+            {
+              "meeting_id": 1,
+              "employee_id": 1,
+              "meeting_date": "2024-04-01",
+              "meeting_type": "Client",
+              "duration_hours": 25.0
+            },
+            {
+              "meeting_id": 2,
+              "employee_id": 1,
+              "meeting_date": "2024-04-08",
+              "meeting_type": "Client",
+              "duration_hours": 19.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "department",
+          "meeting_heavy_weeks"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "minimum-weeks",
+        "no-meetings"
+      ]
+    },
+    {
+      "id": "real-same-day-types",
+      "name": "hidden: all meeting types and same-day rows contribute",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Many Meetings",
+              "department": "Legal"
+            }
+          ],
+          "meetings": [
+            {
+              "meeting_id": 1,
+              "employee_id": 1,
+              "meeting_date": "2024-05-06",
+              "meeting_type": "Team",
+              "duration_hours": 7.0
+            },
+            {
+              "meeting_id": 2,
+              "employee_id": 1,
+              "meeting_date": "2024-05-06",
+              "meeting_type": "Client",
+              "duration_hours": 7.0
+            },
+            {
+              "meeting_id": 3,
+              "employee_id": 1,
+              "meeting_date": "2024-05-06",
+              "meeting_type": "Training",
+              "duration_hours": 7.0
+            },
+            {
+              "meeting_id": 4,
+              "employee_id": 1,
+              "meeting_date": "2024-05-13",
+              "meeting_type": "Team",
+              "duration_hours": 10.0
+            },
+            {
+              "meeting_id": 5,
+              "employee_id": 1,
+              "meeting_date": "2024-05-14",
+              "meeting_type": "Client",
+              "duration_hours": 11.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "department",
+          "meeting_heavy_weeks"
+        ],
+        "rows": [
+          [
+            1,
+            "Many Meetings",
+            "Legal",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "meeting-types",
+        "same-day"
+      ]
+    }
+  ]
+}

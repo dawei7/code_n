@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_3330",
+  "cases": [
+    {
+      "id": "sample-multiple-runs",
+      "name": "sample: repeated b and c runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abbcccc"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "sample-distinct",
+      "name": "sample: all characters distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abcd"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "no-error"
+      ]
+    },
+    {
+      "id": "sample-single-run",
+      "name": "sample: one repeated run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aaaa"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "single-run"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: minimum one-character word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-three-pairs",
+      "name": "trial: three length-two runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aabbcc"
+      },
+      "expected": 4,
+      "tags": [
+        "several-runs",
+        "pairs"
+      ]
+    },
+    {
+      "id": "real-separated-repeat",
+      "name": "real: equal letters separated by other characters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abca"
+      },
+      "expected": 1,
+      "tags": [
+        "nonconsecutive",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-mixed-run-lengths",
+      "name": "real: several different run lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aaabbaa"
+      },
+      "expected": 5,
+      "tags": [
+        "mixed-lengths",
+        "hidden"
+      ]
+    }
+  ]
+}

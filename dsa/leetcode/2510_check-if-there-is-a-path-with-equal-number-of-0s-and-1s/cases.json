@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2510",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: a balanced path exists",
+      "kind": "sample",
+      "visible": true,
+      "input": { "grid": [[0,1,0,0],[0,1,0,0],[1,0,1,0]] },
+      "expected": true,
+      "tags": ["sample", "balanced-path"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no balanced path exists",
+      "kind": "sample",
+      "visible": true,
+      "input": { "grid": [[1,1,0],[0,0,1],[1,0,0]] },
+      "expected": false,
+      "tags": ["sample", "unreachable-balance"]
+    },
+    {
+      "id": "trial-odd-path-length",
+      "name": "trial: an odd number of visited cells cannot split equally",
+      "kind": "trial",
+      "visible": true,
+      "input": { "grid": [[0,1],[1,0]] },
+      "expected": false,
+      "tags": ["trial", "parity"]
+    },
+    {
+      "id": "trial-small-balanced",
+      "name": "trial: a small grid has one balanced route",
+      "kind": "trial",
+      "visible": true,
+      "input": { "grid": [[0,1,1],[1,0,1]] },
+      "expected": true,
+      "tags": ["trial", "multiple-routes"]
+    },
+    {
+      "id": "trial-all-zeros",
+      "name": "trial: every path contains only zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": { "grid": [[0,0,0,0],[0,0,0,0],[0,0,0,0]] },
+      "expected": false,
+      "tags": ["trial", "all-zero"]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "hidden: every path contains only ones",
+      "kind": "real",
+      "visible": false,
+      "input": { "grid": [[1,1,1],[1,1,1]] },
+      "expected": false,
+      "tags": ["hidden", "all-one"]
+    },
+    {
+      "id": "real-only-balanced-route",
+      "name": "hidden: balance requires choosing the lower route",
+      "kind": "real",
+      "visible": false,
+      "input": { "grid": [[0,0,0,1],[1,1,0,1],[1,1,1,0]] },
+      "expected": true,
+      "tags": ["hidden", "route-choice"]
+    },
+    {
+      "id": "real-narrow-grid",
+      "name": "hidden: two-row grid tracks several reachable counts",
+      "kind": "real",
+      "visible": false,
+      "input": { "grid": [[1,0,1,0,1],[0,1,0,1,0]] },
+      "expected": true,
+      "tags": ["hidden", "narrow-grid"]
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3234",
+  "cases": [
+    {
+      "id": "sample-zero-prefix",
+      "name": "sample: dominant suffixes after zero prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "00011"
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed dominant substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "101101"
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-all-zeros",
+      "name": "trial: all zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0000"
+      },
+      "expected": 0,
+      "tags": [
+        "zeroes"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: all ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1111"
+      },
+      "expected": 10,
+      "tags": [
+        "ones"
+      ]
+    },
+    {
+      "id": "real-equality-two-chars",
+      "name": "real: equality with one zero and one one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "01"
+      },
+      "expected": 2,
+      "tags": [
+        "equality"
+      ]
+    },
+    {
+      "id": "real-two-leading-zeros",
+      "name": "real: two leading zeroes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "001"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-one-zero-three-ones",
+      "name": "real: one zero before an all-one run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0111"
+      },
+      "expected": 9,
+      "tags": [
+        "one-zero"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "real: alternating bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0101"
+      },
+      "expected": 6,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-two-zero-block",
+      "name": "real: centered zero block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "110011"
+      },
+      "expected": 11,
+      "tags": [
+        "zero-block"
+      ]
+    },
+    {
+      "id": "real-dense-one-block",
+      "name": "real: dense ones between zero runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0001111000"
+      },
+      "expected": 21,
+      "tags": [
+        "mixed",
+        "zero-block"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_81", "frontend_id": "81",
+    "title_slug": "search-in-rotated-sorted-array-ii",
+    "url": "https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/",
+    "paid_only": false, "content_sha256": "0bf831680367ed3527577ce5977abd8a16635971c071b6afbb11bf26905ad70c", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [2,5,6,0,0,1,2], target = 0", "output": "true", "has_explanation": false},
+      {"ordinal": 2, "input": "nums = [2,5,6,0,0,1,2], target = 3", "output": "false", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8d406e2672daf9866676a33a4adcd8e02196bbd983eaad25c8f9e8d91ecd042b",
+      "reference/contract.md": "cea476f9f09d0271bbc3c0a06a3d35ad98cb8d5f7793ce68a4e149b8b2d68a5d",
+      "reference/examples.md": "a44c2fad28ca37ab970526bf91ac1dd4dcd875d5e52405807b31f83eb8c28273",
+      "reference/constraints.md": "aa143528bc2df48362a2fec200eeff63f7257bdcd7e6a1368388324289e9ab1e",
+      "reference/follow_up.md": "24ed1a068dd65f7d58c16ead4e3db5f49afbdeff75baff611ed8dc3fe8fea4c0"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

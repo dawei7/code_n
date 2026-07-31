@@ -3,79 +3,93 @@
   "cases": [
     {
       "id": "sample-two-removals",
-      "name": "sample: two minimum-pair removals",
+      "name": "sample: two minimum-pair replacements",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          2,
-          3,
-          1
-        ]
-      },
+      "input": {"nums": [5, 2, 3, 1]},
       "expected": 2,
-      "tags": [
-        "sample",
-        "simulation"
-      ]
+      "tags": ["sample", "simulation"]
     },
     {
       "id": "sample-already-sorted",
       "name": "sample: already non-decreasing",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          2
-        ]
-      },
+      "input": {"nums": [1, 2, 2]},
       "expected": 0,
-      "tags": [
-        "sample",
-        "sorted"
-      ]
+      "tags": ["sample", "sorted", "duplicates"]
     },
     {
-      "id": "trial-leftmost-tie",
-      "name": "trial: leftmost minimum pair tie",
+      "id": "trial-singleton",
+      "name": "trial: one element is vacuously sorted",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          4,
-          1,
-          3,
-          2
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "trial",
-        "tie"
-      ]
+      "input": {"nums": [7]},
+      "expected": 0,
+      "tags": ["trial", "minimum-length"]
     },
     {
-      "id": "real-negatives",
-      "name": "real: negative values affect pair sums",
+      "id": "trial-leftmost-tie-matters",
+      "name": "trial: leftmost equal-sum pair finishes immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-3, -2, -3]},
+      "expected": 1,
+      "tags": ["trial", "leftmost-tie", "negative-values"]
+    },
+    {
+      "id": "real-decreasing-negatives",
+      "name": "real: every element is eventually merged",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          3,
-          -5,
-          4,
-          -1,
-          2
-        ]
-      },
+      "input": {"nums": [-1, -2, -3, -4]},
+      "expected": 3,
+      "tags": ["real", "worst-case-operations", "negative-values"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "real: opposite input bounds form zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000, -1000]},
+      "expected": 1,
+      "tags": ["real", "value-boundary"]
+    },
+    {
+      "id": "real-minimum-pair-not-inversion",
+      "name": "real: mandatory minimum pair can already be ordered",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-5, -4, 10, 0]},
+      "expected": 3,
+      "tags": ["real", "global-minimum", "semantic-trap"]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "real: equal values need no operation",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 0, 0, 0]},
+      "expected": 0,
+      "tags": ["real", "duplicates", "sorted"]
+    },
+    {
+      "id": "real-changing-neighbor-sums",
+      "name": "real: a replacement changes the next chosen pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 1, 3, 2]},
+      "expected": 2,
+      "tags": ["real", "dynamic-pair-sums"]
+    },
+    {
+      "id": "real-mixed-signs-to-singleton",
+      "name": "real: mixed signs require all four replacements",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, -5, 4, -1, 2]},
       "expected": 4,
-      "tags": [
-        "real",
-        "simulation"
-      ]
+      "tags": ["real", "mixed-signs", "worst-case-operations"]
     }
   ]
 }

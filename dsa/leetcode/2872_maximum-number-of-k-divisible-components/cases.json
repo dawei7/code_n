@@ -1,0 +1,249 @@
+{
+  "challenge_id": "lc_2872",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one edge creates two divisible components",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "values": [
+          1,
+          8,
+          1,
+          4,
+          4
+        ],
+        "k": 6
+      },
+      "tags": [
+        "sample",
+        "tree-dp"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two cuts create three divisible components",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "values": [
+          3,
+          0,
+          6,
+          1,
+          5,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "tags": [
+        "sample",
+        "branching-tree"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: one divisible node is one component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "edges": [],
+        "values": [
+          6
+        ],
+        "k": 6
+      },
+      "tags": [
+        "trial",
+        "minimum-tree"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-every-node-divisible",
+      "name": "trial: every node can be isolated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "values": [
+          3,
+          6,
+          0,
+          9
+        ],
+        "k": 3
+      },
+      "tags": [
+        "trial",
+        "all-components"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-only-whole-tree",
+      "name": "hidden: no proper subtree has divisible sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "values": [
+          1,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "tags": [
+        "hidden",
+        "no-cut"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-zero-leaf",
+      "name": "hidden: a zero-valued leaf separates independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "values": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "tags": [
+        "hidden",
+        "zero-subtree"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-nested-cuts",
+      "name": "hidden: divisible nested subtrees are cut bottom-up",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "values": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "k": 3
+      },
+      "tags": [
+        "hidden",
+        "postorder"
+      ],
+      "expected": 3
+    }
+  ]
+}

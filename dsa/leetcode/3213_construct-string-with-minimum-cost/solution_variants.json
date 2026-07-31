@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Construct String with Minimum Cost and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses distinct-length rolling-hash lookups inside prefix-cost dynamic programming.",
+      "time_complexity": "O(N D + S)",
+      "space_complexity": "O(N + S)"
     }
   ]
 }

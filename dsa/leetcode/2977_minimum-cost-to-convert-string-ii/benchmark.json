@@ -1,62 +1,95 @@
 {
-  "challenge_id": "lc_2977",
-  "cases": [
-    {
-      "id": "benchmark-substring-dp-840",
-      "name": "benchmark: repeated substring conversion DP",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "source": "abcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbcabcabcaabcbc",
-        "target": "bcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaabcabcabbcaabcabcabcabcaa",
-        "original": [
-          "ab",
-          "bc",
-          "ca",
-          "abc",
-          "bca",
-          "cab",
-          "aa",
-          "bb",
-          "cc",
-          "ac",
-          "ba",
-          "cb"
-        ],
-        "changed": [
-          "abc",
-          "cc",
-          "bc",
-          "aa",
-          "cb",
-          "bca",
-          "ac",
-          "ca",
-          "bb",
-          "ab",
-          "cab",
-          "ba"
-        ],
-        "cost": [
-          1,
-          14,
-          10,
-          6,
-          2,
-          15,
-          11,
-          7,
-          3,
-          16,
-          12,
-          8
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "benchmark",
-        "trie-dp"
-      ]
-    }
-  ]
+    "challenge_id":  "lc_2977",
+    "cases":  [
+                  {
+                      "id":  "benchmark-length-16",
+                      "name":  "benchmark: nested rule prefixes at length 16",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  16,
+                      "input":  {
+                                    "source":  "aaaaaaaaaaaaaaaa",
+                                    "target":  "bbbbbbbbbbbbbbbb",
+                                    "original":  [
+                                                     "a",
+                                                     "aaaaaaaaaaaaaaaa"
+                                                 ],
+                                    "changed":  [
+                                                    "b",
+                                                    "bbbbbbbbbbbbbbbb"
+                                                ],
+                                    "cost":  [
+                                                 1,
+                                                 15
+                                             ]
+                                },
+                      "expected":  15,
+                      "tags":  [
+                                   "benchmark",
+                                   "scaling",
+                                   "string-length",
+                                   "cubic-substring-materialization-baseline"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-length-32",
+                      "name":  "benchmark: nested rule prefixes at length 32",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  32,
+                      "input":  {
+                                    "source":  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                                    "target":  "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                                    "original":  [
+                                                     "a",
+                                                     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                                                 ],
+                                    "changed":  [
+                                                    "b",
+                                                    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                                                ],
+                                    "cost":  [
+                                                 1,
+                                                 31
+                                             ]
+                                },
+                      "expected":  31,
+                      "tags":  [
+                                   "benchmark",
+                                   "scaling",
+                                   "string-length",
+                                   "cubic-substring-materialization-baseline"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-length-64",
+                      "name":  "benchmark: nested rule prefixes at length 64",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  64,
+                      "input":  {
+                                    "source":  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                                    "target":  "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                                    "original":  [
+                                                     "a",
+                                                     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                                                 ],
+                                    "changed":  [
+                                                    "b",
+                                                    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                                                ],
+                                    "cost":  [
+                                                 1,
+                                                 63
+                                             ]
+                                },
+                      "expected":  63,
+                      "tags":  [
+                                   "benchmark",
+                                   "scaling",
+                                   "string-length",
+                                   "cubic-substring-materialization-baseline"
+                               ]
+                  }
+              ]
 }

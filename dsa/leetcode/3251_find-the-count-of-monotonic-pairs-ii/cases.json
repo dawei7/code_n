@@ -1,104 +1,17 @@
 {
   "challenge_id": "lc_3251",
   "cases": [
-    {
-      "id": "sample-short",
-      "name": "sample: short monotonic pair count",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          3,
-          2
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-constant",
-      "name": "sample: constant values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          5,
-          5,
-          5,
-          5
-        ]
-      },
-      "expected": 126,
-      "tags": [
-        "sample",
-        "flat"
-      ]
-    },
-    {
-      "id": "trial-single-large",
-      "name": "trial: single large value",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          50
-        ]
-      },
-      "expected": 51,
-      "tags": [
-        "edge"
-      ]
-    },
-    {
-      "id": "trial-valley",
-      "name": "trial: valley profile",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          8,
-          3,
-          3,
-          6,
-          2,
-          7
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "valley"
-      ]
-    },
-    {
-      "id": "real-medium-wave",
-      "name": "real: longer wave values",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          20,
-          18,
-          21,
-          19,
-          24,
-          23,
-          25,
-          17,
-          30,
-          28,
-          31,
-          29,
-          33
-        ]
-      },
-      "expected": 560,
-      "tags": [
-        "real",
-        "dp"
-      ]
-    }
+    {"id":"sample-rise-then-fall","name":"sample: four monotonic pairs","kind":"sample","visible":true,"input":{"nums":[2,3,2]},"expected":4,"tags":["sample","mixed"]},
+    {"id":"sample-flat-fives","name":"sample: constant values across four positions","kind":"sample","visible":true,"input":{"nums":[5,5,5,5]},"expected":126,"tags":["sample","constant"]},
+    {"id":"trial-single-minimum","name":"trial: minimum length and value","kind":"trial","visible":true,"input":{"nums":[1]},"expected":2,"tags":["minimum","single"]},
+    {"id":"trial-single-maximum","name":"trial: maximum value at one position","kind":"trial","visible":true,"input":{"nums":[1000]},"expected":1001,"tags":["maximum-value","single"]},
+    {"id":"trial-two-ones","name":"trial: two equal minimum values","kind":"trial","visible":true,"input":{"nums":[1,1]},"expected":3,"tags":["constant"]},
+    {"id":"trial-flat-twos","name":"trial: bounded non-decreasing first arrays","kind":"trial","visible":true,"input":{"nums":[2,2,2]},"expected":10,"tags":["constant","combinatorial"]},
+    {"id":"trial-strict-rise","name":"trial: consecutive values rise by one","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":4,"tags":["increasing"]},
+    {"id":"real-strict-fall","name":"real: consecutive values fall by one","kind":"real","visible":false,"input":{"nums":[3,2,1]},"expected":4,"tags":["decreasing"]},
+    {"id":"real-impossible-zigzag","name":"real: a large rise after a restrictive fall","kind":"real","visible":false,"input":{"nums":[3,1,4,2]},"expected":0,"tags":["zero-count","zigzag"]},
+    {"id":"real-maximum-jump","name":"real: rise from one to the maximum value","kind":"real","visible":false,"input":{"nums":[1,1000]},"expected":3,"tags":["maximum-value","rise"]},
+    {"id":"real-large-valley","name":"real: large values surround a one-step valley","kind":"real","visible":false,"input":{"nums":[200,199,200]},"expected":1353400,"tags":["large-values","valley"]},
+    {"id":"real-large-mixed-profile","name":"real: large alternating changes leave one pair","kind":"real","visible":false,"input":{"nums":[100,200,150,300,250]},"expected":1,"tags":["large-values","mixed"]}
   ]
 }

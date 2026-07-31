@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Total Tastiness of Purchased Fruits and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Runs a descending 0/1 knapsack over coupon count and available budget.",
+      "time_complexity": "O(nkB)",
+      "space_complexity": "O(kB)"
     }
   ]
 }

@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_3407",
+  "cases": [
+    {
+      "id": "sample-middle-wildcard",
+      "name": "sample: wildcard fills the middle of a substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "leetcode", "p": "ee*e"},
+      "expected": true,
+      "tags": ["sample", "middle-wildcard"]
+    },
+    {
+      "id": "sample-missing-suffix",
+      "name": "sample: required suffix is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "car", "p": "c*v"},
+      "expected": false,
+      "tags": ["sample", "missing-suffix"]
+    },
+    {
+      "id": "sample-empty-suffix",
+      "name": "sample: wildcard at the end may absorb nothing",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "luck", "p": "u*"},
+      "expected": true,
+      "tags": ["sample", "empty-suffix"]
+    },
+    {
+      "id": "trial-star-only",
+      "name": "trial: a lone wildcard matches a substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abc", "p": "*"},
+      "expected": true,
+      "tags": ["edge", "star-only"]
+    },
+    {
+      "id": "trial-empty-prefix",
+      "name": "trial: wildcard at the beginning leaves a fixed suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "coding", "p": "*ing"},
+      "expected": true,
+      "tags": ["edge", "empty-prefix"]
+    },
+    {
+      "id": "trial-empty-replacement",
+      "name": "trial: wildcard may represent the empty sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "xxabcdyy", "p": "ab*cd"},
+      "expected": true,
+      "tags": ["edge", "empty-replacement"]
+    },
+    {
+      "id": "trial-overlap-forbidden",
+      "name": "trial: fixed fragments cannot reuse characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaa", "p": "aa*aa"},
+      "expected": false,
+      "tags": ["edge", "overlap"]
+    },
+    {
+      "id": "trial-wrong-order",
+      "name": "trial: a suffix before the prefix is insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abc", "p": "bc*a"},
+      "expected": false,
+      "tags": ["ordering", "false"]
+    },
+    {
+      "id": "real-multiple-prefixes",
+      "name": "real: earliest prefix leaves room for a later suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "cabxxabz", "p": "ab*z"},
+      "expected": true,
+      "tags": ["real", "multiple-occurrences"]
+    },
+    {
+      "id": "real-maximum-pattern-length",
+      "name": "real: maximum-length pattern uses an empty wildcard",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "p": "aaaaaaaaaaaaaaaaaaaaaaaa*aaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": true,
+      "tags": ["real", "maximum-pattern", "empty-replacement"]
+    }
+  ]
+}

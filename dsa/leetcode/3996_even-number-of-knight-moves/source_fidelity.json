@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3996",
+    "frontend_id": "3996",
+    "title_slug": "even-number-of-knight-moves",
+    "url": "https://leetcode.com/problems/even-number-of-knight-moves/description/",
+    "paid_only": false,
+    "content_sha256": "4f500917f1e60c8c9c43eae2d08bef867e292d96990f4337d8d8658606d2447b",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "start = [1,1], target = [2,2]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "start = [4,5], target = [6,6]",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "bf0cf5ed854ac2aa0d08c1e373ffd60f497053a9662d99efa5307eeecac00feb",
+      "reference/contract.md": "ece418dc12c756e57fd0cd9c08b5edbe53f54439540a59c94e4b6291160b827d",
+      "reference/examples.md": "2bedc6a969449971568e3259cb1eafd5c7b4f0db08ddfae25570bd95bf2df4e4",
+      "reference/constraints.md": "63a00c310c8c9261977ff6c7e81389b2ffbcf5a1445abb012f63986347b23f96"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

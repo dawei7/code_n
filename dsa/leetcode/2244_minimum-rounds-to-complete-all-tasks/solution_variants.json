@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Rounds to Complete All Tasks and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts each difficulty and adds the minimum number of pairs and triples required by that independent frequency.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(u)"
     }
   ]
 }

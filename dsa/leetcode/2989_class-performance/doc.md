@@ -8,48 +8,46 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [class-performance](https://leetcode.com/problems/class-performance/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/class-performance/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/class-performance/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+The `Scores` table stores each uniquely identified student's name and scores
+on three assignments. A student's total score is the sum of that student's
+three assignment values.
+
+Find the highest student total and the lowest student total, then return their
+difference in one column named `difference_in_score`. The result contains one
+row, so its ordering is irrelevant.
+
+Compute each student's combined score before taking the two class-wide
+extremes. If several students share either extreme, that does not add rows or
+change the requested difference.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `Scores(student_id, student_name, assignment1, assignment2, assignment3)`: one row per student
+
+Let $R$ be the number of student rows.
 
 **Return value**
 
-TODO
+Return the difference between the maximum and minimum three-assignment row
+totals as `difference_in_score`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: Student totals include a maximum of `230` and a minimum of `119`.
+- Output: `111`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: A single student.
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: Three students score `(10,0,0)`, `(0,10,0)`, and `(0,0,10)`.
+- Output: `0`, because all row totals equal `10`.

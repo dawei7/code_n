@@ -3,100 +3,75 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: odd remainder group wins",
+      "name": "sample: duplicate odd targets produce five hits",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          7,
-          8,
-          1,
-          1,
-          5
-        ],
-        "space": 2
-      },
+      "input": {"nums": [3, 7, 8, 1, 1, 5], "space": 2},
       "expected": 1,
-      "tags": [
-        "sample",
-        "modulo"
-      ]
+      "tags": ["sample", "duplicates"]
     },
     {
       "id": "sample-2",
-      "name": "sample: tie chooses smaller start",
+      "name": "sample: tied remainder groups",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          3,
-          5,
-          2,
-          4,
-          6
-        ],
-        "space": 2
-      },
+      "input": {"nums": [1, 3, 5, 2, 4, 6], "space": 2},
       "expected": 1,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "tie-break"]
     },
     {
       "id": "sample-3",
-      "name": "sample: duplicate starting value",
+      "name": "sample: every remainder is unique",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5,
-          1,
-          4
-        ],
-        "space": 4
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
+      "input": {"nums": [6, 2, 5], "space": 100},
+      "expected": 2,
+      "tags": ["sample", "unique-remainders"]
     },
     {
-      "id": "trial-two-remainders-tie",
-      "name": "trial: tied remainder groups choose two",
+      "id": "trial-two-classes",
+      "name": "trial: tied classes choose the smaller minimum",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          4,
-          6,
-          8
-        ],
-        "space": 4
-      },
+      "input": {"nums": [2, 4, 6, 8], "space": 4},
       "expected": 2,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "tie-break"]
+    },
+    {
+      "id": "trial-space-one",
+      "name": "trial: one remainder class",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [9, 3, 7, 3], "space": 1},
+      "expected": 3,
+      "tags": ["trial", "space-one"]
     },
     {
       "id": "real-single-target",
-      "name": "hidden: one target",
+      "name": "hidden: singleton",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          5
-        ],
-        "space": 3
-      },
+      "input": {"nums": [5], "space": 3},
       "expected": 5,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "singleton"]
+    },
+    {
+      "id": "real-dominant-nonminimum-remainder",
+      "name": "hidden: dominant class does not contain global minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 12, 22, 32], "space": 10},
+      "expected": 12,
+      "tags": ["hidden", "dominant-class"]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large values and duplicate targets",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 999999993, 999999993, 999999986], "space": 7},
+      "expected": 999999986,
+      "tags": ["hidden", "large-values", "duplicates"]
     }
   ]
 }

@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3538",
+  "cases": [
+    {
+      "id": "sample-first",
+      "name": "sample: merge the middle signs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "n": 4,
+        "k": 1,
+        "position": [
+          0,
+          3,
+          8,
+          10
+        ],
+        "time": [
+          5,
+          8,
+          3,
+          6
+        ]
+      },
+      "expected": 62,
+      "tags": [
+        "sample",
+        "single-merge"
+      ]
+    },
+    {
+      "id": "sample-second",
+      "name": "sample: choose among several adjacent merges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 5,
+        "n": 5,
+        "k": 1,
+        "position": [
+          0,
+          1,
+          2,
+          3,
+          5
+        ],
+        "time": [
+          8,
+          3,
+          9,
+          3,
+          3
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "sample",
+        "single-merge"
+      ]
+    },
+    {
+      "id": "trial-two-signs",
+      "name": "trial: only endpoint signs and no merges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "n": 2,
+        "k": 0,
+        "position": [
+          0,
+          10
+        ],
+        "time": [
+          7,
+          2
+        ]
+      },
+      "expected": 70,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-no-merges",
+      "name": "trial: preserve every original interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 6,
+        "n": 4,
+        "k": 0,
+        "position": [
+          0,
+          2,
+          5,
+          6
+        ],
+        "time": [
+          4,
+          1,
+          7,
+          9
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "trial",
+        "zero-merges"
+      ]
+    },
+    {
+      "id": "real-remove-all-internal",
+      "name": "real: exactly all internal signs are removed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 8,
+        "n": 5,
+        "k": 3,
+        "position": [
+          0,
+          1,
+          3,
+          6,
+          8
+        ],
+        "time": [
+          4,
+          5,
+          2,
+          7,
+          9
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "real",
+        "maximum-merges"
+      ]
+    },
+    {
+      "id": "real-two-consecutive",
+      "name": "real: optimum may remove consecutive signs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 12,
+        "n": 6,
+        "k": 2,
+        "position": [
+          0,
+          2,
+          3,
+          7,
+          9,
+          12
+        ],
+        "time": [
+          6,
+          2,
+          5,
+          1,
+          4,
+          3
+        ]
+      },
+      "expected": 51,
+      "tags": [
+        "real",
+        "consecutive-merges"
+      ]
+    },
+    {
+      "id": "real-three-merges",
+      "name": "real: several partitions compete",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 15,
+        "n": 7,
+        "k": 3,
+        "position": [
+          0,
+          1,
+          4,
+          6,
+          9,
+          11,
+          15
+        ],
+        "time": [
+          3,
+          8,
+          2,
+          6,
+          1,
+          5,
+          4
+        ]
+      },
+      "expected": 49,
+      "tags": [
+        "real",
+        "partition-dp"
+      ]
+    },
+    {
+      "id": "real-wide-distance",
+      "name": "real: a wide interval dominates the choice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 100000,
+        "n": 4,
+        "k": 1,
+        "position": [
+          0,
+          1,
+          99999,
+          100000
+        ],
+        "time": [
+          97,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 100096,
+      "tags": [
+        "real",
+        "distance-boundary"
+      ]
+    }
+  ]
+}

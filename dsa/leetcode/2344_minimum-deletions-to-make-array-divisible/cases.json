@@ -1,98 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2344",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: delete two smaller values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          3,
-          2,
-          4,
-          3
-        ],
-        "nums_divide": [
-          9,
-          6,
-          9,
-          3,
-          15
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "gcd"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: no divisor remains",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          3,
-          6
-        ],
-        "nums_divide": [
-          8,
-          2,
-          6
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: smallest already divides all",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          10,
-          20,
-          30
-        ],
-        "nums_divide": [
-          100,
-          200
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-smallest-valid",
-      "name": "hidden: smallest element divides the gcd",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          6,
-          3,
-          9,
-          2
-        ],
-        "nums_divide": [
-          18,
-          36
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-delete-twos","name":"sample: delete two smaller nondivisors","kind":"sample","visible":true,"input":{"nums":[2,3,2,4,3],"numsDivide":[9,6,9,3,15]},"expected":2,"tags":["sample","duplicates"]},
+    {"id":"sample-impossible","name":"sample: no input value divides the target gcd","kind":"sample","visible":true,"input":{"nums":[4,3,6],"numsDivide":[8,2,6,10]},"expected":-1,"tags":["sample","impossible"]},
+    {"id":"trial-no-deletion","name":"the current minimum already divides every target","kind":"trial","visible":true,"input":{"nums":[2,4,8],"numsDivide":[8,16]},"expected":0,"tags":["zero-deletions"]},
+    {"id":"trial-single-usable","name":"one usable value remains after smaller values","kind":"trial","visible":true,"input":{"nums":[5,7,3],"numsDivide":[14,21,35]},"expected":2,"tags":["single-candidate"]},
+    {"id":"trial-all-equal","name":"duplicate usable minima require no deletion","kind":"trial","visible":true,"input":{"nums":[6,6,6],"numsDivide":[12,18,24]},"expected":0,"tags":["duplicates"]},
+    {"id":"real-gcd-not-present","name":"hidden: divisors of individual targets need not divide all","kind":"real","visible":false,"input":{"nums":[4,6,9],"numsDivide":[12,18]},"expected":1,"tags":["hidden","gcd"]},
+    {"id":"real-one-always-works","name":"hidden: one divides every positive target","kind":"real","visible":false,"input":{"nums":[8,1,4,1],"numsDivide":[999999937,1000000000]},"expected":0,"tags":["hidden","one"]}
   ]
 }

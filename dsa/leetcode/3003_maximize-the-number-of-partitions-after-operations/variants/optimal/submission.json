@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3233",
+  "frontend_id": "3003",
+  "title_slug": "maximize-the-number-of-partitions-after-operations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maxPartitionsAfterOperations",
+  "verified_submission_id": "2078670669",
+  "verified_at": "2026-07-23T16:45:01.894329+00:00"
+}

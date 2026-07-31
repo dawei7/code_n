@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_16",
+    "frontend_id": "16",
+    "title_slug": "3sum-closest",
+    "url": "https://leetcode.com/problems/3sum-closest/description/",
+    "paid_only": false,
+    "content_sha256": "ff129c34f276257964f0e7b43cace4f1d18c1ce62eae832ab138d9290b8450da",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [-1,2,1,-4], target = 1", "output": "2", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [0,0,0], target = 1", "output": "0", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e0aa7f091d3d57d0b46be59156c06594925fff56c48ffb65668093d4750ca465",
+      "reference/contract.md": "bb0b72c1ba465c403a92e8c810bf00bbf4a5a7aabfed9c28a01f0c5756fb031a",
+      "reference/examples.md": "ecb1537d1d08450454d0ef6928112f4dfc0523f46ec7d866c1d44fe4beb99a0a",
+      "reference/constraints.md": "535de196845cf2c4b64cc765defdad9a1bb8d7fc85a12f2f99c037ab116e1916"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3820",
+  "cases": [
+    {
+      "id": "sample-three-special-leaves",
+      "name": "sample: each target leaf has a zero-two-two triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 4, "edges": [[0, 1], [0, 2], [0, 3]], "x": 1, "y": 2, "z": 3},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "star", "zero-distance", "three-special"]
+    },
+    {
+      "id": "sample-path-no-special-node",
+      "name": "sample: no path-node distance triple qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 4, "edges": [[0, 1], [1, 2], [2, 3]], "x": 0, "y": 3, "z": 2},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "path", "empty-count"]
+    },
+    {
+      "id": "sample-one-special-center",
+      "name": "sample: one target center has a zero-one-one triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 4, "edges": [[0, 1], [1, 2], [1, 3]], "x": 1, "y": 3, "z": 0},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "branching-tree", "zero-distance"]
+    },
+    {
+      "id": "trial-larger-star",
+      "name": "trial: three selected leaves qualify in a larger star",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "edges": [[0, 1], [0, 2], [0, 3], [0, 4]], "x": 1, "y": 2, "z": 4},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "star", "unselected-leaf"]
+    },
+    {
+      "id": "trial-five-node-path",
+      "name": "trial: the middle target is the sole special path node",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "edges": [[0, 1], [1, 2], [2, 3], [3, 4]], "x": 0, "y": 4, "z": 2},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "path", "middle-target"]
+    },
+    {
+      "id": "trial-balanced-branches",
+      "name": "trial: distances across balanced branches yield one special node",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 7, "edges": [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]], "x": 3, "y": 4, "z": 5},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "balanced-tree", "cross-branch"]
+    },
+    {
+      "id": "trial-positive-three-four-five",
+      "name": "trial: a path contains a positive three-four-five distance triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 11, "edges": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]], "x": 2, "y": 9, "z": 10},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "path", "positive-triplet", "three-four-five"]
+    },
+    {
+      "id": "real-asymmetric-branches",
+      "name": "hidden: asymmetric branch lengths produce one special node",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 6, "edges": [[0, 1], [1, 2], [1, 3], [3, 4], [3, 5]], "x": 0, "y": 2, "z": 5},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "asymmetric-tree", "branch-distances"]
+    },
+    {
+      "id": "real-target-at-star-center",
+      "name": "hidden: a center target can be the only special node",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "edges": [[0, 1], [0, 2], [0, 3]], "x": 0, "y": 1, "z": 2},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "star", "center-target"]
+    },
+    {
+      "id": "real-two-junctions",
+      "name": "hidden: a two-junction tree has three special nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 8, "edges": [[0, 1], [1, 2], [2, 3], [3, 4], [2, 5], [5, 6], [5, 7]], "x": 0, "y": 4, "z": 7},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "two-junctions", "multiple-special"]
+    },
+    {
+      "id": "real-many-unselected-leaves",
+      "name": "hidden: additional star leaves do not create new triplets",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 10, "edges": [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8], [0, 9]], "x": 1, "y": 2, "z": 3},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "large-star", "unselected-leaves"]
+    },
+    {
+      "id": "real-path-no-special",
+      "name": "hidden: another target arrangement on a path has no solution",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 6, "edges": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]], "x": 0, "y": 1, "z": 5},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "path", "empty-count"]
+    }
+  ]
+}

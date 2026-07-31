@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3549",
+  "cases": [
+    {
+      "id": "sample-different-degrees",
+      "name": "sample: multiply different polynomial degrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {"poly1": [3, 2, 5], "poly2": [1, 4]},
+      "expected": [3, 14, 13, 20],
+      "tags": ["sample", "convolution"]
+    },
+    {
+      "id": "sample-negative-constant",
+      "name": "sample: scale by a negative constant polynomial",
+      "kind": "sample",
+      "visible": true,
+      "input": {"poly1": [1, 0, -2], "poly2": [-1]},
+      "expected": [-1, 0, 2],
+      "tags": ["sample", "constant", "negative"]
+    },
+    {
+      "id": "sample-trailing-zero",
+      "name": "sample: preserve the required trailing zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"poly1": [1, 5, -3], "poly2": [-4, 2, 0]},
+      "expected": [-4, -18, 22, -6, 0],
+      "tags": ["sample", "trailing-zero", "cancellation"]
+    },
+    {
+      "id": "trial-two-constants",
+      "name": "trial: multiply two constant polynomials",
+      "kind": "trial",
+      "visible": true,
+      "input": {"poly1": [7], "poly2": [-3]},
+      "expected": [-21],
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-leading-zero-powers",
+      "name": "trial: zero low-degree coefficients retain positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"poly1": [0, 1], "poly2": [0, 0, 2]},
+      "expected": [0, 0, 0, 2],
+      "tags": ["trial", "zero-coefficients"]
+    },
+    {
+      "id": "real-cancellation",
+      "name": "real: middle terms cancel exactly",
+      "kind": "real",
+      "visible": false,
+      "input": {"poly1": [1, -1], "poly2": [1, 1]},
+      "expected": [1, 0, -1],
+      "tags": ["real", "cancellation"]
+    },
+    {
+      "id": "real-maximum-coefficient-signs",
+      "name": "real: maximum-magnitude coefficients with alternating signs",
+      "kind": "real",
+      "visible": false,
+      "input": {"poly1": [1000, -1000], "poly2": [1000, -1000]},
+      "expected": [1000000, -2000000, 1000000],
+      "tags": ["real", "coefficient-bound", "negative"]
+    },
+    {
+      "id": "real-unequal-lengths",
+      "name": "real: one polynomial is much shorter",
+      "kind": "real",
+      "visible": false,
+      "input": {"poly1": [2, 0, 3, -1], "poly2": [4, -2]},
+      "expected": [8, -4, 12, -10, 2],
+      "tags": ["real", "unequal-lengths"]
+    },
+    {
+      "id": "real-mixed-dense",
+      "name": "real: dense mixed-sign convolution",
+      "kind": "real",
+      "visible": false,
+      "input": {"poly1": [3, -2, 4, 1], "poly2": [-1, 5, 2]},
+      "expected": [-3, 17, -8, 15, 13, 2],
+      "tags": ["real", "dense", "mixed-sign"]
+    }
+  ]
+}

@@ -1,0 +1,1009 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4001",
+  "cases": [
+    {
+      "id": "sample-interleaved",
+      "name": "sample: interleaved timestamps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "series2": [
+          [
+            2,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "sample-second-series-ends-early",
+      "name": "sample: one series has no later entry",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "series2": [
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-billion-timestamp-gap",
+      "name": "sample: sparse timestamps at both bounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            5
+          ]
+        ],
+        "series2": [
+          [
+            1000000000,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          7
+        ],
+        [
+          1000000000,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "large-gap"
+      ]
+    },
+    {
+      "id": "trial-shared-single-timestamp",
+      "name": "trial: both series contain the only timestamp",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            3
+          ]
+        ],
+        "series2": [
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          7
+        ]
+      ],
+      "tags": [
+        "trial",
+        "shared-timestamp"
+      ]
+    },
+    {
+      "id": "trial-one-versus-three",
+      "name": "trial: one early entry against three later entries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            3
+          ]
+        ],
+        "series2": [
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "tags": [
+        "trial",
+        "next-value"
+      ]
+    },
+    {
+      "id": "trial-two-versus-three",
+      "name": "trial: two early entries before the other series",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "series2": [
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "tags": [
+        "trial",
+        "next-value"
+      ]
+    },
+    {
+      "id": "trial-identical-timelines",
+      "name": "trial: every timestamp is shared",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "series2": [
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          5,
+          9
+        ]
+      ],
+      "tags": [
+        "trial",
+        "shared-timestamps"
+      ]
+    },
+    {
+      "id": "trial-first-series-ends-early",
+      "name": "trial: first series contributes zero later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "series2": [
+          [
+            10,
+            3
+          ],
+          [
+            20,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          20,
+          2
+        ]
+      ],
+      "tags": [
+        "trial",
+        "series-end"
+      ]
+    },
+    {
+      "id": "trial-second-series-ends-early",
+      "name": "trial: second series contributes zero later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            10,
+            3
+          ],
+          [
+            20,
+            2
+          ]
+        ],
+        "series2": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          20,
+          2
+        ]
+      ],
+      "tags": [
+        "trial",
+        "series-end"
+      ]
+    },
+    {
+      "id": "trial-perfect-alternation",
+      "name": "trial: alternating timestamps across both series",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "series1": [
+          [
+            1,
+            10
+          ],
+          [
+            5,
+            50
+          ],
+          [
+            9,
+            90
+          ]
+        ],
+        "series2": [
+          [
+            2,
+            20
+          ],
+          [
+            6,
+            60
+          ],
+          [
+            10,
+            100
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          30
+        ],
+        [
+          2,
+          70
+        ],
+        [
+          5,
+          110
+        ],
+        [
+          6,
+          150
+        ],
+        [
+          9,
+          190
+        ],
+        [
+          10,
+          100
+        ]
+      ],
+      "tags": [
+        "trial",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "real-shared-middle",
+      "name": "hidden: one timestamp shared amid distinct entries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            7,
+            4
+          ]
+        ],
+        "series2": [
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            8,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          4,
+          13
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          8,
+          6
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "shared-timestamp"
+      ]
+    },
+    {
+      "id": "real-huge-gaps",
+      "name": "hidden: values carry across very large gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            1,
+            1
+          ],
+          [
+            1000000000,
+            9
+          ]
+        ],
+        "series2": [
+          [
+            500000000,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          6
+        ],
+        [
+          500000000,
+          14
+        ],
+        [
+          1000000000,
+          9
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "large-gap",
+        "bounds"
+      ]
+    },
+    {
+      "id": "real-maximum-shared-timestamp",
+      "name": "hidden: both singletons use the maximum timestamp",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            1000000000,
+            7
+          ]
+        ],
+        "series2": [
+          [
+            1000000000,
+            11
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1000000000,
+          18
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "timestamp-bound"
+      ]
+    },
+    {
+      "id": "real-maximum-value-sum",
+      "name": "hidden: two maximum input values sum without truncation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            42,
+            1000000000
+          ]
+        ],
+        "series2": [
+          [
+            42,
+            1000000000
+          ]
+        ]
+      },
+      "expected": [
+        [
+          42,
+          2000000000
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "value-bound"
+      ]
+    },
+    {
+      "id": "real-singletons-different-order",
+      "name": "hidden: earlier singleton uses the later series value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            5,
+            7
+          ]
+        ],
+        "series2": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          9
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "singletons"
+      ]
+    },
+    {
+      "id": "real-values-rise-and-fall",
+      "name": "hidden: maintained values are not monotone",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            1,
+            100
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            8,
+            50
+          ]
+        ],
+        "series2": [
+          [
+            2,
+            4
+          ],
+          [
+            7,
+            200
+          ],
+          [
+            9,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          104
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          201
+        ],
+        [
+          7,
+          250
+        ],
+        [
+          8,
+          52
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "nonmonotone-values"
+      ]
+    },
+    {
+      "id": "real-overlapping-last-timestamp",
+      "name": "hidden: shared maximum timestamp updates both values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "series2": [
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          5,
+          12
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "shared-timestamp",
+        "series-end"
+      ]
+    },
+    {
+      "id": "real-shared-endpoints",
+      "name": "hidden: both endpoints are shared with a middle gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            8
+          ]
+        ],
+        "series2": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          12
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "shared-timestamps"
+      ]
+    },
+    {
+      "id": "real-unit-values",
+      "name": "hidden: every union timestamp aggregates unit values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        "series2": [
+          [
+            2,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          8,
+          1
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "real-longer-mixed-merge",
+      "name": "hidden: ten union timestamps with overlaps and gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "series1": [
+          [
+            1,
+            7
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            15,
+            8
+          ]
+        ],
+        "series2": [
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            15,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          12
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          13
+        ],
+        [
+          11,
+          18
+        ],
+        [
+          15,
+          12
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "mixed",
+        "longer"
+      ]
+    }
+  ]
+}

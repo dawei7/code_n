@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2588",
+  "frontend_id": "2503",
+  "title_slug": "maximum-number-of-points-from-grid-queries",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxPoints",
+  "verified_submission_id": "2075165502",
+  "verified_at": "2026-07-21T01:13:00+00:00"
+}

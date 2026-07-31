@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Ways to Paint Sheets and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Caps and sorts the color limits, then uses suffix counts and sums to aggregate every valid ordered color pair.",
+      "time_complexity": "O(M log M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Special Integers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts shorter distinct-digit numbers and then counts valid prefixes below n with decimal permutations.",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

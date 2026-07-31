@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2123",
+  "cases": [
+    {"id": "sample-connected-region", "name": "sample: three flips isolate one connected region", "kind": "sample", "visible": true, "input": {"grid": [[1, 1, 0], [0, 1, 1], [1, 1, 1]]}, "expected": 3, "tags": ["sample", "connected"]},
+    {"id": "sample-all-zero", "name": "sample: an empty adjacency graph needs no flips", "kind": "sample", "visible": true, "input": {"grid": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]}, "expected": 0, "tags": ["sample", "all-zero"]},
+    {"id": "sample-diagonal", "name": "sample: diagonal ones are not adjacent", "kind": "sample", "visible": true, "input": {"grid": [[0, 1], [1, 0]]}, "expected": 0, "tags": ["sample", "diagonal"]},
+    {"id": "trial-one-edge", "name": "one flip covers a single adjacent pair", "kind": "trial", "visible": true, "input": {"grid": [[1, 1]]}, "expected": 1, "tags": ["single-edge", "one-row"]},
+    {"id": "trial-two-by-two-ones", "name": "two flips cover the four-cycle", "kind": "trial", "visible": true, "input": {"grid": [[1, 1], [1, 1]]}, "expected": 2, "tags": ["cycle", "all-one"]},
+    {"id": "real-five-cell-path", "name": "hidden: a path of five ones needs two vertices", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 1, 1, 1]]}, "expected": 2, "tags": ["hidden", "path"]},
+    {"id": "real-disconnected-components", "name": "hidden: matching sizes add across components", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 0, 1], [0, 0, 0, 1], [1, 1, 1, 0]]}, "expected": 3, "tags": ["hidden", "disconnected"]}
+  ]
+}

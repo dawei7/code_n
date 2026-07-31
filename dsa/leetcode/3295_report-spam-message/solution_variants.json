@@ -2,15 +2,13 @@
   "schema_version": 1,
   "challenge_id": "lc_3295",
   "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Report Spam Message and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+  "variants": [{
+    "id": "optimal",
+    "label": "Optimal",
+    "kind": "optimal",
+    "directory": "variants/optimal",
+    "summary": "Builds a banned-word set and stops as soon as the second matching message position is found.",
+    "time_complexity": "O(m + b)",
+    "space_complexity": "O(b)"
+  }]
 }

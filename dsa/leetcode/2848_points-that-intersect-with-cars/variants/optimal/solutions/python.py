@@ -1,15 +1,12 @@
-from typing import List
-
-def solve(nums: List[List[int]]) -> int:
-    """
-    Calculates the number of unique integer points covered by a list of intervals.
-    Uses a set to track unique coordinates.
-    """
-    covered_points = set()
-    
+def solve(nums):
+    difference = [0] * 102
     for start, end in nums:
-        # Add all integers in the inclusive range [start, end] to the set
-        for point in range(start, end + 1):
-            covered_points.add(point)
-            
-    return len(covered_points)
+        difference[start] += 1
+        difference[end + 1] -= 1
+
+    covered = 0
+    active = 0
+    for point in range(1, 101):
+        active += difference[point]
+        covered += active > 0
+    return covered

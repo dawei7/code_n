@@ -1,32 +1,28 @@
-def solve(nums: list[int], k: int) -> int:
-    nums.sort()
-    n = len(nums)
-    prefix_sum = [0] * (n + 1)
-    for i in range(n):
-        prefix_sum[i + 1] = prefix_sum[i] + nums[i]
+from typing import List
 
-    def get_cost(left: int, right: int) -> int:
-        # Median index
-        mid = (left + right) // 2
-        median = nums[mid]
 
-        # Cost = (elements to the right of median) - (elements to the left)
-        # Sum of right side: nums[mid+1...right]
-        # Sum of left side: nums[left...mid-1]
+def solve(nums: List[int], k: int) -> int:
+    values = sorted(nums)
+    prefix = [0]
+    for value in values:
+        prefix.append(prefix[-1] + value)
 
-        right_count = right - mid
-        left_count = mid - left
-
-        right_sum = prefix_sum[right + 1] - prefix_sum[mid + 1]
-        left_sum = prefix_sum[mid] - prefix_sum[left]
-
-        return (median * left_count - left_sum) + (right_sum - median * right_count)
-
-    max_freq = 0
     left = 0
-    for right in range(n):
-        while get_cost(left, right) > k:
+    best = 1
+    for right in range(len(values)):
+        while _cost(values, prefix, left, right) > k:
             left += 1
-        max_freq = max(max_freq, right - left + 1)
+        best = max(best, right - left + 1)
+    return best
 
-    return max_freq
+
+def _cost(values: List[int], prefix: List[int], left: int, right: int) -> int:
+    middle = (left + right) // 2
+    median = values[middle]
+    left_cost = median * (middle - left) - (prefix[middle] - prefix[left])
+    right_cost = (
+        prefix[right + 1]
+        - prefix[middle + 1]
+        - median * (right - middle)
+    )
+    return left_cost + right_cost

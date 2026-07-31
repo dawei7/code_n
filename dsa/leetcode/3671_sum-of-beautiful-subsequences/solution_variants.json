@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Beautiful Subsequences and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Transform exact-GCD counts into totient-weighted divisibility counts, computing each divisor's increasing subsequences with a Fenwick tree.",
+      "time_complexity": "O(V log log V + n sqrt(V) + T log V)",
+      "space_complexity": "O(V log V)"
     }
   ]
 }

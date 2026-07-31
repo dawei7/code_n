@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_4002",
+    "frontend_id": "4002",
+    "title_slug": "count-valid-sequences",
+    "url": "https://leetcode.com/problems/count-valid-sequences/description/",
+    "paid_only": false,
+    "content_sha256": "d346a8b2709ca92be40a82747f5b908c7c2cb94aae887122696b6fce21df372f",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 5, k = 3",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 3, k = 2",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 5, k = 5",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 2,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f053380ee3cfc3c14ec9c8d5913be6d17a280c4873bfdb6d9065d34cdfc59478",
+      "reference/contract.md": "021e2fb2c255dde2c3b99852f1f199d6954ecfce0ae674d8d8f57d992f1425d9",
+      "reference/examples.md": "1b0c0f93472150a63bcc20b0a7e6e6e8fe275ff707271fbb9b8ac7f0b82a0443",
+      "reference/constraints.md": "23a8ca97a5b246d7ec3ec0266737a9249a7e0315514edd7ab37b5c903fd29753"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

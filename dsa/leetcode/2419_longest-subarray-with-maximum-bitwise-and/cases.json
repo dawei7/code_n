@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2419",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two maximum values in a row",
+      "id": "sample-repeated-maximum",
+      "name": "sample: longest run contains two maxima",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +20,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "bitmask"
+        "run"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: maximum appears once",
+      "id": "sample-unique-maximum",
+      "name": "sample: increasing values leave one maximum",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,9 +42,9 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: entire array is maximum",
-      "kind": "sample",
+      "id": "trial-all-equal",
+      "name": "entire array is one maximum run",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -55,42 +56,102 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "all-equal"
       ]
     },
     {
-      "id": "trial-long-run-after-gap",
-      "name": "trial: longest max run appears after a gap",
+      "id": "trial-separated-maxima",
+      "name": "smaller values separate maximum runs",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           5,
+          5,
           1,
           5,
           5,
           5,
-          2
+          2,
+          5
         ]
       },
       "expected": 3,
       "tags": [
-        "trial"
+        "separated-runs"
       ]
     },
     {
-      "id": "real-single-element",
-      "name": "hidden: one value",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single",
+      "name": "single element is its own optimal subarray",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
-          9
+          1
         ]
       },
       "expected": 1,
       "tags": [
-        "hidden"
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-leading-run",
+      "name": "hidden: longest maximum run occurs first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          8,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "leading"
+      ]
+    },
+    {
+      "id": "real-trailing-run",
+      "name": "hidden: longest maximum run occurs last",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          6,
+          1,
+          6,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "trailing"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "hidden: legal maximum integer repeats",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          1000000,
+          999999
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

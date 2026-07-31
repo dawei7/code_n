@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2281",
+  "cases": [
+    {"id":"sample-duplicate-minimum","name":"sample: duplicate minimums across overlapping groups","kind":"sample","visible":true,"input":{"strength":[1,3,1,2]},"expected":44,"tags":["sample","duplicates"]},
+    {"id":"sample-middle-minimum","name":"sample: middle wizard is minimum for longer groups","kind":"sample","visible":true,"input":{"strength":[5,4,6]},"expected":213,"tags":["sample","middle-minimum"]},
+    {"id":"trial-single","name":"one wizard contributes its squared strength","kind":"trial","visible":true,"input":{"strength":[7]},"expected":49,"tags":["minimum-length"]},
+    {"id":"trial-equal-pair","name":"equal pair assigns their shared subarray once","kind":"trial","visible":true,"input":{"strength":[2,2]},"expected":16,"tags":["duplicates","tie-boundary"]},
+    {"id":"trial-increasing","name":"strictly increasing strengths","kind":"trial","visible":true,"input":{"strength":[1,2,3]},"expected":33,"tags":["increasing","one-sided-boundaries"]},
+    {"id":"real-decreasing","name":"hidden: strictly decreasing strengths","kind":"real","visible":false,"input":{"strength":[3,2,1]},"expected":33,"tags":["hidden","decreasing"]},
+    {"id":"real-all-ones","name":"hidden: every tied minimum contributes by subarray length","kind":"real","visible":false,"input":{"strength":[1,1,1]},"expected":10,"tags":["hidden","duplicates"]},
+    {"id":"real-modulo","name":"hidden: a single maximum strength requires modular reduction","kind":"real","visible":false,"input":{"strength":[1000000000]},"expected":49,"tags":["hidden","modulo","maximum-value"]}
+  ]
+}

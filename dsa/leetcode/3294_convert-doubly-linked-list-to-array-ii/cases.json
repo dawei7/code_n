@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_3294",
+  "cases": [
+    {"id":"sample-tail-one","name":"sample: supplied node is tail of first list","kind":"sample","visible":true,"input":{"node":{"values":[1,2,3,4,5],"node_index":4}},"expected":[1,2,3,4,5],"tags":["sample","tail"]},
+    {"id":"sample-tail-two","name":"sample: supplied node is tail of second list","kind":"sample","visible":true,"input":{"node":{"values":[4,5,6,7,8],"node_index":4}},"expected":[4,5,6,7,8],"tags":["sample","tail"]},
+    {"id":"trial-singleton","name":"trial: one-node list","kind":"trial","visible":true,"input":{"node":{"values":[1000],"node_index":0}},"expected":[1000],"tags":["singleton","boundary"]},
+    {"id":"trial-supplied-head","name":"trial: supplied node already is head","kind":"trial","visible":true,"input":{"node":{"values":[7,19,23],"node_index":0}},"expected":[7,19,23],"tags":["head"]},
+    {"id":"trial-supplied-middle","name":"trial: nodes exist on both sides","kind":"trial","visible":true,"input":{"node":{"values":[10,20,30,40,50],"node_index":2}},"expected":[10,20,30,40,50],"tags":["middle"]},
+    {"id":"real-near-head","name":"real: supplied node follows head","kind":"real","visible":false,"input":{"node":{"values":[91,4,700,16,250],"node_index":1}},"expected":[91,4,700,16,250],"tags":["near-head"]},
+    {"id":"real-near-tail","name":"real: supplied node precedes tail","kind":"real","visible":false,"input":{"node":{"values":[999,111,555,333,777,222],"node_index":4}},"expected":[999,111,555,333,777,222],"tags":["near-tail"]},
+    {"id":"real-value-bounds","name":"real: unique minimum and maximum values","kind":"real","visible":false,"input":{"node":{"values":[1,500,1000,250],"node_index":2}},"expected":[1,500,1000,250],"tags":["value-boundary"]}
+  ]
+}

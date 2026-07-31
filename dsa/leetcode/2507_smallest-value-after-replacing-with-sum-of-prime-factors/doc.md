@@ -5,51 +5,35 @@
 | Source | LeetCode |
 | Frontend ID | 2507 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Math, Simulation, Number Theory |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [smallest-value-after-replacing-with-sum-of-prime-factors](https://leetcode.com/problems/smallest-value-after-replacing-with-sum-of-prime-factors/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/smallest-value-after-replacing-with-sum-of-prime-factors/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/smallest-value-after-replacing-with-sum-of-prime-factors/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a positive integer `n`. Repeatedly replace its current value with the sum of its prime factors. Prime factors are counted with multiplicity: if the same prime divides the value several times, that prime contributes once for every occurrence in the factorization.
+
+Continue applying this replacement and return the smallest value that `n` takes on. Once a replacement produces the current value again, all later values are identical and no smaller value can appear.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: An integer whose prime factors are repeatedly summed.
+
+The constraint is $2 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+An integer equal to the smallest value reached by the replacement process.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 15`
+- Output: `5`
+- Explanation: The sequence is `15 -> 8 -> 6 -> 5`: the corresponding prime-factor sums are `3 + 5`, `2 + 2 + 2`, and `2 + 3`. The prime value `5` then maps to itself.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 3`
+- Output: `3`
+- Explanation: Because `3` is prime, its only prime factor is itself, so the first replacement leaves the value unchanged.

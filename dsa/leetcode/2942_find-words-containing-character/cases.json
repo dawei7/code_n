@@ -2,8 +2,8 @@
   "challenge_id": "lc_2942",
   "cases": [
     {
-      "id": "sample-two-words",
-      "name": "sample: both words contain target",
+      "id": "sample-both",
+      "name": "sample: target appears in both words",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,13 +17,16 @@
         0,
         1
       ],
+      "validator": {
+        "kind": "unordered_list"
+      },
       "tags": [
         "sample"
       ]
     },
     {
-      "id": "sample-some-words",
-      "name": "sample: some words contain target",
+      "id": "sample-two-of-four",
+      "name": "sample: target appears in two words",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,13 +42,16 @@
         0,
         2
       ],
+      "validator": {
+        "kind": "unordered_list"
+      },
       "tags": [
         "sample"
       ]
     },
     {
-      "id": "sample-no-words",
-      "name": "sample: no words contain target",
+      "id": "sample-none",
+      "name": "sample: target appears nowhere",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,57 +64,175 @@
         "x": "z"
       },
       "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
       "tags": [
         "sample",
-        "empty-output"
+        "empty-result"
       ]
     },
     {
-      "id": "trial-target-at-end",
-      "name": "trial: target appears at word end",
+      "id": "trial-one-character-match",
+      "name": "trial: one length-one word matches",
       "kind": "trial",
       "visible": true,
       "input": {
         "words": [
-          "go",
-          "lang",
-          "debug",
-          "run"
+          "a"
         ],
-        "x": "g"
+        "x": "a"
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-one-character-miss",
+      "name": "trial: one length-one word does not match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a"
+        ],
+        "x": "b"
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "minimum",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-repeated-occurrences",
+      "name": "trial: repeated occurrences still emit one index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaaa",
+          "bbb"
+        ],
+        "x": "a"
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "duplicates-within-word"
+      ]
+    },
+    {
+      "id": "real-target-at-varied-positions",
+      "name": "hidden: target occurs at the beginning and end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "cat",
+          "dog",
+          "bird"
+        ],
+        "x": "d"
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "positions"
+      ]
+    },
+    {
+      "id": "real-all-match",
+      "name": "hidden: every word contains the target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "x",
+          "ax",
+          "xx"
+        ],
+        "x": "x"
       },
       "expected": [
         0,
         1,
         2
       ],
+      "validator": {
+        "kind": "unordered_list"
+      },
       "tags": [
-        "string"
+        "hidden",
+        "all-match"
       ]
     },
     {
-      "id": "real-empty-and-single",
-      "name": "real: empty strings and single letters",
+      "id": "real-long-word-late-match",
+      "name": "hidden: target appears at the last legal position",
       "kind": "real",
       "visible": false,
       "input": {
         "words": [
-          "",
-          "x",
-          "alpha",
-          "box",
-          "orbit",
-          ""
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz",
+          "bbbb"
         ],
-        "x": "x"
+        "x": "z"
       },
       "expected": [
-        1,
-        3
+        0
       ],
+      "validator": {
+        "kind": "unordered_list"
+      },
       "tags": [
         "hidden",
-        "edge"
+        "maximum-word-length"
+      ]
+    },
+    {
+      "id": "real-sparse-match",
+      "name": "hidden: only the final word matches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "alpha",
+          "beta",
+          "gamma",
+          "delta",
+          "epsilon"
+        ],
+        "x": "n"
+      },
+      "expected": [
+        4
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "sparse"
       ]
     }
   ]

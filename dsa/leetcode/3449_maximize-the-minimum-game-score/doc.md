@@ -5,32 +5,34 @@
 | Source | LeetCode |
 | Frontend ID | 3449 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Binary Search, Greedy |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-the-minimum-game-score](https://leetcode.com/problems/maximize-the-minimum-game-score/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-the-minimum-game-score/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-the-minimum-game-score/).
-
 ### Goal
-Given an array of points representing the score gained by visiting each index and a maximum number of moves allowed, determine the maximum possible value for the minimum score among all indices after distributing the moves. You can move to an adjacent index or stay at the current index, and each visit adds the index's point value to its total score.
+An array `points` describes a game board with one score value per index. A separate array `gameScore` of the same length starts with every entry equal to zero, while the player starts just to the left of the board at index $-1$.
+
+The player may make at most `m` moves. A move changes the current index by exactly one, either left or right; staying in place is not a move option. After the first move, the current index must always lie between $0$ and $n-1$. Whenever the player arrives at index $i$, `points[i]` is added to `gameScore[i]`. Choose the moves so that the minimum value in `gameScore` is as large as possible, and return that maximum value.
 
 ### Function Contract
 **Inputs**
 
-- `points`: A list of integers representing the score awarded for visiting each index.
-- `m`: An integer representing the total number of moves available.
+- `points`: A list of $n$ positive integers, where `points[i]` is added on every visit to index $i$.
+- `m`: The maximum number of moves available.
+
+The constraints are $2 \le n \le 5 \cdot 10^4$, $1 \le \texttt{points[i]} \le 10^6$, and $1 \le m \le 10^9$.
+
+For complexity notation, let $p = \min_i \texttt{points[i]}$.
 
 **Return value**
 
-- An integer representing the maximum possible value of the minimum score across all indices.
+Return the greatest achievable value of $\min_i \texttt{gameScore[i]}$ after making at most `m` moves.
 
 ### Examples
 **Example 1**
 
-- Input: `points = [2, 6], m = 6`
-- Output: `6`
+- Input: `points = [2, 4], m = 3`
+- Output: `4`
 
 **Example 2**
 
@@ -39,63 +41,5 @@ Given an array of points representing the score gained by visiting each index an
 
 **Example 3**
 
-- Input: `points = [10, 20], m = 1`
+- Input: `points = [7, 2, 9, 3], m = 3`
 - Output: `0`
-
----
-
-## Solution
-### Approach
-The problem is solved using **Binary Search on the Answer**. Since the minimum score is monotonic (if a minimum score $X$ is achievable, any value less than $X$ is also achievable), we search for the largest $X$ in the range $[0, \text{total\_points} \times m]$. For a fixed target $X$, we use a **Greedy approach** to check if it is possible to achieve at least $X$ at every index using at most $m$ moves.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n \log(\text{max\_score}))$, where $n$ is the length of the `points` array and $\text{max\_score}$ is the upper bound of the binary search.
-- **Space Complexity**: $O(n)$ to store the number of visits required for each index during the greedy check.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(points: list[int], m: int) -> int:
-    n = len(points)
-
-    def feasible(target: int) -> bool:
-        if target == 0:
-            return True
-
-        required = [(target + value - 1) // value for value in points]
-        moves = 1
-        incoming = 1
-
-        for index in range(n - 1):
-            if index == n - 2:
-                need_current = max(0, required[index] - incoming)
-                continue_moves = moves + 2 * need_current + 1
-                last_incoming = need_current + 1
-                continue_moves += 2 * max(0, required[index + 1] - last_incoming)
-
-                stop_bounces = max(need_current, required[index + 1])
-                stop_moves = moves + 2 * stop_bounces
-                return min(continue_moves, stop_moves) <= m
-
-            bounces = max(0, required[index] - incoming)
-            moves += 2 * bounces + 1
-            if moves > m:
-                return False
-            incoming = bounces + 1
-
-        return moves + 2 * max(0, required[0] - incoming) <= m
-
-    low, high = 0, min(points) * m
-    answer = 0
-    while low <= high:
-        mid = (low + high) // 2
-        if feasible(mid):
-            answer = mid
-            low = mid + 1
-        else:
-            high = mid - 1
-    return answer
-```
-</details>

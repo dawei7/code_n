@@ -5,25 +5,32 @@
 | Source | LeetCode |
 | Frontend ID | 2280 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Math, Geometry, Sorting, Number Theory |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-lines-to-represent-a-line-chart](https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/).
-
 ### Goal
-Sort stock-price points by day and connect consecutive points. Count the minimum straight line segments needed, merging adjacent connections whenever their slopes are equal.
+Each entry `stockPrices[i] = [day_i, price_i]` records a stock price on a
+particular day. Plot these points in the plane, using days on the horizontal
+axis and prices on the vertical axis. The line chart connects points that are
+adjacent after ordering them by day.
+
+A single straight line may represent several consecutive connections whenever
+all of their points are collinear. Return the minimum number of straight lines
+needed to represent the entire chart.
 
 ### Function Contract
 **Inputs**
 
-- `stockPrices`: distinct-day points `[day, price]`.
+- `stockPrices`: An array of $n$ pairs `[day_i, price_i]`, where every `day_i` is distinct.
+
+Here, $1 \le n \le 10^5$, every pair has exactly two entries, and
+$1 \le \texttt{day_i}, \texttt{price_i} \le 10^9$.
 
 **Return value**
 
-The number of maximal collinear runs between consecutive sorted points; a single point requires zero lines.
+The minimum number of straight lines whose consecutive portions represent the
+day-ordered line chart. A chart containing only one point requires zero lines.
 
 ### Examples
 **Example 1**
@@ -40,16 +47,3 @@ The number of maximal collinear runs between consecutive sorted points; a single
 
 - Input: `stockPrices = [[5, 10]]`
 - Output: `0`
-
----
-
-## Solution
-### Approach
-Sort by day. Begin with one segment when at least two points exist, then compare each consecutive slope with the previous slope. Avoid floating-point division by cross-multiplying `dy1 * dx2` and `dy2 * dx1`; start a new line whenever they differ.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(1)` auxiliary space when sorting in place
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

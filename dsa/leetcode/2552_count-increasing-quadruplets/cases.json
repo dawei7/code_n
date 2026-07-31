@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two official increasing quadruplets",
+      "name": "sample: two fourth-index choices",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,12 +18,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "dp"
+        "crossed-order"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: fully increasing order has no valid middle inversion",
+      "name": "sample: increasing values have no crossed middle pair",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -36,31 +36,52 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "sample",
+        "increasing"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no increasing quadruplet satisfies the value order",
-      "kind": "sample",
+      "id": "trial-decreasing",
+      "name": "trial: decreasing values have no larger fourth value",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          2,
           5,
+          4,
           3,
-          1,
-          4
+          2,
+          1
         ]
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "trial",
+        "decreasing"
       ]
     },
     {
-      "id": "trial-one-valid-pattern",
-      "name": "trial: one inversion creates two valid endings",
+      "id": "trial-one-match",
+      "name": "trial: minimum length with one match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-zigzag",
+      "name": "trial: several low-high crossings",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -68,30 +89,59 @@
           1,
           4,
           2,
+          5,
           3,
-          5
+          6
         ]
       },
-      "expected": 2,
+      "expected": 5,
       "tags": [
-        "trial"
+        "trial",
+        "zigzag"
       ]
     },
     {
-      "id": "real-too-short",
-      "name": "hidden: fewer than four values cannot form a quadruplet",
+      "id": "real-mixed",
+      "name": "hidden: nonregular permutation",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          1,
           2,
-          3
+          5,
+          1,
+          4,
+          3,
+          7,
+          6
         ]
       },
-      "expected": 0,
+      "expected": 8,
       "tags": [
-        "hidden"
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-late-small",
+      "name": "hidden: small values appearing late cannot be first indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          6,
+          2,
+          5,
+          3,
+          7
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "position-sensitive"
       ]
     }
   ]

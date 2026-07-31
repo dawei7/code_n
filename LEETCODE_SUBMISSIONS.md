@@ -61,6 +61,27 @@ verification evidence. Valid statuses are:
 
 Never label a candidate verified based only on local tests or code inspection.
 
+### Replacing an already verified source
+
+A native source referenced by a `verified` manifest is immutable acceptance
+evidence. Never edit that canonical file before its proposed replacement has
+been remotely Accepted. Put the replacement in a separate staging path, submit
+the exact staged bytes, and leave both the canonical source and manifest
+unchanged if submission or verification fails. Only after LeetCode reports
+Accepted may the staged bytes replace the canonical native source; update the
+manifest in the same package pass with that Accepted submission id and
+timestamp, then real-test the native and app-local forms again.
+
+The Electron bridge supports this non-destructive check for one candidate at a
+time. The candidate path is repository-relative or absolute and is never
+promoted automatically:
+
+```powershell
+$env:CODEN_LEETCODE_CANDIDATE_SOURCE = '.coden-data/leetcode-replacements/lc_1.py'
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1
+Remove-Item Env:CODEN_LEETCODE_CANDIDATE_SOURCE
+```
+
 ## Migration authoring order
 
 For corpus migration and maintainer-authored package work, obtain remote
@@ -98,6 +119,23 @@ update the document, cases, expected outputs, both solution forms, and any
 benchmark workload or complexity claim affected by that misunderstanding.
 Never patch only the submitted source and leave contradictory local evidence.
 
+## Corpus priority
+
+Packages without a remotely verified Optimal submission are the first active
+migration queue. Process them in ascending frontend-ID order, using
+`first_unverified_optimal_submission` from the refreshed
+`dsa/leetcode/_reports/two_sum_migration_progress.json`. Only after this queue
+is empty should maintainers return to the broad source-fidelity rewrite of
+already verified legacy packages.
+
+This priority does not permit placeholder documentation for newly completed
+packages. After early Accepted evidence anchors the implementation, finish the
+same package with its comprehensive judge and complexity evidence plus a live-
+source-reviewed modular Reference and verified `source_fidelity.json`. Preserve
+the source's meaningful structure and teaching style—including all examples,
+explanations, constraints, signposts, tables, and diagrams—while independently
+writing the prose and recreating provider visuals.
+
 ## Maintainer verification
 
 Credentials are read from environment variables so secrets do not appear in
@@ -121,6 +159,8 @@ inside Electron and passes them to the verifier through the child-process
 environment; it never prints or persists plaintext credentials:
 
 ```powershell
+Remove-Item Env:ELECTRON_RUN_AS_NODE -ErrorAction SilentlyContinue
+$env:PYTHONIOENCODING = 'utf-8'
 npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_44
 ```
 
@@ -138,6 +178,8 @@ dataset or exposing credentials. If Cloudflare rejects the direct API request,
 the same bridge retries through a temporary headless Chrome profile:
 
 ```powershell
+Remove-Item Env:ELECTRON_RUN_AS_NODE -ErrorAction SilentlyContinue
+$env:PYTHONIOENCODING = 'utf-8'
 npx.cmd --prefix electron electron electron/scripts/fetch-leetcode-question.cjs lc_1902
 ```
 

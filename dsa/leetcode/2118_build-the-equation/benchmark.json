@@ -1,0 +1,664 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2118",
+  "measurement_note": "Size is N, the Terms row count, spanning the complete legal power domain at the largest tier. Formatting followed by one descending sort takes O(N log N) time. A correct query that derives every term's position through a correlated full-table count completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 uniquely powered terms",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 0,
+              "factor": 1
+            },
+            {
+              "power": 1,
+              "factor": -2
+            },
+            {
+              "power": 2,
+              "factor": 3
+            },
+            {
+              "power": 3,
+              "factor": -4
+            },
+            {
+              "power": 4,
+              "factor": 5
+            },
+            {
+              "power": 5,
+              "factor": -6
+            },
+            {
+              "power": 6,
+              "factor": 7
+            },
+            {
+              "power": 7,
+              "factor": -8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "-8X^7+7X^6-6X^5+5X^4-4X^3+3X^2-2X+1=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "all-distinct-powers"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 uniquely powered terms",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 0,
+              "factor": 1
+            },
+            {
+              "power": 1,
+              "factor": -2
+            },
+            {
+              "power": 2,
+              "factor": 3
+            },
+            {
+              "power": 3,
+              "factor": -4
+            },
+            {
+              "power": 4,
+              "factor": 5
+            },
+            {
+              "power": 5,
+              "factor": -6
+            },
+            {
+              "power": 6,
+              "factor": 7
+            },
+            {
+              "power": 7,
+              "factor": -8
+            },
+            {
+              "power": 8,
+              "factor": 9
+            },
+            {
+              "power": 9,
+              "factor": -10
+            },
+            {
+              "power": 10,
+              "factor": 11
+            },
+            {
+              "power": 11,
+              "factor": -12
+            },
+            {
+              "power": 12,
+              "factor": 13
+            },
+            {
+              "power": 13,
+              "factor": -14
+            },
+            {
+              "power": 14,
+              "factor": 15
+            },
+            {
+              "power": 15,
+              "factor": -16
+            },
+            {
+              "power": 16,
+              "factor": 17
+            },
+            {
+              "power": 17,
+              "factor": -18
+            },
+            {
+              "power": 18,
+              "factor": 19
+            },
+            {
+              "power": 19,
+              "factor": -20
+            },
+            {
+              "power": 20,
+              "factor": 21
+            },
+            {
+              "power": 21,
+              "factor": -22
+            },
+            {
+              "power": 22,
+              "factor": 23
+            },
+            {
+              "power": 23,
+              "factor": -24
+            },
+            {
+              "power": 24,
+              "factor": 25
+            },
+            {
+              "power": 25,
+              "factor": -26
+            },
+            {
+              "power": 26,
+              "factor": 27
+            },
+            {
+              "power": 27,
+              "factor": -28
+            },
+            {
+              "power": 28,
+              "factor": 29
+            },
+            {
+              "power": 29,
+              "factor": -30
+            },
+            {
+              "power": 30,
+              "factor": 31
+            },
+            {
+              "power": 31,
+              "factor": -32
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "-32X^31+31X^30-30X^29+29X^28-28X^27+27X^26-26X^25+25X^24-24X^23+23X^22-22X^21+21X^20-20X^19+19X^18-18X^17+17X^16-16X^15+15X^14-14X^13+13X^12-12X^11+11X^10-10X^9+9X^8-8X^7+7X^6-6X^5+5X^4-4X^3+3X^2-2X+1=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-distinct-powers"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 101 uniquely powered terms",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 101,
+      "input": {
+        "tables": {
+          "Terms": [
+            {
+              "power": 0,
+              "factor": 1
+            },
+            {
+              "power": 1,
+              "factor": -2
+            },
+            {
+              "power": 2,
+              "factor": 3
+            },
+            {
+              "power": 3,
+              "factor": -4
+            },
+            {
+              "power": 4,
+              "factor": 5
+            },
+            {
+              "power": 5,
+              "factor": -6
+            },
+            {
+              "power": 6,
+              "factor": 7
+            },
+            {
+              "power": 7,
+              "factor": -8
+            },
+            {
+              "power": 8,
+              "factor": 9
+            },
+            {
+              "power": 9,
+              "factor": -10
+            },
+            {
+              "power": 10,
+              "factor": 11
+            },
+            {
+              "power": 11,
+              "factor": -12
+            },
+            {
+              "power": 12,
+              "factor": 13
+            },
+            {
+              "power": 13,
+              "factor": -14
+            },
+            {
+              "power": 14,
+              "factor": 15
+            },
+            {
+              "power": 15,
+              "factor": -16
+            },
+            {
+              "power": 16,
+              "factor": 17
+            },
+            {
+              "power": 17,
+              "factor": -18
+            },
+            {
+              "power": 18,
+              "factor": 19
+            },
+            {
+              "power": 19,
+              "factor": -20
+            },
+            {
+              "power": 20,
+              "factor": 21
+            },
+            {
+              "power": 21,
+              "factor": -22
+            },
+            {
+              "power": 22,
+              "factor": 23
+            },
+            {
+              "power": 23,
+              "factor": -24
+            },
+            {
+              "power": 24,
+              "factor": 25
+            },
+            {
+              "power": 25,
+              "factor": -26
+            },
+            {
+              "power": 26,
+              "factor": 27
+            },
+            {
+              "power": 27,
+              "factor": -28
+            },
+            {
+              "power": 28,
+              "factor": 29
+            },
+            {
+              "power": 29,
+              "factor": -30
+            },
+            {
+              "power": 30,
+              "factor": 31
+            },
+            {
+              "power": 31,
+              "factor": -32
+            },
+            {
+              "power": 32,
+              "factor": 33
+            },
+            {
+              "power": 33,
+              "factor": -34
+            },
+            {
+              "power": 34,
+              "factor": 35
+            },
+            {
+              "power": 35,
+              "factor": -36
+            },
+            {
+              "power": 36,
+              "factor": 37
+            },
+            {
+              "power": 37,
+              "factor": -38
+            },
+            {
+              "power": 38,
+              "factor": 39
+            },
+            {
+              "power": 39,
+              "factor": -40
+            },
+            {
+              "power": 40,
+              "factor": 41
+            },
+            {
+              "power": 41,
+              "factor": -42
+            },
+            {
+              "power": 42,
+              "factor": 43
+            },
+            {
+              "power": 43,
+              "factor": -44
+            },
+            {
+              "power": 44,
+              "factor": 45
+            },
+            {
+              "power": 45,
+              "factor": -46
+            },
+            {
+              "power": 46,
+              "factor": 47
+            },
+            {
+              "power": 47,
+              "factor": -48
+            },
+            {
+              "power": 48,
+              "factor": 49
+            },
+            {
+              "power": 49,
+              "factor": -50
+            },
+            {
+              "power": 50,
+              "factor": 51
+            },
+            {
+              "power": 51,
+              "factor": -52
+            },
+            {
+              "power": 52,
+              "factor": 53
+            },
+            {
+              "power": 53,
+              "factor": -54
+            },
+            {
+              "power": 54,
+              "factor": 55
+            },
+            {
+              "power": 55,
+              "factor": -56
+            },
+            {
+              "power": 56,
+              "factor": 57
+            },
+            {
+              "power": 57,
+              "factor": -58
+            },
+            {
+              "power": 58,
+              "factor": 59
+            },
+            {
+              "power": 59,
+              "factor": -60
+            },
+            {
+              "power": 60,
+              "factor": 61
+            },
+            {
+              "power": 61,
+              "factor": -62
+            },
+            {
+              "power": 62,
+              "factor": 63
+            },
+            {
+              "power": 63,
+              "factor": -64
+            },
+            {
+              "power": 64,
+              "factor": 65
+            },
+            {
+              "power": 65,
+              "factor": -66
+            },
+            {
+              "power": 66,
+              "factor": 67
+            },
+            {
+              "power": 67,
+              "factor": -68
+            },
+            {
+              "power": 68,
+              "factor": 69
+            },
+            {
+              "power": 69,
+              "factor": -70
+            },
+            {
+              "power": 70,
+              "factor": 71
+            },
+            {
+              "power": 71,
+              "factor": -72
+            },
+            {
+              "power": 72,
+              "factor": 73
+            },
+            {
+              "power": 73,
+              "factor": -74
+            },
+            {
+              "power": 74,
+              "factor": 75
+            },
+            {
+              "power": 75,
+              "factor": -76
+            },
+            {
+              "power": 76,
+              "factor": 77
+            },
+            {
+              "power": 77,
+              "factor": -78
+            },
+            {
+              "power": 78,
+              "factor": 79
+            },
+            {
+              "power": 79,
+              "factor": -80
+            },
+            {
+              "power": 80,
+              "factor": 81
+            },
+            {
+              "power": 81,
+              "factor": -82
+            },
+            {
+              "power": 82,
+              "factor": 83
+            },
+            {
+              "power": 83,
+              "factor": -84
+            },
+            {
+              "power": 84,
+              "factor": 85
+            },
+            {
+              "power": 85,
+              "factor": -86
+            },
+            {
+              "power": 86,
+              "factor": 87
+            },
+            {
+              "power": 87,
+              "factor": -88
+            },
+            {
+              "power": 88,
+              "factor": 89
+            },
+            {
+              "power": 89,
+              "factor": -90
+            },
+            {
+              "power": 90,
+              "factor": 91
+            },
+            {
+              "power": 91,
+              "factor": -92
+            },
+            {
+              "power": 92,
+              "factor": 93
+            },
+            {
+              "power": 93,
+              "factor": -94
+            },
+            {
+              "power": 94,
+              "factor": 95
+            },
+            {
+              "power": 95,
+              "factor": -96
+            },
+            {
+              "power": 96,
+              "factor": 97
+            },
+            {
+              "power": 97,
+              "factor": -98
+            },
+            {
+              "power": 98,
+              "factor": 99
+            },
+            {
+              "power": 99,
+              "factor": -100
+            },
+            {
+              "power": 100,
+              "factor": 101
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "equation"
+        ],
+        "rows": [
+          [
+            "+101X^100-100X^99+99X^98-98X^97+97X^96-96X^95+95X^94-94X^93+93X^92-92X^91+91X^90-90X^89+89X^88-88X^87+87X^86-86X^85+85X^84-84X^83+83X^82-82X^81+81X^80-80X^79+79X^78-78X^77+77X^76-76X^75+75X^74-74X^73+73X^72-72X^71+71X^70-70X^69+69X^68-68X^67+67X^66-66X^65+65X^64-64X^63+63X^62-62X^61+61X^60-60X^59+59X^58-58X^57+57X^56-56X^55+55X^54-54X^53+53X^52-52X^51+51X^50-50X^49+49X^48-48X^47+47X^46-46X^45+45X^44-44X^43+43X^42-42X^41+41X^40-40X^39+39X^38-38X^37+37X^36-36X^35+35X^34-34X^33+33X^32-32X^31+31X^30-30X^29+29X^28-28X^27+27X^26-26X^25+25X^24-24X^23+23X^22-22X^21+21X^20-20X^19+19X^18-18X^17+17X^16-16X^15+15X^14-14X^13+13X^12-12X^11+11X^10-10X^9+9X^8-8X^7+7X^6-6X^5+5X^4-4X^3+3X^2-2X+1=0"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-distinct-powers"
+      ]
+    }
+  ]
+}

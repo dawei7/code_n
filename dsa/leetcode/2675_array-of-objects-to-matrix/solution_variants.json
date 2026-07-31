@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Array of Objects to Matrix and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Flattens every input item once, sorts the union of leaf paths, and fills the matrix by direct path lookup.",
+      "time_complexity": "O(S + k log k + rk)",
+      "space_complexity": "O(S + rk)"
     }
   ]
 }

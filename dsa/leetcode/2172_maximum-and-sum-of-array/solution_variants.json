@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum AND Sum of Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Memoizes assignments by a base-three mask whose digits record each slot's occupancy.",
+      "time_complexity": "O(m 3^m)",
+      "space_complexity": "O(3^m)"
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Beautiful Substrings II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts equal prefix balances whose index difference has the exact number-theoretic period required by k.",
+      "time_complexity": "O(N + sqrt(K))",
+      "space_complexity": "O(N)"
     }
   ]
 }

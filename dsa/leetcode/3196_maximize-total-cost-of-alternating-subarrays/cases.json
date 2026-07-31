@@ -3,97 +3,111 @@
   "cases": [
     {
       "id": "sample-mixed-signs",
-      "name": "sample: mixed signs can stay together",
+      "name": "sample: mixed signs with a final split",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          -2,
-          3,
-          4
-        ]
-      },
+      "input": {"nums": [1, -2, 3, 4]},
       "expected": 10,
-      "tags": [
-        "sample",
-        "dp"
-      ]
+      "tags": ["sample", "dynamic-programming"]
     },
     {
       "id": "sample-alternating-ones",
-      "name": "sample: alternating signs reward grouping",
+      "name": "sample: alternating signs",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          -1,
-          1,
-          -1
-        ]
-      },
+      "input": {"nums": [1, -1, 1, -1]},
       "expected": 4,
-      "tags": [
-        "sample",
-        "alternating"
-      ]
+      "tags": ["sample", "alternating"]
     },
     {
-      "id": "trial-single",
-      "name": "trial: single element",
+      "id": "sample-single-zero",
+      "name": "sample: one zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0]},
+      "expected": 0,
+      "tags": ["sample", "single-element"]
+    },
+    {
+      "id": "sample-two-values",
+      "name": "sample: one negative value can be subtracted",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, -1]},
+      "expected": 2,
+      "tags": ["sample", "unsplit"]
+    },
+    {
+      "id": "trial-single-positive",
+      "name": "trial: one positive value",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          0
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "edge"
-      ]
+      "input": {"nums": [5]},
+      "expected": 5,
+      "tags": ["single-element", "positive"]
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "trial: one negative value cannot change sign",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-5]},
+      "expected": -5,
+      "tags": ["single-element", "negative"]
+    },
+    {
+      "id": "trial-positive-pair",
+      "name": "trial: splitting two positive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2]},
+      "expected": 3,
+      "tags": ["positive", "split"]
     },
     {
       "id": "trial-negative-block",
-      "name": "trial: negative block decisions",
+      "name": "trial: choices across a negative block",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          -3,
-          -2,
-          -5,
-          4
-        ]
-      },
+      "input": {"nums": [-3, -2, -5, 4]},
       "expected": 4,
-      "tags": [
-        "negative"
-      ]
+      "tags": ["negative", "state-transition"]
     },
     {
-      "id": "real-zigzag",
-      "name": "real: longer zigzag sequence",
+      "id": "trial-all-positive",
+      "name": "trial: singleton parts preserve every positive value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 3, 2, 1]},
+      "expected": 10,
+      "tags": ["all-positive", "split"]
+    },
+    {
+      "id": "real-zeros-and-negatives",
+      "name": "real: zeros separate profitable sign flips",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          8,
-          -6,
-          -2,
-          5,
-          -9,
-          3,
-          7,
-          -4
-        ]
-      },
+      "input": {"nums": [0, -5, 0, -2]},
+      "expected": 7,
+      "tags": ["real", "zeros", "negative"]
+    },
+    {
+      "id": "real-value-bounds",
+      "name": "real: result exceeds 32-bit range",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, -1000000000, 1000000000]},
+      "expected": 3000000000,
+      "tags": ["real", "value-bounds", "large-result"]
+    },
+    {
+      "id": "real-longer-zigzag",
+      "name": "real: longer mixed-sign sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, -6, -2, 5, -9, 3, 7, -4]},
       "expected": 40,
-      "tags": [
-        "real",
-        "dp"
-      ]
+      "tags": ["real", "zigzag", "dynamic-programming"]
     }
   ]
 }

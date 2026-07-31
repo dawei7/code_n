@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3799",
+  "frontend_id": "3483",
+  "title_slug": "unique-3-digit-even-numbers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.totalNumbers",
+  "verified_submission_id": "2082235348",
+  "verified_at": "2026-07-26T15:42:00Z"
+}

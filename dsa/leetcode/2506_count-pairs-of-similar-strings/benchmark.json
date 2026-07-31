@@ -1,24 +1,36 @@
 {
   "challenge_id": "lc_2506",
+  "measurement_note": "Size is n, the number of words. Every word has the same one-letter signature, so all pairs qualify. Signature frequency counting scales as O(n), while directly comparing every pair scales as O(n^2).",
   "cases": [
     {
-      "id": "benchmark-two-mask-groups",
-      "name": "benchmark: two groups of similar words",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: ten equal signatures",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "words": [
-          "abc",
-          "bca",
-          "cab",
-          "abcd",
-          "bcad"
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 10,
+      "input": { "words": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a"] },
+      "expected": 45,
+      "tags": ["benchmark", "all-pairs"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: forty equal signatures",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": { "words": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"] },
+      "expected": 780,
+      "tags": ["benchmark", "all-pairs"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one hundred equal signatures",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": { "words": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"] },
+      "expected": 4950,
+      "tags": ["benchmark", "all-pairs"]
     }
   ]
 }

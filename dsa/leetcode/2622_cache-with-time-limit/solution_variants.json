@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Cache With Time Limit and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores each active value and timeout handle in a map, cancelling the old timer on replacement and deleting the key when its current timer fires.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(n)"
     }
   ]
 }

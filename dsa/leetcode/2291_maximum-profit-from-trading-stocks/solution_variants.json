@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Profit From Trading Stocks and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses one-dimensional 0/1-knapsack dynamic programming over the available budget.",
+      "time_complexity": "O(nB)",
+      "space_complexity": "O(B)"
     }
   ]
 }

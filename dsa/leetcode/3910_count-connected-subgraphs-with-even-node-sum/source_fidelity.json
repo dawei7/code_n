@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3910",
+    "frontend_id": "3910",
+    "title_slug": "count-connected-subgraphs-with-even-node-sum",
+    "url": "https://leetcode.com/problems/count-connected-subgraphs-with-even-node-sum/description/",
+    "paid_only": false,
+    "content_sha256": "693630dcf2d8e307fb0eae9dedf44cc3525fb1df3387b31f20c7807d5ce896a0",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,0,1], edges = [[0,1],[1,2]]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1], edges = []",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 2,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3ba869d820ddd686be9f59d3d17c2047bbd174e70b15b472c646ccd9b5e67c75",
+      "reference/contract.md": "a74267f421b292bcd8faba6b8a67be6d7e7b9745548affb19409b90258a0d5fe",
+      "reference/examples.md": "f9d4dea07a143593a98125a077ab78120eed7e1a748931dae72ff59d2f52699f",
+      "reference/constraints.md": "ff01a741d12888b4cefa299a2b1532869c164c6fff4edcf055e0ea3028f318a4"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

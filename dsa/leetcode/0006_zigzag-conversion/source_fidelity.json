@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_6",
+    "frontend_id": "6",
+    "title_slug": "zigzag-conversion",
+    "url": "https://leetcode.com/problems/zigzag-conversion/description/",
+    "paid_only": false,
+    "content_sha256": "47d1e9fce19dc9c68a6e19fdf71f4074f351020db2dc99034cfde521a98b8afc",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"PAYPALISHIRING\", numRows = 3",
+        "output": "\"PAHNAPLSIIGYIR\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"PAYPALISHIRING\", numRows = 4",
+        "output": "\"PINALSIGYAHRPI\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"A\", numRows = 1",
+        "output": "\"A\"",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 2,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "406c659bf6ec586807a7fd8319a481f6384675b8ab3336b6638d5e7b824148f4",
+      "reference/contract.md": "5ee3dcdd90f53b8252969f22e73f537288d8ff775744ae39ac220ac266ea63ab",
+      "reference/examples.md": "ffb7ca4f00236f5f7ff74bb767b8b5662cce5675fffdc2d819ad1f70c2015859",
+      "reference/constraints.md": "5581e21acb598897c10f3e777969cca94e73f0b395c18108b645048902f3a3f0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

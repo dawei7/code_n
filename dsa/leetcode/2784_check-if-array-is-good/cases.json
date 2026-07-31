@@ -3,97 +3,93 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: good array with max twice",
+      "name": "sample: maximum conflicts with input length",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          1,
-          3
-        ]
-      },
-      "tags": [
-        "sample",
-        "good"
-      ],
-      "expected": false
+      "input": {"nums": [2, 1, 3]},
+      "expected": false,
+      "tags": ["sample", "length"]
     },
     {
       "id": "sample-2",
-      "name": "sample: missing required duplicate max",
+      "name": "sample: shuffled base three",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          3,
-          3,
-          2
-        ]
-      },
-      "tags": [
-        "sample",
-        "good"
-      ],
-      "expected": true
+      "input": {"nums": [1, 3, 3, 2]},
+      "expected": true,
+      "tags": ["sample", "permutation"]
     },
     {
-      "id": "trial-single-one-twice",
-      "name": "trial: n is one and appears twice",
-      "kind": "trial",
+      "id": "sample-3",
+      "name": "sample: smallest good array",
+      "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1
-        ]
-      },
-      "tags": [
-        "trial",
-        "edge"
-      ],
-      "expected": true
+      "input": {"nums": [1, 1]},
+      "expected": true,
+      "tags": ["sample", "boundary"]
     },
     {
-      "id": "trial-wrong-frequency",
-      "name": "trial: one lower value appears twice",
+      "id": "sample-4",
+      "name": "sample: extra lower duplicate",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 4, 4, 1, 2, 1]},
+      "expected": false,
+      "tags": ["sample", "multiplicity"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: no positive candidate n",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          2,
-          2
-        ]
-      },
-      "tags": [
-        "trial",
-        "frequency"
-      ],
-      "expected": false
+      "input": {"nums": [1]},
+      "expected": false,
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "trial-base-two",
+      "name": "trial: base two in reverse order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 2, 1]},
+      "expected": true,
+      "tags": ["trial", "permutation"]
+    },
+    {
+      "id": "trial-maximum-once",
+      "name": "trial: candidate maximum appears once",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3]},
+      "expected": false,
+      "tags": ["trial", "multiplicity"]
+    },
+    {
+      "id": "real-out-of-range-candidate",
+      "name": "hidden: value exceeds length-derived candidate",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 4, 4]},
+      "expected": false,
+      "tags": ["hidden", "range"]
+    },
+    {
+      "id": "real-missing-middle-value",
+      "name": "hidden: repeated lower value replaces a required value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 5, 2, 4, 2]},
+      "expected": false,
+      "tags": ["hidden", "missing", "multiplicity"]
     },
     {
       "id": "real-larger-good-array",
-      "name": "hidden: shuffled larger good array",
+      "name": "hidden: shuffled base seven",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          5,
-          1,
-          4,
-          2,
-          3,
-          5
-        ]
-      },
-      "tags": [
-        "hidden",
-        "larger"
-      ],
-      "expected": true
+      "input": {"nums": [7, 3, 1, 6, 7, 2, 5, 4]},
+      "expected": true,
+      "tags": ["hidden", "permutation"]
     }
   ]
 }

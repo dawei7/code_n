@@ -2,154 +2,67 @@
   "challenge_id": "lc_2906",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two by two product matrix",
+      "id": "sample-square",
+      "name": "sample: products in a two-by-two matrix",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            2
-          ],
-          [
-            3,
-            4
-          ]
-        ]
-      },
-      "tags": [
-        "sample",
-        "matrix"
-      ],
-      "expected": [
-        [
-          24,
-          12
-        ],
-        [
-          8,
-          6
-        ]
-      ]
+      "input": {"grid": [[1, 2], [3, 4]]},
+      "expected": [[24, 12], [8, 6]],
+      "tags": ["sample", "square"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: value divisible by the modulus",
+      "id": "sample-modulus-factor",
+      "name": "sample: omitting the modulus changes only one output",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            12345
-          ],
-          [
-            2
-          ]
-        ]
-      },
-      "tags": [
-        "sample",
-        "modulo"
-      ],
-      "expected": [
-        [
-          2
-        ],
-        [
-          0
-        ]
-      ]
+      "input": {"grid": [[12345], [2], [1]]},
+      "expected": [[2], [0], [0]],
+      "tags": ["sample", "modulo"]
     },
     {
-      "id": "trial-single-cell",
-      "name": "trial: product of all other cells is the empty product",
+      "id": "trial-single-row",
+      "name": "a one-row matrix preserves its shape",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1
-          ]
-        ]
-      },
-      "tags": [
-        "trial",
-        "single-cell"
-      ],
-      "expected": [
-        [
-          1
-        ]
-      ]
+      "input": {"grid": [[2, 3, 5]]},
+      "expected": [[15, 10, 6]],
+      "tags": ["shape", "single-row"]
     },
     {
-      "id": "trial-one-zero",
-      "name": "trial: one zero affects every nonzero position",
+      "id": "trial-minimum-cells",
+      "name": "the minimum legal matrix contains two cells",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            0,
-            2
-          ],
-          [
-            3,
-            4
-          ]
-        ]
-      },
-      "tags": [
-        "trial",
-        "zero"
-      ],
-      "expected": [
-        [
-          24,
-          0
-        ],
-        [
-          0,
-          0
-        ]
-      ]
+      "input": {"grid": [[1, 1]]},
+      "expected": [[1, 1]],
+      "tags": ["boundary", "minimum-size"]
     },
     {
-      "id": "real-rectangular-grid",
-      "name": "hidden: rectangular grid with mixed residues",
+      "id": "real-one-direct-modulus-factor",
+      "name": "hidden: one direct modulus factor makes three outputs zero",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            5,
-            7,
-            11
-          ],
-          [
-            13,
-            17,
-            19
-          ]
-        ]
-      },
-      "tags": [
-        "hidden",
-        "rectangular"
-      ],
-      "expected": [
-        [
-          2353,
-          8735,
-          11170
-        ],
-        [
-          905,
-          8680,
-          11015
-        ]
-      ]
+      "input": {"grid": [[12345, 2], [3, 4]]},
+      "expected": [[24, 0], [0, 0]],
+      "tags": ["hidden", "modulo", "factor"]
+    },
+    {
+      "id": "real-composite-modulus",
+      "name": "hidden: separate factors multiply to the composite modulus",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[3, 5], [823, 7]]},
+      "expected": [[4115, 4938], [105, 0]],
+      "tags": ["hidden", "composite-modulus", "no-division"]
+    },
+    {
+      "id": "real-rectangular-shape",
+      "name": "hidden: prefix and suffix passes cross row boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 2, 3], [4, 5, 6]]},
+      "expected": [[720, 360, 240], [180, 144, 120]],
+      "tags": ["hidden", "rectangular", "row-boundary"]
     }
   ]
 }

@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_3348",
+  "cases": [
+    {
+      "id": "official-example-rebuild-suffix",
+      "name": "official example: rebuild a suffix for a power of two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "1234", "t": 256},
+      "expected": "1488",
+      "tags": ["sample", "suffix-construction", "power-of-two"]
+    },
+    {
+      "id": "official-example-already-valid",
+      "name": "official example: input already satisfies every condition",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "12355", "t": 50},
+      "expected": "12355",
+      "tags": ["sample", "already-valid", "exact-threshold"]
+    },
+    {
+      "id": "official-example-impossible-prime",
+      "name": "official example: unsupported prime factor makes the task impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "11111", "t": 26},
+      "expected": "-1",
+      "tags": ["sample", "impossible", "prime-factor"]
+    },
+    {
+      "id": "trial-remove-all-zeroes-for-unit-divisor",
+      "name": "trial: unit divisor only requires the smallest zero-free successor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": "1000", "t": 1},
+      "expected": "1111",
+      "tags": ["trial", "zero-free", "unit-divisor"]
+    },
+    {
+      "id": "trial-carry-to-longer-number",
+      "name": "trial: no same-length successor can supply the factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": "999", "t": 2},
+      "expected": "1112",
+      "tags": ["trial", "longer-answer", "carry"]
+    },
+    {
+      "id": "trial-mixed-prime-pack",
+      "name": "trial: compact mixed prime factors in the rebuilt suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": "2500", "t": 36},
+      "expected": "2529",
+      "tags": ["trial", "mixed-primes", "lexicographic-minimum"]
+    },
+    {
+      "id": "real-zero-forces-earlier-boundary",
+      "name": "real: a zero restricts where the original prefix can remain",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "1099", "t": 2},
+      "expected": "1112",
+      "tags": ["real", "first-zero", "prefix-boundary"]
+    },
+    {
+      "id": "real-increment-zero-and-preserve-prefix",
+      "name": "real: replace a late zero while preserving the preceding prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "7770", "t": 49},
+      "expected": "7771",
+      "tags": ["real", "late-zero", "existing-factors"]
+    },
+    {
+      "id": "real-maximum-divisor-needs-more-digits",
+      "name": "real: maximum divisor requires a longer compact factor pack",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "9999999999999999", "t": 100000000000000},
+      "expected": "4555555555555558888",
+      "tags": ["real", "maximum-t", "longer-answer", "factor-packing"]
+    }
+  ]
+}

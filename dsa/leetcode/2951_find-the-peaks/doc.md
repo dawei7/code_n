@@ -8,65 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-peaks](https://leetcode.com/problems/find-the-peaks/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-peaks/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-peaks/).
-
 ### Goal
-Identify all indices in a given integer array that represent "peaks." A peak is defined as an element that is strictly greater than its immediate neighbors. Note that the first and last elements of the array cannot be peaks because they lack two neighbors.
+You are given a 0-indexed integer array `mountain`. An element is a peak when
+it is strictly greater than both immediate neighboring elements. The first and
+last elements are never peaks because they do not have two neighbors.
+
+For every interior index `i`, both comparisons must hold: its value must exceed
+the value immediately before it and the value immediately after it. Equality
+with either neighbor is not enough, and the array may contain no qualifying
+interior position or several separated peaks.
+
+Return an array containing the indices of every peak. The indices may appear
+in any order.
 
 ### Function Contract
 **Inputs**
 
-- `mountain`: A list of integers (`List[int]`) representing the elevation profile.
+- `mountain`: the array of heights to inspect
+
+Let $N=\lvert\texttt{mountain}\rvert$. The contract guarantees
+$3\le N\le100$ and $1\le\texttt{mountain[i]}\le100$.
 
 **Return value**
 
-- A list of integers (`List[int]`) containing the indices of all identified peaks in increasing order.
+An array containing exactly the indices whose values are strictly greater than
+both adjacent values; any index order is accepted.
 
 ### Examples
 **Example 1**
 
-- Input: `mountain = [2, 4, 4]`
+- Input: `mountain = [2,4,4]`
 - Output: `[]`
+- Explanation: The only interior value equals its right neighbor, so it is not strictly greater.
 
 **Example 2**
 
-- Input: `mountain = [1, 4, 3, 8, 5]`
-- Output: `[1, 3]`
-
-**Example 3**
-
-- Input: `mountain = [1, 2, 3, 4, 5]`
-- Output: `[]`
-
----
-
-## Solution
-### Approach
-The problem utilizes a **Linear Scan (Enumeration)** approach. By iterating through the array from index `1` to `n-2` (where `n` is the length of the array), we perform a constant-time comparison for each element against its left and right neighbors to determine if it satisfies the peak condition.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the number of elements in the input array, as we perform a single pass through the list.
-- **Space Complexity**: `O(k)`, where `k` is the number of peaks found, required to store the resulting indices. In the worst case, this is `O(n)`.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(mountain: List[int]) -> List[int]:
-    """
-    Finds all indices i such that mountain[i-1] < mountain[i] > mountain[i+1].
-    """
-    peaks = []
-    # A peak cannot be the first or last element, so we iterate from 1 to len-2
-    for i in range(1, len(mountain) - 1):
-        if mountain[i - 1] < mountain[i] > mountain[i + 1]:
-            peaks.append(i)
-    return peaks
-```
-</details>
+- Input: `mountain = [1,4,3,8,5]`
+- Output: `[1,3]`
+- Explanation: Values at indices `1` and `3` are each greater than both neighbors.

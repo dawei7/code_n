@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3794",
+  "frontend_id": "3494",
+  "title_slug": "find-the-minimum-amount-of-time-to-brew-potions",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minTime",
+  "verified_submission_id": "2082384589",
+  "verified_at": "2026-07-26T17:34:00Z"
+}

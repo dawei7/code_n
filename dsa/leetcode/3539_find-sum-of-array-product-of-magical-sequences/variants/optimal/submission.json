@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3851",
+  "frontend_id": "3539",
+  "title_slug": "find-sum-of-array-product-of-magical-sequences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.magicalSum",
+  "verified_submission_id": "2082628757",
+  "verified_at": "2026-07-26T23:59:00Z"
+}

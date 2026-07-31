@@ -1,0 +1,1065 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3482",
+  "cases": [
+    {
+      "id": "sample-organization",
+      "name": "sample: four-level organization",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Alice",
+              "manager_id": null,
+              "salary": 12000,
+              "department": "Executive"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Bob",
+              "manager_id": 1,
+              "salary": 10000,
+              "department": "Sales"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Charlie",
+              "manager_id": 1,
+              "salary": 10000,
+              "department": "Engineering"
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "David",
+              "manager_id": 2,
+              "salary": 7500,
+              "department": "Sales"
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "Eva",
+              "manager_id": 2,
+              "salary": 7500,
+              "department": "Sales"
+            },
+            {
+              "employee_id": 6,
+              "employee_name": "Frank",
+              "manager_id": 3,
+              "salary": 9000,
+              "department": "Engineering"
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "Grace",
+              "manager_id": 3,
+              "salary": 8500,
+              "department": "Engineering"
+            },
+            {
+              "employee_id": 8,
+              "employee_name": "Hank",
+              "manager_id": 4,
+              "salary": 6000,
+              "department": "Sales"
+            },
+            {
+              "employee_id": 9,
+              "employee_name": "Ivy",
+              "manager_id": 6,
+              "salary": 7000,
+              "department": "Engineering"
+            },
+            {
+              "employee_id": 10,
+              "employee_name": "Judy",
+              "manager_id": 6,
+              "salary": 7000,
+              "department": "Engineering"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            1,
+            "Alice",
+            1,
+            9,
+            84500
+          ],
+          [
+            3,
+            "Charlie",
+            2,
+            4,
+            41500
+          ],
+          [
+            2,
+            "Bob",
+            2,
+            3,
+            31000
+          ],
+          [
+            6,
+            "Frank",
+            3,
+            2,
+            23000
+          ],
+          [
+            4,
+            "David",
+            3,
+            1,
+            13500
+          ],
+          [
+            7,
+            "Grace",
+            3,
+            0,
+            8500
+          ],
+          [
+            5,
+            "Eva",
+            3,
+            0,
+            7500
+          ],
+          [
+            9,
+            "Ivy",
+            4,
+            0,
+            7000
+          ],
+          [
+            10,
+            "Judy",
+            4,
+            0,
+            7000
+          ],
+          [
+            8,
+            "Hank",
+            4,
+            0,
+            6000
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-ceo-only",
+      "name": "trial: CEO is also a leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 7,
+              "employee_name": "Solo",
+              "manager_id": null,
+              "salary": 500,
+              "department": "Executive"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            7,
+            "Solo",
+            1,
+            0,
+            500
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-one-direct-report",
+      "name": "trial: one manager and one report",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 10,
+              "employee_name": "Chief",
+              "manager_id": null,
+              "salary": 100,
+              "department": "A"
+            },
+            {
+              "employee_id": 20,
+              "employee_name": "Worker",
+              "manager_id": 10,
+              "salary": 80,
+              "department": "B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            10,
+            "Chief",
+            1,
+            1,
+            180
+          ],
+          [
+            20,
+            "Worker",
+            2,
+            0,
+            80
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "direct-report"
+      ]
+    },
+    {
+      "id": "trial-four-node-chain",
+      "name": "trial: budgets accumulate down a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "A",
+              "manager_id": null,
+              "salary": 100,
+              "department": "D"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "B",
+              "manager_id": 1,
+              "salary": 90,
+              "department": "D"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "C",
+              "manager_id": 2,
+              "salary": 80,
+              "department": "D"
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "D",
+              "manager_id": 3,
+              "salary": 70,
+              "department": "D"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            1,
+            3,
+            340
+          ],
+          [
+            2,
+            "B",
+            2,
+            2,
+            240
+          ],
+          [
+            3,
+            "C",
+            3,
+            1,
+            150
+          ],
+          [
+            4,
+            "D",
+            4,
+            0,
+            70
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "depth"
+      ]
+    },
+    {
+      "id": "trial-wide-star",
+      "name": "trial: CEO has several leaf reports",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Chief",
+              "manager_id": null,
+              "salary": 100,
+              "department": "X"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "A",
+              "manager_id": 1,
+              "salary": 20,
+              "department": "Y"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "B",
+              "manager_id": 1,
+              "salary": 30,
+              "department": "Y"
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "C",
+              "manager_id": 1,
+              "salary": 40,
+              "department": "Z"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            1,
+            "Chief",
+            1,
+            3,
+            190
+          ],
+          [
+            4,
+            "C",
+            2,
+            0,
+            40
+          ],
+          [
+            3,
+            "B",
+            2,
+            0,
+            30
+          ],
+          [
+            2,
+            "A",
+            2,
+            0,
+            20
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "wide"
+      ]
+    },
+    {
+      "id": "real-budget-order",
+      "name": "hidden: level peers sort by subtree budget",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "CEO",
+              "manager_id": null,
+              "salary": 100,
+              "department": "E"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Zoe",
+              "manager_id": 1,
+              "salary": 90,
+              "department": "A"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Amy",
+              "manager_id": 1,
+              "salary": 50,
+              "department": "B"
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "Kid",
+              "manager_id": 3,
+              "salary": 100,
+              "department": "C"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            1,
+            "CEO",
+            1,
+            3,
+            340
+          ],
+          [
+            3,
+            "Amy",
+            2,
+            1,
+            150
+          ],
+          [
+            2,
+            "Zoe",
+            2,
+            0,
+            90
+          ],
+          [
+            4,
+            "Kid",
+            3,
+            0,
+            100
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "budget-order"
+      ]
+    },
+    {
+      "id": "real-name-tiebreak",
+      "name": "hidden: names break equal level and budget",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Chief",
+              "manager_id": null,
+              "salary": 100,
+              "department": "E"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Beta",
+              "manager_id": 1,
+              "salary": 70,
+              "department": "X"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Alpha",
+              "manager_id": 1,
+              "salary": 70,
+              "department": "Y"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            1,
+            "Chief",
+            1,
+            2,
+            240
+          ],
+          [
+            3,
+            "Alpha",
+            2,
+            0,
+            70
+          ],
+          [
+            2,
+            "Beta",
+            2,
+            0,
+            70
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "name-order"
+      ]
+    },
+    {
+      "id": "real-shuffled-nonconsecutive",
+      "name": "hidden: row and identifier order are irrelevant",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 99,
+              "employee_name": "Leaf",
+              "manager_id": 7,
+              "salary": 60,
+              "department": "C"
+            },
+            {
+              "employee_id": 10,
+              "employee_name": "Direct",
+              "manager_id": 50,
+              "salary": 90,
+              "department": "B"
+            },
+            {
+              "employee_id": 50,
+              "employee_name": "Chief",
+              "manager_id": null,
+              "salary": 100,
+              "department": "A"
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "Manager",
+              "manager_id": 50,
+              "salary": 80,
+              "department": "B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            50,
+            "Chief",
+            1,
+            3,
+            330
+          ],
+          [
+            7,
+            "Manager",
+            2,
+            1,
+            140
+          ],
+          [
+            10,
+            "Direct",
+            2,
+            0,
+            90
+          ],
+          [
+            99,
+            "Leaf",
+            3,
+            0,
+            60
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "unordered-input"
+      ]
+    },
+    {
+      "id": "real-balanced-branches",
+      "name": "hidden: two multi-level branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Root",
+              "manager_id": null,
+              "salary": 200,
+              "department": "E"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Left",
+              "manager_id": 1,
+              "salary": 120,
+              "department": "L"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Right",
+              "manager_id": 1,
+              "salary": 110,
+              "department": "R"
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "LL",
+              "manager_id": 2,
+              "salary": 75,
+              "department": "L"
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "LR",
+              "manager_id": 2,
+              "salary": 65,
+              "department": "L"
+            },
+            {
+              "employee_id": 6,
+              "employee_name": "RL",
+              "manager_id": 3,
+              "salary": 95,
+              "department": "R"
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "RR",
+              "manager_id": 3,
+              "salary": 55,
+              "department": "R"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            1,
+            "Root",
+            1,
+            6,
+            720
+          ],
+          [
+            2,
+            "Left",
+            2,
+            2,
+            260
+          ],
+          [
+            3,
+            "Right",
+            2,
+            2,
+            260
+          ],
+          [
+            6,
+            "RL",
+            3,
+            0,
+            95
+          ],
+          [
+            4,
+            "LL",
+            3,
+            0,
+            75
+          ],
+          [
+            5,
+            "LR",
+            3,
+            0,
+            65
+          ],
+          [
+            7,
+            "RR",
+            3,
+            0,
+            55
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "branches"
+      ]
+    },
+    {
+      "id": "real-leaf-own-budget",
+      "name": "hidden: leaf budget equals own salary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 5,
+              "employee_name": "Root",
+              "manager_id": null,
+              "salary": 1000,
+              "department": "One"
+            },
+            {
+              "employee_id": 6,
+              "employee_name": "Lead",
+              "manager_id": 5,
+              "salary": 900,
+              "department": "Two"
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "Leaf",
+              "manager_id": 6,
+              "salary": 777,
+              "department": "Three"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            5,
+            "Root",
+            1,
+            2,
+            2677
+          ],
+          [
+            6,
+            "Lead",
+            2,
+            1,
+            1677
+          ],
+          [
+            7,
+            "Leaf",
+            3,
+            0,
+            777
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "leaf"
+      ]
+    },
+    {
+      "id": "real-department-does-not-partition",
+      "name": "hidden: reports cross department boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "CEO",
+              "manager_id": null,
+              "salary": 500,
+              "department": "Executive"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "SalesLead",
+              "manager_id": 1,
+              "salary": 300,
+              "department": "Sales"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Engineer",
+              "manager_id": 2,
+              "salary": 250,
+              "department": "Engineering"
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "Finance",
+              "manager_id": 3,
+              "salary": 200,
+              "department": "Finance"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            1,
+            "CEO",
+            1,
+            3,
+            1250
+          ],
+          [
+            2,
+            "SalesLead",
+            2,
+            2,
+            750
+          ],
+          [
+            3,
+            "Engineer",
+            3,
+            1,
+            450
+          ],
+          [
+            4,
+            "Finance",
+            4,
+            0,
+            200
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "department"
+      ]
+    },
+    {
+      "id": "real-budget-includes-self",
+      "name": "hidden: own salary remains in every controlled budget",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Head",
+              "manager_id": null,
+              "salary": 10000,
+              "department": "E"
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "M",
+              "manager_id": 1,
+              "salary": 1000,
+              "department": "D"
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "N",
+              "manager_id": 2,
+              "salary": 100,
+              "department": "D"
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "O",
+              "manager_id": 2,
+              "salary": 10,
+              "department": "D"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "employee_name",
+          "level",
+          "team_size",
+          "budget"
+        ],
+        "rows": [
+          [
+            1,
+            "Head",
+            1,
+            3,
+            11110
+          ],
+          [
+            2,
+            "M",
+            2,
+            2,
+            1110
+          ],
+          [
+            3,
+            "N",
+            3,
+            0,
+            100
+          ],
+          [
+            4,
+            "O",
+            3,
+            0,
+            10
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "self-salary"
+      ]
+    }
+  ]
+}

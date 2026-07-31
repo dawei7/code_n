@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3603",
+  "frontend_id": "3327",
+  "title_slug": "check-if-dfs-strings-are-palindromes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findAnswer",
+  "verified_submission_id": "2080977432",
+  "verified_at": "2026-07-25T16:31:00Z"
+}

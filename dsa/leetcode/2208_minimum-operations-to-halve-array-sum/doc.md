@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Greedy, Heap (Priority Queue) |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-halve-array-sum](https://leetcode.com/problems/minimum-operations-to-halve-array-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-halve-array-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-halve-array-sum/).
 
 ### Goal
-In one operation, choose an array value and replace it with half of its current value. Find the fewest operations needed to reduce the array's total sum by at least half.
+
+Start with an array `nums` of positive integers. In one operation, choose any current array value and replace it with exactly half of that value. A value already reduced by an earlier operation remains eligible to be chosen and halved again.
+
+Minimize the number of operations needed to decrease the array's total sum by at least half of its original value. Halving may create fractional values; the target is based on the initial sum, not on a repeatedly changing fraction of the current sum.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: a list of positive numbers.
+- `nums`: an array of $n$ positive integers, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^7$.
+
+Let $k$ denote the minimum number of operations returned.
 
 **Return value**
 
-The minimum number of halving operations.
+Return $k$, the fewest exact-halving operations whose combined reduction is at least half the original sum.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [5, 19, 8, 1]`
 - Output: `3`
+- Explanation: halving `19`, then `9.5`, then `8` reduces the sum from `33` to `14.75`.
 
 **Example 2**
 
 - Input: `nums = [3, 8, 20]`
 - Output: `3`
+- Explanation: halving `20` twice and `3` once removes `16.5`, at least half of `31`.
 
 **Example 3**
 
 - Input: `nums = [10]`
 - Output: `1`
-
----
-
-## Solution
-### Approach
-Keep current values in a max-heap. Repeatedly halve the largest value, add that reduction to a running total, and push the half back. Halving the current maximum gives the greatest possible immediate reduction, so this greedy choice reaches the target in the fewest steps.
-
-### Complexity Analysis
-- **Time Complexity**: `O((n + operations) log n)`
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: one halving changes the only value to `5`, exactly half the original sum.

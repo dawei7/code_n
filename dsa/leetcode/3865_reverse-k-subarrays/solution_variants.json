@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Reverse K Subarrays and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Reverse each fixed block in place with converging two-pointer swaps.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(1)"
     }
   ]
 }

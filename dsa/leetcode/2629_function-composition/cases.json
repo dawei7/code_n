@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2629",
+  "cases": [
+    {
+      "id": "sample-mixed-functions",
+      "name": "sample: add after square after double",
+      "kind": "sample",
+      "visible": true,
+      "input": {"functionSpecs": ["addOne", "square", "double"], "x": 4},
+      "expected": 65,
+      "tags": ["sample", "mixed-functions"]
+    },
+    {
+      "id": "sample-three-times-ten",
+      "name": "sample: repeated multiplication",
+      "kind": "sample",
+      "visible": true,
+      "input": {"functionSpecs": ["timesTen", "timesTen", "timesTen"], "x": 1},
+      "expected": 1000,
+      "tags": ["sample", "repeated-function"]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: empty composition is identity",
+      "kind": "sample",
+      "visible": true,
+      "input": {"functionSpecs": [], "x": 42},
+      "expected": 42,
+      "tags": ["sample", "identity"]
+    },
+    {
+      "id": "trial-order-sensitive",
+      "name": "trial: multiply before adding",
+      "kind": "trial",
+      "visible": true,
+      "input": {"functionSpecs": ["addFive", "triple"], "x": 2},
+      "expected": 11,
+      "tags": ["trial", "order-sensitive"]
+    },
+    {
+      "id": "trial-reversed-order",
+      "name": "trial: adding before multiply changes result",
+      "kind": "trial",
+      "visible": true,
+      "input": {"functionSpecs": ["triple", "addFive"], "x": 2},
+      "expected": 21,
+      "tags": ["trial", "order-sensitive", "reversed"]
+    },
+    {
+      "id": "real-negative-input",
+      "name": "real: negative input through negate and offset",
+      "kind": "real",
+      "visible": false,
+      "input": {"functionSpecs": ["addOne", "negate"], "x": -7},
+      "expected": 8,
+      "tags": ["real", "negative-input"]
+    },
+    {
+      "id": "real-single-function",
+      "name": "real: one function is called directly",
+      "kind": "real",
+      "visible": false,
+      "input": {"functionSpecs": ["square"], "x": -9},
+      "expected": 81,
+      "tags": ["real", "single-function"]
+    },
+    {
+      "id": "real-zero-propagation",
+      "name": "real: rightmost zeroing function controls later inputs",
+      "kind": "real",
+      "visible": false,
+      "input": {"functionSpecs": ["addFive", "square", "zero"], "x": 999},
+      "expected": 5,
+      "tags": ["real", "zero", "evaluation-order"]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Great Partitions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts low-sum groups with one-dimensional knapsack DP and subtracts both invalid orientations from all assignments.",
+      "time_complexity": "O(nk)",
+      "space_complexity": "O(k)"
     }
   ]
 }

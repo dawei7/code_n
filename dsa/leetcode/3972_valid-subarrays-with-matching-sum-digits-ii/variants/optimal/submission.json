@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4320",
+  "frontend_id": "3972",
+  "title_slug": "valid-subarrays-with-matching-sum-digits-ii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countValidSubarrays",
+  "verified_submission_id": "2087981082",
+  "verified_at": "2026-07-30T19:04:40.584624+00:00"
+}

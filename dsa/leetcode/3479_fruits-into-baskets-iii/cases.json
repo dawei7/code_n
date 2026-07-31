@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3479",
   "cases": [
     {
       "id": "sample-one-unplaced",
-      "name": "sample: one fruit remains unplaced",
+      "name": "sample: one fruit type remains unplaced",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -20,13 +21,12 @@
       },
       "expected": 1,
       "tags": [
-        "sample",
-        "segment-tree"
+        "sample"
       ]
     },
     {
       "id": "sample-all-placed",
-      "name": "sample: all fruits can be placed",
+      "name": "sample: every fruit type is placed",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,58 +43,235 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
-        "all-placed"
+        "sample"
       ]
     },
     {
-      "id": "trial-leftmost-matters",
-      "name": "trial: leftmost basket choice matters",
+      "id": "trial-leftmost-not-best-fit",
+      "name": "trial: leftmost sufficient basket is mandatory",
       "kind": "trial",
       "visible": true,
       "input": {
         "fruits": [
-          5,
-          4,
+          2,
           3
         ],
         "baskets": [
-          4,
-          5,
-          3
+          3,
+          2
         ]
       },
-      "expected": 0,
+      "expected": 1,
       "tags": [
         "trial",
         "leftmost"
       ]
     },
     {
-      "id": "real-mixed-capacities",
-      "name": "real: mixed capacities",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-non-power-of-two",
+      "name": "trial: padded segment-tree leaves never qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
-          7,
-          2,
-          6,
+          5,
+          1,
           4,
-          5
+          2,
+          3
         ],
         "baskets": [
-          3,
-          8,
+          4,
           5,
-          6,
-          4
+          2,
+          3,
+          1
         ]
       },
       "expected": 1,
       "tags": [
-        "real",
-        "segment-tree"
+        "trial",
+        "tree-padding"
+      ]
+    },
+    {
+      "id": "real-all-unplaced",
+      "name": "hidden: root maximum rejects every fruit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          9,
+          8,
+          7,
+          6
+        ],
+        "baskets": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "root-rejection"
+      ]
+    },
+    {
+      "id": "real-no-reuse",
+      "name": "hidden: a consumed leaf cannot be selected again",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          2,
+          2
+        ],
+        "baskets": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "basket-uniqueness"
+      ]
+    },
+    {
+      "id": "real-skip-left-subtree",
+      "name": "hidden: search skips an insufficient left range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          8,
+          1,
+          7,
+          6
+        ],
+        "baskets": [
+          2,
+          3,
+          9,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "tree-descent"
+      ]
+    },
+    {
+      "id": "real-fruit-order",
+      "name": "hidden: updates preserve fruit processing order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          2,
+          4,
+          3
+        ],
+        "baskets": [
+          4,
+          3,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "fruit-order"
+      ]
+    },
+    {
+      "id": "real-duplicate-capacities",
+      "name": "hidden: duplicate capacities remain distinct leaves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "baskets": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-single-fit",
+      "name": "hidden: one-leaf tree with an exact fit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          1
+        ],
+        "baskets": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-single-unfit",
+      "name": "hidden: one-leaf tree with no fit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          2
+        ],
+        "baskets": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: legal maximum quantities and capacities",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          1000000000,
+          999999999,
+          1000000000
+        ],
+        "baskets": [
+          999999999,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "maximum-values"
       ]
     }
   ]

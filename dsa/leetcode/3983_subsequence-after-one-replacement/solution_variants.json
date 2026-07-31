@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Subsequence After One Replacement and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans t once while tracking the longest prefix of s matched exactly and the longest prefix matched after one replacement.",
+      "time_complexity": "O(m)",
+      "space_complexity": "O(1)"
     }
   ]
 }

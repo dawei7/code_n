@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three groups possible",
+      "name": "sample: three increasing groups",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -13,15 +13,15 @@
           5
         ]
       },
+      "expected": 3,
       "tags": [
         "sample",
-        "groups"
-      ],
-      "expected": 3
+        "full-range"
+      ]
     },
     {
       "id": "sample-2",
-      "name": "sample: each value can appear once",
+      "name": "sample: limits support only two groups",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -31,15 +31,15 @@
           2
         ]
       },
+      "expected": 2,
       "tags": [
         "sample",
-        "groups"
-      ],
-      "expected": 2
+        "capacity"
+      ]
     },
     {
       "id": "sample-3",
-      "name": "sample: only one group possible",
+      "name": "sample: two single uses form one group",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -48,34 +48,110 @@
           1
         ]
       },
+      "expected": 1,
       "tags": [
         "sample",
         "small"
-      ],
-      "expected": 1
+      ]
     },
     {
-      "id": "trial-zero-limits",
-      "name": "trial: zero limits do not help",
+      "id": "trial-single-large-limit",
+      "name": "trial: one number cannot create a longer group",
       "kind": "trial",
       "visible": true,
       "input": {
         "usageLimits": [
-          0,
-          0,
+          1000000000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "clamping"
+      ]
+    },
+    {
+      "id": "trial-three-equal-limits",
+      "name": "trial: three numbers each used twice support three groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "usageLimits": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-distinctness-bottleneck",
+      "name": "trial: total capacity alone cannot create four groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "usageLimits": [
+          1,
+          1,
+          4,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "distinctness"
+      ]
+    },
+    {
+      "id": "real-all-single-use",
+      "name": "hidden: six single uses meet three triangular levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "usageLimits": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "triangular"
+      ]
+    },
+    {
+      "id": "real-uniform-middle-limit",
+      "name": "hidden: six equal limits stop before the sixth group",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "usageLimits": [
+          3,
+          3,
+          3,
+          3,
           3,
           3
         ]
       },
+      "expected": 5,
       "tags": [
-        "trial",
-        "zeros"
-      ],
-      "expected": 2
+        "hidden",
+        "capacity"
+      ]
     },
     {
-      "id": "real-many-limits",
-      "name": "hidden: many varied limits",
+      "id": "real-mixed-complete",
+      "name": "hidden: shuffled capacities support every group",
       "kind": "real",
       "visible": false,
       "input": {
@@ -89,11 +165,31 @@
           5
         ]
       },
+      "expected": 7,
       "tags": [
         "hidden",
         "mixed"
-      ],
-      "expected": 7
+      ]
+    },
+    {
+      "id": "real-all-maximum",
+      "name": "hidden: every oversized limit is safely clamped",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "usageLimits": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
     }
   ]
 }

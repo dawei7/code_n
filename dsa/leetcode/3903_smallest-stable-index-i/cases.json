@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3903",
+  "cases": [
+    {
+      "id": "sample-first-stable-at-end",
+      "name": "sample: only the final index meets the threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [5, 0, 1, 4], "k": 3},
+      "expected": 3,
+      "tags": ["sample", "final-index", "suffix-minimum"]
+    },
+    {
+      "id": "sample-no-stable-index",
+      "name": "sample: a decreasing array keeps every score above k",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 2, 1], "k": 1},
+      "expected": -1,
+      "tags": ["sample", "decreasing", "no-solution"]
+    },
+    {
+      "id": "sample-single-zero",
+      "name": "sample: a singleton has instability zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0], "k": 0},
+      "expected": 0,
+      "tags": ["sample", "single-element", "zero-threshold"]
+    },
+    {
+      "id": "trial-single-maximum",
+      "name": "trial: the maximum legal singleton is stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1000000000], "k": 0},
+      "expected": 0,
+      "tags": ["trial", "single-element", "maximum-value"]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: equal values make index zero stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7, 7, 7, 7], "k": 0},
+      "expected": 0,
+      "tags": ["trial", "all-equal", "smallest-index"]
+    },
+    {
+      "id": "trial-increasing-zero-threshold",
+      "name": "trial: the first element is the suffix minimum of an increasing array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4], "k": 0},
+      "expected": 0,
+      "tags": ["trial", "increasing", "zero-threshold"]
+    },
+    {
+      "id": "trial-threshold-equality",
+      "name": "trial: equality with k accepts the first index",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 3, 2, 1], "k": 3},
+      "expected": 0,
+      "tags": ["trial", "inclusive-threshold", "decreasing"]
+    },
+    {
+      "id": "trial-first-stable-in-middle",
+      "name": "trial: the suffix minimum rises enough at index two",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [8, 1, 7, 6], "k": 2},
+      "expected": 2,
+      "tags": ["trial", "middle-index", "suffix-rise"]
+    },
+    {
+      "id": "trial-smallest-among-several",
+      "name": "trial: the scan returns the first of several stable indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6, 1, 2, 5, 4], "k": 2},
+      "expected": 3,
+      "tags": ["trial", "multiple-stable", "smallest-index"]
+    },
+    {
+      "id": "hidden-zero-threshold-at-end",
+      "name": "hidden: only the maximum-valued final singleton closes the gap",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 0, 1000000000], "k": 0},
+      "expected": 2,
+      "tags": ["hidden", "value-boundaries", "final-index"]
+    },
+    {
+      "id": "hidden-inclusive-ranges",
+      "name": "hidden: both extrema ranges include the candidate value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 5], "k": 0},
+      "expected": 2,
+      "tags": ["hidden", "inclusive-ranges", "off-by-one"]
+    },
+    {
+      "id": "hidden-nonmonotone-scores",
+      "name": "hidden: instability can rise sharply after an initially stable index",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 100, 0], "k": 0},
+      "expected": 0,
+      "tags": ["hidden", "nonmonotone", "binary-search-trap"]
+    },
+    {
+      "id": "hidden-large-threshold",
+      "name": "hidden: the maximum threshold immediately accepts index zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 0, 500000000], "k": 1000000000},
+      "expected": 0,
+      "tags": ["hidden", "maximum-threshold", "boundary"]
+    },
+    {
+      "id": "hidden-long-decreasing-no-solution",
+      "name": "hidden: the maximum length can have no stable index",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], "k": 98},
+      "expected": -1,
+      "tags": ["hidden", "maximum-length", "no-solution"]
+    }
+  ]
+}

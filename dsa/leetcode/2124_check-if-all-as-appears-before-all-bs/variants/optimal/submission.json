@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2243",
+  "frontend_id": "2124",
+  "title_slug": "check-if-all-as-appears-before-all-bs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.checkString",
+  "verified_submission_id": "2073384287",
+  "verified_at": "2026-07-19T11:13:16.754373+00:00"
+}

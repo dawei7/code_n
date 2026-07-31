@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "source": {"provider":"leetcode","challenge_id":"lc_3732","frontend_id":"3732","title_slug":"maximum-product-of-three-elements-after-one-replacement","url":"https://leetcode.com/problems/maximum-product-of-three-elements-after-one-replacement/description/","paid_only":false,"content_sha256":"9758ab615f136c6f37765d6b3ebbd7619c3adf28dbb263d301e20af2926fdb27","checked_at":"2026-07-28"},
+  "structure": {
+    "sections": ["description","examples","constraints"],
+    "examples": [
+      {"ordinal":1,"input":"nums = [-5,7,0]","output":"3500000","has_explanation":true},
+      {"ordinal":2,"input":"nums = [-4,-2,-1,-3]","output":"1200000","has_explanation":true},
+      {"ordinal":3,"input":"nums = [0,10,0]","output":"0","has_explanation":true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md":"ec64db834b5601c62f6cdc0e50d817717f5f324df8371fbbe8e4280abecd10d1",
+      "reference/contract.md":"4db8f2901d6163c6eeaa28ada5bf427356274fa46dc362483b68ad18459490f4",
+      "reference/examples.md":"f963d4e1e0137ed418f0ee9435584b0f64fee2ee3043ec53f92f11757c36340f",
+      "reference/constraints.md":"f83aca1b678e742ff7210b71e37f2f8649b311ef92e21ed371400839b28c9f67"
+    },
+    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+  }
+}

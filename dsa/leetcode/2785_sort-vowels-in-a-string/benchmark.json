@@ -1,0 +1,33 @@
+{
+  "challenge_id": "lc_2785",
+  "measurement_note": "Every character is a vowel and the ten-character reverse-ASCII pattern repeats throughout each tier. Counting remains linear, while repeatedly selecting the smallest remaining vowel is a correct quadratic reconstruction that finishes all tiers but fails by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reorder 20 vowels",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {"s": "uoieaUOIEAuoieaUOIEA"},
+      "tags": ["benchmark", "scale-small", "all-vowels"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reorder 100 vowels",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"s": "uoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEA"},
+      "tags": ["benchmark", "scale-medium", "all-vowels"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reorder 400 vowels",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 400,
+      "input": {"s": "uoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEAuoieaUOIEA"},
+      "tags": ["benchmark", "scale-large", "all-vowels"]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Total Characters in String After Transformations II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Exponentiates the 26-letter transition matrix and applies its selected powers to the initial frequency vector.",
+      "time_complexity": "O(n + A^3 log t)",
+      "space_complexity": "O(A^2)"
     }
   ]
 }

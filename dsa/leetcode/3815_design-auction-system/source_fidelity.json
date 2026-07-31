@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3815",
+    "frontend_id": "3815",
+    "title_slug": "design-auction-system",
+    "url": "https://leetcode.com/problems/design-auction-system/description/",
+    "paid_only": false,
+    "content_sha256": "102f0bbf6b28ab46d05e798ce3e7ad4fd3c4a1e6b323379ca3e15dfba96fa417",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "operations = [\"AuctionSystem\", \"addBid\", \"addBid\", \"getHighestBidder\", \"updateBid\", \"getHighestBidder\", \"removeBid\", \"getHighestBidder\", \"getHighestBidder\"]; arguments = [[], [1,7,5], [2,7,6], [7], [1,7,8], [7], [2,7], [7], [3]]",
+        "output": "[null, null, null, 2, null, 1, null, 1, -1]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b32da489dcc919f3536f06bde7c209eaa4fe3ba79c1376f62661defb4f01e61e",
+      "reference/contract.md": "a44dd42ca01fb8b263207dc019244d3d6766bc0dd682993abf5ab673535e43fe",
+      "reference/examples.md": "70266e1f94def97bfb15b3efe87eedf723ea797867d44d3be5b8e2f752f8e582",
+      "reference/constraints.md": "2426e89b74a78d32fdbc00c7519a83220f2aaf5c24fb85c8efca5a5aeca9544c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

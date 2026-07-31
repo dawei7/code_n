@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of K Subarrays With Length at Least M and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines prefix sums with a rolling DP row and an incremental best valid start.",
+      "time_complexity": "O(n * k)",
+      "space_complexity": "O(n)"
     }
   ]
 }

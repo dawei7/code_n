@@ -8,48 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Math, Dynamic Programming, Sorting, Combinatorics |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-the-number-of-k-free-subsets](https://leetcode.com/problems/count-the-number-of-k-free-subsets/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-k-free-subsets/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-the-number-of-k-free-subsets/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given an array `nums` containing distinct positive integers and a positive integer `k`. A subset is **k-Free** when it does not contain two different values whose absolute difference is exactly `k`.
+
+Count every k-Free subset of `nums` and return that total. Subsets are determined by the selected elements, their order is irrelevant, and the empty subset is included in the answer.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: An array of $n$ distinct integers, where $1 \le n \le 50$ and $1 \le \texttt{nums[i]} \le 1000$.
+- `k`: A positive integer with $1 \le k \le 1000$.
 
 **Return value**
 
-TODO
+Return the number of subsets of `nums` in which no pair of selected values has absolute difference exactly `k`. Include the empty subset.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5,4,6]`, `k = 1`
+- Output: `5`
+- Explanation: The valid subsets are `[]`, `[4]`, `[5]`, `[6]`, and `[4,6]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2,3,5,8]`, `k = 5`
+- Output: `12`
+- Explanation: The only conflicting pair is `3` and `8`. Of the sixteen total subsets, four contain both values, leaving twelve valid subsets.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [10,5,9,11]`, `k = 20`
+- Output: `16`
+- Explanation: No two values differ by twenty, so all $2^4$ subsets are k-Free.

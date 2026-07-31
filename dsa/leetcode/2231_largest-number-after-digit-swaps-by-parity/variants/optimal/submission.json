@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2327",
+  "frontend_id": "2231",
+  "title_slug": "largest-number-after-digit-swaps-by-parity",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.largestInteger",
+  "verified_submission_id": "2073908618",
+  "verified_at": "2026-07-19T21:43:47.328554+00:00"
+}

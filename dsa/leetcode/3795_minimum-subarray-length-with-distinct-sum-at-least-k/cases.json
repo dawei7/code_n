@@ -1,0 +1,14 @@
+{"schema_version":1,"challenge_id":"lc_3795","cases":[
+{"id":"sample-1","name":"sample: duplicate followed by a qualifying pair","kind":"sample","visible":true,"input":{"nums":[2,2,3,1],"k":4},"expected":2,"validator":{"kind":"exact"},"tags":["sample","duplicates"]},
+{"id":"sample-2","name":"sample: threshold met exactly by two values","kind":"sample","visible":true,"input":{"nums":[3,2,3,4],"k":5},"expected":2,"validator":{"kind":"exact"},"tags":["sample","exact-threshold"]},
+{"id":"sample-3","name":"sample: one value meets the threshold","kind":"sample","visible":true,"input":{"nums":[5,5,4],"k":5},"expected":1,"validator":{"kind":"exact"},"tags":["sample","single-element"]},
+{"id":"trial-minimum-array","name":"trial: minimum array length qualifies","kind":"trial","visible":true,"input":{"nums":[1],"k":1},"expected":1,"validator":{"kind":"exact"},"tags":["trial","minimum"]},
+{"id":"trial-impossible","name":"trial: total distinct sum is too small","kind":"trial","visible":true,"input":{"nums":[1,2,1,2],"k":4},"expected":-1,"validator":{"kind":"exact"},"tags":["trial","impossible"]},
+{"id":"trial-all-duplicates","name":"trial: repeated values contribute once","kind":"trial","visible":true,"input":{"nums":[4,4,4],"k":4},"expected":1,"validator":{"kind":"exact"},"tags":["trial","duplicates","single-element"]},
+{"id":"trial-last-copy-removal","name":"trial: only the last copy changes the distinct sum","kind":"trial","visible":true,"input":{"nums":[2,1,2,3],"k":6},"expected":3,"validator":{"kind":"exact"},"tags":["trial","frequency-boundary"]},
+{"id":"real-duplicate-required-inside-cover","name":"hidden: shortest covering interval contains a duplicate","kind":"real","visible":false,"input":{"nums":[5,1,2,1,4],"k":12},"expected":5,"validator":{"kind":"exact"},"tags":["hidden","distinct-semantics","duplicates"]},
+{"id":"real-late-singleton","name":"hidden: qualifying singleton appears at the end","kind":"real","visible":false,"input":{"nums":[1,1,1,9],"k":9},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","late-answer"]},
+{"id":"real-entire-array","name":"hidden: only the complete array reaches the threshold","kind":"real","visible":false,"input":{"nums":[1,2,3,4],"k":10},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","whole-array"]},
+{"id":"real-maximum-values","name":"hidden: maximum legal value meets threshold alone","kind":"real","visible":false,"input":{"nums":[100000,100000],"k":100000},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","maximum-value"]},
+{"id":"real-maximum-threshold-impossible","name":"hidden: maximum threshold cannot be reached","kind":"real","visible":false,"input":{"nums":[100000,99999,100000],"k":1000000000},"expected":-1,"validator":{"kind":"exact"},"tags":["hidden","maximum-threshold","impossible"]}
+]}

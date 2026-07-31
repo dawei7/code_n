@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4356",
+  "frontend_id": "3982",
+  "title_slug": "sum-of-integers-with-maximum-digit-range",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxDigitRange",
+  "verified_submission_id": "2088081250",
+  "verified_at": "2026-07-30T22:25:57.3544869+00:00"
+}

@@ -8,85 +8,41 @@
 | Category | Algorithms |
 | Topics | Array, Tree, Depth-First Search |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-pairs-of-connectable-servers-in-a-weighted-tree-network](https://leetcode.com/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/).
 
 ### Goal
-Given a weighted tree representing a network of servers, identify for every server `i` the number of pairs of other servers `(a, b)` such that the paths from `a` to `i` and `b` to `i` are both divisible by a given integer `signalSpeed`, and these paths only intersect at server `i`.
+
+An unrooted weighted tree models a network of $n$ servers numbered from $0$ through $n-1$. Each entry `edges[i] = [a_i, b_i, weight_i]` describes a bidirectional connection between servers `a_i` and `b_i` whose weight contributes to the distance along any path using that edge. You are also given an integer `signalSpeed`.
+
+Two distinct servers `a` and `b` are connectable through a server `c` when $a < b$, neither endpoint equals `c`, and both distances from `c` are divisible by `signalSpeed`. In addition, the path from `c` to `a` and the path from `c` to `b` must share no edge.
+
+Return an integer array `count` of length $n$ where `count[c]` is the number of server pairs connectable through server `c`.
 
 ### Function Contract
+
 **Inputs**
 
-- `edges`: A list of lists where each element `[u, v, w]` represents an undirected edge between nodes `u` and `v` with weight `w`.
-- `signalSpeed`: An integer representing the divisor for path weights.
+- `edges`: The $n-1$ weighted edges of a valid undirected tree, with each edge represented as `[a_i, b_i, weight_i]`.
+- `signalSpeed`: The positive divisor used to test path distances.
+
+The constraints are $2 \le n \le 1000$, $0 \le a_i, b_i < n$, $1 \le \texttt{weight_i} \le 10^6$, and $1 \le \texttt{signalSpeed} \le 10^6$.
 
 **Return value**
 
-- A list of integers where the `i`-th element is the count of valid server pairs for server `i`.
+Return `count`, where `count[c]` is the number of unordered endpoint pairs satisfying all connectability conditions through `c`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `edges = [[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]], signalSpeed = 1`
 - Output: `[0,4,6,6,4,0]`
+- Explanation: Every distance is divisible by `1`. In this path, choosing `c` separates the possible endpoints into the servers on its two sides, so their count is the product of the two side lengths.
 
 **Example 2**
 
-- Input: `edges = [[0,6,3],[6,5,3],[6,1,1],[1,2,2],[2,3,4],[2,4,4]], signalSpeed = 3`
+- Input: `edges = [[0,6,3],[6,5,3],[0,3,1],[3,2,7],[3,1,6],[3,4,2]], signalSpeed = 3`
 - Output: `[2,0,0,0,0,0,2]`
-
----
-
-## Solution
-### Approach
-The problem is solved using Depth-First Search (DFS) on an adjacency list representation of the tree. For each node, we treat it as a root and explore its subtrees. If a subtree contains `k` nodes whose distance from the root is divisible by `signalSpeed`, these nodes can be paired with nodes from other subtrees of the same root that also satisfy the condition. The total count for a root is the sum of products of counts from distinct subtrees.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)`, where `n` is the number of servers. For each of the `n` nodes, we perform a DFS traversal of the tree, which takes `O(n)`.
-- **Space Complexity**: `O(n)` to store the adjacency list and the recursion stack.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import defaultdict
-import sys
-
-def solve(edges: list[list[int]], signalSpeed: int) -> list[int]:
-    n = len(edges) + 1
-    sys.setrecursionlimit(max(sys.getrecursionlimit(), n * 2 + 50))
-    adj = defaultdict(list)
-    for u, v, w in edges:
-        adj[u].append((v, w))
-        adj[v].append((u, w))
-
-    def count_divisible_paths(curr, parent, current_dist):
-        count = 1 if current_dist % signalSpeed == 0 else 0
-        for neighbor, weight in adj[curr]:
-            if neighbor != parent:
-                count += count_divisible_paths(neighbor, curr, current_dist + weight)
-        return count
-
-    results = [0] * n
-
-    for i in range(n):
-        subtree_counts = []
-        for neighbor, weight in adj[i]:
-            subtree_counts.append(count_divisible_paths(neighbor, i, weight))
-
-        # Calculate pairs: if we have subtrees with counts c1, c2, c3...
-        # The number of pairs is the sum of (ci * cj) for all i < j
-        total_pairs = 0
-        prefix_sum = 0
-        for count in subtree_counts:
-            total_pairs += prefix_sum * count
-            prefix_sum += count
-
-        results[i] = total_pairs
-
-    return results
-```
-</details>
+- Explanation: Pairs `(4, 5)` and `(4, 6)` qualify through server `0`; pairs `(4, 5)` and `(0, 5)` qualify through server `6`. No pair qualifies through another server.

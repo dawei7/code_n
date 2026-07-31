@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Time to Break Locks I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses subset dynamic programming to choose the next lock under the factor determined by the number already broken.",
+      "time_complexity": "O(n 2^n)",
+      "space_complexity": "O(2^n)"
     }
   ]
 }

@@ -32,7 +32,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeetcode } from '@fortawesome/free-brands-svg-icons/faLeetcode';
 
 import { ApiError, apiText } from '../../../api/client';
+import {
+  MermaidDiagram,
+  mermaidSourceFromPreChildren,
+} from '../../markdown/MermaidDiagram';
 import { useAppStore } from '../../../store/useAppStore';
+import { canRevealSolution } from '../../../lib/cheaterMode';
 import type { SolutionVariantDetail, SupportedLanguage } from '../../../types/api';
 
 
@@ -52,12 +57,7 @@ const REFERENCE_LANGUAGES: Array<{
   extension: string;
 }> = [
   { id: 'python', label: 'Python', monaco: 'python', extension: 'py' },
-  { id: 'cpp', label: 'C++', monaco: 'cpp', extension: 'cpp' },
-  { id: 'java', label: 'Java', monaco: 'java', extension: 'java' },
-  { id: 'csharp', label: 'C#', monaco: 'csharp', extension: 'cs' },
   { id: 'javascript', label: 'JavaScript', monaco: 'javascript', extension: 'js' },
-  { id: 'go', label: 'Go', monaco: 'go', extension: 'go' },
-  { id: 'kotlin', label: 'Kotlin', monaco: 'kotlin', extension: 'kt' },
   { id: 'sql', label: 'SQL', monaco: 'sql', extension: 'sql' },
   { id: 'bash', label: 'Bash', monaco: 'shell', extension: 'sh' },
 ];
@@ -69,6 +69,7 @@ function localizedReferenceKey(language: string, id: string): string {
 export function ReferenceTab() {
   const detail = useAppStore((s) => s.currentDetail);
   const language = useAppStore((s) => s.language);
+  const cheaterMode = useAppStore((s) => s.cheaterMode);
   const completed = useAppStore((s) => s.progress?.completed ?? []);
   const [state, setState] = useState<LoadState>({ kind: 'idle' });
   const [selectedVariantId, setSelectedVariantId] = useState('');
@@ -205,11 +206,26 @@ export function ReferenceTab() {
   const solutionSources: Partial<Record<SupportedLanguage, string>> = {
     ...(detail?.optimal_sources ?? {}),
   };
-  if (solutionSource && !solutionSources.python?.trim()) {
-    solutionSources.python = solutionSource;
+  if (solutionSource && detail?.primary_language && !solutionSources[detail.primary_language]?.trim()) {
+    solutionSources[detail.primary_language] = solutionSource;
   }
-  const hasSolution = REFERENCE_LANGUAGES.some(({ id }) => Boolean(solutionSources[id]?.trim()));
-  const solutionUnlocked = challengeId ? completed.includes(challengeId) : false;
+  const leetcodeSolutionSource = challengeId ? detail?.leetcode_optimal_source?.trim() ?? '' : '';
+  const leetcodeSolutionSources: Partial<Record<SupportedLanguage, string>> = {
+    ...(detail?.leetcode_optimal_sources ?? {}),
+  };
+  if (
+    leetcodeSolutionSource
+    && detail?.primary_language
+    && !leetcodeSolutionSources[detail.primary_language]?.trim()
+  ) {
+    leetcodeSolutionSources[detail.primary_language] = leetcodeSolutionSource;
+  }
+  const hasSolution = REFERENCE_LANGUAGES.some(({ id }) => (
+    Boolean(solutionSources[id]?.trim()) && Boolean(leetcodeSolutionSources[id]?.trim())
+  ));
+  const solutionUnlocked = challengeId
+    ? canRevealSolution(completed.includes(challengeId), cheaterMode)
+    : false;
   return (
     <div>
       <article className="prose prose-sm max-w-none p-4 text-coden-text
@@ -250,13 +266,17 @@ export function ReferenceTab() {
             a: ({ node, ...props }) => {
               const label = textFromReactNode(props.children).trim().toLowerCase();
               if (props.href?.startsWith('https://leetcode.com/problems/') && label === 'leetcode') {
+                const descriptionUrl = new URL(props.href);
+                const problemSlug = descriptionUrl.pathname.split('/').filter(Boolean)[1];
+                descriptionUrl.pathname = `/problems/${problemSlug}/description/`;
                 return (
                   <a
                     {...props}
+                    href={descriptionUrl.toString()}
                     target="_blank"
                     rel="noreferrer"
-                    title="Open the official LeetCode problem"
-                    aria-label="Open the official LeetCode problem"
+                    title="Open the official LeetCode description using your LeetCode Focus Mode setting"
+                    aria-label="Open the official LeetCode description using your LeetCode Focus Mode setting"
                     className="inline-flex items-center justify-center text-coden-accent hover:text-coden-text"
                   >
                     <LeetCodeIcon />
@@ -304,14 +324,18 @@ export function ReferenceTab() {
                 />
               );
             },
-            pre: ({ children, ...props }) => (
-              <pre
-                {...props}
-                className="bg-white border border-slate-300 rounded p-3 text-xs text-slate-950 shadow-sm overflow-x-auto my-3 dark:bg-coden-bg dark:border-coden-border dark:text-coden-text"
-              >
-                {children}
-              </pre>
-            ),
+            pre: ({ children, ...props }) => {
+              const diagram = mermaidSourceFromPreChildren(children);
+              if (diagram) return <MermaidDiagram source={diagram} />;
+              return (
+                <pre
+                  {...props}
+                  className="bg-white border border-slate-300 rounded p-3 text-xs text-slate-950 shadow-sm overflow-x-auto my-3 dark:bg-coden-bg dark:border-coden-border dark:text-coden-text"
+                >
+                  {children}
+                </pre>
+              );
+            },
             code: ({ className, children, ...props }) => {
               // Heuristic for inline vs block: the code inside a <pre>
               // always contains newlines; inline code never does. The
@@ -365,8 +389,8 @@ export function ReferenceTab() {
             key={`solution:${challengeId}`}
             challengeId={challengeId}
             variantId="optimal"
-            variantLabel="Optimal"
             sources={solutionSources}
+            leetcodeSources={leetcodeSolutionSources}
             unlocked={solutionUnlocked}
           />
         )}
@@ -448,8 +472,8 @@ function SolutionVariantPanel({
           key={`solution:${challengeId}:${selectedVariant.id}`}
           challengeId={challengeId}
           variantId={selectedVariant.id}
-          variantLabel={selectedVariant.label}
           sources={selectedVariant.sources}
+          leetcodeSources={selectedVariant.leetcode_sources}
           unlocked={unlocked}
         />
       </div>
@@ -563,12 +587,18 @@ function ApproachDisclosure({ markdown }: { markdown: string }) {
               td: ({ node, ...props }) => (
                 <td {...props} className="border border-coden-border px-3 py-2 text-coden-text" />
               ),
-              pre: ({ node, ...props }) => (
-                <pre
-                  {...props}
-                  className="my-3 overflow-x-auto rounded border border-coden-border bg-coden-bg p-3 text-xs text-coden-text"
-                />
-              ),
+              pre: ({ children, ...props }) => {
+                const diagram = mermaidSourceFromPreChildren(children);
+                if (diagram) return <MermaidDiagram source={diagram} />;
+                return (
+                  <pre
+                    {...props}
+                    className="my-3 overflow-x-auto rounded border border-coden-border bg-coden-bg p-3 text-xs text-coden-text"
+                  >
+                    {children}
+                  </pre>
+                );
+              },
               code: ({ className, children, ...props }) => {
                 const isBlock = String(children).includes('\n');
                 return isBlock ? (
@@ -594,36 +624,27 @@ function ApproachDisclosure({ markdown }: { markdown: string }) {
 function SolutionDisclosure({
   challengeId,
   variantId,
-  variantLabel,
   sources,
+  leetcodeSources,
   unlocked,
 }: {
   challengeId: string;
   variantId: string;
-  variantLabel: string;
   sources: Partial<Record<SupportedLanguage, string>>;
+  leetcodeSources: Partial<Record<SupportedLanguage, string>>;
   unlocked: boolean;
 }) {
   const [open, setOpen] = useState(false);
-  const availableLanguages = REFERENCE_LANGUAGES.filter(({ id }) => Boolean(sources[id]?.trim()));
-  const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage>(
-    availableLanguages[0]?.id ?? 'python',
-  );
   const theme = useAppStore((state) => state.theme);
-  const selectedMeta = availableLanguages.find(({ id }) => id === selectedLanguage)
-    ?? availableLanguages[0];
-  const source = selectedMeta ? sources[selectedMeta.id]?.trim() ?? '' : '';
-  const editorHeight = Math.min(640, Math.max(260, source.split(/\r?\n/).length * 19 + 32));
+  const selectedMeta = REFERENCE_LANGUAGES.find(({ id }) => (
+    Boolean(sources[id]?.trim()) && Boolean(leetcodeSources[id]?.trim())
+  ));
+  const codenSource = selectedMeta ? sources[selectedMeta.id]?.trim() ?? '' : '';
+  const leetcodeSource = selectedMeta ? leetcodeSources[selectedMeta.id]?.trim() ?? '' : '';
 
   useEffect(() => {
     if (!unlocked) setOpen(false);
   }, [unlocked]);
-
-  useEffect(() => {
-    if (!availableLanguages.some(({ id }) => id === selectedLanguage) && availableLanguages[0]) {
-      setSelectedLanguage(availableLanguages[0].id);
-    }
-  }, [availableLanguages, selectedLanguage]);
 
   return (
     <section
@@ -640,7 +661,7 @@ function SolutionDisclosure({
         aria-expanded={unlocked ? open : false}
         aria-disabled={!unlocked}
         disabled={!unlocked}
-        title={unlocked ? `Show the ${variantLabel.toLowerCase()} solution` : 'Solve this challenge successfully to unlock the solution'}
+        title={unlocked ? 'Show the verified solutions' : 'Solve this challenge successfully to unlock the solution'}
         onClick={() => setOpen((current) => !current)}
         className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold transition-colors ${
           unlocked
@@ -657,62 +678,154 @@ function SolutionDisclosure({
         {!unlocked && <span className="ml-auto text-xs font-normal">Solve to unlock</span>}
       </button>
       {unlocked && open && selectedMeta && (
-        <div className="coden-screen-only border-t border-coden-border px-4 py-3 text-sm text-coden-text">
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-            <div className="text-xs font-semibold uppercase tracking-wide text-coden-muted">
-              {variantLabel} solution
-            </div>
-            <label className="flex items-center gap-2 text-xs text-coden-muted">
-              <span>Language</span>
-              <select
-                value={selectedMeta.id}
-                onChange={(event) => setSelectedLanguage(event.target.value as SupportedLanguage)}
-                disabled={availableLanguages.length === 1}
-                aria-label="Reference solution language"
-                className="h-8 rounded border border-coden-border bg-coden-bg px-2 font-medium text-coden-text outline-none transition-colors focus:border-coden-accent disabled:cursor-default disabled:opacity-70"
-              >
-                {availableLanguages.map((language) => (
-                  <option key={language.id} value={language.id}>{language.label}</option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <div className="overflow-hidden rounded border border-coden-border bg-coden-bg" style={{ height: editorHeight }}>
-            <Editor
-              path={`reference://${challengeId}/${variantId}.${selectedMeta.extension}`}
-              height="100%"
-              language={selectedMeta.monaco}
-              theme={theme === 'dark' ? 'vs-dark' : 'light'}
-              value={source}
-              options={{
-                readOnly: true,
-                domReadOnly: true,
-                contextmenu: false,
-                minimap: { enabled: false },
-                folding: true,
-                glyphMargin: false,
-                lineNumbersMinChars: 3,
-                fontSize: 13,
-                fontFamily: "'Cascadia Code', 'Cascadia Mono', Consolas, 'SFMono-Regular', monospace",
-                renderLineHighlight: 'none',
-                scrollBeyondLastLine: false,
-                overviewRulerLanes: 0,
-                hideCursorInOverviewRuler: true,
-                wordWrap: 'off',
-                automaticLayout: true,
-                padding: { top: 14, bottom: 14 },
-                ariaLabel: `Read-only ${variantLabel.toLowerCase()} solution in ${selectedMeta.label}`,
-              }}
-              loading={
-                <div className="flex h-full items-center justify-center text-xs text-coden-muted">
-                  Loading code editor...
-                </div>
-              }
-            />
-          </div>
+        <div className="coden-screen-only space-y-5 border-t border-coden-border px-4 py-4 text-sm text-coden-text">
+          <VerifiedCodePanel
+            challengeId={challengeId}
+            variantId={variantId}
+            sourceKind="coden"
+            label="Verified cOde(n) submission"
+            language={selectedMeta}
+            source={codenSource}
+            theme={theme}
+          />
+          <VerifiedCodePanel
+            challengeId={challengeId}
+            variantId={variantId}
+            sourceKind="leetcode"
+            label="Verified LeetCode submission"
+            language={selectedMeta}
+            source={leetcodeSource}
+            theme={theme}
+          />
         </div>
       )}
     </section>
+  );
+}
+
+function VerifiedCodePanel({
+  challengeId,
+  variantId,
+  sourceKind,
+  label,
+  language,
+  source,
+  theme,
+}: {
+  challengeId: string;
+  variantId: string;
+  sourceKind: 'coden' | 'leetcode';
+  label: string;
+  language: (typeof REFERENCE_LANGUAGES)[number];
+  source: string;
+  theme: 'light' | 'dark';
+}) {
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle');
+  const editorHeight = Math.min(640, Math.max(260, source.split(/\r?\n/).length * 19 + 32));
+
+  const copyCode = async () => {
+    try {
+      await copyCompleteCode(source);
+      setCopyStatus('copied');
+    } catch {
+      setCopyStatus('failed');
+    }
+  };
+
+  return (
+    <section aria-label={`${label} in ${language.label}`}>
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+        <div
+          className="rounded border border-coden-border bg-coden-bg px-2.5 py-1.5 text-xs font-semibold text-coden-text"
+        >
+          {label} &middot; {language.label}
+        </div>
+        <button
+          type="button"
+          onClick={() => void copyCode()}
+          className="inline-flex h-8 items-center gap-1.5 rounded border border-coden-border bg-coden-bg px-3 text-xs font-semibold text-coden-text transition-colors hover:border-coden-accent hover:text-coden-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-coden-accent"
+          aria-label={`Copy the complete ${label} code`}
+          title="Copy the complete code"
+        >
+          <CopyIcon />
+          {copyStatus === 'copied' ? 'Copied' : copyStatus === 'failed' ? 'Copy failed' : 'Copy code'}
+        </button>
+      </div>
+      <div className="overflow-hidden rounded border border-coden-border bg-coden-bg" style={{ height: editorHeight }}>
+        <Editor
+          path={`reference://${challengeId}/${variantId}/${sourceKind}.${language.extension}`}
+          height="100%"
+          language={language.monaco}
+          theme={theme === 'dark' ? 'vs-dark' : 'light'}
+          value={source}
+          options={{
+            readOnly: true,
+            domReadOnly: true,
+            contextmenu: false,
+            minimap: { enabled: false },
+            folding: true,
+            glyphMargin: false,
+            lineNumbersMinChars: 3,
+            fontSize: 13,
+            fontFamily: "'Cascadia Code', 'Cascadia Mono', Consolas, 'SFMono-Regular', monospace",
+            renderLineHighlight: 'none',
+            scrollBeyondLastLine: false,
+            overviewRulerLanes: 0,
+            hideCursorInOverviewRuler: true,
+            wordWrap: 'off',
+            automaticLayout: true,
+            padding: { top: 14, bottom: 14 },
+            ariaLabel: `Read-only ${label} in ${language.label}`,
+          }}
+          loading={
+            <div className="flex h-full items-center justify-center text-xs text-coden-muted">
+              Loading code editor...
+            </div>
+          }
+        />
+      </div>
+    </section>
+  );
+}
+
+async function copyCompleteCode(source: string): Promise<void> {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(source);
+      return;
+    }
+  } catch {
+    // Electron or browser clipboard permission can be unavailable; use the
+    // selection-based fallback below so the convenience action still works.
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = source;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand('copy');
+  textarea.remove();
+  if (!copied) throw new Error('Clipboard copy failed');
+}
+
+function CopyIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-3.5 w-3.5"
+    >
+      <rect width="14" height="14" x="8" y="8" rx="2" />
+      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+    </svg>
   );
 }
 

@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2494",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overlapping, separate, nested, and single events",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "HallEvents": [
+            {
+              "hall_id": 1,
+              "start_day": "2023-01-13",
+              "end_day": "2023-01-14"
+            },
+            {
+              "hall_id": 1,
+              "start_day": "2023-01-14",
+              "end_day": "2023-01-17"
+            },
+            {
+              "hall_id": 1,
+              "start_day": "2023-01-18",
+              "end_day": "2023-01-25"
+            },
+            {
+              "hall_id": 2,
+              "start_day": "2022-12-09",
+              "end_day": "2022-12-23"
+            },
+            {
+              "hall_id": 2,
+              "start_day": "2022-12-13",
+              "end_day": "2022-12-17"
+            },
+            {
+              "hall_id": 3,
+              "start_day": "2022-12-01",
+              "end_day": "2023-01-30"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hall_id",
+          "start_day",
+          "end_day"
+        ],
+        "rows": [
+          [
+            1,
+            "2023-01-13",
+            "2023-01-17"
+          ],
+          [
+            1,
+            "2023-01-18",
+            "2023-01-25"
+          ],
+          [
+            2,
+            "2022-12-09",
+            "2022-12-23"
+          ],
+          [
+            3,
+            "2022-12-01",
+            "2023-01-30"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "multiple-halls",
+        "inclusive-overlap"
+      ]
+    },
+    {
+      "id": "trial-transitive-bridge",
+      "name": "trial: a later-ending bridge connects every interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "HallEvents": [
+            {
+              "hall_id": 1,
+              "start_day": "2024-01-01",
+              "end_day": "2024-01-02"
+            },
+            {
+              "hall_id": 1,
+              "start_day": "2024-01-05",
+              "end_day": "2024-01-06"
+            },
+            {
+              "hall_id": 1,
+              "start_day": "2024-01-02",
+              "end_day": "2024-01-05"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hall_id",
+          "start_day",
+          "end_day"
+        ],
+        "rows": [
+          [
+            1,
+            "2024-01-01",
+            "2024-01-06"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "transitive-overlap"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate events collapse into one interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "HallEvents": [
+            {
+              "hall_id": 7,
+              "start_day": "2024-03-10",
+              "end_day": "2024-03-12"
+            },
+            {
+              "hall_id": 7,
+              "start_day": "2024-03-10",
+              "end_day": "2024-03-12"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hall_id",
+          "start_day",
+          "end_day"
+        ],
+        "rows": [
+          [
+            7,
+            "2024-03-10",
+            "2024-03-12"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-touching-endpoints",
+      "name": "hidden: equality at an endpoint is overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "HallEvents": [
+            {
+              "hall_id": 2,
+              "start_day": "2024-04-01",
+              "end_day": "2024-04-03"
+            },
+            {
+              "hall_id": 2,
+              "start_day": "2024-04-03",
+              "end_day": "2024-04-09"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hall_id",
+          "start_day",
+          "end_day"
+        ],
+        "rows": [
+          [
+            2,
+            "2024-04-01",
+            "2024-04-09"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "inclusive-endpoints"
+      ]
+    },
+    {
+      "id": "real-consecutive-days",
+      "name": "hidden: consecutive non-touching dates remain separate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "HallEvents": [
+            {
+              "hall_id": 3,
+              "start_day": "2024-05-01",
+              "end_day": "2024-05-02"
+            },
+            {
+              "hall_id": 3,
+              "start_day": "2024-05-03",
+              "end_day": "2024-05-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hall_id",
+          "start_day",
+          "end_day"
+        ],
+        "rows": [
+          [
+            3,
+            "2024-05-01",
+            "2024-05-02"
+          ],
+          [
+            3,
+            "2024-05-03",
+            "2024-05-04"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "strict-gap"
+      ]
+    },
+    {
+      "id": "real-nested-mask",
+      "name": "hidden: a nested short event must not hide the running maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "HallEvents": [
+            {
+              "hall_id": 4,
+              "start_day": "2024-06-01",
+              "end_day": "2024-06-20"
+            },
+            {
+              "hall_id": 4,
+              "start_day": "2024-06-02",
+              "end_day": "2024-06-03"
+            },
+            {
+              "hall_id": 4,
+              "start_day": "2024-06-15",
+              "end_day": "2024-06-25"
+            },
+            {
+              "hall_id": 4,
+              "start_day": "2024-06-30",
+              "end_day": "2024-07-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hall_id",
+          "start_day",
+          "end_day"
+        ],
+        "rows": [
+          [
+            4,
+            "2024-06-01",
+            "2024-06-25"
+          ],
+          [
+            4,
+            "2024-06-30",
+            "2024-07-01"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "running-maximum",
+        "nested"
+      ]
+    },
+    {
+      "id": "real-same-start",
+      "name": "hidden: equal starts with different ends stay in one island",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "HallEvents": [
+            {
+              "hall_id": 5,
+              "start_day": "2024-07-01",
+              "end_day": "2024-07-02"
+            },
+            {
+              "hall_id": 5,
+              "start_day": "2024-07-01",
+              "end_day": "2024-07-10"
+            },
+            {
+              "hall_id": 5,
+              "start_day": "2024-07-09",
+              "end_day": "2024-07-12"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hall_id",
+          "start_day",
+          "end_day"
+        ],
+        "rows": [
+          [
+            5,
+            "2024-07-01",
+            "2024-07-12"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "same-start"
+      ]
+    },
+    {
+      "id": "real-independent-halls",
+      "name": "hidden: identical dates in different halls are independent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "HallEvents": [
+            {
+              "hall_id": 8,
+              "start_day": "2024-08-01",
+              "end_day": "2024-08-05"
+            },
+            {
+              "hall_id": 8,
+              "start_day": "2024-08-04",
+              "end_day": "2024-08-07"
+            },
+            {
+              "hall_id": 9,
+              "start_day": "2024-08-02",
+              "end_day": "2024-08-03"
+            },
+            {
+              "hall_id": 9,
+              "start_day": "2024-08-10",
+              "end_day": "2024-08-11"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hall_id",
+          "start_day",
+          "end_day"
+        ],
+        "rows": [
+          [
+            8,
+            "2024-08-01",
+            "2024-08-07"
+          ],
+          [
+            9,
+            "2024-08-02",
+            "2024-08-03"
+          ],
+          [
+            9,
+            "2024-08-10",
+            "2024-08-11"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "partitioning",
+        "multiple-halls"
+      ]
+    }
+  ]
+}
+

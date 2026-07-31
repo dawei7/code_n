@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_3968",
+  "measurement_note": "Size is n, the number of move characters. All-wildcard strings force a prefix-rescanning baseline to revisit every earlier character while the required solution counts each character once.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 assignable moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"moves": "________________"},
+      "expected": 16,
+      "tags": ["benchmark", "scale-small", "all-wildcards"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 assignable moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"moves": "________________________________________________________________"},
+      "expected": 64,
+      "tags": ["benchmark", "scale-medium", "all-wildcards"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 assignable moves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"moves": "________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"},
+      "expected": 256,
+      "tags": ["benchmark", "scale-large", "all-wildcards"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3493",
+  "frontend_id": "3228",
+  "title_slug": "maximum-number-of-operations-to-move-ones-to-the-end",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maxOperations",
+  "verified_submission_id": "2080174237",
+  "verified_at": "2026-07-25T02:50:41.967438+00:00"
+}

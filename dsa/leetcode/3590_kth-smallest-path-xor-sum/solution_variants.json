@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Kth Smallest Path XOR Sum and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Computes root path XORs once and merges subtree ordered sets from smaller to larger in postorder.",
+      "time_complexity": "O(n log^2 n + q log n)",
+      "space_complexity": "O(n log n + q)"
     }
   ]
 }

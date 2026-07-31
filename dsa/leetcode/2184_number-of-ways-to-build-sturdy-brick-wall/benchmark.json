@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2184",
+  "measurement_note": "Size is the number R of valid row masks. With height fixed at fifty and every brick width from one through width available, all 2^(width-1) seam masks occur. Precomputed compatible edges avoid rescanning all R^2 pairs on every layer; a correct repeated-pair-check DP completes every tier and fails only by its slower scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two row masks at width two",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {"height":50,"width":2,"bricks":[1,2]},
+      "expected": 951279875,
+      "tags": ["benchmark","scale-small","all-row-masks"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: four row masks at width three",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"height":50,"width":3,"bricks":[1,2,3]},
+      "expected": 245481867,
+      "tags": ["benchmark","scale-medium","all-row-masks"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixteen row masks at width five",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"height":50,"width":5,"bricks":[1,2,3,4,5]},
+      "expected": 603976267,
+      "tags": ["benchmark","scale-large","all-row-masks"]
+    }
+  ]
+}

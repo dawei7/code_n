@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3850",
+    "frontend_id": "3850",
+    "title_slug": "count-sequences-to-k",
+    "url": "https://leetcode.com/problems/count-sequences-to-k/description/",
+    "paid_only": false,
+    "content_sha256": "c9a4ff935337039dab5ce1107ee0c3cba27f1ebd3a80bf4e59ed26f5b977362f",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [2,3,2], k = 6",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,6,3], k = 2",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,5], k = 1",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d185599ebc55334e72e751032baa3bd5c33a93046a0ba7684b0fa47c0b41cfa9",
+      "reference/contract.md": "0a07b39afcbf88b72e48ebacbd4e2173b59eb200ad09da9ae3068f50a3ec3416",
+      "reference/note.md": "9a71a5a9f828f9884d0683ff9c8cc1dcc68d77af0b04b10218db264690367148",
+      "reference/examples.md": "4dae6c0ced2870d1d265633a114b128db9f293329e6978a1bc56025ff273a21f",
+      "reference/constraints.md": "eeee0906ce03b4e00aa6eb7f0a4618fd9469510df83d2910a3196704d864b44c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

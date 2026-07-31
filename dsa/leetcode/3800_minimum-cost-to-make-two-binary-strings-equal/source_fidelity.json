@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3800",
+    "frontend_id": "3800",
+    "title_slug": "minimum-cost-to-make-two-binary-strings-equal",
+    "url": "https://leetcode.com/problems/minimum-cost-to-make-two-binary-strings-equal/description/",
+    "paid_only": false,
+    "content_sha256": "ce162a74ea17a54d2e1d5246eddf8f699c825b102e3bafda9febf17aa2cf2219",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`s = \"01000\", t = \"10111\", flipCost = 10, swapCost = 2, crossCost = 2`",
+        "output": "`16`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`s = \"001\", t = \"110\", flipCost = 2, swapCost = 100, crossCost = 100`",
+        "output": "`6`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`s = \"1010\", t = \"1010\", flipCost = 5, swapCost = 5, crossCost = 5`",
+        "output": "`0`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f482a9c8b9dd730b73b5d3d159ffd0f79db109e4d24a80dfc741e37c33fe6e17",
+      "reference/contract.md": "9fff420371a22be0c97fd6a89e47c9d4503e1767f458ff95a306fb7baf77e338",
+      "reference/examples.md": "8efef2f673f47bc0d6920bdc3cc2bef61c1616be3736c75dbaacd22b5acb53d2",
+      "reference/constraints.md": "cb4a80d10cfed18d63825e80058dfd75eef9a96b949751d5d62c6cb4f3d96dab"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

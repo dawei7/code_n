@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3185",
   "cases": [
     {
-      "id": "sample-basic",
-      "name": "sample: complete-day pairs with duplicate remainders",
+      "id": "sample-twelve-and-whole-days",
+      "name": "sample: one twelve-hour pair and one whole-day pair",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,12 +19,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "pairs"
+        "complete-day"
       ]
     },
     {
-      "id": "sample-complements",
-      "name": "sample: complementary remainders",
+      "id": "sample-three-whole-day-durations",
+      "name": "sample: three pairs among whole-day multiples",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,26 +42,57 @@
       ]
     },
     {
-      "id": "trial-no-pairs",
-      "name": "trial: no valid complete-day pairs",
+      "id": "trial-single-duration",
+      "name": "trial: one duration cannot form a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-basic-complements",
+      "name": "trial: remainders one and twenty-three complement",
       "kind": "trial",
       "visible": true,
       "input": {
         "hours": [
           1,
-          2,
-          5,
-          10
+          23
         ]
       },
-      "expected": 0,
+      "expected": 1,
       "tags": [
-        "zero"
+        "complementary-remainders"
       ]
     },
     {
-      "id": "trial-all-zero-remainder",
-      "name": "trial: all values divisible by 24",
+      "id": "trial-three-twelves",
+      "name": "trial: every pair of remainder twelve qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          12,
+          12,
+          12
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "self-complement",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-four-whole-days",
+      "name": "trial: every pair of whole-day multiples qualifies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -73,30 +105,215 @@
       },
       "expected": 6,
       "tags": [
+        "zero-remainder",
         "duplicates"
       ]
     },
     {
-      "id": "real-mixed-large",
-      "name": "real: large mixed durations",
+      "id": "real-maximum-values-complement",
+      "name": "real: large legal values are reduced modulo twenty-four",
       "kind": "real",
       "visible": false,
       "input": {
         "hours": [
-          101,
-          47,
-          73,
-          95,
-          1,
-          23,
-          25,
-          49
+          1000000000,
+          999999992
         ]
       },
-      "expected": 12,
+      "expected": 1,
       "tags": [
-        "real",
+        "maximum-value",
         "modulo"
+      ]
+    },
+    {
+      "id": "real-repeated-complement-classes",
+      "name": "real: repeated six and eighteen remainders form cross pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          6,
+          18,
+          30,
+          42
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "duplicates",
+        "complementary-remainders"
+      ]
+    },
+    {
+      "id": "real-no-complete-day",
+      "name": "real: no two small durations complete a day",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "no-pairs"
+      ]
+    },
+    {
+      "id": "real-mixed-remainder-classes",
+      "name": "real: zero and nonzero complement classes are independent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          24,
+          48,
+          1,
+          23
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "mixed",
+        "zero-remainder"
+      ]
+    },
+    {
+      "id": "real-arrival-order",
+      "name": "real: both arrival orders count each index pair once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          23,
+          1,
+          47,
+          25
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "ordering",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-dense-whole-days",
+      "name": "real: one hundred whole-day durations form every pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "hours": [
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24
+        ]
+      },
+      "expected": 4950,
+      "tags": [
+        "dense",
+        "all-pairs"
       ]
     }
   ]

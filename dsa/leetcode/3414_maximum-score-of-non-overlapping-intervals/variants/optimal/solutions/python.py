@@ -1,53 +1,43 @@
-import bisect
+from bisect import bisect_left
+
 
 def solve(intervals):
-    n = len(intervals)
-    # Store original indices to return them later
-    indexed_intervals = []
-    for i in range(n):
-        indexed_intervals.append((intervals[i][0], intervals[i][1], intervals[i][2], i))
+    ordered = sorted(
+        (right, left, weight, index)
+        for index, (left, right, weight) in enumerate(intervals)
+    )
+    ends = [item[0] for item in ordered]
+    n = len(ordered)
+    impossible = (-1, ())
+    dp = [[(0, ())] * (n + 1)] + [
+        [impossible] * (n + 1) for _ in range(4)
+    ]
 
-    # Sort by end time
-    indexed_intervals.sort(key=lambda x: x[1])
-
-    # dp[k][i] = (max_weight, sorted_list_of_indices)
-    # Using -1 as a sentinel for weight
-    dp = [[(-1, []) for _ in range(n + 1)] for _ in range(5)]
-
-    # Base case: 0 intervals have 0 weight
-    for i in range(n + 1):
-        dp[0][i] = (0, [])
-
-    end_times = [x[1] for x in indexed_intervals]
-
-    for k in range(1, 5):
+    for chosen in range(1, 5):
         for i in range(1, n + 1):
-            start, end, weight, original_idx = indexed_intervals[i-1]
+            best = dp[chosen][i - 1]
+            _, left, weight, original_index = ordered[i - 1]
+            previous = bisect_left(ends, left, 0, i - 1)
+            score, indices = dp[chosen - 1][previous]
 
-            # Option 1: Don't include this interval
-            res_weight, res_indices = dp[k][i-1]
+            if score >= 0:
+                candidate = (
+                    score + weight,
+                    tuple(sorted((*indices, original_index))),
+                )
+                if candidate[0] > best[0] or (
+                    candidate[0] == best[0] and candidate[1] < best[1]
+                ):
+                    best = candidate
 
-            # Option 2: Include this interval
-            # Find the rightmost interval that ends before current starts
-            idx = bisect.bisect_left(end_times, start)
-            prev_weight, prev_indices = dp[k-1][idx]
+            dp[chosen][i] = best
 
-            if prev_weight != -1:
-                current_total = prev_weight + weight
-                current_indices = sorted(prev_indices + [original_idx])
+    answer = (0, ())
+    for chosen in range(1, 5):
+        candidate = dp[chosen][n]
+        if candidate[0] > answer[0] or (
+            candidate[0] == answer[0] and candidate[1] < answer[1]
+        ):
+            answer = candidate
 
-                if current_total > res_weight:
-                    res_weight, res_indices = current_total, current_indices
-                elif current_total == res_weight:
-                    if not res_indices or current_indices < res_indices:
-                        res_indices = current_indices
-
-            dp[k][i] = (res_weight, res_indices)
-
-    best_weight, best_indices = dp[0][n]
-    for k in range(1, 5):
-        weight, indices = dp[k][n]
-        if weight > best_weight or (weight == best_weight and indices < best_indices):
-            best_weight, best_indices = weight, indices
-
-    return best_indices
+    return list(answer[1])

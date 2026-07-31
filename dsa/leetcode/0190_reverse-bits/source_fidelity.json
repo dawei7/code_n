@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_190", "frontend_id": "190", "title_slug": "reverse-bits", "url": "https://leetcode.com/problems/reverse-bits/description/", "paid_only": false, "content_sha256": "3a8a9ecf09668e911fc472fc7e4716ffe54db7bed172aafc6dcc754216de50a8", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [{"ordinal": 1, "input": "n = 43261596", "output": "964176192", "has_explanation": true}, {"ordinal": 2, "input": "n = 2147483644", "output": "1073741822", "has_explanation": true}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 2, "source_diagrams": 0, "local_images": 0, "local_tables": 2, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "f884324d9118c55c6e0da91d25c6e2a704295240ee9689f193401ddcf35a281a", "reference/contract.md": "902b7f419a9845759b5e01c6f7d18694d0a071e6880a9ea04169e7ede1502882", "reference/examples.md": "4f0cb010067b3d50c9dd500f4e4279ca9f6ab96e3280bc09a5128d8b720fdbca", "reference/constraints.md": "69f387767a393c93148bf18e2127a303a6275346b8b2520316fe88f815ce4c5f", "reference/follow_up.md": "9a6fce990a210a733981f7424fc3a3f6b1bc04382971896ea47d0382f2020154"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

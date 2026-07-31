@@ -8,82 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-seconds-to-equalize-a-circular-array](https://leetcode.com/problems/minimum-seconds-to-equalize-a-circular-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-seconds-to-equalize-a-circular-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-seconds-to-equalize-a-circular-array/).
 
 ### Goal
-Given a circular array of integers, in each second, you can replace any element with its immediate neighbors (left or right). Determine the minimum number of seconds required to make all elements in the array equal to the same value.
+
+You are given a 0-indexed circular array `nums`. During each second, every index simultaneously chooses its replacement value from one of three values present at the start of that second: its own value, the value immediately to its left, or the value immediately to its right. The first and last indices are neighbors because the array is circular.
+
+Return the minimum number of seconds required to make every array element equal. All positions update simultaneously, so a value can spread by at most one edge in each direction per second. The final common value must be one that already occurs in the input, and the operation need not be performed when all values are initially equal.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the circular array.
+- `nums`: A list of $n$ integers, where $1 \leq n \leq 10^5$ and $1 \leq \texttt{nums[i]} \leq 10^9$.
 
 **Return value**
 
-- An integer representing the minimum seconds needed to make all elements equal.
+Return the smallest integer number of simultaneous-update seconds needed to make the circular array constant.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1, 2, 1, 2]`
 - Output: `1`
+- Explanation: Either alternating value can spread to its two neighboring positions in one second.
 
 **Example 2**
 
 - Input: `nums = [2, 1, 3, 3, 2]`
 - Output: `2`
+- Explanation: Choosing `3` as the final value requires two seconds to cover the longest circular gap between its occurrences.
 
 **Example 3**
 
 - Input: `nums = [5, 5, 5, 5]`
 - Output: `0`
-
----
-
-## Solution
-### Approach
-The problem can be solved by identifying the maximum gap between occurrences of each unique number in the circular array. For a specific value $x$, if the indices where $x$ appears are $i_1, i_2, \dots, i_k$, the time required to fill the gaps between these occurrences is $\lfloor \text{gap} / 2 \rfloor$. Because the array is circular, the gap between the last occurrence and the first occurrence (wrapping around) must also be considered. We calculate this for every unique number and return the minimum of these maximum gaps.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n)$, where $n$ is the length of the array. We iterate through the array once to store indices and once more to calculate the gaps for each unique element.
-- **Space Complexity**: $O(n)$ to store the indices of each unique element in a hash map.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import defaultdict
-import math
-
-def solve(nums: list[int]) -> int:
-    n = len(nums)
-    indices = defaultdict(list)
-
-    for i, val in enumerate(nums):
-        indices[val].append(i)
-
-    min_seconds = n
-
-    for val in indices:
-        pos = indices[val]
-        # Calculate gaps between consecutive occurrences
-        max_gap = 0
-        for i in range(len(pos) - 1):
-            max_gap = max(max_gap, pos[i+1] - pos[i] - 1)
-
-        # Account for circular gap (last element to first element)
-        circular_gap = (n - 1 - pos[-1]) + pos[0]
-        max_gap = max(max_gap, circular_gap)
-
-        # The time to fill a gap of size 'g' is ceil(g / 2)
-        # which is equivalent to (g + 1) // 2
-        seconds_needed = (max_gap + 1) // 2
-        min_seconds = min(min_seconds, seconds_needed)
-
-    return min_seconds
-```
-</details>
+- Explanation: Every position already contains the same value.

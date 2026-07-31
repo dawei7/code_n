@@ -1,0 +1,597 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3938",
+  "cases": [
+    {
+      "id": "sample-horizontal-intersection",
+      "name": "sample: three shared cells form the best horizontal segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            0,
+            -3
+          ],
+          [
+            1,
+            -2,
+            1,
+            0
+          ],
+          [
+            -4,
+            2,
+            -1,
+            3
+          ],
+          [
+            3,
+            -3,
+            3,
+            -2
+          ],
+          [
+            -1,
+            -5,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "horizontal",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "sample-left-column-intersection",
+      "name": "sample: two shared cells on the left boundary score three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            -2,
+            -3
+          ],
+          [
+            -1,
+            -3,
+            -1
+          ],
+          [
+            -4,
+            2,
+            -1
+          ]
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "vertical",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-all-negative-two-by-two",
+      "name": "trial: a nonempty two-cell intersection is required",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -1,
+            -2
+          ],
+          [
+            -3,
+            -4
+          ]
+        ]
+      },
+      "expected": -3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-area",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "trial-positive-two-by-two",
+      "name": "trial: the larger complete row is the best intersection",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-area",
+        "horizontal"
+      ]
+    },
+    {
+      "id": "trial-interior-singleton",
+      "name": "trial: a strictly interior singleton beats every longer segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -100,
+            -100,
+            -100
+          ],
+          [
+            -100,
+            100,
+            -100
+          ],
+          [
+            -100,
+            -100,
+            -100
+          ]
+        ]
+      },
+      "expected": 100,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "interior-singleton",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-singleton-forbidden",
+      "name": "trial: a boundary value must share an adjacent cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -60,
+            100,
+            -60
+          ],
+          [
+            -60,
+            -60,
+            -60
+          ],
+          [
+            -60,
+            -60,
+            -60
+          ]
+        ]
+      },
+      "expected": 40,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-horizontal-pair",
+      "name": "trial: the best row intersection contains exactly two cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -8,
+            -8,
+            -8,
+            -8
+          ],
+          [
+            -5,
+            7,
+            9,
+            -20
+          ],
+          [
+            -9,
+            -9,
+            -9,
+            -9
+          ]
+        ]
+      },
+      "expected": 16,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "horizontal",
+        "length-two"
+      ]
+    },
+    {
+      "id": "trial-vertical-pair",
+      "name": "trial: the best intersection is vertical",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -20,
+            -20
+          ],
+          [
+            6,
+            -20
+          ],
+          [
+            7,
+            -20
+          ],
+          [
+            -30,
+            -20
+          ],
+          [
+            8,
+            -20
+          ]
+        ]
+      },
+      "expected": 13,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "vertical",
+        "length-two"
+      ]
+    },
+    {
+      "id": "real-horizontal-restart",
+      "name": "hidden: the row scan restarts after a damaging prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -10,
+            4,
+            5,
+            -20,
+            7,
+            8
+          ],
+          [
+            -30,
+            -30,
+            -30,
+            -30,
+            -30,
+            -30
+          ]
+        ]
+      },
+      "expected": 15,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "kadane-restart",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "real-negative-interior-singleton",
+      "name": "hidden: the least negative interior cell is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -9,
+            -8,
+            -7,
+            -6
+          ],
+          [
+            -8,
+            -4,
+            -1,
+            -8
+          ],
+          [
+            -7,
+            -3,
+            -6,
+            -7
+          ],
+          [
+            -6,
+            -7,
+            -8,
+            -9
+          ]
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-negative",
+        "interior-singleton"
+      ]
+    },
+    {
+      "id": "real-two-rows",
+      "name": "hidden: two rows leave no strictly interior row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5,
+            -2,
+            4,
+            -10,
+            3
+          ],
+          [
+            -20,
+            -20,
+            -20,
+            -20,
+            -20
+          ]
+        ]
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "two-rows",
+        "horizontal"
+      ]
+    },
+    {
+      "id": "real-two-columns",
+      "name": "hidden: two columns leave no strictly interior column",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -20,
+            4
+          ],
+          [
+            -20,
+            5
+          ],
+          [
+            -20,
+            -30
+          ],
+          [
+            -20,
+            7
+          ],
+          [
+            -20,
+            8
+          ]
+        ]
+      },
+      "expected": 15,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "two-columns",
+        "vertical"
+      ]
+    },
+    {
+      "id": "real-row-column-tie",
+      "name": "hidden: equal best scores from different orientations are harmless",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            3,
+            -20
+          ],
+          [
+            -20,
+            -5,
+            -20
+          ],
+          [
+            -20,
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "orientation-tie",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-all-maximum",
+      "name": "hidden: an all-maximum rectangle favors its longer dimension",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          [
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          [
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          [
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        ]
+      },
+      "expected": 500,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "positive"
+      ]
+    },
+    {
+      "id": "real-all-minimum-two-rows",
+      "name": "hidden: all minimum values still require two shared cells",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -100,
+            -100,
+            -100,
+            -100,
+            -100,
+            -100
+          ],
+          [
+            -100,
+            -100,
+            -100,
+            -100,
+            -100,
+            -100
+          ]
+        ]
+      },
+      "expected": -200,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum-value",
+        "two-rows"
+      ]
+    },
+    {
+      "id": "real-singleton-versus-segments",
+      "name": "hidden: an interior singleton defeats all adjacent pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -50,
+            -50,
+            -50,
+            -50
+          ],
+          [
+            -50,
+            12,
+            -20,
+            -50
+          ],
+          [
+            -50,
+            -50,
+            11,
+            -50
+          ],
+          [
+            -50,
+            -50,
+            -50,
+            -50
+          ]
+        ]
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "interior-singleton",
+        "mixed-values"
+      ]
+    }
+  ]
+}
+

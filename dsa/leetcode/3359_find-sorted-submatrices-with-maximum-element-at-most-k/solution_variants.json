@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Sorted Submatrices With Maximum Element at Most K and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Converts each right boundary to row-suffix widths and sums vertical interval minima with monotonic stacks.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(mn)"
     }
   ]
 }

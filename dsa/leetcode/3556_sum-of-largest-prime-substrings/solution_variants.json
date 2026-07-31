@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Largest Prime Substrings and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds every substring value incrementally, tests divisors only through its square root, and deduplicates prime values before selecting the largest three.",
+      "time_complexity": "O(n^2 sqrt(M))",
+      "space_complexity": "O(n^2)"
     }
   ]
 }

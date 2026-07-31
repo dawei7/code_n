@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2254",
+  "cases": [
+    {
+      "id": "sample-reuse-and-statistics",
+      "name": "sample: reuse a removed id and track another video's statistics",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["VideoSharingPlatform","upload","upload","remove","remove","upload","watch","watch","like","dislike","dislike","getLikesAndDislikes","getViews"],
+        "arguments": [[],["123"],["456"],[4],[0],["789"],[1,0,5],[1,0,1],[1],[1],[1],[1],[1]]
+      },
+      "expected": [null,0,1,null,null,0,"456","45",null,null,null,[1,2],2],
+      "tags": ["sample","reuse","statistics"]
+    },
+    {
+      "id": "sample-missing-video",
+      "name": "sample: every operation targets a missing video",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["VideoSharingPlatform","remove","watch","like","dislike","getLikesAndDislikes","getViews"],
+        "arguments": [[],[0],[0,0,1],[0],[0],[0],[0]]
+      },
+      "expected": [null,null,"-1",null,null,[-1],-1],
+      "tags": ["sample","missing"]
+    },
+    {
+      "id": "trial-smallest-among-holes",
+      "name": "smallest deleted identifier is reused first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["VideoSharingPlatform","upload","upload","upload","remove","remove","upload","upload"],
+        "arguments": [[],["0"],["1"],["2"],[1],[0],["3"],["4"]]
+      },
+      "expected": [null,0,1,2,null,null,0,1],
+      "tags": ["heap","smallest-id"]
+    },
+    {
+      "id": "trial-watch-clamping",
+      "name": "watch slices are inclusive and clamp at the final minute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["VideoSharingPlatform","upload","watch","watch","getViews"],
+        "arguments": [[],["012345"],[0,2,4],[0,4,99],[0]]
+      },
+      "expected": [null,0,"234","45",2],
+      "tags": ["watch","inclusive","clamp"]
+    },
+    {
+      "id": "trial-reused-id-resets",
+      "name": "reused identifier starts with fresh statistics",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["VideoSharingPlatform","upload","watch","like","dislike","remove","upload","getLikesAndDislikes","getViews"],
+        "arguments": [[],["123"],[0,0,1],[0],[0],[0],["9"],[0],[0]]
+      },
+      "expected": [null,0,"12",null,null,null,0,[0,0],0],
+      "tags": ["reuse","reset"]
+    },
+    {
+      "id": "real-double-remove",
+      "name": "hidden: repeated removal does not duplicate a reusable id",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["VideoSharingPlatform","upload","remove","remove","upload","upload"],
+        "arguments": [[],["1"],[0],[0],["2"],["3"]]
+      },
+      "expected": [null,0,null,null,0,1],
+      "tags": ["hidden","duplicate-removal"]
+    },
+    {
+      "id": "real-independent-records",
+      "name": "hidden: videos maintain independent views and reactions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["VideoSharingPlatform","upload","upload","watch","watch","like","dislike","dislike","getLikesAndDislikes","getLikesAndDislikes","getViews","getViews"],
+        "arguments": [[],["1234"],["5678"],[0,0,2],[0,1,2],[0],[1],[1],[0],[1],[0],[1]]
+      },
+      "expected": [null,0,1,"123","23",null,null,null,[1,0],[0,2],2,0],
+      "tags": ["hidden","independent-state"]
+    },
+    {
+      "id": "real-remove-preserves-others",
+      "name": "hidden: removing one video leaves every other record unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["VideoSharingPlatform","upload","upload","like","watch","remove","getLikesAndDislikes","getViews","watch"],
+        "arguments": [[],["111"],["222"],[1],[1,0,1],[0],[1],[1],[0,0,1]]
+      },
+      "expected": [null,0,1,null,"22",null,[1,0],1,"-1"],
+      "tags": ["hidden","removal","isolation"]
+    }
+  ]
+}

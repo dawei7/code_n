@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Almost-Palindromic Substring and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Expands around every odd and even center, then spends the one deletion on either side of the first mismatch.",
+      "time_complexity": "O(N^2)",
+      "space_complexity": "O(1)"
     }
   ]
 }

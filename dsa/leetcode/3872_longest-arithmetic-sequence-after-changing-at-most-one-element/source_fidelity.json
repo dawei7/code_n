@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3872",
+    "frontend_id": "3872",
+    "title_slug": "longest-arithmetic-sequence-after-changing-at-most-one-element",
+    "url": "https://leetcode.com/problems/longest-arithmetic-sequence-after-changing-at-most-one-element/description/",
+    "paid_only": false,
+    "content_sha256": "0282a0aed3561356adf2a1c9f52539a9fc2d01ddecbf41e9388a11bc0bdeff55",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [9,7,5,10,1]",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,6,7]",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "29165f4e30848cb6028a8d03decadd0bfd9439b5752936ee8ffb140e87c53106",
+      "reference/contract.md": "2b2a99671b2fa67df2c4d1556e56b2d8704ef9905fc0db9fe77ebd736a0cc3e4",
+      "reference/examples.md": "50a6a81b3863dd1fa2dcee3bdde8ba6ca43d8714240db78fbaea5d7f150748c9",
+      "reference/constraints.md": "e0e71e74a8742e6607b546d4cf747efcd6ecdc227e804c294b37567a3f453cbd"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

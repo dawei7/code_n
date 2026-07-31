@@ -8,98 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Tree, Graph Theory, Topological Sort |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [collect-coins-in-a-tree](https://leetcode.com/problems/collect-coins-in-a-tree/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/collect-coins-in-a-tree/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/collect-coins-in-a-tree/).
 
 ### Goal
-Given an undirected tree where some nodes contain coins, you must collect all coins by traversing the tree. You are allowed to remove any leaf nodes that do not contain coins. After pruning, you must calculate the total number of edges traversed to visit all remaining nodes containing coins, starting from any node and returning to the starting point (effectively counting each edge twice).
+
+An undirected, unrooted tree has $n$ vertices numbered from $0$ through $n-1$. Each pair `edges[i] = [a_i, b_i]` connects two adjacent vertices, and `coins[i]` is $1$ exactly when vertex $i$ contains a coin.
+
+Choose any vertex as the starting point. From the current vertex, you may collect every coin whose tree distance from it is at most $2$, or traverse one edge to an adjacent vertex. Both operations may be performed any number of times.
+
+Find the minimum total number of edge traversals needed to collect every coin and return to the chosen starting vertex. Traversing the same edge more than once contributes once to the total on every traversal.
 
 ### Function Contract
+
 **Inputs**
 
-- `coins`: A list of integers where `coins[i]` is 1 if node `i` has a coin, and 0 otherwise.
-- `edges`: A list of pairs representing the undirected connections between nodes.
+- `coins`: A length-$n$ list whose entries are either $0$ or $1$.
+- `edges`: A list of $n-1$ pairs describing a valid undirected tree on vertices $0$ through $n-1$.
+
+The tree size satisfies $1 \leq n \leq 3 \cdot 10^4$.
 
 **Return value**
 
-- An integer representing the minimum number of edges traversed to collect all coins.
+- The minimum number of edge traversals required to collect all coins and finish at the starting vertex.
 
 ### Examples
+
 **Example 1**
 
 - Input: `coins = [1,0,0,0,0,1], edges = [[0,1],[1,2],[2,3],[3,4],[4,5]]`
 - Output: `2`
+
+Start at vertex $2$, collect the coin at vertex $0$, traverse to vertex $3$, collect the coin at vertex $5$, and return to vertex $2$.
 
 **Example 2**
 
 - Input: `coins = [0,0,0,1,1,0,0,1], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[5,6],[5,7]]`
 - Output: `2`
 
-**Example 3**
-
-- Input: `coins = [0,0], edges = [[0,1]]`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-The problem is solved using a multi-pass Topological Sort (Kahn's Algorithm approach). First, we prune all leaf nodes that do not contain coins, as they are irrelevant to the collection process. Second, we prune the tree twice more to remove nodes that are at a distance of 2 from any coin, as these nodes do not need to be visited to collect the coins. The remaining edges in the pruned graph are counted, and the result is twice the number of remaining edges.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N)`, where `N` is the number of nodes in the tree. We perform a constant number of passes over the nodes and edges.
-- **Space Complexity**: `O(N)` to store the adjacency list and the degree of each node.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import deque
-
-
-def solve(coins: list[int], edges: list[list[int]]) -> int:
-    n = len(coins)
-    graph = [[] for _ in range(n)]
-    degree = [0] * n
-    for u, v in edges:
-        graph[u].append(v)
-        graph[v].append(u)
-        degree[u] += 1
-        degree[v] += 1
-
-    remaining_edges = len(edges)
-    queue = deque(i for i in range(n) if degree[i] == 1 and coins[i] == 0)
-    while queue:
-        node = queue.popleft()
-        if degree[node] == 0:
-            continue
-        degree[node] = 0
-        for nei in graph[node]:
-            if degree[nei] == 0:
-                continue
-            remaining_edges -= 1
-            degree[nei] -= 1
-            if degree[nei] == 1 and coins[nei] == 0:
-                queue.append(nei)
-
-    queue = deque(i for i in range(n) if degree[i] == 1)
-    for _ in range(2):
-        for _ in range(len(queue)):
-            node = queue.popleft()
-            if degree[node] == 0:
-                continue
-            degree[node] = 0
-            for nei in graph[node]:
-                if degree[nei] == 0:
-                    continue
-                remaining_edges -= 1
-                degree[nei] -= 1
-                if degree[nei] == 1:
-                    queue.append(nei)
-
-    return max(0, remaining_edges * 2)
-```
-</details>
+Starting at vertex $0$, the two coins in its nearby branch can be collected immediately. One round trip across edge $0$-$2$ brings the remaining coin within distance $2$.

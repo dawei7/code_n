@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2255",
+  "cases": [
+    {"id":"sample-mixed","name":"sample: prefixes and non-prefixes are mixed","kind":"sample","visible":true,"input":{"words":["a","b","c","ab","bc","abc"],"s":"abc"},"expected":3,"tags":["sample","mixed"]},
+    {"id":"sample-duplicates","name":"sample: duplicate prefixes count separately","kind":"sample","visible":true,"input":{"words":["a","a"],"s":"aa"},"expected":2,"tags":["sample","duplicates"]},
+    {"id":"trial-equal-and-longer","name":"target itself counts but a longer word does not","kind":"trial","visible":true,"input":{"words":["abc","abcd","abx"],"s":"abc"},"expected":1,"tags":["equality","length"]},
+    {"id":"trial-all-prefix-lengths","name":"every available prefix length can contribute","kind":"trial","visible":true,"input":{"words":["a","ab","abc","abcd","abcde"],"s":"abcde"},"expected":5,"tags":["all-prefixes"]},
+    {"id":"trial-later-substrings","name":"matching substrings away from index zero do not count","kind":"trial","visible":true,"input":{"words":["b","bc","c","abc"],"s":"abc"},"expected":1,"tags":["substring","start-index"]},
+    {"id":"real-single-character","name":"hidden: one-character target with duplicates","kind":"real","visible":false,"input":{"words":["z","z","a","zz"],"s":"z"},"expected":2,"tags":["hidden","minimum-length"]},
+    {"id":"real-none","name":"hidden: no word is a prefix","kind":"real","visible":false,"input":{"words":["b","ba","cab","aaaa"],"s":"abc"},"expected":0,"tags":["hidden","zero"]},
+    {"id":"real-shared-beginning","name":"hidden: partial shared beginnings still require the whole word","kind":"real","visible":false,"input":{"words":["g","go","goo","good","google","goof","google"],"s":"google"},"expected":6,"tags":["hidden","full-word","duplicates"]}
+  ]
+}

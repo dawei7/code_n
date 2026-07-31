@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2370",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: skip incompatible middle letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "acfgbd", "k": 2},
+      "expected": 4,
+      "tags": ["sample", "subsequence"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: complete string is ideal",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcd", "k": 3},
+      "expected": 4,
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-zero-distance",
+      "name": "zero distance permits repeated copies of one letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abacada", "k": 0},
+      "expected": 4,
+      "tags": ["boundary", "frequency"]
+    },
+    {
+      "id": "trial-noncyclic-alphabet",
+      "name": "alphabet endpoints are not adjacent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "az", "k": 1},
+      "expected": 1,
+      "tags": ["semantic", "alphabet"]
+    },
+    {
+      "id": "trial-skipped-positions",
+      "name": "subsequence skips incompatible positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "azbyc", "k": 1},
+      "expected": 3,
+      "tags": ["subsequence"]
+    },
+    {
+      "id": "real-single-character",
+      "name": "hidden: minimum string",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "z", "k": 0},
+      "expected": 1,
+      "tags": ["hidden", "minimum"]
+    },
+    {
+      "id": "real-unrestricted-distance",
+      "name": "hidden: maximum distance permits every letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zyxabc", "k": 25},
+      "expected": 6,
+      "tags": ["hidden", "boundary"]
+    },
+    {
+      "id": "real-order-matters",
+      "name": "hidden: descending and ascending runs join through a repeated endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "edcbaabcde", "k": 1},
+      "expected": 10,
+      "tags": ["hidden", "order"]
+    },
+    {
+      "id": "real-revisit-ending-letter",
+      "name": "hidden: alternating compatible endpoints retain every character",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "acecab", "k": 2},
+      "expected": 6,
+      "tags": ["hidden", "dynamic-programming"]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3884",
+    "frontend_id": "3884",
+    "title_slug": "first-matching-character-from-both-ends",
+    "url": "https://leetcode.com/problems/first-matching-character-from-both-ends/description/",
+    "paid_only": false,
+    "content_sha256": "da3b843df55940b76bec4d965acc8aaac0b309eb3a4d5a54ab8c9182a78a7de9",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"abcacbd\"",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"abc\"",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"abcdab\"",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0b2bff699d34d75fcffadbe6e92bd28c86b17f55b841ec70d5e0c69b76494c42",
+      "reference/contract.md": "0365fbb5ab532d80575f9bda6ac47659154dfcd9e521f9fc11e0f9ffb4602ee0",
+      "reference/examples.md": "759d1d04c062e8fa0d528f6464407eeffecab7920a54596ad8d5e20d3f808754",
+      "reference/constraints.md": "58d23337bb0dbec2ab503cc8a6704b72e68fe75dc815d0aa6c037b231e372929"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

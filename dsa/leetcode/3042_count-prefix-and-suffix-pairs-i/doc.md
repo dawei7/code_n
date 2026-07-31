@@ -5,81 +5,43 @@
 | Source | LeetCode |
 | Frontend ID | 3042 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, String, Trie, Rolling Hash, String Matching, Hash Function |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-prefix-and-suffix-pairs-i](https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/).
-
 ### Goal
-Given an array of strings, identify all pairs of indices (i, j) such that i < j and the string at index i is both a prefix and a suffix of the string at index j. The objective is to return the total count of such valid pairs.
+You are given a 0-indexed string array `words`. Define `isPrefixAndSuffix(str1, str2)` to be true exactly when `str1` is both a prefix and a suffix of `str2`.
+
+For example, `isPrefixAndSuffix("aba", "ababa")` is true because `"ababa"` begins and ends with `"aba"`. In contrast, `isPrefixAndSuffix("abc", "abcd")` is false because the second string does not end with the first.
+
+Return the number of index pairs `(i, j)` for which $i<j$ and `isPrefixAndSuffix(words[i], words[j])` is true. Equal strings at different indices are allowed and satisfy both conditions.
 
 ### Function Contract
+Let $n=\lvert\texttt{words}\rvert$ and let $L$ be the maximum length of any word.
+
 **Inputs**
 
-- `words`: A list of strings consisting of lowercase English letters.
+- `words`: An array with $1 \le n \le 50$; every entry contains only lowercase English letters and has length from `1` through `10`, so $1 \le L \le 10$.
 
 **Return value**
 
-- An integer representing the total number of pairs (i, j) where 0 <= i < j < len(words) and `words[i]` is both a prefix and a suffix of `words[j]`.
+Return the number of ordered index pairs `(i, j)` with $i<j$ for which `words[i]` is simultaneously a prefix and a suffix of `words[j]`.
 
 ### Examples
 **Example 1**
 
 - Input: `words = ["a","aba","ababa","aa"]`
 - Output: `4`
-- Explanation: Valid pairs are (0,1), (0,2), (1,2), (0,3).
+- Explanation: The valid pairs are `(0,1)`, `(0,2)`, `(0,3)`, and `(1,2)`.
 
 **Example 2**
 
 - Input: `words = ["pa","papa","ma","mama"]`
 - Output: `2`
-- Explanation: Valid pairs are (0,1), (2,3).
+- Explanation: The valid pairs are `(0,1)` and `(2,3)`.
 
 **Example 3**
 
 - Input: `words = ["abab","ab"]`
 - Output: `0`
-
----
-
-## Solution
-### Approach
-The problem utilizes a brute-force comparison approach. For each pair of indices (i, j) where i < j, we verify the prefix and suffix condition using string slicing or built-in methods like `startswith()` and `endswith()`. Given the constraints of this specific problem (N <= 50), an O(N^2 * L) approach is efficient enough.
-
-### Complexity Analysis
-- **Time Complexity**: O(N^2 * L), where N is the number of strings in the array and L is the maximum length of a string. We iterate through all pairs and perform string matching operations.
-- **Space Complexity**: O(1), as we only use a counter variable and do not allocate extra space proportional to the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(words: List[str]) -> int:
-    """
-    Counts the number of pairs (i, j) such that i < j and
-    words[i] is both a prefix and a suffix of words[j].
-    """
-    count = 0
-    n = len(words)
-
-    for i in range(n):
-        for j in range(i + 1, n):
-            str1 = words[i]
-            str2 = words[j]
-
-            # A string cannot be a prefix/suffix of a shorter string
-            if len(str1) > len(str2):
-                continue
-
-            if str2.startswith(str1) and str2.endswith(str1):
-                count += 1
-
-    return count
-```
-</details>
+- Explanation: The earlier word is longer than the later word, so it cannot be either its prefix or its suffix.

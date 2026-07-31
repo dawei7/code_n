@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4087",
+  "frontend_id": "3760",
+  "title_slug": "maximum-substrings-with-distinct-start",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maxDistinct",
+  "verified_submission_id": "2085340781",
+  "verified_at": "2026-07-28T20:44:16.690136+00:00"
+}

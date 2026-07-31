@@ -1,0 +1,15 @@
+{
+  "schema_version":1,
+  "source":{"provider":"leetcode","challenge_id":"lc_3735","frontend_id":"3735","title_slug":"lexicographically-smallest-string-after-reverse-ii","url":"https://leetcode.com/problems/lexicographically-smallest-string-after-reverse-ii/description/","paid_only":true,"content_sha256":"6bb6b4bd24ca5729de179b8b1359aa070a9d7b64b66ebe865ff0d83a98cdc8a3","checked_at":"2026-07-28"},
+  "structure":{"sections":["description","examples","constraints"],"examples":[
+    {"ordinal":1,"input":"s = \"dcab\"","output":"\"acdb\"","has_explanation":true},
+    {"ordinal":2,"input":"s = \"abba\"","output":"\"aabb\"","has_explanation":true},
+    {"ordinal":3,"input":"s = \"zxy\"","output":"\"xzy\"","has_explanation":true}
+  ],"constraint_count":2,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
+  "review":{"status":"verified","files":{
+    "reference/description.md":"9684ff7cb0d0d6baf33813c24817efc67c02606f074ca85ce8f20e027b1bab32",
+    "reference/contract.md":"0660aa76c43746f133df47c13ecde1b300b17fbc6caa95a8f0e120281008392b",
+    "reference/examples.md":"8b80a84d12430ab91fbf0ea593ffd4221a5d808175751b21f4e205aa974b2cbd",
+    "reference/constraints.md":"1340c69e0553e462351314858558118f5985f1900890045f836882354be80f65"
+  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+}

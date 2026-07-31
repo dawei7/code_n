@@ -5,51 +5,43 @@
 | Source | LeetCode |
 | Frontend ID | 3641 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, Sliding Window |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-semi-repeating-subarray](https://leetcode.com/problems/longest-semi-repeating-subarray/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/longest-semi-repeating-subarray/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-semi-repeating-subarray/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an integer array `nums` and an integer `k`, call a contiguous subarray semi-repeating when at most `k` distinct element values appear more than once inside that subarray.
+
+A value with frequency two, three, or more counts as one repeating element value, not as several repetitions. Values occurring exactly once do not count toward the limit.
+
+Return the maximum length of any semi-repeating subarray.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ integers, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^5$.
+- `k`: The maximum number of distinct repeating values, where $0 \le k \le n$.
 
 **Return value**
 
-TODO
+Return the length of the longest contiguous subarray containing at most `k` distinct values whose frequencies exceed one.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 1, 2, 3, 4], k = 2`
+- Output: `6`
+- Explanation: `[2, 3, 1, 2, 3, 4]` repeats only values 2 and 3.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1, 1, 1], k = 4`
+- Output: `5`
+- Explanation: Despite five occurrences, only the value 1 is a repeating value.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1, 1, 1, 1, 1], k = 0`
+- Output: `1`
+- Explanation: Any longer range repeats the value 1.

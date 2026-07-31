@@ -8,48 +8,39 @@
 | Category | pandas |
 | Topics | Uncategorized |
 | Supported Languages | python |
-| Official Link | [get-the-size-of-a-dataframe](https://leetcode.com/problems/get-the-size-of-a-dataframe/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/get-the-size-of-a-dataframe/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/get-the-size-of-a-dataframe/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The pandas `DataFrame` named `players` contains one player per row and stores player attributes in columns such as `player_id`, `name`, `age`, `position`, and `team`. Its exact dimensions are determined by the supplied table rather than by the values stored in any particular column.
+
+Determine the number of rows and the number of columns in `players`. Return those two dimensions as an array in the fixed order `[number of rows, number of columns]`; do not return the total number of cells or count only non-null values.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `players`: A pandas `DataFrame` containing the player records and their attributes.
 
 **Return value**
 
-TODO
+A two-element integer list `[row_count, column_count]`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: a `players` DataFrame containing 10 rows and the five columns `player_id`, `name`, `age`, `position`, and `team`.
+- Output: `[10, 5]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: a one-row `players` DataFrame with the same five columns.
+- Output: `[1, 5]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: a three-row `players` DataFrame with the same five columns.
+- Output: `[3, 5]`

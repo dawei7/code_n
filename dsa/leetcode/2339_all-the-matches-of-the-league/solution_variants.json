@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for All the Matches of the League and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Self-joins the team list and removes self-pairings to emit every directed matchup.",
+      "time_complexity": "O(t^2)",
+      "space_complexity": "O(1)"
     }
   ]
 }

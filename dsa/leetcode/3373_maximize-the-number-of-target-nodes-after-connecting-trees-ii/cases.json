@@ -1,0 +1,484 @@
+{
+  "challenge_id": "lc_3373",
+  "cases": [
+    {
+      "id": "sample-official-one",
+      "name": "sample: branched trees with unequal color classes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        7,
+        7,
+        8,
+        8
+      ],
+      "tags": [
+        "sample",
+        "branched"
+      ]
+    },
+    {
+      "id": "sample-official-two",
+      "name": "sample: star and four-node path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        6,
+        6,
+        6,
+        6
+      ],
+      "tags": [
+        "sample",
+        "star",
+        "path"
+      ]
+    },
+    {
+      "id": "trial-two-node-trees",
+      "name": "trial: both trees have one edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-path-and-star",
+      "name": "trial: five-node path and six-node star",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        7,
+        8,
+        7,
+        8
+      ],
+      "tags": [
+        "path",
+        "unbalanced"
+      ]
+    },
+    {
+      "id": "trial-star-and-odd-path",
+      "name": "trial: five-node star and seven-node path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        8,
+        8,
+        8,
+        8
+      ],
+      "tags": [
+        "star",
+        "odd-size"
+      ]
+    },
+    {
+      "id": "real-balanced-first-tree",
+      "name": "hidden: balanced first bipartition gives one repeated answer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-arbitrary-label-order",
+      "name": "hidden: edge order does not follow rooted traversal order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "edges2": [
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "edge-order"
+      ]
+    },
+    {
+      "id": "real-two-unbalanced-stars",
+      "name": "hidden: both trees have strongly unbalanced color classes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        14,
+        14,
+        14,
+        14,
+        14,
+        14
+      ],
+      "tags": [
+        "hidden",
+        "stars",
+        "unbalanced"
+      ]
+    }
+  ]
+}

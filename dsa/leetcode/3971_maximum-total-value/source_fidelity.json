@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3971",
+    "frontend_id": "3971",
+    "title_slug": "maximum-total-value",
+    "url": "https://leetcode.com/problems/maximum-total-value/description/",
+    "paid_only": false,
+    "content_sha256": "1673667bad37f50b1fe125a670500769f241be1073750ba09f955c74641987ea",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "value = [6,5,4], decay = [2,1,1], m = 4",
+        "output": "19",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "value = [7,2,2], decay = [3,2,1], m = 2",
+        "output": "11",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "value = [4,3], decay = [5,4], m = 5",
+        "output": "7",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f2f76285328e5549bba3e7a9d5cc8bd2902981755af4d86ac17a9427fda8671a",
+      "reference/contract.md": "a2272ef35926c66ebde188f7c37962d97ec8fd470c4767824f1de368c421f4d7",
+      "reference/examples.md": "5ba5237a39b8ef1a12407b0a9ef2afaf568a199002f0b2229a0572533109b3ab",
+      "reference/constraints.md": "0ca047b81e0a7b3e5faa9aac57c8f3f8ead3575c1310add62445a5d35e0f7b1d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

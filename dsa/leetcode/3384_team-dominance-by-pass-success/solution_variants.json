@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Team Dominance by Pass Success and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Joins both pass endpoints to their teams and conditionally aggregates each passer-team and match-half group.",
+      "time_complexity": "O(p log t + g log g)",
+      "space_complexity": "O(g)"
     }
   ]
 }

@@ -1,0 +1,39 @@
+{
+  "challenge_id": "lc_3992",
+  "measurement_note": "Size is n, the length of s. Each tier mixes repeated x and y characters with neutral characters, so a valid construction must preserve the complete input multiset while enforcing the target order. The accepted three-way partition performs linear work; a correct adjacent-swap directional sort performs quadratic work on the same legal inputs.",
+  "cases": [
+    {
+      "id": "benchmark-mixed-eight",
+      "name": "benchmark: eight mixed target and neutral characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"s": "azbyazby", "x": "a", "y": "z"},
+      "expected": "zzbybyaa",
+      "validator": {"kind": "character_pair_rearrangement"},
+      "tags": ["benchmark", "scale-small", "mixed-characters", "sorting-contrast"]
+    },
+    {
+      "id": "benchmark-mixed-thirty-two",
+      "name": "benchmark: thirty-two mixed target and neutral characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s": "azbyazbyazbyazbyazbyazbyazbyazby", "x": "a", "y": "z"},
+      "expected": "zzzzzzzzbybybybybybybybyaaaaaaaa",
+      "validator": {"kind": "character_pair_rearrangement"},
+      "tags": ["benchmark", "scale-medium", "mixed-characters", "sorting-contrast"]
+    },
+    {
+      "id": "benchmark-mixed-one-hundred",
+      "name": "benchmark: one hundred mixed target and neutral characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"s": "azbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazbyazby", "x": "a", "y": "z"},
+      "expected": "zzzzzzzzzzzzzzzzzzzzzzzzzbybybybybybybybybybybybybybybybybybybybybybybybybyaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "validator": {"kind": "character_pair_rearrangement"},
+      "tags": ["benchmark", "scale-large", "maximum-length", "sorting-contrast"]
+    }
+  ]
+}

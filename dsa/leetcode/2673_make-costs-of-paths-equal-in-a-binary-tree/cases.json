@@ -1,118 +1,12 @@
 {
   "challenge_id": "lc_2673",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: equalize depth-three tree",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "n": 7,
-        "cost": [
-          1,
-          5,
-          2,
-          2,
-          3,
-          3,
-          1
-        ]
-      },
-      "tags": [
-        "sample",
-        "tree"
-      ],
-      "expected": 6
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: already balanced children",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "n": 3,
-        "cost": [
-          5,
-          3,
-          3
-        ]
-      },
-      "tags": [
-        "sample",
-        "balanced"
-      ],
-      "expected": 0
-    },
-    {
-      "id": "trial-single-node",
-      "name": "trial: root only",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "n": 1,
-        "cost": [
-          10
-        ]
-      },
-      "tags": [
-        "trial",
-        "edge"
-      ],
-      "expected": 0
-    },
-    {
-      "id": "trial-one-heavy-leaf",
-      "name": "trial: one leaf path dominates",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "n": 7,
-        "cost": [
-          4,
-          1,
-          1,
-          1,
-          1,
-          1,
-          9
-        ]
-      },
-      "tags": [
-        "trial",
-        "leaf"
-      ],
-      "expected": 16
-    },
-    {
-      "id": "real-depth-four",
-      "name": "hidden: complete tree with fifteen nodes",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "n": 15,
-        "cost": [
-          3,
-          1,
-          4,
-          1,
-          5,
-          9,
-          2,
-          6,
-          5,
-          3,
-          5,
-          8,
-          9,
-          7,
-          9
-        ]
-      },
-      "tags": [
-        "hidden",
-        "depth"
-      ],
-      "expected": 27
-    }
+    {"id":"sample-depth-three","name":"sample: equalize depth-three tree","kind":"sample","visible":true,"input":{"n":7,"cost":[1,5,2,2,3,3,1]},"expected":6,"tags":["sample","tree"]},
+    {"id":"sample-balanced","name":"sample: balanced child paths","kind":"sample","visible":true,"input":{"n":3,"cost":[5,3,3]},"expected":0,"tags":["sample","balanced"]},
+    {"id":"trial-two-leaves","name":"trial: one of two leaf paths is short","kind":"trial","visible":true,"input":{"n":3,"cost":[1,2,3]},"expected":1,"tags":["small","imbalance"]},
+    {"id":"trial-all-equal","name":"trial: equal node costs form equal paths","kind":"trial","visible":true,"input":{"n":7,"cost":[4,4,4,4,4,4,4]},"expected":0,"tags":["balanced"]},
+    {"id":"real-one-heavy-leaf","name":"hidden: one leaf path dominates","kind":"real","visible":false,"input":{"n":7,"cost":[4,1,1,1,1,1,9]},"expected":16,"tags":["hidden","leaf"]},
+    {"id":"real-depth-four","name":"hidden: mixed fifteen-node tree","kind":"real","visible":false,"input":{"n":15,"cost":[3,1,4,1,5,9,2,6,5,3,5,8,9,7,9]},"expected":27,"tags":["hidden","depth"]},
+    {"id":"real-large-costs","name":"hidden: maximum costs with one light sibling","kind":"real","visible":false,"input":{"n":7,"cost":[10000,10000,10000,10000,9999,10000,10000]},"expected":1,"tags":["hidden","boundary"]}
   ]
 }

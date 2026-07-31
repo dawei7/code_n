@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_3146",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: swap the first two characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abc", "t": "bac"},
+      "expected": 2,
+      "tags": ["sample", "swap"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed five-character permutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcde", "t": "edbac"},
+      "expected": 12,
+      "tags": ["sample", "permutation"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character cannot move",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "a", "t": "a"},
+      "expected": 0,
+      "tags": ["singleton", "zero"]
+    },
+    {
+      "id": "trial-identical",
+      "name": "trial: identical strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcdef", "t": "abcdef"},
+      "expected": 0,
+      "tags": ["identity", "zero"]
+    },
+    {
+      "id": "trial-adjacent-tail-swap",
+      "name": "trial: adjacent characters swap at the tail",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abc", "t": "acb"},
+      "expected": 2,
+      "tags": ["adjacent-swap"]
+    },
+    {
+      "id": "trial-reversed-four",
+      "name": "trial: reverse four characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcd", "t": "dcba"},
+      "expected": 8,
+      "tags": ["reverse"]
+    },
+    {
+      "id": "trial-left-rotation",
+      "name": "trial: rotate every character left",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcde", "t": "bcdea"},
+      "expected": 8,
+      "tags": ["rotation"]
+    },
+    {
+      "id": "real-endpoint-swap",
+      "name": "real: swap only the endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdef", "t": "fbcdea"},
+      "expected": 10,
+      "tags": ["endpoint-swap", "large-displacement"]
+    },
+    {
+      "id": "real-two-block-rotation",
+      "name": "real: exchange two equal blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "azby", "t": "byaz"},
+      "expected": 8,
+      "tags": ["block-swap"]
+    },
+    {
+      "id": "real-reversed-six",
+      "name": "real: reverse six scattered letters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "qwerty", "t": "ytrewq"},
+      "expected": 18,
+      "tags": ["reverse", "scattered-letters"]
+    },
+    {
+      "id": "real-reversed-ten",
+      "name": "real: reverse ten characters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefghij", "t": "jihgfedcba"},
+      "expected": 50,
+      "tags": ["reverse", "longer"]
+    },
+    {
+      "id": "real-maximum-length-reverse",
+      "name": "real: reverse the complete lowercase alphabet",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyz", "t": "zyxwvutsrqponmlkjihgfedcba"},
+      "expected": 338,
+      "tags": ["maximum-length", "reverse"]
+    }
+  ]
+}

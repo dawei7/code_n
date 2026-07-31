@@ -8,48 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-score-after-pair-deletions](https://leetcode.com/problems/maximize-score-after-pair-deletions/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-score-after-pair-deletions/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-score-after-pair-deletions/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Begin with the integer array `nums`. While it contains more than two elements, an operation must delete exactly two current boundary elements: either the first two, the last two, or the first and last. Add both deleted values to the accumulated score, including negative values when they are selected.
+
+Operations stop as soon as at most two elements remain; those survivors do not contribute to the score. Choose the deletion sequence that makes the total score as large as possible and return that maximum. The original order of all elements that remain after any operation is preserved.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A list of integers whose current boundaries determine which pairs may be deleted.
+
+The length satisfies $1\le n\le10^5$, and every value is between $-10^4$ and $10^4$.
 
 **Return value**
 
-TODO
+Return the maximum score obtainable when operations continue until no more are allowed.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2,4,1]`
+- Output: `6`
+- Explanation: Removing the first two elements scores `2 + 4`; the remaining one-element array ends the process.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [5,-1,4,2]`
+- Output: `7`
+- Explanation: Removing the first and last elements scores `5 + 2` and leaves the adjacent pair `[-1,4]`.

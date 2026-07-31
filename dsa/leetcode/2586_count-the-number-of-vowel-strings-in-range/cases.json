@@ -1,108 +1,16 @@
 {
   "challenge_id": "lc_2586",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: full range with two matches",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "are",
-          "amy",
-          "u"
-        ],
-        "left": 0,
-        "right": 2
-      },
-      "expected": 2,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: middle range",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "hey",
-          "aeo",
-          "mu",
-          "ooo",
-          "artro"
-        ],
-        "left": 1,
-        "right": 4
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-letter-words",
-      "name": "trial: single-letter words",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "words": [
-          "a",
-          "b",
-          "c",
-          "d",
-          "e"
-        ],
-        "left": 0,
-        "right": 4
-      },
-      "expected": 2,
-      "tags": [
-        "trial",
-        "small"
-      ]
-    },
-    {
-      "id": "trial-mixed-start-and-end",
-      "name": "trial: words must start and end with vowels",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "words": [
-          "ice",
-          "owl",
-          "sky",
-          "unit"
-        ],
-        "left": 0,
-        "right": 3
-      },
-      "expected": 1,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-inner-range",
-      "name": "hidden: range excludes first word",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "words": [
-          "aba",
-          "bcb",
-          "ece",
-          "aa",
-          "e"
-        ],
-        "left": 1,
-        "right": 4
-      },
-      "expected": 3,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: two of three words qualify","kind":"sample","visible":true,"input":{"words":["are","amy","u"],"left":0,"right":2},"expected":2,"tags":["sample","full-range"]},
+    {"id":"sample-2","name":"sample: three words qualify inside a suffix range","kind":"sample","visible":true,"input":{"words":["hey","aeo","mu","ooo","artro"],"left":1,"right":4},"expected":3,"tags":["sample","subrange"]},
+    {"id":"trial-single-vowel","name":"trial: one-character vowel qualifies","kind":"trial","visible":true,"input":{"words":["a"],"left":0,"right":0},"expected":1,"tags":["trial","minimum"]},
+    {"id":"trial-single-consonant","name":"trial: one-character consonant does not qualify","kind":"trial","visible":true,"input":{"words":["z"],"left":0,"right":0},"expected":0,"tags":["trial","minimum"]},
+    {"id":"real-ignore-outside","name":"hidden: qualifying words outside the range are ignored","kind":"real","visible":false,"input":{"words":["aa","bc","ee"],"left":1,"right":1},"expected":0,"tags":["hidden","range-boundary"]},
+    {"id":"real-first-only","name":"hidden: starting with a vowel is insufficient","kind":"real","visible":false,"input":{"words":["apple" ,"ant"],"left":1,"right":1},"expected":0,"tags":["hidden","last-character"]},
+    {"id":"real-last-only","name":"hidden: ending with a vowel is insufficient","kind":"real","visible":false,"input":{"words":["table"],"left":0,"right":0},"expected":0,"tags":["hidden","first-character"]},
+    {"id":"real-all-vowels","name":"hidden: every vowel character qualifies alone","kind":"real","visible":false,"input":{"words":["a","e","i","o","u"],"left":0,"right":4},"expected":5,"tags":["hidden","all-vowels"]},
+    {"id":"real-inclusive-endpoints","name":"hidden: both range endpoints are included","kind":"real","visible":false,"input":{"words":["aba","bbb","ece"],"left":0,"right":2},"expected":2,"tags":["hidden","inclusive-range"]},
+    {"id":"real-middle-slice","name":"hidden: inspect only the selected middle slice","kind":"real","visible":false,"input":{"words":["aa","ice","sky","unit","oo"],"left":1,"right":3},"expected":1,"tags":["hidden","subrange"]},
+    {"id":"real-maximum-word-length","name":"hidden: only endpoints matter in a long word","kind":"real","visible":false,"input":{"words":["abcdefghia","abcdefghij"],"left":0,"right":1},"expected":1,"tags":["hidden","maximum-word-length"]}
   ]
 }

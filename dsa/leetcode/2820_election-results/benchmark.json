@@ -1,0 +1,1435 @@
+{
+  "challenge_id": "lc_2820",
+  "measurement_note": "Size is R, the number of rows in Votes. Every voter selects Alpha and one distinct alternative, so Alpha is the unique winner. The window-and-group query processes the table in O(R log R), while a correct correlated-count alternative can rescan all R rows for each input row and scale quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 vote rows with repeated winner and unique alternatives",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "V0000",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0000",
+              "candidate": "C0000"
+            },
+            {
+              "voter": "V0001",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0001",
+              "candidate": "C0001"
+            },
+            {
+              "voter": "V0002",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0002",
+              "candidate": "C0002"
+            },
+            {
+              "voter": "V0003",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0003",
+              "candidate": "C0003"
+            },
+            {
+              "voter": "V0004",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0004",
+              "candidate": "C0004"
+            },
+            {
+              "voter": "V0005",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0005",
+              "candidate": "C0005"
+            },
+            {
+              "voter": "V0006",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0006",
+              "candidate": "C0006"
+            },
+            {
+              "voter": "V0007",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0007",
+              "candidate": "C0007"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "window-function",
+        "grouping"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 vote rows with repeated winner and unique alternatives",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "V0000",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0000",
+              "candidate": "C0000"
+            },
+            {
+              "voter": "V0001",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0001",
+              "candidate": "C0001"
+            },
+            {
+              "voter": "V0002",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0002",
+              "candidate": "C0002"
+            },
+            {
+              "voter": "V0003",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0003",
+              "candidate": "C0003"
+            },
+            {
+              "voter": "V0004",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0004",
+              "candidate": "C0004"
+            },
+            {
+              "voter": "V0005",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0005",
+              "candidate": "C0005"
+            },
+            {
+              "voter": "V0006",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0006",
+              "candidate": "C0006"
+            },
+            {
+              "voter": "V0007",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0007",
+              "candidate": "C0007"
+            },
+            {
+              "voter": "V0008",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0008",
+              "candidate": "C0008"
+            },
+            {
+              "voter": "V0009",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0009",
+              "candidate": "C0009"
+            },
+            {
+              "voter": "V0010",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0010",
+              "candidate": "C0010"
+            },
+            {
+              "voter": "V0011",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0011",
+              "candidate": "C0011"
+            },
+            {
+              "voter": "V0012",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0012",
+              "candidate": "C0012"
+            },
+            {
+              "voter": "V0013",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0013",
+              "candidate": "C0013"
+            },
+            {
+              "voter": "V0014",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0014",
+              "candidate": "C0014"
+            },
+            {
+              "voter": "V0015",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0015",
+              "candidate": "C0015"
+            },
+            {
+              "voter": "V0016",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0016",
+              "candidate": "C0016"
+            },
+            {
+              "voter": "V0017",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0017",
+              "candidate": "C0017"
+            },
+            {
+              "voter": "V0018",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0018",
+              "candidate": "C0018"
+            },
+            {
+              "voter": "V0019",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0019",
+              "candidate": "C0019"
+            },
+            {
+              "voter": "V0020",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0020",
+              "candidate": "C0020"
+            },
+            {
+              "voter": "V0021",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0021",
+              "candidate": "C0021"
+            },
+            {
+              "voter": "V0022",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0022",
+              "candidate": "C0022"
+            },
+            {
+              "voter": "V0023",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0023",
+              "candidate": "C0023"
+            },
+            {
+              "voter": "V0024",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0024",
+              "candidate": "C0024"
+            },
+            {
+              "voter": "V0025",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0025",
+              "candidate": "C0025"
+            },
+            {
+              "voter": "V0026",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0026",
+              "candidate": "C0026"
+            },
+            {
+              "voter": "V0027",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0027",
+              "candidate": "C0027"
+            },
+            {
+              "voter": "V0028",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0028",
+              "candidate": "C0028"
+            },
+            {
+              "voter": "V0029",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0029",
+              "candidate": "C0029"
+            },
+            {
+              "voter": "V0030",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0030",
+              "candidate": "C0030"
+            },
+            {
+              "voter": "V0031",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0031",
+              "candidate": "C0031"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "window-function",
+        "grouping"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 vote rows with repeated winner and unique alternatives",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "V0000",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0000",
+              "candidate": "C0000"
+            },
+            {
+              "voter": "V0001",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0001",
+              "candidate": "C0001"
+            },
+            {
+              "voter": "V0002",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0002",
+              "candidate": "C0002"
+            },
+            {
+              "voter": "V0003",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0003",
+              "candidate": "C0003"
+            },
+            {
+              "voter": "V0004",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0004",
+              "candidate": "C0004"
+            },
+            {
+              "voter": "V0005",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0005",
+              "candidate": "C0005"
+            },
+            {
+              "voter": "V0006",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0006",
+              "candidate": "C0006"
+            },
+            {
+              "voter": "V0007",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0007",
+              "candidate": "C0007"
+            },
+            {
+              "voter": "V0008",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0008",
+              "candidate": "C0008"
+            },
+            {
+              "voter": "V0009",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0009",
+              "candidate": "C0009"
+            },
+            {
+              "voter": "V0010",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0010",
+              "candidate": "C0010"
+            },
+            {
+              "voter": "V0011",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0011",
+              "candidate": "C0011"
+            },
+            {
+              "voter": "V0012",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0012",
+              "candidate": "C0012"
+            },
+            {
+              "voter": "V0013",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0013",
+              "candidate": "C0013"
+            },
+            {
+              "voter": "V0014",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0014",
+              "candidate": "C0014"
+            },
+            {
+              "voter": "V0015",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0015",
+              "candidate": "C0015"
+            },
+            {
+              "voter": "V0016",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0016",
+              "candidate": "C0016"
+            },
+            {
+              "voter": "V0017",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0017",
+              "candidate": "C0017"
+            },
+            {
+              "voter": "V0018",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0018",
+              "candidate": "C0018"
+            },
+            {
+              "voter": "V0019",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0019",
+              "candidate": "C0019"
+            },
+            {
+              "voter": "V0020",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0020",
+              "candidate": "C0020"
+            },
+            {
+              "voter": "V0021",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0021",
+              "candidate": "C0021"
+            },
+            {
+              "voter": "V0022",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0022",
+              "candidate": "C0022"
+            },
+            {
+              "voter": "V0023",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0023",
+              "candidate": "C0023"
+            },
+            {
+              "voter": "V0024",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0024",
+              "candidate": "C0024"
+            },
+            {
+              "voter": "V0025",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0025",
+              "candidate": "C0025"
+            },
+            {
+              "voter": "V0026",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0026",
+              "candidate": "C0026"
+            },
+            {
+              "voter": "V0027",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0027",
+              "candidate": "C0027"
+            },
+            {
+              "voter": "V0028",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0028",
+              "candidate": "C0028"
+            },
+            {
+              "voter": "V0029",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0029",
+              "candidate": "C0029"
+            },
+            {
+              "voter": "V0030",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0030",
+              "candidate": "C0030"
+            },
+            {
+              "voter": "V0031",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0031",
+              "candidate": "C0031"
+            },
+            {
+              "voter": "V0032",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0032",
+              "candidate": "C0032"
+            },
+            {
+              "voter": "V0033",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0033",
+              "candidate": "C0033"
+            },
+            {
+              "voter": "V0034",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0034",
+              "candidate": "C0034"
+            },
+            {
+              "voter": "V0035",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0035",
+              "candidate": "C0035"
+            },
+            {
+              "voter": "V0036",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0036",
+              "candidate": "C0036"
+            },
+            {
+              "voter": "V0037",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0037",
+              "candidate": "C0037"
+            },
+            {
+              "voter": "V0038",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0038",
+              "candidate": "C0038"
+            },
+            {
+              "voter": "V0039",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0039",
+              "candidate": "C0039"
+            },
+            {
+              "voter": "V0040",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0040",
+              "candidate": "C0040"
+            },
+            {
+              "voter": "V0041",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0041",
+              "candidate": "C0041"
+            },
+            {
+              "voter": "V0042",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0042",
+              "candidate": "C0042"
+            },
+            {
+              "voter": "V0043",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0043",
+              "candidate": "C0043"
+            },
+            {
+              "voter": "V0044",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0044",
+              "candidate": "C0044"
+            },
+            {
+              "voter": "V0045",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0045",
+              "candidate": "C0045"
+            },
+            {
+              "voter": "V0046",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0046",
+              "candidate": "C0046"
+            },
+            {
+              "voter": "V0047",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0047",
+              "candidate": "C0047"
+            },
+            {
+              "voter": "V0048",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0048",
+              "candidate": "C0048"
+            },
+            {
+              "voter": "V0049",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0049",
+              "candidate": "C0049"
+            },
+            {
+              "voter": "V0050",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0050",
+              "candidate": "C0050"
+            },
+            {
+              "voter": "V0051",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0051",
+              "candidate": "C0051"
+            },
+            {
+              "voter": "V0052",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0052",
+              "candidate": "C0052"
+            },
+            {
+              "voter": "V0053",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0053",
+              "candidate": "C0053"
+            },
+            {
+              "voter": "V0054",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0054",
+              "candidate": "C0054"
+            },
+            {
+              "voter": "V0055",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0055",
+              "candidate": "C0055"
+            },
+            {
+              "voter": "V0056",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0056",
+              "candidate": "C0056"
+            },
+            {
+              "voter": "V0057",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0057",
+              "candidate": "C0057"
+            },
+            {
+              "voter": "V0058",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0058",
+              "candidate": "C0058"
+            },
+            {
+              "voter": "V0059",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0059",
+              "candidate": "C0059"
+            },
+            {
+              "voter": "V0060",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0060",
+              "candidate": "C0060"
+            },
+            {
+              "voter": "V0061",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0061",
+              "candidate": "C0061"
+            },
+            {
+              "voter": "V0062",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0062",
+              "candidate": "C0062"
+            },
+            {
+              "voter": "V0063",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0063",
+              "candidate": "C0063"
+            },
+            {
+              "voter": "V0064",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0064",
+              "candidate": "C0064"
+            },
+            {
+              "voter": "V0065",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0065",
+              "candidate": "C0065"
+            },
+            {
+              "voter": "V0066",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0066",
+              "candidate": "C0066"
+            },
+            {
+              "voter": "V0067",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0067",
+              "candidate": "C0067"
+            },
+            {
+              "voter": "V0068",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0068",
+              "candidate": "C0068"
+            },
+            {
+              "voter": "V0069",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0069",
+              "candidate": "C0069"
+            },
+            {
+              "voter": "V0070",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0070",
+              "candidate": "C0070"
+            },
+            {
+              "voter": "V0071",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0071",
+              "candidate": "C0071"
+            },
+            {
+              "voter": "V0072",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0072",
+              "candidate": "C0072"
+            },
+            {
+              "voter": "V0073",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0073",
+              "candidate": "C0073"
+            },
+            {
+              "voter": "V0074",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0074",
+              "candidate": "C0074"
+            },
+            {
+              "voter": "V0075",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0075",
+              "candidate": "C0075"
+            },
+            {
+              "voter": "V0076",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0076",
+              "candidate": "C0076"
+            },
+            {
+              "voter": "V0077",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0077",
+              "candidate": "C0077"
+            },
+            {
+              "voter": "V0078",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0078",
+              "candidate": "C0078"
+            },
+            {
+              "voter": "V0079",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0079",
+              "candidate": "C0079"
+            },
+            {
+              "voter": "V0080",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0080",
+              "candidate": "C0080"
+            },
+            {
+              "voter": "V0081",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0081",
+              "candidate": "C0081"
+            },
+            {
+              "voter": "V0082",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0082",
+              "candidate": "C0082"
+            },
+            {
+              "voter": "V0083",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0083",
+              "candidate": "C0083"
+            },
+            {
+              "voter": "V0084",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0084",
+              "candidate": "C0084"
+            },
+            {
+              "voter": "V0085",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0085",
+              "candidate": "C0085"
+            },
+            {
+              "voter": "V0086",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0086",
+              "candidate": "C0086"
+            },
+            {
+              "voter": "V0087",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0087",
+              "candidate": "C0087"
+            },
+            {
+              "voter": "V0088",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0088",
+              "candidate": "C0088"
+            },
+            {
+              "voter": "V0089",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0089",
+              "candidate": "C0089"
+            },
+            {
+              "voter": "V0090",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0090",
+              "candidate": "C0090"
+            },
+            {
+              "voter": "V0091",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0091",
+              "candidate": "C0091"
+            },
+            {
+              "voter": "V0092",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0092",
+              "candidate": "C0092"
+            },
+            {
+              "voter": "V0093",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0093",
+              "candidate": "C0093"
+            },
+            {
+              "voter": "V0094",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0094",
+              "candidate": "C0094"
+            },
+            {
+              "voter": "V0095",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0095",
+              "candidate": "C0095"
+            },
+            {
+              "voter": "V0096",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0096",
+              "candidate": "C0096"
+            },
+            {
+              "voter": "V0097",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0097",
+              "candidate": "C0097"
+            },
+            {
+              "voter": "V0098",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0098",
+              "candidate": "C0098"
+            },
+            {
+              "voter": "V0099",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0099",
+              "candidate": "C0099"
+            },
+            {
+              "voter": "V0100",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0100",
+              "candidate": "C0100"
+            },
+            {
+              "voter": "V0101",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0101",
+              "candidate": "C0101"
+            },
+            {
+              "voter": "V0102",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0102",
+              "candidate": "C0102"
+            },
+            {
+              "voter": "V0103",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0103",
+              "candidate": "C0103"
+            },
+            {
+              "voter": "V0104",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0104",
+              "candidate": "C0104"
+            },
+            {
+              "voter": "V0105",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0105",
+              "candidate": "C0105"
+            },
+            {
+              "voter": "V0106",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0106",
+              "candidate": "C0106"
+            },
+            {
+              "voter": "V0107",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0107",
+              "candidate": "C0107"
+            },
+            {
+              "voter": "V0108",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0108",
+              "candidate": "C0108"
+            },
+            {
+              "voter": "V0109",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0109",
+              "candidate": "C0109"
+            },
+            {
+              "voter": "V0110",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0110",
+              "candidate": "C0110"
+            },
+            {
+              "voter": "V0111",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0111",
+              "candidate": "C0111"
+            },
+            {
+              "voter": "V0112",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0112",
+              "candidate": "C0112"
+            },
+            {
+              "voter": "V0113",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0113",
+              "candidate": "C0113"
+            },
+            {
+              "voter": "V0114",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0114",
+              "candidate": "C0114"
+            },
+            {
+              "voter": "V0115",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0115",
+              "candidate": "C0115"
+            },
+            {
+              "voter": "V0116",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0116",
+              "candidate": "C0116"
+            },
+            {
+              "voter": "V0117",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0117",
+              "candidate": "C0117"
+            },
+            {
+              "voter": "V0118",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0118",
+              "candidate": "C0118"
+            },
+            {
+              "voter": "V0119",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0119",
+              "candidate": "C0119"
+            },
+            {
+              "voter": "V0120",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0120",
+              "candidate": "C0120"
+            },
+            {
+              "voter": "V0121",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0121",
+              "candidate": "C0121"
+            },
+            {
+              "voter": "V0122",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0122",
+              "candidate": "C0122"
+            },
+            {
+              "voter": "V0123",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0123",
+              "candidate": "C0123"
+            },
+            {
+              "voter": "V0124",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0124",
+              "candidate": "C0124"
+            },
+            {
+              "voter": "V0125",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0125",
+              "candidate": "C0125"
+            },
+            {
+              "voter": "V0126",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0126",
+              "candidate": "C0126"
+            },
+            {
+              "voter": "V0127",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "V0127",
+              "candidate": "C0127"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "window-function",
+        "grouping"
+      ]
+    }
+  ]
+}
+

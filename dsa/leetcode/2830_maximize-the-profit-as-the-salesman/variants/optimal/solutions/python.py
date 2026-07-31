@@ -1,31 +1,33 @@
+"""App-local reference solution for LeetCode 2830."""
+
+from bisect import bisect_left
 from typing import List
-import bisect
+
 
 def solve(n: int, offers: List[List[int]]) -> int:
-    # Group offers by their end house for efficient lookup
-    # end_map[end_house] = list of (start, gold)
-    end_map = {}
+    """Return the maximum gold from pairwise disjoint inclusive offers."""
+    offer_count = len(offers)
+    if n > offer_count * (offer_count.bit_length() + 1):
+        ordered = sorted(offers, key=lambda offer: offer[1])
+        ends = []
+        prefix_best = [0]
+
+        for start, end, gold in ordered:
+            compatible_count = bisect_left(ends, start)
+            candidate = prefix_best[compatible_count] + gold
+            ends.append(end)
+            prefix_best.append(max(prefix_best[-1], candidate))
+
+        return prefix_best[-1]
+
+    offers_by_end = [[] for _ in range(n)]
     for start, end, gold in offers:
-        if end not in end_map:
-            end_map[end] = []
-        end_map[end].append((start, gold))
-    
-    # dp[i] will store the max profit using houses up to index i-1
-    # dp[0] = 0 (no houses)
-    dp = [0] * (n + 1)
-    
-    # Iterate through each house index
-    for i in range(1, n + 1):
-        # Option 1: Don't include any offer ending at house i-1
-        dp[i] = dp[i-1]
-        
-        # Option 2: Consider all offers that end exactly at house i-1
-        if (i - 1) in end_map:
-            for start, gold in end_map[i - 1]:
-                # If we take this offer, we add its gold to the max profit
-                # achievable up to the house before the offer started
-                current_profit = dp[start] + gold
-                if current_profit > dp[i]:
-                    dp[i] = current_profit
-                    
-    return dp[n]
+        offers_by_end[end].append((start, gold))
+
+    best = [0] * (n + 1)
+    for end in range(n):
+        best[end + 1] = best[end]
+        for start, gold in offers_by_end[end]:
+            best[end + 1] = max(best[end + 1], best[start] + gold)
+
+    return best[n]

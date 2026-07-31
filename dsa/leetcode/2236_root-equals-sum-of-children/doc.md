@@ -5,51 +5,48 @@
 | Source | LeetCode |
 | Frontend ID | 2236 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Tree, Binary Tree |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [root-equals-sum-of-children](https://leetcode.com/problems/root-equals-sum-of-children/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/root-equals-sum-of-children/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/root-equals-sum-of-children/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given the root of a binary tree containing exactly three nodes. In
+addition to the root, the tree has a left child and a right child; neither
+child is absent, and there are no deeper descendants. Every node stores an
+integer value that may be positive, negative, or zero.
+
+Determine whether the value stored at the root is equal to the sum of the
+values stored at its two children. Return `true` when that equality holds and
+`false` otherwise. The comparison concerns the three node values only; the
+fixed tree structure does not need to be traversed beyond those children.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `root`: The root of a binary tree consisting of exactly the root, its left child, and its right child.
+
+Every node value satisfies $-100\le\texttt{Node.val}\le 100$.
 
 **Return value**
 
-TODO
+Return whether `root.val == root.left.val + root.right.val`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [10, 4, 6]`
+- Output: `true`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [5, 3, 1]`
+- Output: `false`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `root = [0, -8, 8]`
+- Output: `true`

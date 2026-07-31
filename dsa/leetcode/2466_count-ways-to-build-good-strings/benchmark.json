@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2466",
+  "measurement_note": "Size is H = high, the largest permitted string length. Dynamic programming computes each length once in O(H), while a correct combinatorial alternative that considers every possible number of zero blocks for every target length takes O(H^2) when both block lengths are one.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: all binary strings through length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"low": 1, "high": 32, "zero": 1, "one": 1},
+      "expected": 589934534,
+      "tags": ["benchmark", "dynamic-programming"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: all binary strings through length 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"low": 1, "high": 128, "zero": 1, "one": 1},
+      "expected": 559264552,
+      "tags": ["benchmark", "dynamic-programming"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: all binary strings through length 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"low": 1, "high": 512, "zero": 1, "one": 1},
+      "expected": 836770956,
+      "tags": ["benchmark", "dynamic-programming"]
+    }
+  ]
+}

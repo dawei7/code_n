@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Changes to Make K Semi-palindromes and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes every substring's best divisor-pattern repair cost, then partitions prefixes with dynamic programming.",
+      "time_complexity": "O(n^3 log(n) + k n^2)",
+      "space_complexity": "O(n^2 + k n)"
     }
   ]
 }

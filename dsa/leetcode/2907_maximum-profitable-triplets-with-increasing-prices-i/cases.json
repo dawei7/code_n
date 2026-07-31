@@ -1,0 +1,211 @@
+{
+  "challenge_id": "lc_2907",
+  "cases": [
+    {
+      "id": "sample-only-available-triplet",
+      "name": "sample: early expensive item cannot be used",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          10,
+          2,
+          3,
+          4
+        ],
+        "profits": [
+          100,
+          2,
+          7,
+          10
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "sample",
+        "index-order"
+      ]
+    },
+    {
+      "id": "sample-best-not-consecutive",
+      "name": "sample: best increasing-price triplet skips items",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "profits": [
+          1,
+          5,
+          3,
+          4,
+          6
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "profit-choice"
+      ]
+    },
+    {
+      "id": "sample-decreasing-prices",
+      "name": "sample: decreasing prices contain no valid triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "profits": [
+          33,
+          20,
+          19,
+          87
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-equal-prices-not-strict",
+      "name": "equal prices cannot satisfy either strict comparison",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          2,
+          2,
+          3,
+          4
+        ],
+        "profits": [
+          100,
+          50,
+          5,
+          6
+        ]
+      },
+      "expected": 111,
+      "tags": [
+        "strict-inequality",
+        "duplicate-prices"
+      ]
+    },
+    {
+      "id": "trial-profitable-middle-before-later-choice",
+      "name": "the most profitable middle item can appear well before the final item",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          5,
+          2,
+          6,
+          3,
+          7
+        ],
+        "profits": [
+          10,
+          100,
+          20,
+          1,
+          30,
+          40
+        ]
+      },
+      "expected": 150,
+      "tags": [
+        "non-consecutive",
+        "middle-choice"
+      ]
+    },
+    {
+      "id": "real-best-left-and-right-depend-on-middle",
+      "name": "hidden: each middle requires its own compatible side maxima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          3,
+          1,
+          2,
+          5,
+          4
+        ],
+        "profits": [
+          100,
+          4,
+          20,
+          7,
+          50
+        ]
+      },
+      "expected": 74,
+      "tags": [
+        "hidden",
+        "side-maxima"
+      ]
+    },
+    {
+      "id": "real-three-items-with-duplicate-price",
+      "name": "hidden: a length-three array fails when one strict inequality is false",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          1,
+          1,
+          2
+        ],
+        "profits": [
+          1000000,
+          1000000,
+          1000000
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "minimum-length",
+        "duplicate-prices"
+      ]
+    },
+    {
+      "id": "real-profit-upper-bound",
+      "name": "hidden: the maximum legal profits sum without overflow concerns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          1,
+          2,
+          3
+        ],
+        "profits": [
+          1000000,
+          1000000,
+          1000000
+        ]
+      },
+      "expected": 3000000,
+      "tags": [
+        "hidden",
+        "profit-boundary"
+      ]
+    }
+  ]
+}
+

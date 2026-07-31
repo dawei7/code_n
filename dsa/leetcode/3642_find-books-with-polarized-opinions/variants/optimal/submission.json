@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3996",
+  "frontend_id": "3642",
+  "title_slug": "find-books-with-polarized-opinions",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2083934710",
+  "verified_at": "2026-07-27T20:42:09.346027+00:00"
+}

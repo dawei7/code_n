@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3481",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(L + E)",
+  "summary": "Reading the raw mapping and text costs Omega(L), while materializing the fully expanded answer costs Omega(E); the accepted memoized expansion matches both unavoidable terms.",
+  "optimality": {
+    "symbol": "L + E",
+    "lower_bound": "Omega(L + E)",
+    "upper_bound": "O(L + E)",
+    "argument": "Every input character must be inspected to distinguish literals and placeholders, and every character of the returned string must be materialized. Since text names every mapping key once, all memoized key expansions together are bounded by the final output length, so the accepted traversal performs no asymptotically avoidable work."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Any correct implementation must read the L raw characters and write the E characters of the returned placeholder-free string."},
+    {"kind":"upper_bound_proof","evidence":"The accepted source scans every raw value once, memoizes each completed key, and copies at most O(E) expanded characters across the memo and final output."},
+    {"kind":"boundary_property_cases","evidence":"Authored cases cover literal values, forward references, shared and repeated dependencies, branching DAGs, output doubling, and the maximum ten-key depth; a deterministic regression compares exhaustive and random legal DAGs with an independent topological oracle."}
+  ]
+}

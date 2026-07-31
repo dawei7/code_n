@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2694",
+  "frontend_id": "2622",
+  "title_slug": "cache-with-time-limit",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "TimeLimitedCache",
+  "verified_submission_id": "2075925702",
+  "verified_at": "2026-07-21T14:23:00+00:00"
+}

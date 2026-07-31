@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2499",
   "cases": [
     {
@@ -25,12 +26,13 @@
       "expected": 10,
       "tags": [
         "sample",
-        "greedy"
+        "all-conflicts",
+        "balanced"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: arrays are already unequal at every index",
+      "name": "sample: dominant conflicts require safe helpers",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,47 +40,50 @@
           2,
           2,
           2,
-          2
+          1,
+          3
         ],
         "nums2": [
           1,
+          2,
+          2,
           3,
-          4,
-          5
+          3
         ]
       },
-      "expected": 0,
+      "expected": 10,
       "tags": [
-        "sample"
+        "sample",
+        "helpers",
+        "dominant-value"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: dominant conflict value makes the task impossible",
+      "name": "sample: dominant value cannot be repaired",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums1": [
           1,
           2,
-          2,
           2
         ],
         "nums2": [
           1,
-          2,
           2,
           2
         ]
       },
       "expected": -1,
       "tags": [
-        "sample"
+        "sample",
+        "impossible"
       ]
     },
     {
       "id": "trial-no-conflicts",
-      "name": "trial: no swaps are necessary",
+      "name": "trial: arrays are already unequal everywhere",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -93,27 +98,139 @@
       },
       "expected": 0,
       "tags": [
-        "trial"
+        "trial",
+        "zero-cost"
       ]
     },
     {
-      "id": "real-impossible-two-equal-indices",
-      "name": "hidden: two identical conflicts cannot be repaired",
+      "id": "trial-balanced-conflicts",
+      "name": "trial: two values balance the mandatory set",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "balanced",
+        "all-conflicts"
+      ]
+    },
+    {
+      "id": "real-one-cheap-helper",
+      "name": "hidden: one low-index helper repairs a lone conflict",
       "kind": "real",
       "visible": false,
       "input": {
         "nums1": [
           1,
+          2,
+          3
+        ],
+        "nums2": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "single-helper"
+      ]
+    },
+    {
+      "id": "real-discussion-imbalance",
+      "name": "hidden: one helper repairs a repeated conflicting value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "nums2": [
+          1,
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "dominant-value",
+        "helper"
+      ]
+    },
+    {
+      "id": "real-several-helpers",
+      "name": "hidden: several safe helpers are all required",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          1,
+          1,
+          1,
+          3,
+          4,
+          2
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "multiple-helpers",
+        "boundary-balance"
+      ]
+    },
+    {
+      "id": "real-all-same-impossible",
+      "name": "hidden: identical constant arrays cannot be separated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
           1
         ],
         "nums2": [
+          1,
+          1,
           1,
           1
         ]
       },
       "expected": -1,
       "tags": [
-        "hidden"
+        "hidden",
+        "impossible",
+        "constant"
       ]
     }
   ]

@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_2834",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: skip the complement of one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2, "target": 3},
+      "expected": 4,
+      "tags": ["sample", "odd-target"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: continue above the target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "target": 3},
+      "expected": 8,
+      "tags": ["sample", "high-block"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one value with target one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1, "target": 1},
+      "expected": 1,
+      "tags": ["sample", "minimum-size"]
+    },
+    {
+      "id": "trial-even-midpoint",
+      "name": "trial: even midpoint is legal once",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "target": 4},
+      "expected": 3,
+      "tags": ["trial", "even-target", "midpoint"]
+    },
+    {
+      "id": "trial-transition-after-midpoint",
+      "name": "trial: jump from the midpoint to the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "target": 4},
+      "expected": 7,
+      "tags": ["trial", "transition", "high-block"]
+    },
+    {
+      "id": "trial-low-block-only",
+      "name": "trial: all requested values fit below half the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "target": 10},
+      "expected": 6,
+      "tags": ["trial", "low-block"]
+    },
+    {
+      "id": "real-both-blocks",
+      "name": "hidden: both arithmetic progressions contain several values",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "target": 6},
+      "expected": 19,
+      "tags": ["hidden", "both-blocks"]
+    },
+    {
+      "id": "real-target-one",
+      "name": "hidden: target one excludes no positive pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "target": 1},
+      "expected": 10,
+      "tags": ["hidden", "target-one"]
+    },
+    {
+      "id": "real-small-even-target",
+      "name": "hidden: only one low value precedes the high block",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "target": 2},
+      "expected": 15,
+      "tags": ["hidden", "even-target"]
+    },
+    {
+      "id": "real-modulo-sensitive",
+      "name": "hidden: large unmodded sum requires final reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 39636, "target": 49035},
+      "expected": 156198582,
+      "tags": ["hidden", "modulo"]
+    },
+    {
+      "id": "real-maximum-both",
+      "name": "hidden: both inputs reach their maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000, "target": 1000000000},
+      "expected": 750000042,
+      "tags": ["hidden", "maximum", "modulo"]
+    },
+    {
+      "id": "real-maximum-n-target-one",
+      "name": "hidden: maximum length with no forbidden positive pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000, "target": 1},
+      "expected": 21,
+      "tags": ["hidden", "maximum", "target-one"]
+    }
+  ]
+}

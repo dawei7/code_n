@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_156", "frontend_id": "156", "title_slug": "binary-tree-upside-down", "url": "https://leetcode.com/problems/binary-tree-upside-down/description/", "paid_only": true, "content_sha256": "b57bff1262fb76f9bd84e1280a563226c9226e8258ccbd162f596239f496d4d9", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "root = [1,2,3,4,5]", "output": "[4,5,2,null,null,3,1]", "has_explanation": false}, {"ordinal": 2, "input": "root = []", "output": "[]", "has_explanation": false}, {"ordinal": 3, "input": "root = [1]", "output": "[1]", "has_explanation": false}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "dccd8d29a812aaa66c3070500d846738ab89bc81993cf3d3ee0e9c4fbbca2bbb", "reference/contract.md": "16ea5d50bd9071c41530c50f5b0802d4dcc090ee00d8c9146a14420b00d7a82a", "reference/examples.md": "1338cf3636355358f1c2a856a976923b920c9777cec0dddb7109390acf5d0407", "reference/constraints.md": "40678e7508ad55683bc0c7779f7efd0b1808ce53ac6f005ad1e9e5a948ebdb29"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

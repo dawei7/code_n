@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3679",
+  "cases": [
+    {
+      "id": "sample-no-discards",
+      "name": "sample: repeated type stays within the four-day limit",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arrivals": [1, 2, 1, 3, 1], "w": 4, "m": 2},
+      "expected": 0,
+      "tags": ["sample", "expiry", "no-discards"]
+    },
+    {
+      "id": "sample-third-copy-discarded",
+      "name": "sample: discard the third retained copy in one window",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arrivals": [1, 2, 3, 3, 3, 4], "w": 3, "m": 2},
+      "expected": 1,
+      "tags": ["sample", "capacity"]
+    },
+    {
+      "id": "trial-discard-then-expire",
+      "name": "trial: a discarded day does not consume later capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arrivals": [1, 1, 1, 1], "w": 3, "m": 2},
+      "expected": 1,
+      "tags": ["trial", "discarded-day", "expiry"]
+    },
+    {
+      "id": "trial-unit-window",
+      "name": "trial: unit windows always satisfy a unit limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arrivals": [4, 4, 4, 4], "w": 1, "m": 1},
+      "expected": 0,
+      "tags": ["trial", "unit-window", "no-discards"]
+    },
+    {
+      "id": "real-single-slot-reuse",
+      "name": "hidden: one slot is reused whenever its retained day expires",
+      "kind": "real",
+      "visible": false,
+      "input": {"arrivals": [2, 2, 2, 2, 2], "w": 2, "m": 1},
+      "expected": 2,
+      "tags": ["hidden", "expiry", "single-capacity"]
+    },
+    {
+      "id": "real-types-independent",
+      "name": "hidden: each type maintains an independent window capacity",
+      "kind": "real",
+      "visible": false,
+      "input": {"arrivals": [1, 2, 1, 1, 2, 2], "w": 4, "m": 2},
+      "expected": 1,
+      "tags": ["hidden", "multiple-types"]
+    },
+    {
+      "id": "real-limit-equals-window",
+      "name": "hidden: a full-window limit can never be exceeded",
+      "kind": "real",
+      "visible": false,
+      "input": {"arrivals": [7, 7, 7, 7, 7], "w": 5, "m": 5},
+      "expected": 0,
+      "tags": ["hidden", "maximum-limit", "no-discards"]
+    },
+    {
+      "id": "real-long-gap-expires-all",
+      "name": "hidden: multiple stale indices expire before a sparse repeat",
+      "kind": "real",
+      "visible": false,
+      "input": {"arrivals": [9, 9, 1, 2, 3, 4, 9, 9], "w": 4, "m": 2},
+      "expected": 0,
+      "tags": ["hidden", "sparse-repeat", "expiry"]
+    }
+  ]
+}

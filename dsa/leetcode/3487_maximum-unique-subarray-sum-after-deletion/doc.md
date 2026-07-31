@@ -8,61 +8,56 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-unique-subarray-sum-after-deletion](https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/).
 
 ### Goal
-Given an array of integers, find the maximum possible sum of a subarray that contains only unique elements, with the added flexibility that you are permitted to delete exactly one element from the original array before selecting the subarray. If you choose not to delete any element, the problem reduces to finding the maximum sum of a subarray with unique elements.
+
+You are given an integer array `nums`. Delete any number of its elements while leaving at least one element. The retained elements preserve their relative order.
+
+After the deletions, select a subarray whose elements are all unique and whose sum is as large as possible. Because arbitrary elements may be deleted first, every desired collection of retained indices can be made contiguous by deleting the unwanted indices between them.
+
+Return the maximum sum obtainable by this process. The final selected subarray must be non-empty.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the input array.
+- `nums`: A non-empty list of integers.
+
+The length $n$ satisfies $1\le n\le100$, and each element satisfies $-100\le\texttt{nums[i]}\le100$.
 
 **Return value**
 
-- An integer representing the maximum sum achievable under the given constraints.
+Return the maximum sum of a non-empty, all-unique subarray after deleting any number of original elements.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [4, 2, 4, 5, 6]`
-- Output: `17`
-- Explanation: Deleting the first '4' results in `[2, 4, 5, 6]`, which sums to 17.
+- Input: `nums = [1, 2, 3, 4, 5]`
+- Output: `15`
+
+All elements are already distinct and positive, so no deletion improves the complete array.
 
 **Example 2**
 
-- Input: `nums = [5, 2, 1, 2, 5, 2, 1, 2, 5]`
-- Output: `8`
-- Explanation: Deleting elements to form the subarray `[5, 2, 1]` yields the maximum sum.
+- Input: `nums = [1, 1, 0, 1, 1]`
+- Output: `1`
+
+Delete all but one copy of 1; retaining zero would not increase the sum.
 
 **Example 3**
 
-- Input: `nums = [1, 1, 1, 1]`
-- Output: `1`
-- Explanation: Deleting three '1's leaves a single '1'.
+- Input: `nums = [1, 2, -1, -2, 1, 0, -1]`
+- Output: `3`
 
----
+One copy each of 1 and 2 produces the maximum sum.
 
-## Solution
-### Approach
-The problem is solved using a **Sliding Window (Two Pointers)** technique combined with a **Hash Set** to maintain the uniqueness of elements within the current window. To handle the "one deletion" constraint, we evaluate the maximum sum by considering the window state both with and without the deletion of a conflicting element.
+**Example 4**
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array. Each element is visited at most twice by the sliding window pointers.
-- **Space Complexity**: `O(k)`, where `k` is the number of unique elements in the array, used to store the elements in the hash set.
+- Input: `nums = [-5, -1, -3]`
+- Output: `-1`
 
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int]) -> int:
-    positives = {value for value in nums if value > 0}
-    if positives:
-        return sum(positives)
-    return max(nums)
-```
-</details>
+With no positive or zero value available, the non-empty requirement forces retaining the greatest negative element.

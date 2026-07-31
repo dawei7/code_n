@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2550",
+  "frontend_id": "2452",
+  "title_slug": "words-within-two-edits-of-dictionary",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.twoEditWords",
+  "verified_submission_id": "2075027643",
+  "verified_at": "2026-07-20T19:17:39.4052699+00:00"
+}

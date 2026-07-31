@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2386",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: fifth largest subsequence sum",
+      "name": "sample: duplicate sums occupy separate ranks",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,12 +18,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "heap"
+        "duplicates"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: larger mixed array",
+      "name": "sample: six mixed values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,13 +39,14 @@
       },
       "expected": 10,
       "tags": [
-        "sample"
+        "sample",
+        "heap"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: maximum sum when k is one",
-      "kind": "sample",
+      "id": "trial-first-rank",
+      "name": "trial: first rank is the maximum subsequence sum",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -56,13 +58,67 @@
       },
       "expected": 20,
       "tags": [
-        "sample",
-        "edge"
+        "k-one"
       ]
     },
     {
-      "id": "real-third-largest",
-      "name": "hidden: third largest sum from mixed signs",
+      "id": "trial-zero-multiplicity",
+      "name": "trial: zero choices create repeated sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "zero",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "hidden: empty subsequence leads all negative choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ],
+        "k": 4
+      },
+      "expected": -3,
+      "tags": [
+        "hidden",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "real-equal-positive-values",
+      "name": "hidden: equal positive values retain multiplicity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-last-rank",
+      "name": "hidden: request the smallest of all subsequence sums",
       "kind": "real",
       "visible": false,
       "input": {
@@ -71,11 +127,31 @@
           -1,
           2
         ],
-        "k": 3
+        "k": 8
       },
-      "expected": 3,
+      "expected": -1,
       "tags": [
-        "hidden"
+        "hidden",
+        "last-rank"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: sums cross 32-bit signed range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          -1000000000
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "large-values"
       ]
     }
   ]

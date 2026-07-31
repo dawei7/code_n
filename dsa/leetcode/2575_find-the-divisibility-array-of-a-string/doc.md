@@ -8,76 +8,41 @@
 | Category | Algorithms |
 | Topics | Array, Math, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-divisibility-array-of-a-string](https://leetcode.com/problems/find-the-divisibility-array-of-a-string/) |
+| LeetCode | [find-the-divisibility-array-of-a-string](https://leetcode.com/problems/find-the-divisibility-array-of-a-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-divisibility-array-of-a-string/).
 
 ### Goal
-Given a numeric string `word` and an integer `m`, determine for every prefix of the string whether the number represented by that prefix is divisible by `m`. Return an array of integers where the value at each index is 1 if the prefix ending at that index is divisible by `m`, and 0 otherwise.
+
+You are given a 0-indexed digit string `word` of length $n$ and a positive integer `m`. For every index $i$, consider the numeric value represented by the prefix `word[0:i + 1]`.
+
+Build the divisibility array `div` of length $n`: set `div[i]` to `1` when that prefix value is divisible by `m`, and set it to `0` otherwise. Return the completed array.
+
+The prefixes can contain far more digits than a built-in integer type can hold, so their divisibility must be determined without converting the complete values directly.
 
 ### Function Contract
+
 **Inputs**
 
-- `word`: A string consisting of digits '0' through '9'.
-- `m`: An integer representing the divisor.
+- `word`: A non-empty string containing only the digits `0` through `9`.
+- `m`: The positive divisor used for every prefix.
+
+The string length satisfies $1 \le n \le 10^5$, and $1 \le m \le 10^9$.
 
 **Return value**
 
-- A list of integers (0s and 1s) of the same length as `word`.
+- Return a length-$n$ list of zeroes and ones indicating whether each prefix of `word` is divisible by `m`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `word = "998244353", m = 3`
-- Output: `[1, 1, 0, 0, 0, 1, 1, 0, 0]`
+- Output: `[1,1,0,0,0,1,1,0,0]`
+- Explanation: The divisible prefixes represent `9`, `99`, `998244`, and `9982443`.
 
 **Example 2**
 
 - Input: `word = "1010", m = 10`
-- Output: `[0, 1, 0, 1]`
-
-**Example 3**
-
-- Input: `word = "1", m = 1`
-- Output: `[1]`
-
----
-
-## Solution
-### Approach
-Modular Arithmetic (specifically the property: `(a * 10 + b) % m = ((a % m) * 10 + b) % m`). This allows us to process the string digit by digit while keeping the running remainder small, preventing integer overflow.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the string, as we iterate through the string exactly once.
-- **Space Complexity**: `O(n)` to store the resulting array of size `n`.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(word: str, m: int) -> List[int]:
-    """
-    Calculates the divisibility array of a string based on a divisor m.
-    Uses modular arithmetic to maintain a running remainder.
-    """
-    n = len(word)
-    divisibility_array = [0] * n
-    current_remainder = 0
-
-    for i in range(n):
-        # Update the remainder: (previous_remainder * 10 + current_digit) % m
-        current_remainder = (current_remainder * 10 + int(word[i])) % m
-
-        # If the remainder is 0, the prefix is divisible by m
-        if current_remainder == 0:
-            divisibility_array[i] = 1
-        else:
-            divisibility_array[i] = 0
-
-    return divisibility_array
-```
-</details>
+- Output: `[0,1,0,1]`
+- Explanation: The prefixes representing `10` and `1010` are divisible by ten.

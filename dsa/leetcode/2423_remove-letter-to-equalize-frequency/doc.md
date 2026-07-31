@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [remove-letter-to-equalize-frequency](https://leetcode.com/problems/remove-letter-to-equalize-frequency/) |
+| LeetCode | [Remove Letter To Equalize Frequency](https://leetcode.com/problems/remove-letter-to-equalize-frequency/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/remove-letter-to-equalize-frequency/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a 0-indexed string `word` made only of lowercase English letters. The frequency of a letter is the number of times that letter occurs in the string.
+
+Choose exactly one index and remove the character at that position. Return whether some such removal makes every letter still present in the resulting string occur the same number of times. Doing nothing is not permitted, while a letter removed completely is no longer considered present.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `word`: A lowercase English string with length from 2 through 100.
 
 **Return value**
 
-TODO
+- `true` if deleting exactly one character can equalize all positive letter frequencies; otherwise, `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "abcc"`
+- Output: `true`
+
+Removing one `c` leaves `a`, `b`, and `c` with frequency 1.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "aazz"`
+- Output: `false`
+
+Deleting either letter type produces positive frequencies 1 and 2.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "abbcc"`
+- Output: `true`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Removing the only `a` leaves the two remaining letter types with frequency 2.

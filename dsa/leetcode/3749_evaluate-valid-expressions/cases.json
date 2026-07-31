@@ -1,0 +1,13 @@
+{"schema_version":1,"challenge_id":"lc_3749","cases":[
+{"id":"sample-add","name":"sample: evaluate one addition","kind":"sample","visible":true,"input":{"expression":"add(2,3)"},"expected":5,"validator":{"kind":"exact"},"tags":["sample","addition"]},
+{"id":"sample-negative-literal","name":"sample: return one negative literal","kind":"sample","visible":true,"input":{"expression":"-42"},"expected":-42,"validator":{"kind":"exact"},"tags":["sample","literal"]},
+{"id":"sample-nested","name":"sample: evaluate all four nested levels","kind":"sample","visible":true,"input":{"expression":"div(mul(4,sub(9,5)),add(1,1))"},"expected":8,"validator":{"kind":"exact"},"tags":["sample","nested"]},
+{"id":"trial-zero","name":"trial: zero literal","kind":"trial","visible":true,"input":{"expression":"0"},"expected":0,"validator":{"kind":"exact"},"tags":["trial","literal"]},
+{"id":"trial-negative-subtraction","name":"trial: subtraction produces a negative result","kind":"trial","visible":true,"input":{"expression":"sub(3,7)"},"expected":-4,"validator":{"kind":"exact"},"tags":["trial","subtraction"]},
+{"id":"trial-negative-product","name":"trial: multiply by a negative literal","kind":"trial","visible":true,"input":{"expression":"mul(-3,6)"},"expected":-18,"validator":{"kind":"exact"},"tags":["trial","multiplication"]},
+{"id":"real-negative-dividend","name":"hidden: exact division of a negative dividend","kind":"real","visible":false,"input":{"expression":"div(-12,3)"},"expected":-4,"validator":{"kind":"exact"},"tags":["hidden","division"]},
+{"id":"real-negative-divisor","name":"hidden: exact division by a negative divisor","kind":"real","visible":false,"input":{"expression":"div(12,-3)"},"expected":-4,"validator":{"kind":"exact"},"tags":["hidden","division"]},
+{"id":"real-both-operands-nested","name":"hidden: both operands are nested expressions","kind":"real","visible":false,"input":{"expression":"sub(add(10,mul(2,3)),div(20,5))"},"expected":12,"validator":{"kind":"exact"},"tags":["hidden","nested"]},
+{"id":"real-left-associated-shape","name":"hidden: nesting repeatedly occurs in the left operand","kind":"real","visible":false,"input":{"expression":"mul(sub(add(8,2),3),div(18,6))"},"expected":21,"validator":{"kind":"exact"},"tags":["hidden","nested"]},
+{"id":"real-truncation-not-needed","name":"hidden: exact negative quotient stays integral","kind":"real","visible":false,"input":{"expression":"div(sub(2,14),add(1,2))"},"expected":-4,"validator":{"kind":"exact"},"tags":["hidden","division"]}
+]}

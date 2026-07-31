@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | Array, Math, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-strictly-increasing-subarrays](https://leetcode.com/problems/count-strictly-increasing-subarrays/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-strictly-increasing-subarrays/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-strictly-increasing-subarrays/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an array `nums` of positive integers, count its subarrays whose elements are in strictly increasing order. A subarray is a nonempty contiguous range of the original array, so ranges with the same values at different positions are counted separately.
+
+Every one-element subarray is strictly increasing. For longer ranges, each adjacent value must be strictly smaller than the next; equality breaks an increasing run just as a decrease does. Return the total number of qualifying ranges.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ positive integers, where $1 \le n \le 10^5$ and every value is at most $10^6$.
 
 **Return value**
 
-TODO
+- Return the number of nonempty contiguous strictly increasing subarrays.
+
+**Counting semantics**
+
+- Length-one ranges always count.
+- Equal adjacent values cannot share a qualifying range.
+- The answer may exceed 32-bit signed integer range.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,3,5,4,4,6]`
+- Output: `10`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1,2,3,4,5]`
+- Output: `15`
+- Explanation: Every subarray is strictly increasing.

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for All Ancestors of a Node in a Directed Acyclic Graph and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Traverses descendants from every source and appends sources in ascending order.",
+      "time_complexity": "O(n^2 + nm)",
+      "space_complexity": "O(n^2 + m)"
     }
   ]
 }

@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | Two Pointers, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-lexicographically-largest-string-from-the-box-ii](https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Alice plays a game with `numFriends` friends using the lowercase string `word`. In every round, she splits `word` into exactly `numFriends` non-empty contiguous strings. A round may use any placement of the cuts that has not appeared in an earlier round, and every resulting piece is placed into a box.
+
+After all distinct splits have been used, return the lexicographically largest string that ever entered the box. At the first position where two strings differ, the string with the later lowercase letter is larger. If one string is a prefix of the other, the longer string is larger.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `word`: A string containing only lowercase English letters.
+- `numFriends`: The exact number of non-empty pieces in every split.
+
+The constraints are $1\le \lvert\texttt{word}\rvert\le2\cdot10^5$ and $1\le\texttt{numFriends}\le\lvert\texttt{word}\rvert$.
 
 **Return value**
 
-TODO
+- The lexicographically largest piece produced across all distinct valid splits.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "dbca", numFriends = 2`
+- Output: `"dbc"`
+
+The three possible splits are `"d" | "bca"`, `"db" | "ca"`, and `"dbc" | "a"`. The largest piece among them is `"dbc"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "gggg", numFriends = 4`
+- Output: `"g"`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every character must be a separate non-empty piece, so the box contains only `"g"`.

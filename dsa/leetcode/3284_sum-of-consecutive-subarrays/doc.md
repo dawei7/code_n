@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Two Pointers, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sum-of-consecutive-subarrays](https://leetcode.com/problems/sum-of-consecutive-subarrays/) |
+| LeetCode | [Sum of Consecutive Subarrays](https://leetcode.com/problems/sum-of-consecutive-subarrays/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sum-of-consecutive-subarrays/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A nonempty array is consecutive when every adjacent difference is `1`, or when every adjacent difference is `-1`. The direction must remain consistent throughout the array: a sequence that first rises and then falls is not consecutive. A one-element array is consecutive without needing an adjacent difference.
+
+The value of a subarray is the sum of its elements. Consider every nonempty contiguous subarray of `nums` that satisfies the consecutive rule, add all of their values, and return the result modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ positive integers, each at most $10^5$, where $1 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+Return the sum of the element sums of all consecutive subarrays, reduced modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3]`
+- Output: `20`
+- Explanation: All six nonempty subarrays are increasing-consecutive.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 5, 7]`
+- Output: `16`
+- Explanation: Only the four singleton subarrays qualify.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [7, 6, 1, 2]`
+- Output: `32`
+- Explanation: Besides the singletons, `[7, 6]` and `[1, 2]` qualify.

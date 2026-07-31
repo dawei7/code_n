@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3867",
+  "frontend_id": "3563",
+  "title_slug": "lexicographically-smallest-string-after-adjacent-removals",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.lexicographicallySmallestString",
+  "verified_submission_id": "2083077473",
+  "verified_at": "2026-07-27T08:38:31Z"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3997",
+    "frontend_id": "3997",
+    "title_slug": "count-dominant-nodes-in-a-binary-tree",
+    "url": "https://leetcode.com/problems/count-dominant-nodes-in-a-binary-tree/description/",
+    "paid_only": false,
+    "content_sha256": "1b1da0cb7b36f7670f51f422a7aaa0fba21afeb8e1783978e078f627447d8f60",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [5,3,8,2,4,7,1]",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [1,2,3,1,2]",
+        "output": "4",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "26bdfc4058b37b5fbf983230bdf1ed2c2b6c65e1e21fe948b8d9861e7473b9c0",
+      "reference/contract.md": "861da5b19346956b7a21aa94e67cdb15c2a7e7b6676869fbcff8f3821c2f3e72",
+      "reference/examples.md": "19f5f06fcd7d2480b2d2fef80c2941ea42a70ae2c19e976c0d09d37e57622065",
+      "reference/constraints.md": "8adc047d50544a0a85cb5ec500a0039aeb3460790efc99fc802a7afd57deebb7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

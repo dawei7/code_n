@@ -1,42 +1,30 @@
 def solve(grid: list[list[int]]) -> int:
-    sources = []
-    targets = []
-    
-    for r in range(3):
-        for c in range(3):
-            if grid[r][c] > 1:
-                for _ in range(grid[r][c] - 1):
-                    sources.append((r, c))
-            elif grid[r][c] == 0:
-                targets.append((r, c))
-    
-    if not targets:
-        return 0
-    
-    def get_dist(p1, p2):
-        return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
-    
-    memo = {}
+    extras: list[tuple[int, int]] = []
+    empty: list[tuple[int, int]] = []
 
-    def backtrack(idx, current_targets):
-        if idx == len(sources):
-            return 0
-        
-        state = (idx, tuple(current_targets))
-        if state in memo:
-            return memo[state]
-        
-        res = float('inf')
-        src = sources[idx]
-        
-        for i in range(len(current_targets)):
-            if current_targets[i] == -1:
-                current_targets[i] = 1
-                dist = get_dist(src, targets[i])
-                res = min(res, dist + backtrack(idx + 1, current_targets))
-                current_targets[i] = -1
-        
-        memo[state] = res
-        return res
+    for row in range(3):
+        for col in range(3):
+            stones = grid[row][col]
+            if stones == 0:
+                empty.append((row, col))
+            else:
+                extras.extend([(row, col)] * (stones - 1))
 
-    return backtrack(0, [-1] * len(targets))
+    k = len(empty)
+    dp = [float("inf")] * (1 << k)
+    dp[0] = 0
+
+    for mask in range(1 << k):
+        extra_index = mask.bit_count()
+        if extra_index == k:
+            continue
+
+        source_row, source_col = extras[extra_index]
+        for target_index, (target_row, target_col) in enumerate(empty):
+            if mask & (1 << target_index):
+                continue
+            next_mask = mask | (1 << target_index)
+            distance = abs(source_row - target_row) + abs(source_col - target_col)
+            dp[next_mask] = min(dp[next_mask], dp[mask] + distance)
+
+    return int(dp[-1])

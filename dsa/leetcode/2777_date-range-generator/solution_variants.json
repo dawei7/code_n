@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Date Range Generator and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Tracks one UTC timestamp, yields its ISO date, and advances it by the requested whole-day step.",
+      "time_complexity": "O(k)",
+      "space_complexity": "O(1)"
     }
   ]
 }

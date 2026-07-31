@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3904",
+    "frontend_id": "3904",
+    "title_slug": "smallest-stable-index-ii",
+    "url": "https://leetcode.com/problems/smallest-stable-index-ii/description/",
+    "paid_only": false,
+    "content_sha256": "b66dfdb99cee1265ffe2880f0e61d471deab2990d06be57c8768c5d3ff3aed06",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [5,0,1,4], k = 3",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [3,2,1], k = 1",
+        "output": "-1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [0], k = 0",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "64b067cf11260996ab421dbf870520c0596b7905c960d58ea775036ce527933e",
+      "reference/contract.md": "f66a5587b505c3f07db4d61ba68f407fbb449809bed77795636b59a80ff07d42",
+      "reference/examples.md": "37a7a5f730aa53318442e644689ef9d698ece6d68a2c937b9f882db60b09057d",
+      "reference/constraints.md": "9c855c7fb6e77dd298104000e96a21deddf7eb4442cd15fb63ab8e4ae446ef53"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

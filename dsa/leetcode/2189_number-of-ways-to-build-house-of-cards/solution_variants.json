@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Ways to Build House of Cards and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts subsets of the possible row costs with descending one-dimensional dynamic programming.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n)"
     }
   ]
 }

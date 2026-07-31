@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design an ATM Machine and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains five inventory counters and performs the mandated largest-first withdrawal greedily.",
+      "time_complexity": "O(Q)",
+      "space_complexity": "O(1)"
     }
   ]
 }

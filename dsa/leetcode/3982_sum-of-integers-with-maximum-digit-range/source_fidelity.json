@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3982",
+    "frontend_id": "3982",
+    "title_slug": "sum-of-integers-with-maximum-digit-range",
+    "url": "https://leetcode.com/problems/sum-of-integers-with-maximum-digit-range/description/",
+    "paid_only": false,
+    "content_sha256": "aade0d523ac064103ceffa24cac299fd446341d81f90c46d440e996ae88e87a0",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [5724,111,350]",
+        "output": "6074",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [90,900]",
+        "output": "990",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 2,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "2b60640cdf0580f7d6ed15d30d37a9704aef72fb3afeb06b5a2d134da4d704c5",
+      "reference/contract.md": "36ef5add9c06265d31f2ea732c4e872df8b0d4a5568d870f3f1f5c0603833760",
+      "reference/examples.md": "640122ac13123dea81d8d7591ac0a516a577033f23a62cdbb9cb4ec9c1885031",
+      "reference/constraints.md": "92947949766595a508050c0599b067061deb0b98ff52fe0673ab28d761112e74"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

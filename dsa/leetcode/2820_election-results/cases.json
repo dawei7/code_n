@@ -1,0 +1,359 @@
+{
+  "challenge_id": "lc_2820",
+  "cases": [
+    {
+      "id": "sample-tied-winners",
+      "name": "sample: Christine and Ryan tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "Kathy",
+              "candidate": null
+            },
+            {
+              "voter": "Charles",
+              "candidate": "Ryan"
+            },
+            {
+              "voter": "Charles",
+              "candidate": "Christine"
+            },
+            {
+              "voter": "Charles",
+              "candidate": "Kathy"
+            },
+            {
+              "voter": "Benjamin",
+              "candidate": "Christine"
+            },
+            {
+              "voter": "Anthony",
+              "candidate": "Ryan"
+            },
+            {
+              "voter": "Edward",
+              "candidate": "Ryan"
+            },
+            {
+              "voter": "Terry",
+              "candidate": null
+            },
+            {
+              "voter": "Evelyn",
+              "candidate": "Kathy"
+            },
+            {
+              "voter": "Arthur",
+              "candidate": "Christine"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "Christine"
+          ],
+          [
+            "Ryan"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "fractional-votes",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-single-winner",
+      "name": "split voter plus full vote produces one winner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "v1",
+              "candidate": "Alice"
+            },
+            {
+              "voter": "v1",
+              "candidate": "Bob"
+            },
+            {
+              "voter": "v2",
+              "candidate": "Bob"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "Bob"
+          ]
+        ]
+      },
+      "tags": [
+        "split-vote"
+      ]
+    },
+    {
+      "id": "trial-equal-splits",
+      "name": "equal split totals retain all candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "v1",
+              "candidate": "Delta"
+            },
+            {
+              "voter": "v1",
+              "candidate": "Alpha"
+            },
+            {
+              "voter": "v2",
+              "candidate": "Charlie"
+            },
+            {
+              "voter": "v2",
+              "candidate": "Bravo"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ],
+          [
+            "Bravo"
+          ],
+          [
+            "Charlie"
+          ],
+          [
+            "Delta"
+          ]
+        ]
+      },
+      "tags": [
+        "ties",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-unanimous",
+      "name": "every non-abstaining voter selects the same candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "v1",
+              "candidate": "Ada"
+            },
+            {
+              "voter": "v2",
+              "candidate": "Ada"
+            },
+            {
+              "voter": "v3",
+              "candidate": "Ada"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "Ada"
+          ]
+        ]
+      },
+      "tags": [
+        "singleton"
+      ]
+    },
+    {
+      "id": "real-abstentions",
+      "name": "hidden: abstentions do not change totals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "v1",
+              "candidate": null
+            },
+            {
+              "voter": "v2",
+              "candidate": "Blue"
+            },
+            {
+              "voter": "v3",
+              "candidate": null
+            },
+            {
+              "voter": "v4",
+              "candidate": "Red"
+            },
+            {
+              "voter": "v4",
+              "candidate": "Blue"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "Blue"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "null"
+      ]
+    },
+    {
+      "id": "real-three-way-tie",
+      "name": "hidden: full and split votes form a three-way tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "v1",
+              "candidate": "A"
+            },
+            {
+              "voter": "v2",
+              "candidate": "B"
+            },
+            {
+              "voter": "v3",
+              "candidate": "C"
+            },
+            {
+              "voter": "v4",
+              "candidate": "A"
+            },
+            {
+              "voter": "v4",
+              "candidate": "B"
+            },
+            {
+              "voter": "v4",
+              "candidate": "C"
+            },
+            {
+              "voter": "v5",
+              "candidate": "A"
+            },
+            {
+              "voter": "v5",
+              "candidate": "B"
+            },
+            {
+              "voter": "v5",
+              "candidate": "C"
+            },
+            {
+              "voter": "v6",
+              "candidate": "A"
+            },
+            {
+              "voter": "v6",
+              "candidate": "B"
+            },
+            {
+              "voter": "v6",
+              "candidate": "C"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": [
+          [
+            "A"
+          ],
+          [
+            "B"
+          ],
+          [
+            "C"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ties",
+        "fractional-votes"
+      ]
+    },
+    {
+      "id": "real-only-abstentions",
+      "name": "hidden: an election with only abstentions has no candidate row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Votes": [
+            {
+              "voter": "v1",
+              "candidate": null
+            },
+            {
+              "voter": "v2",
+              "candidate": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "candidate"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "empty-result",
+        "null"
+      ]
+    }
+  ]
+}
+

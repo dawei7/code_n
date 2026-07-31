@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4293",
+  "frontend_id": "3926",
+  "title_slug": "count-valid-word-occurrences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.countWordOccurrences",
+  "verified_submission_id": "2087045226",
+  "verified_at": "2026-07-30T06:14:33.519214+00:00"
+}

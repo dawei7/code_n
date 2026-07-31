@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimize XOR and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Matches the most valuable set bits of num1 first, then fills the least valuable zero bits.",
+      "time_complexity": "O(log U)",
+      "space_complexity": "O(1)"
     }
   ]
 }

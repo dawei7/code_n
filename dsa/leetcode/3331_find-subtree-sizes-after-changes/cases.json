@@ -2,8 +2,8 @@
   "challenge_id": "lc_3331",
   "cases": [
     {
-      "id": "sample-six-nodes",
-      "name": "sample: reattach one branch to same-character ancestor",
+      "id": "official-example-one",
+      "name": "official example: one node moves to the root",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -27,13 +27,60 @@
       ],
       "tags": [
         "sample",
-        "tree"
+        "simultaneous"
       ]
     },
     {
-      "id": "sample-root-children",
-      "name": "sample: direct children remain under root",
+      "id": "official-example-two",
+      "name": "official example: simultaneous changes use original ancestry",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          4,
+          0,
+          1
+        ],
+        "s": "abbba"
+      },
+      "expected": [
+        5,
+        2,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "simultaneous",
+        "original-ancestry"
+      ]
+    },
+    {
+      "id": "single-root",
+      "name": "single root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1
+        ],
+        "s": "z"
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-node"
+      ]
+    },
+    {
+      "id": "distinct-root-children",
+      "name": "no child has a same-character ancestor",
+      "kind": "trial",
       "visible": true,
       "input": {
         "parent": [
@@ -42,7 +89,7 @@
           0,
           0
         ],
-        "s": "aabc"
+        "s": "abcd"
       },
       "expected": [
         4,
@@ -51,14 +98,14 @@
         1
       ],
       "tags": [
-        "sample",
-        "tree"
+        "no-match",
+        "star"
       ]
     },
     {
-      "id": "alternating-chain",
-      "name": "chain with alternating nearest same-character ancestors",
-      "kind": "sample",
+      "id": "equal-character-chain",
+      "name": "every node already has its closest match as parent",
+      "kind": "trial",
       "visible": true,
       "input": {
         "parent": [
@@ -67,58 +114,49 @@
           1,
           2
         ],
-        "s": "abab"
+        "s": "aaaa"
       },
       "expected": [
         4,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "chain",
+        "same-character"
+      ]
+    },
+    {
+      "id": "alternating-chain",
+      "name": "alternating chain reconnects to matching grandparents",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3
+        ],
+        "s": "ababa"
+      },
+      "expected": [
+        5,
+        2,
         2,
         1,
         1
       ],
       "tags": [
-        "sample",
         "chain",
         "ancestor-remap"
       ]
     },
     {
-      "id": "trial-simultaneous-remap",
-      "name": "trial: simultaneous updates do not use newly changed parents",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "parent": [
-          -1,
-          0,
-          0,
-          1,
-          2,
-          2,
-          3,
-          3,
-          6
-        ],
-        "s": "abacabadb"
-      },
-      "expected": [
-        9,
-        4,
-        3,
-        2,
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "tags": [
-        "regression",
-        "simultaneous"
-      ]
-    },
-    {
-      "id": "real-simultaneous-ancestor-map",
-      "name": "real: simultaneous nearest same-character reparenting",
+      "id": "mixed-branching-tree",
+      "name": "mixed branches and several ancestor matches",
       "kind": "real",
       "visible": false,
       "input": {
@@ -130,28 +168,32 @@
           1,
           2,
           2,
-          5,
-          5,
-          7
+          3,
+          3,
+          6,
+          6,
+          9
         ],
-        "s": "abacabadab"
+        "s": "abacabadabca"
       },
       "expected": [
-        10,
-        2,
-        6,
-        1,
-        1,
+        12,
         3,
+        6,
+        2,
+        1,
+        1,
+        4,
+        1,
         1,
         1,
         1,
         1
       ],
       "tags": [
-        "real",
-        "tree",
-        "ancestor-remap"
+        "branching",
+        "simultaneous",
+        "postorder"
       ]
     }
   ]

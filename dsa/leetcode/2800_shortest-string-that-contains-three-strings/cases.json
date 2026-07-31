@@ -1,0 +1,81 @@
+{
+  "challenge_id": "lc_2800",
+  "cases": [
+    {
+      "id": "sample-overlap-and-tie",
+      "name": "sample: overlapping words with lexicographic tie-breaking",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": "abc", "b": "bca", "c": "aaa"},
+      "expected": "aaabca",
+      "tags": ["sample", "overlap", "lexicographic"]
+    },
+    {
+      "id": "sample-containing-word",
+      "name": "sample: one word already contains the other two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": "ab", "b": "ba", "c": "aba"},
+      "expected": "aba",
+      "tags": ["sample", "containment"]
+    },
+    {
+      "id": "trial-no-overlap",
+      "name": "trial: disjoint letters choose lexicographic order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"a": "a", "b": "b", "c": "c"},
+      "expected": "abc",
+      "tags": ["trial", "no-overlap", "tie"]
+    },
+    {
+      "id": "trial-cycle-overlap",
+      "name": "trial: cyclic pairwise overlaps require order enumeration",
+      "kind": "trial",
+      "visible": true,
+      "input": {"a": "ab", "b": "bc", "c": "ca"},
+      "expected": "abca",
+      "tags": ["trial", "cycle", "permutations"]
+    },
+    {
+      "id": "real-nested-containment",
+      "name": "hidden: longest word contains both shorter words",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "abcd", "b": "bc", "c": "cd"},
+      "expected": "abcd",
+      "tags": ["hidden", "nested-containment"]
+    },
+    {
+      "id": "real-duplicate-inputs",
+      "name": "hidden: duplicate and contained inputs add no characters",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "aa", "b": "aa", "c": "a"},
+      "expected": "aa",
+      "tags": ["hidden", "duplicates", "containment"]
+    },
+    {
+      "id": "real-overlap-lexicographic-tie",
+      "name": "hidden: equal-length overlap candidates use lexical order",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "ab", "b": "ba", "c": "aa"},
+      "expected": "aaba",
+      "tags": ["hidden", "tie-breaking", "overlap"]
+    },
+    {
+      "id": "real-maximum-length-containment",
+      "name": "hidden: maximum-length word contains both others",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "b": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "c": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["hidden", "maximum-length", "containment"]
+    }
+  ]
+}

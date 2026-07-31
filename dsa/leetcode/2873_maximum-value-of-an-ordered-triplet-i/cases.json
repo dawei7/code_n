@@ -17,13 +17,13 @@
       },
       "tags": [
         "sample",
-        "triplet"
+        "ordered-triplet"
       ],
       "expected": 77
     },
     {
       "id": "sample-2",
-      "name": "sample: large final multiplier",
+      "name": "sample: a late multiplier realizes the best difference",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,13 +37,13 @@
       },
       "tags": [
         "sample",
-        "triplet"
+        "ordered-triplet"
       ],
       "expected": 133
     },
     {
       "id": "sample-3",
-      "name": "sample: all triplets are non-positive",
+      "name": "sample: every triplet value is negative",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -55,33 +55,49 @@
       },
       "tags": [
         "sample",
-        "zero"
+        "zero-floor"
       ],
       "expected": 0
     },
     {
-      "id": "trial-late-maximum-prefix",
-      "name": "trial: prefix maximum before the middle matters",
+      "id": "trial-minimum-length-positive",
+      "name": "trial: three elements form one positive triplet",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          9,
+          5,
           1,
-          8,
-          2,
-          10
+          4
         ]
       },
       "tags": [
         "trial",
-        "prefix"
+        "minimum-length"
       ],
-      "expected": 80
+      "expected": 16
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: maximum constraints require a wide integer result",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          1,
+          1000000
+        ]
+      },
+      "tags": [
+        "hidden",
+        "large-product"
+      ],
+      "expected": 999999000000
     },
     {
       "id": "real-repeated-values",
-      "name": "hidden: repeated values create several equal candidates",
+      "name": "hidden: a later prefix maximum improves the difference",
       "kind": "real",
       "visible": false,
       "input": {
@@ -100,6 +116,47 @@
         "duplicates"
       ],
       "expected": 63
+    },
+    {
+      "id": "real-best-indices-separated",
+      "name": "hidden: all three best indices are separated by distractions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          20,
+          7,
+          19,
+          2,
+          3,
+          15
+        ]
+      },
+      "tags": [
+        "hidden",
+        "index-order"
+      ],
+      "expected": 270
+    },
+    {
+      "id": "real-flat-array",
+      "name": "hidden: equal values produce zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "zero"
+      ],
+      "expected": 0
     }
   ]
 }

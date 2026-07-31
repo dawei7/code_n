@@ -1,0 +1,65 @@
+var ImmutableHelper = function(obj) {
+    this.obj = obj;
+};
+
+/**
+ * @param {Function} mutator
+ * @return {JSON} clone of obj
+ */
+ImmutableHelper.prototype.produce = function(mutator) {
+    function shallowCopy(value) {
+        return Array.isArray(value) ? value.slice() : { ...value };
+    }
+
+    function markChanged(state) {
+        if (state.copy !== null) {
+            return;
+        }
+
+        state.copy = shallowCopy(state.base);
+        if (state.parent !== null) {
+            markChanged(state.parent);
+            state.parent.copy[state.parentKey] = state.copy;
+        }
+    }
+
+    function createState(base, parent, parentKey) {
+        const state = {
+            base,
+            copy: null,
+            parent,
+            parentKey,
+            children: new Map(),
+            proxy: null
+        };
+
+        state.proxy = new Proxy(base, {
+            get(target, property) {
+                const source = state.copy === null ? state.base : state.copy;
+                const value = source[property];
+
+                if (value === null || typeof value !== "object") {
+                    return value;
+                }
+
+                let child = state.children.get(property);
+                if (child === undefined || child.base !== value) {
+                    child = createState(value, state, property);
+                    state.children.set(property, child);
+                }
+                return child.proxy;
+            },
+            set(target, property, value) {
+                markChanged(state);
+                state.copy[property] = value;
+                return true;
+            }
+        });
+
+        return state;
+    }
+
+    const root = createState(this.obj, null, null);
+    mutator(root.proxy);
+    return root.copy === null ? this.obj : root.copy;
+};

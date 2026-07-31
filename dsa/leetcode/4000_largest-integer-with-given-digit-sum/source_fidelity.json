@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_4000",
+    "frontend_id": "4000",
+    "title_slug": "largest-integer-with-given-digit-sum",
+    "url": "https://leetcode.com/problems/largest-integer-with-given-digit-sum/description/",
+    "paid_only": false,
+    "content_sha256": "8ec5d52864dad2ab62f58bd2577f532474da10c8c39f500d3e6a8cb4a487bc86",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 2, s = 9",
+        "output": "90",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 2, s = 19",
+        "output": "-1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 5, s = 0",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8a40fbdda8f9e77a70cfc472f9f4ca94967032f563b7e8105d8ffff57fb2cd3d",
+      "reference/contract.md": "62c409d98410d98a7a6ac2f51e7bdbfadd39a518e2cd375dfd131734c64a6ccf",
+      "reference/examples.md": "71ffdfc45ddc3998acb86ea3d29b9cf897dcc3226540b6f1ad6b23ba1f9fa024",
+      "reference/constraints.md": "4b9ab7cce53cdf4c57d9455df9df7ff4a23624429414d5688dfe39a00a8cdd34"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

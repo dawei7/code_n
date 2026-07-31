@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3039",
   "cases": [
     {
-      "id": "sample-last-pass-two-chars",
-      "name": "sample: final operation removes two max-frequency chars",
+      "id": "sample-final-two",
+      "name": "sample: final state has two letters",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,8 +16,8 @@
       ]
     },
     {
-      "id": "sample-all-once",
-      "name": "sample: every character is removed in the first pass",
+      "id": "sample-all-unique",
+      "name": "sample: all letters disappear together",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,38 +25,83 @@
       },
       "expected": "abcd",
       "tags": [
-        "sample"
+        "sample",
+        "all-unique"
       ]
     },
     {
-      "id": "sample-one-char",
-      "name": "sample: one repeated character",
-      "kind": "sample",
+      "id": "trial-one-letter",
+      "name": "trial: one repeated letter",
+      "kind": "trial",
       "visible": true,
       "input": {
         "s": "aaa"
       },
       "expected": "a",
       "tags": [
-        "sample"
+        "trial",
+        "single-letter"
       ]
     },
     {
-      "id": "trial-order-by-last-index",
-      "name": "trial: result follows last occurrence order",
+      "id": "trial-last-position-order",
+      "name": "trial: tied letters follow their last positions",
       "kind": "trial",
       "visible": true,
+      "input": {
+        "s": "abcbac"
+      },
+      "expected": "bac",
+      "tags": [
+        "trial",
+        "tied-frequency"
+      ]
+    },
+    {
+      "id": "real-single-character",
+      "name": "real: minimum-length string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "z"
+      },
+      "expected": "z",
+      "tags": [
+        "real",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-unique-maximum",
+      "name": "real: one letter has the unique maximum",
+      "kind": "real",
+      "visible": false,
       "input": {
         "s": "abacbade"
       },
       "expected": "a",
       "tags": [
-        "trial"
+        "real",
+        "unique-maximum"
       ]
     },
     {
-      "id": "real-many-tied-max",
-      "name": "real: several maximum-frequency letters",
+      "id": "real-three-way-tie",
+      "name": "real: three maximum-frequency letters have interleaved endings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "cabacb"
+      },
+      "expected": "acb",
+      "tags": [
+        "real",
+        "tied-frequency"
+      ]
+    },
+    {
+      "id": "real-skewed-counts",
+      "name": "real: the dominant letter survives alone",
       "kind": "real",
       "visible": false,
       "input": {

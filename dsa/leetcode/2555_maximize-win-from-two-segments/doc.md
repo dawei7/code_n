@@ -8,83 +8,37 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-win-from-two-segments](https://leetcode.com/problems/maximize-win-from-two-segments/) |
+| LeetCode | [Maximize Win From Two Segments](https://leetcode.com/problems/maximize-win-from-two-segments/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-win-from-two-segments/).
 
 ### Goal
-Given a sorted array of prize positions and a fixed segment length `k`, determine the maximum number of prizes you can collect by placing two non-overlapping segments of length `k` anywhere on the number line.
+
+Prizes lie at integer coordinates on the X-axis. The non-decreasing array `prizePositions` records one coordinate per prize, so several prizes may occupy the same position. You may choose two closed segments with integer endpoints, each having length exactly `k`.
+
+Collect every prize whose coordinate belongs to at least one chosen segment, including prizes on either endpoint. The two segments are allowed to intersect, but a prize covered by both is collected only once. Return the maximum number of prizes obtainable by placing the two segments optimally.
 
 ### Function Contract
+
 **Inputs**
 
-- `prizePositions`: A sorted list of integers representing the locations of prizes.
-- `k`: An integer representing the length of each of the two segments.
+- `prizePositions`: A nonempty, non-decreasing list of $n$ prize coordinates, where $1 \le n \le 10^5$ and every coordinate is between $1$ and $10^9$, inclusive.
+- `k`: The exact length of each selected segment, with $0 \le k \le 10^9$.
 
 **Return value**
 
-- An integer representing the maximum total number of prizes that can be covered by two segments of length `k`.
+- The greatest number of distinct prizes covered by the union of two valid segments.
 
 ### Examples
+
 **Example 1**
 
-- Input: `prizePositions = [1,1,2,2,3,3,5], k = 2`
+- Input: `prizePositions = [1, 1, 2, 2, 3, 3, 5], k = 2`
 - Output: `7`
+- Explanation: Segments `[1, 3]` and `[3, 5]` together cover every prize.
 
 **Example 2**
 
-- Input: `prizePositions = [1,2,3,4], k = 0`
+- Input: `prizePositions = [1, 2, 3, 4], k = 0`
 - Output: `2`
-
-**Example 3**
-
-- Input: `prizePositions = [5,5,5,5], k = 4`
-- Output: `4`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Sliding Window** approach combined with **Dynamic Programming** (or prefix maximums). First, we calculate the maximum number of prizes a single segment of length `k` can cover ending at each index `i`. Then, we iterate through the array to find the best pair of non-overlapping segments by keeping track of the maximum prizes covered by a segment ending at or before the start of the current segment.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the number of prizes. We perform a single pass to calculate window counts and another pass to find the optimal pair.
-- **Space Complexity**: `O(n)` to store the maximum prizes covered by a segment ending at each index.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(prizePositions: list[int], k: int) -> int:
-    n = len(prizePositions)
-
-    # dp[i] will store the max prizes covered by a segment of length k ending at or before index i
-    # count[i] will store the max prizes covered by a segment of length k ending exactly at index i
-    count = [0] * n
-    left = 0
-    for right in range(n):
-        while prizePositions[right] - prizePositions[left] > k:
-            left += 1
-        count[right] = right - left + 1
-
-    # dp[i] stores the max prizes covered by a segment ending at or before index i
-    dp = [0] * (n + 1)
-    for i in range(n):
-        dp[i + 1] = max(dp[i], count[i])
-
-    ans = 0
-    left = 0
-    # For each segment ending at 'right', find the best non-overlapping segment ending at 'left-1'
-    for right in range(n):
-        while prizePositions[right] - prizePositions[left] > k:
-            left += 1
-        # Current segment covers [left, right]
-        # Best previous segment covers up to index left-1
-        current_prizes = (right - left + 1) + dp[left]
-        ans = max(ans, current_prizes)
-
-    return ans
-```
-</details>
+- Explanation: Each zero-length segment covers one coordinate, so choosing two different occupied coordinates collects two prizes.

@@ -41,7 +41,7 @@
       "expected": 2,
       "tags": [
         "sample",
-        "tree"
+        "path"
       ]
     },
     {
@@ -93,35 +93,13 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-no-coins",
-      "name": "trial: no coins need no travel",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "coins": [
-          0,
-          0
-        ],
-        "edges": [
-          [
-            0,
-            1
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "trial",
-        "edge"
+        "sample",
+        "branching"
       ]
     },
     {
       "id": "trial-single-node",
-      "name": "trial: one node with a coin",
+      "name": "trial: a coin at the only vertex",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,18 +111,61 @@
       "expected": 0,
       "tags": [
         "trial",
-        "small"
+        "single-node"
       ]
     },
     {
-      "id": "real-short-path-all-coins",
-      "name": "hidden: all coins within distance two",
+      "id": "trial-no-coins",
+      "name": "trial: no coins require no travel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "no-coins"
+      ]
+    },
+    {
+      "id": "real-long-coin-path",
+      "name": "hidden: central path must be traversed twice",
       "kind": "real",
       "visible": false,
       "input": {
         "coins": [
           1,
-          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           1
         ],
         "edges": [
@@ -155,12 +176,92 @@
           [
             1,
             2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "two-layer-trim"
+      ]
+    },
+    {
+      "id": "real-redundant-branches",
+      "name": "hidden: coinless branches disappear before distance trimming",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            7,
+            8
           ]
         ]
       },
       "expected": 0,
       "tags": [
-        "hidden"
+        "hidden",
+        "coinless-pruning",
+        "branching"
       ]
     }
   ]

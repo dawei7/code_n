@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-break-long-zero-run",
-      "name": "sample: one flip reduces longest zero run to two",
+      "name": "sample: one flip reduces the longest zero run to two",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,7 +18,7 @@
     },
     {
       "id": "sample-alternating-target",
-      "name": "sample: two flips can make the string alternating",
+      "name": "sample: two flips make the string alternating",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -33,7 +33,7 @@
     },
     {
       "id": "sample-already-alternating",
-      "name": "sample: already alternating with no operations",
+      "name": "sample: no flips are needed",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,23 +47,68 @@
       ]
     },
     {
-      "id": "trial-max-len-one-special-case",
-      "name": "trial: target length one needs alternating mismatch count",
+      "id": "trial-single-character",
+      "name": "trial: one character has a longest block of one",
       "kind": "trial",
       "visible": true,
       "input": {
-        "s": "111000",
-        "numOps": 3
+        "s": "0",
+        "numOps": 0
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-no-operations",
+      "name": "trial: without operations the original longest run remains",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11111",
+        "numOps": 0
+      },
+      "expected": 5,
+      "tags": [
+        "edge",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-alternating-special-case",
+      "name": "trial: one flip reaches an alternating target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1101",
+        "numOps": 1
       },
       "expected": 1,
       "tags": [
         "regression",
-        "max-len-one"
+        "alternating"
       ]
     },
     {
-      "id": "real-mixed-runs",
-      "name": "real: several runs and limited operations",
+      "id": "trial-alternating-not-affordable",
+      "name": "trial: one flip cannot make both boundaries alternate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1001",
+        "numOps": 1
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-several-runs",
+      "name": "real: limited operations split several long runs",
       "kind": "real",
       "visible": false,
       "input": {
@@ -74,6 +119,21 @@
       "tags": [
         "real",
         "runs"
+      ]
+    },
+    {
+      "id": "real-balanced-neighboring-runs",
+      "name": "real: a flip must respect both neighboring runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "001100",
+        "numOps": 1
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "run-boundary"
       ]
     }
   ]

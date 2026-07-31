@@ -8,48 +8,43 @@
 | Category | Algorithms |
 | Topics | String, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-stepping-numbers-in-range](https://leetcode.com/problems/count-stepping-numbers-in-range/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-stepping-numbers-in-range/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-stepping-numbers-in-range/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given two positive integers, `low` and `high`, as decimal strings. Count the stepping numbers in the inclusive interval from `low` through `high`.
+
+A stepping number has an absolute difference of exactly $1$ between every pair of adjacent digits. A one-digit positive integer therefore qualifies automatically. Leading zeros are not allowed, so they cannot be used to create an alternative representation of a number.
+
+Because the count can be large, return it modulo $10^9 + 7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `low`: The lower endpoint as a decimal string without leading zeros.
+- `high`: The upper endpoint as a decimal string without leading zeros.
+
+Both endpoints contain between $1$ and $100$ digits and satisfy $1 \le \operatorname{int}(\texttt{low}) \le \operatorname{int}(\texttt{high}) < 10^{100}$.
+
+Let $d = \max(\lvert\texttt{low}\rvert, \lvert\texttt{high}\rvert)$.
 
 **Return value**
 
-TODO
+Return the number of stepping integers in the inclusive interval $[\texttt{low}, \texttt{high}]$, reduced modulo $10^9 + 7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `low = "1"`, `high = "11"`
+- Output: `10`
+- Explanation: The qualifying values are the nine one-digit positive integers and `10`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `low = "90"`, `high = "101"`
+- Output: `2`
+- Explanation: Only `98` and `101` are stepping numbers in this interval.

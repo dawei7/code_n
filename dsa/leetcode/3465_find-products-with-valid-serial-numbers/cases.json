@@ -1,0 +1,420 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3465",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: serial numbers inside product descriptions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Widget A",
+              "description": "This is a sample product with SN1234-5678"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Widget B",
+              "description": "A product with serial SN9876-1234 in the description"
+            },
+            {
+              "product_id": 3,
+              "product_name": "Widget C",
+              "description": "Product SN1234-56789 is available now"
+            },
+            {
+              "product_id": 4,
+              "product_name": "Widget D",
+              "description": "No serial number here"
+            },
+            {
+              "product_id": 5,
+              "product_name": "Widget E",
+              "description": "Check out SN4321-8765 in this description"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "description"
+        ],
+        "rows": [
+          [
+            1,
+            "Widget A",
+            "This is a sample product with SN1234-5678"
+          ],
+          [
+            2,
+            "Widget B",
+            "A product with serial SN9876-1234 in the description"
+          ],
+          [
+            5,
+            "Widget E",
+            "Check out SN4321-8765 in this description"
+          ]
+        ]
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-token-positions",
+      "name": "trial: tokens at boundaries and beside punctuation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "product_id": 3,
+              "product_name": "Punctuation",
+              "description": "Code (SN1111-2222), ready"
+            },
+            {
+              "product_id": 1,
+              "product_name": "Beginning",
+              "description": "SN0000-9999 is first"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Ending",
+              "description": "Ends with SN2468-1357"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "description"
+        ],
+        "rows": [
+          [
+            1,
+            "Beginning",
+            "SN0000-9999 is first"
+          ],
+          [
+            2,
+            "Ending",
+            "Ends with SN2468-1357"
+          ],
+          [
+            3,
+            "Punctuation",
+            "Code (SN1111-2222), ready"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "positions",
+        "punctuation"
+      ]
+    },
+    {
+      "id": "trial-case-sensitive-prefix",
+      "name": "trial: SN prefix is case-sensitive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Lower",
+              "description": "Code sn1234-5678"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Mixed One",
+              "description": "Code Sn1234-5678"
+            },
+            {
+              "product_id": 3,
+              "product_name": "Mixed Two",
+              "description": "Code sN1234-5678"
+            },
+            {
+              "product_id": 4,
+              "product_name": "Upper",
+              "description": "Code SN1234-5678"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "description"
+        ],
+        "rows": [
+          [
+            4,
+            "Upper",
+            "Code SN1234-5678"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "case-sensitive"
+      ]
+    },
+    {
+      "id": "real-exact-digit-counts",
+      "name": "hidden: both digit groups contain exactly four digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Short Left",
+              "description": "SN123-5678"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Long Left",
+              "description": "SN12345-5678"
+            },
+            {
+              "product_id": 3,
+              "product_name": "Short Right",
+              "description": "SN1234-567"
+            },
+            {
+              "product_id": 4,
+              "product_name": "Long Right",
+              "description": "SN1234-56789"
+            },
+            {
+              "product_id": 5,
+              "product_name": "Exact",
+              "description": "SN1234-5678"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "description"
+        ],
+        "rows": [
+          [
+            5,
+            "Exact",
+            "SN1234-5678"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "digit-count"
+      ]
+    },
+    {
+      "id": "real-word-boundaries",
+      "name": "hidden: token cannot be embedded in a larger word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Letter Prefix",
+              "description": "ASN1234-5678"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Letter Suffix",
+              "description": "SN1234-5678Z"
+            },
+            {
+              "product_id": 3,
+              "product_name": "Underscore Prefix",
+              "description": "_SN1234-5678"
+            },
+            {
+              "product_id": 4,
+              "product_name": "Underscore Suffix",
+              "description": "SN1234-5678_"
+            },
+            {
+              "product_id": 5,
+              "product_name": "Separated",
+              "description": "[SN1234-5678]"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "description"
+        ],
+        "rows": [
+          [
+            5,
+            "Separated",
+            "[SN1234-5678]"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "word-boundary"
+      ]
+    },
+    {
+      "id": "real-multiple-candidates",
+      "name": "hidden: any valid occurrence qualifies a product once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "product_id": 2,
+              "product_name": "Only Invalid",
+              "description": "SN123-5678 and SN1234-56789"
+            },
+            {
+              "product_id": 1,
+              "product_name": "Later Valid",
+              "description": "SN123-5678 then SN2222-3333"
+            },
+            {
+              "product_id": 3,
+              "product_name": "Two Valid",
+              "description": "SN0000-0000 / SN9999-9999"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "description"
+        ],
+        "rows": [
+          [
+            1,
+            "Later Valid",
+            "SN123-5678 then SN2222-3333"
+          ],
+          [
+            3,
+            "Two Valid",
+            "SN0000-0000 / SN9999-9999"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-occurrences"
+      ]
+    },
+    {
+      "id": "real-separator-and-prefix-traps",
+      "name": "hidden: exact hyphen and adjacent digit rules",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "product_id": 1,
+              "product_name": "Space",
+              "description": "SN1234 5678"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Double Hyphen",
+              "description": "SN1234--5678"
+            },
+            {
+              "product_id": 3,
+              "product_name": "Extra Prefix Digit",
+              "description": "9SN1234-5678"
+            },
+            {
+              "product_id": 4,
+              "product_name": "Exact",
+              "description": "serial:SN4444-5555."
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "description"
+        ],
+        "rows": [
+          [
+            4,
+            "Exact",
+            "serial:SN4444-5555."
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "separator"
+      ]
+    },
+    {
+      "id": "real-empty-result",
+      "name": "hidden: no description contains a valid token",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "product_id": 8,
+              "product_name": "None",
+              "description": "No serial number"
+            },
+            {
+              "product_id": 2,
+              "product_name": "Wrong",
+              "description": "SNABCD-1234"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "description"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "empty"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "challenge_id": "lc_2844",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: retain a suffix ending in fifty",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "2245047"},
+      "expected": 2,
+      "tags": ["sample", "suffix-50"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: form a double-zero suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "2908305"},
+      "expected": 3,
+      "tags": ["sample", "suffix-00"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: retain a single zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "10"},
+      "expected": 1,
+      "tags": ["sample", "single-zero"]
+    },
+    {
+      "id": "trial-zero",
+      "name": "trial: zero is already special",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": "0"},
+      "expected": 0,
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-no-usable-digit",
+      "name": "trial: delete the only nonzero digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": "1"},
+      "expected": 1,
+      "tags": ["trial", "delete-all"]
+    },
+    {
+      "id": "real-already-special",
+      "name": "hidden: original number already ends in zero-zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "100"},
+      "expected": 0,
+      "tags": ["hidden", "already-special"]
+    },
+    {
+      "id": "real-pair-before-trailing-digit",
+      "name": "hidden: delete one trailing digit after a zero-zero pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "2001"},
+      "expected": 1,
+      "tags": ["hidden", "trailing-deletion"]
+    },
+    {
+      "id": "real-long-already-special",
+      "name": "hidden: long input already ends in fifty",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "1020304050"},
+      "expected": 0,
+      "tags": ["hidden", "suffix-50"]
+    },
+    {
+      "id": "real-delete-all",
+      "name": "hidden: no zero or valid final pair exists",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "5555552"},
+      "expected": 7,
+      "tags": ["hidden", "delete-all"]
+    },
+    {
+      "id": "real-rightmost-zero-pair",
+      "name": "hidden: rightmost zero pair minimizes trailing deletions",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "7000000001"},
+      "expected": 1,
+      "tags": ["hidden", "rightmost-pair"]
+    },
+    {
+      "id": "real-pair-beats-single-zero",
+      "name": "hidden: a two-digit suffix beats deleting to one zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "50555"},
+      "expected": 3,
+      "tags": ["hidden", "fallback-comparison"]
+    }
+  ]
+}

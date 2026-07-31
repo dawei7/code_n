@@ -3,105 +3,93 @@
   "cases": [
     {
       "id": "sample-two-valid-starts",
-      "name": "sample: two valid choices at the right zero",
+      "name": "sample: balanced totals at the right zero",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          0,
-          2,
-          0,
-          3
-        ]
-      },
+      "input": {"nums": [1, 0, 2, 0, 3]},
       "expected": 2,
-      "tags": [
-        "sample",
-        "prefix-sum"
-      ]
+      "tags": ["sample", "balanced"]
     },
     {
       "id": "sample-no-valid-start",
-      "name": "sample: no zero start can clear the array",
+      "name": "sample: no zero has close side totals",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          3,
-          4,
-          0,
-          4,
-          1,
-          0
-        ]
-      },
+      "input": {"nums": [2, 3, 4, 0, 4, 1, 0]},
       "expected": 0,
-      "tags": [
-        "sample",
-        "simulation"
-      ]
+      "tags": ["sample", "unbalanced"]
     },
     {
       "id": "trial-balanced-zero",
-      "name": "trial: balanced zero allows both directions",
+      "name": "trial: one balanced zero allows both directions",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          0,
-          2
-        ]
-      },
+      "input": {"nums": [2, 0, 2]},
       "expected": 2,
-      "tags": [
-        "regression",
-        "balanced"
-      ]
+      "tags": ["balanced", "two-directions"]
     },
     {
-      "id": "trial-one-off-zero",
-      "name": "trial: one-off side difference allows one direction",
+      "id": "trial-single-zero-array",
+      "name": "trial: one zero element",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          0,
-          0
-        ]
-      },
+      "input": {"nums": [0]},
       "expected": 2,
-      "tags": [
-        "regression",
-        "prefix-sum"
-      ]
+      "tags": ["minimum-length", "all-zero"]
     },
     {
-      "id": "real-multiple-zeroes",
-      "name": "real: several zero starts with different side sums",
+      "id": "real-two-one-off-zeroes",
+      "name": "real: two zeroes each permit one direction",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          3,
-          0,
-          1,
-          0,
-          2,
-          0,
-          2,
-          0,
-          4
-        ]
-      },
+      "input": {"nums": [1, 0, 0]},
       "expected": 2,
-      "tags": [
-        "real",
-        "prefix-sum"
-      ]
+      "tags": ["difference-one", "multiple-zeroes"]
+    },
+    {
+      "id": "real-all-zeroes",
+      "name": "real: every zero and direction succeeds",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 0, 0, 0]},
+      "expected": 8,
+      "tags": ["all-zero", "multiple-selections"]
+    },
+    {
+      "id": "real-left-larger",
+      "name": "real: only the left-first direction succeeds",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 0, 2]},
+      "expected": 1,
+      "tags": ["difference-one", "left-heavy"]
+    },
+    {
+      "id": "real-right-larger",
+      "name": "real: only the right-first direction succeeds",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 0, 5]},
+      "expected": 1,
+      "tags": ["difference-one", "right-heavy"]
+    },
+    {
+      "id": "real-separated-balanced-zeroes",
+      "name": "real: two balanced zero positions",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 0, 0, 1]},
+      "expected": 4,
+      "tags": ["balanced", "multiple-zeroes"]
+    },
+    {
+      "id": "real-constraint-values",
+      "name": "real: balanced maximum values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100, 0, 100]},
+      "expected": 2,
+      "tags": ["value-boundary", "balanced"]
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Alt and Tab Simulation and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Orders queried windows by reverse last occurrence, then appends unqueried windows in original order.",
+      "time_complexity": "O(n + q)",
+      "space_complexity": "O(n)"
     }
   ]
 }

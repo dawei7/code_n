@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2676",
+  "frontend_id": "2604",
+  "title_slug": "minimum-time-to-eat-all-grains",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumTime",
+  "verified_submission_id": "2075793772",
+  "verified_at": "2026-07-21T12:25:00+00:00"
+}

@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3540",
+  "cases": [
+    {
+      "id": "sample-mixed-directions",
+      "name": "sample: each leg chooses its cheaper direction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "forward": [
+          1,
+          4,
+          4
+        ],
+        "backward": [
+          4,
+          1,
+          2
+        ],
+        "queries": [
+          1,
+          2,
+          0,
+          2
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "mixed-directions"
+      ]
+    },
+    {
+      "id": "sample-forward-circle",
+      "name": "sample: complete the circle using forward edges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "forward": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "backward": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "queries": [
+          1,
+          2,
+          3,
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "forward"
+      ]
+    },
+    {
+      "id": "trial-two-houses",
+      "name": "trial: two houses with asymmetric directed costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forward": [
+          5,
+          100
+        ],
+        "backward": [
+          7,
+          2
+        ],
+        "queries": [
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-single-query",
+      "name": "trial: one requested destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forward": [
+          3,
+          8,
+          2
+        ],
+        "backward": [
+          5,
+          4,
+          7
+        ],
+        "queries": [
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "single-query"
+      ]
+    },
+    {
+      "id": "real-forward-wrap",
+      "name": "real: forward edge wraps from the last house to zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "forward": [
+          10,
+          10,
+          10,
+          1
+        ],
+        "backward": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "queries": [
+          3,
+          0
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "real",
+        "forward-wrap"
+      ]
+    },
+    {
+      "id": "real-backward-wrap",
+      "name": "real: backward edge wraps from zero to the last house",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "forward": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "backward": [
+          1,
+          10,
+          10,
+          10
+        ],
+        "queries": [
+          3,
+          0
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "real",
+        "backward-wrap"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "real: alternating targets repeatedly cross the circle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "forward": [
+          2,
+          9,
+          1,
+          8,
+          3,
+          7
+        ],
+        "backward": [
+          6,
+          1,
+          5,
+          2,
+          4,
+          3
+        ],
+        "queries": [
+          3,
+          0,
+          4,
+          1,
+          5
+        ]
+      },
+      "expected": 47,
+      "tags": [
+        "real",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-large-weights",
+      "name": "real: large road weights require a wide total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "forward": [
+          100000,
+          99999,
+          100000
+        ],
+        "backward": [
+          99998,
+          100000,
+          99997
+        ],
+        "queries": [
+          2,
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": 399993,
+      "tags": [
+        "real",
+        "large-weights"
+      ]
+    }
+  ]
+}

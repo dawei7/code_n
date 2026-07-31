@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3136",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The legal word length is capped at 20 characters, which is too small for an honest runtime-scaling verdict; the accepted implementation performs one bounded classification pass.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 20,
+    "unit": "character classifications",
+    "source_constraint": "1 <= word.length <= 20"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "After the constant-time length check, the accepted implementation inspects each character at most once and therefore performs no more than 20 classifications."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression exhaustively checks 21,844 representative vowel/consonant/digit/invalid category strings of lengths 1 through 7, checks every permitted source character in boundary contexts, and checks maximum-length cases against an independent predicate oracle."
+    }
+  ]
+}

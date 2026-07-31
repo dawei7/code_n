@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_168", "frontend_id": "168", "title_slug": "excel-sheet-column-title", "url": "https://leetcode.com/problems/excel-sheet-column-title/description/", "paid_only": false, "content_sha256": "cd5def98ef0fbc8b52ff9a1bf19013793b0e635cdda4780be8273e2eb804ca08", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "columnNumber = 1", "output": "\"A\"", "has_explanation": false},
+      {"ordinal": 2, "input": "columnNumber = 28", "output": "\"AB\"", "has_explanation": false},
+      {"ordinal": 3, "input": "columnNumber = 701", "output": "\"ZY\"", "has_explanation": false}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 1, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "7925b1b70c6af81284283faefed5620b2f71420e2a6bb9c4f6826b00b9e24282", "reference/contract.md": "3d190c02c0a9b8138aa14a4b8a35c221cf9bca44a19526b541f7cad5b7f6227e", "reference/examples.md": "06b56d40c492c2d42c7750224a0968ded037733856e57ab528628e7aeaf98e3d", "reference/constraints.md": "bfe5950d914a04296b41a60261e87d13194364f15b9797ae03272bc47ab771e2"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

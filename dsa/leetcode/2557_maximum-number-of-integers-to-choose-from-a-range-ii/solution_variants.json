@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Number of Integers to Choose From a Range II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts the unique banned values, treats the allowed values as consecutive gaps, and uses arithmetic-series sums plus binary search to take the cheapest prefix of each gap.",
+      "time_complexity": "O(m log m + m log n)",
+      "space_complexity": "O(m)"
     }
   ]
 }

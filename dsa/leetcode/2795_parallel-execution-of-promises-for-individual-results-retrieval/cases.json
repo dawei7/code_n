@@ -1,0 +1,437 @@
+{
+  "challenge_id": "lc_2795",
+  "cases": [
+    {
+      "id": "sample-single",
+      "name": "sample: one delayed fulfillment",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 100,
+            "value": 15
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "value": [
+          {
+            "status": "fulfilled",
+            "value": 15
+          }
+        ],
+        "completionTime": 100,
+        "startTimes": [
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-two-fulfilled",
+      "name": "sample: two simultaneous fulfillments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 100,
+            "value": 20
+          },
+          {
+            "delay": 100,
+            "value": 15
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "value": [
+          {
+            "status": "fulfilled",
+            "value": 20
+          },
+          {
+            "status": "fulfilled",
+            "value": 15
+          }
+        ],
+        "completionTime": 100,
+        "startTimes": [
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "parallel"
+      ]
+    },
+    {
+      "id": "sample-mixed",
+      "name": "sample: rejection is returned as a result record",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 200,
+            "value": 30
+          },
+          {
+            "delay": 100,
+            "reject": "Error"
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "value": [
+          {
+            "status": "fulfilled",
+            "value": 30
+          },
+          {
+            "status": "rejected",
+            "reason": "Error"
+          }
+        ],
+        "completionTime": 200,
+        "startTimes": [
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "rejection",
+        "wait-for-all"
+      ]
+    },
+    {
+      "id": "trial-immediate-mixed",
+      "name": "trial: immediate mixed settlements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 0,
+            "value": "a"
+          },
+          {
+            "delay": 0,
+            "reject": "nope"
+          },
+          {
+            "delay": 0,
+            "value": "b"
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "value": [
+          {
+            "status": "fulfilled",
+            "value": "a"
+          },
+          {
+            "status": "rejected",
+            "reason": "nope"
+          },
+          {
+            "status": "fulfilled",
+            "value": "b"
+          }
+        ],
+        "completionTime": 0,
+        "startTimes": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "trial",
+        "immediate",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-multiple-rejections",
+      "name": "hidden: every rejection keeps its own input position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tasks": [
+          {
+            "delay": 9,
+            "reject": "late"
+          },
+          {
+            "delay": 2,
+            "value": 7
+          },
+          {
+            "delay": 5,
+            "reject": "middle"
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "value": [
+          {
+            "status": "rejected",
+            "reason": "late"
+          },
+          {
+            "status": "fulfilled",
+            "value": 7
+          },
+          {
+            "status": "rejected",
+            "reason": "middle"
+          }
+        ],
+        "completionTime": 9,
+        "startTimes": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-rejections",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-tied-settlements",
+      "name": "hidden: tied settlements retain input order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tasks": [
+          {
+            "delay": 5,
+            "reject": "first"
+          },
+          {
+            "delay": 5,
+            "value": 2
+          },
+          {
+            "delay": 5,
+            "reject": "third"
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "value": [
+          {
+            "status": "rejected",
+            "reason": "first"
+          },
+          {
+            "status": "fulfilled",
+            "value": 2
+          },
+          {
+            "status": "rejected",
+            "reason": "third"
+          }
+        ],
+        "completionTime": 5,
+        "startTimes": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "hidden",
+        "tie",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-maximum-functions",
+      "name": "hidden: ten functions all begin together",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tasks": [
+          {
+            "delay": 8,
+            "value": 0
+          },
+          {
+            "delay": 3,
+            "reject": "one"
+          },
+          {
+            "delay": 5,
+            "value": 2
+          },
+          {
+            "delay": 2,
+            "value": 3
+          },
+          {
+            "delay": 7,
+            "reject": "four"
+          },
+          {
+            "delay": 1,
+            "value": 5
+          },
+          {
+            "delay": 4,
+            "value": 6
+          },
+          {
+            "delay": 6,
+            "reject": "seven"
+          },
+          {
+            "delay": 2,
+            "value": 8
+          },
+          {
+            "delay": 3,
+            "value": 9
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "value": [
+          {
+            "status": "fulfilled",
+            "value": 0
+          },
+          {
+            "status": "rejected",
+            "reason": "one"
+          },
+          {
+            "status": "fulfilled",
+            "value": 2
+          },
+          {
+            "status": "fulfilled",
+            "value": 3
+          },
+          {
+            "status": "rejected",
+            "reason": "four"
+          },
+          {
+            "status": "fulfilled",
+            "value": 5
+          },
+          {
+            "status": "fulfilled",
+            "value": 6
+          },
+          {
+            "status": "rejected",
+            "reason": "seven"
+          },
+          {
+            "status": "fulfilled",
+            "value": 8
+          },
+          {
+            "status": "fulfilled",
+            "value": 9
+          }
+        ],
+        "completionTime": 8,
+        "startTimes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "hidden",
+        "maximum-functions",
+        "parallel-start"
+      ]
+    },
+    {
+      "id": "real-structured-payloads",
+      "name": "hidden: structured values and reasons are preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tasks": [
+          {
+            "delay": 4,
+            "value": null
+          },
+          {
+            "delay": 1,
+            "value": {
+              "x": 2
+            }
+          },
+          {
+            "delay": 3,
+            "reject": {
+              "code": 500
+            }
+          }
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "value": [
+          {
+            "status": "fulfilled",
+            "value": null
+          },
+          {
+            "status": "fulfilled",
+            "value": {
+              "x": 2
+            }
+          },
+          {
+            "status": "rejected",
+            "reason": {
+              "code": 500
+            }
+          }
+        ],
+        "completionTime": 4,
+        "startTimes": [
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "hidden",
+        "structured-values"
+      ]
+    }
+  ]
+}

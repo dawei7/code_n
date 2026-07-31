@@ -5,51 +5,44 @@
 | Source | LeetCode |
 | Frontend ID | 3037 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Sliding Window, Rolling Hash, String Matching, Interactive, Hash Function |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-pattern-in-infinite-stream-ii](https://leetcode.com/problems/find-pattern-in-infinite-stream-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-pattern-in-infinite-stream-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-pattern-in-infinite-stream-ii/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a binary array `pattern` and an `InfiniteStream` representing a 0-indexed, unending sequence of bits. The stream exposes only `next()`, which consumes and returns one bit. Earlier bits cannot be indexed, requested again, or recovered by rewinding the stream.
+
+Return the first index at which all entries of `pattern` occur consecutively in the same order. The input guarantees that a matching start exists among the first $10^5$ stream positions, so a sequential algorithm will eventually reach the end of the first occurrence.
 
 ### Function Contract
+Let $M=\lvert\texttt{pattern}\rvert$, and let $S$ be the number of stream bits consumed through the end of the first match.
+
 **Inputs**
 
-- TODO
+- `stream`: An `InfiniteStream` whose `next()` method consumes and returns the next `0` or `1`. App-local fixtures provide a finite authored prefix containing the guaranteed first match while preserving this sequential interface.
+- `pattern`: A binary array of length $1 \le M \le 10^4$.
+
+The first matching start index is guaranteed to be less than $10^5$.
 
 **Return value**
 
-TODO
+Return the 0-indexed starting position of the earliest complete occurrence of `pattern` in the stream.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `stream = [1,1,1,0,1,1,1,...], pattern = [0,1]`
+- Output: `3`
+- Explanation: The first `[0,1]` begins with the bit at index `3`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `stream = [0,0,0,0,...], pattern = [0]`
+- Output: `0`
+- Explanation: The first stream bit already matches the one-bit pattern.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `stream = [1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]`
+- Output: `2`
+- Explanation: The first complete `[1,1,0,1]` occupies indices `2` through `5`.

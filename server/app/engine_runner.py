@@ -32,12 +32,11 @@ certificates, never as runtime measurements. Legacy single-tier packages use
 ``runtime <= 1.5 * optimal_reference_runtime`` until migrated.
 
 **Step limit is a safety cap.** The tracer raises
-``ExecutionStepLimitExceeded`` after a fixed number of Python
-line events (100,000) to catch infinite loops. The cap is
-independent of the complexity budget â€” a single ``for i in
-range(10**9):`` would trip the cap, but a correct but
-sloppy O(nÂ²) solution that just barely exceeds the budget
-would still be evaluated end-to-end.
+``ExecutionStepLimitExceeded`` after a bounded number of Python line events to
+catch infinite loops. Ordinary cases use 100,000 events; authored benchmarks
+and certificate-backed workloads use the larger runtime cap so terminating
+legal algorithms with high required complexity can finish. The cap is
+independent of the complexity verdict.
 
 **The trace is internal-only.** Per-step trace frames are no
 longer shipped to the frontend; the in-app debugger streams
@@ -82,11 +81,10 @@ log = logging.getLogger(__name__)
 
 # Safety cap on Python line events. Independent of the
 # complexity budget â€” purely an infinite-loop guard. 100,000
-# events is plenty for any correct algorithm up to the max
-# input size; an infinite loop is caught quickly.
-# Ordinary cases fail fast on runaway code. Benchmarks get enough room for a
-# terminating implementation from a slower complexity class, which should be
-# rejected by the scaling verdict rather than shown as an incorrect case.
+# events is the ordinary fast-failure threshold. Benchmarks and verified
+# certificate workloads get enough room for a terminating implementation whose
+# legal complexity is too expensive for that threshold; infinite loops remain
+# bounded in both paths.
 _STEP_LIMIT = 100_000
 _RUNTIME_STEP_LIMIT = 1_000_000
 _RUNTIME_TARGET_SECONDS = 0.05
@@ -398,6 +396,46 @@ class _JudgeBinaryMatrix:
         return f"BinaryMatrix({rows}x{cols}, queries={self._query_count})"
 
 
+class _JudgeInfiniteStream:
+    """Sequential binary-stream interface used by LeetCode 3023."""
+
+    def __init__(self, bits: list[int], max_reads: int | None = None):
+        if not isinstance(bits, list) or not bits:
+            raise ValueError("infinite stream fixture must contain at least one bit")
+        if any(
+            not isinstance(bit, int) or isinstance(bit, bool) or bit not in (0, 1)
+            for bit in bits
+        ):
+            raise ValueError("infinite stream fixture values must be 0 or 1")
+        if max_reads is None:
+            max_reads = len(bits)
+        if (
+            not isinstance(max_reads, int)
+            or isinstance(max_reads, bool)
+            or not 0 <= max_reads <= len(bits)
+        ):
+            raise ValueError("infinite stream max_reads must fit the authored fixture")
+        self.__bits = tuple(bits)
+        self._max_reads = max_reads
+        self._read_count = 0
+
+    def next(self) -> int:
+        if self._read_count >= self._max_reads:
+            raise RuntimeError(
+                f"InfiniteStream.next exceeded the {self._max_reads}-read fixture limit"
+            )
+        bit = self.__bits[self._read_count]
+        self._read_count += 1
+        return bit
+
+    @property
+    def read_count(self) -> int:
+        return self._read_count
+
+    def __repr__(self) -> str:
+        return f"InfiniteStream(reads={self._read_count}, limit={self._max_reads})"
+
+
 class _JudgeFontInfo:
     """Font-metric interface used by LeetCode 1618."""
 
@@ -678,7 +716,8 @@ def _tree_param_names(spec: Any) -> list[str]:
     names: list[str] = []
     for name, hint in inputs.items():
         text = str(hint).lower()
-        if "treenode" in text or "tree node" in text or "root node" in text or "root of" in text:
+        root_node_hint = re.search(r"(?<!non-)root node", text) is not None
+        if "treenode" in text or "tree node" in text or root_node_hint or "root of" in text:
             names.append(str(name))
     return names
 
@@ -1086,6 +1125,36 @@ def _unordered_list_matches(actual: Any, expected: Any) -> bool:
     return sorted(actual, key=key) == sorted(expected, key=key)
 
 
+def _unordered_string_match(actual: Any, expected: Any) -> bool:
+    if not isinstance(actual, str) or not isinstance(expected, str):
+        return False
+    return sorted(actual) == sorted(expected)
+
+
+def _character_pair_rearrangement_match(
+    actual: Any,
+    original: Any,
+    x: Any,
+    y: Any,
+) -> bool:
+    if (
+        not isinstance(actual, str)
+        or not isinstance(original, str)
+        or not isinstance(x, str)
+        or len(x) != 1
+        or not isinstance(y, str)
+        or len(y) != 1
+        or x == y
+        or len(actual) != len(original)
+        or Counter(actual) != Counter(original)
+    ):
+        return False
+
+    first_x = actual.find(x)
+    last_y = actual.rfind(y)
+    return first_x == -1 or last_y == -1 or last_y < first_x
+
+
 def _unordered_table_matches(actual: Any, expected: Any) -> bool:
     if not isinstance(actual, dict) or not isinstance(expected, dict):
         return False
@@ -1122,6 +1191,25 @@ def _ordered_groups_unordered_items_match(actual: Any, expected: Any) -> bool:
         _unordered_list_matches(actual_group, expected_group)
         for actual_group, expected_group in zip(actual, expected, strict=True)
     )
+
+
+def _ordered_results_unordered_lists_match(actual: Any, expected: Any) -> bool:
+    """Preserve result positions while ignoring order within list-valued results."""
+
+    if (
+        not isinstance(actual, list)
+        or not isinstance(expected, list)
+        or len(actual) != len(expected)
+    ):
+        return False
+
+    for actual_result, expected_result in zip(actual, expected, strict=True):
+        if isinstance(expected_result, list):
+            if not _unordered_list_matches(actual_result, expected_result):
+                return False
+        elif actual_result != expected_result:
+            return False
+    return True
 
 
 def _duplicate_subtrees_match(actual: Any, expected: Any) -> bool:
@@ -2197,6 +2285,42 @@ def _distance_order_cells_match(actual: Any, rows: Any, cols: Any, r_center: Any
     return True
 
 
+def _balanced_factor_decomposition_match(
+    actual: Any,
+    expected: Any,
+    n: Any,
+    k: Any,
+) -> bool:
+    if (
+        not isinstance(actual, list)
+        or not isinstance(expected, list)
+        or not isinstance(n, int)
+        or isinstance(n, bool)
+        or not isinstance(k, int)
+        or isinstance(k, bool)
+        or len(actual) != k
+        or not expected
+    ):
+        return False
+    if any(not isinstance(value, int) or isinstance(value, bool) or value <= 0 for value in actual):
+        return False
+    return (
+        math.prod(actual) == n
+        and max(actual) - min(actual) == max(expected) - min(expected)
+    )
+
+
+def _absolute_value_sorted_match(actual: Any, original: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(original, list):
+        return False
+    if any(not isinstance(value, int) or isinstance(value, bool) for value in actual):
+        return False
+    return Counter(actual) == Counter(original) and all(
+        abs(actual[index - 1]) <= abs(actual[index])
+        for index in range(1, len(actual))
+    )
+
+
 def _wiggle_sort_matches(actual: Any, original: Any, *, strict: bool = True) -> bool:
     if not isinstance(actual, list) or not isinstance(original, list):
         return False
@@ -2228,6 +2352,35 @@ def _distant_barcodes_match(actual: Any, original: Any) -> bool:
     if Counter(actual) != Counter(original):
         return False
     return all(actual[index] != actual[index - 1] for index in range(1, len(actual)))
+
+
+def _maximum_bob_points_match(
+    actual: Any,
+    expected: Any,
+    num_arrows: Any,
+    alice_arrows: Any,
+) -> bool:
+    if (
+        not isinstance(actual, list)
+        or len(actual) != 12
+        or not isinstance(expected, int)
+        or isinstance(expected, bool)
+        or not isinstance(num_arrows, int)
+        or isinstance(num_arrows, bool)
+        or not isinstance(alice_arrows, list)
+        or len(alice_arrows) != 12
+    ):
+        return False
+    if any(not isinstance(value, int) or isinstance(value, bool) or value < 0 for value in actual):
+        return False
+    if sum(actual) != num_arrows:
+        return False
+    score = sum(
+        section
+        for section in range(12)
+        if actual[section] > alice_arrows[section]
+    )
+    return score == expected
 
 
 def _rearranged_k_distance_match(actual: Any, expected: Any, original: Any, distance: Any) -> bool:
@@ -2290,6 +2443,204 @@ def _matrix_margins_match(actual: Any, row_sums: Any, column_sums: Any) -> bool:
     )
 
 
+def _grid_layout_match(actual: Any, n: Any, edges: Any) -> bool:
+    """Accept any rectangular placement whose grid adjacencies equal the graph."""
+
+    if type(n) is not int or n < 1 or not isinstance(edges, list):
+        return False
+    graph_edges: set[tuple[int, int]] = set()
+    for edge in edges:
+        if (
+            not isinstance(edge, list)
+            or len(edge) != 2
+            or any(type(node) is not int or not 0 <= node < n for node in edge)
+            or edge[0] == edge[1]
+        ):
+            return False
+        graph_edges.add(tuple(sorted(edge)))
+
+    if not isinstance(actual, list) or not actual or not isinstance(actual[0], list) or not actual[0]:
+        return False
+    columns = len(actual[0])
+    if any(not isinstance(row, list) or len(row) != columns for row in actual):
+        return False
+
+    values = [node for row in actual for node in row]
+    if (
+        len(values) != n
+        or any(type(node) is not int or not 0 <= node < n for node in values)
+        or set(values) != set(range(n))
+    ):
+        return False
+
+    layout_edges: set[tuple[int, int]] = set()
+    for row_index, row in enumerate(actual):
+        for column_index, node in enumerate(row):
+            if row_index + 1 < len(actual):
+                layout_edges.add(tuple(sorted((node, actual[row_index + 1][column_index]))))
+            if column_index + 1 < columns:
+                layout_edges.add(tuple(sorted((node, row[column_index + 1]))))
+    return layout_edges == graph_edges
+
+
+def _last_marked_nodes_match(actual: Any, edges: Any) -> bool:
+    """Accept any farthest vertex for every possible starting vertex."""
+
+    if not isinstance(edges, list):
+        return False
+    n = len(edges) + 1
+    if (
+        not isinstance(actual, list)
+        or len(actual) != n
+        or any(type(node) is not int or not 0 <= node < n for node in actual)
+    ):
+        return False
+
+    graph: list[list[int]] = [[] for _ in range(n)]
+    for edge in edges:
+        if (
+            not isinstance(edge, list)
+            or len(edge) != 2
+            or any(type(node) is not int or not 0 <= node < n for node in edge)
+            or edge[0] == edge[1]
+        ):
+            return False
+        left, right = edge
+        graph[left].append(right)
+        graph[right].append(left)
+
+    def distances(start: int) -> tuple[int, list[int]]:
+        dist = [-1] * n
+        dist[start] = 0
+        queue = deque([start])
+        farthest = start
+        while queue:
+            node = queue.popleft()
+            if dist[node] > dist[farthest]:
+                farthest = node
+            for neighbor in graph[node]:
+                if dist[neighbor] == -1:
+                    dist[neighbor] = dist[node] + 1
+                    queue.append(neighbor)
+        return farthest, dist
+
+    endpoint_a, connected = distances(0)
+    if any(distance == -1 for distance in connected):
+        return False
+    endpoint_b, dist_a = distances(endpoint_a)
+    _, dist_b = distances(endpoint_b)
+
+    depth = [-1] * n
+    parent = [-1] * n
+    depth[0] = 0
+    queue = deque([0])
+    while queue:
+        node = queue.popleft()
+        for neighbor in graph[node]:
+            if neighbor == parent[node]:
+                continue
+            if depth[neighbor] != -1:
+                return False
+            parent[neighbor] = node
+            depth[neighbor] = depth[node] + 1
+            queue.append(neighbor)
+
+    ancestors = [parent]
+    for _ in range(1, n.bit_length()):
+        previous = ancestors[-1]
+        ancestors.append([
+            -1 if previous[node] == -1 else previous[previous[node]]
+            for node in range(n)
+        ])
+
+    def distance(left: int, right: int) -> int:
+        original_left, original_right = left, right
+        if depth[left] < depth[right]:
+            left, right = right, left
+        difference = depth[left] - depth[right]
+        for level in range(difference.bit_length()):
+            if difference >> level & 1:
+                left = ancestors[level][left]
+        if left != right:
+            for level in range(len(ancestors) - 1, -1, -1):
+                if ancestors[level][left] != ancestors[level][right]:
+                    left = ancestors[level][left]
+                    right = ancestors[level][right]
+            left = parent[left]
+        lca = left
+        return depth[original_left] + depth[original_right] - 2 * depth[lca]
+
+    return all(
+        distance(start, chosen) == max(dist_a[start], dist_b[start])
+        for start, chosen in enumerate(actual)
+    )
+
+
+def _condition_matrix_match(
+    actual: Any,
+    k: Any,
+    row_conditions: Any,
+    column_conditions: Any,
+) -> bool:
+    if (
+        type(k) is not int
+        or k < 1
+        or not isinstance(row_conditions, list)
+        or not isinstance(column_conditions, list)
+    ):
+        return False
+
+    def has_topological_order(conditions: list[Any]) -> bool:
+        adjacency = [[] for _ in range(k + 1)]
+        indegree = [0] * (k + 1)
+        for condition in conditions:
+            if (
+                not isinstance(condition, list)
+                or len(condition) != 2
+                or any(type(value) is not int or not 1 <= value <= k for value in condition)
+            ):
+                return False
+            before, after = condition
+            adjacency[before].append(after)
+            indegree[after] += 1
+        queue = [value for value in range(1, k + 1) if indegree[value] == 0]
+        processed = 0
+        for value in queue:
+            processed += 1
+            for neighbor in adjacency[value]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+        return processed == k
+
+    possible = has_topological_order(row_conditions) and has_topological_order(column_conditions)
+    if actual == []:
+        return not possible
+    if not possible or not isinstance(actual, list) or len(actual) != k:
+        return False
+    if any(not isinstance(row, list) or len(row) != k for row in actual):
+        return False
+
+    positions: dict[int, tuple[int, int]] = {}
+    for row_index, row in enumerate(actual):
+        for column_index, value in enumerate(row):
+            if type(value) is not int or not 0 <= value <= k:
+                return False
+            if value:
+                if value in positions:
+                    return False
+                positions[value] = (row_index, column_index)
+    if set(positions) != set(range(1, k + 1)):
+        return False
+    return all(
+        positions[before][0] < positions[after][0]
+        for before, after in row_conditions
+    ) and all(
+        positions[left][1] < positions[right][1]
+        for left, right in column_conditions
+    )
+
+
 def _group_people_match(actual: Any, group_sizes: Any) -> bool:
     if not isinstance(actual, list) or not isinstance(group_sizes, list):
         return False
@@ -2332,6 +2683,75 @@ def _no_zero_sum_match(actual: Any, n: Any) -> bool:
         )
         and sum(actual) == n
     )
+
+
+def _color_red_triangle_match(actual: Any, n: Any) -> bool:
+    if not isinstance(n, int) or isinstance(n, bool) or n < 1:
+        return False
+    if not isinstance(actual, list):
+        return False
+
+    minimum_size = 1
+    for row in range(2, n + 1):
+        offset = (n - row) % 4
+        start = offset % 3 + 1
+        if offset % 2:
+            minimum_size += 1
+        else:
+            minimum_size += len(range(start, 2 * row, 2))
+
+    red: set[tuple[int, int]] = set()
+    for coordinate in actual:
+        if (
+            not isinstance(coordinate, list)
+            or len(coordinate) != 2
+            or not all(isinstance(value, int) and not isinstance(value, bool) for value in coordinate)
+        ):
+            return False
+        row, column = coordinate
+        if row < 1 or row > n or column < 1 or column > 2 * row - 1:
+            return False
+        red.add((row, column))
+
+    if len(red) != minimum_size or len(actual) != minimum_size:
+        return False
+
+    neighbors: dict[tuple[int, int], list[tuple[int, int]]] = {}
+    for row in range(1, n + 1):
+        for column in range(1, 2 * row):
+            adjacent: list[tuple[int, int]] = []
+            if column > 1:
+                adjacent.append((row, column - 1))
+            if column < 2 * row - 1:
+                adjacent.append((row, column + 1))
+            if column % 2 == 1 and row < n:
+                adjacent.append((row + 1, column + 1))
+            elif column % 2 == 0:
+                adjacent.append((row - 1, column - 1))
+            neighbors[(row, column)] = adjacent
+
+    red_neighbor_count: dict[tuple[int, int], int] = {}
+    ready: deque[tuple[int, int]] = deque()
+    for coordinate, adjacent in neighbors.items():
+        if coordinate in red:
+            continue
+        count = sum(neighbor in red for neighbor in adjacent)
+        red_neighbor_count[coordinate] = count
+        if count >= 2:
+            ready.append(coordinate)
+
+    while ready:
+        coordinate = ready.popleft()
+        if coordinate in red or red_neighbor_count[coordinate] < 2:
+            continue
+        red.add(coordinate)
+        for neighbor in neighbors[coordinate]:
+            if neighbor not in red:
+                red_neighbor_count[neighbor] += 1
+                if red_neighbor_count[neighbor] == 2:
+                    ready.append(neighbor)
+
+    return len(red) == n * n
 
 
 def _sufficient_team_match(actual: Any, expected: Any, req_skills: Any, people: Any) -> bool:
@@ -2505,6 +2925,33 @@ def _minimum_subsequence_match(actual: Any, nums: Any) -> bool:
         if chosen > total - chosen:
             break
     return len(actual) == minimum_length
+
+
+def _maximum_even_split_match(actual: Any, final_sum: Any) -> bool:
+    if (
+        isinstance(final_sum, bool)
+        or not isinstance(final_sum, int)
+        or not isinstance(actual, list)
+    ):
+        return False
+    if final_sum % 2:
+        return actual == []
+    if (
+        not actual
+        or any(
+            isinstance(value, bool)
+            or not isinstance(value, int)
+            or value <= 0
+            or value % 2
+            for value in actual
+        )
+        or len(actual) != len(set(actual))
+        or sum(actual) != final_sum
+    ):
+        return False
+
+    maximum_count = (math.isqrt(1 + 4 * final_sum) - 1) // 2
+    return len(actual) == maximum_count
 
 
 def _minimum_unique_rows_matrix_match(actual: Any, nums: Any) -> bool:
@@ -3000,6 +3447,153 @@ def _adjacent_path_match(actual: Any, pairs: Any) -> bool:
     return all(count == 0 for count in edges.values())
 
 
+def _sequential_grid_path_cover_match(
+    actual: Any,
+    expected: Any,
+    grid: Any,
+    k: Any,
+) -> bool:
+    if expected == []:
+        return actual == []
+    if (
+        not isinstance(grid, list)
+        or not grid
+        or not all(isinstance(row, list) and row for row in grid)
+        or any(len(row) != len(grid[0]) for row in grid)
+        or not isinstance(k, int)
+        or isinstance(k, bool)
+        or k < 1
+        or not isinstance(actual, list)
+    ):
+        return False
+
+    rows = len(grid)
+    columns = len(grid[0])
+    if len(actual) != rows * columns:
+        return False
+
+    path: list[tuple[int, int]] = []
+    for position in actual:
+        if (
+            not isinstance(position, list)
+            or len(position) != 2
+            or any(not isinstance(value, int) or isinstance(value, bool) for value in position)
+        ):
+            return False
+        row, column = position
+        if not 0 <= row < rows or not 0 <= column < columns:
+            return False
+        path.append((row, column))
+
+    if len(set(path)) != rows * columns:
+        return False
+    if any(
+        abs(left_row - right_row) + abs(left_column - right_column) != 1
+        for (left_row, left_column), (right_row, right_column) in zip(path, path[1:])
+    ):
+        return False
+
+    checkpoints = [grid[row][column] for row, column in path if grid[row][column] != 0]
+    return checkpoints == list(range(1, k + 1))
+
+
+def _modified_graph_edges_match(
+    actual: Any,
+    expected: Any,
+    n: Any,
+    original_edges: Any,
+    source: Any,
+    destination: Any,
+    target: Any,
+) -> bool:
+    if expected == []:
+        return actual == []
+    if (
+        not isinstance(n, int)
+        or isinstance(n, bool)
+        or n <= 0
+        or not isinstance(source, int)
+        or isinstance(source, bool)
+        or not isinstance(destination, int)
+        or isinstance(destination, bool)
+        or not 0 <= source < n
+        or not 0 <= destination < n
+        or source == destination
+        or not isinstance(target, int)
+        or isinstance(target, bool)
+        or target <= 0
+        or not isinstance(original_edges, list)
+        or not isinstance(actual, list)
+        or len(actual) != len(original_edges)
+    ):
+        return False
+
+    def parse_edge(edge: Any) -> tuple[int, int, int] | None:
+        if (
+            not isinstance(edge, list)
+            or len(edge) != 3
+            or any(not isinstance(value, int) or isinstance(value, bool) for value in edge)
+        ):
+            return None
+        left, right, weight = edge
+        if not 0 <= left < n or not 0 <= right < n or left == right:
+            return None
+        return left, right, weight
+
+    originals: dict[tuple[int, int], int] = {}
+    for edge in original_edges:
+        parsed = parse_edge(edge)
+        if parsed is None:
+            return False
+        left, right, weight = parsed
+        key = (min(left, right), max(left, right))
+        if key in originals or (weight != -1 and weight <= 0):
+            return False
+        originals[key] = weight
+
+    graph: list[list[tuple[int, int]]] = [[] for _ in range(n)]
+    seen: set[tuple[int, int]] = set()
+    for edge in actual:
+        parsed = parse_edge(edge)
+        if parsed is None:
+            return False
+        left, right, weight = parsed
+        key = (min(left, right), max(left, right))
+        if key in seen or key not in originals:
+            return False
+        seen.add(key)
+        original_weight = originals[key]
+        if original_weight == -1:
+            if not 1 <= weight <= 2_000_000_000:
+                return False
+        elif weight != original_weight:
+            return False
+        graph[left].append((right, weight))
+        graph[right].append((left, weight))
+
+    if seen != set(originals):
+        return False
+
+    distances = [math.inf] * n
+    distances[source] = 0
+    visited = [False] * n
+    for _ in range(n):
+        node = min(
+            (index for index in range(n) if not visited[index]),
+            key=distances.__getitem__,
+            default=-1,
+        )
+        if node == -1 or distances[node] == math.inf:
+            break
+        visited[node] = True
+        for neighbor, weight in graph[node]:
+            candidate = distances[node] + weight
+            if candidate < distances[neighbor]:
+                distances[neighbor] = candidate
+
+    return distances[destination] == target
+
+
 def _valid_pair_arrangement_match(actual: Any, pairs: Any) -> bool:
     if not isinstance(actual, list) or not isinstance(pairs, list):
         return False
@@ -3054,9 +3648,258 @@ def _maximum_sum_subsequence_match(actual: Any, nums: Any, k: Any) -> bool:
     return sum(actual) == sum(sorted(nums, reverse=True)[:k])
 
 
+def _recovered_original_array_match(actual: Any, nums: Any) -> bool:
+    if (
+        not isinstance(actual, list)
+        or not isinstance(nums, list)
+        or len(actual) * 2 != len(nums)
+        or any(
+            isinstance(value, bool) or not isinstance(value, int) or value <= 0
+            for value in actual
+        )
+    ):
+        return False
+
+    observed = Counter(nums)
+    smallest = min(nums)
+    for original in set(actual):
+        k = original - smallest
+        if k <= 0:
+            continue
+        generated = Counter()
+        for value in actual:
+            generated[value - k] += 1
+            generated[value + k] += 1
+        if generated == observed:
+            return True
+    return False
+
+
+def _valid_subarray_size_match(
+    actual: Any,
+    nums: Any,
+    threshold: Any,
+) -> bool:
+    if (
+        isinstance(actual, bool)
+        or not isinstance(actual, int)
+        or not isinstance(nums, list)
+        or isinstance(threshold, bool)
+        or not isinstance(threshold, int)
+    ):
+        return False
+
+    if actual == -1:
+        stack: list[int] = []
+        for index in range(len(nums) + 1):
+            value = nums[index] if index < len(nums) else -1
+            while stack and nums[stack[-1]] > value:
+                minimum = nums[stack.pop()]
+                left_boundary = stack[-1] if stack else -1
+                if minimum * (index - left_boundary - 1) > threshold:
+                    return False
+            stack.append(index)
+        return True
+
+    if actual <= 0 or actual > len(nums):
+        return False
+
+    candidates: deque[int] = deque()
+    for index, value in enumerate(nums):
+        while candidates and nums[candidates[-1]] >= value:
+            candidates.pop()
+        candidates.append(index)
+        if candidates[0] <= index - actual:
+            candidates.popleft()
+        if (
+            index + 1 >= actual
+            and nums[candidates[0]] * actual > threshold
+        ):
+            return True
+    return False
+
+
+def _json_object_match(actual: Any, expected: Any) -> bool:
+    """Compare JSON objects without coercing numeric-looking property names."""
+
+    def normalize(value: Any) -> Any:
+        if isinstance(value, dict):
+            return {str(key): normalize(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [normalize(item) for item in value]
+        return value
+
+    return isinstance(actual, dict) and isinstance(expected, dict) and normalize(actual) == normalize(expected)
+
+
+def _generated_schedule_match(actual: Any, n: Any) -> bool:
+    if not isinstance(n, int) or isinstance(n, bool) or not isinstance(actual, list):
+        return False
+    if n < 5:
+        return actual == []
+    if len(actual) != n * (n - 1):
+        return False
+
+    matches: list[tuple[int, int]] = []
+    for game in actual:
+        if (
+            not isinstance(game, list)
+            or len(game) != 2
+            or any(not isinstance(team, int) or isinstance(team, bool) for team in game)
+        ):
+            return False
+        home, away = game
+        if not (0 <= home < n and 0 <= away < n) or home == away:
+            return False
+        matches.append((home, away))
+
+    if len(set(matches)) != n * (n - 1):
+        return False
+    return all(
+        left_home not in right and left_away not in right
+        for (left_home, left_away), right in zip(matches, matches[1:])
+    )
+
+
+def _exact_monotone_path_grid_match(
+    actual: Any,
+    rows: Any,
+    columns: Any,
+    target_paths: Any,
+) -> bool:
+    if (
+        not isinstance(rows, int)
+        or isinstance(rows, bool)
+        or not isinstance(columns, int)
+        or isinstance(columns, bool)
+        or not isinstance(target_paths, int)
+        or isinstance(target_paths, bool)
+        or rows <= 0
+        or columns <= 0
+        or target_paths <= 0
+        or not isinstance(actual, list)
+    ):
+        return False
+
+    if actual == []:
+        return math.comb(rows + columns - 2, rows - 1) < target_paths
+
+    if (
+        len(actual) != rows
+        or any(
+            not isinstance(row, str)
+            or len(row) != columns
+            or any(cell not in ".#" for cell in row)
+            for row in actual
+        )
+    ):
+        return False
+
+    paths = [0] * columns
+    for row in range(rows):
+        for column in range(columns):
+            if actual[row][column] == "#":
+                paths[column] = 0
+            elif row == 0 and column == 0:
+                paths[column] = 1
+            else:
+                from_above = paths[column]
+                from_left = paths[column - 1] if column else 0
+                paths[column] = min(target_paths + 1, from_above + from_left)
+
+    return paths[-1] == target_paths
+
+
+def _bounded_exact_monotone_path_grid_match(
+    actual: Any,
+    max_rows: Any,
+    max_columns: Any,
+    target_paths: Any,
+) -> bool:
+    if (
+        not isinstance(max_rows, int)
+        or isinstance(max_rows, bool)
+        or not isinstance(max_columns, int)
+        or isinstance(max_columns, bool)
+        or not isinstance(target_paths, int)
+        or isinstance(target_paths, bool)
+        or max_rows <= 0
+        or max_columns <= 0
+        or target_paths <= 0
+        or not isinstance(actual, list)
+        or not actual
+        or not isinstance(actual[0], str)
+        or not actual[0]
+    ):
+        return False
+
+    rows = len(actual)
+    columns = len(actual[0])
+    if (
+        rows > max_rows
+        or columns > max_columns
+        or any(
+            not isinstance(row, str)
+            or len(row) != columns
+            or any(cell not in ".#" for cell in row)
+            for row in actual
+        )
+    ):
+        return False
+
+    paths = [0] * columns
+    for row in range(rows):
+        for column in range(columns):
+            if actual[row][column] == "#":
+                paths[column] = 0
+            elif row == 0 and column == 0:
+                paths[column] = 1
+            else:
+                from_above = paths[column]
+                from_left = paths[column - 1] if column else 0
+                paths[column] = min(target_paths + 1, from_above + from_left)
+
+    return paths[-1] == target_paths
+
+
+def _unique_monotone_path_grid_match(
+    actual: Any,
+    rows: Any,
+    columns: Any,
+) -> bool:
+    return _exact_monotone_path_grid_match(actual, rows, columns, 1)
+
+
 def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> bool:
     validator = case.validator or {}
     kind = str(validator.get("kind") or "")
+    if kind == "json_object":
+        return _json_object_match(actual, expected)
+    if kind == "generated_schedule":
+        return _generated_schedule_match(
+            actual,
+            case.input.get(str(validator.get("n_param") or "n")),
+        )
+    if kind == "unique_monotone_path_grid":
+        return _unique_monotone_path_grid_match(
+            actual,
+            case.input.get(str(validator.get("rows_param") or "m")),
+            case.input.get(str(validator.get("columns_param") or "n")),
+        )
+    if kind == "exact_monotone_path_grid":
+        return _exact_monotone_path_grid_match(
+            actual,
+            case.input.get(str(validator.get("rows_param") or "m")),
+            case.input.get(str(validator.get("columns_param") or "n")),
+            case.input.get(str(validator.get("paths_param") or "k")),
+        )
+    if kind == "bounded_exact_monotone_path_grid":
+        return _bounded_exact_monotone_path_grid_match(
+            actual,
+            validator.get("max_rows"),
+            validator.get("max_columns"),
+            case.input.get(str(validator.get("paths_param") or "k")),
+        )
     if kind == "balanced_bst":
         values_param = str(validator.get("values_param") or "nums")
         values = case.input.get(values_param)
@@ -3071,6 +3914,15 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         )
     if kind == "unordered_list":
         return _unordered_list_matches(actual, expected)
+    if kind == "unordered_string":
+        return _unordered_string_match(actual, expected)
+    if kind == "character_pair_rearrangement":
+        return _character_pair_rearrangement_match(
+            actual,
+            case.input.get(str(validator.get("string_param") or "s")),
+            case.input.get(str(validator.get("x_param") or "x")),
+            case.input.get(str(validator.get("y_param") or "y")),
+        )
     if kind == "unordered_table":
         return _unordered_table_matches(actual, expected)
     if kind == "unordered_nested_list":
@@ -3079,6 +3931,23 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         return _adjacent_path_match(
             actual,
             case.input.get(str(validator.get("pairs_param") or "adjacentPairs")),
+        )
+    if kind == "sequential_grid_path_cover":
+        return _sequential_grid_path_cover_match(
+            actual,
+            expected,
+            case.input.get(str(validator.get("grid_param") or "grid")),
+            case.input.get(str(validator.get("k_param") or "k")),
+        )
+    if kind == "modified_graph_edges":
+        return _modified_graph_edges_match(
+            actual,
+            expected,
+            case.input.get(str(validator.get("n_param") or "n")),
+            case.input.get(str(validator.get("edges_param") or "edges")),
+            case.input.get(str(validator.get("source_param") or "source")),
+            case.input.get(str(validator.get("destination_param") or "destination")),
+            case.input.get(str(validator.get("target_param") or "target")),
         )
     if kind == "valid_pair_arrangement":
         return _valid_pair_arrangement_match(
@@ -3091,8 +3960,21 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(str(validator.get("values_param") or "nums")),
             case.input.get(str(validator.get("k_param") or "k")),
         )
+    if kind == "recovered_original_array":
+        return _recovered_original_array_match(
+            actual,
+            case.input.get(str(validator.get("values_param") or "nums")),
+        )
+    if kind == "valid_subarray_size":
+        return _valid_subarray_size_match(
+            actual,
+            case.input.get(str(validator.get("values_param") or "nums")),
+            case.input.get(str(validator.get("threshold_param") or "threshold")),
+        )
     if kind == "ordered_groups_unordered_items":
         return _ordered_groups_unordered_items_match(actual, expected)
+    if kind == "ordered_results_unordered_lists":
+        return _ordered_results_unordered_lists_match(actual, expected)
     if kind == "duplicate_subtrees":
         return _duplicate_subtrees_match(actual, expected)
     if kind == "beautiful_arrangement_ii":
@@ -3112,10 +3994,15 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(str(validator.get("string_param") or "s")),
         )
     if kind == "shortest_superstring":
+        word_params = validator.get("word_params")
+        if isinstance(word_params, list):
+            words = [case.input.get(str(param)) for param in word_params]
+        else:
+            words = case.input.get(str(validator.get("words_param") or "words"))
         return _shortest_superstring_match(
             actual,
             expected,
-            case.input.get(str(validator.get("words_param") or "words")),
+            words,
         )
     if kind == "shortest_common_supersequence":
         return _shortest_common_supersequence_match(
@@ -3296,6 +4183,16 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(r_param),
             case.input.get(c_param),
         )
+    if kind == "balanced_factor_decomposition":
+        return _balanced_factor_decomposition_match(
+            actual,
+            expected,
+            case.input.get(str(validator.get("n_param") or "n")),
+            case.input.get(str(validator.get("k_param") or "k")),
+        )
+    if kind == "absolute_value_sorted":
+        values_param = str(validator.get("values_param") or "nums")
+        return _absolute_value_sorted_match(actual, case.input.get(values_param))
     if kind == "wiggle_sort":
         values_param = str(validator.get("values_param") or "nums")
         return _wiggle_sort_matches(
@@ -3309,6 +4206,13 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     if kind == "distant_barcodes":
         values_param = str(validator.get("values_param") or "barcodes")
         return _distant_barcodes_match(actual, case.input.get(values_param))
+    if kind == "maximum_bob_points":
+        return _maximum_bob_points_match(
+            actual,
+            expected,
+            case.input.get(str(validator.get("arrows_param") or "numArrows")),
+            case.input.get(str(validator.get("alice_param") or "aliceArrows")),
+        )
     if kind == "rearranged_k_distance":
         return _rearranged_k_distance_match(
             actual,
@@ -3367,6 +4271,24 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(str(validator.get("row_sums_param") or "rowSum")),
             case.input.get(str(validator.get("column_sums_param") or "colSum")),
         )
+    if kind == "grid_layout":
+        return _grid_layout_match(
+            actual,
+            case.input.get(str(validator.get("n_param") or "n")),
+            case.input.get(str(validator.get("edges_param") or "edges")),
+        )
+    if kind == "last_marked_nodes":
+        return _last_marked_nodes_match(
+            actual,
+            case.input.get(str(validator.get("edges_param") or "edges")),
+        )
+    if kind == "condition_matrix":
+        return _condition_matrix_match(
+            actual,
+            case.input.get(str(validator.get("k_param") or "k")),
+            case.input.get(str(validator.get("row_conditions_param") or "row_conditions")),
+            case.input.get(str(validator.get("column_conditions_param") or "col_conditions")),
+        )
     if kind == "group_people":
         values_param = str(validator.get("values_param") or "group_sizes")
         return _group_people_match(actual, case.input.get(values_param))
@@ -3376,6 +4298,9 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     if kind == "no_zero_sum":
         n_param = str(validator.get("n_param") or "n")
         return _no_zero_sum_match(actual, case.input.get(n_param))
+    if kind == "color_red_triangle":
+        n_param = str(validator.get("n_param") or "n")
+        return _color_red_triangle_match(actual, case.input.get(n_param))
     if kind == "sufficient_team":
         return _sufficient_team_match(
             actual,
@@ -3406,6 +4331,12 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     if kind == "minimum_subsequence":
         values_param = str(validator.get("values_param") or "nums")
         return _minimum_subsequence_match(actual, case.input.get(values_param))
+    if kind == "maximum_even_split":
+        final_sum_param = str(validator.get("final_sum_param") or "finalSum")
+        return _maximum_even_split_match(
+            actual,
+            case.input.get(final_sum_param),
+        )
     if kind == "minimum_unique_rows_matrix":
         values_param = str(validator.get("values_param") or "nums")
         return _minimum_unique_rows_matrix_match(actual, case.input.get(values_param))
@@ -3544,6 +4475,24 @@ def _prepare_validated_kwargs(
             kwargs[matrix_name] = _JudgeBinaryMatrix(
                 matrix_fixture["matrix"],
                 int(matrix_fixture.get("max_queries", 1000)),
+            )
+    stream_fixture = kwargs.get("stream")
+    if isinstance(stream_fixture, dict):
+        stream_bits = stream_fixture.get("bits")
+        if stream_bits is None and "repeated_bit" in stream_fixture:
+            repeated_bit = stream_fixture["repeated_bit"]
+            repeat_count = stream_fixture.get("repeat_count")
+            suffix = stream_fixture.get("suffix", [])
+            if not isinstance(repeat_count, int) or isinstance(repeat_count, bool):
+                raise ValueError("infinite stream repeat_count must be an integer")
+            if repeat_count < 0 or not isinstance(suffix, list):
+                raise ValueError("infinite stream compact fixture is invalid")
+            stream_bits = [repeated_bit] * repeat_count + suffix
+        if stream_bits is not None:
+            max_reads = stream_fixture.get("max_reads")
+            kwargs["stream"] = _JudgeInfiniteStream(
+                stream_bits,
+                None if max_reads is None else int(max_reads),
             )
     font_info_fixture = kwargs.get("fontInfo")
     if isinstance(font_info_fixture, dict) and "heights" in font_info_fixture:
@@ -3798,6 +4747,7 @@ def _run_python_solution_on_case(
     list_node_param_names: list[str] | tuple[str, ...] = (),
     returns_tree: bool = False,
     returns_list_node: bool = False,
+    step_limit: int = _STEP_LIMIT,
 ) -> tuple[RunCaseResult, Any, Any, str, float | None]:
     import copy
 
@@ -3837,7 +4787,7 @@ def _run_python_solution_on_case(
         result, _trace = run_with_trace(
             solve_fn,
             call_kwargs,
-            step_limit=_RUNTIME_STEP_LIMIT if case.kind == "benchmark" else _STEP_LIMIT,
+            step_limit=_RUNTIME_STEP_LIMIT if case.kind == "benchmark" else step_limit,
             capture=False,
         )
         elapsed_ms = (time.perf_counter() - start) * 1000.0
@@ -4244,6 +5194,8 @@ def _run_python_validated_cases(
     first_result: Any = None
     first_expected: Any = None
     error_message = ""
+    certificate_complete = leetcode_complexity_certificate_status(challenge.info.id).complete
+    case_step_limit = _RUNTIME_STEP_LIMIT if certificate_complete else _STEP_LIMIT
     for case in run_cases:
         case_result, result, expected, message, _elapsed_ms = _run_python_solution_on_case(
             solve_fn=solve_fn,
@@ -4255,6 +5207,7 @@ def _run_python_validated_cases(
             list_node_param_names=list_node_param_names,
             returns_tree=returns_tree,
             returns_list_node=returns_list_node,
+            step_limit=case_step_limit,
         )
         case_results.append(case_result)
         if first_result is None and result is not None:

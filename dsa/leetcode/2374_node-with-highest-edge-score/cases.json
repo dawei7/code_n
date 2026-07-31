@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2374",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: largest incoming-label sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [1, 0, 0, 0, 0, 7, 7, 5]},
+      "expected": 7,
+      "tags": ["sample", "score"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: smallest index breaks a score tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [2, 0, 0, 2]},
+      "expected": 0,
+      "tags": ["sample", "tie"]
+    },
+    {
+      "id": "trial-two-node-cycle",
+      "name": "minimum graph",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [1, 0]},
+      "expected": 0,
+      "tags": ["minimum", "cycle"]
+    },
+    {
+      "id": "trial-labels-not-indegree",
+      "name": "source labels determine the score",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [1, 2, 0, 2, 2]},
+      "expected": 2,
+      "tags": ["semantic", "labels"]
+    },
+    {
+      "id": "trial-zero-label",
+      "name": "source node zero contributes zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [1, 2, 1]},
+      "expected": 1,
+      "tags": ["zero", "score"]
+    },
+    {
+      "id": "real-node-with-no-incoming-edge",
+      "name": "hidden: zero-score nodes do not beat a positive score",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [3, 3, 3, 0, 3, 3]},
+      "expected": 3,
+      "tags": ["hidden", "incoming"]
+    },
+    {
+      "id": "real-nonzero-tie",
+      "name": "hidden: tie between nonzero target indices",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [1, 2, 3, 2, 1]},
+      "expected": 1,
+      "tags": ["hidden", "tie"]
+    }
+  ]
+}

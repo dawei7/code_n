@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_211", "frontend_id": "211", "title_slug": "design-add-and-search-words-data-structure", "url": "https://leetcode.com/problems/design-add-and-search-words-data-structure/description/", "paid_only": false, "content_sha256": "89cb44710da6d3dea7f69979b40b7a4a4e856e6f8010fecd6cb9f25db8abdcac", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "[\"WordDictionary\",\"addWord\",\"addWord\",\"addWord\",\"search\",\"search\",\"search\",\"search\"], [[],[\"bad\"],[\"dad\"],[\"mad\"],[\"pad\"],[\"bad\"],[\".ad\"],[\"b..\"]]", "output": "[null,null,null,null,false,true,true,true]", "has_explanation": true}],
+    "constraint_count": 5,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 1, "local_images": 0, "local_tables": 1, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "ea215e39ea352a04080b572e280d50bb411195baf66b4afb9c7f2c60b2562fe6", "reference/contract.md": "34cc245d704c773b811ef3fb3925fc578050dc2c13e1278d63c3360f298d01ba", "reference/examples.md": "97ebb0b0d1e3aa62f4cfa30fdf10fe0d6bee9186b3d1611790d71ad0c0f49aae", "reference/constraints.md": "5a35a25ac3f5911f274f5b2b3f556b56143f1116e7b7a6e5c2b412e75134ff7e"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

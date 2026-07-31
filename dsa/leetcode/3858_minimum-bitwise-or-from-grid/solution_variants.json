@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Bitwise OR From Grid and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Greedily forbids bits from most to least significant while preserving at least one jointly compatible value in every row.",
+      "time_complexity": "O(BMN)",
+      "space_complexity": "O(1)"
     }
   ]
 }

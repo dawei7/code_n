@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimize the Maximum of Two Arrays and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the first maximum whose individual and combined eligibility counts can fill both arrays.",
+      "time_complexity": "O(log D + log C)",
+      "space_complexity": "O(1)"
     }
   ]
 }

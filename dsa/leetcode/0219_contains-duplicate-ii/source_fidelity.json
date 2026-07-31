@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_219", "frontend_id": "219", "title_slug": "contains-duplicate-ii", "url": "https://leetcode.com/problems/contains-duplicate-ii/description/", "paid_only": false, "content_sha256": "7a08c77f43eb28a5b64d224aa525f55ffbc9dec470c0f112c7897539cdf02b09", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "nums = [1,2,3,1], k = 3", "output": "true", "has_explanation": false}, {"ordinal": 2, "input": "nums = [1,0,1,1], k = 1", "output": "true", "has_explanation": false}, {"ordinal": 3, "input": "nums = [1,2,3,1,2,3], k = 2", "output": "false", "has_explanation": false}],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "10a97274855493940b92e09daa71b1d36501521179e5d738566507ffc3ee97c3", "reference/contract.md": "59c285092a22312523163a2636f00c432d11a9d47ef93252d7d0827bc1ab69e9", "reference/examples.md": "f9f0c6aff182903f7d91b590d62bd4e2e68981a58762d90730141bceeb0763ab", "reference/constraints.md": "a767c707a62657929f6e49e2000b73d5223aee9adf4a8b726fd4020e85458d65"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

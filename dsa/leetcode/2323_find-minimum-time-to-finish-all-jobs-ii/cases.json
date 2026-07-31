@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2323",
+  "cases": [
+    {"id":"sample-three","name":"sample: reassignment finishes all jobs in two days","kind":"sample","visible":true,"input":{"jobs":[5,2,4],"workers":[1,7,5]},"expected":2,"tags":["sample","reassignment"]},
+    {"id":"sample-four","name":"sample: every sorted pair takes three days","kind":"sample","visible":true,"input":{"jobs":[3,18,15,9],"workers":[6,5,1,3]},"expected":3,"tags":["sample","balanced-ratios"]},
+    {"id":"trial-single-exact","name":"one exactly divisible job-worker pair","kind":"trial","visible":true,"input":{"jobs":[12],"workers":[4]},"expected":3,"tags":["single-pair","exact-division"]},
+    {"id":"trial-round-up","name":"a partial final day rounds upward","kind":"trial","visible":true,"input":{"jobs":[10],"workers":[3]},"expected":4,"tags":["ceiling"]},
+    {"id":"trial-all-one-day","name":"every matched capacity covers its job in one day","kind":"trial","visible":true,"input":{"jobs":[8,1,5,3],"workers":[10,2,8,4]},"expected":1,"tags":["one-day"]},
+    {"id":"real-input-order-bad","name":"hidden: pairing by input index is suboptimal","kind":"real","visible":false,"input":{"jobs":[100,1],"workers":[1,100]},"expected":1,"tags":["hidden","sorting"]},
+    {"id":"real-duplicates","name":"hidden: duplicate workloads and capacities","kind":"real","visible":false,"input":{"jobs":[7,7,7,7],"workers":[2,2,3,3]},"expected":4,"tags":["hidden","duplicates"]},
+    {"id":"real-large-values","name":"hidden: values at the upper bound avoid floating arithmetic","kind":"real","visible":false,"input":{"jobs":[100000,99999,1],"workers":[100000,50000,1]},"expected":2,"tags":["hidden","upper-bound"]},
+    {"id":"real-bottleneck","name":"hidden: the slowest sorted pair determines completion","kind":"real","visible":false,"input":{"jobs":[2,20,30],"workers":[1,10,100]},"expected":2,"tags":["hidden","maximum-duration"]}
+  ]
+}

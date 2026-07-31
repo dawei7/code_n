@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2190",
+  "measurement_note": "Size is the array length n. Every value equals key, so all n-1 qualifying pairs exercise the counting path and have the unique target key. Correct repeated rescanning completes every tier and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: array length 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"key":1},
+      "expected": 1,
+      "tags": ["benchmark","scale-small","all-qualifying"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: array length 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"key":1},
+      "expected": 1,
+      "tags": ["benchmark","scale-medium","all-qualifying"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: array length 259",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 259,
+      "input": {"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"key":1},
+      "expected": 1,
+      "tags": ["benchmark","scale-large","all-qualifying"]
+    }
+  ]
+}

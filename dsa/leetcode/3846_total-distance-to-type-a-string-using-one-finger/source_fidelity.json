@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3846",
+    "frontend_id": "3846",
+    "title_slug": "total-distance-to-type-a-string-using-one-finger",
+    "url": "https://leetcode.com/problems/total-distance-to-type-a-string-using-one-finger/description/",
+    "paid_only": true,
+    "content_sha256": "6aefb11c6e3abfe8eb58f0e0224657d9ce2a6cd2b7436459fa2b030e80fd036d",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"hello\"",
+        "output": "17",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"a\"",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 1,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "cbcd127d6f488ae1cb306f527172819c67b9f8b4426c49cc73bb36983e9d2a51",
+      "reference/contract.md": "a3a877e9dbeede3fc2a3346abdba2c28073bac025c7d3f6276b8cab09d0584f9",
+      "reference/examples.md": "da257c88214b34b5aa6b178d028f94ca9c479306dc20b052f1d66d8315d84cb1",
+      "reference/constraints.md": "e79d1992f6c7f00a5de3c17cbca5ee5bf02435c4fa7a3b7176085ba3371e9dac"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

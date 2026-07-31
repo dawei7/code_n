@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Toggle Light Bulbs and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Toggles a fixed indexed state array and scans bulb numbers in ascending order.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -8,85 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Matrix, Enumeration, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [equal-sum-grid-partition-i](https://leetcode.com/problems/equal-sum-grid-partition-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/equal-sum-grid-partition-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/equal-sum-grid-partition-i/).
 
 ### Goal
-Given a 2D grid of integers, determine if it is possible to partition the grid into four rectangular sub-grids by drawing one horizontal line and one vertical line. The goal is to check if there exists a configuration where the sum of elements in each of the four resulting quadrants is equal.
+
+You are given an $m \times n$ matrix `grid` whose entries are positive integers. Determine whether one straight cut can divide the matrix into two sections with the same element sum.
+
+The cut may be horizontal, between two consecutive rows, or vertical, between two consecutive columns. It must span the entire grid, and both sections created by the cut must be nonempty. Only one orientation and one cut position are chosen; a horizontal and a vertical cut are not made together.
+
+Return `true` when at least one legal cut produces equal section sums, and return `false` otherwise.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: A list of lists of integers representing the 2D matrix.
+- `grid`: A rectangular matrix of positive integers.
+
+Let $m$ be the number of rows and $n$ the number of columns. The constraints are $1 \le m,n \le 10^5$, $2 \le mn \le 10^5$, and $1 \le \texttt{grid[i][j]} \le 10^5$.
 
 **Return value**
 
-- `bool`: Returns `True` if there exists a horizontal cut at row `i` and a vertical cut at column `j` such that the four resulting rectangular regions have identical sums, otherwise `False`.
+Return a boolean indicating whether one horizontal or vertical cut can form two nonempty sections with equal sums.
 
 ### Examples
+
 **Example 1**
 
-- Input: `grid = [[1, 2], [3, 4]]`
-- Output: `False`
+- Input: `grid = [[1,4],[2,3]]`
+- Output: `true`
+- Explanation: Cutting horizontally between the two rows gives sums $1+4=5$ and $2+3=5$.
 
 **Example 2**
 
-- Input: `grid = [[1, 1], [1, 1]]`
-- Output: `True`
-
-**Example 3**
-
-- Input: `grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
-- Output: `False`
+- Input: `grid = [[1,3],[2,4]]`
+- Output: `false`
+- Explanation: Neither the horizontal cut nor the vertical cut divides the total equally.
 
 ---
-
-## Solution
-### Approach
-The problem is solved using 2D Prefix Sums (or Summed-Area Table). By precomputing the prefix sums, we can calculate the sum of any rectangular sub-grid in $O(1)$ time. We then iterate through all possible horizontal cut positions (between rows) and vertical cut positions (between columns), checking if the four resulting quadrants have equal sums.
-
-### Complexity Analysis
-- **Time Complexity**: $O(M \times N)$, where $M$ is the number of rows and $N$ is the number of columns. We perform a single pass to build the prefix sum table and a nested loop to check all possible cut combinations.
-- **Space Complexity**: $O(M \times N)$ to store the 2D prefix sum table.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(grid: list[list[int]]) -> bool:
-    if not grid or not grid[0]:
-        return False
-
-    rows = len(grid)
-    cols = len(grid[0])
-
-    # Build 2D prefix sum table
-    # pref[i][j] stores sum of grid[0...i-1][0...j-1]
-    pref = [[0] * (cols + 1) for _ in range(rows + 1)]
-    for r in range(rows):
-        for c in range(cols):
-            pref[r + 1][c + 1] = grid[r][c] + pref[r][c + 1] + pref[r + 1][c] - pref[r][c]
-
-    def get_sum(r1, c1, r2, c2):
-        # Returns sum of rectangle from (r1, c1) to (r2, c2) inclusive
-        return pref[r2 + 1][c2 + 1] - pref[r1][c2 + 1] - pref[r2 + 1][c1] + pref[r1][c1]
-
-    # Iterate through all possible horizontal cuts (after row i)
-    # and vertical cuts (after column j)
-    # i ranges from 0 to rows-2, j ranges from 0 to cols-2
-    for i in range(rows - 1):
-        for j in range(cols - 1):
-            sum1 = get_sum(0, 0, i, j)
-            sum2 = get_sum(0, j + 1, i, cols - 1)
-            sum3 = get_sum(i + 1, 0, rows - 1, j)
-            sum4 = get_sum(i + 1, j + 1, rows - 1, cols - 1)
-
-            if sum1 == sum2 == sum3 == sum4:
-                return True
-
-    return False
-```
-</details>

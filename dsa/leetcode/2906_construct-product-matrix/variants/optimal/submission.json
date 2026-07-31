@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3031",
+  "frontend_id": "2906",
+  "title_slug": "construct-product-matrix",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.constructProductMatrix",
+  "verified_submission_id": "2078071772",
+  "verified_at": "2026-07-23T07:30:07.369628+00:00"
+}

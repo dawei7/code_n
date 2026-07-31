@@ -1,16 +1,6 @@
 {
-  "schema_version": 1,
-  "challenge_id": "lc_3054",
-  "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Binary Tree Nodes and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+  "schema_version":1,
+  "challenge_id":"lc_3054",
+  "default_variant":"optimal",
+  "variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Identifies the null-parent root, tests membership in the set of parent values for inner nodes, and labels all remaining nodes as leaves.","time_complexity":"O(n log n)","space_complexity":"O(n)"}]
 }

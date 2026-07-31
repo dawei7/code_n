@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4004",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Sends every deficit unit through a sparse circular minimum-cost-flow network using potentials and heap-based shortest augmenting paths.",
+      "time_complexity": "O(n^2 log n)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3715",
+  "frontend_id": "3413",
+  "title_slug": "maximum-coins-from-k-consecutive-bags",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximumCoins",
+  "verified_submission_id": "2081544129",
+  "verified_at": "2026-07-26T04:59:00Z"
+}

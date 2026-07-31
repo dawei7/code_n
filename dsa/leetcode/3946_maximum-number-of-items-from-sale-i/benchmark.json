@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3946",
+  "cases": [
+    {
+      "id": "benchmark-activation-grid-16",
+      "name": "benchmark: activate 16 equal-factor types with n = budget = 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "items": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1]],
+        "budget": 16
+      },
+      "expected": 256,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "scale-small", "activation", "unbounded-copies"]
+    },
+    {
+      "id": "benchmark-activation-grid-24",
+      "name": "benchmark: activate 24 equal-factor types with n = budget = 24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 576,
+      "input": {
+        "items": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1]],
+        "budget": 24
+      },
+      "expected": 576,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "scale-medium", "activation", "unbounded-copies"]
+    },
+    {
+      "id": "benchmark-activation-grid-48",
+      "name": "benchmark: activate 48 equal-factor types with n = budget = 48",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2304,
+      "input": {
+        "items": [[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1]],
+        "budget": 48
+      },
+      "expected": 2304,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "scale-large", "activation", "unbounded-copies"]
+    }
+  ]
+}

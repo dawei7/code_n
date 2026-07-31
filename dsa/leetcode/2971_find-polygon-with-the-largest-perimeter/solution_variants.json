@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Polygon With the Largest Perimeter and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts the side lengths and tracks the greatest prefix whose longest side is smaller than the sum of all preceding sides.",
+      "time_complexity": "O(N log N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

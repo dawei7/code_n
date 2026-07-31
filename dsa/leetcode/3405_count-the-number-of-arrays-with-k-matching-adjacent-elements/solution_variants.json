@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count the Number of Arrays with K Matching Adjacent Elements and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Chooses which adjacency slots match, chooses the first value, and assigns one of m - 1 alternatives at every remaining slot using modular combinatorics.",
+      "time_complexity": "O(min(k, n - 1 - k) + log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

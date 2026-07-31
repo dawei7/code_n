@@ -1,0 +1,763 @@
+{
+  "challenge_id": "lc_3278",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official candidates and projects",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 101,
+              "skill": "Python",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 101,
+              "skill": "Tableau",
+              "proficiency": 3
+            },
+            {
+              "candidate_id": 101,
+              "skill": "PostgreSQL",
+              "proficiency": 4
+            },
+            {
+              "candidate_id": 101,
+              "skill": "TensorFlow",
+              "proficiency": 2
+            },
+            {
+              "candidate_id": 102,
+              "skill": "Python",
+              "proficiency": 4
+            },
+            {
+              "candidate_id": 102,
+              "skill": "Tableau",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 102,
+              "skill": "PostgreSQL",
+              "proficiency": 4
+            },
+            {
+              "candidate_id": 102,
+              "skill": "R",
+              "proficiency": 4
+            },
+            {
+              "candidate_id": 103,
+              "skill": "Python",
+              "proficiency": 3
+            },
+            {
+              "candidate_id": 103,
+              "skill": "Tableau",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 103,
+              "skill": "PostgreSQL",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 103,
+              "skill": "Spark",
+              "proficiency": 4
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 501,
+              "skill": "Python",
+              "importance": 4
+            },
+            {
+              "project_id": 501,
+              "skill": "Tableau",
+              "importance": 3
+            },
+            {
+              "project_id": 501,
+              "skill": "PostgreSQL",
+              "importance": 5
+            },
+            {
+              "project_id": 502,
+              "skill": "Python",
+              "importance": 3
+            },
+            {
+              "project_id": 502,
+              "skill": "Tableau",
+              "importance": 4
+            },
+            {
+              "project_id": 502,
+              "skill": "R",
+              "importance": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            501,
+            101,
+            105
+          ],
+          [
+            502,
+            102,
+            130
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "multiple-projects"
+      ]
+    },
+    {
+      "id": "sample-tie-break",
+      "name": "sample: lower candidate id wins a score tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 2,
+              "skill": "Python",
+              "proficiency": 4
+            },
+            {
+              "candidate_id": 1,
+              "skill": "Python",
+              "proficiency": 4
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 10,
+              "skill": "Python",
+              "importance": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            10,
+            1,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-missing-skill",
+      "name": "trial: incomplete candidate is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 1,
+              "skill": "Python",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 1,
+              "skill": "SQL",
+              "proficiency": 3
+            },
+            {
+              "candidate_id": 2,
+              "skill": "Python",
+              "proficiency": 5
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 20,
+              "skill": "Python",
+              "importance": 4
+            },
+            {
+              "project_id": 20,
+              "skill": "SQL",
+              "importance": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            20,
+            1,
+            105
+          ]
+        ]
+      },
+      "tags": [
+        "missing-skill",
+        "coverage"
+      ]
+    },
+    {
+      "id": "trial-no-suitable-candidate",
+      "name": "trial: project without full coverage is omitted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 1,
+              "skill": "Python",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 2,
+              "skill": "SQL",
+              "proficiency": 5
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 30,
+              "skill": "Python",
+              "importance": 3
+            },
+            {
+              "project_id": 30,
+              "skill": "SQL",
+              "importance": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "omitted-project",
+        "coverage"
+      ]
+    },
+    {
+      "id": "trial-all-score-branches",
+      "name": "trial: above equal and below adjustments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 7,
+              "skill": "A",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 7,
+              "skill": "B",
+              "proficiency": 3
+            },
+            {
+              "candidate_id": 7,
+              "skill": "C",
+              "proficiency": 1
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 40,
+              "skill": "A",
+              "importance": 4
+            },
+            {
+              "project_id": 40,
+              "skill": "B",
+              "importance": 3
+            },
+            {
+              "project_id": 40,
+              "skill": "C",
+              "importance": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            40,
+            7,
+            105
+          ]
+        ]
+      },
+      "tags": [
+        "score",
+        "all-comparisons"
+      ]
+    },
+    {
+      "id": "trial-extra-skills-ignored",
+      "name": "trial: unrelated candidate skills do not affect score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 8,
+              "skill": "Python",
+              "proficiency": 4
+            },
+            {
+              "candidate_id": 8,
+              "skill": "Rust",
+              "proficiency": 1
+            },
+            {
+              "candidate_id": 9,
+              "skill": "Python",
+              "proficiency": 3
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 50,
+              "skill": "Python",
+              "importance": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            50,
+            8,
+            110
+          ]
+        ]
+      },
+      "tags": [
+        "extra-skills",
+        "score"
+      ]
+    },
+    {
+      "id": "trial-project-order",
+      "name": "trial: result rows follow project id order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 3,
+              "skill": "A",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 3,
+              "skill": "B",
+              "proficiency": 5
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 90,
+              "skill": "B",
+              "importance": 5
+            },
+            {
+              "project_id": 60,
+              "skill": "A",
+              "importance": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            60,
+            3,
+            100
+          ],
+          [
+            90,
+            3,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "ordering",
+        "multiple-projects"
+      ]
+    },
+    {
+      "id": "real-score-beats-id",
+      "name": "real: higher score beats lower candidate id",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 1,
+              "skill": "A",
+              "proficiency": 1
+            },
+            {
+              "candidate_id": 1,
+              "skill": "B",
+              "proficiency": 1
+            },
+            {
+              "candidate_id": 9,
+              "skill": "A",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 9,
+              "skill": "B",
+              "proficiency": 5
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 70,
+              "skill": "A",
+              "importance": 3
+            },
+            {
+              "project_id": 70,
+              "skill": "B",
+              "importance": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            70,
+            9,
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "score",
+        "tie-priority"
+      ]
+    },
+    {
+      "id": "real-single-requirement",
+      "name": "real: one required skill",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 11,
+              "skill": "X",
+              "proficiency": 2
+            },
+            {
+              "candidate_id": 12,
+              "skill": "X",
+              "proficiency": 3
+            },
+            {
+              "candidate_id": 13,
+              "skill": "X",
+              "proficiency": 4
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 80,
+              "skill": "X",
+              "importance": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            80,
+            13,
+            110
+          ]
+        ]
+      },
+      "tags": [
+        "single-skill",
+        "score"
+      ]
+    },
+    {
+      "id": "real-unmatched-project-among-matches",
+      "name": "real: unmatched project is omitted among valid projects",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 4,
+              "skill": "A",
+              "proficiency": 4
+            },
+            {
+              "candidate_id": 4,
+              "skill": "B",
+              "proficiency": 4
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 100,
+              "skill": "A",
+              "importance": 4
+            },
+            {
+              "project_id": 101,
+              "skill": "Z",
+              "importance": 1
+            },
+            {
+              "project_id": 102,
+              "skill": "B",
+              "importance": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            100,
+            4,
+            100
+          ],
+          [
+            102,
+            4,
+            95
+          ]
+        ]
+      },
+      "tags": [
+        "omitted-project",
+        "multiple-projects"
+      ]
+    },
+    {
+      "id": "real-complete-beats-partial",
+      "name": "real: complete lower-proficiency candidate beats partial expert",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 5,
+              "skill": "A",
+              "proficiency": 5
+            },
+            {
+              "candidate_id": 6,
+              "skill": "A",
+              "proficiency": 2
+            },
+            {
+              "candidate_id": 6,
+              "skill": "B",
+              "proficiency": 2
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 110,
+              "skill": "A",
+              "importance": 3
+            },
+            {
+              "project_id": 110,
+              "skill": "B",
+              "importance": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            110,
+            6,
+            90
+          ]
+        ]
+      },
+      "tags": [
+        "coverage",
+        "partial-expert"
+      ]
+    },
+    {
+      "id": "real-negative-adjustments",
+      "name": "real: several deficiencies reduce the base score",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Candidates": [
+            {
+              "candidate_id": 20,
+              "skill": "A",
+              "proficiency": 1
+            },
+            {
+              "candidate_id": 20,
+              "skill": "B",
+              "proficiency": 1
+            },
+            {
+              "candidate_id": 20,
+              "skill": "C",
+              "proficiency": 1
+            },
+            {
+              "candidate_id": 21,
+              "skill": "A",
+              "proficiency": 2
+            },
+            {
+              "candidate_id": 21,
+              "skill": "B",
+              "proficiency": 2
+            },
+            {
+              "candidate_id": 21,
+              "skill": "C",
+              "proficiency": 2
+            }
+          ],
+          "Projects": [
+            {
+              "project_id": 120,
+              "skill": "A",
+              "importance": 5
+            },
+            {
+              "project_id": 120,
+              "skill": "B",
+              "importance": 5
+            },
+            {
+              "project_id": 120,
+              "skill": "C",
+              "importance": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "project_id",
+          "candidate_id",
+          "score"
+        ],
+        "rows": [
+          [
+            120,
+            20,
+            85
+          ]
+        ]
+      },
+      "tags": [
+        "score",
+        "deficiencies"
+      ]
+    }
+  ]
+}

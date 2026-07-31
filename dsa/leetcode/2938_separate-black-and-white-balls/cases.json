@@ -1,0 +1,143 @@
+{
+  "challenge_id": "lc_2938",
+  "cases": [
+    {
+      "id": "sample-one-crossing",
+      "name": "sample: one black-white crossing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "101"
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-leading-black",
+      "name": "sample: leading black crosses two whites",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "100"
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-already-separated",
+      "name": "sample: already separated",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0111"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-operations"
+      ]
+    },
+    {
+      "id": "trial-single-white",
+      "name": "trial: one white ball",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "minimum",
+        "all-white"
+      ]
+    },
+    {
+      "id": "trial-single-black",
+      "name": "trial: one black ball",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 0,
+      "tags": [
+        "minimum",
+        "all-black"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "trial: alternating colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "101010"
+      },
+      "expected": 6,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-all-black",
+      "name": "hidden: all black balls",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "111111"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "all-black"
+      ]
+    },
+    {
+      "id": "real-all-white",
+      "name": "hidden: all white balls",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "000000"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "all-white"
+      ]
+    },
+    {
+      "id": "real-reverse-grouped",
+      "name": "hidden: every black precedes every white",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "111000"
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "maximum-crossings"
+      ]
+    },
+    {
+      "id": "real-mixed",
+      "name": "hidden: several separated black groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1101001"
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}
+

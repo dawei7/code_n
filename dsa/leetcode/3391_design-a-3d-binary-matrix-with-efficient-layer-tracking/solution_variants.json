@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design a 3D Binary Matrix with Efficient Layer Tracking and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Tracks active cells and layer counts directly while a lazy heap returns the greatest count and largest tied index.",
+      "time_complexity": "O(n + m log(n + m))",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

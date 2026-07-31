@@ -8,48 +8,51 @@
 | Category | Algorithms |
 | Topics | Array |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [all-divisions-with-the-highest-score-of-a-binary-array](https://leetcode.com/problems/all-divisions-with-the-highest-score-of-a-binary-array/) |
+| LeetCode | [Open](https://leetcode.com/problems/all-divisions-with-the-highest-score-of-a-binary-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/all-divisions-with-the-highest-score-of-a-binary-array/).
 
 ### Goal
-Split a binary array at every boundary from `0` through `n`. A split's score is the number of zeros to its left plus the number of ones to its right. Return every boundary attaining the highest score.
+
+Given a 0-indexed binary array `nums` of length $n$, consider every division
+index $i$ from $0$ through $n$. The left part contains the elements at indices
+$0$ through $i-1$, and the right part contains the elements at indices $i$
+through $n-1$. Either part may be empty: the left part is empty when $i=0$,
+and the right part is empty when $i=n$.
+
+The division score is the number of zeros in the left part plus the number of
+ones in the right part. Return all distinct division indices whose score is
+the highest possible. The platform accepts the indices in any order.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: a binary array.
+- `nums`: a binary array of length $n$, where $1 \le n \le 10^5$ and every
+  element is either `0` or `1`.
 
 **Return value**
 
-All maximum-scoring split indices in increasing order.
+A list containing every index $i$, $0 \le i \le n$, that attains the maximum
+division score.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [0, 0, 1, 0]`
 - Output: `[2, 4]`
+- Explanation: Divisions `2` and `4` both score `3`, which is the maximum.
 
 **Example 2**
 
 - Input: `nums = [0, 0, 0]`
 - Output: `[3]`
+- Explanation: Placing all three zeros on the left gives the unique maximum
+  score.
 
 **Example 3**
 
 - Input: `nums = [1, 1]`
 - Output: `[0]`
-
----
-
-## Solution
-### Approach
-Initialize the score at split zero as the total number of ones. Move the split one element at a time: crossing a zero increases the score by one, while crossing a one decreases it by one. Track the best score and replace or extend the answer list on each boundary.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)` for the output in the worst case, with `O(1)` auxiliary state
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: Keeping both ones on the right gives the unique maximum score.

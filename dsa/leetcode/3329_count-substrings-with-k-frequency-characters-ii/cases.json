@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3329",
+  "cases": [
+    {
+      "id": "sample-abacb",
+      "name": "sample: two possible qualifying letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abacb",
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-threshold-one",
+      "name": "sample: every substring qualifies at threshold one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcde",
+        "k": 1
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "minimum-threshold"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single-character boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-repeated",
+      "name": "trial: overlapping repeated-character substrings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "repeated",
+        "overlapping"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: no character reaches the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabc",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "no-match",
+        "threshold"
+      ]
+    },
+    {
+      "id": "real-full-string-only",
+      "name": "real: only the complete string qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ababa",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "full-string",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-two-qualifying-runs",
+      "name": "real: two qualifying runs with one overlapping substring",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaabbb",
+        "k": 3
+      },
+      "expected": 7,
+      "tags": [
+        "multiple-letters",
+        "overlap"
+      ]
+    }
+  ]
+}

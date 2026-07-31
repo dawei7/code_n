@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3891",
+  "cases": [
+    {
+      "id": "sample-one-middle-peak",
+      "name": "sample: one increment makes the sole interior index special",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "odd-length",
+        "single-peak"
+      ]
+    },
+    {
+      "id": "sample-left-peak-in-even-array",
+      "name": "sample: two increments make the cheaper interior position special",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          1,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "even-length",
+        "one-peak"
+      ]
+    },
+    {
+      "id": "sample-two-alternating-peaks",
+      "name": "sample: four increments attain both possible alternating peaks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          1,
+          4,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "odd-length",
+        "two-peaks"
+      ]
+    },
+    {
+      "id": "trial-already-special",
+      "name": "trial: the only interior index is already special",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-cost",
+        "already-special"
+      ]
+    },
+    {
+      "id": "trial-three-equal-values",
+      "name": "trial: strict inequality costs one on an equal triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "equal-values",
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "trial-even-choose-right",
+      "name": "trial: an even array chooses the cheaper right interior index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "even-length",
+        "right-phase"
+      ]
+    },
+    {
+      "id": "trial-even-existing-right-peak",
+      "name": "trial: an existing right peak gives a zero-cost maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          8,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "even-length",
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "trial-odd-forced-neighboring-highs",
+      "name": "trial: odd length forces two costly peaks around a high center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          100,
+          1,
+          1
+        ]
+      },
+      "expected": 200,
+      "tags": [
+        "trial",
+        "odd-length",
+        "forced-pattern"
+      ]
+    },
+    {
+      "id": "real-middle-switch-six",
+      "name": "hidden: the best even-length set switches parity in the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          100,
+          1,
+          1,
+          100,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "even-length",
+        "middle-switch"
+      ]
+    },
+    {
+      "id": "real-middle-switch-eight",
+      "name": "hidden: a longer array requires one interior phase switch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          100,
+          1,
+          1,
+          100,
+          1,
+          100,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "even-length",
+        "middle-switch"
+      ]
+    },
+    {
+      "id": "real-all-equal-odd",
+      "name": "hidden: every forced odd-position peak costs one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "odd-length",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "real-all-equal-even",
+      "name": "hidden: every maximum even-length pattern has equal cost",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "even-length",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "real-strictly-descending",
+      "name": "hidden: each forced peak in a descending odd array costs two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "odd-length",
+        "descending"
+      ]
+    },
+    {
+      "id": "real-strictly-ascending",
+      "name": "hidden: each chosen peak in an ascending even array costs two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "even-length",
+        "ascending"
+      ]
+    },
+    {
+      "id": "real-answer-exceeds-32-bit",
+      "name": "hidden: five forced low peaks produce a 64-bit total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000
+        ]
+      },
+      "expected": 5000000000,
+      "tags": [
+        "hidden",
+        "odd-length",
+        "large-total"
+      ]
+    }
+  ]
+}

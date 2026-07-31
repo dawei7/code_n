@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4002",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Subtracts all-odd compositions from all positive compositions and evaluates both binomial coefficients modulo a prime.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

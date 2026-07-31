@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_2533",
+  "cases": [
+    {"id": "sample-1", "name": "sample: zero blocks require pairs", "kind": "sample", "visible": true, "input": {"minLength": 2, "maxLength": 3, "oneGroup": 1, "zeroGroup": 2}, "expected": 5, "tags": ["sample", "mixed-groups"]},
+    {"id": "sample-2", "name": "sample: only the all-one string fits", "kind": "sample", "visible": true, "input": {"minLength": 4, "maxLength": 4, "oneGroup": 4, "zeroGroup": 3}, "expected": 1, "tags": ["sample", "exact-length"]},
+    {"id": "trial-unit-groups", "name": "trial: every binary string through length three", "kind": "trial", "visible": true, "input": {"minLength": 1, "maxLength": 3, "oneGroup": 1, "zeroGroup": 1}, "expected": 14, "tags": ["trial", "all-strings"]},
+    {"id": "trial-equal-pair-groups", "name": "trial: only length-two constant strings", "kind": "trial", "visible": true, "input": {"minLength": 1, "maxLength": 3, "oneGroup": 2, "zeroGroup": 2}, "expected": 2, "tags": ["trial", "unreachable-lengths"]},
+    {"id": "real-mixed-recurrence", "name": "hidden: several reachable lengths and block orders", "kind": "real", "visible": false, "input": {"minLength": 5, "maxLength": 7, "oneGroup": 2, "zeroGroup": 3}, "expected": 7, "tags": ["hidden", "dynamic-programming"]},
+    {"id": "real-single-character", "name": "hidden: both one-character strings", "kind": "real", "visible": false, "input": {"minLength": 1, "maxLength": 1, "oneGroup": 1, "zeroGroup": 1}, "expected": 2, "tags": ["hidden", "minimum-length"]},
+    {"id": "real-exact-combination", "name": "hidden: exact length from groups three and four", "kind": "real", "visible": false, "input": {"minLength": 10, "maxLength": 10, "oneGroup": 3, "zeroGroup": 4}, "expected": 3, "tags": ["hidden", "exact-length"]},
+    {"id": "real-asymmetric-groups", "name": "hidden: unit one groups and triple zero groups", "kind": "real", "visible": false, "input": {"minLength": 2, "maxLength": 5, "oneGroup": 1, "zeroGroup": 3}, "expected": 10, "tags": ["hidden", "asymmetric"]}
+  ]
+}

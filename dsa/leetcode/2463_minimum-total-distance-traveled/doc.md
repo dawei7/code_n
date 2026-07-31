@@ -8,84 +8,39 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-total-distance-traveled](https://leetcode.com/problems/minimum-total-distance-traveled/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-total-distance-traveled/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-total-distance-traveled/).
 
 ### Goal
-Given a set of robot positions on a 1D line and a set of factory locations, each with a specific repair capacity, assign each robot to a factory such that every robot is repaired and the total distance traveled by all robots is minimized. Each factory can only repair a limited number of robots.
+
+Broken robots and repair factories occupy positions on the x-axis. `robot[i]` is the unique initial position of robot $i$. Each `factory[j]` is `[position, limit]`, where factory $j$ has a unique position and can repair at most `limit` robots. A robot may initially share a position with a factory.
+
+Each robot travels continuously in one chosen direction until it reaches a factory with unused capacity, where it is repaired and stops. You may choose each robot's initial direction at any time. Robots move at equal speed, pass through one another without colliding, and pass factories whose limits are already reached. Moving from $x$ to $y$ contributes $\lvert y-x\rvert$ distance. Every robot is guaranteed to be repairable; return the minimum possible total distance traveled by all robots.
 
 ### Function Contract
+
 **Inputs**
 
-- `robot`: A list of integers representing the 1D coordinates of each robot.
-- `factory`: A list of lists, where each inner list `[position, limit]` represents the coordinate of a factory and the maximum number of robots it can repair.
+- `robot`: The unique integer positions of the broken robots.
+- `factory`: Pairs `[position, limit]` describing unique factory positions and repair capacities.
+
+There are at most $100$ robots and $100$ factories. Positions lie between $-10^9$ and $10^9$, each limit is between $0$ and the robot count, and total capacity is sufficient.
 
 **Return value**
 
-- An integer representing the minimum total distance all robots must travel to reach their assigned factories.
+- The minimum sum of robot-to-assigned-factory distances over every capacity-respecting repair assignment.
 
 ### Examples
+
 **Example 1**
 
-- Input: `robot = [0,4,6], factory = [[2,2],[6,2]]`
+- Input: `robot = [0, 4, 6], factory = [[2, 2], [6, 2]]`
 - Output: `4`
+- Explanation: Send the robots at `0` and `4` to position `2`, and repair the robot at `6` without movement.
 
 **Example 2**
 
-- Input: `robot = [1,-1], factory = [[-2,1],[2,1]]`
+- Input: `robot = [1, -1], factory = [[-2, 1], [2, 1]]`
 - Output: `2`
-
-**Example 3**
-
-- Input: `robot = [1,2,3], factory = [[1,1],[2,1],[3,1]]`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-The problem is solved using Dynamic Programming. First, sort both the robots and the factories by their positions. We define `dp[i][j]` as the minimum cost to repair the first `i` robots using a subset of the first `j` factories. The transition involves deciding how many robots (from 0 up to the factory's limit) the `j`-th factory will repair.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N * M * K)`, where `N` is the number of robots, `M` is the number of factories, and `K` is the maximum capacity of a factory. Given the constraints, this is efficient enough.
-- **Space Complexity**: `O(N * M)` to store the DP table.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(robot: list[int], factory: list[list[int]]) -> int:
-    robot.sort()
-    factory.sort()
-
-    n = len(robot)
-    m = len(factory)
-
-    # dp[i][j] is the min cost to repair first i robots using first j factories
-    # Initialize with infinity
-    inf = float('inf')
-    dp = [[inf] * (m + 1) for _ in range(n + 1)]
-
-    # Base case: 0 robots cost 0 to repair
-    for j in range(m + 1):
-        dp[0][j] = 0
-
-    for j in range(1, m + 1):
-        f_pos, f_limit = factory[j-1]
-        for i in range(n + 1):
-            # Option 1: Don't use this factory at all
-            dp[i][j] = dp[i][j-1]
-
-            # Option 2: Use this factory to repair k robots (1 <= k <= f_limit)
-            cost = 0
-            for k in range(1, min(i, f_limit) + 1):
-                cost += abs(robot[i - k] - f_pos)
-                if dp[i - k][j - 1] != inf:
-                    dp[i][j] = min(dp[i][j], dp[i - k][j - 1] + cost)
-
-    return dp[n][m]
-```
-</details>
+- Explanation: Each robot travels one unit to the factory on its respective side.

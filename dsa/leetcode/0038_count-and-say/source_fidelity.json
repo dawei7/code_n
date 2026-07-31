@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_38", "frontend_id": "38",
+    "title_slug": "count-and-say",
+    "url": "https://leetcode.com/problems/count-and-say/description/",
+    "paid_only": false, "content_sha256": "631f29c05b3d8139b9a0508f672aa8da745774cc39e64290bb41bb43b32418a8", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 4", "output": "\"1211\"", "has_explanation": true},
+      {"ordinal": 2, "input": "n = 1", "output": "\"1\"", "has_explanation": true}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "03de531d5a850213c562bea9ce23a9e60b068a35b516980b1b4def824b7cf82f",
+      "reference/contract.md": "dc97ecd90990c691b2156032f875d4dcefc4e2c64dbfaa79c5ab0ef3bc8e4810",
+      "reference/examples.md": "9b70b0a95c643a6b9e85443ff48e1971220391350374aa4904eed2a61706218d",
+      "reference/constraints.md": "f6b09cdeef4f3605c3361d7ebaf13c78f307d3c546a7d1805082a90a44ce3355",
+      "reference/follow_up.md": "5266ac63790a68b8dedbb43a3376a4c213612776bcc6b67ed21fe97eb19aa55a"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

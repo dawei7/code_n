@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 
 from engine.solution_variants import validate_solution_variants
+from server.app.challenge_packages import leetcode_doc_markdown
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,7 +58,8 @@ def test_every_package_uses_the_optimal_first_variant_topology() -> None:
             if variant.get("kind") == "simplified":
                 simplified_packages.append(package.name)
 
-        shared_doc = (package / "doc.md").read_text(encoding="utf-8")
+        shared_doc = leetcode_doc_markdown(str(metadata.get("challenge_id") or ""))
+        assert shared_doc is not None, package
         assert "### Required Complexity" not in shared_doc, package
         assert "<summary>Approach</summary>" not in shared_doc, package
         assert not (package / "solutions").exists(), package

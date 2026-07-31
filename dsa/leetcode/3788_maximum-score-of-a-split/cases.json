@@ -1,0 +1,14 @@
+{"schema_version":1,"challenge_id":"lc_3788","cases":[
+{"id":"sample-1","name":"sample: later negative suffix minimum raises the score","kind":"sample","visible":true,"input":{"nums":[10,-1,3,-4,-5]},"expected":17,"validator":{"kind":"exact"},"tags":["sample","mixed-sign"]},
+{"id":"sample-2","name":"sample: maximum score remains negative","kind":"sample","visible":true,"input":{"nums":[-7,-5,3]},"expected":-2,"validator":{"kind":"exact"},"tags":["sample","negative-result"]},
+{"id":"sample-3","name":"sample: one valid split","kind":"sample","visible":true,"input":{"nums":[1,1]},"expected":0,"validator":{"kind":"exact"},"tags":["sample","minimum-length"]},
+{"id":"trial-two-mixed","name":"trial: subtracting a negative suffix value","kind":"trial","visible":true,"input":{"nums":[1,-1]},"expected":2,"validator":{"kind":"exact"},"tags":["trial","minimum-length"]},
+{"id":"trial-two-negative","name":"trial: two negative values","kind":"trial","visible":true,"input":{"nums":[-5,-1]},"expected":-4,"validator":{"kind":"exact"},"tags":["trial","negative-result"]},
+{"id":"trial-all-positive","name":"trial: longest prefix wins for positive values","kind":"trial","visible":true,"input":{"nums":[5,4,3]},"expected":6,"validator":{"kind":"exact"},"tags":["trial","positive"]},
+{"id":"real-all-negative","name":"hidden: shortest prefix wins among negative values","kind":"real","visible":false,"input":{"nums":[-3,-2,-1]},"expected":-1,"validator":{"kind":"exact"},"tags":["hidden","negative-result"]},
+{"id":"real-late-minimum","name":"hidden: suffix minimum lies beyond the adjacent element","kind":"real","visible":false,"input":{"nums":[4,2,8,7,-10,6]},"expected":31,"validator":{"kind":"exact"},"tags":["hidden","suffix-minimum"]},
+{"id":"real-best-first","name":"hidden: first split is optimal","kind":"real","visible":false,"input":{"nums":[9,-10,-10]},"expected":19,"validator":{"kind":"exact"},"tags":["hidden","first-split"]},
+{"id":"real-best-last","name":"hidden: last split is optimal","kind":"real","visible":false,"input":{"nums":[2,3,4,1]},"expected":8,"validator":{"kind":"exact"},"tags":["hidden","last-split"]},
+{"id":"real-large-positive","name":"hidden: result exceeds 32-bit signed range","kind":"real","visible":false,"input":{"nums":[1000000000,1000000000,-1000000000]},"expected":3000000000,"validator":{"kind":"exact"},"tags":["hidden","large-value"]},
+{"id":"real-equal-zero","name":"hidden: all-zero scores tie","kind":"real","visible":false,"input":{"nums":[0,0,0,0]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","ties","zero"]}
+]}

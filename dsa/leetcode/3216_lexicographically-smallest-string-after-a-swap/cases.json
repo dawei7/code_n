@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3216",
+  "cases": [
+    {
+      "id": "sample-beneficial-odd-swap",
+      "name": "sample: swap the first beneficial odd pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "45320"},
+      "expected": "43520",
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-no-improving-swap",
+      "name": "sample: no legal swap improves the string",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "001"},
+      "expected": "001",
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-two-even-digits",
+      "name": "trial: swap two descending even digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "42"},
+      "expected": "24",
+      "tags": ["minimum-length", "even-pair"]
+    },
+    {
+      "id": "trial-parity-mismatch",
+      "name": "trial: descending digits of different parity cannot swap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "21"},
+      "expected": "21",
+      "tags": ["minimum-length", "parity"]
+    },
+    {
+      "id": "trial-leftmost-inversion",
+      "name": "trial: the leftmost inversion dominates later choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "97531"},
+      "expected": "79531",
+      "tags": ["greedy", "odd-pair"]
+    },
+    {
+      "id": "trial-equal-pair-before-inversion",
+      "name": "trial: equal digits do not hide a later improvement",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "2242"},
+      "expected": "2224",
+      "tags": ["equal-digits", "even-pair"]
+    },
+    {
+      "id": "real-even-inversion-after-mismatches",
+      "name": "real: find an even inversion after mixed parity boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "13542"},
+      "expected": "13524",
+      "tags": ["late-swap"]
+    },
+    {
+      "id": "real-odd-inversion-near-end",
+      "name": "real: find an odd inversion near the end",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "2391"},
+      "expected": "2319",
+      "tags": ["late-swap", "odd-pair"]
+    },
+    {
+      "id": "real-leading-zero",
+      "name": "real: an even swap may create a leading zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "2001"},
+      "expected": "0201",
+      "tags": ["leading-zero"]
+    },
+    {
+      "id": "real-increasing-same-parity",
+      "name": "real: increasing same-parity digits remain unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "13579"},
+      "expected": "13579",
+      "tags": ["already-minimal"]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "real: equal digits remain unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "777777"},
+      "expected": "777777",
+      "tags": ["equal-digits"]
+    },
+    {
+      "id": "real-multiple-even-inversions",
+      "name": "real: choose the first of multiple even inversions",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "86420"},
+      "expected": "68420",
+      "tags": ["greedy", "multiple-options"]
+    }
+  ]
+}

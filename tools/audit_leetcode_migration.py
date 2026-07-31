@@ -22,6 +22,7 @@ if str(ROOT) not in sys.path:
 
 from engine.complexity_certificates import validate_complexity_certificate  # noqa: E402
 from engine.solution_variants import validate_solution_variants  # noqa: E402
+from tools.leetcode_source_fidelity import validate_source_fidelity  # noqa: E402
 
 
 LEETCODE_ROOT = ROOT / "dsa" / "leetcode"
@@ -36,6 +37,17 @@ DOC_SECTIONS = (
     "### Goal",
     "### Function Contract",
     "### Examples",
+)
+REFERENCE_SECTION_FILES = (
+    ("description.md", "## Description"),
+    ("contract.md", "## Function Contract"),
+    ("examples.md", "## Examples"),
+    ("constraints.md", "## Constraints"),
+)
+BASE_REFERENCE_HEADINGS = (
+    "## Description",
+    "## Function Contract",
+    "## Examples",
 )
 MIN_GOAL_WORDS = 60
 MIN_GOAL_PARAGRAPHS = 2
@@ -71,11 +83,56 @@ def _case_rows(payload: Any) -> list[dict[str, Any]]:
 
 
 def _doc_status(path: Path) -> dict[str, Any]:
-    try:
-        text = path.read_text(encoding="utf-8")
-    except OSError:
-        text = ""
-    positions = [text.find(section) for section in DOC_SECTIONS]
+    reference_dir = path.parent / "reference"
+    source_fidelity = validate_source_fidelity(path.parent)
+    reviewed_manifest = _load_json(path.parent / "source_fidelity.json")
+    reviewed_structure = (
+        reviewed_manifest.get("structure")
+        if isinstance(reviewed_manifest, dict)
+        else None
+    )
+    reviewed_sections = (
+        reviewed_structure.get("sections")
+        if isinstance(reviewed_structure, dict)
+        else None
+    )
+    if source_fidelity.verified and isinstance(reviewed_sections, list):
+        reference_filenames: list[str] = []
+        for raw_section in reviewed_sections:
+            section = str(raw_section or "").strip()
+            if not section:
+                continue
+            reference_filenames.append(f"{section}.md")
+            if section == "description":
+                reference_filenames.append("contract.md")
+        reference_paths = tuple(reference_dir / filename for filename in reference_filenames)
+        uses_reference_sections = (
+            reference_dir.is_dir()
+            and all(section.is_file() for section in reference_paths)
+            and all(
+                required in reference_filenames
+                for required in ("description.md", "contract.md", "examples.md")
+            )
+        )
+    else:
+        reference_paths = tuple(
+            reference_dir / filename for filename, _heading in REFERENCE_SECTION_FILES
+        )
+        uses_reference_sections = reference_dir.is_dir() and all(
+            section.is_file() for section in reference_paths
+        )
+    if uses_reference_sections:
+        text = "\n\n".join(section.read_text(encoding="utf-8") for section in reference_paths)
+        required_sections = BASE_REFERENCE_HEADINGS
+        narrative_pattern = r"^## Description\s*$\s*(.*?)(?=^## Function Contract\s*$)"
+    else:
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            text = ""
+        required_sections = DOC_SECTIONS
+        narrative_pattern = r"^### Goal\s*$\s*(.*?)(?=^### Function Contract\s*$)"
+    positions = [text.find(section) for section in required_sections]
     complete = bool(text) and not any(marker in text for marker in PLACEHOLDERS)
     complete = complete and all(position >= 0 for position in positions)
     complete = complete and positions == sorted(positions)
@@ -84,11 +141,7 @@ def _doc_status(path: Path) -> dict[str, Any]:
         and "<summary>Approach</summary>" not in text
     )
     complete = complete and shared_sections_only
-    goal_match = re.search(
-        r"^### Goal\s*$\s*(.*?)(?=^### Function Contract\s*$)",
-        text,
-        flags=re.MULTILINE | re.DOTALL,
-    )
+    goal_match = re.search(narrative_pattern, text, flags=re.MULTILINE | re.DOTALL)
     goal_text = goal_match.group(1).strip() if goal_match else ""
     goal_paragraphs = [
         paragraph.strip()
@@ -101,11 +154,11 @@ def _doc_status(path: Path) -> dict[str, Any]:
         and len(goal_paragraphs) >= MIN_GOAL_PARAGRAPHS
     )
     complete = complete and goal_narrative_complete
-    return {
+    result = {
         "complete": complete,
         "missing_sections": [
             section
-            for section, position in zip(DOC_SECTIONS, positions, strict=True)
+            for section, position in zip(required_sections, positions, strict=True)
             if position < 0
         ],
         "has_placeholder": any(marker in text for marker in PLACEHOLDERS),
@@ -116,6 +169,9 @@ def _doc_status(path: Path) -> dict[str, Any]:
         "goal_minimum_words": MIN_GOAL_WORDS,
         "goal_minimum_paragraphs": MIN_GOAL_PARAGRAPHS,
     }
+    if uses_reference_sections:
+        result["uses_reference_sections"] = True
+    return result
 
 
 def _cases_status(path: Path) -> dict[str, Any]:
@@ -434,6 +490,15 @@ def build_report() -> dict[str, Any]:
         for entry in entries
     )
     first_incomplete = next((entry for entry in entries if not entry["complete"] and not entry["blocked"]), None)
+    first_unverified_submission = next(
+        (
+            entry
+            for entry in entries
+            if not entry["checks"]["leetcode_submission"]["complete"]
+            and not entry["blocked"]
+        ),
+        None,
+    )
     return {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -445,6 +510,15 @@ def build_report() -> dict[str, Any]:
             "title": first_incomplete["title"],
             "package": first_incomplete["package"],
         },
+        "first_unverified_optimal_submission": (
+            None
+            if first_unverified_submission is None
+            else {
+                "frontend_id": first_unverified_submission["frontend_id"],
+                "title": first_unverified_submission["title"],
+                "package": first_unverified_submission["package"],
+            }
+        ),
         "entries": entries,
     }
 
@@ -454,6 +528,7 @@ def _write_report(report: dict[str, Any]) -> None:
     REPORT_JSON.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     counts = report["counts"]
     first = report["first_actionable_incomplete"]
+    first_unverified_submission = report["first_unverified_optimal_submission"]
     lines = [
         "# Two Sum Migration Progress",
         "",
@@ -471,7 +546,16 @@ def _write_report(report: dict[str, Any]) -> None:
         "| --- | ---: |",
     ]
     lines.extend(f"| {key.replace('_', ' ')} | {value} |" for key, value in counts.items())
-    lines.extend(["", "## Next package", ""])
+    lines.extend(["", "## Verified-solution queue", ""])
+    if first_unverified_submission:
+        lines.append(
+            f"- {first_unverified_submission['frontend_id']} â€” "
+            f"{first_unverified_submission['title']} "
+            f"(`{first_unverified_submission['package']}`)"
+        )
+    else:
+        lines.append("- Empty")
+    lines.extend(["", "## Next generally incomplete package", ""])
     if first:
         lines.append(f"- {first['frontend_id']} — {first['title']} (`{first['package']}`)")
     else:
@@ -507,7 +591,18 @@ def main() -> int:
         _write_blockers(blockers)
     report = build_report()
     _write_report(report)
-    print(json.dumps({"counts": report["counts"], "first_actionable_incomplete": report["first_actionable_incomplete"]}, indent=2))
+    print(
+        json.dumps(
+            {
+                "counts": report["counts"],
+                "first_unverified_optimal_submission": report[
+                    "first_unverified_optimal_submission"
+                ],
+                "first_actionable_incomplete": report["first_actionable_incomplete"],
+            },
+            indent=2,
+        )
+    )
     print(f"Wrote {REPORT_JSON.relative_to(ROOT)} and {REPORT_MD.relative_to(ROOT)}.")
     return 0
 

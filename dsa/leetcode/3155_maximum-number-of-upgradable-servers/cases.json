@@ -1,0 +1,354 @@
+{
+  "challenge_id": "lc_3155",
+  "cases": [
+    {
+      "id": "sample-two-centers",
+      "name": "sample: sell one server at each center",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "count": [
+          4,
+          3
+        ],
+        "upgrade": [
+          3,
+          5
+        ],
+        "sell": [
+          4,
+          2
+        ],
+        "money": [
+          8,
+          9
+        ]
+      },
+      "expected": [
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "independent-centers"
+      ]
+    },
+    {
+      "id": "sample-single-insufficient",
+      "name": "sample: one unaffordable server",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "count": [
+          1
+        ],
+        "upgrade": [
+          2
+        ],
+        "sell": [
+          1
+        ],
+        "money": [
+          1
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "sample",
+        "zero-upgrades"
+      ]
+    },
+    {
+      "id": "trial-mixed-centers",
+      "name": "trial: different optimal sale counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "count": [
+          2,
+          5,
+          3
+        ],
+        "upgrade": [
+          4,
+          9,
+          2
+        ],
+        "sell": [
+          1,
+          2,
+          4
+        ],
+        "money": [
+          10,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        2
+      ],
+      "tags": [
+        "mixed",
+        "independent-centers"
+      ]
+    },
+    {
+      "id": "trial-exact-budget",
+      "name": "trial: exact transformed budget boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "count": [
+          7
+        ],
+        "upgrade": [
+          10
+        ],
+        "sell": [
+          3
+        ],
+        "money": [
+          5
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "exact-boundary"
+      ]
+    },
+    {
+      "id": "trial-one-below-boundary",
+      "name": "trial: one unit below next upgrade",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "count": [
+          7
+        ],
+        "upgrade": [
+          10
+        ],
+        "sell": [
+          3
+        ],
+        "money": [
+          4
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "floor-boundary"
+      ]
+    },
+    {
+      "id": "trial-no-sale-needed",
+      "name": "trial: initial money upgrades every server",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "count": [
+          4
+        ],
+        "upgrade": [
+          6
+        ],
+        "sell": [
+          3
+        ],
+        "money": [
+          24
+        ]
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "all-upgraded"
+      ]
+    },
+    {
+      "id": "real-one-upgrade-after-sales",
+      "name": "real: sales finance exactly one upgrade",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "count": [
+          5
+        ],
+        "upgrade": [
+          9
+        ],
+        "sell": [
+          2
+        ],
+        "money": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sales-required"
+      ]
+    },
+    {
+      "id": "real-high-sale-price",
+      "name": "real: high sale price funds half the servers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "count": [
+          6
+        ],
+        "upgrade": [
+          100000
+        ],
+        "sell": [
+          100000
+        ],
+        "money": [
+          1
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-maximum-balanced-values",
+      "name": "real: maximum equal values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "count": [
+          100000
+        ],
+        "upgrade": [
+          100000
+        ],
+        "sell": [
+          100000
+        ],
+        "money": [
+          100000
+        ]
+      },
+      "expected": [
+        50000
+      ],
+      "tags": [
+        "maximum",
+        "overflow"
+      ]
+    },
+    {
+      "id": "real-single-affordable",
+      "name": "real: one server affordable without sale",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "count": [
+          1
+        ],
+        "upgrade": [
+          100000
+        ],
+        "sell": [
+          1
+        ],
+        "money": [
+          100000
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "single-server"
+      ]
+    },
+    {
+      "id": "real-single-unaffordable",
+      "name": "real: selling the only server leaves none to upgrade",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "count": [
+          1
+        ],
+        "upgrade": [
+          100000
+        ],
+        "sell": [
+          99999
+        ],
+        "money": [
+          1
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "single-server",
+        "zero-upgrades"
+      ]
+    },
+    {
+      "id": "real-multiple-boundaries",
+      "name": "real: independent floor and cap boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "count": [
+          3,
+          8,
+          10,
+          2
+        ],
+        "upgrade": [
+          7,
+          12,
+          1,
+          100000
+        ],
+        "sell": [
+          5,
+          3,
+          1,
+          100000
+        ],
+        "money": [
+          1,
+          33,
+          10,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        10,
+        1
+      ],
+      "tags": [
+        "independent-centers",
+        "boundaries"
+      ]
+    }
+  ]
+}
+

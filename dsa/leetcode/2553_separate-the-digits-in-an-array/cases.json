@@ -26,7 +26,7 @@
       ],
       "tags": [
         "sample",
-        "array"
+        "multiple-values"
       ]
     },
     {
@@ -49,13 +49,14 @@
         9
       ],
       "tags": [
-        "sample"
+        "sample",
+        "one-digit"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: zero digits are preserved",
-      "kind": "sample",
+      "id": "trial-zero-digits",
+      "name": "trial: preserve trailing zero digits",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -73,45 +74,126 @@
         0
       ],
       "tags": [
-        "sample"
+        "trial",
+        "zero-digits"
       ]
     },
     {
-      "id": "trial-hundreds-and-one-digit",
-      "name": "trial: three digits followed by a one-digit value",
+      "id": "trial-maximum",
+      "name": "trial: split the maximum six-digit value",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          100,
-          5
+          100000
         ]
       },
       "expected": [
         1,
         0,
         0,
-        5
+        0,
+        0,
+        0
       ],
       "tags": [
-        "trial"
+        "trial",
+        "maximum",
+        "zero-digits"
       ]
     },
     {
-      "id": "real-single-digit",
-      "name": "hidden: one number with one digit",
+      "id": "trial-mixed-widths",
+      "name": "trial: preserve order across mixed widths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          909,
+          8,
+          70
+        ]
+      },
+      "expected": [
+        9,
+        0,
+        9,
+        8,
+        7,
+        0
+      ],
+      "tags": [
+        "trial",
+        "mixed-widths"
+      ]
+    },
+    {
+      "id": "real-single-value",
+      "name": "hidden: one one-digit value",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          1
+          5
         ]
       },
       "expected": [
+        5
+      ],
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-repeated",
+      "name": "hidden: repeated values preserve every digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          11,
+          11,
+          11
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        1,
         1
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "repeated"
+      ]
+    },
+    {
+      "id": "real-internal-zero",
+      "name": "hidden: internal zero remains between nonzero digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10921,
+          405
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        9,
+        2,
+        1,
+        4,
+        0,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "zero-digits"
       ]
     }
   ]

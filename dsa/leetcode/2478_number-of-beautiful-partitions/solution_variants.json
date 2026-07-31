@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Beautiful Partitions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds partitions by endpoint while a running prefix sum combines every eligible previous boundary in constant time.",
+      "time_complexity": "O(kn)",
+      "space_complexity": "O(n)"
     }
   ]
 }

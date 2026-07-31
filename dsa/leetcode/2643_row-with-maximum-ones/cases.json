@@ -56,9 +56,9 @@
       ]
     },
     {
-      "id": "trial-middle-row",
-      "name": "trial: middle row wins",
-      "kind": "trial",
+      "id": "sample-3",
+      "name": "sample: middle row wins",
+      "kind": "sample",
       "visible": true,
       "input": {
         "mat": [
@@ -81,12 +81,13 @@
         2
       ],
       "tags": [
-        "trial"
+        "sample",
+        "middle-row"
       ]
     },
     {
       "id": "trial-three-way-tie",
-      "name": "trial: first row wins among equal counts",
+      "name": "trial: first row wins a three-way tie",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -118,12 +119,38 @@
       ]
     },
     {
+      "id": "trial-single-zero",
+      "name": "trial: one zero cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
       "id": "real-all-zero",
-      "name": "hidden: no ones in any row",
+      "name": "hidden: all rows contain no ones",
       "kind": "real",
       "visible": false,
       "input": {
         "mat": [
+          [
+            0,
+            0,
+            0
+          ],
           [
             0,
             0,
@@ -142,7 +169,73 @@
       ],
       "tags": [
         "hidden",
-        "edge"
+        "all-zero"
+      ]
+    },
+    {
+      "id": "real-all-one-tie",
+      "name": "hidden: fully populated rows tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "all-one"
+      ]
+    },
+    {
+      "id": "real-late-winner",
+      "name": "hidden: final row uniquely wins",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "late-winner"
       ]
     }
   ]

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Year on Year Growth Rate and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregates product-year totals once, uses a partitioned lag for previous spend, and computes rounded growth.",
+      "time_complexity": "O(t log t)",
+      "space_complexity": "O(t)"
     }
   ]
 }

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2487",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: later peaks remove three nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"head": [5, 2, 13, 3, 8]},
+      "expected": [13, 8],
+      "tags": ["sample", "multiple-removals"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equal values all remain",
+      "kind": "sample",
+      "visible": true,
+      "input": {"head": [1, 1, 1, 1]},
+      "expected": [1, 1, 1, 1],
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: one node",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": [7]},
+      "expected": [7],
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "trial: only the final maximum remains",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": [1, 2, 3, 4, 5]},
+      "expected": [5],
+      "tags": ["trial", "increasing"]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: every node remains",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": [9, 7, 5, 3, 1]},
+      "expected": [9, 7, 5, 3, 1],
+      "tags": ["trial", "decreasing"]
+    },
+    {
+      "id": "real-equal-peaks",
+      "name": "hidden: equal suffix maxima remain",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [3, 3, 2, 3]},
+      "expected": [3, 3, 3],
+      "tags": ["hidden", "strict-comparison"]
+    },
+    {
+      "id": "real-separated-peaks",
+      "name": "hidden: separated suffix maxima",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [10, 1, 5, 2, 6, 3]},
+      "expected": [10, 6, 3],
+      "tags": ["hidden", "multiple-peaks"]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: repeated maximum value",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [100000, 99999, 100000]},
+      "expected": [100000, 100000],
+      "tags": ["hidden", "value-bound", "duplicates"]
+    }
+  ]
+}

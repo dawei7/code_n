@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3637",
+  "cases": [
+    {
+      "id": "sample-true",
+      "name": "sample: three strict monotonic phases",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          4,
+          2,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "trionic"
+      ]
+    },
+    {
+      "id": "sample-false",
+      "name": "sample: too few elements for three phases",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-minimal-true",
+      "name": "trial: four elements form three one-edge phases",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "minimum-trionic"
+      ]
+    },
+    {
+      "id": "trial-only-increasing",
+      "name": "trial: no decreasing phase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "missing-phase"
+      ]
+    },
+    {
+      "id": "trial-only-peak",
+      "name": "trial: no final increasing phase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "missing-phase"
+      ]
+    },
+    {
+      "id": "trial-starts-decreasing",
+      "name": "trial: no initial increasing phase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "missing-phase"
+      ]
+    },
+    {
+      "id": "real-plateau-first",
+      "name": "hidden: equality invalidates the first phase",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          3,
+          2,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "plateau"
+      ]
+    },
+    {
+      "id": "real-plateau-middle",
+      "name": "hidden: equality invalidates the decreasing phase",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          3,
+          2,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "plateau"
+      ]
+    },
+    {
+      "id": "real-plateau-last",
+      "name": "hidden: equality invalidates the final phase",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          2,
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "plateau"
+      ]
+    },
+    {
+      "id": "real-extra-turn",
+      "name": "hidden: a fourth direction change is not allowed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          5,
+          3,
+          6,
+          4,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "extra-phase"
+      ]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "hidden: comparisons work across negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -5,
+          -2,
+          0,
+          -1,
+          -4,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "real-long-phases",
+      "name": "hidden: each phase may contain several edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          2,
+          5,
+          9,
+          7,
+          4,
+          1,
+          3,
+          8,
+          10
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "long-phases"
+      ]
+    },
+    {
+      "id": "real-late-breakpoints",
+      "name": "hidden: both breakpoints can be near the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          3,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "late-breakpoints"
+      ]
+    }
+  ]
+}

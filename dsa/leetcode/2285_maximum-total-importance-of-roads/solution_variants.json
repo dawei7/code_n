@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Total Importance of Roads and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Pairs larger city values with larger road degrees and sums the resulting degree contributions.",
+      "time_complexity": "O(n log n + r)",
+      "space_complexity": "O(n)"
     }
   ]
 }

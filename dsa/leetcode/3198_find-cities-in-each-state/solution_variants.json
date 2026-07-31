@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Cities in Each State and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Orders state-city pairs once, groups by state, and concatenates each state's cities with the required separator.",
+      "time_complexity": "O(r log r)",
+      "space_complexity": "O(r)"
     }
   ]
 }

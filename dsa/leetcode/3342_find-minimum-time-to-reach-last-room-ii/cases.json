@@ -2,165 +2,67 @@
   "challenge_id": "lc_3342",
   "cases": [
     {
-      "id": "sample-alternating-costs",
-      "name": "sample: alternating one- and two-second moves",
+      "id": "official-example-waiting",
+      "name": "official example: waiting plus alternating durations",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            3,
-            2
-          ],
-          [
-            0,
-            2,
-            4
-          ]
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "sample",
-        "dijkstra"
-      ]
+      "input": {"moveTime": [[0, 4], [4, 4]]},
+      "expected": 7,
+      "tags": ["sample", "waiting", "alternating"]
     },
     {
-      "id": "sample-open-grid",
-      "name": "sample: open rectangle with alternating move costs",
+      "id": "official-example-open-grid",
+      "name": "official example: four moves in an open rectangle",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "grid"
-      ]
-    },
-    {
-      "id": "sample-small-waits",
-      "name": "sample: waits plus alternating costs",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            2
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "grid"
-      ]
-    },
-    {
-      "id": "trial-detour-with-parity",
-      "name": "trial: detour interacts with alternating move duration",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            5,
-            1
-          ],
-          [
-            0,
-            6,
-            1
-          ],
-          [
-            0,
-            0,
-            0
-          ]
-        ]
-      },
+      "input": {"moveTime": [[0, 0, 0, 0], [0, 0, 0, 0]]},
       "expected": 6,
-      "tags": [
-        "test",
-        "parity-state"
-      ]
+      "tags": ["sample", "open-grid", "alternating"]
     },
     {
-      "id": "trial-single-room",
-      "name": "trial: already at destination",
+      "id": "official-example-small-waits",
+      "name": "official example: opening times overlap travel",
+      "kind": "sample",
+      "visible": true,
+      "input": {"moveTime": [[0, 1], [1, 2]]},
+      "expected": 4,
+      "tags": ["sample", "timing"]
+    },
+    {
+      "id": "trial-detour-around-late-rooms",
+      "name": "trial: route choice avoids late rooms",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "edge",
-        "single-cell"
-      ]
+      "input": {"moveTime": [[0, 5, 1], [0, 6, 1], [0, 0, 0]]},
+      "expected": 6,
+      "tags": ["trial", "detour", "parity"]
     },
     {
-      "id": "real-grid-parity-waits",
-      "name": "real: parity state changes the best route",
+      "id": "trial-maximum-opening-time",
+      "name": "trial: maximum destination opening time before a two-second move",
+      "kind": "trial",
+      "visible": true,
+      "input": {"moveTime": [[0, 1000000000], [0, 1000000000]]},
+      "expected": 1000000002,
+      "tags": ["trial", "maximum-value", "two-second-move"]
+    },
+    {
+      "id": "real-mixed-grid",
+      "name": "real: competing paths through mixed opening times",
       "kind": "real",
       "visible": false,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            4,
-            1,
-            9
-          ],
-          [
-            0,
-            8,
-            2,
-            5
-          ],
-          [
-            3,
-            3,
-            7,
-            1
-          ],
-          [
-            6,
-            1,
-            0,
-            0
-          ]
-        ]
-      },
+      "input": {"moveTime": [[0, 4, 1, 9], [0, 8, 2, 5], [3, 3, 7, 1], [6, 1, 0, 0]]},
       "expected": 11,
-      "tags": [
-        "real",
-        "grid",
-        "parity"
-      ]
+      "tags": ["real", "shortest-path", "stale-entries"]
+    },
+    {
+      "id": "real-detour-rectangle",
+      "name": "real: detour avoids a late direct neighbor",
+      "kind": "real",
+      "visible": false,
+      "input": {"moveTime": [[0, 100, 0, 0], [0, 0, 0, 0]]},
+      "expected": 6,
+      "tags": ["real", "detour", "rectangular"]
     }
   ]
 }

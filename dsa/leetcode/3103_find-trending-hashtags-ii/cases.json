@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3103",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: expand every hashtag in the official tweets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 135,
+              "tweet_id": 13,
+              "tweet": "Enjoying a great start to the day. #HappyDay #MorningVibes",
+              "tweet_date": "2024-02-01"
+            },
+            {
+              "user_id": 136,
+              "tweet_id": 14,
+              "tweet": "Another #HappyDay with good vibes! #FeelGood",
+              "tweet_date": "2024-02-03"
+            },
+            {
+              "user_id": 137,
+              "tweet_id": 15,
+              "tweet": "Productivity peaks! #WorkLife #ProductiveDay",
+              "tweet_date": "2024-02-04"
+            },
+            {
+              "user_id": 138,
+              "tweet_id": 16,
+              "tweet": "Exploring new tech frontiers. #TechLife #Innovation",
+              "tweet_date": "2024-02-04"
+            },
+            {
+              "user_id": 139,
+              "tweet_id": 17,
+              "tweet": "Gratitude for today's moments. #HappyDay #Thankful",
+              "tweet_date": "2024-02-05"
+            },
+            {
+              "user_id": 140,
+              "tweet_id": 18,
+              "tweet": "Innovation drives us. #TechLife #FutureTech",
+              "tweet_date": "2024-02-07"
+            },
+            {
+              "user_id": 141,
+              "tweet_id": 19,
+              "tweet": "Connecting with nature's serenity. #Nature #Peaceful",
+              "tweet_date": "2024-02-09"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#HappyDay",
+            3
+          ],
+          [
+            "#TechLife",
+            2
+          ],
+          [
+            "#WorkLife",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "multiple-hashtags",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-repeat-in-one-tweet",
+      "name": "trial: repeated occurrences in one tweet count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 1,
+              "tweet_date": "2024-02-10",
+              "tweet": "Again #Repeat then #Repeat and #Other"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Repeat",
+            2
+          ],
+          [
+            "#Other",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "repeated-occurrence"
+      ]
+    },
+    {
+      "id": "trial-special-character",
+      "name": "trial: punctuation remains inside a non-space hashtag",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 2,
+              "tweet_date": "2024-02-11",
+              "tweet": "Launch #Tag, #Plain"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 3,
+              "tweet_date": "2024-02-12",
+              "tweet": "More #Tag, #Other"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Tag,",
+            2
+          ],
+          [
+            "#Plain",
+            1
+          ],
+          [
+            "#Other",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "token-boundary"
+      ]
+    },
+    {
+      "id": "trial-fewer-than-three",
+      "name": "trial: one distinct hashtag returns one row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 4,
+              "tweet_date": "2024-02-13",
+              "tweet": "#Solo #Solo"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Solo",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "fewer-than-three"
+      ]
+    },
+    {
+      "id": "real-start-middle-end",
+      "name": "hidden: hashtags can occupy every word position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 10,
+              "tweet_date": "2024-02-14",
+              "tweet": "#Start words #Middle #End"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 11,
+              "tweet_date": "2024-02-15",
+              "tweet": "#Start #Middle"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Start",
+            2
+          ],
+          [
+            "#Middle",
+            2
+          ],
+          [
+            "#End",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "positions"
+      ]
+    },
+    {
+      "id": "real-descending-tie",
+      "name": "hidden: four equal groups use descending hashtag order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 20,
+              "tweet_date": "2024-02-16",
+              "tweet": "#Alpha"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 21,
+              "tweet_date": "2024-02-17",
+              "tweet": "#Gamma"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 22,
+              "tweet_date": "2024-02-18",
+              "tweet": "#Beta"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 23,
+              "tweet_date": "2024-02-19",
+              "tweet": "#Delta"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Gamma",
+            1
+          ],
+          [
+            "#Delta",
+            1
+          ],
+          [
+            "#Beta",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "tie-break",
+        "limit-three"
+      ]
+    },
+    {
+      "id": "real-no-tag-row",
+      "name": "hidden: tweets without hashtags are ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 30,
+              "tweet_date": "2024-02-20",
+              "tweet": "No trend token here"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 31,
+              "tweet_date": "2024-02-21",
+              "tweet": "One #Present"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 32,
+              "tweet_date": "2024-02-22",
+              "tweet": "Again #Present #Extra"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Present",
+            2
+          ],
+          [
+            "#Extra",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "no-hashtag"
+      ]
+    },
+    {
+      "id": "real-many-per-row",
+      "name": "hidden: several tags from each tweet feed shared groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 40,
+              "tweet_date": "2024-02-23",
+              "tweet": "#A #B #C #D"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 41,
+              "tweet_date": "2024-02-24",
+              "tweet": "#A #B #C"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 42,
+              "tweet_date": "2024-02-25",
+              "tweet": "#A #B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+          "#B",
+            3
+          ],
+          [
+          "#A",
+            3
+          ],
+          [
+            "#C",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "multiple-hashtags"
+      ]
+    }
+  ]
+}

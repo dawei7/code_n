@@ -8,48 +8,47 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-sum-of-at-most-k-distinct-elements](https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an array `nums` of positive integers, choose at most `k` elements whose values are pairwise distinct. Among all valid choices, maximize the sum of the selected values.
+
+Return the chosen values themselves, arranged in strictly descending order. Repeated occurrences of a value offer only one eligible choice because the selected numbers must be distinct. If fewer than `k` distinct values exist, return every distinct value; positivity ensures that adding another available value always increases the sum.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: a non-empty list of $n$ positive integers, where $1\le n\le100$ and each value is at most $10^9$.
+- `k`: the maximum number of selected elements, satisfying $1\le k\le n$.
+
+Let $U$ be the number of distinct values in `nums`.
 
 **Return value**
 
-TODO
+Return the largest $\min(k,U)$ distinct values in strictly descending order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [84, 93, 100, 77, 90], k = 3`
+- Output: `[100, 93, 90]`
+
+These three distinct values produce the maximum sum 283.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [84, 93, 100, 77, 93], k = 3`
+- Output: `[100, 93, 84]`
+
+The repeated 93 can be selected only once.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1, 2, 2, 2], k = 6`
+- Output: `[2, 1]`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Only two distinct values are available, so the result contains fewer than `k` elements.

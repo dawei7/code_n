@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_350", "frontend_id": "350", "title_slug": "intersection-of-two-arrays-ii", "url": "https://leetcode.com/problems/intersection-of-two-arrays-ii/description/", "paid_only": false, "content_sha256": "fb87ac5b2dd2843eb849437bcd4c77272e1c8b87bb2358a9aad1ccb27d6995c9", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "nums1 = [1,2,2,1], nums2 = [2,2]", "output": "[2,2]", "has_explanation": false},
+      {"ordinal": 2, "input": "nums1 = [4,9,5], nums2 = [9,4,9,8,4]", "output": "[4,9]", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "927565f171b0c7b5aa6a2da3317bd8a319ab52892b421e9a135794a77bf495b4",
+    "reference/contract.md": "fcf2ef6a22105d92868a1ea2d711aeb8009b3c021719d027e8e754405c91e701",
+    "reference/examples.md": "2a77ad5b1dfd89023fe044a80c9f8530ef2e344eca73cf1b39cb39cb1f4b1236",
+    "reference/constraints.md": "57abd217f59b930fd4f2beda15e2dc58b61c780697c5af4b495bfcfc008bc268",
+    "reference/follow_up.md": "efcc5ca10a448392a3ce6788acb7da631d20bb4a3a93cecc4bf5b00f8d329779"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

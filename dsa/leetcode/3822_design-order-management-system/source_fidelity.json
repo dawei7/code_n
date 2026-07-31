@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3822",
+    "frontend_id": "3822",
+    "title_slug": "design-order-management-system",
+    "url": "https://leetcode.com/problems/design-order-management-system/description/",
+    "paid_only": true,
+    "content_sha256": "8ee9e86abaa51b3272e429258dd4a348a6251edeef9d13e9280ab90a81c647ce",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "operations = [\"OrderManagementSystem\", \"addOrder\", \"addOrder\", \"addOrder\", \"getOrdersAtPrice\", \"modifyOrder\", \"modifyOrder\", \"getOrdersAtPrice\", \"cancelOrder\", \"cancelOrder\", \"getOrdersAtPrice\"]; arguments = [[], [1, \"buy\", 1], [2, \"buy\", 1], [3, \"sell\", 2], [\"buy\", 1], [1, 3], [2, 1], [\"buy\", 1], [3], [2], [\"buy\", 1]]",
+        "output": "[null, null, null, null, [2, 1], null, null, [2], null, null, []]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "da4d7964ad121aa4e6514efac46d50a2953ef13cabc0a74f0a80ca0ef9ce1d48",
+      "reference/contract.md": "d09cbb93ac08a1c26271a220e11feb5759915a738c002d576e9aa8d20da32102",
+      "reference/note.md": "0782d1d60feec606dd9d7d051046c776541d1218642616e17faa4cd774fbb507",
+      "reference/examples.md": "a3b6973cae0094c4f51a0a9c742bb0b659111d20726f431685527db6897bb9c7",
+      "reference/constraints.md": "5eb54f77695a69683874b17e0e9f069ee55ff3725c28f5b05a9d999d19d5b908"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

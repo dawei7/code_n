@@ -1,0 +1,541 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3620",
+  "cases": [
+    {
+      "id": "sample-budget-selects-lower-route",
+      "name": "sample: only the score-three route meets the budget",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            3,
+            10
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "k": 10
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "budget",
+        "multiple-paths"
+      ]
+    },
+    {
+      "id": "sample-offline-node",
+      "name": "sample: offline node removes one route",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            7
+          ],
+          [
+            1,
+            4,
+            5
+          ],
+          [
+            0,
+            2,
+            6
+          ],
+          [
+            2,
+            3,
+            6
+          ],
+          [
+            3,
+            4,
+            2
+          ],
+          [
+            2,
+            4,
+            6
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "k": 12
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "offline-node",
+        "multiple-paths"
+      ]
+    },
+    {
+      "id": "trial-no-edges",
+      "name": "trial: no route connects two nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [],
+        "online": [
+          true,
+          true
+        ],
+        "k": 0
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "no-path",
+        "no-edges"
+      ]
+    },
+    {
+      "id": "trial-zero-cost-path",
+      "name": "trial: zero-cost edge yields score zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "online": [
+          true,
+          true
+        ],
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-cost",
+        "budget-zero"
+      ]
+    },
+    {
+      "id": "trial-direct-over-budget",
+      "name": "trial: direct edge exceeds the budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ]
+        ],
+        "online": [
+          true,
+          true
+        ],
+        "k": 4
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "no-path",
+        "over-budget"
+      ]
+    },
+    {
+      "id": "trial-budget-equality",
+      "name": "trial: total cost exactly equals k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            1,
+            2,
+            6
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true
+        ],
+        "k": 10
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "budget-equality"
+      ]
+    },
+    {
+      "id": "trial-bottleneck-not-largest-edge",
+      "name": "trial: maximize the route minimum rather than one edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            0,
+            2,
+            7
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "k": 8
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "bottleneck",
+        "multiple-paths"
+      ]
+    },
+    {
+      "id": "trial-offline-only-route",
+      "name": "trial: the only structural route uses an offline node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "online": [
+          true,
+          false,
+          true
+        ],
+        "k": 10
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "offline-node",
+        "no-path"
+      ]
+    },
+    {
+      "id": "real-nonnumeric-topological-order",
+      "name": "hidden: node numbers are not a topological order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            3,
+            5
+          ],
+          [
+            3,
+            1,
+            4
+          ],
+          [
+            1,
+            4,
+            6
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            2,
+            4,
+            3
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "k": 15
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "topological-order",
+        "multiple-paths"
+      ]
+    },
+    {
+      "id": "real-high-score-over-budget",
+      "name": "hidden: expensive high-bottleneck route loses to affordable route",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            4,
+            10
+          ],
+          [
+            0,
+            2,
+            6
+          ],
+          [
+            2,
+            3,
+            6
+          ],
+          [
+            3,
+            4,
+            6
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "k": 18
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "budget",
+        "bottleneck"
+      ]
+    },
+    {
+      "id": "real-zero-among-positive",
+      "name": "hidden: a zero edge determines the valid path score",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            2,
+            3,
+            5
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "k": 8
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zero-cost",
+        "multiple-paths"
+      ]
+    },
+    {
+      "id": "real-repeated-costs",
+      "name": "hidden: repeated edge costs form several thresholds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            0,
+            2,
+            5
+          ],
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            2,
+            3,
+            5
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "k": 15
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "equal-costs",
+        "dag"
+      ]
+    },
+    {
+      "id": "real-large-costs",
+      "name": "hidden: large recovery costs require wide totals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            1000000000
+          ],
+          [
+            1,
+            2,
+            1000000000
+          ],
+          [
+            2,
+            3,
+            1000000000
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "k": 3000000000
+      },
+      "expected": 1000000000,
+      "tags": [
+        "hidden",
+        "maximum-cost",
+        "large-budget"
+      ]
+    },
+    {
+      "id": "real-wrong-direction",
+      "name": "hidden: edges cannot be traversed backward",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "online": [
+          true,
+          true,
+          true
+        ],
+        "k": 10
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "directed-edges",
+        "no-path"
+      ]
+    }
+  ]
+}

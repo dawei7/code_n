@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Distance Excluding One Maximum Weighted Edge and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Treats the maximum-edge exclusion as one free traversal and combines shortest distances around every possible free edge.",
+      "time_complexity": "O((N + E) log N)",
+      "space_complexity": "O(N + E)"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2944",
+  "frontend_id": "2773",
+  "title_slug": "height-of-special-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.heightOfTree",
+  "verified_submission_id": "2076646879",
+  "verified_at": "2026-07-22T05:31:00+00:00"
+}

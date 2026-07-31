@@ -6,50 +6,44 @@
 | Frontend ID | 2992 |
 | Difficulty | Medium |
 | Category | Algorithms |
-| Topics | Array, Math, Dynamic Programming, Backtracking, Bit Manipulation, Number Theory, Bitmask |
+| Topics | Dynamic Programming, Bit Manipulation, Backtracking, Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-self-divisible-permutations](https://leetcode.com/problems/number-of-self-divisible-permutations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-self-divisible-permutations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-self-divisible-permutations/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given `n`, consider every permutation of the 1-indexed array
+`[1, 2, ..., n]`. A permutation is **self-divisible** when the value placed at
+every 1-indexed position $i$ is coprime with $i$; equivalently,
+$\gcd(a_i,i)=1$ for all $1\le i\le n$.
+
+Return the number of permutations satisfying this condition. Each value from
+`1` through `n` must appear exactly once.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: the length and largest value of the permutation
+
+The contract guarantees $1\le n\le12$.
 
 **Return value**
 
-TODO
+Return the number of self-divisible permutations of `[1, 2, ..., n]`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 1`
+- Output: `1`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 2`
+- Output: `1`
+- Explanation: Only `[2,1]` places a value coprime with each position.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 3`
+- Output: `3`

@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-all-lonely-numbers-in-the-array](https://leetcode.com/problems/find-all-lonely-numbers-in-the-array/) |
+| LeetCode | [find-all-lonely-numbers-in-the-array](https://leetcode.com/problems/find-all-lonely-numbers-in-the-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-all-lonely-numbers-in-the-array/).
 
 ### Goal
-A number is lonely when it appears exactly once and neither adjacent integer, one less or one greater, appears in the array. Return all lonely values in any order.
+
+Given an integer array `nums`, call a value $x$ lonely when it occurs exactly
+once and neither adjacent integer value, $x-1$ nor $x+1$, occurs anywhere in
+the array.
+
+Return every lonely value in `nums`. The result may list those values in any
+order. Both parts of the definition matter: duplicates disqualify a value even
+when its neighboring integers are absent, and the presence of either neighbor
+disqualifies an otherwise unique value.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: an integer array.
+- `nums`: An integer array of length $n$, where $1 \leq n \leq 10^5$ and
+  $0 \leq \texttt{nums[i]} \leq 10^6$.
 
 **Return value**
 
-A list of all lonely numbers, in any order.
+Return a list containing each lonely value exactly once, in any order.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [10, 6, 5, 8]`
 - Output: `[10, 8]`
+- Explanation: `10` and `8` occur once and have no adjacent integer in the
+  array. The values `5` and `6` disqualify each other.
 
 **Example 2**
 
 - Input: `nums = [1, 3, 5, 3]`
 - Output: `[1, 5]`
-
-**Example 3**
-
-- Input: `nums = [2, 2, 3, 4]`
-- Output: `[]`
-
----
-
-## Solution
-### Approach
-Build a frequency map. A distinct key `x` belongs in the result exactly when its frequency is one and neither `x - 1` nor `x + 1` is a key in the map.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)` expected
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: `1` and `5` have absent neighbors, while `3` is excluded
+  because it occurs twice.

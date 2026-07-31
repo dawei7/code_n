@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2692",
+  "frontend_id": "2620",
+  "title_slug": "counter",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "createCounter",
+  "verified_submission_id": "2075911299",
+  "verified_at": "2026-07-21T14:12:00+00:00"
+}

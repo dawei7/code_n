@@ -1,0 +1,534 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3172",
+  "cases": [
+    {
+      "id": "sample-second-day-verification",
+      "name": "sample: two users verify on the second day",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 125,
+              "user_id": 7771,
+              "signup_date": "2022-06-14 09:30:00"
+            },
+            {
+              "email_id": 433,
+              "user_id": 1052,
+              "signup_date": "2022-07-09 08:15:00"
+            },
+            {
+              "email_id": 234,
+              "user_id": 7005,
+              "signup_date": "2022-08-20 10:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 1,
+              "email_id": 125,
+              "signup_action": "Verified",
+              "action_date": "2022-06-15 08:30:00"
+            },
+            {
+              "text_id": 2,
+              "email_id": 433,
+              "signup_action": "Not Verified",
+              "action_date": "2022-07-10 10:45:00"
+            },
+            {
+              "text_id": 4,
+              "email_id": 234,
+              "signup_action": "Verified",
+              "action_date": "2022-08-21 09:30:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            7005
+          ],
+          [
+            7771
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "join",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-exact-next-date",
+      "name": "trial: verification occurs at the same time next day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 1,
+              "user_id": 10,
+              "signup_date": "2024-01-10 12:30:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 1,
+              "email_id": 1,
+              "signup_action": "Verified",
+              "action_date": "2024-01-11 12:30:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            10
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "next-day",
+        "verified"
+      ]
+    },
+    {
+      "id": "trial-same-day-excluded",
+      "name": "trial: same-calendar-day verification is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 2,
+              "user_id": 20,
+              "signup_date": "2024-02-10 08:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 2,
+              "email_id": 2,
+              "signup_action": "Verified",
+              "action_date": "2024-02-10 23:59:59"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "same-day",
+        "excluded"
+      ]
+    },
+    {
+      "id": "trial-two-days-later",
+      "name": "trial: verification two dates later is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 3,
+              "user_id": 30,
+              "signup_date": "2024-03-10 08:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 3,
+              "email_id": 3,
+              "signup_action": "Verified",
+              "action_date": "2024-03-12 07:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "date-gap",
+        "excluded"
+      ]
+    },
+    {
+      "id": "trial-not-verified",
+      "name": "trial: next-day unverified action is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 4,
+              "user_id": 40,
+              "signup_date": "2024-04-10 08:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 4,
+              "email_id": 4,
+              "signup_action": "Not Verified",
+              "action_date": "2024-04-11 08:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "status",
+        "excluded"
+      ]
+    },
+    {
+      "id": "trial-month-boundary",
+      "name": "trial: second day crosses a month boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 5,
+              "user_id": 50,
+              "signup_date": "2024-04-30 22:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 5,
+              "email_id": 5,
+              "signup_action": "Verified",
+              "action_date": "2024-05-01 01:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "month-boundary"
+      ]
+    },
+    {
+      "id": "real-year-boundary",
+      "name": "real: second day crosses a year boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 6,
+              "user_id": 60,
+              "signup_date": "2023-12-31 09:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 6,
+              "email_id": 6,
+              "signup_action": "Verified",
+              "action_date": "2024-01-01 18:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            60
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "year-boundary"
+      ]
+    },
+    {
+      "id": "real-leap-day",
+      "name": "real: second day is leap day",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 7,
+              "user_id": 70,
+              "signup_date": "2024-02-28 09:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 7,
+              "email_id": 7,
+              "signup_action": "Verified",
+              "action_date": "2024-02-29 09:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            70
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "leap-day"
+      ]
+    },
+    {
+      "id": "real-duplicate-texts",
+      "name": "real: duplicate qualifying texts produce one user",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 8,
+              "user_id": 80,
+              "signup_date": "2024-06-01 10:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 8,
+              "email_id": 8,
+              "signup_action": "Verified",
+              "action_date": "2024-06-02 01:00:00"
+            },
+            {
+              "text_id": 9,
+              "email_id": 8,
+              "signup_action": "Verified",
+              "action_date": "2024-06-02 23:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            80
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "distinct",
+        "multiple-texts"
+      ]
+    },
+    {
+      "id": "real-multiple-emails-one-user",
+      "name": "real: several qualifying emails produce one user",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 9,
+              "user_id": 90,
+              "signup_date": "2024-07-01 10:00:00"
+            },
+            {
+              "email_id": 10,
+              "user_id": 90,
+              "signup_date": "2024-08-01 10:00:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 10,
+              "email_id": 9,
+              "signup_action": "Verified",
+              "action_date": "2024-07-02 10:00:00"
+            },
+            {
+              "text_id": 11,
+              "email_id": 10,
+              "signup_action": "Verified",
+              "action_date": "2024-08-02 10:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            90
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "distinct",
+        "multiple-emails"
+      ]
+    },
+    {
+      "id": "real-midnight-calendar-rule",
+      "name": "real: a two-minute elapsed interval crosses the date",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 11,
+              "user_id": 100,
+              "signup_date": "2024-09-10 23:59:00"
+            }
+          ],
+          "texts": [
+            {
+              "text_id": 12,
+              "email_id": 11,
+              "signup_action": "Verified",
+              "action_date": "2024-09-11 00:01:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": [
+          [
+            100
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "calendar-date",
+        "time-boundary"
+      ]
+    },
+    {
+      "id": "real-empty-texts",
+      "name": "real: no text actions yield no users",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "emails": [
+            {
+              "email_id": 12,
+              "user_id": 110,
+              "signup_date": "2024-10-01 08:00:00"
+            }
+          ],
+          "texts": {
+            "columns": [
+              "text_id",
+              "email_id",
+              "signup_action",
+              "action_date"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "empty-table"
+      ]
+    }
+  ]
+}

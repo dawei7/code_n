@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_3971",
+  "cases": [
+    {
+      "id": "sample-four-best-gains",
+      "name": "sample: four gains drawn across three progressions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"value": [6,5,4], "decay": [2,1,1], "m": 4},
+      "expected": 19,
+      "tags": ["sample", "multiple-indices", "repeated-selection"]
+    },
+    {
+      "id": "sample-repeat-best-index",
+      "name": "sample: both selections use the strongest progression",
+      "kind": "sample",
+      "visible": true,
+      "input": {"value": [7,2,2], "decay": [3,2,1], "m": 2},
+      "expected": 11,
+      "tags": ["sample", "single-index", "repeated-selection"]
+    },
+    {
+      "id": "sample-stop-before-m",
+      "name": "sample: no non-positive gain is selected",
+      "kind": "sample",
+      "visible": true,
+      "input": {"value": [4,3], "decay": [5,4], "m": 5},
+      "expected": 7,
+      "tags": ["sample", "at-most-m", "positive-only"]
+    },
+    {
+      "id": "trial-minimum-values",
+      "name": "trial: one index and one permitted selection",
+      "kind": "trial",
+      "visible": true,
+      "input": {"value": [1], "decay": [1], "m": 1},
+      "expected": 1,
+      "tags": ["trial", "minimum-length", "minimum-values"]
+    },
+    {
+      "id": "trial-huge-unused-budget",
+      "name": "trial: a huge selection budget does not force invalid gains",
+      "kind": "trial",
+      "visible": true,
+      "input": {"value": [2], "decay": [5], "m": 1000000000},
+      "expected": 2,
+      "tags": ["trial", "maximum-m", "at-most-m"]
+    },
+    {
+      "id": "trial-entire-progression",
+      "name": "trial: all positive terms of one progression are used",
+      "kind": "trial",
+      "visible": true,
+      "input": {"value": [10], "decay": [3], "m": 5},
+      "expected": 22,
+      "tags": ["trial", "arithmetic-progression", "positive-only"]
+    },
+    {
+      "id": "trial-interleaved-progressions",
+      "name": "trial: globally sorted gains interleave two indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"value": [5,5], "decay": [1,10], "m": 3},
+      "expected": 14,
+      "tags": ["trial", "global-order", "ties"]
+    },
+    {
+      "id": "trial-cutoff-ties",
+      "name": "trial: only part of a tied cutoff group is selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {"value": [8,8,8], "decay": [2,2,2], "m": 5},
+      "expected": 36,
+      "tags": ["trial", "cutoff-ties", "surplus-threshold"]
+    },
+    {
+      "id": "real-one-selection",
+      "name": "hidden: one selection takes the largest initial value",
+      "kind": "real",
+      "visible": false,
+      "input": {"value": [1,9,5], "decay": [1,100,2], "m": 1},
+      "expected": 9,
+      "tags": ["hidden", "m-one", "maximum-initial"]
+    },
+    {
+      "id": "real-decay-changes-ranking",
+      "name": "hidden: a lower initial value supplies two later top gains",
+      "kind": "real",
+      "visible": false,
+      "input": {"value": [10,9], "decay": [10,1], "m": 3},
+      "expected": 27,
+      "tags": ["hidden", "decay-ranking", "repeated-selection"]
+    },
+    {
+      "id": "real-first-gain-only",
+      "name": "hidden: every progression contributes exactly its first gain",
+      "kind": "real",
+      "visible": false,
+      "input": {"value": [4,7,1], "decay": [100,100,100], "m": 3},
+      "expected": 12,
+      "tags": ["hidden", "large-decay", "all-indices"]
+    },
+    {
+      "id": "real-maximum-single-progression",
+      "name": "hidden: billion-term arithmetic sum is reduced modulo",
+      "kind": "real",
+      "visible": false,
+      "input": {"value": [1000000000], "decay": [1], "m": 1000000000},
+      "expected": 21,
+      "tags": ["hidden", "maximum-values", "modulo"]
+    },
+    {
+      "id": "real-two-large-singletons",
+      "name": "hidden: huge budget selects only two positive gains",
+      "kind": "real",
+      "visible": false,
+      "input": {"value": [1000000000,1000000000], "decay": [1000000000,1000000000], "m": 1000000000},
+      "expected": 999999993,
+      "tags": ["hidden", "at-most-m", "modulo"]
+    },
+    {
+      "id": "real-progressions-skip-values",
+      "name": "hidden: distinct step sizes skip values around the cutoff",
+      "kind": "real",
+      "visible": false,
+      "input": {"value": [10,9], "decay": [3,4], "m": 4},
+      "expected": 31,
+      "tags": ["hidden", "cutoff", "unequal-decay"]
+    },
+    {
+      "id": "real-many-equal-cutoff-copies",
+      "name": "hidden: surplus identical threshold gains are removed",
+      "kind": "real",
+      "visible": false,
+      "input": {"value": [5,5,5,5], "decay": [5,5,5,5], "m": 2},
+      "expected": 10,
+      "tags": ["hidden", "surplus-threshold", "ties"]
+    }
+  ]
+}

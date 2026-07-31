@@ -8,100 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Segment Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [handling-sum-queries-after-update](https://leetcode.com/problems/handling-sum-queries-after-update/) |
+| LeetCode | [handling-sum-queries-after-update](https://leetcode.com/problems/handling-sum-queries-after-update/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/handling-sum-queries-after-update/).
 
 ### Goal
-You are given two binary arrays of equal length and a series of queries. The queries involve either flipping the bits in a range of the first array or calculating the total sum of the first array. The second array acts as a multiplier for the first array's values during sum calculations. Specifically, the sum is defined as the sum of `nums1[i] * nums2[i]` for all indices `i`.
+
+You are given two zero-indexed arrays of equal length, `nums1` and `nums2`, together with a sequence of three-field queries. `nums1` is binary, while `nums2` contains non-negative integers. Process every query in order, preserving the effects of earlier updates.
+
+A query `[1, l, r]` flips every bit of `nums1` from index `l` through `r`, inclusive. A query `[2, p, 0]` updates every position by setting `nums2[i] = nums2[i] + nums1[i] * p`. A query `[3, 0, 0]` asks for the current sum of all values in `nums2`. Return the answers to type-3 queries in their original order.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums1`: List[int] (Initial binary array)
-- `nums2`: List[int] (Binary array used for weighted sum)
-- `queries`: List[List[int]] (List of queries where each query is `[type, l, r]`)
+- `nums1`: A binary list of length $n$, where $1 \le n \le 10^5$.
+- `nums2`: A list of the same length, where $0 \le \texttt{nums2[i]} \le 10^9$.
+- `queries`: A list of $q$ three-integer queries, where $1 \le q \le 10^5$. Type-1 endpoints satisfy $0 \le l \le r < n$, and a type-2 multiplier satisfies $0 \le p \le 10^6$.
 
 **Return value**
 
-- List[int]: A list containing the results of all type-3 (sum) queries.
+- A list containing the current sum of `nums2` for each type-3 query, in processing order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums1 = [1,0,1], nums2 = [0,0,0], queries = [[1,1,1],[2,1,0],[3,0,0]]`
+- Input: `nums1 = [1, 0, 1], nums2 = [0, 0, 0], queries = [[1, 1, 1], [2, 1, 0], [3, 0, 0]]`
 - Output: `[3]`
+- Explanation: The flip makes `nums1 = [1, 1, 1]`; the type-2 query then adds $1$ at all three positions of `nums2`.
 
 **Example 2**
 
-- Input: `nums1 = [1], nums2 = [5], queries = [[2,0,0],[3,0,0]]`
+- Input: `nums1 = [1], nums2 = [5], queries = [[2, 0, 0], [3, 0, 0]]`
 - Output: `[5]`
+- Explanation: A zero multiplier leaves the sum unchanged.
 
----
+**Example 3**
 
-## Solution
-### Approach
-The problem requires efficient range updates (flipping bits) and range sum queries. A **Segment Tree with Lazy Propagation** is the optimal data structure. Each node in the tree stores the count of `1`s in its range. When a flip operation occurs, the count of `1`s becomes `(range_length - current_count_of_1s)`. The weighted sum is calculated by maintaining the sum of `nums2` for indices where `nums1` is `1`.
-
-### Complexity Analysis
-- **Time Complexity**: `O((n + q) log n)`, where `n` is the length of the arrays and `q` is the number of queries. Each segment tree operation takes logarithmic time.
-- **Space Complexity**: `O(n)`, required to store the segment tree nodes (typically 4n nodes).
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums1, nums2, queries):
-    n = len(nums1)
-    tree = [0] * (4 * n)
-    lazy = [False] * (4 * n)
-
-    def build(node, start, end):
-        if start == end:
-            tree[node] = nums1[start]
-            return
-        mid = (start + end) // 2
-        build(2 * node, start, mid)
-        build(2 * node + 1, mid + 1, end)
-        tree[node] = tree[2 * node] + tree[2 * node + 1]
-
-    def push(node, start, end):
-        if not lazy[node] or start == end:
-            return
-        mid = (start + end) // 2
-        left = 2 * node
-        right = left + 1
-        tree[left] = (mid - start + 1) - tree[left]
-        lazy[left] = not lazy[left]
-        tree[right] = (end - mid) - tree[right]
-        lazy[right] = not lazy[right]
-        lazy[node] = False
-
-    def update(node, start, end, l, r):
-        if start > end or start > r or end < l:
-            return
-        if start >= l and end <= r:
-            tree[node] = (end - start + 1) - tree[node]
-            lazy[node] = not lazy[node]
-            return
-        push(node, start, end)
-        mid = (start + end) // 2
-        update(2 * node, start, mid, l, r)
-        update(2 * node + 1, mid + 1, end, l, r)
-        tree[node] = tree[2 * node] + tree[2 * node + 1]
-
-    build(1, 0, n - 1)
-    total = sum(nums2)
-    results = []
-    for q in queries:
-        if q[0] == 1:
-            update(1, 0, n - 1, q[1], q[2])
-        elif q[0] == 2:
-            total += q[1] * tree[1]
-        elif q[0] == 3:
-            results.append(total)
-    return results
-```
-</details>
+- Input: `nums1 = [0, 1], nums2 = [2, 3], queries = [[3, 0, 0], [1, 0, 1], [2, 2, 0], [3, 0, 0]]`
+- Output: `[5, 7]`
+- Explanation: After the flip, only the first bit is one, so the type-2 query increases the total by $2$.

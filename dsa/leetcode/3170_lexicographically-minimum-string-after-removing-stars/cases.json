@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_3170",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: rightmost smallest a is removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aaba*"},
+      "expected": "aab",
+      "tags": ["sample", "rightmost-tie"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: string contains no stars",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abc"},
+      "expected": "abc",
+      "tags": ["sample", "no-stars"]
+    },
+    {
+      "id": "trial-single-pair",
+      "name": "trial: one star removes the only letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "a*"},
+      "expected": "",
+      "tags": ["empty-result", "single-star"]
+    },
+    {
+      "id": "trial-distinct-letters",
+      "name": "trial: the smaller of two letters is removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "ab*"},
+      "expected": "b",
+      "tags": ["single-star", "minimum-letter"]
+    },
+    {
+      "id": "trial-rightmost-equal",
+      "name": "trial: equal minimum letters require the rightmost choice",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aba*"},
+      "expected": "ab",
+      "tags": ["rightmost-tie", "lexicographic"]
+    },
+    {
+      "id": "trial-two-trailing-stars",
+      "name": "trial: two stars remove the two smallest letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abc**"},
+      "expected": "c",
+      "tags": ["multiple-stars", "minimum-letter"]
+    },
+    {
+      "id": "real-interleaved-new-minimum",
+      "name": "real: a later letter becomes the next minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "dcb*a*"},
+      "expected": "dc",
+      "tags": ["real", "interleaved", "new-minimum"]
+    },
+    {
+      "id": "real-all-equal-removed",
+      "name": "real: all equal letters are removed",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zzz***"},
+      "expected": "",
+      "tags": ["real", "empty-result", "rightmost-tie"]
+    },
+    {
+      "id": "real-repeated-ties",
+      "name": "real: repeated stars resolve equal minimum ties",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "baba**"},
+      "expected": "bb",
+      "tags": ["real", "multiple-stars", "rightmost-tie"]
+    },
+    {
+      "id": "real-fully-interleaved",
+      "name": "real: each interleaved star removes its preceding letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "a*b*c*"},
+      "expected": "",
+      "tags": ["real", "interleaved", "empty-result"]
+    },
+    {
+      "id": "real-word-two-stars",
+      "name": "real: two trailing stars remove c and d",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "leetcode**"},
+      "expected": "leetoe",
+      "tags": ["real", "multiple-stars", "preserve-order"]
+    },
+    {
+      "id": "real-new-a-between-stars",
+      "name": "real: a newly encountered a is selected next",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "bbca*a*"},
+      "expected": "bbc",
+      "tags": ["real", "interleaved", "new-minimum"]
+    }
+  ]
+}

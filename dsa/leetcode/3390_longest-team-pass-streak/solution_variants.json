@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Team Pass Streak and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Labels interceptions with a cumulative window sum, aggregates each successful island, and selects the largest island per team.",
+      "time_complexity": "O(p log p + p log t)",
+      "space_complexity": "O(p)"
     }
   ]
 }

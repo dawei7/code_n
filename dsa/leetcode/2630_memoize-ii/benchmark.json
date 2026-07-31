@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2630",
+  "measurement_note": "Size is q, the number of distinct one-argument invocations. The nested-Map solution performs one expected-constant-time lookup per call. A correct comparison-list memoizer scans all earlier tuples before each miss and therefore performs quadratic tuple comparisons. The compact distinctRange plan expands inside the app adapter without changing that workload.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 64 distinct tuples",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"fnName": "identity", "calls": null, "callPlan": {"kind": "distinctRange", "count": 64}},
+      "expected": {"lastValue": 63, "callCount": 64},
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 256 distinct tuples",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"fnName": "identity", "calls": null, "callPlan": {"kind": "distinctRange", "count": 256}},
+      "expected": {"lastValue": 255, "callCount": 256},
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 1024 distinct tuples",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {"fnName": "identity", "calls": null, "callPlan": {"kind": "distinctRange", "count": 1024}},
+      "expected": {"lastValue": 1023, "callCount": 1024},
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

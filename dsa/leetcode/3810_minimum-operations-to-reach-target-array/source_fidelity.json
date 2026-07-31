@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3810",
+    "frontend_id": "3810",
+    "title_slug": "minimum-operations-to-reach-target-array",
+    "url": "https://leetcode.com/problems/minimum-operations-to-reach-target-array/description/",
+    "paid_only": false,
+    "content_sha256": "3e46647bd5cbfdc065a8e8b7014b729dea08e9372ed8cdcd3a121f7c571f8adb",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums = [1,2,3], target = [2,1,3]`",
+        "output": "`2`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums = [4,1,4], target = [5,1,4]`",
+        "output": "`1`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`nums = [7,3,7], target = [5,5,9]`",
+        "output": "`2`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ac37258fc89a481850653b73651068711a36951909161c9c0265b2a3f6953747",
+      "reference/contract.md": "cb74971aa141ad74429b97028340849b28e62fc2718c3aa5cfc46fa30f29ecdb",
+      "reference/examples.md": "7917d34f87908f0e49397b220a59d727ced2c98b64b0f6fc737d31e533861390",
+      "reference/constraints.md": "eb980df82b8c7e6f574859a8cbc95e1091a5273b26ce758d149b413e35f2374e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

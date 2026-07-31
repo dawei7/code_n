@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3644",
+  "cases": [
+    {
+      "id": "sample-answer-one",
+      "name": "sample: direct swap has AND one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "positive-answer"
+      ]
+    },
+    {
+      "id": "sample-answer-two",
+      "name": "sample: direct swap has AND two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "positive-answer"
+      ]
+    },
+    {
+      "id": "sample-answer-zero",
+      "name": "sample: reversed permutation needs zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-singleton-sorted",
+      "name": "trial: singleton is already sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-n",
+        "sorted"
+      ]
+    },
+    {
+      "id": "trial-sorted-multiple",
+      "name": "trial: sorted permutation returns zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "sorted"
+      ]
+    },
+    {
+      "id": "trial-answer-four",
+      "name": "trial: three-value cycle has AND four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          4,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "cycle",
+        "positive-answer"
+      ]
+    },
+    {
+      "id": "real-hub-initially-fixed",
+      "name": "real: zero hub begins correctly placed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          5,
+          4,
+          6,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "fixed-hub",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "real-high-bit-answer",
+      "name": "real: high-bit cycle has answer twelve",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          12
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "high-bit",
+        "cycle"
+      ]
+    },
+    {
+      "id": "real-two-cycle-zero",
+      "name": "real: swapped values have disjoint bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          2,
+          1,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "disjoint-bits"
+      ]
+    },
+    {
+      "id": "real-multiple-cycles",
+      "name": "real: separate cycles share only one bit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          3,
+          2,
+          1,
+          4,
+          7,
+          6,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "multiple-cycles"
+      ]
+    }
+  ]
+}

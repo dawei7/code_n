@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Amount of Money Robot Can Earn and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Carries three neutralization-count states through the grid with a single row-compressed dynamic-programming array.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3825",
+    "frontend_id": "3825",
+    "title_slug": "longest-strictly-increasing-subsequence-with-non-zero-bitwise-and",
+    "url": "https://leetcode.com/problems/longest-strictly-increasing-subsequence-with-non-zero-bitwise-and/description/",
+    "paid_only": false,
+    "content_sha256": "bbcad038e84e959c587cdb95f74ae5d3071e57ad8790eca63b97221e066b43bc",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [5,4,7]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [2,3,6]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [0,1]",
+        "output": "1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "bbbe8b2902ce2d4f13f379c75234948c207a3a815c8df8d3ca1c6ad823bdcb9d",
+      "reference/contract.md": "4e4f3c3ace648d8c78d7a185821bc191090507a345038d486f3a8b49869e0997",
+      "reference/examples.md": "82092e91c4581b6828ec751b8859117a58c2aa8b9b218eca689d5fbeb67e62bb",
+      "reference/constraints.md": "f69b676b70a588b6f83b6e395444aaec5ffe77b21ad50c936bd86b11a25d0d8b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -3,104 +3,105 @@ from heapq import heappop, heappush
 
 
 def solve(nums: list[int], k: int, x: int) -> list[int]:
-    freq = defaultdict(int)
-    top = set()
-    rest = set()
+    frequency = defaultdict(int)
+    side = {}
+    version = defaultdict(int)
     top_min = []
     rest_max = []
-    current_sum = 0
+    top_count = 0
+    top_sum = 0
 
-    def key(value: int) -> tuple[int, int]:
-        return freq[value], value
+    def place_in_rest(value: int) -> None:
+        version[value] += 1
+        side[value] = False
+        heappush(rest_max, (-frequency[value], -value, version[value]))
 
-    def push_top(value: int) -> None:
-        heappush(top_min, key(value))
+    def place_in_top(value: int) -> None:
+        nonlocal top_count, top_sum
+        version[value] += 1
+        side[value] = True
+        top_count += 1
+        top_sum += frequency[value] * value
+        heappush(top_min, (frequency[value], value, version[value]))
 
-    def push_rest(value: int) -> None:
-        f, v = key(value)
-        heappush(rest_max, (-f, -v))
+    def discard(value: int) -> None:
+        nonlocal top_count, top_sum
+        if value not in side:
+            return
+        if side[value]:
+            top_count -= 1
+            top_sum -= frequency[value] * value
+        del side[value]
+        version[value] += 1
 
     def clean_top() -> None:
         while top_min:
-            f, value = top_min[0]
-            if value in top and freq[value] == f:
+            f, value, stamp = top_min[0]
+            if (
+                side.get(value) is True
+                and version[value] == stamp
+                and frequency[value] == f
+            ):
                 return
             heappop(top_min)
 
     def clean_rest() -> None:
         while rest_max:
-            nf, nv = rest_max[0]
-            value = -nv
-            if value in rest and freq[value] == -nf:
+            negative_f, negative_value, stamp = rest_max[0]
+            value = -negative_value
+            if (
+                side.get(value) is False
+                and version[value] == stamp
+                and frequency[value] == -negative_f
+            ):
                 return
             heappop(rest_max)
 
-    def remove_current(value: int) -> None:
-        nonlocal current_sum
-        if value in top:
-            top.remove(value)
-            current_sum -= freq[value] * value
-        elif value in rest:
-            rest.remove(value)
-
     def move_rest_to_top() -> None:
-        nonlocal current_sum
         clean_rest()
-        nf, nv = heappop(rest_max)
-        value = -nv
-        rest.remove(value)
-        top.add(value)
-        current_sum += -nf * value
-        push_top(value)
+        _, negative_value, _ = heappop(rest_max)
+        value = -negative_value
+        discard(value)
+        place_in_top(value)
 
     def move_top_to_rest() -> None:
-        nonlocal current_sum
         clean_top()
-        f, value = heappop(top_min)
-        top.remove(value)
-        current_sum -= f * value
-        rest.add(value)
-        push_rest(value)
+        _, value, _ = heappop(top_min)
+        discard(value)
+        place_in_rest(value)
 
     def rebalance() -> None:
-        while len(top) < x and rest:
+        desired = min(x, len(side))
+        while top_count < desired:
             move_rest_to_top()
-        while len(top) > x:
+        while top_count > desired:
             move_top_to_rest()
 
-        while top and rest:
+        while top_count and top_count < len(side):
             clean_top()
             clean_rest()
-            top_key = top_min[0]
-            rest_key = (-rest_max[0][0], -rest_max[0][1])
-            if rest_key <= top_key:
+            smallest_top = top_min[0][:2]
+            largest_rest = (-rest_max[0][0], -rest_max[0][1])
+            if largest_rest <= smallest_top:
                 break
             move_top_to_rest()
             move_rest_to_top()
 
-    def add(value: int) -> None:
-        remove_current(value)
-        freq[value] += 1
-        rest.add(value)
-        push_rest(value)
-        rebalance()
-
-    def remove(value: int) -> None:
-        remove_current(value)
-        freq[value] -= 1
-        if freq[value] > 0:
-            rest.add(value)
-            push_rest(value)
+    def change(value: int, delta: int) -> None:
+        discard(value)
+        frequency[value] += delta
+        if frequency[value]:
+            place_in_rest(value)
         else:
-            del freq[value]
+            del frequency[value]
         rebalance()
 
-    result = []
-    for i, value in enumerate(nums):
-        add(value)
-        if i >= k:
-            remove(nums[i - k])
-        if i >= k - 1:
-            result.append(current_sum)
+    answer = []
+    for index, value in enumerate(nums):
+        change(value, 1)
+        if index >= k:
+            change(nums[index - k], -1)
+        if index >= k - 1:
+            answer.append(top_sum)
 
-    return result
+    return answer

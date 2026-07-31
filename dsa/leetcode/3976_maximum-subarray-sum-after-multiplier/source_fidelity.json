@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3976",
+    "frontend_id": "3976",
+    "title_slug": "maximum-subarray-sum-after-multiplier",
+    "url": "https://leetcode.com/problems/maximum-subarray-sum-after-multiplier/description/",
+    "paid_only": false,
+    "content_sha256": "f6eef94ff113b757e3071037ec5ecb473ccd68d9ea1b290f5fff4ff12abb4ad7",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,-2,3,4,-5], k = 2",
+        "output": "14",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [-5,-4,-3], k = 2",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ff30c9fd40788ea4a03018bc7bdcf90a3af6c4998b05954ee3a52cb35bff0310",
+      "reference/contract.md": "6a372370a52af535a40c33dc31c81f8f1401ee034340d8ed49905a36682810f8",
+      "reference/examples.md": "82c3007b940e2adbea9278371b1b6c87796127e27b90dec5e415afd929a4fadf",
+      "reference/constraints.md": "d81a2bf48bdcc80dde268862b05ddd117764e32787f13bb3bc381302672217f2"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

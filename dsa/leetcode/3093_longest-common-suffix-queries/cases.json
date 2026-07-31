@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3093",
   "cases": [
     {
-      "id": "sample-bcd-suffix",
-      "name": "sample: longest suffix with shortest-container tie",
+      "id": "sample-shared-bcd",
+      "name": "sample: shortest word wins equal longest suffixes",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,47 +25,78 @@
         1
       ],
       "tags": [
-        "sample"
+        "sample",
+        "empty-suffix",
+        "shortest-tie"
       ]
     },
     {
-      "id": "sample-no-suffix-fallback",
-      "name": "sample: fallback to shortest container at root",
+      "id": "sample-longer-match-priority",
+      "name": "sample: longer suffix outranks a shorter word",
       "kind": "sample",
       "visible": true,
       "input": {
         "wordsContainer": [
-          "abcdef",
-          "bcd",
-          "xyz"
+          "abcdefgh",
+          "poiuygh",
+          "ghghgh"
         ],
         "wordsQuery": [
-          "xyz",
-          "abc"
+          "gh",
+          "acbfgh",
+          "acbfegh"
         ]
       },
       "expected": [
         2,
-        1
+        0,
+        2
       ],
       "tags": [
-        "sample"
+        "sample",
+        "suffix-priority"
       ]
     },
     {
-      "id": "trial-index-tie",
-      "name": "trial: equal length and suffix uses smallest index",
+      "id": "trial-earliest-index",
+      "name": "trial: equal lengths use earliest index",
       "kind": "trial",
       "visible": true,
       "input": {
         "wordsContainer": [
-          "aa",
-          "ba",
-          "ca"
+          "za",
+          "ya",
+          "b"
         ],
         "wordsQuery": [
-          "za",
-          "qa"
+          "qa",
+          "x"
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "tags": [
+        "trial",
+        "index-tie",
+        "empty-suffix"
+      ]
+    },
+    {
+      "id": "trial-duplicate-words",
+      "name": "trial: duplicate words choose their first occurrence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wordsContainer": [
+          "test",
+          "test",
+          "best"
+        ],
+        "wordsQuery": [
+          "atest",
+          "test"
         ]
       },
       "expected": [
@@ -72,23 +104,24 @@
         0
       ],
       "tags": [
-        "trial"
+        "trial",
+        "duplicates"
       ]
     },
     {
-      "id": "trial-shortest-length-tie",
-      "name": "trial: shorter container wins for same suffix",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-query-is-shorter",
+      "name": "hidden: a full query may be a suffix of longer words",
+      "kind": "real",
+      "visible": false,
       "input": {
         "wordsContainer": [
-          "testing",
-          "ing",
-          "sing"
+          "ending",
+          "ping",
+          "ring"
         ],
         "wordsQuery": [
-          "ring",
-          "thing"
+          "ing",
+          "g"
         ]
       },
       "expected": [
@@ -96,36 +129,89 @@
         1
       ],
       "tags": [
-        "trial"
+        "short-query",
+        "shortest-tie"
       ]
     },
     {
-      "id": "real-varied-suffixes",
-      "name": "real: varied common suffix depths",
+      "id": "real-container-word-ends-early",
+      "name": "hidden: terminal word remains best at an internal path",
       "kind": "real",
       "visible": false,
       "input": {
         "wordsContainer": [
-          "container",
-          "trainer",
-          "inner",
-          "winner",
-          "tone"
+          "a",
+          "ba",
+          "cba"
         ],
         "wordsQuery": [
-          "dinner",
-          "stone",
-          "plain"
+          "zzba",
+          "qa"
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "internal-node",
+        "terminal"
+      ]
+    },
+    {
+      "id": "real-no-match-shortest-index",
+      "name": "hidden: empty suffix uses shortest then earliest",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "wordsContainer": [
+          "long",
+          "x",
+          "y",
+          "wide"
+        ],
+        "wordsQuery": [
+          "abc",
+          "qq"
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "empty-suffix",
+        "global-fallback"
+      ]
+    },
+    {
+      "id": "real-mixed-branches",
+      "name": "hidden: queries stop at different trie depths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "wordsContainer": [
+          "motion",
+          "station",
+          "nation",
+          "cat"
+        ],
+        "wordsQuery": [
+          "ration",
+          "option",
+          "hat",
+          "z"
         ]
       },
       "expected": [
         2,
-        4,
-        4
+        0,
+        3,
+        3
       ],
       "tags": [
-        "real",
-        "trie"
+        "mixed-depths",
+        "branches"
       ]
     }
   ]

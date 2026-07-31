@@ -1,0 +1,5824 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3626",
+  "measurement_note": "Size S is the store count, with exactly three distinct inventory products per store and R = 3S. Tiers 8, 32, and 128 span 16x. The accepted query ranks and aggregates the inventory relation once; a correct correlated-extrema query repeatedly scans all inventory rows for every store and is O(S^2), so it must complete every tier and fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-stores-8",
+      "name": "benchmark: rank inventory for 8 stores",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Store 0001",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 2,
+              "store_name": "Store 0002",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 3,
+              "store_name": "Store 0003",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 4,
+              "store_name": "Store 0004",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 5,
+              "store_name": "Store 0005",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 6,
+              "store_name": "Store 0006",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 7,
+              "store_name": "Store 0007",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 8,
+              "store_name": "Store 0008",
+              "location": "Zone 3"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Cheap 0001",
+              "quantity": 12,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Middle 0001",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "Expensive 0001",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 4,
+              "store_id": 2,
+              "product_name": "Cheap 0002",
+              "quantity": 11,
+              "price": 1
+            },
+            {
+              "inventory_id": 5,
+              "store_id": 2,
+              "product_name": "Middle 0002",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 6,
+              "store_id": 2,
+              "product_name": "Expensive 0002",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 7,
+              "store_id": 3,
+              "product_name": "Cheap 0003",
+              "quantity": 10,
+              "price": 1
+            },
+            {
+              "inventory_id": 8,
+              "store_id": 3,
+              "product_name": "Middle 0003",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 9,
+              "store_id": 3,
+              "product_name": "Expensive 0003",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 10,
+              "store_id": 4,
+              "product_name": "Cheap 0004",
+              "quantity": 9,
+              "price": 1
+            },
+            {
+              "inventory_id": 11,
+              "store_id": 4,
+              "product_name": "Middle 0004",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 12,
+              "store_id": 4,
+              "product_name": "Expensive 0004",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 13,
+              "store_id": 5,
+              "product_name": "Cheap 0005",
+              "quantity": 8,
+              "price": 1
+            },
+            {
+              "inventory_id": 14,
+              "store_id": 5,
+              "product_name": "Middle 0005",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 15,
+              "store_id": 5,
+              "product_name": "Expensive 0005",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 16,
+              "store_id": 6,
+              "product_name": "Cheap 0006",
+              "quantity": 7,
+              "price": 1
+            },
+            {
+              "inventory_id": 17,
+              "store_id": 6,
+              "product_name": "Middle 0006",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 18,
+              "store_id": 6,
+              "product_name": "Expensive 0006",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 19,
+              "store_id": 7,
+              "product_name": "Cheap 0007",
+              "quantity": 6,
+              "price": 1
+            },
+            {
+              "inventory_id": 20,
+              "store_id": 7,
+              "product_name": "Middle 0007",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 21,
+              "store_id": 7,
+              "product_name": "Expensive 0007",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 22,
+              "store_id": 8,
+              "product_name": "Cheap 0008",
+              "quantity": 5,
+              "price": 1
+            },
+            {
+              "inventory_id": 23,
+              "store_id": 8,
+              "product_name": "Middle 0008",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 24,
+              "store_id": 8,
+              "product_name": "Expensive 0008",
+              "quantity": 1,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            1,
+            "Store 0001",
+            "Zone 1",
+            "Expensive 0001",
+            "Cheap 0001",
+            12
+          ],
+          [
+            2,
+            "Store 0002",
+            "Zone 2",
+            "Expensive 0002",
+            "Cheap 0002",
+            11
+          ],
+          [
+            3,
+            "Store 0003",
+            "Zone 3",
+            "Expensive 0003",
+            "Cheap 0003",
+            10
+          ],
+          [
+            4,
+            "Store 0004",
+            "Zone 4",
+            "Expensive 0004",
+            "Cheap 0004",
+            9
+          ],
+          [
+            5,
+            "Store 0005",
+            "Zone 5",
+            "Expensive 0005",
+            "Cheap 0005",
+            8
+          ],
+          [
+            6,
+            "Store 0006",
+            "Zone 1",
+            "Expensive 0006",
+            "Cheap 0006",
+            7
+          ],
+          [
+            7,
+            "Store 0007",
+            "Zone 2",
+            "Expensive 0007",
+            "Cheap 0007",
+            6
+          ],
+          [
+            8,
+            "Store 0008",
+            "Zone 3",
+            "Expensive 0008",
+            "Cheap 0008",
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "window-ranking",
+        "stores-8"
+      ]
+    },
+    {
+      "id": "benchmark-stores-32",
+      "name": "benchmark: rank inventory for 32 stores",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Store 0001",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 2,
+              "store_name": "Store 0002",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 3,
+              "store_name": "Store 0003",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 4,
+              "store_name": "Store 0004",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 5,
+              "store_name": "Store 0005",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 6,
+              "store_name": "Store 0006",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 7,
+              "store_name": "Store 0007",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 8,
+              "store_name": "Store 0008",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 9,
+              "store_name": "Store 0009",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 10,
+              "store_name": "Store 0010",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 11,
+              "store_name": "Store 0011",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 12,
+              "store_name": "Store 0012",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 13,
+              "store_name": "Store 0013",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 14,
+              "store_name": "Store 0014",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 15,
+              "store_name": "Store 0015",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 16,
+              "store_name": "Store 0016",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 17,
+              "store_name": "Store 0017",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 18,
+              "store_name": "Store 0018",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 19,
+              "store_name": "Store 0019",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 20,
+              "store_name": "Store 0020",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 21,
+              "store_name": "Store 0021",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 22,
+              "store_name": "Store 0022",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 23,
+              "store_name": "Store 0023",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 24,
+              "store_name": "Store 0024",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 25,
+              "store_name": "Store 0025",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 26,
+              "store_name": "Store 0026",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 27,
+              "store_name": "Store 0027",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 28,
+              "store_name": "Store 0028",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 29,
+              "store_name": "Store 0029",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 30,
+              "store_name": "Store 0030",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 31,
+              "store_name": "Store 0031",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 32,
+              "store_name": "Store 0032",
+              "location": "Zone 2"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Cheap 0001",
+              "quantity": 36,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Middle 0001",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "Expensive 0001",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 4,
+              "store_id": 2,
+              "product_name": "Cheap 0002",
+              "quantity": 35,
+              "price": 1
+            },
+            {
+              "inventory_id": 5,
+              "store_id": 2,
+              "product_name": "Middle 0002",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 6,
+              "store_id": 2,
+              "product_name": "Expensive 0002",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 7,
+              "store_id": 3,
+              "product_name": "Cheap 0003",
+              "quantity": 34,
+              "price": 1
+            },
+            {
+              "inventory_id": 8,
+              "store_id": 3,
+              "product_name": "Middle 0003",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 9,
+              "store_id": 3,
+              "product_name": "Expensive 0003",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 10,
+              "store_id": 4,
+              "product_name": "Cheap 0004",
+              "quantity": 33,
+              "price": 1
+            },
+            {
+              "inventory_id": 11,
+              "store_id": 4,
+              "product_name": "Middle 0004",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 12,
+              "store_id": 4,
+              "product_name": "Expensive 0004",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 13,
+              "store_id": 5,
+              "product_name": "Cheap 0005",
+              "quantity": 32,
+              "price": 1
+            },
+            {
+              "inventory_id": 14,
+              "store_id": 5,
+              "product_name": "Middle 0005",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 15,
+              "store_id": 5,
+              "product_name": "Expensive 0005",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 16,
+              "store_id": 6,
+              "product_name": "Cheap 0006",
+              "quantity": 31,
+              "price": 1
+            },
+            {
+              "inventory_id": 17,
+              "store_id": 6,
+              "product_name": "Middle 0006",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 18,
+              "store_id": 6,
+              "product_name": "Expensive 0006",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 19,
+              "store_id": 7,
+              "product_name": "Cheap 0007",
+              "quantity": 30,
+              "price": 1
+            },
+            {
+              "inventory_id": 20,
+              "store_id": 7,
+              "product_name": "Middle 0007",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 21,
+              "store_id": 7,
+              "product_name": "Expensive 0007",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 22,
+              "store_id": 8,
+              "product_name": "Cheap 0008",
+              "quantity": 29,
+              "price": 1
+            },
+            {
+              "inventory_id": 23,
+              "store_id": 8,
+              "product_name": "Middle 0008",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 24,
+              "store_id": 8,
+              "product_name": "Expensive 0008",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 25,
+              "store_id": 9,
+              "product_name": "Cheap 0009",
+              "quantity": 28,
+              "price": 1
+            },
+            {
+              "inventory_id": 26,
+              "store_id": 9,
+              "product_name": "Middle 0009",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 27,
+              "store_id": 9,
+              "product_name": "Expensive 0009",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 28,
+              "store_id": 10,
+              "product_name": "Cheap 0010",
+              "quantity": 27,
+              "price": 1
+            },
+            {
+              "inventory_id": 29,
+              "store_id": 10,
+              "product_name": "Middle 0010",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 30,
+              "store_id": 10,
+              "product_name": "Expensive 0010",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 31,
+              "store_id": 11,
+              "product_name": "Cheap 0011",
+              "quantity": 26,
+              "price": 1
+            },
+            {
+              "inventory_id": 32,
+              "store_id": 11,
+              "product_name": "Middle 0011",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 33,
+              "store_id": 11,
+              "product_name": "Expensive 0011",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 34,
+              "store_id": 12,
+              "product_name": "Cheap 0012",
+              "quantity": 25,
+              "price": 1
+            },
+            {
+              "inventory_id": 35,
+              "store_id": 12,
+              "product_name": "Middle 0012",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 36,
+              "store_id": 12,
+              "product_name": "Expensive 0012",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 37,
+              "store_id": 13,
+              "product_name": "Cheap 0013",
+              "quantity": 24,
+              "price": 1
+            },
+            {
+              "inventory_id": 38,
+              "store_id": 13,
+              "product_name": "Middle 0013",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 39,
+              "store_id": 13,
+              "product_name": "Expensive 0013",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 40,
+              "store_id": 14,
+              "product_name": "Cheap 0014",
+              "quantity": 23,
+              "price": 1
+            },
+            {
+              "inventory_id": 41,
+              "store_id": 14,
+              "product_name": "Middle 0014",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 42,
+              "store_id": 14,
+              "product_name": "Expensive 0014",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 43,
+              "store_id": 15,
+              "product_name": "Cheap 0015",
+              "quantity": 22,
+              "price": 1
+            },
+            {
+              "inventory_id": 44,
+              "store_id": 15,
+              "product_name": "Middle 0015",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 45,
+              "store_id": 15,
+              "product_name": "Expensive 0015",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 46,
+              "store_id": 16,
+              "product_name": "Cheap 0016",
+              "quantity": 21,
+              "price": 1
+            },
+            {
+              "inventory_id": 47,
+              "store_id": 16,
+              "product_name": "Middle 0016",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 48,
+              "store_id": 16,
+              "product_name": "Expensive 0016",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 49,
+              "store_id": 17,
+              "product_name": "Cheap 0017",
+              "quantity": 20,
+              "price": 1
+            },
+            {
+              "inventory_id": 50,
+              "store_id": 17,
+              "product_name": "Middle 0017",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 51,
+              "store_id": 17,
+              "product_name": "Expensive 0017",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 52,
+              "store_id": 18,
+              "product_name": "Cheap 0018",
+              "quantity": 19,
+              "price": 1
+            },
+            {
+              "inventory_id": 53,
+              "store_id": 18,
+              "product_name": "Middle 0018",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 54,
+              "store_id": 18,
+              "product_name": "Expensive 0018",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 55,
+              "store_id": 19,
+              "product_name": "Cheap 0019",
+              "quantity": 18,
+              "price": 1
+            },
+            {
+              "inventory_id": 56,
+              "store_id": 19,
+              "product_name": "Middle 0019",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 57,
+              "store_id": 19,
+              "product_name": "Expensive 0019",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 58,
+              "store_id": 20,
+              "product_name": "Cheap 0020",
+              "quantity": 17,
+              "price": 1
+            },
+            {
+              "inventory_id": 59,
+              "store_id": 20,
+              "product_name": "Middle 0020",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 60,
+              "store_id": 20,
+              "product_name": "Expensive 0020",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 61,
+              "store_id": 21,
+              "product_name": "Cheap 0021",
+              "quantity": 16,
+              "price": 1
+            },
+            {
+              "inventory_id": 62,
+              "store_id": 21,
+              "product_name": "Middle 0021",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 63,
+              "store_id": 21,
+              "product_name": "Expensive 0021",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 64,
+              "store_id": 22,
+              "product_name": "Cheap 0022",
+              "quantity": 15,
+              "price": 1
+            },
+            {
+              "inventory_id": 65,
+              "store_id": 22,
+              "product_name": "Middle 0022",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 66,
+              "store_id": 22,
+              "product_name": "Expensive 0022",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 67,
+              "store_id": 23,
+              "product_name": "Cheap 0023",
+              "quantity": 14,
+              "price": 1
+            },
+            {
+              "inventory_id": 68,
+              "store_id": 23,
+              "product_name": "Middle 0023",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 69,
+              "store_id": 23,
+              "product_name": "Expensive 0023",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 70,
+              "store_id": 24,
+              "product_name": "Cheap 0024",
+              "quantity": 13,
+              "price": 1
+            },
+            {
+              "inventory_id": 71,
+              "store_id": 24,
+              "product_name": "Middle 0024",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 72,
+              "store_id": 24,
+              "product_name": "Expensive 0024",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 73,
+              "store_id": 25,
+              "product_name": "Cheap 0025",
+              "quantity": 12,
+              "price": 1
+            },
+            {
+              "inventory_id": 74,
+              "store_id": 25,
+              "product_name": "Middle 0025",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 75,
+              "store_id": 25,
+              "product_name": "Expensive 0025",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 76,
+              "store_id": 26,
+              "product_name": "Cheap 0026",
+              "quantity": 11,
+              "price": 1
+            },
+            {
+              "inventory_id": 77,
+              "store_id": 26,
+              "product_name": "Middle 0026",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 78,
+              "store_id": 26,
+              "product_name": "Expensive 0026",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 79,
+              "store_id": 27,
+              "product_name": "Cheap 0027",
+              "quantity": 10,
+              "price": 1
+            },
+            {
+              "inventory_id": 80,
+              "store_id": 27,
+              "product_name": "Middle 0027",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 81,
+              "store_id": 27,
+              "product_name": "Expensive 0027",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 82,
+              "store_id": 28,
+              "product_name": "Cheap 0028",
+              "quantity": 9,
+              "price": 1
+            },
+            {
+              "inventory_id": 83,
+              "store_id": 28,
+              "product_name": "Middle 0028",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 84,
+              "store_id": 28,
+              "product_name": "Expensive 0028",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 85,
+              "store_id": 29,
+              "product_name": "Cheap 0029",
+              "quantity": 8,
+              "price": 1
+            },
+            {
+              "inventory_id": 86,
+              "store_id": 29,
+              "product_name": "Middle 0029",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 87,
+              "store_id": 29,
+              "product_name": "Expensive 0029",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 88,
+              "store_id": 30,
+              "product_name": "Cheap 0030",
+              "quantity": 7,
+              "price": 1
+            },
+            {
+              "inventory_id": 89,
+              "store_id": 30,
+              "product_name": "Middle 0030",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 90,
+              "store_id": 30,
+              "product_name": "Expensive 0030",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 91,
+              "store_id": 31,
+              "product_name": "Cheap 0031",
+              "quantity": 6,
+              "price": 1
+            },
+            {
+              "inventory_id": 92,
+              "store_id": 31,
+              "product_name": "Middle 0031",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 93,
+              "store_id": 31,
+              "product_name": "Expensive 0031",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 94,
+              "store_id": 32,
+              "product_name": "Cheap 0032",
+              "quantity": 5,
+              "price": 1
+            },
+            {
+              "inventory_id": 95,
+              "store_id": 32,
+              "product_name": "Middle 0032",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 96,
+              "store_id": 32,
+              "product_name": "Expensive 0032",
+              "quantity": 1,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            1,
+            "Store 0001",
+            "Zone 1",
+            "Expensive 0001",
+            "Cheap 0001",
+            36
+          ],
+          [
+            2,
+            "Store 0002",
+            "Zone 2",
+            "Expensive 0002",
+            "Cheap 0002",
+            35
+          ],
+          [
+            3,
+            "Store 0003",
+            "Zone 3",
+            "Expensive 0003",
+            "Cheap 0003",
+            34
+          ],
+          [
+            4,
+            "Store 0004",
+            "Zone 4",
+            "Expensive 0004",
+            "Cheap 0004",
+            33
+          ],
+          [
+            5,
+            "Store 0005",
+            "Zone 5",
+            "Expensive 0005",
+            "Cheap 0005",
+            32
+          ],
+          [
+            6,
+            "Store 0006",
+            "Zone 1",
+            "Expensive 0006",
+            "Cheap 0006",
+            31
+          ],
+          [
+            7,
+            "Store 0007",
+            "Zone 2",
+            "Expensive 0007",
+            "Cheap 0007",
+            30
+          ],
+          [
+            8,
+            "Store 0008",
+            "Zone 3",
+            "Expensive 0008",
+            "Cheap 0008",
+            29
+          ],
+          [
+            9,
+            "Store 0009",
+            "Zone 4",
+            "Expensive 0009",
+            "Cheap 0009",
+            28
+          ],
+          [
+            10,
+            "Store 0010",
+            "Zone 5",
+            "Expensive 0010",
+            "Cheap 0010",
+            27
+          ],
+          [
+            11,
+            "Store 0011",
+            "Zone 1",
+            "Expensive 0011",
+            "Cheap 0011",
+            26
+          ],
+          [
+            12,
+            "Store 0012",
+            "Zone 2",
+            "Expensive 0012",
+            "Cheap 0012",
+            25
+          ],
+          [
+            13,
+            "Store 0013",
+            "Zone 3",
+            "Expensive 0013",
+            "Cheap 0013",
+            24
+          ],
+          [
+            14,
+            "Store 0014",
+            "Zone 4",
+            "Expensive 0014",
+            "Cheap 0014",
+            23
+          ],
+          [
+            15,
+            "Store 0015",
+            "Zone 5",
+            "Expensive 0015",
+            "Cheap 0015",
+            22
+          ],
+          [
+            16,
+            "Store 0016",
+            "Zone 1",
+            "Expensive 0016",
+            "Cheap 0016",
+            21
+          ],
+          [
+            17,
+            "Store 0017",
+            "Zone 2",
+            "Expensive 0017",
+            "Cheap 0017",
+            20
+          ],
+          [
+            18,
+            "Store 0018",
+            "Zone 3",
+            "Expensive 0018",
+            "Cheap 0018",
+            19
+          ],
+          [
+            19,
+            "Store 0019",
+            "Zone 4",
+            "Expensive 0019",
+            "Cheap 0019",
+            18
+          ],
+          [
+            20,
+            "Store 0020",
+            "Zone 5",
+            "Expensive 0020",
+            "Cheap 0020",
+            17
+          ],
+          [
+            21,
+            "Store 0021",
+            "Zone 1",
+            "Expensive 0021",
+            "Cheap 0021",
+            16
+          ],
+          [
+            22,
+            "Store 0022",
+            "Zone 2",
+            "Expensive 0022",
+            "Cheap 0022",
+            15
+          ],
+          [
+            23,
+            "Store 0023",
+            "Zone 3",
+            "Expensive 0023",
+            "Cheap 0023",
+            14
+          ],
+          [
+            24,
+            "Store 0024",
+            "Zone 4",
+            "Expensive 0024",
+            "Cheap 0024",
+            13
+          ],
+          [
+            25,
+            "Store 0025",
+            "Zone 5",
+            "Expensive 0025",
+            "Cheap 0025",
+            12
+          ],
+          [
+            26,
+            "Store 0026",
+            "Zone 1",
+            "Expensive 0026",
+            "Cheap 0026",
+            11
+          ],
+          [
+            27,
+            "Store 0027",
+            "Zone 2",
+            "Expensive 0027",
+            "Cheap 0027",
+            10
+          ],
+          [
+            28,
+            "Store 0028",
+            "Zone 3",
+            "Expensive 0028",
+            "Cheap 0028",
+            9
+          ],
+          [
+            29,
+            "Store 0029",
+            "Zone 4",
+            "Expensive 0029",
+            "Cheap 0029",
+            8
+          ],
+          [
+            30,
+            "Store 0030",
+            "Zone 5",
+            "Expensive 0030",
+            "Cheap 0030",
+            7
+          ],
+          [
+            31,
+            "Store 0031",
+            "Zone 1",
+            "Expensive 0031",
+            "Cheap 0031",
+            6
+          ],
+          [
+            32,
+            "Store 0032",
+            "Zone 2",
+            "Expensive 0032",
+            "Cheap 0032",
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "window-ranking",
+        "stores-32"
+      ]
+    },
+    {
+      "id": "benchmark-stores-128",
+      "name": "benchmark: rank inventory for 128 stores",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Store 0001",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 2,
+              "store_name": "Store 0002",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 3,
+              "store_name": "Store 0003",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 4,
+              "store_name": "Store 0004",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 5,
+              "store_name": "Store 0005",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 6,
+              "store_name": "Store 0006",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 7,
+              "store_name": "Store 0007",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 8,
+              "store_name": "Store 0008",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 9,
+              "store_name": "Store 0009",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 10,
+              "store_name": "Store 0010",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 11,
+              "store_name": "Store 0011",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 12,
+              "store_name": "Store 0012",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 13,
+              "store_name": "Store 0013",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 14,
+              "store_name": "Store 0014",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 15,
+              "store_name": "Store 0015",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 16,
+              "store_name": "Store 0016",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 17,
+              "store_name": "Store 0017",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 18,
+              "store_name": "Store 0018",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 19,
+              "store_name": "Store 0019",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 20,
+              "store_name": "Store 0020",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 21,
+              "store_name": "Store 0021",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 22,
+              "store_name": "Store 0022",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 23,
+              "store_name": "Store 0023",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 24,
+              "store_name": "Store 0024",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 25,
+              "store_name": "Store 0025",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 26,
+              "store_name": "Store 0026",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 27,
+              "store_name": "Store 0027",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 28,
+              "store_name": "Store 0028",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 29,
+              "store_name": "Store 0029",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 30,
+              "store_name": "Store 0030",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 31,
+              "store_name": "Store 0031",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 32,
+              "store_name": "Store 0032",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 33,
+              "store_name": "Store 0033",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 34,
+              "store_name": "Store 0034",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 35,
+              "store_name": "Store 0035",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 36,
+              "store_name": "Store 0036",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 37,
+              "store_name": "Store 0037",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 38,
+              "store_name": "Store 0038",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 39,
+              "store_name": "Store 0039",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 40,
+              "store_name": "Store 0040",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 41,
+              "store_name": "Store 0041",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 42,
+              "store_name": "Store 0042",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 43,
+              "store_name": "Store 0043",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 44,
+              "store_name": "Store 0044",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 45,
+              "store_name": "Store 0045",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 46,
+              "store_name": "Store 0046",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 47,
+              "store_name": "Store 0047",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 48,
+              "store_name": "Store 0048",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 49,
+              "store_name": "Store 0049",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 50,
+              "store_name": "Store 0050",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 51,
+              "store_name": "Store 0051",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 52,
+              "store_name": "Store 0052",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 53,
+              "store_name": "Store 0053",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 54,
+              "store_name": "Store 0054",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 55,
+              "store_name": "Store 0055",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 56,
+              "store_name": "Store 0056",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 57,
+              "store_name": "Store 0057",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 58,
+              "store_name": "Store 0058",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 59,
+              "store_name": "Store 0059",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 60,
+              "store_name": "Store 0060",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 61,
+              "store_name": "Store 0061",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 62,
+              "store_name": "Store 0062",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 63,
+              "store_name": "Store 0063",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 64,
+              "store_name": "Store 0064",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 65,
+              "store_name": "Store 0065",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 66,
+              "store_name": "Store 0066",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 67,
+              "store_name": "Store 0067",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 68,
+              "store_name": "Store 0068",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 69,
+              "store_name": "Store 0069",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 70,
+              "store_name": "Store 0070",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 71,
+              "store_name": "Store 0071",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 72,
+              "store_name": "Store 0072",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 73,
+              "store_name": "Store 0073",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 74,
+              "store_name": "Store 0074",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 75,
+              "store_name": "Store 0075",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 76,
+              "store_name": "Store 0076",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 77,
+              "store_name": "Store 0077",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 78,
+              "store_name": "Store 0078",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 79,
+              "store_name": "Store 0079",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 80,
+              "store_name": "Store 0080",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 81,
+              "store_name": "Store 0081",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 82,
+              "store_name": "Store 0082",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 83,
+              "store_name": "Store 0083",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 84,
+              "store_name": "Store 0084",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 85,
+              "store_name": "Store 0085",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 86,
+              "store_name": "Store 0086",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 87,
+              "store_name": "Store 0087",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 88,
+              "store_name": "Store 0088",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 89,
+              "store_name": "Store 0089",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 90,
+              "store_name": "Store 0090",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 91,
+              "store_name": "Store 0091",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 92,
+              "store_name": "Store 0092",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 93,
+              "store_name": "Store 0093",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 94,
+              "store_name": "Store 0094",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 95,
+              "store_name": "Store 0095",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 96,
+              "store_name": "Store 0096",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 97,
+              "store_name": "Store 0097",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 98,
+              "store_name": "Store 0098",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 99,
+              "store_name": "Store 0099",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 100,
+              "store_name": "Store 0100",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 101,
+              "store_name": "Store 0101",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 102,
+              "store_name": "Store 0102",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 103,
+              "store_name": "Store 0103",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 104,
+              "store_name": "Store 0104",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 105,
+              "store_name": "Store 0105",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 106,
+              "store_name": "Store 0106",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 107,
+              "store_name": "Store 0107",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 108,
+              "store_name": "Store 0108",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 109,
+              "store_name": "Store 0109",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 110,
+              "store_name": "Store 0110",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 111,
+              "store_name": "Store 0111",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 112,
+              "store_name": "Store 0112",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 113,
+              "store_name": "Store 0113",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 114,
+              "store_name": "Store 0114",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 115,
+              "store_name": "Store 0115",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 116,
+              "store_name": "Store 0116",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 117,
+              "store_name": "Store 0117",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 118,
+              "store_name": "Store 0118",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 119,
+              "store_name": "Store 0119",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 120,
+              "store_name": "Store 0120",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 121,
+              "store_name": "Store 0121",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 122,
+              "store_name": "Store 0122",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 123,
+              "store_name": "Store 0123",
+              "location": "Zone 3"
+            },
+            {
+              "store_id": 124,
+              "store_name": "Store 0124",
+              "location": "Zone 4"
+            },
+            {
+              "store_id": 125,
+              "store_name": "Store 0125",
+              "location": "Zone 5"
+            },
+            {
+              "store_id": 126,
+              "store_name": "Store 0126",
+              "location": "Zone 1"
+            },
+            {
+              "store_id": 127,
+              "store_name": "Store 0127",
+              "location": "Zone 2"
+            },
+            {
+              "store_id": 128,
+              "store_name": "Store 0128",
+              "location": "Zone 3"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Cheap 0001",
+              "quantity": 132,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Middle 0001",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "Expensive 0001",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 4,
+              "store_id": 2,
+              "product_name": "Cheap 0002",
+              "quantity": 131,
+              "price": 1
+            },
+            {
+              "inventory_id": 5,
+              "store_id": 2,
+              "product_name": "Middle 0002",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 6,
+              "store_id": 2,
+              "product_name": "Expensive 0002",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 7,
+              "store_id": 3,
+              "product_name": "Cheap 0003",
+              "quantity": 130,
+              "price": 1
+            },
+            {
+              "inventory_id": 8,
+              "store_id": 3,
+              "product_name": "Middle 0003",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 9,
+              "store_id": 3,
+              "product_name": "Expensive 0003",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 10,
+              "store_id": 4,
+              "product_name": "Cheap 0004",
+              "quantity": 129,
+              "price": 1
+            },
+            {
+              "inventory_id": 11,
+              "store_id": 4,
+              "product_name": "Middle 0004",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 12,
+              "store_id": 4,
+              "product_name": "Expensive 0004",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 13,
+              "store_id": 5,
+              "product_name": "Cheap 0005",
+              "quantity": 128,
+              "price": 1
+            },
+            {
+              "inventory_id": 14,
+              "store_id": 5,
+              "product_name": "Middle 0005",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 15,
+              "store_id": 5,
+              "product_name": "Expensive 0005",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 16,
+              "store_id": 6,
+              "product_name": "Cheap 0006",
+              "quantity": 127,
+              "price": 1
+            },
+            {
+              "inventory_id": 17,
+              "store_id": 6,
+              "product_name": "Middle 0006",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 18,
+              "store_id": 6,
+              "product_name": "Expensive 0006",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 19,
+              "store_id": 7,
+              "product_name": "Cheap 0007",
+              "quantity": 126,
+              "price": 1
+            },
+            {
+              "inventory_id": 20,
+              "store_id": 7,
+              "product_name": "Middle 0007",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 21,
+              "store_id": 7,
+              "product_name": "Expensive 0007",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 22,
+              "store_id": 8,
+              "product_name": "Cheap 0008",
+              "quantity": 125,
+              "price": 1
+            },
+            {
+              "inventory_id": 23,
+              "store_id": 8,
+              "product_name": "Middle 0008",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 24,
+              "store_id": 8,
+              "product_name": "Expensive 0008",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 25,
+              "store_id": 9,
+              "product_name": "Cheap 0009",
+              "quantity": 124,
+              "price": 1
+            },
+            {
+              "inventory_id": 26,
+              "store_id": 9,
+              "product_name": "Middle 0009",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 27,
+              "store_id": 9,
+              "product_name": "Expensive 0009",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 28,
+              "store_id": 10,
+              "product_name": "Cheap 0010",
+              "quantity": 123,
+              "price": 1
+            },
+            {
+              "inventory_id": 29,
+              "store_id": 10,
+              "product_name": "Middle 0010",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 30,
+              "store_id": 10,
+              "product_name": "Expensive 0010",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 31,
+              "store_id": 11,
+              "product_name": "Cheap 0011",
+              "quantity": 122,
+              "price": 1
+            },
+            {
+              "inventory_id": 32,
+              "store_id": 11,
+              "product_name": "Middle 0011",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 33,
+              "store_id": 11,
+              "product_name": "Expensive 0011",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 34,
+              "store_id": 12,
+              "product_name": "Cheap 0012",
+              "quantity": 121,
+              "price": 1
+            },
+            {
+              "inventory_id": 35,
+              "store_id": 12,
+              "product_name": "Middle 0012",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 36,
+              "store_id": 12,
+              "product_name": "Expensive 0012",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 37,
+              "store_id": 13,
+              "product_name": "Cheap 0013",
+              "quantity": 120,
+              "price": 1
+            },
+            {
+              "inventory_id": 38,
+              "store_id": 13,
+              "product_name": "Middle 0013",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 39,
+              "store_id": 13,
+              "product_name": "Expensive 0013",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 40,
+              "store_id": 14,
+              "product_name": "Cheap 0014",
+              "quantity": 119,
+              "price": 1
+            },
+            {
+              "inventory_id": 41,
+              "store_id": 14,
+              "product_name": "Middle 0014",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 42,
+              "store_id": 14,
+              "product_name": "Expensive 0014",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 43,
+              "store_id": 15,
+              "product_name": "Cheap 0015",
+              "quantity": 118,
+              "price": 1
+            },
+            {
+              "inventory_id": 44,
+              "store_id": 15,
+              "product_name": "Middle 0015",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 45,
+              "store_id": 15,
+              "product_name": "Expensive 0015",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 46,
+              "store_id": 16,
+              "product_name": "Cheap 0016",
+              "quantity": 117,
+              "price": 1
+            },
+            {
+              "inventory_id": 47,
+              "store_id": 16,
+              "product_name": "Middle 0016",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 48,
+              "store_id": 16,
+              "product_name": "Expensive 0016",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 49,
+              "store_id": 17,
+              "product_name": "Cheap 0017",
+              "quantity": 116,
+              "price": 1
+            },
+            {
+              "inventory_id": 50,
+              "store_id": 17,
+              "product_name": "Middle 0017",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 51,
+              "store_id": 17,
+              "product_name": "Expensive 0017",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 52,
+              "store_id": 18,
+              "product_name": "Cheap 0018",
+              "quantity": 115,
+              "price": 1
+            },
+            {
+              "inventory_id": 53,
+              "store_id": 18,
+              "product_name": "Middle 0018",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 54,
+              "store_id": 18,
+              "product_name": "Expensive 0018",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 55,
+              "store_id": 19,
+              "product_name": "Cheap 0019",
+              "quantity": 114,
+              "price": 1
+            },
+            {
+              "inventory_id": 56,
+              "store_id": 19,
+              "product_name": "Middle 0019",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 57,
+              "store_id": 19,
+              "product_name": "Expensive 0019",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 58,
+              "store_id": 20,
+              "product_name": "Cheap 0020",
+              "quantity": 113,
+              "price": 1
+            },
+            {
+              "inventory_id": 59,
+              "store_id": 20,
+              "product_name": "Middle 0020",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 60,
+              "store_id": 20,
+              "product_name": "Expensive 0020",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 61,
+              "store_id": 21,
+              "product_name": "Cheap 0021",
+              "quantity": 112,
+              "price": 1
+            },
+            {
+              "inventory_id": 62,
+              "store_id": 21,
+              "product_name": "Middle 0021",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 63,
+              "store_id": 21,
+              "product_name": "Expensive 0021",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 64,
+              "store_id": 22,
+              "product_name": "Cheap 0022",
+              "quantity": 111,
+              "price": 1
+            },
+            {
+              "inventory_id": 65,
+              "store_id": 22,
+              "product_name": "Middle 0022",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 66,
+              "store_id": 22,
+              "product_name": "Expensive 0022",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 67,
+              "store_id": 23,
+              "product_name": "Cheap 0023",
+              "quantity": 110,
+              "price": 1
+            },
+            {
+              "inventory_id": 68,
+              "store_id": 23,
+              "product_name": "Middle 0023",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 69,
+              "store_id": 23,
+              "product_name": "Expensive 0023",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 70,
+              "store_id": 24,
+              "product_name": "Cheap 0024",
+              "quantity": 109,
+              "price": 1
+            },
+            {
+              "inventory_id": 71,
+              "store_id": 24,
+              "product_name": "Middle 0024",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 72,
+              "store_id": 24,
+              "product_name": "Expensive 0024",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 73,
+              "store_id": 25,
+              "product_name": "Cheap 0025",
+              "quantity": 108,
+              "price": 1
+            },
+            {
+              "inventory_id": 74,
+              "store_id": 25,
+              "product_name": "Middle 0025",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 75,
+              "store_id": 25,
+              "product_name": "Expensive 0025",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 76,
+              "store_id": 26,
+              "product_name": "Cheap 0026",
+              "quantity": 107,
+              "price": 1
+            },
+            {
+              "inventory_id": 77,
+              "store_id": 26,
+              "product_name": "Middle 0026",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 78,
+              "store_id": 26,
+              "product_name": "Expensive 0026",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 79,
+              "store_id": 27,
+              "product_name": "Cheap 0027",
+              "quantity": 106,
+              "price": 1
+            },
+            {
+              "inventory_id": 80,
+              "store_id": 27,
+              "product_name": "Middle 0027",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 81,
+              "store_id": 27,
+              "product_name": "Expensive 0027",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 82,
+              "store_id": 28,
+              "product_name": "Cheap 0028",
+              "quantity": 105,
+              "price": 1
+            },
+            {
+              "inventory_id": 83,
+              "store_id": 28,
+              "product_name": "Middle 0028",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 84,
+              "store_id": 28,
+              "product_name": "Expensive 0028",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 85,
+              "store_id": 29,
+              "product_name": "Cheap 0029",
+              "quantity": 104,
+              "price": 1
+            },
+            {
+              "inventory_id": 86,
+              "store_id": 29,
+              "product_name": "Middle 0029",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 87,
+              "store_id": 29,
+              "product_name": "Expensive 0029",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 88,
+              "store_id": 30,
+              "product_name": "Cheap 0030",
+              "quantity": 103,
+              "price": 1
+            },
+            {
+              "inventory_id": 89,
+              "store_id": 30,
+              "product_name": "Middle 0030",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 90,
+              "store_id": 30,
+              "product_name": "Expensive 0030",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 91,
+              "store_id": 31,
+              "product_name": "Cheap 0031",
+              "quantity": 102,
+              "price": 1
+            },
+            {
+              "inventory_id": 92,
+              "store_id": 31,
+              "product_name": "Middle 0031",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 93,
+              "store_id": 31,
+              "product_name": "Expensive 0031",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 94,
+              "store_id": 32,
+              "product_name": "Cheap 0032",
+              "quantity": 101,
+              "price": 1
+            },
+            {
+              "inventory_id": 95,
+              "store_id": 32,
+              "product_name": "Middle 0032",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 96,
+              "store_id": 32,
+              "product_name": "Expensive 0032",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 97,
+              "store_id": 33,
+              "product_name": "Cheap 0033",
+              "quantity": 100,
+              "price": 1
+            },
+            {
+              "inventory_id": 98,
+              "store_id": 33,
+              "product_name": "Middle 0033",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 99,
+              "store_id": 33,
+              "product_name": "Expensive 0033",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 100,
+              "store_id": 34,
+              "product_name": "Cheap 0034",
+              "quantity": 99,
+              "price": 1
+            },
+            {
+              "inventory_id": 101,
+              "store_id": 34,
+              "product_name": "Middle 0034",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 102,
+              "store_id": 34,
+              "product_name": "Expensive 0034",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 103,
+              "store_id": 35,
+              "product_name": "Cheap 0035",
+              "quantity": 98,
+              "price": 1
+            },
+            {
+              "inventory_id": 104,
+              "store_id": 35,
+              "product_name": "Middle 0035",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 105,
+              "store_id": 35,
+              "product_name": "Expensive 0035",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 106,
+              "store_id": 36,
+              "product_name": "Cheap 0036",
+              "quantity": 97,
+              "price": 1
+            },
+            {
+              "inventory_id": 107,
+              "store_id": 36,
+              "product_name": "Middle 0036",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 108,
+              "store_id": 36,
+              "product_name": "Expensive 0036",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 109,
+              "store_id": 37,
+              "product_name": "Cheap 0037",
+              "quantity": 96,
+              "price": 1
+            },
+            {
+              "inventory_id": 110,
+              "store_id": 37,
+              "product_name": "Middle 0037",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 111,
+              "store_id": 37,
+              "product_name": "Expensive 0037",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 112,
+              "store_id": 38,
+              "product_name": "Cheap 0038",
+              "quantity": 95,
+              "price": 1
+            },
+            {
+              "inventory_id": 113,
+              "store_id": 38,
+              "product_name": "Middle 0038",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 114,
+              "store_id": 38,
+              "product_name": "Expensive 0038",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 115,
+              "store_id": 39,
+              "product_name": "Cheap 0039",
+              "quantity": 94,
+              "price": 1
+            },
+            {
+              "inventory_id": 116,
+              "store_id": 39,
+              "product_name": "Middle 0039",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 117,
+              "store_id": 39,
+              "product_name": "Expensive 0039",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 118,
+              "store_id": 40,
+              "product_name": "Cheap 0040",
+              "quantity": 93,
+              "price": 1
+            },
+            {
+              "inventory_id": 119,
+              "store_id": 40,
+              "product_name": "Middle 0040",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 120,
+              "store_id": 40,
+              "product_name": "Expensive 0040",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 121,
+              "store_id": 41,
+              "product_name": "Cheap 0041",
+              "quantity": 92,
+              "price": 1
+            },
+            {
+              "inventory_id": 122,
+              "store_id": 41,
+              "product_name": "Middle 0041",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 123,
+              "store_id": 41,
+              "product_name": "Expensive 0041",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 124,
+              "store_id": 42,
+              "product_name": "Cheap 0042",
+              "quantity": 91,
+              "price": 1
+            },
+            {
+              "inventory_id": 125,
+              "store_id": 42,
+              "product_name": "Middle 0042",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 126,
+              "store_id": 42,
+              "product_name": "Expensive 0042",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 127,
+              "store_id": 43,
+              "product_name": "Cheap 0043",
+              "quantity": 90,
+              "price": 1
+            },
+            {
+              "inventory_id": 128,
+              "store_id": 43,
+              "product_name": "Middle 0043",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 129,
+              "store_id": 43,
+              "product_name": "Expensive 0043",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 130,
+              "store_id": 44,
+              "product_name": "Cheap 0044",
+              "quantity": 89,
+              "price": 1
+            },
+            {
+              "inventory_id": 131,
+              "store_id": 44,
+              "product_name": "Middle 0044",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 132,
+              "store_id": 44,
+              "product_name": "Expensive 0044",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 133,
+              "store_id": 45,
+              "product_name": "Cheap 0045",
+              "quantity": 88,
+              "price": 1
+            },
+            {
+              "inventory_id": 134,
+              "store_id": 45,
+              "product_name": "Middle 0045",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 135,
+              "store_id": 45,
+              "product_name": "Expensive 0045",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 136,
+              "store_id": 46,
+              "product_name": "Cheap 0046",
+              "quantity": 87,
+              "price": 1
+            },
+            {
+              "inventory_id": 137,
+              "store_id": 46,
+              "product_name": "Middle 0046",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 138,
+              "store_id": 46,
+              "product_name": "Expensive 0046",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 139,
+              "store_id": 47,
+              "product_name": "Cheap 0047",
+              "quantity": 86,
+              "price": 1
+            },
+            {
+              "inventory_id": 140,
+              "store_id": 47,
+              "product_name": "Middle 0047",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 141,
+              "store_id": 47,
+              "product_name": "Expensive 0047",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 142,
+              "store_id": 48,
+              "product_name": "Cheap 0048",
+              "quantity": 85,
+              "price": 1
+            },
+            {
+              "inventory_id": 143,
+              "store_id": 48,
+              "product_name": "Middle 0048",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 144,
+              "store_id": 48,
+              "product_name": "Expensive 0048",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 145,
+              "store_id": 49,
+              "product_name": "Cheap 0049",
+              "quantity": 84,
+              "price": 1
+            },
+            {
+              "inventory_id": 146,
+              "store_id": 49,
+              "product_name": "Middle 0049",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 147,
+              "store_id": 49,
+              "product_name": "Expensive 0049",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 148,
+              "store_id": 50,
+              "product_name": "Cheap 0050",
+              "quantity": 83,
+              "price": 1
+            },
+            {
+              "inventory_id": 149,
+              "store_id": 50,
+              "product_name": "Middle 0050",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 150,
+              "store_id": 50,
+              "product_name": "Expensive 0050",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 151,
+              "store_id": 51,
+              "product_name": "Cheap 0051",
+              "quantity": 82,
+              "price": 1
+            },
+            {
+              "inventory_id": 152,
+              "store_id": 51,
+              "product_name": "Middle 0051",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 153,
+              "store_id": 51,
+              "product_name": "Expensive 0051",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 154,
+              "store_id": 52,
+              "product_name": "Cheap 0052",
+              "quantity": 81,
+              "price": 1
+            },
+            {
+              "inventory_id": 155,
+              "store_id": 52,
+              "product_name": "Middle 0052",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 156,
+              "store_id": 52,
+              "product_name": "Expensive 0052",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 157,
+              "store_id": 53,
+              "product_name": "Cheap 0053",
+              "quantity": 80,
+              "price": 1
+            },
+            {
+              "inventory_id": 158,
+              "store_id": 53,
+              "product_name": "Middle 0053",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 159,
+              "store_id": 53,
+              "product_name": "Expensive 0053",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 160,
+              "store_id": 54,
+              "product_name": "Cheap 0054",
+              "quantity": 79,
+              "price": 1
+            },
+            {
+              "inventory_id": 161,
+              "store_id": 54,
+              "product_name": "Middle 0054",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 162,
+              "store_id": 54,
+              "product_name": "Expensive 0054",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 163,
+              "store_id": 55,
+              "product_name": "Cheap 0055",
+              "quantity": 78,
+              "price": 1
+            },
+            {
+              "inventory_id": 164,
+              "store_id": 55,
+              "product_name": "Middle 0055",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 165,
+              "store_id": 55,
+              "product_name": "Expensive 0055",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 166,
+              "store_id": 56,
+              "product_name": "Cheap 0056",
+              "quantity": 77,
+              "price": 1
+            },
+            {
+              "inventory_id": 167,
+              "store_id": 56,
+              "product_name": "Middle 0056",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 168,
+              "store_id": 56,
+              "product_name": "Expensive 0056",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 169,
+              "store_id": 57,
+              "product_name": "Cheap 0057",
+              "quantity": 76,
+              "price": 1
+            },
+            {
+              "inventory_id": 170,
+              "store_id": 57,
+              "product_name": "Middle 0057",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 171,
+              "store_id": 57,
+              "product_name": "Expensive 0057",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 172,
+              "store_id": 58,
+              "product_name": "Cheap 0058",
+              "quantity": 75,
+              "price": 1
+            },
+            {
+              "inventory_id": 173,
+              "store_id": 58,
+              "product_name": "Middle 0058",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 174,
+              "store_id": 58,
+              "product_name": "Expensive 0058",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 175,
+              "store_id": 59,
+              "product_name": "Cheap 0059",
+              "quantity": 74,
+              "price": 1
+            },
+            {
+              "inventory_id": 176,
+              "store_id": 59,
+              "product_name": "Middle 0059",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 177,
+              "store_id": 59,
+              "product_name": "Expensive 0059",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 178,
+              "store_id": 60,
+              "product_name": "Cheap 0060",
+              "quantity": 73,
+              "price": 1
+            },
+            {
+              "inventory_id": 179,
+              "store_id": 60,
+              "product_name": "Middle 0060",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 180,
+              "store_id": 60,
+              "product_name": "Expensive 0060",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 181,
+              "store_id": 61,
+              "product_name": "Cheap 0061",
+              "quantity": 72,
+              "price": 1
+            },
+            {
+              "inventory_id": 182,
+              "store_id": 61,
+              "product_name": "Middle 0061",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 183,
+              "store_id": 61,
+              "product_name": "Expensive 0061",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 184,
+              "store_id": 62,
+              "product_name": "Cheap 0062",
+              "quantity": 71,
+              "price": 1
+            },
+            {
+              "inventory_id": 185,
+              "store_id": 62,
+              "product_name": "Middle 0062",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 186,
+              "store_id": 62,
+              "product_name": "Expensive 0062",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 187,
+              "store_id": 63,
+              "product_name": "Cheap 0063",
+              "quantity": 70,
+              "price": 1
+            },
+            {
+              "inventory_id": 188,
+              "store_id": 63,
+              "product_name": "Middle 0063",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 189,
+              "store_id": 63,
+              "product_name": "Expensive 0063",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 190,
+              "store_id": 64,
+              "product_name": "Cheap 0064",
+              "quantity": 69,
+              "price": 1
+            },
+            {
+              "inventory_id": 191,
+              "store_id": 64,
+              "product_name": "Middle 0064",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 192,
+              "store_id": 64,
+              "product_name": "Expensive 0064",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 193,
+              "store_id": 65,
+              "product_name": "Cheap 0065",
+              "quantity": 68,
+              "price": 1
+            },
+            {
+              "inventory_id": 194,
+              "store_id": 65,
+              "product_name": "Middle 0065",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 195,
+              "store_id": 65,
+              "product_name": "Expensive 0065",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 196,
+              "store_id": 66,
+              "product_name": "Cheap 0066",
+              "quantity": 67,
+              "price": 1
+            },
+            {
+              "inventory_id": 197,
+              "store_id": 66,
+              "product_name": "Middle 0066",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 198,
+              "store_id": 66,
+              "product_name": "Expensive 0066",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 199,
+              "store_id": 67,
+              "product_name": "Cheap 0067",
+              "quantity": 66,
+              "price": 1
+            },
+            {
+              "inventory_id": 200,
+              "store_id": 67,
+              "product_name": "Middle 0067",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 201,
+              "store_id": 67,
+              "product_name": "Expensive 0067",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 202,
+              "store_id": 68,
+              "product_name": "Cheap 0068",
+              "quantity": 65,
+              "price": 1
+            },
+            {
+              "inventory_id": 203,
+              "store_id": 68,
+              "product_name": "Middle 0068",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 204,
+              "store_id": 68,
+              "product_name": "Expensive 0068",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 205,
+              "store_id": 69,
+              "product_name": "Cheap 0069",
+              "quantity": 64,
+              "price": 1
+            },
+            {
+              "inventory_id": 206,
+              "store_id": 69,
+              "product_name": "Middle 0069",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 207,
+              "store_id": 69,
+              "product_name": "Expensive 0069",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 208,
+              "store_id": 70,
+              "product_name": "Cheap 0070",
+              "quantity": 63,
+              "price": 1
+            },
+            {
+              "inventory_id": 209,
+              "store_id": 70,
+              "product_name": "Middle 0070",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 210,
+              "store_id": 70,
+              "product_name": "Expensive 0070",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 211,
+              "store_id": 71,
+              "product_name": "Cheap 0071",
+              "quantity": 62,
+              "price": 1
+            },
+            {
+              "inventory_id": 212,
+              "store_id": 71,
+              "product_name": "Middle 0071",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 213,
+              "store_id": 71,
+              "product_name": "Expensive 0071",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 214,
+              "store_id": 72,
+              "product_name": "Cheap 0072",
+              "quantity": 61,
+              "price": 1
+            },
+            {
+              "inventory_id": 215,
+              "store_id": 72,
+              "product_name": "Middle 0072",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 216,
+              "store_id": 72,
+              "product_name": "Expensive 0072",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 217,
+              "store_id": 73,
+              "product_name": "Cheap 0073",
+              "quantity": 60,
+              "price": 1
+            },
+            {
+              "inventory_id": 218,
+              "store_id": 73,
+              "product_name": "Middle 0073",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 219,
+              "store_id": 73,
+              "product_name": "Expensive 0073",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 220,
+              "store_id": 74,
+              "product_name": "Cheap 0074",
+              "quantity": 59,
+              "price": 1
+            },
+            {
+              "inventory_id": 221,
+              "store_id": 74,
+              "product_name": "Middle 0074",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 222,
+              "store_id": 74,
+              "product_name": "Expensive 0074",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 223,
+              "store_id": 75,
+              "product_name": "Cheap 0075",
+              "quantity": 58,
+              "price": 1
+            },
+            {
+              "inventory_id": 224,
+              "store_id": 75,
+              "product_name": "Middle 0075",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 225,
+              "store_id": 75,
+              "product_name": "Expensive 0075",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 226,
+              "store_id": 76,
+              "product_name": "Cheap 0076",
+              "quantity": 57,
+              "price": 1
+            },
+            {
+              "inventory_id": 227,
+              "store_id": 76,
+              "product_name": "Middle 0076",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 228,
+              "store_id": 76,
+              "product_name": "Expensive 0076",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 229,
+              "store_id": 77,
+              "product_name": "Cheap 0077",
+              "quantity": 56,
+              "price": 1
+            },
+            {
+              "inventory_id": 230,
+              "store_id": 77,
+              "product_name": "Middle 0077",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 231,
+              "store_id": 77,
+              "product_name": "Expensive 0077",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 232,
+              "store_id": 78,
+              "product_name": "Cheap 0078",
+              "quantity": 55,
+              "price": 1
+            },
+            {
+              "inventory_id": 233,
+              "store_id": 78,
+              "product_name": "Middle 0078",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 234,
+              "store_id": 78,
+              "product_name": "Expensive 0078",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 235,
+              "store_id": 79,
+              "product_name": "Cheap 0079",
+              "quantity": 54,
+              "price": 1
+            },
+            {
+              "inventory_id": 236,
+              "store_id": 79,
+              "product_name": "Middle 0079",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 237,
+              "store_id": 79,
+              "product_name": "Expensive 0079",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 238,
+              "store_id": 80,
+              "product_name": "Cheap 0080",
+              "quantity": 53,
+              "price": 1
+            },
+            {
+              "inventory_id": 239,
+              "store_id": 80,
+              "product_name": "Middle 0080",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 240,
+              "store_id": 80,
+              "product_name": "Expensive 0080",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 241,
+              "store_id": 81,
+              "product_name": "Cheap 0081",
+              "quantity": 52,
+              "price": 1
+            },
+            {
+              "inventory_id": 242,
+              "store_id": 81,
+              "product_name": "Middle 0081",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 243,
+              "store_id": 81,
+              "product_name": "Expensive 0081",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 244,
+              "store_id": 82,
+              "product_name": "Cheap 0082",
+              "quantity": 51,
+              "price": 1
+            },
+            {
+              "inventory_id": 245,
+              "store_id": 82,
+              "product_name": "Middle 0082",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 246,
+              "store_id": 82,
+              "product_name": "Expensive 0082",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 247,
+              "store_id": 83,
+              "product_name": "Cheap 0083",
+              "quantity": 50,
+              "price": 1
+            },
+            {
+              "inventory_id": 248,
+              "store_id": 83,
+              "product_name": "Middle 0083",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 249,
+              "store_id": 83,
+              "product_name": "Expensive 0083",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 250,
+              "store_id": 84,
+              "product_name": "Cheap 0084",
+              "quantity": 49,
+              "price": 1
+            },
+            {
+              "inventory_id": 251,
+              "store_id": 84,
+              "product_name": "Middle 0084",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 252,
+              "store_id": 84,
+              "product_name": "Expensive 0084",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 253,
+              "store_id": 85,
+              "product_name": "Cheap 0085",
+              "quantity": 48,
+              "price": 1
+            },
+            {
+              "inventory_id": 254,
+              "store_id": 85,
+              "product_name": "Middle 0085",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 255,
+              "store_id": 85,
+              "product_name": "Expensive 0085",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 256,
+              "store_id": 86,
+              "product_name": "Cheap 0086",
+              "quantity": 47,
+              "price": 1
+            },
+            {
+              "inventory_id": 257,
+              "store_id": 86,
+              "product_name": "Middle 0086",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 258,
+              "store_id": 86,
+              "product_name": "Expensive 0086",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 259,
+              "store_id": 87,
+              "product_name": "Cheap 0087",
+              "quantity": 46,
+              "price": 1
+            },
+            {
+              "inventory_id": 260,
+              "store_id": 87,
+              "product_name": "Middle 0087",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 261,
+              "store_id": 87,
+              "product_name": "Expensive 0087",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 262,
+              "store_id": 88,
+              "product_name": "Cheap 0088",
+              "quantity": 45,
+              "price": 1
+            },
+            {
+              "inventory_id": 263,
+              "store_id": 88,
+              "product_name": "Middle 0088",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 264,
+              "store_id": 88,
+              "product_name": "Expensive 0088",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 265,
+              "store_id": 89,
+              "product_name": "Cheap 0089",
+              "quantity": 44,
+              "price": 1
+            },
+            {
+              "inventory_id": 266,
+              "store_id": 89,
+              "product_name": "Middle 0089",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 267,
+              "store_id": 89,
+              "product_name": "Expensive 0089",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 268,
+              "store_id": 90,
+              "product_name": "Cheap 0090",
+              "quantity": 43,
+              "price": 1
+            },
+            {
+              "inventory_id": 269,
+              "store_id": 90,
+              "product_name": "Middle 0090",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 270,
+              "store_id": 90,
+              "product_name": "Expensive 0090",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 271,
+              "store_id": 91,
+              "product_name": "Cheap 0091",
+              "quantity": 42,
+              "price": 1
+            },
+            {
+              "inventory_id": 272,
+              "store_id": 91,
+              "product_name": "Middle 0091",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 273,
+              "store_id": 91,
+              "product_name": "Expensive 0091",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 274,
+              "store_id": 92,
+              "product_name": "Cheap 0092",
+              "quantity": 41,
+              "price": 1
+            },
+            {
+              "inventory_id": 275,
+              "store_id": 92,
+              "product_name": "Middle 0092",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 276,
+              "store_id": 92,
+              "product_name": "Expensive 0092",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 277,
+              "store_id": 93,
+              "product_name": "Cheap 0093",
+              "quantity": 40,
+              "price": 1
+            },
+            {
+              "inventory_id": 278,
+              "store_id": 93,
+              "product_name": "Middle 0093",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 279,
+              "store_id": 93,
+              "product_name": "Expensive 0093",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 280,
+              "store_id": 94,
+              "product_name": "Cheap 0094",
+              "quantity": 39,
+              "price": 1
+            },
+            {
+              "inventory_id": 281,
+              "store_id": 94,
+              "product_name": "Middle 0094",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 282,
+              "store_id": 94,
+              "product_name": "Expensive 0094",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 283,
+              "store_id": 95,
+              "product_name": "Cheap 0095",
+              "quantity": 38,
+              "price": 1
+            },
+            {
+              "inventory_id": 284,
+              "store_id": 95,
+              "product_name": "Middle 0095",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 285,
+              "store_id": 95,
+              "product_name": "Expensive 0095",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 286,
+              "store_id": 96,
+              "product_name": "Cheap 0096",
+              "quantity": 37,
+              "price": 1
+            },
+            {
+              "inventory_id": 287,
+              "store_id": 96,
+              "product_name": "Middle 0096",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 288,
+              "store_id": 96,
+              "product_name": "Expensive 0096",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 289,
+              "store_id": 97,
+              "product_name": "Cheap 0097",
+              "quantity": 36,
+              "price": 1
+            },
+            {
+              "inventory_id": 290,
+              "store_id": 97,
+              "product_name": "Middle 0097",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 291,
+              "store_id": 97,
+              "product_name": "Expensive 0097",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 292,
+              "store_id": 98,
+              "product_name": "Cheap 0098",
+              "quantity": 35,
+              "price": 1
+            },
+            {
+              "inventory_id": 293,
+              "store_id": 98,
+              "product_name": "Middle 0098",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 294,
+              "store_id": 98,
+              "product_name": "Expensive 0098",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 295,
+              "store_id": 99,
+              "product_name": "Cheap 0099",
+              "quantity": 34,
+              "price": 1
+            },
+            {
+              "inventory_id": 296,
+              "store_id": 99,
+              "product_name": "Middle 0099",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 297,
+              "store_id": 99,
+              "product_name": "Expensive 0099",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 298,
+              "store_id": 100,
+              "product_name": "Cheap 0100",
+              "quantity": 33,
+              "price": 1
+            },
+            {
+              "inventory_id": 299,
+              "store_id": 100,
+              "product_name": "Middle 0100",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 300,
+              "store_id": 100,
+              "product_name": "Expensive 0100",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 301,
+              "store_id": 101,
+              "product_name": "Cheap 0101",
+              "quantity": 32,
+              "price": 1
+            },
+            {
+              "inventory_id": 302,
+              "store_id": 101,
+              "product_name": "Middle 0101",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 303,
+              "store_id": 101,
+              "product_name": "Expensive 0101",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 304,
+              "store_id": 102,
+              "product_name": "Cheap 0102",
+              "quantity": 31,
+              "price": 1
+            },
+            {
+              "inventory_id": 305,
+              "store_id": 102,
+              "product_name": "Middle 0102",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 306,
+              "store_id": 102,
+              "product_name": "Expensive 0102",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 307,
+              "store_id": 103,
+              "product_name": "Cheap 0103",
+              "quantity": 30,
+              "price": 1
+            },
+            {
+              "inventory_id": 308,
+              "store_id": 103,
+              "product_name": "Middle 0103",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 309,
+              "store_id": 103,
+              "product_name": "Expensive 0103",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 310,
+              "store_id": 104,
+              "product_name": "Cheap 0104",
+              "quantity": 29,
+              "price": 1
+            },
+            {
+              "inventory_id": 311,
+              "store_id": 104,
+              "product_name": "Middle 0104",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 312,
+              "store_id": 104,
+              "product_name": "Expensive 0104",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 313,
+              "store_id": 105,
+              "product_name": "Cheap 0105",
+              "quantity": 28,
+              "price": 1
+            },
+            {
+              "inventory_id": 314,
+              "store_id": 105,
+              "product_name": "Middle 0105",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 315,
+              "store_id": 105,
+              "product_name": "Expensive 0105",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 316,
+              "store_id": 106,
+              "product_name": "Cheap 0106",
+              "quantity": 27,
+              "price": 1
+            },
+            {
+              "inventory_id": 317,
+              "store_id": 106,
+              "product_name": "Middle 0106",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 318,
+              "store_id": 106,
+              "product_name": "Expensive 0106",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 319,
+              "store_id": 107,
+              "product_name": "Cheap 0107",
+              "quantity": 26,
+              "price": 1
+            },
+            {
+              "inventory_id": 320,
+              "store_id": 107,
+              "product_name": "Middle 0107",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 321,
+              "store_id": 107,
+              "product_name": "Expensive 0107",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 322,
+              "store_id": 108,
+              "product_name": "Cheap 0108",
+              "quantity": 25,
+              "price": 1
+            },
+            {
+              "inventory_id": 323,
+              "store_id": 108,
+              "product_name": "Middle 0108",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 324,
+              "store_id": 108,
+              "product_name": "Expensive 0108",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 325,
+              "store_id": 109,
+              "product_name": "Cheap 0109",
+              "quantity": 24,
+              "price": 1
+            },
+            {
+              "inventory_id": 326,
+              "store_id": 109,
+              "product_name": "Middle 0109",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 327,
+              "store_id": 109,
+              "product_name": "Expensive 0109",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 328,
+              "store_id": 110,
+              "product_name": "Cheap 0110",
+              "quantity": 23,
+              "price": 1
+            },
+            {
+              "inventory_id": 329,
+              "store_id": 110,
+              "product_name": "Middle 0110",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 330,
+              "store_id": 110,
+              "product_name": "Expensive 0110",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 331,
+              "store_id": 111,
+              "product_name": "Cheap 0111",
+              "quantity": 22,
+              "price": 1
+            },
+            {
+              "inventory_id": 332,
+              "store_id": 111,
+              "product_name": "Middle 0111",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 333,
+              "store_id": 111,
+              "product_name": "Expensive 0111",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 334,
+              "store_id": 112,
+              "product_name": "Cheap 0112",
+              "quantity": 21,
+              "price": 1
+            },
+            {
+              "inventory_id": 335,
+              "store_id": 112,
+              "product_name": "Middle 0112",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 336,
+              "store_id": 112,
+              "product_name": "Expensive 0112",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 337,
+              "store_id": 113,
+              "product_name": "Cheap 0113",
+              "quantity": 20,
+              "price": 1
+            },
+            {
+              "inventory_id": 338,
+              "store_id": 113,
+              "product_name": "Middle 0113",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 339,
+              "store_id": 113,
+              "product_name": "Expensive 0113",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 340,
+              "store_id": 114,
+              "product_name": "Cheap 0114",
+              "quantity": 19,
+              "price": 1
+            },
+            {
+              "inventory_id": 341,
+              "store_id": 114,
+              "product_name": "Middle 0114",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 342,
+              "store_id": 114,
+              "product_name": "Expensive 0114",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 343,
+              "store_id": 115,
+              "product_name": "Cheap 0115",
+              "quantity": 18,
+              "price": 1
+            },
+            {
+              "inventory_id": 344,
+              "store_id": 115,
+              "product_name": "Middle 0115",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 345,
+              "store_id": 115,
+              "product_name": "Expensive 0115",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 346,
+              "store_id": 116,
+              "product_name": "Cheap 0116",
+              "quantity": 17,
+              "price": 1
+            },
+            {
+              "inventory_id": 347,
+              "store_id": 116,
+              "product_name": "Middle 0116",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 348,
+              "store_id": 116,
+              "product_name": "Expensive 0116",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 349,
+              "store_id": 117,
+              "product_name": "Cheap 0117",
+              "quantity": 16,
+              "price": 1
+            },
+            {
+              "inventory_id": 350,
+              "store_id": 117,
+              "product_name": "Middle 0117",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 351,
+              "store_id": 117,
+              "product_name": "Expensive 0117",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 352,
+              "store_id": 118,
+              "product_name": "Cheap 0118",
+              "quantity": 15,
+              "price": 1
+            },
+            {
+              "inventory_id": 353,
+              "store_id": 118,
+              "product_name": "Middle 0118",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 354,
+              "store_id": 118,
+              "product_name": "Expensive 0118",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 355,
+              "store_id": 119,
+              "product_name": "Cheap 0119",
+              "quantity": 14,
+              "price": 1
+            },
+            {
+              "inventory_id": 356,
+              "store_id": 119,
+              "product_name": "Middle 0119",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 357,
+              "store_id": 119,
+              "product_name": "Expensive 0119",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 358,
+              "store_id": 120,
+              "product_name": "Cheap 0120",
+              "quantity": 13,
+              "price": 1
+            },
+            {
+              "inventory_id": 359,
+              "store_id": 120,
+              "product_name": "Middle 0120",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 360,
+              "store_id": 120,
+              "product_name": "Expensive 0120",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 361,
+              "store_id": 121,
+              "product_name": "Cheap 0121",
+              "quantity": 12,
+              "price": 1
+            },
+            {
+              "inventory_id": 362,
+              "store_id": 121,
+              "product_name": "Middle 0121",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 363,
+              "store_id": 121,
+              "product_name": "Expensive 0121",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 364,
+              "store_id": 122,
+              "product_name": "Cheap 0122",
+              "quantity": 11,
+              "price": 1
+            },
+            {
+              "inventory_id": 365,
+              "store_id": 122,
+              "product_name": "Middle 0122",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 366,
+              "store_id": 122,
+              "product_name": "Expensive 0122",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 367,
+              "store_id": 123,
+              "product_name": "Cheap 0123",
+              "quantity": 10,
+              "price": 1
+            },
+            {
+              "inventory_id": 368,
+              "store_id": 123,
+              "product_name": "Middle 0123",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 369,
+              "store_id": 123,
+              "product_name": "Expensive 0123",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 370,
+              "store_id": 124,
+              "product_name": "Cheap 0124",
+              "quantity": 9,
+              "price": 1
+            },
+            {
+              "inventory_id": 371,
+              "store_id": 124,
+              "product_name": "Middle 0124",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 372,
+              "store_id": 124,
+              "product_name": "Expensive 0124",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 373,
+              "store_id": 125,
+              "product_name": "Cheap 0125",
+              "quantity": 8,
+              "price": 1
+            },
+            {
+              "inventory_id": 374,
+              "store_id": 125,
+              "product_name": "Middle 0125",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 375,
+              "store_id": 125,
+              "product_name": "Expensive 0125",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 376,
+              "store_id": 126,
+              "product_name": "Cheap 0126",
+              "quantity": 7,
+              "price": 1
+            },
+            {
+              "inventory_id": 377,
+              "store_id": 126,
+              "product_name": "Middle 0126",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 378,
+              "store_id": 126,
+              "product_name": "Expensive 0126",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 379,
+              "store_id": 127,
+              "product_name": "Cheap 0127",
+              "quantity": 6,
+              "price": 1
+            },
+            {
+              "inventory_id": 380,
+              "store_id": 127,
+              "product_name": "Middle 0127",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 381,
+              "store_id": 127,
+              "product_name": "Expensive 0127",
+              "quantity": 1,
+              "price": 9
+            },
+            {
+              "inventory_id": 382,
+              "store_id": 128,
+              "product_name": "Cheap 0128",
+              "quantity": 5,
+              "price": 1
+            },
+            {
+              "inventory_id": 383,
+              "store_id": 128,
+              "product_name": "Middle 0128",
+              "quantity": 2,
+              "price": 5
+            },
+            {
+              "inventory_id": 384,
+              "store_id": 128,
+              "product_name": "Expensive 0128",
+              "quantity": 1,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            1,
+            "Store 0001",
+            "Zone 1",
+            "Expensive 0001",
+            "Cheap 0001",
+            132
+          ],
+          [
+            2,
+            "Store 0002",
+            "Zone 2",
+            "Expensive 0002",
+            "Cheap 0002",
+            131
+          ],
+          [
+            3,
+            "Store 0003",
+            "Zone 3",
+            "Expensive 0003",
+            "Cheap 0003",
+            130
+          ],
+          [
+            4,
+            "Store 0004",
+            "Zone 4",
+            "Expensive 0004",
+            "Cheap 0004",
+            129
+          ],
+          [
+            5,
+            "Store 0005",
+            "Zone 5",
+            "Expensive 0005",
+            "Cheap 0005",
+            128
+          ],
+          [
+            6,
+            "Store 0006",
+            "Zone 1",
+            "Expensive 0006",
+            "Cheap 0006",
+            127
+          ],
+          [
+            7,
+            "Store 0007",
+            "Zone 2",
+            "Expensive 0007",
+            "Cheap 0007",
+            126
+          ],
+          [
+            8,
+            "Store 0008",
+            "Zone 3",
+            "Expensive 0008",
+            "Cheap 0008",
+            125
+          ],
+          [
+            9,
+            "Store 0009",
+            "Zone 4",
+            "Expensive 0009",
+            "Cheap 0009",
+            124
+          ],
+          [
+            10,
+            "Store 0010",
+            "Zone 5",
+            "Expensive 0010",
+            "Cheap 0010",
+            123
+          ],
+          [
+            11,
+            "Store 0011",
+            "Zone 1",
+            "Expensive 0011",
+            "Cheap 0011",
+            122
+          ],
+          [
+            12,
+            "Store 0012",
+            "Zone 2",
+            "Expensive 0012",
+            "Cheap 0012",
+            121
+          ],
+          [
+            13,
+            "Store 0013",
+            "Zone 3",
+            "Expensive 0013",
+            "Cheap 0013",
+            120
+          ],
+          [
+            14,
+            "Store 0014",
+            "Zone 4",
+            "Expensive 0014",
+            "Cheap 0014",
+            119
+          ],
+          [
+            15,
+            "Store 0015",
+            "Zone 5",
+            "Expensive 0015",
+            "Cheap 0015",
+            118
+          ],
+          [
+            16,
+            "Store 0016",
+            "Zone 1",
+            "Expensive 0016",
+            "Cheap 0016",
+            117
+          ],
+          [
+            17,
+            "Store 0017",
+            "Zone 2",
+            "Expensive 0017",
+            "Cheap 0017",
+            116
+          ],
+          [
+            18,
+            "Store 0018",
+            "Zone 3",
+            "Expensive 0018",
+            "Cheap 0018",
+            115
+          ],
+          [
+            19,
+            "Store 0019",
+            "Zone 4",
+            "Expensive 0019",
+            "Cheap 0019",
+            114
+          ],
+          [
+            20,
+            "Store 0020",
+            "Zone 5",
+            "Expensive 0020",
+            "Cheap 0020",
+            113
+          ],
+          [
+            21,
+            "Store 0021",
+            "Zone 1",
+            "Expensive 0021",
+            "Cheap 0021",
+            112
+          ],
+          [
+            22,
+            "Store 0022",
+            "Zone 2",
+            "Expensive 0022",
+            "Cheap 0022",
+            111
+          ],
+          [
+            23,
+            "Store 0023",
+            "Zone 3",
+            "Expensive 0023",
+            "Cheap 0023",
+            110
+          ],
+          [
+            24,
+            "Store 0024",
+            "Zone 4",
+            "Expensive 0024",
+            "Cheap 0024",
+            109
+          ],
+          [
+            25,
+            "Store 0025",
+            "Zone 5",
+            "Expensive 0025",
+            "Cheap 0025",
+            108
+          ],
+          [
+            26,
+            "Store 0026",
+            "Zone 1",
+            "Expensive 0026",
+            "Cheap 0026",
+            107
+          ],
+          [
+            27,
+            "Store 0027",
+            "Zone 2",
+            "Expensive 0027",
+            "Cheap 0027",
+            106
+          ],
+          [
+            28,
+            "Store 0028",
+            "Zone 3",
+            "Expensive 0028",
+            "Cheap 0028",
+            105
+          ],
+          [
+            29,
+            "Store 0029",
+            "Zone 4",
+            "Expensive 0029",
+            "Cheap 0029",
+            104
+          ],
+          [
+            30,
+            "Store 0030",
+            "Zone 5",
+            "Expensive 0030",
+            "Cheap 0030",
+            103
+          ],
+          [
+            31,
+            "Store 0031",
+            "Zone 1",
+            "Expensive 0031",
+            "Cheap 0031",
+            102
+          ],
+          [
+            32,
+            "Store 0032",
+            "Zone 2",
+            "Expensive 0032",
+            "Cheap 0032",
+            101
+          ],
+          [
+            33,
+            "Store 0033",
+            "Zone 3",
+            "Expensive 0033",
+            "Cheap 0033",
+            100
+          ],
+          [
+            34,
+            "Store 0034",
+            "Zone 4",
+            "Expensive 0034",
+            "Cheap 0034",
+            99
+          ],
+          [
+            35,
+            "Store 0035",
+            "Zone 5",
+            "Expensive 0035",
+            "Cheap 0035",
+            98
+          ],
+          [
+            36,
+            "Store 0036",
+            "Zone 1",
+            "Expensive 0036",
+            "Cheap 0036",
+            97
+          ],
+          [
+            37,
+            "Store 0037",
+            "Zone 2",
+            "Expensive 0037",
+            "Cheap 0037",
+            96
+          ],
+          [
+            38,
+            "Store 0038",
+            "Zone 3",
+            "Expensive 0038",
+            "Cheap 0038",
+            95
+          ],
+          [
+            39,
+            "Store 0039",
+            "Zone 4",
+            "Expensive 0039",
+            "Cheap 0039",
+            94
+          ],
+          [
+            40,
+            "Store 0040",
+            "Zone 5",
+            "Expensive 0040",
+            "Cheap 0040",
+            93
+          ],
+          [
+            41,
+            "Store 0041",
+            "Zone 1",
+            "Expensive 0041",
+            "Cheap 0041",
+            92
+          ],
+          [
+            42,
+            "Store 0042",
+            "Zone 2",
+            "Expensive 0042",
+            "Cheap 0042",
+            91
+          ],
+          [
+            43,
+            "Store 0043",
+            "Zone 3",
+            "Expensive 0043",
+            "Cheap 0043",
+            90
+          ],
+          [
+            44,
+            "Store 0044",
+            "Zone 4",
+            "Expensive 0044",
+            "Cheap 0044",
+            89
+          ],
+          [
+            45,
+            "Store 0045",
+            "Zone 5",
+            "Expensive 0045",
+            "Cheap 0045",
+            88
+          ],
+          [
+            46,
+            "Store 0046",
+            "Zone 1",
+            "Expensive 0046",
+            "Cheap 0046",
+            87
+          ],
+          [
+            47,
+            "Store 0047",
+            "Zone 2",
+            "Expensive 0047",
+            "Cheap 0047",
+            86
+          ],
+          [
+            48,
+            "Store 0048",
+            "Zone 3",
+            "Expensive 0048",
+            "Cheap 0048",
+            85
+          ],
+          [
+            49,
+            "Store 0049",
+            "Zone 4",
+            "Expensive 0049",
+            "Cheap 0049",
+            84
+          ],
+          [
+            50,
+            "Store 0050",
+            "Zone 5",
+            "Expensive 0050",
+            "Cheap 0050",
+            83
+          ],
+          [
+            51,
+            "Store 0051",
+            "Zone 1",
+            "Expensive 0051",
+            "Cheap 0051",
+            82
+          ],
+          [
+            52,
+            "Store 0052",
+            "Zone 2",
+            "Expensive 0052",
+            "Cheap 0052",
+            81
+          ],
+          [
+            53,
+            "Store 0053",
+            "Zone 3",
+            "Expensive 0053",
+            "Cheap 0053",
+            80
+          ],
+          [
+            54,
+            "Store 0054",
+            "Zone 4",
+            "Expensive 0054",
+            "Cheap 0054",
+            79
+          ],
+          [
+            55,
+            "Store 0055",
+            "Zone 5",
+            "Expensive 0055",
+            "Cheap 0055",
+            78
+          ],
+          [
+            56,
+            "Store 0056",
+            "Zone 1",
+            "Expensive 0056",
+            "Cheap 0056",
+            77
+          ],
+          [
+            57,
+            "Store 0057",
+            "Zone 2",
+            "Expensive 0057",
+            "Cheap 0057",
+            76
+          ],
+          [
+            58,
+            "Store 0058",
+            "Zone 3",
+            "Expensive 0058",
+            "Cheap 0058",
+            75
+          ],
+          [
+            59,
+            "Store 0059",
+            "Zone 4",
+            "Expensive 0059",
+            "Cheap 0059",
+            74
+          ],
+          [
+            60,
+            "Store 0060",
+            "Zone 5",
+            "Expensive 0060",
+            "Cheap 0060",
+            73
+          ],
+          [
+            61,
+            "Store 0061",
+            "Zone 1",
+            "Expensive 0061",
+            "Cheap 0061",
+            72
+          ],
+          [
+            62,
+            "Store 0062",
+            "Zone 2",
+            "Expensive 0062",
+            "Cheap 0062",
+            71
+          ],
+          [
+            63,
+            "Store 0063",
+            "Zone 3",
+            "Expensive 0063",
+            "Cheap 0063",
+            70
+          ],
+          [
+            64,
+            "Store 0064",
+            "Zone 4",
+            "Expensive 0064",
+            "Cheap 0064",
+            69
+          ],
+          [
+            65,
+            "Store 0065",
+            "Zone 5",
+            "Expensive 0065",
+            "Cheap 0065",
+            68
+          ],
+          [
+            66,
+            "Store 0066",
+            "Zone 1",
+            "Expensive 0066",
+            "Cheap 0066",
+            67
+          ],
+          [
+            67,
+            "Store 0067",
+            "Zone 2",
+            "Expensive 0067",
+            "Cheap 0067",
+            66
+          ],
+          [
+            68,
+            "Store 0068",
+            "Zone 3",
+            "Expensive 0068",
+            "Cheap 0068",
+            65
+          ],
+          [
+            69,
+            "Store 0069",
+            "Zone 4",
+            "Expensive 0069",
+            "Cheap 0069",
+            64
+          ],
+          [
+            70,
+            "Store 0070",
+            "Zone 5",
+            "Expensive 0070",
+            "Cheap 0070",
+            63
+          ],
+          [
+            71,
+            "Store 0071",
+            "Zone 1",
+            "Expensive 0071",
+            "Cheap 0071",
+            62
+          ],
+          [
+            72,
+            "Store 0072",
+            "Zone 2",
+            "Expensive 0072",
+            "Cheap 0072",
+            61
+          ],
+          [
+            73,
+            "Store 0073",
+            "Zone 3",
+            "Expensive 0073",
+            "Cheap 0073",
+            60
+          ],
+          [
+            74,
+            "Store 0074",
+            "Zone 4",
+            "Expensive 0074",
+            "Cheap 0074",
+            59
+          ],
+          [
+            75,
+            "Store 0075",
+            "Zone 5",
+            "Expensive 0075",
+            "Cheap 0075",
+            58
+          ],
+          [
+            76,
+            "Store 0076",
+            "Zone 1",
+            "Expensive 0076",
+            "Cheap 0076",
+            57
+          ],
+          [
+            77,
+            "Store 0077",
+            "Zone 2",
+            "Expensive 0077",
+            "Cheap 0077",
+            56
+          ],
+          [
+            78,
+            "Store 0078",
+            "Zone 3",
+            "Expensive 0078",
+            "Cheap 0078",
+            55
+          ],
+          [
+            79,
+            "Store 0079",
+            "Zone 4",
+            "Expensive 0079",
+            "Cheap 0079",
+            54
+          ],
+          [
+            80,
+            "Store 0080",
+            "Zone 5",
+            "Expensive 0080",
+            "Cheap 0080",
+            53
+          ],
+          [
+            81,
+            "Store 0081",
+            "Zone 1",
+            "Expensive 0081",
+            "Cheap 0081",
+            52
+          ],
+          [
+            82,
+            "Store 0082",
+            "Zone 2",
+            "Expensive 0082",
+            "Cheap 0082",
+            51
+          ],
+          [
+            83,
+            "Store 0083",
+            "Zone 3",
+            "Expensive 0083",
+            "Cheap 0083",
+            50
+          ],
+          [
+            84,
+            "Store 0084",
+            "Zone 4",
+            "Expensive 0084",
+            "Cheap 0084",
+            49
+          ],
+          [
+            85,
+            "Store 0085",
+            "Zone 5",
+            "Expensive 0085",
+            "Cheap 0085",
+            48
+          ],
+          [
+            86,
+            "Store 0086",
+            "Zone 1",
+            "Expensive 0086",
+            "Cheap 0086",
+            47
+          ],
+          [
+            87,
+            "Store 0087",
+            "Zone 2",
+            "Expensive 0087",
+            "Cheap 0087",
+            46
+          ],
+          [
+            88,
+            "Store 0088",
+            "Zone 3",
+            "Expensive 0088",
+            "Cheap 0088",
+            45
+          ],
+          [
+            89,
+            "Store 0089",
+            "Zone 4",
+            "Expensive 0089",
+            "Cheap 0089",
+            44
+          ],
+          [
+            90,
+            "Store 0090",
+            "Zone 5",
+            "Expensive 0090",
+            "Cheap 0090",
+            43
+          ],
+          [
+            91,
+            "Store 0091",
+            "Zone 1",
+            "Expensive 0091",
+            "Cheap 0091",
+            42
+          ],
+          [
+            92,
+            "Store 0092",
+            "Zone 2",
+            "Expensive 0092",
+            "Cheap 0092",
+            41
+          ],
+          [
+            93,
+            "Store 0093",
+            "Zone 3",
+            "Expensive 0093",
+            "Cheap 0093",
+            40
+          ],
+          [
+            94,
+            "Store 0094",
+            "Zone 4",
+            "Expensive 0094",
+            "Cheap 0094",
+            39
+          ],
+          [
+            95,
+            "Store 0095",
+            "Zone 5",
+            "Expensive 0095",
+            "Cheap 0095",
+            38
+          ],
+          [
+            96,
+            "Store 0096",
+            "Zone 1",
+            "Expensive 0096",
+            "Cheap 0096",
+            37
+          ],
+          [
+            97,
+            "Store 0097",
+            "Zone 2",
+            "Expensive 0097",
+            "Cheap 0097",
+            36
+          ],
+          [
+            98,
+            "Store 0098",
+            "Zone 3",
+            "Expensive 0098",
+            "Cheap 0098",
+            35
+          ],
+          [
+            99,
+            "Store 0099",
+            "Zone 4",
+            "Expensive 0099",
+            "Cheap 0099",
+            34
+          ],
+          [
+            100,
+            "Store 0100",
+            "Zone 5",
+            "Expensive 0100",
+            "Cheap 0100",
+            33
+          ],
+          [
+            101,
+            "Store 0101",
+            "Zone 1",
+            "Expensive 0101",
+            "Cheap 0101",
+            32
+          ],
+          [
+            102,
+            "Store 0102",
+            "Zone 2",
+            "Expensive 0102",
+            "Cheap 0102",
+            31
+          ],
+          [
+            103,
+            "Store 0103",
+            "Zone 3",
+            "Expensive 0103",
+            "Cheap 0103",
+            30
+          ],
+          [
+            104,
+            "Store 0104",
+            "Zone 4",
+            "Expensive 0104",
+            "Cheap 0104",
+            29
+          ],
+          [
+            105,
+            "Store 0105",
+            "Zone 5",
+            "Expensive 0105",
+            "Cheap 0105",
+            28
+          ],
+          [
+            106,
+            "Store 0106",
+            "Zone 1",
+            "Expensive 0106",
+            "Cheap 0106",
+            27
+          ],
+          [
+            107,
+            "Store 0107",
+            "Zone 2",
+            "Expensive 0107",
+            "Cheap 0107",
+            26
+          ],
+          [
+            108,
+            "Store 0108",
+            "Zone 3",
+            "Expensive 0108",
+            "Cheap 0108",
+            25
+          ],
+          [
+            109,
+            "Store 0109",
+            "Zone 4",
+            "Expensive 0109",
+            "Cheap 0109",
+            24
+          ],
+          [
+            110,
+            "Store 0110",
+            "Zone 5",
+            "Expensive 0110",
+            "Cheap 0110",
+            23
+          ],
+          [
+            111,
+            "Store 0111",
+            "Zone 1",
+            "Expensive 0111",
+            "Cheap 0111",
+            22
+          ],
+          [
+            112,
+            "Store 0112",
+            "Zone 2",
+            "Expensive 0112",
+            "Cheap 0112",
+            21
+          ],
+          [
+            113,
+            "Store 0113",
+            "Zone 3",
+            "Expensive 0113",
+            "Cheap 0113",
+            20
+          ],
+          [
+            114,
+            "Store 0114",
+            "Zone 4",
+            "Expensive 0114",
+            "Cheap 0114",
+            19
+          ],
+          [
+            115,
+            "Store 0115",
+            "Zone 5",
+            "Expensive 0115",
+            "Cheap 0115",
+            18
+          ],
+          [
+            116,
+            "Store 0116",
+            "Zone 1",
+            "Expensive 0116",
+            "Cheap 0116",
+            17
+          ],
+          [
+            117,
+            "Store 0117",
+            "Zone 2",
+            "Expensive 0117",
+            "Cheap 0117",
+            16
+          ],
+          [
+            118,
+            "Store 0118",
+            "Zone 3",
+            "Expensive 0118",
+            "Cheap 0118",
+            15
+          ],
+          [
+            119,
+            "Store 0119",
+            "Zone 4",
+            "Expensive 0119",
+            "Cheap 0119",
+            14
+          ],
+          [
+            120,
+            "Store 0120",
+            "Zone 5",
+            "Expensive 0120",
+            "Cheap 0120",
+            13
+          ],
+          [
+            121,
+            "Store 0121",
+            "Zone 1",
+            "Expensive 0121",
+            "Cheap 0121",
+            12
+          ],
+          [
+            122,
+            "Store 0122",
+            "Zone 2",
+            "Expensive 0122",
+            "Cheap 0122",
+            11
+          ],
+          [
+            123,
+            "Store 0123",
+            "Zone 3",
+            "Expensive 0123",
+            "Cheap 0123",
+            10
+          ],
+          [
+            124,
+            "Store 0124",
+            "Zone 4",
+            "Expensive 0124",
+            "Cheap 0124",
+            9
+          ],
+          [
+            125,
+            "Store 0125",
+            "Zone 5",
+            "Expensive 0125",
+            "Cheap 0125",
+            8
+          ],
+          [
+            126,
+            "Store 0126",
+            "Zone 1",
+            "Expensive 0126",
+            "Cheap 0126",
+            7
+          ],
+          [
+            127,
+            "Store 0127",
+            "Zone 2",
+            "Expensive 0127",
+            "Cheap 0127",
+            6
+          ],
+          [
+            128,
+            "Store 0128",
+            "Zone 3",
+            "Expensive 0128",
+            "Cheap 0128",
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "window-ranking",
+        "stores-128"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_161", "frontend_id": "161", "title_slug": "one-edit-distance", "url": "https://leetcode.com/problems/one-edit-distance/description/", "paid_only": true, "content_sha256": "5e6a4f85f73a0640fedb8ebef94576b8451e93f8da24f078e8e8fb52012074a5", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "s = \"ab\", t = \"acb\"", "output": "true", "has_explanation": true}, {"ordinal": 2, "input": "s = \"\", t = \"\"", "output": "false", "has_explanation": true}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "aa504e4424e1726a7f64a642aba6ada6f817535930d7f7ba0bba2ca8b6265fe6", "reference/contract.md": "e11f51c53584078c17b90e5b4c10f701ca774fff31c7056e651cc0c8f03854fb", "reference/examples.md": "27bf7da07177f869b2c66dab7816d23baac0f616a11933280e098da0046c74e4", "reference/constraints.md": "f87e30742aa86e3755f9147ded34b6dc2a0686658178e03089e221ee38788bf0"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

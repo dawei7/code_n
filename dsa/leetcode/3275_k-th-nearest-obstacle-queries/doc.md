@@ -8,77 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Heap (Priority Queue) |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [k-th-nearest-obstacle-queries](https://leetcode.com/problems/k-th-nearest-obstacle-queries/) |
+| LeetCode | [K-th Nearest Obstacle Queries](https://leetcode.com/problems/k-th-nearest-obstacle-queries/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/k-th-nearest-obstacle-queries/).
 
 ### Goal
-Given a sequence of 2D coordinates representing obstacles appearing one by one, determine the distance of the k-th nearest obstacle from the origin (0, 0) after each new obstacle is added. The distance is defined as the Manhattan distance: |x| + |y|. If there are fewer than k obstacles currently present, the result for that step is -1.
+
+An infinite two-dimensional plane initially contains no obstacles. Each entry `queries[i] = [x, y]` adds one obstacle at the coordinate $(x, y)$; every queried coordinate is unique, so no obstacle is built twice. Its distance from the origin is the Manhattan distance $lvert x \rvert + \lvert y \rvert$.
+
+After every addition, report the distance of the $k$th nearest obstacle among all obstacles built so far. Equal distances occupy separate positions because they belong to separate obstacles. If fewer than $k$ obstacles exist after a query, report `-1` for that position. Return all reports in query order.
 
 ### Function Contract
+
 **Inputs**
 
-- `queries`: A list of lists where each sub-list contains two integers `[x, y]` representing the coordinates of an obstacle.
-- `k`: An integer representing the rank of the distance to track.
+- `queries`: A nonempty list of distinct coordinate pairs `[x, y]`, with $-10^9 \le x, y \le 10^9$.
+- `k`: The requested one-based nearest rank, with $1 \le k \le 10^5$.
+
+Let $n$ be the number of queries, where $1 \le n \le 2 \cdot 10^5$.
 
 **Return value**
 
-- A list of integers where the i-th element is the k-th smallest Manhattan distance after processing the first i+1 queries.
+Return a list of $n$ integers. Entry $i$ is the $k$th smallest obstacle distance after processing `queries[i]`, or `-1` when fewer than $k$ obstacles have been added.
 
 ### Examples
+
 **Example 1**
 
-- Input: `queries = [[1,2],[3,4],[2,3],[-3,0]]`, `k = 2`
+- Input: `queries = [[1, 2], [3, 4], [2, 3], [-3, 0]], k = 2`
 - Output: `[-1, 7, 5, 3]`
+- Explanation: The sorted distance prefixes are `[3]`, `[3, 7]`, `[3, 5, 7]`, and `[3, 3, 5, 7]`.
 
 **Example 2**
 
-- Input: `queries = [[5,5],[4,4],[3,3]]`, `k = 1`
+- Input: `queries = [[5, 5], [4, 4], [3, 3]], k = 1`
 - Output: `[10, 8, 6]`
+- Explanation: Each new obstacle becomes the nearest one.
 
 **Example 3**
 
-- Input: `queries = [[1,2],[3,4],[2,3],[-3,0]]`, `k = 3`
-- Output: `[-1, -1, 6, 5]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Max-Heap**. By maintaining a max-heap of size `k`, we ensure that the root of the heap always represents the largest distance among the `k` closest obstacles found so far. When a new obstacle is added, if the heap size is less than `k`, we push the distance. If the heap size is `k` and the new distance is smaller than the current maximum in the heap, we pop the maximum and push the new distance.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log k)`, where `N` is the number of queries. Each insertion and deletion operation in the heap takes `O(log k)` time.
-- **Space Complexity**: `O(k)`, as we only store at most `k` distances in the heap at any given time.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import heapq
-from typing import List
-
-def solve(queries: List[List[int]], k: int) -> List[int]:
-    # We use a max-heap to keep track of the k smallest distances.
-    # Since Python's heapq is a min-heap, we store negative values to simulate a max-heap.
-    max_heap = []
-    results = []
-
-    for x, y in queries:
-        dist = abs(x) + abs(y)
-
-        if len(max_heap) < k:
-            heapq.heappush(max_heap, -dist)
-        elif dist < -max_heap[0]:
-            heapq.heapreplace(max_heap, -dist)
-
-        if len(max_heap) < k:
-            results.append(-1)
-        else:
-            results.append(-max_heap[0])
-
-    return results
-```
-</details>
+- Input: `queries = [[1, 0], [0, 1], [-1, 0]], k = 2`
+- Output: `[-1, 1, 1]`
+- Explanation: Distinct obstacles at the same distance count separately toward the requested rank.

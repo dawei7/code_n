@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2516",
+  "frontend_id": "2377",
+  "title_slug": "sort-the-olympic-table",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2074484920",
+  "verified_at": "2026-07-20T11:14:16.671494+00:00"
+}

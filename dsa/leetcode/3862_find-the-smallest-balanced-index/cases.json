@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3862",
+  "cases": [
+    {
+      "id": "sample-first-balance",
+      "name": "sample: first interior index is balanced",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "balanced-index",
+        "smallest-index"
+      ]
+    },
+    {
+      "id": "sample-later-balance",
+      "name": "sample: matching prefix sum and suffix product",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          8,
+          2,
+          2,
+          5
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "prefix-sum",
+        "suffix-product"
+      ]
+    },
+    {
+      "id": "sample-singleton",
+      "name": "sample: singleton has unequal empty-side identities",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "singleton",
+        "empty-sides"
+      ]
+    },
+    {
+      "id": "trial-empty-right-product",
+      "name": "trial: last index uses the empty product identity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1000000000
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "last-index",
+        "empty-product"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: suffix ones preserve a unit product",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "ones",
+        "smallest-index"
+      ]
+    },
+    {
+      "id": "trial-two-values-no-match",
+      "name": "trial: neither side equality holds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "no-balance",
+        "negative-one"
+      ]
+    },
+    {
+      "id": "real-overflowing-suffix",
+      "name": "hidden: repeated maximum values overflow fixed-width products",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "overflow",
+        "product-cap"
+      ]
+    },
+    {
+      "id": "real-middle-balance",
+      "name": "hidden: an interior prefix equals the final value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          5
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "interior-index",
+        "exact-equality"
+      ]
+    },
+    {
+      "id": "real-ones-before-product",
+      "name": "hidden: neutral suffix factors do not change the product",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiplicative-identity",
+        "suffix-product"
+      ]
+    },
+    {
+      "id": "real-penultimate-balance",
+      "name": "hidden: penultimate index balances against one value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          99,
+          5
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "penultimate-index",
+        "right-product"
+      ]
+    },
+    {
+      "id": "real-huge-product-no-match",
+      "name": "hidden: oversized suffix remains above every left sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "overflow-guard",
+        "no-balance"
+      ]
+    },
+    {
+      "id": "real-largest-singleton",
+      "name": "hidden: maximum singleton still has empty sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "singleton",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-billion-balance",
+      "name": "hidden: a large prefix sum equals a legal suffix value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          400000000,
+          600000000,
+          7,
+          1000000000
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "boundary-value",
+        "large-equality"
+      ]
+    }
+  ]
+}

@@ -1,22 +1,9 @@
-from typing import List
+def solve(nums: list[int]) -> float:
+    ordered = sorted(nums)
+    answer = float("inf")
 
-def solve(nums: List[int]) -> float:
-    """
-    Calculates the minimum average of the smallest and largest elements
-    by sorting the array and using two pointers.
-    """
-    nums = sorted(nums)
-    n = len(nums)
-    min_avg = float('inf')
+    for left in range(len(ordered) // 2):
+        right = len(ordered) - 1 - left
+        answer = min(answer, (ordered[left] + ordered[right]) / 2)
 
-    left = 0
-    right = n - 1
-
-    while left < right:
-        current_avg = (nums[left] + nums[right]) / 2
-        if current_avg < min_avg:
-            min_avg = current_avg
-        left += 1
-        right -= 1
-
-    return float(min_avg)
+    return answer

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2340",
+  "frontend_id": "2262",
+  "title_slug": "total-appeal-of-a-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.appealSum",
+  "verified_submission_id": "2073947594",
+  "verified_at": "2026-07-20T00:24:32.843311+00:00"
+}

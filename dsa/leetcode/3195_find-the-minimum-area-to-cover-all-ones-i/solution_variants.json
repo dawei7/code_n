@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Minimum Area to Cover All Ones I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans every cell once and maintains the four extreme coordinates occupied by a one.",
+      "time_complexity": "O(RC)",
+      "space_complexity": "O(1)"
     }
   ]
 }

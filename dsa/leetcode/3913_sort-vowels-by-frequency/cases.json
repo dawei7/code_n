@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3913",
+  "cases": [
+    {
+      "id": "sample-descending-frequency",
+      "name": "sample: higher-frequency e precedes o",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": "leetcedo",
+      "tags": [
+        "sample",
+        "unequal-frequency",
+        "consonant-positions"
+      ]
+    },
+    {
+      "id": "sample-four-frequency-groups",
+      "name": "sample: four vowel types have distinct frequencies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aeiaaioooa"
+      },
+      "expected": "aaaaoooiie",
+      "tags": [
+        "sample",
+        "all-vowels",
+        "distinct-frequencies"
+      ]
+    },
+    {
+      "id": "sample-all-five-tied",
+      "name": "sample: equal frequencies preserve first-occurrence type order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "baeiou"
+      },
+      "expected": "baeiou",
+      "tags": [
+        "sample",
+        "frequency-tie",
+        "first-occurrence"
+      ]
+    },
+    {
+      "id": "trial-no-vowels",
+      "name": "trial: consonant-only string remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "rhythms"
+      },
+      "expected": "rhythms",
+      "tags": [
+        "trial",
+        "no-vowels",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-single-consonant",
+      "name": "trial: minimum-length consonant string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": "z",
+      "tags": [
+        "trial",
+        "minimum-n",
+        "no-vowels"
+      ]
+    },
+    {
+      "id": "trial-single-vowel",
+      "name": "trial: minimum-length vowel string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "u"
+      },
+      "expected": "u",
+      "tags": [
+        "trial",
+        "minimum-n",
+        "one-vowel"
+      ]
+    },
+    {
+      "id": "trial-one-vowel-type",
+      "name": "trial: repeated copies of one vowel type do not move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "banana"
+      },
+      "expected": "banana",
+      "tags": [
+        "trial",
+        "one-vowel-type",
+        "consonant-positions"
+      ]
+    },
+    {
+      "id": "trial-two-types-tied",
+      "name": "trial: first occurrence breaks a two-type frequency tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "eaea"
+      },
+      "expected": "eeaa",
+      "tags": [
+        "trial",
+        "frequency-tie",
+        "not-alphabetical"
+      ]
+    },
+    {
+      "id": "trial-reverse-vowel-order",
+      "name": "trial: five tied vowels retain reverse first-occurrence order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "uoiea"
+      },
+      "expected": "uoiea",
+      "tags": [
+        "trial",
+        "all-vowels",
+        "frequency-tie"
+      ]
+    },
+    {
+      "id": "trial-interleaved-five-way-tie",
+      "name": "trial: tied interleaved types become first-occurrence groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "uoieauoiea"
+      },
+      "expected": "uuooiieeaa",
+      "tags": [
+        "trial",
+        "all-vowels",
+        "five-way-tie",
+        "grouping"
+      ]
+    },
+    {
+      "id": "trial-late-dominant-vowel",
+      "name": "trial: the most frequent type moves before earlier types",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aeiouuu"
+      },
+      "expected": "uuuaeio",
+      "tags": [
+        "trial",
+        "dominant-late-type",
+        "unequal-frequency"
+      ]
+    },
+    {
+      "id": "trial-consonant-slots-fixed",
+      "name": "trial: only original vowel slots receive replacements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "buaecidofu"
+      },
+      "expected": "buuacedifo",
+      "tags": [
+        "trial",
+        "consonant-positions",
+        "mixed-string"
+      ]
+    },
+    {
+      "id": "hidden-frequency-order-overrides-first",
+      "name": "hidden: descending counts override first-occurrence order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaeeeeiiiu"
+      },
+      "expected": "eeeeiiiaau",
+      "tags": [
+        "hidden",
+        "distinct-frequencies",
+        "all-vowels"
+      ]
+    },
+    {
+      "id": "hidden-natural-language-pattern",
+      "name": "hidden: mixed word has several frequency groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "onomatopoeia"
+      },
+      "expected": "onomotopaaei",
+      "tags": [
+        "hidden",
+        "mixed-string",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "hidden-tie-with-consonants",
+      "name": "hidden: tied types use first occurrence while consonants stay fixed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zazezaze"
+      },
+      "expected": "zazazeze",
+      "tags": [
+        "hidden",
+        "frequency-tie",
+        "consonant-positions"
+      ]
+    },
+    {
+      "id": "hidden-long-equal-cycle",
+      "name": "hidden: long equal-frequency cycle groups all five types",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiou"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+      "tags": [
+        "hidden",
+        "long-string",
+        "five-way-tie",
+        "all-vowels"
+      ]
+    }
+  ]
+}
+

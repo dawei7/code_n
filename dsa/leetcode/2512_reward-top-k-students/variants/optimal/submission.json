@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2603",
+  "frontend_id": "2512",
+  "title_slug": "reward-top-k-students",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.topStudents",
+  "verified_submission_id": "2075191312",
+  "verified_at": "2026-07-21T02:17:00+00:00"
+}

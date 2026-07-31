@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3417",
+  "frontend_id": "3109",
+  "title_slug": "find-the-index-of-permutation",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.getPermutationIndex",
+  "verified_submission_id": "2079392800",
+  "verified_at": "2026-07-24T11:33:00+02:00"
+}

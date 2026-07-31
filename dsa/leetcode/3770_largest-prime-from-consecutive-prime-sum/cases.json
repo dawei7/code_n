@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3770",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: seventeen is the largest qualifying prefix under twenty",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 20},
+      "expected": 17,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "multiple-prefixes"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two qualifies as a one-prime sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "one-term-sum"]
+    },
+    {
+      "id": "trial-below-first-prime",
+      "name": "trial: no prime prefix fits below two",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "no-solution", "lower-boundary"]
+    },
+    {
+      "id": "trial-between-first-prefixes",
+      "name": "trial: two remains best before the prefix five",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "between-prefixes"]
+    },
+    {
+      "id": "trial-second-prime-prefix",
+      "name": "trial: two plus three produces five",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "two-term-sum"]
+    },
+    {
+      "id": "trial-composite-prefix-skipped",
+      "name": "trial: the composite prefix ten does not replace five",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 16},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "composite-prefix"]
+    },
+    {
+      "id": "trial-next-prime-prefix",
+      "name": "trial: seventeen becomes valid at its exact boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 17},
+      "expected": 17,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "exact-boundary"]
+    },
+    {
+      "id": "real-before-forty-one",
+      "name": "hidden: seventeen remains largest immediately before forty-one",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 40},
+      "expected": 17,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "between-prefixes"]
+    },
+    {
+      "id": "real-forty-one-prefix",
+      "name": "hidden: forty-one is the next qualifying prime prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 41},
+      "expected": 41,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "exact-boundary"]
+    },
+    {
+      "id": "real-maximum-bound",
+      "name": "hidden: maximum legal input exercises the complete sieve",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 500000},
+      "expected": 398771,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "upper-boundary", "large-sieve"]
+    }
+  ]
+}

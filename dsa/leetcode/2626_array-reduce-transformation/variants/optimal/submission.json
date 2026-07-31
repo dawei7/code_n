@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2698",
+  "frontend_id": "2626",
+  "title_slug": "array-reduce-transformation",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "reduce",
+  "verified_submission_id": "2076069181",
+  "verified_at": "2026-07-21T16:15:00+00:00"
+}

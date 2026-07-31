@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Product of Two Integers With No Common Bits and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Use max-over-submasks SOS DP so every value can query the largest present submask of its bitwise complement.",
+      "time_complexity": "O(n + B * 2^B)",
+      "space_complexity": "O(2^B)"
     }
   ]
 }

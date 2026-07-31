@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3941",
+  "frontend_id": "3624",
+  "title_slug": "number-of-integers-with-popcount-depth-equal-to-k-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.popcountDepth",
+  "verified_submission_id": "2083761748",
+  "verified_at": "2026-07-27T17:44:22.506271+00:00"
+}

@@ -40,12 +40,12 @@
       ],
       "tags": [
         "sample",
-        "small"
+        "boundary"
       ]
     },
     {
       "id": "trial-uneven-totals",
-      "name": "trial: uneven totals across the array",
+      "name": "trial: an index has balanced side sums",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -65,35 +65,79 @@
         14
       ],
       "tags": [
-        "trial"
+        "trial",
+        "balanced-index"
       ]
     },
     {
-      "id": "trial-zero-values",
-      "name": "trial: all sums remain zero",
+      "id": "trial-equal-values",
+      "name": "trial: equal positive values",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          0,
-          0,
-          0,
-          0
+          5,
+          5,
+          5,
+          5
         ]
       },
       "expected": [
-        0,
-        0,
-        0,
-        0
+        15,
+        5,
+        5,
+        15
       ],
       "tags": [
         "trial",
-        "edge"
+        "equal-values"
       ]
     },
     {
-      "id": "real-increasing-values",
+      "id": "real-two-elements",
+      "name": "hidden: each element is the other side's sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          100000
+        ]
+      },
+      "expected": [
+        100000,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "two-elements",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-symmetric",
+      "name": "hidden: symmetric outer values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          100000
+        ]
+      },
+      "expected": [
+        100001,
+        0,
+        100001
+      ],
+      "tags": [
+        "hidden",
+        "symmetric"
+      ]
+    },
+    {
+      "id": "real-increasing",
       "name": "hidden: increasing values",
       "kind": "real",
       "visible": false,
@@ -118,7 +162,70 @@
         21
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "increasing"
+      ]
+    },
+    {
+      "id": "real-decreasing",
+      "name": "hidden: decreasing values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        36,
+        19,
+        4,
+        9,
+        20,
+        29,
+        36,
+        41,
+        44
+      ],
+      "tags": [
+        "hidden",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "real-alternating-magnitudes",
+      "name": "hidden: alternating small and large values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          100000,
+          2,
+          99999,
+          3,
+          99998
+        ]
+      },
+      "expected": [
+        300002,
+        200001,
+        99999,
+        2,
+        100004,
+        200005
+      ],
+      "tags": [
+        "hidden",
+        "magnitude"
       ]
     }
   ]

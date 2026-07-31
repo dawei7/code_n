@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Time to Reach Destination in Directed Graph and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Runs Dijkstra on earliest node-arrival times, waiting until an edge opens and discarding edges whose windows have closed.",
+      "time_complexity": "O((n + m) log n)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

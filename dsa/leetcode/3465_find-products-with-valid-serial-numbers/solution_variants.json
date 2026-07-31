@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Products with Valid Serial Numbers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans each description for a case-sensitive, word-bounded SNdddd-dddd token and orders the qualifying rows by product id.",
+      "time_complexity": "O(S + r log r)",
+      "space_complexity": "O(S + r)"
     }
   ]
 }

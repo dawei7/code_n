@@ -1,36 +1,31 @@
-import functools
-
 def solve(nums: list[int], and_values: list[int]) -> int:
-    n = len(nums)
-    m = len(and_values)
-    inf = float('inf')
+    infinity = 10**30
+    states = {(0, -1): 0}
 
-    @functools.lru_cache(None)
-    def dp(i, j, current_and):
-        # Base cases
-        if j == m:
-            return 0 if i == n else inf
-        if i == n:
-            return inf
+    for value in nums:
+        next_states = {}
+        for (segment, current_and), cost in states.items():
+            if segment == len(and_values):
+                continue
 
-        # Update current_and with the current element
-        new_and = current_and & nums[i]
+            current_and &= value
+            target = and_values[segment]
+            if current_and & target != target:
+                continue
 
-        # Pruning: if new_and is already smaller than the target, this path is invalid
-        if (new_and & and_values[j]) != and_values[j]:
-            return inf
+            state = (segment, current_and)
+            next_states[state] = min(
+                next_states.get(state, infinity),
+                cost,
+            )
 
-        # Option 1: Continue the current subarray
-        res = dp(i + 1, j, new_and)
+            if current_and == target:
+                state = (segment + 1, -1)
+                next_states[state] = min(
+                    next_states.get(state, infinity),
+                    cost + value,
+                )
 
-        # Option 2: End the current subarray here if it matches the target
-        if new_and == and_values[j]:
-            res_end = dp(i + 1, j + 1, -1)
-            if res_end != inf:
-                res = min(res, nums[i] + res_end)
+        states = next_states
 
-        return res
-
-    # Initial call: -1 acts as a mask of all 1s (identity for AND)
-    result = dp(0, 0, -1)
-    return int(result) if result != inf else -1
+    return states.get((len(and_values), -1), -1)

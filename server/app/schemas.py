@@ -14,7 +14,7 @@ from typing import Any, Literal, Optional
 
 from pydantic import BaseModel, Field
 
-from engine.languages import SupportedLanguage
+from engine.languages import PrimaryLanguage
 
 
 # ----------------------------------------------------------------------------
@@ -82,8 +82,8 @@ class ChallengeSummary(BaseModel):
     leetcode_company_tags: list[dict[str, Any]] = Field(default_factory=list)
     leetcode_study_plans: list[dict[str, Any]] = Field(default_factory=list)
     leetcode_external_subsets: list[dict[str, Any]] = Field(default_factory=list)
-    supported_languages: list[str] = Field(default_factory=list)
-    primary_language: str = "python"
+    supported_languages: list[PrimaryLanguage] = Field(default_factory=list)
+    primary_language: PrimaryLanguage = "python"
     runnable_in_coden: bool = True
     has_guided_example: bool = False
     leetcode_submission_status: str = "missing"
@@ -101,7 +101,8 @@ class SolutionVariantDetail(BaseModel):
     time_complexity: str
     space_complexity: str
     approach_markdown: str
-    sources: dict[SupportedLanguage, str] = Field(default_factory=dict)
+    sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
+    leetcode_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
     submission_status: str
     verified_submission_id: str
 
@@ -117,9 +118,11 @@ class ChallengeDetail(ChallengeSummary):
     samples: list[Sample]
     test_cases: list[TestCaseSummary] = Field(default_factory=list)
     starter_source: str
-    starter_sources: dict[SupportedLanguage, str] = Field(default_factory=dict)
+    starter_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
     optimal_source: str
-    optimal_sources: dict[SupportedLanguage, str] = Field(default_factory=dict)
+    optimal_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
+    leetcode_optimal_source: str = ""
+    leetcode_optimal_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
     default_solution_variant: str = ""
     solution_variants: list[SolutionVariantDetail] = Field(default_factory=list)
     solution_variant_effective_elo: float | None = None
@@ -164,12 +167,11 @@ class RunRequest(BaseModel):
     source: str = Field(
         ...,
         description=(
-            "Full source for the selected language. Python is executable for all "
-            "challenge shapes; C++, Java, C#, JavaScript, Go, and Kotlin use "
-            "function-call harnesses where supported."
+            "Full source in this challenge's verified primary language: "
+            "Python, JavaScript, SQL, or Bash."
         ),
     )
-    language: SupportedLanguage = "python"
+    language: PrimaryLanguage = "python"
     mode: Literal["practice", "real_test"] = "practice"
     case_ids: list[str] = Field(default_factory=list)
     custom_input: Optional[dict[str, Any]] = None
@@ -351,7 +353,7 @@ class CustomProblemSetsOut(BaseModel):
 
 class SolutionGet(BaseModel):
     challenge_id: str
-    language: SupportedLanguage = "python"
+    language: PrimaryLanguage = "python"
     source: str
     exists: bool
 
@@ -362,7 +364,7 @@ class SolutionPut(BaseModel):
 
 class SolutionVersionsGet(BaseModel):
     challenge_id: str
-    language: SupportedLanguage = "python"
+    language: PrimaryLanguage = "python"
     active_version: int
     versions: list[int]
     version_names: dict[int, str]
@@ -416,7 +418,7 @@ class TutorChatMessage(BaseModel):
 
 class AnalyzeRequest(BaseModel):
     source: str = ""
-    language: SupportedLanguage = "python"
+    language: PrimaryLanguage = "python"
     returned: str = ""
     expected: str = ""
     inputs: dict[str, str] = Field(default_factory=dict)

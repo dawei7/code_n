@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Pair Removal to Sort Array I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Directly simulates the prescribed operation, retaining the leftmost pair whenever minimum sums tie, until the array is non-decreasing.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(n)"
     }
   ]
 }

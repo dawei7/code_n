@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-two-maxima",
-      "name": "sample: global maximum appears at least twice",
+      "name": "sample: maximum appears at least twice",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -23,7 +23,7 @@
     },
     {
       "id": "sample-not-enough-maxima",
-      "name": "sample: not enough maximum values",
+      "name": "sample: global maximum occurs too few times",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,9 +41,26 @@
       ]
     },
     {
-      "id": "sample-all-maximum",
-      "name": "sample: every element is maximum",
-      "kind": "sample",
+      "id": "trial-singleton",
+      "name": "trial: singleton reaches k one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-all-maximum",
+      "name": "trial: every value is the maximum",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -55,13 +72,12 @@
       },
       "expected": 6,
       "tags": [
-        "sample",
-        "edge"
+        "all-maximum"
       ]
     },
     {
-      "id": "trial-k-three",
-      "name": "trial: threshold reached late",
+      "id": "trial-threshold-reached-late",
+      "name": "trial: third maximum appears near the end",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -82,8 +98,8 @@
       ]
     },
     {
-      "id": "real-single-max",
-      "name": "real: only one global maximum",
+      "id": "real-one-global-maximum",
+      "name": "real: every subarray containing the sole maximum qualifies",
       "kind": "real",
       "visible": false,
       "input": {
@@ -98,7 +114,71 @@
       },
       "expected": 9,
       "tags": [
-        "hidden"
+        "hidden",
+        "single-maximum"
+      ]
+    },
+    {
+      "id": "real-maximum-at-ends",
+      "name": "real: qualifying ranges must cover both endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          1,
+          2,
+          3,
+          1000000
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-k-exceeds-occurrences",
+      "name": "real: k exceeds total maximum frequency",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          4,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "insufficient-frequency"
+      ]
+    },
+    {
+      "id": "real-three-of-four-maxima",
+      "name": "real: several windows contain three maxima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          1,
+          5,
+          2,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "multiple-windows"
       ]
     }
   ]

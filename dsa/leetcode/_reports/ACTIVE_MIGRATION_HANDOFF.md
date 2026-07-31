@@ -1,12 +1,11774 @@
 # Active LeetCode Migration Handoff
 
-Updated: 2026-07-17
+Updated: 2026-07-31
+
+## Authoritative latest checkpoint
+
+The remotely verified Optimal-submission phase is complete through the frozen
+frontend-ID ceiling of 4005. The refreshed
+`two_sum_migration_progress.json` has
+`first_unverified_optimal_submission = null`: all 4,005 packages have authored
+cases, an Optimal source, remote Accepted evidence, complexity evidence, and a
+complete branch manifest. `AGENTS.md` now routes the next work to the deferred
+Reference queue in ascending frontend-ID order. Regenerate the migration and
+gap reports after each repaired batch and follow `first_actionable_incomplete`;
+it currently names frontend ID 3.
+
+**Deferred end-of-corpus rework inventory (2026-07-31):**
+[END_OF_CORPUS_REWORK_GAPS.md](END_OF_CORPUS_REWORK_GAPS.md) and its
+machine-readable JSON companion now
+record every currently deferred package gap. The generated inventory separates
+the zero remaining active verified-solution scaffolds, all 283 documentation-
+only completion failures with their exact narrative counts, all 3,285
+source-fidelity-unverified packages with structural triage evidence, and the
+15 known repository-wide certificate-route regression packages. Regenerate it
+with `tools/audit_end_of_corpus_rework_gaps.py` after each repair batch. Work
+the 283 narrative-depth failures first, then review every source-fidelity gap,
+then clear the 15 recorded repository regressions and rerun the full suite.
+
+**Final corpus boundary checkpoint (2026-07-29):** the public LeetCode problem
+list reported exactly 4,005 unique numeric frontend IDs. The final import added
+only `4004_minimum-moves-to-balance-circular-array-ii` and
+`4005_minimum-operations-to-make-array-equal-iii`, then an authenticated
+Premium snapshot refreshed Frequency for all 4,005 packages and the complete
+Elo model to 2,545 real plus 1,460 estimated ratings. `AGENTS.md`,
+`LEETCODE_METADATA.md`, and the dataset sync now make frontend ID 4005 the
+permanent application ceiling. Both full sync and eligible-new-problem mode
+filter and report later upstream IDs; package/index/subset write guards reject
+over-limit canonical payloads. The focused metadata tests cover an upstream
+4006 record and a direct over-limit index write. A second live import was
+idempotent: 4,005 upstream, 4,005 previous, zero additions, and 4,005 canonical.
+Do not add problem 4006 or any later publication.
+
+**Problems 3994-3996 completion checkpoint (2026-07-31):** all three packages
+are now locally complete, remotely verified, and source-fidelity verified. The
+refreshed migration audit reports 3,713 fully complete and remotely verified
+packages, 3,688 scaling benchmarks, 308 strict complexity certificates, cases,
+Optimal sources, submission manifests, complexity evidence, and variant
+manifests through frontend ID 3996, and zero blockers. The dataset checker
+reports 3,996 manually complete packages and nine needing authoring. Scoped
+source fidelity through 3996 is 711 verified, 3,285 unverified, and zero
+invalid; across the frozen 4,005-package corpus it is 711 verified, 3,294
+unverified, and zero invalid. The generated gap inventory reports 292 packages
+not fully complete: nine active scaffolds and the unchanged 283 deferred
+documentation-only failures. Its source-fidelity section records every one of
+the 3,294 unverified packages, the missing-manifest reason, local structural
+signals, and overlap with the completion queues.
+
+Problem 3996, Even Number of Knight Moves, was Accepted on all 999 tests as
+exact Python submission `2088167832`; the judge reported `0 ms` runtime and
+`19.31 MB` memory. The native source SHA-256 is
+`1fcd04b101acb06318187240927ee0be298a9283d28f8973a15b0804ec3ea121`,
+and the authenticated public statement hash is
+`4f500917f1e60c8c9c43eae2d08bef867e292d96990f4337d8d8658606d2447b`
+(internal question ID `4369`). The statement has two explained examples, two
+constraints, six hints, no topics, no tables, no follow-up, and one source
+image illustrating all eight knight offsets. The modular Reference replaces
+that image with an independently authored accessible eight-row offset table.
+Both exact sources return whether the two cells have the same checkerboard
+parity; an independent BFS over position and move parity agrees on all 4,096
+ordered board-cell pairs. The 20 ordinary cases exercise every displacement
+shape, boundary, symmetry, and parity class. Because the complete legal input
+domain is fixed at 4,096 ordered pairs, the package uses a reviewed
+`bounded_domain` certificate for $O(1)$ time and $O(1)$ space instead of fake
+scaling. An explicit exhaustive BFS regression and the isolated real-test API
+route both pass; the route reports the certificate method, no runtime check,
+and zero benchmark cases.
+
+Problem 3995, Minimum Cost to Convert String III, was Accepted on all 999 tests
+as exact Python submission `2088164130`; the judge reported `2053 ms` runtime
+and `19.49 MB` memory. The native source SHA-256 is
+`bf60091c0f9cb7a0496463dc261bcd45176bd937d0c7b4ca4cdf0a1d67a51e81`,
+and the authenticated public statement hash is
+`b88fb58517e378e10c78d92874534d4e8caa21bbb3f526fe03c0a0e7ac2f6a91`
+(internal question ID `4088`). The Reference preserves all four explained
+examples, eight constraints, five hints, and the disjoint-operation rule; the
+source has no images, tables, follow-up, or topics. The accepted prefix DP uses
+an unchanged-character transition or one source/target rule covering a
+disjoint interval, including wildcard rule costs. Both source forms match an
+independent shortest-path oracle on the samples plus 1,000 deterministic-
+random legal contracts. The 20 ordinary cases cover the source examples,
+impossible conversions, overlapping choices, wildcard costs, repeated rules,
+ties, and boundary lengths. Legal tiers at lengths 32, 64, and 128 verify
+$O(nRL)$ time and $O(n+R)$ space. Across three calibrations, the accepted and
+independent same-class controls passed, while a correct repeated-relaxation
+control returned every answer and failed only scaling at `+0.91` to `+0.95`
+extra growth and `15.12x` to `15.61x` largest-tier ratios.
+
+Problem 3994, Minimum Adjacent Swaps to Partition Array, was Accepted on all
+989 tests as exact Python submission `2088159291`; the judge reported `35 ms`
+runtime and `32.57 MB` memory. The native source SHA-256 is
+`9842beedb114bd133636fa2927cebcc5d434760ab1efc2c7ab535c679298fe66`,
+and the authenticated public statement hash is
+`2b73eb98c843ce657e1904472e6d8284730d8b2d8ae4efcd8bf40fa06fabac07`
+(internal question ID `4335`). The modular Reference preserves all three
+explained examples, three constraints, and four hints; the source has no
+images, tables, follow-up, or topics. The accepted one-pass inversion count
+classifies each value as low, middle, or high and counts earlier larger groups,
+giving $O(n)$ time and $O(1)$ auxiliary space. Its 20 ordinary cases cover all
+source examples, empty logical partitions, threshold equality, modulo
+reduction, and extreme values. Legal tiers at lengths 32, 64, and 134 use
+descending group values. Across three calibrations, both linear controls
+passed; a correct quadratic pair counter failed only scaling at `+1.40` to
+`+1.46` extra growth and `39.89x` to `43.42x` largest-tier ratios.
+
+The combined post-batch validation is green: 202 focused package/docs/judge/
+template/fidelity/variant/submission/challenge-route tests pass with the two
+existing warning classes; Ruff and Python compilation pass; the 3996 isolated
+certificate route passes; and dataset, scoped source-fidelity, migration, and
+gap-report audits all pass.
+
+**Problem 3997 checkpoint (2026-07-31):** Count Dominant Nodes in a Binary
+Tree is locally complete and was Accepted on all 742 tests as exact Python
+submission `2088171190`; the judge reported `381 ms` runtime and `49.63 MB`
+memory. Its native source SHA-256 is
+`9aa715af6143ee29e8ac45d121cbd9fe99dc972458e36c0486f280e2fabc28c9`,
+and the authenticated public statement hash is
+`1b1da0cb7b36f7670f51f422a7aaa0fba21afeb8e1783978e078f627447d8f60`
+(internal question ID `4358`). The modular Reference preserves both explained
+examples, all three constraints and three hints, and the complete-tree
+guarantee. Each of the two source tree images is replaced by an accessible
+per-node table with the same level-order structure, child relationships,
+subtree maxima, and dominance facts; the source has no tables, follow-up, or
+topic tags.
+
+The accepted postorder traversal returns each subtree's maximum to its parent
+and counts the node when its value is at least both child maxima. Equality is
+intentional and missing children contribute negative infinity. By induction,
+every returned summary is exact, so every node is classified once. The method
+takes $O(n)$ time and $O(h)=O(\log n)$ auxiliary stack space because the input
+tree is complete. Both stored forms match an independent bottom-up array oracle
+on all 20 authored cases plus 1,280 deterministic-random complete trees.
+
+The 20 ordinary cases cover both source examples, one- and two-node trees,
+equal values, roots above and below their children, partially filled last
+levels, a deep maximum, increasing and decreasing level order, duplicate
+subtree maxima, four levels, and both value bounds. Three complete all-equal
+benchmark tiers use 32, 128, and 512 nodes and force every node to be counted.
+Across three actual real-test rounds, the accepted package passed at `+0.00`
+to `+0.01` excess growth and `1.00x` to `1.01x` largest-tier ratios. An
+independently organized linear recursion passed at `-0.01` to `+0.01` and
+`1.00x` to `1.05x`. A correct all-pairs descendant checker returned every
+ordinary and benchmark answer without hitting the safety cap, but failed only
+scaling at `+1.10` to `+1.13` extra growth and `167.83x` to `169.56x`
+largest-tier ratios.
+
+The 202 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes; the app
+source passes Ruff, source fidelity passes directly and in the scoped audit,
+and the package diff is whitespace-clean. The refreshed migration audit
+reports 3,714 locally complete and remotely verified packages, 3,689 scaling
+benchmarks, 308 certificates, and zero blockers. Cases, Optimal sources,
+submissions, complexity evidence, and variant manifests now run through 3997.
+Source fidelity through 3997 is 712 verified, 3,285 unverified, and zero
+invalid; the full corpus has 3,293 unverified. The regenerated gap inventory
+contains 291 incomplete packages: eight active scaffolds plus the unchanged
+283 deferred documentation-only failures.
+
+**Problem 3998 checkpoint (2026-07-31):** Transform Binary String Using
+Subsequence Sort is locally complete, remotely verified, and source-fidelity
+verified. Its exact native Python source was Accepted on all 998 tests as
+submission `2088182083`; the judge reported `515 ms` runtime and `33.40 MB`
+memory. The stored LF-normalized, final-newline source has SHA-256
+`efc0bf29c0682f5cd9d19ec753395202b52066438d900990b36a0fff6f1009ed`.
+The public statement has internal question ID `3993` and authenticated live
+content hash
+`16483f67c62c848e4ca9282006f8987ac5e6d6625640826fb2e8b85e9feaaad6`.
+
+The modular Reference preserves all three explained source examples and each
+example's complete six-column table: the replacement, resulting string,
+selected subsequence, sorted subsequence, final result, and feasibility
+conclusion. It also preserves all five constraints and four hints. The source
+has no images, follow-up, or topic tags. Sorting a binary subsequence can only
+move a zero left across a one, so a fully specified target is reachable exactly
+when it has the same total number of ones as the source and no prefix has more
+ones than the corresponding source prefix. For a wildcard pattern, assigning
+the required ones to the rightmost question marks minimizes every prefix count;
+that greedy assignment is feasible exactly when some assignment is feasible.
+
+Both stored forms implement the resulting $O(nm)$-time, $O(n)$-auxiliary-space
+method and match an independent reachability BFS on all 55,986 source-pattern
+contracts through length six. The 20 ordinary cases cover every source example,
+fixed and wildcard targets, count mismatches, prefix failures, boundary
+lengths, and mixed feasible/infeasible batches. Three legal benchmark tiers
+use $n=m=16$, $32$, and $64$, so the declared workload $P=nm$ is 256, 1,024,
+and 4,096. Across three actual API rounds, the accepted source passed at
+`+0.00` to `+0.02` excess growth and `0.99x` to `1.03x` largest-tier ratios;
+an independent same-class control passed at `-0.00` to `+0.01` and `1.01x` to
+`1.02x`. A correct $O(mn^2)$ prefix-recount control returned every answer but
+failed only scaling at `+0.47` to `+0.48` and `17.13x` to `17.55x`, without
+hitting the safety cap.
+
+The 202 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes; the app
+source passes Ruff, the package passes direct and scoped source-fidelity
+validation, and its diff is whitespace-clean. The refreshed migration audit
+reports 3,715 locally complete and remotely verified packages, 3,690 scaling
+benchmarks, 308 certificates, and zero blockers. Cases, Optimal sources,
+submissions, complexity evidence, and variant manifests now run through 3998.
+Source fidelity through 3998 is 713 verified, 3,285 unverified, and zero
+invalid; the complete corpus has 713 verified, 3,292 unverified, and zero
+invalid. The generated gap inventory contains 290 incomplete packages: seven
+active scaffolds plus the unchanged 283 deferred documentation-only failures.
+
+**Problem 3999 checkpoint (2026-07-31):** Minimum Number of String Groups
+Through Transformations is locally complete, remotely verified, and source-
+fidelity verified. Its exact native Python source was Accepted on all 694 tests
+as submission `2088192675`; the judge reported `1273 ms` runtime and `48.32 MB`
+memory. The stored LF-normalized, final-newline source has SHA-256
+`1e2324fbd8989e4cc87dc2c3a00a2db1ea7296381223ee34efe1b36114adf5df`.
+The live public Hard statement has internal question ID `3895` and content
+SHA-256
+`1eca9053bd1eafce2675fd24ccf93724050b0a730548c9c613d63fea9b3cac9d`.
+
+The modular Reference preserves all three explained examples, the exact three
+sample groupings, four constraints, four hints, and the rule that both complete
+parity sequences are shifted independently in one transformation. The source
+has no images, tables, follow-up, or topic tags. Two words are equivalent
+exactly when their even-index sequences are cyclic rotations and their odd-
+index sequences are cyclic rotations. Booth's algorithm gives each sequence a
+linear-time lexicographically minimum rotation, so the number of distinct
+canonical signature pairs is the minimum number of groups.
+
+Both stored forms take $O(S)$ time and $O(S)$ space for total input length $S$.
+They match a brute-force minimum-rotation oracle on all 9,840 strings over
+`abc` through length eight and on 102 deterministic batches. The 20 ordinary
+cases cover all source examples, empty odd sequences, independent parity
+rotations, different lengths, duplicates, periodic words, anagram traps, all
+16 rotation combinations of two four-character parity sequences, and mixed
+signature classes.
+
+The legal benchmark tiers contain one all-identical word of total length 64,
+256, and 512, forcing a full-period comparison in both parity sequences. Across
+three actual API rounds, the accepted source passed at `-0.00` to `+0.01`
+excess growth and `1.01x` to `1.03x` largest-tier ratios. An independent Duval
+canonicalization passed at `+0.09` to `+0.11` and `1.87x` to `1.89x`. A correct
+$O(S^2)$ character-by-character rotation comparator returned every ordinary
+and benchmark answer without hitting the safety cap, but failed only scaling
+at `+1.21` to `+1.24` and `179.06x` to `180.93x`.
+
+The 202 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes; the app
+source passes Ruff and compilation, direct and scoped source fidelity pass,
+and the package diff is whitespace-clean. The dataset checker reports 3,999
+manually complete packages and six needing authoring. The refreshed migration
+audit reports 3,716 locally complete and remotely verified packages, 3,691
+scaling benchmarks, 308 certificates, cases/Optimal sources/submissions/
+complexity evidence/variant manifests through 3999, and zero blockers. Source
+fidelity through 3999 is 714 verified, 3,285 unverified, and zero invalid; the
+full corpus has 714 verified, 3,291 unverified, and zero invalid. The gap
+inventory contains 289 incomplete packages: six active scaffolds plus the
+unchanged 283 deferred documentation-only failures.
+
+**Problem 4000 checkpoint (2026-07-31):** Largest Integer With Given Digit Sum
+is locally complete, remotely verified, and source-fidelity verified. Its exact
+native Python source was Accepted on all 505 tests as submission `2088201208`;
+the judge reported `0 ms` runtime and `19.32 MB` memory. The stored LF-
+normalized, final-newline source has SHA-256
+`3b111a141ce7dc4957db188b811897486fac8cb2033e02c05d3ea469c239c10b`.
+The live public Easy statement has internal question ID `4353` and content
+SHA-256
+`8ec5d52864dad2ab62f58bd2577f532474da10c8c39f500d3e6a8cb4a487bc86`.
+
+The modular Reference preserves all three explained examples, both constraints,
+all five hints, the `at most n digits` condition, impossibility at `s > 9 * n`,
+and the special zero-sum result. The source has no images, tables, follow-up,
+or topic tags. The greedy construction assigns `min(9, s)` to each digit from
+left to right. Moving one unit of digit sum from a later position to an earlier
+non-nine position strictly increases the integer, proving the construction is
+maximal. It takes $O(n)$ time and $O(1)$ auxiliary space.
+
+The 20 ordinary cases cover every source example, zero, the one-digit domain,
+capacity boundaries, remainders after one or two nines, trailing zeros, and the
+five-digit maximum. Both packaged sources match an independently enumerated
+maximum for all $5\cdot101=505$ legal `(n, s)` pairs. Since $n\le5$, the strict
+`bounded_domain` certificate records that finite exhaustive evidence instead
+of fake runtime tiers. The isolated real-test route passes all 20 cases,
+reports the certificate method, sets `runtime_check` to false, and exposes no
+benchmark cases.
+
+The three focused certificate validation/audit/exhaustive tests pass, as do
+the 202 package/docs/judge/template/fidelity/variant/submission/challenge-route
+tests with their two existing warning classes. Ruff, compilation, direct and
+scoped source fidelity, and the package diff pass. The dataset checker reports
+4,000 manually complete packages and five needing authoring. The refreshed
+migration audit reports 3,717 locally complete and remotely verified packages,
+3,691 scaling benchmarks, 309 certificates, cases/Optimal sources/submissions/
+complexity evidence/variant manifests through 4000, and zero blockers. Source
+fidelity through 4000 is 715 verified, 3,285 unverified, and zero invalid; the
+full corpus has 715 verified, 3,290 unverified, and zero invalid. The gap
+inventory contains 288 incomplete packages: five active scaffolds plus the
+unchanged 283 deferred documentation-only failures.
+
+**Problem 4001 checkpoint (2026-07-31):** Aggregate Two Time Series is locally
+complete, remotely verified, and source-fidelity verified. Its exact native
+Python source was Accepted on all 863 tests as submission `2088210451`; the
+judge reported `143 ms` runtime and `67.75 MB` memory. The stored LF-normalized,
+final-newline source has SHA-256
+`c4688074b618421a7a754c3705217def4423a537e68a3197ba283d578ddd16d9`.
+The live public Medium statement has internal question ID `4338`, estimated
+Elo `1494.658126`, Frequency `1.1`, and content SHA-256
+`44cad15e38c34d176b29e4da73be26c6748e707491b58661799bde1cb2e7e847`.
+
+The modular Reference preserves all three explained examples, all five
+constraints and three hints, both four-column source tables, and the boundary
+semantics from Example 3. A missing timestamp uses the next available value in
+the same series, or zero when none exists, and only timestamps present in at
+least one series enter the result. The source has no images, follow-up, or
+topic tags.
+
+Both stored forms merge the two strictly increasing timestamp lists from right
+to left, maintaining the next available value in each series. Each input entry
+is consumed exactly once, so the method takes $O(n+m)$ time, $O(1)$ auxiliary
+space, and $O(n+m)$ required output space. The exact implementation matches a
+direct forward-search oracle on 140,625 ordered pairs of small legal series.
+The 20 ordinary cases cover every source example, empty inputs, disjoint and
+shared timestamps, one exhausted series, negative values, cancellation,
+boundary timestamps, and maximum values.
+
+Three legal tiers contain 64, 256, and 512 total input entries with interleaved
+disjoint timestamps, forcing both the merge and the output across the full
+workload. Across three actual API calibrations, the accepted source passed at
+`-0.00` to `+0.01` excess growth and `1.00x` to `1.02x` largest-tier ratios.
+An independent linear two-pass merge passed at `+0.03` to `+0.04` and `1.20x`
+to `1.22x`. A correct quadratic forward rescan returned every answer without
+hitting the safety cap, but failed only scaling at `+1.13` to `+1.15` and
+`53.05x` to `54.10x`.
+
+The 202 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes; Ruff,
+direct and scoped source fidelity, and the package diff pass. The dataset
+checker reports 4,001 manually complete packages and four needing authoring.
+The refreshed migration audit reports 3,718 locally complete and remotely
+verified packages, 3,692 scaling benchmarks, 309 certificates, cases/Optimal
+sources/submissions/complexity evidence/variant manifests through 4001, and
+zero blockers. Source fidelity through 4001 is 716 verified, 3,285 unverified,
+and zero invalid; the complete corpus has 716 verified, 3,289 unverified, and
+zero invalid. The generated gap inventory contains 287 incomplete packages:
+four active scaffolds plus the unchanged 283 deferred documentation-only
+failures, and separately records 15 known regression packages.
+
+**Problem 4005 and verified-solution phase-completion checkpoint
+(2026-07-31):** Minimum Operations to Make Array Equal III is locally
+complete, remotely verified, and source-fidelity verified. Its exact native
+Python source was Accepted on all 579 tests as submission `2088292216`; the
+judge reported `1128 ms` runtime and `44.35 MB` memory. The stored LF-
+normalized, final-newline source has SHA-256
+`4418bc1353720ac418b4a220a9c1c8c1bc197192a78ce854dc8e07ce25c5c4c3`.
+The authenticated Premium Hard statement has internal question ID `4193`,
+estimated Elo `2405.832637`, Frequency `0.0`, and captured rendered-content
+SHA-256
+`f32bda46938e1a6f10f775fc472495eae0d1b3be60bd646610825252aa50cedb`.
+
+The modular Reference preserves both legal operations and their exact bounds,
+the positive-integer domain, all three explained examples, and both
+constraints. The source also has five hints and no images, tables, follow-up,
+or topic tags. For a present target $x>1$, each equal value costs zero, each
+value comparable with $x$ by divisibility costs one operation, and every other
+value costs two. Therefore its cost is $2n-M_x-D_x$, where $M_x$ counts input
+values divisible by $x$ and $D_x$ counts input values that divide $x$. An
+absent common-multiple target supplies a universal upper bound of $n$, so only
+present targets can improve it.
+
+The accepted implementation factors each distinct value, enumerates its
+divisors, and accumulates both counts. With $U$ distinct values,
+$V=\max(\texttt{nums})$, $D$ generated divisors, and sieve cost
+$P=\sqrt V\log\log V$, it takes $O(P+U\sqrt V+D)$ time and
+$O(\sqrt V+U)$ space. Both stored forms pass all 20 ordinary and three
+benchmark cases and match a direct $O(U^2)$ divisibility oracle on 10,000
+deterministic-random small arrays. The exact source also completes 100,000
+large distinct values locally.
+
+The legal benchmark tiers use 16, 64, and 256 distinct values in a fixed small
+value band, so the factor/divisor work scales with $U$. Across three actual
+API rounds, the accepted package passed at `+0.00` to `+0.01` excess growth
+and `1.01x` largest-tier ratios. An independently structured sieve-and-divisor
+control passed at `-0.03` to `-0.00` and `0.45x` to `0.46x`. A correct direct
+candidate/value comparator returned every ordinary and benchmark answer but
+failed only scaling at `+0.91` to `+0.92` and `3.12x` to `3.25x`.
+
+The 202 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes; Ruff,
+direct and scoped source fidelity, and every corpus audit pass. The dataset
+checker reports all 4,005 packages manually complete. The refreshed migration
+audit reports 3,722 locally complete and remotely verified packages, 3,696
+scaling benchmarks, 309 certificates, zero blockers, and
+`first_unverified_optimal_submission = null`. Source fidelity is 720 verified,
+3,285 unverified, and zero invalid. The generated gap inventory contains 283
+incomplete packages, all deferred narrative-depth failures; the active
+verified-solution queue and other completion-gap count are both zero.
+
+**Problems 2522 and 2523 re-verification checkpoint (2026-07-31):** the two
+Medium packages shown with old Runtime Error rows were rechecked before the
+4005 audits. No source repair was needed. The exact stored source for 2522,
+Partition String Into Substrings With Values at Most K, has SHA-256
+`6b0ff40a747ae02312da2c5d079cec84de1a844468e6b0ad7b75314461ca8846`
+and is freshly Accepted as submission `2088298927` on all 56 tests (`37 ms`,
+`19.87 MB`). It passes every stored case and benchmark and matches an
+independent DP on 5,000 deterministic-random contracts. The exact stored
+source for 2523, Closest Prime Numbers in Range, has SHA-256
+`3c01c938400825dc1a1f2c553c56858cb69fd8bb9e19b7182e712fc13167a14b`
+and is freshly Accepted as submission `2088300294` on all 68 tests (`383 ms`,
+`20.97 MB`). It passes every stored case and benchmark and matches independent
+primality checking on 1,000 deterministic-random ranges. Both manifests now
+point to the fresh Accepted submissions, displacing the stale Runtime Error
+history without changing either native artifact.
+
+**Problem 4004 checkpoint (2026-07-31):** Minimum Moves to Balance Circular
+Array II is locally complete, remotely verified, and source-fidelity verified.
+Its exact native Python source was Accepted on all 550 tests as submission
+`2088276111`; the judge reported `5181 ms` runtime and `20.83 MB` memory. The
+stored LF-normalized, final-newline source has SHA-256
+`045906f44930bc01eaf08a19714e760df9599fdfcb10621686586dc7dee81a13`.
+The authenticated Premium Hard statement has internal question ID `4016`,
+estimated Elo `2047.030654`, Frequency `0.0`, and captured rendered-content
+SHA-256
+`73b599e7127c2e7509012ea9791b0f48372a7c8bf57b30f1be31d4f2ad796977`.
+
+The modular Reference preserves the circular neighbor relationship, exact
+one-unit transfer operation, non-negative target condition, impossibility
+return, all three explained examples, and both constraints. The source also
+has four hints and no images, tables, follow-up, or topic tags. Because the
+problem is Premium, the live authenticated statement was used for review; the
+anonymous GraphQL response correctly exposed `isPaidOnly = true` but withheld
+the body and code snippets.
+
+The accepted solution builds a sparse minimum-cost-flow network with
+source-to-supply edges, deficit-to-sink edges, and both unit-cost directions
+for every circular adjacency. Successive shortest augmenting paths use
+feasible potentials and heap Dijkstra so negative residual edges remain safe.
+At most $O(n)$ aggregate augmentations are required, producing
+$O(n^2\log n)$ time and $O(n)$ space. Both stored forms match an independent
+exact transportation oracle on 1,483 small contracts and complete a
+maximum-length alternating contract locally. The 20 ordinary cases cover all
+source examples, singleton feasibility, unused surplus, wraparound routes,
+multiple sources and demands, maximum magnitudes, and impossible totals.
+
+Three legal alternating unit-balance benchmark tiers use $n=8$, 16, and 32.
+Across three actual API rounds, the accepted package passed at `-0.00` to
+`+0.01` excess growth and `1.00x` to `1.01x` largest-tier ratios. An
+independently organized potential-based min-cost-flow control passed at
+`+0.00` to `+0.01` and `0.96x` to `0.98x`. Correct fixed-pass Bellman-Ford
+flow returned every ordinary and benchmark answer without hitting the safety
+cap but failed only scaling at `+1.06` to `+1.09` and `10.24x` to `10.33x`.
+
+The 202 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes; Ruff,
+compilation, direct and scoped source fidelity, and both stored-form case
+checks pass. The dataset checker reports 4,004 manually complete packages and
+one needing authoring. The refreshed migration audit reports 3,721 locally
+complete and remotely verified packages, 3,695 scaling benchmarks, 309
+certificates, cases/Optimal sources/submissions/complexity evidence/variant
+manifests through 4004, and zero blockers. Source fidelity through 4004 is 719
+verified, 3,285 unverified, and zero invalid; the complete corpus has 719
+verified, 3,286 unverified, and zero invalid. The generated gap inventory
+contains 284 incomplete packages: one active scaffold plus the unchanged 283
+deferred documentation-only failures, and separately records 15 known
+regressions.
+
+**Problem 4003 checkpoint (2026-07-31):** Minimum Cost Path with Alternating
+Directions III is locally complete, remotely verified, and source-fidelity
+verified. Its exact native Python source was Accepted on all 642 tests as
+submission `2088248204`; the judge reported `2846 ms` runtime and `45.47 MB`
+memory. The stored LF-normalized, final-newline source has SHA-256
+`edce257e41110a9e10282ce8692f1322e4d1364f82e24172371803d45e6c2866`.
+The live public Hard statement has internal question ID `3926`, estimated Elo
+`1999.539318`, Frequency `1.7`, and content SHA-256
+`6964820b3fcdcebe1c6f3d3df8c603ea5c439d132c1010457cb597547673e1ba`.
+
+The modular Reference preserves the timed grid model, one-based entrance
+costs, odd-versus-even allowed directions, source-cell penalties for contrary
+moves, waiting semantics, all three explained examples, and all five
+constraints. The source also has four hints and no images, tables, follow-up,
+or topic tags. The solution models two states per cell according to the next
+action's parity. Waiting and every in-bounds orthogonal move become
+nonnegative weighted edges that toggle parity, so binary-heap Dijkstra returns
+the first finalized destination state in $O(mn\log(mn))$ time and $O(mn)$
+auxiliary space.
+
+Both stored forms pass all live examples and match an independent
+Bellman-Ford oracle on 653 exhaustive and deterministic-random small grids.
+The exact accepted source also completes the maximum legal `1 x 100000`
+zero-penalty row locally. The 20 ordinary cases cover both one-dimensional
+orientations, zero and maximum penalties, a route where waiting is strictly
+necessary, a route where moving left is strictly better than every monotone
+path, rectangular grids, and longer parity-sensitive inputs.
+
+Three legal zero-penalty row benchmark tiers use $N=mn$ values 16, 64, and
+238. Across three actual API rounds, the accepted package passed at `-0.00` to
+`+0.01` excess growth and `0.99x` to `1.01x` largest-tier ratios. An
+independently organized heap-Dijkstra control passed at `-0.01` to `+0.01` and
+`0.85x` to `0.87x`. Correct array-based Dijkstra returned every ordinary and
+benchmark answer without hitting the safety cap but failed only scaling at
+`+0.82` to `+0.83` and `24.60x` to `25.35x`.
+
+The 202 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes; Ruff,
+compilation, direct and scoped source fidelity, and both stored-form case
+checks pass. The dataset checker reports 4,003 manually complete packages and
+two needing authoring. The refreshed migration audit reports 3,720 locally
+complete and remotely verified packages, 3,694 scaling benchmarks, 309
+certificates, cases/Optimal sources/submissions/complexity evidence/variant
+manifests through 4003, and zero blockers. Source fidelity through 4003 is 718
+verified, 3,285 unverified, and zero invalid; the complete corpus has 718
+verified, 3,287 unverified, and zero invalid. The generated gap inventory
+contains 285 incomplete packages: two active scaffolds plus the unchanged 283
+deferred documentation-only failures, and separately records 15 known
+regressions.
+
+**Problem 4002 checkpoint (2026-07-31):** Count Valid Sequences is locally
+complete, remotely verified, and source-fidelity verified. Its exact native
+Python source was Accepted on all 803 tests as submission `2088229562`; the
+judge reported `161 ms` runtime and `19.32 MB` memory. The stored LF-normalized,
+final-newline source has SHA-256
+`72f7156e0ac42a58c64c6a66a32165f27818200a1c26976ba3025cba7bfec96d`.
+The live public Medium statement has internal question ID `4345`, estimated
+Elo `1673.723425`, Frequency `2.3`, and content SHA-256
+`d346a8b2709ca92be40a82747f5b908c7c2cb94aae887122696b6fce21df372f`.
+
+The modular Reference preserves all three explained examples, both source
+tables with every sequence/product/parity row, both constraints, and the
+distinction between sequences that differ at any index. The source also has
+four hints and no images, follow-up, or topic tags. Stars and bars counts all
+positive length-$k$ compositions as $\binom{n-1}{k-1}$. The product is odd
+exactly when every value is odd; after writing each value as $2x_i+1$, that
+complement is empty when $n-k$ is odd and otherwise has size
+$\binom{(n+k)/2-1}{k-1}$. Subtracting the complement gives the answer.
+
+Both stored forms evaluate the two binomial coefficients multiplicatively
+modulo $10^9+7$, using Fermat inversion and only constant auxiliary state.
+They take $O(n)$ time and $O(1)$ auxiliary space. The exact native source
+matches direct composition enumeration on all 105 legal contracts through
+$n=14$, passes every live example, and completes the maximum balanced contract
+`n = 500000, k = 250000` locally. The 20 ordinary cases cover every source
+example, singleton and all-ones boundaries, parity-eliminated complements,
+ordering, nontrivial binomial counts, and modulo reduction.
+
+Three legal balanced benchmark tiers use $n=32$, 128, and 512 with $k=n/2$.
+Across three actual API rounds, the accepted package passed at `+0.00` to
+`+0.01` excess growth and `0.98x` to `1.01x` largest-tier ratios. An
+independently organized linear multiplicative control passed at `+0.08` to
+`+0.09` and `1.32x` to `1.35x`. Correct Pascal-triangle counting returned
+every ordinary and benchmark answer without hitting the safety cap but failed
+only scaling at `+1.43` to `+1.44` and `180.95x` to `187.26x`.
+
+The 202 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes; Ruff,
+compilation, direct and scoped source fidelity, and the package diff pass. The
+dataset checker reports 4,002 manually complete packages and three needing
+authoring. The refreshed migration audit reports 3,719 locally complete and
+remotely verified packages, 3,693 scaling benchmarks, 309 certificates,
+cases/Optimal sources/submissions/complexity evidence/variant manifests
+through 4002, and zero blockers. Source fidelity through 4002 is 717 verified,
+3,285 unverified, and zero invalid; the complete corpus has 717 verified,
+3,288 unverified, and zero invalid. The generated gap inventory contains 286
+incomplete packages: three active scaffolds plus the unchanged 283 deferred
+documentation-only failures, and separately records 15 known regressions.
+
+**Authoritative next work: deferred Reference repair, beginning with frontend
+ID 3, Longest Substring Without Repeating Characters.** The verified-solution
+queue is empty. The refreshed `first_actionable_incomplete` pointer names
+`dsa/leetcode/0003_longest-substring-without-repeating-characters`; its only
+completion failure is the current narrative-depth gate (`49` description
+words versus the required `60`, with the required two paragraphs already
+present). Work the 283 documentation-only rows in ascending frontend-ID order
+from `END_OF_CORPUS_REWORK_GAPS.md`, regenerating every report after each batch.
+After that queue is empty, review all 3,285 source-fidelity-unverified packages
+using their per-package structural triage rows, then repair the 15 explicitly
+listed repository-wide certificate-route regressions and run the full suite.
+
+**Problem 3993 checkpoint (2026-07-31):** Maximum Value of an Alternating
+Sequence was Accepted on all 999 tests as exact Python submission `2088148806`
+using native entry point `Solution.maximumValue`; the judge reported `0 ms`
+runtime and `19.32 MB` memory. Its modular Reference preserves both explained
+source examples, both strict alternating orientations, the adjacent absolute-
+difference limit, the single-element rule, and both source constraints. The
+public source has no images, tables, follow-up, or topic tags and has
+authenticated live content hash
+`6ad25075b1d83c7f68b2607f2139587a3a2597acb4933c2a08248eabf4d49b6b`.
+The stored native source is byte-for-byte the Accepted artifact after browser
+line-ending normalization (SHA-256
+`b6513a2e9ffea6829d5a2f32725bcad4edfa27a5bee81dfba9f5e5609f00736b`).
+
+For `n == 1`, the only possible maximum is `s`. Otherwise, the best orientation
+rises immediately by the full `m`. Every later high point must first fall by at
+least one and can then rise by at most `m`, so each complete low-high pair adds
+at most `m - 1`. The construction that always falls by one and rises by `m`
+attains that upper bound, giving
+`s + (n // 2) * (m - 1) + 1`. It takes $O(1)$ time and $O(1)$ auxiliary space.
+An independent state enumeration matches the formula on all 200 contracts with
+`1 <= n <= 8` and `1 <= s, m <= 5`.
+
+The 20 ordinary cases cover both source examples, single-element inputs,
+minimum and maximum values, unit and maximum difference limits, odd/even
+lengths, trailing lows, repeated high-point growth, and results beyond 32-bit
+range. Three legal scaling tiers use `n = 64`, `262144`, and `1000000000` with
+maximum `m`. Across three actual real-test rounds, the accepted package passed
+at `-0.00` to `+0.01` excess growth and `0.98x` to `1.06x` on the largest tier;
+an independently organized constant-time formula passed near `0.99x` to
+`1.01x`. A correct cube-block accumulation returned every answer and remained
+below the safety cap, but failed only the scaling verdict in all three rounds
+because its largest-tier ratio was `12.10x` to `12.23x`, above the `8x` limit.
+
+The actual route passes all 20 ordinary and three benchmark cases in every
+packaged-source run. The 202 focused package/docs/judge/template/fidelity/
+variant/submission/challenge-route tests pass with the two existing warning
+classes; Python compilation, dataset, scoped source-fidelity, migration, and
+gap-report checks also pass. The refreshed migration audit reports 3,710
+locally complete and remotely verified packages, cases/Optimal sources/
+submissions/complexity evidence and variant manifests through 3993, 3,686
+scaling benchmarks, 307 certificates, and zero blockers. Source fidelity
+through 3993 is 708 verified, 3,285 unverified, and zero invalid; the full
+corpus has 3,297 unverified. The dataset checker reports 3,993 manually complete
+packages and 12 needing authoring. The regenerated end-of-corpus inventory
+reports 295 incomplete packages: 12 active scaffolds plus the unchanged 283
+deferred documentation-only failures, with the 15 known regression packages
+recorded separately.
+
+**Problem 3992 checkpoint (2026-07-31):** Rearrange String to Avoid Character
+Pair was Accepted on all 999 tests as exact Python submission `2088142060`
+using native entry point `Solution.rearrangeString`; the judge reported `0 ms`
+runtime and `19.42 MB` memory. Its modular Reference preserves all three
+explained source examples, the non-unique-output contract, the absent-letter
+vacuous case, and all four source constraints. The public source has no images,
+tables, follow-up, or topic tags and has authenticated live content hash
+`7bb61bcc4accd76b986380c85ab71c832335687b0e813a3ae232ef747d8e1967`.
+The stored native source is byte-for-byte the Accepted artifact after browser
+line-ending normalization (SHA-256
+`fd240ff147fc7c4e072b7c4309ac9e8ea3048d6a1318ccb3ef2fae4e180bda27`).
+
+The accepted construction scans `s` once, counts `x` and `y`, retains every
+other character, and concatenates all copies of `y`, the neutral characters,
+and all copies of `x`. Each source character enters exactly one group, so the
+result preserves the complete multiset; the outer-group order proves that
+every `y` precedes every `x`. It takes $O(n)$ time and $O(n)$ output/auxiliary
+space. Both source forms pass 263,128 independently checked contracts: every
+string over a four-letter alphabet through length seven for every ordered pair
+of distinct target letters, plus 1,000 deterministic-random legal strings
+through length 100.
+
+LeetCode's sample runner accepted the candidate's valid `"bcad"` and `"xae"`
+outputs even though the displayed outputs are `"cabd"` and `"axe"`. The new
+`character_pair_rearrangement` semantic validator therefore checks that the
+return is a string of the correct length, has exactly the source character
+multiplicities, and places the last `y` before the first `x` whenever both are
+present. Its regression test accepts alternative valid permutations and both
+absent-letter cases, while rejecting wrong order, wrong multiplicity, wrong
+type, and identical target letters.
+
+The 20 ordinary cases cover every source example, minimum and maximum lengths,
+both or either target absent, all-`x` and all-`y` inputs, interleaved duplicate
+targets, neutral-character preservation, both alphabetic target orders, and
+non-unique answers. Three legal benchmark tiers mix targets and neutral
+characters at lengths `8`, `32`, and `100`. Across three actual HTTP real-test
+rounds, the packaged source passed at `-0.01` to `+0.00` excess growth and
+`1.00x` on the largest tier. An independently organized linear construction
+passed at `-0.15` to `-0.13` and `0.67x` to `0.68x`. The source-hinted built-in
+sort was too efficient in CPython to serve as negative evidence, so a correct
+adjacent-swap directional sort was used instead; it returned every answer but
+failed only scaling in all three rounds at `+1.29` to `+1.32`, with largest
+ratios from `35.62x` to `38.45x`, without hitting the safety cap.
+
+The actual route passes all 20 ordinary and three benchmark cases in every
+packaged-source run. The 202 focused package/docs/judge/template/fidelity/
+variant/submission/challenge-route tests pass with the two existing warning
+classes; Ruff, Python compilation, dataset, scoped source-fidelity, migration,
+and diff checks also pass. The refreshed migration audit reports 3,709 locally
+complete and remotely verified packages, cases/Optimal sources/submissions/
+complexity evidence and variant manifests through 3992, 3,685 scaling
+benchmarks, 307 certificates, and zero blockers. Source fidelity through 3992
+is 707 verified, 3,285 unverified, and zero invalid; the full corpus has 3,298
+unverified. The dataset checker reports 3,992 manually complete packages and
+13 needing authoring. The regenerated end-of-corpus inventory reports 296
+incomplete packages: 13 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with the 15 known regression packages recorded
+separately.
+
+**Problem 3991 checkpoint (2026-07-31):** Sort Array Using Prefix Reversals
+was Accepted on all 999 tests as exact Python submission `2088134163` using
+native entry point `Solution.sortArray`; the judge reported `194 ms` runtime
+and `27.50 MB` memory. Its modular Reference preserves all three explained
+source examples, the illustrative length-three reversal in the description,
+and all six source constraints. The Premium source has no images, tables,
+follow-up, or topic tags and has authenticated live content hash
+`c64d5376793f7c6780ae0f035e0fa11f5b8fef77c564369a896402e78a068b0b`.
+The stored native source is byte-for-byte the Accepted artifact after browser
+line-ending normalization (SHA-256
+`02cc9351f5ae23c7e74b474c8cb84709ae72558415027328edb9f47da0c239b7`).
+
+The accepted method treats every permutation as a vertex in an unweighted
+graph and every allowed prefix reversal as a unit edge. A deque explores this
+graph in nondecreasing operation count while a set prevents repeated states.
+The first discovery of the ascending tuple is therefore a shortest path, and
+queue exhaustion proves that the target lies outside the start component. Let
+$P=n!$ and $q=\lvert\texttt{pre}\rvert$; materializing each neighbor gives
+$O(Pqn)$ time and stored tuples give $O(Pn)$ space. Both source forms match an
+independently generated reverse-graph distance map on 4,369 contracts: every
+permutation and every nonempty allowed-prefix subset through `n = 5`, plus 240
+deterministic-random contracts for `n = 6..8`.
+
+The 20 ordinary cases cover all source examples, minimum and maximum lengths,
+already-sorted inputs, the length-one self-loop, one-operation full and partial
+reversals, repeated use of a restricted generator set, two-state components,
+deep reachable states, and several unreachable components. Three legal
+benchmark tiers enable every prefix length and use farthest permutations for
+`n = 4`, `6`, and `7`, with workload sizes $P=24$, $720$, and $5{,}040$ and
+answers `4`, `7`, and `8`. The originally staged `n = 8` tier was replaced
+because the instrumentation safety cap correctly stopped even the accepted
+algorithm before timing; the `n = 7` tier preserves a 210-fold total size span
+without hitting that cap.
+
+Across three final actual HTTP real-test rounds, the packaged source passed at
+`-0.00` to `+0.00` excess growth and `0.99x` to `1.01x` on the largest tier.
+An independently organized same-class BFS passed at `-0.05` excess growth and
+`0.99x` to `1.01x`. A correct BFS using a list rather than a hash set for
+visited-state membership returned every ordinary and benchmark answer but
+failed only scaling in all three rounds at `+0.38` excess growth and `8.64x`
+to `8.73x`; it did not hit the safety cap. The actual route passes all 20
+ordinary and three benchmark cases in every packaged-source run. The 201
+focused package/docs/judge/template/fidelity/variant/submission/challenge-route
+tests pass with the two existing warning classes; the dataset, scoped source-
+fidelity, migration, compilation, and diff checks also pass.
+
+The refreshed migration audit reports 3,708 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3991, 3,684 scaling benchmarks, 307 certificates,
+and zero blockers. Source fidelity through 3991 is 706 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,299 unverified. The dataset
+checker reports 3,991 manually complete packages and 14 needing authoring. The
+regenerated end-of-corpus inventory reports 297 incomplete packages: 14 active
+scaffolds plus the unchanged 283 deferred documentation-only failures, with
+the 15 known regression packages recorded separately.
+
+The authoritative next verified-solution package is frontend ID 3992,
+Rearrange String to Avoid Character Pair, a public Easy problem with internal
+question ID `4355`, real Elo `1251.3307194085`, Frequency `0.0`, and
+authenticated live content hash
+`7bb61bcc4accd76b986380c85ab71c832335687b0e813a3ae232ef747d8e1967`.
+Given a lowercase string `s` and distinct lowercase letters `x` and `y`, return
+any permutation `t` of `s` in which every occurrence of `y` precedes every
+occurrence of `x`.
+
+All three source examples are explained: `"aabc", "a", "c"` may return
+`"cbaa"`; `"dcab", "d", "b"` may return `"cabd"`; and `"axe", "o", "x"`
+may remain `"axe"` because the absent `x` makes the ordering condition
+automatic. The four constraints bound `s` to 1 through 100 lowercase letters,
+require `x` and `y` to be lowercase letters, and require `x != y`. Three hints
+say only the relative `x`/`y` order matters, suggest placing all `y` values
+before all other characters and all `x` values after them, or sort ascending or
+descending according to the order of `x` and `y`. The source has no images,
+tables, follow-up, or topic tags. The Python entry point is
+`Solution.rearrangeString(self, s: str, x: str, y: str) -> str`.
+
+A staged linear candidate counts `x` and `y`, retains every other character in
+its original order, and returns all `y` values, then those retained characters,
+then all `x` values. Its exact native source has SHA-256
+`fd240ff147fc7c4e072b7c4309ac9e8ea3048d6a1318ccb3ef2fae4e180bda27` and
+should take $O(n)$ time and $O(n)$ output/auxiliary space. Because the answer is
+non-unique, author a semantic validator that checks string type and length,
+exact character multiplicity, and that the last `y` lies before the first `x`
+whenever both occur; exact-output cases would reject valid answers. Tentative
+scaling tiers at legal lengths `8`, `32`, and `100` can force a complete scan
+and compare the linear construction with a correct sorting-based alternative,
+but must be calibrated through the actual route. The package is still a
+legacy scaffold. The authenticated source and starter are preserved in the
+signed-in Chrome handoff tab; rerun the live checker and migration audit before
+editing or submitting.
+
+**Problem 3990 checkpoint (2026-07-31):** Create Grid With Exactly K Paths II
+was Accepted on all 1,000 tests as exact Python submission `2088127265` using
+native entry point `Solution.createGrid`; the judge reported `7 ms` runtime and
+`19.14 MB` memory. Its modular Reference preserves both explained source
+examples, including every listed route, and the sole source constraint. The
+Premium statement content has no images, tables, follow-up, or topic tags and
+has authenticated live content hash
+`76f22d4ad9a3e5d22c7d4de14eeacce5f3f91705c101600b61736ffa79bcbc2f`.
+The seventh hint contains one provider construction image outside the hashed
+statement content; it is not copied. The Optimal approach independently
+recreates the power-ladder and final-corridor relationships as an accessible
+Mermaid diagram. The stored native source is byte-for-byte the Accepted
+artifact after browser line-ending normalization (SHA-256
+`df827b2d3f4f177c9e8e0a5fd4b35d91ae28e16a7f27ecfe060a69daad9abf6e`).
+
+The accepted construction uses a fixed `20 x 13` grid. Power cell
+$P_i=(2i,i)$ receives exactly $2^i$ paths: each open `2 x 2` block doubles the
+count, and a unique downward connector carries it to the next power cell.
+When bit $i$ of `k` is set, row `2 * i` opens from the ladder through column
+12. Odd separator rows prevent interactions between the parallel taps, while
+right/down motion prevents a path already in the final vertical corridor from
+moving left into a later tap. Every selected power therefore has one suffix to
+the destination, so the final count is exactly the binary sum `k`.
+
+Both stored sources pass independent shape, alphabet, and dynamic-program path
+counting for every legal `k = 1..1000`, for 2,000 exhaustive source executions.
+All 20 authored cases use the new `bounded_exact_monotone_path_grid` semantic
+validator, which permits any positive rectangular dimensions up to `25 x 25`
+and accepts an output only when its path count is exact. The cases cover both
+source examples, the minimum and maximum values, individual powers of two,
+dense low-bit masks, mixed masks, and a valid expected construction reaching
+the 25-column bound. The validator's malformed, oversize, wrong-alphabet, and
+wrong-count rejection behavior has its own regression test.
+
+The source domain has only 1,000 inputs, and the accepted source always creates
+exactly 260 output cells. A reviewed `bounded_domain` certificate therefore
+records $O(1)$ source-bounded time and space rather than inventing runtime
+tiers. Its replacement regression executes both sources over the complete
+domain. The actual HTTP real-test route passes all 20 cases in three runs and
+selects the certificate path without fake runtime measurement. The 201
+focused package/docs/judge/template/fidelity/variant/submission/challenge-route
+tests pass with the two existing warning classes; strict certificate inventory
+and migration-audit tests, Ruff, Python compilation, and the Mermaid gate also
+pass.
+
+The refreshed migration audit reports 3,707 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3990, 3,683 scaling benchmarks, 307 certificates,
+and zero blockers. Source fidelity through 3990 is 705 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,300 unverified. The dataset
+checker reports 3,990 manually complete packages and 15 needing authoring. The
+regenerated end-of-corpus inventory reports 298 incomplete packages: 15 active
+scaffolds plus the unchanged 283 deferred documentation-only failures, with
+the 15 known regression packages recorded separately.
+
+The authoritative next verified-solution package is frontend ID 3991, Sort
+Array Using Prefix Reversals, a Premium Medium problem with internal question
+ID `4096`, estimated Elo `1389.282993`, Frequency `0.0`, and authenticated live
+content hash
+`c64d5376793f7c6780ae0f035e0fa11f5b8fef77c564369a896402e78a068b0b`.
+It gives a length-$n$ permutation `nums` of `[0, n - 1]` and a list `pre` of
+unique valid prefix lengths. One operation chooses any `x` in `pre` and
+reverses the first `x` elements. Return the minimum operations needed to sort
+`nums` in ascending order, or `-1` when sorting is impossible.
+
+All three source examples are explained. `[2,0,1]` with `[2,3]` returns `2`:
+reverse length 3 to obtain `[1,0,2]`, then length 2 to obtain `[0,1,2]`.
+`[1,0,2]` with `[1,3]` returns `-1` because the permitted reversals cannot sort
+it. `[0,1]` with `[2]` returns `0` because it is already sorted. The six source
+constraints are `1 <= n == nums.length <= 8`, `0 <= nums[i] <= n - 1`,
+`1 <= pre.length <= n`, `1 <= pre[i] <= n`, the permutation guarantee, and
+uniqueness of the prefix lengths. The five hints bound the graph by `8!`
+permutations, model each reversal as an unweighted edge, use BFS, return the
+first distance reaching the sorted permutation, and return `-1` when the BFS
+component is exhausted. The source has no images, tables, follow-up, or topic
+tags. The native Python entry point is
+`Solution.sortArray(self, nums: List[int], pre: List[int]) -> int`.
+
+A direct candidate converts permutations to tuples and runs BFS with a deque
+and visited set, testing every permitted reversal from each dequeued state.
+The first discovery of the sorted tuple is shortest because BFS processes
+states by nondecreasing operation count; exhaustion proves impossibility. Its
+exact staged native source has SHA-256
+`02cc9351f5ae23c7e74b474c8cb84709ae72558415027328edb9f47da0c239b7` and
+matches an independently generated reverse-graph distance map on 4,369
+contracts: every permutation and every non-empty prefix subset through
+`n = 5`, plus 240 deterministic-random contracts for `n = 6..8`.
+
+Let $P=n!$ and $q=\lvert\texttt{pre}\rvert$. The candidate takes
+$O(Pqn)$ time because materializing one reversed tuple costs $O(n)$, and
+$O(Pn)$ space for queued and visited tuple states. Promising legal benchmark
+tiers use all prefix lengths and farthest permutations at `n = 4`, `6`, and
+`8`, with workload sizes $P=24$, $720$, and $40{,}320`: respectively
+`[2,0,3,1] -> 4`, `[3,5,1,4,0,2] -> 7`, and
+`[2,4,0,6,3,7,1,5] -> 9`. Calibrate these tiers and a genuine slower correct
+alternative before authoring. The partial package contains only metadata, a
+legacy placeholder document, placeholder Optimal bounds, and a placeholder
+three-heading approach; it has no cases, complexity evidence, stored sources,
+fidelity manifest, or verified submission. The authenticated statement and
+Python starter are preserved in the signed-in Chrome handoff tab; rerun the
+live checker and migration audit before editing.
+
+**Problem 3989 checkpoint (2026-07-31):** Maximum Consistent Columns in a
+Grid was Accepted on all 929 tests as exact Python submission `2088119644`
+using native entry point `Solution.maxConsistentColumns`; the judge reported
+`1649 ms` runtime and `24.81 MB` memory. Its modular Reference preserves all
+three explained source examples and the distinction that consistency is
+required only between adjacent retained columns. All four source constraints
+are present. The public source has no images, tables, follow-up, or topic tags
+and has authenticated live content hash
+`0fbefdea52a629aeefdccdbe0a683c689d8c5ddc3dd05997080796a8ba9700dd`.
+The stored native source is byte-for-byte the Accepted artifact after browser
+line-ending normalization (SHA-256
+`b354b14d338630fa450e871dd83eccb8615257049d9d867a23d6a592931c5693`).
+
+Treat the columns as vertices of a directed acyclic graph in their original
+order. There is an edge from `left` to `right` exactly when `left < right` and
+every row differs by at most `limit` between those columns. The dynamic
+program stores the longest compatible path ending at each column and extends
+it across every valid edge. This takes $O(mn^2)$ time and $O(n)$ auxiliary
+space without materializing the complete compatibility matrix. Both stored
+sources match an independent subset-enumeration oracle on all three samples
+and 61,977 exhaustive and deterministic-random small matrices.
+
+The 20 ordinary cases cover every source example, one-column and all-retained
+contracts, adjacency-only semantics, exact-limit boundaries, skipped
+outliers, tied and interleaved chains, extreme values, a 128-column case, and
+the maximum 250-row boundary. Three legal benchmark tiers use four all-zero
+rows and `16`, `32`, and `64` columns, with `limit = 0`; every ordered pair is
+compatible, so the quadratic transition work is forced and the answer equals
+the column count. Across three actual HTTP real-test calibration rounds, the
+packaged source passed with excess growth from `-0.03` to `+0.01` and largest
+runtime ratios from `0.99x` to `1.01x`. An independently organized same-class
+implementation passed from `-0.03` to `+0.01` and `1.09x` to `1.14x`. A
+correct length-layer dynamic program with $O(mn^2+n^3)$ work returned every
+ordinary and benchmark answer but failed only scaling in all three rounds at
+`+0.73` to `+0.90`, with largest ratios from `18.92x` to `30.54x`; it did not
+reach the safety cap.
+
+The actual HTTP real-test route passes all 20 ordinary and three benchmark
+cases in all three packaged-source runs. The 200 focused package/docs/judge/
+template/fidelity/variant/submission/challenge-route tests pass with the two
+existing warning classes. The refreshed migration audit reports 3,706 locally
+complete and remotely verified packages, cases/Optimal sources/submissions/
+complexity evidence and variant manifests through 3989, 3,683 scaling
+benchmarks, 306 certificates, and zero blockers. Source fidelity through 3989
+is 704 verified, 3,285 unverified, and zero invalid; the full corpus has 3,301
+unverified. The dataset checker reports 3,989 manually complete packages and
+16 needing authoring. The regenerated end-of-corpus inventory reports 299
+incomplete packages: 16 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with the 15 known regression packages recorded
+separately.
+
+The authoritative next verified-solution package is frontend ID 3990, Create
+Grid With Exactly K Paths II, a Premium Hard problem with internal question ID
+`4347`, estimated Elo `1938.998012`, Frequency `0.0`, and authenticated live
+content hash
+`76f22d4ad9a3e5d22c7d4de14eeacce5f3f91705c101600b61736ffa79bcbc2f`.
+It gives `1 <= k <= 1000` and asks for any grid of at most 25 rows and at most
+25 columns, containing only `'.'` free cells and `'#'` obstacles, with exactly
+`k` right/down paths from its top-left cell to its bottom-right cell. Return an
+empty array only if no construction exists.
+
+Both source examples are explained. For `k = 2`, the sample
+`["..#","#..","#.."]` has exactly the two listed routes through `(0,1)` and
+`(1,1)`. For `k = 3`, `["...","#..","#.."]` adds the route across the top
+row and has exactly the three listed routes. The source has one constraint and
+seven hints. They build powers of two with chained open `2 x 2` blocks, tap
+the powers selected by the binary expansion of `k`, and merge them into a
+final corridor with one continuation. The last hint contains one provider
+diagram that must be independently recreated or represented by an equivalently
+complete accessible local diagram/table; the statement content has no other
+images, no tables, follow-up, or topic tags. The native Python entry point is
+`Solution.createGrid(self, k: int) -> list[str]`.
+
+A concrete candidate is already independently proved on every legal
+`k = 1..1000`. Use a fixed `20 x 13` grid. For bit position `i` from 0 through
+9, place the power cell at `(2i, i)` and an open `2 x 2` block below/right for
+all but the last bit; connect each block's bottom-right corner down to the next
+power cell. It receives exactly $2^i$ paths. When bit `i` is set in `k`, open
+the remainder of row `2i` through column 12. Keep column 12 open from top to
+bottom as the one-way final corridor. Parallel tap rows are separated by a
+blocked row, and paths on the final corridor cannot move left, so the selected
+powers add without cross-paths. A separate dynamic-program path counter
+confirmed that this construction produces exactly `k` for all 1,000 legal
+inputs and always fits the size/alphabet contract. Revalidate and remotely
+submit the exact native source before using it to anchor the package. The
+fixed legal input/output bound likely calls for a reviewed `bounded_domain`
+certificate rather than artificial runtime scaling. The partial package still
+contains only metadata, a legacy placeholder document, placeholder Optimal
+bounds, and a placeholder three-heading approach; it has no cases, complexity
+evidence, stored sources, fidelity manifest, or verified submission. The
+authenticated statement, hints, Python starter, and final construction tab are
+preserved in the signed-in Chrome handoff; rerun the live checker and migration
+audit before editing.
+
+**Problem 3988 checkpoint (2026-07-31):** Create Grid With Exactly K Paths I
+was Accepted on all 400 tests as exact Python submission `2088113059` using
+native entry point `Solution.createGrid`; the judge reported `0 ms` runtime and
+`19.42 MB` memory. Its modular Reference preserves all three explained source
+examples. The first two provider images are not copied: accessible Markdown
+tables independently reproduce the exact `2 x 3` and `3 x 3` cell layouts,
+and the surrounding text preserves all two and four listed paths respectively.
+The one-row `k = 2` impossibility example is also complete. Both source
+constraints are present. The public source has no tables, follow-up, or topic
+tags and has authenticated live content hash
+`3b5e43da3f065b29e44bed032c32b0e0a9962ce6a3ded5e2f321ff873851b795`.
+The stored native source is byte-for-byte the Accepted artifact after browser
+line-ending normalization (SHA-256
+`8204100ab5a1bd79e533ee1c3418901b9112178e3161667453cd2e88cc831f5b`).
+
+The accepted construction uses a one-cell block for `k = 1`, an open `2 x 2`
+block for `k = 2`, an open `2 x 3` or `3 x 2` block for `k = 3`, and an open
+`2 x 4`, open `4 x 2`, or corner-blocked `3 x 3` block for `k = 4`. A single
+horizontal-then-vertical corridor connects the block exit to the destination,
+so every block route has exactly one continuation and the path count is
+preserved. The fit rules are exact for every permitted `k`: the open-grid
+maximum proves every rejected shape impossible. Building and serializing the
+grid takes $O(mn)$ time and $O(mn)$ space.
+
+The complete source domain has only 400 legal `(m,n,k)` tuples and at most 100
+output cells, so runtime scaling cannot provide honest asymptotic evidence. A
+reviewed `bounded_domain` certificate replaces it. Its independent regression
+runs both stored sources on all 400 tuples, checks dimensions and the `.`/`#`
+alphabet, counts paths with a separate dynamic program, and verifies `[]`
+against the obstacle-free binomial maximum. All 20 authored cases use the new
+`exact_monotone_path_grid` semantic validator, which accepts any construction
+with exactly `k` paths and accepts `[]` only when the requested count is
+impossible. The actual HTTP real-test route passes all 20 cases and selects the
+certificate path rather than runtime measurement.
+
+The 203 focused package/docs/judge/template/fidelity/variant/submission/
+challenge-route tests pass with the two existing warning classes. The broader
+repository-wide certificate sweep reaches 341 passing tests and reports only
+the same 15 already inventoried certificate-
+route subtest regressions: twelve packages lack the generic sweep's Python/SQL
+source shape, two incorrectly select runtime scaling, and one hits the Python
+step cap. The refreshed migration audit reports 3,705 locally complete and
+remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3988, 3,682 scaling benchmarks, 306
+certificates, and zero blockers. Source fidelity through 3988 is 703 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,302 unverified. The
+dataset checker reports 3,988 manually complete packages and 17 needing
+authoring. The regenerated end-of-corpus inventory reports 300 incomplete
+packages: 17 active scaffolds plus the unchanged 283 deferred documentation-
+only failures, with the 15 known regression packages recorded separately.
+
+**Problem 3987 checkpoint (2026-07-31):** Minimum Total Cost to Process All
+Elements was Accepted on all 965 tests as exact Python submission `2088106676`
+using native entry point `Solution.minimumCost`; the judge reported `3 ms`
+runtime and `32.90 MB` memory. Its modular Reference preserves all three source
+examples and their complete resource/cost traces. `[1,2,3,4]` with `k = 4`
+uses operations costing `1` and `2` for result `3`; `[1,1,7,14]` with `k = 4`
+uses two operations costing `3` before `7` and three more costing `12` before
+`14`, for result `15`; and `[1,2,3,4]` with `k = 10` needs no operation and
+returns `0`. All three source constraints are present. The public source has
+no images, tables, or topic tags and authenticated live content hash
+`f0f1b11abecfeda28b34744bcc71c18fd4ed2614fedaacf669644a871201b130`.
+The stored native source is byte-for-byte the Accepted artifact after browser
+line-ending normalization (SHA-256
+`bb8902ab90920c6c8550057fc669f50dfaa262f57bbda22be23dd75122e3f0d6`).
+
+For total demand $S$, the initial free block and $x$ paid blocks supply
+$(x+1)k$ resource units. Positive requirements make the final prefix the
+strongest constraint, so the minimum paid-operation count is
+$x=\lceil S/k\rceil-1=\lfloor(S-1)/k\rfloor$. Operation costs depend only on
+their ordinal numbers, making the answer $x(x+1)/2$ modulo $10^9+7$. The
+accepted method takes $O(n)$ time and $O(1)$ auxiliary space. Both stored
+source forms match independent literal and batched resource simulators on
+435,916 exhaustive and deterministic-random small contracts, all 21 authored
+ordinary and benchmark cases, and four legal length-100,000 boundary arrays.
+
+The legal benchmark tiers use lengths `800`, `3200`, and `6400`; tier $n$
+contains $n$ copies of $n$ with `k = 1`, so it requires $n^2-1$ paid blocks.
+Across three calibration rounds, the packaged explicit-sum/formula source
+passed at excess growth from `-0.00` to `+0.02` and largest-tier ratios from
+`1.00x` to `1.01x`. A direct hint-based resource scan passed from `+0.07` to
+`+0.09` and `4.69x` to `4.96x`; a separately organized `divmod` formulation
+passed from `-0.02` to `+0.02` and `1.13x` to `1.16x`. Correct repeated-prefix
+summation returned every ordinary and benchmark answer but failed only scaling
+in all three rounds at `+0.90` to `+0.92`, with largest ratios from `32.81x` to
+`33.30x`; it did not reach the safety cap.
+
+The actual HTTP real-test route passes all 21 ordinary and benchmark cases in
+all three packaged-source runs. The 202 focused package/docs/judge/template/
+fidelity/variant/submission/challenge-route tests pass with the two existing
+warning classes. The refreshed migration audit reports 3,704 locally complete
+and remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3987, 3,682 scaling benchmarks, 305
+certificates, and zero blockers. Source fidelity through 3987 is 702 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,303 unverified. The
+dataset checker reports 3,987 manually complete packages and 18 needing
+authoring. The regenerated end-of-corpus inventory reports 301 incomplete
+packages: 18 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+The authoritative next verified-solution package is frontend ID 3988, Create
+Grid With Exactly K Paths I, a public Medium problem with internal question ID
+`4343`, Elo `2054.6741405769`, Frequency `32.8`, and authenticated live content
+hash `3b5e43da3f065b29e44bed032c32b0e0a9962ce6a3ded5e2f321ff873851b795`.
+It asks for any $m\times n$ grid of `'.'` free cells and `'#'` obstacles with
+exactly `k` right/down paths from `(0, 0)` to `(m - 1, n - 1)`, or an empty
+array when no such grid exists.
+
+All three source examples have explanations. For `m = 2`, `n = 3`, `k = 2`,
+the sample output `["...","#.."]` has paths
+`(0,0)->(0,1)->(0,2)->(1,2)` and
+`(0,0)->(0,1)->(1,1)->(1,2)`. For `m = 3`, `n = 3`, `k = 4`, the output
+`["..#","...","#.."]` has the four listed combinations through the open
+center: top/center then right/down in either order, or left/center then
+right/down in either order. For `m = 1`, `n = 4`, `k = 2`, no grid can have
+two paths, so the output is `[]`. The two constraints are
+`1 <= m, n <= 10` and `1 <= k <= 4`.
+
+The source contains two example images (200x90 and 250x178), no tables,
+follow-up, or topic tags. They visualize the first two output grids; the local
+Reference must independently recreate both as accessible Markdown tables or
+equivalent diagrams and preserve every listed path, never copy the provider
+assets. The six hints establish that a one-row or one-column grid supports
+only one positive path count; use a small block for each `k`; use open `2x2`
+for `k = 2`, open `2x3` or `3x2` for `k = 3`, and open `2x4`, open `4x2`, or a
+`3x3` block with its top-right and bottom-left cells blocked for `k = 4`; then
+connect the block's bottom-right cell to the destination by a single corridor
+and block everything else. The native Python entry point is
+`Solution.createGrid(self, m: int, n: int, k: int) -> list[str]`.
+
+A likely implementation handles `k = 1` with one corridor, selects the
+smallest fitting hinted block for `k = 2..4`, and extends exactly one corridor
+from that block's exit. The complete legal domain has only 400 `(m,n,k)`
+tuples and at most 100 output cells, so a reviewed `bounded_domain` certificate
+with exhaustive path-count validation is likely more honest than runtime
+scaling; reconfirm this route before authoring. The partial package contains
+metadata, a legacy placeholder document, placeholder Optimal bounds, and a
+placeholder three-heading approach; it has no cases, complexity evidence,
+stored sources, fidelity manifest, or verified submission. The authenticated
+statement and Python starter are staged in the signed-in Chrome handoff tab;
+rerun the live checker and migration audit before editing.
+
+**Problem 3986 checkpoint (2026-07-31):** Number of Elapsed Seconds Between
+Two Times was Accepted on all 999 tests as exact Python submission
+`2088101419` using native entry point `Solution.secondsBetweenTimes`; the judge
+reported `0 ms` runtime and `19.36 MB` memory. Its modular Reference preserves
+both source examples and explanations: `("01:00:00", "01:00:25") -> 25`
+retains the exact 25-second interval, while
+`("12:34:56", "13:00:00") -> 1504` retains the equivalent 25 minutes and 4
+seconds. All seven constraints are present, including both length-eight rules,
+valid `"HH:MM:SS"` formatting, the hour/minute/second ranges, and the guarantee
+that the end is not earlier than the start. The public source has no images,
+tables, or topic tags and authenticated live content hash
+`2f241108ec2974d655d4019564ac893ec0e9b83001cc5cab2b2ec2809be1f501`.
+The stored native source is byte-for-byte the Accepted artifact after browser
+line-ending normalization (SHA-256
+`4c6cc5d2b9d0af0b549e90187cc15127d1f2d4709d88aabb3df45baacacd139e`).
+
+The accepted method converts both fixed-format readings to seconds since
+midnight with `3600 * hours + 60 * minutes + seconds`, then subtracts the two
+totals. The exact source contract fixes both strings at eight characters, so
+the implementation takes $O(1)$ time and $O(1)$ auxiliary space. Variable-size
+runtime tiers cannot express this workload honestly; a reviewed
+`bounded_domain` certificate records a maximum of 16 input characters instead.
+Its regression compares the app-local and native sources with an independent
+fixed-position oracle for every one of the 86,400 legal clock readings from
+midnight and to `23:59:59`, 100,000 deterministic ordered pairs, and all 16
+authored cases.
+
+The actual HTTP real-test route passes all 16 authored cases in all three
+packaged-source runs. The 202 focused package/docs/judge/template/fidelity/
+variant/submission/challenge-route tests pass with the two existing warning
+classes. The refreshed migration audit reports 3,703 locally complete and
+remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3986, 3,681 scaling benchmarks, 305
+certificates, and zero blockers. Source fidelity through 3986 is 701 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,304 unverified. The
+dataset checker reports 3,986 manually complete packages and 19 needing
+authoring. The regenerated end-of-corpus inventory reports 302 incomplete
+packages: 19 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+The authoritative next verified-solution package is frontend ID 3987, Minimum
+Total Cost to Process All Elements, a public Medium problem with internal
+question ID `4351`, Elo `1549.6115401529`, Frequency `30.1`, and authenticated
+live content hash
+`f0f1b11abecfeda28b34744bcc71c18fd4ed2614fedaacf669644a871201b130`.
+It gives an integer array `nums` and an integer `k`. Processing is left to
+right, begins with `k` resource units, consumes `nums[i]` at element `i`, and
+permits an operation only when the available resource is insufficient. Every
+operation adds exactly `k`; successive operations cost `1, 2, 3, ...`. Return
+the minimum total cost modulo $10^9+7$.
+
+All three live examples have explanations. For `[1,2,3,4]`, `k = 4`, the first
+two elements leave `3` then `1`; operations costing `1` and `2` make the later
+elements processable, so the result is `3`. For `[1,1,7,14]`, `k = 4`, the
+first two elements leave `2`; two operations cost `1 + 2 = 3` before processing
+`7`, then three more cost `3 + 4 + 5 = 12` before `14`, giving `15`. For
+`[1,2,3,4]`, `k = 10`, the initial resource processes everything and the result
+is `0`. The source has exactly three constraints:
+`1 <= nums.length <= 10^5`, `1 <= nums[i] <= 10^9`, and
+`1 <= k <= 10^9`. It has three hints: operate only when the next requirement
+exceeds the current resource; sum the next `x` costs after `cnt` operations as
+`(cnt + 1) + ... + (cnt + x)`; and use the arithmetic-progression formula while
+scanning. It has no images, tables, follow-up, or topic tags. The native Python
+entry point is `Solution.minimumCost(self, nums: list[int], k: int) -> int`.
+
+Because all consumptions are positive, after total demand $S$ the minimum
+number of added `k`-blocks is
+$x = \max(0, \lceil S/k \rceil - 1) = \lfloor(S-1)/k\rfloor$; the cost is the
+triangular number $x(x+1)/2$ modulo $10^9+7$. This gives a likely $O(n)$-time,
+$O(1)$-space implementation. Legal benchmark tiers can use arrays of length
+`32`, `128`, and `256`, each filled with its tier length and `k = 1`, so the
+linear sum/formula method scans once while a correct operation-by-operation
+simulation performs quadratic work. Reconfirm this candidate and calibrate it
+before authoring evidence. The partial package contains metadata, a legacy
+placeholder document, placeholder Optimal bounds, and a placeholder
+three-heading approach; it has no cases, complexity evidence, stored sources,
+fidelity manifest, or verified submission. The authenticated statement and
+Python starter are staged in the signed-in Chrome handoff tab; rerun the live
+checker and migration audit before editing.
+
+**Problem 3985 checkpoint (2026-07-31):** Palindromic Subarray Sum was
+Accepted on all 653 tests as exact Python submission `2088095984` using native
+entry point `Solution.getSum`; the judge reported `858 ms` runtime and
+`37.39 MB` memory. Its modular Reference preserves all five source examples
+and explanations. The whole pair `[10,10]` yields `20`; the palindromic prefix
+`[1,2,3,2,1]` yields `9`; `[7,1,2,1,7]` yields `18`; the strictly increasing
+`[1,2,3,4,5]` has no longer palindrome and therefore returns singleton `5`;
+and `[1000]` returns `1000`. Both constraints are present. The public source
+has no images, tables, or topic tags and live content hash
+`fa4c26cc29fbfd08750a5e7124e72cbede46cf71d11d8c2f1863fa8f95112b36`.
+The stored native source remains the Accepted artifact after browser
+line-ending normalization (SHA-256
+`81e67fbc8e75fa3dfcbb1d1e9e5b3f159918dd632c4ba6e7115c710af76ff119`).
+
+Because every input value is positive, the longest palindrome around a fixed
+center also has the greatest sum among that center's nested palindromes. The
+accepted algorithm uses separate odd and even Manacher passes to recover the
+longest radius at every possible center. Each center inside the rightmost
+known palindrome reuses a mirror radius capped at the current boundary;
+successful comparisons beyond the boundary advance it, so all expansion work
+is linear. Prefix sums evaluate every recovered interval in constant time.
+The implementation takes $O(n)$ time and $O(n)$ auxiliary space. Before
+submission, both stored source forms matched an independent full-subarray
+palindrome oracle on 79,523 exhaustive and deterministic random contracts, all
+20 authored ordinary cases, all three benchmark cases, and three legal
+length-100,000 boundary arrays including a $10^{14}$ result.
+
+The legal benchmark tiers use all-`7` arrays of lengths `32`, `128`, and
+`256`, forcing naive expansion around every odd and even center to perform
+quadratic work. Across three calibration rounds, the packaged two-pass
+Manacher implementation passed at excess growth from `-0.02` to `+0.03` and
+largest-tier ratios from `0.98x` to `1.01x`. An independently organized
+single transformed-array Manacher implementation passed from `-0.03` to
+`+0.03` and `0.94x` to `1.01x`. Correct direct center expansion returned
+every ordinary and benchmark answer but failed only scaling in all three
+rounds at `+0.95` to `+0.99`, with largest ratios from `13.03x` to `13.44x`;
+it did not reach the safety cap.
+
+The actual HTTP real-test route passes all 23 ordinary and benchmark cases in
+all three packaged-source runs. The 199 focused package/docs/judge/template/
+fidelity/variant/submission/challenge-route tests pass with the two existing
+warning classes. The refreshed migration audit reports 3,702 locally complete
+and remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3985, 3,681 scaling benchmarks, 304
+certificates, and zero blockers. Source fidelity through 3985 is 700 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,305 unverified. The
+dataset checker reports 3,985 manually complete packages and 20 needing
+authoring. The regenerated end-of-corpus inventory reports 303 incomplete
+packages: 20 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+The authoritative next verified-solution package is frontend ID 3986, Number
+of Elapsed Seconds Between Two Times, a public Easy problem with internal
+question ID `4357`, Elo `1205.3197977948`, and live content hash
+`2f241108ec2974d655d4019564ac893ec0e9b83001cc5cab2b2ec2809be1f501`.
+It receives two valid `"HH:MM:SS"` strings and returns the nonnegative number
+of elapsed seconds from `startTime` to `endTime`; the source guarantees that
+the end is not earlier than the start. The two fully explained examples are
+`("01:00:00", "01:00:25") -> 25` and
+`("12:34:56", "13:00:00") -> 1504`, the latter retaining the equivalent
+duration of 25 minutes and 4 seconds. The seven source constraints preserve
+both length-eight requirements, valid formatting, the legal hour/minute/
+second ranges, and the time ordering. The statement has no images, tables, or
+topic tags. Its two hints convert both times to seconds since `00:00:00` and
+subtract. The native Python entry point is
+`Solution.secondsBetweenTimes(self, startTime: str, endTime: str) -> int`.
+Its partial package contains metadata, a legacy placeholder document,
+placeholder Optimal bounds, and a placeholder three-heading approach; it has
+no cases, complexity evidence, app-local or native source, fidelity manifest,
+or verified submission. The authenticated statement and Python starter are
+staged in the signed-in Chrome handoff tab; rerun the live checker and
+migration audit before editing.
+
+**Problem 3984 checkpoint (2026-07-31):** Divisible Game was Accepted on all
+771 tests as exact Python submission `2088089747` using native entry point
+`Solution.divisibleGame`; the judge reported `655 ms` runtime and `19.56 MB`
+memory. Its modular Reference preserves all three source examples and every
+explanatory step. For `[1,4,6,8]`, `k = 2` and `[1,3]` give Alice `18`, Bob
+`0`, difference `18`, and product `36`. For `[2,1,2]`, `k = 2` and `[0,2]`
+give scores `4` and `1`, difference `3`, and product `6`. For `[1]`, the
+smallest legal `k = 2` gives difference `-1`, whose product `-2` becomes
+`1000000005` modulo $10^9+7$. Both constraints are present. The public source
+has no images, tables, or topic tags and live content hash
+`b62ca24747bd238bf63e44940d1e60a68686155e4120d7a21d1d52a3cf6891d4`.
+The stored native source remains the Accepted artifact after browser
+line-ending normalization (SHA-256
+`8812675ffdc2e98a0c492735f0d84362648f4bdadc7f5ebc35fa8974f0a47f87`).
+
+For a fixed $k$, the accepted algorithm changes every divisible value to a
+positive term and every nondivisible value to a negative term, then runs a
+nonempty Kadane scan. Only prime candidates are needed: if composite $k$ has
+prime divisor $p$, every positive term for $k$ remains positive for $p$, some
+negative terms may become positive, and $p<k$ also wins a tie. The distinct
+input values are trial-factored to collect all relevant primes, with `2` added
+explicitly to cover the all-negative no-divisor case. For $U$ distinct values,
+$M=\max(\texttt{nums})$, and $P$ distinct candidate primes, the exact stored
+implementation takes $O(U\sqrt M+P\log P+nP)$ time and $O(P)$ auxiliary
+space. Before submission, both stored source forms matched an independent
+full-$k$, full-subarray oracle on 75,986 exhaustive and deterministic random
+contracts, all 19 authored ordinary cases, all three benchmark cases, and
+three length-1,000/domain-boundary arrays.
+
+The legal benchmark tiers hold $U=1$, $M=6$, and $P=2$ fixed while scaling
+`n` through `32`, `128`, and `256`; every value is `6`, so both candidates
+must scan the complete input. Across three calibration rounds, the packaged
+factorization/Kadane implementation passed at excess growth from `-0.06` to
+`+0.04` and largest-tier ratios from `0.93x` to `1.04x`. An independently
+organized factorization plus prefix-minimum maximum-subarray scan passed from
+`-0.02` to `+0.04` and `1.54x` to `1.63x`. A correct quadratic subarray
+enumerator returned every ordinary and benchmark output but failed only
+scaling in all three rounds at `+1.07` to `+1.09`, with largest ratios from
+`117.31x` to `121.49x`; it did not reach the safety cap. An earlier legal
+512-element draft did reach the safety cap and was discarded rather than
+misreported as complexity evidence.
+
+The actual HTTP real-test route passes all 22 ordinary and benchmark cases in
+all three packaged-source runs. The 199 focused package/docs/judge/template/
+fidelity/variant/submission/challenge-route tests pass with the two existing
+warning classes. The refreshed migration audit reports 3,701 locally complete
+and remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3984, 3,680 scaling benchmarks, 304
+certificates, and zero blockers. Source fidelity through 3984 is 699 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,306 unverified. The
+dataset checker reports 3,984 manually complete packages and 21 needing
+authoring. The regenerated end-of-corpus inventory reports 304 incomplete
+packages: 21 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+At the historical 3984 checkpoint, the next verified-solution package was
+frontend ID 3985,
+Palindromic Subarray Sum, a public Hard problem with internal question ID
+`4031`, Elo `2201.968109609`, and live content hash
+`fa4c26cc29fbfd08750a5e7124e72cbede46cf71d11d8c2f1863fa8f95112b36`.
+It asks for the maximum sum of a contiguous palindromic subarray. Every value
+is positive, so for a fixed center its longest palindrome also has the largest
+sum. The five fully explained source examples are `[10,10] -> 20`,
+`[1,2,3,2,1,5,6] -> 9` from `[1,2,3,2,1]`,
+`[7,1,2,1,7,3,4,3,4] -> 18` from `[7,1,2,1,7]`,
+`[1,2,3,4,5] -> 5` because no longer palindrome exists, and `[1000] -> 1000`
+from the singleton. The two constraints are $1\le n\le10^5$ and
+$1\le\texttt{nums[i]}\le10^9$. The source has no images, tables, or topic
+tags. Its seven hints present an $O(n)$ Manacher route adapted to arrays plus
+prefix sums, and an alternative rolling-hash/binary-search route. The native
+Python entry point is `Solution.getSum(self, nums: List[int]) -> int`. Its
+partial package contains only metadata, a legacy placeholder document, and
+placeholder Optimal bounds: it has no cases, complexity evidence, approach,
+app-local or native source, fidelity manifest, or verified submission. The
+authenticated statement and Python starter were staged in the signed-in Chrome
+handoff tab; that work is completed in the newer checkpoint above.
+
+**Problem 3983 checkpoint (2026-07-31):** Subsequence After One Replacement
+was Accepted on all 999 tests as exact Python submission `2088084869` using
+native entry point `Solution.canMakeSubsequence`; the judge reported `0 ms`
+runtime and `20.13 MB` memory. Its modular Reference preserves that the
+replacement is optional, may change one position of `s` to any lowercase
+letter, and must leave all characters of the resulting `s` matchable in order
+inside `t`. Both complete source examples and explanations are present. For
+`s = "cat", t = "chat"`, replacing `s[1]` from `'a'` to `'h'` produces
+`"cht"`, which matches in order; the Reference also makes explicit that the
+unchanged `"cat"` already qualifies because the operation is **at most** once.
+For `s = "plane", t = "apple"`, the explanation retains the partial
+`'p'`, `'l'`, `'e'` match and the fact that no single replacement completes
+the ordered match. Both constraints are present. The public statement has no
+images or tables and live content hash
+`e05be26716cdd63eb752b5cd43e9591b597d227e474ec6e81beffcfe7f17106c`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`a6f7e85e07cdb0116dd43998bba57a14839fc1b17a2d7bfd62d48e99c71c993a`).
+
+The accepted one-pass algorithm scans `t` while tracking the longest prefix of
+`s` matched without a replacement and the longest prefix matched after one
+replacement. Each text character may be skipped, advance a matching state, or
+create the changed state from the previous exact state; copying the old
+counters before transitions prevents one text position from being consumed
+twice. It takes $O(m)$ time and $O(1)$ auxiliary space for
+$m=\lvert\texttt{t}\rvert$. Before submission, the candidate matched an
+independent 26-letter replacement oracle on all 131,769 ternary string pairs
+with lengths one through five, 50,000 deterministic random pairs with lengths
+through fifteen, both source examples, and four length-100,000 boundaries.
+The 18 authored ordinary cases were independently rechecked, and both the
+app-local and exact native forms pass all 18 ordinary and all three benchmark
+cases.
+
+The legal benchmark tiers use equal-length strings of lengths `16`, `64`, and
+`256`, with total input sizes `32`, `128`, and `512`; two end mismatches force
+a full rejection path. Across three calibration rounds, the packaged two-state
+scan passed at excess growth from `-0.01` to `+0.02` and largest-tier ratios
+from `0.99x` to `1.07x`. An independent linear prefix/suffix formulation
+passed at `+0.06` to `+0.10` excess growth and `1.79x` to `1.94x`
+largest-tier ratios. A correct $O(nm)$ scan that tries every wildcard position
+returned every ordinary and benchmark answer but failed only scaling in all
+three rounds at `+1.14` to `+1.17` excess growth and `57.02x` to `61.13x`
+largest-tier ratios; it did not reach the safety cap.
+
+The actual HTTP real-test route passes all 21 ordinary and benchmark cases in
+all three packaged-source runs. The 199 focused package/docs/judge/template/
+fidelity/submission/challenge-route tests pass with the two existing warning
+classes. The refreshed migration audit reports 3,700 locally complete and
+remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3983, 3,679 scaling benchmarks, 304
+certificates, and zero blockers. Source fidelity through 3983 is 698 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,307 unverified. The
+dataset checker reports 3,983 manually complete packages and 22 needing
+authoring. The regenerated end-of-corpus inventory reports 305 incomplete
+packages: 22 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+At the historical 3983 checkpoint, the next verified-solution package was
+frontend ID 3984,
+Divisible Game, a public Medium problem with internal question ID `4188`, Elo
+`1944.4722266435`, and live content hash
+`b62ca24747bd238bf63e44940d1e60a68686155e4120d7a21d1d52a3cf6891d4`.
+Alice chooses an integer $k>1$ and a nonempty inclusive subarray `[l, r]`.
+Within that range, values divisible by $k$ add to Alice's score and all other
+values add to Bob's score; she maximizes Alice minus Bob, breaking a tie by the
+smallest $k$, and returns that maximum difference times $k$ modulo $10^9+7$.
+The first fully explained example chooses `k = 2` and `[1,3]` for
+`[1,4,6,8]`, giving difference `18` and result `36`. The second chooses
+`k = 2` and `[0,2]` for `[2,1,2]`, giving scores `4` and `1`, difference
+`3`, and result `6`. The singleton `[1]` has maximum difference `-1` with the
+smallest legal `k = 2`; its product `-2` becomes `1000000005` modulo
+$10^9+7$. The source has two constraints, no images or tables, and five hints
+covering the signed transformation for a fixed $k$, maximum subarray sum,
+divisor candidate enumeration plus `k = 2`, Kadane's algorithm, and the
+smallest-$k$ tie-break. There are no topic tags. The native Python entry point
+is `Solution.divisibleGame(self, nums: list[int]) -> int`. Its live public
+statement and starter were staged in the signed-in Chrome handoff tab; that
+work is completed in the newer checkpoint above.
+
+**Problem 3982 checkpoint (2026-07-31):** Sum of Integers with Maximum Digit
+Range was Accepted on all 999 tests as exact Python submission `2088081250`
+using native entry point `Solution.maxDigitRange`; the judge reported `0 ms`
+runtime and `19.19 MB` memory. Its modular Reference preserves the definition
+of one integer's digit range as its largest decimal digit minus its smallest,
+the array-wide maximum comparison, and the requirement to sum every qualifying
+array occurrence without deduplicating equal values. Both complete source
+examples retain their five-column explanation tables. For
+`[5724,111,350]`, the table records ranges `5`, `0`, and `5` and yields
+`6074`; for `[90,900]`, both rows have range `9` and yield `990`. Both
+constraints are present. The public statement has two tables, no images, and
+live content hash
+`aade0d523ac064103ceffa24cac299fd446341d81f90c46d440e996ae88e87a0`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`37ec50a8dac3e49c7ec36e35d28c056443ac31066d54901440399a293bb49e20`).
+
+The accepted one-pass algorithm extracts every decimal digit arithmetically,
+tracks the smallest and largest digit of the current value, and maintains the
+best range and sum for the processed array prefix. A strictly larger range
+resets the sum, while an equal range adds the current occurrence. Let $S$ be
+the total number of input digits; the method takes $O(S)$ time and $O(1)$
+auxiliary space. Before submission, the digit-range calculation matched a
+string-based oracle for every integer from 10 through 100,000. The complete
+candidate matched the oracle on 37,448 exhaustive arrays of lengths one
+through five over an eight-value boundary set, 50,000 deterministic random
+arrays with lengths through 100, both source examples, and four maximum-length
+or domain-boundary arrays. The 16 authored ordinary cases were independently
+rechecked, and both the app-local and exact native forms pass all 16 ordinary
+and all three benchmark cases.
+
+The legal benchmark tiers contain total digit counts `8`, `100`, and `600`.
+Across three calibration rounds, the packaged one-pass digit scan passed at
+excess growth from `-0.02` to `+0.04` and largest-tier ratios from `0.99x` to
+`1.10x`. An independent two-pass $O(S)$ implementation passed at `+0.06` to
+`+0.07` excess growth and `1.45x` to `1.55x` largest-tier ratios. A correct
+pairwise-comparison formulation returned every ordinary and benchmark answer
+but failed only scaling in all three rounds at `+0.87` to `+0.90` excess
+growth and `71.56x` to `76.24x` largest-tier ratios; it did not reach the
+safety cap.
+
+The actual HTTP real-test route passes all 19 ordinary and benchmark cases in
+all three packaged-source runs. The 199 focused package/docs/judge/template/
+fidelity/submission/challenge-route tests pass with the two existing warning
+classes. The refreshed migration audit reports 3,699 locally complete and
+remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3982, 3,678 scaling benchmarks, 304
+certificates, and zero blockers. Source fidelity through 3982 is 697 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,308 unverified. The
+dataset checker reports 3,982 manually complete packages and 23 needing
+authoring. The regenerated end-of-corpus inventory reports 306 incomplete
+packages: 23 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+At the historical 3982 checkpoint, the next verified-solution package was
+frontend ID 3983, Subsequence After One Replacement, a public Medium problem
+with internal question ID `4346`, Elo `1754.7431866815`, and live content hash
+`e05be26716cdd63eb752b5cd43e9591b597d227e474ec6e81beffcfe7f17106c`.
+It asks whether `s` can become a subsequence of `t` after replacing **at most
+one** character of `s` by any lowercase English letter; using no replacement
+is therefore legal. The first fully explained example returns `true` for
+`s = "cat", t = "chat"`: replacing `s[1]` from `'a'` to `'h'` creates
+`"cht"`, whose characters match `"chat"` in order. The second returns
+`false` for `s = "plane", t = "apple"`: although `'p'`, `'l'`, and `'e'`
+can be matched in order, no single replacement makes all of `s` match. The
+source has two constraints, no images or tables, and four hints covering the
+length impossibility, the already-a-subsequence case, prefix/suffix match
+positions, and the need for an unused position between those matches. There
+are no topic tags. The native Python entry point is
+`Solution.canMakeSubsequence(self, s: str, t: str) -> bool`. Its live public
+statement and starter were staged in the finalized signed-in Chrome handoff
+tab; that work is completed in the newer checkpoint above.
+
+**Problem 3981 checkpoint (2026-07-31):** Count Distinct Ways to Form Target
+from Two Strings was Accepted as exact Python submission `2088075887` using
+native entry point `Solution.interleaveCharacters`. Its modular Reference
+preserves the independent strictly increasing index order inside `word1` and
+`word2`, the requirement to use at least one character from each word, the
+definition that a different source or index at any target position creates a
+different way, and the modulo $10^9+7$ result. All four complete source
+examples and their explanations are present: `("abc","bac","abc")` has
+five explicitly enumerated selections, `("cd","cd","ccd")` has four,
+`("xy","xy","xyxy")` has two, and `("ab","cde","ace")` has one.
+Both constraints are present. The public statement has no images or tables and
+live content hash
+`69009ab09d523d550856fccbc9fbb58cadb7876bd3afcc2a37cf82a690c3e68b`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`a60a1e595180ea248d497dcbaeca9694cd3d4dcba22fba7af25384128b249fbd`).
+
+The accepted dynamic program records the latest chosen 1-based index in each
+word, with zero meaning that word has not yet been used. For each next target
+character, row and column prefix sums aggregate every earlier state that can
+advance to a matching character in one word while retaining the other word's
+latest index. Summing only terminal states with both indices positive enforces
+the two-source requirement. For target length $t$ and word lengths $n$ and
+$m$, it takes $O(tnm)$ time and $O(nm)$ auxiliary space. Before submission,
+the candidate matched an independent recursive oracle on all 55,800 binary
+contracts with word lengths through four and target lengths through five,
+20,000 deterministic random ternary contracts with lengths through eight, all
+four source examples, and three maximum-boundary inputs with lengths 100. The
+15 authored ordinary cases were independently rechecked, and both the
+app-local and exact native forms pass all 15 ordinary and all three benchmark
+cases.
+
+The legal benchmark tiers use all-`a` inputs with $tnm$ sizes `64`, `512`, and
+`4096`. Across three calibration rounds, the packaged prefix-sum DP passed at
+excess growth from `0.00` to `+0.01` and largest-tier ratios from `0.99x` to
+`1.02x`. An independently organized full-prefix-table DP passed all three
+rounds at `-0.03` to `-0.02` excess growth and `1.47x` to `1.48x`
+largest-tier ratios. A correct direct extension enumerator returned every
+ordinary and benchmark answer but failed only scaling in all three rounds at
+`+0.28` to `+0.29` excess growth; it did not reach the safety cap.
+
+The actual HTTP real-test route passes all 18 ordinary and benchmark cases in
+all three packaged-source runs. The 199 focused package/docs/judge/template/
+fidelity/submission/challenge-route tests pass with the two existing warning
+classes. The refreshed migration audit reports 3,698 locally complete and
+remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3981, 3,677 scaling benchmarks, 304
+certificates, and zero blockers. Source fidelity through 3981 is 696 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,309 unverified. The
+dataset checker reports 3,981 manually complete packages and 24 needing
+authoring. The regenerated end-of-corpus inventory reports 307 incomplete
+packages: 24 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+At the historical 3981 checkpoint, the next verified-solution package was
+frontend ID 3982, Sum of Integers with Maximum Digit Range, a public Easy
+problem with internal question
+ID `4356`, Elo `1200.3250239331`, and live content hash
+`aade0d523ac064103ceffa24cac299fd446341d81f90c46d440e996ae88e87a0`.
+For each integer, its digit range is its largest decimal digit minus its
+smallest decimal digit; the answer is the sum of every array value whose digit
+range equals the array-wide maximum. The source's first fully explained
+example returns `6074` for `[5724,111,350]`: its five-column table records
+digit ranges `5`, `0`, and `5`, so `5724 + 350` is selected. The second returns
+`990` for `[90,900]`: its matching five-column table gives both values digit
+range `9`. Preserve both tables with columns `i`, `nums[i]`, `Largest`,
+`Smallest`, and `Digit Range`; the public source contains two tables and no
+images. Its two constraints are `1 <= nums.length <= 100` and
+`10 <= nums[i] <= 10^5`. Two hints say to scan each decimal representation for
+its range, then find the maximum range and sum matching values. There are no
+topic tags. The native Python entry point is
+`Solution.maxDigitRange(self, nums: list[int]) -> int`. Its live public
+statement and starter were staged in the finalized signed-in Chrome handoff
+tab; that work is completed in the newer checkpoint above.
+
+**Problem 3980 checkpoint (2026-07-30):** Minimum Operations to Transform
+Binary String was Accepted as exact Python submission `2088071443` using
+native entry point `Solution.minOperations`. Its modular Reference preserves
+both operation preconditions: a current `'0'` may become `'1'`, while two
+adjacent current `'1'` characters may be cleared to `'0'` together. It also
+preserves arbitrary operation order, the minimum-operation objective, and the
+`-1` unreachable result. All three complete source examples retain their
+transformations and explanations: `"11"` to `"00"` in one pair operation,
+`"01"` to `"10"` through the stated three intermediate operations, and the
+impossibility of clearing the singleton `"1"`. Both constraints are present.
+The public statement has no images or tables and live content hash
+`91da90fa9a8b0a3d379a5381a92029f4f96ae2df3e65580f12f61c781a68d659`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`5334c673c3c6fdb09d89c30b038b07cb555a2f2e3d4eba5e3cfbc064d51afed4`).
+
+The accepted dynamic program scans left to right with two costs recording
+whether the current character retains its original value or was cleared by
+the pair immediately to its left. At each position it either matches the
+target directly or prepares and clears the pair to its right, restoring the
+current character when the target requires `'1'`. It takes $O(n)$ time and
+$O(1)$ auxiliary space. Before submission, the candidate matched a complete
+breadth-first-search oracle on all 87,380 source/target pairs of lengths one
+through eight, plus four maximum-length boundaries of length 100,000. The
+15 authored ordinary cases were independently rechecked by BFS, and the
+app-local and exact native forms pass all 15 ordinary and all three benchmark
+cases.
+
+The legal benchmark tiers clear even all-one strings of lengths `8`, `32`,
+and `128`. Across three calibration rounds, the packaged two-state DP passed
+at excess growth from `-0.03` to `+0.00` and largest-tier ratios from `0.91x`
+to `0.99x`. An independent full-table DP passed all three rounds at `-0.06`
+to `-0.05` excess growth and `0.77x` to `0.80x` largest-tier ratios. A correct
+Bellman-Ford formulation over the same layered state graph returned every
+ordinary and benchmark answer but failed only scaling in all three rounds at
+`+0.99` to `+1.01` excess growth and `41.16x` to `44.60x` largest-tier
+ratios; it did not reach the safety cap.
+
+The actual HTTP real-test route passes all 18 ordinary and benchmark cases in
+all three packaged-source runs. The 199 focused package/docs/judge/template/
+fidelity/submission/challenge-route tests pass with the two existing warning
+classes. The refreshed migration audit reports 3,697 locally complete and
+remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3980, 3,676 scaling benchmarks, 304
+certificates, and zero blockers. Source fidelity through 3980 is 695 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,310 unverified. The
+dataset checker reports 3,980 manually complete packages and 25 needing
+authoring. The regenerated end-of-corpus inventory reports 308 incomplete
+packages: 25 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+At the historical 3980 checkpoint, the next verified-solution package was
+frontend ID 3981, Count Distinct Ways to Form Target from Two Strings, a public
+Hard problem with internal question ID `4082`, Elo `2128.4247737794`, and live content hash
+`69009ab09d523d550856fccbc9fbb58cadb7876bd3afcc2a37cf82a690c3e68b`.
+It counts ways to form `target` by selecting each character from either
+`word1` or `word2`, with selected indices strictly increasing independently
+inside each word and with both words used at least once. Ways differ by a
+source word or index at any target position, and the result is modulo
+$10^9+7$. Its four fully explained examples return `5` for
+`("abc","bac","abc")`, `4` for `("cd","cd","ccd")`, `2` for
+`("xy","xy","xyxy")`, and `1` for `("ab","cde","ace")`; the source
+enumerates every valid selection behind those counts. The source has two
+constraint items, no images or tables, and four hints covering DP over the
+target and next indices, choosing from either word, a two-word usage bitmask,
+and the terminal both-used state. The native Python entry point is
+`Solution.interleaveCharacters(self, word1: str, word2: str, target: str) -> int`.
+Its live public statement and starter were staged in the finalized
+signed-in Chrome handoff tab; that work is completed in the newer checkpoint
+above.
+
+**Problem 3979 checkpoint (2026-07-30):** Maximum Valid Pair Sum was Accepted
+as exact Python submission `2088060655` using native entry point
+`Solution.maxValidPairSum`. Its modular Reference preserves the ordered-index
+contract $0 \le i < j < n$, the minimum distance $j-i \ge k$, and the maximum
+`nums[i] + nums[j]` objective. The first complete source example retains all
+six valid index pairs and sums for `[1,3,5,2,8]` with `k = 2`; the second
+retains the fact that `k = 1` permits every ordered index pair and selects
+`(0,2)` in `[5,1,9]`. Both explanations and all three constraints are present.
+The public statement has no images or tables and live content hash
+`b24c3d2670d3b17df1b581631bcefa6a9ceeb7fb8e2f29b7c33a82223311c6bb`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`061239499f22af570cf1ffd7090766f35a0cd4bc26101cc36ba227949e7091eb`).
+
+The accepted scan fixes each right endpoint, adds `nums[right - k]` to the
+eligible prefix, and combines the right value with that prefix's maximum. It
+takes $O(n)$ time and $O(1)$ auxiliary space. Before submission, the candidate
+matched direct pair enumeration on 92,775 exhaustive legal inputs of lengths
+two through six, 50,000 deterministic random legal inputs of lengths through
+twenty, and three maximum-boundary inputs including length 100,000. The
+app-local and exact native forms pass all 15 ordinary cases and all three
+benchmark cases.
+
+The legal benchmark tiers are increasing arrays of lengths `32`, `128`, and
+`512` with `k = 1`. Across three calibration rounds, the packaged scan passed
+at excess growth from `-0.02` to `+0.05` and largest-tier ratios from `0.96x`
+to `1.10x`. An independent streaming formulation using
+`itertools.accumulate` passed all three rounds at `+0.00` to `+0.01` excess
+growth and `1.03x` to `1.06x` largest-tier ratios. A correct quadratic pair
+enumerator returned every ordinary and benchmark answer but failed only
+scaling in all three rounds at `+1.37` to `+1.42` excess growth and `140.27x`
+to `156.34x` largest-tier ratios; it did not reach the safety cap.
+
+The actual HTTP real-test route passes all 18 ordinary and benchmark cases in
+all three packaged-source runs. The 199 focused package/docs/judge/template/
+fidelity/submission/challenge-route tests pass with the two existing warning
+classes. The refreshed migration audit reports 3,696 locally complete and
+remotely verified packages, cases/Optimal sources/submissions/complexity
+evidence and variant manifests through 3979, 3,675 scaling benchmarks, 304
+certificates, and zero blockers. Source fidelity through 3979 is 694 verified,
+3,285 unverified, and zero invalid; the full corpus has 3,311 unverified. The
+dataset checker reports 3,979 manually complete packages and 26 needing
+authoring. The regenerated end-of-corpus inventory reports 309 incomplete
+packages: 26 active scaffolds plus the unchanged 283 deferred
+documentation-only failures, with 15 known regression packages recorded
+separately.
+
+At the historical 3979 checkpoint, the next verified-solution package was
+frontend ID 3980, Minimum
+Operations to Transform Binary String, a public Medium problem with internal
+question ID `4334`, Elo `1845.6855148816`, and live content hash
+`91da90fa9a8b0a3d379a5381a92029f4f96ae2df3e65580f12f61c781a68d659`.
+It gives equal-length binary strings `s1` and `s2`. An operation may change any
+`'0'` in `s1` to `'1'`, or may change two adjacent `'1'` characters to
+`'0'`; the goal is the minimum operations needed to reach `s2`, or `-1` when
+impossible. The three fully explained examples transform `"11"` to `"00"` in
+one adjacent-pair operation, transform `"01"` to `"10"` in three stated
+steps, and show that `"1"` cannot become `"0"`. The source has two constraint
+items, no images or tables, and five hints describing the operation
+directions, left-to-right dynamic programming state, the pair choice, and the
+`n = 1` boundary. The native Python entry point is
+`Solution.minOperations(self, s1: str, s2: str) -> int`. Its live public
+statement and starter were staged in the finalized signed-in Chrome handoff
+tab; that work is completed in the newer checkpoint above.
+
+**Problem 3978 checkpoint (2026-07-30):** Unique Middle Element was Accepted
+as exact Python submission `2088053811` using native entry point
+`Solution.isMiddleElementUnique`. Its modular Reference preserves the
+odd-length guarantee, the original array's unique middle index
+$\lfloor n/2 \rfloor$, the distinction between that positional element and a
+sorted median, the exact-one-occurrence condition over the complete array, and
+the irrelevance of repetitions of other values. Both complete source examples
+retain their middle values, occurrence counts, and outputs `true` and `false`,
+followed by all three constraints. The public source has no images or tables
+and content hash
+`5e8cf54a775182a9d1bc60aed3367d9a9f64baecbfff0fca7408cfe2007351b7`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`27514d88e0ef62baf9384ca685a7d7490876d609eb7dba8f11c11baea92309f4`).
+
+The accepted method saves `nums[len(nums) // 2]`, scans the complete array,
+and returns `False` immediately when it observes a second occurrence. If the
+scan finishes, the mandatory middle occurrence was the only one. It takes
+$O(n)$ time and $O(1)$ auxiliary space.
+
+Before submission, the candidate matched an independent `Counter` oracle on
+2,460 exhaustive arrays of odd lengths one, three, five, and seven over values
+`1..3`, plus 50,000 deterministic random legal arrays and four boundaries
+covering singleton and maximum-length inputs. The app-local and exact native
+forms both pass all 15 ordinary cases and all three benchmark cases.
+
+The legal benchmark tiers contain distinct increasing values at odd lengths
+`5`, `21`, and `81`, forcing the reference to inspect the full array. Across
+three calibration rounds, the packaged scan passed at excess growth from
+`-0.04` to `-0.01` and largest-tier ratios from `0.94x` to `0.97x`. An
+independently structured generator scan passed at excess growth from `+0.02`
+to `+0.05` and largest-tier ratios from `1.09x` to `1.15x`. A correct nested
+implementation that materializes every distinct value's frequency returned
+every expected output but failed only complexity in all three rounds at
+excess growth from `+1.21` to `+1.22` and largest-tier ratios from `37.73x`
+to `39.43x`; it never reached the safety cap.
+
+The actual HTTP real-test route passes all 18 ordinary and benchmark cases at
+`+0.01` excess growth and a `1.00x` largest-tier ratio. The 199 focused
+package/docs/judge/template/fidelity/submission/challenge-route tests pass with
+the two existing warning classes. The refreshed migration audit reports 3,695
+locally complete and remotely verified packages, cases/Optimal sources/
+submissions/complexity evidence and variant manifests through 3978, 3,674
+scaling benchmarks, 304 certificates, and zero blockers. Source fidelity
+through 3978 is 693 verified, 3,285 unverified, and zero invalid; the full
+corpus has 3,312 unverified. The dataset checker reports 3,978 manually
+complete packages and 27 needing authoring. The regenerated end-of-corpus
+inventory reports 310 incomplete packages: 27 active scaffolds plus the
+unchanged 283 deferred documentation-only failures.
+
+At the historical 3978 checkpoint, the next verified-solution package was
+frontend ID 3979, Maximum
+Valid Pair Sum, a public Medium problem with internal question ID `4341`, Elo
+`1328.0453094794`, and content hash
+`b24c3d2670d3b17df1b581631bcefa6a9ceeb7fb8e2f29b7c33a82223311c6bb`.
+It asks for the maximum `nums[i] + nums[j]` over indices satisfying
+`0 <= i < j < n` and `j - i >= k`. Its first fully explained example lists
+all six valid pairs for `[1,3,5,2,8]` with `k = 2` and returns `13`; its second
+uses `k = 1`, where every pair is valid, and returns `14` for `(0,2)` in
+`[5,1,9]`. The source has three constraints, no images or tables, and three
+hints that maintain the maximum value through index `j - k` while scanning
+`j`. The native Python entry point is
+`Solution.maxValidPairSum(self, nums: list[int], k: int) -> int`. Its live
+public statement and starter were staged in the finalized signed-in Chrome
+handoff tab; that work is completed in the newer checkpoint above.
+
+**Problem 3977 checkpoint (2026-07-30):** Minimum Time to Reach Target With
+Limited Power was Accepted as exact Python submission `2088042940` using native
+entry point `Solution.minTimeMaxPower`. Its modular Reference preserves the
+directed weighted graph, initial power, per-node forwarding costs, the
+at-least-cost departure check, one cost subtraction for whichever outgoing
+edge is selected, arrival without consumption, edge travel time, the
+minimum-time objective, the maximum-remaining-power tie-break, and the
+`[-1,-1]` unreachable result. All three complete source examples retain their
+inputs, route feasibility reasoning, arithmetic, and outputs `[3,0]`, `[0,3]`,
+and `[-1,-1]`, followed by all nine constraints. The three provider graph
+images were not copied: `reference/examples.md` independently reconstructs
+their exact directed nodes, edges, and travel-time labels as three accessible
+Mermaid diagrams. The public source has no tables and content hash
+`40032e69cc163fb91f52b21992d297fd51e188e9709e84864f241a0706265486`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`bb0b5753502aa2f0207b11d17bdc290fd39951b7321fb94eee766c82d8d90c5a`).
+
+The accepted method runs Dijkstra on expanded `(node, remaining_power)`
+states. A transition is available only when the state can pay `cost[node]`;
+every outgoing edge then shares the next power while adding its own positive
+travel time. Scanning all target states after Dijkstra provides the minimum
+arrival time and then the greatest power among states tied at that time. The
+method takes $O(P(n+m)\log(nP))$ time and $O(nP+m)$ auxiliary space for
+$P=\texttt{power}$ and $m=\lvert\texttt{edges}\rvert$.
+
+Before submission, the candidate matched an independent exhaustive-walk
+oracle on 50,000 deterministic random contracts plus fixed examples and
+boundary traps covering self-loops, parallel edges, cycles, exact power,
+source equal to target, wide travel-time sums, directionality, and competing
+time/power states. The app-local and exact native forms both pass all 15
+ordinary cases and all three benchmark cases.
+
+The legal benchmark tiers hold an eight-node, sixteen-edge strongly connected
+directed graph fixed while scaling initial power through `4`, `16`, and `64`.
+Across three calibration rounds, the packaged expanded-state Dijkstra passed
+at excess growth from `-0.02` to `+0.03` and largest-tier ratios from `1.00x`
+to `1.02x`. An independently structured dictionary-backed Dijkstra also
+passed at `+0.00` and `+0.05` with `1.04x` and `1.09x` largest-tier ratios. A
+correct Bellman-Ford-style repeated relaxation returned every expected output
+but failed only complexity in all three rounds at excess growth from `+0.94`
+to `+0.96` and largest-tier ratios from `56.08x` to `56.97x`; it never reached
+the safety cap.
+
+The actual HTTP real-test route passes all 18 ordinary and benchmark cases at
+`-0.01` excess growth and a `0.99x` largest-tier ratio. The 199 focused
+package/docs/judge/template/fidelity/submission/challenge-route tests pass with
+the two existing warning classes, and the Mermaid gate validates all 15
+accessible diagrams across 10,949 Markdown files. The refreshed migration
+audit reports 3,694 locally complete and remotely verified packages,
+cases/Optimal sources/submissions/complexity evidence and variant manifests
+through 3977, 3,673 scaling benchmarks, 304 certificates, and zero blockers.
+Source fidelity through 3977 is 692 verified, 3,285 unverified, and zero
+invalid; the full corpus has 3,313 unverified. The dataset checker reports
+3,977 manually complete packages and 28 needing authoring. The regenerated
+end-of-corpus inventory reports 311 incomplete packages: 28 active scaffolds
+plus the unchanged 283 deferred documentation-only failures.
+
+At the 3977 checkpoint, the next verified-solution package was frontend ID
+3978, Unique
+Middle Element, a public Easy problem with internal question ID `4354`, Elo
+`1180.4376959708`, and content hash
+`5e8cf54a775182a9d1bc60aed3367d9a9f64baecbfff0fca7408cfe2007351b7`.
+It gives an odd-length integer array and returns whether the value at its
+unique middle index appears exactly once in the complete array. Its two fully
+explained examples use `[1,2,3] -> true` and `[1,2,2] -> false`; the source has
+three constraints, no images or tables, and two hints that identify the middle
+index and count that value. The native Python entry point is
+`Solution.isMiddleElementUnique(self, nums: list[int]) -> bool`. Its live
+public statement and starter were staged in the finalized signed-in Chrome
+handoff tab.
+
+**Problem 3976 checkpoint (2026-07-30):** Maximum Subarray Sum After
+Multiplier was Accepted as exact Python submission `2088032931` using native
+entry point `Solution.maxSubarraySum`. Its modular Reference preserves the
+requirement to choose exactly one nonempty operation subarray, the single
+multiply-all or divide-all choice, floor for positive division, ceiling for
+negative division, the nonempty maximum-sum subarray in the resulting array,
+and the fact that the operation and sum ranges may differ. Both complete
+source examples retain their transformed arrays, chosen ranges, arithmetic,
+and outputs `14` and `-1`, followed by all three constraints. The public source
+has no images or tables and content hash
+`f6eef94ff113b757e3071037ec5ecb473ccd68d9ea1b290f5fff4ff12abb4ad7`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`55b3fe4113dc855ad057fd80ab0f38d834d55032e621c592700b28e70d05c663`).
+
+The accepted method extends Kadane's algorithm with ending-at-the-current-index
+states for no operation affecting the sum, an active multiplication range, an
+active division range, and a range whose operation has finished. Each active
+state may start at the current value, begin after the ordinary state, or extend
+the same operation. The finished state extends either active state or itself.
+Negative division uses `-((-value) // k)` to truncate toward zero. Including
+the ordinary state remains compatible with the exact-operation rule because a
+single positive value can be multiplied, a single negative value can be
+divided, and zero can receive either operation without lowering an unchanged
+candidate. The method takes $O(n)$ time and $O(1)$ auxiliary space.
+
+Before submission, both exact source forms matched an independent enumeration
+of every operation interval, operation type, and final sum interval on 78,428
+exhaustive contracts covering lengths one through five, values `-3..3`, and
+`k = 1..4`. They also matched 10,000 deterministic random contracts and four
+boundaries, including 100,000 positive values with result $10^{15}$,
+100,000 negative values, a 100,000-value alternating input, and the partial-
+overlap trap `[2,-1,-1,2,-1,-1,2]`. Both exact source forms pass all 15
+ordinary and all three benchmark cases.
+
+The legal benchmark tiers use deterministic mixed-sign modular arrays for
+`n = 128, 512, 2048` with `k = 97`. Across three calibration rounds, the
+packaged four-state scan passed at `50.3` to `64.3` ms, and an independently
+structured state-vector scan passed at `36.3` to `39.8` ms. A correct
+quadratic formulation that enumerates every final sum interval and maintains
+its best contiguous multiplication/division gain returned every answer but
+failed only runtime at `426.1` to `524.6` ms.
+
+The refreshed migration audit reports 3,693 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3976, 3,672 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3976 is 691 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,314 unverified. The dataset
+checker reports 3,976 manually complete packages and 29 needing authoring. The
+199 focused package/docs/judge/template/fidelity/submission/challenge-route
+tests pass with the two existing warning classes. The regenerated end-of-
+corpus inventory reports 312 incomplete packages: 29 active scaffolds plus the
+same 283 deferred documentation-only failures.
+
+At the 3976 checkpoint, the next verified-solution package was frontend ID
+3977, Minimum
+Time to Reach Target With Limited Power, a public Hard problem with internal
+question ID `4206`, Elo `2102.9932435222`, and content hash
+`40032e69cc163fb91f52b21992d297fd51e188e9709e84864f241a0706265486`.
+It gives a directed weighted graph, initial power, per-node forwarding costs,
+and source/target nodes. Leaving `u` is legal only when remaining power is at
+least `cost[u]`, consumes exactly that cost, and then traverses the selected
+outgoing edge for its time; arrival itself consumes nothing. Return the
+minimum arrival time and, among paths with that time, the greatest remaining
+power, or `[-1,-1]` when unreachable. Its three fully explained examples
+produce `[3,0]`, `[0,3]`, and `[-1,-1]`; the source has nine constraints, three
+graph images and no tables, plus four hints that specify Dijkstra over
+`(node, remainingPower)` states. Recreate the information in all three source
+images independently with Mermaid diagrams or equivalently complete accessible
+tables; do not copy the provider assets. The native Python entry point is
+`Solution.minTimeMaxPower(self, n: int, edges: List[List[int]], power: int,
+cost: List[int], source: int, target: int) -> List[int]`. Its live public
+statement was staged in the finalized Chrome handoff tab.
+
+**Problem 3975 checkpoint (2026-07-30):** Filter Occupied Intervals was
+Accepted as exact Python submission `2088022515` using native entry point
+`Solution.filterOccupiedIntervals`. Its modular Reference preserves inclusive
+occupied and free intervals, overlap, discrete touching when the next start is
+exactly one greater than the current end, merge-before-removal semantics,
+removal of every integer point in the free interval, sorted output, and the
+minimum interval representation. Both complete source examples retain their
+merge and subtraction steps and outputs `[[2,6],[12,12],[14,16]]` and
+`[[1,2]]`, followed by all four constraints. The public source has no images
+or tables and content hash
+`1ddef28f170d62dc02f67c68a236306c90aaf23526313e26247581ff4d639522`.
+The stored native source remains the exact Accepted artifact after browser
+line-ending normalization (SHA-256
+`268a62fbe4a20d45d4f64770d65b922e6756eef8456fac41fffba4d4ae6b83e9`).
+
+The accepted method sorts the intervals, then combines the next interval with
+the current component whenever `start <= current_end + 1`. It subtracts the
+free interval from each merged component, emitting a left piece ending at
+`freeStart - 1` and/or a right piece beginning at `freeEnd + 1` only when that
+piece is nonempty. This covers unchanged, completely removed, one-sided, and
+split results in $O(n\log n)$ time and $O(n)$ auxiliary space.
+
+Before submission, the exact method matched a discrete integer-point oracle on
+265,629 exhaustive contracts over coordinates one through six, 5,000
+deterministic random contracts, both official examples, and a reversed
+50,000-interval touching boundary. Both exact source forms pass all 15
+ordinary and all three benchmark cases.
+
+The legal benchmark tiers use modular permutations of the touching singleton
+intervals `[1,1]` through `[n,n]` for `n = 128, 512, 2048`. Across three
+calibration rounds, the packaged sort-and-merge implementation passed at
+`50.4` to `55.2` ms and an independently structured same-class implementation
+passed at `70.5` to `74.8` ms. Correct repeated selection of the smallest
+remaining interval returned every answer but failed only the runtime verdict
+at `228.7` to `246.4` ms.
+
+The refreshed migration audit reports 3,692 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3975, 3,671 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3975 is 690 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,315 unverified. The dataset
+checker reports 3,975 manually complete packages and 30 needing authoring. The
+195 focused package/docs/judge/template/fidelity/submission-route tests pass
+with the two existing warning classes. The regenerated end-of-corpus inventory
+reports 313 incomplete packages: 30 active scaffolds plus the same 283
+deferred documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3976, Maximum
+Subarray Sum After Multiplier, a public Medium problem with internal question
+ID `3730`, Elo `1981.0453403379`, and content hash
+`f6eef94ff113b757e3071037ec5ecb473ccd68d9ea1b290f5fff4ff12abb4ad7`.
+Choose exactly one nonempty subarray and either multiply every value in it by
+`k` or divide every value by `k`, rounding division toward zero: floor for
+positive values and ceiling for negative values. Then return the maximum sum
+of a nonempty subarray in the resulting array; the operation subarray and sum
+subarray may differ. Its two fully explained examples produce `14` and `-1`.
+The source has three constraints, no images or tables, and four hints covering
+Kadane-style dynamic programming, states before/during/after multiplication or
+division, truncation-toward-zero division, and maximizing over all ending
+positions and states. The native Python entry point is
+`Solution.maxSubarraySum(self, nums: List[int], k: int) -> int`. Its live
+public statement is staged in the finalized Chrome handoff tab; rerun the
+audit and source fetch before editing.
+
+**Problem 3974 checkpoint (2026-07-30):** Maximum Total Sum of K Selected
+Elements was Accepted as exact Python submission `2088016152` using native
+entry point `Solution.maxSum`. Its modular Reference preserves selection of
+exactly `k` positive array elements, freely chosen processing order, the
+independent add-or-multiply decision, use of the current multiplier, the
+unconditional decrement after every processed element, the possibility of a
+zero or negative current multiplier, and maximization without a modulus. All
+three source examples retain their complete selections, processing steps,
+multiplier changes, contributions, and outputs `26`, `43`, and `4`, followed
+by all four constraints. The public source has no images or tables and content
+hash `b4a3ac4ac6ae1555421162a100063fa01bdfb4482bc20861748ea878037cfeca`.
+The final native source remains the exact Accepted heap artifact after browser
+line-ending normalization (SHA-256
+`c89c143a96086cdf35d94d430a82349bf47c3a8b8d90bba32de7d67c0f539fc5`).
+
+The accepted method observes that processing position `i` has effective
+positive factor `max(1, mul - i)`. These factors are non-increasing, so an
+exchange argument selects the largest `k` values and pairs larger values with
+larger factors. A size-`k` heap retains and orders those values; only the first
+`min(k, mul - 1)` are multiplied by factors above one, while the remainder are
+added normally. The method takes $O(n\log(k+1))$ time—the `+1` states the
+`k = 1` case uniformly—and $O(k)$ auxiliary space.
+
+Before the final submission, the exact heap implementation matched an
+independent ordered-selection dynamic program on 38,232 exhaustive contracts
+covering lengths one through five, values one through four, every legal `k`,
+and multipliers one through six. The same greedy result also matched 5,000
+deterministic random contracts and three 100,000-element boundaries, including
+totals above 32-bit range. Both exact source forms pass all 15 ordinary and all
+three benchmark cases.
+
+The legal benchmark tiers use modular permutations of `1..n` for
+`n = 128, 512, 2048`, with `k = mul = n / 2`. Across three calibration rounds,
+the packaged heap passed at `-0.00` to `+0.00` extra growth with `0.99x` to
+`1.01x` largest-tier ratios. An independently structured full-sort bonus
+formulation passed at `-0.41` to `-0.30` and `0.10x` to `0.11x`. Correct
+repeated maximum extraction returned every ordinary and benchmark answer but
+failed only scaling at `+0.45` to `+0.51`.
+
+The refreshed migration audit reports 3,691 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3974, 3,670 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3974 is 689 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,316 unverified. The dataset
+checker reports 3,974 manually complete packages and 31 needing authoring. The
+195 focused package/docs/judge/template/fidelity/route tests pass with the two
+existing warning classes. The regenerated end-of-corpus inventory reports 314
+incomplete packages: 31 active scaffolds plus the same 283 deferred
+documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3975, Filter
+Occupied Intervals, a public Medium problem with internal question ID `3724`
+and content hash
+`1ddef28f170d62dc02f67c68a236306c90aaf23526313e26247581ff4d639522`.
+Its occupied intervals and the free interval are inclusive. First merge every
+occupied interval that overlaps or touches another; touching includes a next
+start exactly one integer after the current end. Then remove every integer
+point in `[freeStart, freeEnd]` from the merged intervals. Return the remaining
+occupied intervals sorted, non-overlapping, and represented with the minimum
+possible number of intervals, or return an empty list. Its two fully explained
+examples produce `[[2,6],[12,12],[14,16]]` and `[[1,2]]`; the source has four
+constraints, no images or tables, and four hints covering sorting, touch-aware
+merging, independent subtraction, and the disappear/shrink/unchanged/split
+outcomes. The native Python entry point is
+`Solution.filterOccupiedIntervals(self, occupiedIntervals: List[List[int]],
+freeStart: int, freeEnd: int) -> List[List[int]]`. Its live statement is open
+in the finalized Chrome handoff tab; rerun the audit and source fetch before
+editing.
+
+**Problem 3973 checkpoint (2026-07-30):** Distinct Gate Paths to LCA was
+Accepted as exact Premium Python submission `2087993773` using native entry
+point `Solution.distinctPaths`. Its modular Reference preserves the rooted
+tree, upward movement to each query's LCA, the red/blue/white gate rules,
+exactly one specific gate instance per edge, repeated white-gate flips across
+different moves, identical-instance multiplicity, independent Alice/Bob route
+products, the one-way empty route, per-query reduction modulo $10^9+7$, and
+the final XOR. Both complete three-row, nine-column source example tables and
+their outputs `1` and `3` are represented locally with equivalent facts and
+schema, followed by all 11 constraints. The authenticated source has two
+tables and no images; its content hash is
+`5ce1e4c5a5f4b749865cbe8e2b20b5524f19a30d43ad26b18785fc2508be7229`.
+The stored native source remains the exact Accepted artifact after normalizing
+the browser editor's CRLF line endings (SHA-256
+`f92705ce714f97661b56f5109ea8e726998e5a07bd30fc19f67d0bd7e545b477`).
+
+The accepted method encodes blue/red route counts as a two-state row vector
+and each node as a $2\times2$ gate-transition matrix. Binary-lifting tables
+store both the $2^j$-edge ancestor and the movement-ordered matrix product for
+that jump. Each query finds its LCA, composes the two upward path products,
+sums each start-color row over both possible ending colors, multiplies the
+independent route counts modulo $10^9+7$, and XORs the reduced value. An
+explicit root traversal computes depths without assuming `parent[i] < i`.
+With $q$ queries, the method uses $O((n+q)\log n)$ time and
+$O(n\log n)$ auxiliary space.
+
+Before submission, the candidate matched an independent edge-by-edge color
+dynamic program on both official examples, all 11,664 two-node combinations
+formed from every gate-count triple in `[0,2]` and all node/card query states,
+10,000 deterministic random trees, a valid relabelled tree whose parent
+indices are not topological, and a 20,000-node/20,000-query boundary chain.
+Both exact source forms pass all 15 ordinary and all three benchmark cases.
+The legal benchmark tiers use 8-, 32-, and 64-node chains with the same number
+of deepest-node-to-root queries. Across three calibration rounds, the packaged
+source passed at `-0.00` to `+0.02` extra growth with `1.00x` to `1.03x`
+largest-tier ratios. An independently structured vector-lifting implementation
+passed at `-0.08` to `+0.00`; a correct direct parent-walk returned every
+ordinary and benchmark answer but failed only scaling at `+0.44` to `+0.57`.
+
+The refreshed migration audit reports 3,690 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3973, 3,669 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3973 is 688 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,317 unverified. The dataset
+checker reports 3,973 manually complete packages and 32 needing authoring. The
+195 focused package/docs/judge/template/fidelity/route tests pass with the two
+existing warning classes. The regenerated end-of-corpus inventory reports 315
+incomplete packages: 32 active scaffolds plus the same 283 deferred
+documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3974, Maximum
+Total Sum of K Selected Elements, a public Medium problem with internal
+question ID `4348` and content hash
+`b4a3ac4ac6ae1555421162a100063fa01bdfb4482bc20861748ea878037cfeca`.
+Select exactly `k` positive elements from `nums` and process them in any order.
+For each selected value, either add it unchanged or multiply it by the current
+`mul` and add that product; `mul` decreases by one after every processed
+element regardless of the choice and may become nonpositive. Maximize the
+total. The source has three fully explained examples with outputs `26`, `43`,
+and `4`, four constraints, no images or tables, and four hints: fix the
+selection before ordering it, exploit positivity, multiply only the first
+`min(k, mul - 1)` processed values, and pair the largest selected values with
+the largest multipliers. The native Python entry point is
+`Solution.maxSum(self, nums: list[int], k: int, mul: int) -> int`. Its live
+public statement is open in the finalized Chrome handoff tab; rerun the audit
+and source fetch before editing.
+
+**Final metadata freeze checkpoint (2026-07-29):** the complete authenticated
+LeetCode snapshot was captured at `2026-07-29T16:05:53.278861Z` and is now
+permanent. It contained 4,005 total and 4,005 unique frontend IDs. The live
+problem list and the stored record agreed that frontend ID 4005 is Hard and
+displayed a `12.0%` acceptance rate; the exact frozen counters were 75
+Accepted out of 627 submissions, or `11.961722488038278`. Its Frequency is
+`0.0`. Difficulty, acceptance, Premium Frequency, and every bundled
+company/list relevance signal are historical snapshots and must not be
+refreshed or described as current company-interview evidence. The same pass
+refreshed ZeroTrac revision
+`a99138e145f303597b85290519aaf3d219b3a3e7`, whose upstream data was last
+updated on 2026-07-24. ZeroTrac supplied 2,545 real ratings but no rating for
+frontend ID 4005, so that problem correctly retains estimated Elo
+`2405.832637`; 1,460 problems are estimated in total. `README.md`,
+`LEETCODE_METADATA.md`, and `AGENTS.md` record the freeze policy.
+
+The ceiling-specific verification is green: metadata/import tests, challenge
+route tests, the 173-test package/docs/template/fidelity suite, web build,
+Electron TypeScript build, Ruff, and `git diff --check` all pass. The complete
+repository suite is not yet globally green: it reports 15 subtest failures in
+the older complexity-certificate real-test sweep (frontend IDs 2648, 2649,
+2650, 2665, 2666, 2667, 2670, 2676, 2690, 2803, 2804, 2805, 2821, 3285, and
+3690), with 560 tests and 24,191 subtests passing. Most failures are missing
+runnable sources in already incomplete legacy packages; 2670 and 3285 still
+take the runtime path instead of their certificate path, and 3690 reaches the
+Python step cap. These failures do not alter the verified-solution queue or
+the 4,005 ceiling, but do not describe the full suite as passing until they are
+resolved in their owning migration work.
+
+**Problem 3972 checkpoint (2026-07-30):** Valid Subarrays With Matching Sum
+Digits II was Accepted as exact Premium Python submission `2087981082` using
+native entry point `Solution.countValidSubarrays`. Its modular Reference
+preserves the positive array, nonempty contiguous intervals, both boundary
+digits of the subarray **sum**, distinct interval counting, both complete
+source example explanations, all three constraints, and authenticated content
+hash `f28d355300e0e7fd1ff6024a7e2fc790b9388994ec17fbcd20f590f5b4dadd00`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`0c2f474172505726ec3dfaa714203bbf4eab42924623febec1f3a8101fa8a26f`).
+
+The accepted method builds strictly increasing prefix sums. For every decimal
+scale, leading digit `x` defines the disjoint interval
+`[x * 10^p, (x + 1) * 10^p - 1]`; two forward pointers maintain prior prefix
+sums whose difference from the current prefix lies in that interval, and a
+ten-slot residue counter enforces that the difference is congruent to `x`
+modulo ten. With total sum $S$, the method uses $O(n\log S)$ time and $O(n)$
+space; source bounds cap the scale count at 15. Both exact source forms pass all
+15 ordinary and all three benchmark cases. Before submission, the candidate
+matched an independent quadratic oracle on 878,895 exhaustive arrays of length
+one through seven over values one through five and all nine target digits,
+plus 5,000 deterministic random contracts. Three 100,000-one arrays matched an
+independent length-count formula for target digits one, five, and nine, and two
+additional 100,000-value high-magnitude boundaries completed successfully.
+
+The legal benchmark tiers contain 8, 32, and 64 repeated ones. Across three
+rounds, the packaged source passed at `-0.00` to `+0.02` extra growth with
+`1.00x` to `1.03x` largest-tier ratios. An independently structured
+index-window implementation passed at `+0.07` to `+0.09` and `1.28x` to
+`1.32x`. Correct quadratic running-sum enumeration returned every ordinary and
+benchmark answer but failed only scaling at `+0.43` to `+0.45`.
+
+The refreshed migration audit reports 3,689 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3972, 3,668 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3972 is 687 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,318 unverified. The dataset
+checker reports 3,972 manually complete packages and 33 needing authoring. The
+192-test focused package/docs/judge/template/fidelity suite passes with the two
+existing warning classes. The generated end-of-corpus gap inventory now
+reports 316 incomplete packages: 33 active scaffolds plus the same 283 deferred
+documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3973, Distinct
+Gate Paths to LCA, an authenticated Premium Hard problem with internal
+question ID `3984` and content hash
+`5ce1e4c5a5f4b749865cbe8e2b20b5524f19a30d43ad26b18785fc2508be7229`.
+It defines a tree rooted at zero by `parent`, and each node owns separate red,
+blue, and white gate instances. Red and blue gates preserve the matching card
+color; a white gate accepts either color and flips it. For each query, Alice
+and Bob start at specified nodes and colors, independently move upward to their
+LCA, and choose one usable gate instance per edge. Their path counts multiply
+modulo $10^9+7$; the required return value XORs all query results. Identical
+gates count separately, a person already at the LCA contributes one way, and
+the source gives two fully tabulated three-query examples with outputs `1` and
+`3`. There are two source tables, no images, 11 constraints, and three hints
+covering $2\times2$ color-transition matrices, binary-lifting ancestor jumps
+with matrix products, and LCA query combination. The native Python entry point
+is `Solution.distinctPaths(self, n: int, parent: list[int], gates:
+list[list[int]], queries: list[list[int]]) -> int`. Its package remains a
+three-file scaffold. The authenticated Premium statement is open in Chrome and
+marked for handoff; rerun the live fetch and migration audit before editing.
+
+**Problem 3971 checkpoint (2026-07-30):** Maximum Total Value was Accepted as
+exact Python submission `2087968806` using native entry point
+`Solution.maxTotalValue`. Its modular Reference preserves the independent
+decreasing gain progression at each index, repeated selections, the one-based
+selection formula, the **at most** `m` limit, optimization before reduction
+modulo $10^9+7$, all three source examples with complete explanations, all
+three constraints, and public content hash
+`1673667bad37f50b1fe125a670500769f241be1073750ba09f955c74641987ea`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`cb7c9934499cb749910d195a3b8e4d6f7b93c33339bc15cc689d61820ec7ab11`).
+
+The accepted method interprets every index as a decreasing arithmetic
+progression of positive gains. It caps the selected-term count at `m`,
+binary-searches the greatest gain threshold that leaves enough terms, sums all
+included progression prefixes with the arithmetic-series formula, and removes
+surplus copies of the threshold. With $n$ indices and
+$A=\max(\texttt{value})$, it uses $O(n\log A)$ time and $O(1)$ auxiliary
+space. Both exact source forms pass all 15 ordinary and all three benchmark
+cases. Before submission, the candidate matched explicit positive-term sorting
+on 180,960 exhaustive contracts formed from arrays of length one through four,
+initial values one through four, decays one through three, and `m` from one
+through eight. It also matched 20,000 deterministic random contracts and three
+legal maximum-scale boundaries.
+
+The calibrated benchmark tiers contain 8, 32, and 64 identical long
+progressions with `m = n^2`. Across three rounds, the packaged source passed at
+`-0.01` to `+0.01` extra growth with `1.00x` to `1.02x` largest-tier ratios.
+An independently structured strict-cutoff implementation passed at `-0.13` to
+`-0.11` and `0.64x` to `0.68x`. A correct adaptive implementation that uses
+per-selection heap extraction when that work estimate is smaller returned
+every ordinary and benchmark answer but failed only scaling at `+1.07` to
+`+1.15` extra growth. The earlier 256-node tier was discarded because it made
+the deliberately slower path hit the safety cap rather than receive a clean
+complexity verdict.
+
+The refreshed migration audit reports 3,688 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3971, 3,667 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3971 is 686 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,319 unverified. The dataset
+checker reports 3,971 manually complete packages and 34 needing authoring. The
+192-test focused package/docs/judge/template/fidelity suite passes with the two
+existing warning classes. The generated end-of-corpus gap inventory now
+reports 317 incomplete packages: 34 active scaffolds plus the same 283 deferred
+documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3972, Valid
+Subarrays With Matching Sum Digits II, an authenticated Premium Hard problem
+with internal question ID `4320` and content hash
+`f28d355300e0e7fd1ff6024a7e2fc790b9388994ec17fbcd20f590f5b4dadd00`.
+It has the same positive-array, nonempty contiguous-subarray, first-and-last
+sum-digit contract and the same two fully explained examples (`4` and `0`) as
+problem 3969, but raises the array-length limit from 1,500 to 100,000. Its
+three constraints otherwise retain values up to $10^9$ and `x` from one
+through nine. Three hints use strictly increasing prefix sums, leading-digit
+ranges `[x * 10^p, (x + 1) * 10^p - 1]`, and residue class `x` modulo ten to
+count prefix-sum pairs by range and residue. The native Python entry point is
+`Solution.countValidSubarrays(self, nums: list[int], x: int) -> int`. Its
+package remains a three-file scaffold. The authenticated Premium statement is
+open in Chrome and marked for handoff; rerun the live fetch and migration audit
+before editing.
+
+**Problem 3970 checkpoint (2026-07-30):** Shortest Path With At Most K
+Consecutive Identical Characters was Accepted as exact Python submission
+`2087953283` using native entry point `Solution.shortestPath`. Its modular
+Reference preserves the directed weighted graph, the node-label string formed
+by every route, the inclusive `k`-character run limit, the minimum-cost and
+unreachable outcomes, all three source examples with complete explanations,
+all eight constraints, and public content hash
+`792ebab567856f2bb5e0272da539f97e93f6c02c9b02d7e24305086f881684a6`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`217541c2c68b141461bbfc9ec3feb131d7127c4dc2007a09e4336ee6cddeca25`).
+
+The accepted method runs Dijkstra over `(node, run_length)` states. A
+same-label transition increments the trailing run, a different label resets it
+to one, and transitions above `k` are discarded. Positive weights make the
+first popped destination state globally optimal. With $n$ nodes, $m$ edges,
+and at most $k$ run states per node, the method takes
+$O(k(n+m)\log(nk))$ time and $O(k(n+m))$ space. Both exact source forms pass
+all 15 ordinary and all three benchmark cases. Before submission, the
+candidate matched an independent Bellman-Ford expanded-state oracle on all
+17,496 combinations of three-node directed graphs with absent, weight-one, or
+weight-two arcs, both binary labels, and every legal `k`; it also matched
+10,000 deterministic random contracts, the single-node contract, and two
+50,000-node boundary chains.
+
+The legal benchmark tiers contain 16, 64, and 256 nodes in reverse-ordered
+alternating-label chains. Across three rounds, the packaged source passed at
+`-0.01` to `+0.01` extra growth with `0.98x` to `1.01x` largest-tier ratios.
+An independently structured dictionary-state Dijkstra passed at `-0.03` to
+`-0.02` and `0.81x` to `0.83x`. Correct expanded-state Bellman-Ford returned
+every ordinary and benchmark answer but failed only scaling at `+1.09` to
+`+1.11` and `73.12x` to `80.38x`.
+
+The refreshed migration audit reports 3,687 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3970, 3,666 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3970 is 685 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,320 unverified. The dataset
+checker reports 3,970 manually complete packages and 35 needing authoring. The
+192-test focused package/docs/judge/template/fidelity suite passes with the two
+existing warning classes. The generated end-of-corpus gap inventory now
+reports 318 incomplete packages: 35 active scaffolds plus the same 283 deferred
+documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3971, Maximum
+Total Value, a public Hard problem with internal question ID `4274` and content
+hash `1673667bad37f50b1fe125a670500769f241be1073750ba09f955c74641987ea`.
+It gives equal-length positive arrays `value` and `decay`: the `t`th selection
+of index `i` gains `value[i] - decay[i] * (t - 1)`, indices may be selected
+repeatedly, and at most `m` selections may be made. The required maximum is
+returned modulo $10^9+7$; because fewer than `m` selections are allowed,
+non-positive gains should never be taken. The three fully explained examples
+produce `19`, `11`, and `7`. The three constraints allow up to 100,000 indices,
+values and decays up to $10^9$, and `m` up to $10^9$. Five hints reduce every
+index to a decreasing arithmetic progression, binary-search the minimum
+included positive gain, count and sum progression terms at a fixed threshold,
+and remove surplus copies of the final threshold. The native Python entry
+point is `Solution.maxTotalValue(self, value: list[int], decay: list[int], m:
+int) -> int`. Its package remains a three-file scaffold. The authenticated
+statement is open in Chrome and marked for handoff; rerun the live fetch and
+migration audit before editing.
+
+**Problem 3969 checkpoint (2026-07-30):** Valid Subarrays With Matching Sum
+Digits I was Accepted as exact Python submission `2087933229` using native
+entry point `Solution.countValidSubarrays`. Its modular Reference preserves
+the positive-integer array, nonempty contiguous-subarray definition, the first
+and last decimal digits of each subarray **sum**, index-interval counting,
+both complete example explanations, all three constraints, and public content
+hash `9e6d37dfbc7ffd29ba5514f6799d56130cf6ab0994126c1ea4d80d55a86e6984`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`8677cefb570761d74b775e65495060595579a1820c818274f70c66d875279aa0`).
+
+The accepted method fixes each left endpoint and extends the right endpoint
+while maintaining the exact running sum. It rejects a trailing-digit mismatch
+with modulo ten, then removes decimal suffix digits numerically to test the
+leading digit. Legal sums contain at most 13 digits, so digit extraction is a
+source-bounded constant; the method uses $O(n^2)$ time and $O(1)$ auxiliary
+space. Both exact source forms pass all 15 ordinary and all three benchmark
+cases. Before submission, the candidate matched an independent string-digit
+oracle on every array over values one through five at lengths one through
+seven and all nine target digits, plus 2,000 deterministic random contracts
+and three 1,500-value boundaries: 880,898 contracts in total.
+
+The legal benchmark tiers contain 8, 32, and 64 repeated values. Across three
+rounds, the packaged source passed at `-0.00` to `+0.01` extra growth with
+`0.98x` to `1.01x` largest-tier ratios. An independently structured prefix-sum
+enumeration passed at `-0.08` to `-0.06` and `0.82x` to `0.85x`. Correct cubic
+fresh summation returned every ordinary and benchmark answer but failed only
+scaling at `+0.94` and `11.46x` to `11.64x`.
+
+The refreshed migration audit reports 3,686 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3969, 3,665 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3969 is 684 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,321 unverified. The dataset
+checker reports 3,969 manually complete packages and 36 needing authoring. The
+192-test focused package/docs/judge/template/fidelity suite passes with the two
+existing warning classes. The generated end-of-corpus gap inventory now
+reports 319 incomplete packages: 36 active scaffolds plus the same 283 deferred
+documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3970, Shortest
+Path With At Most K Consecutive Identical Characters, a public Medium problem
+with internal question ID `4104` and content hash
+`792ebab567856f2bb5e0272da539f97e93f6c02c9b02d7e24305086f881684a6`.
+It asks for the minimum total weight from node `0` to node `n - 1` in a directed
+weighted graph, subject to the path-label string never containing more than
+`k` consecutive equal characters; return `-1` when no valid path exists. The
+three explained examples produce `3`, `2`, and `-1` from the two three-node
+graphs shown in the source. There are eight constraints: `n` and label length
+are at most 50,000; edge count is at most 50,000; edges are directed triples
+between distinct valid nodes with weights from 1 through 10,000; labels are
+lowercase English letters; and `1 <= k <= 50`. The four hints specify Dijkstra
+states `(node, count)`, with the trailing equal-label run incremented or reset
+to one on each transition and states above `k` discarded. The native Python
+entry point is `Solution.shortestPath(self, n: int, edges: List[List[int]],
+labels: str, k: int) -> int`. Its package remains a three-file scaffold. The
+authenticated statement is open in Chrome; rerun the live fetch and migration
+audit before editing.
+
+**Problem 3968 checkpoint (2026-07-30):** Maximum Manhattan Distance After All
+Moves was Accepted as exact Python submission `2087910623` using native entry
+point `Solution.maxDistance`. Its modular Reference preserves the origin,
+the four fixed unit moves, independently assignable underscores, final-only
+Manhattan-distance objective, both source examples with their complete paths,
+both constraints, and public content hash
+`69785d92d6183cf8b66a99ce4a3ed116cfa3707f5c533a76bc6b9b8853af86b1`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`da400615f9c732a2f887e93c70bdc46c60b4cdec9941afe71bea0eca5e63bd19`).
+
+The accepted method scans once for the fixed horizontal displacement, fixed
+vertical displacement, and wildcard count. A unit move can raise Manhattan
+distance by at most one, while directing every wildcard outward from any
+current nonzero coordinate—or choosing an arbitrary direction at the
+origin—achieves one additional unit each. The answer is therefore the fixed
+endpoint distance plus the number of underscores, in $O(n)$ time and $O(1)$
+auxiliary space. Both exact source forms pass all 15 ordinary and all three
+benchmark cases. Before submission, the candidate matched an independent
+reachable-coordinate oracle on all 19,530 strings of lengths one through six,
+10,000 deterministic random strings through length 18, and three 100,000-move
+boundaries.
+
+The legal benchmark tiers contain 16, 64, and 256 wildcard moves. Across three
+rounds, the packaged source passed at `-0.01` to `-0.00` extra growth with
+`1.00x` to `1.01x` largest-tier ratios. An independently structured linear
+frequency counter passed at `-0.53` to `-0.52` and `0.19x` to `0.20x`.
+Correct quadratic prefix rescanning returned every ordinary and benchmark
+answer but failed only scaling at `+1.29` to `+1.31` and `120.20x` to
+`126.58x`.
+
+The refreshed migration audit reports 3,685 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3968, 3,664 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3968 is 683 verified, 3,285
+unverified, and zero invalid; the full corpus has 3,322 unverified. The dataset
+checker reports 3,968 manually complete packages and 37 needing authoring. The
+192-test focused package/docs/judge/template/fidelity suite passes with the two
+existing warning classes. The generated end-of-corpus gap inventory now
+reports 320 incomplete packages: 37 active scaffolds plus the same 283 deferred
+documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3969, Valid
+Subarrays With Matching Sum Digits I, a public Medium problem with internal
+question ID `4318` and content hash
+`9e6d37dfbc7ffd29ba5514f6799d56130cf6ab0994126c1ea4d80d55a86e6984`.
+For a positive-integer subarray, both the first and last decimal digits of its
+sum must equal `x`; return the number of such subarrays. The two explained
+examples are `[1,100,1], x = 1 -> 4` and `[1], x = 2 -> 0`. Constraints are
+`1 <= n <= 1500`, `1 <= nums[i] <= 10^9`, and `1 <= x <= 9`. The source hints
+explicitly authorize the intended $O(n^2)$ enumeration, suggest either prefix
+sums or a running sum for each start, and extract the leading digit by repeated
+division by ten after checking the last digit. The native Python entry point is
+`Solution.countValidSubarrays(self, nums: list[int], x: int) -> int`. Its
+package is still a three-file scaffold containing only metadata, placeholder
+`doc.md`, and placeholder branch bounds. The authenticated statement is open
+in Chrome; rerun the live fetch and refreshed migration audit before editing.
+
+**Problem 3967 checkpoint (2026-07-30):** Premium problem Finish Time of Tasks
+II was Accepted as exact Python submission `2087886956` using native entry
+point `Solution.finishTime`. Its modular Reference preserves the undirected
+task tree, positive base times, leaf rule, non-leaf `earliest`, `latest`, and
+`ownDuration` definitions, arbitrary-root choice, minimum-result objective,
+all three complete explanations, all eight constraints, and Premium content
+hash `4016a26a3864a6795785ac10145b07c43c37e2e32298042c047e524c2f655931`.
+The source's three inline tree diagrams are independently recreated as three
+accessible Mermaid diagrams with the same nodes, edges, and base-time labels.
+The stored native source remains the exact Accepted artifact (SHA-256
+`5ec1ee54a62af456aa010b46ed74d3543585ddcfcc87606a188ad83fed681793`).
+
+The accepted method defines one finish-time message for each direction of an
+undirected edge. A reverse traversal computes every child-to-parent component,
+and a forward rerooting traversal computes each root value plus every
+parent-to-child component. Two smallest and two largest incoming occurrences
+allow one neighbor to be excluded in constant time, including tied extrema.
+Every adjacency entry is processed a constant number of times for $O(n)$ time
+and $O(n)$ auxiliary space, without recursion-depth risk. Both exact source
+forms pass all 15 ordinary and all three benchmark cases. Before submission,
+the candidate matched an independent per-root recursive oracle on 139,708
+exhaustive and deterministic random trees and completed a 100,000-task chain.
+
+The final benchmark tiers are uniform chains of 8, 32, and 64 tasks. The
+original 16/64/256 draft and a 100-task ordinary stress case were reduced after
+a correct quadratic implementation reached the Python safety cap; the final
+legal workloads let that implementation finish every expected result and fail
+only scaling. Across three rounds, the packaged rerooting source passed at
+`-0.01` to `+0.00` extra growth with `1.00x` to `1.01x` largest-tier ratios.
+An independently structured prefix/suffix rerooting implementation passed at
+`-0.01` to `-0.00` and `0.97x` to `1.00x`. Correct per-root recomputation
+failed only scaling at `+0.99` to `+1.00` and `11.50x` to `11.83x`.
+
+The refreshed migration audit reports 3,684 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3967, 3,663 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3967 is 682 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,967 manually
+complete packages and 38 needing authoring. The 171-test focused suite passes
+with the two existing warning classes, and the Mermaid gate validates all 12
+accessible diagrams currently in the corpus. The generated end-of-corpus gap
+inventory now reports 321 incomplete packages: 38 active scaffolds plus the
+same 283 deferred documentation-only failures.
+
+The authoritative next verified-solution package is frontend ID 3968, Maximum
+Manhattan Distance After All Moves. Reopen its live statement, hints, and
+native editor before deriving or submitting a candidate; follow the refreshed
+audit if it differs.
+
+**Problem 3966 checkpoint (2026-07-30):** Count Good Integers in a Range was
+Accepted as exact Python submission `2087861421` using native entry point
+`Solution.goodIntegers`. Its modular Reference preserves the inclusive
+`[l, r]` range, the adjacent decimal-digit rule, absolute-difference
+definition, both complete example explanations, both constraints, and public
+content hash
+`1cf8e52c64594e71657b888173c8e5ce82fd01359513854e49d6122d8b706654`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`b641289a1b05d22146b7e19a7759f9fe89e406ce1fa2649f4bd5b78bb43ef52f`).
+
+The accepted method subtracts two memoized digit-DP prefix counts. Its state
+records the decimal position, previous real digit, tightness against the bound,
+and whether the number has started, so padding zeroes never become artificial
+adjacent digits. The fixed ten-digit alphabet leaves $O(D)$ time and $O(D)$
+space for an endpoint with $D$ decimal digits. Both exact source forms pass all
+15 ordinary cases. Before submission, the candidate matched direct enumeration
+and an independently structured iterative digit recurrence on 89,920 checks,
+including every legal `k` and the $10^{15}$ endpoint.
+
+Because the legal endpoint has at most 16 digits, runtime tiers cannot produce
+a stable scaling verdict. The package therefore uses a strict
+`bounded_domain` certificate. Its bounded-work proof limits each endpoint DP
+to $D\cdot11\cdot2\cdot2$ states with ten constant-alphabet transitions per
+state. The replacement regression checks both stored source forms against
+direct enumeration for every prefix endpoint through 2,000 and every `k`, then
+checks large and maximum endpoints against an independent iterative recurrence.
+The actual real-test route passes all 15 cases, reports no runtime measurement,
+and identifies the bounded-domain certificate explicitly.
+
+The refreshed migration audit reports 3,683 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3966, 3,662 scaling benchmarks, 304 certificates,
+and zero blockers. Source fidelity through 3966 is 681 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,966 manually
+complete packages and 39 needing authoring. The focused package, contract,
+certificate, and route checks are green with only the existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3967, Finish
+Time of Tasks II. Reopen its live statement, hints, and native editor before
+deriving or submitting a candidate; follow the refreshed audit if it differs.
+
+**Problem 3965 checkpoint (2026-07-30):** Finish Time of Tasks I was Accepted
+as exact Python submission `2087844820`, with LeetCode reporting 0 ms and
+0.00 MB for native entry point `Solution.finishTime`. Its modular Reference
+preserves the rooted directed parent-child tree, positive base durations, leaf
+rule, non-leaf `earliest`, `latest`, and `ownDuration` definitions, root return
+value, all three complete explanations, all nine constraints, and public
+content hash
+`0419b1bee73ad4af6156f481b9e1f346fdd59200c8dd9a1aaa818ed9e2c4aec7`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`ea6c738f24133f8c726f078dba9fc8354b7dd18423c2b49ff97542758848cdc5`).
+
+The accepted method builds every task's child list, records an iterative
+root-first traversal, and processes that order in reverse. Leaves receive their
+base time; a non-leaf receives
+`2 * latest - earliest + baseTime[task]`, which is the source recurrence after
+substitution. Every task and edge is processed once for $O(n)$ time and $O(n)$
+auxiliary space. The iterative traversal avoids recursion-depth failure on a
+valid 100,000-task chain. Both exact source forms pass all 15 ordinary and all
+three benchmark cases. Before submission, the candidate matched an independent
+recursive oracle on 25,914 exhaustive and deterministic random small trees and
+also completed a 100,000-node chain.
+
+The benchmark tiers are dependency chains of 16, 64, and 256 tasks. Across
+three final real-test rounds, the packaged source passed at `-0.02` to `+0.03`
+extra growth with `0.98x` to `1.08x` largest-tier ratios. An independently
+structured linear leaf-to-root queue passed at `-0.01` to `+0.01` and `0.90x`
+to `0.97x`. A correct implementation that rescans every edge for every task
+returned every ordinary and benchmark answer but failed only scaling in all
+three rounds at `+1.02` to `+1.03` and `32.48x` to `33.50x`.
+
+The refreshed migration audit reports 3,682 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3965, 3,662 scaling benchmarks, 303 certificates,
+and zero blockers. Source fidelity through 3965 is 680 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,965 manually
+complete packages and 40 needing authoring. The focused suite passes all 205
+selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3966, Count
+Good Integers in a Range. Reopen its live statement, hints, and native editor
+before deriving or submitting a candidate; follow the refreshed audit if it
+differs.
+
+**Problem 3964 checkpoint (2026-07-30):** Minimum Lights to Illuminate a Road
+was Accepted as exact Python submission `2087833487`, with all 999 remote
+tests passing in 286 ms and 31.24 MB, using native entry point
+`Solution.minLights`. Its modular Reference preserves the road-position model,
+the positive-radius and zero-value existing-bulb semantics, inclusive clamped
+coverage intervals, at-least-one visibility rule, radius-one added bulbs, both
+complete example explanations, both constraints, and public content hash
+`4b033e4a6032af73cde63844eeebb8c8df75001926b3cbd9dccdb038af8358db`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`6d38cae24d9343e4d608eab43530916b6137487a59f67cc252044dd5a57161ce`).
+
+The accepted method marks all existing coverage with inclusive interval
+updates in a difference array, converts its prefix sum into a visibility array,
+and scans from left to right. At the first invisible position `i`, it places a
+radius-one bulb as far right as possible while still covering `i`; the exchange
+argument shows that this dominates every other placement for the unprocessed
+suffix. It counts that bulb and skips its three covered positions. The method
+takes $O(n)$ time and $O(n)$ auxiliary space. Both exact source forms pass all
+15 ordinary and all three benchmark cases. Before submission, the candidate
+matched an independent exhaustive placement-subset oracle on every legal-value
+array through length six plus 20,000 deterministic random arrays through
+length ten, for 146,125 checked instances.
+
+The benchmark tiers use wholly invisible roads of lengths 24, 96, and 384.
+Across three final real-test rounds, the packaged source passed at `-0.01` to
+`-0.00` extra growth with `0.99x` to `1.00x` largest-tier ratios. An
+independently structured linear farthest-interval sweep passed at `-0.01` and
+`0.93x` to `0.96x`. A correct per-position/per-bulb visibility scan returned
+every ordinary and benchmark answer but failed only scaling in all three
+rounds at `+1.17` to `+1.19` and `103.97x` to `107.43x`.
+
+The refreshed migration audit reports 3,681 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3964, 3,661 scaling benchmarks, 303 certificates,
+and zero blockers. Source fidelity through 3964 is 679 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,964 manually
+complete packages and 41 needing authoring. The focused suite passes all 205
+selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3965, Finish
+Time of Tasks I. Reopen its live statement, hints, and native editor before
+deriving or submitting a candidate; follow the refreshed audit if it differs.
+
+**Problem 3963 checkpoint (2026-07-30):** Create Grid With Exactly One Path
+was Accepted as exact Python submission `2087812435`, with LeetCode reporting
+0 ms and 0.00 MB for native entry point `Solution.createGrid`. Its modular
+Reference preserves the `m`-by-`n` character-grid contract, the meanings of
+free and obstacle cells, the top-left and bottom-right endpoints, the
+right-or-down movement restriction, the exactly-one-path requirement, all
+three complete explanations, the single combined dimension constraint, and
+public content hash
+`5934d21c8548b6dcce367b860719a6576eabddd4bd668047acfe0bb0ac6cb1b5`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`b5c87791c563631308f651f3b1b78412b69233d548e4b930f59e3fca84c87580`).
+
+The construction leaves the full top row free, leaves only the last cell free
+in every later row, and blocks every other cell. Before the last column, every
+downward move is blocked, so the path must move right; after reaching the
+top-right cell, only downward moves through the last column remain. This proves
+both existence and uniqueness, including the one-row and one-column
+boundaries. Creating the mandatory $mn$ output characters takes $O(mn)$ time
+and $O(mn)$ result space with $O(1)$ auxiliary state. The output-size
+$\Omega(mn)$ lower bound matches the upper bound, so the package uses a strict
+`asymptotic_optimality` certificate rather than misleading runtime tiers over
+the $25\times25$ maximum domain.
+
+The repository now has a `unique_monotone_path_grid` semantic validator, so
+legal user constructions need not equal the package's chosen grid or the
+examples. Its focused regression accepts alternate valid corridors and rejects
+bad shapes, characters, disconnected grids, and grids with multiple paths.
+The certificate regression checks both stored source forms with an independent
+path-count dynamic program for all 625 legal `(m, n)` pairs. The isolated
+real-test route passes all 15 authored cases, reports no runtime check, and
+identifies the asymptotic-optimality certificate explicitly.
+
+The refreshed migration audit reports 3,680 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3963, 3,660 scaling benchmarks, 303 certificates,
+and zero blockers. Source fidelity through 3963 is 678 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,963 manually
+complete packages and 42 needing authoring. The expanded focused suite passes
+all 205 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3964, Minimum
+Lights to Illuminate a Road. Reopen its live statement, hints, and native
+editor before deriving or submitting a candidate; follow the refreshed audit
+if it differs.
+
+**Problem 3962 checkpoint (2026-07-30):** Maximum Subarray Sum After at Most K
+Swaps was Accepted as exact Python submission `2087782339`, with all 716
+remote tests passing in 10,727 ms and 19.94 MB, using native entry point
+`Solution.maxSum`. Its modular Reference preserves the at-most-`k` arbitrary
+index-swap operation, the nonempty contiguous-subarray target, all three
+complete explanations, all three constraints, and public content hash
+`2c2fcf1d9346fdf3feda506f6b2e37e72c3d0dc348038c797445fc21b9e1dccf`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`a5ee4ee0cebd6fe7496b8bab0c85c37e0c704e097498b14ab6d3eb1a964ac08f`).
+
+For a fixed subarray, sort its inside values ascending and the outside values
+descending. The optimal swaps pair these extremes and take the first positive
+marginal gains, capped by `k`. The profitable pair count equals
+$\max_v\min(C_I(\le v),C_O(>v))$. Because the difference between those counts
+is the global prefix count at $v$ minus the outside size, their crossing rank
+depends only on the whole array and the outside size. A precomputed pivot plus
+one inside Fenwick prefix query finds the profitable count; Fenwick bit lifting
+then finds the sums of the smallest selected inside values and largest selected
+outside values. Enumerating all subarrays takes $O(n^2\log n)$ time and $O(n)$
+auxiliary space. Both exact source forms pass all 15 ordinary and all three
+benchmark cases. Before submission, the candidate matched a direct sorted-
+multiset oracle on all 83,652 ternary arrays through length eight and every
+legal `k`, plus 20,000 deterministic random arrays through length eleven.
+
+The final benchmark tiers use alternating positive and negative extremes at
+$n=8/32/96$, with `k = n / 4`. The original $n=256$ draft was rejected during
+calibration because the package reference correctly exceeded the runner's
+one-million-step correctness guard; the revised legal tiers span 12x without
+tripping that safety limit. Across three final real-test rounds, the packaged
+source passed at `-0.00` to `+0.00` extra growth and a `1.00x` largest-tier
+ratio. An independently structured class-based Fenwick implementation passed
+at `-0.13` to `-0.10` and `0.22x` to `0.23x`. A correct implementation that
+sorts the inside and outside values for every subarray returned every ordinary
+and benchmark answer but failed only scaling in all three rounds at `+0.22` to
+`+0.25` extra growth.
+
+The refreshed migration audit reports 3,679 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3962, 3,660 scaling benchmarks, 302 certificates,
+and zero blockers. Source fidelity through 3962 is 677 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,962 manually
+complete packages and 43 needing authoring. The focused suite passes all 203
+selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3963, Create
+Grid With Exactly One Path. Reopen its live statement, hints, and native editor
+before deriving or submitting a candidate; follow the refreshed audit if it
+differs.
+
+**Problem 3961 checkpoint (2026-07-30):** Maximize Sum of Device Ratings was
+Accepted as exact Python submission `2087761051`, with all 504 remote tests
+passing in 105 ms and 52.62 MB, using native entry point
+`Solution.maxRatings`. Its modular Reference preserves the rectangular device
+model, rating definition, once-per-source transfer rule, unrestricted receiving
+behavior, empty-device rating, all three complete explanations, all four
+constraints, and public content hash
+`de8c88a11b1c3b8dc39a4d1280120059a23f0c43b5b102a5494a608f474229ca`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`e1144f5e8e082f8571ba7656de0d657695fbe4d47e14b20529567d14e9b9f1b5`).
+
+For one unit per device, every transfer decreases the positive original sum,
+so the accepted method returns the singleton sum. Otherwise it scans each row
+for its smallest and second-smallest capacities. Every non-destination device
+can remove its minimum and contribute its second minimum; concentrating all
+removed minima in one destination makes that device contribute the global
+minimum. Choosing the destination with the smallest second minimum yields
+`global minimum + sum of second minima - smallest second minimum`. The method
+takes $O(U)$ time for $U$ total units and $O(1)$ auxiliary space. Both exact
+source forms pass all 15 ordinary and all three benchmark cases. Before
+submission, the candidate matched complete transfer-state search on 858 small
+matrices plus 3,000 deterministic random matrices, including the `n = 1`
+boundary.
+
+The benchmark tiers scan one descending device with 16, 64, and 256 units.
+Across three final real-test rounds, the packaged source passed at extra
+exponents from `-0.01` to `+0.01` with largest-tier ratios from `0.99x` to
+`1.01x`. An independently structured two-minimum scan passed at `+0.06` to
+`+0.08` and `1.35x` to `1.36x`. A correct insertion-sort implementation
+returned every ordinary and benchmark answer but failed only scaling in all
+three rounds at `+1.32` to `+1.34` and `98.36x` to `102.85x`.
+
+The refreshed migration audit reports 3,678 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3961, 3,659 scaling benchmarks, 302 certificates,
+and zero blockers. Source fidelity through 3961 is 676 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,961 manually
+complete packages and 44 needing authoring. The expanded focused suite passes
+all 203 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3962, Maximum
+Subarray Sum After at Most K Swaps. Reopen its live statement, hints, and
+native editor before deriving or submitting a candidate; follow the refreshed
+audit if it differs.
+
+**Problem 3960 checkpoint (2026-07-30):** Frequency Balance Subarray was
+Accepted as exact Python submission `2087744985`, with all 918 remote tests
+passing in 246 ms and 19.32 MB, using native entry point
+`Solution.getLength`. Its modular Reference preserves the special one-distinct
+value rule, the requirement that both frequency levels $f$ and $2f$ occur for
+multiple values, all three complete explanations, both constraints, and public
+content hash
+`a32e2a98ac3dbc5c77ba5d08ba966d358aa545f86e0eb910c2ae505ba31c7217`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`6040abd17cf56de2d165e435dc4eb0479bcb6d7257542f9faabadbbbeacb8cb6`).
+
+The accepted method fixes each left endpoint and extends the right endpoint
+while maintaining both the count of every value and a histogram of how many
+values have each frequency. Each extension moves one value between histogram
+buckets, after which the subarray is valid exactly when it has one distinct
+value or two frequency keys whose larger value is twice the smaller. The method
+takes $O(n^2)$ expected time and $O(n)$ auxiliary space. Both exact source
+forms pass all 15 ordinary and all three benchmark cases. Before submission,
+the candidate matched an independent `Counter` oracle on all 9,840 ternary
+arrays through length eight, all three source examples, and both length-1,000
+all-equal and all-distinct boundaries.
+
+The final benchmark tiers contain 6, 24, and 96 positions with $2n/3$ distinct
+values split between frequencies one and two. Across three final real-test
+rounds, the packaged source passed at extra exponents from `+0.00` to `+0.01`
+with largest-tier ratios from `0.99x` to `1.03x`. An independently structured
+$O(n^2)$ array-and-bucket implementation passed at `-0.04` to `+0.01` and
+`0.81x` to `1.26x`. A correct implementation that explicitly rescans all
+current value counts after every extension returned every ordinary and
+benchmark answer but failed only scaling in all three rounds at `+0.31` to
+`+0.45` and `1.64x` to `2.95x`.
+
+The refreshed migration audit reports 3,677 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3960, 3,658 scaling benchmarks, 302 certificates,
+and zero blockers. Source fidelity through 3960 is 675 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,960 manually
+complete packages and 45 needing authoring. The expanded focused suite passes
+all 203 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3961, Maximize
+Sum of Device Ratings. Reopen its live statement, hints, and native editor
+before deriving or submitting a candidate; follow the refreshed audit if it
+differs.
+
+**Problem 3959 checkpoint (2026-07-30):** Check Good Integer was Accepted as
+exact Python submission `2087735032`, with all 901 remote tests passing in
+0 ms and 19.36 MB, using native entry point `Solution.checkGoodInteger`. Its
+modular Reference preserves the decimal `digitSum` and `squareSum` definitions,
+the inclusive difference threshold, both complete four-step example
+explanations, the sole constraint, and public content hash
+`3ce9c689885a711245967b5d050a2304547e8d4d1c9cc965c798a7b5ddeb966e`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`d71a56ea102056b9d89fa8ec37b30357777df7aec798819d47dbc47c262390d5`).
+
+The accepted method extracts each decimal digit $d$ and adds its direct
+contribution $d^2-d$ to one score, then tests whether the final score is at
+least 50. It processes every decimal position once in $O(\log n)$ time and
+uses $O(1)$ auxiliary space. Both exact source forms pass all 15 ordinary
+cases. Before submission, the candidate matched an independent decimal-string
+oracle for every integer from 1 through 1,000,000 and explicit threshold,
+zero-digit, repeated-digit, nine-digit, and maximum-input boundaries.
+
+Every legal input has at most ten decimal positions, leaving no honest runtime
+scaling range for digit traversal. A reviewed `bounded_domain` certificate
+records the ten-position work proof and the permanent million-value property
+regression. The real-test API reports that certificate explicitly, keeps
+`runtime_check` false, and passes correctness and complexity independently.
+
+The refreshed migration audit reports 3,676 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3959, 3,657 scaling benchmarks, 302 certificates,
+and zero blockers. Source fidelity through 3959 is 674 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,959 manually
+complete packages and 46 needing authoring. The expanded focused suite passes
+all 203 selected tests with the two existing warning classes; the post-wording
+docs/fidelity subset also passes all 22 tests.
+
+The authoritative next verified-solution package is frontend ID 3960,
+Frequency Balance Subarray. Reopen its live statement, hints, and native editor
+before deriving or submitting a candidate; follow the refreshed audit if it
+differs.
+
+**Problem 3958 checkpoint (2026-07-30):** Minimum Cost to Split into Ones II
+was Accepted as exact Python submission `2087722518`, with all 4,999 remote
+tests passing in 2 ms and 19.16 MB, using native entry point
+`Solution.minCost`. Its authenticated Premium Reference preserves the positive
+two-part split rule, the product cost, the requirement to finish with `n` ones,
+both complete explained examples, both six-column operation tables, the sole
+constraint, and live content hash
+`4d181bfd991506a595291c46f2a85f1da49fa6b7609d580871896191aea328c4`.
+The source has no images. The stored native source remains the exact Accepted
+artifact (SHA-256
+`5867789c6a8569b4f04d78fc558410ea0ac796dfe12940a4d6e116f1f188b74b`).
+
+The accepted method labels the `n` final unit pieces. A split into parts `a`
+and `b` costs `a * b`, exactly the number of unordered unit pairs separated by
+that split. Every final pair is separated exactly once, so every complete split
+tree has invariant total cost $\binom{n}{2} = n(n-1)/2$. The method therefore
+takes $O(1)$ time and $O(1)$ auxiliary space. Both exact source forms pass all
+15 ordinary and all three benchmark cases. Before submission, the formula also
+matched the complete split recurrence for every `n` from 1 through 200 and was
+checked at the maximum legal input.
+
+The benchmark tiers use `n` values 256, 4,096, and 65,536. Across three final
+real-test rounds, the packaged source passed at extra exponents from `-0.01` to
+`+0.00` with largest-tier ratios from `0.97x` to `1.01x`. The independent
+constant-time expression `(n * n - n) >> 1` passed at `-0.00` to `+0.00` and
+`0.99x` to `1.02x`. The correct linear-time `sum(range(n))` implementation
+returned every ordinary and benchmark answer, including the 50,000,000
+boundary, but failed only scaling in all three rounds at `+0.30` to `+0.32`
+and `5.08x` to `6.13x`.
+
+The refreshed migration audit reports 3,675 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3958, 3,657 scaling benchmarks, 301 certificates,
+and zero blockers. Source fidelity through 3958 is 673 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,958 manually
+complete packages and 47 needing authoring. The expanded focused suite passes
+all 202 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3959, Check
+Good Integer. Reopen its live statement, hints, and native editor before
+deriving or submitting a candidate; follow the refreshed audit if it differs.
+
+**Problem 3957 checkpoint (2026-07-30):** Maximum Sum of M Non-Overlapping
+Subarrays II was Accepted as exact Python submission `2087703864`, with all
+1,000 remote tests passing in 4,585 ms and 34.30 MB, using native entry point
+`Solution.maximumSum`. Its modular Reference preserves the requirement to
+select at least one and at most `m` non-overlapping subarrays, the inclusive
+`[l, r]` length range, negative-result behavior, all four complete explained
+examples, all four constraints, and public content hash
+`2cda8b1fe8766ed02fb88cbce92bf03860b1dd16a9bc742fd1dfc54287ac65e5`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`b4ba4ac3525a9556a82dc670160bc10325fd02506d84070e0b01810eabf89cd7`).
+
+The accepted method uses WQS binary search on an integer penalty charged per
+selected subarray. For a fixed penalty, one prefix DP and a monotonic deque
+maximize adjusted sum while also tracking the selected count; ties deliberately
+prefer fewer subarrays so that this count is monotone as the penalty increases.
+Binary search finds the first penalty with at most `m` selected subarrays and
+recovers the original objective by adding back `penalty * m`. A separate
+length-bounded maximum-subarray scan supplies the mandatory nonempty answer for
+all-negative inputs. With
+$S = 1 + \sum_i \max(\texttt{nums}[i], 0)$, the method takes
+$O(n \log S)$ time and $O(n)$ auxiliary space. Both exact source forms pass all
+15 ordinary and all three benchmark cases. Before submission, the candidate
+also matched an independent exact DP on 542,514 exhaustive ternary-array
+instances and 100,000 deterministic random instances, passed all four source
+examples, and handled a maximum-size legal workload.
+
+The benchmark tiers make the subarray-count limit binding with unit-length
+subarrays over 16, 64, and 256 positive values. Across three final real-test
+rounds, the packaged source passed at extra exponents from `-0.01` to `-0.00`
+with largest-tier ratios from `1.00x` to `1.01x`. An independently structured
+$O(n \log S)$ WQS implementation passed at `-0.02` to `+0.00` and `0.62x` to
+`0.66x`. The correct $O(mn)$ Range I DP returned every ordinary and benchmark
+answer but failed only scaling in all three rounds at `+0.81` to `+0.82`.
+
+The refreshed migration audit reports 3,674 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3957, 3,656 scaling benchmarks, 301 certificates,
+and zero blockers. Source fidelity through 3957 is 672 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,957 manually
+complete packages and 48 needing authoring. The expanded focused suite passes
+all 202 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3958, Minimum
+Cost to Split into Ones II. Reopen its live statement, hints, and native editor
+before deriving or submitting a candidate; follow the refreshed audit if it
+differs.
+
+**Problem 3956 checkpoint (2026-07-30):** Maximum Sum of M Non-Overlapping
+Subarrays I was Accepted as exact Python submission `2087685712`, with all
+1,006 remote tests passing in 2,339 ms and 19.63 MB, using native entry point
+`Solution.maximumSum`. Its modular Reference preserves the requirement to
+select at least one and at most `m` non-overlapping subarrays, the inclusive
+`[l, r]` length range, negative-result behavior, all four complete explained
+examples, all four constraints, and public content hash
+`4572a614988e815e13c47f8f494bacb247ac7d1a44b73fa9b3b160ae08c820bb`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`b94340a6b1a54f11e1bcf2c050b315eff6df305ea4eb843abba0472b843c6882`).
+
+The accepted method uses exact-count dynamic-programming layers and prefix
+sums. For each endpoint, a decreasing deque maintains the best eligible value
+`previous[j] - prefix[j]` over starts whose subarray length is in `[l, r]`.
+Taking the maximum completed layer implements “at most `m`” without allowing
+the zero-subarray state to win an all-negative instance. The method takes
+$O(mn)$ time and $O(n)$ auxiliary space. Both exact source forms pass all 15
+ordinary and all three benchmark cases. Before submission, the candidate also
+matched an independent $O(mnr)$ oracle on 36,362 exhaustive instances, 10,000
+deterministic random instances, all four source examples, and a maximum-size
+workload.
+
+The benchmark tiers use two DP layers with the full legal length range over
+16, 64, and 256 positive values. Across three final real-test rounds, the
+packaged source passed at extra exponents from `-0.01` to `+0.02` with
+largest-tier ratios from `0.97x` to `1.00x`. An independently structured
+$O(mn)$ deque DP passed at `-0.07` to `-0.05` and `0.52x` to `0.53x`. A
+correct $O(mnr)$ length scan returned every ordinary and benchmark answer but
+failed only scaling in all three rounds at `+0.92` to `+0.96` and `15.81x` to
+`16.83x`.
+
+The refreshed migration audit reports 3,673 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3956, 3,655 scaling benchmarks, 301 certificates,
+and zero blockers. Source fidelity through 3956 is 671 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,956 manually
+complete packages and 49 needing authoring. The expanded focused suite passes
+all 202 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3957, Maximum
+Sum of M Non-Overlapping Subarrays II. Reopen its live statement, hints, and
+native editor before deriving or submitting a candidate; follow the refreshed
+audit if it differs.
+
+**Problem 3955 checkpoint (2026-07-30):** Valid Binary Strings With Cost Limit
+was Accepted as exact Python submission `2087674471`, with all 850 remote
+tests passing in 42 ms and 25.26 MB, using native entry point
+`Solution.generateValidStrings`. Its modular Reference preserves the
+zero-based index-sum cost, the prohibition on consecutive ones, the inclusive
+cost limit, arbitrary result order, both complete explained examples, both
+constraints, and public content hash
+`309c2a12eead7a427caf28c5e196f14a1fc91b2216148c110da00c6b4eabafc8`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`7a9127e573d4bbc30eb7727e8b533971a04ed9002542e055a997469d9620f4a7`).
+
+The accepted method builds each string left to right. It always explores a
+zero and explores a one only when the previous bit is zero and adding the
+current index keeps the cost at most `k`. If $R$ strings are returned, every
+visited prefix extends to a result and each result has $O(n)$ prefixes, so the
+method takes $O(nR)$ time and $O(n)$ auxiliary space beyond the required
+output. Both exact source forms pass all 15 ordinary cases. Before submission,
+the candidate also matched independent enumeration of all $2^n$ strings for
+every one of the 298 legal `(n, k)` pairs, while checking result uniqueness,
+and passed both source examples.
+
+The complete domain has `n <= 12`; even the maximum-budget length-12 result
+contains only 377 strings. This is too narrow for an honest scaling verdict on
+an output-generating backtracker, so a reviewed `bounded_domain` certificate
+records the prefix-work proof and the permanent complete-domain regression.
+The real-test API identifies that certificate rather than reporting measured
+runtime scaling.
+
+The refreshed migration audit reports 3,672 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3955, 3,654 scaling benchmarks, 301 certificates,
+and zero blockers. Source fidelity through 3955 is 670 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,955 manually
+complete packages and 50 needing authoring. The expanded focused suite passes
+all 202 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3956, Maximum
+Sum of M Non-Overlapping Subarrays I. Reopen its live statement, hints, and
+native editor before deriving or submitting a candidate; follow the refreshed
+audit if it differs.
+
+**Problem 3954 checkpoint (2026-07-30):** Sum of Compatible Numbers in Range I
+was Accepted as exact Python submission `2087661518`, with all 1,000 remote
+tests passing in 4 ms and 19.32 MB, using native entry point
+`Solution.sumOfGoodIntegers`. Its modular Reference preserves positivity, the
+inclusive absolute-distance bound, the bitwise-AND compatibility rule, the
+bitwise and absolute-difference notes, both complete explained examples, both
+constraints, and public content hash
+`d6a14fba10376676765d8fdf864c28d081e087169e41335c3bf44cc071619ec7`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`199fc2af81ca95299dacde6993076f1a72541a31c98fd198215760733bbe1174`).
+
+The accepted method enumerates the inclusive interval from
+`max(1, n - k)` through `n + k` and adds a candidate precisely when its
+bitwise AND with `n` is zero. The interval contains at most $2k + 1$ values,
+so the method takes $O(k)$ time and $O(1)$ auxiliary space. The exact native
+and app-local sources pass all 15 ordinary cases. Before submission, the
+candidate also matched an independent positive-range oracle on every one of
+the 10,000 legal `(n, k)` pairs and both source examples.
+
+The complete input domain is limited to those 10,000 pairs, and no legal
+interval contains more than 201 positive candidates. A natural correct
+$O(n + k)$ scan from one through `n + k` still passed attempted runtime
+scaling because these tiny legal workloads are dominated by judge overhead.
+The package therefore uses a reviewed `bounded_domain` certificate instead of
+claiming a measured verdict. Its permanent regression checks both stored
+source forms across the complete legal domain, and the real-test API reports
+the certificate method explicitly.
+
+The refreshed migration audit reports 3,671 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3954, 3,654 scaling benchmarks, 300 certificates,
+and zero blockers. Source fidelity through 3954 is 669 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,954 manually
+complete packages and 51 needing authoring. The expanded focused suite passes
+all 201 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3955, Valid
+Binary Strings With Cost Limit. Reopen its live statement, hints, and native
+editor before deriving or submitting a candidate; follow the refreshed audit
+if it differs.
+
+**Problem 3953 checkpoint (2026-07-30):** Maximum Score with Co-Prime Element
+was Accepted as exact Python submission `2087640749`, with all 1,005 remote
+tests passing in 3,021 ms and 33.67 MB, using native entry point
+`Solution.maxScore`. Its modular Reference preserves the bounded replacement
+operation, the requirement to select one final element co-prime with every
+other final element, the selected-value-minus-modification-count score, all
+three complete explained examples, all three constraints, and public content
+hash
+`07172ff3b98ab02a36c4eb297d78d75cf36ba735a4e7d537cd2bcfc0a0385690`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`2ac3c3bc7ce207f6d98d5a1f45086babb28261bfd9039b69707129eda4531133`).
+
+The accepted method precomputes value frequencies and divisor-multiple counts
+through $U = \max(\texttt{maxVal}, \max(\texttt{nums}))$. For each possible
+selected value, inclusion-exclusion over its distinct prime factors counts
+the original elements that conflict with it. An existing selected value keeps
+one conflicting occurrence, while an absent value either replaces all
+conflicts or costs one change when none exists. The method takes
+$O(n + U\log U)$ time and $O(U)$ auxiliary space. The exact native and
+app-local sources pass all 15 ordinary cases and all three benchmark cases.
+Before submission, the candidate also matched a direct-gcd oracle on 3,900
+complete small-domain instances, 2,000 deterministic random instances, all
+three source examples, and the maximum legal workload. The app-local adapter
+uses equivalent dense-array and sieve operations with lower Python trace
+overhead so the in-app runner can enforce its ordinary-case step budget
+without changing the Accepted native artifact.
+
+The benchmark tiers contain every value from 1 through 64, 256, and 512.
+Across three final real-test rounds, the packaged source passed at extra
+exponents from `-0.01` to `+0.02` with largest-tier ratios from `0.98x` to
+`1.04x`. An independently structured $O(n + U\log U)$ implementation passed
+at `-0.00` to `+0.01` and `1.01x` to `1.02x`. A correct direct-gcd
+implementation returned every ordinary and benchmark answer but failed only
+scaling in all three rounds at `+1.52` to `+1.56` and `226.52x` to `235.33x`.
+
+The refreshed migration audit reports 3,670 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3953, 3,654 scaling benchmarks, 299 certificates,
+and zero blockers. Source fidelity through 3953 is 668 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,953 manually
+complete packages and 52 needing authoring. The expanded focused suite passes
+all 200 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3954, Sum of
+Compatible Numbers in Range I. Reopen its live statement, hints, and native
+editor before deriving or submitting a candidate; follow the refreshed audit
+if it differs.
+
+**Problem 3952 checkpoint (2026-07-30):** Maximum Total Value of Covered
+Indices was Accepted as exact Python submission `2087626783`, with all 999
+remote tests passing in 139 ms and 32.68 MB, using native entry point
+`Solution.maxTotal`. Its modular Reference preserves the initial binary token
+placement, each token's at-most-one left move, distinct covered-index scoring,
+all three complete explained examples, all three constraints, and public
+content hash
+`eacec705dba2c02be7fa4ac09abffc316e8bffde324afe06ec3c84864dd1d266`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`5ee4182f77bbeb04daae362ac8d23a8f9fa2fe16ea40f0bf60f2b086da69fa87`).
+
+The accepted method treats each maximal token run independently. A run
+starting after index zero can cover every position from its preceding index
+through its end except one, so its contribution is that range's sum minus its
+minimum; an initial run contributes its full sum. The one-pass implementation
+takes $O(n)$ time and $O(1)$ auxiliary space. The exact native and app-local
+sources pass all 15 ordinary cases and all three benchmark cases. Before
+submission, the candidate also matched exhaustive move enumeration on 4,080
+valued instances covering every token pattern through `n = 8`, 50,000
+deterministic random instances, and all three source examples.
+
+The benchmark tiers use one long token run preceded by zero at lengths 32,
+128, and 512. Across three final real-test rounds, the packaged source passed
+at extra exponents from `-0.02` to `-0.01` with largest-tier ratios from
+`0.96x` to `0.98x`. An independently structured $O(n)$ scan passed at `+0.03`
+to `+0.05` and `1.18x` to `1.23x`. A correct $O(n^2)$ implementation that
+tries every omitted index returned every ordinary and benchmark answer but
+failed only scaling in all three rounds at `+1.27` to `+1.32` and `386.67x`
+to `441.37x`.
+
+The refreshed migration audit reports 3,669 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3952, 3,653 scaling benchmarks, 299 certificates,
+and zero blockers. Source fidelity through 3952 is 667 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,952 manually
+complete packages and 53 needing authoring. The expanded focused suite passes
+all 200 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3953, Maximum
+Score with Co-Prime Element. Reopen its live statement, hints, and native
+editor before deriving or submitting a candidate; follow the refreshed audit
+if it differs.
+
+**Problem 3951 checkpoint (2026-07-30):** Minimum Energy to Maintain Brightness
+was Accepted as exact Python submission `2087613412`, with all 658 remote
+tests passing in 40 ms and 57.23 MB, using native entry point
+`Solution.minEnergy`. Its modular Reference preserves the line of indexed
+bulbs, independent per-time states, three-position illumination with boundary
+truncation, distinct-position brightness, inclusive and overlapping active
+intervals, all three complete explained examples, all five constraints, and
+public content hash
+`8c1aafa4829eee284ea7033013608c8e1c387be92e638e888e81ba6d3b28a73a`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`eb39a780de354669b3027ea02ed09ede0b85e7eb9061a39d8450578fb551b55c`).
+
+The accepted method separates the identical spatial requirement at each active
+time from the interval union. Exactly `ceil(brightness / 3)` bulbs are both
+necessary and sufficient, while sorting and merging the inclusive intervals
+counts every active time once. Their product is the minimum energy. For $m$
+intervals, the method takes $O(m\log m)$ time and $O(m)$ worst-case auxiliary
+space under Python's sorting implementation. The exact native and app-local
+sources pass all 15 ordinary cases and all three benchmark cases. Before
+submission, the candidate also matched exhaustive bulb configurations for all
+`n <= 8`, 50,000 deterministic random interval instances, and all three source
+examples.
+
+The benchmark tiers contain 32, 128, and 512 reverse-ordered disjoint
+intervals. Across three final real-test rounds, the packaged source passed at
+extra exponents from `-0.01` to `+0.01` with largest-tier ratios from `1.00x`
+to `1.02x`. An independently structured sort-and-pop $O(m\log m)$ sweep passed
+at `+0.04` to `+0.05` and `1.22x` to `1.27x`. A correct $O(m^2)$ incremental
+union returned every ordinary and benchmark answer but failed only scaling in
+all three rounds at `+1.26` to `+1.36` and `338.91x` to `429.03x`.
+
+The refreshed migration audit reports 3,668 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3951, 3,652 scaling benchmarks, 299 certificates,
+and zero blockers. Source fidelity through 3951 is 666 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,951 manually
+complete packages and 54 needing authoring. The expanded focused suite passes
+all 200 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3952, Maximum
+Total Value of Covered Indices. Reopen its live statement, hints, and native
+editor before deriving or submitting a candidate; follow the refreshed audit
+if it differs.
+
+**Problem 3950 checkpoint (2026-07-30):** Exactly One Consecutive Set Bits Pair
+was Accepted as exact Python submission `2087602871`, with all 999 remote
+tests passing in 0 ms and 19.06 MB, using native entry point
+`Solution.consecutiveSetBits`. Its modular Reference preserves the exact-one
+condition, positional and overlapping adjacent pairs, both complete explained
+examples, the single constraint, and public content hash
+`82103849e46283d68a48768c461b803ad205e0e3da22db8c5c8d8b68d2679058`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`ec7d6a5e820b52f3cdf0580e85463a213575325dc2c7f9074fdf7328e4c2fd8d`).
+
+The accepted method computes `n & (n >> 1)`, whose set bits correspond
+one-for-one with adjacent `11` occurrences, then tests whether that mask has
+exactly one set bit. It performs a fixed sequence of machine-integer operations
+and takes $O(1)$ time and $O(1)$ auxiliary space. The exact native and
+app-local sources pass all 15 ordinary cases. Before submission, the candidate
+also matched an independent overlapping-window binary-string oracle on every
+one of the 100,001 legal inputs.
+
+The complete domain is bounded by 17 binary digits, so it is too narrow for an
+honest runtime scaling verdict. A reviewed `bounded_domain` certificate proves
+that the Accepted source has no loop, recursion, or input-sized allocation and
+adds a permanent exhaustive regression that checks both stored source forms on
+all legal values. The certificate registry and focused certificate tests pass.
+
+The refreshed migration audit reports 3,667 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3950, 3,651 scaling benchmarks, 299 certificates,
+and zero blockers. Source fidelity through 3950 is 665 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,950 manually
+complete packages and 55 needing authoring. The expanded focused suite passes
+all 200 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3951, Minimum
+Energy to Maintain Brightness. Reopen its live statement, hints, and native
+editor before deriving or submitting a candidate; follow the refreshed audit
+if it differs.
+
+**Problem 3949 checkpoint (2026-07-30):** Subtree Inversion Sum II was
+Accepted as exact Python submission `2087578967`, with all 936 remote tests
+passing in 4,422 ms and 41.32 MB, using native entry point
+`Solution.subtreeInversionSum`. Its modular Reference preserves the rooted-tree
+model, the subtree-inversion operation, the pairwise distance restriction, all
+four complete explained examples, all eight constraint facts, and public
+content hash
+`f3091317ffcc47153052908d06f1d53eed6c41be5e73506142074576a78bc01d`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`12f64f2ce2fd06c5fb91b32d2419703561ebb4a2def39d446750e934d132d407`).
+
+The accepted method roots the tree iteratively and keeps maximum and minimum
+subtree sums by the exact capped distance to the nearest inverted node. Child
+states are lifted by one edge; suffix extrema merge compatible sibling states
+in $O(k)$ rather than $O(k^2)$, and selecting a node negates the opposite
+extremum of the distance-$k$ state. A reverse traversal streams completed child
+states into pending parent accumulators. The method takes $O(nk)$ time and
+$O(nk)$ worst-case auxiliary space. The exact native and app-local sources pass
+all 15 ordinary cases and all three benchmark cases. Before submission, the
+candidate also matched exhaustive legal inversion-subset search on 9,600
+deterministic random trees plus all four source examples; a maximum legal
+50,000-node chain with `k = 50` finished locally in 1.51 seconds.
+
+The benchmark tiers use chains with `n = k` at 8, 16, and 32, giving authored
+sizes 64, 256, and 1,024. Across three final real-test rounds, the packaged
+source passed at extra exponents from `-0.01` to `+0.00` with largest-tier
+ratios from `1.00x` to `1.01x`. An independently structured $O(nk)$
+implementation passed at `+0.00` to `+0.02` and `0.59x` to `0.67x`. A correct
+$O(nk^2)$ pair-state implementation returned every ordinary and benchmark
+answer but failed only scaling in all three rounds at `+0.45`; its first-round
+tier ratios were `0.94x`, `1.70x`, and `3.23x`.
+
+The refreshed migration audit reports 3,666 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3949, 3,651 scaling benchmarks, 298 certificates,
+and zero blockers. Source fidelity through 3949 is 664 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,949 manually
+complete packages and 56 needing authoring. The expanded focused suite passes
+all 198 selected tests with the two existing warning classes.
+
+The authoritative next verified-solution package is frontend ID 3950, Exactly
+One Consecutive Set Bits Pair. Reopen its live statement, hints, and native
+editor before deriving or submitting a candidate; follow the refreshed audit
+if it differs.
+
+**Problem 3948 checkpoint (2026-07-30):** Lexicographically Maximum MEX Array
+was Accepted as exact Python submission `2087566770`, with all 999 remote
+tests passing in 94 ms and 26.72 MB, using the native entry point
+`Solution.maximumMEX`. Its modular Reference preserves the repeated nonempty
+prefix-removal operation, the MEX definition, both lexicographic comparison
+rules, all three complete explained examples, both constraints, and public
+content hash
+`db9e517330744cb14c59ed826507cbed94bcf15c45103463b14a66ba1a5120ee`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`e960052094ab6feef93d4dd67d4d9a927e98f0da7db6320b93dea20c68a43298`).
+
+The accepted method maintains remaining frequencies, takes the current
+suffix MEX as the largest possible next result value, and consumes the
+shortest prefix containing every smaller value. A zero-MEX suffix is consumed
+one element at a time to maximize the result length. The amortized method
+takes $O(n)$ time and $O(n)$ auxiliary space. The exact native and app-local
+sources pass all 15 ordinary cases and all three benchmark cases. Before
+submission, the candidate also matched exhaustive partition enumeration on
+107,655 arrays plus all three source examples.
+
+The benchmark tiers contain 32, 128, and 512 positive values, so every suffix
+has MEX zero. Across three final real-test rounds, the packaged source passed
+at extra exponents from `-0.01` to `+0.01` with largest-tier ratios from
+`1.02x` to `1.04x`. An independently structured $O(n)$ implementation passed
+at `-0.08` to `-0.05` and `0.67x` to `0.71x`. A correct implementation that
+rebuilds every remaining suffix set returned every ordinary and benchmark
+answer but failed only scaling in all three rounds at `+0.97` to `+1.00` and
+`30.52x` to `32.39x`.
+
+The refreshed migration audit reports 3,665 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3948, 3,650 scaling benchmarks, 298 certificates,
+and zero blockers. Source fidelity through 3948 is 663 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,948 manually
+complete packages and 57 needing authoring. The expanded focused suite passes
+all 198 selected tests with the two existing warning classes.
+
+**Problem 3947 checkpoint (2026-07-30):** Maximum Number of Items From Sale II
+was Accepted as exact Python submission `2087541742`, with all 875 remote
+tests passing in 781 ms and 58.80 MB, using the native entry point
+`Solution.maximumSaleItems`. Its modular Reference preserves unlimited
+purchases, the at-most-one reward per purchased copy, distinct indexed
+source-target pairs, one-time use of each ordered pair, repeated rewards of
+the same target from different sources, both complete explained examples, all
+five constraints, and public content hash
+`2065f72b978aa507ccd20493536e966ec5d1c416f2301d67e3c02d75142e67d9`.
+The source has no images or tables. The stored native source remains the exact
+Accepted artifact (SHA-256
+`b48bab8d654c27e655b5557786d5be8c462fbe4495a0890ded2403f9a2ff57bf`).
+
+The accepted method counts factors with a multiples sieve. A type with
+$g_i$ eligible indexed targets contributes $g_i$ marginal purchases worth two
+copies each, followed by unlimited value-one purchases. After sorting these
+batches by price, it greedily buys useful boosted units priced at most twice
+the global minimum price, then spends the remainder on cheapest ordinary
+copies. It takes $O(n\log n)$ time and $O(n)$ auxiliary space. The exact
+native and app-local sources pass all 15 ordinary cases and all three
+benchmark cases, and the candidate matched exhaustive purchase enumeration on
+10,000 deterministic random legal instances plus both source examples before
+submission.
+
+The final benchmark tiers contain 32, 128, and 512 equal-factor types, with
+recorded size $n$. Across three final real-test rounds, the packaged source
+passed at extra exponents from `-0.01` to `+0.00` with largest-tier ratios from
+`0.99x` to `1.03x`. An independently structured $O(n\log n)$ implementation
+passed at `-0.20` to `-0.19` and `0.27x` to `0.28x`. A correct ordered-pair
+$O(n^2)$ implementation returned every ordinary and benchmark answer but
+failed only scaling in all three rounds at `+0.92` and `61.52x` to `61.81x`.
+
+The refreshed migration audit reports 3,664 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3947, 3,649 scaling benchmarks, 298 certificates,
+and zero blockers. Source fidelity through 3947 is 662 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,947 manually
+complete packages and 58 needing authoring. The expanded focused suite passes
+all 198 selected tests with the two existing warning classes. Targeted Ruff,
+the production web build, the nine-diagram Mermaid corpus parser, all three
+audits, and `git diff --check` pass. This session also cleared every validation
+command that the 3946 checkpoint had left pending.
+
+The authoritative next verified-solution package is frontend ID 3948,
+Lexicographically Maximum MEX Array. Reopen its live statement, hints, and
+native editor before deriving or submitting a candidate; follow the refreshed
+audit if it differs.
+
+**Problem 3946 checkpoint (2026-07-30):** Maximum Number of Items From Sale I
+was Accepted as exact Python submission `2087510505` using the native entry
+point `Solution.maximumSaleItems`. Its modular Reference preserves the
+unlimited-purchase contract, one-time activation reward for each purchased
+type, distinct indexed-target semantics, repeated rewards from different
+source types, both fully explained examples, all four constraints, and public
+content hash
+`276f4716e04fcf31ef010a19c31e681a0f385fbe5d7d9a4857b6089d4133e0d8`.
+The source has no images or tables.
+
+The accepted method counts factors, uses a multiples sieve to compute each
+type's activation value, and runs a capacity DP with a snapshot for the first
+copy and an ascending current-row transition for later copies. It takes
+$O(F\log F+nB)$ time and $O(F+B)$ auxiliary space. The exact native and
+app-local sources match all 15 ordinary cases, all three benchmark cases, and
+5,000 deterministic literal-enumeration cases. Earlier exhaustive and random
+calibration covered a further 155,720 literal instances. The stored native
+source remains the exact Accepted artifact (SHA-256
+`05a5a465ad12a89fd9eabebc1057a91da34b60153d18dcd70961c0a8db11d347`).
+
+The benchmark tiers set $n=B$ to 16, 24, and 48, recording the governing
+$nB$ sizes 256, 576, and 2,304. Across three final real-test rounds, the
+packaged implementation passed at extra exponents from `-0.03` to `+0.02`
+with largest-tier ratios from `0.97x` to `1.05x`; an independently structured
+implementation in the same class passed at `-0.08` to `-0.03` and `0.48x` to
+`0.52x`. A correct explicit-quantity $O(nB^2)$ implementation returned every
+ordinary and benchmark answer but failed only the scaling verdict in all three
+rounds at `+0.42` to `+0.44` and `4.77x` to `5.11x`.
+
+The refreshed migration audit reports 3,663 locally complete and remotely
+verified packages, cases/Optimal sources/submissions/complexity evidence and
+variant manifests through 3946, 3,648 scaling benchmarks, 298 certificates,
+and zero blockers. Source fidelity through 3946 is 661 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,946 manually
+complete packages and 59 needing authoring. These three audits pass after the
+final benchmark edit, and `git diff --check` also passes. Because the user
+requested an immediate session handoff, the expanded focused pytest suite,
+targeted Ruff, production web build, and Mermaid parser have not yet been
+rerun after that edit; run them before editing the successor package.
+
+The authoritative next verified-solution package is frontend ID 3947,
+Maximum Number of Items From Sale II. An authenticated read-only preflight on
+2026-07-30 confirmed that it is public Medium, internal question ID `3745`,
+real ZeroTrac Elo `2215.4516632445`, and public content hash
+`2065f72b978aa507ccd20493536e966ec5d1c416f2301d67e3c02d75142e67d9`.
+Its topics are Array, Greedy, Sorting, and Heap (Priority Queue), and its
+Python 3 interface is
+`Solution.maximumSaleItems(self, items: List[List[int]], budget: int) -> int`.
+
+Unlike Sale I, each purchased copy of type `i` may fund at most one free copy
+of an eligible distinct indexed type `j`; each ordered pair `(i, j)` may be
+used at most once, while different source types may still award the same
+target. The source has two fully explained examples, five constraints, and no
+images or tables. The examples are
+`items = [[1,6],[2,4],[3,5]], budget = 19 -> 5` and
+`items = [[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]], budget = 35 -> 7`.
+The constraints are $1\le\lvert\texttt{items}\rvert\le10^5$,
+`items[i] = [factor_i, price_i]`,
+$1\le\texttt{factor_i}\le\lvert\texttt{items}\rvert$,
+$1\le\texttt{price_i}\le10^9$, and $1\le\texttt{budget}\le10^9$.
+Start the next session by rerunning `tools/audit_leetcode_migration.py`, then
+finish the pending 3946 validation commands. Reopen the authenticated 3947
+statement and hints before deriving or submitting its candidate; its real Elo
+is above the simplified-branch ceiling.
+
+**Problem 3945 checkpoint (2026-07-30):** Digit Frequency Score was Accepted
+as exact Python submission `2087493662` using the native entry point
+`Solution.digitFrequencyScore`. Its modular Reference preserves the
+frequency-weighted score definition, both fully explained examples, the sole
+constraint, and public content hash
+`0aea0f59850f0c5e0646b6ecb8d96a564ee5a58dab6f1466b592dc6d5bf6d616`.
+The source has no images or tables.
+
+The accepted method observes that
+$\sum_d d\cdot\operatorname{freq}(d)$ is exactly the sum of all decimal digit
+occurrences. It repeatedly uses `divmod(n, 10)` to add the final digit and
+remove it, taking $O(D)$ time for the $D$ decimal digits and $O(1)$ auxiliary
+space. The exact native and app-local sources match an independent string
+oracle on all 15 authored cases. The certificate regression additionally
+checks every integer from 1 through 1,000,000, 50,000 deterministic values
+across the complete legal range, and the upper boundary `1000000000`.
+
+The source contract permits at most ten decimal digits, so an honest scaling
+trend cannot distinguish plausible asymptotic classes. Problem 3945 therefore
+uses a strict `bounded_domain` certificate rather than a synthetic benchmark.
+The real-test route passes all 15 ordinary cases, reports no runtime tiers,
+and exposes the certificate method explicitly. The certificate records both
+the exact one-digit-per-iteration work proof and the independent
+boundary/property evidence.
+
+Source fidelity through 3945 was 660 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,945 manually complete packages and 60
+needing authoring; the migration audit reports 3,662 locally complete and
+remotely verified packages, 3,647 completed scaling benchmarks, 298 certified
+packages, and zero blockers. The consolidated
+package/docs/template/fidelity/variant/submission/judge suite passed all 187
+selected tests with only the two existing warning classes, and the targeted
+certificate suite passed all three selected checks. Targeted Ruff, the
+production web build, the nine-diagram Mermaid corpus parser, dataset and
+source-fidelity audits, and `git diff --check` pass. The authoritative next
+verified-solution package was frontend ID 3946, which is completed in the
+checkpoint above.
+
+**Problem 3944 checkpoint (2026-07-30):** Minimum Operations to Make Array
+Modulo Alternating II was Accepted as exact Python submission `2087473533`
+using the native entry point `Solution.minOperations`. Its modular Reference
+preserves unit increment/decrement operations, the two distinct parity
+residues, all three complete explained examples, all three constraints, and
+authenticated Premium content hash
+`486310cfc0efd989331ff7764cdf17ada06a2d9822f9980fdbd0f0fdcb5c5631`.
+The source has no images or tables.
+
+The accepted method reduces every value modulo `k`, builds separate
+frequency arrays for even and odd indices, and computes every target-residue
+cost with one circular sweep. If `W` is the frequency in the clockwise
+half-circle, advancing the target changes the cost by `N - 2 * W`; for odd
+`k`, the tied residue just beyond that window contributes an additional
+correction. The smallest and second-smallest odd costs then enforce distinct
+even and odd residues without a quadratic pair search. The method takes
+$O(n+k)$ time and $O(k)$ space. The recurrence matched direct distance sums on
+92,368 exhaustive frequency vectors, and the complete solution matched brute
+force on 123,032 arrays plus 20,000 random cases. A maximum-constraint run
+finished in 0.083 seconds. The exact native and app-local sources also match
+all 15 ordinary cases and three benchmark cases.
+
+The app real-test route passes the three all-residue benchmark tiers with
+$n=k=32/128/512$. Across three final calibration rounds, the packaged source
+stayed between `-0.01` and `+0.00` extra growth with a `0.99x` to
+`1.02x` largest-tier ratio. An independently structured doubled-prefix-sum
+$O(n+k)$ implementation passed at `+0.01` to `+0.03` and `1.59x` to
+`1.66x`. A correct implementation that recomputes every target cost from
+every element returned all ordinary and benchmark answers but failed only
+scaling in all three final rounds at `+0.92` to `+0.97` and `22.00x` to
+`22.61x` on the largest tier.
+
+Source fidelity through 3944 is now 659 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,944 manually complete packages and 61
+needing authoring; the migration audit reports 3,661 locally complete and
+remotely verified packages, 3,647 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warning classes. Targeted Ruff, the
+production web build, the nine-diagram Mermaid corpus parser, dataset and
+source-fidelity audits, and `git diff --check` pass. The authoritative next
+verified-solution package is frontend ID 3945, Digit Frequency Score.
+
+Continue with `dsa/leetcode/3945_digit-frequency-score`, a public Easy
+hash-table/math problem with internal question ID `4321`, real ZeroTrac Elo
+`1201.2169110885`, and public content hash
+`0aea0f59850f0c5e0646b6ecb8d96a564ee5a58dab6f1466b592dc6d5bf6d616`.
+For a positive integer `n`, its score is the sum of `d * freq(d)` over
+every distinct decimal digit `d`; return that score. The authenticated hint
+observes that this weighted frequency sum is exactly the sum of all decimal
+digits. The Python 3 interface is
+`Solution.digitFrequencyScore(self, n: int) -> int`.
+
+The source has two fully explained examples, one constraint, and no images or
+tables. Example 1 is `n = 122 -> 5`: digit `1` contributes `1 * 1 = 1`,
+digit `2` contributes `2 * 2 = 4`, and the total is `5`. Example 2 is
+`n = 101 -> 2`: digit `0` contributes zero, digit `1` contributes
+`1 * 2 = 2`, and the total is `2`. The sole constraint is
+$1\le n\le10^9$. The live package still contains only metadata, a legacy
+placeholder document, and placeholder branch bounds. Because the complete
+legal input has at most ten decimal digits, inspect the strict bounded-domain
+certificate requirements before choosing complexity evidence; do not force an
+unstable timing gate merely for convenience, and retain scaling if the
+certificate does not genuinely qualify. Its real Elo makes this Easy problem
+eligible for a simplified branch only after the exact source for that branch
+is independently remotely Accepted. The authenticated statement, hint, and
+Python editor are retained in Chrome; rerun the live checker and migration
+audit before editing, then remotely verify the exact Optimal native candidate
+before full package authoring.
+
+**Problem 3943 checkpoint (2026-07-30):** Number of Pairs After Increment was
+Accepted as exact Python submission `2087456567` using the native entry point
+`Solution.numberOfPairs`. Its modular Reference preserves both query forms,
+inclusive range-update semantics, ordered index-pair multiplicity, all three
+complete explained examples, all ten constraint facts, and public content hash
+`605c543ee02e1e7c7d8b170e841b50c469a528af9a1b3b19853aac8f0c0795e1`.
+The source has no images or tables.
+
+The accepted method precomputes the frequency map of the fixed `nums1` and
+maintains `nums2` with square-root decomposition. Every block owns its base
+values, a base-value frequency map, and one lazy whole-block increment. A
+range update changes only the lazy value of fully covered blocks, while each
+boundary block is materialized, edited, and rebuilt. A type-2 query iterates
+over every block and every distinct value in `nums1`, adjusting the required
+complement by the block's lazy value. Because `nums1` has at most five
+elements, the method takes $O(n+q\sqrt n)$ time and $O(n)$ space. The exact
+native and app-local sources match brute force on 360,720 exhaustive
+update-then-count combinations and 10,000 random query sequences, as well as
+all 15 ordinary cases and three benchmark cases.
+
+The app real-test route passes the three alternating full-range-update and
+pair-count benchmark tiers with $n=q=32/128/512$. Across three final
+calibration rounds, the packaged source stayed between `-0.00` and `+0.02`
+extra growth with a `0.99x` to `1.00x` largest-tier ratio. An independently
+structured square-root implementation passed at `+0.00` to `+0.02` and
+`0.90x` to `0.93x`. A correct alternative that scans every distinct block
+value during each count returned every ordinary and benchmark answer but
+failed only scaling in all three rounds at `+0.38` to `+0.39` and `2.44x` to
+`2.46x` on the largest tier.
+
+Source fidelity through 3943 is now 658 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,943 manually complete packages and 62
+needing authoring; the migration audit reports 3,660 locally complete and
+remotely verified packages, 3,646 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warning classes. Targeted Ruff, the
+production web build, the nine-diagram Mermaid corpus parser, dataset and
+source-fidelity audits, and `git diff --check` pass. The authoritative next
+verified-solution package is frontend ID 3944, Minimum Operations to Make Array
+Modulo Alternating II.
+
+Continue with
+`dsa/leetcode/3944_minimum-operations-to-make-array-modulo-alternating-ii`, an
+authenticated Premium Hard array/enumeration problem with internal question
+ID `4302`. One operation increases or decreases any array element by one. The
+target requires one residue `x` at every even index and a distinct residue `y`
+at every odd index, with both residues in `[0, k)`. Return the minimum total
+operations. The authenticated Python 3 interface is
+`Solution.minOperations(self, nums: list[int], k: int) -> int`; the live
+content hash is
+`486310cfc0efd989331ff7764cdf17ada06a2d9822f9980fdbd0f0fdcb5c5631`.
+
+The source has three fully explained examples, three constraint facts, and no
+images or tables. Their exact inputs and outputs are
+`nums = [1,4,2,8], k = 3 -> 2`, `nums = [1,1,1], k = 3 -> 1`, and
+`nums = [6,7,8], k = 2 -> 0`. The constraints are
+$1\le\lvert\texttt{nums}\rvert\le10^5$,
+$1\le\texttt{nums[i]}\le10^9$, and $2\le k\le10^5$. For a current residue
+`r`, the cost of choosing target residue `t` is the circular distance
+`min(abs(r - t), k - abs(r - t))`. The authenticated hints prescribe separate
+total-cost arrays for even and odd indices, followed by the smallest and
+second-smallest odd totals so the distinct-residue condition does not require
+$O(k^2)$ enumeration. Derive and exhaustively validate the linear circular-
+distance recurrence used to build all residue costs before submitting. The
+live package still contains only metadata, a legacy placeholder document, and
+placeholder branch bounds: it has no cases, benchmark, Reference sections,
+approach, app/native sources, or submission manifest. The authenticated
+statement, hints, and Python editor are retained in Chrome; rerun the live
+checker and migration audit before editing, then remotely verify the exact
+native candidate before full package authoring.
+
+**Problem 3942 checkpoint (2026-07-30):** Minimum Operations to Sort a
+Permutation was Accepted as exact Python submission `2087434978` using the
+native entry point `Solution.minOperations`. Its modular Reference preserves
+both permitted whole-array operations, the increasing target, the impossible
+case, all three complete explained examples, all three constraints, and public
+content hash
+`2c79db44df4dee62f16a82e7ca3bcb9dcd69f29bdefb9836e5dbc15cb4b17e7e`.
+The source has no images or tables.
+
+The accepted method recognizes that every reachable state is either a rotation
+of the input or a rotation of its reversal. It verifies cyclic increasing or
+cyclic decreasing order and lets `i` be the index of zero. The respective exact
+minimum costs are `min(i, n - i + 2)` and `min(n - i, i + 2)`; every other
+permutation is unreachable. The method takes $O(n)$ time and $O(1)$ auxiliary
+space. The exact native and app-local sources matched a reverse-transition BFS
+oracle on all 46,233 permutations through length eight: 69 are reachable,
+46,164 are unreachable, and the largest distance is five. They also match all
+15 ordinary cases and three benchmark cases.
+
+The app real-test route passes all ordinary cases and the three legal
+cyclic-increasing half-rotation benchmark tiers with $n=64/256/1024$. Across
+three final calibration rounds, the packaged source stayed between `+0.00` and
+`+0.02` extra growth with a `0.99x` to `1.06x` largest-tier ratio. An
+independently structured two-orientation scan passed at `+0.05` to `+0.10` and
+`1.74x` to `1.82x`. A correct BFS over full array states returned every
+ordinary and benchmark answer but failed only scaling in all three rounds at
+`+0.63` to `+0.66` and `32.08x` to `33.34x` on the largest tier.
+
+Source fidelity through 3942 is now 657 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,942 manually complete packages and 63
+needing authoring; the migration audit reports 3,659 locally complete and
+remotely verified packages, 3,645 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warning classes. Targeted Ruff, the production
+web build, the nine-diagram Mermaid corpus parser, dataset and source-fidelity
+audits, and `git diff --check` pass. The authoritative next verified-solution
+package is frontend ID 3943, Number of Pairs After Increment.
+
+Continue with `dsa/leetcode/3943_number-of-pairs-after-increment`, a public Hard
+array/hash-table/divide-and-conquer/counting problem with internal question ID
+`4076`. `nums1` is fixed and has at most five elements; `nums2` has at most
+$5\cdot10^4$ elements. A type-1 query `[1, x, y, val]` adds `val` to the
+inclusive subarray `nums2[x..y]`; a type-2 query `[2, tot]` asks for the number
+of index pairs `(j, k)` with `nums1[j] + nums2[k] == tot`. Return one count per
+type-2 query in order. The authenticated Python 3 interface is `Solution.numberOfPairs(self, nums1: list[int], nums2: list[int], queries: list[list[int]]) -> list[int]`; the public content hash is
+`605c543ee02e1e7c7d8b170e841b50c469a528af9a1b3b19853aac8f0c0795e1`.
+
+The source has three fully explained examples, ten constraint facts, and no
+images or tables. Their exact inputs and outputs are
+`[1,2], [3,4], [[2,5],[1,0,0,2],[2,5]] -> [2,1]`,
+`[1,1], [2,2,3], [[2,4],[1,0,1,1],[2,4]] -> [2,6]`, and
+`[2,5,8,4], [1,3,8], [[2,9],[1,1,2,1],[2,10]] -> [1,0]`.
+The authenticated hints prescribe square-root decomposition: precompute the
+frequency map of fixed `nums1`; partition `nums2` into blocks, each with a
+lazy whole-block increment and a frequency map of pre-lazy values; rebuild the
+at most two partial blocks during range additions; and answer pair queries by
+adjusting each needed complement by every block's lazy value. With block size
+$B\approx\sqrt n$, updates cost $O(B+n/B)$, pair queries cost
+$O(Dn/B)$ for $D\le5$ distinct `nums1` values, and storage is $O(n)$. The live
+package still contains only metadata, a legacy placeholder document, and
+placeholder branch bounds: it has no cases, benchmark, Reference sections,
+approach, app/native sources, or submission manifest. The authenticated
+statement and Python editor are retained in Chrome; rerun the live checker and
+migration audit before editing, then remotely verify the exact native candidate
+before full package authoring.
+
+**Problem 3941 checkpoint (2026-07-30):** Password Strength was Accepted as
+exact Python submission `2087423358` using the native entry point
+`Solution.passwordStrength`. Its modular Reference preserves all four scoring
+categories, exact-character deduplication, case sensitivity, both complete
+explained examples, both constraints, and public content hash
+`d28a4d3a755944a2523b1506eb82f4fdd60c4cf22db85138e5446a3e984d0931`.
+The source has no images or tables.
+
+The accepted method scores the distinct characters in the password. The
+app-local form performs an explicit first-occurrence scan so its runtime
+evidence measures one operation per input character rather than a C-level
+bulk-set constant. Only 66 characters are legal—26 lowercase, 26 uppercase,
+10 digits, and four special symbols—so the method takes expected $O(n)$ time
+and $O(1)$ auxiliary space. The exact Accepted source matched an independent
+category-set oracle on 299,592 exhaustive strings over representative symbols
+plus a maximum-length string containing the full legal alphabet; the maximum
+possible score is 128.
+
+The app real-test route passes all 15 ordinary cases and three legal benchmark
+tiers with $n=32/128/512$. Across three final calibration rounds, the packaged
+source stayed between `-0.03` and `+0.01` extra growth with a `0.95x` to
+`1.02x` largest-tier ratio. An independently structured fixed-ASCII-table
+$O(n)$/$O(1)$ implementation passed at `+0.04` to `+0.05` and `1.36x` to
+`1.37x`. A correct no-early-exit $O(n^2)$ prefix scan returned every ordinary
+and benchmark answer but failed only scaling at `+1.21` to `+1.24` and
+`248.22x` to `253.93x` on the largest tier.
+
+Source fidelity through 3941 is now 656 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,941 manually complete packages and 64
+needing authoring; the migration audit reports 3,658 locally complete and
+remotely verified packages, 3,644 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warning classes. Targeted Ruff, the
+production web build, the nine-diagram Mermaid corpus parser, dataset and
+source-fidelity audits, and `git diff --check` pass. The authoritative next
+verified-solution package is frontend ID 3942, Minimum Operations to Sort a
+Permutation.
+
+Continue with
+`dsa/leetcode/3942_minimum-operations-to-sort-a-permutation`, a public Medium
+array problem with internal question ID `4184`. The input is a permutation of
+`0..n-1`. One operation may either reverse the entire array or rotate it left
+by one position. Return the minimum operations needed to reach increasing
+order, or `-1` when no sequence of these operations can do so. The
+authenticated Python interface is
+`Solution.minOperations(self, nums: List[int]) -> int`; the public content
+hash is
+`2c79db44df4dee62f16a82e7ca3bcb9dcd69f29bdefb9836e5dbc15cb4b17e7e`.
+
+The source has three explained examples and no images or tables. Example 1
+uses `nums = [0,2,1]` and returns `2`: rotate left to `[2,1,0]`, then reverse
+to `[0,1,2]`. Example 2 uses `nums = [1,0,2]` and also returns `2`: reverse
+to `[2,0,1]`, then rotate left to `[0,1,2]`. Example 3 uses
+`nums = [2,0,1,3]` and returns `-1` because increasing order is unreachable.
+The constraints are $1\le n=\lvert\texttt{nums}\rvert\le10^5$,
+$0\le\texttt{nums[i]}\le n-1$, and that `nums` contains every integer from
+zero through $n-1$ exactly once. Establish the exact reachable-state
+characterization and minimum-operation formula with exhaustive small-
+permutation search before submitting.
+
+**Problem 3940 checkpoint (2026-07-30):** Limit Occurrences in Sorted Array
+was Accepted as exact Python submission `2087403224` using the native entry
+point `Solution.limitOccurrences`. Its modular Reference preserves sorted
+non-decreasing input, relative-order retention, the distinction between “at
+most `k`” and the mandatory “exactly `k` when available” Note, both complete
+explained examples, all four constraints, the in-place follow-up, and public
+content hash
+`64f4d250d2a8251bd11c430a2cee196c26b1866a701e17c131e7deea9a6bc5b9`.
+The source has no images or tables.
+
+The accepted method compacts the list with a write index. A value is retained
+when fewer than `k` values have been written or when it differs from the value
+already retained exactly `k` positions earlier. Sortedness makes this one
+comparison equivalent to counting the current run. The implementation then
+deletes the unused suffix and returns the resized input, taking $O(n)$ time
+and $O(1)$ auxiliary space. The exact Accepted source matched an independent
+group-count oracle on 3,172 exhaustive and boundary checks plus 50,000
+deterministic randomized legal arrays.
+
+The app real-test route passes all 15 ordinary cases and three legal benchmark
+tiers with $n=20/50/100$. Across three calibration rounds, the packaged source
+stayed between `+0.01` and `+0.03` extra growth with a `1.02x` to `1.04x`
+largest-tier ratio. An independently structured fixed-frequency-table
+$O(n)$/$O(1)$ implementation passed at `+0.07` to `+0.10` and `1.19x` to
+`1.22x`. A correct $O(n^2)$ retained-prefix counter returned every ordinary
+and benchmark answer but failed only scaling at `+1.20` to `+1.24` and
+`12.60x` to `12.97x` on the largest tier.
+
+Source fidelity through 3940 is now 655 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,940 manually complete packages and 65
+needing authoring; the migration audit reports 3,657 locally complete and
+remotely verified packages, 3,643 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warning classes. Targeted Ruff, the
+production web build, the nine-diagram Mermaid corpus parser, dataset and
+source-fidelity audits, and `git diff --check` pass. The authoritative next
+verified-solution package is frontend ID 3941, Password Strength.
+
+Continue with `dsa/leetcode/3941_password-strength`, a public Medium
+hash-table/string problem with internal question ID `4313`. Each distinct
+lowercase letter contributes one point, each distinct uppercase letter two,
+each distinct digit three, and each distinct character from `"!@#$"` five;
+repeated appearances of the same character contribute nothing further. Return
+the total strength. The authenticated Python interface is
+`Solution.passwordStrength(self, password: str) -> int`; the public content
+hash is
+`d28a4d3a755944a2523b1506eb82f4fdd60c4cf22db85138e5446a3e984d0931`.
+
+The source has two explained examples and no images or tables. Example 1 uses
+`password = "aA1!"` and returns `11` from `1 + 2 + 3 + 5`. Example 2 uses
+`password = "bbB11#"` and also returns `11`; only distinct characters `b`,
+`B`, `1`, and `#` contribute. The constraints are
+$1\le\lvert\texttt{password}\rvert\le10^5$ and that every character is an
+English lowercase or uppercase letter, a digit, or one of `"!@#$"`. Preserve
+all four scoring categories and the “at most once per distinct character”
+rule exactly.
+
+**Problem 3939 checkpoint (2026-07-30):** Count Non Adjacent Subsets in a
+Rooted Tree was Accepted as exact Python submission `2087380027` using the
+native entry point `Solution.countValidSubsets`. Its modular Reference
+preserves the rooted-tree indexing rules, the nonempty and non-adjacent subset
+conditions, modular-sum requirement, both complete explanations, all seven
+constraints, and public content hash
+`45c4bc3962c5d2e0cda04cbe6e730c48cca3b1953ab1f03a11f8a7392ed12008`.
+Both source tree images are represented independently as compact rectangular
+Mermaid diagrams, keeping node labels and parent-child relationships readable
+without the oversized circular-node styling corrected in problem 3924.
+
+The accepted method maintains selected and unselected count arrays indexed by
+sum residue for every subtree. Processing labels in descending order is a
+valid postorder because every parent index is smaller than its child index;
+each completed child distribution can therefore be merged directly into its
+parent. A selected parent combines only with an unselected child, while an
+unselected parent may combine with either child state. Circular convolution
+gives $O(NK^2)$ time and $O(NK)$ auxiliary space. The exact Accepted source
+matched independent brute subset enumeration on 133,844 legal trees. It also
+completed legal maximum-work chain, star, and balanced trees at `0.056`,
+`0.046`, and `0.137` seconds, respectively.
+
+The app real-test route passes all 15 ordinary cases and three benchmark tiers
+with size $S=NK=4/8/16$. Across three calibration rounds, the packaged source
+stayed between `+0.01` and `+0.05` extra growth with a `0.99x` to `1.03x`
+largest-tier ratio. An independently structured dictionary DP also passed. A
+correct subset-enumeration implementation returned every ordinary and
+benchmark answer but failed only scaling at `+4.20` to `+4.30` extra growth
+and `160.88x` to `169.15x` on the largest tier.
+
+Source fidelity through 3939 is now 654 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,939 manually complete packages and 66
+needing authoring; the migration audit reports 3,656 locally complete and
+remotely verified packages, 3,642 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warning classes. Targeted Ruff, the
+production web build, the nine-diagram Mermaid corpus parser, dataset and
+source-fidelity audits, and the package-level runtime checks pass. The
+authoritative next verified-solution package is frontend ID 3940, Limit
+Occurrences in Sorted Array.
+
+Continue with
+`dsa/leetcode/3940_limit-occurrences-in-sorted-array`, a public Easy
+array/two-pointers problem with internal question ID `4312`. Given a sorted
+integer array and positive integer `k`, return an order-preserving array in
+which every distinct value appears at most `k` times; a value occurring at
+least `k` times in the input must appear exactly `k` times in the result. The
+authenticated Python interface is
+`Solution.limitOccurrences(self, nums: list[int], k: int) -> list[int]`; the
+public content hash is
+`64f4d250d2a8251bd11c430a2cee196c26b1866a701e17c131e7deea9a6bc5b9`.
+
+The source has two explained examples and no images or tables. Example 1 uses
+`nums = [1,1,1,2,2,3], k = 2` and returns `[1,1,2,2,3]`, preserving two
+copies each of `1` and `2` and the sole `3`. Example 2 uses
+`nums = [1,2,3], k = 1` and returns the unchanged array because every value is
+already distinct. Preserve the note that any valid returned array is accepted.
+The constraints are $1\le\lvert\texttt{nums}\rvert\le100$,
+$1\le\texttt{nums[i]}\le100$, `nums` is sorted in non-decreasing order, and
+$1\le k\le\lvert\texttt{nums}\rvert$. Preserve the follow-up asking for an
+in-place $O(1)$-extra-space solution, excluding the returned output or the
+space used to resize `nums`.
+
+**Problem 3938 checkpoint (2026-07-30):** Maximum Path Intersection Sum in a
+Grid was Accepted as exact Python submission `2087353018` using the native
+entry point `Solution.maxScore`. Its modular Reference preserves both path
+directions, the definition and one-time scoring of shared cells, both complete
+explained route pairs, all five constraints, and public content hash
+`8da2541c97f87fb28ff437b69752e8273de3d267eaa9c1f09bc7ec0f041b45fd`.
+The two source path images are independently represented as coordinate-stable
+Markdown tables; this keeps the matrix geometry and every route membership
+readable without depending on an automatic graph layout.
+
+The accepted method proves that every intersection is either a contiguous row
+segment, a contiguous column segment, or a strictly interior singleton. It
+uses a modified Kadane recurrence for segments of length at least two across
+every row and column, then checks interior cells separately. This takes
+$O(MN)$ time and $O(1)$ auxiliary space. The exact Accepted source matched
+brute path-pair enumeration on 44,888 exhaustive and deterministic randomized
+grids, then passed legal `500 x 1000`, `1000 x 500`, and `2 x 1000` stress
+grids.
+
+The app real-test route passes all 16 ordinary cases and three benchmark tiers
+with area $A=256/1024/4000`. The packaged source passed at `53.0 ms`, and an
+independently structured linear prefix-minimum scan passed at `42.9 ms`. A
+correct $O(MN(M+N))$ prefix-sum segment enumeration returned every ordinary
+and benchmark answer but failed only runtime at `175.3 ms` against a
+`75.5 ms` limit.
+
+Source fidelity through 3938 is now 653 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,938 manually complete packages and 67
+needing authoring; the migration audit reports 3,655 locally complete and
+remotely verified packages, 3,641 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The focused docs, templates, cases, and challenge
+route suite passed all 177 tests with only the two existing warning classes.
+The dataset checker, source-fidelity audits, production web build, Mermaid
+corpus parser, and `git diff --check` also pass. The authoritative next
+verified-solution package is frontend ID 3939, Count Non Adjacent Subsets in a
+Rooted Tree.
+
+Continue with
+`dsa/leetcode/3939_count-non-adjacent-subsets-in-a-rooted-tree`, a public Hard
+array/dynamic-programming/tree/depth-first-search problem with internal
+question ID `3977`. Count nonempty node subsets whose value sum is divisible
+by `k` and that contain no parent-child pair, returning the result modulo
+$10^9+7$. The authenticated Python interface is
+`Solution.countValidSubsets(self, parent: list[int], nums: list[int], k: int)
+-> int`; the public content hash is
+`45c4bc3962c5d2e0cda04cbe6e730c48cca3b1953ab1f03a11f8a7392ed12008`.
+
+The source has two explained examples and two tree images. Example 1 uses
+`parent = [-1,0,1], nums = [1,2,3], k = 3` and returns `1`; only subset `{2}`
+is valid. Example 2 uses `parent = [-1,0,0,0], nums = [2,1,2,1], k = 3` and
+returns `2`; the valid subsets are `{1,2}` and `{2,3}`, each summing to three,
+and the explanation explicitly states that no other subset satisfies both
+conditions. Preserve the two trees with compact, readable node labels and do
+not repeat the oversized-node styling corrected in problem 3924.
+
+The source constraints are
+`n == parent.length == nums.length`, $1\le n\le1000$, `parent[0] == -1`,
+$0\le\texttt{parent[i]}<i$ for $1\le i<n$,
+$1\le\texttt{nums[i]}\le10^9$, $1\le k\le100$, and the guarantee that
+`parent` describes a valid rooted tree. A natural starting point is a
+postorder tree DP with selected/unselected states indexed by sum residue,
+merging child distributions while excluding selected parent-child pairs;
+verify the exact complexity and implementation against an independent subset
+oracle before submission.
+
+**Problem 3937 checkpoint (2026-07-30):** Minimum Operations to Make Array
+Modulo Alternating I was Accepted as exact Python submission `2087296321`
+using the native entry point `Solution.minOperations`. Its modular Reference
+preserves unit increases and decreases, circular residue distance, distinct
+even- and odd-index target residues, both explained examples, all three
+constraints, and public content hash
+`eb9710bf7df0806c078c75d558ad401340ee3411cb591967d16f25ed5f28cefe`.
+
+The accepted method accumulates the total circular adjustment cost for every
+target residue separately for the even and odd positions. It retains the
+cheapest and second-cheapest odd targets, then combines each even target with
+the cheapest odd target having a different residue. This takes $O(NK)$ time
+and $O(K)$ auxiliary space. The exact source matched 109,694 independent
+oracle comparisons: exhaustive small arrays, randomized BFS-distance checks,
+and maximum-length/high-$k$ cases. Another 1,000 maximum-work calls completed
+in 1.302 seconds.
+
+The app real-test route passes all 15 ordinary cases and three benchmark tiers
+with size $S=NK=64/160/400$. Across three calibration rounds, the packaged
+source stayed between `-0.02` and `+0.01` extra growth with a `0.96x` to
+`1.03x` largest-tier ratio. An independently structured $O(NK)$ prefix/suffix
+method also passed. A correct $O(NK+K^2)$ residue-pair enumeration returned
+every ordinary and benchmark answer but failed only scaling at `+0.95` to
+`+1.02` and `13.43x` to `14.40x` on the largest tier.
+
+Source fidelity through 3937 is now 652 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,937 manually complete packages and 68
+needing authoring; the migration audit reports 3,654 locally complete and
+remotely verified packages, 3,640 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests and 24,030 subtests with only the two existing warnings. Targeted Ruff
+passed. The authoritative next verified-solution package is frontend ID 3938,
+Maximum Path Intersection Sum in a Grid.
+
+Continue with
+`dsa/leetcode/3938_maximum-path-intersection-sum-in-a-grid`, a public Medium
+array/dynamic-programming/matrix/prefix-sum problem with internal question ID
+`3901`. Player 1 travels from `(0, 0)` to `(m - 1, n - 1)` using only right
+and down moves; Player 2 travels from `(m - 1, 0)` to `(0, n - 1)` using only
+right and up moves. Return the maximum sum of cells included in both selected
+paths. The source hints establish that shared cells form one contiguous row or
+column segment, reduce segments of length at least two to a modified Kadane
+scan across every row and column, and require a separate internal-cell check
+for a one-cell intersection.
+
+The source has two explained examples and two path diagrams. Example 1 returns
+`4` for
+`[[1,2,0,-3],[1,-2,1,0],[-4,2,-1,3],[3,-3,3,-2],[-1,-5,0,1]]`:
+the displayed paths share `(2, 1)`, `(2, 2)`, and `(2, 3)`, whose values sum
+to `2 + (-1) + 3 = 4`. Example 2 returns `3` for
+`[[4,-2,-3],[-1,-3,-1],[-4,2,-1]]`; its displayed paths share `(0, 0)` and
+`(1, 0)`, totaling `4 + (-1) = 3`. Preserve both complete route sequences and
+recreate both source visuals independently, using the shared Mermaid renderer
+where it remains clear. The constraints are `m == grid.length`,
+`n == grid[i].length`, $2\le m,n\le1000$, $4\le mn\le5\cdot10^5$, and
+$-100\le\texttt{grid[i][j]}\le100$. The authenticated Python interface is
+`Solution.maxScore(self, grid: list[list[int]]) -> int`; the public content
+hash is `8da2541c97f87fb28ff437b69752e8273de3d267eaa9c1f09bc7ec0f041b45fd`.
+
+**Markdown graph rendering checkpoint (2026-07-30):** Reference, Guided
+Example, and PDF Markdown now share a lazy Mermaid 11.16 renderer with strict
+security, responsive SVG sizing, accessible failure fallback, and an explicit
+PDF readiness gate. Problem 3924's three misaligned text graphs are now three
+auto-laid-out weighted Mermaid graphs with accessible titles and descriptions;
+the four existing diagrams in 3898 and 3902 received the same accessibility
+metadata. VS Code 1.121+ preview instructions and the authoring contract are
+documented in `README.md`, `AGENTS.md`, and `GUIDED_EXAMPLES.md`.
+
+`npm.cmd run test:mermaid --prefix web` validates all seven accessible Mermaid
+blocks across the 10,745 package Markdown files. The production web build,
+three direct source-fidelity checks, and the 22-test dynamic-doc/fidelity suite
+pass. A patched DOMPurify override keeps both Mermaid and Monaco on 3.4.12;
+the production npm audit reports zero vulnerabilities. The in-app browser
+preview surface was unavailable during this checkpoint, so do not claim a live
+responsive screenshot was captured; the user confirmed that the same diagrams
+render in the installed VS Code 1.130 Markdown preview.
+
+The problem 3924 graphs now use compact rectangular nodes instead of Mermaid's
+oversized circular shape. Edge weights render as bold 17-pixel dark text on an
+opaque white, slate-bordered label background, with the same source-level
+theme CSS available to VS Code preview and a renderer-level fallback in the
+app. This directly addresses the unreadable weights on dark preview canvases.
+
+**Problem 3936 checkpoint (2026-07-30):** Minimum Swaps to Move Zeros to End
+was Accepted as exact Python submission `2087267733` using the native entry
+point `Solution.minimumSwaps`. Its modular Reference preserves the ability to
+swap any two distinct indices in one operation, the requirement that every
+zero occupy the final suffix, the absence of a nonzero-ordering requirement,
+all three explained examples with their exact intermediate arrays and index
+pairs, both constraints, and public content hash
+`e21d83f9c141617ad1469a47fc2fa0caf450b1f3bc1bff1fd5c328ef6d0986f9`.
+
+If the array contains $Z$ zeroes, its last $Z$ positions are exactly the
+positions that must become zero. The accepted method counts the nonzero values
+currently in that suffix. Each is forced to leave, giving a lower bound of one
+swap per mismatch; the prefix contains the same number of misplaced zeroes,
+so pairing those positions achieves the bound. The implementation therefore
+takes $O(N)$ time and $O(1)$ auxiliary space without mutating the array.
+
+The exact final source matched independently computed shortest-path swap
+distances for every 2,046 binary array state through length ten, exhaustive
+zero-versus-two-nonzero checks for all 265,719 ternary arrays through length
+eleven, and 100,000 deterministic randomized legal arrays: 367,765 checks in
+total. Another 100,000 maximum-length calls completed in 0.248 seconds. The
+app real-test route passes all 15 ordinary cases and explicitly reports the
+`bounded_domain` certificate, with no fabricated runtime measurement. The
+certificate records the legal maximum $N=100$, a direct bound of at most
+$2N$ element inspections, the exhaustive/property evidence, and both
+maximum-length authored boundaries.
+
+Source fidelity through 3936 is now 651 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,936 manually complete packages and 69
+needing authoring; the migration audit reports 3,653 locally complete and
+remotely verified packages, 3,639 completed scaling benchmarks, 297 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests and 24,030 subtests with only the two existing warnings. Targeted Ruff
+passed. The authoritative next verified-solution package is frontend ID 3937,
+Minimum Operations to Make Array Modulo Alternating I.
+
+Continue with
+`dsa/leetcode/3937_minimum-operations-to-make-array-modulo-alternating-i`, a
+public Medium array/enumeration problem with internal question ID `4300`. One
+operation increases or decreases one array element by one. Choose distinct
+residues $x$ and $y$ in $[0,k)$ so every even-indexed value is congruent to
+$x$ modulo $k$ and every odd-indexed value is congruent to $y$ modulo $k$;
+return the minimum total number of unit changes.
+
+The source has two explained examples. For
+`nums = [1,4,2,8], k = 3`, choosing `x = 1` and `y = 2`, incrementing the
+value at index `1`, and decrementing the value at index `2` produces
+`[1,5,1,8]` in two operations. For `nums = [1,1,1], k = 3`, incrementing the
+middle value produces `[1,2,1]` with residues one and two in one operation.
+The constraints are $1\le\texttt{nums.length}\le100$,
+$1\le\texttt{nums[i]}\le10^9$, and $2\le k\le100$. The authenticated Python
+interface is `Solution.minOperations(self, nums: list[int], k: int) -> int`;
+the source has zero images, zero tables, and public content hash
+`eb9710bf7df0806c078c75d558ad401340ee3411cb591967d16f25ed5f28cefe`.
+The source hints enumerate distinct residue pairs and, for each value, compare
+the cost of increasing versus decreasing to the target residue. A likely
+starting point is to precompute the even- and odd-index cost for every residue,
+then minimize their sum over distinct choices. The local package still
+contains only frozen metadata, the legacy placeholder document, and
+placeholder Optimal bounds; rerun the live checker and migration audit before
+editing.
+
+**Problem 3935 checkpoint (2026-07-30):** Power Update After K-th Largest
+Insertion I was Accepted as exact Python submission `2087241030` using the
+native entry point `Solution.powerUpdate`. Its modular Reference preserves
+insertion before selection, persistent multiset state, duplicate
+multiplicities, `k_i`th-largest semantics, sequential modular updates, the
+strict consecutive-rank difference below ten, all seven constraints, and every
+cell and terminal fact in both seven-column source tables. The authenticated
+Premium content hash is
+`06fe41e0e51a7ee4a4751b0fd845c8671673110b3f1f8ebf9cdd9259c1316767`.
+
+The accepted method keeps exactly the largest current `k` values in a min-heap
+and every remaining value in a max-heap. A new value enters the side selected
+by the current heap boundary, after which minimum-top or maximum-remaining
+values move until the top heap has the requested size. Its minimum is then the
+exact exponent. The unrestricted first rank can move $O(N)$ elements, while
+each later insertion and rank change moves only $O(1)$ elements because
+$\lvert k_i-k_{i-1}\rvert<10$. Including fast modular exponentiation, the
+method takes $O((N+Q)\log(N+Q)+Q\log V)$ time and $O(N+Q)$ space.
+
+The exact source matched an independent direct sorted-multiset oracle in
+491,686 exhaustive and randomized legal suites, and a maximum
+$N=Q=20{,}000$ stress case completed in 0.079 seconds. The app real-test route
+passes all 15 ordinary cases and three equal-insertion benchmark tiers at
+$Q=256/1024/4096$, with the packaged source at `+0.01` extra growth and a
+`1.05x` largest-tier ratio. Across three calibration rounds, an independently
+structured heap partition passed at `-0.03` to `-0.02` and `0.69x` to `0.71x`
+on the largest tier. A correct implementation that re-sorts the complete
+multiset after every insertion returned every ordinary and benchmark answer
+but failed only scaling at `+0.47` to `+0.52` and `1.42x` to `1.57x` on the
+largest tier. Source fidelity through 3935 is now 650 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,935 manually
+complete packages and 70 needing authoring; the migration audit reports 3,652
+locally complete and remotely verified packages, 3,639 completed scaling
+benchmarks, 296 certified packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests and 24,030 subtests with only the two existing warnings. Targeted Ruff
+passed. The authoritative next verified-solution package is frontend ID 3936,
+Minimum Swaps to Move Zeros to End.
+
+Continue with `dsa/leetcode/3936_minimum-swaps-to-move-zeros-to-end`, a public
+Easy array/two-pointers problem with internal question ID `4316`. One operation
+may swap the values at any two distinct indices, rather than only adjacent
+indices. Return the minimum operation count needed to place every zero in the
+suffix of `nums`; the relative order of nonzero values is not constrained.
+
+The source has three explained examples. `[0,1,0,3,12] -> 2`: swap indices
+`0` and `3` to obtain `[3,1,0,0,12]`, then indices `2` and `4` to obtain
+`[3,1,12,0,0]`. `[0,1,0,2] -> 1`: swapping indices `0` and `3` produces
+`[2,1,0,0]`. `[1,2,0] -> 0` already has its zero at the end. The constraints
+are $1\le\texttt{nums.length}\le100$ and
+$0\le\texttt{nums[i]}\le100$. The authenticated Python interface is
+`Solution.minimumSwaps(self, nums: list[int]) -> int`; the source has zero
+images, zero tables, and public content hash
+`e21d83f9c141617ad1469a47fc2fa0caf450b1f3bc1bff1fd5c328ef6d0986f9`.
+The hints reduce values to zero-versus-nonzero and observe that every nonzero
+occupying a final position reserved for zero must be swapped out. The local
+package still contains only metadata, the legacy placeholder document, and
+placeholder Optimal bounds; it has no cases, complexity evidence, Reference
+sections, app/native sources, approach, or submission manifest. Rerun the live
+checker and migration audit before editing.
+
+**Problem 3934 checkpoint (2026-07-30):** Smallest Unique Subarray was Accepted
+as exact Python submission `2087225858` using the native entry point
+`Solution.smallestUniqueSubarray`. Its modular Reference preserves distinct
+subarray occurrences by start position, equality by length and corresponding
+values, overlapping duplicates, the minimum-length objective, existence of the
+full-array fallback, all three explained examples and their complete frequency
+facts, both constraints, and public content hash
+`b2d3bd5e8d691640d499db168bef36031172fc77f65c3c500acd301c327d8de2`.
+
+The final Accepted method improves on the source-hinted rolling-hash binary
+search by using a suffix automaton. Each state represents a complete interval
+of subarray lengths sharing one end-position set, so after terminal occurrence
+counts propagate through suffix links, a state with count one contributes the
+unique length `maxlen(link) + 1`. Taking the minimum over those states is exact
+and collision-free. The automaton, counting sort by maximum length, occurrence
+propagation, and final scan take expected $O(n)$ time with hashed transitions
+and $O(n)$ auxiliary space.
+
+The exact linear source matched an independent tuple-frequency oracle in
+118,572 exhaustive and randomized comparisons. Legal 100,000-element all-
+equal and all-distinct stress cases both completed in about 0.07 seconds. The
+app real-test route passes all 15 ordinary cases and all three all-equal
+benchmark tiers, with the packaged source at `-0.01` extra growth and a
+`1.00x` largest-tier ratio. The retained benchmark uses
+$n=32/96/256$. Across three calibration rounds, an independently structured
+linear automaton passed at `-0.04` to `-0.01` extra growth and `0.53x` to
+`0.54x` on the largest tier. A correct pairwise-LCP dynamic program returned
+every ordinary and benchmark answer but failed only scaling at `+1.00` to
+`+1.01` and `13.63x` to `14.17x` on the largest tier. Source fidelity through
+3934 is now 649 verified, 3,285 unverified, and zero invalid. The dataset
+checker reports 3,934 manually complete packages and 71 needing authoring; the
+migration audit reports 3,651 locally complete and remotely verified packages,
+3,638 completed scaling benchmarks, 296 certified packages, and zero blockers.
+The expanded focused package/docs/template/fidelity/variant/submission/judge
+suite passed all 198 tests and 24,030 subtests with only the two existing
+warnings. Targeted Ruff passed. The authoritative next verified-solution
+package is frontend ID 3935, Power Update After K-th Largest Insertion I.
+
+**Problem 3933 checkpoint (2026-07-30):** Largest Local Values in a Matrix II
+was Accepted as exact Python submission `2087191141` using the native entry
+point `Solution.countLocalMaximums`. Its modular Reference preserves the
+nonzero-candidate rule, the value-sized square neighborhood, clipping at the
+matrix boundary, exclusion of positions whose row and column distances both
+equal the candidate value, strict-greater disqualification, valid ties, all
+four explained examples, all three constraints, and public content hash
+`679acdf80b1b972a4a90799a73358ad8b0a42e9515be26e6e4081e08c02459f1`.
+The source image's complete distance-two neighborhood is represented by an
+independent accessible seven-by-seven table that distinguishes considered
+cells, the four excluded corners, the center, and cells outside the square.
+
+The accepted method groups positive coordinates by value and sweeps the value
+domain downward. Before processing value `x`, a binary grid marks exactly the
+positions whose matrix value is greater than `x`; one two-dimensional prefix
+sum then counts those positions in every clamped `x`-radius square. Subtracting
+any in-bounds exact-distance corner that is greater than `x` leaves precisely
+the source-defined neighborhood. A value bucket is marked only after all of
+its queries, so ties never disqualify each other. With $V=201$, the method
+takes $O(VNM)$ time and $O(NM+V)$ auxiliary space.
+
+The exact candidate matched an independent direct-neighborhood oracle in
+58,651 exhaustive and randomized comparisons. The app real-test route passes
+all 15 ordinary cases and all three all-equal benchmark tiers, with the
+packaged source at `+0.00` extra growth and a `1.01x` largest-tier ratio. The
+retained benchmark defines size as cell count $A$ and uses square matrices of
+side length 4, 8, and 16. Across three calibration rounds, an independently
+structured threshold-prefix implementation passed at `-0.03` to `-0.01`
+extra growth and `0.65x` to `0.67x` on the largest tier. A correct direct
+neighborhood scan returned every expected answer but failed only scaling at
+`+1.25` to `+1.26` and `10.06x` to `10.51x` on the largest tier. Source
+fidelity through 3933 is now 648 verified, 3,285 unverified, and zero invalid.
+The dataset checker reports 3,933 manually complete packages and 72 needing
+authoring; the migration audit reports 3,650 locally complete and remotely
+verified packages, 3,637 completed scaling benchmarks, 296 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warnings; the algorithm-spec regression also
+passed 7 tests and 24,030 subtests. The authoritative next verified-solution
+package is frontend ID 3934, Smallest Unique Subarray.
+
+**Problem 3932 checkpoint (2026-07-30):** Count K-th Roots in a Range was
+Accepted as exact Python submission `2087173963` using the native entry point
+`Solution.countKthRoots`. Its modular Reference preserves the inclusive range,
+the integer-witness definition $y=x^k$, distinct powered-value counting, both
+explained examples and all five listed powers, both constraints, zero as
+$0^k$, the `k = 1` boundary, and public content hash
+`d520caaafbc123a39207ce13cb8306ff59a8b7b45a028b28668d640321023af2`.
+For $k\ge2$, the accepted method writes the answer as the difference of two
+prefix counts and finds each prefix's greatest feasible nonnegative base by
+exact-integer binary search. The first infeasible base is the number of powers
+in that prefix because $x\mapsto x^k$ is strictly increasing for $x\ge0$.
+The special `k = 1` branch returns the interval length directly. With
+$R=\max(2,r+1)$ and $K=\max(2,k)$, the method takes
+$O(\log R\log K)$ arithmetic operations and $O(1)$ auxiliary space.
+
+The exact candidate matched an independent precomputed-power oracle in
+554,517 comparisons: every interval through 300 for exponents one through
+ten, 100,000 deterministic full-domain cases through exponent 30, and focused
+maximum-boundary checks. Both exact and app-local sources pass all 15 ordinary
+cases and all three square-power benchmark outputs. The retained benchmark
+defines size as $B=\lfloor\sqrt r\rfloor$ and uses
+$B=1024/4096/16384$, with `r = B ** 2` and
+`l = (B // 2) ** 2 + 1`. Across three calibration rounds, the packaged binary
+search passed at `-0.02` to `-0.01` extra growth and `0.95x` to `0.99x`; an
+independent `bisect_right` implementation passed at `-0.02` to `-0.01` and
+`0.83x` to `0.85x`. A correct candidate-base enumerator returned every
+ordinary and benchmark answer but failed only scaling at `+0.87` to `+0.90`
+and `66.98x` to `69.31x`. Source fidelity through 3932 is now 647 verified,
+3,285 unverified, and zero invalid. The dataset checker reports 3,932 manually
+complete packages and 73 needing authoring; the migration audit reports 3,649
+locally complete and remotely verified packages, 3,636 completed scaling
+benchmarks, 296 certified packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warnings; the algorithm-spec regression also
+passed 7 tests and 24,030 subtests. Targeted Ruff and `git diff --check` passed.
+The authoritative next verified-solution package is frontend ID 3933, Largest
+Local Values in a Matrix II.
+
+**Problem 3931 checkpoint (2026-07-30):** Check Adjacent Digit Differences was
+Accepted as exact Python submission `2087159038` using the native entry point
+`Solution.isAdjacentDiffAtMostTwo`. Its modular Reference preserves the
+digit-only input, the universal condition over every consecutive pair, the
+inclusive difference limit of two, the source definition of absolute
+difference, both explained examples with all four arithmetic facts, both
+constraints, and public content hash
+`b45e4b8ebf76fa22ab53e8ee0a43817b4cc61195d4899c028f7a24728cd4df12`.
+The accepted and app-local implementations scan consecutive character pairs,
+use the contiguous decimal character codes to measure their numeric
+difference, reject the first value above two, and otherwise accept after the
+last pair. They take $O(N)$ worst-case time and $O(1)$ auxiliary space.
+
+The package uses a strict `asymptotic_optimality` certificate: on an all-equal
+valid string, changing any uninspected digit to a distant value can reverse the
+answer, establishing an $\Omega(N)$ input-reading lower bound that matches the
+single scan. A dedicated regression compared both exact and app-local sources
+with an independent numeric oracle for all 111,100 digit strings of lengths
+two through five. Both sources also pass all 15 authored cases, including the
+inclusive threshold, leading zeroes, direction changes, early and late
+violations, and three maximum-length inputs; the real-test route reports the
+certificate method explicitly and passes all eight visible and seven hidden
+cases without fake runtime evidence. Source fidelity through 3931 is now 646
+verified, 3,285 unverified, and zero invalid. The dataset checker reports 3,931
+manually complete packages and 74 needing authoring; the migration audit
+reports 3,648 locally complete and remotely verified packages, 3,635 completed
+scaling benchmarks, 296 certified packages, and zero blockers. The expanded
+package/docs/template/fidelity/variant/submission/judge suite passed all 198
+tests with only the two existing warnings; the algorithm-spec regression also
+passed 7 tests and 24,030 subtests. Targeted Ruff and `git diff --check` passed.
+The authoritative next verified-solution package is frontend ID 3932, Count
+K-th Roots in a Range.
+
+**Problem 3930 checkpoint (2026-07-30):** Power Update After K-th Largest
+Insertion II was Accepted as exact Python submission `2087143208` using the
+native entry point `Solution.powerUpdate`. Its modular Reference preserves the
+initial array and state, ordered `[val_i, k_i]` queries, insertion before rank
+selection, duplicate multiplicities, `k_i`th-largest semantics, sequential
+state updates $p\gets p^x\bmod(10^9+7)$, the output after every query, all
+four row computations and terminal answer facts in both seven-column source
+tables, all six constraints, and authenticated Premium content hash
+`a0af38ae8506ae788f50b8fb84092501a168922f6a856598f23ed184c9d2056e`.
+The accepted method coordinate-compresses every initial and future inserted
+value, stores current multiplicities in a Fenwick tree, converts the requested
+largest rank to ascending rank $L-k_i+1$, selects that order statistic by
+Fenwick binary lifting, and applies fast modular exponentiation. For $N$
+initial values, $Q$ queries, and maximum inserted value $V$, it takes
+$O((N+Q)\log(N+Q)+Q\log V)$ time and $O(N+Q)$ space. It matched a direct
+sorting oracle in 331,263 exhaustive small-domain comparisons plus 25,000
+deterministic random cases, and a legal $N=Q=20{,}000$ workload completed
+locally in 0.114 seconds. Both exact and app-local sources pass all 15 ordinary
+cases and the three pseudo-random rank benchmark tiers at
+$Q=256/1024/4096$. The original $Q=64/256/1024$ draft was expanded because
+Python's C-level sort produced only `+0.11` relative growth and incorrectly
+passed. Across three rounds on the retained tiers, the packaged source passed
+at `-0.01` to `+0.01` extra growth and `0.991x` to `1.012x`; an independent
+segment-tree implementation passed at `+0.01` to `+0.02` and `0.629x` to
+`0.828x`. A correct implementation that re-sorts the full unsorted insertion
+history after every query returned every ordinary and benchmark answer but
+failed only scaling at `+0.66` to `+0.76` and `0.645x` to `0.690x`. Source
+fidelity through 3930 is now 645 verified, 3,285 unverified, and zero invalid.
+The dataset checker reports 3,930 manually complete packages and 75 needing
+authoring; the migration audit reports 3,647 locally complete and remotely
+verified packages, 3,635 completed scaling benchmarks, 295 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 184
+tests with only the two existing warnings; the algorithm-spec regression also
+passed 7 tests and 24,030 subtests. Targeted Ruff passed. The authoritative
+next verified-solution package is frontend ID 3931, Check Adjacent Digit
+Differences.
+
+**Problem 3929 checkpoint (2026-07-30):** Minimum Partition Score II was
+Accepted as exact Python submission `2087123955` using the native entry point
+`Solution.minPartitionScore`. Its modular Reference preserves the requirement
+to partition the positive array in order into exactly `k` nonempty contiguous
+subarrays, the triangular value $s(s+1)/2$ for a subarray sum $s$, the total-
+score minimization objective, every arithmetic step and optimality statement
+in all three explained examples, all three constraints, and authenticated
+Premium content hash
+`36591284b2f57f04e50dbe33272f549a0148f3ccd024d6d67197639343aaeb21`.
+After doubling scores, a fixed per-part penalty turns the recurrence into
+minimum-line queries over strictly increasing prefix sums; one array-backed
+monotone convex hull solves a penalty run in $O(N)$ time. The Monge segment
+cost makes exact-group optima discretely convex, so binary-searching the
+largest integer penalty whose tie-broken optimum uses at least `k` groups
+recovers the exact answer as $(F_p(N)-pk)/2$. The accepted method takes
+$O(N\log S)$ time and $O(N)$ space for
+$S=\sum_{x\in\texttt{nums}}x$. It matched the direct exact-group dynamic-
+programming oracle in 200,004 enumerated small-domain comparisons, including
+every array through length seven over values one through four, plus 25,000
+deterministic random cases through length 30. Three legal maximum-length
+patterns at $N=50{,}000$ completed locally in 1.36 to 2.46 seconds. Both exact
+and app-local sources pass all 15 ordinary cases and the three unit-array
+benchmark tiers at $N=16/64/256$ with `k = N / 2`. Across three calibration
+rounds, the packaged source passed at `-0.01` to `+0.00` extra growth and
+`0.998x` to `1.001x`; an independent deque-hull implementation passed at
+approximately zero extra growth and `0.599x` to `0.636x`. The correct
+$O(KN)$ exact-group hull DP returned every ordinary and benchmark answer but
+failed only scaling at `+0.77` to `+0.79` and `5.656x` to `5.755x`. Source
+fidelity through 3929 is now 644 verified, 3,285 unverified, and zero invalid.
+The dataset checker reports 3,929 manually complete packages and 76 needing
+authoring; the migration audit reports 3,646 locally complete and remotely
+verified packages, 3,634 completed scaling benchmarks, 295 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 184
+tests with only the two existing warnings; the algorithm-spec regression also
+passed 7 tests and 24,030 subtests. Targeted Ruff passed. The authoritative
+next verified-solution package is frontend ID 3930, Power Update After K-th
+Largest Insertion II.
+
+Continue with
+`dsa/leetcode/3930_power-update-after-k-th-largest-insertion-ii`, a Premium
+Hard array/hash-table/math/segment-tree/sorting problem with internal question
+ID `3978`. Start with `nums` and `p`. For query `[val_i, k_i]`, insert `val_i`,
+find the `k_i`th largest value $x$ in the enlarged multiset, update
+`p = p^x mod (10^9 + 7)`, and append that new `p` to the answer. The first
+authenticated example is
+`nums = [2], p = 4, queries = [[3,1],[1,2]] -> [64,4096]`: its two source
+table rows select exponents `3` and `2` after the respective insertions. The
+second is
+`nums = [7,5], p = 6, queries = [[4,3],[7,2]] -> [1296,220296870]`, selecting
+exponents `4` and `7`. Preserve both seven-column explanation tables. The six
+constraints are $1\le\texttt{nums.length}\le2\cdot10^4$,
+$1\le\texttt{nums[i]}\le10^9$, $1\le p\le10^9$,
+$1\le\texttt{queries.length}\le2\cdot10^4$,
+$1\le\texttt{val_i}\le10^9$, and $1\le k_i\le n+i+1$, where $n$ is the
+initial length. The authenticated Python interface is
+`Solution.powerUpdate(self, nums, p, queries) -> list[int]`; the statement has
+zero images, two tables, and Premium content hash
+`a0af38ae8506ae788f50b8fb84092501a168922f6a856598f23ed184c9d2056e`.
+Its local package still contains only metadata, the legacy placeholder
+document, and placeholder Optimal bounds; it has no cases, complexity
+evidence, Reference sections, app/native sources, approach, or submission
+manifest.
+
+**Problem 3928 checkpoint (2026-07-30):** Minimum Cost to Buy Apples II was
+Accepted as exact Python submission `2087097198` using the native entry point
+`Solution.minCost`. Its modular Reference preserves the shop-price model, each
+bidirectional road's empty cost and loaded `cost * tax` charge, local buying,
+an arbitrary purchase shop, any number of roads on each leg, permission for the
+empty and loaded routes to differ, ordered per-start answers, every arithmetic
+fact and comparison in the three ten-column explanation tables, the information
+in all three source images through independent text diagrams, all ten
+constraints, and authenticated content hash
+`7c09020edbe74c949b486e71a9f4505a79f06c80a9eccbe2814c50a360b1eac2`.
+For each start `i` and purchase shop `j`, the exact best candidate is
+$d_E(i,j)+\texttt{prices}[j]+d_L(i,j)$, where the two distances use empty and
+loaded road weights independently. The accepted method runs Dijkstra under
+both metrics from every start, then minimizes this formula over `j`, in
+$O(n(n+m)\log n)$ time and $O(n+m)$ auxiliary space. It matched an independent
+Floyd-Warshall oracle on all 59,808 graph/price configurations through four
+shops with every edge absent or assigned one of two metric pairs, plus 5,000
+deterministic random weighted graphs through eight shops. Both exact and app-
+local sources pass all 15 ordinary cases and the three taxed-chain benchmark
+tiers at $n=10/25/50$. Across three calibration rounds, the packaged source
+passed at `-0.03` to `+0.01` excess growth and `0.99x` to `1.01x`; an
+independent two-adjacency-list Dijkstra implementation passed at `-0.03` to
+`-0.02` and `0.68x` to `0.75x`. A correct two-metric Floyd-Warshall
+implementation returned every ordinary and benchmark answer but failed only
+scaling at `+0.89` to `+0.98` and `9.06x` to `9.70x`. Source fidelity through
+3928 is now 643 verified, 3,285 unverified, and zero invalid. The dataset
+checker reports 3,928 manually complete packages and 77 needing authoring; the
+migration audit reports 3,645 locally complete and remotely verified packages,
+3,633 completed scaling benchmarks, 295 certified packages, and zero blockers.
+The expanded focused package/docs/template/fidelity/variant/submission/judge
+suite passed all 184 tests with only the two existing warnings; the algorithm-
+spec regression also passed 7 tests and 24,030 subtests, and targeted Ruff
+passed. The authoritative next verified-solution package is frontend ID 3929,
+Minimum Partition Score II.
+
+Continue with `dsa/leetcode/3929_minimum-partition-score-ii`, a Premium Hard
+array/binary-search/dynamic-programming/prefix-sum problem with internal
+question ID `4191`. Partition the positive array `nums` into exactly `k`
+nonempty contiguous subarrays. A subarray with element sum $s$ has value
+$s(s+1)/2$; minimize the sum of those values. The three authenticated examples
+are `nums = [5,1,2,1], k = 2 -> 25` using `[5]` and `[1,2,1]`,
+`nums = [1,2,3,4], k = 1 -> 55`, and `nums = [1,1,1], k = 3 -> 3`.
+Constraints are $1\le\texttt{nums.length}\le5\cdot10^4$,
+$1\le\texttt{nums[i]}\le10^3$, and
+$1\le k\le\texttt{nums.length}$. The authenticated Python interface is
+`Solution.minPartitionScore(self, nums, k) -> int`, and the Premium statement
+hash is `36591284b2f57f04e50dbe33272f549a0148f3ccd024d6d67197639343aaeb21`.
+Its local package still contains only metadata, the legacy placeholder
+document, and placeholder Optimal bounds; it has no cases, complexity evidence,
+Reference sections, app/native sources, approach, or submission manifest.
+
+**Problem 3927 checkpoint (2026-07-30):** Minimize Array Sum Using Divisible
+Replacements was Accepted as exact Python submission `2087070229` using the
+native entry point `Solution.minArraySum`. Its modular Reference preserves the
+divisibility condition on the current values, copying the donor value into the
+chosen position, permission to perform any number of operations, the minimum-
+sum objective, every replacement and terminal-sum fact in all three explained
+examples, both constraints, and authenticated content hash
+`c132bf5200efcf246f40314e98395831e5c3686c41731ebaaa57d5c1b9f150ee`.
+Every value that can appear was present initially, and a chain of replacements
+can only end at an initially present divisor of the original element. The
+minimum is therefore the sum of each element's smallest present divisor. The
+app adapter sorts the distinct present values and sieves their multiples in
+$O(N\log N)$ time and $O(N)$ space for
+$N=\max(\texttt{nums.length},\max(\texttt{nums}))$; its sparse iteration also
+stays below the ordinary tracer cap when the maximum value is present in a
+short array. It matched explicit reachable-state enumeration on all 3,905
+arrays of lengths one through five over values one through five, an independent
+pairwise-divisor oracle on 5,000 deterministic random arrays, and three maximum-
+value edge cases. Both exact and app-local sources pass all 15 ordinary cases
+and the three dense-domain benchmark tiers at $N=30/120/480$. Across three
+calibration rounds, the packaged source passed at `-0.01` to `-0.00` excess
+growth and `0.98x` to `1.00x`; an independent same-class while-loop sieve
+passed at `+0.03` and `1.37x` to `1.40x`. A correct pairwise-divisor scan
+returned every ordinary and benchmark answer but failed only scaling at
+`+0.90` and `28.16x` to `29.08x`. The original $N=200/800/3200$ benchmark
+draft and dense-array adapter were replaced during calibration because the
+quadratic control and a sparse maximum-value ordinary case respectively hit
+the safety caps; the retained design exercises the same legal dense sieve path
+while keeping all correct controls measurable. Source fidelity through 3927 is
+now 642 verified, 3,285 unverified, and zero invalid. The dataset checker
+reports 3,927 manually complete packages and 78 needing authoring; the migration
+audit reports 3,644 locally complete and remotely verified packages, 3,632
+completed scaling benchmarks, 295 certified packages, and zero blockers. The
+expanded focused package/docs/template/fidelity/variant/submission/judge suite
+passed all 184 tests with only the two existing warnings; the algorithm-spec
+regression also passed 7 tests and 24,030 subtests. Targeted Ruff and
+`git diff --check` passed; the latter emitted only existing line-ending notices.
+The authoritative next verified-solution package is frontend ID 3928, Minimum
+Cost to Buy Apples II.
+
+Continue with `dsa/leetcode/3928_minimum-cost-to-buy-apples-ii`, a Hard
+array/graph/heap/shortest-path problem with internal question ID `3976`. Shop
+`i` sells apples for `prices[i]`; each undirected road `[u,v,cost,tax]` costs
+`cost` while traveling empty and `cost * tax` while carrying apples. Starting
+at each shop, either buy locally or travel empty to some shop, buy there, and
+return carrying apples; the outward and return paths may differ. Return the
+minimum total for every starting shop. The three authenticated examples are
+`n = 2, prices = [8,3], roads = [[0,1,1,2]] -> [6,3]`,
+`n = 3, prices = [9,4,6], roads = [[0,1,1,3],[1,2,4,2]] -> [8,4,6]`, and
+`n = 3, prices = [10,11,1], roads = [[0,2,1,3],[1,2,3,4],[0,1,5,2]] ->
+[5,11,1]`. The source contains one explanatory graph image and one ten-column
+cost table for each example. Constraints are $1\le n\le1000$,
+`prices.length == n`, $1\le\texttt{prices[i]}\le10^9$, at most 2,000 unique
+undirected roads, endpoints in `[0,n-1]` and distinct, and both positive road
+costs through $10^9$ and tax multipliers through 100. The live Python interface
+is `Solution.minCost(self, n, prices, roads) -> List[int]`, and the authenticated
+statement hash is
+`7c09020edbe74c949b486e71a9f4505a79f06c80a9eccbe2814c50a360b1eac2`.
+Its local package still contains only metadata, the legacy placeholder document,
+and placeholder Optimal bounds; it has no cases, complexity evidence,
+Reference sections, app/native sources, approach, or submission manifest.
+
+**Problem 3926 checkpoint (2026-07-30):** Count Valid Word Occurrences was
+Accepted as exact Python submission `2087045226` using the native entry point
+`Solution.countWordOccurrences`. Its modular Reference preserves ordered
+delimiter-free chunk concatenation, joiner-hyphen classification from both
+immediate lowercase neighbors, maximal-word semantics, separation by spaces
+and every non-joiner hyphen, exact-word rather than substring matching,
+repeated occurrence and query behavior, every concatenated string and complete
+word sequence in all three explanations, all nine constraints, and
+authenticated content hash
+`92b2a06f4b36e5c90c90984bc2ead8b6bf7c73147c232d1da6b9c1855a4965b0`.
+The accepted method scans the concatenated string once, counts completed
+maximal words in a hash map, and answers queries by lookup in expected
+$O(C+Q)$ time and $O(C+Q)$ space. It matched an independent separator-mask
+oracle on 1,203,372 cases: every string through length seven over two letters,
+spaces, and hyphens with every possible chunk partition, plus 5,000
+deterministic random larger chunkings. Both exact and app-local sources pass
+all 21 ordinary cases and the three repeated-word/repeated-query benchmark
+tiers at $n=40/120/320$. The packaged source passed scaling at `+0.00` excess
+growth and `0.99x`; an independent regex-and-counter implementation passed at
+`-0.65` and `0.07x`. A correct implementation that explicitly compares every
+query with every parsed word returned every ordinary and benchmark answer but
+failed only scaling at `+1.05` and `23.37x`. The earlier larger benchmark draft
+was discarded because C-level `list.count` remained faster than the traced
+Python reference within those tiers and did not expose the slower growth class;
+the retained explicit control stays below the safety cap. Source fidelity
+through 3926 is now 641 verified, 3,285 unverified, and zero invalid. The
+dataset checker reports 3,926 manually complete packages and 79 needing
+authoring; the migration audit reports 3,643 locally complete and remotely
+verified packages, 3,631 completed scaling benchmarks, 295 certified packages,
+and zero blockers. The expanded focused package/docs/template/fidelity/
+variant/submission/judge suite passed all 184 tests with only the two existing
+warnings. Targeted Ruff and `git diff --check` also passed. The authoritative
+next verified-solution package is frontend ID 3927, Minimize Array Sum Using
+Divisible Replacements.
+
+**Problem 3925 checkpoint (2026-07-30):** Concatenate Array With Reverse was
+Accepted as exact Python submission `2087026288` using the native entry point
+`Solution.concatWithReverse`. Its modular Reference preserves the length-$2n$
+result, unchanged forward first half, reverse-order second half, both formal
+index equations, every copied value and index assignment in the first
+explanation, the singleton explanation, both constraints, and authenticated
+content hash
+`5192144a78b847751e0821c4229a0f90d725c141c2e4f588fb620da93457c69d`.
+The accepted method concatenates `nums` with `nums[::-1]`, leaving the input
+unchanged and running in $O(n)$ time with $O(n)$ result and temporary space.
+It matched an independent preallocated index-based constructor on 22,844
+cases: every array of lengths one through seven over values one through four,
+plus 1,000 deterministic random legal arrays through the maximum length. Both
+exact and app-local sources pass all 18 ordinary cases and the three legal
+increasing-array benchmark tiers at $n=10/40/100$. The packaged source passed
+scaling at `+0.00` excess growth and `0.99x`; an independently written
+copy-and-reverse-iterator implementation passed at `+0.02` and `1.03x`. A
+correct implementation that explicitly copies the growing reversed prefix
+after each new front value returned every ordinary and benchmark answer but
+failed only scaling at `+1.22` and `23.53x`. Source fidelity through 3925 is
+now 640 verified, 3,285 unverified, and zero invalid. The dataset checker
+reports 3,925 manually complete packages and 80 needing authoring; the
+migration audit reports 3,642 locally complete and remotely verified packages,
+3,630 completed scaling benchmarks, 295 certified packages, and zero blockers.
+The expanded focused package/docs/template/fidelity/variant/submission/judge
+suite passed all 184 tests with only the two existing warnings. Targeted Ruff
+and `git diff --check` also passed. The authoritative next verified-solution
+package is frontend ID 3926, Count Valid Word Occurrences.
+
+**Problem 3924 checkpoint (2026-07-30):** Minimum Threshold Path With Limited
+Heavy Edges was Accepted as exact Python submission `2086999812` using the
+native entry point `Solution.minimumThreshold`. Its modular Reference preserves
+the undirected weighted-graph model, integer threshold, light-edge and
+heavy-edge definitions, at-most-`k` path condition, minimum-threshold and
+impossible outcomes, all facts and reasoning in the three explained examples,
+all seven constraints, and the information in all three source images through
+three independently written text diagrams. The authenticated content hash is
+`d489abc2a4d2b5c10aff690ce52357b801c0e736446e4face40f5609c73258e6`.
+The accepted method binary-searches the candidate set consisting of zero and
+the distinct edge weights; each feasibility check uses 0-1 BFS to minimize the
+number of heavy edges on a path. It runs in
+$O(n\log m + m\log m)$ time and $O(n+m)$ auxiliary space. The explicit zero
+candidate covers paths whose entire edge count fits within `k`, and the empty
+path covers identical endpoints. The exact source matched an independent
+simple-path oracle on 367,349 cases: every simple undirected graph through four
+nodes with edges absent or weighted from one through three across every
+endpoint and legal budget combination, plus 5,000 deterministic random cases
+including loops and parallel edges. Both exact and app-local sources pass all
+21 ordinary cases and the three increasing-chain benchmark tiers at
+$m=40/120/320$. The packaged source passed scaling with a stable `1.00x`
+largest-tier ratio. A correct implementation that scans candidate thresholds
+linearly returned every ordinary and benchmark answer but failed only scaling
+at `+0.79` excess growth and `17.37x` on the largest tier; the earlier larger
+benchmark draft was discarded because that deliberately slower control reached
+the Python safety cap. Source fidelity through 3924 is now 639 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,924 manually
+complete packages and 81 needing authoring; the migration audit reports 3,641
+locally complete and remotely verified packages, 3,629 completed scaling
+benchmarks, 295 certified packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 184
+tests with only the two existing warnings. Targeted Ruff and `git diff --check`
+also passed. The authoritative next verified-solution package is frontend ID
+3925, Concatenate Array With Reverse.
+
+**Problem 3923 checkpoint (2026-07-30):** Minimum Generations to Target Point
+was Accepted as exact Python submission `2086977726` using the native entry
+point `Solution.minGenerations`. Its modular Reference preserves the 3D point
+model, generation-$0$ definition, use of every pair accumulated through the
+previous generation, coordinate-wise floored midpoints, simultaneous
+production, later-generation availability, distinct-coordinate restriction,
+minimum-generation and impossible outcomes, every intermediate point and
+generation step in all four explained examples, both source Notes, all six
+constraints, and authenticated content hash
+`dc66122d2daf336335d982c0e50ac4f208a62f413693922dca14d79144ab6e05`.
+The accepted method maintains all known points and the most recent frontier;
+it processes an unordered pair only when its later endpoint first becomes
+available, while buffering the new generation before insertion. With $U\le
+343$ reachable points, it runs in expected $O(n+U^2)$ time and $O(U)$
+auxiliary space. Its complete earliest-generation maps matched an independent
+all-pairs simulator for 528 initial sets, including 150 deterministic random
+sets from the full legal coordinate domain. Both exact and app-local sources
+pass all 18 ordinary cases and the three full-closure benchmark tiers at
+$U=8/27/64$. Across three calibration rounds, the packaged source passed at
+`-0.08` excess growth and `0.60x` to `0.62x` largest-tier ratio; a separately
+written processed-pair implementation passed at `+0.09` and `1.80x` to
+`1.85x`. A correct list-based simulator with explicit linear duplicate scans
+returned every ordinary and benchmark answer but failed only scaling at
+`+0.55` to `+0.58`. Two earlier legal benchmark drafts were discarded because
+tracing overhead hid C-level list membership; the retained smaller closures
+exercise explicit duplicate scans and keep the slower control below the safety
+cap. Source fidelity through 3923 is now 638 verified, 3,285 unverified, and
+zero invalid. The dataset checker reports 3,923 manually complete packages and
+82 needing authoring; the migration audit reports 3,640 locally complete and
+remotely verified packages, 3,628 completed scaling benchmarks, 295 certified
+packages, and zero blockers. The expanded focused package/docs/template/
+fidelity/variant/submission/judge suite passed all 184 tests with only the two
+existing warnings. Targeted Ruff also passed. The authoritative next verified-
+solution package is frontend ID 3924, Minimum Threshold Path With Limited
+Heavy Edges.
+
+**Problem 3922 checkpoint (2026-07-30):** Minimum Flips to Make Binary String
+Coherent was Accepted as exact Python submission `2086964294` using the native
+entry point `Solution.minFlips`. Its modular Reference preserves the binary-
+string input, the subsequence rather than substring semantics, both forbidden
+patterns, the single-character flip operation, the minimum objective, every
+input, output, and transformation in all three explained examples, both
+constraints, and authenticated content hash
+`7af7f404114b6c8a0af4eed4aaadc2725b9c0329113046c3dc2b71e4fce136c3`.
+A coherent target either has at most one `1`, is all ones, or has exactly two
+endpoint ones with only zeros between them. The accepted method evaluates the
+minimum Hamming distance to these three families in $O(n)$ time and $O(1)$
+auxiliary space. The exact source matched a direct forbidden-subsequence
+oracle on all 2,046 binary strings of lengths one through ten. Both exact and
+app-local sources pass all 18 ordinary cases and the three alternating
+benchmark tiers at $n=128/512/2048$. Across three calibration rounds, the
+packaged source passed at `-0.01` to `-0.00` excess growth and `0.95x` to
+`0.98x` largest-tier ratio; a separately written zero-counting implementation
+passed at `-0.02` to `+0.01` and `0.95x` to `0.99x`. A correct implementation
+that computes the Hamming distance separately for every possible single-one
+target returned every ordinary and benchmark answer but failed only scaling
+at `+1.02` to `+1.07` and `72.76x` to `80.37x`. Source fidelity through 3922
+is now 637 verified, 3,285 unverified, and zero invalid. The dataset checker
+reports 3,922 manually complete packages and 83 needing authoring; the
+migration audit reports 3,639 locally complete and remotely verified packages,
+3,627 completed scaling benchmarks, 295 certified packages, and zero blockers.
+The expanded focused package/docs/template/fidelity/variant/submission/judge
+suite passed all 184 tests with only the two existing warnings. Targeted Ruff
+also passed. The authoritative next verified-solution package is frontend ID
+3923, Minimum Generations to Target Point.
+
+**Problem 3921 checkpoint (2026-07-30):** Score Validator was Accepted as exact
+Python submission `2086946687` using the native entry point
+`Solution.scoreValidator`. Its modular Reference preserves the complete event
+set and each event's score/counter effect, left-to-right processing, the stop
+after the tenth `W`, every intermediate row in both five-row source tables,
+the ignored eleventh event in the third example, both constraints, and
+authenticated content hash
+`de3d18e7b082982ca7ad417a85c1d7567deb7ea79157805127285cca5c1b2f01`.
+The accepted method directly simulates events until input exhaustion or the
+tenth `W`, so it runs in $O(n)$ time and $O(1)$ auxiliary space. It matched an
+independent prefix oracle on all 597,875 contracts comprising every token
+sequence of lengths one through six plus cutoff-focused patterns. Both exact
+and app-local sources pass all 18 ordinary cases and the three full-scan
+benchmark tiers at $n=32/128/512$. The initial 1,000-event no-`W` ordinary
+case was shortened after it made the deliberately quadratic control hit the
+ordinary-case tracer cap; maximum-length early-cutoff coverage remains, while
+the benchmark tiers retain the full-scan path needed for honest scaling.
+Across three valid calibration rounds, the packaged source passed at `-0.01`
+to `+0.00` excess growth and `0.98x` to `1.02x` largest-tier ratio; a
+separately written dictionary-based simulation passed at `-0.05` and `0.80x`
+to `0.86x`. A correct prefix-recomputation control returned every ordinary and
+benchmark answer but failed only scaling at `+1.20` to `+1.24` and `204.96x`
+to `232.15x`. Source fidelity through 3921 is now 636 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,921 manually
+complete packages and 84 needing authoring; the migration audit reports 3,638
+locally complete and remotely verified packages, 3,626 completed scaling
+benchmarks, 295 certified packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 184
+tests with only the two existing warnings. Targeted Ruff also passed. The
+authoritative next verified-solution package is frontend ID 3922, Minimum
+Flips to Make Binary String Coherent.
+
+**Problem 3920 checkpoint (2026-07-30):** Maximize Fixed Points After Deletions
+was Accepted as exact Python submission `2086931591` using the native entry
+point `Solution.maxFixedPoints`. Its modular Reference preserves the fixed-
+point definition, permission to delete any number of elements including zero,
+left shifts and index reassignment after deletion, the maximum-count objective,
+every deletion and resulting-array step in all three examples, both
+constraints, and authenticated content hash
+`dfde3f75f5fb0ccf9abe2330690d14ffa8419c9df5421affd6f97f72d02d5835`.
+An element at original index $i$ with value $v$ can be fixed only when $v\le i$
+and then requires $i-v$ prior deletions. Compatible fixed points have strictly
+increasing values and nondecreasing deletion counts. The accepted method sorts
+these two-dimensional points by deletion count and value, then finds a strict
+LIS of the values in $O(n\log n)$ time and $O(n)$ auxiliary space. It matched
+brute-force enumeration of every deletion subset on all 97,655 arrays of
+lengths one through seven over values `0..4`. Both exact and app-local sources
+pass all 18 ordinary cases and the three all-eligible benchmark tiers at
+$n=32/128/512$. Across three calibration rounds, the packaged source passed at
+`-0.02` to `+0.02` excess growth and `1.01x` to `1.04x` largest-tier ratio; a
+separately written sort-and-LIS implementation passed at `-0.00` to `+0.03`
+and `1.04x` to `1.39x`. A correct quadratic chain DP returned every ordinary
+and benchmark answer but failed only scaling at `+1.09` to `+1.10` and
+`96.42x` to `107.30x`. A Python Fenwick candidate and a hand-written binary-
+search candidate were rejected as same-class calibration evidence because the
+strict runtime gate measured `+0.27`/`8.85x` and `+0.28`/`7.83x`; neither
+changed the retained benchmark. Source fidelity through 3920 is now 635
+verified, 3,285 unverified, and zero invalid. The dataset checker reports 3,920
+manually complete packages and 85 needing authoring; the migration audit
+reports 3,637 locally complete and remotely verified packages, 3,625 completed
+scaling benchmarks, 295 certified packages, and zero blockers. The expanded
+focused package/docs/template/fidelity/variant/submission/judge suite passed
+all 184 tests with only the two existing warnings. Targeted Ruff also passed.
+The authoritative next verified-solution package is frontend ID 3921, Score
+Validator.
+
+**Problem 3919 checkpoint (2026-07-30):** Minimum Cost to Move Between Indices
+was Accepted as exact Python submission `2086915386` using the live native
+entry point `Solution.minCost`. Its modular Reference preserves strict array
+ordering, the adjacent-index definition of `closest(x)`, the smaller-index tie
+rule, both move types and their costs, ordered per-query answers, the absolute-
+difference definition, every closest-index list and path-cost step in both
+source examples, all six constraints, and authenticated content hash
+`b2287a8b93dc9b9ff752b2accbf980c226a195f894f4bbb8f20b319f2f0649cf`.
+Every direct jump can be replaced by monotone adjacent moves of no greater
+cost, so the accepted method precomputes the directed cost of each adjacent
+edge and answers queries with one of two prefix differences. It runs in
+$O(n+q)$ time and $O(n)$ auxiliary space. The formula matched complete-graph
+Dijkstra distances on all 192,361 source/target pairs across 5,798 strictly
+increasing arrays. Both exact and app-local sources pass all 14 ordinary cases
+and all three full-range benchmark tiers at $n=q=32/128/512$. Across three
+calibration rounds, the packaged source passed at `-0.02` to `-0.00` excess
+growth and `0.98x` to `0.99x` largest-tier ratio; an independent directional-
+prefix implementation passed at `-0.10` to `-0.03` and `0.52x` to `0.93x`.
+A correct per-query adjacent-edge walk returned every ordinary and benchmark
+answer but failed only scaling at `+1.03` to `+1.09` and `42.52x` to `83.91x`.
+Source fidelity through 3919 is now 634 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,919 manually complete packages and 86
+needing authoring; the migration audit reports 3,636 locally complete and
+remotely verified packages, 3,624 completed scaling benchmarks, 295 certified
+packages, and zero blockers. The expanded focused package/docs/template/
+fidelity/variant/submission/judge suite passed all 184 tests with only the two
+existing warnings. Targeted Ruff also passed. The authoritative next verified-
+solution package is frontend ID 3920, Maximize Fixed Points After Deletions.
+
+**Problem 3918 checkpoint (2026-07-30):** Sum of Primes Between Number and Its
+Reverse was Accepted as exact Python submission `2086902286`. Its modular
+Reference preserves integer digit reversal, removal of leading zeroes created
+by reversal, endpoint ordering with `min` and `max`, inclusive prime summation,
+every range/prime-list/arithmetic reasoning step in all three examples, the
+sole constraint, and authenticated content hash
+`1718492ba81f3242a2129adb4b29e94d09d52aea18d132b79f79d8bad257a967`.
+The accepted method reverses `n`, runs the Sieve of Eratosthenes through the
+larger endpoint $U$, and sums flagged primes inside the inclusive interval. It
+runs in $O(U\log\log U)$ time and $O(U)$ auxiliary space. The exact source
+matched an independent trial-division oracle for the complete legal domain,
+every `n` from 1 through 1,000. Both exact and app-local sources pass all 15
+ordinary cases and all three broad-prefix benchmark tiers at
+$U=100/400/1000$. Across three calibration rounds, the packaged source passed
+at `-0.01` to `+0.01` excess growth and `0.99x` to `1.01x` largest-tier ratio;
+an independent smallest-factor sieve passed at `+0.01` to `+0.03` and `1.27x`
+to `1.33x`. A correct full trial-divisor scan returned every ordinary and
+benchmark answer but failed only scaling at `+0.44` to `+0.46` and `8.57x` to
+`8.64x`. Source fidelity through 3918 is now 633 verified, 3,285 unverified,
+and zero invalid. The dataset checker reports 3,918 manually complete packages
+and 87 needing authoring; the migration audit reports 3,635 locally complete
+and remotely verified packages, 3,623 completed scaling benchmarks, 295
+certified packages, and zero blockers. The expanded focused package/docs/
+template/fidelity/variant/submission/judge suite passed all 184 tests with only
+the two existing warnings. Targeted Ruff and `git diff --check` also passed;
+the latter emitted only existing line-ending notices. The authoritative next
+verified-solution package is frontend ID 3919, Minimum Cost to Move Between
+Indices.
+
+**Problem 3917 checkpoint (2026-07-30):** Count Indices With Opposite Parity
+was Accepted as exact Python submission `2086891180`. Its modular Reference
+preserves the per-index score, the strict later-index condition $i<j<n$, the
+different-parity requirement, the length-$n$ output contract, every per-index
+reasoning step and final array in the first example, the singleton reasoning in
+the second, both constraints, and authenticated content hash
+`6b58dca661795ec330274a6e72187c4a7b0792d05d41a2a3fde3570da96c2dfe`.
+The accepted method scans from right to left while counting even and odd values
+already seen, writes the opposite counter for each index, and only then adds
+the current value to its own parity counter. It runs in $O(n)$ time and $O(1)$
+auxiliary space beyond the required output. The exact source matched a direct
+pair-enumeration oracle on all 7,506 arrays comprising every binary-parity
+array of lengths one through ten and every array of lengths one through six
+over values `1..4`. Both exact and app-local sources pass all 15 ordinary
+cases and all three alternating benchmark tiers at $n=6/24/96$. Across three
+calibration rounds, the packaged source passed at `+0.00` to `+0.01` excess
+growth and `0.99x` to `1.03x` largest-tier ratio; an independent append-and-
+reverse counter passed at `-0.01` and `0.95x` to `0.98x`. The correct direct
+all-later-pairs control returned every ordinary and benchmark answer but failed
+only scaling at `+0.91` to `+0.93` and `14.08x` to `14.35x`. Source fidelity
+through 3917 is now 632 verified, 3,285 unverified, and zero invalid. The
+dataset checker reports 3,917 manually complete packages and 88 needing
+authoring; the migration audit reports 3,634 locally complete and remotely
+verified packages, 3,622 completed scaling benchmarks, 295 certified packages,
+and zero blockers. The expanded focused package/docs/template/fidelity/variant/
+submission/judge suite passed all 184 tests with only the two existing
+warnings. Targeted Ruff and `git diff --check` also passed; the latter emitted
+only existing line-ending notices. The authoritative next verified-solution
+package is frontend ID 3918, Sum of Primes Between Number and Its Reverse.
+
+**Problem 3916 checkpoint (2026-07-30):** Number of ZigZag Arrays III was
+Accepted as exact Python submission `2086874135`. Its modular Reference
+preserves the inclusive value interval, unequal adjacent entries, the ban on
+strictly increasing or strictly decreasing triples, both starting directions,
+the modulo requirement, all arrays and reasoning in both source examples, both
+constraints, and authenticated Premium content hash
+`6e48edfecc7c6f7130130cd6921fa4a8d2049fc52ddbeae1c209746ff55b4c0a`.
+Only the interval size $m=r-l+1$ matters. For each small alphabet, the accepted
+method counts arrays ending in an upward or downward step with prefix/suffix
+sums; the count is a degree-at-most-$n$ polynomial in $m$, so values at
+`0..n` determine the answer by consecutive-point Lagrange interpolation. It
+runs in $O(n^3)$ time and $O(n)$ auxiliary space. The app adapter uses built-in
+accumulators for the same transitions and directly counts the actual alphabet
+when $m\le n$, keeping every legal input inside the traced runner's safety cap.
+The exact source matched exhaustive enumeration for every length from three
+through eight and every alphabet size from one through six, plus shifted
+interval checks. Both exact and app-local sources pass all 17 ordinary cases
+and all three maximum-interval benchmark tiers at $n=16/32/64$. Across three
+calibration rounds, the packaged source passed at `+0.00` to `+0.02` excess
+growth and `1.00x` to `1.03x` largest-tier ratio; an independent interpolation
+over points `1..n+1` passed at `+0.08` to `+0.12` and at most `1.09x`. A correct
+direct-predecessor control returned every ordinary and benchmark answer but
+failed only scaling at `+0.67` to `+0.73` and `2.87x` to `3.00x`. Source
+fidelity through 3916 is now 631 verified, 3,285 unverified, and zero invalid.
+The dataset checker reports 3,916 manually complete packages and 89 needing
+authoring; the migration audit reports 3,633 locally complete and remotely
+verified packages, 3,621 completed scaling benchmarks, 295 certified packages,
+and zero blockers. The expanded focused package/docs/template/fidelity/variant/
+submission/judge suite passed all 184 tests with only the two existing
+warnings. Targeted Ruff and `git diff --check` also passed; the latter emitted
+only existing line-ending notices. The authoritative next verified-solution
+package is frontend ID 3917, Count Indices With Opposite Parity.
+
+**Problem 3915 checkpoint (2026-07-30):** Maximum Sum of Alternating
+Subsequence With Distance at Least K was Accepted as exact Python submission
+`2086864316`. Its modular Reference preserves a non-empty subsequence, the
+minimum gap between every consecutive pair of selected indices, both possible
+starting directions, strict reversal of every later comparison, singleton
+validity, score definition, all reasoning in the three source examples, all
+three constraints, and live content hash
+`31e0e5388970aa6f6c410e0a58e900b3d5b165be1d9cec8f370442fe93189707`.
+The accepted method delays each upward/downward DP state until its index meets
+the gap, then uses max-Fenwick prefix queries over compressed and reversed
+value ranks for strict smaller/larger opposite-direction transitions. It runs
+in $O(n\log n)$ time and $O(n)$ extra space. The exact source matched exhaustive
+subsequence enumeration for 145,636 `(array, k)` contracts covering all 21,844
+arrays of lengths one through seven over values `1..4` and every legal `k`,
+then passed five maximum-length boundary patterns. Both exact and app-local
+sources pass all 19 ordinary cases and all three benchmark tiers. The
+benchmark uses distinct fully alternating arrays with $k=1$ at
+$n=40/160/640$, making a direct DP inspect every eligible predecessor. The
+packaged implementation passed the isolated real-test API at `+0.00` excess
+growth and a `1.01x` largest-tier ratio; an independent segment-tree
+implementation passed at `+0.06` and `1.96x`. The correct quadratic DP returned
+every ordinary and benchmark answer but failed only scaling at `+0.91` and
+`12.88x`. Source fidelity through 3915 is now 630 verified, 3,285 unverified,
+and zero invalid. The dataset checker reports 3,915 manually complete packages
+and 90 needing authoring; the migration audit reports 3,632 locally complete
+and remotely verified packages, 3,620 completed scaling benchmarks, 295
+certified packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 184
+tests with only the two existing warnings. Targeted Ruff and
+`git diff --check` also passed; the latter emitted only the existing line-
+ending notices. The authoritative next verified-solution package is frontend
+ID 3916, Number of ZigZag Arrays III.
+
+**Problem 3914 checkpoint (2026-07-30):** Minimum Operations to Make Array Non
+Decreasing was Accepted as exact Python submission `2086857330`. Its modular
+Reference preserves the positive-integer array, any inclusive contiguous
+subarray, one shared positive increment per operation, the sum-of-increments
+cost rather than operation count, the formal non-decreasing condition, every
+step in both source examples, both constraints, and live content hash
+`1d3fc6862c7d213b9aac4c699b49e1f5964e78e91d391bc1d51e1ba669dfd91a`.
+The accepted method sums every positive adjacent drop, using the fact that
+each operation start can repair only its immediately preceding boundary and
+that a suffix increment attains every required repair independently. It runs
+in $O(n)$ time and $O(1)$ extra space. The exact source matched an independent
+final-array dynamic program on all 97,655 arrays of lengths one through seven
+over values `1..5`, then passed five maximum-length boundary patterns including
+the largest alternating drops. Both exact and app-local sources pass all 17
+ordinary cases and all three benchmark tiers. The benchmark uses strictly
+decreasing arrays at $n=25/100/400$, making a constructive implementation that
+physically adds each deficit to its suffix touch a quadratic number of values.
+The packaged implementation passed the isolated real-test API at `+0.01`
+excess growth and a `1.01x` largest-tier ratio; an independent one-pass
+accumulator passed at `+0.08` and `1.32x`. The correct suffix-mutation control
+returned every ordinary and benchmark answer but failed only scaling at
+`+1.35` and `113.69x`. Source fidelity through 3914 is now 629 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,914 manually
+complete packages and 91 needing authoring; the migration audit reports 3,631
+locally complete and remotely verified packages, 3,619 completed scaling
+benchmarks, 295 certified packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission/judge suite passed all 184
+tests with only the two existing warnings. Targeted Ruff and
+`git diff --check` also passed; the latter emitted only the existing line-
+ending notices. The authoritative next verified-solution package is frontend
+ID 3915, Maximum Sum of Alternating Subsequence With Distance at Least K.
+
+**Problem 3913 checkpoint (2026-07-30):** Sort Vowels by Frequency was
+Accepted as exact Python submission `2086846228`. Its modular Reference
+preserves the lowercase-letter input, the five vowel types, fixed consonant
+positions, non-increasing total-frequency order, first-occurrence tie rule,
+all reasoning in the three source examples, both constraints, and live content
+hash `40f2c468a8d18896830bdcdee842664a32216a81f3b5e9a2c3a93c1591d0e652`.
+The accepted method counts each vowel type and its first position, orders the
+at most five occurring types, expands them by count, and refills only the
+original vowel slots. It runs in $O(n)$ time and $O(n)$ extra space. The exact
+source matched an independent direct-definition oracle on all 335,922 strings
+of lengths one through seven over all five vowels plus one consonant, then on
+six distinct maximum-length patterns. Both exact and app-local sources pass
+all 16 ordinary cases and all three benchmark tiers. The benchmark repeats all
+five vowels equally at $n=2{,}500/10{,}000/40{,}000$, forcing a direct method
+that recomputes frequency and first occurrence for every vowel to perform
+quadratic work. The packaged implementation passed the isolated real-test API
+at `+0.01` excess growth and a `1.00x` largest-tier ratio; an independent
+fixed-array implementation passed at `+0.00` and `1.63x`. A correct repeated-
+scan implementation returned every ordinary and benchmark answer but failed
+only scaling at `+0.45` and `2.53x`. Source fidelity through 3913 is now 628
+verified, 3,285 unverified, and zero invalid. The dataset checker reports 3,913
+manually complete packages and 92 needing authoring; the migration audit
+reports 3,630 locally complete and remotely verified packages, 3,618 completed
+scaling benchmarks, 295 certified packages, and zero blockers. The expanded
+focused package/docs/template/fidelity/variant/submission/judge suite passed
+all 184 tests with only the two existing warnings. Targeted Ruff and
+`git diff --check` also passed; the latter emitted only the existing line-
+ending notices. The authoritative next verified-solution package is frontend
+ID 3914, Minimum Operations to Make Array Non Decreasing.
+
+**Problem 3912 checkpoint (2026-07-30):** Valid Elements in an Array was
+Accepted as exact Python submission `2086838297`. Its modular Reference
+preserves the two alternative strict side-maximum conditions, the automatic
+validity of both endpoints, original output order, all reasoning in the three
+source examples, both constraints, and live content hash
+`85ac5b7de00e165d25ba71e8837d88a766eb70b40427a1809f713ec42d826c8e`.
+The accepted method marks new strict maxima in one left-to-right and one
+right-to-left scan, then emits the marked indices in original order. It runs
+in $O(n)$ time and $O(n)$ extra space. The exact source matched an independent
+direct-definition oracle on all 97,655 arrays of lengths one through seven
+over values `1..5`, plus increasing, decreasing, equal, and alternating
+maximum-length boundary patterns. Both exact and app-local sources pass all 16
+ordinary cases and all three benchmark tiers. The benchmark uses strictly
+increasing arrays at $n=6/24/96$, making a direct left-side comparison inspect
+every preceding prefix. The packaged implementation passed the isolated
+real-test API at `+0.00` excess growth and a `0.99x` largest-tier ratio; an
+independent prefix/suffix-maximum implementation passed at `+0.02` and
+`1.01x`. A correct direct-definition implementation returned every ordinary
+and benchmark answer but failed only scaling at `+0.77` and `8.76x`. Source
+fidelity through 3912 is now 627 verified, 3,285 unverified, and zero invalid.
+The dataset checker reports 3,912 manually complete packages and 93 needing
+authoring; the migration audit reports 3,629 locally complete and remotely
+verified packages, 3,617 completed scaling benchmarks, 295 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission suite passed all 184 tests
+with only the two existing warnings. Targeted Ruff and `git diff --check` also
+passed; the latter emitted only the existing line-ending notices. The
+authoritative next verified-solution package is frontend ID 3913, Sort Vowels
+by Frequency.
+
+**Problem 3911 checkpoint (2026-07-30):** K-th Smallest Remaining Even Integer
+in Subarray Queries was Accepted as exact Python submission `2086829681`. Its
+modular Reference preserves the strictly increasing input, independent
+inclusive subarray removals from the infinite positive-even sequence, the
+one-based requested rank, all three fully explained source tables, all seven
+constraints, and live content hash
+`1405cf8c415fbff189ff645afa8b36321a5d65441bf92c1600ee8c38de9fa7d6`.
+The accepted method maps even values to their positive-even ranks, uses an
+even-count prefix to isolate each query's contiguous removed-rank slice, and
+binary-searches the monotone count of unremoved ranks before each removed
+value. It runs in $O(n+q\log n)$ time and $O(n)$ extra space. The exact source
+matched an independent enumerating oracle on 302,112 queries across all 2,509
+strictly increasing arrays of up to six values drawn from `1..12`, then passed
+the simultaneous maximum $n$, query-count, and $k$ boundary. Both exact and
+app-local sources pass all 14 ordinary cases and all three benchmark tiers.
+The benchmark sets $n=q=S$ at $S=25/100/400$, uses the first $S$ positive even
+integers, and repeats the full-range first-remaining query. The packaged
+implementation passed the isolated real-test API at `+0.01` excess growth and
+a `1.01x` largest-tier ratio; an independent even-index search passed at
+`-0.03` and `0.87x`. A correct per-query subarray-scan implementation returned
+every ordinary and benchmark answer but failed only scaling at `+0.79` and
+`19.48x`. Source fidelity through 3911 is now 626 verified, 3,285 unverified,
+and zero invalid. The dataset checker reports 3,911 manually complete packages
+and 94 needing authoring; the migration audit reports 3,628 locally complete
+and remotely verified packages, 3,616 completed scaling benchmarks, 295
+certified packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission suite passed all 184 tests
+with only the two existing warnings; targeted Ruff and `git diff --check` also
+passed, with only the repository's existing line-ending warnings. The
+authoritative next verified-solution package is frontend ID 3912, Valid
+Elements in an Array.
+
+**Problem 3910 checkpoint (2026-07-30):** Count Connected Subgraphs with Even
+Node Sum was Accepted as exact Python submission `2086818268`. Its modular
+Reference preserves the induced-subgraph definition, both required conditions,
+both fully explained source tables, all six constraints, and live content hash
+`693630dcf2d8e307fb0eae9dedf44cc3525fb1df3387b31f20c7807d5ce896a0`.
+The accepted method enumerates every non-empty node mask, filters masks with an
+odd number of value-one nodes, and checks induced connectivity with a bitmask
+graph traversal in $O(n2^n)$ time and $O(n)$ extra space. The exact source
+matched an independent adjacency-list oracle on all 33,866 graph/value
+assignments through five nodes, plus maximum-size empty and complete graphs,
+before remote submission. Both exact and app-local sources pass all 16
+ordinary cases and all three benchmark tiers. The benchmark uses all-zero star
+graphs at $n=3/6/12$, for which every center-containing subset forces a full
+connectivity traversal. The packaged implementation passed the isolated
+real-test API at `-0.00` excess growth and a `0.99x` largest-tier ratio; an
+independent neighbor-union reach-closure implementation passed at `-0.45` and
+`0.52x`. A correct partition-enumeration implementation returned every
+ordinary and benchmark answer but failed only scaling at `+1.51` and `7.72x`.
+Source fidelity through 3910 is now 625 verified, 3,285 unverified, and zero
+invalid. The dataset checker reports 3,910 manually complete packages and 95
+needing authoring; the migration audit reports 3,627 locally complete and
+remotely verified packages, 3,615 completed scaling benchmarks, 295 certified
+packages, and zero blockers. The expanded focused
+package/docs/template/fidelity/variant/submission suite passed all 184 tests
+with only the two existing warnings; targeted Ruff and `git diff --check`
+also passed (the latter emitted only the repository's existing line-ending
+warnings). The authoritative next verified-solution package
+is frontend ID 3911, K-th Smallest Remaining Even Integer in Subarray Queries.
+
+**Problem 3909 checkpoint (2026-07-30):** Compare Sums of Bitonic Parts was
+Accepted as exact Python submission `2086812421`. Its modular Reference
+preserves strict increase to one peak, strict decrease afterward, both
+inclusive part ranges, the peak's membership in both sums, the three return
+codes, every source note, all three fully explained examples, all three
+constraints, and live content hash
+`a9ee3e85a6096dda3a279a600d55e3f673cb43a045fa91e5a7efc86f45a8a133`.
+The accepted $O(N)$, $O(1)$ method saves the prefix sum whenever a new maximum
+is encountered; strict bitonic order makes the peak the final such update. It
+then derives the inclusive descending sum as total minus ascending plus the
+peak. The exact source matched an independent slice-sum oracle on 20,276 legal
+bitonic arrays, including a 100,000-element boundary. Both exact and app-local
+sources additionally pass all 15 ordinary cases and all three benchmark tiers.
+The benchmark places the peak at index $N-2$ in arrays of length
+$N=25/100/400$. The packaged one-pass implementation passed the isolated
+real-test API at `+0.01` excess growth and a `1.00x` largest-tier ratio; an
+independent split scan passed at `+0.01` and `1.02x`. A correct implementation
+that recomputes every candidate prefix returned every ordinary and benchmark
+answer but failed only scaling at `+1.18` and `92.65x`. Source fidelity through
+3909 is now 624 verified, 3,285 unverified, and zero invalid. The dataset
+checker reports 3,909 manually complete packages and 96 needing authoring; the
+migration audit reports 3,626 locally complete and remotely verified packages,
+3,614 completed scaling benchmarks, 295 certified packages, and zero blockers.
+The focused package/docs/template/fidelity suite passed all 173 tests with only
+the two existing warnings; targeted Ruff and `git diff --check` passed. The
+authoritative next verified-solution package is frontend ID 3910, Count
+Connected Subgraphs with Even Node Sum.
+
+**Problem 3908 checkpoint (2026-07-30):** Valid Digit Number was Accepted as
+exact Python submission `2086808107`. Its modular Reference preserves the
+decimal representation of the nonnegative input, the required occurrence of
+digit `x`, the prohibition against starting with `x`, the Boolean return rule,
+all three fully explained examples, both constraints, and live content hash
+`079a27086067b3b912c70d28d0df515af93afed9d5ef6708df5e8b826288ec21`.
+The accepted arithmetic method extracts digits from right to left, records
+whether `x` occurs, and retains the last extracted digit as the original
+leading digit; `n = 0` is handled explicitly because its representation is the
+single digit `0`. Both exact and app-local sources match an independent string
+oracle on all 1,000,010 legal `(n, x)` combinations and pass all 15 ordinary
+cases. Because the complete legal domain contains at most six digits, honest
+runtime tiers cannot establish an asymptotic trend. The package therefore uses
+a strictly validated `bounded_domain` certificate proving at most six digit-
+removal iterations, backed by the exhaustive complete-domain regression. The
+isolated real-test path passes every case, correctly performs no runtime
+measurement, and reports the verified certificate. Source fidelity through
+3908 is now 623 verified, 3,285 unverified, and zero invalid. The dataset
+checker reports 3,908 manually complete packages and 97 needing authoring; the
+migration audit reports 3,625 locally complete and remotely verified packages,
+3,613 completed scaling benchmarks, 295 certified packages, and zero blockers.
+The focused package/docs/template/fidelity suite passed all 173 tests with only
+the two existing warnings; the dedicated certificate tests, targeted Ruff, and
+`git diff --check` passed. The authoritative next verified-solution package is
+frontend ID 3909, Compare Sums of Bitonic Parts.
+
+**Problem 3907 checkpoint (2026-07-30):** Count Smaller Elements With Opposite
+Parity is Premium and was Accepted as exact Python submission `2086803311`.
+Its modular Reference preserves the right-hand index condition, strict smaller-
+value comparison, opposite-parity requirement, per-index scores, all three
+fully explained examples, both constraints, and live content hash
+`0331ccbbb8286c2ee15fcf717e86e6ae96f2de0d796c930f07e57999b758073f`.
+The accepted $O(N\log N)$ method coordinate-compresses the values, scans from
+right to left, queries the smaller-rank prefix in the Fenwick tree for the
+opposite parity, and inserts the current rank into its own parity tree. The
+exact source passed all 60,986 sample, exhaustive, and deterministic randomized
+oracle comparisons before remote submission. Both exact and app-local sources
+also pass all 14 ordinary cases and all three benchmark tiers. The benchmark
+uses strictly decreasing alternating-parity arrays at $N=25/100/400$, ensuring
+that a direct pair scan examines the full quadratic pair set. The packaged
+Fenwick implementation passed the isolated real-test API at `+0.00` excess
+growth and a `1.00x` largest-tier ratio; an independent segment-tree
+implementation passed at `+0.10` and `2.88x`. The correct $O(N^2)$ pair scan
+returned every ordinary and benchmark answer but failed only scaling at
+`+0.81` and `6.70x`. Source fidelity through 3907 is now 622 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,907 manually
+complete packages and 98 needing authoring; the migration audit reports 3,624
+locally complete and remotely verified packages, 3,613 completed scaling
+benchmarks, 294 certified packages, and zero blockers. The focused
+package/docs/template/fidelity suite passed all 173 tests with only the two
+existing warnings; targeted Ruff and `git diff --check` passed. The
+authoritative next verified-solution package is frontend ID 3908, Valid Digit
+Number.
+
+**Problem 3906 checkpoint (2026-07-30):** Count Good Integers on a Grid Path
+was Accepted as exact Python submission `2086797641`. Its modular Reference
+preserves 16-digit left-zero padding, row-major placement in the $4\times4$
+grid, the top-left start, all six ordered moves, the seven visited digits, the
+non-decreasing condition, inclusive range counting, all three fully explained
+examples, all six source grid tables, all three constraints, and live content
+hash `5e4054b0cb8e0e6f3c95d290068f53ff25b469650051daf2410f60c0f33baa43`.
+The accepted method maps the path to seven increasing digit positions and
+computes $F(r)-F(l-1)$ with memoized digit DP over position, tightness, and the
+previous path digit. Leading zeros remain real digits, so no started-number
+state is used. The exact source passed all 20 legal paths, 20,000 brute-force
+prefix checks, 2,000 randomized small intervals, 2,000 high-value singleton
+checks, and all three source examples. Both exact and app-local sources
+additionally passed all 14 ordinary cases, all three benchmark tiers, 5,000
+fresh high-value ranges against an independent iterative DP, and the complete
+legal range for every path. The benchmark uses interval widths
+$W=1{,}000/4{,}000/16{,}000$ beginning at $10^{12}$ with `DRDRDR`. The
+packaged recursive digit DP passed the isolated real-test API at `-0.01`
+excess growth and a `1.01x` largest-tier ratio; an independent iterative digit
+DP passed at `-0.01` and `0.72x`. Correct direct interval enumeration returned
+every ordinary and benchmark answer but failed only scaling at `+0.98` and
+`29.39x`. Source fidelity through 3906 is now 621 verified, 3,285 unverified,
+and zero invalid. The dataset checker reports 3,906 manually complete packages
+and 99 needing authoring; the migration audit reports 3,623 locally complete
+and remotely verified packages, 3,612 completed scaling benchmarks, 294
+certified packages, and zero blockers. The focused
+package/docs/template/fidelity suite passed all 173 tests with only the two
+existing warnings; targeted Ruff and `git diff --check` passed. The
+authoritative next verified-solution package is frontend ID 3907, Count
+Smaller Elements With Opposite Parity.
+
+**Problem 3905 checkpoint (2026-07-30):** Multi Source Flood Fill was Accepted
+as exact Python submission `2086792464`. Its modular Reference preserves the
+initial distinct colored sources, zero-valued uncolored cells, simultaneous
+four-directional spreading, the maximum-color rule for equal-time arrivals,
+the prohibition on recoloring, the final-grid objective, all three fully
+explained examples, all eight constraints, and live content hash
+`7c22818a987a375987bac232043a68c5c8e59dfd1730271429f18d4ea5cd8cd8`.
+The three source images were independently replaced by three accessible tables
+that retain every matrix at times zero, one, and two. The accepted $O(nm)$
+method processes one multi-source BFS layer at a time, collects the maximum
+proposal for each still-uncolored neighbor, and commits those winners only
+after the whole layer has been inspected. The exact source passed 21,288
+exhaustive small-grid states, 10,000 deterministic randomized grids, and a
+100,000-cell boundary against an independent Manhattan-distance oracle. Both
+exact and app-local sources additionally passed 5,000 fresh randomized grids,
+all 14 ordinary cases, all three benchmark tiers, and the same legal boundary.
+The benchmark uses $4\times8$, $8\times16$, and $16\times32$ checkerboards at
+$V=32/128/512$, with $V/2$ distinct sources. The packaged BFS passed the
+isolated real-test API at `-0.00` excess growth and a `0.99x` largest-tier
+ratio; an independently structured distance-grid BFS passed at `+0.01` and
+`1.06x`. A correct $O(V^2)$ cell-source distance scan returned every ordinary
+and benchmark answer but failed only scaling at `+0.96` and `18.07x`. Source
+fidelity through 3905 is now 620 verified, 3,285 unverified, and zero invalid.
+The dataset checker reports 3,905 manually complete packages and 100 needing
+authoring; the migration audit reports 3,622 locally complete and remotely
+verified packages, 3,611 completed scaling benchmarks, 294 certified packages,
+and zero blockers. The focused package/docs/template/fidelity suite passed all
+173 tests with only the two existing warnings; targeted Ruff and
+`git diff --check` passed. The authoritative next verified-solution package is
+frontend ID 3906, Count Good Integers on a Grid Path.
+
+**Problem 3904 checkpoint (2026-07-30):** Smallest Stable Index II was Accepted
+as exact Python submission `2086785245`. Its modular Reference preserves the
+inclusive prefix-maximum and suffix-minimum ranges, their difference as the
+instability score, the inclusive `<= k` stability condition, the
+smallest-index objective, the `-1` fallback, all three fully explained
+examples, the enlarged length bound of $10^5$, all three constraints, and live
+content hash
+`b66dfdb99cee1265ffe2880f0e61d471deab2990d06be57c8768c5d3ff3aed06`.
+The accepted linear method prepares suffix minima from right to left, then
+maintains a prefix maximum while testing indices from smallest to largest. The
+exact source passed 488,275 exhaustive array/threshold combinations. Both the
+exact native source and app-local adapter additionally passed all 14 ordinary
+cases, all three benchmark tiers, 10,000 deterministic randomized full-range
+inputs, and an $N=100{,}000$ decreasing boundary against a literal oracle. The
+benchmark uses decreasing no-solution arrays at $N=25/100/400$. The packaged
+linear implementation passed the isolated real-test API at `+0.00` excess
+growth and a `1.00x` largest-tier ratio; an independently structured linear
+implementation passed at `-0.04` and `0.90x`. A correct explicit $O(N^2)$
+simulation returned every ordinary and benchmark answer but failed only
+scaling at `+1.23` and `122.34x`. Source fidelity through 3904 is now 619
+verified, 3,285 unverified, and zero invalid. The dataset checker reports 3,904
+manually complete packages and 101 needing authoring; the migration audit
+reports 3,621 locally complete and remotely verified packages, 3,610 completed
+scaling benchmarks, 294 certified packages, and zero blockers. The focused
+package/docs/template/fidelity suite passed all 173 tests with only the two
+existing warnings; targeted Ruff and `git diff --check` passed. The
+authoritative next verified-solution package is frontend ID 3905, Multi Source
+Flood Fill.
+
+**Problem 3903 checkpoint (2026-07-30):** Smallest Stable Index I was Accepted
+as exact Python submission `2086780799`. Its modular Reference preserves the
+inclusive prefix-maximum and suffix-minimum ranges, their difference as the
+instability score, the inclusive `<= k` stability condition, the smallest-index
+objective, the `-1` fallback, all three fully explained examples, all three
+constraints, and live content hash
+`265731b8cfc6904c86b530aefd98784d87b5a8364170f3890bef8b7bd280296d`.
+The accepted linear method builds every suffix minimum from right to left, then
+maintains the prefix maximum while testing indices in ascending order. The
+exact source passed 585,930 exhaustive array/threshold combinations, 20,000
+deterministic randomized full-range inputs, and dedicated value, length, and
+threshold boundaries. Both exact and app-local sources additionally passed
+10,000 fresh randomized comparisons against an independent literal oracle,
+all 14 ordinary cases, and all three benchmark tiers. The benchmark uses
+decreasing no-solution arrays at $N=25/50/100$. The accepted source passed the
+isolated real-test API at `+0.10` excess growth and a `1.33x` largest-tier
+ratio; an independent linear implementation passed at `+0.10` and `1.45x`.
+A correct explicit $O(N^2)$ simulation returned every ordinary and benchmark
+answer but failed only scaling at `+1.22` and `37.46x`. Source fidelity through
+3903 is now 618 verified, 3,285 unverified, and zero invalid. The dataset
+checker reports 3,903 manually complete packages and 102 needing authoring;
+the migration audit reports 3,620 locally complete and remotely verified
+packages, 3,609 completed scaling benchmarks, 294 certified packages, and zero
+blockers. The focused package/docs/template/fidelity suite passed all 173 tests
+with only the two existing warnings; targeted Ruff and `git diff --check`
+passed. The authoritative next verified-solution package is frontend ID 3904,
+Smallest Stable Index II.
+
+**Problem 3902 checkpoint (2026-07-30):** Zigzag Level Sum of Binary Tree is
+Premium and was Accepted as exact Python submission `2086775727`. Its modular
+Reference preserves one-based level numbering, alternating left-to-right and
+right-to-left inspection, the odd-left/even-right child requirements, the stop
+before the first failing node, complete structural traversal after a level sum
+stops, both fully explained examples, both constraints, and live content hash
+`7e73c4c4cf22a577904b51db75ec33091630f4c753f8e6c8e26659a2fc4c5bb3`.
+The source's two tree images were independently replaced by two Mermaid
+diagrams with the same nodes and edges. The accepted breadth-first traversal
+keeps each complete level in canonical left-to-right order, scans it forward
+or backward only for scoring, and discovers every child independently of the
+early-stop rule. The exact source passed all 2,055 binary-tree shapes through
+$N=8$, 10,000 deterministic randomized trees, and a 100,000-node skew-tree
+boundary. Both exact and app-local sources additionally passed 5,000 fresh
+randomized comparisons against an independent depth-grouping oracle, all 14
+ordinary cases, and the three benchmark tiers. The benchmark uses left chains
+at $N=64/128/256$: the accepted source passed the isolated real-test API at
+`+0.00` excess growth and a `1.01x` largest-tier ratio, while an independent
+linear BFS passed at `+0.03` and `1.26x`. A correct repeated-depth traversal
+returned every ordinary and benchmark answer but failed only scaling at
+`+1.01` and `73.56x`. Source fidelity through 3902 is now 617 verified, 3,285
+unverified, and zero invalid. The dataset checker reports 3,902 manually
+complete packages and 103 needing authoring; the migration audit reports 3,619
+locally complete and remotely verified packages, 3,608 completed scaling
+benchmarks, 294 certified packages, and zero blockers. The focused
+package/docs/template/fidelity suite passed all 173 tests with only the two
+existing warnings; targeted Ruff (ignoring only the platform-provided
+`TreeNode` name) and `git diff --check` passed. The authoritative next
+verified-solution package is frontend ID 3903, Smallest Stable Index I.
+
+**Problem 3901 checkpoint (2026-07-30):** Good Subsequence Queries was Accepted
+as exact Python submission `2086767531`. Its modular Reference preserves the
+non-empty proper-subsequence rule, exact-GCD target, cumulative point updates,
+all three examples with their complete five-column update tables, all six
+constraints, and live content hash
+`adf8dffb9c90d4816d54212bff780c9bc1d37fe4470d94d18bb52b76d762d6ac`.
+The accepted proof discards values not divisible by `p`, divides every eligible
+value by `p`, and maintains their GCD in a segment tree. When every value is
+eligible, a proper GCD-one selection exists exactly when some leave-one-out
+GCD is one. Prime membership counts and index XORs identify every index whose
+removal is blocked by a prime present in the other $N-1$ values; a
+multiplicity map handles several primes missing at the same index. The exact
+native source passed 55,944 exhaustive static states, 10,000 randomized dynamic
+sequences against subset enumeration, and 2,000 larger sequences against an
+independent leave-one-out oracle. Both exact and app-local sources also passed
+5,000 fresh randomized dynamic brute-force comparisons, all 14 ordinary cases,
+and all three benchmark tiers. The benchmark updates every entry of an
+all-divisible array at $N=Q=32/64/128$; the correct count is $N-1$. The
+accepted source passed the isolated real-test API at `-0.01` excess growth and
+a `1.02x` largest-tier ratio. An independently structured same-class
+implementation passed at `-0.01` and `0.88x`; the correct $O(NQ)$ recomputation
+returned every answer but failed only scaling at `+0.97` and `3.06x`. Source
+fidelity through 3901 is now 616 verified, 3,285 unverified, and zero invalid.
+The dataset checker reports 3,901 manually complete packages and 104 needing
+authoring; the migration audit reports 3,618 locally complete and remotely
+verified packages, 3,607 completed scaling benchmarks, 294 certified packages,
+and zero blockers. The focused package/docs/template/fidelity suite passed all
+173 tests with only the two existing warnings; targeted Ruff and
+`git diff --check` passed. The authoritative next verified-solution package is
+frontend ID 3902, Zigzag Level Sum of Binary Tree.
+
+**Problem 3900 checkpoint (2026-07-30):** Longest Balanced Substring After One
+Swap was Accepted as exact Python submission `2086762683`. Its modular
+Reference preserves the binary alphabet, equal-count definition, optional
+arbitrary-position swap before substring selection, contiguous-substring
+semantics, maximum-length objective, empty balanced substring, both fully
+explained examples, both constraints, and live content hash
+`aa9874af637aeb4c1974d0b4da3a88c0a6eec2edf9e4bf491e22009bc2eaecc1`.
+The accepted proof gives ones score $+1$ and zeros score $-1$: one crossing
+swap of unlike bits changes a chosen window's score by exactly two. With the
+global length bound $K=2\min(Z,O)$, a window is feasible exactly when its
+length is at most $K$ and its score is in $\{-2,0,2\}$. Monotone deques of
+prefix indices answer those three score lookups in one linear scan. The exact
+native and app-local sources matched an independent direct-window oracle on
+all 32,766 binary strings through length 14, 10,000 deterministic randomized
+strings, all 14 ordinary cases, all three benchmark tiers, and five
+maximum-length boundary families; direct swap simulation also covered all
+2,046 strings through length 10. The package uses sparse-zero strings at
+$N=96/192/384$, whose correct answer remains $4$ and therefore forces a
+quadratic window enumeration to explore its full search space. Across three
+calibration trials, the accepted reference passed at `-0.02` to `+0.03`
+excess growth with `0.97x` to `1.03x` largest-tier ratios; an independent
+linear implementation passed at `-0.01` to `+0.03` with `1.07x` to `1.09x`.
+A correct quadratic implementation returned every ordinary and benchmark
+answer but failed only scaling at `+0.96` to `+1.01`, with `27.48x` to
+`27.77x` largest-tier ratios. Source fidelity through 3900 is now 615
+verified, 3,285 unverified, and zero invalid. The dataset checker reports
+3,900 manually complete packages and 105 needing authoring; the migration
+audit reports 3,617 locally complete and remotely verified packages, 3,606
+completed scaling benchmarks, 294 certified packages, and zero blockers. The
+isolated real-test API route and the focused package/docs/template/fidelity
+suite passed, with all 173 focused tests green and only the two existing
+warnings. Targeted Ruff and `git diff --check` passed. The authoritative next
+verified-solution package is frontend ID 3901, Good Subsequence Queries.
+
+**Problem 3899 checkpoint (2026-07-30):** Angles of a Triangle was Accepted as
+exact Python submission `2086758767`. Its modular Reference preserves the
+three positive integer side lengths, positive-area requirement, degree units,
+non-decreasing output order, empty invalid result, $10^{-5}$ error tolerance,
+both fully explained examples, both constraints, and live content hash
+`9721bcf31f857ad01336f22edbee05e8327e27c7053c03cd933fbb884bd7edd3`.
+The accepted proof sorts the sides, reduces validity to the strict inequality
+$a+b>c$, applies the law of cosines to each opposite side, and clamps only the
+floating-point cosine before inverse cosine. Side-angle monotonicity supplies
+the required output order. The exact native and app-local sources matched an
+independent Heron-formula and `atan2` oracle on all 64,000 permutations of
+positive triples through value 40, 10,000 deterministic random full-range
+triples, all 12 ordinary cases, and boundary families covering minimum,
+maximum, degenerate, near-degenerate, and nearly equilateral inputs. The
+package records $O(1)$ time and $O(1)$ space under a strict `bounded_domain`
+certificate because `sides.length` is always exactly three. The durable
+certificate regression, strict certificate validator, migration audit, and
+isolated real-test API route all passed. Source fidelity through 3899 is now
+614 verified, 3,285 unverified, and zero invalid. The dataset checker reports
+3,899 manually complete packages and 106 needing authoring; the migration
+audit reports 3,616 locally complete and remotely verified packages, 3,605
+completed scaling benchmarks, 294 certified packages, and zero blockers. The
+focused package/docs/template/fidelity suite passed all 173 tests with the two
+existing warnings, and targeted Ruff plus `git diff --check` passed. The
+authoritative next verified-solution package is frontend ID 3900, Longest
+Balanced Substring After One Swap.
+
+**Problem 3898 checkpoint (2026-07-30):** Find the Degree of Each Vertex was
+Accepted as exact Python submission `2086755089`. Its modular Reference
+preserves the square binary adjacency matrix, simple undirected graph and
+vertex labels, exact `0`/`1` edge semantics, degree definition, all three fully
+explained examples, all four constraints, and live content hash
+`7998423332ad3940b9e770aba39ccbfd4d64dbff5621f71dac4306fb76369221`.
+The source's two graph images were independently recreated as two Mermaid
+diagrams with the same vertices and edges. The accepted proof sums each row:
+every neighbor occupies exactly one column, the zero diagonal excludes
+self-loops, and symmetry contributes an undirected edge once to each endpoint.
+The exact native and app-local sources matched an independent upper-triangle
+edge oracle on all 33,867 simple graphs through $N=6$, 10,000 deterministic
+random graphs through $N=100$, all 15 ordinary cases, and maximum-size empty,
+complete, path, and star graphs. The package records $O(N^2)$ time and $O(N)$
+output space under a strict `asymptotic_optimality` certificate. Its lower
+bound uses the $N(N-1)/2=\Theta(N^2)$ independently selectable upper-triangle
+edge indicators, each of which can change two output degrees; the row scan
+supplies the matching upper bound. The durable certificate regression, strict
+certificate validator, migration audit, and isolated real-test API route all
+passed. Source fidelity through 3898 is now 613 verified, 3,285 unverified,
+and zero invalid. The dataset checker reports 3,898 manually complete packages
+and 107 needing authoring; the migration audit reports 3,615 locally complete
+and remotely verified packages, 3,605 completed scaling benchmarks, 293
+certified packages, and zero blockers. The focused package/docs/template/
+fidelity suite passed all 173 tests with the two existing warnings, and
+targeted Ruff plus `git diff --check` passed. The authoritative next verified-
+solution package is frontend ID 3899, Angles of a Triangle.
+
+**Problem 3897 checkpoint (2026-07-30):** Maximum Value of Concatenated Binary
+Segments was Accepted as exact Python submission `2086749303`. Its modular
+Reference preserves the parallel count arrays, the `1`-run followed by `0`-run
+construction of every non-empty segment, arbitrary segment reordering without
+internal bit changes, full-value maximization before modulo reduction, both
+fully explained examples, all four constraints, and live content hash
+`bb4607e9d877ef80ce14ca6f7418745360d990a8c6d6a93efa052de5108f4cca`.
+The accepted exchange proof places pure-one segments first, pure-zero segments
+last, and mixed segments by decreasing leading-one count followed by
+increasing trailing-zero count. The exact native and app-local sources matched
+an independent explicit-string concatenation comparator on 19,607 exhaustive
+small inputs, 20,000 deterministic randomized inputs, four maximum-boundary
+families, all 17 ordinary cases, and all three benchmark outputs. The package
+records $O(N\log N+L)$ time and $O(N)$ auxiliary space and uses legal
+$N=32/128/512$ mixed-segment tiers with bounded average segment length. Across
+three calibration trials, the accepted-class source passed at `-0.00` to
+`+0.02` excess growth with at most `1.05x` on the largest tier; an independent
+decorated-key sort passed at `-0.05` to `-0.04` with at most `1.16x`. A correct
+repeated-selection implementation returned every expected output but failed
+only scaling at `+1.07` to `+1.10`, with largest ratios from `95.41x` to
+`100.51x`. Source fidelity through 3897 is now 612 verified, 3,285 unverified,
+and zero invalid. The dataset checker reports 3,897 manually complete packages
+and 108 needing authoring; the migration audit reports 3,614 locally complete
+and remotely verified packages, 3,605 completed scaling benchmarks, and zero
+blockers. The focused package/docs/template/fidelity suite passed all 173 tests
+with the two existing warnings, and targeted Ruff plus `git diff --check`
+passed. The authoritative next verified-solution package is frontend ID 3898,
+Find the Degree of Each Vertex.
+
+**Problem 3896 checkpoint (2026-07-30):** Minimum Operations to Transform Array
+into Alternating Prime was Accepted as exact Python submission `2086744631`.
+Its modular Reference preserves zero-based index parity, the even-index prime
+and odd-index non-prime requirements, unit increments as the only operation,
+the minimum-total objective, the source definition of prime, all three fully
+explained examples, both constraints, and live content hash
+`463b50535673f01162ceb25284e5d336d8c334670841bd95710eaba1c330a9d8`.
+The accepted proof minimizes each index independently, builds one sieve beyond
+the maximum input using Bertrand's postulate as the coverage guarantee, finds
+the next prime for even indices, and observes that a prime odd-index value
+costs one increment except for `2`, which costs two. The exact native and app-
+local sources matched an independent trial-division oracle on 111,110
+exhaustive arrays, 20,000 deterministic randomized arrays, four maximum-length
+boundaries, all 15 ordinary cases, and all three benchmark outputs. The package
+uses $N=128/512/2048$ repeated copies of large prime `99991` while holding $M$
+fixed, with required $O(M\log\log M+N\log M)$ time and $O(M)$ auxiliary space.
+The accepted-class reference passed the validated scaling gate at `-0.01`
+excess growth and `0.99x` on the largest tier; an independent sieve/binary-
+search implementation passed at `+0.01` and `1.01x`. A correct per-element
+trial-division implementation returned every output but failed only scaling at
+`+0.74`, with a `31.42x` largest-tier ratio. Source fidelity through 3896 is
+now 611 verified, 3,285 unverified, and zero invalid. The dataset checker
+reports 3,896 manually complete packages and 109 needing authoring; the
+migration audit reports 3,613 locally complete and remotely verified packages,
+3,604 completed scaling benchmarks, and zero blockers. The focused package/
+docs/template/fidelity suite passed all 173 tests with the two existing
+warnings, and targeted Ruff plus `git diff --check` passed. The authoritative
+next verified-solution package is frontend ID 3897, Maximum Value of
+Concatenated Binary Segments.
+
+**Problem 3895 checkpoint (2026-07-30):** Count Digit Appearances was Accepted
+as exact Python submission `2086741437`. Its modular Reference preserves the
+array-wide decimal-position count, repeated appearances within one value,
+matches across different values, both fully explained examples, all three
+constraints, and live content hash
+`6a1b09067d111ec65d53a8efb346b57652b76de11ec1459b4a2cf7705038f639`.
+The accepted proof repeatedly exposes the last decimal digit with remainder,
+counts a match, and removes that position with integer division, visiting every
+position exactly once. The exact native and app-local sources matched an
+independent string-count oracle on 1,000,000 singleton/digit pairs, 20,000
+deterministic randomized arrays, ten maximum-length/value boundaries, and all
+15 ordinary cases. With $S$ defined as the total number of decimal positions,
+the package records $O(S)$ time and $O(1)$ auxiliary space under a strict
+`asymptotic_optimality` certificate. Every position can independently change
+the answer, establishing $\Omega(S)$, while the accepted method supplies the
+matching upper bound; no genuine slower principal strategy exists to justify
+artificial runtime tiers. A durable certificate regression covers both exact
+sources across the same broad property families. The strict certificate
+validation, migration certificate audit, and isolated real-test API route all
+passed. Source fidelity through 3895 is now 610 verified, 3,285 unverified, and
+zero invalid. The dataset checker reports 3,895 manually complete packages and
+110 needing authoring; the migration audit reports 3,612 locally complete and
+remotely verified packages with zero blockers and 292 certified packages. The
+focused package/docs/template/fidelity suite passed all 173 tests with the two
+existing warnings, the three focused certificate tests passed with one
+existing warning, and targeted Ruff plus `git diff --check` passed. The
+authoritative next verified-solution package is frontend ID 3896, Minimum
+Operations to Transform Array into Alternating Prime.
+
+**Problem 3894 checkpoint (2026-07-30):** Traffic Signal Color was Accepted as
+exact Python submission `2086737848`. Its modular Reference preserves the
+remaining-seconds interpretation, the isolated `0`/green and `30`/orange
+states, the strict-lower and inclusive-upper red interval, the `"Invalid"`
+fallback, both fully explained examples, the sole constraint, and live content
+hash `c455882aadbedc6f68313164257bcbc9ee34de7627b167a1e4f59c5c95c075c1`.
+The accepted proof partitions the legal timer domain into the two special
+values, the complete interval from 31 through 90, and the unmatched fallback.
+The exact native and app-local sources matched an independent classification
+oracle on every timer from 0 through 1000 and all 14 ordinary cases. Because
+each call consumes one bounded scalar and performs at most four comparisons,
+the package records $O(1)$ time and $O(1)$ auxiliary space under a strict
+`bounded_domain` certificate rather than claiming a runtime-scaling verdict.
+A durable certificate regression covers both exact sources across all 1,001
+legal values and confirms the outcome distribution of one green, one orange,
+60 red, and 939 invalid values. The strict certificate validation, migration
+certificate audit, and isolated real-test API route all passed. Source fidelity
+through 3894 is now 609 verified, 3,285 unverified, and zero invalid. The
+dataset checker reports 3,894 manually complete packages and 111 needing
+authoring; the migration audit reports 3,611 locally complete and remotely
+verified packages with zero blockers and 291 certified packages. The focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings, and targeted Ruff plus `git diff --check` passed. The authoritative
+next verified-solution package is frontend ID 3895, Count Digit Appearances.
+
+**Problem 3893 checkpoint (2026-07-30):** Maximum Team Size with Overlapping
+Intervals was Accepted as exact Premium Python submission `2086733107`. Its
+modular Reference preserves closed employee intervals, endpoint overlap, the
+requirement that one team member overlap every other member, the fact that the
+remaining members need not overlap each other, all three fully explained
+examples, both constraints, and live content hash
+`0221f932296e593f9868a28662d7c623a2575fca776ac84e87804761baa084b7`.
+The accepted proof sorts all starts and ends, then uses two binary searches for
+each possible hub interval to count starts no later than its end minus ends
+strictly before its start. The exact native and app-local sources matched a
+pairwise-overlap oracle on 55,986 exhaustive interval sequences, 5,000
+deterministic randomized inputs, four maximum-length boundaries, all 15
+ordinary cases, and all three benchmark outputs. The package has exactly three
+pairwise-disjoint tiers of 32/128/512 intervals, $O(n \log n)$ time, and $O(n)$
+auxiliary space. The accepted source passed the validated scaling gate at
+`+0.02` excess growth and `1.04x` on the largest tier; an independent
+disjoint-side-count $O(n \log n)$ implementation passed at `+0.04` and
+`1.31x`. A correct quadratic pairwise scan returned every output but failed
+only scaling at `+1.15`, with a `243.08x` largest-tier ratio. Source fidelity
+through 3893 is now 608 verified, 3,285 unverified, and zero invalid. The
+dataset checker reports 3,893 manually complete packages and 112 needing
+authoring; the migration audit reports 3,610 locally complete and remotely
+verified packages with zero blockers. The focused package/docs/template/
+fidelity suite passed all 173 tests with the two existing warnings, and
+targeted Ruff plus `git diff --check` passed. The authoritative next verified-
+solution package is frontend ID 3894, Traffic Signal Color.
+
+**Problem 3892 checkpoint (2026-07-30):** Minimum Operations to Achieve At
+Least K Peaks was Accepted as exact Python submission `2086729428`. Its
+modular Reference preserves the circular previous/next-neighbor rules, strict
+peak comparison, unit-increment operation, at-least-`k` target, impossible
+`-1` result, all three fully explained examples, all three constraints, and
+live content hash
+`975032e2427011c5fb74f66409075f74e6836105e80b144100542ba83330c7be`.
+The accepted proof assigns each potential peak its minimum local increment
+cost, reduces the target to a size-`k` independent set on a cycle, splits on
+whether index zero is selected, and solves both resulting paths with
+count-compressed skip/take dynamic programming. The exact native and app-local
+sources matched independent subset enumeration on 83,646 exhaustive inputs,
+5,000 deterministic randomized inputs, four maximum-length boundaries, all 15
+ordinary cases, and all three benchmark outputs. The package has exactly three
+equal-cycle tiers with lengths 16/32/64 and `k = n / 4`, $O(nk)$ time, and
+$O(k)$ auxiliary space. The accepted source passed the validated scaling gate
+at `+0.05` excess growth and `1.05x` on the largest tier; an independent full-
+table $O(nk)$ dynamic program passed at `+0.11` and `1.17x`. A correct
+predecessor-scanning $O(n^2k)$ dynamic program returned every output but failed
+only scaling at `+1.54`, with an `18.50x` largest-tier ratio. Source fidelity
+through 3892 is now 607 verified, 3,285 unverified, and zero invalid. The
+dataset checker reports 3,892 manually complete packages and 113 needing
+authoring; the migration audit reports 3,609 locally complete and remotely
+verified packages with zero blockers. The focused package/docs/template/
+fidelity suite passed all 173 tests with the two existing warnings, and
+targeted Ruff plus `git diff --check` passed. The authoritative next verified-
+solution package is frontend ID 3893, Maximum Team Size with Overlapping
+Intervals.
+
+**Problem 3891 checkpoint (2026-07-29):** Minimum Increase to Maximize Special
+Indices was Accepted as exact Python submission `2086722861`. Its modular
+Reference preserves the interior-index definition, strict comparison with both
+neighbors, unit-increment operation, primary maximum-peak objective, secondary
+minimum-operation objective, all three fully explained examples, both
+constraints, and live content hash
+`b31085b8bd324daf31f8d8a9a3e4715bce3e7f4d5c36c3cb90929bd01b594e91`.
+The accepted proof prices each possible peak independently, observes that
+adjacent positions cannot both be peaks, and handles every maximum-cardinality
+set with one parity-switch sweep. The exact native and app-local sources
+matched an independent maximum-cardinality oracle on 349,504 exhaustive
+arrays, 20,000 deterministic randomized arrays, four maximum-length boundary
+arrays, all 15 ordinary cases, and all three benchmark outputs. The package
+has exactly three equal-array tiers with lengths 32/128/512, $O(n)$ time, and
+$O(1)$ auxiliary space. The accepted source passed the validated scaling gate
+at `-0.00` excess growth and `0.98x` on the largest tier; an independent linear
+dynamic program passed at `+0.06` and `1.38x`. A correct quadratic cardinality
+dynamic program returned every output but failed only scaling at `+1.19`, with
+a `202.93x` largest-tier ratio. Source fidelity through 3891 is now 606
+verified, 3,285 unverified, and zero invalid. The dataset checker reports 3,891
+manually complete packages and 114 needing authoring; the migration audit
+reports 3,608 locally complete and remotely verified packages with zero
+blockers. The focused package/docs/template/fidelity suite passed all 173
+tests with the two existing warnings, and targeted Ruff plus `git diff
+--check` passed. The authoritative next verified-solution package is frontend
+ID 3892, Minimum Operations to Achieve At Least K Peaks.
+
+**Problem 3890 checkpoint (2026-07-29):** Integers With Multiple Sum of Two
+Cubes was Accepted as exact Python submission `2086717268`. Its modular
+Reference preserves positive cube bases, the canonical $a \le b$ orientation,
+the requirement for at least two distinct pairs, the inclusive upper bound,
+ascending output order, both fully explained examples, all four displayed
+decompositions of 1729 and 4104, the sole constraint, and live content hash
+`1b12c67642f0ec6b4af12feb55c670d35b2ea00c2cc9594bdbf793f0fabc6a68`.
+The accepted proof enumerates every canonical cube pair once, counts equal
+sums, filters counts of at least two, and sorts the qualifying totals. The
+exact native and app-local sources matched an independent sorted pair-sum
+oracle on every bound from 1 through 10,000, 5,000 deterministic randomized
+low-range bounds, 200 randomized full-range bounds, four domain boundaries,
+all 15 ordinary cases, and all three benchmark outputs; the maximum bound
+contains 1,554 good integers. The package has exactly three cube-base tiers
+with $B=8/16/32$, expected $O(B^2+G\log G)$ time, and $O(B^2)$ auxiliary
+space. Across three validated-sidecar calibration rounds, the accepted source
+passed at `-0.01` to `+0.07` excess growth with at most `1.08x` on the largest
+tier; an independent opposite-loop enumeration passed at `-0.03` to `+0.06`
+with at most `1.06x`. A correct implementation that independently re-searches
+representations for every feasible sum returned every output but failed only
+scaling at `+1.35` to `+1.43`, with largest-tier ratios from `34.42x` to
+`37.94x`. Source fidelity through 3890 is now 605 verified, 3,285 unverified,
+and zero invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings. The authoritative next verified-solution package is frontend ID
+3891, Minimum Increase to Maximize Special Indices.
+
+**Problem 3889 checkpoint (2026-07-29):** Mirror Frequency Distance was
+Accepted as exact Python submission `2086713096`. Its modular Reference
+preserves the separate reversed lowercase-letter and decimal-digit orders,
+frequency definition, absolute-difference contribution, unordered-pair
+deduplication, all three fully explained examples, all three source tables,
+both constraints, and live content hash
+`425bf2e2d9232b6eae38cca5a989f89d78fe194077ea0cefc5f97cc34ec1ab42`.
+The accepted proof counts the fixed 36-character domain once and visits each
+of its 18 mirror pairs exactly once. The exact native and app-local sources
+matched an independent keyed-frequency oracle on 37,448 exhaustive strings,
+20,000 deterministic randomized strings, four maximum-length boundary
+strings, all 15 ordinary cases, and all three benchmark outputs. The package
+has exactly three repeated-character tiers with 16/64/256 characters, $O(n)$
+time, and $O(1)$ auxiliary space. Across three validated-sidecar calibration
+rounds, the accepted source passed at `-0.05` to `+0.00` excess growth with a
+largest-tier ratio of at most `0.95x`; an independent `Counter` implementation
+passed at `-0.48` to `-0.47` with at most `0.26x`. A correct implementation
+that recomputes both frequencies for every input position returned every
+output but failed only scaling at `+1.38` to `+1.42`, with largest-tier ratios
+from `183.58x` to `195.21x`. Source fidelity through 3889 is now 604 verified,
+3,285 unverified, and zero invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings. The authoritative next verified-solution package is frontend ID
+3890, Integers With Multiple Sum of Two Cubes.
+
+**Problem 3888 checkpoint (2026-07-29):** Minimum Operations to Make All Grid
+Elements Equal was Accepted as exact Python submission `2086705089`. Its
+modular Reference preserves the consecutive $k \times k$ increment operation,
+overlap and repetition semantics, minimum-or-`-1` result, both fully explained
+examples, all four constraints, the absence of source visuals and tables, and
+live Premium content hash
+`5331217e023cf9489650874765a237d52f6db8ffc9e7f7e6f549228af7b62400`.
+The accepted proof scans in row-major order, represents each forced operation
+count as an affine function of the unknown common target, collects all target
+bounds and equations, and maintains active square coverage with rolling
+horizontal and vertical windows. The exact native and app-local sources
+matched an independent fixed-target greedy oracle on 62,202 exhaustive grids,
+20,000 deterministic randomized grids, four maximum-size boundary grids, all
+15 ordinary cases, and all three benchmark outputs. The package has exactly
+three dense-overlap tiers with 16/64/256 total cells, $O(mn)$ time, and
+$O(k(n-k+1))$ auxiliary space. Across three validated-sidecar calibration
+rounds, the accepted source passed at `+0.01` to `+0.02` excess growth with at
+most `1.03x` on the largest tier; an independent full 2D affine-difference
+implementation passed at `-0.01` to `+0.01` with at most `0.88x`. A correct
+implementation that directly resums every covering start returned every
+output but failed only scaling at `+0.55` to `+0.60`, with largest-tier ratios
+from `4.12x` to `4.31x`. Source fidelity through 3888 is now 603 verified,
+3,285 unverified, and zero invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings. The authoritative next verified-solution package is frontend ID
+3889, Mirror Frequency Distance.
+
+**Problem 3887 checkpoint (2026-07-29):** Incremental Even-Weighted Cycle
+Queries was Accepted as exact Python submission `2086696745`. Its modular
+Reference preserves the initially empty undirected graph, ordered distinct
+binary-weight edge proposals, accept-or-reject state transition, every-cycle
+even-sum requirement, accepted-edge count, both fully explained examples, all
+six constraints, and live content hash
+`a4407576c71b13efdb89193ad393e9f14a0659f166d92ba04e540e5537fd483a`.
+Two independently authored text diagrams preserve the topology and accepted or
+rejected closing edge conveyed by the source's two images. The accepted proof
+represents cycle parity as binary vertex potentials and maintains endpoint-to-
+root differences in a parity-aware disjoint-set union. The exact native and
+app-local sources matched an independent full graph-coloring oracle on 75,972
+exhaustive ordered weighted graphs, 20,000 deterministic randomized graphs,
+three maximum-size boundary graphs, all 15 ordinary cases, and all three
+benchmark outputs. The package has exactly three accepted-chain tiers with
+8/32/128 edge proposals, $O((N+M)\alpha(N))$ time, and $O(N)$ space. Across
+three validated-sidecar calibration rounds, the accepted source passed at
+`-0.01` to `+0.01` excess growth with at most `1.02x` on the largest tier; an
+independent parity DSU passed at `-0.06` to `+0.00` with at most `0.89x`. A
+correct implementation that searches the growing component for every proposed
+endpoint pair returned every output but failed only scaling at `+0.99` to
+`+1.03`, with largest-tier ratios from `25.74x` to `26.82x`. Source fidelity
+through 3887 is now 602 verified, 3,285 unverified, and zero invalid. The
+dataset checker passed, and the focused package/docs/template/fidelity suite
+passed all 173 tests with the two existing warnings.
+
+**Problem 3886 checkpoint (2026-07-29):** Sum of Sortable Integers was
+Accepted as exact Python submission `2086688560`. Its modular Reference
+preserves the divisor requirement, fixed consecutive blocks, independent
+left-or-right cyclic rotations, non-decreasing target order, sum over every
+sortable length, all three fully explained examples, both constraints, the
+absence of source visuals and tables, and live content hash
+`349cc087fe133141be8930d526fdac9d844ca4672ec1c90b0f5dfaf527d4854f`.
+The accepted proof precomputes globally valid block cuts, recognizes a sorted
+cyclic order by at most one strict circular descent, and tests only divisors of
+the array length. The exact native and app-local sources matched an independent
+rotation-materialization oracle on 349,524 exhaustive arrays, 20,000
+deterministic randomized arrays, four maximum-size boundary arrays, all 15
+ordinary cases, and all three benchmark outputs. The package has exactly three
+strictly descending prime-length tiers with 127/1,021/8,191 values, $O(nD)$
+time for $D$ divisors, and $O(n)$ space. Across three validated-sidecar
+calibration rounds, the accepted source passed at `-0.01` to `+0.01` excess
+growth with at most `1.02x` on the largest tier; an independent per-block
+minimum/maximum scan passed at `-0.00` to `+0.02` with at most `0.96x`. A
+correct implementation that materializes every cyclic rotation returned every
+output but failed only scaling at `+0.28` to `+0.30`, with largest-tier ratios
+from `4.59x` to `4.81x`. Source fidelity through 3886 is now 601 verified,
+3,285 unverified, and zero invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings.
+
+**Problem 3885 checkpoint (2026-07-29):** Design Event Manager was Accepted as
+exact Python submission `2086677535`. Its modular Reference preserves the
+unique initial event IDs, active-event lifetime, priority replacement,
+destructive polling, maximum-priority ordering, smaller-ID tie-break, `-1`
+empty result, both source operation traces with their walkthroughs, all eight
+constraints, the absence of source visuals and tables, and live content hash
+`ff035812e355c205f74f3ffac1504a879e502d0eb942ddc7d7e164a86c1d9398`.
+The accepted proof keeps current priorities in an authoritative map and lazily
+rejects obsolete `(-priority, eventId)` heap entries. The exact native and
+app-local sources matched an independent active-map oracle on 280,107
+exhaustive small traces, 10,000 deterministic randomized traces containing
+503,469 operations, two maximum-size boundary traces, all 15 ordinary cases,
+and all three benchmark outputs. The package has exactly three tied-event,
+destructive-poll tiers with 64/128/256 initial events, total
+$O((E+Q)\log(E+Q))$ time, and $O(E+Q)$ space. Across three validated-sidecar
+calibration rounds, the accepted source passed at `-0.03` to `+0.02` excess
+growth with at most `1.02x` on the largest tier; an independent heapified
+implementation passed at `-0.04` to `-0.02` with at most `0.82x`. A correct
+active-map scan returned every output but failed only scaling at `+0.94` to
+`+1.02`, with largest-tier ratios from `11.97x` to `13.51x`. Source fidelity
+through 3885 is now 600 verified, 3,285 unverified, and zero invalid. The
+dataset checker passed, and the focused package/docs/template/fidelity suite
+passed all 173 tests with the two existing warnings.
+
+**Problem 3884 checkpoint (2026-07-29):** First Matching Character From Both
+Ends was Accepted as exact Python submission `2086669615`. Its modular
+Reference preserves the lowercase-string domain, zero-based indexing, the
+exact mirror formula `n - i - 1`, the smallest-index requirement, the `-1`
+fallback, all three fully explained examples including the coincident odd
+center, both constraints, the absence of source visuals and tables, and live
+content hash
+`da3b843df55940b76bec4d965acc8aaac0b309eb3a4d5a54ab8c9182a78a7de9`.
+The accepted proof scans indices in increasing order and compares each
+character directly with its mirror. The exact native and app-local sources
+matched an independent inward two-pointer oracle on 88,572 exhaustive strings,
+10,000 deterministic randomized strings, four maximum-length boundaries, all
+15 ordinary cases, and all three benchmark outputs. The package has exactly
+three no-match tiers with 8/32/100 characters, $O(n)$ time, and $O(1)$
+auxiliary space. Across three validated-sidecar calibration rounds, the
+accepted source passed at `-0.00` to `+0.02` excess growth with at most
+`1.02x` on the largest tier; the independent two-pointer scan passed at
+`-0.01` to `+0.01` with at most `1.02x`. A correct implementation that walks
+backward anew to locate every mirror returned every output but failed only
+scaling at `+1.16` to `+1.22`, with largest-tier ratios from `31.89x` to
+`34.22x`. Source fidelity through 3884 is now 599 verified, 3,285 unverified,
+and zero invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings.
+
+**Problem 3883 checkpoint (2026-07-29):** Count Non Decreasing Arrays With
+Given Digit Sums was Accepted as exact Python submission `2086655894`. Its
+modular Reference preserves the inclusive value domain `0..5000`, the
+non-decreasing rule including equality, the required decimal digit sum at
+every index, distinct-array counting, reduction modulo $10^9+7$, all three
+fully explained examples, both constraints, the absence of source visuals and
+tables, and live content hash
+`cfd4ed9de5915f35f02d205dece15f261fcf60407e1aa46f0c19716ed2c33880`.
+The accepted proof counts prefixes by their exact final value and uses one
+running prefix sum to admit every non-decreasing predecessor. The exact native
+and app-local sources matched explicit legal-value enumeration on 1,554
+exhaustive target sequences, a structurally independent sparse two-pointer DP
+on 2,000 deterministic randomized sequences and five maximum-length arrays,
+all 15 ordinary cases, and all three benchmark outputs. The package has
+exactly three repeated-digit-sum-one tiers with 4/12/32 positions, $O(nU)$
+time, and $O(U)$ auxiliary space for $U=5001$. Across three validated-sidecar
+calibration rounds, the accepted source passed at `-0.01` to `+0.00` excess
+growth with at most `1.00x` on the largest tier; the independent sparse DP
+passed at `-0.33` to `-0.23` with below `0.01x`. A correct explicit assignment
+enumerator returned every output but failed only scaling at `+2.21` to
+`+2.36`, with largest-tier ratios from `0.64x` to `0.79x`. Source fidelity
+through 3883 is now 598 verified, 3,285 unverified, and zero invalid. The
+dataset checker passed, and the focused package/docs/template/fidelity suite
+passed all 173 tests with the two existing warnings.
+
+**Problem 3882 checkpoint (2026-07-29):** Minimum XOR Path in a Grid was
+Accepted as exact Python submission `2086645958`. Its modular Reference
+preserves the top-left and bottom-right endpoints, right-or-down movement,
+inclusion of both endpoint values in the path XOR, all three fully explained
+examples with every source path and XOR calculation, all four constraints, and
+live content hash
+`24e07190e05cb7e3db2f0bb71943735df72cc3623ecfa7fc0f7812a28bfac450`.
+The accepted proof propagates every reachable 10-bit XOR state from the top
+and left predecessors while rolling two rows. The exact native and app-local
+sources matched full path enumeration on 226,900 exhaustive grids and 5,000
+deterministic randomized grids, an independent full-grid DP on three
+1,000-cell boundary grids, all 15 ordinary cases, and all three benchmark
+outputs. The package has exactly three all-zero square tiers with 9/25/81
+cells, $O(mn)$ time, and $O(n)$ auxiliary space. Across three
+validated-sidecar calibration rounds, the accepted source passed at `+0.00` to
+`+0.01` excess growth with at most `1.02x` on the largest tier; an independent
+full-grid state DP passed at `-0.06` to `-0.04` with at most `0.83x`. A correct
+complete path traversal returned every output but failed only scaling at
+`+2.46`, with largest-tier ratios from `173.86x` to `174.96x`. Source fidelity
+through 3882 is now 597 verified, 3,285 unverified, and zero invalid. The
+dataset checker passed, and the focused package/docs/template/fidelity suite
+passed all 173 tests with the two existing warnings.
+
+**Problem 3881 checkpoint (2026-07-29):** Direction Assignments with Exactly K
+Visible People was Accepted as exact Python submission `2086637544`. Its
+modular Reference preserves both direction meanings, the observer's exact
+left/right visibility rules, the independent choice at every index, all three
+fully explained examples with every direction-counting step, both constraints,
+the modulo requirement, and live content hash
+`2c085369c5f63f1fd8fa382aebce5064519064253f161dc3b2fae96c54b47a13`.
+The accepted proof gives a bijection between size-`k` subsets of the `n - 1`
+non-observers and their forced directions, then doubles for the observer's free
+choice and evaluates the binomial coefficient modulo $10^9+7$. The exact
+native and app-local sources matched explicit direction enumeration on 650
+exhaustive `(n, pos, k)` triples, 3,000 deterministic randomized formula
+checks, 21 cases at `n = 100000`, all 15 ordinary cases, and all three
+benchmark outputs. The package has exactly three 32/128/512-person central-`k`
+tiers, $O(n)$ time, and $O(1)$ auxiliary space. Across three validated-sidecar
+calibration rounds, the accepted source passed at `-0.00` to `+0.01` excess
+growth with at most `1.05x` on the largest tier; an independent one-pass
+factorial table passed at `+0.07` with at most `1.34x`. A correct Pascal dynamic
+program returned every output but failed only scaling at `+1.38` to `+1.39`,
+with largest-tier ratios from `187.55x` to `195.03x`. Source fidelity through
+3881 is now 596 verified, 3,285 unverified, and zero invalid. The dataset
+checker passed, and the focused package/docs/template/fidelity suite passed all
+173 tests with the two existing warnings.
+
+**Problem 3880 checkpoint (2026-07-29):** Minimum Absolute Difference Between
+Two Values was Accepted as exact Python submission `2086628581`. Its modular
+Reference preserves the restricted `0`/`1`/`2` value domain, the value-ordered
+index-pair definition, symmetric absolute index distance, both fully explained
+examples including every listed valid pair, both constraints, and live content
+hash `7ef3a68e0e4305c34a8b5958aa401de84f05e66295e180ac993ad898fa2cc034`.
+The accepted proof observes that each later endpoint only needs the latest
+earlier occurrence of the opposite required value. The exact native and
+app-local sources matched brute force on 88,572 exhaustive arrays, 10,000
+deterministic randomized arrays, six 100-element boundary arrays, all 15
+ordinary cases, and all three benchmark outputs. The package has exactly three
+16/64/256-element alternating tiers, $O(n)$ time, and $O(1)$ auxiliary space.
+Across three validated-sidecar calibration rounds, the accepted source passed
+at `-0.00` to `+0.01` excess growth with at most `1.03x` on the largest tier;
+an independent adjacent-nonzero scan passed at `-0.01` to `-0.00` with at most
+`0.99x`. A correct complete pair enumerator returned every output but failed
+only scaling at `+1.15` to `+1.16`, with largest-tier ratios from `48.69x` to
+`49.30x`. Source fidelity through 3880 is now 595 verified, 3,285 unverified,
+and zero invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings.
+
+**Problem 3879 checkpoint (2026-07-29):** Maximum Distinct Path Sum in a
+Binary Tree was Accepted as exact Premium Python submission `2086612339`. Its
+modular Reference preserves arbitrary endpoints, paths that need not contain
+the root, pairwise-distinct node values, all three fully explained examples,
+independent text diagrams equivalent to all three source images, both
+constraints, and live content hash
+`4e49dab0c870876d4cf4b36feccd0464b484ce3f36dd5d5975cdc271248d7e3a`.
+The accepted proof starts a traversal at every node and backtracks one shared
+value set along each unique tree route, pruning a continuation as soon as a
+value repeats. The exact native and app-local sources matched an independent
+endpoint-pair oracle on 11,496 exhaustive shape-and-value trees and 5,000
+deterministic randomized trees, four 1,000-node boundary trees, all 15 ordinary
+cases, and all three benchmark outputs. The package has exactly three
+8/24/72-node distinct positive left-chain tiers, $O(n^2)$ time, and $O(n)$
+auxiliary space. Across three validated-sidecar calibration rounds, the
+accepted source passed at `-0.01` to `+0.02` excess growth with at most `1.02x`
+on the largest tier; an independent recursive boolean-array traversal passed
+at `-0.05` to `-0.03` with at most `0.35x`. A correct implementation that
+explicitly copies every active-set element returned every output but failed
+only scaling at `+0.52`, with largest-tier ratios from `2.17x` to `2.19x`.
+Source fidelity through 3879 is now 594 verified, 3,285 unverified, and zero
+invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings.
+
+**Problem 3878 checkpoint (2026-07-29):** Count Good Subarrays was Accepted as
+exact Python submission `2086599174`. Its modular Reference preserves the
+requirement that a subarray's bitwise OR equal an element within that same
+subarray, both fully explained examples, the complete six-row source table,
+both constraints, and live content hash
+`b25713d39dde33c6a9859ddf760a7ce5e6f27c666a5c6e2c0fcee5453e8e8e17`.
+The accepted proof assigns every good subarray to its rightmost element equal
+to the OR, then uses nearest missing-bit blockers and the next equal value to
+count that witness's exact endpoint rectangle. The exact native and app-local
+sources matched a brute-force oracle on 21,844 exhaustive arrays and 5,000
+deterministic randomized small arrays, an independent suffix-OR oracle on
+three 100,000-element arrays, all 15 ordinary cases, and all three benchmark
+outputs. The package has exactly three 16/64/256-element equal-one tiers,
+$O(n)$ time, and $O(n)$ auxiliary space. Across three validated-sidecar
+calibration rounds, the accepted source passed at `-0.01` to `-0.00` excess
+growth with at most `1.00x` on the largest tier; the independent suffix-OR
+implementation passed at `-0.12` to `-0.09` with `0.07x`. A correct quadratic
+endpoint enumerator returned every output but failed only scaling at `+0.86`
+to `+0.88`, with largest-tier ratios from `1.70x` to `1.74x`. Source fidelity
+through 3878 is now 593 verified, 3,285 unverified, and zero invalid. The
+dataset checker passed, and the focused package/docs/template/fidelity suite
+passed all 173 tests with the two existing warnings.
+
+**Problem 3877 checkpoint (2026-07-29):** Minimum Removals to Achieve Target
+XOR was Accepted as exact Python submission `2086586485`. Its modular
+Reference preserves the option to remove any number of elements, the minimum
+removal objective, the empty array's XOR of zero, all three source examples
+with their explanations, all three constraints, and live content hash
+`11907971832b7ffbffc3d24c0d43b53cb9e2f13764e26c08ca2b05c5e4c2cb33`.
+The accepted dynamic program keeps the greatest number of retained elements
+for each reachable XOR value; because every value is below $2^{14}$, the
+16,384-state universe is a fixed contract constant, giving $O(n)$ time and
+$O(1)$ auxiliary space. The exact native and app-local sources matched a
+brute-force oracle on 43,680 exhaustive array-and-target pairs and 2,000
+deterministic randomized small cases, an independent dense dynamic program on
+50 randomized maximum-length arrays, all 15 ordinary cases, and all three
+benchmark outputs. The package has exactly three 3/6/12-element zero-array
+tiers. Across three validated-sidecar calibration rounds, the accepted source
+passed at `-0.03` to `-0.01` excess growth with at most `1.02x` on the largest
+tier; an independent minimum-removal dynamic program passed at `+0.03` to
+`+0.04` with `1.12x`. A correct exhaustive subset implementation returned
+every output but failed only scaling at `+3.24` to `+3.25`, with largest-tier
+ratios from `102.28x` to `105.66x`. Source fidelity through 3877 is now 592
+verified, 3,285 unverified, and zero invalid. The dataset checker passed, and
+the focused package/docs/template/fidelity suite passed all 173 tests with the
+two existing warnings.
+
+**Problem 3876 checkpoint (2026-07-29):** Construct Uniform Parity Array II
+was Accepted as exact Python submission `2086555651`. Its modular Reference
+preserves the distinct positive input values, the uniform odd-or-even target,
+the exactly-one-choice rule, both assignments, the different-index condition,
+the requirement that every subtraction remain at least one, all three source
+examples with every construction step, all three constraints, and live content
+hash `b1d76fbd1e8f7cfe131bc6469fbd848c392c44139b6ec96f251c407e16712430`.
+The accepted proof uses the global minimum's forced parity: an odd minimum can
+convert every even value, while an even minimum succeeds only when no odd value
+exists. The exact native and app-local one-pass sources matched an independent
+legal-subtraction oracle on 109,600 exhaustive distinct-value permutations,
+10,000 deterministic randomized arrays, all 15 ordinary cases, all three
+benchmark outputs, and three 100,000-element boundary arrays. The package has
+exactly three 16/64/256-element odd-anchor-last tiers, $O(n)$ time, and $O(1)$
+auxiliary space. Across three validated-sidecar calibration rounds, the
+accepted scan passed at `-0.01` to `+0.01` excess growth with at most `1.04x`
+on the largest tier; an independent minimum-plus-parity scan passed at `-0.51`
+to `-0.49` with at most `0.20x`. A correct quadratic partner search returned
+every output but failed only scaling at `+1.32` to `+1.36`, with largest-tier
+ratios from `151.70x` to `167.89x`. Source fidelity through 3876 is now 591
+verified, 3,285 unverified, and zero invalid. The dataset checker passed, and
+the focused package/docs/template/fidelity suite passed all 173 tests with the
+two existing warnings.
+
+**Problem 3875 checkpoint (2026-07-29):** Construct Uniform Parity Array I was
+Accepted as exact Python submission `2086542041`. Its modular Reference
+preserves the distinct positive input values, the uniform odd-or-even target,
+the exactly-one-choice rule at every index, both allowed assignments including
+the different-index condition, both source examples with every construction
+step, all three constraints, and live content hash
+`6aa5965e730ef686bf9e107ddb40e1614d77b033c5093b4dc40e55f145678b5f`.
+The accepted proof observes that an already uniform array can be kept, while a
+mixed array can keep every odd value and subtract one fixed odd anchor from
+every even value; therefore every legal input succeeds. The exact native and
+app-local constant-return sources matched an independent legal-choice oracle
+on 109,600 exhaustive distinct-value permutations, 10,000 deterministic
+randomized legal arrays, all 14 ordinary cases, and all three benchmark
+outputs. The package has exactly three 4/20/100-element distinct-array tiers,
+$O(1)$ time, and $O(1)$ auxiliary space. Across three corrected
+validated-sidecar calibration rounds, the accepted source passed at `-0.00`
+to `+0.00` excess growth with at most `1.01x`; an independently phrased
+constant-time implementation passed at `-0.01` to `+0.01` with at most
+`1.02x`. A correct but unnecessary full parity scan returned every output but
+failed only scaling in all three rounds at `+0.25` to `+0.26`. Source fidelity
+through 3875 is now 590 verified, 3,285 unverified, and zero invalid. The
+dataset checker passed, and the focused package/docs/template/fidelity suite
+passed all 173 tests with the two existing warnings.
+
+**Problem 3874 checkpoint (2026-07-29):** Valid Subarrays With Exactly One
+Peak was Accepted as exact Python submission `2086520275`. Its modular
+Reference preserves the original-array definition of a strict interior peak,
+the exactly-one-peak interval condition, both endpoint distance limits, all
+three fully explained examples with every listed valid subarray, all three
+constraints, and live content hash
+`82b86ae19febdb10fdc9358d5eb5cbf28adaa500b8c4eed48e885fa9928ae491`.
+The exact native and app-local peak-neighbor sources matched an independent
+subarray oracle on 669,924 exhaustive array-and-`k` pairs, every one of the 15
+ordinary cases, and all three benchmark outputs. The package has exactly
+three 16/64/256-element single-peak mountain tiers, $O(n)$ time, and $O(n)$
+auxiliary space. Across three calibration rounds, the accepted source passed
+at `-0.00` to `-0.00` excess growth with at most `1.01x`; an independently
+structured constant-space delayed-contribution scan passed at `-0.14` with
+at most `0.56x`. A correct quadratic subarray enumerator returned every output
+but failed only scaling in all three rounds at `+1.18` to `+1.20`, with
+largest-tier ratios from `112.36x` to `118.14x`. Source fidelity through 3874
+is now 589 verified, 3,285 unverified, and zero invalid. The dataset checker
+passed, and the focused package/docs/template/fidelity suite passed all 173
+tests with the two existing warnings.
+
+**Problem 3873 checkpoint (2026-07-29):** Maximum Points Activated with One
+Addition was Accepted as exact Python submission `2086505507`. Its modular
+Reference preserves distinct integer-coordinate pairs, activation through a
+shared x- or y-coordinate, transitive propagation to a fixed point, the
+required new coordinate not already present, activation beginning at that new
+point, inclusion of the added point in the maximum, all three examples with
+every propagation step and activated set, all four constraints, and live
+content hash `8b6f3fa9250e9c3260f123f332fdd8b6002cefd8f5fbcd39fff342de0b1a0480`.
+The exact native and app-local point-DSU sources matched direct placement and
+activation simulation on all 511 nonempty subsets of a three-by-three grid, an
+independent coordinate-bucket traversal on 10,000 deterministic randomized
+sets through 50 points, every authored case, and a 100,000-point maximum-length
+smoke. The package has 13 ordinary cases, exactly three 16/64/256-point
+isolated-coordinate tiers, $O(n\alpha(n))$ time, and $O(n)$ auxiliary space.
+Across three calibration rounds, the accepted source passed at `-0.00` to
+`+0.01` excess growth with at most `1.00x` on the largest tier; an independent
+coordinate-bucket BFS passed at `+0.04` to `+0.06` with at most `1.87x`; and a
+correct all-pairs component builder returned every benchmark result but failed
+only scaling at `+0.93` to `+0.95`, with largest ratios from `21.67x` to
+`22.34x`. Source fidelity through 3873 is now 588 verified, 3,285 unverified,
+and zero invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings.
+
+**Problem 3872 checkpoint (2026-07-29):** Longest Arithmetic Sequence After
+Changing At Most One Element was Accepted as exact Python submission
+`2086489335`. Its modular Reference preserves the contiguous-subarray and
+constant-consecutive-difference definitions, the optional replacement of any
+one position by any integer, the maximum-length objective, both source examples
+with every replacement and selection step, both constraints, and live content
+hash `0282a0aed3561356adf2a1c9f52539a9fc2d01ddecbf41e9388a11bc0bdeff55`.
+The exact native and app-local two-pass sources matched an independent
+progression oracle on 87,296 exhaustive arrays over values one through four at
+lengths four through eight, a separately implemented outward-rescan control on
+5,000 deterministic randomized arrays through length 30, every authored case,
+and a 100,000-element maximum-length smoke. The package has 15 ordinary cases,
+exactly three 16/64/256-element arithmetic-run tiers, $O(n)$ time, and $O(n)$
+auxiliary space. Across three calibration rounds, the accepted source passed
+at `-0.01` to `+0.00` excess growth with at most `0.99x` on the largest tier;
+an independent difference-run formulation passed at `-0.02` to `-0.01` with
+at most `0.88x`; and a correct per-index outward rescan returned every
+benchmark result but failed only scaling at `+0.92` to `+1.01`, with largest
+ratios from `30.97x` to `89.57x`. Source fidelity through 3872 is now 587
+verified, 3,285 unverified, and zero invalid. The dataset checker passed, and
+the focused package/docs/template/fidelity suite passed all 173 tests with the
+two existing warnings.
+
+**Problem 3871 checkpoint (2026-07-29):** Count Commas in Range II was
+Accepted as exact Python submission `2086473676`. Its modular Reference
+preserves the inclusive `[1, n]` objective, standard right-to-left three-digit
+groups, the no-comma rule below four digits, both fully explained examples,
+the sole constraint through $10^{15}$, and live content hash
+`e9b1ccb44e54bd05a400d1d40bfe9cdf225c38cbae0410d3d68f8ad447f1e54e`.
+The exact native and app-local threshold loops matched direct standard
+formatting at 1,000,100 consecutive endpoints and an independently grouped
+digit-block oracle at 100,015 deterministic large-range probes, including
+every $1000^k$ boundary through the maximum. The package has 12 ordinary
+cases, exactly three legal 5,000/20,000/80,000 upper-endpoint tiers,
+$O(\log n)$ time, and $O(1)$ auxiliary space. Across three calibration rounds,
+the accepted loop passed at `-0.01` to `+0.01` excess growth with at most
+`1.02x`; an independently grouped digit-range summation passed at `-0.00` to
+`+0.02` with at most `1.06x`; and a correct format-every-value control returned
+every benchmark result but failed only scaling at `+0.91` to `+0.93`, with
+largest ratios from `842.07x` to `864.26x`. Source fidelity through 3871 is
+now 586 verified, 3,285 unverified, and zero invalid. The dataset checker
+passed, and the focused package/docs/template/fidelity suite passed all 173
+tests with the two existing warnings.
+
+**Problem 3870 checkpoint (2026-07-29):** Count Commas in Range was Accepted
+as exact Python submission `2086457954`. Its modular Reference preserves the
+inclusive `[1, n]` objective, right-to-left groups of three digits, the
+no-comma rule below four digits, both fully explained examples, the sole
+constraint, and live content hash
+`ca55f9b643468d7ebbc8022e4cebad0df3118a1856bc8a4c3c900c0f425e1413`.
+The exact native and app-local threshold formulas matched an independent
+standard-formatting oracle at every endpoint from 1 through 100,000 and every
+authored case. The package has 11 ordinary cases, exactly three legal
+6,250/25,000/100,000 upper-endpoint tiers, $O(1)$ time, and $O(1)$ auxiliary
+space. Across three calibration rounds, the accepted formula passed at
+`-0.01` to `-0.00` excess growth with at most `1.01x`; an independently
+expressed conditional passed at `-0.01` to `+0.01` with at most `1.02x`; and
+a correct per-integer enumeration returned every benchmark result but failed
+only scaling at `+0.90` to `+0.96`, with largest ratios from `947.39x` to
+`1073.11x`. Source fidelity through 3870 is now 585 verified, 3,285
+unverified, and zero invalid. The dataset checker passed, and the focused
+package/docs/template/fidelity suite passed all 173 tests with the two existing
+warnings.
+
+**Problem 3869 checkpoint (2026-07-29):** Count Fancy Numbers in a Range was
+Accepted as exact Python submission `2086431900`. Its modular Reference
+preserves the good-number definition, both strict monotonic directions, the
+single-digit rule, the digit-sum alternative, the inclusive range objective,
+all three fully explained examples with every intermediate digit sequence and
+sum, the sole constraint, and live content hash
+`3981431a948ea8bc4157d241b28d1150b500b85f1468e6aee03242eb9f7d7ecb`.
+The accepted inclusion-exclusion source matched direct classification on
+10,000 consecutive singleton ranges, 500 deterministic brute-force ranges,
+an independently structured union digit DP at 40 boundaries through
+$10^{15}$, every authored case, and ten magnitude boundaries. The package has
+15 ordinary cases, exactly three 256/2,048/16,384-width prefix tiers,
+$O(D^2)$ time, and $O(D^2)$ auxiliary space for $D$ endpoint digits. The
+app-local adapter embeds the fixed decimal-domain tables of 103 good sums,
+1,524 monotone numbers, and 1,386 overlap values, then uses iterative digit
+DP; this preserves the Accepted semantics while staying within the app's
+traced execution limit. Across three calibration rounds, that adapter passed
+at `+0.00` to `+0.01` excess growth with at most `1.04x`; an independent
+loose-prefix digit DP passed at `-0.00` to `+0.01` with at most `0.90x`; and
+a correct per-integer classifier returned every ordinary and benchmark result
+but failed only scaling at `+0.79` to `+0.82`, with largest ratios from
+`215.50x` to `244.39x`. Earlier app drafts that rebuilt the fixed tables or
+tracked the full union recursively were rejected after reaching the ordinary
+Python safety cap; they were not used as complexity evidence. Source fidelity
+through 3869 is now 584 verified, 3,285 unverified, and zero invalid.
+
+**Problem 3868 checkpoint (2026-07-29):** Minimum Cost to Equalize Arrays
+Using Swaps was Accepted as exact Python submission `2086406715`. Its modular
+Reference preserves both arrays' equal-length contract, the free same-array
+swap and paid same-index cross-array swap, unlimited operation count, exact
+minimum-cost objective, impossible `-1` result, all three fully explained
+examples, both constraints, and live content hash
+`da42f5c92e58ba7a42c27666746b8ed917536d74899df9363e5a3a084b930241`.
+The two-frequency-map source matched an independent breadth-first state-space
+oracle on 66,420 exhaustive array pairs over values 1 through 3 at lengths two
+through five, every authored case, and five maximum-length boundaries. The
+package has 14 ordinary cases, exactly three 16/64/256-element paired-distinct
+tiers, $O(N)$ time, and $O(U)$ auxiliary space for $U$ distinct values. Across
+three calibration rounds, the accepted adapter passed at `-0.00` to `+0.02`
+excess growth with at most `1.11x`; an independent signed-balance map passed
+at `+0.09` to `+0.11` with at most `1.35x`; and a correct explicit per-value
+frequency rescan returned every ordinary and benchmark result but failed only
+scaling at `+1.21` to `+1.28`, with largest ratios from `150.85x` to
+`178.73x`. The initial 512-element largest tier was rejected after the slower
+control reached the Python safety cap; the final legal tiers let it finish and
+reach the complexity verdict. Source fidelity through 3868 is now 583
+verified, 3,285 unverified, and zero invalid.
+
+**Problem 3867 checkpoint (2026-07-29):** Sum of GCD of Formed Pairs was
+Accepted as exact Python submission `2086383743`. Its modular Reference
+preserves the complete prefix-maximum construction, non-decreasing sort,
+smallest/largest unpaired rule, odd-middle behavior, GCD definition, both
+explained examples, both four-column source tables, both constraints, and live
+content hash
+`5a8e9d994dfb7e2b1a704dca3f375b3dfbd85898a4d96f361bbe4e15f8ba9c08`.
+The running-maximum source matched an independent prefix-accumulation oracle
+on 488,280 exhaustive arrays over values 1 through 5 through length eight plus
+four maximum-length boundaries. The package has 14 ordinary cases, exactly
+three 16/64/256-element descending tiers, $O(N\log N + N\log V)$ time, and
+$O(N)$ auxiliary space. Across three calibration rounds, the accepted
+implementation passed at `-0.02` to `+0.01` excess growth with at most
+`1.04x`; an independent accumulation-and-sort implementation passed at
+`-0.14` to `-0.13` with at most `0.66x`; and a correct explicit nested prefix-
+maximum rescan returned every ordinary and benchmark result but failed only
+scaling at `+1.17` to `+1.18`, with largest ratios from `44.49x` to `46.24x`.
+A draft based on `max(nums[:i + 1])` was rejected as evidence because its
+C-level work passed at `+0.07` and `1.21x` on the legal tiers. Source fidelity
+through 3867 is now 582 verified, 3,285 unverified, and zero invalid.
+
+**Problem 3866 checkpoint (2026-07-29):** First Unique Even Element was
+Accepted as exact Python submission `2086354631`. Its modular Reference
+preserves all three source paragraphs, both explained examples and every
+explanation step, both constraints, the exact earliest-array-index semantics,
+and live content hash
+`89cba71848edda6ca2f012c0ed1047c3c25352c9bfb298095e6578e3867bd95d`.
+The fixed-frequency-array source matched an independent oracle on 349,524
+exhaustive arrays over values 1 through 4 through length nine plus four
+maximum-length boundaries. The package has 13 ordinary cases, exactly three
+8/32/100-element late-unique-even tiers, $O(N)$ time, and $O(1)$ auxiliary
+space. Across three calibration rounds, the accepted implementation passed at
+`-0.00` to `+0.02` excess growth with at most `1.02x`; an independent
+dictionary-count implementation passed at `-0.01` to `+0.01` with at most
+`1.01x`; and a correct explicit nested-count control returned every expected
+output but failed only scaling at `+1.28` to `+1.30`, with largest ratios from
+`35.90x` to `37.16x`. A draft `nums.count` control was rejected as evidence
+because its C-level constant factor passed within the legal size-100 domain.
+Source fidelity through 3866 is 581 verified, 3,285 unverified, and zero
+invalid.
+
+**Problem 3865 checkpoint (2026-07-29):** Reverse K Subarrays is Premium and
+was Accepted as exact Python submission `2086339539`. Its modular Reference
+preserves all four source paragraphs, both explained examples and every
+explanation step, all four constraints, the exact `k`-blocks rather than
+block-size semantics, and live content hash
+`539021cc6b2c2a25d0a4b45c2092e72ca313d512f542669a4ec0ba30b9cdfcd8`.
+The in-place two-pointer source matched an independent block-slicing oracle on
+34,338 exhaustive legal inputs plus four maximum-length boundaries. The
+package has 13 ordinary cases, exactly three 64/256/512-element four-block
+tiers, $O(N)$ time, and $O(1)$ auxiliary space. Across three calibration
+rounds, the accepted implementation passed at `-0.02` to `-0.01` excess
+growth with at most `1.02x`; an independent slice-based linear implementation
+passed at `-0.39` to `-0.37` with at most `0.37x`; and a correct output-index
+rescan returned every ordinary and benchmark result but failed only scaling at
+`+1.49` to `+1.51`, with largest ratios from `159.07x` to `160.91x`. A draft
+1,000-element largest tier was rejected because the quadratic control reached
+the safety cap instead of the complexity verdict. Source fidelity through
+3865 is now 580 verified, 3,285 unverified, and zero invalid.
+
+**Problem 3862 checkpoint (2026-07-29):** Find the Smallest Balanced Index was
+Accepted as exact Python submission `2086275014`. The reverse scan maintains a
+left sum and a capped right product, matched an exact oracle on 449,524 small
+inputs plus four length-100,000 boundaries, and is documented as $O(N)$ time
+and $O(1)$ auxiliary space. Its complete package has 13 ordinary cases and
+16/64/256 benchmark tiers. The accepted and independent linear scans passed
+scaling, while a correct quadratic control returned every expected output and
+failed only scaling at roughly `130.5x` to `131.9x` on the largest tier.
+
+**Problem 3863 checkpoint (2026-07-29):** Minimum Operations to Sort a String
+was Accepted as exact constant-space Python submission `2086291543`, replacing
+an earlier accepted slicing draft. Its endpoint/extrema classification matched
+the exact operation graph on all 349,524 strings over `abcd` through length
+nine. The complete package has 13 ordinary cases, $O(N)$ time, $O(1)$ auxiliary
+space, and 64/256/1024 reverse-alphabet tiers. The accepted scan and an
+independent same-class formulation passed; a correct insertion-sort control
+returned all outputs and failed only scaling at more than `5,281x`.
+
+**Problem 3864 checkpoint (2026-07-29):** Minimum Cost to Partition a Binary
+String was Accepted as exact Python submission `2086302710`. The recursive
+pair result `(ones, cost)` matched an independent prefix/memo oracle on 819,150
+exhaustive string-and-cost inputs, 25,000 deterministic random inputs, and four
+length-100,000 boundaries. Its complete modular package has 13 ordinary cases,
+$O(N)$ time, $O(\log N)$ stack space, and 16/64/256 alternating-string tiers.
+The accepted and independent linear recursions passed scaling; a correct
+quadratic node-rescan control returned every output and failed only scaling at
+`67.56x` to `69.37x`. Source fidelity through 3864 is 579 verified, 3,285
+unverified, and zero invalid.
+
+**Problem 3833 checkpoint (2026-07-29):** Count Dominant Indices
+was Accepted as exact Python submission `2085820885`. Its completed package has
+the source-faithful Description, Note, two explained examples, constraints, and
+reviewed fidelity manifest; 12 legal ordinary cases; an exact three-heading
+running-suffix derivation; $O(N)$ time and $O(1)$ auxiliary space; accepted
+native and app-local sources; and three legal descending benchmark tiers of
+8/32/100 values. The native candidate matched a direct oracle on 19,530
+exhaustive legal arrays. Across three fresh judge trials, the accepted scan
+passed scaling with at most a `1.01x` runtime ratio, an independent linear
+suffix-sum scan passed with at most `0.94x`, and an explicit correct quadratic
+suffix-rescan completed every output but failed only scaling with excess growth
+from `+0.92` to `+0.96` and largest ratios from `12.33x` to `13.39x`.
+
+**Problem 3834 checkpoint (2026-07-29):** Merge Adjacent Equal
+Elements, was Accepted as exact Python submission `2085834271`. Its completed
+package preserves the deterministic leftmost rule, all three explained source
+examples, both constraints, and the reviewed content hash; supplies 12 legal
+ordinary cases; derives the cascading stack algorithm under exactly three
+headings; records $O(N)$ time and $O(N)$ space; and includes three legal
+merge-heavy benchmark tiers of 64/256/1024 maximum-valued elements. The exact
+native source matched literal leftmost simulation on all 87,380 arrays over
+values 1 through 4 at lengths 1 through 8. Across three fresh judge trials,
+the accepted stack passed scaling with at most a `1.02x` runtime ratio, an
+independent linear stack formulation passed with at most `1.27x`, and correct
+literal repeated scanning and reconstruction completed every output but failed
+only scaling with excess growth from `+0.25` to `+0.28`.
+
+**Problem 3835 checkpoint (2026-07-29):** Count Subarrays With
+Cost Less Than or Equal to K, was Accepted as exact Python submission
+`2085845536`. Its completed package preserves all three explained examples,
+including every source cost calculation, and all three constraints; supplies
+12 legal ordinary cases; derives the monotonic-deque sliding window under
+exactly three headings; records $O(N)$ time and $O(N)$ space; and includes
+three legal increasing-array benchmark tiers of 32/128/512 elements. The exact
+native source matched direct enumeration on all 458,724 exhaustive array-and-k
+inputs from the reviewed small domain. Across three fresh judge trials,
+the accepted window passed scaling with at most a `0.68x` runtime ratio, an
+independent linear pair-deque implementation passed with at most `0.87x`, and
+correct quadratic endpoint expansion completed every output but failed only
+scaling with excess growth from `+1.02` to `+1.03` and largest ratios up to
+`33.62x`.
+
+**Problem 3836 checkpoint (2026-07-29):** Maximum Score Using
+Exactly K Pairs, was Accepted as exact Python submission `2085859397`. Its
+completed package preserves both strict increasing index chains, all three
+explained source examples, and all four constraints; supplies 12 legal
+ordinary cases; derives the rolling exact-count prefix DP under exactly three
+headings; records $O(N M K)$ time and $O(K\min(N,M))$ auxiliary space; and
+includes three legal square all-one benchmark tiers with workload sizes
+108/864/6912. The exact native source matched a combinations oracle on all
+46,314 exhaustive inputs in the reviewed small domain. Across three fresh
+judge trials, the accepted rolling DP passed scaling with at most a `1.01x`
+runtime ratio, an independent full three-dimensional DP passed with at most
+`0.75x`, and a correct predecessor-rescan endpoint DP completed every output
+but failed only scaling at `+0.22` excess growth. Calibration also caught and
+corrected an overstated authored trial expectation before the package entered
+the corpus.
+
+**Problem 3837 checkpoint (2026-07-29):** Delayed Count of Equal
+Elements, was Accepted as exact Premium Python submission `2085878459`. Its
+completed package preserves the strict `i + k < j` boundary, both complete
+six-column source explanation tables, both concluding result statements, and
+all three constraints; supplies 12 legal ordinary cases; derives the reverse
+frequency-map scan under exactly three headings; records $O(N)$ expected time
+and $O(N)$ auxiliary space; and includes three legal all-equal, zero-delay
+benchmark tiers of 512/2,048/8,192 values. The exact native source matched a
+direct quadratic oracle on all 73,812 arrays over values one through three up
+to length eight and every legal `k`. Across three fresh judge trials, the
+accepted reverse scan passed scaling with at most a `1.03x` runtime ratio, an
+independent forward frequency-removal scan passed with at most `2.15x`, and a
+correct suffix-slicing recount completed every output but failed only scaling
+with excess growth from `+0.63` to `+0.68`.
+
+**Problem 3838 checkpoint (2026-07-29):** Weighted Word Mapping,
+was Accepted as exact Python submission `2085892822`. Its completed package
+preserves the source's five-paragraph progression, the complete reverse mapping
+from `0 -> 'z'` through `25 -> 'a'`, all three explained examples and their
+individual calculations, and all five constraints; supplies 12 legal ordinary
+cases; derives the direct character-weight scan under exactly three headings;
+records $O(S)$ time for $S$ total characters and $O(W)$ output-construction
+space for $W$ words; and includes three legal fixed-length benchmark tiers of
+6/24/96 words with sizes 60/240/960. The exact native source matched an
+independent reverse-alphabet oracle on 610,740 exhaustive inputs plus explicit
+all-letter boundary coverage. Across three fresh judge trials, the accepted
+scan passed scaling with at most a `1.02x` runtime ratio, an independent
+lookup-table formulation passed with at most `1.10x`, and a correct nested
+word-position search completed every output but failed only scaling at
+`+0.72` to `+0.73` excess growth and `9.45x` to `9.62x` largest-tier ratios.
+The ordinary-case oracle also caught and corrected two expected strings and an
+overlong draft hidden word before validation.
+
+**Problem 3839 checkpoint (2026-07-29):** Number of Prefix
+Connected Groups, was Accepted as exact Python submission `2085907581`. Its
+completed package preserves the source's four-paragraph definition, the
+standalone Note covering short-word exclusion and distinct-index duplicate
+semantics, all three explained examples, and all four constraints; supplies 12
+legal ordinary cases; derives prefix equivalence classes under exactly three
+headings; records expected $O(NK)$ time and $O(NK)$ space; and includes three
+legal duplicate-word benchmark tiers with 16/64/256 words, $K=16$, and sizes
+256/1,024/4,096. The exact native source matched an index-level connected-
+component oracle on 1,343,688 exhaustive inputs plus explicit length-100
+boundaries. Across three fresh judge trials, the accepted frequency map passed
+scaling with at most a `1.01x` runtime ratio, an independent seen/repeated-set
+formulation passed with at most `1.02x`, and correct all-pairs comparison
+completed every output but failed only scaling at `+1.31` to `+1.33` excess
+growth and `78.60x` to `80.57x` largest-tier ratios.
+
+**Problem 3840 checkpoint (2026-07-29):** House Robber V was
+Accepted as exact Python submission `2085922357`. Its completed package
+preserves the source's four-paragraph street and color-code contract, all three
+explained examples, both constraints, and the reviewed live-content hash;
+supplies 12 legal ordinary cases; derives the color-dependent rolling prefix
+DP under exactly three headings; records $O(N)$ time and $O(1)$ auxiliary
+space; and includes three legal same-color, maximum-value benchmark tiers of
+16/64/256 houses. The exact native source matched a chosen-subset oracle on
+597,870 exhaustive legal inputs. Across three fresh judge trials, the accepted
+rolling DP passed scaling with at most a `1.02x` runtime ratio, an independent
+full-array linear DP passed with at most `1.24x`, and a correct control that
+recomputed every successive prefix completed every output but failed only
+scaling at `+1.35` to `+1.36` excess growth and `105.11x` to `111.78x`
+largest-tier ratios. Calibration first rejected larger draft tiers because the
+control reached the Python step safety cap; the final smaller tiers preserve a
+16x total span and isolate the intended scaling verdict.
+
+**Problem 3841 checkpoint (2026-07-29):** Palindromic Path
+Queries in a Tree, was Accepted as exact Python submission `2085941328`. Its
+completed package preserves the undirected-tree model, mutable node-character
+state, both command forms, both fully explained source examples, all 11
+constraint items, and the reviewed live-content hash; supplies 12 legal
+ordinary cases; derives Euler-tour subtree XOR updates, root-path parity masks,
+and binary-lifting LCA under exactly three headings; records
+$O((N+Q)\log N)$ time and $O(N\log N)$ auxiliary space; and includes three
+legal one-color chain tiers with 8/32/128 nodes, $Q=N$ full-path queries, and
+sizes 16/64/256. The exact native source matched direct mutable path simulation
+on 304,315 query answers. Across three fresh judge trials, the accepted
+Fenwick formulation passed scaling with at most a `1.01x` runtime ratio, an
+independent lazy range-XOR segment-tree formulation passed with at most
+`1.13x`, and correct per-query path search and reconstruction completed every
+output but failed only scaling at `+0.92` to `+0.93` excess growth and
+`10.12x` to `10.30x` largest-tier ratios.
+
+**Problem 3842 checkpoint (2026-07-29):** Toggle Light Bulbs,
+was Accepted as exact Python submission `2085964995`. Its completed package
+preserves the fixed 100-bulb model, all-off initial state, ordered two-way
+toggle rule, ascending-output requirement, both fully explained examples with
+every source toggle step, both constraints, and the reviewed live-content
+hash; supplies 12 legal ordinary cases; derives the indexed parity-state scan
+under exactly three headings; and records $O(N)$ time with $O(1)$ auxiliary
+space. The exact native source matched an odd-frequency oracle on 488,280
+exhaustive legal arrays over values one through five at lengths one through
+eight, plus explicit domain boundaries. Legal 6/24/96-operation calibration
+showed that the accepted scan passed at most `1.03x`, an independent linear
+frequency array passed at most `1.06x`, but correct quadratic repeated
+counting also passed all three rounds at `+0.08` excess growth and at most
+`1.07x`. Because the complete $N\le100$ domain is too small for an honest
+asymptotic timing verdict, the discarded draft tiers were replaced by a strict
+`bounded_domain` certificate. Its dedicated regression repeats the exhaustive
+488,280-array oracle, covers every legal length through 100 and explicit
+boundaries, and the real-test API reports certified complexity with no fake
+runtime cases.
+
+**Problem 3843 checkpoint (2026-07-29):** First Element with
+Unique Frequency, was Accepted as exact Python submission `2085983256`. Its
+completed package preserves the left-to-right selection rule, the definition
+that uniqueness compares frequencies across distinct integers, the `-1`
+fallback, all three source examples with every explanatory count and ordering
+step, both constraints, and the reviewed live-content hash; supplies 12 legal
+ordinary cases; derives the value-frequency and frequency-multiplicity maps
+under exactly three headings; records expected $O(N)$ time and $O(D)$
+auxiliary space; and includes three legal all-distinct benchmark tiers of
+64/256/1,024 values. The exact native source matched an independent frequency
+oracle on 349,524 exhaustive arrays over values one through four at lengths
+one through nine, plus examples and value boundaries. The accepted adapter
+passed scaling at a `1.02x` largest-tier runtime ratio. Across three fresh
+trials, an independent `Counter` formulation passed at `-0.20` to `-0.21`
+excess growth and at most `0.31x`, while a correct repeated full-array count
+control completed every ordinary and benchmark output but failed only scaling
+at `+0.36` to `+0.38` excess growth and `2.92x` to `2.99x` largest-tier
+ratios.
+
+**Problem 3844 checkpoint (2026-07-29):** Longest
+Almost-Palindromic Substring, was Accepted as exact Python submission
+`2085998699`. Its completed package preserves the lowercase-string model,
+contiguous-substring choice, mandatory removal of exactly one character,
+palindrome result, all three source examples with each chosen substring,
+removed character, and resulting palindrome, both constraints, and the
+reviewed live-content hash; supplies 12 legal ordinary cases; derives odd and
+even center expansion, endpoint deletion, and both first-mismatch branches
+under exactly three headings; records $O(N^2)$ time and $O(1)$ auxiliary
+space; and includes three legal uniform-string benchmark tiers of 32/64/128
+characters. The exact native source matched a direct deletion oracle on all
+88,569 ternary strings at lengths two through ten, 2,000 deterministic random
+strings, the source examples, and the 2,500-character maximum boundary. The
+accepted adapter passed scaling at `+0.01` excess growth and a `0.99x`
+largest-tier ratio. Across three fresh trials, an independently indexed center
+formulation passed at `-0.21` to `-0.16` excess growth and at most `0.47x`,
+while a correct $O(N^3)$ all-substrings and linear-validation control completed
+every ordinary and benchmark output but failed only scaling at `+0.92` to
+`+0.97` excess growth and `9.46x` to `9.99x` largest-tier ratios.
+
+**Problem 3845 checkpoint (2026-07-29):** Maximum Subarray XOR
+with Bounded Range, was Accepted as exact Python submission `2086013337`.
+Its completed package preserves the non-negative array and bound, nonempty
+contiguous-subarray requirement, inclusive maximum-minus-minimum test, bitwise
+XOR value, both source examples with each selected subarray and calculation,
+all three constraints, and the reviewed live-content hash; supplies 12 legal
+ordinary cases; derives the monotonic min/max window, prefix-XOR identity,
+counted active-prefix trie, and greedy bit query under exactly three headings;
+records $O(N\log V)$ time and $O(N\log V)$ auxiliary space for $V=2^{15}$;
+and includes three legal all-range-valid benchmark tiers of 24/96/384 values.
+The exact native source matched a direct quadratic oracle on 131,064 exhaustive
+array/bound combinations over values zero through three at lengths one through
+seven, 5,000 deterministic random inputs, both source examples, and the
+40,000-element, value, and `k` boundaries. The accepted adapter passed scaling
+at `+0.00` excess growth and a `0.98x` largest-tier ratio. Across three fresh
+trials, an independent node-pair counted trie passed at `-0.00` to `+0.02`
+excess growth and at most `0.90x`, while a correct quadratic enumeration
+control completed every ordinary and benchmark output but failed only scaling
+at `+0.97` to `+0.99` excess growth and `4.84x` to `4.89x` largest-tier
+ratios.
+
+**Problem 3846 checkpoint (2026-07-29):** Total Distance to
+Type a String Using One Finger, was Accepted as exact Premium Python
+submission `2086027806`. Its completed package preserves the three-row,
+ten-column keyboard as one accessible coordinate-labelled table, the initial
+finger position on `a`, zero-indexed coordinates, Manhattan-distance rule,
+ordered single-finger typing, both fully explained examples with every move
+and subtotal, both constraints, and the reviewed live-content hash; supplies
+12 legal ordinary cases; derives the coordinate lookup and one-pass distance
+accumulation under exactly three headings; records $O(N)$ time and $O(1)$
+auxiliary space; and includes three legal alternating-corner benchmark tiers
+of 24/96/388 characters. The exact native source matched an independent
+coordinate oracle on all 475,254 lowercase strings of lengths one through
+four, both source examples, and a 10,000-character boundary string. Across
+three fresh judge trials, the accepted adapter passed scaling at `-0.02` to
+`-0.00` excess growth and at most a `1.00x` largest-tier ratio; an independent
+linear coordinate scan passed at `+0.06` to `+0.08` and at most `0.90x`.
+A correct prefix-recomputation control completed every ordinary and benchmark
+output but failed only scaling in all three trials at `+1.25` to `+1.29`
+excess growth and `138.07x` to `145.21x` largest-tier ratios.
+
+**Problem 3847 checkpoint (2026-07-29):** Find the Score
+Difference in a Game, was Accepted as exact Python submission `2086049070`.
+Its completed package preserves the integer game-score array, exactly two
+players, initially active first player, sequential odd-value and sixth-game
+swaps, zero-indexed sixth-game sequence `5, 11, 17, ...`, scoring after both
+possible swaps, signed first-minus-second result, all three source examples
+with every scoring and difference step, both constraints, and the reviewed
+live-content hash; supplies 12 legal ordinary cases; derives the active-player
+flag and direct signed-difference update under exactly three headings; records
+$O(N)$ time and $O(1)$ auxiliary space; and includes three legal repeated
+six-game benchmark tiers of 24/96/384 values. The exact native source matched
+an independent two-score simulation on all 488,280 arrays over values one
+through five at lengths one through eight, all source examples, and a
+deterministic 1,000-game boundary input. Across three fresh judge trials, the
+accepted adapter passed scaling at `-0.01` to `+0.00` excess growth and at most
+a `1.00x` largest-tier ratio; an independent two-total linear simulation
+passed at `-0.03` to `-0.01` and at most `0.91x`. A correct prefix-
+recomputation control completed every ordinary and benchmark output but failed
+only scaling in all three trials at `+1.19` to `+1.20` excess growth and
+`183.29x` to `187.21x` largest-tier ratios.
+
+**Problem 3848 checkpoint (2026-07-29):** Check Digitorial
+Permutation, was Accepted as exact Python submission `2086059139`. Its
+completed package preserves the positive integer input, exact definition of a
+digitorial, use of every digit in a permutation, original-order eligibility,
+boolean result, the standalone two-item Note defining factorials including
+$0!=1$ and rejecting leading-zero arrangements, both fully explained source
+examples, the sole constraint, and the reviewed live-content hash; supplies
+12 legal ordinary cases; derives the permutation-invariant factorial sum and
+ten-bucket digit-multiset comparison under exactly three headings; records
+$O(D)$ time and $O(1)$ auxiliary space; and includes three legal distinct-
+digit benchmark tiers of 1/3/5 digits. The exact native source matched a
+literal valid-permutation oracle for every integer from one through 9,999,
+both source examples, the small digitorial permutations used in authored
+coverage, and the $10^9$ boundary. Across three fresh judge trials, the
+accepted digit-count adapter passed scaling at `-0.04` to `+0.01` excess
+growth and at most a `1.02x` largest-tier ratio; an independent `Counter` and
+sorted-sum formulation passed at `-0.10` to `-0.07` and at most `1.10x`. A
+correct unique-multiset permutation search completed every ordinary and
+benchmark output but failed only scaling in all three trials at `+1.98` to
+`+1.99` excess growth and `47.33x` to `49.94x` largest-tier ratios. An earlier
+2/4/8-digit draft and a duplicate positional-permutation control were rejected
+from evidence because they reached the Python safety cap; the final tiers and
+unique-permutation control isolate the intended scaling verdict without that
+failure mode. The audit also caught a one-word-short Description before final
+handoff; the source-faithful clarification and its reviewed hash were repaired
+and every gate was rerun.
+
+**Problem 3849 checkpoint (2026-07-29):** Maximum Bitwise XOR
+After Rearrangement, was Accepted as exact Python submission `2086073231`.
+Its completed package preserves the two equal-length binary strings, the fixed
+positions of `s`, full rearrangement freedom for `t`, length-preserving XOR
+result, maximum represented integer, all three fully explained source
+examples, both constraints, and the reviewed live-content hash; supplies 12
+legal ordinary cases; derives equal-length lexicographic ordering and the
+left-to-right opposite-bit greedy rule under exactly three headings; records
+$O(N)$ time and $O(N)$ output-construction space; and includes three legal
+half-opposite benchmark tiers of 32/128/512 bits. The exact native and app-
+local sources matched an independent arrangement oracle on all 87,380 binary-
+string pairs through length eight, every authored case, and a 200,000-bit
+boundary pair. Across three fresh judge trials, the accepted counter scan
+passed scaling at `-0.01` to `+0.01` excess growth and at most a `1.01x`
+largest-tier ratio; an independent dictionary-count scan passed at `-0.01` to
+`+0.06` and at most `1.39x`. A correct explicit remaining-suffix recount
+completed every ordinary and benchmark output but failed only scaling in all
+three trials at `+1.17` to `+1.18` excess growth and `87.95x` to `104.68x`
+largest-tier ratios. Calibration rejected smaller tiers whose C-level repeated
+string operations falsely passed, larger tiers whose amplification was
+unstable, and a 128/512/2,048 explicit-loop draft that reached the one-million-
+step safety cap; the final control and tiers isolate the intended quadratic
+growth without any correctness or safety-cap failure.
+
+**Problem 3850 checkpoint (2026-07-29):** Count Sequences to K,
+was Accepted as exact Python submission `2086094476`. Its completed package
+preserves the initial `val = 1`, mandatory left-to-right choice at every array
+index, all three multiply/divide/leave actions, exact rational equality, the
+definition of distinct action sequences, the standalone rational-division
+Note, all three fully explained source examples, all three source tables with
+their exact columns, operations, intermediate values, and final values, all
+three constraints, and the reviewed live-content hash; supplies 13 legal
+ordinary cases; derives signed exponents of $2$, $3$, and $5$ plus rolling
+state-count DP under exactly three headings; records $O(NS)$ time and $O(S)$
+space for at most $S$ reachable exponent triples; and includes three legal
+equal-factor cancellation benchmark tiers of 3/6/12 elements. The exact native
+and app-local sources matched an independent exact-`Fraction` oracle on all
+9,330 arrays over values one through six at lengths one through five across
+187,600 target comparisons, 100 deterministic maximum-length arrays, every
+authored case, the maximum answer, and the upper target boundary. Across three
+fresh judge trials, the accepted state DP passed scaling at `-0.00` to `+0.07`
+excess growth and at most a `1.11x` largest-tier ratio; an independently
+factored state DP passed at `+0.04` to `+0.06` and at most `1.23x`. A correct
+meet-in-the-middle enumeration completed every ordinary and benchmark output
+but failed only scaling in all three trials at `+1.72` to `+2.02` excess
+growth and `15.64x` to `25.74x` largest-tier ratios. Calibration rejected a
+4/8/16 mixed-factor draft whose control reached the Python safety cap and a
+mixed 3/6/12 draft whose same-class and slower-class separation was too
+implementation-sensitive; the final equal-factor workload preserves the 4x
+span and isolates exponential enumeration without a safety failure.
+
+**Problem 3851 checkpoint (2026-07-29):** Maximum Requests
+Without Violating the Limit, was Accepted as exact Premium Python submission
+`2086111060`. Its completed package preserves the `[user_i, time_i]` request
+records, independent per-user accounting, both `k` and `window`, the integer
+start time of an inclusive `[t, t + window]` interval, the strictly-more-than-
+`k` violation rule, arbitrary request removal, maximum-retained objective, all
+three fully explained source examples with every original explanatory step,
+all four constraints, and the reviewed live-content hash; supplies 13 legal
+ordinary cases; derives per-user sorting, an active deque, inclusive-boundary
+handling, and the earliest-request exchange argument under exactly three
+headings; records $O(N\log N)$ time and $O(N)$ space; and includes three legal
+descending-time benchmark tiers of 24/96/384 requests. The exact native and
+app-local sources matched direct subset enumeration on all 5,460 request arrays
+over two users and two timestamps through length six across 62,396 `k` and
+`window` combinations, 500 deterministic randomized arrays, every authored
+case, and a 100,000-request boundary workload. Across three fresh judge trials,
+the accepted grouped-sort scan passed scaling at `-0.00` to `+0.01` excess
+growth and at most a `1.02x` largest-tier ratio; an independent global
+`(user, time)` sort passed at `-0.05` to `+0.02` and at most `1.14x`. A
+correct repeated-minimum selection control completed every ordinary and
+benchmark output but failed only scaling in all three trials at `+1.10` to
+`+1.17` excess growth and `57.15x` to `94.48x` largest-tier ratios.
+
+**Problem 3852 checkpoint (2026-07-29):** Smallest Pair With
+Different Frequencies, was Accepted as exact Python submission `2086124411`.
+Its completed package preserves both pair conditions, the lexicographic
+smallest-`x` then smallest-`y` selection rule, the `[-1, -1]` fallback, all
+three fully explained source examples, both constraints, and the reviewed
+live-content hash; supplies 13 legal ordinary cases; proves that the smallest
+present value is the first component of every possible optimal answer and
+uses the fixed 1-through-100 value domain under exactly three headings;
+records $O(N)$ time and $O(1)$ auxiliary space; and includes three legal
+all-distinct benchmark tiers of 6/24/96 values. The exact native and app-local
+sources matched an independent lexicographic-pair oracle on 97,655 exhaustive
+arrays over values one through five at lengths one through seven plus seven
+boundary workloads. Across three fresh judge trials, the accepted frequency-
+array scan passed scaling at `-0.01` to `+0.01` excess growth and at most a
+`1.01x` largest-tier ratio; an independent dictionary counter plus bounded
+scan passed at `-0.02` to `-0.01` and at most `0.79x`. A correct repeated full-
+array counting and pair-enumeration control completed every ordinary and
+benchmark output but failed only scaling in all three trials at `+1.44` to
+`+1.45` excess growth and `39.90x` to `41.02x` largest-tier ratios.
+
+**Problem 3853 checkpoint (2026-07-29):** Merge Close
+Characters, was Accepted as exact Python submission `2086136481`. Its
+completed package preserves the lowercase string and `k`, current-string
+indices, inclusive closeness, right-into-left deletion, one-at-a-time updates,
+stable-string objective, the standalone smallest-left then smallest-right
+priority Note, all three fully explained source examples, all three
+constraints, and the reviewed live-content hash; supplies 13 legal ordinary
+cases; derives a reverse nearest-equal-successor scan that implements both
+pair priorities under exactly three headings; records $O(N^2)$ time and
+$O(N)$ space; and includes three legal repeated-character benchmark tiers of
+6/24/96 characters. The exact native and app-local sources matched a literal
+step-by-step priority-rule simulator on 250,959 exhaustive `(s, k)` inputs over
+three letters through length nine, 2,000 deterministic randomized legal
+inputs, and three length-100 boundary workloads. Across three fresh judge
+trials, the accepted reverse-map simulation passed scaling at `-0.01` excess
+growth and at most a `0.99x` largest-tier ratio; an independent fixed-alphabet
+reverse scan passed at `+0.00` to `+0.01` and at most `1.07x`. A correct
+exhaustive all-pairs-per-round simulation completed every ordinary and
+benchmark output but failed only scaling in all three trials at `+0.84` to
+`+0.85` excess growth and `11.89x` to `11.99x` largest-tier ratios.
+
+**Problem 3854 checkpoint (2026-07-29):** Minimum Operations to
+Make Array Parity Alternating, was Accepted as exact Python submission
+`2086150731`. Its completed package preserves the adjacent opposite-parity
+definition, either one-step increase or decrease, the two-level optimization
+of minimum operations before minimum final range, the requirement to use
+exactly the minimum operation count for that range, the length-one rule, all
+three fully explained source examples, both constraints, and the reviewed
+live-content hash; supplies 13 legal ordinary cases; derives the only two
+alternating patterns and the exact largest-lower-choice/smallest-upper-choice
+range bound under exactly three headings; records $O(N)$ time and $O(1)$
+space; and includes three legal increasing-even benchmark tiers of 16/64/256
+values. The exact native and app-local sources matched explicit final-array
+enumeration on 19,530 exhaustive arrays through length six, 5,000 deterministic
+randomized small arrays, and five boundary workloads, plus an independent
+sorted-window covering oracle on 5,000 full-range arrays. Across three fresh
+judge trials, the accepted two-pattern scan passed scaling at `-0.01` to
+`+0.01` excess growth and at most `1.01x`; an independent linear formulation
+passed at `+0.03` to `+0.05` and at most `1.45x`. A correct candidate-boundary
+rescan completed every ordinary and benchmark output but failed only scaling
+in all three trials at `+0.19` to `+0.20` excess growth and `9.63x` to `9.84x`
+largest-tier ratios. A non-short-circuiting draft was rejected from evidence
+because it reached the Python safety cap; it was not used for the final
+complexity claim.
+
+**Problem 3855 checkpoint (2026-07-29):** Sum of K-Digit
+Numbers in a Range, was Accepted as exact Python submission `2086165650`.
+Its completed package preserves the inclusive digit interval, exactly `k`
+independent choices, leading-zero inclusion, total-sum objective, modulus, all
+three fully explained source examples, both constraints, and the reviewed
+live-content hash; supplies 13 legal ordinary cases; derives one position's
+symmetric contribution and the modular geometric place-value sum under exactly
+three headings; records $O(\log K)$ time and $O(1)$ space; and includes three
+legal exponent-bit-length benchmark tiers of 4/16/30. The exact native and app-
+local sources matched direct enumeration for all 275 digit-range and length
+combinations through `k = 5`, an independent divide-and-conquer geometric-
+series oracle on 10,000 deterministic randomized full-range inputs, and four
+maximum-boundary workloads. Across three fresh judge trials, the accepted
+formula passed scaling at `-0.01` to `+0.00` excess growth and at most `1.00x`;
+an independent built-in modular-power formulation passed at `-0.01` to `+0.02`
+and at most `1.07x`. A correct factor-recomputing $O((\log K)^2)$ control
+completed every ordinary and benchmark output but failed only scaling in all
+three trials at `+0.83` to `+0.89` excess growth and `9.09x` to `9.96x`
+largest-tier ratios. Earlier length-based tiers were rejected because the
+linear-in-`k` control could not finish the required maximum-`k` ordinary case;
+a manual binary-power same-class draft was also rejected because source-level
+loop overhead made it fail against Python's built-in modular exponentiation.
+
+**Problem 3856 checkpoint (2026-07-29):** Trim Trailing Vowels,
+was Accepted as exact Python submission `2086179467`. Its completed package
+preserves the lowercase-only input, removal of every vowel in only the trailing
+suffix, the exact five-character vowel set, unchanged internal vowels, the
+possible empty result, all three fully explained source examples, both
+constraints, and the reviewed live-content hash; supplies 13 legal ordinary
+cases; derives the backward retained-prefix boundary under exactly three
+headings; records $O(N)$ time, $O(1)$ scan space, and $O(N)$ returned-string
+space; and includes three legal all-vowel benchmark tiers of 6/24/96
+characters. The exact native and app-local sources matched independent suffix-
+set removal on 137,256 exhaustive strings over all five vowels and two
+consonants through length six, 10,000 deterministic randomized legal strings,
+and four length-100 boundary strings. Across three fresh judge trials, the
+accepted backward scan passed scaling at `-0.00` to `+0.00` excess growth and
+at most `1.01x`; an independent forward last-consonant scan passed at `-0.03`
+to `-0.01` and at most `0.95x`. A correct prefix-boundary and suffix-rescan
+control completed every ordinary and benchmark output but failed only scaling
+in all three trials at `+1.14` excess growth and `34.35x` to `34.99x` largest-
+tier ratios.
+
+**Problem 3857 checkpoint (2026-07-29):** Minimum Cost to Split
+into Ones, was Accepted as exact Python submission `2086189555`. Its completed
+package preserves positive binary splits, the `a + b = x` requirement, the
+`a * b` operation cost, the complete reduction to `n` ones, the minimum-total-
+cost objective, both fully explained source examples, both exact six-column
+source tables and all their rows, the sole constraint, and the reviewed live-
+content hash; supplies 13 legal ordinary cases; derives the split-tree
+triangular-cost invariant under exactly three headings; records $O(1)$ time
+and $O(1)$ space; and includes three legal input-value benchmark tiers of
+8/64/500. The exact native and app-local sources matched an independent all-
+split dynamic program and the explicit sequential-cost sum on every one of the
+500 legal inputs. Across three fresh judge trials, the accepted triangular
+formula and an independent constant-time formulation both passed with `+0.00`
+excess growth and at most `1.02x`. A correct sequential `1 + (x - 1)` split
+simulation completed every ordinary and benchmark output but failed only
+scaling in all three trials at `+0.48` to `+0.49` excess growth and `8.19x` to
+`8.34x` largest-tier ratios.
+
+**Problem 3858 checkpoint (2026-07-29):** Minimum Bitwise OR
+From Grid, was Accepted as exact Python submission `2086199987`. Its completed
+package preserves the requirement to choose exactly one value independently
+from every row, the minimum combined bitwise-OR objective, all three fully
+explained source examples, all four constraints, the absence of source
+visuals and tables, and the reviewed live-content hash; supplies 13 legal
+ordinary cases; derives accumulated forbidden-bit feasibility under exactly
+three headings; records $O(BMN)$ time and $O(1)$ auxiliary space, where $B$ is
+the maximum cell-value bit length; and includes three legal independent-row
+benchmark tiers of 3/6/12 rows. The exact native and app-local sources matched
+a Cartesian-product oracle on 126,660 exhaustive small grids, 5,000
+deterministic randomized grids, three 100,000-cell boundary shapes, and every
+authored case. Across three fresh judge trials, the accepted mask scan passed
+scaling at `-0.01` to `-0.00` excess growth and at most `1.00x`; an
+independent allowed-bit formulation passed at `-0.06` and at most `0.85x`.
+A correct reachable-OR-set control completed every ordinary and benchmark
+output but failed only scaling in all three trials at `+2.02` to `+2.06`
+excess growth and `9.91x` to `10.34x` largest-tier ratios.
+
+**Problem 3859 checkpoint (2026-07-29):** Count Subarrays With K Distinct
+Integers, was Accepted as exact Python submission `2086227262`. Its completed
+package preserves the exact-`k` distinct-value rule, the at-least-`m`
+frequency rule for every present value, both fully explained examples, both
+three-column source tables and every row, all three constraints, and the
+reviewed live-content hash; supplies 13 legal ordinary cases; derives the
+exact-distinct window and threshold-preserving removable-prefix count under
+exactly three headings; records $O(N)$ time and $O(K)$ auxiliary space; and
+includes three legal repeated-value benchmark tiers of 32/64/128 elements.
+The exact native source matched a direct interval oracle on 565,964 exhaustive
+and deterministic randomized inputs plus four 100,000-element boundaries.
+Across three fresh judge trials, the accepted window passed scaling at
+`-0.01` to `+0.02` excess growth and at most `1.02x`; an independently written
+`Counter` window passed at `-0.04` to `-0.03` and at most `0.88x`. A correct
+quadratic subarray enumerator completed every ordinary and benchmark output
+but failed only scaling in all three trials at `+1.02` to `+1.09` excess
+growth and `31.66x` to `33.84x` largest-tier ratios. An earlier 506-element
+tier was rejected because it sent the slower control to the Python safety cap
+instead of the scaling verdict.
+
+**Problem 3860 checkpoint (2026-07-29):** Unique Email Groups, is Premium and
+was Accepted as exact Python submission `2086243193`. Its completed package
+preserves every local-name and domain-name normalization distinction, all
+three fully explained examples, all three exact six-column source tables and
+their rows, all six constraints, and the reviewed live-content hash; supplies
+13 legal ordinary cases; derives canonical local-domain keys and set
+deduplication under exactly three headings; records $O(S)$ time and $O(S)$
+auxiliary space for total input characters $S$; and includes three legal
+unique-address benchmark tiers of 16/64/256 emails. The exact native source
+matched an independent character scanner across 15,620 generated emails,
+2,232 overlapping batches, all source examples, and a 1,000-email boundary.
+Across three fresh judge trials, the accepted set implementation passed at
+`-0.01` to `-0.00` excess growth and at most `1.01x`; an independent
+`partition`/`casefold` formulation passed at `+0.03` to `+0.05` and at most
+`1.23x`. A correct list-membership control completed every output but failed
+only scaling in all three trials at `+1.12` to `+1.15`, with largest-tier
+ratios from `54.50x` to `58.18x`. A Python character-loop formulation was
+rejected as same-class evidence because interpreter-level constant factors
+made it fail the relative-growth heuristic.
+
+**Current live checkpoint (2026-07-29):** Problem 3861, Minimum Capacity Box,
+was Accepted as exact Python submission `2086255133`. Its completed package
+preserves the capacity eligibility comparison, minimum-capacity objective,
+smallest-index tie-break, `-1` fallback, all three fully explained source
+examples, all three constraints, the absence of source visuals and tables,
+and the reviewed live-content hash; supplies 13 legal ordinary cases; derives
+the strict-improvement scan under exactly three headings; records $O(N)$ time
+and $O(1)$ auxiliary space; and includes three legal decreasing-capacity
+benchmark tiers of 8/32/100 boxes. The exact native source matched a tuple
+oracle on 107,650 exhaustive and deterministic randomized inputs plus both
+100-box boundaries. Across three fresh judge trials, the accepted scan passed
+at `-0.00` to `+0.01` excess growth and at most `1.01x`; an independent
+tuple-minimum scan passed at `-0.09` and at most `0.79x`. A correct pairwise
+optimality control completed every output but failed only scaling in all three
+trials at `+1.05` to `+1.07`, with largest-tier ratios from `22.79x` to
+`22.94x`.
+
+The expanded focused suite passes `173` tests with the two existing warnings;
+the two focused certificate regressions also pass;
+the scoped source-fidelity audit reports zero invalid packages through frontend
+ID 3861, with 576 verified and 3,285 unverified packages in that scope; the
+dataset checker reports 3,861 authored packages and 142 remaining; and the
+migration audit reports 3,861 verified Optimal submissions, 3,578 fully
+complete-and-verified packages, and no blockers. The refreshed authoritative
+pointer is frontend ID 3862, Find the Smallest Balanced Index
+(`dsa/leetcode/3862_find-the-smallest-balanced-index`). The live public problem
+has backend question ID `4240` and content SHA-256
+`b0ce81cbdbead566b01c4728d500dc9369446531214c1b3cdff3fd63ff4b1c0f`.
+An index `i` is balanced when the sum of elements strictly to its left equals
+the product of elements strictly to its right; an empty left side has sum `0`
+and an empty right side has product `1`. Return the smallest balanced index or
+`-1`. The three fully explained source examples are `[2,1,2] -> 1` with left
+sum and right product both `2`; `[2,8,2,2,5] -> 2` with both sides equal to
+`10`; and `[1] -> -1` because its empty-side values are `0` and `1`. The two
+constraints are `1 <= nums.length <= 10^5` and
+`1 <= nums[i] <= 10^9`. The authenticated hints call for prefix sums, suffix
+products with overflow checks, testing equality at each index, and returning
+the first match. The Python3 entrypoint is
+`Solution.smallestBalancedIndex(self, nums: list[int]) -> int`. Only
+placeholder metadata, legacy documentation, and placeholder branch bounds
+exist locally; no candidate or submission manifest has been created.
+Reconfirm the live source before authoring the exact native candidate.
+
+## Single-agent continuation protocol
+
+The user explicitly directed on 2026-07-29 that the remaining migration must
+continue without subagents. Do not spawn, delegate to, or resume subagents for
+package preflight, authoring, validation, or handoff work. The active agent owns
+the complete numeric workflow: live-source review, native candidate creation,
+remote verification, package editing, calibration, audits, and handoff updates.
+
+`dsa/leetcode/_reports/ACTIVE_PARALLEL_PREFLIGHTS.md` is retained only as
+historical read-only preparation for frontend IDs 3833 through 3837. Its facts
+must still be checked against the live source before use. Do not extend that
+file through new delegated work; when no durable brief exists, the active agent
+performs the preflight directly.
+
+### New-session first actions
+
+1. Read `AGENTS.md`, `LEETCODE_SUBMISSIONS.md`, this handoff, and any durable
+   brief for the current package, then inspect the live worktree and reopen the
+   refreshed completion and migration reports.
+2. Run the migration audit and trust the refreshed
+   `first_unverified_optimal_submission`; investigate any disagreement with the
+   live branch manifests before editing.
+3. Refetch the pointed problem's live source and personally confirm its
+   identity, structure, examples, constraints, access class, and native
+   interface. Treat a historical preflight only as preparation.
+4. Create the exact native candidate and candidate `submission.json`, run a
+   contract-focused sanity check, and remotely verify that unchanged source.
+   Only after Accepted evidence should full docs, cases, adapter, and benchmark
+   authoring begin.
+5. After the package is complete, run the focused regression suite, the source
+   fidelity audit through the current frontend ID, dataset check, migration
+   audit, and `git diff --check`, then update this handoff and advance to the
+   next refreshed numeric pointer.
+
+The final corpus contains 4,005 packages. Problems 3705 through 3896 were
+completed under the combined current approach, bringing the remotely verified
+Optimal frontier to 3,896 and leaving 109 packages in the submission-first
+queue. The next authoritative target is frontend ID 3897, Maximum Value of
+Concatenated Binary Segments
+(`dsa/leetcode/3897_maximum-value-of-concatenated-binary-segments`).
+Every new package must preserve the live source's presentation as well as its
+facts: section order, signposts, relative depth, original example data and
+explanations, tables or diagrams, notes, and constraints. Prose must remain
+independently authored without flattening or abbreviating the source. Style
+fidelity is part of source fidelity: retain the source's problem-specific
+voice, progression, emphasis, technical vocabulary, and explanatory form while
+keeping locally authored prose and exact semantics.
+
+Problem 3830, Longest Alternating Subarray After Removing At Most One Element,
+is remotely Accepted as exact Python submission `2085755368`. Its modular
+Reference preserves both source comparison patterns, the strict-direction
+restatement, the optional single removal, the standalone length-one rule, all
+three exact examples, both explanation steps for every example, and both
+constraints. The package has 14 ordinary cases and an exact three-heading
+directional-run derivation with $O(N)$ time and $O(N)$ auxiliary space. The
+accepted adapter matched a direct deletion-and-subarray oracle on 88,569
+exhaustive arrays over values 1 through 3 through length 10, plus 20,000
+deterministic randomized arrays. On the calibrated 16/64/256-value tiers, the
+accepted implementation passed three rounds (`-0.00` to `+0.01` excess
+growth, at most `1.03x`), and an independent sign-run implementation passed
+(`+0.04` to `+0.06`, at most `1.89x`). A correct quadratic remove-and-rescan
+control completed every ordinary and benchmark output and failed only scaling
+in all three rounds (`+1.10` to `+1.12`, largest ratios `126.51x` to
+`138.94x`). The earlier 128/512/2048 draft was rejected because the slower
+control reached the Python safety cap; it was not counted as complexity
+evidence. The checker now reports 3,830 authored and 173 remaining; source
+fidelity through 3830 is 545 verified, 3,285 unverified, and 0 invalid. The
+migration audit reports 3,541 fully complete, with cases, submissions,
+variants, and complexity complete through 3830.
+
+Problem 3831, Median of a Binary Search Tree Level, is Premium and remotely
+Accepted as exact Python submission `2085773286`. Its Reference preserves the
+source's four-paragraph progression, exact upper-median definition, all three
+explained examples, all three constraints, and one independently authored
+accessible tree SVG in each source image position. The no-sort BFS exploits
+the fact that left-to-right nodes at one BST level are already in
+non-decreasing order. It matched the sorted-level oracle on 46,233 exhaustive
+BST insertion orders through eight nodes and 20,000 randomized BSTs. The
+package has 14 ordinary cases and $O(N)$ time with $O(W)$ auxiliary space. On
+the calibrated 31/127/511-node perfect-tree tiers, the accepted list-based BFS
+passed three rounds (`-0.02` to `+0.01` excess growth, at most `1.04x`) and an
+independent deque-based BFS passed (`+0.03` to `+0.05`, at most `1.19x`). A
+correct right-to-left gather plus insertion sort completed every output and
+failed only scaling (`+1.15` to `+1.19`, largest ratios `110.39x` to
+`116.00x`). A depth-aware inorder control was rejected as calibration evidence
+because its interpreter bookkeeping failed the scaling gate despite its
+linear bound. The checker now reports 3,831 authored and 172 remaining;
+source fidelity through 3831 is 546 verified, 3,285 unverified, and 0 invalid.
+The migration audit reports 3,542 fully complete, with cases, submissions,
+variants, and complexity complete through 3831.
+
+Problem 3832, Find Users with Persistent Behavior Patterns, is remotely
+Accepted as exact MySQL submission `2085793178`. Its modular Reference
+preserves the source schema, the complete 17-row input table, the two-row
+output table, every nested explanation point for all three users, and the
+final ordering explanation. The reviewed manifest intentionally overrides the
+coarse fetcher's false zero example/table counts with the live Chrome evidence:
+one explained example and three source/local tables. The accepted query first
+removes user-dates with multiple actions, then forms consecutive same-action
+islands with a row-number/date key. The package has 12 ordinary cases and
+$O(R\log R)$ time with $O(R)$ working space. On the calibrated
+64/256/1024-row tiers, the accepted SQLite adapter passed at `-0.01` excess
+growth and `1.01x`; an independent `LAG` plus cumulative-island query passed
+at `+0.02` and `1.58x`. A correct correlated-prefix query returned every
+ordinary and benchmark output but failed only the complexity verdict at
+`+0.96` excess growth and `23.70x`. The checker now reports 3,832 authored and
+171 remaining; source fidelity through 3832 is 547 verified, 3,285 unverified,
+and 0 invalid (3,456 unverified in the complete 4,003-package corpus). Cases,
+submissions, variants, and complexity are complete through 3832. The migration
+audit now reports 3,549 fully complete packages after its modular-doc logic was
+corrected to follow each verified source section list instead of requiring an
+invented `constraints.md`; this also correctly recognized six earlier reviewed
+constraintless References.
+
+Continue with Problem 3833, Count Dominant Indices, a public Easy algorithms
+problem with internal question ID `4214` and live content hash
+`70d17123aa7dcc376b45cfba914aac4141b93a9cb51ad2b6aa6bcb60697c23d9`.
+The native declaration is `Solution.dominantIndices(nums)` in Python 3. An
+index is dominant exactly when its value is strictly greater than the average
+of every element to its right; the source-native Note states that the
+rightmost index is never dominant. Preserve both fully explained examples
+(`[5,4,3] -> 2` and `[4,1,2] -> 1`) and both constraints. A reverse scan with
+the right suffix's sum and count uses the exact integer comparison
+`nums[i] * right_count > right_sum`, runs in $O(N)$ time and $O(1)$ space, and
+avoids floating-point drift. The package still contains only its placeholder
+artifacts. Obtain remote Accepted evidence for the exact Python candidate
+before authoring the full package. A reviewed three-tier proposal uses
+descending arrays of lengths 8, 32, and 100; an independent forward suffix-sum
+scan should pass, while suffix resumming should fail scaling.
+
+Read-only preflights are also complete for Problems 3834 through 3837; their
+full exact-source and evidence briefs are in `ACTIVE_PARALLEL_PREFLIGHTS.md`.
+Problem 3834 is the public stack-reduction problem Merge Adjacent Equal
+Elements with three explained examples and a mandatory leftmost-merge rule; the $O(N)$ stack
+must be checked against literal leftmost simulation. Problem 3835 is Count
+Subarrays With Cost Less Than or Equal to K; preserve all six calculations in
+Example 1 and use a max/min monotonic-deque window. Problem 3836 is Maximum
+Score Using Exactly K Pairs; preserve the strict increasing index chains and
+use exact-count prefix DP with unreachable negative states. Problem 3837 is
+the Premium Delayed Count of Equal Elements; preserve both complete source
+tables and the strict `i + k < j` boundary. Re-fetch each live source and obtain
+remote acceptance in order before using these briefs as authoring anchors.
+
+Problem 3705, Find Golden Hour Customers, is remotely Accepted as submission
+`2084886606`. An earlier exact candidate, `2084885799`, was rejected because
+the hidden judge requires peak-hour percentage rounded to a whole percent;
+the package documentation, cases, native query, app query, and benchmark all
+use that corrected semantic. The modular Reference preserves the source schema,
+16-row example input, output table, all five customer explanations, and the
+four eligibility rules. Both grouped-query implementations pass scaling; a
+correct correlated-subquery implementation returns every result and fails only
+scaling at roughly `14.7x` to `15.2x`.
+
+Problem 3706, Maximum Distance Between Unequal Words in Array II, is Premium
+and remotely Accepted as `2084897764`. A pre-submission exhaustive oracle found
+and corrected the matching-endpoints case `['a', 'b', 'a', 'a']`; exhaustive
+arrays through length seven then passed. The Reference preserves all three
+explained examples, all three constraints, and the inclusive `j - i + 1`
+distance rule. Both linear endpoint scans pass scaling; correct all-pairs search
+fails only scaling at `+1.25` excess growth and `93.79x` largest-tier ratio.
+
+Problem 3707, Equal Score Substrings, is remotely Accepted as `2084905711`.
+The Reference retains the source's compact four-paragraph style, both explained
+examples, the first example's separate left/right calculations, and both
+constraints. Exhaustive small strings passed. Both linear score scans pass;
+correct resumming at each split fails only scaling at `+1.10` and `22.17x`.
+
+Problem 3708, Longest Fibonacci Subarray, is remotely Accepted as
+`2084911448`. Its source-native Note is preserved as `reference/note.md` in the
+rendered position between Function Contract and Examples. All three examples
+retain the selected subarray and every recurrence calculation, including the
+length-two rationale. Exhaustive small arrays passed. Both linear run trackers
+pass; correct all-subarray enumeration fails only scaling at `+1.37` and
+`648.42x`.
+
+Problem 3709, Design Exam Scores Tracker, is remotely Accepted as
+`2084925596`. Its modular Reference preserves Alice's scenario, the class API,
+chronological guarantees, all six constraints, and the complete narrated
+operation trace as a table. The prefix-sum/binary-search tracker passed the
+source trace and randomized oracle checks. Both prefix-search implementations
+pass scaling; a correct linear-scan query tracker fails only scaling at `+1.15`
+and `40.97x`.
+
+Problem 3710, Maximum Partition Factor, is remotely Accepted as `2084937573`.
+The live fetcher's coarse structure missed the two examples, so the reviewed
+manifest restores the actual Description, Note, two fully explained examples,
+and three constraints. Parity DSU matched exhaustive bipartitions across small
+coordinate products and 4,000 randomized arrays. Two independently structured
+parity-DSU implementations pass scaling; correct exhaustive partition search
+fails only scaling at `+4.90` and `929x`.
+
+Problem 3711, Maximum Transactions Without Negative Balance, is Premium and
+remotely Accepted as `2084946633`. Its Reference preserves the received/sent
+sign rules and all three balance traces. The heap exchange matched exhaustive
+small subsequences and randomized brute-force oracles. Two $O(n\log n)$ heap
+variants pass; correct linear minimum removal fails only scaling at `+0.49`.
+
+Problem 3712, Sum of Elements With Frequency Divisible by K, is remotely
+Accepted as `2084953434`. Its standalone Note is preserved and explicitly
+retains full multiplicity, along with both source frequency breakdowns. The
+counter matched exhaustive direct filtering. Fixed-domain and hash-based linear
+controls pass; correct per-occurrence recounting fails only scaling at `+1.29`
+and `24.14x`.
+
+Problem 3713, Longest Balanced Substring I, is remotely Accepted as
+`2084960986`. Its Reference preserves all three source explanations, including
+both tied longest substrings in Example 3. The constant-alphabet quadratic scan
+matched exhaustive strings through length ten and randomized direct counts.
+Two $O(n^2)$ scans pass; correct fresh recounting fails only scaling at `+0.51`
+and `17.21x`.
+
+Problem 3714, Longest Balanced Substring II, is remotely Accepted as
+`2084969356`. Its separate Reference records the restricted three-letter
+alphabet, $10^5$ length bound, and changed second example. The linear
+one-/two-/three-character decomposition matched exhaustive strings through
+length eleven and randomized direct counts. Two linear implementations pass;
+the correct quadratic approach from problem I fails only scaling at `+1.04`
+and `36.44x`.
+
+Problem 3715, Sum of Perfect Square Ancestors, is remotely Accepted as
+`2084982249`. Its Reference preserves the standalone Note and all three source
+tables. The exact native smallest-prime-factor recurrence remains unchanged;
+the app adapter uses prime-square slice elimination to stay within the runner
+safety cap while retaining the same asymptotic bound. Both accepted forms pass
+all authored evidence, while a correct direct ancestor walk fails only scaling
+at `+0.97` and `25.92x`.
+
+Problem 3716, Find Churn Risk Customers, is remotely Accepted as SQL
+submission `2084997236`. The modular Reference restores the schema, the full
+16-row input table, the two-row output table, all six user explanations, all
+four risk criteria, and the source-native Note that measures duration from the
+first event through the last. The exact native MySQL query and SQLite app
+adapter pass every case. A correct correlated-subquery query fails only
+scaling at `+0.72` and `9.11x`.
+
+Problem 3717, Minimum Operations to Make the Array Beautiful, is Premium and
+remotely Accepted as `2085013664`. Its Reference retains all three explained
+examples and both constraints. The bounded divisibility dynamic program
+matched exhaustive small-domain oracles, including the greedy counterexample
+`[3,7,10]`. The accepted $O(nV\log V)$ implementation passes scaling; a
+correct $O(nV^2)$ transition scan fails only scaling at `+0.51` and `12.99x`.
+
+Problem 3718, Smallest Missing Multiple of K, is remotely Accepted as
+`2085024271`. Its compact Reference preserves both explained multiple
+sequences and all three constraints. Exhaustive small-domain membership checks
+passed. The expected-linear hash-set scan passes scaling; correct linear-scan
+membership, quadratic across consecutive candidates, fails only scaling at
+`+1.01` and `19.61x`.
+
+Problem 3719, Longest Balanced Subarray I, is remotely Accepted as
+`2085033599`. Its three explanations preserve the source's two-part structure:
+identify the selected subarray, then list and compare its distinct even and odd
+values. Exhaustive small arrays passed. The incremental-set $O(n^2)$ scan
+passes scaling; rebuilding distinct sets for every subarray is correct but
+fails only scaling at `+0.23`.
+
+Problem 3720, Lexicographically Smallest Permutation Greater Than Target, is
+remotely Accepted as `2085043518`. The Reference preserves all three complete
+ordered permutation lists and their two-part explanations. Exhaustive
+multisets through length six passed. The linear fixed-alphabet prefix and
+backtracking construction passes scaling; rebuilding counts for every possible
+first-difference position fails only scaling at `+0.90`.
+
+Problem 3721, Longest Balanced Subarray II, is remotely Accepted as
+`2085051110`. Its Reference intentionally retains 3719's narrative and examples
+while recording the increased $10^5$ length bound and a distinct segment-tree
+approach. Exhaustive arrays through length eight and 3,000 randomized arrays
+passed. The $O(n\log n)$ last-occurrence range-add solution passes scaling;
+the correct quadratic scan from problem I fails only scaling at `+0.72`.
+
+Problem 3722, Lexicographically Smallest String After Reverse, is remotely
+Accepted as `2085057984`. Its Reference preserves the exactly-one-operation
+rule, both prefix and suffix choices, every source explanation, and the subtle
+fact that `k = 1` legally leaves the string unchanged. The complete reversal
+enumeration passes scaling; a correct all-pairs candidate comparison fails only
+scaling at `+1.40` and `326.18x`.
+
+Problem 3723, Maximize Sum of Squares of Digits, is remotely Accepted as
+`2085068445`. Its modular Reference, authored cases, accepted native source,
+app adapter, and runtime evidence all pass the current package gates.
+
+Problem 3724, Minimum Operations to Transform Array, is remotely Accepted as
+`2085075270`. Its Reference preserves all three source operation tables in
+their original order and explanatory role. The accepted interval method
+passes scaling; a correct source-choice quadratic control returns every
+expected output and fails only scaling at `101.82x`.
+
+Problem 3725, Count Ways to Choose Coprime Integers from Rows, is remotely
+Accepted as `2085082937`. Its Reference preserves the source GCD table and
+both complete example explanations. The accepted divisor-counting method
+passes scaling; a correct GCD-state dynamic-programming control returns every
+expected output and fails only scaling at `+0.99` excess growth.
+
+Problem 3726, Remove Zeros in Decimal Representation, is remotely Accepted as
+`2085089507`. Its Reference retains both explained examples, including the
+first example's underlined zero groups, and the exact single constraint. The
+accepted adapter matches an independent arithmetic oracle for the first one
+million positive integers, 50,000 deterministic full-range values, and every
+decimal-width boundary through $10^{15}$. Because the complete legal domain
+has at most 16 decimal digits, the package uses a strictly validated
+`bounded_domain` certificate rather than misleading scaling evidence.
+
+Problem 3727, Maximum Alternating Sum of Squares, is remotely Accepted as
+`2085099013`. Its Reference preserves both source rearrangements and both full
+alternating-score calculations. The accepted implementation matched an
+exhaustive permutation oracle on 19,530 small arrays. The accepted sorter and
+an independent magnitude sorter pass the 256/1024/4096-element tiers; a
+correct repeated-minimum quadratic method returns every expected output and
+fails only scaling at `+0.80` excess growth and `28.51x` on the largest tier.
+
+Problem 3728, Stable Subarrays With Equal Boundary and Interior Sum, is
+remotely Accepted as `2085110086`. Its Reference preserves the source's
+two-condition definition, all three explained examples, and the two separate
+stable ranges listed under Example 1. The accepted prefix/hash method matched
+exhaustive subarray enumeration on 488,250 arrays. Both independent linear
+implementations pass the 256/1024/4096-element all-zero tiers; a correct
+quadratic recount returns every expected output and fails only scaling at
+`+0.50` excess growth.
+
+Problem 3729, Count Distinct Subarrays Divisible by K in Sorted Array, is
+remotely Accepted as `2085120001`. Its Reference preserves both explained
+examples, the source's `[1,1,1]` distinctness illustration, the explicit
+count-once warning for repeated `[2,2,2]` occurrences, and all four
+constraints. The accepted prefix-remainder and equal-run correction matched a
+distinct-sequence oracle on 20,010 sorted inputs. Two independent linear
+implementations pass the 256/1024/4096-element tiers; a correct quadratic
+prefix recount returns every expected output and fails only scaling at `+0.40`
+excess growth.
+
+Problem 3730, Maximum Calories Burnt from Jumps, is Premium and remotely
+Accepted as `2085129137` after exhaustive permutation checks through eight
+blocks. Its Reference preserves the standalone Note forbidding a return to the
+ground and all three examples' optimal sequences, individual squared-jump
+calculations, and totals. The accepted alternating-extremes implementation and
+an independent deque implementation pass the 256/1024/4096-block tiers; a
+correct repeated-extreme quadratic method returns every expected output and
+fails only scaling at `+0.64` excess growth and `8.76x` on the largest tier.
+
+Problem 3731, Find Missing Elements, is remotely Accepted as `2085137141`.
+Its Reference preserves all three complete-range explanations and both source
+constraints. The accepted set/range scan matched every subset of values 1
+through 10 in forward and reverse order plus 10,000 deterministic legal
+full-domain subsets. Because both the input length and recovered value range
+are bounded by 100, the package uses a strictly validated `bounded_domain`
+certificate instead of misleading scaling evidence.
+
+Problem 3732, Maximum Product of Three Elements After One Replacement, is
+remotely Accepted as `2085146632`. Its Reference preserves the exactly-one
+replacement rule, both maximizing constructions in Example 2, and Example 3's
+unavoidable-zero argument. The two-largest-magnitudes formula matched 19,551
+exhaustive replacement/triple instances. Two independent linear scans pass the
+256/1024/4096-element tiers; a correct quadratic pair search returns every
+expected output and fails only scaling at `+1.01` excess growth and `66.92x`
+on the largest tier.
+
+Problem 3733, Minimum Time to Complete All Deliveries, is remotely Accepted
+with the final closed-form source as `2085159343` (superseding the earlier
+Accepted binary-search source `2085153496`). Its Reference preserves all six
+per-drone delivery/recharge schedules across the three examples and all four
+source constraints. The closed form matched 3,136 exhaustive schedules and
+100,000 full-range binary-search checks. Because the contract always has four
+scalars and the three capacity bounds can be inverted exactly, the package
+uses a strictly validated `asymptotic_optimality` certificate for $O(1)$ time.
+
+Problem 3734, Lexicographically Smallest Palindromic Permutation Greater Than
+Target, is remotely Accepted as `2085166905`. Its Reference preserves all four
+explained examples, including both ordered-palindrome lists, the distinct
+impossibility reasons, and the unique-palindrome comparison. The first-half
+multiset construction matches exhaustive enumeration on 401,040 contracts.
+Two independent linear constructions pass the legal 32/128/300-character
+tiers; a correct pivot-by-pivot multiset rebuild returns every expected output
+and fails only scaling at `+0.93` excess growth and `9.35x` on the largest tier.
+
+Problem 3735, Lexicographically Smallest String After Reverse II, is Premium
+and remotely Accepted as `2085178432`. Its modular Reference preserves the
+exactly-one-operation rule, both legal operation families, and every example's
+chosen `k`, reversed substring, resulting string, and minimality statement.
+The double-hash substring representation matched exhaustive direct enumeration
+on all 29,523 strings over `abc` through length nine. Both the app reference and
+the exact Accepted native implementation pass the 32/128/512-character
+identical-candidate tiers; a correct exhaustive character-materialization
+implementation returns every expected result and fails only scaling at `+0.75`
+excess growth without reaching the Python safety cap.
+
+Problem 3736, Minimum Moves to Equal Array Elements III, is remotely Accepted
+as `2085203202`. Its compact modular Reference preserves the source's three
+description signposts and both complete step-by-step increment sequences. The
+closed-form deficit sum matched direct move counting on all 3,905 arrays of
+lengths one through five over values 1 through 5. Both linear implementations
+pass the legal 8/32/100-element tiers; a correct repeated-maximum quadratic
+implementation returns every expected result and fails only scaling at `+1.24`
+excess growth and `29.43x` on the largest tier.
+
+Problem 3737, Count Subarrays With Majority Element I, is remotely Accepted as
+`2085212405`. Its Reference preserves all five indexed subarrays from Example
+1, the all-ten statement from Example 2, the absent-target reasoning from
+Example 3, and the strict-more-than-half definition. The unit-step prefix
+balance method matched direct enumeration on 6,138 exhaustive array/target
+contracts. Independent array- and map-frequency linear implementations pass
+the 32/128/500-element tiers; correct nested subarray enumeration returns every
+expected result and fails only scaling at `+1.21` excess growth and `122.12x`
+on the largest tier.
+
+Problem 3738, Longest Non-Decreasing Subarray After Replacing at Most One
+Element, is remotely Accepted as `2085219537`. Its Reference preserves the
+source's optional-replacement semantics, non-decreasing definition, exact
+changed array, selected longest subarray, and already-equal no-operation case.
+The run-bridging construction matched brute-force replacement on 21,844 arrays
+through length seven. Two independently structured linear scans pass the
+16/64/256-element alternating-drop tiers; a correct try-each-replacement scan
+returns every expected result and fails only scaling at `+1.06` excess growth
+and `58.38x` on the largest tier.
+
+Problem 3739, Count Subarrays With Majority Element II, is remotely Accepted as
+`2085226437`. Its source-faithful Reference intentionally retains all wording
+structure and explanations shared with problem 3737 while recording the raised
+$10^5$ length bound and potentially 64-bit result. The identical linear method
+re-passed all 6,138 exhaustive contracts. Both array- and map-frequency forms
+pass scaling; correct quadratic enumeration returns every expected result and
+fails only scaling at `+1.22` excess growth and `127.11x` on the largest tier.
+
+Problem 3740, Minimum Distance Between Three Equal Elements I, is remotely
+Accepted as `2085233169`. Its Reference preserves the good-tuple definition,
+all three distinct-index requirements, both equality demonstrations, and every
+absolute-distance term in the two numeric explanations. The consecutive-
+occurrence reduction matched direct triple enumeration on 29,516 legal small
+arrays. Independent array- and map-backed linear scans pass the 6/24/96-value
+tiers; correct cubic triple enumeration returns every expected result and
+fails only scaling at `+2.29` excess growth and `761.43x` on the largest tier.
+
+Problem 3741, Minimum Distance Between Three Equal Elements II, is remotely
+Accepted as `2085238666`. Its Reference faithfully retains problem I's complete
+statement and examples while recording the raised $10^5$ length bound. The
+byte-identical linear source passed a 100,000-element boundary sanity check.
+Independent array- and map-backed linear scans pass the 32/128/512-value tiers;
+a correct quadratic endpoint scan returns every expected result and fails only
+scaling at `+1.24` excess growth and `233.77x` on the largest tier.
+
+Problem 3742, Maximum Path Score in a Grid, is remotely Accepted as
+`2085244557`. Its modular Reference preserves the standalone over-budget Note,
+the distinct score/cost rules for all three cell values, and an equivalent
+six-column version of the source's optimal-path table. Resource-constrained
+grid DP matched exhaustive path enumeration on 41,996 small contracts and a
+200-by-200 boundary sanity run. Both $O(mnL)$ implementations pass the
+27/150/972-state tiers; correct complete-path enumeration returns every
+expected result and fails only scaling at `+1.28` excess growth and `69.25x`
+on the largest tier.
+
+Problem 3743, Maximize Cyclic Partition Score, is remotely Accepted as
+`2085256404`. Its Reference preserves every source partition, wraparound
+qualification, range calculation, score total, and the explicit permission to
+use fewer than `k` parts. The ordinary-versus-wrapped non-crossing pair DP
+matched exhaustive cut partitions on 21,324 arrays and completed a worst-size
+boundary run. Two independently factored $O(nq)$ implementations pass the
+64/256/768-state tiers; correct all-rotation linear DP returns every expected
+result and fails only scaling at `+1.01` excess growth and `15.57x` on the
+largest tier.
+
+Problem 3744, Find Kth Character in Expanded String, is Premium and remotely
+Accepted as `2085262385`. Its Reference preserves the exact expanded phrase in
+both examples, the separator at index 15, the per-word repetition reset, and
+all five source constraints. The implicit block scan matched materialized text
+at 43,938 valid indices across 2,954 sentences. Both linear scans pass the
+512/2048/8192-character tiers; correct full expansion returns every expected
+character and fails only scaling at `+0.34` excess growth.
+
+Problem 3745, Maximize Expression of Three Elements, is remotely Accepted as
+`2085267172`. Its Reference preserves both selected triples and exact arithmetic
+from the source, while the cases distinguish duplicate values from distinct
+indices. The three-extrema formula matched direct assignment enumeration on
+97,625 arrays. Two independent linear scans pass the 6/24/96-value tiers; a
+correct per-subtrahend rescan returns every expected result and fails only
+scaling at `+1.28` excess growth and `50.69x` on the largest tier.
+
+Problem 3746, Minimum String Length After Balanced Removals, is remotely
+Accepted as `2085272989`. Its Reference preserves the same operation sequence,
+all three explained examples, and both source constraints. The count-difference
+formula matched exhaustive removal search on all 4,094 binary strings through
+length eleven. Independently structured linear implementations pass the
+96/256/768-character opposing-block tiers; a correct repeated-deletion
+simulation returns every expected result and fails only scaling at `+1.14`
+excess growth and `77.71x` on the largest tier.
+
+Problem 3747, Count Distinct Integers After Removing Zeros, is remotely
+Accepted as `2085281280`. Its Reference preserves both complete source output
+sequences and explanations plus the single $10^{15}$ constraint. The zero-free
+prefix formula matched an incremental oracle for every bound through one
+million, direct transformed-output sets, decimal-width boundaries, and
+deterministic full-range values. Because the legal input has at most 16 decimal
+digits, the package uses a strictly validated `bounded_domain` certificate and
+dedicated digit-DP regression instead of misleading runtime tiers.
+
+Problem 3748, Count Stable Subarrays, is remotely Accepted as the upgraded
+linear submission `2085288173`; an earlier accepted binary-search source was
+superseded before package authoring. Its Reference preserves the standalone
+singleton Note and all five per-query explanation sequences across both source
+examples. The run-boundary formula matched direct enumeration on 29,523 arrays
+and 1,203,123 legal ranges. Independent $O(n+q)$ implementations pass the
+32/128/384-size many-query tiers; a correct per-query scan returns every answer
+and fails only scaling at `+1.06` excess growth and `42.48x` on the largest
+tier.
+
+Problem 3749, Evaluate Valid Expressions, is Premium and remotely Accepted as
+`2085292625`. Its Reference preserves the recursive grammar, all four operation
+definitions, and every step of the deeply nested source example. The iterative
+parser matched 50,413 independently generated valid expressions and completed
+a 98,001-character, 14,000-level nesting check. Independent stack parsers pass
+the 113/449/1793-character tiers; a correct recursive body-rescan parser returns
+every result and fails only scaling at `+1.07` excess growth and `92.23x` on
+the largest tier.
+
+Problem 3750, Minimum Number of Flips to Reverse Binary String, is remotely
+Accepted as `2085297797`. Its Reference preserves both complete binary-string
+explanations, the fixed original-reversal target, and the one-bit flip rule.
+The mirrored-pair formula matched an independent bitwise oracle for every
+positive integer through one million and deterministic values spanning all
+legal bit widths. Because $n\le10^9$ limits the representation to 30 bits, the
+package uses a strictly validated `bounded_domain` certificate and dedicated
+bit-extraction regression instead of misleading runtime tiers.
+
+Problem 3751, Total Waviness of Numbers in Range I, is remotely Accepted as
+`2085302073`. Its Reference preserves the strict peak and valley definitions
+and every listed nonzero-waviness number in the three source explanations. The
+direct Range I scan matched an independent arithmetic digit oracle for every
+legal value, 1,100 sampled ranges, and the full domain. Independent $O(RD)$
+implementations pass the 16/64/256-value tiers; correct repeated-prefix
+recomputation returns every result and fails only scaling at `+1.07` excess
+growth and `99.87x` on the largest tier.
+
+Problem 3752, Lexicographically Smallest Negated Permutation that Sums to
+Target, is remotely Accepted as `2085306444`. Its Reference preserves the full
+12-array enumeration in Example 1 and the complete impossible-target rationale.
+The descending negative-subset greedy matched exhaustive sign assignments and
+lexicographic comparison for all targets through $n=12$, plus 10,000 large
+randomized contracts. Independent $O(n)$ constructions pass the 32/128/512
+tiers; correct linear-list membership returns every array and fails only
+scaling at `+0.97` excess growth and `29.78x` on the largest tier.
+
+Problem 3753, Total Waviness of Numbers in Range II, is remotely Accepted as
+`2085310679`. Its Reference intentionally preserves Range I's full presentation
+while recording the raised $10^{15}$ bound and the required digit-DP approach.
+The recursive accepted DP matched direct enumeration for 20,000 prefixes and
+10,000 sampled ranges; the independent iterative DP and dedicated regression
+also pass. Because legal endpoints have at most 16 digits, the package uses a
+strictly validated `bounded_domain` certificate. Full-width evidence stays in
+the untraced regression because several full-width traced cases would exceed
+the judge's cumulative 100,001-step correctness cap despite completing in
+about 75 ms.
+
+Problem 3754, Concatenate Non-Zero Digits and Multiply by Sum I, is remotely
+Accepted as `2085317862`. Its Reference preserves both examples' ordered
+construction, digit-sum arithmetic, and final products, plus the explicit
+empty-retention rule. The accepted one-pass construction matched an independent
+arithmetic oracle for every value from zero through one million and full-width
+samples. Since $n\le10^9$ permits at most ten decimal digits, the package uses a
+strictly validated `bounded_domain` certificate and dedicated regression.
+
+Problem 3755, Find Maximum Balanced XOR Subarray Length, is remotely Accepted
+as `2085320815`. Its modular Reference preserves all three explained examples,
+including the explicit XOR calculation, even/odd counts, and the reason a
+single zero has no valid nonempty answer. The earliest-prefix-state solution
+matched direct enumeration on 349,524 arrays. Independent $O(n)$ controls pass
+the 32/96/256-element tiers; a correct quadratic enumeration returns every
+result and fails only scaling at `+1.14` excess growth and `82.41x` on the
+largest tier.
+
+Problem 3756, Concatenate Non-Zero Digits and Multiply by Sum II, is remotely
+Accepted as `2085325988`. Its modular Reference preserves all three source
+examples and their nested explanations, including every per-query
+concatenation and digit-sum calculation, the empty-retention case, and the full
+unreduced product followed by modular reduction. The compressed-prefix source
+matched an independent direct oracle on 582,927 legal query answers. Two
+independently structured $O(m+q)$ implementations pass the 16/64/256 tiers; a
+correct per-query substring scan returns every answer and fails only scaling
+at `+1.10` excess growth and `37.81x` on the largest tier.
+
+Problem 3757, Number of Effective Subsequences, is remotely Accepted as
+`2085330395`. Its modular Reference preserves the source's four fully
+enumerated explanations, including the two index-distinct `[2,1]`
+subsequences, and the empty-array OR definition. Inclusion-exclusion over
+missing active bits matched exhaustive removal enumeration on 26,844 arrays
+and completed a full-width 100,000-element local check. Two independently
+structured SOS implementations pass the 32/96/256 tiers; a correct per-element
+OR-state DP returns every answer and fails only scaling at `+1.03` excess
+growth.
+
+Problem 3758, Convert Number Words to Digits, is Premium and remotely Accepted
+as `2085334473`. Its modular Reference preserves all four source explanations,
+the exact one-character fallback rule, adjacent-word behavior, malformed
+near-matches, and incomplete fragments. The greedy parser matched an
+independent regex oracle on 385,922 strings. The table-driven and regex-linear
+controls pass the 64/192/512-character tiers; a correct exhaustive-endpoint
+parser returns every string and fails only scaling at `+1.18` excess growth and
+`133.45x` on the largest tier.
+
+Problem 3759, Count Elements With at Least K Greater Values, is remotely
+Accepted as `2085338148`. Its modular Reference preserves both source
+explanations and makes the strict-comparison, duplicate-threshold, and `k = 0`
+semantics explicit. Three-way Quickselect matched direct pairwise counting on
+679,924 array/`k` contracts. Two independently structured expected-linear
+implementations pass the 32/128/512-element tiers; a correct all-pairs counter
+returns every result and fails only scaling at `+1.14` excess growth and
+`51.85x` on the largest tier.
+
+Problem 3760, Maximum Substrings With Distinct Start, is remotely Accepted as
+`2085340781`. Its modular Reference preserves all three source splits and
+explains both the distinct-character upper bound and the first-occurrence cut
+construction that attains it. The bitmask result matched exhaustive enumeration
+of every contiguous split mask on 49,523 strings. Two constant-alphabet linear
+controls pass the 512/2,048/8,192-character tiers; a correct prefix-rescan
+counter returns every result and fails only scaling at `+0.84` excess growth
+and `33.94x` on the largest tier.
+
+Problem 3761, Minimum Absolute Distance Between Mirror Pairs, is remotely
+Accepted as `2085343773`. Its modular Reference preserves both enumerated pairs
+and distances from Example 1, the trailing-zero behavior, and the directional
+non-match in Example 3. The latest-reversed-value map matched ordered-pair
+enumeration on 157,256 arrays. Two independent expected-linear maps pass the
+32/128/512-element tiers; correct ordered all-pairs enumeration returns every
+result and fails only scaling at `+1.24` excess growth and `90.77x` on the
+largest tier.
+
+Problem 3762, Minimum Operations to Equalize Subarrays, is remotely Accepted
+as `2085347167`. Its modular Reference preserves both seven-column source
+operation tables in full, including possibility, exact operations, final
+subarrays, and per-query answers. Persistent range order statistics matched
+2,033,840 direct median-query answers and a full legal 40,000-element/
+40,000-query check. Independent persistent-tree and wavelet implementations
+pass the 32/128/512-workload tiers; correct per-query sorting returns every
+answer and fails only scaling at `+0.78` excess growth.
+
+Problem 3763, Maximum Total Sum with Threshold Constraints, is Premium and
+remotely Accepted as `2085351055`. Its modular Reference preserves every step
+of all three source traces, including the exact selected indices, running
+totals, and the stopping conditions. A proof that every released item must
+eventually be selected reduced an initially accepted heap solution to the
+current linear threshold-bucket implementation; the upgraded source matched
+71,504 exhaustive instances before submission. Independent map- and
+array-bucket implementations pass the 32/128/512-element tiers; a correct
+full-rescan implementation returns every answer and fails only scaling at
+`+1.11` excess growth and `58.66x` on the largest tier.
+
+Problem 3764, Most Common Course Pairs, is remotely Accepted as MySQL
+submission `2085354273`. Its modular Reference preserves the source schema,
+all four task bullets, the complete 19-row input table, the seven-row output
+table, all four user-qualification explanations, both qualifying course
+sequences, the two tied most-common transitions, and the final three-key sort
+rule. The exact `LEAD` query and an independent row-number/self-join adapter
+pass all eight correctness cases and the 64/256/1,024-row tiers. A correct
+correlated next-course lookup returns every result and fails only scaling at
+`+0.61` excess growth and approximately `8.17x` on the largest tier.
+
+Problem 3765, Complete Prime Number, is remotely Accepted as submission
+`2085359220`. Its modular Reference retains the three-paragraph definition,
+the separate three-item Note, all three complete source explanations, and the
+single numeric constraint in their source order. The numeric truncation
+implementation matched an independent definition on 220,000 exhaustive and
+deterministic full-range inputs. Two independently structured square-root
+primality implementations pass the 10,007/1,000,003/10,000,019 magnitude
+tiers; a correct all-divisors test returns every result and fails only scaling
+at `+0.64` excess growth and approximately `191.46x` on the largest tier.
+
+Problem 3766, Minimum Operations to Make Binary Palindrome, is remotely
+Accepted as submission `2085363144`. Its modular Reference preserves both
+six-column source operation tables in full, including each original value and
+binary form, chosen nearest palindrome and binary form, operation direction,
+and result. Mirroring the leading half and its neighbors matched a direct
+nearest-palindrome oracle for every legal scalar value from 1 through 5,000.
+Two independently structured mirroring implementations pass the
+32/128/512-element tiers; a correct outward integer search returns every
+result and fails only scaling at `+0.44` excess growth.
+
+Problem 3767, Maximize Points After Choosing K Tasks, is remotely Accepted as
+submission `2085365915`. Its modular Reference preserves all three complete
+source explanations, including the specific mixed assignment and arithmetic
+in Example 1, the profitable selections beyond the minimum quota in Example
+2, and the zero-quota reasoning in Example 3. Gain- and loss-framed heap
+implementations matched 55,982 exhaustive/random contracts and pass the
+256/1,024/4,096-task tiers. Correct repeated maximum selection returns every
+result and fails only scaling at `+0.57` excess growth.
+
+Problem 3768, Minimum Inversion Count in Subarrays of Fixed Length, is remotely
+Accepted as submission `2085368551`. Its modular Reference preserves the
+source's inversion definition and fixed-length-window objective, every window
+and relative-index inversion pair in Example 1, all six pairs in Example 2,
+the single-element rationale in Example 3, and all three constraints. The
+accepted and app-local Fenwick implementations matched 145,636 exhaustive
+small contracts and pass the 64/256/1,024-element tiers. A correct $O(NK)$
+sliding recount returns every result and fails only scaling at `+0.87` excess
+growth and `21.66x` on the largest tier.
+
+Problem 3769, Sort Integers by Binary Reflection, is remotely Accepted as
+submission `2085372763`. Its compact modular Reference preserves the source's
+four-part definition and ordering flow, both complete bit-reversal traces, the
+`3`-versus-`6` tie-break explanation, and both constraints. Arithmetic and
+string-based reflection implementations matched 299,592 exhaustive arrays and
+pass the 6/25/100-element tiers. A correct quadratic comparison sort returns
+every result and fails only scaling at `+0.51` excess growth.
+
+Problem 3770, Largest Prime from Consecutive Prime Sum, is remotely Accepted as
+submission `2085374587`. Its modular Reference preserves the requirement that
+every sum begin at `2`, the complete `2`, `5`, and `17` decomposition under
+`n = 20`, the one-term explanation for `n = 2`, and the single source
+constraint. Both independently organized sieve implementations matched every
+input through 5,000 and pass the 512/8,192/131,072-bound tiers. A correct
+prime-list implementation with linear prefix membership returns every result,
+including the maximum-bound case, and fails only scaling at `+0.38` excess
+growth.
+
+Problem 3771, Total Score of Dungeon Runs, is remotely Accepted as submission
+`2085376888`. Its modular Reference preserves the source-native Note, the
+post-damage and inclusive requirement semantics, every step of both source
+health traces, the reset between starting rooms, and all three constraints.
+Manual- and library-lower-bound implementations matched 531,432 exhaustive
+dungeon contracts and pass the 32/128/512-room tiers. Correct direct suffix
+simulation returns every result and fails only scaling at `+0.83` excess
+growth and `19.58x` on the largest tier.
+
+Problem 3772, Maximum Subgraph Score in a Tree, is remotely Accepted as
+submission `2085379012`. Its modular Reference preserves all three source
+topologies, node color roles, selected-node sets, score arithmetic, tie note,
+connected-subgraph definitions, and all seven constraints. The three provider
+images were independently redrawn as accessible package-local SVG diagrams.
+Two iterative rerooting implementations matched 87,228 exhaustive labeled-tree
+contracts and pass the 16/64/256-node tiers. Correct per-root dynamic
+programming returns every result and fails only scaling at `+1.11` excess
+growth and `126.56x` on the largest tier.
+
+Problem 3773, Maximum Number of Equal Length Runs, is Premium and remotely
+Accepted as submission `2085381133`. Its compact modular Reference preserves
+the maximal-run definition, the full `"hello"` decomposition, both selected
+run groups and their lengths, and both constraints. Array- and map-frequency
+scans matched 88,572 exhaustive strings and pass the 32/128/512-character
+tiers. Correct repeated run-length recounting returns every result and fails
+only scaling at `+1.14` excess growth and `253.32x` on the largest tier.
+
+Problem 3774, Absolute Difference Between Maximum and Minimum K Elements, is
+remotely Accepted as submission `2085382487`. Its modular Reference preserves
+both three-step source calculations, duplicate-occurrence semantics, and all
+three constraints. Independent bounded-frequency implementations matched
+659,180 exhaustive array/quota contracts and pass the 6/25/100-element tiers.
+A correct quadratic comparison sort returns every result and fails only
+scaling at `+1.38` excess growth and `11.40x` on the largest tier.
+
+Problem 3775, Reverse Words With Same Vowel Count, is remotely Accepted as
+submission `2085383780`. Its modular Reference preserves the source's compact
+instructional style, all three original input/output pairs, every per-word
+vowel-count explanation, the five-vowel definition, and all four spacing and
+character constraints. The exact native source and app adapter matched 37,448
+exhaustive sentences, and the app adapter passes the 256/1,024/4,096-character
+long-word tiers. A correct quadratic full-word-rescanning control returns every
+result and fails only scaling at `+1.03` excess growth and `349.58x` on the
+largest tier.
+
+Problem 3776, Minimum Moves to Balance Circular Array, is remotely Accepted as
+submission `2085386985`. Its modular Reference preserves the source's compact
+three-paragraph setup, the standalone at-most-one-negative Note, every state in
+the four- and six-move optimal sequences, the impossible-case explanation, and
+all three constraints. The accepted and app-local distance-sorting methods
+matched an independent state-space oracle on 6,143 small circular arrays and
+pass the 1,024/4,096/16,384-person tiers. Correct repeated minimum selection
+returns every result and fails only scaling at `+0.92` excess growth and
+`24.40x` on the largest tier.
+
+Problem 3777, Minimum Deletions to Make Alternating Substring, is remotely
+Accepted as submission `2085390153`. Its modular Reference preserves the
+stateful flip and non-mutating range-query distinctions, the alternating
+definition, all three original nine-column query-trace tables, their exact
+states and deletion explanations, and all eight constraint facts. Independent
+segment-tree and Fenwick implementations matched 41,992 brute-forced query
+answers and pass the 256/1,024/4,096-size tiers. Correct direct substring scans
+return every answer and fail only scaling at `+0.76` excess growth.
+
+Problem 3778, Minimum Distance Excluding One Maximum Weighted Edge, is Premium
+and remotely Accepted as submission `2085391670`. Its modular Reference
+preserves the connected simple undirected graph model, first-tied-maximum rule,
+both complete path comparisons, and all seven source constraints. The second
+source explanation calls the direct edge's weight `1` despite its exact input
+weight `50000`; the Reference preserves the example but corrects that evident
+contradiction. Independent two-Dijkstra and layered-Dijkstra implementations
+matched 23,891 enumerated graphs and pass the 1,024/4,096/16,384-node reversed
+chains. Correct linear-selection Dijkstra returns every result and fails only
+scaling at `+0.89` excess growth and `15.06x` on the largest tier.
+
+Problem 3779, Minimum Number of Operations to Have Distinct Elements, is
+remotely Accepted as submission `2085393299`. Its compact modular Reference
+preserves the fixed three-element prefix operation, short-final-prefix rule,
+both stopping conditions, all three source explanations, and both constraints.
+Frequency-countdown and reverse-suffix implementations matched 349,524
+exhaustive arrays and pass the 1,024/4,096/16,384-element all-equal tiers.
+Correct repeated suffix distinctness checks return every result and fail only
+scaling at `+0.93` excess growth.
+
+Problem 3780, Maximum Sum of Three Numbers Divisible by Three, is remotely
+Accepted as submission `2085394354`. Its compact modular Reference preserves
+the exact-three requirement, both valid triplets and calculations in Example
+1, the impossibility explanation in Example 2, and both constraints. The
+Reference also makes the source-implied non-adjacent distinct-position choice
+explicit. Residue-maxima and exact-count DP implementations matched 335,880
+exhaustive arrays and pass the 1,024/4,096/16,384-element descending tiers.
+Correct full-bucket insertion returns every result and fails only scaling at
+`+0.34` excess growth.
+
+Problem 3781, Maximum Score After Binary Swaps, is remotely Accepted as
+submission `2085396059`. Its modular Reference preserves the one-directional
+`"01" -> "10"` operation, zero-or-more choice, both exact swap transitions and
+the score calculation in Example 1, the no-one explanation in Example 2, and
+all four constraints. Independent suffix-min-heap and prefix-max-heap methods
+matched 299,592 exhaustive reachable arrangements and pass the
+1,024/4,096/16,384-element half-one tiers. Correct repeated maximum selection
+returns every result and fails only scaling at `+0.79` excess growth and
+`12.59x` on the largest tier.
+
+Problem 3782, Last Remaining Integer After Alternating Deletion Operations, is
+remotely Accepted as submission `2085397751`. Its modular Reference preserves
+the alternating sweep order, retain-first interpretation, all three source
+examples, and every deletion step in their explanations, together with the
+full $1 \leq n \leq 10^{15}$ constraint. The recursive position mapping
+matches explicit simulation through `n = 1000` and passes the
+65,536/262,144/1,048,576-length tiers. Correct explicit-sequence simulation
+returns every authored output and fails only complexity at `+1.16` excess
+growth and `298.55x` on the largest tier.
+
+Problem 3783, Mirror Distance of an Integer, is remotely Accepted as submission
+`2085400008`. Its compact modular Reference preserves the source's formula-first
+presentation, separate absolute-value meaning, all three exact calculations,
+the leading-zero interpretation in Example 2, and the single constraint. The
+arithmetic reversal matched an independent string oracle for every input from
+1 through 100,000. Because the entire legal domain has only one through ten
+decimal digits, the package uses a strictly validated `bounded_domain`
+certificate instead of unreliable runtime scaling over ten workload sizes.
+
+Problem 3784, Minimum Deletion Cost to Make All Characters Equal, is remotely
+Accepted as submission `2085401074`. Its modular Reference preserves the
+nonempty-result requirement, possibly-no-deletion choice, all three complete
+source calculations, and all four constraints. Per-character retained-cost
+aggregation matched exhaustive keep-character oracles over small strings and
+costs and passes the 16/64/253-character tiers. Correct candidate-by-candidate
+repricing returns every output and fails only scaling at `+1.33` excess growth
+and `123.58x` on the largest tier.
+
+Problem 3785, Minimum Swaps to Avoid Forbidden Values, is remotely Accepted as
+submission `2085403037`. Its modular Reference preserves all four explained
+source examples, including the exact intermediate arrays in Example 2, the
+impossible duplicate case, the zero-swap case, and both constraints. The
+global capacity and bad-group formula matched minimum-swap BFS on 66,429
+exhaustive small contracts and passes the 16/64/256-element tiers. Correct
+repeated frequency scans return every output and fail only scaling at `+1.22`
+excess growth and `130.81x` on the largest tier.
+
+Problem 3786, Total Sum of Interaction Cost in Tree Groups, is remotely
+Accepted as submission `2085404781`. Its modular Reference preserves all four
+explained examples, every listed group pair and distance, all seven
+constraints, and replaces both provider images with accessible independently
+drawn SVG tree diagrams. Edge-contribution counting matched an independent
+all-pairs oracle on 31,764 tree/group contracts and passes the 16/64/256-node
+path tiers. Correct all-pairs tree searches return every output and fail only
+scaling at `+0.98` excess growth and `15.53x` on the largest tier.
+
+Problem 3787, Find Diameter Endpoints of a Tree, is Premium and remotely
+Accepted as submission `2085406741`. Its modular Reference preserves all three
+source diagrams through accessible independently drawn SVGs, the distinction
+between one selected diameter and every tied diameter, all four paths listed
+in Example 2, and all five constraints. The peripheral-node criterion matched
+an exhaustive diameter-pair oracle on 18,248 labeled trees and passes the
+16/64/256-node path tiers. Correct all-pairs searches return every output and
+fail only scaling at `+1.07` excess growth and `104.56x` on the largest tier.
+
+Problem 3788, Maximum Score of a Split, is remotely Accepted as submission
+`2085408963`. Its modular Reference preserves the exact prefix/suffix split
+semantics, formula-first presentation, all three source calculations, negative
+maximum-score behavior, and both constraints. The reverse suffix-state scan
+matched direct split enumeration on 970,792 exhaustive/random arrays and
+passes the 256/1,024/4,096-element tiers. Correct repeated suffix-minimum scans
+return every output and fail only scaling at `+0.71` excess growth.
+
+Problem 3789, Minimum Cost to Acquire Required Items, is remotely Accepted as
+submission `2085410529`. Its modular Reference preserves all three item types,
+at-least contribution semantics, all three full source calculations, the
+zero-purchase case, and both constraints. Shared/remainder pricing matched
+61,952 exhaustive purchase enumerations and passes the 1,000/10,000/100,000
+need tiers. Correct combined-item-count enumeration returns every output and
+fails only scaling at `+0.92` excess growth and `1471.53x` on the largest tier.
+
+Problem 3790, Smallest All-Ones Multiple, is remotely Accepted as submission
+`2085411830`. Its modular Reference preserves the smallest-candidate ordering,
+length-only return value, all three complete source explanations, impossibility
+semantics, and the single constraint. Remainder iteration matched direct
+repunit construction for every `k` from 2 through 1,000 and passes the
+1,193/4,793/19,181 long-cycle tiers. Correct arbitrary-precision construction
+returns every output and fails only scaling at `+0.52` excess growth.
+
+Problem 3791, Number of Balanced Integers in a Range, is remotely Accepted as
+submission `2085413647`. Its modular Reference preserves the at-least-two-digit
+condition, leftmost-position parity rule, inclusive range, all three exact
+source calculations, and the single constraint. Exact-length digit DP matched
+direct enumeration through 100,000 plus 10,000 randomized ranges and passes
+the 1,000/10,000/100,000-width tiers. Correct range enumeration returns every
+output and fails only scaling at `+0.77` excess growth and `42.97x` on the
+largest tier. The app adapter prunes digit-sum differences that remaining
+digits cannot restore, keeping the accepted algorithm within runner limits.
+
+Problem 3792, Sum of Increasing Product Blocks, is Premium and remotely
+Accepted as submission `2085416609`. Its modular Reference preserves the
+source's compact block-building presentation, both fully expanded product
+traces, the unreduced and modulo-reduced sums, and the single constraint. The
+one-pass block simulation matched an independent materialized-block oracle for
+every authored case and passes the 20/40/80-block tiers at `+0.00` excess
+growth and `1.01x` on the largest tier. A correct implementation that rebuilds
+each block product once per member returns every ordinary and benchmark output
+and fails only scaling at `+0.59` excess growth.
+
+Problem 3793, Find Users with High Token Usage, is remotely Accepted as MySQL
+submission `2085419307`. Its modular Reference preserves the complete table
+schema, all four usage-analysis requirements, all nine input rows, both output
+rows, and every user-specific explanation; the live statement contains no
+Constraints section. The single grouped aggregate passes the 48/192/768-row
+tiers at `+0.01` excess growth and `1.00x` on the largest tier. A correct query
+using correlated per-user aggregate rescans returns every output and fails only
+scaling at `+0.87` excess growth and `22.77x`.
+
+Problem 3794, Reverse String Prefix, is remotely Accepted as submission
+`2085421496`. Its concise modular Reference preserves all three exact prefix
+transformations, the whole-string and one-character boundary explanations,
+and all three constraints without inflating the source's deliberately simple
+style. The accepted slice implementation matched 6,015 exhaustive small
+contracts and passes the legal 25/50/100-character tiers at `-0.00` excess
+growth. A correct implementation that redundantly rebuilds the result once per
+character returns every output and fails only scaling at `+0.31`.
+
+Problem 3795, Minimum Subarray Length With Distinct Sum At Least K, is remotely
+Accepted as submission `2085423186`. Its modular Reference preserves the
+source's set-based duplicate semantics, all three exact qualifying subarrays
+and calculations, the `-1` outcome, and all three constraints. The frequency
+window matched 262,128 exhaustive small contracts and passes the
+32/128/512-element duplicate tiers at `+0.03` excess growth and `1.01x`. A
+correct incremental subarray enumerator returns every output and fails only
+scaling at `+1.16` excess growth and `196.83x`.
+
+Problem 3796, Find Maximum Value in a Constrained Sequence, is remotely
+Accepted as submission `2085425265`. Its modular Reference preserves all four
+construction rules, both complete witness sequences and their restriction
+checks, the maximize-the-largest objective, and all nine constraints. The
+two-pass bound envelope matched 10,002 independently enumerated constructions
+and passes the 32/128/512-position dense-restriction tiers at `-0.01` excess
+growth. A correct all-anchor envelope evaluator returns every output and fails
+only scaling at `+1.10` excess growth and `139.21x`.
+
+Problem 3797, Count Routes to Climb a Rectangular Grid, is remotely Accepted
+as submission `2085427371`. Its modular Reference preserves both cell symbols,
+all movement and consecutive-turn rules, all eight route diagrams, both
+Euclidean-distance calculations, the single-row interpretation, and all four
+constraints. Two-state row DP with prefix sums matched 20,204 exhaustive small
+grids and passes the 16/64/256-column tiers at `-0.02` excess growth. A correct
+all-source-column transition scan returns every output and fails only scaling
+at `+0.95` excess growth and `47.96x`.
+
+Problem 3798, Largest Even Number, is remotely Accepted as submission
+`2085429637`. Its concise modular Reference preserves the order-preserving
+deletion rule, numerical maximum, empty-result semantics, all three exact
+examples and explanations, and both constraints. The last-`2` prefix result
+matched all 1,022 legal strings through length nine and passes the complete
+25/50/100-character legal tiers at `+0.01` excess growth. A correct query of
+every prefix returns all outputs and fails only scaling at `+0.48`.
+
+Problem 3799, Word Squares II, is remotely Accepted as submission
+`2085434804`. Its modular Reference preserves the four named side roles, all
+four indexed corner equalities, the four-distinct-word rule, tuple-based
+lexicographic ordering, both exact examples and their full explanations, and
+all four constraints. Boundary-letter indexing matched an exhaustive
+permutation oracle on 10,000 deterministic random contracts and passes the
+4/60/450-productive-triple tiers at `+0.01` excess growth and `1.02x`. A
+correct four-word permutation enumerator returns every output and fails only
+scaling at `+0.63` excess growth and `15.50x`.
+
+Problem 3800, Minimum Cost to Make Two Binary Strings Equal, is remotely
+Accepted as submission `2085437369`. Its modular Reference preserves all three
+operations and their distinct index rules, every intermediate string and cost
+in the four-step first example, the other two explained examples, and all four
+constraints. The mismatch-orientation formula matched an exact shortest-path
+oracle on 21,760 complete small contracts and passes the 64/256/512-character
+tiers at `+0.00` excess growth and `0.99x`. A correct quadratic partner search
+returns every output and fails only scaling at `+1.17` excess growth and
+`185.07x`.
+
+Problem 3801, Minimum Cost to Merge Sorted Lists, is remotely Accepted as
+submission `2085441135`. Its modular Reference preserves the complete merge
+operation, left-middle median convention, all four exact examples and their
+cost calculations, and all five constraints. Subset-partition DP matched
+exhaustive merge-sequence search on 3,000 deterministic random systems and
+passes the 81/243/729 partition-work tiers at `-0.01` excess growth and
+`0.99x`. A correct complete merge-sequence search returns every benchmark
+output and fails only scaling at `+1.27` excess growth and `10.81x`.
+
+Problem 3802, Number of Ways to Paint Sheets, is Premium and remotely Accepted
+as submission `2085443913`. Its modular Reference preserves the separate Note
+signpost, all ordered-pair and contiguous-segment rules, every listed valid
+pair and split in all three explanations, and all three constraints. The
+sorted suffix-sum formula matched 999,900 exhaustive small contracts and
+passes the 32/128/256-color tiers at `+0.02` excess growth and `1.01x`. A
+correct ordered-pair enumeration returns every output and fails only scaling
+at `+1.07` excess growth and `38.59x`.
+
+Problem 3803, Count Residue Prefixes, is remotely Accepted as submission
+`2085446658`. Its modular Reference preserves the source's separate prefix
+definition, all three exact examples, every prefix-by-prefix explanation, and
+both constraints. The cumulative distinct-set scan matched direct prefix
+reconstruction on all 88,572 strings over a three-letter alphabet through
+length ten and passes the 25/50/100-character tiers at `+0.02` excess growth
+and `1.00x`. A correct explicit prefix rescan returns every output and fails
+only scaling at `+1.29` excess growth and `23.65x`.
+
+Problem 3804, Number of Centered Subarrays, is remotely Accepted as submission
+`2085450696` with all 1,042 tests passing. Its modular Reference preserves the
+source's compact definition-first style, both exact examples and their complete
+subarray explanations, and both constraints while making the same-subarray
+membership condition explicit. The running-sum and value-set scan matched a
+direct interval oracle on all 488,280 arrays over values from -2 through 2 up
+to length eight and passes the 20/40/80-element tiers at `-0.01` excess growth
+and `1.10x`. A correct full interval recomputation returns every output and
+fails only scaling at `+1.03` excess growth and `34.35x`.
+
+Problem 3805, Count Caesar Cipher Pairs, is remotely Accepted as submission
+`2085454820` with all 1,004 tests passing. Its modular Reference preserves the
+source's operation-driven style, both operation bullets, both pair conditions,
+the exact six-shift string sequence in Example 1, both qualifying pairs in
+Example 2, and all four constraints. First-letter offset normalization matched
+all 7,380 ordered word pairs over `a`, `b`, and `z` through length four and
+4,782 exhaustive small word-array contracts. It passes the legal
+128/512/2,048-character tiers at `-0.02` excess growth and `0.98x`; a correct
+pairwise comparison returns every output and fails only scaling at `+1.15`
+excess growth and `79.60x`.
+
+Problem 3806, Maximum Bitwise AND After Increment Operations, is remotely
+Accepted as submission `2085459280` with all 1,032 tests passing. Its modular
+Reference preserves all three exact examples and each explanation's chosen
+indices, per-value increments, total operation count, final values, and maximal
+AND claim, together with all four constraints. The highest-missing-bit cost
+formula matched 32,768 direct searches, and the complete greedy mask builder
+matched 35,460 exhaustive small contracts. It passes the legal 8/32/128-element
+tiers at `+0.00` excess growth and `1.00x`; a correct quadratic selection-sort
+feasibility implementation returns every output and fails only scaling at
+`+0.80` excess growth and `27.13x`.
+
+Problem 3807, Minimum Cost to Repair Edges to Traverse a Graph, is Premium and
+remotely Accepted as submission `2085463610` with all 615 tests passing. Its
+modular Reference preserves all three source graph images as independently
+drawn package-local SVGs, all three exact examples and complete explanations,
+the repair-threshold and hop-limit semantics, and all seven constraints. The
+binary-search/BFS method matched an independent hop-layer minimax oracle on
+16,575 exhaustive small graph contracts. It passes the legal 16/64/256-edge
+path tiers at `+0.01` excess growth and `1.03x`; a correct threshold-by-threshold
+BFS returns every output and fails only scaling at `+0.75` excess growth and
+`14.42x`.
+
+Problem 3808, Find Emotionally Consistent Users, is remotely Accepted as exact
+MySQL submission `2085469144` with all 11 tests passing. Its modular Reference
+preserves the source's database-reporting style: the three-column schema,
+composite primary key, numbered three-part eligibility definition, separate
+rounding Note, complete 15-row input table, two-row output table, every
+per-user calculation and eligibility conclusion, and final ordering
+explanation. The native MySQL query uses exact integer threshold arithmetic;
+the SQLite app adapter differs only in forcing real division. It matched an
+independent oracle across 454 exhaustive reaction-count distributions covering
+4,095 rows. The accepted adapter passes the legal 80/320/1,280-row tiers at
+`+0.00` excess growth and at most `1.01x`; a correct correlated-rescan query
+returns every ordinary and benchmark result but fails only scaling at `+1.15`
+excess growth and `76.03x`.
+
+Problem 3809, Best Reachable Tower, is remotely Accepted as exact Python
+submission `2085476250` with all 1,001 tests passing. Its modular Reference
+preserves the source's definition-first presentation: the tower triple and
+center model, inclusive Manhattan reachability, maximum-quality selection,
+lexicographic tie-break, no-reachable fallback, and the separate definitions
+of Manhattan distance, coordinate order, and absolute value. All three exact
+examples retain every per-tower distance calculation and the final selection
+reason, followed by all five displayed constraints. The accepted one-pass
+selector matched an independent oracle on 1,062,864 exhaustive contracts over
+66,429 tower arrays. It passes the calibrated 64/128/256-tower tiers at
+`+0.02` excess growth and `1.02x`; a correct all-pairs dominance scan returns
+every ordinary and benchmark output and fails only scaling at `+1.18` excess
+growth and `160.11x`.
+
+Problem 3810, Minimum Operations to Reach Target Array, is remotely Accepted
+as exact Python submission `2085482081` with all 1,014 tests passing. Its
+modular Reference preserves the source's procedural presentation: current and
+target arrays, the choose-value step, all maximal segments and their maximality
+definition, simultaneous per-index target assignments, all three exact
+examples with every intermediate array and unchanged-position explanation,
+and both constraints. The distinct-original-mismatch-value formula matched an
+independent breadth-first search over the literal operation semantics on all
+66,429 array pairs over values 1 through 3 and lengths through five, including
+created value collisions. The accepted set scan passes the legal
+64/128/256-position tiers at `-0.04` excess growth and `1.00x`; a correct
+list-membership scan returns every ordinary and benchmark output but fails
+only scaling in three trials at `+1.24` to `+1.29` excess growth and
+`75.18x` to `79.97x` on the largest tier.
+
+Problem 3811, Number of Alternating XOR Partitions, is remotely Accepted as
+exact Python submission `2085491273`. Its modular Reference preserves the
+source's definition-first progression, the contiguous/non-empty/complete-cover
+partition definition, the formal three-item alternating XOR sequence, the
+standalone one-block Note, all three exact examples and every listed valid
+partition or impossibility reason, and all three constraints. The prefix-XOR
+parity-state recurrence matched direct partition enumeration on 65,520
+exhaustive contracts plus 10,000 deterministic randomized contracts. The
+accepted two-map DP passes the legal 64/128/256-element tiers at `-0.00` excess
+growth and `0.99x`; an independently structured combined-map DP also passes at
+`+0.03` and `1.25x`. A correct direct cut-by-cut DP returns every ordinary and
+benchmark output but fails only scaling in three trials at `+1.03` to `+1.14`
+excess growth and `120.98x` to `135.91x` on the largest tier. The earlier
+128/512/2,048 tiers were deliberately discarded because the quadratic control
+hit the runner safety cap before a fair scaling verdict.
+
+Problem 3812, Minimum Edge Toggles on a Tree, is remotely Accepted as exact
+Python submission `2085500198`. Its modular Reference preserves the source's
+tree-and-color model, indexed-edge operation, minimum-sequence and increasing-
+index output requirements, all three exact examples and explanations, and all
+seven constraints. Each of the source's three example diagrams was recreated
+independently as a package-local SVG in the corresponding source position. The
+local diagrams retain the exact tree topology, input edge indices, initial
+node colors, and red-for-`0`/green-for-`1` legend without copying the provider
+images. This is part of source-style fidelity, not optional decoration.
+
+The reverse tree traversal follows the forced parity of each non-root node's
+parent edge and returns `[-1]` precisely when the root parity remains odd. It
+matched exhaustive edge-subset search on 87,228 labeled-tree parity contracts
+through six nodes and 10,000 deterministic randomized start/target contracts.
+The accepted implementation passes the legal 64/128/256-node tiers at `+0.02`
+excess growth and `1.01x`; an independent leaf-queue implementation also
+passes. A correct repeated leaf-and-edge scan returns every ordinary and
+benchmark output but fails only scaling in three trials at `+0.93` to `+1.01`
+excess growth and `27.14x` to `29.32x` on the largest tier.
+
+Problem 3813, Vowel-Consonant Score, is remotely Accepted as exact Python
+submission `2085510739`. Its modular Reference preserves the source's compact
+definition-and-two-case style, including the exact five-vowel definition, the
+fact that spaces and digits belong to neither count, all three exact examples
+with every listed character and floor calculation, and both constraints. The
+live statement has no images or tables. The accepted one-pass classifier uses
+$O(N)$ time and $O(1)$ auxiliary space and passes all 12 authored cases.
+
+The accepted adapter matched an independent ASCII-classification oracle on
+19,530 exhaustive representative strings through length six, 5,000
+deterministic strings spanning every legal length, and explicit 100-character
+boundaries. Because the contract caps the string at 100 characters, runtime
+scaling cannot honestly distinguish the one-pass scan from plausible slower
+counting strategies. The package therefore uses a strictly validated
+`bounded_domain` certificate whose work proof records at most 100 character
+examinations and whose dedicated regression owns the oracle evidence.
+
+Problem 3814, Maximum Capacity Within Budget, is remotely Accepted as exact
+Python submission `2085518572`. Its modular Reference preserves the source's
+four-paragraph contract, the at-most-two and distinct-machine rules, the
+strict budget boundary, all three exact examples with each explanation's
+selection/cost/capacity progression, and all three constraints. The live
+statement has no images or tables. The sorted-prefix and lower-bound algorithm
+matched brute-force selection on 465,003 exhaustive machine/budget contracts.
+
+The accepted $O(N\log N)$ adapter passes the legal 32/128/512-machine tiers in
+three trials at `-0.00` to `+0.01` excess growth and `1.01x` to `1.03x`. An
+independently structured top-two-prefix implementation also passes at `-0.00`
+to `+0.00` and `1.24x` to `1.29x`. A correct all-pairs implementation returns
+every ordinary and benchmark output but fails only scaling in three trials at
+`+1.01` to `+1.02` excess growth and `32.25x` to `33.33x` on the largest tier.
+The earlier 128/512/2,048 tiers were discarded because the quadratic control
+hit the safety cap before a fair verdict.
+
+Problem 3815, Design Auction System, is remotely Accepted as exact Python
+submission `2085527941`. Its modular Reference preserves the source's
+real-time auction introduction, one-bid-per-user/item model, complete five-part
+class API, all nine calls and reasons in the sole example trace, and all four
+constraints. The live statement has no images or tables. The reviewed manifest
+correctly marks the example explained: the live HTML visibly contains an
+`Explanation` heading and nine lines, while the coarse fetcher's false flag is
+caused only by that heading's missing colon.
+
+The lazy per-item heap and authoritative bid map matched a direct-map oracle
+across the source trace and 100,000 deterministic valid calls, including
+28,332 highest-bidder queries. The accepted $O(Q\log Q)$ implementation passes
+the legal 64/128/256-bid query-heavy tiers in three trials at `-0.00` to
+`+0.02` excess growth and `0.99x` to `1.02x`. An independently structured lazy
+heap also passes at `-0.08` to `-0.07` and `0.52x` to `0.53x`. A correct
+scan-on-query map returns every ordinary and benchmark output but fails only
+scaling at `+0.92` to `+1.00` and `12.37x` to `12.48x`.
+
+Problem 3816, Lexicographically Smallest String After Deleting Duplicate
+Characters, is remotely Accepted as exact Python submission `2085539771`. Its
+modular Reference preserves the any-number-including-zero operation rule, the
+at-least-two precondition, deletion of any one occurrence, both exact examples
+and their full explanations, and both constraints. In particular, it retains
+the source's complete four-string comparison for `"aaccb"` and the example
+deletion of the first `c`. The live statement has no images or tables.
+
+The duplicate-preserving monotonic stack matched complete subsequence
+enumeration on 51,367 strings across three- and four-letter alphabets. The
+accepted $O(N)$ adapter passes the legal 128/512/2,048-character tiers in three
+trials at `-0.01` to `-0.00` excess growth and `0.98x` to `1.00x`. An
+independent Counter-based stack also passes at `-0.04` and `0.45x`. A correct
+feasible-window construction returns every ordinary and benchmark output but
+fails only scaling at `+0.58` to `+0.62` excess growth and `4.90x` to `5.37x`.
+
+Problem 3817, Good Indices in a Digit String, is remotely Accepted as exact
+Premium Python submission `2085550928`. Its modular Reference preserves the
+source's three-part progression, all three exact examples, and every
+explanation paragraph and bullet distinction. In particular, the first
+example separately accounts for indices 0, 11, and 12 before ruling out all
+others; the second explains why all five one-digit indices match; and the third
+explains both the absence of matches and the empty result. Both constraints
+are present, and the live statement has no images or tables.
+
+The unique-ending-suffix scan matched a definition-direct oracle on 47,553
+exhaustive digit strings plus all source examples. The accepted $O(ND)$
+adapter passes the legal 64/256/512-character tiers in three trials at `-0.01`
+to `+0.02` excess growth and `0.98x` to `1.00x`. An independent `endswith`
+scan passes at `-0.17` to `-0.16` and `0.48x` to `0.49x`. A correct
+all-starts enumeration returns every ordinary and benchmark result but fails
+only scaling at `+1.16` to `+1.20` and `211.68x` to `232.23x`.
+
+Problem 3818, Minimum Prefix Removal to Make Array Strictly Increasing, is
+remotely Accepted as exact Python submission `2085562763`. Its modular
+Reference preserves the requirement to remove exactly one prefix, the explicit
+permission for that prefix to be empty, the minimum-length objective, and the
+strict comparison. All three exact examples retain their named removed prefix,
+remaining suffix, and explanation; both constraints are present. The live
+statement has no images or tables.
+
+The longest-increasing-suffix scan matched a direct minimum-prefix oracle on
+121,338 exhaustive arrays plus all source examples. The accepted $O(N)$
+adapter passes the legal 256/512/1,024-element midpoint-violation tiers in
+three trials at `-0.02` to `+0.02` excess growth and `0.98x` to `1.04x`. An
+independent forward last-violation scan passes at `+0.08` and `1.62x` to
+`1.66x`. A correct prefix-by-prefix validator returns every ordinary and
+benchmark result but fails only scaling at `+1.19` to `+1.23` and `241.38x`
+to `244.60x`.
+
+Problem 3819, Rotate Non Negative Elements, is remotely Accepted as exact
+Python submission `2085572173`. Its modular Reference preserves the source's
+five-part presentation, the left and cyclic rotation rules, fixed negative
+indices, reinsertion only into originally non-negative positions, and zero's
+membership in the movable sequence. All three examples retain the full
+extract-rotate-reinsert explanation, including Example 1's nested three-step
+trace. All three constraints are present; the source has no images or tables.
+
+The extraction/rotation/reinsertion method matched a one-step simulation oracle
+on 418,615 exhaustive calls plus five targeted boundary cases. The accepted
+$O(N)$ adapter passes the legal 256/1,024/4,096-element all-movable tiers in
+three trials with flat growth and `0.99x` to `1.02x`. An independent cyclic
+index mapping also passes with flat growth and `0.93x` to `0.96x`. A correct
+modulo-normalized one-step list-rebuilding simulation returns every ordinary
+and benchmark output but fails only scaling at `+0.42` to `+0.44` and `5.14x`
+to `5.33x`.
+
+Problem 3820, Pythagorean Distance Nodes in a Tree, is remotely Accepted as
+exact Python submission `2085584286`. Its modular Reference preserves the full
+tree and target data model, the three-item distance definition, ascending-sort
+equation, unique-path distance definition, and all six constraints. Each
+example retains its introductory sentence, all four node-level original and
+sorted distance triples, every equation decision, and the conclusion. The live
+statement has no images or tables.
+
+The three-BFS method matched an independent all-pairs shortest-path oracle for
+every ordered distinct target triple across all 1,437 labeled trees with four
+through six nodes, totaling 163,404 complete calls. The accepted $O(N)$
+adapter passes the legal 32/128/256-node path tiers in three trials at `-0.01`
+to `+0.00` excess growth and `0.99x` to `1.02x`. An independent three-DFS
+method passes at `-0.01` to `+0.01` and `1.09x` to `1.12x`. A correct
+traversal-from-every-node method returns every ordinary and benchmark result
+but fails only scaling at `+1.03` to `+1.07` and `86.45x` to `88.82x`.
+
+Problem 3821, Find Nth Smallest Integer With K One Bits, is remotely Accepted
+as exact Python submission `2085594850`. Its modular Reference preserves the
+one-based rank, positive-integer domain, exact one-bit count, strict
+$2^{50}$ guarantee, exactly two source examples, both complete ordered binary
+lists, and all three constraints. The live statement has no images or tables.
+
+The combinatorial unranking method exactly reproduced all 4,095 positive
+12-bit ranks and passed 246 full-width first, interior, middle, and last-rank
+checks across every `k` from 1 through 50. Its strict `bounded_domain`
+certificate records the 50-position upper bound and property evidence; a rank
+benchmark would not scale the required $O(B)$ work. The package-specific and
+strict-certificate gates are included in the 35 passing focused tests.
+
+Problem 3822, Design Order Management System, is Premium and remotely Accepted
+as exact Python submission `2085607442`. Its modular Reference preserves the
+source's separate Note, all six constraints, the exact stateful input and
+output arrays, and all eleven explanation steps. A dedicated generic validator
+keeps stateful result positions fixed while treating only each returned ID list
+as unordered, so the source's `[2, 1]` sample remains intact without inventing
+an ordering guarantee.
+
+The dual hash-index implementation matched 5,000 randomized valid traces and
+138,563 lookup comparisons against an independent scan oracle. The accepted
+adapter passes the legal 64/256/640-order query-heavy tiers at `-0.02` excess
+growth and a `0.98x` largest-tier ratio; an independently structured nested
+index passes at `-0.08` and `0.54x`. A correct scan-all-active-orders control
+returns every ordinary and benchmark result but fails only scaling at `+0.91`
+and `17.73x`. A rejected 1,000-order draft was not retained because the slower
+control reached the safety cap instead of receiving a complexity-only verdict.
+
+Problem 3823, Reverse Letters Then Special Characters in a String, is remotely
+Accepted as exact Python submission `2085623152`. Its modular Reference
+preserves the ordered two-stage transformation, all three exact examples and
+explanations, Example 1's nested category lists and intermediate string, the
+two exact constraints, and the source's compact instructional style. The live
+statement has no images or tables.
+
+The accepted category-stack implementation matched a literal two-stage oracle
+for all 87,380 strings through length eight over a representative alphabet and
+10,000 randomized strings over the complete permitted alphabet. Across three
+calibration rounds, the accepted adapter passes the legal 16/40/100-character
+tiers at `-0.01` excess growth and `0.97x` to `1.01x`; an independent dual-
+pointer method passes at `-0.02` to `+0.01` and `0.88x` to `0.91x`. A correct
+fresh right-to-left search for each output position returns every result but
+fails only scaling at `+1.10` to `+1.13` and `16.03x` to `16.54x`.
+
+Problem 3824, Minimum K to Reduce Array Within Limit, is remotely Accepted as
+exact Python submission `2085635323`. Its modular Reference preserves the
+source-level definition of `nonPositive`, the fixed-`k` operation semantics,
+both exact examples, every example subtraction count and final value, and both
+constraints. The ceiling-sum derivation remains in the branch explanation so
+the source's conceptual order is not flattened. The live statement has no
+images or tables.
+
+The binary-search implementation passed 55,986 exhaustive arrays checked by
+literal repeated subtraction, 20,000 randomized arrays checked by sequential
+candidate search, and three maximum-scale minimality checks. The oracle caught
+and corrected a manually guessed boundary expectation before any package case
+was authored: 100,000 copies of 100,000 require `k = 2168`, not `1000`.
+
+Across three calibration rounds, the accepted adapter passes the legal
+32/128/512-element maximum-value tiers at `-0.03` to `+0.01` excess growth and
+`0.95x` to `1.01x`; an independent fixed-bound binary search passes at `+0.00`
+to `+0.03` and `0.96x` to `0.98x`. A correct sequential candidate scan returns
+every result but fails only scaling at `+0.39` to `+0.42` and `9.67x` to
+`10.92x`.
+
+Problem 3825, Longest Strictly Increasing Subsequence With Non-Zero Bitwise
+AND, is remotely Accepted as exact Python submission `2085647615`. Its modular
+Reference preserves the strict subsequence contract, the zero-result rule, all
+three exact source witnesses and AND calculations, both constraints, and the
+statement's compact presentation. The live statement has no images or tables.
+
+The accepted per-bit patience-sorting implementation matched full subsequence
+enumeration on 55,986 exhaustive arrays and 5,000 randomized arrays, plus four
+zero, disjoint-bit, and highest-bit boundaries. Across three calibration
+rounds, the accepted adapter passes the legal 16/64/256-element increasing-odd
+tiers at `-0.00` to `+0.02` excess growth and at most `1.01x`; an independent
+bit-loop implementation passes at `-0.04` to `-0.03` and `0.56x` to `0.59x`.
+A correct quadratic dynamic program for every bit returns all results but fails
+only scaling at `+0.73` to `+0.74` and `17.55x` to `17.88x`.
+
+Problem 3826, Minimum Partition Score, is remotely Accepted as exact Python
+submission `2085664015`. Its modular Reference preserves the source's four
+definition paragraphs, exact-`k` nonempty contiguous partition contract, the
+distinction between subarray value and partition score, the triangular-value
+formula, all three exact examples and complete calculations, and all three
+constraints. The live statement has no images or tables.
+
+The accepted monotone convex-hull dynamic program and its app adapter match
+direct cut enumeration on 145,636 exhaustive `(nums, k)` cases, a quadratic
+partition oracle on 5,000 deterministic randomized cases, and four maximum-
+size or maximum-value boundary formulas. Across three calibration rounds on
+the legal 8/32/112-value unit arrays with `k = N / 2`, the accepted adapter
+passes at `-0.01` to `+0.02` excess growth and at most `1.01x`; an
+independent array-backed hull passes at `-0.16` to `-0.15` and `0.29x` to
+`0.30x`. A correct direct-transition $O(KN^2)$ dynamic program returns every
+ordinary and benchmark result but fails only scaling at `+0.67` to `+0.68`
+excess growth.
+
+Problem 3827, Count Monobit Integers, is remotely Accepted as exact Python
+submission `2085695217`. Its modular Reference preserves the source's compact
+three-paragraph presentation, the exact Monobit definition, the inclusive
+range, zero's `"0"` representation, both complete binary-enumeration
+explanations, and the single constraint. The live statement has no images or
+tables.
+
+The accepted all-one-value generator and app adapter match a literal binary-
+string oracle for all 1,001 legal inputs. Across three calibration rounds on
+the legal 16/128/1000-value range tiers, the accepted adapter passes at
+`-0.01` to `+0.00` excess growth and at most `1.02x`; an independent
+bit-count generator passes at `-0.00` to `+0.00` and at most `1.04x`. A
+correct full-range enumeration returns every ordinary and benchmark result but
+fails only scaling at `+0.50` to `+0.51` excess growth and `8.90x` to
+`9.23x` on the largest tier.
+
+Problem 3828, Final Element After Subarray Deletions, is remotely Accepted as
+exact Python submission `2085713200`. Its modular Reference preserves the live
+source's two introductory paragraphs, three-item game-rule list, objective
+paragraph, both exact examples and complete explanations, the “One valid
+optimal strategy” signpost and move list, and both constraints. The statement
+has no images or tables.
+
+The endpoint theorem was checked by exhaustive minimax on all 87,380 arrays of
+lengths one through eight over values one through four. Alice can immediately
+keep either original endpoint; after any nonterminal first move, Bob can
+immediately keep a surviving original endpoint, proving the matching lower and
+upper bounds. Across three calibration rounds on legal 32/256/2048-element
+tiers, the accepted adapter passes at `-0.00` to `+0.01` excess growth and at
+most `1.02x`; an independent comparison passes at `-0.00` to `+0.00` and at
+most `1.04x`. A correct full-array scan returns every result but fails only
+scaling at `+0.63` to `+0.66` and `18.84x` to `20.61x`.
+
+Problem 3829, Design Ride Sharing System, is remotely Accepted as exact Python
+submission `2085733008`. Its modular Reference preserves the scenario
+paragraph, the five-item class API list, both exact operation/argument/output
+traces, all nine and eight narrated operation lines respectively, all four
+constraints, FIFO matching, ineffective-cancellation behavior, and the
+`[-1, -1]` fallback. The live statement has no images or tables. The fetcher's
+coarse example flags missed both explanations because the source headings omit
+a colon; the reviewed manifest correctly records and verifies them as present.
+
+The accepted deque-plus-active-set class matched a simple eager-list oracle on
+221,312 exhaustive legal traces and 20,000 deterministic randomized traces.
+Across three calibration rounds on legal 64/192/480-rider reverse-cancellation
+tiers, the accepted adapter passes at `-0.01` to `-0.00` excess growth and at
+most `1.01x`; an independent ordered-dictionary implementation passes at
+`-0.06` to `-0.02` and at most `0.66x`. A correct hand-written linear-search
+cancellation implementation returns every output but fails only scaling at
+`+0.87` to `+0.89` and `10.90x` to `11.02x`. Python's C-level `list.remove`
+control was explicitly rejected as uncalibrated because it passed within the
+legal 1,000-call domain.
+
+The dataset checker reports 3,829 manually complete packages and 174 needing
+authoring. Source-fidelity audit through frontend ID 3829 reports 544 verified,
+3,285 unverified, and zero invalid; the full corpus has 544 verified and 3,459
+unverified manifests. Cases, Optimal submissions, solution variants, and
+complexity evidence are complete through 3829; 3,540 packages use completed
+scaling benchmarks and 289 use strict certificates. The migration audit reports
+3,540 locally complete and fully verified packages. The focused Reference,
+variant, starter, and dynamic-document suite passes 33 tests with the two
+existing warnings. `git diff --check` remains the final whitespace gate after
+the handoff edit.
+
+Continue with
+`dsa/leetcode/3830_longest-alternating-subarray-after-removing-at-most-one-element`,
+a public Hard array/dynamic-programming/enumeration problem with internal
+question ID `4198` and live statement hash
+`c298ff12ed68f7d9b660fdf449a41238e74029ff6c602895f39108a3b5721016`.
+The source sections are `description`, `examples`, and `constraints`; there are
+three fully explained examples, two constraints, and no images or tables.
+
+Preserve the source's definition-first presentation: introduce `nums`, define
+an alternating subarray `nums[l..r]`, display the two strict comparison
+patterns as separate bullets, restate that adjacent comparisons must alternate
+between strictly greater and strictly smaller, then state the at-most-one
+deletion, maximum-length request, and standalone rule that every length-one
+subarray is alternating. Equality never forms an alternating comparison.
+
+Example 1 is `nums = [2,1,3,2]` with output `4`; preserve both explanation
+steps: choose no deletion, then select the entire array and show
+`2 > 1 < 3 > 2`. Example 2 is `nums = [3,2,1,2,3,2,1]` with output `4`;
+delete `nums[3]` (the fourth value `2`) to obtain `[3,2,1,3,2,1]`, then
+select the emphasized middle subarray `[2,1,3,2]`. Example 3 is
+`nums = [100000,100000]` with output `1`; choose no deletion and select one of
+the equal elements, relying on the explicit length-one rule. Preserve the
+source's per-example two-item explanation lists and its emphasis distinguishing
+the deleted or selected entries from surrounding context.
+
+The constraints are $2 \le \lvert\texttt{nums}\rvert \le 10^5$ and
+$1 \le \texttt{nums}[i] \le 10^5$. The native Python declaration is
+`Solution.longestAlternating(self, nums: List[int]) -> int`.
+
+The authenticated hints define `left[i][d]` for alternating subarrays ending
+at `i`, where `d = 0` means the last comparison is `<` and `d = 1` means `>`;
+define `right` symmetrically, fill both directions while restarting on
+equality, and try deleting every interior index. If
+`nums[r - 1] < nums[r + 1]`, combine
+`left[r - 1][0] + right[r + 1][1]`; for `>`, combine
+`left[r - 1][1] + right[r + 1][0]`. Also consider no deletion through every
+`left[i][d]`. The package currently contains only metadata, a legacy
+placeholder document, and placeholder variant bounds. Refetch the source at
+the start of the next review, derive the direction-state transitions carefully,
+validate the exact candidate against exhaustive deletion-and-subarray search,
+then obtain remote Accepted evidence before completing the package.
+
+The Electron helpers require a real Electron process. If the shell inherits
+`ELECTRON_RUN_AS_NODE=1`, remove that variable before invoking either bridge;
+set `PYTHONIOENCODING=utf-8` so source characters can be printed on Windows.
+No credential value should be printed or copied into a command.
 
 This work is active. It is neither complete nor globally blocked. The full
 goal remains the canonical migration of every problem through frontend ID
-3985. This handoff records the current live boundary for a new Codex session;
+4005. This handoff records the current live boundary for a new Codex session;
 the worktree and freshly generated reports remain authoritative if anything
 below has drifted.
+
+## Current live frontier
+
+The refreshed audit on 2026-07-24 reports:
+
+- 3991 canonical packages;
+- 3116 locally complete;
+- 3116 fully complete and remotely verified;
+- 17 packages with recorded blockers; and
+- `dsa/leetcode/3134_find-the-median-of-the-uniqueness-array` as the
+  first actionable incomplete package.
+
+Problem 3072, Distribute Elements Into Two Arrays II, is locally complete and
+remotely verified as submission `2079017197`. The exact native Fenwick-tree
+source passed 1,544 independent oracle cases before submission. Its accepted
+reference passed the 100/250/600-item tiers, while a correct direct-counting
+quadratic implementation returned every expected output and failed only the
+scaling verdict at `+0.88` extra growth with an `8.74x` largest runtime ratio.
+The dataset checker now reports 3055 manually complete documents, and the
+validated-case, dynamic-document, and starter-signature suite passes `151
+passed` with only the two existing warnings. The authenticated contract and
+native Python stub for problem 3073 have been captured in the open LeetCode
+tab: `Solution.maximumTripletValue(self, nums: List[int]) -> int`.
+
+Problem 3073, Maximum Increasing Triplet Value, is locally complete and
+remotely verified as submission `2079025397`. The exact native
+coordinate-compression and Fenwick-prefix-maximum source passed 13,038
+independent exhaustive and random oracle cases before submission. The accepted
+reference and an independent segment-tree implementation passed the
+100/250/600-item tiers. A correct quadratic prefix rescan returned every
+expected output and failed only the scaling verdict at `+0.94` extra growth
+with a `24.35x` largest runtime ratio. The dataset checker now reports 3056
+manually complete documents, and the focused suite remains green at `151
+passed`. Problem 3074 is staged in the authenticated LeetCode tab with native
+entrypoint `Solution.minimumBoxes(self, apple: List[int], capacity: List[int])
+-> int`.
+
+Problem 3074, Apple Redistribution into Boxes, is locally complete and
+remotely verified as submission `2079030536` with 565/565 tests. The exact
+native greedy source passed 62,586 exhaustive and random subset-oracle cases
+before submission. Its previous 30,000-box benchmark violated the legal
+50-box limit and was replaced by legal 10/25/50-box tiers. The accepted
+sorting reference and an independent max-heap implementation passed; correct
+repeated maximum selection returned every expected output and failed only the
+scaling verdict at `+1.28` extra growth with an `18.31x` largest runtime ratio.
+The dataset checker now reports 3057 manually complete documents, and the
+focused suite remains green at `151 passed`. Problem 3075 is staged in the
+authenticated LeetCode tab with native entrypoint
+`Solution.maximumHappinessSum(self, happiness: List[int], k: int) -> int`.
+
+Problem 3075, Maximize Happiness of Selected Children, is locally complete
+and remotely verified as submission `2079035469`. The exact native greedy
+source passed 7,372 independent exhaustive and random permutation-oracle cases
+before submission. Its inherited one-tier 30,000-item benchmark contained a
+forbidden zero and was replaced by legal 500/2,000/8,000-child tiers that
+select every child. The accepted sorting reference and an independent
+max-heap implementation passed; correct repeated maximum selection returned
+every expected output and failed only the scaling verdict at `+0.88` extra
+growth with a `34.71x` largest runtime ratio. The dataset checker now reports
+3058 manually complete documents, and the focused suite remains green at `151
+passed`. Problem 3076 is staged in the authenticated LeetCode tab with its
+authoritative contract and native entrypoint
+`Solution.shortestSubstrings(self, arr: List[str]) -> List[str]`.
+
+Problem 3076, Shortest Uncommon Substring in an Array, is locally complete
+and remotely verified as submission `2079042763` with 631/631 tests. The exact
+native substring-ownership source passed 61,358 independent exhaustive and
+random oracle cases before submission. Its inherited 260-string benchmark
+violated the legal 100-string limit and was replaced by legal 12/36/100-string
+tiers. The accepted ownership-map reference and an independent ownership-map
+implementation passed; correct direct cross-word search returned every
+expected output and failed only the scaling verdict at `+0.86` extra growth
+with an `11.18x` largest runtime ratio. The dataset checker now reports 3059
+manually complete documents, and the focused suite remains green at `151
+passed`. Problem 3077 is staged in the authenticated LeetCode tab with its
+authoritative ordered-subarray contract and native entrypoint
+`Solution.maximumStrength(self, nums: List[int], k: int) -> int`.
+
+Problem 3077, Maximum Strength of K Disjoint Subarrays, is locally complete
+and remotely verified as submission `2079049883` with 802/802 tests. The exact
+native rolling dynamic program passed 77,783 independent exhaustive and random
+interval-oracle cases before submission. Its inherited one-tier benchmark was
+replaced by legal 25/75/200-value tiers with `k=7`. The accepted $O(nk)$
+reference and an independent full-table $O(nk)$ implementation passed; correct
+$O(n^2k)$ endpoint enumeration returned every expected output and failed only
+the scaling verdict at `+1.01` extra growth with a `38.05x` largest runtime
+ratio. The dataset checker now reports 3060 manually complete documents, and
+the focused suite remains green at `151 passed`. Problem 3078 is staged in the
+authenticated LeetCode tab with its full alphanumeric-bijection contract and
+native entrypoint
+`Solution.findPattern(self, board: List[List[int]], pattern: List[str]) -> List[int]`.
+
+Problem 3078, Match Alphanumerical Pattern in Matrix I, is locally complete
+and remotely verified as Premium submission `2079059298` with 1500/1500 tests.
+The first candidate was authoritatively rejected on `pattern = ["9x7"]` and
+board row `[9,9,7]`, clarifying that a letter may share a fixed literal digit;
+injectivity applies only between distinct letters. The corrected exact native
+matcher then passed 53,656 exhaustive and random letter-bijection oracle cases.
+Its legal 25/100/400-cell tiers accept the reference and an independent
+array-map matcher; correct pairwise-equivalence checking returns every expected
+output and fails only scaling at `+1.06` extra growth with a `91.18x` largest
+runtime ratio. The dataset checker now reports 3061 manually complete
+documents, and the focused suite remains green at `151 passed`. Problem 3079
+is staged in the authenticated LeetCode tab with constraints `1 <= n <= 50`,
+`1 <= nums[i] <= 1000`, and native entrypoint
+`Solution.sumOfEncryptedInt(self, nums: List[int]) -> int`.
+
+Problem 3079, Find the Sum of Encrypted Integers, is locally complete and
+remotely verified as submission `2079068011` with 865/865 tests. The exact
+native constant-space digit scan passed 1,021,000 exhaustive-pair and random
+oracle cases before submission. The inherited benchmark used 30,000 values
+well outside the legal 50-value limit, and ordinary cases also contained
+values above the official maximum of 1000; both were replaced by legal
+8/24/50-value tiers and boundary cases. The accepted reference and an
+independent string-based $O(D)$ implementation passed. Correct repeated
+multiplicity scanning returned every expected output and failed only scaling
+at `+0.86` extra growth with a `6.38x` largest runtime ratio. The dataset
+checker now reports 3062 manually complete documents, and the focused suite
+remains green at `151 passed`. Problem 3080 is staged in the authenticated
+LeetCode tab with the ordered marking contract, official first output
+`[8,3,0]`, constraints $1 \leq m \leq n \leq 10^5$, and native entrypoint
+`Solution.unmarkedSumArray(self, nums: List[int], queries: List[List[int]]) -> List[int]`.
+
+Problem 3080, Mark Elements on Array by Performing Queries, is locally
+complete and remotely verified as submission `2079077513` with 661/661 tests.
+The exact native sorted-cursor source passed 224,945 exhaustive and random
+direct-simulation oracle cases before submission. The scaffold's document had
+the wrong official first output, one ordinary case used illegal `k > n - 1`,
+and its benchmark was a single 20,000-value tier; these were replaced by
+source-faithful documentation, legal cases, and 100/300/600-value tiers. The
+accepted reference and an independent heap implementation passed. Correct
+full-array rescanning returned every expected output and failed only scaling
+at `+1.13` extra growth with a `117.03x` largest runtime ratio. The dataset
+checker now reports 3063 manually complete documents, and the focused suite
+remains green at `151 passed`. Problem 3081 is staged in the authenticated
+LeetCode tab with its frequency-pair value definition, minimum-value then
+lexicographic tie break, examples `"???" -> "abc"` and `"a?a?" -> "abac"`,
+constraint $1 \leq \lvert s \rvert \leq 10^5$, and native entrypoint
+`Solution.minimizeStringValue(self, s: str) -> str`.
+
+Problem 3081, Replace Question Marks in String to Minimize Its Value, is
+locally complete and remotely verified as submission `2079087042` with
+548/548 tests. The exact native frequency-balancing source passed 351
+exhaustive small completion oracles and 20,000 random independent greedy
+checks before submission. The previously empty scaffold was replaced with the
+full package and legal 200/800/3,200-placeholder tiers. The accepted reference
+and an independent constant-alphabet scan passed; correct repeated recounting
+returned every expected output and failed only scaling at `+0.66` extra growth
+with a `20.50x` largest runtime ratio. The dataset checker now reports 3064
+manually complete documents, and the focused suite remains green at `151
+passed`. Problem 3082 is staged in the authenticated LeetCode tab with the
+nested-subsequence power definition, corrected official examples including
+`nums = [2,3,3], k = 5 -> 4`, constraints $1 \leq n \leq 100$ and
+$1 \leq k \leq 100$, and native entrypoint
+`Solution.sumOfPower(self, nums: List[int], k: int) -> int`.
+
+Problem 3082, Find the Sum of the Power of All Subsequences, is locally
+complete and remotely verified as submission `2079097944` with 577/577 tests.
+The exact native weighted-sum DP passed 59,600 independent exhaustive and
+random subset-oracle cases before submission. The inherited scaffold's
+unofficial example, forbidden zero value, and illegal 450-item benchmark were
+replaced with the official contract, comprehensive legal cases, and three
+legal $nk$ workload tiers of 36/162/648. The accepted reference and an
+independent $O(nk)$ scatter DP passed. A correct length-and-sum $O(n^2k)$ DP
+returned every expected output and failed only scaling at `+0.80` extra growth
+with a `66.84x` largest runtime ratio. The dataset checker now reports 3065
+manually complete documents, and the focused suite remains green at `151
+passed`. Problem 3083 is staged in the authenticated LeetCode tab with the
+length-two substring contract, official examples `"leetcode" -> true`,
+`"abcba" -> true`, and `"abcd" -> false`, the lowercase-string constraint
+$1 \leq \lvert s \rvert \leq 100$, and native entrypoint
+`Solution.isSubstringPresent(self, s: str) -> bool`.
+
+Problem 3083, Existence of a Substring in a String and Its Reverse, is locally
+complete and remotely verified as submission `2079110761` with 719/719 tests.
+The exact native adjacent-pair set source passed 59,523 independent exhaustive
+and random reverse-string oracle cases before submission. The empty scaffold
+was replaced with the complete package and legal 16/40/100-character tiers.
+The accepted reference and an independent tuple-pair $O(n)$ implementation
+passed; correct $O(n^2)$ pair comparison returned every expected output and
+failed only scaling at `+1.55` extra growth with a `32.89x` largest runtime
+ratio. The dataset checker now reports 3066 manually complete documents, and
+the focused suite remains green at `151 passed`. Problem 3084 is staged in the
+authenticated LeetCode tab with the start-and-end character counting contract,
+official examples `"abada", "a" -> 6` and `"zzz", "z" -> 6`, constraint
+$1 \leq \lvert s \rvert \leq 10^5$, and native entrypoint
+`Solution.countSubstrings(self, s: str, c: str) -> int`.
+
+Problem 3084, Count Substrings Starting and Ending with Given Character, is
+locally complete and remotely verified as submission `2079120270` with
+669/669 tests. The exact native occurrence-counting source passed 59,520
+independent exhaustive and random direct-substring oracle cases before
+submission. The empty scaffold was replaced with the complete package and
+legal 16/40/100-character tiers. The accepted reference and an independent
+streaming $O(n)$ implementation passed; correct $O(n^2)$ endpoint enumeration
+returned every expected output and failed only scaling at `+1.37` extra growth
+with a `24.57x` largest runtime ratio. The dataset checker now reports 3067
+manually complete documents, and the focused suite remains green at `151
+passed`. Problem 3085 is staged in the authenticated LeetCode tab with its
+$k$-special frequency-difference contract, all three official examples,
+constraints $1 \leq \lvert \texttt{word} \rvert \leq 10^5$ and
+$0 \leq k \leq 10^5$, and native entrypoint
+`Solution.minimumDeletions(self, word: str, k: int) -> int`.
+
+Problem 3085, Minimum Deletions to Make String K-Special, is locally complete
+and remotely verified as submission `2079129416` with 732/732 tests. The exact
+native frequency-threshold source passed 15,160 independent exhaustive and
+random brute remaining-frequency oracle cases before submission. The empty
+scaffold was replaced with the complete package and legal 16/40/100-character
+frequency-range tiers. The accepted reference and an independent sorted-count
+$O(n)$ implementation passed; correct all-minima $O(n^2)$ rescanning returned
+every expected output and failed only scaling at `+1.36` extra growth with a
+`74.71x` largest runtime ratio. The dataset checker now reports 3068 manually
+complete documents, and the focused suite remains green at `151 passed`.
+Problem 3086 is staged in the authenticated LeetCode tab with its exact game
+rules, two official examples, feasibility guarantee
+`maxChanges + sum(nums) >= k`, and native entrypoint
+`Solution.minimumMoves(self, nums: List[int], k: int, maxChanges: int) -> int`.
+
+Problem 3086, Minimum Moves to Pick K Ones, is locally complete and remotely
+verified as submission `2079140185` with 825/825 tests. The exact native
+nearby-ones and median-window source matched 1,183 exhaustive legal small game
+states before submission. The incorrect scaffold description and leaked
+shared-document solution were replaced with the full game contract and branch
+artifacts. Legal 32/128/512-entry alternating-one tiers accept the reference
+and an independent linear implementation; correct quadratic direct median
+summation returned every expected output and failed only scaling at `+0.70`
+extra growth with a `6.14x` largest runtime ratio. The dataset checker now
+reports 3069 manually complete documents, the audit reports 3069 fully
+complete and verified packages, and the focused suite remains green at `151
+passed`. Problem 3087 is staged in the authenticated LeetCode tab with its
+`Tweets(user_id, tweet_id, tweet_date, tweet)` schema, February 2024 filter,
+top-three hashtag requirement, descending count and hashtag ordering, and
+MySQL starter `# Write your MySQL query statement below`.
+
+Problem 3087, Find Trending Hashtags, is locally complete and remotely
+verified as MySQL submission `2079153891` with 11/11 tests. The exact native
+query uses a half-open February 2024 date range, extracts the hashtag token,
+groups once, and applies the required two descending sort keys. A separate
+SQLite-compatible app query preserves the same semantics for the local
+isolated database runtime. Legal 32/128/512-tweet tiers accept the reference
+and an independent grouped query; a correct correlated-count query returned
+every expected table and failed only scaling at `+1.26` extra growth with a
+`138.32x` largest runtime ratio. The dataset checker now reports 3070 manually
+complete documents, the audit reports 3070 fully complete and verified
+packages, and the focused suite remains green at `151 passed`. Problem 3088 is
+staged in the authenticated LeetCode tab with the even-length
+anti-palindrome definition, arbitrary-swap operation, lexicographically
+smallest rearrangement requirement, all three official examples, constraints
+$2 \leq \lvert s\rvert \leq 10^5$ with lowercase letters, and native
+entrypoint `Solution.makeAntiPalindrome(self, s: str) -> str`.
+
+Problem 3088, Make String Anti-palindrome, is locally complete and remotely
+verified as submission `2079166322` with 1212/1212 tests. The exact native
+26-letter counting construction was checked against the lexicographically
+smallest valid permutation for all 294 four-letter multisets through length
+eight before submission. The empty scaffold was replaced with the full
+contract, feasibility proof, cases, app and native sources, and legal
+64/128/256-character forced-overlap tiers. The accepted reference and an
+independent linear feasibility-checking construction passed; correct
+quadratic selection sorting returned every expected output and failed only
+scaling at `+0.86` extra growth with an `8.75x` largest runtime ratio. The
+dataset checker now reports 3071 manually complete documents, the audit
+reports 3071 fully complete and verified packages, and the focused suite
+remains green at `151 passed`. Problem 3089 is staged in the authenticated
+LeetCode tab with its `Posts(post_id, user_id, post_date)` schema, February
+1-28 four-week convention, burst definition as any seven-consecutive-day
+window reaching at least twice the user's February average weekly posts,
+ascending `user_id` output with `max_7day_posts` and `avg_weekly_posts`, the
+official example, and MySQL starter `# Write your MySQL query statement below`.
+
+Problem 3089, Find Bursty Behavior, is locally complete and remotely verified
+as MySQL submission `2079179027` with 12/12 tests. The exact native query
+filters the problem's fixed February 1-28 interval, uses a temporal seven-day
+window per user, and compares its maximum with the four-week average. A
+separate SQLite-compatible query orders the window by `julianday(post_date)`
+to preserve those calendar semantics in the local isolated database runtime.
+Legal 32/128/512-post tiers accept the reference and an independent
+epoch-second window query; a correct self-join range counter returned every
+expected table and failed only scaling at `+1.24` extra growth with a `78.08x`
+largest runtime ratio. The dataset checker now reports 3072 manually complete
+documents, the audit reports 3072 fully complete and verified packages, and
+the focused suite remains green at `151 passed`. Problem 3090 is staged in the
+authenticated LeetCode tab with its lowercase-string contract, maximum
+substring requirement, at-most-two occurrences per character rule, examples
+`bcbbbcba -> 4` and `aaaa -> 2`, constraints
+$2 \leq \lvert s\rvert \leq 100$, and native entrypoint
+`Solution.maximumLengthSubstring(self, s: str) -> int`.
+
+Problem 3090, Maximum Length Substring With Two Occurrences, is locally
+complete and remotely verified as submission `2079191911` with 709/709 tests.
+The exact native sliding window was exhaustively matched against brute force
+on all 29,520 strings over three letters with lengths two through nine before
+submission. The package now contains the full contract, boundary-focused
+cases, app and native sources, and legal 6/24/96-character cyclic-alphabet
+tiers. The accepted reference and an independent last-two-position linear
+implementation passed; correct quadratic fresh-window scanning returned every
+expected answer and failed only scaling at `+0.96` extra growth with a
+`17.49x` largest runtime ratio. The dataset checker now reports 3073 manually
+complete documents, the audit reports 3073 fully complete and verified
+packages, and the focused suite remains green at `151 passed`. Problem 3091
+is staged in the authenticated LeetCode tab with its initial `nums = [1]`
+state, increment and duplicate operations, minimum-operation objective,
+examples `k = 11 -> 5` and `k = 1 -> 0`, constraint
+$1 \leq k \leq 10^5$, and native entrypoint
+`Solution.minOperations(self, k: int) -> int`.
+
+Problem 3091, Apply Operations to Make Sum of Array Greater Than or Equal to
+k, is locally complete and remotely verified as submission `2079203903` with
+658/658 tests. The exact native balanced-factor formula was matched against
+exhaustive factor enumeration for every legal target from 1 through 100,000
+before submission. The package now contains the full operation contract,
+boundary-focused cases, app and native sources, and legal
+100/10,000/100,000-target tiers. The accepted reference and an independent
+minimum-factor-sum derivation passed; correct simulated-increment factor
+enumeration returned every expected answer and failed only scaling at `+0.26`
+extra growth. The dataset checker now reports 3074 manually complete
+documents, the audit reports 3074 fully complete and verified packages, and
+the focused suite remains green at `151 passed`. Problem 3092 is staged in the
+authenticated LeetCode tab with its paired `nums` and `freq` update arrays,
+positive-addition and negative-removal semantics, nonnegative-count guarantee,
+per-step maximum-frequency output including zero for an empty collection,
+both official examples, constraints up to $10^5$, and native entrypoint
+`Solution.mostFrequentIDs(self, nums: List[int], freq: List[int]) -> List[int>`.
+
+Problem 3092, Most Frequent IDs, is locally complete and remotely verified as
+submission `2079216708` with 623/623 tests. The exact native hash-map plus
+lazy-deletion max-heap matched direct rescanning across 10,000 randomized
+valid update sequences before submission. The previous partial package was
+replaced with the source-faithful contract, boundary-focused cases, app and
+native sources, and legal 256/1,024/4,096-update distinct-ID tiers. The
+accepted reference and an independent frequency-multiplicity heap passed;
+correct full-map rescanning returned every expected answer and failed only
+scaling at `+0.68` extra growth. The dataset checker now reports 3075 manually
+complete documents, the audit reports 3075 fully complete and verified
+packages, and the focused suite remains green at `151 passed`. Problem 3093
+is staged in the authenticated LeetCode tab with its `wordsContainer` and
+`wordsQuery` arrays, longest-common-suffix selection rule, shortest-word then
+earliest-index tie breaks, both official examples, per-array and total-length
+constraints, and native entrypoint
+`Solution.stringIndices(self, wordsContainer: List[str], wordsQuery: List[str]) -> List[int]`.
+
+Problem 3093, Longest Common Suffix Queries, is locally complete and remotely
+verified as submission `2079224953` with 817/817 tests. The exact reversed-trie
+source matched brute force on 10,000 randomized instances before submission.
+The previous partial package was replaced with the full source-faithful
+contract, tie-break cases, app-local and native sources, and legal 8/32/128-word
+identical-string tiers. The accepted reference and an independent nested-node
+trie passed; correct all-pairs suffix matching returned every expected answer
+and failed only scaling at `+1.19` extra growth with a `54.31x` largest runtime
+ratio. The dataset checker reports 3076 manually complete documents, the audit
+reports 3076 fully complete and verified packages, and the focused suite
+remains green at `151 passed`. Problem 3094 is staged in the authenticated
+LeetCode tab with its hidden initial 30-bit integer, mutating
+`commonBits(num)` API, inclusive range $[0, 2^{30} - 1]$, equal-bit count over
+the first 30 positions, update `n = n XOR num`, unreliable out-of-range-query
+warning, and native entrypoint `Solution.findNumber(self) -> int`.
+
+Problem 3094, Guess the Number Using Bitwise Questions II, is locally complete
+and remotely verified as submission `2079236496` with 1764/1764 tests. The exact
+31-call source matched 65,536 exhaustive low-domain values, 100,000 randomized
+30-bit values, and explicit boundaries before submission. Its source-faithful
+interactive contract, stateful app-local oracle, nine correctness cases,
+app-local and native sources, and bounded-domain complexity certificate now
+cover the fixed 30-bit domain. The certificate proves one zero-query baseline
+plus one legal singleton-mask query for each of the 30 positions. The dataset
+checker reports 3077 manually complete documents, the audit reports 3077 fully
+complete and verified packages, and the focused suite remains green at `151
+passed`. Problem 3095 is staged in the authenticated LeetCode tab with its
+non-negative `nums` array, threshold `k`, non-empty contiguous-subarray rule,
+bitwise-OR target, `-1` failure result, all three official examples, bounds
+$1 \le \lvert\texttt{nums}\rvert \le 50$, $0 \le \texttt{nums[i]} \le 50$,
+$0 \le k < 64$, and native entrypoint
+`Solution.minimumSubarrayLength(self, nums: List[int], k: int) -> int`.
+
+Problem 3095, Shortest Subarray With OR at Least K I, is locally complete and
+remotely verified as submission `2079244834` with 834/834 tests. The exact
+incremental-OR source matched 699,168 exhaustive and randomized oracle
+instances before submission. The stale shared solution section was replaced
+with the source-faithful contract, nine correctness cases, app-local and native
+sources, and legal 4/16/50-element unreachable-threshold tiers. The accepted
+reference and an independent reverse quadratic scan passed; correct cubic OR
+recomputation returned every expected answer and failed only scaling at `+0.92`
+extra growth with a `13.85x` largest runtime ratio. The dataset checker reports
+3078 manually complete documents, the audit reports 3078 fully complete and
+verified packages, and the focused suite remains green at `151 passed`.
+Problem 3096 is staged in the authenticated LeetCode tab with its binary
+`possible` array, fixed-order Alice/Bob split, `+1` for a clearable level and
+`-1` for an impossible level, strict score comparison, minimum non-empty Alice
+prefix, at-least-one-level requirement for both players, `-1` failure result,
+all three official examples, bounds $2 \le n \le 10^5$, and native entrypoint
+`Solution.minimumLevels(self, possible: List[int]) -> int`.
+
+Problem 3096, Minimum Levels to Gain More Points, is locally complete and
+remotely verified as submission `2079252882` with 855/855 tests. The exact
+signed-prefix source matched 181,072 exhaustive, randomized, and maximum-length
+oracle instances before submission. The stale shared solution section and
+obsolete one-tier 30,000-element workload were replaced with the source-faithful
+contract, nine correctness cases, app-local and native sources, and legal
+64/512/4096-element alternating-score tiers. The accepted reference and an
+independent algebraic linear scan passed; correct quadratic split rescanning
+returned every expected answer and failed only scaling at `+0.56` extra growth
+with an `8.11x` largest runtime ratio. The dataset checker reports 3079 manually
+complete documents, the audit reports 3079 fully complete and verified
+packages, and the focused suite remains green at `151 passed`. Problem 3097 is
+staged in the authenticated LeetCode tab with its non-negative `nums` array,
+threshold `k`, shortest non-empty contiguous-subarray rule, bitwise-OR target,
+`-1` failure result, all three official examples, bounds
+$1 \le \lvert\texttt{nums}\rvert \le 2 \cdot 10^5$,
+$0 \le \texttt{nums[i]} \le 10^9$, $0 \le k \le 10^9$, and native entrypoint
+`Solution.minimumSubarrayLength(self, nums: List[int], k: int) -> int`.
+
+Problem 3097, Shortest Subarray With OR at Least K II, is locally complete and
+remotely verified as submission `2079263811` with 718/718 tests. The exact
+bit-frequency sliding-window source matched 699,171 exhaustive, randomized,
+and maximum-length oracle instances before submission. The stale shared
+solution section and obsolete one-tier workload were replaced with the
+source-faithful contract, nine correctness cases, app-local and native sources,
+and legal 128/256/512-element impossible all-zero tiers. The accepted reference
+and an independent distinct-suffix-OR implementation passed; correct quadratic
+subarray enumeration returned every expected answer and failed only scaling at
+`+1.00` extra growth with a `7.23x` largest runtime ratio. The dataset checker
+reports 3080 manually complete documents, the audit reports 3080 fully complete
+and verified packages, and the focused suite remains green at `151 passed`.
+Problem 3098 is staged in the authenticated LeetCode tab with its integer
+`nums` array, positive `k`, subsequence power defined as the minimum absolute
+difference between any two chosen elements, sum over every length-`k`
+subsequence modulo $10^9 + 7$, all three official examples, bounds
+$2 \le n = \lvert\texttt{nums}\rvert \le 50$,
+$-10^8 \le \texttt{nums[i]} \le 10^8$, $2 \le k \le n$, and native entrypoint
+`Solution.sumOfPowers(self, nums: List[int], k: int) -> int`.
+
+Problem 3098, Find the Sum of Subsequence Powers, is locally complete and
+remotely verified as submission `2079275212` with 549/549 tests. The exact
+distinct-gap threshold DP matched 581,529 exhaustive, randomized, and boundary
+oracle instances before submission. The stale shared solution section,
+incorrect examples, and obsolete one-tier workload were replaced with the
+source-faithful contract, ten correctness cases, app-local and native sources,
+and legal 4/8/16-element distinct-pair-difference tiers. The accepted reference
+and an independent full-table $O(kn^3)$ implementation passed; correct direct
+predecessor transitions returned every expected answer and failed only scaling
+at `+0.95` extra growth with a `4.18x` largest runtime ratio. The dataset
+checker reports 3081 manually complete documents, the audit reports 3081 fully
+complete and verified packages, and the focused suite remains green at
+`151 passed`. Problem 3099 is staged in the authenticated LeetCode tab with
+its positive integer `x`, Harshad-number definition as divisibility by the sum
+of its decimal digits, digit-sum return for a Harshad number, `-1` otherwise,
+both official examples, bound $1 \le x \le 100$, and native entrypoint
+`Solution.sumOfTheDigitsOfHarshadNumber(self, x: int) -> int`.
+
+Problem 3099, Harshad Number, is locally complete and remotely verified as
+submission `2079285499` with 100/100 tests. The exact arithmetic digit scan
+matched an independent string-based oracle on every legal integer from 1
+through 100. The untouched placeholder scaffold was replaced with the
+source-faithful contract, nine correctness cases, app-local and native sources,
+and a strict `bounded_domain` certificate: the accepted loop performs at most
+three digit-removal iterations, and a dedicated regression exhaustively checks
+the complete 100-value domain. The certificate regression passes, the dataset
+checker reports 3082 manually complete documents, the audit reports 3082 fully
+complete and verified packages, and the focused suite remains green at
+`151 passed`. Problem 3100 is staged in the authenticated LeetCode tab with
+initial full-bottle count `numBottles`, current empty-bottle exchange price
+`numExchange`, permission to drink any number of full bottles, a single-batch
+exchange that produces one full bottle and then raises the price by one, the
+prohibition on multiple exchanges at the same price, maximum-drunk-bottles
+objective, both official examples, bounds $1 \le \texttt{numBottles},
+\texttt{numExchange} \le 100$, and native entrypoint
+`Solution.maxBottlesDrunk(self, numBottles: int, numExchange: int) -> int`.
+
+Problem 3100, Water Bottles II, is locally complete and remotely verified as
+submission `2079293177`. The exact increasing-price simulation matched an
+independent cumulative-cost oracle on all 10,000 legal input pairs; the worst
+legal pair performs only 14 exchanges. The untouched placeholder scaffold was
+replaced with the source-faithful contract, nine correctness cases, app-local
+and native sources, and a strict `bounded_domain` certificate backed by the
+complete legal domain. The certificate validation and audit-integration tests
+pass, the dataset checker reports 3083 manually complete documents, the audit
+reports 3083 fully complete and verified packages, and the focused suite
+remains green at `151 passed`. Problem 3101 is staged in the authenticated
+LeetCode tab with its binary `nums` array, alternating-subarray definition as
+having no equal adjacent elements, contiguous-subarray and total-count
+requirements, both official examples, bound
+$1 \le \lvert\texttt{nums}\rvert \le 10^5$, values restricted to zero or one,
+and native entrypoint
+`Solution.countAlternatingSubarrays(self, nums: List[int]) -> int`.
+
+Problem 3101, Count Alternating Subarrays, is locally complete and remotely
+verified as submission `2079302267` with 789/789 tests. The exact native
+alternating-suffix scan matched 132,766 exhaustive and random brute-force
+oracle instances plus the maximum legal boundary. The stale shared solution
+section and one-tier 50,000-element workload were replaced with the
+source-faithful contract, nine correctness cases, app-local and native
+sources, and legal 128/256/512-element fully alternating tiers. The accepted
+reference and an independent maximal-run summation passed; correct quadratic
+enumeration returned every expected output and failed only scaling at `+1.09`
+extra growth with a `199.86x` largest runtime ratio. The dataset checker and
+audit report 3084 complete packages, and the focused suite remains green at
+`151 passed`. Problem 3102 is staged in the authenticated LeetCode tab with
+its integer 2D `points`, Manhattan-distance definition, requirement to remove
+exactly one point and minimize the maximum remaining pairwise distance, both
+official examples, bounds $3 \le \lvert\texttt{points}\rvert \le 10^5$ and
+$1 \le \texttt{points[i][0]}, \texttt{points[i][1]} \le 10^8$, and native
+entrypoint `Solution.minimumDistance(self, points: List[List[int]]) -> int`.
+
+Problem 3102, Minimize Manhattan Distances, is locally complete and remotely
+verified as submission `2079312787` with 537/537 tests. The exact native
+two-projection extreme tracker matched 50,320 exhaustive and random
+brute-force oracle instances plus the maximum legal boundary. The unfinished
+scaffold and one-tier 30,000-point workload were replaced with the
+source-faithful contract, ten correctness cases, app-local and native sources,
+and legal 64/128/256-point mixed-projection tiers. The accepted reference and
+an independent linear heap-extrema implementation passed; correct quadratic
+full rescanning returned every expected output and failed only scaling at
+`+1.02` extra growth with a `50.13x` largest runtime ratio. The dataset checker
+and audit report 3085 complete packages, and the focused suite remains green
+at `151 passed`. Problem 3103 is staged in the authenticated LeetCode tab as a
+MySQL problem over `Tweets(user_id, tweet_id, tweet_date, tweet)`: extract all
+hashtags from tweets dated in February 2024, count every occurrence, return
+the top three, and order by count descending then hashtag descending. The
+authoritative starter is `# Write your MySQL query statement below`.
+
+Problem 3103, Find Trending Hashtags II, is locally complete and remotely
+verified as MySQL submission `2079321890` with 11/11 tests. The exact native
+recursive occurrence query established that a hashtag continues through every
+non-space character, including punctuation. The empty scaffold was replaced
+with the source-faithful contract, eight ordered-table fixtures, app-local
+SQLite and native MySQL queries, and 32/128/512-tweet tiers containing three
+hashtags per row. The accepted reference and an independently structured
+linear recursive token query passed; correct correlated counting returned
+every expected table and failed only scaling at `+0.62` extra growth with a
+`9.72x` largest runtime ratio. A stray trailing space was also removed from
+the canonical title in package metadata and the index. The dataset checker and
+audit report 3086 complete packages, and the focused suite remains green at
+`151 passed`. Problem 3104 is staged in the authenticated LeetCode tab with
+the proper-substring requirement `t != s`, the rule that every character in
+the chosen substring must occur nowhere outside it, return `-1` when no such
+substring exists, official examples `"abba" -> 2`, `"abab" -> -1`, and
+`"abacd" -> 4`, lowercase input bound $2 \le \lvert s\rvert \le 5\cdot10^4$,
+and native entrypoint `Solution.maxSubstringLength(self, s: str) -> int`.
+
+Problem 3104, Find Longest Self-Contained Substring, is locally complete and
+remotely verified as submission `2079333457`. The exact native
+first-occurrence and closure-boundary scan matched 138,569 exhaustive and
+random brute-force oracle instances plus maximum-length boundary inputs. The
+unfinished scaffold was replaced with the source-faithful contract, twelve
+correctness cases, app-local and native sources, and legal 128/256/512-character
+overlapping-alphabet tiers. The accepted reference and an independent linear
+closure scan passed; correct quadratic substring enumeration returned every
+expected output and failed only scaling at `+1.41` extra growth with a
+`131.97x` largest runtime ratio. The dataset checker and audit report 3087
+complete packages, and the focused suite remains green at `151 passed`.
+Problem 3105 is staged in the authenticated LeetCode tab with the requirement
+to return the longest contiguous subarray that is either strictly increasing
+or strictly decreasing, official examples `[1,4,3,3,2] -> 2`,
+`[3,3,3,3] -> 1`, and `[3,2,1] -> 3`, bounds
+$1 \le \lvert\texttt{nums}\rvert \le 50$ and
+$1 \le \texttt{nums[i]} \le 50$, and native entrypoint
+`Solution.longestMonotonicSubarray(self, nums: List[int]) -> int`.
+
+Problem 3105, Longest Strictly Increasing or Strictly Decreasing Subarray, is
+locally complete and remotely verified as submission `2079344556` with
+868/868 tests. The exact native two-run scan matched 137,380 exhaustive and
+random brute-force oracle instances plus maximum-length boundary patterns.
+The stale shared solution section and placeholder variant were replaced with
+the source-faithful contract, twelve correctness cases, app-local and native
+sources, and legal 4/16/50-value fully increasing tiers. The accepted
+reference and an independent comparison-run implementation passed; correct
+quadratic endpoint enumeration returned every expected output and failed only
+scaling at `+0.84` extra growth with an `11.82x` largest runtime ratio. The
+dataset checker and audit report 3088 complete packages, and the focused suite
+remains green at `151 passed`. Problem 3106 is staged in the authenticated
+LeetCode tab with cyclic alphabet distance, permission to change any lowercase
+letter any number of times, budget requirement `distance(s, t) <= k`, and the
+lexicographically smallest reachable-string objective. The official examples
+are `s = "zbbz", k = 3 -> "aaaz"`, `s = "xaxcd", k = 4 -> "aawcd"`, and
+`s = "lol", k = 0 -> "lol"`; the bounds are
+$1 \le \lvert s\rvert \le 100$ and $0 \le k \le 2000$. The native entrypoint
+is `Solution.getSmallestString(self, s: str, k: int) -> str`.
+
+Problem 3106, Lexicographically Smallest String After Operations With
+Constraint, is locally complete and remotely verified as submission
+`2079355335` with 600/600 tests. The exact native left-to-right cyclic-distance
+greedy matched 416,747 exhaustive and random dynamic-programming oracle cases
+plus maximum legal boundaries. The empty scaffold was replaced with the
+source-faithful cyclic-distance contract, twelve correctness cases, app-local
+and native sources, and legal 8/32/100-character tiers whose budgets scale as
+$13n$. The accepted reference and an independent arithmetic greedy passed;
+correct quadratic prefix-distance rescanning returned every expected output
+and failed only scaling at `+1.06` extra growth with a `30.38x` largest runtime
+ratio. The dataset checker and audit report 3089 complete packages, and the
+focused suite remains green at `151 passed`. Problem 3107 is staged in the
+authenticated LeetCode tab with the operation that increments or decrements
+any array element by one, the minimum-operation objective, and the requirement
+that the resulting median equal `k`. The median is the middle value after
+sorting in non-decreasing order; when there are two middle choices, the larger
+one is used. The official examples are `[2,5,6,8,5], k = 4 -> 2`,
+`[2,5,6,8,5], k = 7 -> 3`, and `[1,2,3,4,5,6], k = 4 -> 0`. The bounds are
+$1 \le \lvert\texttt{nums}\rvert \le 2\cdot10^5$ and
+$1 \le \texttt{nums[i]}, k \le 10^9$; the native entrypoint is
+`Solution.minOperationsToMakeMedianK(self, nums: List[int], k: int) -> int`.
+
+Problem 3107, Minimum Operations to Make Median of Array Equal to K, is locally
+complete and remotely verified as submission `2079367787` with 723/723 tests.
+The exact native sorting and gap-summing source matched 147,650 independent
+exhaustive and random category-oracle cases plus maximum legal boundaries. The
+stale scaffold was replaced with the source-faithful upper-median contract,
+twelve legal correctness cases, app-local and native sources, and reverse-order
+32/128/512-value tiers. The accepted reference and an independent heap-sorting
+implementation passed; correct insertion sort returned every expected output,
+completed normally, and failed only scaling at `+1.49` extra growth with a
+`507.81x` largest runtime ratio. The dataset checker and audit report 3090
+complete packages, and the focused suite remains green at `151 passed` with
+the two existing warnings. Problem 3108 is staged in the authenticated
+LeetCode tab. It defines an undirected weighted graph, permits a walk to repeat
+vertices and edges, defines a walk's cost as the bitwise AND of all traversed
+edge weights, and asks for the minimum cost for each source-target query or
+`-1` when the vertices are disconnected. The official examples are
+`n = 5, edges = [[0,1,7],[1,3,7],[1,2,1]], query = [[0,3],[3,4]] -> [1,-1]`
+and `n = 3, edges = [[0,2,7],[0,1,15],[1,2,6],[1,2,1]], query = [[1,2]] -> [0]`.
+The bounds are $2 \le n \le 10^5$, at most $10^5$ edges and queries, edge
+weights from $0$ through $10^5$, distinct endpoints within every edge and
+query, and native entrypoint
+`Solution.minimumCost(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]`.
+
+Problem 3108, Minimum Cost Walk in Weighted Graph, is locally complete and
+remotely verified as submission `2079380941` with 549/549 tests. The exact
+native two-pass DSU source matched 1,388,934 directed queries across 65,755
+independent exhaustive and random graph oracles plus maximum-node boundaries.
+The stale scaffold's second sample had omitted the official parallel weight-1
+edge and incorrectly expected `[6]`; the package now has the source-faithful
+walk contract, corrected official sample, twelve legal correctness cases,
+app-local and native sources, and 16/64/256-node chain tiers with equally many
+queries. An initial 32/128/512 draft was rejected because the slower candidate
+reached the Python safety cap. On the recalibrated tiers, the accepted
+reference and an independent DFS component-labeling implementation passed;
+correct per-query component traversal returned every expected output,
+completed normally, and failed only scaling at `+1.15` extra growth with a
+`79.05x` largest runtime ratio. The dataset checker and audit report 3091
+complete packages, and the focused suite remains green at `151 passed` with
+the two existing warnings. Problem 3109 is staged in the authenticated
+LeetCode tab. Given a permutation of `[1, 2, ..., n]`, it asks for its
+zero-based index among all permutations in lexicographic order, modulo
+$10^9+7$. The official examples are `[1,2] -> 0` and `[3,1,2] -> 4`; the bound
+is $1 \le n \le 10^5$. The native entrypoint is
+`Solution.getPermutationIndex(self, perm: List[int]) -> int`.
+
+Problem 3109, Find the Index of Permutation, is locally complete and remotely
+verified as Premium submission `2079392800`. The exact native reverse Fenwick
+and Lehmer-rank source matched 409,113 exhaustive lexicographically enumerated
+permutations through length nine, 30,000 independent random suffix-order
+oracles, and the maximum-length boundary. The empty scaffold was replaced with
+the source-faithful contract, twelve correctness cases, app-local and native
+sources, and descending 64/256/512-value tiers. The accepted reference and an
+independent segment-tree implementation passed; correct quadratic suffix
+counting returned every expected output, completed normally, and failed only
+scaling at `+0.94` extra growth with a `15.14x` largest runtime ratio. The
+first audit correctly rejected a 58-word Goal narrative below its 60-word
+minimum; the contract was expanded with the precise lexicographic comparison
+rule before the final audit. The dataset checker and audit report 3092 complete
+packages, and the focused suite remains green at `151 passed` with the two
+existing warnings. Problem 3110 is staged in the authenticated LeetCode tab.
+It defines a string's score as the sum of absolute differences between ASCII
+values of adjacent characters. The official examples are `"hello" -> 13` and
+`"zaz" -> 50`; the input contains only lowercase English letters and has
+length from 2 through 100. The native entrypoint is
+`Solution.scoreOfString(self, s: str) -> int`.
+
+Problem 3110, Score of a String, is locally complete and remotely verified as
+submission `2079403302` with 705/705 tests. The exact native adjacent-pair
+source passed all authored cases and benchmarks plus 100,000 independently
+generated random inputs. The stale scaffold was replaced with the
+source-faithful ASCII-difference contract, twelve legal correctness cases,
+app-local and native sources, and alternating-endpoint 4/20/100-character
+tiers. The accepted reference and an independent index-loop implementation
+passed; correct quadratic repeated-prefix scoring returned every expected
+output, completed normally, and failed only scaling at `+0.87` extra growth
+with a `16.87x` largest runtime ratio. The dataset checker and audit report
+3093 complete packages, and the focused suite remains green at `151 passed`
+with the two existing warnings. Problem 3111 is staged in the authenticated
+LeetCode tab. It asks for the minimum number of bottom-anchored rectangles of
+horizontal width at most `w` needed to cover all given points; points on a
+rectangle boundary count as covered and overlaps are allowed. The official
+examples are `[[2,1],[1,0],[1,4],[1,8],[3,5],[4,6]], w = 1 -> 2`,
+`[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]], w = 2 -> 3`, and
+`[[2,3],[1,2]], w = 0 -> 2`. There are up to $10^5$ distinct points;
+coordinates and `w` range from $0$ through $10^9$. The native entrypoint is
+`Solution.minRectanglesToCoverPoints(self, points: List[List[int]], w: int) -> int`.
+
+Problem 3111, Minimum Rectangles to Cover Points, is locally complete and
+remotely verified as submission `2079414052` with 966/966 tests. The exact
+native sorting and greedy-placement source matched 15,054 exhaustive small
+set-cover instances and 100,000 independently generated random set-cover
+oracles. The inherited five-case package and single unscaled 50,000-point
+benchmark were replaced with the source-faithful bottom-anchored rectangle
+contract, twelve legal correctness cases, app-local and native sources, and
+shuffled distinct-x 32/128/512-point tiers. The accepted reference and an
+independent unique-x sorting implementation passed; correct repeated minimum
+selection returned every expected output, completed normally, and failed only
+scaling at `+1.29` extra growth with a `186.57x` largest runtime ratio. The
+dataset checker and audit report 3094 complete packages, and the focused suite
+remains green at `151 passed` with the two existing warnings. Problem 3112 is
+staged in the authenticated LeetCode tab. It gives an undirected, possibly
+disconnected multigraph whose positive edge lengths are traversal times and a
+strict disappearance time for every node. It asks for the minimum arrival
+time from node 0 to each node, or `-1` when no arrival strictly before that
+node's disappearance is possible. The official examples are
+`n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,1,5] -> [0,-1,4]`,
+the same graph with `disappear = [1,3,5] -> [0,2,3]`, and
+`n = 2, edges = [[0,1,1]], disappear = [1,1] -> [0,-1]`. The bounds are
+$1 \le n \le 5\cdot10^4$, at most $10^5$ edges, and edge lengths and
+disappearance times from $1$ through $10^5$. The native entrypoint is
+`Solution.minimumTime(self, n: int, edges: List[List[int]], disappear: List[int]) -> List[int]`.
+
+Problem 3112, Minimum Time to Visit Disappearing Nodes, is locally complete
+and remotely verified as submission `2079425128` with 534/534 tests. The exact
+native deadline-aware Dijkstra source matched 188,404 exhaustive small graphs
+and 100,000 independently generated random Bellman-Ford oracles, including
+disconnected graphs, parallel edges, self-loops, and strict deadline
+boundaries. The stale shared document's first sample incorrectly returned
+`[0,-1,3]`; it now matches the official `[0,-1,4]`. The package has twelve
+legal correctness cases, app-local and native sources, and reverse-ordered
+chain 8/32/128-node tiers. The initial 32/128/512 draft was rejected because
+Bellman-Ford hit the Python safety cap. On the recalibrated tiers, the accepted
+reference and an independent settle-on-pop Dijkstra implementation passed;
+correct Bellman-Ford returned every expected output, completed normally, and
+failed only scaling at `+1.10` extra growth with a `27.85x` largest runtime
+ratio. The dataset checker and audit report 3095 complete packages, and the
+focused suite remains green at `151 passed` with the two existing warnings.
+Problem 3113 is staged in the authenticated LeetCode tab. Given a positive
+integer array, it asks for the number of contiguous subarrays whose first and
+last elements are equal to the largest element of that subarray. The official
+examples are `[1,4,3,3,2] -> 6`, `[3,3,3] -> 6`, and `[1] -> 1`. The array
+length is at most $10^5$, and each value is from $1$ through $10^9$. The native
+entrypoint is `Solution.numberOfSubarrays(self, nums: List[int]) -> int`.
+
+Problem 3113, Find the Number of Subarrays Where Boundary Elements Are
+Maximum, is locally complete and remotely verified as submission `2079435960`
+with 890/890 tests. The exact native non-increasing-stack source matched
+349,524 exhaustive arrays and 100,000 random arrays against an independent
+quadratic oracle before submission. The inherited single 50,000-value tier
+was replaced by legal all-equal 16/64/256-value tiers. The accepted reference
+and an independent immutable-group $O(n)$ implementation passed; correct
+quadratic endpoint enumeration returned all 15 expected outputs, completed
+normally, and failed only scaling at `+1.24` extra growth with a `66.02x`
+largest runtime ratio. The dataset checker and audit report 3096 complete
+packages, and the focused suite remains green at `151 passed` with the two
+existing warnings. The refreshed audit identifies problem 3114, Latest Time
+You Can Obtain After Replacing Characters, as the next actionable package.
+
+Problem 3114, Latest Time You Can Obtain After Replacing Characters, is
+locally complete and remotely verified as submission `2079447225` with
+908/908 tests. The exact native greedy replacement source matched an
+independent enumeration oracle for all 1,925 distinct patterns obtainable
+from the 720 valid 12-hour times. Because every input has exactly four digit
+positions and a fixed colon, the package uses a strictly validated
+`bounded_domain` certificate instead of artificial runtime tiers. Its
+certificate-specific regression exhaustively regenerates the complete
+obtainable-pattern domain, all twelve authored cases pass through the real-test
+API, and the expanded focused suite passes `153 passed` with only the two
+existing warnings. The dataset checker and audit report 3097 complete
+packages. Problem 3115, Maximum Prime Difference, is staged in the
+authenticated LeetCode tab. It asks for the maximum index distance between
+two not-necessarily-distinct prime values in `nums`; the official examples
+are `[4,2,9,5,3] -> 3` and `[4,8,2,8] -> 0`. The bounds are
+$1 \le n \le 3\cdot10^5$ and $1 \le \texttt{nums[i]} \le 100$, with at
+least one prime value. Its native entrypoint is
+`Solution.maximumPrimeDifference(self, nums: List[int]) -> int`, and its
+backend question ID is `3373`.
+
+The staged problem 3115 candidate uses constant-set primality membership and
+returns the last prime index minus the first prime index. Before submission,
+that formulation matched an independent trial-division oracle on 1,055,124
+exhaustive arrays over values `1..10` of lengths through six, plus 100,000
+random legal arrays. It is ready for exact-source Chrome submission at the
+start of the next continuation turn; do not author the package around it until
+the exact native source is remotely Accepted.
+
+Problem 3115, Maximum Prime Difference, is locally complete and remotely
+verified as submission `2079456170` with 904/904 tests. The exact native
+constant-prime-set source matched 1,055,124 exhaustive arrays and 100,000
+random arrays against an independent trial-division oracle. The inherited
+scaffold's second example differed from the official `[4,8,2,8]`, and its
+no-prime example violated the guarantee that at least one prime exists; both
+were corrected. The accepted reference and an independent Boolean-table
+two-ended scan passed centered-prime-block tiers of 32/128/512 values. Correct
+quadratic prime-pair enumeration returned all 15 expected outputs, completed
+normally, and failed only scaling at `+1.56` extra growth with a `190.38x`
+largest runtime ratio. The dataset checker and audit report 3098 complete
+packages, and the focused suite remains green at `151 passed` with the two
+existing warnings.
+
+Problem 3116, Kth Smallest Amount With Single Denomination Combination, is
+staged in the authenticated LeetCode tab. Each denomination may be used an
+unlimited number of times, but coins of different denominations cannot be
+combined; the requested value is the $k$th distinct positive amount appearing
+in the union of their multiple sequences. The official examples are
+`coins = [3,6,9], k = 3 -> 9` and `coins = [5,2], k = 7 -> 12`. Constraints
+are $1 \le \lvert\texttt{coins}\rvert \le 15$, pairwise-distinct values from
+$1$ through $25$, and $1 \le k \le 2\cdot10^9$. The native entrypoint is
+`Solution.findKthSmallest(self, coins: List[int], k: int) -> int`, and the
+backend question ID is `3375`. A staged binary-search and inclusion-exclusion
+candidate removes redundant denominations, aggregates subset LCM
+coefficients, and matched an independent union-enumeration oracle on 31,850
+exhaustive cases plus 100,000 random cases. It is ready for exact-source
+remote submission before package authoring continues.
+
+Problem 2907, Maximum Profitable Triplets With Increasing Prices I, is
+locally complete and remotely verified as submission `2078088726`. Its
+quadratic middle-item scan and an independent quadratic implementation passed
+the 8/32/64 item tiers. Correct cubic triplet enumeration returned every
+expected answer and failed only scaling at `+0.98` extra growth with a `9.11x`
+largest runtime ratio. The dataset checker reports 2891 manually complete
+documents, and the focused validated-case plus dynamic-document suite passes
+`142 passed` with only the existing Starlette `httpx` deprecation warning.
+
+Problem 2908, Minimum Sum of Mountain Triplets I, is locally complete and
+remotely verified as submission `2078097869`. Independent linear
+prefix/suffix-minimum implementations passed the 3/12/48 item tiers. A correct
+quadratic side-rescan returned every expected answer and failed only scaling
+at `+0.52` extra growth. The dataset checker now reports 2892 manually
+complete documents; the same focused suite remains green at `142 passed`.
+
+Problem 2909, Minimum Sum of Mountain Triplets II, is locally complete and
+remotely verified as submission `2078102362`. Independent linear
+prefix/suffix-minimum implementations passed the 32/128/256 item tiers. A
+correct quadratic side-rescan returned every expected answer and failed only
+scaling at `+0.89` extra growth with a `21.21x` largest runtime ratio. The
+dataset checker now reports 2893 manually complete documents, and the focused
+suite remains green at `142 passed`.
+
+Problem 2910, Minimum Number of Groups to Create a Valid Assignment, is
+locally complete and remotely verified as submission `2078106545`. Two
+independent frequency-based $O(n)$ implementations passed the 92/376/1520
+ball tiers. A correct implementation that rebuilt the frequency table for
+every candidate size returned every expected answer and failed only scaling
+at `+1.09` extra growth with a `185.88x` largest runtime ratio. The dataset
+checker now reports 2894 manually complete documents, and the focused suite
+remains green at `142 passed`.
+
+Problem 2911, Minimum Changes to Make K Semi-palindromes, is locally complete
+and remotely verified as submission `2078111669`. The reference and an
+independent memoized repair-cost implementation passed the 8/16/32 character
+tiers. A correct slower implementation that recomputed substring repair costs
+inside the partition DP returned every expected answer and failed only scaling
+at `+0.73` extra growth with a `1.42x` largest runtime ratio. The dataset
+checker now reports 2895 manually complete documents, and the focused suite
+remains green at `142 passed`.
+
+Problem 2912, Number of Ways to Reach Destination in the Grid, is locally
+complete and remotely verified as submission `2078119116`. The reference and
+an independent four-state recurrence passed the 32/128/512 move tiers. A
+correct per-cell dynamic program returned every expected answer and failed only
+scaling at `+0.87` extra growth with a `120.26x` largest runtime ratio. The
+dataset checker now reports 2896 manually complete documents, and the expanded
+validated-case, dynamic-document, and starter-signature suite passes `150
+passed` with only the existing warnings.
+
+Problem 2913, Subarrays Distinct Element Sum of Squares I, is locally complete
+and remotely verified as submission `2078127125`. The reference incremental
+set scan and an independent boolean-table implementation passed the 16/48/100
+element tiers. A correct implementation that explicitly rebuilt each
+subarray's distinct set returned every expected answer and failed only scaling
+at `+0.82` extra growth with an `11.17x` largest runtime ratio. The dataset
+checker now reports 2897 manually complete documents, and the expanded focused
+suite remains green at `150 passed`.
+
+Problem 2914, Minimum Number of Changes to Make Binary String Beautiful, is
+locally complete and remotely verified as submission `2078133111`. The
+reference pair scan and an independent zipped-pair implementation passed the
+24/96/336 character tiers. A correct dynamic program over all even-length
+partitions returned every expected answer and failed only scaling at `+1.43`
+extra growth with a `310.06x` largest runtime ratio. The dataset checker now
+reports 2898 manually complete documents, and the expanded focused suite
+remains green at `150 passed`.
+
+Problem 2915, Length of the Longest Subsequence That Sums to Target, is locally
+complete and remotely verified as submission `2078138649`. The reference
+descending knapsack and an independent two-row implementation passed the
+80/600/1600 $n\cdot\texttt{target}$ work tiers. Correct exhaustive subset
+enumeration returned every expected answer and failed only scaling at `+0.63`
+extra growth with a `93.66x` largest runtime ratio. The dataset checker now
+reports 2899 manually complete documents, and the expanded focused suite
+remains green at `150 passed`.
+
+Problem 2916, Subarrays Distinct Element Sum of Squares II, is locally complete
+and remotely verified as submission `2078146262`. The reference and an
+independently written lazy segment tree passed the 48/192/768 element tiers.
+A correct quadratic subarray scan returned every expected answer and failed
+only scaling at `+0.77` extra growth. The dataset checker now reports 2900
+manually complete documents, and the expanded focused suite remains green at
+`150 passed`.
+
+Problem 2917, Find the K-or of an Array, is locally complete and remotely
+verified as submission `2078155081`. The reference and an independently
+expressed linear bit-count scan passed the legal 3/12/48 element tiers. A
+correct quadratic prefix-rescan returned every expected answer and failed only
+scaling at `+1.07` extra growth with a `43.32x` largest runtime ratio. The
+dataset checker now reports 2901 manually complete documents, and the expanded
+focused suite remains green at `150 passed`.
+
+Problem 2918, Minimum Equal Sum of Two Arrays After Replacing Zeros, is locally
+complete and remotely verified as submission `2078162916`. The reference and
+an independently structured helper-based linear implementation passed the
+16/64/256 total-element tiers. A correct quadratic prefix-rescan returned every
+expected answer and failed only scaling at `+1.61` extra growth with a
+`229.25x` largest runtime ratio. The dataset checker now reports 2902 manually
+complete documents, and the expanded focused suite remains green at `150
+passed`.
+
+Problem 2919, Minimum Increment Operations to Make Array Beautiful, is locally
+complete and remotely verified as submission `2078170119`. The rolling-state
+reference and an independent full-table linear DP passed the 32/128/512 item
+tiers. A correct repeated-prefix quadratic DP returned every expected answer
+and failed only scaling at `+1.33` extra growth with a `480.17x` largest
+runtime ratio. The dataset checker now reports 2903 manually complete
+documents, and the expanded focused suite remains green at `150 passed`.
+
+Problem 2920, Maximum Points After Collecting Coins From All Nodes, is locally
+complete and remotely verified as submission `2078177534`. The iterative
+bottom-up reference and an independent memoized tree DP passed the 8/24/72-node
+tiers. A correct quadratic edge-rescan implementation returned every expected
+answer and failed only scaling at `+0.96` extra growth with a `24.00x` largest
+runtime ratio. The dataset checker now reports 2904 manually complete
+documents, and the expanded focused suite remains green at `150 passed`.
+
+Problem 2921, Maximum Profitable Triplets With Increasing Prices II, is locally
+complete and remotely verified as submission `2078185907`. The Fenwick-tree
+reference and an independent segment-tree implementation passed the
+32/128/384-item tiers. The correct quadratic middle scan from the smaller
+companion problem returned every expected answer and failed only scaling at
+`+0.95` extra growth with a `21.17x` largest runtime ratio. The dataset checker
+now reports 2905 manually complete documents, and the expanded focused suite
+remains green at `150 passed`.
+
+Problem 2922, Market Analysis III, is locally complete and remotely verified
+as Premium MySQL submission `2078193492`. The grouped-CTE reference and an
+independent window-ranked query passed the 66/264/1056 total-table-row tiers.
+A correct `Users` by `Items` cross-product implementation returned every
+expected table and failed only scaling at `+0.44` to `+0.45` extra growth. The
+dataset checker now reports 2906 manually complete documents, and the expanded
+focused suite remains green at `150 passed`.
+
+Problem 2923, Find Champion I, is locally complete and remotely verified as
+submission `2078201131`. Two independent linear candidate-elimination scans
+passed the 20/50/100-team tiers. A correct full-matrix winner scan returned
+every expected answer and failed only scaling at `+1.50` extra growth with a
+`54.33x` largest runtime ratio. The dataset checker now reports 2907 manually
+complete documents, and the expanded focused suite remains green at `150
+passed`.
+
+Problem 2924, Find Champion II, is locally complete and remotely verified as
+submission `2078207791`. The boolean indegree-marking reference and an
+independent candidate-set implementation passed the 31/95/199 node-plus-edge
+tiers. A correct per-team edge rescan returned every expected answer and
+failed only scaling at `+1.11` extra growth with a `15.52x` largest runtime
+ratio. The dataset checker now reports 2908 manually complete documents, and
+the expanded focused suite remains green at `150 passed`.
+
+Problem 2925, Maximum Score After Applying Operations on a Tree, is locally
+complete and remotely verified as submission `2078214546`. The iterative
+retained-value reference and an independent recursive tree DP passed the
+16/64/256-node tiers. A correct edge-rescanning quadratic DP returned every
+expected answer and failed only scaling at `+1.00` extra growth with a
+`42.86x` largest runtime ratio. The dataset checker now reports 2909 manually
+complete documents, and the expanded focused suite remains green at `150
+passed`.
+
+Problem 2926, Maximum Balanced Subsequence Sum, is locally complete and
+remotely verified as submission `2078223447`. The Fenwick prefix-maximum
+reference and an independent segment-tree implementation passed the
+12/48/192-element tiers. A correct quadratic dynamic program returned every
+expected answer and failed only scaling at `+0.76` extra growth, without
+tripping the safety cap. The dataset checker now reports 2910 manually
+complete documents, and the expanded focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 2927, Distribute Candies Among Children III, is locally complete and
+remotely verified as Premium submission `2078230419`. The inclusion-exclusion
+reference and an independently expressed constant-time formula passed the
+8/32/128-limit tiers. A correct bounded enumeration returned every expected
+answer and failed only scaling at `+0.44` extra growth. The dataset checker now
+reports 2911 manually complete documents, and the expanded focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2928, Distribute Candies Among Children I, is locally complete and
+remotely verified as submission `2078237593`. Its complete legal domain has
+only 2,500 `(n, limit)` pairs, and repeated full-span timing trials could not
+honestly distinguish bounded linear enumeration from the constant-time
+formula. The package therefore uses a strictly validated `bounded_domain`
+certificate: the fixed four-term inclusion-exclusion proof is paired with a
+regression that exhaustively checks all 2,500 legal pairs against independent
+enumeration. The dataset checker now reports 2912 manually complete documents,
+and the expanded focused suite passes `153 passed` with only the two existing
+warnings.
+
+Problem 2929, Distribute Candies Among Children II, is locally complete and
+remotely verified as submission `2078245549`. The inclusion-exclusion
+reference and an independently expressed four-term formula passed the
+8/32/128-limit tiers. A correct bounded enumeration returned every expected
+answer and failed only scaling at `+0.45` extra growth. The dataset checker now
+reports 2913 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2930, Number of Strings Which Can Be Rearranged to Contain Substring,
+is locally complete and remotely verified as submission `2078250465`. The
+inclusion-exclusion reference and an independently structured logarithmic
+formula passed the 16/64/256-length tiers. A correct linear power recurrence
+returned every expected answer and failed only scaling at `+0.40` extra
+growth. The dataset checker now reports 2914 manually complete documents, and
+the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2931, Maximum Spending After Buying Items, is locally complete and
+remotely verified as submission `2078258828`. The explicit heap reference and
+an independent `heapq.merge` implementation passed the 64/256/1024-item tiers.
+A correct repeated-global-minimum implementation returned every expected
+answer and failed only scaling at `+0.37` extra growth. The dataset checker now
+reports 2915 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2932, Maximum Strong Pair XOR I, is locally complete and remotely
+verified as submission `2078265006`. Its legal domain permits at most 1,275
+unordered pairs with repetition, so the package uses a strictly validated
+`bounded_domain` certificate instead of unstable runtime scaling. The
+certificate regression checks exhaustive small arrays and maximum-length
+boundary families against the equivalent `larger <= 2 * smaller` predicate.
+The dataset checker now reports 2916 manually complete documents, and the
+expanded focused suite passes `153 passed` with only the two existing warnings.
+
+Problem 2933, High-Access Employees, is locally complete and remotely verified
+as submission `2078270406`. The grouped-timeline reference and an independently
+structured global sort passed the 8/32/96-record tiers. A correct repeated
+window rescan returned every expected answer and failed only scaling at `+0.68`
+extra growth. The dataset checker now reports 2917 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2934, Minimum Operations to Maximize Last Elements in Arrays, is
+locally complete and remotely verified as submission `2078275765`. The
+two-orientation reference and an independently structured linear scan passed
+the 2/8/32-element tiers. A correct repeated-prefix validator returned every
+expected answer and failed only scaling at `+0.66` extra growth. The dataset
+checker now reports 2918 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2935, Maximum Strong Pair XOR II, is locally complete and remotely
+verified as submission `2078282474`. The array-backed counted trie and an
+independently structured dictionary trie passed the 16/64/192-element tiers.
+Correct direct pair enumeration returned every expected answer and failed only
+scaling at `+0.78` extra growth. The dataset checker now reports 2919 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 2936, Number of Equal Numbers Blocks, is locally complete and remotely
+verified as Premium submission `2078288488`. The source-native solution uses
+`BigArray.size()` and `BigArray.at(index)`; the app adapter applies the same
+boundary search to serialized arrays. Two independent exponential-plus-binary
+searches passed the 8/64/256-length two-block tiers, while a correct linear scan
+returned every answer and failed only scaling at `+0.23` extra growth. The
+dataset checker now reports 2920 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2937, Make Three Strings Equal, is locally complete and remotely
+verified as submission `2078293338`. The zip-based prefix reference and an
+independent indexed scan passed the 2/8/32-character tiers. A correct repeated
+candidate-prefix comparison returned every expected answer and failed only
+scaling at `+0.50` extra growth. The dataset checker now reports 2921 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 2938, Separate Black and White Balls, is locally complete and remotely
+verified as submission `2078300070`. The left-to-right inversion counter and
+an independent right-to-left-equivalent count passed the 32/128/512-character
+tiers. A correct quadratic pair enumeration returned every expected answer
+and failed only scaling at `+1.22` extra growth. An exhaustive shortest-path
+oracle also checked all 1,022 binary strings of lengths 1 through 9. The
+dataset checker now reports 2922 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2939, Maximum Xor Product, is locally complete and remotely verified
+as submission `2078305560`. The descending-bit balancing reference and an
+independent shared/differing-mask implementation passed the 4/8/16-bit tiers.
+Correct exhaustive enumeration of every permitted `x` returned all benchmark
+answers and failed only scaling at `+4.61` extra growth. Before submission,
+an exhaustive reduced-domain oracle checked 131,072 `(a, b, n)` triples. The
+dataset checker now reports 2923 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2940, Find Building Where Alice and Bob Can Meet, is locally complete
+and remotely verified as submission `2078310730`. The offline min-heap sweep
+and an independent segment-tree search passed tiers with 32/128/512 descending
+buildings and equally many unresolved queries. A correct per-query rightward
+scan returned every expected answer and failed only scaling at `+1.09` extra
+growth. Before submission, an exhaustive direct-scan oracle checked 980,612
+queries across 21,844 small height arrays. The dataset checker now reports
+2924 manually complete documents, and the focused suite remains green at
+`150 passed` with only the two existing warnings.
+
+Problem 2941, Maximum GCD-Sum of a Subarray, is locally complete and remotely
+verified as Premium submission `2078315407`. The earliest-start compressed
+GCD reference and an independent length/sum state implementation passed the
+32/128/512-element tiers. Correct complete subarray enumeration returned every
+expected answer and failed only scaling at `+1.01` extra growth. Before
+submission, an exhaustive oracle checked 669,924 `(array, k)` instances
+across 87,380 small arrays. The dataset checker now reports 2925 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 2942, Find Words Containing Character, is locally complete and remotely
+verified as submission `2078320081`. The native membership reference and an
+independent `str.find` implementation passed the 100/625/2500-total-character
+tiers. A correct repeated-character scan returned every expected answer and
+failed only scaling at `+1.32` extra growth. The order-insensitive cases
+preserve the source contract, and an exhaustive explicit-character oracle
+checked 82,740 inputs before submission. The dataset checker now reports 2926
+manually complete documents, and the focused suite remains green at
+`150 passed` with only the two existing warnings.
+
+Problem 2943, Maximize Area of Square Hole in Grid, is locally complete and
+remotely verified as submission `2078324127`. The hash-set run reference and
+an independent dictionary-based run detector passed tiers with 20/80/200 total
+removable bars. Correct bubble-sort-and-scan returned every expected answer
+and failed only scaling at `+1.16` extra growth. An exhaustive removal-subset
+geometry oracle checked 676 small grids before submission. The dataset checker
+now reports 2927 manually complete documents, and the focused suite remains
+green at `150 passed` with only the two existing warnings.
+
+Problem 2944, Minimum Number of Coins for Fruits, is locally complete and
+remotely verified as submission `2078328677`. The indexed monotonic-deque
+reference and an independent tuple-state deque passed the 32/128/512-fruit
+tiers. The correct direct window-minimum recurrence returned every expected
+answer and failed only scaling at `+0.94` extra growth. An exhaustive
+quadratic-DP oracle checked 87,380 small price arrays before submission. The
+dataset checker now reports 2928 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2945, Find Maximum Non-decreasing Array Length, is locally complete
+and remotely verified as submission `2078333156`. The array-backed
+monotonic-threshold reference and an independent tuple-threshold deque passed
+the 32/128/512-value tiers. The correct quadratic partition DP returned every
+expected answer and failed only scaling at `+1.00` extra growth. An exhaustive
+quadratic-partition oracle checked 87,380 small arrays before submission. The
+dataset checker now reports 2929 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2946, Matrix Similarity After Cyclic Shifts, is locally complete and
+remotely verified as submission `2078337023`. The direction-independent
+modular reference and an independent parity-specific index check passed the
+25/144/625-cell tiers. Correct cell-by-cell repeated simulation returned every
+expected answer and failed only scaling at `+0.75` extra growth. An exhaustive
+explicit-rotation oracle checked 127,782 matrix/shift inputs before submission.
+The dataset checker now reports 2930 manually complete documents, and the
+focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2947, Count Beautiful Substrings I, is locally complete and remotely
+verified as submission `2078341637`. The factorized prefix-state reference and
+an independent `isqrt`-bounded factorization passed the 32/128/512-character
+tiers. Correct quadratic substring enumeration returned every expected answer
+and failed only scaling at `+1.09` extra growth. An exhaustive substring
+oracle checked 109,200 string/divisor inputs before submission. The dataset
+checker now reports 2931 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2948, Make Lexicographically Smallest Array by Swapping Elements, is
+locally complete and remotely verified as submission `2078345592`. The
+sorted-component reference and an independent value-group queue implementation
+passed the 16/64/256-value tiers. Correct quadratic selection sorting returned
+every expected answer and failed only scaling at `+1.19` extra growth with an
+`82.89x` largest runtime ratio. An exhaustive reachable-state BFS checked 5,456
+small array/limit inputs before submission. The dataset checker now reports
+2932 manually complete documents, and the focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 2949, Count Beautiful Substrings II, is locally complete and remotely
+verified as submission `2078351917`. The factorized prefix-state reference and
+an independent `isqrt`-bounded factorization passed the 32/128/512-character
+tiers. Correct quadratic substring enumeration returned every expected answer
+and failed only scaling at `+1.11` extra growth with a `127.17x` largest
+runtime ratio. An exhaustive substring oracle checked 873,800 small
+string/divisor inputs before submission. The dataset checker now reports 2933
+manually complete documents, and the focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 2950, Number of Divisible Substrings, is locally complete and remotely
+verified as submission `2078355719`. The nine-average transformed-prefix
+reference and an independent prefix-frequency implementation passed the
+32/128/512-character tiers. Correct quadratic substring enumeration returned
+every expected answer and failed only scaling at `+1.00` extra growth with a
+`19.22x` largest runtime ratio. An exhaustive mapped-value oracle checked
+66,429 representative strings before submission. The dataset checker now
+reports 2934 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2951, Find the Peaks, is locally complete and remotely verified as
+submission `2078358928`. The direct interior scan and an independent zipped
+neighbor scan passed the 8/32/100-height tiers. A correct implementation that
+rescans the full array to retrieve every candidate's neighbors returned every
+expected answer and failed only scaling at `+1.37` extra growth with a
+`66.06x` largest runtime ratio. Exhaustive enumeration checked 87,360 small
+arrays before submission. The dataset checker now reports 2935 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 2952, Minimum Number of Coins to be Added, is locally complete and
+remotely verified as submission `2078365145`. The sorted continuous-coverage
+reference and an independent heap-based implementation passed the
+25/100/400-coin tiers. Correct quadratic selection sorting returned every
+expected answer and failed only scaling at `+1.11` extra growth with a
+`91.44x` largest runtime ratio. Exhaustive added-coin search checked 2,992
+small coin-multiset/target inputs before submission. The dataset checker now
+reports 2936 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2953, Count Complete Substrings, is locally complete and remotely
+verified as submission `2078369555`. The segment-aware fixed-window reference
+and an independent 26-window implementation passed the 32/128/512-character
+tiers. Correct quadratic substring enumeration returned every expected answer
+and failed only scaling at `+0.67` extra growth. Exhaustive enumeration checked
+669,924 small string/`k` inputs before submission. The dataset checker now
+reports 2937 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2954, Count the Number of Infection Sequences, is locally complete and
+remotely verified as submission `2078373664`. The factorial-gap reference and
+an independent factorial implementation passed the 16/64/256-healthy-person
+tiers. A correct Pascal-table multinomial implementation returned every
+expected answer and failed only scaling at `+0.86` extra growth with a
+`19.51x` largest runtime ratio. Explicit infection-state DFS checked 1,004
+valid small initial configurations before submission. The dataset checker now
+reports 2938 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2955, Number of Same-End Substrings, is locally complete and remotely
+verified as submission `2078378862`. The row-major prefix reference and an
+independent column-major prefix implementation passed the 32/128/512-character
+tiers. Correct per-query range scanning returned every expected answer and
+failed only scaling at `+0.58` extra growth. Direct enumeration checked 9,837
+small strings and inclusive query ranges before submission. The dataset checker
+now reports 2939 manually complete documents, and the focused suite remains
+green at `150 passed` with only the two existing warnings.
+
+Problem 2956, Find Common Elements Between Two Arrays, is locally complete and
+remotely verified as submission `2078384170`. The set-membership reference and
+an independent linear set implementation passed the 25/50/100-element tiers.
+Correct nested membership searches returned every expected answer, completed
+normally, and failed only the runtime verdict with a `63.93x` largest runtime
+ratio. Exhaustive enumeration checked 131,769 small array pairs before
+submission. The dataset checker now reports 2940 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2957, Remove Adjacent Almost-Equal Characters, is locally complete and
+remotely verified as submission `2078390069`. The greedy reference and an
+independent greedy scan passed the 25/50/100-character tiers. Correct
+prefix-by-prefix recomputation returned every expected answer, completed
+normally, and failed only the runtime verdict with a `32.24x` largest runtime
+ratio. Replacement-state dynamic programming checked 9,840 small words before
+submission. The dataset checker now reports 2941 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2958, Length of Longest Subarray With at Most K Frequency, is locally
+complete and remotely verified as submission `2078394875`. The sliding-window
+reference and an independent frequency-window implementation passed the
+32/128/512-element tiers. Correct quadratic subarray enumeration returned every
+expected answer, completed normally, and failed only scaling at `+1.20` extra
+growth with a `212.40x` largest runtime ratio. Brute-force enumeration checked
+250,959 small array/`k` inputs before submission. The dataset checker now
+reports 2942 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2959, Number of Possible Sets of Closing Branches, is locally complete
+and remotely verified as submission `2078400214`. The subset/Floyd-Warshall
+reference and an independent subset/Floyd implementation passed the
+8/32/128-subset tiers. Correct repeated Bellman-Ford returned every expected
+answer, completed normally, and failed only scaling at `+0.22` extra growth.
+Independent repeated-Dijkstra checking covered 3,000 connected random
+multigraphs before submission. The dataset checker now reports 2943 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 2960, Count Tested Devices After Test Operations, is locally complete
+and remotely verified as submission `2078405665`. The accumulated-offset
+reference and an independent offset implementation passed the 25/50/100-device
+tiers. Correct explicit suffix mutation returned every expected answer,
+completed normally, and failed only scaling at `+1.44` extra growth with a
+`30.77x` largest runtime ratio. Direct operation simulation checked 488,280
+small battery arrays before submission. The dataset checker now reports 2944
+manually complete documents, and the focused suite remains green at
+`150 passed` with only the two existing warnings.
+
+Problem 2961, Double Modular Exponentiation, is locally complete and remotely
+verified as submission `2078409785`. The nested modular-power reference and an
+independent iterative collector passed the 100/400/1600 exponent-work tiers.
+Correct repeated modular multiplication returned every expected answer,
+completed normally, and failed only scaling at `+0.94` extra growth with a
+`230.86x` largest runtime ratio. Direct arithmetic checked 36,864 small
+variable/target evaluations before submission. The dataset checker now reports
+2945 manually complete documents, and the focused suite remains green at
+`150 passed` with only the two existing warnings.
+
+Problem 2962, Count Subarrays Where Max Element Appears at Least K Times, is
+locally complete and remotely verified as submission `2078415380`. The
+sliding-window reference and an independent occurrence-position implementation
+passed the 32/128/512-element tiers. Correct quadratic subarray enumeration
+returned every expected answer, completed normally, and failed only scaling at
+`+1.20` extra growth with a `149.59x` largest runtime ratio. Brute-force
+enumeration checked 73,812 small array/`k` inputs before submission. The dataset
+checker now reports 2946 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2963, Count the Number of Good Partitions, is locally complete and
+remotely verified as submission `2078420096`. The last-occurrence component
+reference and an independent remaining-count implementation passed the
+32/128/512-element tiers. Correct repeated prefix/suffix set construction
+returned every expected answer, completed normally, and failed only scaling at
+`+0.49` extra growth. Exhaustive cut-mask enumeration checked 9,840 small arrays
+before submission. The dataset checker now reports 2947 manually complete
+documents, and the focused suite remains green at `150 passed` with only the
+two existing warnings.
+
+Problem 2964, Number of Divisible Triplet Sums, is locally complete and
+remotely verified as submission `2078424831`. The compressed pair-remainder
+reference and an independent earlier-remainder implementation passed the
+24/48/96-element tiers. Correct cubic triplet enumeration returned every
+expected answer, completed normally, and failed only scaling at `+1.20` extra
+growth with a `27.93x` largest runtime ratio. Direct index-combination checking
+covered 152,908 small array/divisor inputs before submission. The dataset
+checker now reports 2948 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2965, Find Missing and Repeated Values, is locally complete and
+remotely verified as submission `2078430902`. The sum/square-difference
+reference and an independent aggregate implementation passed the
+25/100/400-cell tiers. Correct repeated full-grid searches returned every
+expected answer, completed normally, and failed only scaling at `+1.28` extra
+growth with a `207.53x` largest runtime ratio. Generated-grid checking covered
+10,920 valid duplicate/missing configurations before submission. The dataset
+checker now reports 2949 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2966, Divide Array Into Arrays With Max Difference, is locally complete
+and remotely verified as submission `2078436622`. The sorted-consecutive-triple
+reference and an independent sorting implementation passed the
+24/96/384-element tiers. Correct selection sort returned every exact canonical
+grouping, completed normally, and failed only scaling at `+1.53` extra growth
+with a `138.40x` largest runtime ratio. Exhaustive grouping checked 16,640 small
+array/`k` inputs before submission. The dataset checker now reports 2950
+manually complete documents, and the focused suite remains green at
+`150 passed` with only the two existing warnings.
+
+Problem 2967, Minimum Cost to Make Array Equalindromic, is locally complete and
+remotely verified as submission `2078442914`. The median-neighbor palindrome
+reference and an independent mirrored-prefix implementation passed the
+24/96/384-element tiers. Correct selection sorting returned every exact minimum
+cost, completed normally, and failed only scaling at `+0.97` extra growth with
+a `41.27x` largest runtime ratio. Exhaustive and full-palindrome oracle checking
+covered 42,448 arrays before submission. The dataset checker now reports 2951
+manually complete documents, and the focused suite remains green at
+`150 passed` with only the two existing warnings.
+
+Problem 2968, Apply Operations to Maximize Frequency Score, is locally complete
+and remotely verified as submission `2078449091`. The sorted median-window
+reference and an independent prefix-sum window implementation passed the
+32/128/512-element tiers. Correct exhaustive sorted-window checking returned
+every expected score, completed normally, and failed only scaling at `+1.06`
+extra growth with a `98.03x` largest runtime ratio. Exhaustive subset checking
+covered 196,596 small array/budget inputs before submission. The dataset
+checker now reports 2952 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2969, Minimum Number of Coins for Fruits II, is locally complete and
+remotely verified as submission `2078455461`. The monotonic-deque suffix DP
+reference and an independent deque implementation passed the 32/128/512-fruit
+tiers. Correct direct transition-range scanning returned every expected cost,
+completed normally, and failed only scaling at `+0.95` extra growth with a
+`20.96x` largest runtime ratio. Quadratic recurrence checking covered 488,280
+small price arrays before submission. The dataset checker now reports 2953
+manually complete documents, and the focused suite remains green at
+`150 passed` with only the two existing warnings.
+
+Problem 2970, Count the Number of Incremovable Subarrays I, is locally complete
+and remotely verified as submission `2078461635`. The monotone two-pointer
+reference and an independently written linear implementation passed the legal
+12/24/48-element tiers. Correct removal-and-remainder scanning returned every
+expected count, completed normally, and failed only scaling at `+2.44` extra
+growth with a `254.12x` largest runtime ratio. Exhaustive checking covered
+87,380 arrays before submission. The dataset checker now reports 2954 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 2971, Find Polygon With the Largest Perimeter, is locally complete and
+remotely verified as submission `2078469186`. The sorted prefix-sum reference
+and an independent sort-and-discard implementation passed the 32/128/512-side
+tiers. Correct selection sorting returned every expected perimeter, completed
+normally, and failed only scaling at `+1.24` extra growth with a `199.35x`
+largest runtime ratio. Exhaustive subset checking covered 87,360 arrays before
+submission. The dataset checker now reports 2955 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2972, Count the Number of Incremovable Subarrays II, is locally
+complete and remotely verified as submission `2078475335`. The monotone
+two-pointer reference and an independently written linear implementation
+passed the 32/128/512-element tiers. Correct quadratic endpoint enumeration
+returned every expected count, completed normally after calibration removed a
+safety-cap tier, and failed only scaling at `+1.82` extra growth with a
+`2071.71x` largest runtime ratio. Exhaustive checking covered 87,380 arrays
+before submission. The dataset checker now reports 2956 manually complete
+documents, and the focused suite remains green at `150 passed` with only the
+two existing warnings.
+
+Problem 2973, Find Number of Coins to Place in Tree Nodes, is locally complete
+and remotely verified as submission `2078482400`. The iterative five-extreme
+subtree reference and an independent constant-summary merge passed the
+32/128/512-node chain tiers. Correct full-subtree rescanning returned every
+expected coin array, completed normally, and failed only scaling at `+0.91`
+extra growth with an `18.16x` largest runtime ratio. Brute-force triple checking
+covered 30,000 deterministic random rooted trees before submission. The
+dataset checker now reports 2957 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2974, Minimum Number Game, is locally complete and remotely verified as
+submission `2078488800`. The sorted-pair reference and an independent heap
+simulation passed the legal 8/32/100-element tiers. Correct repeated linear
+minimum searches returned every expected game array, completed normally, and
+failed only scaling at `+1.19` extra growth with a `26.56x` largest runtime
+ratio. Exhaustive simulation checked 4,368 arrays before submission. The
+dataset checker now reports 2958 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2975, Maximum Square Area by Removing Fences From a Field, is locally
+complete and remotely verified as submission `2078494271`. The pair-distance
+set reference and an independent one-set scan passed the 8/16/32-fence tiers.
+Correct direct horizontal-pair versus vertical-pair comparison returned every
+expected area, completed normally, and failed only scaling at `+2.12` extra
+growth with a `326.06x` largest runtime ratio. Independent geometric checking
+covered 14,400 legal small-field configurations before submission. The dataset
+checker now reports 2959 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2976, Minimum Cost to Convert String I, is locally complete and
+remotely verified as submission `2078499809`. The Floyd–Warshall reference and
+an independently structured all-pairs implementation passed the paired
+4/16/64 string-and-rule tiers. Correct per-position Bellman–Ford returned every
+expected total, completed normally, and failed only scaling at `+1.56` extra
+growth. Random shortest-path checking covered 20,000 conversion systems before
+submission, and an illegal zero-rule scaffold case was removed. The dataset
+checker now reports 2960 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2977, Minimum Cost to Convert String II, is locally complete and
+remotely verified as submission `2078507428`. The trie/Floyd prefix-DP
+reference and an independently structured implementation passed the
+16/32/64-character nested-prefix tiers. Correct explicit substring rebuilding
+returned every expected total, completed normally, and failed only scaling at
+`+0.86` extra growth. Independent slicing-DP checking covered 20,000 random
+substring conversion systems before submission. The dataset checker now
+reports 2961 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2978, Symmetric Coordinates, is locally complete and remotely verified
+as Premium MySQL submission `2078515393`. The grouped reverse-pair self-join
+and an independent grouped `EXISTS` query passed the duplicate-heavy
+32/128/512-row tiers. Correct raw-row self-joining returned every ordered table,
+completed normally, and failed only scaling at `+1.06` extra growth with an
+`18.72x` largest runtime ratio. Counter-based checking covered 20,000 random
+coordinate tables before submission. The dataset checker now reports 2962
+manually complete documents, and the focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 2979, Most Expensive Item That Can Not Be Bought, is locally complete
+and remotely verified as Premium submission `2078521482`. The Frobenius-formula
+reference and an independent constant-time expression passed the legal
+35/1147/95477 denomination-product tiers. Correct reachability DP returned
+every expected price, completed normally after ordinary boundary work was
+kept out of the complexity phase, and failed only scaling at `+0.89` extra
+growth with a `2721.31x` largest runtime ratio. Exhaustive checking covered
+1,346 prime pairs plus near-limit representability proofs before submission.
+The dataset checker now reports 2963 manually complete documents, and the
+focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2980, Check if Bitwise OR Has Trailing Zeros, is locally complete and
+remotely verified as submission `2078527340`. The reference second-even scan
+and an independent linear count passed the 8/32/100-element tiers. Correct
+pair enumeration returned every expected Boolean, completed normally, and
+failed only scaling at `+1.22` extra growth with a `28.98x` largest runtime
+ratio. Exhaustive subset-oracle checking covered 55,980 arrays before
+submission. The dataset checker now reports 2964 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2981, Find Longest Special Substring That Occurs Thrice I, is locally
+complete and remotely verified as submission `2078534741`. The three-longest-
+runs reference and an independently updated run table passed the 8/24/50-
+character tiers. Correct exhaustive substring counting returned every expected
+length, completed normally, and failed only scaling at `+1.11` extra growth.
+Literal substring-oracle checking covered 29,511 strings before submission.
+The dataset checker now reports 2965 manually complete documents, and the
+focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2982, Find Longest Special Substring That Occurs Thrice II, is locally
+complete and remotely verified as submission `2078539844`. The three-longest-
+runs reference and an independently updated run table passed the 32/96/256-
+character tiers. Correct exhaustive substring counting returned every expected
+length, completed normally, and failed only scaling at `+1.24` extra growth
+with a `52.62x` largest runtime ratio. Literal substring-oracle checking
+covered 29,511 strings plus two 500,000-character boundary inputs before
+submission. The dataset checker now reports 2966 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2983, Palindrome Rearrangement Queries, is locally complete and
+remotely verified as submission `2078545422`. The mirrored-half prefix-count
+reference and an independent prefix implementation passed the 32/128/512
+combined string-and-query workload tiers. A correct per-query half rescan
+returned every expected Boolean, completed normally, and failed only scaling
+at `+0.33` extra growth. Literal two-interval permutation checking covered
+28,052 complete small query cases before submission. The dataset checker now
+reports 2967 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2984, Find Peak Calling Hours for Each City, is locally complete and
+remotely verified as Premium MySQL submission `2078551540`. The grouped
+city/hour window-rank reference and an independent aggregate-and-maximum query
+passed the 32/128/512-row tiers. A correct raw-row self-join returned every
+ordered peak table, completed normally, and failed only scaling at `+1.38`
+extra growth with a `158.13x` largest runtime ratio. The dataset checker now
+reports 2968 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2985, Calculate Compressed Mean, is locally complete and remotely
+verified as Premium MySQL submission `2078558891`. The weighted aggregate
+reference and an independent `TOTAL`-based query passed the 32/128/512-row
+tiers. A correct cross join that duplicated every compressed row uniformly
+returned every expected mean, completed normally, and failed only scaling at
+`+0.99` extra growth with a `20.78x` largest runtime ratio. The dataset checker
+now reports 2969 manually complete documents, and the focused suite remains
+green at `150 passed` with only the two existing warnings.
+
+Problem 2986, Find Third Transaction, is locally complete and remotely
+verified as Premium MySQL submission `2078563579`. The row-number and lag
+reference and an independent first-row `LEAD` formulation passed the
+32/128/512-row tiers. A correct correlated ordinal search returned every
+expected third transaction, completed normally, and failed only scaling at
+`+0.97` extra growth with an `11.83x` largest runtime ratio. The dataset
+checker now reports 2970 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 2987, Find Expensive Cities, is locally complete and remotely verified
+as Premium MySQL submission `2078568532`. The grouped `HAVING` reference and
+an independent national-average CTE passed the 32/128/512-row tiers. A correct
+per-listing correlated city average returned every expected city, completed
+normally, and failed only scaling at `+0.95` extra growth with a `19.17x`
+largest runtime ratio. The dataset checker now reports 2971 manually complete
+documents, and the focused suite remains green at `150 passed` with only the
+two existing warnings.
+
+Problem 2988, Manager of the Largest Department, is locally complete and
+remotely verified as Premium MySQL submission `2078573374`. The grouped
+dense-rank reference and an independent maximum-size CTE passed the
+32/128/512-row tiers. A correct per-manager correlated department count
+returned every tied manager, completed normally, and failed only scaling at
+`+0.63` extra growth. The dataset checker now reports 2972 manually complete
+documents, and the focused suite remains green at `150 passed` with only the
+two existing warnings.
+
+Problem 2989, Class Performance, is locally complete and remotely verified as
+Premium MySQL submission `2078578201`. The direct maximum-minus-minimum
+reference and an independent row-total CTE passed the 32/128/512-row tiers. A
+correct all-pairs score difference returned every expected range, completed
+normally, and failed only scaling at `+1.00` extra growth with a `26.97x`
+largest runtime ratio. The dataset checker now reports 2973 manually complete
+documents, and the focused suite remains green at `150 passed` with only the
+two existing warnings.
+
+Problem 2990, Loan Types, is locally complete and remotely verified as Premium
+MySQL submission `2078582845`. The filtered distinct-count reference and an
+independent pair of conditional presence flags passed the 32/128/512-row
+tiers. A correct Mortgage-to-Refinance self-join returned every qualifying
+user, completed normally, and failed only scaling at `+0.84` extra growth with
+a `13.28x` largest runtime ratio. The dataset checker now reports 2974
+manually complete documents, and the focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 2991, Top Three Wineries, is locally complete and remotely verified as
+Premium MySQL submission `2078587669`. The aggregate/window/pivot reference
+and an independent composite-rank formulation passed the 32/128/512-row
+tiers. A correct correlated rank count returned every formatted top-three row,
+completed normally, and failed only scaling at `+1.08` extra growth with a
+`34.41x` largest runtime ratio. The dataset checker now reports 2975 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 2992, Number of Self-Divisible Permutations, is locally complete and
+remotely verified as Premium submission `2078592693`. The packaged app adapter
+uses compatible-value bitmasks and memoized subset counting so the legal
+maximum remains below the in-app traced-step guard; the exact Accepted native
+artifact remains separate. The reference and an independent compatible-list
+DP passed the 3/6/12-value tiers. A correct extra-factor subset implementation
+returned every count, completed normally, and failed only scaling at `+0.58`
+extra growth. Brute-force checking covered every permutation through `n = 9`.
+The dataset checker now reports 2976 manually complete documents, and the
+focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 2993, Friday Purchases I, is locally complete and remotely verified as
+Premium MySQL submission `2078599845`. The Friday filter/group reference and
+an independent prefiltered aggregate passed the 32/128/512-row tiers. A
+correct per-row correlated date sum returned every represented Friday,
+completed normally, and failed only scaling at `+0.89` extra growth with a
+`19.85x` largest runtime ratio. The dataset checker now reports 2977 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 2994, Friday Purchases II, is locally complete and remotely verified
+as Premium MySQL submission `2078605059`. The four-Friday calendar left join
+and an independent preaggregated calendar join passed the 32/128/512-row
+tiers. A correct per-purchase correlated Friday sum retained all zero-filled
+weeks, completed normally, and failed only scaling at `+0.81` extra growth
+with a `17.69x` largest runtime ratio. The dataset checker now reports 2978
+manually complete documents, and the focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 2995, Viewers Turned Streamers, is locally complete and remotely
+verified as Premium MySQL submission `2078611259`. The row-number and
+conditional-aggregate reference and an independent first-value formulation
+passed the 32/128/512-row tiers. A correct correlated first-session and history
+query returned every qualifying streamer count, completed normally, and failed
+only scaling at `+0.77` extra growth with an `8.11x` largest runtime ratio. The
+dataset checker now reports 2979 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2996, Smallest Missing Integer Greater Than Sequential Prefix Sum, is
+locally complete and remotely verified as submission `2078617611`. The set
+membership reference and an independent bounded presence table passed the
+8/24/50-element tiers. Correct explicit repeated membership scanning returned
+every missing integer, completed normally, and failed only scaling at `+1.10`
+extra growth with an `11.86x` largest runtime ratio. Exhaustive checking
+covered 97,655 small arrays before submission. The dataset checker now reports
+2980 manually complete documents, and the focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 2997, Minimum Number of Operations to Make Array XOR Equal to K, is
+locally complete and remotely verified as submission `2078624413`. The XOR
+reduction reference and an independent `reduce` implementation passed the
+32/128/512-element tiers. Correct repeated prefix-XOR recomputation returned
+every expected answer, completed normally, and failed only scaling at `+1.42`
+extra growth with a `267.94x` largest runtime ratio. The dataset checker now
+reports 2981 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 2998, Minimum Number of Operations to Make X and Y Equal, is locally
+complete and remotely verified as submission `2078634451`. The memoized
+nearest-multiple recurrence and an independent recurrence passed the
+400/2000/10000 target-magnitude tiers. A correct bounded-state breadth-first
+search returned every expected answer, completed normally, and failed only
+scaling at `+0.90` extra growth with a `668.50x` largest runtime ratio. The
+dataset checker now reports 2982 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 2999, Count the Number of Powerful Integers, is locally complete and
+remotely verified as submission `2078640868`. The positional prefix counter
+and an independent iterative digit count passed the 3/7/15-digit tiers. A
+correct implementation that enumerated every digit-limited prefix returned
+every expected answer, completed normally, and failed only scaling at `+4.66`
+extra growth with a `2287.57x` largest runtime ratio. The dataset checker now
+reports 2983 manually complete documents, and the focused suite remains green
+at `150 passed` with only the two existing warnings.
+
+Problem 3000, Maximum Area of Longest Diagonal Rectangle, is locally complete
+and remotely verified as submission `2078648066`. The one-pass squared-
+diagonal comparison and an independent tuple-maximum scan passed the
+6/24/96-rectangle tiers. A correct pairwise dominance scan returned every
+expected answer, completed normally, and failed only scaling at `+1.24` extra
+growth with a `50.36x` largest runtime ratio. The dataset checker now reports
+2984 manually complete documents, and the focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 3001, Minimum Moves to Capture The Queen, is locally complete and
+remotely verified as submission `2078654625`. Its constant-time line-of-sight
+checks are covered by a strict bounded-domain certificate: an independent
+directional ray oracle matches the reference on all 249,984 ordered legal
+piece placements. The certificate route passes without a fake runtime check.
+The dataset checker now reports 2985 manually complete documents, the focused
+suite remains green at `150 passed`, and the two certificate-specific tests
+pass with only the existing warnings.
+
+Problem 3002, Maximum Size of a Set After Removals, is locally complete and
+remotely verified as submission `2078663106`. The union-capacity formula and
+an independent unique/shared set count passed the 16/64/256-element tiers. A
+correct implementation using explicit linear uniqueness scans returned every
+expected answer, completed normally, and failed only scaling at `+1.77` extra
+growth with a `1252.97x` largest runtime ratio. The candidate matched 11,642
+exhaustive and randomized removal oracles before submission. The dataset
+checker now reports 2986 manually complete documents, and the focused suite
+remains green at `150 passed` with only the two existing warnings.
+
+Problem 3003, Maximize the Number of Partitions After Operations, is locally
+complete and remotely verified as submission `2078670669`. The rolling
+bitmask DP and an independent memoized state DP passed the 5/20/80-character
+tiers. A correct implementation that tried every replacement and reran the
+greedy partitioner returned every expected answer, completed normally, and
+failed only scaling at `+0.82` extra growth with an `11.13x` largest runtime
+ratio. The rolling DP matched 9,837 exhaustive small-string oracles before
+submission. The dataset checker now reports 2987 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 3004, Maximum Subtree of the Same Color, is locally complete and
+remotely verified as Premium submission `2078678535`. The iterative postorder
+DP and an independent recursive postorder passed the 16/64/256-node chain
+tiers. A correct per-root descendant rescan returned every expected answer,
+completed normally, and failed only scaling at `+0.87` extra growth with a
+`29.12x` largest runtime ratio. The accepted candidate matched 14,500
+randomized trees against an independent descendant-set oracle before
+submission. The dataset checker now reports 2988 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 3005, Count Elements With Maximum Frequency, is locally complete and
+remotely verified as submission `2078684475`. The Counter-based reference and
+an independent fixed-size counting array passed the 6/24/96-element tiers. A
+correct per-distinct-value rescan returned every expected answer, completed
+normally, and failed only scaling at `+1.26` extra growth with a `44.05x`
+largest runtime ratio. The dataset checker now reports 2989 manually complete
+documents, and the focused suite remains green at `150 passed` with only the
+two existing warnings.
+
+Problem 3006, Find Beautiful Indices in the Given Array I, is locally complete
+and remotely verified as submission `2078690662`. The occurrence-list merge
+and an independent direct matching scan passed the 32/128/512-character tiers.
+A correct nested proximity search returned every expected answer, completed
+normally, and failed only scaling at `+1.16` extra growth with an `81.80x`
+largest runtime ratio. The candidate matched 29,500 randomized strings against
+a direct brute-force oracle before submission. The dataset checker now reports
+2990 manually complete documents, and the focused suite remains green at `150
+passed` with only the two existing warnings.
+
+Problem 3007, Maximum Number That Sum of the Prices Is Less Than or Equal to K,
+is locally complete and remotely verified as submission `2078697011`. The
+bit-cycle binary search and an independent bounded binary search passed the
+64/1024/16384-budget tiers. A correct number-by-number accumulated-price
+simulation returned every expected answer, completed normally, and failed
+only scaling at `+0.69` extra growth with a `56.12x` largest runtime ratio. The
+candidate matched direct enumeration on 7,992 small `(k, x)` pairs before
+submission. The dataset checker now reports 2991 manually complete documents,
+and the focused suite remains green at `150 passed` with only the two existing
+warnings.
+
+Problem 3008, Find Beautiful Indices in the Given Array II, is locally complete
+and remotely verified as submission `2078705393`. The KMP occurrence merge and
+an independent Z-algorithm implementation passed the 32/128/512-character
+adversarial tiers. A correct naive matcher returned every expected answer,
+completed normally, and failed only scaling at `+0.76` extra growth. The
+candidate matched 39,500 randomized strings against a direct brute-force
+oracle before submission. The dataset checker now reports 2992 manually
+complete documents, and the focused suite remains green at `150 passed` with
+only the two existing warnings.
+
+Problem 3009, Maximum Number of Intersections on the Chart, is locally complete
+and remotely verified as Premium submission `2078712106`. The doubled-height
+event map and an independent grouped-event sweep passed the 16/64/256-point
+unique-height sawtooth tiers. A correct critical-level rescan returned every
+expected answer, completed normally, and failed only scaling at `+1.13` extra
+growth with a `166.80x` largest runtime ratio. The candidate matched 180,000
+randomized charts against a direct geometric oracle before submission. The
+dataset checker now reports 2993 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings.
+
+Problem 3010, Divide an Array Into Subarrays With Minimum Cost I, is locally
+complete and remotely verified as submission `2078718302`. The one-pass
+two-minimum reference and an independent two-pass selection passed the
+4/16/48-element tiers. Correct enumeration of every cut pair returned every
+expected answer, completed normally, and failed only scaling at `+0.85` extra
+growth with an `8.76x` largest runtime ratio. The candidate matched all 488,250
+arrays in the exhaustive small domain before submission. The dataset checker
+now reports 2994 manually complete documents, and the focused suite remains
+green at `150 passed` with only the two existing warnings.
+
+Problem 3011, Find if Array Can Be Sorted, is locally complete and remotely
+verified as submission `2078726035`. The maximal-equal-popcount-block scan and
+an independent grouped linear scan passed the 6/24/96-element tiers. A correct
+adjacent-swap simulation returned every expected answer, completed normally,
+and failed only scaling at `+1.20` extra growth with a `51.18x` largest runtime
+ratio. The candidate matched a direct reachability oracle on all 2,396,744
+arrays in the exhaustive small domain before submission. The dataset checker
+now reports 2995 manually complete documents, and the focused suite remains
+green at `150 passed` with only the two existing warnings.
+
+Problem 3012, Minimize Length of Array Using Operations, is locally complete
+and remotely verified as submission `2078736124`. The minimum-divisibility
+scan and an independent linear scan passed the 8/32/125-element tiers. A
+correct pairwise-remainder search returned every expected answer, completed
+normally, and failed only scaling at `+1.45` extra growth with a `99.93x`
+largest runtime ratio. The candidate matched a complete operation-state oracle
+on all 19,530 arrays in the exhaustive small domain before submission. The
+dataset checker reports 2996 manually complete documents, and the focused
+suite remains green at `150 passed` with only the two existing warnings. The
+refreshed migration audit also exposed and cleared short-Goal quality drift in
+2979, 2980, 2989, 2995, 3000, 3002, 3005, 3010, and 3011; it now reports 2996
+fully complete and verified packages with 3013 as the next actionable package.
+
+Problem 3013, Divide an Array Into Subarrays With Minimum Cost II, is locally
+complete and remotely verified as submission `2078782283`. The Fenwick
+count/sum reference and an independent segment-tree implementation passed the
+256/1024/4096-element tiers. A correct repeated-sort implementation returned
+every expected answer and failed only scaling at `+0.44` extra growth.
+
+Problem 3014, Minimum Number of Pushes to Type Word I, is locally complete and
+remotely verified as submission `2078800035`. Its legal input has between 1
+and 26 distinct lowercase letters, so the package uses a strictly validated
+`bounded_domain` certificate with exhaustive regression coverage for every
+legal length instead of pretending that this constant-size domain supports an
+asymptotic runtime verdict.
+
+Problem 3015, Count the Number of Houses at a Certain Distance I, is blocked
+before source-faithful authoring by the same LeetCode connectivity outage.
+Three secure authenticated fetch attempts failed after the preferred request
+could not return data and automatic browser fallback returned HTTP 404 once,
+then HTTP 504 twice. No candidate was invented without a confirmed contract or
+native interface. The blocker is recorded in the audit, which now routes the
+frontier to 3016.
+
+Problem 3016, Minimum Number of Pushes to Type Word II, is locally complete and
+remotely verified as submission `2078801895`. The reference and an independent
+fixed-frequency implementation passed the 512/2048/8192-character tiers. A
+correct repeated-recount implementation completed normally and failed only
+scaling at `+1.09` extra growth with an `82.37x` largest runtime ratio.
+
+Problem 3017, Count the Number of Houses at a Certain Distance II, is locally
+complete and remotely verified as submission `2078804203`. Independent
+$O(N)$ cycle-and-tail decompositions passed the 64/128/256-house tiers. A
+correct all-pairs implementation completed normally and failed only scaling
+at `+1.09` extra growth with a `32.80x` largest runtime ratio.
+
+Problem 3018, Maximum Number of Removal Queries That Can Be Processed I, is
+locally complete and remotely verified as Premium submission `2078805139`.
+Independent rolling interval dynamic programs passed the 12/24/48-query
+tiers. A correct all-attainable-counts dynamic program completed normally and
+failed only scaling at `+0.98` extra growth with a `26.18x` largest runtime
+ratio.
+
+Problem 3019, Number of Changing Keys, is locally complete and remotely
+verified as submission `2078805661`. Independent adjacent normalized-key
+scans passed the complete 16/40/100-character tiers. A correct manual prefix
+rescan completed normally and failed only scaling at `+1.39` extra growth
+with a `46.33x` largest runtime ratio.
+
+Problem 3020, Find the Maximum Number of Elements in Subset, is locally
+complete and remotely verified as submission `2078807781`. The reference and
+an independent square-chain multiplicity implementation passed the
+25,000/50,000/100,000-element tiers. A correct repeated-sort
+$O(N\log^2 N)$ implementation completed every case and failed only scaling at
+`+0.21` extra growth with a `3.77x` largest runtime ratio. The dataset checker
+now reports 3004 manually complete documents, the migration audit reports
+3004 fully complete and verified packages with 17 recorded blockers, and the
+focused suite remains green at `150 passed` with only the two existing
+warnings. Problem 3015 remains the only recorded blocker below the actionable
+3022 frontier.
+
+Problem 3021, Alice and Bob Playing Flower Game, is locally complete and
+remotely verified as submission `2078756539`. The closed-form parity count and
+an independent parity-product formula passed the 64/1024/16384 bound tiers. A
+correct linear parity enumeration returned every expected answer, completed
+normally, and failed only scaling at `+0.46` extra growth with a `14.42x`
+largest runtime ratio. The candidate matched 10,000 complete bound pairs,
+covering 25,502,500 individual games, before submission. The dataset checker
+now reports 2997 manually complete documents, the migration audit reports 2997
+fully complete and verified packages, and the focused suite remains green at
+`150 passed` with only the two existing warnings. The actionable frontier is
+3022.
+
+Problems 2104 through 2204 were completed in the current uncommitted worktree.
+Their exact native sources were remotely Accepted as submissions `2073280978`,
+`2073286832`, `2073291757`, `2073297321`, `2073302396`, `2073307339`,
+`2073312572`, `2073317054`, `2073322412`, `2073329829`, and `2073335264`.
+The next Accepted submissions were `2073339353`, `2073343688`, `2073350276`,
+`2073354221`, `2073358891`, and `2073362755`.
+The next Accepted submissions were `2073367808`, `2073372043`, and
+`2073378694`, followed by `2073384287`.
+The next Accepted submissions were `2073389420`, `2073393229`, `2073400165`,
+`2073404719`, `2073409468`, `2073413482`, `2073418842`, `2073422755`, and
+`2073426189`, `2073430736`, `2073434525`, `2073437924`, `2073442829`,
+`2073449902`, `2073454856`, `2073461066`, `2073464215`, `2073470481`, and
+`2073474228`, `2073479106`, `2073482701`, `2073488092`, `2073493730`, and
+`2073499507`, `2073505104`, `2073511353`, `2073517142`, `2073524621`,
+`2073530990`, `2073537512`, `2073543995`, `2073549754`, `2073556649`, and
+`2073562613`, `2073567644`, `2073573612`, `2073578956`, `2073585624`, and
+`2073592406`, `2073603265`, `2073610125`, `2073616565`, `2073625053`,
+`2073632584`, `2073644120`, `2073650803`, `2073658135`, `2073665471`, and
+`2073676625`, `2073684495`, `2073696394`, `2073702388`, `2073708460`, and
+`2073713633`, `2073721305`, `2073729473`, `2073735768`, `2073743934`, and
+`2073753116`, `2073758694`, `2073766193`, `2073770617`, `2073776537`,
+`2073782552`, `2073794544`, `2073799855`, `2073804713`, `2073809795`, and
+`2073815070`, `2073821194`, `2073825208`, `2073829030`, `2073833787`, and
+`2073838814`, `2073842142`, `2073846017`, `2073849559`, `2073852607`, and
+`2073855077`, `2073857705`, `2073860894`, `2073864185`, `2073866372`, and
+`2073868858`, `2073870761`, `2073874002`, `2073876389`, `2073878280`, and
+`2073880829`, `2073883358`, `2073885480`, `2073886961`, `2073888798`, and
+`2073890512`, `2073892417`, `2073893590`, `2073894964`, `2073896846`, and
+`2073898312`, `2073899481`, `2073901082`, `2073902343`, `2073904400`, and
+`2073905525`, `2073906739`, `2073907565`, `2073908618`, `2073909970`,
+`2073910911`, `2073912121`, `2073913761`, `2073915123`, `2073916301`, and
+`2073918047`, `2073919076`, `2073919998`, `2073921253`, and `2073922395`.
+Each package has at least six correctness cases and either three calibrated
+scaling tiers or a reviewed complexity certificate. Independent same-class
+implementations passed; correct principal slower-class implementations
+finished every scaling output and failed only the scaling verdict. Problem
+2160 instead uses a bounded-domain certificate because its input has exactly
+four digits; regression exhaustively checks all 9,000 legal inputs against a
+permutation-and-split oracle. Problem 2161's stable three-bucket partition
+passed its calibrated linear tiers; a correct stable boundary-scan insertion
+implementation returned every expected output and failed only scaling. Problem
+2162 uses a bounded-domain certificate because the normalized keypad entry has
+only 100 possible minute fields; its independent regression covers all 6,039
+targets, all ten starting digits, and representative extremal cost pairs. The
+dataset checker and focused dynamic-docs and validated-cases suites passed
+after problem 2162 (`136 passed`, with one deprecation warning); the certificate
+suite passed (`54 passed`, 62 subtests, with one deprecation warning). Problem
+2163's dual fixed-size heaps passed its mixed-value tiers at `+0.02`; an
+independent heap implementation also passed at `+0.02`, while correct repeated
+prefix/suffix sorting returned every expected output and failed only scaling
+at `+1.01` with a `23.54x` largest runtime ratio. The dataset checker and
+focused dynamic-docs and validated-cases suites passed after problem 2163
+(`136 passed`, with one deprecation warning). Problem 2164's two parity-group
+sorts passed its complete legal scale through length 100 at `+0.00`; an
+independent in-place-sort form passed at `-0.01`, while correct repeated
+selection returned every expected output and failed only scaling at `+1.05`
+with an `18.06x` largest runtime ratio. The dataset checker and focused suites
+again passed after problem 2164 (`136 passed`, with one deprecation warning).
+Problem 2165 uses a bounded-domain certificate because the legal magnitude has
+at most 16 digits; an independent digit-frequency regression covers every
+signed value through five digits, 10,000 deterministic full-width inputs, and
+the legal endpoints. The certificate suite passed (`55 passed`, 63 subtests)
+and the focused suites passed (`136 passed`), each with one deprecation
+warning. Problem 2166's lazy inversion Bitset passed flip-heavy tiers at
+`+0.03`; an independent dual-buffer implementation passed at `-0.04`, while
+correct physical complementation completed every trace and failed only scaling
+at `+1.17` with a `58.09x` largest runtime ratio. The dataset checker and
+focused suites again passed (`136 passed`, with one deprecation warning).
+Problem 2167's compressed prefix-removal DP passed its mixed-string tiers at
+`-0.01`; a correct retained-interval enumerator completed every expected
+output and failed only scaling at `+1.16` with a `225.02x` largest runtime
+ratio. Both app-local and native sources matched a brute-force oracle across
+7,200 deterministic random strings. The dataset checker advanced to 2167, and
+the focused suites again passed (`136 passed`, with one deprecation warning).
+Problem 2168's paired rolling-hash expansion passed its mixed-digit tiers at
+`-0.00`; an exact suffix-trie implementation passed at `-0.07`, while a
+correct cubic frequency rebuild completed every expected output and failed
+only scaling at `+0.64` with an `8.12x` largest runtime ratio. Both accepted
+forms matched exact substring-set oracles across 4,500 deterministic random
+strings. The dataset checker advanced to 2168, and the focused suites again
+passed (`136 passed`, with one deprecation warning).
+Problem 2169's quotient-batched Euclidean reduction and an independently
+ordered Euclidean form passed the unit-divisor tiers at `-0.00` and `+0.00`;
+correct literal subtraction completed every expected output and failed only
+scaling at `+0.93` with a `1156.94x` largest runtime ratio. Both accepted
+forms matched the literal process exhaustively over 63,001 pairs. The dataset
+checker advanced to 2169, and the focused suites again passed (`136 passed`,
+with one deprecation warning).
+Problem 2170's parity frequency maps and an independently combined `Counter`
+form passed the many-distinct tiers at `-0.00` and `-0.03`; a correct
+repeated-scan implementation completed every expected output and failed only
+scaling at `+1.28` with a `175.54x` largest runtime ratio. Both accepted forms
+matched pair enumeration across 5,000 deterministic random arrays. The dataset
+checker advanced to 2170, and the focused suites again passed (`136 passed`,
+with one deprecation warning).
+Problem 2171's sorted retained-total scan and an independently expressed
+sort-based form passed the distinct-count tiers at `-0.06` and `-0.08`; a
+correct target rescanner completed every expected output and failed only
+scaling at `+1.17` with a `268.12x` largest runtime ratio. Both accepted forms
+matched target enumeration across 5,000 deterministic random arrays. The
+dataset checker advanced to 2171, and the focused suites again passed
+(`136 passed`, with one deprecation warning).
+Problem 2172's ternary-occupancy mask DP and an independent tuple-occupancy
+form passed the state-count tiers at `-0.00` and `+0.01`; a correct
+duplicated-position assignment DP completed every expected output and failed
+only scaling at `+0.37` with an `8.15x` largest runtime ratio. The accepted
+form matched exhaustive assignment across 2,000 deterministic random
+contracts. The dataset checker advanced to 2172, and the focused suites again
+passed (`136 passed`, with one deprecation warning).
+Problem 2173's cumulative-interruption MySQL query and an independent
+row-number-difference formulation passed the row-count tiers at `+0.00` and
+`-0.01`; a correct correlated-prefix query completed every expected output and
+failed only scaling at `+1.04` with a `30.14x` largest runtime ratio. Both
+linearithmic formulations matched a direct streak oracle across 2,000
+deterministic random histories. The dataset checker advanced to 2173, and the
+focused suites again passed (`136 passed`, with one deprecation warning).
+Problem 2174 uses a bounded-domain certificate because `m*n <= 15` limits the
+complete state space to 32,768 masks and every legal rectangle has at most
+three rows or at most three columns, so operation-order search is too shallow
+for an honest slower-class scaling verdict. A bottom-up mask oracle checks
+every binary matrix through 3 by 3 plus deterministic zero, dense, alternating,
+and randomized 15-cell boundaries for `1x15`, `3x5`, `5x3`, and `15x1`
+shapes. Its exact native source was Accepted as submission `2073684495`.
+Problem 2175's two window rankings and an independent `RANK()` formulation
+passed the team-count tiers at `-0.01` and `+0.01`; a correct correlated
+pair-count query completed every expected output and failed only scaling at
+`+1.14` with a `34.55x` largest runtime ratio. Both linearithmic formulations
+matched direct before-and-after sorting across 2,000 deterministic random
+contracts. MySQL exposed that `ROW_NUMBER()` is unsigned, so the accepted
+source explicitly casts both ranks before producing negative differences;
+submission `2073696394` was Accepted.
+Problem 2176's per-value gcd-class counter and an independent nested-map form
+passed the equal-value tiers at `+0.01` and `+0.03`; correct direct pair
+enumeration completed every expected output and failed only scaling at
+`+0.75`. The accepted source matched brute-force enumeration across 10,000
+deterministic random arrays and was remotely Accepted as submission
+`2073702388`.
+Problem 2177 uses an asymptotic-optimality certificate: reading its one scalar
+input and choosing a fixed-size result requires $\Omega(1)$ work, while the
+divisibility-by-three formula takes $O(1)$ time and space. Regression covers
+every value through 100,000 plus 20,000 deterministic full-width residue
+neighborhoods and the legal endpoints. Its native source was remotely
+Accepted as submission `2073708460`.
+Problem 2178 uses an asymptotic-optimality certificate because maximum answers
+contain $\Theta(\sqrt S)$ integers on totals $S=q(q+1)$, making output
+materialization an $\Omega(\sqrt S)$ lower bound matched by the greedy
+$O(\sqrt S)$ construction. A new semantic validator accepts every unique
+positive-even maximum-cardinality split rather than one canonical ordering.
+Regression checks every total through 10,000 and deterministic full-width
+boundaries. Its native source was Accepted as submission `2073713633`.
+Problem 2179's position map and Fenwick tree passed the identical-permutation
+tiers at `-0.03`; a correct direct middle scan completed every expected output
+and failed only scaling at `+0.80` with a `19.19x` largest runtime ratio. The
+accepted source matched a cubic oracle across 7,000 deterministic randomized
+permutation pairs and was remotely Accepted as submission `2073721305`.
+Problem 2180's digit-sum-parity formula passed the legal power-of-ten tiers at
+`+0.00`; correct direct enumeration completed every expected output and failed
+only scaling at `+0.87` with an `80.54x` largest runtime ratio. Exhaustive
+regression covered all 1,000 legal inputs, and the exact native source was
+Accepted as submission `2073729473`.
+Problem 2181's single-pass group accumulation passed its long-segment tiers at
+`+0.01`; correct prefix recomputation completed every expected output and
+failed only scaling at `+1.18` with a `166.87x` largest runtime ratio. Runtime
+inspection also established that the app adapter receives a linked node but
+returns serialized values, while the exact native source reuses nodes in
+place. That native source was Accepted as submission `2073735768`.
+Problem 2182's fixed-alphabet greedy passed its descending-block tiers at
+`-0.00`; a correct implementation that resorted the remaining multiset before
+every emitted character completed every output and failed only scaling at
+`+0.40`. The accepted source matched exhaustive lexicographic search across
+1,000 deterministic small strings and was Accepted as submission
+`2073743934`.
+Problem 2183's gcd-class counter passed its divisor-rich tiers at `+0.01`;
+correct direct pair enumeration completed every expected output and failed
+only scaling at `+0.99` with a `12.33x` largest runtime ratio. The accepted
+source matched brute force across 10,000 deterministic random arrays and was
+Accepted as submission `2073753116`.
+Problem 2184's row-mask transition DP passed its all-mask tiers at `+0.03`;
+a correct DP that rechecked all mask pairs on every layer completed every
+expected output and failed only scaling at `+0.50`. The accepted source matched
+exhaustive wall enumeration across 500 deterministic small contracts and was
+Accepted as submission `2073758694`.
+Problem 2185's direct prefix checks passed its total-character tiers at
+`+0.00`; a correct implementation that explicitly materialized every prefix
+completed every expected output and failed only scaling at `+1.06` with a
+`214.78x` largest runtime ratio. The accepted source matched 5,000
+deterministic randomized prefix arrays and was Accepted as submission
+`2073766193`.
+Problem 2186's signed frequency differences passed its reverse-block tiers at
+`+0.00`; a correct insertion-sort-and-merge implementation completed every
+expected output and failed only scaling at `+1.21` with a `59.79x` largest
+runtime ratio. The accepted source matched 10,000 deterministic randomized
+frequency oracles and was Accepted as submission `2073770617`.
+Problem 2187's binary search on elapsed time passed its upper-bound tiers at
+`+0.01`; correct unit-time simulation completed every expected output and
+failed only scaling at `+0.85` with a `26.63x` largest runtime ratio. The
+accepted source matched 5,000 deterministic randomized timeline oracles and
+was Accepted as submission `2073776537`.
+Problem 2188's bounded-stint dynamic program passed its legal lap-count tiers;
+a correct dynamic program that tried all possible stint lengths completed
+every expected output and failed only scaling at `+0.85` with a `3.16x`
+largest runtime ratio. The exact accepted recurrence matched a full tire-and-
+wear state oracle across 19,068 exhaustive small contracts and was remotely
+Accepted as submission `2073782552`. The dataset checker advanced to 2188,
+the focused validated-cases and dynamic-docs suites passed (`136 passed`, with
+one deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2189's descending one-dimensional subset DP passed its legal
+card-count tiers; correct recursive row-subset enumeration completed every
+expected output and failed only scaling at `+1.26` with an `8.44x` largest
+runtime ratio. Independent decreasing-row enumeration matched the accepted
+source for all 500 legal inputs, and the exact native source was remotely
+Accepted as submission `2073794544`.
+Problem 2190's fixed-domain follower counter passed its all-qualifying array
+tiers; correct repeated rescanning completed every expected output and failed
+only scaling at `+1.40` with a `148.39x` largest runtime ratio. The accepted
+source matched 10,000 deterministic randomized unique-winner oracles and was
+remotely Accepted as submission `2073799855`.
+Problem 2191's stable mapped-key comparison sort passed its reverse-order
+tiers; correct stable insertion sort completed every expected output and
+failed only scaling at `+0.87` with a `16.66x` largest runtime ratio. The
+accepted source matched 10,000 deterministic randomized string-mapping
+oracles and was remotely Accepted as submission `2073804713`.
+Problem 2192's source-wise DAG traversals passed its sparse-star tiers;
+Floyd-Warshall transitive closure completed every expected output and failed
+only scaling at `+2.33` with a `178.27x` largest runtime ratio. The accepted
+source matched exact transitive closure across 5,000 deterministic randomized
+DAGs and was remotely Accepted as submission `2073809795`.
+Problem 2193's greedy boundary pairing passed its grouped-character tiers; a
+correct version that rebuilt the full frequency table after every adjacent
+swap completed every expected output and failed only scaling at `+1.23` with
+a `25.69x` largest runtime ratio. The accepted source matched exact
+adjacent-swap BFS across 2,000 deterministic randomized small strings and was
+remotely Accepted as submission `2073815070`.
+Problem 2194's direct column-major enumeration passed its full-height
+rectangle tiers; correct reverse enumeration with explicit front-list
+reconstruction completed every expected output and failed only scaling at
+`+1.15` with a `52.22x` largest runtime ratio. Exhaustive regression covered
+all 15,795 legal ranges, and the exact native source was remotely Accepted as
+submission `2073821194`.
+Problem 2195's sorted-gap arithmetic passed its increasing-`k` tiers; correct
+candidate-by-candidate missing-positive enumeration completed every expected
+output and failed only scaling at `+0.65` with an `8.76x` largest runtime
+ratio. The accepted source matched 10,000 deterministic randomized direct
+enumeration oracles and was remotely Accepted as submission `2073825208`.
+Problem 2196's hash-interned tree construction passed its complete-prefix
+tiers; correct list-based node lookup completed every expected output and
+failed only scaling at `+0.78` with a `12.20x` largest runtime ratio. The
+accepted source preserved every parent/side identity across 5,000
+deterministic randomized shuffled trees and was remotely Accepted as
+submission `2073829030`.
+Problem 2197's reduced-prefix stack passed its full-collapse tiers; correct
+whole-array reconstruction after every replacement completed every expected
+output and failed only scaling at `+1.17` with a `62.67x` largest runtime
+ratio. Exhaustive merge-order exploration matched the accepted source across
+3,000 deterministic randomized small arrays, and the exact native source was
+remotely Accepted as submission `2073833787`. The dataset checker advanced to
+2197, the focused validated-cases and dynamic-docs suites passed (`136
+passed`, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2198's bounded-value frequency enumeration passed its duplicate-heavy
+tiers; direct index-triplet enumeration completed every expected output and
+failed only scaling at `+2.96` with a `462.55x` largest runtime ratio. The
+accepted source matched direct ordered-index enumeration across 5,000
+deterministic randomized arrays and was remotely Accepted as submission
+`2073838814`. The dataset checker advanced to 2198, the focused suites again
+passed (`136 passed`, with one deprecation warning), and `git diff --check`
+passed apart from line-ending notices.
+Problem 2199's whole-word SQL join and ordered distinct aggregation passed its
+all-matching keyword tiers; a correct query that inflated keywords through a
+self-product completed every expected output and failed only scaling at
+`+1.14` with a `28.72x` largest runtime ratio. The SQLite adaptation matched
+an independent token-set oracle across 1,000 deterministic randomized
+fixtures, and the exact MySQL source was remotely Accepted as submission
+`2073842142`. The dataset checker advanced to 2199, the focused suites passed
+(`136 passed`, with one deprecation warning), and `git diff --check` passed
+apart from line-ending notices.
+Problem 2200's ordered interval-union scan passed its final-key coverage
+tiers; correct all-pairs distance testing completed every expected output and
+failed only scaling at `+1.41` with a `93.82x` largest runtime ratio. The
+accepted source matched the direct definition across 10,000 deterministic
+randomized arrays and was remotely Accepted as submission `2073846017`. The
+dataset checker and audit advanced to 2200, and the focused suites passed
+(`136 passed`, with one deprecation warning).
+Problem 2201's dug-coordinate hash set passed its reverse-order single-cell
+tiers; correct explicit list membership completed every expected output and
+failed only scaling at `+0.89` with a `20.03x` largest runtime ratio. The
+accepted source matched an independent oracle across 5,000 deterministic
+randomized non-overlapping fixtures and was remotely Accepted as submission
+`2073849559`. The dataset checker advanced to 2201, the focused suites passed
+(`136 passed`, with one deprecation warning), and `git diff --check` passed
+apart from line-ending notices.
+Problem 2202's reachable-candidate greedy scan passed its equal-value tiers;
+correct repeated prefix-max recomputation completed every expected output and
+failed only scaling at `+1.72` with a `286.14x` largest runtime ratio. The
+accepted source matched exact move-state search across 3,000 deterministic
+randomized small piles and was remotely Accepted as submission `2073852607`.
+The dataset checker advanced to 2202, the focused suites passed (`136 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2203's three Dijkstra searches passed its reverse-listed chain tiers;
+correct three-run Bellman-Ford completed every expected output and failed only
+scaling at `+1.02` with a `32.42x` largest runtime ratio. The accepted source
+matched Floyd-Warshall shortest paths across 3,000 deterministic randomized
+small directed graphs and was remotely Accepted as submission `2073855077`.
+The dataset checker advanced to 2203, the focused suites passed (`136 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2204's leaf trimming plus multi-source BFS passed its triangle-and-tail
+tiers; correct per-node BFS completed every expected output and failed only
+scaling at `+1.16` with a `76.19x` largest runtime ratio. The accepted source
+matched independent cycle detection across 3,000 deterministic randomized
+unicyclic graphs and was remotely Accepted as submission `2073857705`. The
+dataset checker advanced to 2204, the focused suites passed (`136 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2205's filtered distinct-user aggregate passed its qualifying-row
+tiers; a correct query that inflated the purchase table through a self-product
+completed every expected output and failed only scaling at `+1.35` with a
+`306.36x` largest runtime ratio. The SQLite adaptation matched an independent
+filter-and-set oracle across 3,000 deterministic randomized fixtures, including
+the midnight upper boundary, and the exact MySQL stored function was remotely
+Accepted as submission `2073860894`. The dataset checker and audit advanced to
+2205, the focused suites passed (`136 passed`, with one deprecation warning),
+and `git diff --check` passed apart from line-ending notices.
+Problem 2206's frequency-parity scan passed its all-equal tiers; correct
+repeated full-array counting completed every expected output and failed only
+scaling at `+0.90` with a `20.51x` largest runtime ratio. The accepted source
+matched an independently sorted adjacent-pair oracle across 10,000
+deterministic randomized arrays and was remotely Accepted as submission
+`2073864185`. The dataset checker and audit advanced to 2206, the focused
+suites passed (`136 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2207's one-pass subsequence count plus optimal endpoint insertion
+passed its first-character-only tiers; correct growing-prefix rebuilding
+completed every expected output and failed only scaling at `+0.56` with a
+`16.18x` largest runtime ratio. The accepted source matched exhaustive
+insertion-position evaluation across 5,000 deterministic randomized strings
+and was remotely Accepted as submission `2073866372`. The dataset checker and
+audit advanced to 2207, the focused suites passed (`136 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2208's maximum-heap greedy process passed its equal-unit tiers; correct
+repeated linear maximum selection completed every expected output and failed
+only scaling at `+0.68` with a `26.49x` largest runtime ratio. The accepted
+source matched an exact globally sorted marginal-reduction oracle across 5,000
+deterministic randomized arrays and was remotely Accepted as submission
+`2073868858`. The dataset checker and audit advanced to 2208, the focused
+suites passed (`136 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2209's rolling prefix dynamic program passed its two-unit-carpet tiers;
+correct repeated indexed-prefix materialization completed every expected
+output and failed only scaling at `+0.48`. The accepted source matched
+exhaustive carpet-placement enumeration across 3,000 deterministic randomized
+small floors and was remotely Accepted as submission `2073870761`. The dataset
+checker and audit advanced to 2209, the focused suites passed (`136 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2210's streaming plateau-boundary scan passed its complete legal
+all-equal tiers; correct per-index outward neighbor searches completed every
+expected output and failed only scaling at `+1.45` with an `81.55x` largest
+runtime ratio. The accepted source matched independent consecutive-duplicate
+compression across 10,000 deterministic randomized arrays and was remotely
+Accepted as submission `2073874002`. The dataset checker and audit advanced to
+2210, the focused suites passed (`136 passed`, with one deprecation warning),
+and `git diff --check` passed apart from line-ending notices.
+Problem 2211's boundary-escape invariant passed its alternating-opposition
+tiers; correct one-event-at-a-time collision simulation completed every
+expected output and failed only scaling at `+0.93` with a `124.16x` largest
+runtime ratio. The accepted source matched exhaustive adjacent-event
+simulation for all 88,572 direction strings through length ten and was
+remotely Accepted as submission `2073876389`. The dataset checker and audit
+advanced to 2211, the focused suites passed (`136 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2212's complete twelve-section subset enumeration uses a bounded-domain
+certificate because the legal section count never scales beyond twelve. A
+score-based validator accepts any optimal allocation while enforcing length,
+nonnegativity, exact arrow conservation, and optimal score. The accepted
+source matched an independent arrow-budget dynamic program across 3,001 legal
+allocations and was remotely Accepted as submission `2073878280`. The combined
+certificate, validated-case, and dynamic-document suite passed (`195 passed`,
+66 certificate subtests, with one deprecation warning); the dataset checker
+and audit advanced to 2212, and `git diff --check` passed apart from
+line-ending notices.
+Problem 2213's segment tree passed its full-run no-op update tiers; correct
+full-string reconstruction and rescanning completed every expected output and
+failed the relative-growth gate at `+0.26`. The accepted source matched direct
+full rescanning across 3,000 deterministic randomized update sequences and was
+remotely Accepted as submission `2073880829`. The dataset checker and audit
+advanced to 2213, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2214's total-damage scan passed its equal-damage scaling tiers; correct
+per-placement total recomputation completed every expected output and failed
+only scaling at `+1.34` with a `523.96x` largest runtime ratio. The accepted
+source matched exhaustive armor placement across 10,000 deterministic
+randomized arrays and was remotely Accepted as submission `2073883358`. The
+dataset checker and audit advanced to 2214, the focused suites passed (`137
+passed`, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2215's two directional hash-set differences passed their disjoint
+unique-array tiers; correct repeated list membership completed every expected
+output and failed only scaling at `+1.01` with a `22.39x` largest runtime
+ratio. The accepted source matched independent membership filtering across
+10,000 deterministic randomized array pairs and was remotely Accepted as
+submission `2073885480`. Order-independent inner groups are enforced by the
+shared ordered-groups/unordered-items validator. The dataset checker and audit
+advanced to 2215, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2216's parity-aware deletion count passed its all-equal tiers; correct
+explicit suffix-shifting deletion simulation completed every expected output
+and failed only scaling at `+1.22` with a `195.70x` largest runtime ratio. The
+accepted source matched exhaustive beautiful-subsequence enumeration across
+5,000 deterministic randomized arrays and was remotely Accepted as submission
+`2073886961`. The dataset checker and audit advanced to 2216, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2217's direct prefix mirroring passed its increasing-rank tiers;
+correct rebuilding from rank one for every query completed every expected
+output and failed only scaling at `+1.27` with a `246.85x` largest runtime
+ratio. Direct numeric enumeration across all 1,108 query ranks for lengths one
+through five exposed and repaired one incorrect authored fifteen-digit
+expected value. The exact source was remotely Accepted as submission
+`2073888798`. The dataset checker and audit advanced to 2217, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2218's rolling exact-count pile dynamic program passed its two-coin
+pile tiers; correct allocation recursion without memoization completed every
+expected output and failed only scaling at `+2.92` with a `66.69x` largest
+runtime ratio. The accepted source matched exhaustive prefix-allocation search
+across 3,000 deterministic randomized instances and was remotely Accepted as
+submission `2073890512`. The dataset checker and audit advanced to 2218, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2219's inclusive prefix/suffix sweep passed its all-positive tiers;
+correct repeated slice summation completed every expected output and failed
+only scaling at `+0.68` with a `16.38x` largest runtime ratio. The accepted
+source matched direct slice summation across 10,000 deterministic randomized
+arrays and was remotely Accepted as submission `2073892417`. The dataset
+checker and audit advanced to 2219, the focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2220's XOR population count uses a bounded-domain certificate because
+both inputs occupy at most 30 relevant bit positions. The accepted source
+matched an independent padded-binary comparison for all 1,048,576 ten-bit
+pairs plus 10,000 deterministic full-domain pairs and was remotely Accepted as
+submission `2073893590`. The combined certificate, validated-case, and
+dynamic-document suites passed (`195 passed`, 66 certificate subtests, with
+one deprecation warning); the dataset checker and audit advanced to 2220, and
+`git diff --check` passed apart from line-ending notices.
+Problem 2221's in-place shrinking-row simulation passed its zero-digit tiers;
+correct queue-style simulation with explicit shifting completed every expected
+output and failed only scaling at `+1.16` with a `61.59x` largest runtime
+ratio. The accepted source matched separately allocated row simulation across
+5,000 deterministic randomized arrays and was remotely Accepted as submission
+`2073894964`. The dataset checker and audit advanced to 2221, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2222's one-pass alternating-subsequence counter passed its alternating
+street tiers; correct direct triple enumeration completed every expected
+output and failed only scaling at `+2.31` with a `183.03x` largest runtime
+ratio. The accepted source matched exhaustive enumeration for all 8,184 binary
+strings of lengths three through twelve. The first verifier process timed out
+after LeetCode had accepted submission `2073896231`; the retry was also
+remotely Accepted and the manifest records exact submission `2073896846`. The
+dataset checker and audit advanced to 2222, the focused suites passed (`137
+passed`, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2223's Z-function passed its equal-character tiers; correct direct
+suffix-prefix comparison completed every expected output and failed only
+scaling at `+1.04` with a `46.92x` largest runtime ratio. The accepted source
+matched direct comparison across 10,000 deterministic randomized strings and
+was remotely Accepted as submission `2073898312`. The dataset checker and
+audit advanced to 2223, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2224's fixed-denomination greedy conversion uses a bounded-domain
+certificate because every legal same-day difference is at most 1439 minutes.
+The accepted source matched independent shortest-path dynamic programming for
+all 1,440 legal differences and was remotely Accepted as submission
+`2073899481`. The combined certificate, validated-case, and dynamic-document
+suites passed (`195 passed`, 66 certificate subtests, with one deprecation
+warning). The audit initially held the package at a 52-word Goal, correctly
+requiring the 60-word narrative minimum; after the source-faithful clarification
+and a focused docs rerun (`9 passed`), the dataset checker and audit advanced
+to 2224, and `git diff --check` passed apart from line-ending notices.
+Problem 2225's hash-based loss counter passed its disjoint-match tiers; correct
+per-player rescanning completed every expected output and failed only scaling
+at `+1.29` with a `97.69x` largest runtime ratio. The accepted source matched
+independent rescanning across 5,000 deterministic randomized unique match sets
+and was remotely Accepted as submission `2073901082`. The dataset checker and
+audit advanced to 2225, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2226's monotone-feasibility binary search passed its maximum-pile
+tiers; a correct descending portion-size scan completed every expected output
+and failed only scaling at `+0.65` with a `13.29x` largest runtime ratio. The
+accepted source matched direct portion enumeration across 10,000 deterministic
+randomized pile allocations and was remotely Accepted as submission
+`2073902343`. The dataset checker and audit advanced to 2226, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2227's pre-encrypted dictionary frequency index passed its repeated-
+decryption tiers; a correct implementation that encrypted and scanned every
+dictionary word for each query completed every expected output and failed only
+scaling at `+1.15` with a `74.05x` largest runtime ratio. The accepted source
+matched independent dictionary scans across 5,000 deterministic randomized
+designs with five operations each and was remotely Accepted as submission
+`2073904400`. The dataset checker and audit advanced to 2227, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2228's per-user date ordering and lag comparison passed its widely
+spaced purchase tiers; a correct self-join completed every expected output and
+failed only scaling at `+1.10` with a `65.65x` largest runtime ratio. The
+accepted query matched direct adjacent-date scans across 2,000 deterministic
+randomized purchase histories and was remotely Accepted as submission
+`2073905525`. The dataset checker and audit advanced to 2228, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2229's hash-set distinctness and endpoint-span check passed its
+shuffled consecutive-range tiers; correct sorting and neighbor comparison
+completed every expected output and failed only scaling at `+0.49` with a
+`30.59x` largest runtime ratio. The accepted source matched independent
+sorting checks across 20,000 deterministic randomized arrays and was remotely
+Accepted as submission `2073906739`. The dataset checker and audit advanced to
+2229, the focused suites passed (`137 passed`, with one deprecation warning),
+and `git diff --check` passed apart from line-ending notices.
+Problem 2230's direct parameterized purchase filter passed its all-eligible
+tiers; a correct Cartesian-product query completed every expected output and
+failed only scaling at `+1.16` with a `38.52x` largest runtime ratio. The
+accepted stored procedure matched direct filtering across 2,000 deterministic
+randomized parameterized histories and was remotely Accepted as submission
+`2073907565`. The dataset checker and audit advanced to 2230, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2231 uses a bounded-domain certificate because the legal value has at
+most ten decimal digits, too little digit-count range for an honest scaling
+verdict. The accepted parity-bucket reconstruction matched an independent
+digit-frequency oracle for every value through 100,000, 20,000 deterministic
+full-range values, and explicit boundaries; its exact native source was
+remotely Accepted as submission `2073908618`. The combined certificate,
+validated-case, and dynamic-document suites passed (`196 passed`, 67
+certificate subtests, with one deprecation warning). The dataset checker and
+audit advanced to 2231, and `git diff --check` passed apart from line-ending
+notices.
+Problem 2232 uses a bounded-domain certificate because the legal expression
+has at most nine digits and at most 20 parenthesis-boundary pairs. The accepted
+complete boundary enumeration matched an independent placement evaluator for
+every operand pair through `99+99` plus 20,000 deterministic longer legal
+expressions; its exact native source was remotely Accepted as submission
+`2073909970`. The combined certificate, validated-case, and dynamic-document
+suites passed (`197 passed`, 68 certificate subtests, with one deprecation
+warning). The dataset checker and audit advanced to 2232, and
+`git diff --check` passed apart from line-ending notices.
+Problem 2233's min-heap increment assignment passed its balanced-zero tiers; a
+correct implementation that rescanned the complete array for every increment
+completed every expected output and failed only scaling at `+0.61`. The
+accepted source matched exhaustive increment allocations across 5,000
+deterministic randomized small contracts and was remotely Accepted as
+submission `2073910911`. The dataset checker and audit advanced to 2233, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2234's sorted-prefix enumeration passed its all-completion-count tiers;
+a correct implementation that rescanned the completed suffix for every choice
+completed every expected output and failed only scaling at `+0.42`. The
+accepted source matched an exhaustive allocation oracle across 5,000
+deterministic small contracts and was remotely Accepted as submission
+`2073912121`. The dataset checker and audit advanced to 2234, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2235 uses a bounded-domain certificate because its two operands each
+have only 201 legal values. The accepted direct addition matched arithmetic
+addition for all 40,401 legal ordered operand pairs and was remotely Accepted
+as submission `2073913761`. The combined certificate, validated-case, and
+dynamic-document suites passed (`198 passed`, 69 certificate subtests, with one
+deprecation warning). The dataset checker and audit advanced to 2235, and
+`git diff --check` passed apart from line-ending notices.
+Problem 2236 uses a bounded-domain certificate because its tree always has
+exactly three nodes and each node value comes from a fixed 201-value domain.
+The accepted direct comparison passed every child-value pair with legal
+equality roots, adjacent false roots, and root-value boundaries, and was
+remotely Accepted as submission `2073915123`. The combined certificate,
+validated-case, and dynamic-document suites passed (`199 passed`, 70
+certificate subtests, with one deprecation warning). The dataset checker and
+audit advanced to 2236, and `git diff --check` passed apart from line-ending
+notices.
+Problem 2237's difference-array interval events passed its full-street tiers;
+a correct direct interval-marking implementation completed every expected
+output and failed only scaling at `+1.07` with a `110.21x` largest runtime
+ratio. The accepted source matched a brute-force brightness oracle across
+5,000 deterministic street contracts and was remotely Accepted as submission
+`2073916301`. The dataset checker and audit advanced to 2237, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2238's distinct-driver left join passed its all-distinct-driver SQL
+tiers; a correct Cartesian-product conditional aggregation completed every
+expected table and failed only scaling at `+1.19` with a `46.87x` largest
+runtime ratio. Its exact MySQL query was remotely Accepted as submission
+`2073918047`. The dataset checker and audit advanced to 2238, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2239's retained-best scan passed its distinct-positive tiers; a
+correct all-pairs candidate verifier completed every expected output and
+failed only scaling at `+1.26` with a `434.60x` largest runtime ratio. The
+accepted source matched a comparison-key oracle across 5,000 deterministic
+arrays and was remotely Accepted as submission `2073919076`. The dataset
+checker and audit advanced to 2239, the focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2240's arithmetic inner-quantity count passed its unit-cost tiers; a
+correct nested quantity enumeration completed every expected output and failed
+only scaling at `+1.45` with a `108.96x` largest runtime ratio. The accepted
+source matched explicit pair enumeration across 320,000 exhaustive small
+contracts and was remotely Accepted as submission `2073919998`. The dataset
+checker and audit advanced to 2240, the focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2241's five-counter ATM passed its alternating deposit-withdraw tiers;
+a correct implementation that reconstructed inventory from successful history
+before each withdrawal completed every operation trace and failed only scaling
+at `+1.04` with a `23.62x` largest runtime ratio. The accepted class matched
+243,000 exhaustive small inventory-withdrawal contracts, including rejection
+rollback, and was remotely Accepted as submission `2073921253`. The dataset
+checker and audit advanced to 2241, the focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2242's top-three-neighbor reduction passed its high-degree-middle-edge
+tiers; a correct all-neighbor-pairs implementation completed every expected
+output and failed only scaling at `+1.00` with a `19.19x` largest runtime
+ratio. The accepted source matched brute-force four-node path enumeration
+across 5,000 deterministic graph contracts and was remotely Accepted as
+submission `2073922395`. The dataset checker and audit advanced to 2242, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2243's iterative group-sum simulation passed its legal 20, 50, and
+100-character slow-contraction tiers; a correct implementation that
+redundantly rescanned the current string for every consumed digit completed
+every expected output and failed only scaling at `+0.94` with a `23.47x`
+largest runtime ratio. The accepted source matched an independent simulation
+across 10,000 deterministic legal contracts and was remotely Accepted as
+submission `2073924087`. The dataset checker and audit advanced to 2243, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2244's frequency-table formula passed its 32, 128, and 256-task
+distinct-pair tiers; a correct implementation that called a linear count for
+each distinct difficulty completed every expected output and failed only
+scaling at `+0.37`. The accepted source matched an independent per-frequency
+dynamic program across 10,000 deterministic contracts and was remotely
+Accepted as submission `2073925293`. The dataset checker and audit advanced to
+2244, the focused suites passed (`137 passed`, with one deprecation warning),
+and `git diff --check` passed apart from line-ending notices.
+Problem 2245's row-and-column factor prefixes passed its 64, 256, and
+1,024-cell all-tens square tiers; a correct implementation that walked all
+complete arms from every corner completed every expected output and failed
+only scaling at `+0.40`. The accepted source matched an independent
+arm-walking oracle across 5,000 deterministic grids and was remotely Accepted
+as submission `2073926312`. The dataset checker and audit advanced to 2245,
+the focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2246's iterative two-chain tree dynamic program passed its 16, 64, and
+256-node alternating-star tiers; a correct all-start BFS implementation
+completed every expected output and failed only scaling at `+0.91` with a
+`26.61x` largest runtime ratio. The accepted source matched the same
+independent BFS oracle across 5,000 deterministic trees and was remotely
+Accepted as submission `2073927934`. The dataset checker and audit advanced to
+2246, the focused suites passed (`137 passed`, with one deprecation warning),
+and `git diff --check` passed apart from line-ending notices.
+Problem 2247's mask-and-endpoint dynamic program passed its complete-graph
+tiers with 16, 64, and 128 possible visited masks; a correct exhaustive
+simple-path search completed every expected output and failed only scaling at
+`+1.09`. The accepted source matched exhaustive search across 3,000
+deterministic graphs and was remotely Premium-Accepted as submission
+`2073928843`. The dataset checker and audit advanced to 2247, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2248's iterative set intersection passed its 32, 128, and 512-total-
+element full-intersection tiers; a correct repeated-list-membership
+implementation completed every expected output and failed only scaling at
+`+0.56`. The accepted source matched an independent bounded-domain scan across
+10,000 deterministic matrices and was remotely Accepted as submission
+`2073929984`. The dataset checker and audit advanced to 2248, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2249's per-circle lattice enumeration passed its 4, 16, and 64-circle
+consecutive-unit-circle tiers; a correct global-bounding-region scan completed
+every expected output and failed only scaling at `+0.53`. The accepted source
+matched the same independent global scan across 5,000 deterministic circle
+sets and was remotely Accepted as submission `2073931020`. The dataset checker
+and audit advanced to 2249, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2250's bounded-height width buckets passed its 16, 64, and
+256-rectangle/query same-height tiers; a correct direct containment scan
+completed every expected output and failed only scaling at `+1.29` with a
+`33.46x` largest runtime ratio. The accepted source matched the same direct
+oracle across 5,000 deterministic contracts and was remotely Accepted as
+submission `2073931927`. The dataset checker and audit advanced to 2250, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2251's sorted start/end arrays passed its corrected 16, 64, and
+128-interval/query nested-end tiers; a correct direct interval scan completed
+every expected output and failed only scaling at `+1.31` with a `31.89x`
+largest runtime ratio. The accepted source matched the same direct oracle
+across 5,000 deterministic contracts and was remotely Accepted as submission
+`2073933351`. The dataset checker and audit advanced to 2251 after the Goal
+narrative was expanded past the audited 60-word threshold; the focused suites
+passed (`137 passed`, with one deprecation warning), and `git diff --check`
+passed apart from line-ending notices.
+Problem 2252's dynamic MySQL conditional-aggregation procedure passed its 8,
+32, and 64-row one-store fixture tiers under an equivalent row-linear pivot
+oracle; a correct per-product rescan completed every output and failed scaling
+at `+0.96` with a `10.17x` largest ratio. No local MySQL/MariaDB executable was
+available, but the exact native procedure was remotely Premium-Accepted as
+submission `2073934916`. The dataset checker and audit advanced to 2252, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2253's metadata-driven dynamic unpivot procedure passed its 8, 32, and
+64-row one-store fixture tiers under an equivalent row-linear oracle; a
+correct per-product rescan completed every output and failed scaling at
+`+1.00` with a `10.62x` largest ratio. No local MySQL/MariaDB executable was
+available, but the exact native procedure was remotely Premium-Accepted as
+submission `2073936201`. The dataset checker and audit advanced to 2253, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2254's hash-table and reusable-ID min-heap design passed its 8, 32, and
+64-size identifier-allocation tiers; a correct implementation that scanned
+upward from zero for every upload completed every expected output and failed
+scaling at `+0.87`. The exact native class was remotely Premium-Accepted as
+submission `2073937524`. The dataset checker and audit advanced to 2254, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2255's direct prefix scan was verified with an asymptotic-optimality
+certificate: an adversary can change any uninspected word character and alter
+that occurrence's contribution, establishing the same `Omega(S)` lower bound
+as the `O(S)` solution. The exact native source was remotely Accepted as
+submission `2073938861`. The dataset checker and audit advanced to 2255, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2256's total-plus-prefix scan passed its 64, 256, and 1,024-element
+tiers; a correct implementation that recomputed both range sums at every index
+completed all outputs and failed scaling at `+0.34`. The exact native source
+was remotely Accepted as submission `2073939820`. The dataset checker and
+audit advanced to 2256, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2257's four directional grid sweeps passed its 64, 256, and 1,024-cell
+tiers; a correct cell-by-cell guard visibility checker completed every output
+and failed scaling at `+0.48`. The exact native source was remotely Accepted
+as submission `2073940772`. The dataset checker and audit advanced to 2257,
+the focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2258's multi-source fire BFS and binary-searched person feasibility
+passed its 56, 224, and 896-cell separated-corridor tiers; a correct
+implementation that exhausted every finite waiting time completed all outputs
+and failed scaling at `+0.81` with a `12.46x` largest ratio. The exact native
+source was remotely Accepted as submission `2073942122`. The dataset checker
+and audit advanced to 2258, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2259's first-difference greedy removal passed its 8, 32, and
+100-character tiers; explicit construction of every deletion candidate
+completed all outputs and failed scaling at `+1.29` with a `44.43x` largest
+ratio. The exact native source was remotely Accepted as submission
+`2073943724`. The dataset checker and audit advanced to 2259, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2260's last-index hash scan passed its 32, 128, and 384-card tiers; a
+correct all-pairs search completed every output and failed scaling at `+1.37`
+with a `103.97x` largest ratio. The exact native source was remotely Accepted
+as submission `2073944808`. The dataset checker and audit advanced to 2260,
+the focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2261's collision-free subarray trie passed its 12, 40, and 100-element
+tiers; explicit reconstruction of every eligible candidate sequence completed
+all outputs and failed scaling at `+0.79` with a `9.19x` largest ratio. The
+exact native source was remotely Accepted as submission `2073946086`. The
+dataset checker and audit advanced to 2261, the focused suites passed
+(`137 passed`, with one deprecation warning), and `git diff --check` passed
+apart from line-ending notices.
+Problem 2262's last-occurrence contribution scan passed its 32, 128, and
+384-character tiers; correct per-start substring enumeration completed every
+output and failed scaling at `+1.26` with a `98.07x` largest ratio. The exact
+native source was remotely Accepted as submission `2073947594`. The dataset
+checker and audit advanced to 2262, the focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2263's two-direction heap-based L1 isotonic regression passed its 32,
+128, and 384-element/value-domain tiers; the exact target-value dynamic
+program completed every output and failed scaling at `+1.17` with a `210.63x`
+largest ratio. The native source was remotely Premium-Accepted as submission
+`2073948885`. The dataset checker and audit advanced to 2263, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2264's direct scan of every length-three window uses a reviewed
+`asymptotic_optimality` certificate: an adversary may place the only or largest
+qualifying triple in the final possible window, so the reference's $O(n)$ scan
+matches the $\Omega(n)$ inspection lower bound over the fixed digit alphabet.
+The exact native source was remotely Accepted as submission `2073950267`. The
+dataset checker and audit advanced to 2264, the certificate suite passed
+(`62 passed`, `70 subtests passed`), the focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2265's single-postorder sum-and-count traversal passed its 8, 32, and
+131-node right-chain tiers; correct per-node subtree recomputation completed
+every output and failed scaling at `+1.03` with a `25.44x` largest ratio. The
+exact native source was remotely Accepted as submission `2073952008`. The
+dataset checker and audit advanced to 2265, the focused suites passed
+(`137 passed`, with one deprecation warning), and `git diff --check` passed
+apart from line-ending notices.
+Problem 2266's constant-window per-run keypad recurrence passed its 16, 64,
+and 248-character forced-boundary tiers; a correct general split-point dynamic
+program completed every output and failed scaling at `+1.04` with a `33.07x`
+largest ratio. The exact native source was remotely Accepted as submission
+`2073953759`. The dataset checker and audit advanced to 2266, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2267's rolling-column balance-set dynamic program passed its 14, 40,
+and 72-cell unclosable-grid tiers. The initial larger exhaustive-path tier hit
+the Python safety cap and was rejected; after legal recalibration, correct
+monotone-path enumeration completed every output and failed scaling at `+3.03`
+with a `159.36x` largest ratio. The exact native source was remotely Accepted
+as submission `2073955187`. The dataset checker and audit advanced to 2267,
+the focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2268's descending-frequency keypad assignment passed its 26, 104, and
+416-character uniform-alphabet tiers; correct per-position full-string
+recounting completed every output and failed scaling at `+1.81` with an
+`839.39x` largest ratio. The exact native source was remotely Premium-Accepted
+as submission `2073957244`. The dataset checker and audit advanced to 2268,
+the focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2269's direct decimal-window scan uses a reviewed `bounded_domain`
+certificate: `num <= 10^9` limits the legal representation to ten digits and
+at most 100 digit-character inspections, so no honest runtime-scaling axis
+exists. The exact native source was remotely Accepted as submission
+`2073958421`. The dataset checker and audit advanced to 2269, the certificate
+suite passed (`62 passed`, `70 subtests passed`), the focused suites passed
+(`137 passed`, with one deprecation warning), and `git diff --check` passed
+apart from line-ending notices.
+Problem 2270's total-plus-prefix scan passed its 16, 64, and 244-element
+all-one tiers; correct per-split resumming completed every output and failed
+scaling at `+1.40` with a `119.04x` largest ratio. The exact native source was
+remotely Accepted as submission `2073960061`. The dataset checker and audit
+advanced to 2270, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2271's sorted sliding window passed its 8, 32, and 128-interval spaced
+point tiers; correct testing of every interval-aligned carpet against every
+interval completed every output and failed scaling at `+1.15` with a `39.15x`
+largest ratio. The exact native source was remotely Accepted as submission
+`2073961511`. The dataset checker and audit advanced to 2271, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2272's ordered-character-pair modified-Kadane scan passed its 16, 64,
+and 192-character one-minor tiers. Calibration corrected the hidden
+`"abcaaaa"` expectation from 3 to 4; after correction, incremental enumeration
+of every substring completed every output and failed scaling at `+1.20` with a
+`176.41x` largest ratio. The exact native source was remotely Accepted as
+submission `2073963321`. The dataset checker and audit advanced to 2272, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2273's 26-letter signature scan passed its 250, 500, and 1000-total-
+character anagram-run tiers with a flat `-0.00` extra exponent. A correct
+implementation that compared each word with every earlier word in its current
+run completed every output and failed only scaling at `+1.00`, with a `5.45x`
+largest ratio. A direct list-deletion draft was rejected as calibration
+evidence because its C-level shifts did not exhibit the claimed slower trend
+over the legal domain. The exact native source was remotely Accepted as
+submission `2073965851`. The dataset checker and audit advanced to 2273, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2274's sorted adjacent-gap scan passed its 16, 64, and 256-special-
+floor shuffled tiers at `+0.01`. Correct repeated selection of the next special
+floor completed every output and failed only scaling at `+0.38`, with a
+`3.61x` largest ratio. The scaffold's invalid empty-`special` example was
+removed because the source contract requires at least one special floor. The
+exact native source was remotely Accepted as submission `2073967910`. The
+dataset checker and audit advanced to 2274, the focused suites passed
+(`137 passed`, with one deprecation warning), and `git diff --check` passed
+apart from line-ending notices.
+Problem 2275's shared-bit frequency scan passed its 16, 64, and 247-candidate
+all-one tiers at `+0.00`. The largest tier's draft cardinality label was
+corrected from 256 to the actual 247 values before calibration. Correct
+redundant full-support recounting for every candidate completed every output
+and failed only scaling at `+1.35`, with a `187.13x` largest ratio. The exact
+native source was remotely Accepted as submission `2073969717`. The dataset
+checker and audit advanced to 2275, the focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2276's implicit segment tree passed its 4, 16, and 64-disjoint-point
+update traces with a flat `-0.00` extra exponent. An independent
+dictionary-backed implicit tree passed at `+0.00`, while correct full-list
+sorting and union rebuilding completed every trace and failed only scaling at
+`+0.30`. The exact native `CountIntervals` class was remotely Accepted as
+submission `2073971341`. The dataset checker and audit advanced to 2276, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2277's binary-lifting three-LCA median method passed its 8, 32, and
+64-node chain tiers at `+0.00`. An independently written binary-lifting form
+passed at `+0.02`, while correct per-query path reconstruction and BFS
+completed every answer and failed only scaling at `+0.85`, with a `6.21x`
+largest ratio. Randomized small-tree checks also matched a brute-force
+path-distance oracle. The exact native source was remotely Premium-Accepted as
+submission `2073973790`. The dataset checker and audit advanced to 2277, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2278's explicit one-pass app-local counter passed its 8, 32, and
+100-character legal tiers at `-0.03`; an independent generator-count scan
+also passed at `-0.03`. The initial C-level `str.count` reference was rejected
+for runtime calibration because it made honest manual linear counting appear
+superlinear over the bounded domain. After correcting the reference,
+explicit repeated-prefix scanning completed every output and failed only
+scaling at `+1.22`, with a `36.98x` largest ratio. The exact native source
+using integer round-down arithmetic was remotely Accepted as submission
+`2073975968`. The dataset checker and audit advanced to 2278, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2279's sorted-deficit greedy method passed its 64, 512, and 8,192-bag
+full-traversal tiers at `+0.01`. An independent min-heap implementation passed
+at `-0.01`, while correct repeated minimum selection and removal completed
+every output and failed only scaling at `+0.54`, with a `15.70x` largest
+runtime ratio. The exact native source was remotely Accepted as submission
+`2073978055`. The dataset checker and audit advanced to 2279, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2280's day sort and exact cross-product slope comparison passed its
+64, 512, and 4,096-point shuffled quadratic-chart tiers at `-0.00`. An
+independent reduced-slope implementation passed at `-0.01`, while correct
+repeated sorting of the remaining points completed every output and failed
+only scaling at `+0.52`, with a `12.39x` largest runtime ratio. The exact
+native source was remotely Accepted as submission `2073981850`. The dataset
+checker and audit advanced to 2280, the focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2281's asymmetric monotonic boundaries and prefix-of-prefix
+aggregation passed its 32, 128, and 512-element equal-strength tiers at
+`-0.01`. An independently expressed linear implementation passed at `-0.05`,
+while correct direct subarray enumeration completed every output and failed
+only scaling at `+0.95`, with a `19.49x` largest runtime ratio. The exact
+native source matched brute force on 9,000 randomized arrays and was remotely
+Accepted as submission `2073984376`. The dataset checker and audit advanced
+to 2281, the focused suites passed (`137 passed`, with one deprecation
+warning), and `git diff --check` passed apart from line-ending notices.
+Problem 2282's duplicate-aware row and column monotonic-stack scans passed
+their 32, 128, and 384-cell mixed one-row tiers at `-0.02`. An independently
+factored stack implementation passed at `-0.03`, while correct all-pairs
+directional scanning completed every output and failed only scaling at
+`+1.05`, with a `31.09x` largest runtime ratio. The exact native source
+matched brute force on 5,000 randomized grids and was remotely
+Premium-Accepted as submission `2073986651`. The dataset checker and audit
+advanced to 2282, the focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2283 uses an asymptotic-optimality certificate because its legal input
+has at most ten characters, too little range for honest runtime scaling. The
+frequency scan matches the generalized $\Omega(n)$ input-inspection lower
+bound. Regression exhaustively checked every decimal string through length
+five and deterministic coverage through length ten against a direct count
+oracle. The exact native source was remotely Accepted as submission
+`2073988905`. The certificate suite passed (`63 passed`, 71 subtests), the
+focused suites passed (`137 passed`), each with one deprecation warning, and
+the dataset checker and audit advanced to 2283. `git diff --check` passed
+apart from line-ending notices.
+Problem 2284's one-pass sender aggregation passed its 256, 2,048, and
+16,384-character distinct-sender tiers at `-0.01`. An independently expressed
+linear map implementation passed at `-0.02`, while correct repeated sender
+rescanning completed every output and failed only scaling at `+0.52`, with a
+`21.18x` largest runtime ratio. The exact native source was remotely Accepted
+as submission `2073991301`. The dataset checker and audit advanced to 2284,
+the focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2285's sorted degree-value pairing passed its 64, 512, and 8,192-city
+increasing-star tiers at `-0.02`. An independent heap implementation passed at
+`-0.03`, while correct repeated minimum selection completed every output and
+failed only scaling at `+0.60`, with a `15.79x` largest runtime ratio. The
+exact native source was remotely Accepted as submission `2073993508`. The
+dataset checker and audit advanced to 2285, the focused suites passed
+(`137 passed`, with one deprecation warning), and `git diff --check` passed
+apart from line-ending notices.
+Problem 2286's segment tree passed its 64, 256, and 768-operation-and-row
+impossible-gather tiers. An independently structured recursive segment tree
+passed at `-0.01`, with a `1.16x` largest runtime ratio, while a correct
+row-scanning implementation completed every output and failed only scaling at
+`+1.04`, with a `24.53x` largest runtime ratio. The exact native source
+matched a brute-force model on 495,000 randomized operations and was remotely
+Accepted as submission `2073996371`. The dataset checker and audit advanced to
+2286, the focused suites passed (`137 passed`, with one deprecation warning),
+and `git diff --check` passed apart from line-ending notices.
+Problem 2287's two frequency passes passed its 12, 45, and 110-character
+tiers. An independent fixed-alphabet recounting implementation passed at
+`-0.00`, with a `0.76x` largest runtime ratio, while correct per-target-position
+rescanning completed every output and failed only scaling at `+0.98`, with a
+`10.18x` largest runtime ratio. The exact native source matched a frequency
+oracle on 10,000 randomized inputs and was remotely Accepted as submission
+`2073999816`. The dataset checker and audit advanced to 2287, the focused
+suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2288's whole-token scan and exact integer-cent formatting passed its
+47, 191, and 575-character tiers. The independent native linear implementation
+passed at `+0.02`, with a `1.20x` largest runtime ratio, while correct
+per-token full-sentence rescanning completed every output and failed only
+scaling at `+1.23`, with a `197.77x` largest runtime ratio. The exact native
+source matched a Decimal oracle on 10,000 randomized sentences and was
+remotely Accepted as submission `2074002268`. The dataset checker and audit
+advanced to 2288, the focused suites passed (`137 passed`, with one deprecation
+warning), and `git diff --check` passed apart from line-ending notices.
+Problem 2289's monotonic deletion-round stack passed its 32, 128, and 384-value
+one-removal-per-round tiers. The independent left-to-right stack passed at
+`+0.01`, with a `1.12x` largest runtime ratio, while correct round-by-round
+simulation completed every output and failed only scaling at `+1.04`, with an
+`80.88x` largest runtime ratio. The exact native source matched simultaneous
+deletion simulation on 107,655 exhaustive and randomized inputs. Remote
+submission was attempted twice, but the live account-status check rejected the
+saved LeetCode session as expired or invalid even though authenticated
+statement reads still worked; the package is locally complete and recorded as
+a verification blocker. The dataset checker and audit advanced to 2289, the
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2290's 0-1 BFS passed its 36, 144, and 400-cell all-empty tiers. The
+independent matrix-based 0-1 BFS passed at `+0.00`, with a `1.09x` largest
+runtime ratio, while correct linear-selection Dijkstra completed every output
+and failed only scaling at `+0.88`, with a `22.51x` largest runtime ratio. The
+exact native source matched heap-based Dijkstra on 26,550 exhaustive and
+randomized grids. Remote submission again reached the live account-status
+check and was rejected because the saved LeetCode session is expired or
+invalid; the package is locally complete and recorded as a verification
+blocker. The dataset checker and audit advanced to 2290, the focused suites
+passed (`137 passed`, with one deprecation warning), and `git diff --check`
+passed apart from line-ending notices.
+Problem 2291 is Premium and could not be source-faithfully authored after the
+saved LeetCode session expired. The official public GraphQL endpoint confirmed
+frontend ID 2291, question ID 2426, the
+`maximumProfit(present, future, budget)` interface, and the three example
+testcases, but returned null statement and snippet content. The Chrome-control
+skill requires explicit user approval before using Chrome solely as a fallback
+for expired preferred authentication, so 2291 remains untouched and is
+recorded as an authoring blocker.
+Problem 2292 is also Premium. Its official public GraphQL data confirmed
+frontend ID 2292, question ID 2431, the
+`Orders(order_id, product_id, quantity, purchase_date)` schema, and the example
+fixture, but returned null statement and snippets. That evidence is
+insufficient to verify the precise aggregation and output contract, so 2292
+also remains untouched and recorded as an authoring blocker.
+Problem 2293's direct alternating reduction passed its 32, 128, and 512-value
+tiers. The independent loop-based linear reduction passed at `+0.05`, with a
+`1.28x` largest runtime ratio, while correct repeated prefix rescanning
+completed every output and failed only scaling at `+1.13`, with a `144.75x`
+largest runtime ratio. The exact native source matched an in-place oracle on
+16,654 exhaustive and randomized power-of-two arrays. Remote submission was
+rejected by the known expired-session account-status check; the package is
+locally complete and recorded as a verification blocker. The focused suites
+passed (`137 passed`, with one deprecation warning), and `git diff --check`
+passed apart from line-ending notices.
+Problem 2294's sorted greedy grouping passed its 64, 256, and 512-value
+distinct descending tiers. The independent in-place sort implementation passed
+at `-0.06`, with a `0.64x` largest runtime ratio, while correct repeated
+minimum selection completed every output and failed only scaling at `+1.15`,
+with a `172.57x` largest runtime ratio. The exact native source matched an
+exhaustive partition oracle on 5,000 randomized inputs. Remote submission was
+rejected by the known expired-session account-status check; the package is
+locally complete and recorded as a verification blocker. The focused suites
+passed (`137 passed`, with one deprecation warning), and `git diff --check`
+passed apart from line-ending notices.
+Problem 2295's value-to-index map passed its 64, 256, and 768 combined
+array-and-operation tiers. The independent in-place map implementation passed
+at `-0.01`, with a `0.98x` largest runtime ratio, while correct explicit
+per-operation array scanning completed every output and failed only scaling at
+`+1.30`, with a `102.30x` largest runtime ratio. The exact native source
+matched a direct replacement oracle on 10,000 randomized traces. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker. The
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2296's two-stack text editor passed its 32, 128, and 384-prefix-
+insertion tiers. The independent native two-stack implementation passed at
+`-0.07`, with a `0.63x` largest runtime ratio, while a correct contiguous-array
+editor with explicit suffix shifting completed every output and failed only
+scaling at `+0.96`, with a `27.54x` largest runtime ratio. The exact native
+class matched a string-and-cursor model on 100,000 randomized operations.
+Remote submission was rejected by the known expired-session account-status
+check; the package is locally complete and recorded as a verification blocker.
+The focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2297 is Premium. The official public GraphQL endpoint confirmed
+frontend ID 2297, question ID 2056, the `minCost(nums, costs)` interface, its
+long return type, and the example testcases, but withheld the statement and
+snippets. The exact jump predicates and constraints therefore remain
+unverifiable; 2297 is untouched and recorded as an authoring blocker.
+Problem 2298 is also Premium. Official public GraphQL data confirmed frontend
+ID 2298, question ID 2440, the
+`Tasks(task_id, assignee_id, submit_date)` schema, and the example fixture, but
+withheld the statement and snippets. The exact weekend aggregation and output
+contract therefore remain unverifiable; 2298 is untouched and recorded as an
+authoring blocker.
+Problem 2299's one-pass password validation passed its 8, 32, and 96-character
+legal tiers. The independent native linear checker passed at `-0.05`, with a
+`0.91x` largest runtime ratio, while correct redundant full-password rescanning
+completed every output and failed only scaling at `+1.15`, with a `44.27x`
+largest runtime ratio. The exact native source matched an independent predicate
+oracle on 20,000 randomized passwords. Remote submission was rejected by the
+known expired-session account-status check; the package is locally complete
+and recorded as a verification blocker. The focused suites passed (`137
+passed`, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2300's sorted-potion binary searches passed its 64, 256, and 768
+combined spell-and-potion tiers. The independent native implementation passed
+at `-0.12`, with a `0.64x` largest runtime ratio, while correct direct product
+testing completed every output and failed only scaling at `+1.28`, with an
+`86.83x` largest runtime ratio. The exact native source matched direct product
+counting on 20,000 randomized inputs. Remote submission was rejected by the
+known expired-session account-status check; the package is locally complete
+and recorded as a verification blocker. The focused suites passed (`137
+passed`, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2301's hashed directed-replacement relation passed its 16, 64, and
+192-character-and-mapping tiers. The independent native matcher passed at
+`+0.04`, with a `1.02x` largest runtime ratio, while correct per-character
+mapping-list scans completed every output and failed only scaling at `+1.22`,
+with a `35.71x` largest runtime ratio. The exact native source matched explicit
+one-step replacement enumeration on 10,000 randomized inputs. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker. The
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2302's positive-value sliding window passed its 32, 125, and 365-value
+tiers. The independent linear window passed at `+0.02`, with a `1.14x` largest
+runtime ratio, while correct quadratic subarray enumeration completed every
+output and failed only scaling at `+1.23`, with a `152.71x` largest runtime
+ratio. Both exact solution forms matched a brute-force oracle on 20,000
+deterministic randomized inputs. Remote submission was rejected by the known
+expired-session account-status check; the package is locally complete and
+recorded as a verification blocker. The focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2303's one-pass bracket simulation passed its 16, 50, and 100-bracket
+legal tiers. An independent remaining-income formulation passed at `+0.04`,
+with a `1.18x` largest runtime ratio, while correct per-dollar bracket searching
+completed every output and failed only scaling at `+1.04`, with a `12.49x`
+largest runtime ratio. Both exact solution forms matched an independent
+per-dollar oracle on 20,000 deterministic randomized tax schedules. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker. The
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2304's row-compressed layered dynamic program passed its 8, 16, and
+32-cell two-column tiers. An independent destination-first recurrence passed
+at `-0.05`, with a `0.92x` largest runtime ratio, while correct exhaustive path
+enumeration completed every output and failed only scaling at `+4.92`, with a
+`1536.21x` largest runtime ratio. Both exact solution forms matched exhaustive
+path enumeration on 5,000 deterministic randomized grids. Remote submission
+was rejected by the known expired-session account-status check; the package is
+locally complete and recorded as a verification blocker. The focused suites
+passed (`137 passed`, with one deprecation warning), and `git diff --check`
+passed apart from line-ending notices.
+Problem 2305's symmetry-pruned assignment backtrack is covered by a strict
+`bounded_domain` certificate because the complete legal domain has at most
+$8^8$ labeled assignments and cannot sustain an honest timing trend. Both
+exact solution forms matched exhaustive assignment on 1,000 deterministic
+randomized instances, and the dedicated certificate regression plus strict
+validator passed. Remote submission was rejected by the known expired-session
+account-status check; the package is locally complete and recorded as a
+verification blocker. The expanded focused suites passed (`201 passed`, 72
+subtests, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2306's initial-to-suffix set grouping passed its 8, 32, and 96-idea
+tiers. An independent set-difference formulation passed at `+0.06`, with a
+`0.32x` largest runtime ratio, while correct direct ordered-pair construction
+completed every output and failed only scaling at `+1.79`. Both exact solution
+forms matched direct ordered-pair enumeration on 10,000 deterministic
+randomized idea sets. Remote submission was rejected by the known
+expired-session account-status check; the package is locally complete and
+recorded as a verification blocker. The focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2307 is Premium. The expired saved session returned no statement or
+snippets. LeetCode's official public GraphQL data confirmed frontend ID 2307,
+question ID 2065, its title, and two example testcases, but returned null
+Premium content and code snippets. That evidence is insufficient to verify the
+exact ratio semantics, tolerance, constraints, and native interface, so the
+scaffold remains untouched and is recorded as an authoring blocker.
+Problem 2308 is also Premium. Official public GraphQL data confirmed frontend
+ID 2308, question ID 2441, the `Genders(user_id, gender)` example fixture, and
+the title, but withheld the statement and snippets. The exact output ordering
+and transformation contract therefore remain unverifiable; the scaffold is
+untouched and recorded as an authoring blocker.
+Problem 2309's fixed-alphabet presence scan passed its 32, 128, and
+256-character tiers. An independent set-comprehension formulation passed at
+`-0.03`, with a `0.71x` largest runtime ratio, while correct per-position
+partner searching completed every output and failed only scaling at `+1.92`,
+with a `502.36x` largest runtime ratio. Both exact solution forms matched an
+independent alphabet oracle on 20,000 deterministic randomized strings. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker. The
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2310's ten-residue search is covered by a strict `bounded_domain`
+certificate because the complete source contract contains only 30,010
+`(num, k)` pairs and every count residue repeats within ten trials. The
+dedicated regression exhaustively checks every legal pair against an
+independent reachability dynamic program, and the strict certificate validator
+passes. Remote submission was rejected by the known expired-session
+account-status check; the package is locally complete and recorded as a
+verification blocker. The expanded focused suites passed (`202 passed`, 73
+subtests, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2311's right-to-left selected-suffix greedy passed its 32, 128, and
+256-character tiers. An independent bounded-significance formulation passed at
+`-0.65`, with a `0.17x` largest runtime ratio, while correct explicit candidate
+rebuilding completed every output and failed only scaling at `+1.01`, with an
+`18.16x` largest runtime ratio. Both exact solution forms matched exhaustive
+subsequence enumeration on 10,000 deterministic randomized strings. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker. The
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2312's ordered-subboard dynamic program passed its 6, 12, and
+24-dimension square tiers. An independent top-down memoized formulation passed
+at `-0.23`, with a `0.49x` largest runtime ratio, while a correct formulation
+that additionally evaluates every paired horizontal-and-vertical cut completed
+every output and failed only scaling at `+1.04`, with a `10.04x` largest runtime
+ratio. Both exact solution forms matched an independent memoized recurrence on
+7,200 deterministic randomized contracts. Remote submission was rejected by
+the known expired-session account-status check; the package is locally complete
+and recorded as a verification blocker. The focused suites passed (`137
+passed`, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2313 is Premium-only. The expired authenticated bridge returned no
+statement, and LeetCode's official public GraphQL endpoint confirmed frontend
+ID 2313, question ID 2399, the title, and two example testcases but returned
+null content and snippets. That evidence is insufficient to verify the exact
+binary-tree operator semantics, constraints, and native interface, so the
+scaffold remains untouched and an authoring blocker is recorded.
+Problem 2314 is Premium-only. The expired authenticated bridge returned no
+statement, and LeetCode's official public GraphQL endpoint confirmed frontend
+ID 2314, question ID 2446, the title, and the
+`Weather(city_id, day, degree)` example fixture but returned null content and
+snippets. That evidence is insufficient to verify the exact tie-breaking,
+projection, and output-order contract, so the scaffold remains untouched and
+an authoring blocker is recorded.
+Problem 2315's outside-region scan passed its 32, 128, and 512-character
+tiers. An independent paired-segment formulation passed at `-0.58`, with a
+`0.15x` largest runtime ratio, while correct character-by-character prefix
+rescanning completed every output and failed only scaling at `+1.26`, with a
+`123.95x` largest runtime ratio. Both exact solution forms matched an
+independent paired-segment oracle on 20,000 deterministic randomized strings.
+Remote submission was rejected by the known expired-session account-status
+check; the package is locally complete and recorded as a verification blocker.
+The focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2316's component-size traversal passed its 32, 128, and 512-node
+isolated-graph tiers. An independent union-find formulation passed at `-0.09`,
+with a `0.51x` largest runtime ratio, while correct per-node reachability
+traversal completed every output and failed only scaling at `+1.00`, with a
+`37.76x` largest runtime ratio. Both exact solution forms matched an independent
+transitive-closure oracle on 10,000 deterministic randomized graphs. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker. The
+focused suites passed (`137 passed`, with one deprecation warning); the sole
+initial diff failure was a trailing blank line in the new document, which was
+removed, and the targeted `git diff --check` then passed apart from line-ending
+notices.
+Problem 2317's bitwise-OR solution is covered by a strict
+`asymptotic_optimality` certificate: an uninspected element can be the sole
+source of an answer bit, so the $\Omega(n)$ input-inspection lower bound matches
+the one-pass $O(n)$ upper bound. The dedicated regression exhaustively compares
+all 584 arrays of lengths one through three over values from zero through seven
+against enumeration of every reachable submask combination. Remote submission
+was rejected by the known expired-session account-status check; the package is
+locally complete and recorded as a verification blocker. The expanded focused
+suites passed (`203 passed`, 74 subtests, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2318's final-two-roll dynamic program passed its 2, 4, and 8-roll
+tiers. An independent dictionary-state formulation passed at `-0.32`, with a
+`0.45x` largest runtime ratio, while exhaustive valid-sequence generation
+completed every output and failed only scaling at `+2.27`, with a `24.71x`
+largest runtime ratio. Both exact solution forms matched exhaustive generation
+through `n = 10`. Remote submission was rejected by the known expired-session
+account-status check; the package is locally complete and recorded as a
+verification blocker. The focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2319's full coordinate scan is covered by a strict
+`asymptotic_optimality` certificate: any uninspected cell can be changed into
+the sole diagonal-zero or off-diagonal-nonzero violation, so the
+$\Omega(n^2)$ lower bound matches the $O(n^2)$ scan. The dedicated regression
+exhaustively checks all 512 binary $3\times3$ matrices, and the exact solution
+forms additionally matched an independent coordinate-set oracle on 10,512
+matrices. Remote submission was rejected by the known expired-session
+account-status check; the package is locally complete and recorded as a
+verification blocker. The expanded focused suites passed (`204 passed`, 75
+subtests, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2320's two-state one-side recurrence passed its 4, 8, and 16-plot
+tiers. An independent stored-sequence recurrence passed at `-0.07`, with a
+`0.90x` largest runtime ratio, while exhaustive legal-mask enumeration
+completed every output and failed only scaling at `+4.15`, with a `333.49x`
+largest runtime ratio. Both exact solution forms matched exhaustive mask
+enumeration through `n = 16`. Remote submission was rejected by the known
+expired-session account-status check; the package is locally complete and
+recorded as a verification blocker. The focused suites passed (`137 passed`,
+with one deprecation warning), and `git diff --check` passed apart from
+line-ending notices.
+Problem 2321's bidirectional Kadane scan passed its 8, 32, and 64-position
+tiers. An independent prefix-minimum formulation passed at `-0.10`, with a
+`0.73x` largest runtime ratio, while correct interval enumeration completed
+every output and failed only scaling at `+0.95`, with a `9.35x` largest runtime
+ratio. Both exact solution forms matched exhaustive interval swapping on
+20,000 deterministic randomized array pairs. Remote submission was rejected by
+the known expired-session account-status check; the package is locally complete
+and recorded as a verification blocker. The focused suites passed (`137
+passed`, with one deprecation warning), and `git diff --check` passed apart
+from line-ending notices.
+Problem 2322's rooted-tree subtree-XOR scan passed its 8, 16, and 32-node
+tiers. An independent descendant-set quadratic implementation passed at
+`-0.09`, with a `0.47x` largest runtime ratio, while correct forest rebuilding
+for every cut pair completed every output and failed only scaling at `+1.54`,
+with a `36.46x` largest runtime ratio. Both exact solution forms matched direct
+edge removal and component traversal on 20,000 deterministic randomized trees.
+Remote submission was rejected by the known expired-session account-status
+check; the package is locally complete and recorded as a verification blocker.
+The focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2323 is Premium-only. The expired authenticated bridge returned no
+statement or snippets. LeetCode's official public GraphQL endpoint confirmed
+frontend ID 2323, question ID 2458, the title, and two paired-array example
+testcases, but returned null Premium content and code snippets. That evidence
+does not establish the exact scheduling model, array roles, constraints, or
+native interface. The scaffold was left untouched, and the package is recorded
+as an authoring blocker because Chrome fallback solely for expired preferred
+authentication requires explicit user approval.
+Problem 2324 is Premium-only. The expired authenticated bridge returned no
+statement or snippets. LeetCode's official public GraphQL endpoint confirmed
+frontend ID 2324, question ID 2451, the title, and the
+`Sales(sale_id, product_id, user_id, quantity)` and
+`Product(product_id, price)` example fixtures, but returned null Premium
+content and code snippets. That evidence does not establish the requested
+aggregation, projection, tie semantics, or output order. The scaffold was left
+untouched, and the package is recorded as an authoring blocker because Chrome
+fallback solely for expired preferred authentication requires explicit user
+approval.
+Problem 2325's first-occurrence substitution table passed its 32, 128, and
+256-character tiers. An independent translation-table implementation passed at
+`-0.60`, with a `0.12x` largest runtime ratio, while correct per-character key
+rescanning completed every output and failed only scaling at `+0.31`, with a
+`1.92x` largest runtime ratio. Both exact solution forms matched an independent
+first-occurrence oracle on 20,000 deterministic randomized key/message pairs.
+Remote submission was rejected by the known expired-session account-status
+check; the package is locally complete and recorded as a verification blocker.
+The focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2326's shrinking-boundary traversal passed its 16, 32, and 64-cell
+tiers. An independent direction-simulation implementation passed at `-0.06`,
+with a `0.82x` largest runtime ratio, while correct repeated coordinate lookup
+completed every output and failed only scaling at `+0.56`, with a `7.15x`
+largest runtime ratio. Both exact solution forms matched an independent
+direction-simulation oracle on 20,000 deterministic randomized matrices and
+list lengths. Remote submission was rejected by the known expired-session
+account-status check; the package is locally complete and recorded as a
+verification blocker. The focused suites passed (`137 passed`, with one
+deprecation warning), and `git diff --check` passed apart from line-ending
+notices.
+Problem 2327's rolling sharing-window recurrence passed its 64, 256, and
+1000-day tiers. An independent prefix-sum implementation passed at `+0.01`,
+with a `1.11x` largest runtime ratio, while correct direct cohort resumming
+completed every output and failed only scaling at `+0.28`, with a `1.54x`
+largest runtime ratio. Both exact solution forms matched direct cohort
+simulation on all 10,660 legal parameter triples through `n = 40`. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker. The
+focused suites passed (`137 passed`, with one deprecation warning), and
+`git diff --check` passed apart from line-ending notices.
+Problem 2328's Kahn topological propagation passed its 64, 256, and 512-cell
+tiers. An independent memoized-DFS implementation passed at `-0.05`, with a
+`0.13x` largest runtime ratio, while correct value-sorted propagation with
+repeated coordinate searches completed every output and failed only scaling
+at `+0.36`, with a `3.03x` largest runtime ratio. Both exact solution forms
+matched an independent memoized-DFS oracle on 20,256 exhaustive and
+deterministic randomized grids. Remote submission was rejected by the known
+expired-session account-status check; the package is locally complete and
+recorded as a verification blocker. The focused suites passed (`137 passed`,
+with one deprecation warning).
+Problem 2329 is Premium-only. The expired authenticated bridge returned no
+statement or snippets. LeetCode's official public GraphQL endpoint confirmed
+frontend ID 2329, question ID 2452, the title, and the
+`Sales(sale_id, product_id, user_id, quantity)` and
+`Product(product_id, price)` example fixtures, but returned null Premium
+content and code snippets. That evidence does not establish the requested
+calculation, projection, grouping, tie semantics, output order, or SQL
+interface. The scaffold was left untouched, and the package is recorded as an
+authoring blocker because Chrome fallback solely for expired preferred
+authentication requires explicit user approval.
+Problem 2330 is Premium-only. The expired authenticated bridge returned no
+statement or snippets. LeetCode's official public GraphQL endpoint confirmed
+frontend ID 2330, question ID 2468, the title, and example strings
+`"abcdba"`, `"aa"`, and `"abcdef"`, but returned null Premium content and code
+snippets. That evidence does not establish the allowed edit operation,
+operation limit, constraints, boolean semantics, or native interface. The
+scaffold was left untouched, and the package is recorded as an authoring
+blocker because Chrome fallback solely for expired preferred authentication
+requires explicit user approval.
+Problem 2331's recursive postorder evaluator passed its 7, 31, and 127-node
+tiers. An independent iterative postorder implementation passed at `+0.13`,
+with a `1.73x` largest runtime ratio, while correct repeated node-order lookup
+completed every output and failed only scaling at `+0.61`, with a `29.97x`
+largest runtime ratio. Both exact solution forms matched an independent
+iterative postorder oracle on 30,000 deterministic random full trees. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker. The
+focused suites passed (`137 passed`, with one deprecation warning).
+Problem 2332's sorted boarding simulation passed its 16, 64, and 256-passenger
+tiers. An independent deque-based simulation passed at `-0.17`, with a `0.49x`
+largest runtime ratio, while correct list-backed collision checks completed
+every output and failed only scaling at `+0.43`, with an `18.37x` largest
+runtime ratio. Both exact solution forms matched exhaustive candidate-arrival
+simulation on 20,000 deterministic random schedules. Remote submission was
+rejected by the known expired-session account-status check; the package is
+locally complete and recorded as a verification blocker. The focused suites
+passed (`137 passed`, with one deprecation warning).
+Problem 2333's occupied-level batching passed its 8, 32, and 62-element
+tiers. An independent sorted-level implementation passed at `-0.13`, with a
+`0.58x` largest runtime ratio, while correct one-operation-at-a-time max-heap
+greedy completed every output and failed only scaling at `+0.88`, with a
+`6.07x` largest runtime ratio. Both exact solution forms matched the max-heap
+oracle on 30,000 deterministic random inputs. Remote submission was rejected
+by the known expired-session account-status check; the package is locally
+complete and recorded as a verification blocker. The focused suites passed
+(`137 passed`, with one deprecation warning).
+Problem 2334's monotonic-stack interval discovery passed its 16, 32, and
+64-element tiers. An independent two-boundary-stack implementation passed at
+`+0.04`, with a `1.29x` largest runtime ratio, while correct subarray
+enumeration completed every output and failed only scaling at `+1.35`, with a
+`70.75x` largest runtime ratio. Both exact solution forms returned valid
+answers against exhaustive subarray enumeration on 30,000 deterministic
+random inputs. A package-authored `valid_subarray_size` judge validator now
+accepts any semantically valid length and verifies `-1` by a linear monotonic
+stack; its regression is included in the focused suite. Remote submission was
+rejected by the known expired-session account-status check; the package is
+locally complete and recorded as a verification blocker. The focused suites
+passed (`138 passed`, with one deprecation warning).
+Problem 2335's constant-time lower-bound formula is covered by a strict
+`bounded_domain` certificate because every legal input has exactly three
+counters, each at most 100, and therefore has no scalable structural size
+axis. Both exact solution forms matched independent priority-queue simulation
+on 100,000 deterministic random triples. The dedicated regression checks every
+sorted triple from 0 through 100 against that simulator; symmetry covers all
+1,030,301 ordered legal inputs. The expanded focused suite passed `206` tests
+and 75 certificate-route subtests before exposing a stale legacy one-tier
+benchmark; after its required removal, the certificate route passed all 76
+subtests. Remote submission was rejected by the known expired-session
+account-status check; the package is locally complete and recorded as a
+verification blocker.
+Problem 2336's fresh-frontier plus restored-value heap passed its 8, 32, and
+64-pop traces. An independent heap plus fixed membership bitmap passed at
+`-0.08`, with a `0.81x` largest runtime ratio, while correct restart-from-one
+membership scanning completed every output and failed only scaling at `+1.38`,
+with a `35.67x` largest runtime ratio. Both exact classes matched a
+finite-prefix set oracle across 1,000,000 deterministic randomized operations.
+Remote submission was rejected by the known expired-session account-status
+check; the package is locally complete and recorded as a verification blocker.
+The focused suites passed (`138 passed`, with one deprecation warning).
+Problem 2337's paired nonblank two-pointer scan passed its 16, 32, and
+64-character tiers. An independent generator-based two-pointer scan passed at
+`-0.16`, with a `0.63x` largest runtime ratio, while correct repeated position
+lookup completed every output and failed only scaling at `+0.29`, with a
+`3.34x` largest runtime ratio. Both exact forms matched exhaustive legal-move
+reachability across all 5,380,839 ordered pairs of strings through length
+seven. Remote submission was rejected by the known expired-session
+account-status check; the package is locally complete and recorded as a
+verification blocker.
+Problem 2338's prime-exponent stars-and-bars count passed its 64, 256, and
+1024-final-value tiers. An independent linear-sieve implementation passed at
+`-0.01`, with a `0.53x` largest runtime ratio, while correct independent trial
+division completed every output and failed only scaling at `+0.32`, with a
+`1.13x` largest runtime ratio. Both exact forms matched direct ideal-array
+enumeration for all 120 pairs with lengths 2 through 7 and maximum values 1
+through 20. Remote submission was rejected by the known expired-session
+account-status check; the package is locally complete and recorded as a
+verification blocker.
+Problem 2339 is an additional Premium SQL authoring blocker. Official public
+GraphQL confirmed question ID 2453 and a `Teams(team_name)` example fixture,
+but the expired session exposed neither statement content nor code snippets,
+which is insufficient to author the exact match orientation, projection,
+duplicate semantics, output order, and SQL interface.
+Problem 2340 is an additional Premium algorithm authoring blocker. Official
+public GraphQL confirmed question ID 2474 and example arrays
+`[3,4,5,5,3,1]` and `[9]`, but the expired session exposed neither statement
+content nor code snippets, which is insufficient to verify the valid-array
+definition, duplicate-extreme tie rules, constraints, return semantics, and
+native interface.
+Problem 2341's fixed-domain frequency count passed its 8, 32, and 100-element
+tiers. An independent unpaired-set implementation passed at `+0.10`, with a
+`0.75x` largest runtime ratio, while correct repeated list search and removal
+completed every output and failed only scaling at `+0.32`, with a `1.48x`
+largest runtime ratio. Both exact forms matched an independent frequency
+oracle on all 97,655 arrays through length seven over values 0 through 4.
+Remote submission was rejected by the known expired-session account-status
+check; the package is locally complete and recorded as a verification blocker.
+Problem 2342's one-maximum-per-digit-sum scan passed its 8, 32, and 64-element
+tiers. An independent string-digit-sum map passed at `-0.03`, with a `0.92x`
+largest runtime ratio, while correct all-pairs comparison completed every
+output and failed only scaling at `+1.12`, with an `18.88x` largest runtime
+ratio. Both exact forms matched brute-force pair enumeration on 50,000
+deterministic random arrays. Remote submission was rejected by the known
+expired-session account-status check; the package is locally complete and
+recorded as a verification blocker.
+Problem 2343's stable least-significant-digit radix ordering passed its 8, 16,
+and 32-string/query tiers. An independent prefix-position counting-sort
+implementation passed at `-0.08`, with a `0.74x` largest runtime ratio, while
+correct per-query sorting completed every output and failed only scaling at
+`+0.65`, with a `2.02x` largest runtime ratio. Both exact forms matched
+independent per-query suffix sorting on 30,000 deterministic random instances.
+Remote submission was rejected by the known expired-session account-status
+check; the package is locally complete and recorded as a verification blocker.
+Problem 2344's target-gcd reduction and smallest-divisor scan passed its 8, 32,
+and 64-by-64 tiers. An independent Euclidean-gcd implementation passed at
+`+0.06`, with a `1.19x` largest runtime ratio, while correct candidate-by-target
+testing completed every output and failed only scaling at `+1.14`, with a
+`17.55x` largest runtime ratio. Both exact forms matched independent sorted
+candidate testing on 50,000 deterministic random array pairs. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker.
+Problem 2345 is an additional Premium algorithm authoring blocker. Official
+public GraphQL confirmed question ID 2485 and example peak arrays
+`[[2,2],[6,3],[5,4]]` and `[[1,3],[1,3]]`, but the expired session exposed
+neither statement content nor code snippets, which is insufficient to verify
+mountain geometry, coverage boundary semantics, duplicate handling,
+constraints, and the native interface.
+Problem 2346 is an additional Premium SQL authoring blocker. Official public
+GraphQL confirmed question ID 2484 and a
+`Students(student_id, department_id, mark)` example fixture, but the expired
+session exposed neither statement content nor code snippets, which is
+insufficient to verify the percentage-rank formula, partitioning, tie
+semantics, rounding, projection, output order, and SQL interface.
+Problem 2347's five-card classifier is covered by a strict `bounded_domain`
+certificate because the contract has no scalable structural input size. Its
+dedicated regression checked every one of the 371,293 five-position rank
+sequences (excluding impossible fivefold ranks and assigning distinct suits
+per repeated rank) and all 1,024 suit sequences with distinct ranks. The
+certificate validator and exhaustive-signature regression passed. The
+expanded certificate suite exposed and prompted removal of a stale legacy
+one-tier benchmark; afterward the real-test certificate route passed all 77
+subtests. Remote
+submission was rejected by the known expired-session account-status check; the
+package is locally complete and recorded as a verification blocker.
+Problem 2348's incremental zero-run count passed its 8, 32, and 64-element
+tiers. An independent completed-run triangular-sum implementation passed at
+`-0.04`, with a `0.91x` largest runtime ratio, while correct interval
+enumeration completed every output and failed only scaling at `+1.18`, with a
+`17.82x` largest runtime ratio. Both exact forms matched exhaustive interval
+enumeration on 20,000 deterministic random arrays. Remote submission was
+rejected by the known expired-session account-status check; the package is
+locally complete and recorded as a verification blocker.
+Problem 2349's authoritative index map plus lazy per-number min-heaps passed
+its 8, 16, and 32-assignment/query tiers. An independent eager-membership plus
+lazy-heap implementation passed at `-0.01`, with a `0.97x` largest runtime
+ratio, while correct full-map scanning completed every output and failed only
+scaling at `+0.62`, with a `2.73x` largest runtime ratio. Both exact classes
+matched a direct current-assignment-map oracle across 500,000 deterministic
+random operations, including 166,526 finds. Remote submission was rejected by
+the known expired-session account-status check; the package is locally
+complete and recorded as a verification blocker.
+Problem 2350 is the first actionable incomplete package.
+Continue from the refreshed audit rather than the older chronological notes
+later in this file.
 
 ## Full goal
 
@@ -38,7 +11800,7 @@ the problem-specific reason and continue to the next numeric frontend ID.
   `97717019379cb191b141940935075f9667ece6c4`, which completes and delivers
   frontend IDs 1481 through 1489.
 - The worktree contains the completed local package changes through frontend
-  ID 1781, the accumulated benchmark and certificate runtime regressions, and
+  ID 2178, the accumulated benchmark and certificate runtime regressions, and
   refreshed generated reports. Preserve them and any later local changes unless
   inspection proves they are unrelated.
 - The four-digit directory migration remains based on
@@ -185,12 +11947,19 @@ before problem 823 began.
 - The user has already authorized in-scope remote verification submissions for
   this continuing migration through the existing Electron credential bridge.
   Do not ask for a separate confirmation for every problem when the execution
-  environment permits the direct command. Do not add approval-escalation
-  flags. If the host UI itself enforces a confirmation, that policy cannot be
-  bypassed from repository code. The user cannot answer further approval
-  prompts: if such an interaction or the current `safeStorage.decryptString`
-  failure prevents verification, record an exact package blocker and continue
-  to the next frontend ID.
+  environment permits the direct command. The user has also explicitly
+  authorized the already-open signed-in Chrome session as the fallback when
+  stored LeetCode session secrets are missing, expired, incomplete, or cannot
+  be decrypted. In that situation, do not stop at a credential blocker: claim
+  the live LeetCode tab through the Chrome-control skill, verify that the
+  expected signed-in account and problem are visible, and use that page
+  directly for contract access and the in-scope submission. Before submitting,
+  verify the entire Monaco editor buffer contains the exact candidate rather
+  than a starter stub; afterward, record only an authoritative Accepted result
+  for that exact source. Record a blocker only if neither the credential bridge
+  nor an open authenticated Chrome tab is usable. Do not add
+  approval-escalation flags. If the host UI itself enforces a confirmation,
+  that policy cannot be bypassed from repository code.
 - If work is paused only by the transient message "Selected model is at
   capacity", retry after about five minutes and continue from the live audit.
 
@@ -5820,6 +17589,414 @@ The earlier full-suite, Ruff, web-build, and Electron-build evidence still
 belongs to the concurrency/certificate batch; rerun those repository-wide
 checks after the next substantial batch or before final handoff.
 
+## Latest checkpoint: local-only backlog and problems 2350 through 2360
+
+Problem 2350, Shortest Impossible Sequence of Rolls, is locally complete and
+remotely verified. Its greedy complete-block scan passed 3,540 exhaustive
+small-domain oracle comparisons. An independent $O(n)$ marker-array
+implementation passed the authored tiers, while a correct manual
+per-face-search implementation returned every expected output and failed only
+the scaling verdict at `+1.12` with a `17.43x` largest runtime ratio. After the
+user supplied fresh session credentials, the exact native source was Accepted
+as submission `2074319083`.
+
+Problem 2351, First Letter to Appear Twice, is locally complete and remotely
+verified. The authenticated contract confirmed backend question ID `2427` and
+native entrypoint `Solution.repeatedCharacter`. Its 26-bit scan passed 87,316
+exhaustive oracle comparisons. An independent set implementation passed the
+three tiers, while a correct repeated-prefix scan completed every output and
+failed only scaling at `+0.53`. The exact native source was Accepted as
+submission `2074322443`.
+
+Problem 2352, Equal Row and Column Pairs, is locally complete and remotely
+verified. The authenticated contract confirmed backend question ID `2428` and
+native entrypoint `Solution.equalPairs`. The tuple-frequency solution passed
+19,767 exhaustive matrices over dimensions one through three. Its calibrated
+16/32/64 all-equal tiers allow an independent $O(n^2)$ two-counter
+implementation to pass, while a correct direct $O(n^3)$ row-column comparison
+completed every output and failed only scaling at `+1.41` with a `29.00x`
+largest runtime ratio. The exact native source was Accepted as submission
+`2074329955`.
+
+Problem 2353, Design a Food Rating System, is locally complete and remotely
+verified. The authenticated contract confirmed backend question ID `2429` and
+native class `FoodRatings`. The lazy per-cuisine heap implementation passed
+23,994 randomized stateful queries. An independent heapify-based
+$O((n+q)\log(n+q))$ implementation passed the 32/128/512 operation traces,
+while a correct cuisine-member scan completed every output and failed only
+scaling at `+1.09` with a `53.55x` largest runtime ratio. The exact native
+class was Accepted as submission `2074336707`.
+
+Problem 2354, Number of Excellent Pairs, is locally complete and remotely
+verified. The authenticated contract confirmed backend question ID `2430` and
+native entrypoint `Solution.countExcellentPairs`. The popcount-frequency
+solution passed 1,098,048 exhaustive oracle comparisons over duplicate-rich
+small arrays and threshold values. An independently written $O(n)$
+threshold-bounded histogram implementation passed the 64/256/512 distinct
+value tiers at `+0.04`, while a correct ordered-pair scan returned every
+expected output and failed only scaling at `+1.87` with a `101.00x` largest
+runtime ratio. The exact native source was Accepted as submission
+`2074346397`.
+
+Problem 2355, Maximum Number of Books You Can Take, is locally complete and
+remotely verified. The authenticated Premium contract confirmed backend
+question ID `2490` and native entrypoint `Solution.maximumBooks`. The
+monotonic-stack dynamic program matched a brute-force endpoint oracle across
+all 335,922 arrays of lengths one through seven over capacities zero through
+five. Both independently written $O(n)$ implementations passed the
+64/256/512 increasing-capacity tiers at `+0.00`, while a correct
+endpoint-by-endpoint backward scan returned every expected output and failed
+only scaling at `+1.03` with an `83.11x` largest runtime ratio. The exact
+native source was Accepted as submission `2074353827`.
+
+Problem 2356, Number of Unique Subjects Taught by Each Teacher, is locally
+complete and remotely verified. The authenticated contract confirmed backend
+question ID `2495` and a MySQL query interface. Direct teacher grouping with a
+distinct-subject aggregate passed the 64/256/512 assignment tiers at `+0.02`,
+and an independent distinct-pair subquery passed at `-0.02`. A correct
+same-teacher self-join returned every expected result and failed only scaling
+at `+1.28` with a `67.32x` largest runtime ratio. The exact MySQL query was
+Accepted as submission `2074360954`.
+
+Problem 2357, Make Array Zero by Subtracting Equal Amounts, is locally
+complete and remotely verified. The authenticated contract confirmed backend
+question ID `2436` and native entrypoint `Solution.minimumOperations`. The
+distinct-positive-level solution passed 335,922 exhaustive small-array
+comparisons. An independent $O(n)$ set implementation passed the complete
+25/50/100 legal-length tiers, while faithful repeated subtraction returned
+every expected answer and failed only scaling at `+1.68` with a `189.70x`
+largest runtime ratio. The exact native source was Accepted as submission
+`2074365933`.
+
+Problem 2358, Maximum Number of Groups Entering a Competition, is locally
+complete and remotely verified. The authenticated contract confirmed backend
+question ID `2437` and native entrypoint `Solution.maximumGroups`. The exact
+integer-square-root formula passed its triangular-bound invariant for all
+100,000 legal lengths. It and an independent constant-time formula passed the
+1,024/4,096/16,384 student tiers, while an unnecessary but correct constructive
+sort returned every answer and failed only scaling at `+0.19`. The exact native
+source was Accepted as submission `2074372412`.
+
+Problem 2359, Find Closest Node to Given Two Nodes, is locally complete and
+remotely verified. The authenticated contract confirmed backend question ID
+`2438` and native entrypoint `Solution.closestMeetingNode`. The two-distance
+walk matched an independent oracle across 20,000 deterministic random
+functional graphs. Independent $O(n)$ path maps passed the 16/64/128 chain
+tiers, while correct per-candidate path searches returned every result and
+failed only scaling at `+1.13` with a `40.95x` largest runtime ratio. The exact
+native source was Accepted as submission `2074378053`.
+
+The local-only audit found 92 locally complete packages without Accepted
+evidence. All 59 packages that already had pending native candidates were
+retried with the renewed encrypted session and were Accepted: problems
+1413–1426 plus the pending candidates from 2289–2349. Problem 1413 exposed
+stale backend question IDs in the older batch, so authenticated live metadata
+was used to correct 1413–1426 before submission. The remaining 33 local-only
+packages are exactly 1463–1495; they lack native submission artifacts and need
+a separate native-interface authoring pass rather than another credential
+retry. This cleanup raised remotely verified packages by 59 and reduced
+recorded blockers from 108 to 49.
+
+Problem 2360, Longest Cycle in a Graph, is locally complete and remotely
+verified as submission `2074406240`. Independent global-walk and indegree-prune
+$O(n)$ implementations passed the 16/64/128 cycle tiers, while correct
+per-start cycle detection completed every output and failed only scaling at
+`+1.18` with a `36.71x` largest runtime ratio.
+
+Problem 2361, Minimum Costs Using the Train Line, is locally complete and
+remotely verified as submission `2074411181`. Independent rolling-state and
+full-array $O(n)$ dynamic programs passed the 64/256/512 segment tiers, while
+correct per-destination prefix recomputation returned every output and failed
+only scaling at `+1.18` with a `120.16x` largest runtime ratio.
+
+Problem 2362, Generate the Invoice, is locally complete and remotely verified
+as submission `2074416381`. Direct grouped totals and an independent window
+ranking query passed the 64/256/512 invoice tiers, while a correct correlated
+total query completed every result and failed only scaling at `+0.94` with a
+`10.22x` largest runtime ratio.
+
+Problem 2363, Merge Similar Items, is locally complete and remotely verified
+as submission `2074420354`. Independent bounded-domain $O(n+V)$
+implementations passed the 32/128/256 item tiers, while correct nested matching
+returned every output and failed only scaling at `+1.63` with a `43.96x`
+largest runtime ratio.
+
+Problem 2364, Count Number of Bad Pairs, is locally complete and remotely
+verified as submission `2074423941`. Independent $O(n)$ key-counting
+implementations passed the 32/128/256 tiers, while direct pair enumeration
+returned every answer and failed only scaling at `+1.26` with a `54.68x`
+largest runtime ratio.
+
+Problem 2365, Task Scheduler II, is locally complete and remotely verified as
+submission `2074429908`. Independent $O(n)$ day-jump schedulers passed the
+32/128/256 task tiers, while correct calendar-day simulation returned every
+answer and failed only scaling at `+1.38` with a `214.48x` largest runtime
+ratio.
+
+Problem 2366, Minimum Replacements to Sort the Array, is locally complete and
+remotely verified as submission `2074433512`. Independent $O(n)$
+right-to-left greedy implementations passed the 32/128/256 descending tiers,
+while correct incremental piece-count search returned every answer and failed
+only scaling at `+1.21` with a `37.73x` largest runtime ratio.
+
+Problem 2367, Number of Arithmetic Triplets, is locally complete and remotely
+verified as submission `2074438132`. Independent $O(n)$ value-membership
+implementations passed the complete 25/100/200 legal-length tiers, while
+correct pair enumeration returned every answer and failed only scaling at
+`+1.33` with a `50.78x` largest runtime ratio.
+
+Problem 3022 is complete and remotely verified as submission `2078871783`.
+Its exact high-to-low forbidden-mask source passed all 822 official tests. The
+three benchmark tiers are 64, 128, and 256 values; the reference and an
+independent same-class segment-count implementation passed, while correct
+boundary recomputation completed every tier and failed only scaling at extra
+exponent `+0.45`.
+
+Problem 3023 is complete and remotely verified as Premium submission
+`2078876997`, with all 11,846 official tests passed. Its exact KMP source
+consumes the hidden stream only through `InfiniteStream.next()`. A matching
+app-local judge adapter and regression now preserve those source-native
+semantics for authored fixtures. Benchmark sizes are 512, 2,048, and 8,192
+consumed bits with increasingly long self-overlapping patterns. The reference
+and an independent DFA implementation passed, while correct explicit sliding-
+window comparison completed every tier and failed only scaling at extra
+exponent `+0.37`.
+
+Problem 3024 is complete and remotely verified as submission `2078881561`,
+with all 705 official tests passed. Because the legal input always has exactly
+three sides, its strict bounded-domain certificate replaces the invalid legacy
+benchmark; the certificate regression checks all 1,000,000 legal ordered
+arrays against an independent classification oracle.
+
+Problem 3025 is complete and remotely verified as submission `2078882892`,
+with all 955 official tests passed. The reference and an independent quadratic
+visibility scan passed the 8/24/50-point tiers. Correct cubic rectangle
+inspection completed every tier and failed only scaling at extra exponent
+`+1.24` and a `42.04x` largest-tier ratio.
+
+Problem 3026 is complete and remotely verified as submission `2078885427`,
+with all 783 official tests passed. The reference and an independent linear
+prefix-map implementation passed the 16/64/256-value tiers. Correct quadratic
+subarray enumeration completed every tier and failed only scaling at extra
+exponent `+0.98` and a `29.78x` largest-tier ratio.
+
+Problem 3027 is complete and remotely verified as submission `2078888097`,
+with all 551 official tests passed. The reference and an independent quadratic
+visibility scan passed the 12/28/56-point tiers. Correct cubic fence inspection
+completed every tier and failed only scaling at extra exponent `+1.14` and a
+`46.28x` largest-tier ratio.
+
+Problem 3028 is complete and remotely verified as submission `2078889946`,
+with all 641 official tests passed. Linear prefix simulations passed the
+8/32/100-movement tiers, while correct quadratic prefix recomputation completed
+every tier and failed only scaling at extra exponent `+0.95` and a `14.62x`
+largest-tier ratio.
+
+Problem 3029 is complete and remotely verified as submission `2078892943`,
+with all 769 official tests passed. The reference and an independent suffix-
+prefix slicing implementation passed the 10/25/50-character tiers. Correct
+repeated-from-scratch simulation completed every output and failed only
+scaling at extra exponent `+0.99` and a `7.18x` largest-tier ratio.
+
+Problem 3030 is complete and remotely verified as submission `2078895622`,
+with all 810 official tests passed. Independent $O(MN)$ region accumulation
+implementations passed the 36/144/576-cell tiers. A correct per-pixel scan of
+all valid regions completed every output and failed only scaling at extra
+exponent `+0.78` and a `6.66x` largest-tier ratio.
+
+Problem 3031 is complete and remotely verified as submission `2078898375`,
+with all 911 official tests passed. The Z-function reference and an independent
+prefix-function implementation passed the 2,048/16,384/65,536-character
+tiers. Correct quadratic suffix slicing completed every tier and failed only
+scaling at extra exponent `+0.31`.
+
+Problem 3032 is complete and remotely verified as submission `2078901562`,
+with all 784 official tests passed. The reference and an independent
+$O(RD)$ implementation passed the 50/200/800-value tiers while holding digit
+width fixed. Correct quadratic prefix recomputation completed every output and
+failed only scaling at extra exponent `+0.29`.
+
+Problem 3033 is complete and remotely verified as submission `2078905056`,
+with all 514 official tests passed. The reference and an independent $O(mn)$
+implementation passed the 100/400/2,500-cell tiers. A correct $O(m^2n)$
+per-missing-cell column rescan completed every output and failed only scaling
+at extra exponent `+0.65` with a `10.51x` largest-tier ratio.
+
+Problem 3034 is complete and remotely verified as submission `2078907586`,
+with all 792 official tests passed. The direct matcher and an independent
+same-class comparison-array implementation passed the 80/400/2,500-comparison
+tiers. A correct $O((n-m)m^2)$ repeated-window rescan completed every output and
+failed only scaling at extra exponent `+0.19`.
+
+Problem 3035 is complete and remotely verified as submission `2078909418`,
+with all 507 official tests passed. Independent $O(S+n\log n)$ pair-budget
+implementations passed the 50/200/800-word tiers. Correct repeated shortest
+selection completed every output and failed only scaling at extra exponent
+`+0.37` with a `4.18x` largest-tier ratio.
+
+Problem 3036 is complete and remotely verified as submission `2078912690`,
+with all 792 official tests passed. The streaming KMP reference and an
+independent comparison-array KMP implementation passed the
+56/225/900-symbol tiers. A correct direct-window matcher completed every
+output and failed only scaling at extra exponent `+0.95` with a `23.27x`
+largest-tier ratio.
+
+Problem 3037 is complete and remotely verified as submission `2078915161`,
+with all 12,841 official tests passed. The streaming KMP reference and an
+independent binary-transition automaton passed the 64/256/1,024-consumed-bit
+tiers. A correct explicit-window matcher completed every output and failed
+only scaling at extra exponent `+0.68`.
+
+Problem 3038 is complete and remotely verified as submission `2078917574`,
+with all 559 official tests passed. Two independent linear pair scans passed
+the 16/40/100-value tiers. Correct repeated suffix reconstruction completed
+every output and failed only scaling at extra exponent `+1.11` with an
+`11.32x` largest-tier ratio.
+
+Problem 3039 is complete and remotely verified as submission `2078920775`,
+with all 697 official tests passed. The accepted two-scan reference and an
+independent reverse-scan implementation passed the 32/128/512-character
+tiers. Correct repeated deletion completed every output and failed only
+scaling at extra exponent `+1.05` with a `63.70x` largest-tier ratio.
+
+Problem 3040 is complete and remotely verified as submission `2078923429`,
+with all 549 official tests passed. An initial memoized recursive candidate
+reached Memory Limit Exceeded at 521 tests, so the accepted source evaluates
+the same interval recurrence in rolling length layers using $O(n)$ space.
+Two independent rolling $O(n^2)$ implementations passed the 4/8/16-element
+tiers. Correct uncached search completed every output and failed only scaling
+at extra exponent `+2.83` with a `43.12x` largest-tier ratio.
+
+Problem 3041 is complete and remotely verified as submission `2078925785`,
+with all 668 official tests passed. Two independent sorted endpoint-DP
+implementations passed the 16/64/256-element tiers. Correct quadratic
+predecessor scanning completed every output and failed only scaling at extra
+exponent `+1.25` with a `356.24x` largest-tier ratio. The original
+64/256/1,024 draft was discarded because the slower implementation reached
+the execution safety cap instead of producing a valid scaling verdict.
+
+Problem 3042 is complete and remotely verified as submission `2078928111`,
+with all 594 official tests passed. Submission `2078927790` was also Accepted,
+then superseded by the exact verified source to avoid allocating a sliced copy
+of the remaining array. The accepted direct comparison and an independent
+explicit-slice implementation passed the 56/950/12,250 work tiers. Correct
+repeated prefix and suffix construction completed every output and failed only
+scaling at extra exponent `+0.31` with a `12.34x` largest-tier ratio.
+
+Problem 3043 is complete and remotely verified as submission `2078930852`.
+The accepted integer-prefix hash set and an independent digit trie passed the
+512/1,536/4,096 digit-work tiers. Correct all-pairs prefix comparison completed
+every output and failed only scaling at extra exponent `+1.04` with a `35.00x`
+largest-tier ratio. The original 2,048/8,192/32,768 draft was discarded because
+the slower implementation reached the execution step guard instead of
+producing a valid scaling verdict.
+
+Problem 3044 is complete and remotely verified as submission `2078933079`.
+The accepted cached fixed-direction enumerator and an independent cached
+enumerator passed the legal 2-by-2, 4-by-4, and 6-by-6 tiers. Correct repeated
+counting completed every output and failed only scaling at extra exponent
+`+0.96` with a `43.49x` largest-tier ratio. The old scaffold's 7-by-7 workload
+was replaced because it violated the public 6-by-6 matrix limit.
+
+Problem 3045 is complete and remotely verified as submission `2078934650`.
+The accepted paired-character trie and an independent indexed-node trie passed
+the 256/1,024/4,096-character tiers. Correct pairwise prefix-and-suffix checks
+completed every output and failed only scaling at extra exponent `+1.03` with
+a `26.24x` largest-tier ratio. The placeholder scaffold implementation was
+replaced in full.
+
+Problem 3046 is complete and remotely verified as submission `2078936793`.
+The accepted fixed-domain counter and an independent hash counter passed the
+legal 8/32/100-element tiers. Correct repeated counting completed every output
+and failed only scaling at extra exponent `+1.27` with a `39.71x` largest-tier
+ratio. The old scaffold's 30,000-element workload was replaced because it
+violated the public 100-element limit.
+
+Problem 3047 is complete and remotely verified as submission `2078938972`.
+The exact accepted pairwise-intersection implementation passed an exhaustive
+47,952-input local cross-check and the authored 6/28/66 pair-work tiers.
+Correct repeated pairwise recomputation completed every output and failed only
+scaling at extra exponent `+1.07` with a `32.98x` largest-tier ratio. A first
+candidate slower implementation was discarded because its coordinate-by-
+coordinate scan reached the execution step guard on a legal large-coordinate
+correctness case instead of producing a scaling verdict.
+
+Problem 3048 is complete and remotely verified as submission `2078943084`.
+The exact accepted last-occurrence binary search passed all official examples
+and an exhaustive 10,374-input comparison against a brute-force scheduler.
+The accepted implementation and an independent deadline-accounting binary
+search passed the 24/48/96-second tiers. Correct linear prefix search completed
+every output and failed only scaling at extra exponent `+0.75` with a `7.60x`
+largest-tier ratio.
+
+Problem 3049 is complete and remotely verified as submission `2078946424`.
+The exact accepted reverse heap scheduler passed all official examples and
+71,928 exhaustive comparisons against a brute-force state scheduler. The
+accepted implementation and an independent precomputed-first-occurrence heap
+implementation passed the 24/48/96-second tiers. Correct linear prefix search
+completed every output and failed only scaling at extra exponent `+0.74` with
+an `8.61x` largest-tier ratio.
+
+Problem 3116 is complete and remotely verified as submission `2079466416`.
+The exact accepted inclusion-exclusion and binary-search source passed 561/561
+remote tests and matches the stored native artifact byte-for-byte after newline
+normalization. It also passed 131,850 independent exhaustive and randomized
+oracle comparisons before submission. The accepted reference and an independent
+same-class implementation passed the legal 256/1,024/8,192-rank tiers. A correct
+heap merge completed every correctness and benchmark output, then failed only
+scaling at extra exponent `+0.90` with a `24.10x` largest-tier ratio.
+
+Problems 3117 through 3119 are complete and remotely verified as submissions
+`2079478021`, `2079486004`, and `2079491707`; 3118 is the accepted MySQL
+artifact. Their accepted native sources, comprehensive correctness cases, and
+three-tier complexity evidence are complete. For 3119, the correct
+pseudo-polynomial DP finished every output and failed only scaling at `+1.26`
+extra growth with a `511.62x` largest-tier ratio.
+
+Problem 3120 is complete and remotely verified as submission `2079507381`
+with 866/866 tests. The exact accepted two-bitmask source, 12 ordinary cases,
+and legal 3/12/48-character tiers are stored. The accepted reference and an
+independent set implementation passed; correct pairwise comparison finished
+every output and failed only scaling at `+0.56` extra growth with a `4.92x`
+largest-tier ratio.
+
+Problem 3121 is complete and remotely verified as submission `2079512020`
+with 896/896 tests. The exact accepted four-state-per-letter automaton, 12
+ordinary cases, and 64/192/512-character tiers are stored. The accepted
+reference and an independent first/last-index implementation passed; correct
+repeated full scans finished every output and failed only scaling at `+1.23`
+extra growth with a `155.04x` largest-tier ratio.
+
+Problem 3122 is complete and remotely verified as submission `2079519473`
+with 658/658 tests. Its exact maximum-preservation column DP, corrected third
+official example, 12 ordinary cases, and 16/64/256-column tiers are complete.
+The accepted reference and an independent minimum-cost DP passed; correct
+prefix recomputation finished every output and failed only scaling at `+0.98`
+extra growth with a `17.97x` largest-tier ratio.
+
+Problem 3123 is complete and remotely verified as submission `2079525032`
+with 536/536 tests. Its exact two-Dijkstra source, 12 ordinary cases, and
+32/128/256-node sparse-graph tiers are complete. The accepted reference and
+an independent heap implementation passed; correct array-based Dijkstra
+finished every output and failed only scaling at `+0.90` extra growth with an
+`18.11x` largest-tier ratio.
+
+The refreshed audit reports 3,106 locally complete and 3,106 fully verified
+packages, 17 recorded blockers, 2,883 scaling benchmarks, and 223
+certificates. The dataset checker reports 3,106 manually complete documents
+and 885 needing authoring. The 151 focused runtime, document, and template tests
+pass with only the known Starlette and frontend-ID 2693 warnings. The signed-in
+Chrome session remains the current path for Premium contracts and exact native
+verification. The user explicitly confirmed on 2026-07-24 that this open
+signed-in Chrome session must also be used directly whenever stored session
+secrets are absent or invalid; do not record a credential blocker before trying
+that fallback. The next actionable package is
+`dsa/leetcode/3124_find-longest-calls`. Its authenticated Premium SQL contract,
+the complete `Contacts` and `Calls` schemas, official fixture and output,
+three-longest-per-call-type requirement, descending `type`, `duration`, and
+`first_name` ordering, `HH:MM:SS` formatting requirement, and MySQL starter
+were staged in the live Chrome tab before handoff.
+
 ## Exact restart sequence
 
 Start in the existing checkout and keep its uncommitted changes:
@@ -5834,9 +18011,9 @@ Get-Content dsa\leetcode\_reports\two_sum_migration_progress.md
 ```
 
 The expected branch is `main`, and the expected committed migration checkpoint is
-`97717019379cb191b141940935075f9667ece6c4`. The refreshed first actionable
+`cdaca68f1e6073c67d24721e8d9b7d0c9e48edf1`. The refreshed first actionable
 package should be
-`dsa/leetcode/1807_evaluate-the-bracket-pairs-of-a-string`. If
+`dsa/leetcode/3124_find-longest-calls`. If
 any of those facts differ, trust the live worktree and refreshed audit,
 investigate the drift, and preserve rather than discard changes.
 
@@ -5845,7 +18022,7 @@ After completing each package, use at least:
 ```powershell
 .\.venv\Scripts\python.exe tools\audit_leetcode_migration.py
 .\.venv\Scripts\python.exe tools\check_leetcode_dataset.py
-.\.venv\Scripts\python.exe -m pytest server\tests\test_validated_cases.py server\tests\test_dynamic_docs.py -q
+.\.venv\Scripts\python.exe -m pytest server\tests\test_validated_cases.py server\tests\test_dynamic_docs.py tests\test_solution_templates.py -q
 git diff --check
 ```
 
@@ -5853,7 +18030,7 @@ For the next native candidate, replace the frontend ID in:
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE=$null
-npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1807
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_3113
 ```
 
 ## Exact prompt for a new Codex session
@@ -5861,7 +18038,7 @@ npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cj
 Copy and paste this entire block into the new session:
 
 > Resume the active canonical LeetCode migration in `C:\dawei7\code_n` with
-> the full goal of completing every problem through frontend ID 3985. Stay on
+> the full goal of completing every canonical problem. Stay on
 > the existing local branch `main` and preserve every local change, including
 > the separate visualization framework work. Before
 > changing anything, read `AGENTS.md`, `BENCHMARKING.md`,
@@ -5870,16 +18047,240 @@ Copy and paste this entire block into the new session:
 > `dsa/leetcode/_reports/ACTIVE_MIGRATION_HANDOFF.md`, and
 > `dsa/leetcode/_reports/two_sum_migration_progress.md` completely. Then run a
 > fresh migration audit and treat the live worktree and generated reports as
-> authoritative. Problems through frontend ID 1806 are locally complete;
-> 1759 packages are remotely verified. Problems 1413 through 1426 have
+> authoritative. Packages through frontend ID 3116 have been handled except
+> for the recorded blockers; the audit reports 3099 locally complete and 3099
+> remotely verified packages. Problems
+> 1413 through 1426 have
 > recorded Electron credential-decryption blockers, while 1463 through 1495
 > have recorded Chrome-not-running launch-policy blockers. The former
 > expired-session blockers for problems 1728 through 1732 were cleared after
-> all five candidates were remotely Accepted. The expected first
-> actionable package is
-> `dsa/leetcode/1807_evaluate-the-bracket-pairs-of-a-string`,
-> but follow
-> the refreshed audit if it differs.
+> all five candidates were remotely Accepted. Problems 2289 and 2290 have newly
+> recorded expired-session submission blockers despite authenticated statement
+> reads. Problems 2291 and 2292 are Premium authoring blockers because their
+> statements and snippets became inaccessible after session expiry, and Chrome
+> fallback requires explicit approval. Problems 2293 through 2296 are locally
+> complete but have the same expired-session submission
+> blocker. Problems 2297 and 2298 are additional Premium contract-access
+> blockers. Problems 2299 through 2306 are locally complete with the same
+> expired-session submission blocker. Problem 2307 is an additional Premium
+> contract-access blocker, and problem 2308 is a Premium SQL contract-access
+> blocker. Problems 2309 through 2312 are locally complete with the expired-session
+> submission blocker. Problems 2313 and 2314 are additional Premium
+> contract-access blockers, problems 2315 through 2322 are locally complete with the
+> expired-session submission blocker, and problems 2323 and 2324 are additional
+> Premium contract-access blockers, problems 2325 through 2328 are locally
+> complete with the expired-session submission blocker, and problem 2329 is an
+> additional Premium SQL contract-access blocker, and problem 2330 is an
+> additional Premium algorithm contract-access blocker, and problem 2331 is
+> locally complete with the expired-session submission blocker, as is problem
+> 2332 through 2338, and problem 2339 is an additional Premium SQL
+> contract-access blocker, and problem 2340 is an additional Premium algorithm
+> contract-access blocker, and problem 2341 is locally complete with the
+> expired-session submission blocker, as are problems 2342 and 2343. The
+> same applies to problem 2344. Problem 2345 is an additional Premium
+> algorithm contract-access blocker, and problem 2346 is an additional Premium
+> SQL contract-access blocker. Problem 2347 is locally complete with a
+> bounded-domain certificate and expired-session submission blocker. The
+> same expired-session submission blocker applies to problem 2348 and problem
+> 2349. Fresh credentials were then stored through Electron safeStorage:
+> problem 2350 was Accepted as submission `2074319083`, and problem 2351 was
+> Accepted as submission `2074322443`, and problem 2352 was Accepted as
+> submission `2074329955`, and problem 2353 was Accepted as submission
+> `2074336707`, and problem 2354 was Accepted as submission `2074346397`.
+> Problem 2355 was Accepted as submission `2074353827`.
+> Problem 2356 was Accepted as submission `2074360954`.
+> Problem 2357 was Accepted as submission `2074365933`.
+> Problem 2358 was Accepted as submission `2074372412`.
+> Problem 2359 was Accepted as submission `2074378053`.
+> Problem 2360 was Accepted as submission `2074406240`. A refreshed local-only
+> audit also promoted 59 previously pending native candidates; the remaining
+> 33 local-only packages are 1463–1495 and lack native submission artifacts.
+> Problem 2361 was Accepted as submission `2074411181`.
+> Problem 2362 was Accepted as submission `2074416381`.
+> Problem 2363 was Accepted as submission `2074420354`.
+> Problem 2364 was Accepted as submission `2074423941`.
+> Problem 2365 was Accepted as submission `2074429908`.
+> Problem 2366 was Accepted as submission `2074433512`.
+> Problem 2367 was Accepted as submission `2074438132`.
+> Problem 2368 was Accepted as submission `2074443154`.
+> Problem 2369 was Accepted as submission `2074445923`.
+> Problem 2370 was Accepted as submission `2074455086`.
+> Problem 2371 was Accepted as submission `2074459200`.
+> Problem 2372 was Accepted as submission `2074463077`.
+> Problem 2373 was Accepted as submission `2074468533`.
+> Problem 2374 was Accepted as submission `2074471997`.
+> Problem 2375 was Accepted as submission `2074475845`.
+> Problem 2376 was Accepted as submission `2074480866`.
+> Problem 2377 was Accepted as submission `2074484920`.
+> Problem 2378 was Accepted as submission `2074490739`.
+> Problem 2379 was Accepted as submission `2074495515`.
+> Problem 2380 was Accepted as submission `2074499306`.
+> Problem 2381 was Accepted as submission `2074503275`.
+> Problem 2382 was Accepted as submission `2074509052`.
+> Problem 2383 was Accepted as submission `2074514340`.
+> Problem 2384 was Accepted as submission `2074519317`.
+> Problem 2385 was Accepted as submission `2074523974`.
+> Problem 2386 was Accepted as submission `2074527547`.
+> Problem 2387 was Accepted as submission `2074531670`.
+> Problem 2388 was Accepted as submission `2074536977`.
+> Problem 2389 was Accepted as submission `2074541799`.
+> Problem 2390 was Accepted as submission `2074546301`.
+> Problem 2391 was Accepted as submission `2074551237`.
+> Problem 2392 was Accepted as submission `2074557967`.
+> Problem 2393 was Accepted as submission `2074563361`.
+> Problem 2394 was Accepted as submission `2074570322`.
+> Problem 2395 was Accepted as submission `2074577925`.
+> Problem 2396 was Accepted as submission `2074583388`.
+> Problem 2397 was Accepted as submission `2074588723`.
+> Problem 2398 was Accepted as submission `2074593314`.
+> Problem 2399 was Accepted as submission `2074597999`.
+> Problem 2400 was Accepted as submission `2074602883`.
+> Problem 2401 was Accepted as submission `2074608021`.
+> Problem 2402 was Accepted as submission `2074612880`.
+> Problem 2403 was Accepted as submission `2074617836`.
+> Problem 2404 was Accepted as submission `2074624308`.
+> Problem 2405 was Accepted as submission `2074629200`.
+> Problem 2406 was Accepted as submission `2074636014`.
+> Problem 2407 was Accepted as submission `2074642004`.
+> Problem 2408 was Accepted as submission `2074650127`.
+> Problem 2409 was Accepted as submission `2074655541`.
+> Problem 2410 was Accepted as submission `2074662072`.
+> Problem 2411 was Accepted as submission `2074667419`.
+> Problem 2412 was Accepted as submission `2074672561`.
+> Problem 2413 was Accepted as submission `2074677032`.
+> Problem 2414 was Accepted as submission `2074682551`.
+> Problem 2415 was Accepted as submission `2074686969`.
+> Problem 2416 was Accepted as submission `2074693333`.
+> Problem 2417 was Accepted as submission `2074700850`.
+> Problem 2418 was Accepted as submission `2074711349`.
+> Problem 2419 was Accepted as submission `2074716494`.
+> Problem 2420 was Accepted as submission `2074723221`.
+> Problem 3116 was Accepted as submission `2079466416`. Problem 3117 was
+> Accepted as submission `2079478021`; its iterative compressed-state dynamic
+> program, 12 correctness cases, and three benchmark tiers are complete.
+> Premium SQL problem 3118 was Accepted as MySQL submission `2079486004`; its
+> six table-fixture cases and three scaling tiers distinguish the accepted
+> join-and-aggregation query from a correct quadratic cross product. Premium
+> algorithm problem 3119 was Accepted as submission `2079491707`; its exact
+> native source matches the stored artifact, all 11 ordinary cases pass, and
+> its 256/512/1024 isolated-pothole tiers accept both the reference and an
+> independent optimal implementation while a correct pseudo-polynomial DP
+> finishes every output and fails scaling (+1.26 exponent, 511.62x). Problem
+> 3120 was Accepted as submission `2079507381`; its exact bitmask source, 12
+> cases, and 3/12/48 tiers are complete, and the correct quadratic comparison
+> fails only scaling (+0.56 exponent, 4.92x). Problem 3121 was Accepted as
+> submission `2079512020`; its exact four-state automaton, 12 cases, and
+> 64/192/512 tiers are complete, and correct repeated full scans fail only
+> scaling (+1.23 exponent, 155.04x). Problem 3122 was Accepted as submission
+> `2079519473`; its corrected contract, exact column DP, 12 cases, and three
+> tiers are complete, and correct prefix recomputation fails only scaling
+> (+0.98 exponent, 17.97x). Problem 3123 was Accepted as submission
+> `2079525032`; its exact two-Dijkstra source, 12 cases, and three sparse-graph
+> tiers are complete, and correct array-based Dijkstra fails only scaling
+> (+0.90 exponent, 18.11x). Premium SQL problem 3124 was Accepted as exact
+> MySQL submission `2079533289` with all 11 remote cases passing; its six
+> ordered table fixtures, SQLite adapter, and 64/256/1024 call tiers are
+> complete. The correct correlated-count query finishes every output and
+> fails only scaling (+1.08 exponent, 42.34x). Premium algorithm problem 3125
+> was Accepted as exact Python submission `2079539928` with all 8501 remote
+> cases passing; its 12 correctness cases and 3/12/48-bit tiers are complete.
+> The accepted formula and an independent optimal loop pass scaling, while a
+> correct binary-search/range-AND implementation finishes every output and
+> fails only scaling (+0.98 exponent, 17.71x). Premium SQL problem 3126 was
+> Accepted as exact linear MySQL submission `2079546980` with all 16 remote
+> cases passing; its six ordered table fixtures and 64/256/1024-event tiers
+> are complete. The accepted signed-timestamp sum and an independent linear
+> aggregate pass scaling, while correct correlated occurrence matching
+> finishes every output and fails only scaling (+2.07 exponent, 1614.60x).
+> Problem 3127 was Accepted as exact Python submission `2079553690` with all
+> 515 remote cases passing. Its 12 correctness cases, strict `bounded_domain`
+> certificate, and exhaustive regression over all 512 legal 3-by-3 B/W grids
+> are complete; the legacy one-tier benchmark was removed so no fake runtime
+> verdict or certificate conflict remains. Problem 3128 was Accepted as exact
+> Python submission `2079560548`. Its corrected three official examples, 12
+> ordinary correctness cases, and dense 16/40/80-square tiers (256/1600/6400
+> cells) are complete. The accepted $O(mn)$ row/column-count implementation
+> passes scaling, while the correct $O(mn(m+n))$ per-pivot rescanning baseline
+> finishes every output and fails only the complexity verdict (+0.50 exponent,
+> 37.85x). Problem 3129 was Accepted as exact Python submission `2079571365`.
+> Its 12 ordinary correctness cases and balanced 12/24/48-count tiers
+> (144/576/2304 DP states) are complete. The accepted $O(zo)$ prefix-window
+> recurrence passes scaling, while the correct $O(zo\cdot\texttt{limit})$
+> run-summing DP finishes every output and fails only the complexity verdict
+> (+0.44 exponent, 8.45x). Problem 3130 was Accepted as exact Python submission
+> `2079578906` with all 596 remote cases passing. Its 12 ordinary correctness
+> cases and balanced 16/32/64-count tiers (256/1024/4096 DP states) are
+> complete. The accepted $O(zo)$ prefix-window recurrence passes scaling,
+> while the correct $O(zo\cdot\texttt{limit})$ run-summing DP finishes every
+> output and fails only the complexity verdict (+0.46 exponent, 11.29x). The
+> Problem 3131 was Accepted as exact Python submission `2079586332` with all
+> 605 remote cases passing. Its source-faithful document, 12 legal ordinary
+> cases, and legal 6/24/96-value tiers are complete; two malformed inherited
+> multiset cases and the illegal 12,000-value benchmark were replaced. The
+> accepted $O(n)$ minimum-difference reference passes scaling with a 0.99x
+> largest ratio. A correct insertion-sort baseline finishes every expected
+> output and fails only the complexity verdict (+1.44 excess growth exponent,
+> 79.78x largest ratio). The refreshed checker reports 3114 authored documents
+> and 877 remaining; the migration audit reports 3114 locally complete and
+> remotely verified packages, with 17 recorded blockers. The focused 151-test
+> documentation, case, and template suite passes with two pre-existing
+> warnings. The expected first actionable package is
+> `dsa/leetcode/3132_find-the-integer-added-to-array-ii`. Its authenticated
+> contract removes exactly two elements from `nums1`, adds the same integer
+> `x` to every remaining value, and asks for the minimum possible `x` whose
+> resulting multiset equals `nums2`. The captured constraints are
+> `3 <= nums1.length <= 200`, `nums2.length == nums1.length - 2`, and values
+> from 0 through 1000. The official examples are `[4,20,16,12,8]` with
+> `[14,18,10]` producing `-2`, and `[3,5,5,3]` with `[7,7]` producing `2`.
+> Its backend question ID is `3399`, and the staged native Python interface is
+> `Solution.minimumAddedInteger(self, nums1: List[int], nums2: List[int]) ->
+> int`. This contract is open in the authorized Chrome tab, but follow the
+> refreshed audit if it differs.
+> Problem 3132 was Accepted as exact Python submission `2079596608` with all
+> 560 remote cases passing after 55,804 independent exhaustive and random
+> oracle cases. Its source-faithful document, 12 legal ordinary cases, and
+> legal 20/80/200-value tiers replace the incomplete six-case scaffold and
+> illegal 12,000-value benchmark. The accepted $O(n \log n)$ sorted
+> three-candidate matcher passes scaling with a 1.00x largest ratio. A correct
+> selection-sort baseline finishes every expected output and fails only the
+> complexity verdict (+1.14 excess growth exponent, 39.08x largest ratio). The
+> refreshed checker reports 3115 authored documents and 876 remaining; the
+> migration audit reports 3115 locally complete and remotely verified
+> packages, with 17 recorded blockers. The focused 151-test documentation,
+> case, and template suite passes with two pre-existing warnings. The expected
+> first actionable package is `dsa/leetcode/3133_minimum-array-end`. Its
+> authenticated contract asks for a strictly increasing array of `n` positive
+> integers whose all-element bitwise AND is `x`, and returns the minimum
+> possible final element. The official examples are `n = 3, x = 4 -> 6` via
+> `[4,5,6]` and `n = 2, x = 7 -> 15` via `[7,15]`; both inputs lie from 1
+> through $10^8$. The hints merge the bits of `n - 1` into the zero-bit
+> positions of `x` from right to left. Its backend question ID is `3394`, and
+> the staged native Python interface is `Solution.minEnd(self, n: int, x: int)
+> -> int`. This contract is open in the authorized Chrome tab, but follow the
+> refreshed audit if it differs.
+> Problem 3133 was Accepted as exact Python submission `2079604794` with all
+> 765 remote cases passing after 125,500 exhaustive and invariant checks. Its
+> previously empty scaffold now has a source-faithful document, 12 ordinary
+> cases, and legal 6/13/27-bit-width tiers. The accepted
+> $O(\log n + \log x)$ merge of `n - 1` into the zero-bit positions of `x`
+> passes scaling with a 1.01x largest ratio. A correct repeated zero-position
+> search finishes every expected output and fails only the complexity verdict
+> (+1.13 excess growth exponent). The refreshed checker reports 3116 authored
+> documents and 875 remaining; the migration audit reports 3116 locally
+> complete and remotely verified packages, with 17 recorded blockers. The
+> focused 151-test documentation, case, and template suite passes with two
+> pre-existing warnings. The expected first actionable package is
+> `dsa/leetcode/3134_find-the-median-of-the-uniqueness-array`. Its
+> authenticated contract defines the uniqueness array as the sorted distinct-
+> value counts of every subarray and asks for its lower median when the length
+> is even. The official examples are `[1,2,3] -> 1`, `[3,4,3,4,5] -> 2`, and
+> `[4,3,5,4] -> 2`; the constraints are $1 \le n \le 10^5$ and
+> $1 \le \texttt{nums}[i] \le 10^5$. The hints require binary search on the
+> answer and a sliding-window count of subarrays with at most a candidate
+> number of distinct values. Its backend question ID is `3362`, and the staged
+> native Python interface is `Solution.medianOfUniquenessArray(self, nums:
+> List[int]) -> int`. This contract is open in the authorized Chrome tab, but
+> follow the refreshed audit if it differs.
 > Continue autonomously in numeric frontend-ID order and do not stop after
 > planning. For each package, follow the early-verification order in
 > `LEETCODE_SUBMISSIONS.md`: confirm contract and native interface, minimally
@@ -5919,7 +18320,15 @@ Copy and paste this entire block into the new session:
 > LeetCode frontend IDs separately from backend `question_id` values. Use the
 > existing Electron credential bridge for the in-scope remote submissions
 > already authorized by the user without asking for per-problem confirmation
-> when the environment permits it. For benchmarked packages, a correct
+> when the environment permits it. If stored LeetCode session secrets are
+> missing, expired, incomplete, or fail decryption, the user has explicitly
+> authorized direct use of the already-open signed-in Chrome session as the
+> fallback. Claim the live LeetCode tab through the Chrome-control skill,
+> verify the account and problem, use the live page for the contract and
+> submission, verify the entire Monaco buffer before Submit, and accept only an
+> authoritative Accepted result for that exact source. Record a credential
+> blocker only when neither the bridge nor an authenticated open Chrome tab is
+> usable. For benchmarked packages, a correct
 > slower-class candidate must return all expected outputs and fail the scaling
 > verdict, not a safety cap. A certificate is allowed only under the reviewed
 > rules in `BENCHMARKING.md`. If a problem is genuinely blocked, record exact
@@ -5927,3 +18336,2263 @@ Copy and paste this entire block into the new session:
 > Do not commit, push, merge, or release unless the user explicitly authorizes
 > that new external change. If model capacity temporarily pauses the session,
 > retry after about five minutes and continue from the refreshed audit.
+>
+> Problem 3134 was Accepted as exact Python submission `2079614281` after
+> 87,380 exhaustive oracle comparisons. Its source-faithful document, 12
+> ordinary correctness cases, and legal 48/144/384-value all-distinct tiers
+> replace the drifted examples, illegal zero-valued case, and inherited
+> one-tier benchmark. The accepted $O(n \log D)$ binary-search and sliding-
+> window implementation passes scaling (+0.04 exponent, 1.03x largest ratio).
+> A correct $O(n^2)$ subarray-enumeration baseline finishes every expected
+> output and fails only the complexity verdict (+0.75 excess growth exponent,
+> 8.60x largest ratio). The refreshed checker reports 3117 authored documents
+> and 874 remaining; the migration audit reports 3117 locally complete and
+> remotely verified packages, with 17 recorded blockers. The focused 151-test
+> documentation, case, and template suite passes with two pre-existing
+> warnings. The expected first actionable package is
+> `dsa/leetcode/3135_equalize-strings-by-adding-or-removing-characters-at-ends`.
+> Its authenticated contract permits adding or removing one character only at
+> either end of `initial` and asks for the minimum operations needed to obtain
+> `target`. The official examples are `"abcde", "cdef" -> 3`, `"axxy",
+> "yabx" -> 6`, and `"xyz", "xyz" -> 0`; both strings contain only lowercase
+> English letters and have lengths from 1 through 1000. Its backend question
+> ID is `3441`, it is Premium, and the staged native Python interface is
+> `Solution.minOperations(self, initial: str, target: str) -> int`. This
+> contract is open in the authorized Chrome tab, but follow the refreshed audit
+> if it differs.
+
+> Problem 3135 was Accepted as exact Python submission `2079625527` after
+> 181,769 exhaustive and randomized oracle comparisons. Its formerly empty
+> scaffold now has a source-faithful document, 12 ordinary correctness cases,
+> and legal 256/1024/4096-DP-cell tiers over 16/32/64-character repeated
+> strings. The accepted $O(mn)$ rolling-row longest-common-substring dynamic
+> program passes scaling (+0.01 exponent, 1.04x largest ratio). A correct
+> $O(mn\min(m,n))$ start-pair expansion finishes every expected output and
+> fails only the complexity verdict (+0.53 excess growth exponent, 28.03x
+> largest ratio). The refreshed checker reports 3118 authored documents and
+> 873 remaining; the migration audit reports 3118 locally complete and
+> remotely verified packages, with 17 recorded blockers. The focused 151-test
+> documentation, case, and template suite passes with two pre-existing
+> warnings. The expected first actionable package is
+> `dsa/leetcode/3136_valid-word`. Its authenticated contract requires a word
+> of at least three characters containing only English letters and digits,
+> with at least one vowel and at least one consonant. The official examples are
+> `"234Adas" -> true`, `"b3" -> false`, and `"a3$e" -> false`; legal input
+> length is 1 through 20, and the only possible non-alphanumeric characters are
+> `'@'`, `'#'`, and `'$'`. Its backend question ID is `3396`, it is free, and
+> the staged native Python interface is `Solution.isValid(self, word: str) ->
+> bool`. This contract is open in the authorized Chrome tab, but follow the
+> refreshed audit if it differs.
+>
+> Problem 3136 was Accepted as exact Python submission `2079634058` with all
+> 678 remote cases passing after 122,104 independent oracle comparisons. Its
+> formerly empty scaffold now has a source-faithful document, 12 ordinary
+> correctness cases, and a strict `bounded_domain` certificate proving at most
+> 20 character classifications. The certificate regression exhaustively checks
+> 21,844 representative category-state strings plus every permitted character
+> in boundary contexts; the local real-test route identifies the certificate
+> explicitly and passes all cases without claiming a measured runtime verdict.
+> The refreshed checker reports 3119 authored documents and 872 remaining; the
+> migration audit reports 3119 locally complete and remotely verified packages,
+> with 17 recorded blockers and 225 certified packages. The focused 151-test
+> documentation, case, and template suite passes with two pre-existing warnings,
+> and all three focused certificate validation tests pass. The expected first
+> actionable package is
+> `dsa/leetcode/3137_minimum-number-of-operations-to-make-word-k-periodic`.
+> Its authenticated contract splits `word` into aligned length-`k` blocks; one
+> operation replaces any block starting at a multiple of `k` with another such
+> block, and the result must repeat one length-`k` string. The official examples
+> are `word = "leetcodeleet", k = 4 -> 1` and `word = "leetcoleet", k = 2
+> -> 3`; `1 <= word.length <= 10^5`, `k` divides the length, and the word uses
+> lowercase English letters. Its backend question ID is `3384`, it is free, and
+> the staged native Python interface is
+> `Solution.minimumOperationsToMakeKPeriodic(self, word: str, k: int) -> int`.
+> This contract is open in the authorized Chrome tab, but follow the refreshed
+> audit if it differs.
+>
+> Problem 3137 was Accepted as exact Python submission `2079641990` with all
+> 820 remote cases passing after 51,674 exhaustive and randomized oracle
+> comparisons. Its formerly empty scaffold now has a source-faithful document,
+> 12 ordinary correctness cases, and legal 24/96/384-block tiers using
+> 4-character aligned blocks (96/384/1536 input characters). The accepted
+> $O(n)$ hash-frequency implementation passes scaling (-0.01 exponent, 0.97x
+> largest ratio). A correct $O(B^2k)$ candidate-rescan implementation finishes
+> every expected output and fails only the complexity verdict (+1.40 excess
+> growth exponent, 226.42x largest ratio). The refreshed checker reports 3120
+> authored documents and 871 remaining; the migration audit reports 3120
+> locally complete and remotely verified packages, with 17 recorded blockers.
+> The focused 151-test documentation, case, and template suite passes with two
+> pre-existing warnings. The expected first actionable package is
+> `dsa/leetcode/3138_minimum-length-of-anagram-concatenation`. Its authenticated
+> contract says `s` is a concatenation of anagrams of some string `t` and asks
+> for the minimum possible length of `t`. The live examples are `"abba" -> 2`,
+> `"cdef" -> 4`, and `"abcbcacabbaccba" -> 3`; the source page labels both the
+> second and third displayed examples as Example 2. The string length is from 1
+> through $10^5$ and uses lowercase English letters. The hints restrict the
+> answer to a divisor of the total length and recommend checking candidates
+> directly. Its backend question ID is `3395`, it is free, and the staged native
+> Python interface is `Solution.minAnagramLength(self, s: str) -> int`. This
+> contract is open in the authorized Chrome tab, but follow the refreshed audit
+> if it differs.
+>
+> Problem 3138 was Accepted as exact Python submission `2079651698` after
+> 59,539 exhaustive, randomized, and authored oracle comparisons. Its former
+> scaffold now has a source-faithful shared document, 13 ordinary correctness
+> cases, both required solution forms, verified submission evidence, and legal
+> 64/256/1024-character scaling tiers. The accepted divisor-and-frequency-vector
+> implementation passes scaling at `+0.00` extra exponent with a `1.00x`
+> largest-tier ratio; an independent `Counter` implementation also passes at
+> `-0.11` and `0.95x`. A correct quadratic character-pairing implementation
+> finishes every output and fails only scaling at `+0.71` and `11.04x`. The
+> larger 256/1024/4096 draft was discarded because the direct quadratic
+> implementation reached the execution safety cap instead of the scaling
+> verdict. The refreshed checker reports 3121 authored documents and 870
+> remaining. The migration audit reports 3121 locally complete and remotely
+> verified packages, with 17 recorded blockers, and the focused documentation,
+> validated-case, and template suite passes all 151 tests with the two existing
+> warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3139_minimum-cost-to-equalize-array`. Its authenticated contract
+> gives `nums`, `cost1`, and `cost2`. One operation either increments one array
+> element by one for `cost1`, or increments two distinct elements by one for
+> `cost2`; return the minimum cost to make every element equal, modulo
+> $10^9+7$. The live examples are `[4,1], 5, 2 -> 15`,
+> `[2,3,3,3,5], 2, 1 -> 6`, and `[3,5,3], 1, 3 -> 4`. The array length is from
+> 1 through $10^5$; values and both costs are from 1 through $10^6$. The hints
+> say to price a fixed final maximum, use only single increments when
+> `cost2 > 2 * cost1`, otherwise pair increments on the smallest values, and
+> enumerate the small set of relevant final maxima without simulating each
+> operation. Its backend question ID is `3402`, it is free, and the native
+> Python interface is
+> `Solution.minCostToEqualizeArray(self, nums: List[int], cost1: int, cost2: int) -> int`.
+> The existing package has an older partially authored root document and
+> embedded reference implementation that must be migrated to the current
+> branch-owned format. The authenticated problem is open in the authorized
+> Chrome tab; follow the refreshed audit if it differs.
+>
+> Problem 3139 was Accepted as exact Python submission `2079666039` after
+> 147,641 exhaustive, randomized, and authored comparisons against an
+> independent target-enumeration oracle. The older mixed-format package is now
+> migrated to a source-faithful shared document, 13 ordinary correctness cases,
+> an exact three-heading branch explanation, an $O(n)$ app-local implementation,
+> the separate accepted native source, verified submission evidence, and legal
+> 16/64/256-value tiers. The accepted constant-candidate implementation passes
+> scaling at `+0.02` extra exponent and `1.01x` largest-tier ratio; an
+> independent linear implementation passes at `-0.00` and `0.95x`. A correct
+> $O(nM)$ target-enumeration implementation, with $M$ proportional to $n$ in
+> the workload, finishes every result and fails only scaling at `+1.62` and
+> `217.25x`. The initial 48/192/768 draft exceeded the 100,001-step safety cap
+> and was replaced rather than misreported as a complexity verdict. The
+> refreshed checker reports 3122 authored documents and 869 remaining. The
+> migration audit reports 3122 locally complete and remotely verified packages,
+> with 17 recorded blockers, and the focused validated-case, documentation,
+> and template suite passes all 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3140_consecutive-available-seats-ii`, an authenticated Premium
+> MySQL problem. Its `Cinema` table has auto-increment `seat_id` and Boolean
+> `free`, where `1` means available and `0` means occupied. Return every longest
+> run of consecutive available seat IDs with columns `first_seat_id`,
+> `last_seat_id`, and `consecutive_seats_len`, ordered by `first_seat_id`
+> ascending. The live example has availability at seats 1 and 3 through 5 and
+> returns the run `(3, 5, 3)`. The page contains contradictory note wording
+> (`at most one` longest run followed by an instruction to include all tied
+> runs); the explicit output rule is to include every sequence tied for maximum
+> length. Its backend question ID is `3448`, its only supported language is
+> SQL/MySQL, and the native artifact is a query rather than a function
+> declaration. The scaffold has no authored cases, benchmark, or branch
+> solution. The authenticated contract is open in Chrome; follow the refreshed
+> audit if it differs.
+>
+> Problem 3140 was Accepted as exact Premium MySQL submission `2079679629`
+> with all 14 remote tests passing. Its formerly empty scaffold now has a
+> source-faithful shared document, nine ordered-table correctness fixtures,
+> identical app-local SQLite-compatible and native MySQL queries, verified
+> submission evidence, an exact three-heading approach, and legal
+> 64/256/1024-row tiers. The accepted gaps-and-islands query passes scaling at
+> `-0.01` extra exponent and `1.00x` largest-tier ratio; an independent
+> `LAG`-plus-cumulative-sum window query passes at `+0.06` and `1.46x`. A
+> correct correlated-prefix-count query finishes every output and fails only
+> scaling at `+1.04` and `25.96x`. The authored queries also pass 20,012
+> randomized and authored comparisons against an independent run oracle. The
+> refreshed checker reports 3123 authored documents and 868 remaining. The
+> migration audit reports 3123 locally complete and remotely verified packages,
+> with 17 recorded blockers, and the focused validated-case, documentation,
+> and template suite passes all 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3141_maximum-hamming-distances`, an authenticated Premium Hard
+> algorithm problem. Given `nums` and bit width `m`, every value satisfies
+> $0 \le \texttt{nums[i]} < 2^m$; return one value per input position equal to
+> the maximum $m$-bit Hamming distance from that value to any array element.
+> Leading zeroes count. The live examples are `[9,12,9,11], m = 4 ->
+> [2,3,2,3]` and `[3,4,6,10], m = 4 -> [3,3,2,3]`. Constraints are
+> $1 \le m \le 17$ and $2 \le n \le 2^m$. The hints complement each query
+> value and reduce maximum distance to minimum distance in the $m$-dimensional
+> hypercube, found by a multi-source BFS seeded with all values in `nums`.
+> Its backend question ID is `3449`, and the native Python interface is
+> `Solution.maxHammingDistances(self, nums: List[int], m: int) -> List[int>`.
+> The authenticated contract is open in Chrome; follow the refreshed audit if
+> it differs.
+>
+> Problem 3141 was Accepted as exact Premium Python submission `2079688611`
+> with all 834 remote tests passing in 631 ms. Its scaffold now has a
+> source-faithful shared document, 12 ordinary correctness cases, an exact
+> three-heading branch explanation, the $O(m2^m+n)$ app-local implementation,
+> the separate accepted native source, verified submission evidence, and legal
+> complete-hypercube tiers with work sizes 64/384/2048. The accepted
+> multi-source BFS passes scaling at `+0.00` extra exponent and `0.98x`
+> largest-tier ratio. A correct direct pairwise implementation using native
+> bit counts finishes every output and fails only scaling at `+0.68` and
+> `13.55x`; a bit-by-bit pairwise draft exceeded the 1,000,001-step benchmark
+> cap and was not used as evidence. The algorithm also passed 85,778
+> exhaustive and randomized comparisons plus every authored case against an
+> independent pairwise oracle. The refreshed checker reports 3124 authored
+> documents and 867 remaining. The migration audit reports 3124 locally
+> complete and remotely verified packages, with 17 recorded blockers, and the
+> focused validated-case, documentation, and template suite passes all 151
+> tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3142_check-if-grid-satisfies-conditions`, a free Easy matrix
+> problem. For every cell of an `m x n` digit grid, a cell below it must have
+> the same value and a cell to its right must have a different value; return
+> whether every applicable adjacency satisfies those rules. The live examples
+> are `[[1,0,2],[1,0,2]] -> true`, `[[1,1,1],[0,0,0]] -> false`, and
+> `[[1],[2],[3]] -> false`. Both dimensions are from 1 through 10 and values
+> are digits from 0 through 9. The hints observe that every column must be
+> constant, after which adjacent values need only be checked in one row. The
+> native Python interface is
+> `Solution.satisfiesConditions(self, grid: List[List[int]]) -> bool`. The
+> existing package has an older mixed-format document with an embedded
+> implementation that must be migrated to current branch ownership. The
+> authenticated problem is open in Chrome; follow the refreshed audit if it
+> differs.
+>
+> Problem 3142 was Accepted as exact Python submission `2079702152` with all
+> 882 remote tests passing in 0 ms. Its older mixed-format package is now
+> migrated to a source-faithful shared document, 12 ordinary correctness
+> cases, an exact three-heading branch explanation, the $O(mn)$ app-local
+> scan, the separate accepted native source, verified submission evidence,
+> and the complete legal 4/16/100-cell benchmark tiers. The accepted scan
+> passes scaling at `-0.02` extra exponent and `0.99x` largest-tier ratio. A
+> correct $O((mn)^2)$ comparison finishes every output and fails only scaling
+> at `+1.16` and `58.76x`. The implementation passed 11,614 exhaustive and
+> randomized comparisons plus all 15 authored ordinary and benchmark cases
+> against an independent column-characterization oracle. The refreshed
+> checker reports 3125 authored documents and 866 remaining. The migration
+> audit reports 3125 locally complete and remotely verified packages, with 17
+> recorded blockers, and the focused validated-case, documentation, and
+> template suite passes all 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3143_maximum-points-inside-the-square`, a free Medium problem.
+> Each distinct coordinate in `points` has the lowercase tag at the same index
+> of `s`. Choose an axis-aligned square centered at the origin; boundary points
+> count, the side length may be zero, and the square is valid only when it
+> contains no two points sharing a tag. Return the maximum contained count.
+> A point `(x, y)` first enters at Chebyshev radius
+> $\max(\lvert x\rvert,\lvert y\rvert)$. The live examples are
+> `[[2,2],[-1,-2],[-4,4],[-3,1],[3,-3]], "abdca" -> 2`,
+> `[[1,1],[-2,-2],[-2,2]], "abb" -> 1`, and
+> `[[1,1],[-1,-1],[2,-2]], "ccd" -> 0`. There are from 1 through
+> $10^5$ points, coordinates range from $-10^9$ through $10^9$, coordinates
+> are distinct, and tags are lowercase English letters. Its backend question
+> ID is `3419`; the native Python interface is
+> `Solution.maxPointsInsideSquare(self, points: List[List[int]], s: str) -> int`.
+> The scaffold has an older mixed-format document, six noncanonical cases
+> (including an invalid duplicate-coordinate origin case), a 3.18 MB legacy
+> benchmark, and an unverified app-only solution; all require migration. The
+> authenticated contract is open in Chrome; follow the refreshed audit if it
+> differs.
+>
+> Problem 3143 was Accepted as exact Python submission `2079713026` with all
+> 576 remote tests passing in 35 ms. Its older mixed-format package is now
+> migrated to a source-faithful shared document, 12 contract-valid ordinary
+> cases, an exact three-heading branch explanation, the $O(n)$ app-local
+> nearest-tag scan, the separate accepted native source, verified submission
+> evidence, and legal 32/96/256-point tiers. The accepted solution passes
+> scaling at `+0.02` extra exponent and `1.03x` largest-tier ratio. A correct
+> $O(n^2)$ all-candidate rescan finishes every output and fails only scaling at
+> `+1.33` and `169.09x`. The algorithm passed 321,452 exhaustive abstract-state
+> and randomized coordinate comparisons plus all 15 authored cases against an
+> independent radius-enumeration oracle. The invalid duplicate-coordinate
+> scaffold case and 3.18 MB one-tier benchmark were removed. The refreshed
+> checker reports 3126 authored documents and 865 remaining. The migration
+> audit reports 3126 locally complete and remotely verified packages, with 17
+> recorded blockers, and the focused validated-case, documentation, and
+> template suite passes all 151 tests with the two existing warnings.
+>
+> Problem 3144 was Accepted as exact Python submission `2079719870` with all
+> 694 remote tests passing in 1928 ms. Its empty scaffold now has a
+> source-faithful shared document, 12 ordinary correctness cases, an exact
+> three-heading branch explanation, the $O(n^2)$ prefix dynamic program, the
+> separate accepted native source, verified submission evidence, and balanced
+> cyclic-string tiers of 52/104/208 characters. The accepted incremental-count
+> DP passes scaling at `+0.02` extra exponent and `0.98x` largest-tier ratio. A
+> correct $O(n^3)$ substring recount finishes every output and fails only
+> scaling at `+0.34` and `4.44x`. The algorithm passed 98,572 exhaustive and
+> randomized comparisons plus all 15 authored cases against an independent
+> memoized partition oracle. A live audit caught the first Goal draft at 58
+> words; it was expanded past the 60-word source-fidelity floor before final
+> verification. The refreshed checker reports 3127 authored documents and 864
+> remaining. The migration audit reports 3127 locally complete and remotely
+> verified packages, with 17 recorded blockers, and the focused validated-case,
+> documentation, and template suite passes all 151 tests with the two existing
+> warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3145_find-products-of-elements-of-big-array`, a free Hard
+> problem. The powerful array of a nonnegative integer is the unique sorted
+> list of powers of two corresponding to its set bits. Concatenating those
+> arrays for positive integers in increasing order forms the zero-indexed
+> infinite `big_nums` sequence. For each inclusive query `[from, to, mod]`,
+> return the product of `big_nums[from..to]` modulo `mod`. There are at most
+> 500 queries, $0 \le \texttt{from} \le \texttt{to} \le 10^{15}$, and
+> $1 \le \texttt{mod} \le 10^5$. The live examples are
+> `[[1,3,7]] -> [4]` and `[[2,5,3],[7,7,4]] -> [2,2]`. The hints count set-bit
+> contributions over integer prefixes, binary-search the integer containing a
+> requested sequence position, handle a possible partial final integer, and
+> multiply powers of two by summing their exponents. Its backend question ID
+> is `3411`; the native Python interface is
+> `Solution.findProductsOfElements(self, queries: List[List[int]]) -> List[int>`.
+> The package has an older mixed-format document, cases, a 7.6 KB legacy
+> benchmark, and an unverified app-only solution that all require current
+> canonical review. The authenticated contract is open in Chrome; follow the
+> refreshed audit if it differs.
+
+> Problem 3145 was Accepted as exact Python submission `2079731131`. Its
+> legacy package is now migrated to a source-faithful shared document, 12
+> ordinary correctness cases, an exact three-heading branch explanation, the
+> $O(q\log^2 U)$ bit-prefix implementation, the separate accepted native
+> source, verified submission evidence, and implicit-prefix tiers of
+> 256/4096/65536 elements. The accepted implementation passes scaling at
+> `-0.00` extra exponent and `0.95x` largest-tier ratio. A correct explicit
+> sequence implementation finishes every output and fails only scaling at
+> `+0.81` and `829.60x`. The algorithm passed 239,222 exhaustive and
+> randomized prefix/range comparisons plus all 15 authored cases against an
+> independent per-bit prefix oracle. The refreshed checker reports 3128
+> authored documents and 863 remaining. The migration audit reports 3128
+> locally complete and remotely verified packages, with 17 recorded blockers,
+> and the focused validated-case, documentation, and template suite passes all
+> 151 tests with the two existing warnings.
+>
+> Problem 3146 was Accepted as exact Python submission `2079738730` with all
+> 823 remote tests passing in 0 ms. Its empty scaffold now has a source-faithful
+> shared document, 12 ordinary correctness cases, an exact three-heading branch
+> explanation, the $O(n)$ position-map implementation, the separate accepted
+> native source, verified submission evidence, and a reviewed
+> `asymptotic_optimality` certificate. The legal input length is at most 26, so
+> it cannot support honest runtime scaling; reading both strings establishes
+> the matching linear lower bound. The algorithm passed 509,113 exhaustive and
+> randomized comparisons plus all authored cases against an independent index
+> oracle, and the certificate-specific regression passes. The refreshed
+> checker reports 3129 authored documents and 862 remaining. The migration
+> audit reports 3129 locally complete and remotely verified packages, with 17
+> recorded blockers, and the focused validated-case, documentation, and
+> template suite passes all 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3147_taking-maximum-energy-from-the-mystic-dungeon`, a free
+> Medium problem. Choose a starting magician, absorb that magician's possibly
+> negative energy, then repeatedly jump exactly `k` positions and absorb every
+> reached value until the next position does not exist. Return the maximum
+> total obtainable over all starting indices; no reached value may be skipped.
+> The live examples are `[5,2,-10,-5,1], k = 3 -> 3` and
+> `[-2,-3,-1], k = 2 -> -1`. The constraints are
+> $1 \le n \le 10^5$, $-1000 \le \texttt{energy[i]} \le 1000$, and
+> $1 \le k \le n-1$. The hints define
+> `dp[i] = energy[i] + dp[i + k]` when the successor exists. Its backend
+> question ID is `3383`; the native Python interface is
+> `Solution.maximumEnergy(self, energy: List[int], k: int) -> int`. The
+> package currently has an older mixed-format document, cases, a legacy
+> benchmark, and an unverified app-only solution requiring canonical review.
+> The authenticated problem is open in Chrome; follow the refreshed audit if
+> it differs.
+
+> Problem 3147 was Accepted as exact Python submission `2079750578` with all
+> 534 remote tests passing in 1072 ms. Its contradictory mixed-format scaffold
+> and illegal `n = 1, k = 1` case are now replaced by a source-faithful shared
+> document, 12 contract-valid ordinary cases, an exact three-heading branch
+> explanation, the $O(n)$ and $O(k)$-space residue-suffix implementation, the
+> separate accepted native source, verified submission evidence, and legal
+> unit-step tiers of 256/1024/4096 elements. The accepted implementation passes
+> scaling at `+0.00` extra exponent and `0.99x` largest-tier ratio. An
+> independent full-DP linear implementation passes at `-0.02` and `0.67x`,
+> while correct per-start suffix recomputation finishes every output and fails
+> only scaling at `+0.62` and `5.26x`. The algorithm passed 350,000 exhaustive
+> and randomized comparisons plus all 15 authored cases against an independent
+> direct-path oracle. The refreshed checker reports 3130 authored documents
+> and 861 remaining. The migration audit reports 3130 locally complete and
+> remotely verified packages, with 17 recorded blockers, and the focused
+> validated-case, documentation, and template suite passes all 151 tests with
+> the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3148_maximum-difference-score-in-a-grid`, a free Medium matrix
+> problem. From a cell, one move may go to any strictly lower cell in the same
+> column or any strictly rightward cell in the same row; the destination need
+> not be adjacent. A move from value `c1` to `c2` scores `c2 - c1`, the start
+> may be any cell, and at least one move is required. Because scores telescope,
+> a path from `(x1, y1)` to `(x2, y2)` scores only
+> `grid[x2][y2] - grid[x1][y1]`. The live examples are
+> `[[9,5,7,3],[8,9,6,1],[6,7,14,3],[2,5,3,1]] -> 9` and
+> `[[4,3,2],[3,2,1]] -> -1`. Both dimensions are between 2 and 1000, total
+> cells are between 4 and $10^5$, and values are between 1 and $10^5$. Its
+> backend question ID is `3391`; the native Python interface is
+> `Solution.maxScore(self, grid: List[List[int]]) -> int`. The existing shared
+> document incorrectly requires the destination to be both lower and right,
+> includes a corrupted example explanation, embeds the solution, and is paired
+> with a 1.08 MB legacy benchmark; the package requires full canonical review.
+> The authenticated problem is open in Chrome; follow the refreshed audit if
+> it differs.
+
+> Problem 3148 was Accepted as exact Python submission `2079760973` with all
+> 564 remote tests passing. Its semantically incorrect mixed-format scaffold,
+> two illegal one-dimensional cases, and 1.08 MB one-tier benchmark are now
+> replaced by a source-faithful shared document, 12 contract-valid ordinary
+> cases, an exact three-heading branch explanation, the $O(mn)$ and
+> $O(n)$-space prefix-minimum scan, the separate accepted native source,
+> verified submission evidence, and legal 128/512/2000-cell tiers. The accepted
+> implementation passes scaling at `+0.02` extra exponent and `1.03x`
+> largest-tier ratio. An independent full-matrix linear DP passes at `-0.02`
+> and `0.92x`, while correct per-destination prefix rescanning finishes every
+> output and fails only scaling at `+0.28` and `4.93x`. The algorithm passed
+> 128,131 exhaustive and randomized comparisons plus all 15 authored cases
+> against an independent reachable-pair oracle. The refreshed checker reports
+> 3131 authored documents and 860 remaining. The migration audit reports 3131
+> locally complete and remotely verified packages, with 17 recorded blockers,
+> and the focused validated-case, documentation, and template suite passes all
+> 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3149_find-the-minimum-cost-array-permutation`, a free Hard
+> bitmask-DP problem. The input `nums` is a permutation of
+> `[0, 1, ..., n - 1]`. For a candidate permutation `perm`, its cyclic score is
+> `|perm[0] - nums[perm[1]]| + |perm[1] - nums[perm[2]]| + ... +
+> |perm[n - 1] - nums[perm[0]]|`. Return a minimum-score permutation, breaking
+> ties by the lexicographically smallest permutation. The live examples are
+> `[1,0,2] -> [0,1,2]` and `[0,2,1] -> [0,2,1]`, each with score `2`.
+> Constraints are $2 \le n \le 14$. Cyclic rotation permits fixing
+> `perm[0] = 0` for lexicographic minimality, after which the hints prescribe
+> Traveling-Salesperson-style bitmask dynamic programming. Its backend question
+> ID is `3431`; the native Python interface is
+> `Solution.findPermutation(self, nums: List[int]) -> List[int]`. The existing
+> shared document reverses the live score relation, reports both sample costs
+> as `4` instead of `2`, embeds the solution, and has only a legacy benchmark;
+> the package requires full canonical review. The authenticated problem is open
+> in Chrome; follow the refreshed audit if it differs.
+
+> Problem 3149 was Accepted as exact Python submission `2079771680` with all
+> 939 remote tests passing in 1706 ms. Its reversed-score mixed-format scaffold,
+> invalid duplicate-value cases, incorrect sample outputs, and one-tier
+> benchmark are now replaced by a source-faithful shared document, 12
+> contract-valid ordinary cases, an exact three-heading branch explanation,
+> the $O(n^2 2^n)$ and $O(n2^n)$-space bitmask DP, the separate accepted native
+> source, verified submission evidence, and state-transition workloads of
+> 800/6272/41472 for $n=5/7/9$. The accepted top-down DP passes scaling at
+> `-0.02` extra exponent and `0.96x` largest-tier ratio. An independent
+> bottom-up DP passes at `+0.03` and `2.87x`, while complete factorial
+> enumeration finishes every output and fails only scaling at `+0.96` and
+> `25.38x`. The algorithm passed 6,032 exhaustive and randomized input
+> permutations plus all 15 authored cases against independent complete
+> enumeration. The refreshed checker reports 3132 authored documents and 859
+> remaining. The migration audit reports 3132 locally complete and remotely
+> verified packages, with 17 recorded blockers, and the focused validated-case,
+> documentation, and template suite passes all 151 tests with the two existing
+> warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3150_invalid-tweets-ii`, an authenticated Premium Easy MySQL
+> problem. The `Tweets` table has primary-key integer `tweet_id` and varchar
+> `content`. A tweet is invalid when any one of these conditions holds: its
+> content exceeds 140 characters, it contains more than three mentions, or it
+> contains more than three hashtags. Return only `tweet_id`, ordered in
+> ascending order. The live example marks tweet 1 invalid for four `@`
+> mentions and tweet 4 invalid for four `#` hashtags. Counting the `@` and `#`
+> characters can be expressed through the length difference after `REPLACE`.
+> Its backend question ID is `3457`, and the native submission language is
+> MySQL. The canonical package currently contains only metadata, a TODO shared
+> document, and a placeholder variant manifest; it has no cases, complexity
+> evidence, approach, app-local SQL, or native submission artifact. The
+> authenticated Premium contract and MySQL editor are open in Chrome; follow
+> the refreshed audit if it differs.
+
+> Problem 3150 was Accepted as exact MySQL submission `2079780075` with all
+> 11 remote tests passing in 392 ms. Its TODO scaffold is now replaced by a
+> source-faithful shared document, 12 contract-valid ordinary cases, an exact
+> three-heading branch explanation, a SQLite-compatible app query, the separate
+> accepted MySQL source, verified submission evidence, and legal 64/256/1024-row
+> tiers. The reference query passes scaling at `+0.03` extra exponent and
+> `1.06x` largest-tier ratio. An independent linear `LIKE` query passes at
+> `+0.01` and `0.93x`, while a correct triangular self-join finishes every
+> output and fails only scaling at `+1.12` and `60.78x`. All 12 ordinary
+> cases and all three benchmark outputs passed exact execution through the
+> special SQL environment. The refreshed checker reports 3133 authored
+> documents and 858 remaining. The migration audit reports 3133 locally
+> complete and remotely verified packages, with 17 recorded blockers, and the
+> focused validated-case, documentation, and template suite passes all 151
+> tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3151_special-array-i`, a free Easy array problem. An array is
+> special exactly when every adjacent pair has different parity: one value is
+> even and the other is odd. Return `true` when that condition holds and
+> `false` otherwise; a one-element array is vacuously special. The live
+> examples are `[1] -> true`, `[2,1,4] -> true`, and
+> `[4,3,1,6] -> false` because the middle adjacent values `3` and `1`
+> are both odd. Constraints are $1 \le n \le 100$ and
+> $1 \le \texttt{nums[i]} \le 100$. Its backend question ID is `3429`;
+> the native Python interface is
+> `Solution.isArraySpecial(self, nums: List[int]) -> bool`. The current
+> package contains an older mixed-format document, a small case suite, an
+> app-only solution, and a 1.12 MB legacy benchmark requiring full canonical
+> review. The authenticated official statement and Python editor are open in
+> Chrome; follow the refreshed audit if it differs.
+
+> Problem 3151 was Accepted as exact Python submission `2079794641` with
+> all 852 remote tests passing in 0 ms and 19.14 MB. Its mixed-format document,
+> two contract-invalid cases containing zero and negative values, placeholder
+> complexity, app-only source, and 1.12 MB one-tier benchmark are now replaced
+> by a source-faithful shared document, 12 legal ordinary cases, an exact
+> three-heading branch explanation, the $O(n)$ and $O(1)$-space parity scan,
+> the separate accepted native source, verified submission evidence, and legal
+> 6/25/100-element tiers. The accepted scan passes scaling at `-0.01`
+> extra exponent and `1.00x` largest-tier ratio. An independent XOR
+> linear scan passes at `+0.07` and `1.29x`, while correct
+> repeated-prefix checking finishes every output and fails only scaling at
+> `+1.20` and `39.48x`. The solution passed 31,859 exhaustive,
+> randomized, and authored oracle comparisons. The refreshed checker reports
+> 3134 authored documents and 857 remaining. The migration audit reports 3134
+> locally complete and remotely verified packages, with 17 recorded blockers,
+> and the focused validated-case, documentation, and template suite passes all
+> 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3152_special-array-ii`, a free Medium multi-query array
+> problem. A subarray is special when every adjacent pair in its inclusive
+> range contains values of different parity. For each
+> `queries[i] = [from_i, to_i]`, return whether
+> `nums[from_i..to_i]` is special, preserving query order. The live
+> examples are `nums = [3,4,1,2,6], queries = [[0,4]] -> [false]` and
+> `nums = [4,3,1,6], queries = [[0,2],[2,3]] -> [false,true]`. The
+> constraints are $1 \le n,q \le 10^5$,
+> $1 \le \texttt{nums[i]} \le 10^5$, and
+> $0 \le \texttt{from_i} \le \texttt{to_i} < n$. Its backend question ID
+> is `3427`; the native Python interface is
+> `Solution.isArraySpecial(self, nums: List[int], queries: List[List[int]]) -> List[bool]`.
+> The current package contains a mixed-format document, a small case suite, an
+> app-only solution, placeholder branch complexity, and a 2.99 MB legacy
+> benchmark requiring full canonical review. The authenticated official
+> statement and Python editor are open in Chrome; follow the refreshed audit
+> if it differs.
+
+> Problem 3152 was Accepted as exact Python submission `2079804948` with
+> all 536 remote tests passing in 35 ms and 48.22 MB. Its mixed-format
+> document, contract-invalid zero-valued case, placeholder complexity,
+> app-only source, and 2.99 MB legacy benchmark are now replaced by a
+> source-faithful shared document, 12 legal ordinary cases, an exact
+> three-heading branch explanation, the $O(n+q)$ and $O(n)$-space violation
+> prefix, the separate accepted native source, verified submission evidence,
+> and legal 64/256/1024 total-work tiers. The accepted prefix solution passes
+> scaling at `+0.02` extra exponent and `0.97x` largest-tier
+> ratio. An independent alternating-run-start solution passes at `-0.08`
+> and `0.72x`, while correct direct scanning of every query finishes
+> every output and fails only scaling at `+1.36` and `240.42x`.
+> The solution passed 31,859 exhaustive, randomized, and authored input suites
+> covering 1,067,944 independently computed query answers. The refreshed
+> checker reports 3135 authored documents and 856 remaining. The migration
+> audit reports 3135 locally complete and remotely verified packages, with 17
+> recorded blockers, and the focused validated-case, documentation, and
+> template suite passes all 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3153_sum-of-digit-differences-of-all-pairs`, a free
+> Medium counting problem. Every value in `nums` is positive and has the
+> same number of decimal digits. The digit difference between two values is
+> the number of positions at which their digits differ; return the sum of this
+> quantity over every unordered pair of array elements. The live examples are
+> `[13,23,12] -> 4` and `[10,10,10,10] -> 0`. Constraints are
+> $2 \le n \le 10^5$, $1 \le \texttt{nums[i]} < 10^9$, with equal digit
+> length guaranteed. Its backend question ID is `3416`; the native
+> Python interface is
+> `Solution.sumDigitDifferences(self, nums: List[int]) -> int`. The
+> current package contains a mixed-format document, small cases, an app-only
+> solution, placeholder branch complexity, and a 315 KB legacy benchmark
+> requiring full canonical review. The authenticated official statement and
+> Python editor are open in Chrome; follow the refreshed audit if it differs.
+
+> Problem 3155 was Accepted as exact Python submission `2079836882` with
+> all 574 remote tests passing in 69 ms and 52.97 MB. Its TODO-only scaffold
+> is now replaced by a source-faithful shared document, 12 legal ordinary
+> cases, an exact three-heading branch explanation, the $O(n)$ and
+> $O(1)$-auxiliary-space direct budget formula, separate accepted native
+> source, verified submission evidence, and legal 32/128/512-center tiers.
+> The accepted formula passes scaling at `+0.00` extra exponent and `1.02x`
+> largest-tier ratio. An independent indexed linear implementation passes at
+> `-0.03` and `0.88x`, while correct descending search over each center's
+> possible upgrade count finishes every output and fails only scaling at
+> `+1.49` and `369.39x`. The solution passed 89,506 comparisons against an
+> independent exhaustive oracle. The refreshed checker reports 3138 authored
+> documents and 853 remaining. The migration audit reports 3138 locally
+> complete and remotely verified packages, with 17 recorded blockers, and
+> the focused validated-case, documentation, and template suite passes all
+> 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3156_employee-task-duration-and-concurrent-tasks`, an
+> authenticated Premium Hard SQL problem. The `Tasks` table contains
+> `task_id`, `employee_id`, `start_time`, and `end_time`; the composite
+> primary key is (`task_id`, `employee_id`). For every employee, return the
+> total covered task duration (overlapping time counted once), rounded down to
+> full hours, and the maximum number of tasks active concurrently at any
+> instant. Order the result by `employee_id` ascending. The live example has
+> seven tasks across employees 1001, 1002, and 1003 and returns
+> `(1001, 6, 2)`, `(1002, 2, 2)`, and `(1003, 2, 1)`. Its backend question
+> ID is `3465`, it is Premium-only, its database metadata names the problem
+> `find_total_duration`, and the canonical MySQL table uses `DATETIME` for
+> both time columns. The likely optimal structure is an employee-partitioned
+> event sweep: start/end deltas give maximum concurrency, while the same
+> ordered event coordinates accumulate only spans with positive active count
+> for union duration. Endpoint tie semantics must be verified before the
+> exact SQL is submitted. The current package contains only metadata, a TODO
+> document, and a placeholder variant manifest; it has no cases, complexity
+> evidence, approach, app-local SQL, native artifact, or submission evidence.
+> The authenticated official statement and MySQL editor are open in Chrome;
+> follow the refreshed audit if it differs.
+
+> Problem 3154 was Accepted as exact Python submission `2079824672` with
+> all 600 remote tests passing in 2 ms and 19.32 MB. Its TODO-only scaffold is
+> now replaced by a source-faithful shared document, 12 legal ordinary cases,
+> an exact three-heading branch explanation, the $O(\log(k+2))$ and
+> $O(1)$-space binomial slot formula, separate accepted native source, verified
+> submission evidence, and legal `k+2` tiers of 66/1026/16386. The
+> accepted formula passes scaling at `-0.00` extra exponent and
+> `0.98x` largest-tier ratio. An independent fixed-bound binomial loop
+> passes at `-0.03` and `1.23x`, while complete enumeration of down
+> slot subsets finishes every output and fails only scaling at `+0.90`
+> and `429.65x`. The solution passed 20,016 comparisons against an
+> independent memoized operation-state oracle. The refreshed checker reports
+> 3137 authored documents and 854 remaining. The migration audit reports 3137
+> locally complete and remotely verified packages, with 17 recorded blockers,
+> and the focused validated-case, documentation, and template suite passes all
+> 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3155_maximum-number-of-upgradable-servers`, an
+> authenticated Premium Medium problem. For each independent data center,
+> `count[i]` is its server count, `upgrade[i]` is the cost per
+> upgraded server, `sell[i]` is the money received per sold server, and
+> `money[i]` is its initial budget. Return the maximum upgradable count
+> for each center; funds cannot cross between centers. The live examples are
+> `[4,3],[3,5],[4,2],[8,9] -> [3,2]` and
+> `[1],[2],[1],[1] -> [0]`. All four arrays have the same length
+> $1 \le n \le 10^5$, and every entry is between 1 and $10^5$. Choosing $x$
+> upgrades requires
+> $x(\texttt{upgrade[i]}+\texttt{sell[i]})\le
+> \texttt{money[i]}+\texttt{count[i]}\texttt{sell[i]}$, which gives a
+> direct capped quotient. Its backend question ID is `3458`; the native
+> Python interface is
+> `Solution.maxUpgrades(self, count: List[int], upgrade: List[int], sell: List[int], money: List[int]) -> List[int]`.
+> The current package contains only metadata, a TODO document, and a
+> placeholder variant manifest. The authenticated Premium statement and
+> Python editor are open in Chrome; follow the refreshed audit if it differs.
+
+> Problem 3153 was Accepted as exact Python submission `2079814315` with
+> all 643 remote tests passing in 414 ms and 36.06 MB. Its mixed-format
+> document, sparse cases, placeholder complexity, app-only source, and 315 KB
+> legacy benchmark are now replaced by a source-faithful shared document, 12
+> legal ordinary cases, an exact three-heading branch explanation, the
+> $O(nD)$ and $O(D)$-space streaming digit-frequency count, the separate
+> accepted native source, verified submission evidence, and legal
+> 16/64/256-value nine-digit tiers. The accepted streaming solution passes
+> scaling at `-0.01` extra exponent and `0.96x` largest-tier
+> ratio. An independent per-position aggregate count passes at `-0.26`
+> and `0.24x`, while complete pair enumeration finishes every output and
+> fails only scaling at `+1.06` and `33.79x`. The solution passed
+> 30,311 exhaustive, randomized, and authored input suites covering 962,111
+> independently computed pair comparisons. The refreshed checker reports 3136
+> authored documents and 855 remaining. The migration audit reports 3136
+> locally complete and remotely verified packages, with 17 recorded blockers,
+> and the focused validated-case, documentation, and template suite passes all
+> 151 tests with the two existing warnings.
+>
+> The current first actionable package is
+> `dsa/leetcode/3154_find-number-of-ways-to-reach-the-k-th-stair`, a free
+> Hard counting problem. Alice starts on stair 1 with `jump = 0`. From
+> stair `i`, she may move down to `i - 1` only when she is not on
+> stair 0 and the preceding operation was not another down move; or she may
+> move up to `i + 2^jump`, after which `jump` increases by one.
+> Count all operation sequences that reach stair `k`; a sequence may
+> reach `k`, leave it, and reach it again, and each such stopping point
+> counts. The live examples are `k = 0 -> 2` and `k = 1 -> 4`,
+> with $0 \le k \le 10^9$. Its backend question ID is `3414`; the
+> native Python interface is
+> `Solution.waysToReachStair(self, k: int) -> int`. The current package
+> contains only metadata, a short placeholder document, and a placeholder
+> variant manifest; it has no cases, complexity evidence, approach, app-local
+> solution, or native artifact. The authenticated official statement and
+> Python editor are open in Chrome; follow the refreshed audit if it differs.
+
+> **Authoritative latest checkpoint:** Problem 3155 was Accepted as exact
+> Python submission `2079836882`, with all 574 remote tests passing in 69 ms
+> and 52.97 MB. Its completed package now has a source-faithful document, 12
+> legal cases, the exact three-heading approach, $O(n)$ time and $O(1)$
+> auxiliary space, accepted native and app-local sources, verified submission
+> evidence, and three 32/128/512-center benchmark tiers. The reference and an
+> independent linear implementation pass scaling (`+0.00`/`1.02x` and
+> `-0.03`/`0.88x`); correct descending search finishes all outputs and fails
+> only scaling (`+1.49`, `369.39x`). An independent exhaustive oracle covered
+> 89,506 randomized center comparisons. The checker reports 3138 authored and
+> 853 remaining; the audit reports 3138 fully verified, 17 blockers, and 3156
+> first actionable. The focused suite passes 151 tests with two existing
+> warnings.
+>
+> Continue with `dsa/leetcode/3156_employee-task-duration-and-concurrent-tasks`,
+> an authenticated Premium Hard SQL problem (backend question ID `3465`,
+> database metadata name `find_total_duration`). `Tasks` has `task_id`,
+> `employee_id`, `start_time`, and `end_time`; (`task_id`, `employee_id`) is
+> the primary key and MySQL uses `DATETIME` for both endpoints. Return each
+> employee's union task duration rounded down to full hours and maximum active
+> task count at any instant, ordered by `employee_id` ascending. The official
+> seven-row example returns `(1001, 6, 2)`, `(1002, 2, 2)`, and
+> `(1003, 2, 1)`. An employee-partitioned event sweep should combine start/end
+> deltas for concurrency with positive-active spans for union duration; verify
+> endpoint tie semantics before submitting the exact MySQL query. The package
+> is still a TODO scaffold with no cases, benchmark/certificate, approach,
+> SQL sources, or submission evidence. The authenticated official statement
+> and MySQL editor are open in Chrome; rerun the live checker and audit before
+> editing.
+
+> **Authoritative latest checkpoint:** Problem 3156 was Accepted as exact
+> MySQL submission `2079850771`, with all 8 remote tests passing in 413 ms.
+> Its completed package now has a source-faithful document, 12 legal table
+> fixtures, an exact three-heading approach, $O(n\log n)$ time and $O(n)$
+> space, the separate accepted MySQL source and SQLite-compatible app source,
+> verified submission evidence, and three 32/128/512-task benchmark tiers.
+> Both the reference sweep and an independently written same-class sweep pass
+> scaling (`-0.01`/`0.99x` and `-0.00`/`1.00x`); a correct correlated
+> active-count query finishes all outputs and fails only scaling (`+0.87`,
+> `13.85x`). The local SQL runner and an independent half-open interval oracle
+> verified all 15 authored suites covering 705 task intervals. The checker
+> reports 3139 authored and 852 remaining; the audit reports 3139 fully
+> verified, 17 blockers, and 3157 first actionable. The focused suite passes
+> 151 tests with two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3157_find-the-level-of-tree-with-minimum-sum`, an authenticated
+> Premium Medium binary-tree problem (backend question ID `3467`). Return the
+> 1-indexed level whose node values have the minimum sum; when several levels
+> tie, return the lowest numerical level, meaning the one closest to the root.
+> The live examples are `[50,6,2,30,80,7] -> 2`,
+> `[36,17,10,null,null,24] -> 3`, and `[5,null,5,null,5] -> 1`.
+> The tree contains between 1 and $10^5$ nodes and every value is between 1
+> and $10^9$, so level sums require wide integers outside Python. The native
+> interface is
+> `Solution.minimumLevel(self, root: Optional[TreeNode]) -> int`. A level-order
+> traversal gives $O(n)$ time; update the answer only on a strictly smaller
+> level sum to preserve the earliest level on ties. The package is still a
+> TODO scaffold with no cases, complexity evidence, approach, app-local or
+> native source, or submission evidence. The authenticated official statement
+> and Python editor are open in Chrome; rerun the live checker and audit before
+> editing.
+
+> **Authoritative latest checkpoint:** Problem 3157 was Accepted as exact
+> Python submission `2079862527`, with all 543 remote tests passing in 56 ms
+> and 43.65 MB. Its completed package now has a source-faithful document, 12
+> legal tree cases, an exact three-heading approach, $O(n)$ time and $O(n)$
+> worst-case auxiliary space, accepted native and app-local sources, verified
+> submission evidence, and three 8/32/128-node right-chain benchmark tiers.
+> The reference BFS and an independent iterative DFS pass scaling
+> (`+0.01`/`0.98x` and `-0.04`/`0.76x`); correct repeated traversal from the
+> root for every depth finishes all outputs and fails only scaling (`+1.01`,
+> `39.18x`). The solution passed all authored cases and 20,000 independently
+> checked random trees covering 281,667 nodes. The checker reports 3140
+> authored and 851 remaining; the audit reports 3140 fully verified, 17
+> blockers, and 3158 first actionable. The focused suite passes 151 tests with
+> two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3158_find-the-xor-of-numbers-which-appear-twice`, a free Easy
+> array problem (backend question ID `3428`). Every value in `nums` appears
+> either once or twice; return the bitwise XOR of precisely the values that
+> appear twice, or zero when there are none. The live examples are
+> `[1,2,1,3] -> 1`, `[1,2,3] -> 0`, and `[1,2,2,1] -> 3`.
+> Constraints are $1 \le n \le 50$ and
+> $1 \le \texttt{nums[i]} \le 50$. The native interface is
+> `Solution.duplicateNumbersXOR(self, nums: List[int]) -> int`. A single pass
+> can XOR a value on its second encounter; the fixed value domain permits a
+> bit mask or fixed Boolean table for $O(1)$ auxiliary space. The package has
+> a mixed-format shared document with an embedded app-local implementation and
+> placeholder branch complexity, but no canonical cases, benchmark evidence,
+> branch approach, native artifact, or submission evidence. The authenticated
+> official statement and Python editor are open in Chrome; rerun the live
+> checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3158 was Accepted as exact
+> Python submission `2079877100`, with all 833 remote tests passing in 3 ms
+> and 19.27 MB. Its completed package now has a source-faithful document, 12
+> legal ordinary cases, an exact three-heading approach, $O(n)$ time and
+> $O(1)$ auxiliary space, accepted native and app-local sources, verified
+> submission evidence, and three legal 4/16/48-element all-pairs benchmark
+> tiers. The reference bit-mask and an independent fixed Boolean table pass
+> scaling (`+0.03`/`1.06x` and `-0.04`/`0.84x`); a correct hand-written
+> repeated-frequency scan finishes every expected output and fails only
+> scaling (`+1.08`, `22.49x`). The solution also matched an independent
+> frequency oracle on 20,000 randomized valid arrays. The checker reports
+> 3141 authored and 850 remaining; the audit reports 3141 fully verified, 17
+> blockers, and 3159 first actionable. The focused suite passes 151 tests with
+> the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3159_find-occurrences-of-an-element-in-an-array`, a free
+> Medium array problem. Given `nums`, positive occurrence-number queries, and
+> target `x`, return for every query the zero-based index of that occurrence
+> of `x`; return `-1` when fewer copies exist. The live examples are
+> `nums = [1,3,1,7], queries = [1,3,2,4], x = 1 -> [0,-1,2,-1]`
+> and `nums = [1,2,3], queries = [10], x = 5 -> [-1]`. Both array lengths
+> are between 1 and $10^5$; every query is between 1 and $10^5$; and every
+> `nums` value and `x` is between 1 and $10^4$. The native Python interface is
+> `Solution.occurrencesOfElement(self, nums: List[int], queries: List[int], x: int) -> List[int]`.
+> Precompute the indices where `nums[i] == x`, then answer each query by
+> 1-based-to-0-based conversion in $O(n+q)$ time. The package still has a
+> mixed-format document, sparse legacy cases, a placeholder manifest, and an
+> app-only source; it has no canonical branch approach, legal three-tier
+> complexity evidence, native artifact, or submission evidence. The official
+> statement and Python editor are open in the authenticated Chrome tab; rerun
+> the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3159 was Accepted as exact
+> Python submission `2079890172`, with all 527 remote tests passing in 45 ms
+> and 35.58 MB. Its completed package now has a source-faithful document, 12
+> legal ordinary cases, an exact three-heading approach, $O(n+q)$ time and
+> $O(n)$ auxiliary space, accepted native and app-local sources, verified
+> submission evidence, and three 16/64/256-sized paired-array benchmark tiers.
+> The accepted preprocessing solution and an independent two-pass linear
+> implementation pass scaling (`+0.01`/`1.05x` and `-0.13`/`0.57x`); a
+> correct per-query array scan finishes every expected output and fails only
+> scaling (`+1.26`, `103.06x`). The solution also matched an independent
+> per-query scan oracle on 20,000 randomized suites. The checker reports 3142
+> authored and 849 remaining; the audit reports 3142 fully verified, 17
+> blockers, and 3160 first actionable. The focused suite passes 151 tests with
+> the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3160_find-the-number-of-distinct-colors-among-the-balls`, a
+> free Medium simulation problem (backend question ID `3434`). There are
+> `limit + 1` initially uncolored balls labeled from `0` through `limit`.
+> Each query `[x, y]` assigns color `y` to ball `x`, replacing any previous
+> color, and the answer after each query is the number of distinct colors
+> currently present; uncolored balls do not contribute a color. The live
+> examples are `limit = 4, queries = [[1,4],[2,5],[1,3],[3,4]] ->
+> [1,2,2,3]` and `limit = 4, queries =
+> [[0,1],[1,2],[2,2],[3,4],[4,5]] -> [1,2,2,3,4]`. Constraints are
+> $1 \le \texttt{limit} \le 10^9$, $1 \le n \le 10^5$,
+> $0 \le \texttt{queries[i][0]} \le \texttt{limit}$, and
+> $1 \le \texttt{queries[i][1]} \le 10^9$. The native interface is
+> `Solution.queryResults(self, limit: int, queries: List[List[int]]) -> List[int>`.
+> Track each colored ball's current color plus the number of balls using each
+> color, deleting a color count when it reaches zero, for expected $O(n)$
+> time. The current package is a mixed-format scaffold with sparse cases, a
+> placeholder manifest, and an app-only source; its non-official third example
+> also disagrees with its corresponding case. The official statement and
+> Python editor are open in the authenticated Chrome tab; rerun the live
+> checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3160 was Accepted as exact
+> Python submission `2079902780`, with 125 ms runtime and 65.86 MB memory.
+> Its completed package now has a source-faithful document, 12 legal ordinary
+> cases, an exact three-heading approach, expected $O(n)$ time and $O(n)$
+> auxiliary space, accepted native and app-local sources, verified submission
+> evidence, and three legal 64/256/1024-query benchmark tiers. The accepted
+> two-map simulation and an independent linear implementation pass scaling
+> (`+0.00`/`1.04x` and `+0.01`/`1.06x`); a correct full distinct-color
+> recount finishes every expected output and fails only scaling (`+0.43`,
+> `2.66x`). The solution also matched an independent state oracle on 20,000
+> randomized suites covering 511,815 assignments. The checker reports 3143
+> authored and 848 remaining; the audit reports 3143 fully verified, 17
+> blockers, and 3161 first actionable. The focused suite passes 151 tests with
+> the two existing warnings.
+>
+> Continue with `dsa/leetcode/3161_block-placement-queries`, a free Hard
+> dynamic-query problem (backend question ID `3435`). The domain is the
+> nonnegative number line. A type-1 query `[1, x]` adds a new obstacle at
+> coordinate `x`. A type-2 query `[2, x, sz]` asks whether a block of length
+> `sz` can lie entirely inside `[0, x]` without intersecting an obstacle;
+> touching an obstacle is allowed, the block is not actually placed, and
+> type-2 queries do not affect one another. Return one Boolean for each type-2
+> query. The live examples are
+> `[[1,2],[2,3,3],[2,3,1],[2,2,2]] -> [false,true,true]` and
+> `[[1,7],[2,7,6],[1,2],[2,7,5],[2,7,6]] -> [true,true,false]`.
+> There are at most $1.5\cdot10^5$ queries; coordinates and sizes are at most
+> $\min(5\cdot10^4, 3q)$; every inserted coordinate is new; and at least one
+> type-2 query exists. The native interface is
+> `Solution.getResults(self, queries: List[List[int]]) -> List[bool]`.
+> A reviewed online route maintains ordered obstacles and the gap ending at
+> each obstacle, combining predecessor/successor lookup with a range-maximum
+> data structure in $O(q\log C)$ time. The current package is a mixed-format
+> document with sparse cases, a huge legacy benchmark, placeholder branch
+> metadata, and an app-only implementation; it has no canonical approach,
+> native artifact, or submission evidence. The official statement and Python
+> editor are open in the authenticated Chrome tab; rerun the live checker and
+> audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3161 was Accepted as exact
+> Python submission `2079917445`, with all 745 remote tests passing in 4139 ms
+> and 80.2 MB. Its completed package now has a source-faithful document, 12
+> legal ordinary cases, an exact three-heading approach, $O(q\log C)$ time and
+> $O(C)$ auxiliary space, accepted native and app-local sources, verified
+> submission evidence, and three legal 32/128/512-query benchmark tiers. The
+> accepted Fenwick-plus-segment-tree solution and an independently structured
+> implementation of the same class pass scaling (`-0.01`/`0.96x` and
+> `+0.03`/`0.85x`); a correct ordered-obstacle gap scan finishes every output
+> and fails only scaling (`+0.81`, `3.00x`). The accepted algorithm also
+> matched an independent ordered-list oracle on 30,000 randomized legal suites
+> covering 617,908 queries. The checker reports 3144 authored and 847
+> remaining; the audit reports 3144 fully verified, 17 blockers, and 3162
+> first actionable. The focused suite passes 151 tests with the two existing
+> warnings.
+>
+> Continue with
+> `dsa/leetcode/3162_find-the-number-of-good-pairs-i`, a free Easy array
+> problem. For arrays `nums1` and `nums2` of lengths $n$ and $m$, and positive
+> integer `k`, count index pairs $(i,j)$ for which `nums1[i]` is divisible by
+> `nums2[j] * k`. The authenticated examples are
+> `nums1 = [1,3,4], nums2 = [1,3,4], k = 1 -> 5` and
+> `nums1 = [1,2,4,12], nums2 = [2,4], k = 3 -> 2`. Constraints are
+> $1 \le n,m \le 50$, $1 \le \texttt{nums1[i]},\texttt{nums2[j]} \le 50$,
+> and $1 \le k \le 50$. The native interface is
+> `Solution.numberOfPairs(self, nums1: List[int], nums2: List[int], k: int) -> int`.
+> The intended nested pair check takes $O(nm)$ time and $O(1)$ auxiliary
+> space. The current package is a mixed-format scaffold with only five cases,
+> a legacy benchmark, placeholder branch metadata, and an app-only source; its
+> first stored example is stale and incorrectly uses `k = 3` with output `1`
+> instead of the official `k = 1` example with output `5`. The authenticated
+> official statement and Python editor are open in Chrome; rerun the live
+> checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3162 was Accepted as exact
+> Python submission `2079935604`, with all 783 remote tests passing in 3 ms
+> and 19.26 MB. Its completed package now has a source-faithful document, 12
+> legal ordinary cases, an exact three-heading approach, $O(nm)$ time and
+> $O(1)$ auxiliary space, accepted native and app-local sources, verified
+> submission evidence, and three legal 16/256/2500-index-pair benchmark tiers.
+> The accepted generator enumeration and an independent explicit nested loop
+> pass scaling (`-0.00`/`0.99x` and `-0.01`/`0.87x`); a correct hand-written
+> repeated-frequency scan finishes every output and fails only scaling
+> (`+0.59`, `34.11x`). The accepted solution also matched an independent
+> aggregate-frequency oracle on 20,000 randomized legal suites covering
+> 13,002,791 index pairs. The checker reports 3145 authored and 846 remaining;
+> the audit reports 3145 fully verified, 17 blockers, and 3163 first
+> actionable. The focused suite passes 151 tests with the two existing
+> warnings.
+>
+> Continue with `dsa/leetcode/3163_string-compression-iii`, a free Medium
+> string problem (backend question ID `3451`). Repeatedly remove the longest
+> prefix made of one character but capped at nine copies, appending the
+> one-digit prefix length followed by that character to the result. The live
+> examples are `"abcde" -> "1a1b1c1d1e"` and
+> `"aaaaaaaaaaaaaabb" -> "9a5a2b"`. The input contains between 1 and
+> $2\cdot10^5$ lowercase English letters. The native interface is
+> `Solution.compressedString(self, word: str) -> str`. A single left-to-right
+> scan can emit a chunk whenever the character changes or the current count
+> reaches nine, taking $O(n)$ time and $O(n)$ output-building space. The
+> current package contains only metadata, a TODO shared document, and a
+> placeholder variant manifest; it has no cases, complexity evidence,
+> approach, app-local source, native artifact, or submission evidence. The
+> authenticated official statement and Python editor are open in Chrome;
+> rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3163 was Accepted as exact
+> Python submission `2079946310`, with all 744 remote tests passing in 243 ms
+> and 30.00 MB. Its completed package now has a source-faithful document, 12
+> legal ordinary cases, an exact three-heading approach, $O(n)$ time and
+> $O(n)$ auxiliary output-building space, accepted native and app-local
+> sources, verified submission evidence, and three legal 32/128/512-character
+> benchmark tiers. The accepted chunk scan and an independently structured
+> linear implementation pass scaling (`+0.02`/`1.04x` and `-0.12`/`0.47x`);
+> a correct explicit suffix-rebuild implementation finishes every expected
+> output and fails only scaling (`+1.04`, `68.75x`). The accepted algorithm
+> also matched an independent oracle on every string over `abc` of lengths
+> one through eight and on 20,000 randomized strings covering 5,027,416
+> characters. The checker reports 3146 authored and 845 remaining; the audit
+> reports 3146 fully verified, 17 blockers, and 3164 first actionable. The
+> focused suite passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3164_find-the-number-of-good-pairs-ii`, a free Medium array
+> problem (backend question ID `3444`). Given positive integer arrays `nums1`
+> and `nums2` of lengths $n$ and $m$ and a positive integer `k`, count index
+> pairs $(i,j)$ for which `nums1[i]` is divisible by `nums2[j] * k`. The live
+> examples are `nums1 = [1,3,4], nums2 = [1,3,4], k = 1 -> 5` and
+> `nums1 = [1,2,4,12], nums2 = [2,4], k = 3 -> 2`. Constraints are
+> $1 \le n,m \le 10^5$, $1 \le \texttt{nums1[i]},\texttt{nums2[j]} \le
+> 10^6$, and $1 \le k \le 10^3$. The native interface is
+> `Solution.numberOfPairs(self, nums1: List[int], nums2: List[int], k: int) -> int`.
+> The official hints support frequency-counting eligible `nums2` values and
+> either enumerating divisors of each `nums1` value or aggregating multiples
+> to improve on the direct $O(nm)$ pair scan. The current package is a partial
+> legacy scaffold: it has a mixed-format document, five ordinary cases, a
+> very large legacy benchmark, placeholder branch metadata, and an app-only
+> source, but no canonical approach, native artifact, or verified submission
+> evidence. The authenticated official statement and Python editor are open
+> in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3164 was Accepted as exact
+> Python submission `2079960229`. Its completed package now has a
+> source-faithful document, 12 legal ordinary cases, an exact three-heading
+> approach, $O(n+m+V\log V)$ time and $O(V+m)$ auxiliary space, accepted
+> native and app-local sources, verified submission evidence, and three legal
+> 32/128/512-domain benchmark tiers. The accepted dense-frequency solution and
+> an independently structured sparse-frequency implementation pass scaling
+> (`+0.02`/`1.02x` and `+0.02`/`1.26x`); a correct direct ordered-pair scan
+> finishes every expected output and fails only scaling (`+0.91`, `35.60x`).
+> The accepted algorithm also matched an independent pair-enumeration oracle
+> on 286,256 exhaustive and randomized legal suites. The checker reports 3147
+> authored and 844 remaining; the audit reports 3147 fully verified, 17
+> blockers, and 3165 first actionable. The focused suite passes 151 tests with
+> the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3165_maximum-sum-of-subsequence-with-non-adjacent-elements`,
+> a free Hard dynamic-update problem (backend question ID `3423`). Start with
+> an integer array `nums`. Each query `[pos, x]` first assigns
+> `nums[pos] = x`, then asks for the maximum sum of a subsequence containing no
+> two adjacent array elements. The empty subsequence is allowed, so that
+> maximum is zero when every usable value is negative. Return the sum of all
+> query answers modulo $10^9+7$. The live examples are
+> `nums = [3,5,9], queries = [[1,-2],[0,-3]] -> 21` and
+> `nums = [0,-1], queries = [[0,-5]] -> 0`. Both the array length and query
+> count are between 1 and $5\cdot10^4$; array and replacement values are in
+> $[-10^5,10^5]$; and every query position is a valid array index. The native
+> interface is
+> `Solution.maximumSumSubsequence(self, nums: List[int], queries: List[List[int]]) -> int`.
+> The official hints call for a segment tree whose nodes retain four boundary
+> selection states, allowing each point update and root answer in $O(\log n)$
+> time. The current package is a partial legacy scaffold with a mixed-format
+> shared document, five ordinary cases, one 317 KB legacy benchmark, placeholder
+> branch metadata, and an app-only segment-tree source; it has no canonical
+> approach, native artifact, or verified submission evidence. The authenticated
+> official statement and Python editor are open in Chrome; rerun the live
+> checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3165 was Accepted as exact
+> Python submission `2079972891`. Its completed package now has a
+> source-faithful document, 12 legal ordinary cases, an exact three-heading
+> approach, $O(n+q\log n)$ time and $O(n)$ auxiliary space, accepted native
+> and app-local sources, verified submission evidence, and three legal
+> 32/128/512-value-and-update benchmark tiers. The accepted recursive segment
+> tree and an independently structured iterative segment tree pass scaling
+> (`-0.01`/`1.00x` and `-0.00`/`1.03x`); a correct full-array dynamic-program
+> recomputation after each update finishes every expected output and fails only
+> scaling (`+0.81`, `5.46x`). The accepted four-state merge also matched an
+> independent linear DP oracle on 142,775 exhaustive and randomized suites,
+> including 773,337 randomized updates, and completed a legal 50,000-value,
+> 50,000-update stress case in 0.58 seconds. The checker reports 3148 authored
+> and 843 remaining; the audit reports 3148 fully verified, 17 blockers, and
+> 3166 first actionable. The focused suite passes 151 tests with the two
+> existing warnings.
+>
+> Continue with `dsa/leetcode/3166_calculate-parking-fees-and-duration`, a
+> free Medium MySQL problem (backend question ID `3473`). The sole table is
+> `ParkingTransactions(lot_id int, car_id int, entry_time datetime, exit_time
+> datetime, fee_paid decimal)`, with primary key `(lot_id, car_id, entry_time)`.
+> For each car, return `car_id`, its total fee across all lots as
+> `total_fee_paid`, its total fee divided by its total parked hours rounded to
+> two decimals as `avg_hourly_fee`, and the lot where it accumulated the most
+> parked time as `most_time_lot`. Order rows by `car_id` ascending. A car never
+> occupies multiple lots simultaneously. The authenticated example returns
+> `(1001, 18.00, 2.40, 1)` and `(1002, 6.00, 1.33, 2)` for the six published
+> transactions. The editor language is MySQL and contains only the standard
+> query comment; LeetCode exposes no function signature or code snippets for
+> this database problem. The current package contains only metadata, a short
+> shared-document scaffold, and placeholder variant metadata: it has no cases,
+> complexity evidence, branch approach, SQL source, native artifact, or
+> submission evidence. The authenticated official statement and MySQL editor
+> are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3166 was Accepted as exact
+> MySQL submission `2079981325`. Its completed package now has a source-faithful
+> document, 12 legal ordered-table fixtures, an exact three-heading approach,
+> $O(r\log r)$ time and $O(r)$ auxiliary space, separate accepted MySQL and
+> app-local SQLite sources, verified submission evidence, and three legal
+> 64/256/1024-transaction benchmark tiers. The accepted grouped/window query
+> and an independent `FIRST_VALUE` query pass scaling (`+0.00`/`1.01x` and
+> `+0.01`/`1.04x`); a correct correlated anti-join over car-lot summaries
+> finishes every expected table and fails only scaling (`+0.72`, `9.35x`).
+> The SQLite source passed all 12 ordinary fixtures and all three benchmark
+> tables through the repository's isolated database runner. The checker
+> reports 3149 authored and 842 remaining; the audit reports 3149 fully
+> verified, 17 blockers, and 3167 first actionable. The focused suite passes
+> 151 tests with the two existing warnings.
+>
+> Continue with `dsa/leetcode/3167_better-compression-of-string`, a free
+> Medium string parsing problem (backend question ID `3474`). The input is a
+> valid compression formed from one lowercase letter followed by its positive
+> decimal frequency, repeated for any number of groups. A letter may occur in
+> several groups and the frequencies may contain several digits. Sum all
+> frequencies for the same letter, then return exactly one letter-frequency
+> group for each present letter in alphabetical order; changing the original
+> group order is explicitly allowed. The live examples are
+> `"a3c9b2c1" -> "a3b2c10"`, `"c2b3a1" -> "a1b3c2"`, and
+> `"a2b4c1" -> "a2b4c1"`. The encoded length is at most $6\cdot10^4$;
+> only lowercase letters and digits occur; each frequency is in
+> $[1,10^4]$ and has no leading zeroes. The authenticated Python interface is
+> `Solution.betterCompression(self, compressed: str) -> str`; the public
+> GraphQL record exposes no code-snippet list, but the live editor confirms
+> that signature. A linear parser plus 26 frequency counters gives $O(n)$
+> time and $O(1)$ alphabet storage. The current package contains only metadata,
+> a short shared-document scaffold, and placeholder variant metadata: it has
+> no cases, complexity evidence, approach, app-local source, native artifact,
+> or submission evidence. The authenticated official statement and Python
+> editor are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3167 was Accepted as exact
+> Python submission `2079990529` (850/850 tests). Its completed package now
+> has a source-faithful document, 12 legal ordinary cases, an exact
+> three-heading approach, $O(n)$ time and $O(1)$ auxiliary alphabet storage,
+> accepted native and app-local sources, verified submission evidence, and
+> three legal 128/512/1536-encoded-character benchmark tiers. The accepted
+> parser and an independently structured dictionary parser pass scaling
+> (`-0.01`/`0.99x` and `-0.02`/`0.70x`); a correct implementation that
+> explicitly rebuilds every remaining suffix character by character finishes
+> every expected output and fails only scaling (`+1.00`, `73.29x`). The exact
+> accepted source also matched an independent regular-expression oracle on
+> 7,907 fixed, randomized, and maximum-length inputs. The checker reports
+> 3150 authored and 841 remaining; the audit reports 3150 fully verified, 17
+> blockers, and 3168 first actionable. The focused suite passes 151 tests with
+> the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3168_minimum-number-of-chairs-in-a-waiting-room`, a free Easy
+> simulation problem. The string `s` records one event per second: `E` means
+> a person enters the initially empty waiting room and occupies a chair, while
+> `L` means a person leaves and frees a chair. Return the minimum number of
+> chairs that guarantees an available chair for every entry. Equivalently,
+> scan the valid event sequence while tracking the current occupancy and
+> return its maximum prefix value. The live examples are `"EEEEEEE" -> 7`,
+> `"ELELEEL" -> 2`, and `"ELEELEELLL" -> 3`. The length is between 1 and 50,
+> only `E` and `L` occur, and the sequence of entries and exits is valid. The
+> authenticated Python interface is
+> `Solution.minimumChairs(self, s: str) -> int`. The current package contains
+> only metadata, a short shared-document scaffold, and placeholder variant
+> metadata: it has no cases, complexity evidence, approach, app-local source,
+> native artifact, or submission evidence. The authenticated official
+> statement and Python editor are open in Chrome; rerun the live checker and
+> audit before editing.
+
+
+> **Authoritative latest checkpoint:** Problem 3168 was Accepted as exact
+> Python submission `2079999568` (852/852 tests). Its completed package now
+> has a source-faithful document, 12 legal ordinary cases, an exact
+> three-heading approach, $O(n)$ time and $O(1)$ auxiliary space, accepted
+> native and app-local sources, verified submission evidence, and three legal
+> 8/24/50-event benchmark tiers. The accepted occupancy scan and an
+> independently structured prefix-sum implementation pass scaling
+> (`+0.01`/`1.02x` and `-0.06`/`0.89x`); a correct repeated-capacity
+> simulation finishes every expected output and fails only scaling (`+1.23`,
+> `18.94x`). The exact accepted source also matched an independent
+> maximum-prefix oracle on 26,369 exhaustive legal sequences and boundary
+> cases. The checker reports 3151 authored and 840 remaining; the audit
+> reports 3151 fully verified, 17 blockers, and 3169 first actionable. The
+> focused suite passes 151 tests with the two existing warnings.
+>
+> Continue with `dsa/leetcode/3169_count-days-without-meetings`, a Medium
+> interval-merging problem. `days` labels the employee's available work days
+> from 1 through `days`, and each `meetings[i] = [start_i, end_i]` occupies
+> both endpoints and every day between them. Meetings may overlap. Return how
+> many work days are covered by no meeting. The authenticated examples are
+> `days = 10, meetings = [[5,7],[1,3],[9,10]] -> 2`,
+> `days = 5, meetings = [[2,4],[1,3]] -> 1`, and
+> `days = 6, meetings = [[1,6]] -> 0`. Note that the current shared scaffold's
+> second example is wrong and must be replaced with the authenticated one.
+> Constraints are $1 \le \texttt{days} \le 10^9$, $1 \le n \le 10^5$, and
+> $1 \le \texttt{start}_i \le \texttt{end}_i \le \texttt{days}$. The
+> authenticated Python interface is
+> `Solution.countDays(self, days: int, meetings: List[List[int]]) -> int`.
+> The current package is a partial legacy package with a mixed-format shared
+> document, five ordinary cases, a 2.6 MB one-tier benchmark, placeholder
+> branch metadata, and only an app-local sorting source. It has no canonical
+> approach, native artifact, or verified submission evidence. The official
+> statement and Python editor are open in Chrome; rerun the live checker and
+> audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3169 was Accepted as exact
+> Python submission `2080005585` (578/578 tests). Its corrected package now
+> has a source-faithful document, 12 legal ordinary cases, an exact
+> three-heading approach, $O(n\log n)$ time and $O(n)$ auxiliary copied-sort
+> space, accepted native and app-local sources, verified submission evidence,
+> and three compact legal 64/256/512-meeting benchmark tiers replacing the
+> legacy 2.6 MB one-tier workload. The accepted covered-prefix scan and an
+> independently structured gap-counting merge pass scaling (`-0.03`/`1.01x`
+> and `+0.05`/`1.17x`); a correct repeated sorted-insertion merge finishes
+> every expected output and fails only scaling (`+1.21`, `366.84x`). The
+> exact accepted source also matched an independent day-set oracle on 77,028
+> exhaustive and randomized legal interval suites. The checker reports 3152
+> authored and 839 remaining; the audit reports 3152 fully verified, 17
+> blockers, and 3170 first actionable. The focused suite passes 151 tests with
+> the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3170_lexicographically-minimum-string-after-removing-stars`, a
+> Medium greedy string problem. Repeatedly remove the leftmost `*` together
+> with one smallest non-`*` character to its left; when several occurrences
+> share that smallest character, the choice is free. Return the
+> lexicographically smallest string obtainable after every `*` is removed.
+> The authenticated examples are `"aaba*" -> "aab"` (remove the rightmost
+> eligible `a`) and `"abc" -> "abc"`; there is no third official example.
+> The input length is between 1 and $10^5$, contains only lowercase English
+> letters and `*`, and guarantees that all stars can be removed. The
+> authenticated Python interface is
+> `Solution.clearStars(self, s: str) -> str`. A 26-bucket position structure
+> can delete the smallest available letter and its rightmost occurrence at
+> each star, then retain undeleted characters in original order, giving
+> $O(n)$ time for the fixed alphabet and $O(n)$ space. The current package
+> contains only metadata, a short shared-document scaffold, and placeholder
+> variant metadata: it has no cases, complexity evidence, approach,
+> app-local source, native artifact, or submission evidence. The official
+> statement and Python editor are open in Chrome; rerun the live checker and
+> audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3170 was Accepted as exact
+> Python submission `2080011940` (602/602 tests). Its completed package now
+> has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(n)$ time for the fixed alphabet and $O(n)$
+> auxiliary space, accepted native and app-local sources, verified submission
+> evidence, and three legal 128/384/768-character benchmark tiers. The
+> accepted 26-bucket scan and an independently structured bitmask-plus-stacks
+> implementation pass scaling (`+0.05`/`1.03x` and `-0.05`/`0.22x`); a
+> correct prefix-rescanning implementation finishes every expected output and
+> fails only scaling (`+1.00`, `28.57x`). The rightmost-tie greedy result also
+> matched a branching oracle on 69,235 exhaustive and randomized valid
+> strings covering 59,236 distinct oracle states. The checker reports 3153
+> authored and 838 remaining; the audit reports 3153 fully verified, 17
+> blockers, and 3171 first actionable. The focused suite passes 151 tests with
+> the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3171_find-subarray-with-bitwise-or-closest-to-k`, a Hard
+> bitwise dynamic-set problem. Choose any nonempty contiguous subarray and
+> minimize the absolute difference between `k` and the bitwise OR of all its
+> elements. The authenticated examples are
+> `nums = [1,2,4,5], k = 3 -> 0`,
+> `nums = [1,3,1,3], k = 2 -> 1`, and `nums = [1], k = 10 -> 9`.
+> Both the array length and each value bound are at most $10^5$ and $10^9$
+> respectively: $1 \le n \le 10^5$, $1 \le \texttt{nums[i]} \le 10^9$,
+> and $1 \le k \le 10^9$. The authenticated Python interface is
+> `Solution.minimumDifference(self, nums: List[int], k: int) -> int`. The
+> official hints define the set of OR values for subarrays ending at each
+> index and note that it has at most 30 distinct values because set bits never
+> become unset. The current package is a partial legacy package with a
+> corrupted and contradictory mixed-format shared document, five nonofficial
+> cases (including an illegal `k = 0` case), a 228 KB one-tier benchmark,
+> placeholder branch metadata, and only an app-local dynamic-set source. It
+> has no canonical approach, native artifact, or verified submission evidence.
+> The authenticated statement and Python editor are open in Chrome; rerun the
+> live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3171 was Accepted as exact
+> Python submission `2080018420` (814/814 tests). Its corrected package now
+> has a source-faithful three-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(n\log M)$ time and $O(\log M)$ auxiliary
+> endpoint-state storage, accepted native and app-local sources, verified
+> submission evidence, and three legal 96/320/640-element benchmark tiers
+> replacing the legacy 228 KB one-tier workload. The accepted distinct-set
+> scan and an independently structured ordered-dedup scan pass scaling
+> (`-0.03`/`0.95x` and `-0.02`/`0.96x`); a correct all-subarray enumerator
+> finishes every expected output and fails only scaling (`+1.08`, `87.20x`).
+> Both optimized implementations also matched an independent brute-force
+> oracle on 314,105 exhaustive and randomized legal inputs. The checker
+> reports 3154 authored and 837 remaining; the audit reports 3154 fully
+> verified, 17 blockers, and 3172 first actionable. The focused suite passes
+> 151 tests with the two existing warnings.
+>
+> Continue with `dsa/leetcode/3172_second-day-verification`, an Easy SQL
+> problem. The `emails` table has the composite primary key
+> `(email_id, user_id)` and stores each signup timestamp. The `texts` table
+> has composite primary key `(text_id, email_id)`, a `signup_action` enum of
+> `Verified` or `Not Verified`, and an action timestamp. Return the `user_id`
+> values whose signup was verified on the calendar day immediately after the
+> signup date, ordered by `user_id` ascending. The single authenticated
+> example returns users `7005` and `7771`; their verified text actions occur
+> one calendar day after signup, while user `1052` has a `Not Verified`
+> action. The authenticated editor is MySQL. The current package contains
+> only metadata, a placeholder shared document, and placeholder variant
+> metadata; it has no cases, approach, SQL artifact, complexity evidence, or
+> submission evidence. The authenticated official statement and MySQL editor
+> are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3172 was Accepted as exact
+> MySQL submission `2080023803` (11/11 tests). Its completed package now has
+> a source-faithful single-example document, 12 legal table-fixture cases, an
+> exact three-heading approach, $O(r\log r)$ time and $O(r)$ auxiliary
+> database storage, separate app-local SQLite and accepted native MySQL
+> sources, verified submission evidence, and three legal 128/512/1024-total-
+> row benchmark tiers. The SQLite equality join and an independently
+> structured grouped join pass scaling (`+0.00`/`1.00x` and `+0.00`/`1.01x`);
+> a correct correlated scan finishes every expected table and fails only
+> scaling (`+0.60`, `4.08x`). Cases explicitly verify that the judged
+> `DATEDIFF(...)=1` contract is a one-calendar-date difference, including a
+> midnight crossing, month/year/leap-day boundaries, duplicate qualifying
+> texts, duplicate qualifying emails for one user, ordering, and empty text
+> input. The checker reports 3155 authored and 836 remaining; the audit
+> reports 3155 fully verified, 17 blockers, and 3173 first actionable. The
+> focused suite passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3173_bitwise-or-of-adjacent-elements`, a free Easy array
+> problem. Given `nums` of length $n$, return an array of length $n-1$ whose
+> element at index $i$ is `nums[i] | nums[i + 1]`. The authenticated examples
+> are `[1,3,7,15] -> [3,7,15]`, `[8,4,2] -> [12,6]`, and
+> `[5,4,9,11] -> [5,13,11]`. Constraints are $2 \le n \le 100$ and
+> $0 \le \texttt{nums[i]} \le 100$. The authenticated Python interface is
+> `Solution.orArray(self, nums: List[int]) -> List[int]`. The current package
+> contains only metadata, a placeholder shared document, and placeholder
+> variant metadata; it has no cases, complexity evidence, approach,
+> app-local source, native artifact, or submission evidence. The official
+> statement and Python editor are open in Chrome; rerun the live checker and
+> audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3173 was Accepted as exact
+> Python submission `2080028205` (1264/1264 tests). Its completed package now
+> has a source-faithful three-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(n)$ time and $O(n)$ returned-output space,
+> accepted native and app-local sources, verified submission evidence, and
+> three legal 16/48/100-element benchmark tiers spanning the complete
+> constraint range. The accepted zipped-pair scan and an independently
+> structured index loop pass scaling (`+0.02`/`1.00x` and `+0.05`/`1.12x`);
+> a correct prefix-rebuilding implementation finishes every expected output
+> and fails only scaling (`+1.35`, `20.66x`). Both linear implementations
+> also matched a direct adjacent-pair oracle on 319,584 exhaustive and
+> randomized legal arrays. The checker reports 3156 authored and 835
+> remaining; the audit reports 3156 fully verified, 17 blockers, and 3174
+> first actionable. The focused suite passes 151 tests with the two existing
+> warnings.
+>
+> Continue with `dsa/leetcode/3174_clear-digits`, a free Easy stack problem.
+> Repeatedly delete the first digit in the current string together with the
+> closest non-digit character to its left, and return the string after all
+> digits have been removed. A digit without a non-digit to its left cannot be
+> processed, but the input guarantees that every digit can be deleted. The
+> authenticated examples are `"abc" -> "abc"` and `"cb34" -> ""`; there is
+> no third official example. The length is between 1 and 100, and the string
+> contains only lowercase English letters and digits. The authenticated
+> Python interface is `Solution.clearDigits(self, s: str) -> str`. A
+> left-to-right stack removes the nearest surviving letter whenever a digit
+> appears, giving $O(n)$ time and $O(n)$ space. The current package contains
+> only metadata, a placeholder shared document, and placeholder variant
+> metadata; it has no cases, complexity evidence, approach, app-local source,
+> native artifact, or submission evidence. The authenticated statement and
+> Python editor are open in Chrome; rerun the live checker and audit before
+> editing.
+
+> **Authoritative latest checkpoint:** Problem 3174 was Accepted as exact
+> Python submission `2080033380` (688/688 tests). Its completed package now
+> has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(n)$ time and $O(n)$ stack space, accepted
+> native and app-local sources, verified submission evidence, and three legal
+> 16/48/100-character benchmark tiers spanning the complete constraint range.
+> The accepted character-stack scan and an independently structured index
+> scan pass scaling (`+0.03`/`1.04x` and `+0.06`/`1.19x`); a correct literal
+> repeated-deletion simulation finishes every expected output and fails only
+> scaling (`+0.86`, `7.44x`). The stack result also matched a literal
+> first-digit deletion oracle on 108,642 exhaustive and randomized valid
+> strings. The checker reports 3157 authored and 834 remaining; the audit
+> reports 3157 fully verified, 17 blockers, and 3175 first actionable. The
+> focused suite passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3175_find-the-first-player-to-win-k-games-in-a-row`, a Medium
+> queue-competition problem. Players initially appear in index order, have
+> unique skill values, and the first two play each game. The higher-skilled
+> player stays at the front while the loser moves to the back; return the
+> initial index of the first player to win `k` consecutive games. The
+> authenticated examples are `skills = [4,2,6,3,9], k = 2 -> 2` and
+> `skills = [2,5,4], k = 3 -> 1`; there is no third official example.
+> Constraints are $2 \le n \le 10^5$, $1 \le k \le 10^9$, and
+> $1 \le \texttt{skills[i]} \le 10^6$, with all skills unique. The
+> authenticated Python interface is
+> `Solution.findWinningPlayer(self, skills: List[int], k: int) -> int`. A
+> linear champion scan tracks the current front player and consecutive wins;
+> after the global maximum becomes champion it can never lose. The current
+> package is a partial legacy package with a mixed-format shared document,
+> five ordinary cases including a nonofficial third example, a very large
+> one-tier 70,000-player benchmark, placeholder branch metadata, and only an
+> app-local linear source. It has no canonical approach, native artifact, or
+> verified submission evidence. The authenticated statement and Python
+> editor are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3175 was Accepted as exact
+> Python submission `2080038863` (684/684 tests). Its completed package now
+> has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(n)$ time and $O(1)$ auxiliary space,
+> accepted native and app-local sources, verified submission evidence, and
+> three legal 384/1536/6144-player benchmark tiers with a 16x span. The
+> accepted champion scan and an independently structured linear scan pass
+> scaling (`+0.00`/`1.02x` and `-0.00`/`0.77x`); a correct repeated-prefix
+> maximum implementation finishes every expected output and fails only
+> scaling (`+1.01`, `51.31x`). The champion result also matched a literal
+> queue simulation on 771,988 exhaustive permutation/streak combinations.
+> The checker reports 3158 authored and 833 remaining; the audit reports
+> 3158 fully verified, 17 blockers, and 3176 first actionable. The focused
+> suite passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3176_find-the-maximum-length-of-a-good-subsequence-i`, a
+> Medium dynamic-programming problem. A subsequence is good when at most `k`
+> adjacent pairs within that subsequence have different values; return the
+> maximum possible good-subsequence length. The authenticated examples are
+> `nums = [1,2,1,1,3], k = 2 -> 4` and
+> `nums = [1,2,3,4,5,1], k = 0 -> 2`; there is no third official example.
+> Constraints are $1 \le n \le 500$, $1 \le \texttt{nums[i]} \le 10^9$,
+> and $0 \le k \le \min(n,25)$. The authenticated Python interface is
+> `Solution.maximumLength(self, nums: List[int], k: int) -> int`. A value-
+> and-change-budget DP can maintain the best subsequence ending in each
+> value, with a carefully ordered global-best transition, in $O(nk)$ time.
+> The current package is a partial legacy package with a mixed-format shared
+> document, five ordinary cases, a nonofficial third example whose document
+> says `3` while its case correctly expects `4`, and a one-tier benchmark
+> using 3,000 elements even though the legal maximum is 500. Its manifest
+> still contains `O(...)` placeholders, and its app-only source updates
+> budget states in ascending order, allowing the current array element to be
+> reused within one iteration (for example, one element can spuriously
+> produce length greater than one). It has no canonical approach, native
+> artifact, or verified submission evidence. The authenticated statement and
+> Python editor are open in Chrome; rerun the live checker and audit before
+> editing.
+
+> **Authoritative latest checkpoint:** Problem 3176 was Accepted as exact
+> Python submission `2080045348` (543/543 tests). Its completed package now
+> has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(nk)$ time and $O(nk)$ auxiliary space,
+> accepted native and app-local sources, verified submission evidence, and
+> three legal 100/250/500-element benchmark tiers spanning the full legal
+> length range. The accepted descending-budget DP and an independently
+> structured snapshot-table DP pass scaling (`+0.02`/`1.00x` and
+> `-0.02`/`1.20x`); a correct $O(n^2k)$ value-rescan implementation finishes
+> all 15 ordinary and benchmark outputs and fails only scaling (`+0.42`,
+> `2.95x`). The accepted result also matched literal subsequence enumeration
+> on 44,345 exhaustive and randomized inputs. The checker reports 3159
+> authored and 832 remaining; the audit reports 3159 fully verified, 17
+> blockers, and 3177 first actionable. The focused suite passes 151 tests
+> with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3177_find-the-maximum-length-of-a-good-subsequence-ii`, a
+> Hard dynamic-programming problem with the same good-subsequence contract:
+> at most `k` adjacent selected pairs may have different values, and the
+> result is the maximum possible subsequence length. The authenticated
+> examples are `nums = [1,2,1,1,3], k = 2 -> 4` and
+> `nums = [1,2,3,4,5,1], k = 0 -> 2`; there is no third official example.
+> Constraints increase to $1 \le n \le 5000$,
+> $1 \le \texttt{nums[i]} \le 10^9$, and
+> $0 \le k \le \min(50,n)$. The authenticated Python interface remains
+> `Solution.maximumLength(self, nums: List[int], k: int) -> int`. The
+> accepted 3176 value-and-at-most-budget DP is already $O(nk)$ and is a
+> natural candidate for this larger version, but its exact 3177 source must
+> still be remotely verified. The current package is a partial legacy
+> package with a mixed-format shared document, five ordinary cases including
+> a nonofficial third example, a one-tier 900-element benchmark without a
+> scaling size, placeholder branch bounds, and an app-only top-two-values DP.
+> It has no canonical approach, native artifact, or verified submission
+> evidence. The authenticated statement and Python editor are open in
+> Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3177 was Accepted as exact
+> Python submission `2080050814` (551/551 tests). Its completed package now
+> has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(nk)$ time and $O(nk)$ auxiliary space,
+> accepted native and app-local sources, verified submission evidence, and
+> three legal 200/1000/5000-element benchmark tiers spanning the complete
+> length range. The accepted descending-budget DP and an independently
+> structured snapshot-table DP pass scaling (`+0.02`/`1.01x` and
+> `-0.01`/`1.06x`); a correct $O(n^2k)$ value-rescan implementation finishes
+> all 15 ordinary and benchmark outputs and fails only scaling (`+0.59`,
+> `8.09x`). The accepted result also matched brute-force or conventional
+> index DP on 15,101 fresh inputs and passed a maximum-constraint smoke test.
+> The checker reports 3160 authored and 831 remaining; the audit reports
+> 3160 fully verified, 17 blockers, and 3178 first actionable. The focused
+> suite passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3178_find-the-child-who-has-the-ball-after-k-seconds`, a free
+> Easy math/simulation problem. Children $0$ through $n-1$ stand left to
+> right; child 0 starts with the ball, which moves one adjacent child per
+> second, initially rightward, and reverses direction whenever it reaches an
+> endpoint. Return the child holding the ball after `k` seconds. The three
+> authenticated examples are `n = 3, k = 5 -> 1`,
+> `n = 5, k = 6 -> 2`, and `n = 4, k = 2 -> 2`. Constraints are
+> $2 \le n \le 50$ and $1 \le k \le 50$. The statement notes that this is
+> the same contract as problem 2582. The authenticated Python interface is
+> `Solution.numberOfChild(self, n: int, k: int) -> int`. Positions repeat
+> every $2(n-1)$ seconds; reduce `k` modulo that period and mirror offsets
+> beyond $n-1$ for an $O(1)$ answer. The current package contains only
+> metadata, a placeholder mixed-format document, and placeholder branch
+> bounds. It has no cases, complexity evidence, canonical approach,
+> app-local source, native artifact, or submission evidence. The
+> authenticated statement and Python editor are open in Chrome; rerun the
+> live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3178 was Accepted as exact
+> Python submission `2080054931` (803/803 tests). Its completed package now
+> has a source-faithful three-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(1)$ time and $O(1)$ auxiliary space,
+> accepted native and app-local sources, verified submission evidence, and
+> three legal 8/24/48-second benchmark tiers spanning 6x within the complete
+> legal domain. The accepted triangular-wave formula and an independently
+> structured quotient-and-remainder formula pass scaling; a correct $O(k)$
+> literal simulation finishes all 15 ordinary and benchmark outputs and
+> fails only scaling in three consecutive trials (extra growth exponents
+> between `+0.34` and `+0.37`, with largest ratios from `2.25x` to `2.28x`).
+> The formula also matched literal simulation on all 2,450 legal `(n, k)`
+> pairs. The checker reports 3161 authored and 830 remaining; the audit
+> reports 3161 fully verified, 17 blockers, and 3179 first actionable. The
+> focused suite passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3179_find-the-n-th-value-after-k-seconds`, a Medium
+> array/math/simulation/combinatorics/prefix-sum problem. Begin with an
+> $n$-element array of ones. Each second simultaneously replaces every
+> element by the sum of itself and all preceding elements; return the last
+> value after exactly `k` seconds modulo $10^9+7$. The authenticated examples
+> are `n = 4, k = 5 -> 56` and `n = 5, k = 3 -> 35`; there is no third
+> official example. Constraints are $1 \le n,k \le 1000$. The authenticated
+> Python interface is
+> `Solution.valueAfterKSeconds(self, n: int, k: int) -> int`. Repeated
+> in-place prefix sums give the statement-directed $O(nk)$ method, while the
+> terminal value is also the binomial coefficient
+> $\binom{n+k-1}{n-1}$ and admits a faster modular-combination method. The
+> current package is a partial legacy package: its shared document repeats
+> the official link and embeds retired Solution/Complexity/Implementation
+> sections; it has only six ordinary cases, including illegal `k = 0`; its
+> sole benchmark uses illegal `n = 60001, k = 60000`; its branch bounds are
+> placeholders; and it lacks a canonical approach, native artifact, and
+> verified submission evidence. The authenticated statement and Python
+> editor are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3179 was Accepted as exact
+> Python submission `2080059447` (708/708 tests). Its completed package now
+> has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(\min(n,k)+\log M)$ time and $O(1)$
+> auxiliary space, accepted native and app-local sources, verified submission
+> evidence, and three legal 80/200/400 balanced benchmark tiers spanning 5x.
+> The accepted single-inverse binomial computation and an independently
+> ordered same-class computation pass scaling in three trials (extra growth
+> exponents from `-0.13` to `+0.03`); a correct $O(nk)$ repeated-prefix-sum
+> simulation finishes all 15 ordinary and benchmark outputs and fails only
+> scaling in three trials (extra growth exponents from `+1.13` to `+1.16`,
+> with largest ratios from `202.44x` to `206.23x`). The accepted result also
+> matched literal simulation on all 1,600 pairs with $1\le n,k\le40$ and an
+> independent exact binomial oracle on 2,000 randomized legal inputs. The
+> checker reports 3162 authored and 829 remaining; the audit reports 3162
+> fully verified, 17 blockers, and 3180 first actionable. The focused suite
+> passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3180_maximum-total-reward-using-operations-i`, a Medium
+> array/dynamic-programming/bit-manipulation/sorting problem with internal
+> question ID `3442`. Start with total reward $x=0$ and every index unmarked.
+> Any number of times, choose an unmarked index whose reward is strictly
+> greater than $x$, add that reward to $x$, and mark the index; maximize the
+> final total. The authenticated examples are
+> `rewardValues = [1,1,3,3] -> 4` and
+> `rewardValues = [1,6,4,3,2] -> 11`; there is no third official example.
+> Constraints are $1\le n\le2000$ and
+> $1\le\texttt{rewardValues[i]}\le2000$. The authenticated Python interface
+> is
+> `Solution.maxTotalReward(self, rewardValues: List[int]) -> int`. Sorting
+> unique rewards and representing reachable totals as bits supports the
+> transition `reachable |= (reachable & ((1 << value) - 1)) << value`; only
+> totals strictly below the chosen value may shift. The current package is a
+> partial legacy package: its shared document repeats the official link,
+> includes retired Solution/Complexity/Implementation sections, and invents
+> a third example; it has only five ordinary cases; its only benchmark has
+> 5,000 entries with values reaching roughly 6,000, violating both legal
+> limits; its manifest bounds are placeholders; its app-only source uses the
+> old snake-case parameter contract; and it lacks a canonical approach,
+> native artifact, and verified submission evidence. The authenticated
+> statement and Python editor are open in Chrome; rerun the live checker and
+> audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3180 was Accepted as exact
+> Python submission `2080066534` (586/586 tests). Its completed package now
+> has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(n\log n+nV/w)$ time and
+> $O(n+V/w)$ auxiliary space, accepted native and app-local sources,
+> verified submission evidence, and three legal 500/1000/2000-element
+> benchmark tiers spanning the complete array-length range. The accepted
+> integer-bitset DP and an equivalent independently named bitset DP pass
+> scaling in three trials (`+0.01` to `+0.03`, approximately `1.00x`); a
+> correct $O(nV)$ scalar boolean DP finishes all 15 ordinary and benchmark
+> outputs and fails only scaling in three trials (`+1.15` to `+1.18`, with
+> largest ratios from `222.01x` to `226.60x`). The accepted result also
+> matched brute force or conventional scalar DP on 6,206 exhaustive,
+> randomized, targeted, and maximum-constraint inputs. The checker reports
+> 3163 authored and 828 remaining; the audit reports 3163 fully verified,
+> 17 blockers, and 3181 first actionable. The focused suite passes 151 tests
+> with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3181_maximum-total-reward-using-operations-ii`, a Hard
+> array/dynamic-programming/bit-manipulation/sorting problem with internal
+> question ID `3443`. Its reward-selection contract, two official examples,
+> and Python interface are identical to problem 3180, but both constraints
+> increase to $5\cdot10^4$: $1\le n\le50000$ and
+> $1\le\texttt{rewardValues[i]}\le50000$. The authenticated interface is
+> `Solution.maxTotalReward(self, rewardValues: List[int]) -> int`. The same
+> bounded integer-bitset transition is the natural candidate and matches the
+> platform's explicit bitset hint, but its exact 3181 source must still be
+> remotely verified. The current package is partial legacy content: its
+> shared document repeats the official link, includes retired
+> Solution/Complexity/Implementation sections, and invents a third example;
+> it has only five ordinary cases with the old snake-case input key; its
+> single legal 7,000-element benchmark has no scaling size or additional
+> tiers; its manifest bounds are placeholders; and it has only an app-local
+> source, with no canonical approach, native artifact, or verified
+> submission evidence. The authenticated statement and Python editor are
+> open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3181 was Accepted as exact
+> Python submission `2080071405` (583/583 tests). Its completed package now
+> has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading approach, $O(n\log n+nV/w)$ time and
+> $O(n+V/w)$ auxiliary space, accepted native and app-local sources,
+> verified submission evidence, and three legal 125/250/500 distinct-reward
+> benchmark tiers with a 4x span. The accepted integer-bitset DP and an
+> equivalent independently named bitset DP pass scaling in three trials
+> (`+0.01` to `+0.04`, at most `1.02x`); a correct $O(nV)$ scalar boolean DP
+> finishes all 15 ordinary and benchmark outputs and fails only scaling in
+> three trials (`+1.16` to `+1.19`, with largest ratios from `301.26x` to
+> `312.90x`). The invariant retains the 6,206 exhaustive/randomized oracle
+> comparisons from the identical 3180 contract and additionally passed both
+> 50,000-element extremes: all distinct values produce `99999`, while all
+> maximum-value duplicates produce `50000`. The checker reports 3164
+> authored and 827 remaining; the audit reports 3164 fully verified,
+> 17 blockers, and 3182 first actionable. The focused suite passes 151 tests
+> with the two existing warnings.
+>
+> Continue with `dsa/leetcode/3182_find-top-scoring-students`, a Medium MySQL
+> database problem with internal question ID `3488`. Table `students` has
+> primary key `student_id` plus `name` and `major`; table `courses` has
+> primary key `course_id` plus `name`, `credits`, and `major`; table
+> `enrollments` has composite primary key
+> (`student_id`, `course_id`, `semester`) plus `grade`. Return the
+> `student_id` values of students who have taken every course offered in
+> their own major and achieved grade `A` in every required course, ordered by
+> `student_id` ascending. There is one authenticated example: Alice (`1`)
+> and Charlie (`3`) qualify from the four-student, four-course, eight-row
+> fixture, while Bob and David each have a required-course grade below `A`.
+> The source-native editor is MySQL. A relational-division query using nested
+> `NOT EXISTS`, or grouped comparison of required courses with qualifying
+> enrollments, is the natural candidate; retakes and majors with no offered
+> courses require deliberate semantic cases before remote submission. The
+> current package contains only metadata, a TODO scaffold document, and
+> placeholder branch bounds. It has no cases, benchmark, canonical approach,
+> app-local SQL, native artifact, or submission evidence, and metadata still
+> marks it `runnable_in_coden: false`. The authenticated statement and MySQL
+> editor are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3182 was Accepted as exact
+> MySQL submission `2080075547` (11/11 tests). Its completed package now has
+> a source-faithful one-example document, 12 legal ordinary SQL cases, an
+> exact three-heading relational-division approach, $O(r\log r)$ time and
+> $O(r)$ auxiliary database space, identical app-local SQLite and accepted
+> native MySQL sources, verified submission evidence, and three legal
+> 80/288/1088-row benchmark tiers. The accepted join-and-distinct-count query
+> passes scaling (`-0.02`, largest ratio `0.97x`); a correct query whose
+> enrollment keys are wrapped in arithmetic finishes every ordinary and
+> benchmark output and fails only scaling (`+1.06`, largest ratio `27.43x`).
+> The checker reports 3165 authored and 826 remaining; the audit reports 3165
+> fully verified, 17 blockers, and 3183 first actionable. The focused suite
+> passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3183_the-number-of-ways-to-make-the-sum`, a Medium
+> array/dynamic-programming problem with internal question ID `3489`.
+> There are infinitely many coins of values 1, 2, and 6, but only two coins
+> of value 4. Return the number of order-independent combinations summing to
+> `n`, modulo $10^9+7$, for $1\le n\le10^5$. The authenticated examples are
+> `n = 4 -> 4`, `n = 12 -> 22` (three 4-coins are invalid), and
+> `n = 5 -> 4`. The source-native interface is Python
+> `Solution.numberOfWays(self, n: int) -> int`. The platform hints recommend
+> one-dimensional coin-change DP for unlimited coins 1, 2, and 6, followed
+> by explicit handling of zero, one, or two value-4 coins. The current package
+> contains only metadata, a TODO scaffold document with retired sections, and
+> placeholder branch bounds; it has no cases, benchmark, canonical approach,
+> app-local source, native artifact, or submission evidence. The authenticated
+> statement and Python editor are open in Chrome; rerun the live checker and
+> audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3183 was Accepted as exact
+> Python submission `2080079107` (648/648 tests, 0 ms). Its completed package
+> now has a source-faithful three-example document, 12 legal ordinary cases,
+> an exact three-heading closed-form derivation, $O(1)$ time and $O(1)$
+> auxiliary space, accepted native and app-local sources, verified submission
+> evidence, and three legal target tiers `6250/25000/100000` with a 16x span.
+> The accepted arithmetic-series formula passes scaling in three trials
+> (`-0.01` to `+0.01`, at most `1.04x`); a correct $O(n)$ summation of that
+> progression finishes every ordinary and benchmark output and fails only
+> scaling in three trials (`+0.41` to `+0.44`, largest ratios `3.60x` to
+> `3.80x`). The formula also matched an independent coin-change DP on 604
+> exhaustive, randomized, benchmark, and boundary targets. The checker
+> reports 3166 authored and 825 remaining; the audit reports 3166 fully
+> verified, 17 blockers, and 3184 first actionable. The focused suite passes
+> 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3184_count-pairs-that-form-a-complete-day-i`, an Easy
+> array/hash-table/counting problem with internal question ID `3421`. Given
+> `hours`, count index pairs $i<j$ for which
+> $(\texttt{hours[i]}+\texttt{hours[j]})\bmod24=0$. The authenticated examples
+> are `[12,12,30,24,24] -> 2` and `[72,48,24,3] -> 3`; constraints are
+> $1\le n\le100$ and $1\le\texttt{hours[i]}\le10^9$. The source-native
+> interface is Python
+> `Solution.countCompleteDayPairs(self, hours: List[int]) -> int`. Although
+> the platform hint permits brute force for this small I-version, the existing
+> app-local remainder-frequency scan is the natural $O(n)$ candidate and must
+> still be remotely verified. The partial package has a legacy document with
+> retired sections, a repeated official link, an incorrect second-example
+> input (`5` instead of `3`), and an invented third example; five ordinary
+> cases; placeholder branch bounds; and one illegal 70,000-element benchmark
+> whose length exceeds 100, includes a zero value, has no scaling size, and
+> lacks two tiers. It has no canonical approach, native artifact, or verified
+> submission evidence. The authenticated statement and Python editor are open
+> in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3184 was Accepted as exact
+> Python submission `2080082497` (667/667 tests, 0 ms). Its repaired package
+> now has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading remainder-frequency approach, $O(n)$ time and $O(1)$
+> auxiliary space, accepted native and app-local sources, verified submission
+> evidence, and three legal 25/50/100-element benchmark tiers spanning the
+> complete length range. The accepted scan passes scaling in three trials
+> (`-0.01` to `+0.03`, at most `1.05x`); a correct $O(n^2)$ pair enumeration
+> finishes every ordinary and benchmark output and fails only scaling in
+> three trials (`+1.33` to `+1.36`, largest ratios `17.16x` to `17.96x`).
+> The source also matched brute force on 4,405 exhaustive and randomized
+> arrays. The checker reports 3167 authored and 824 remaining; the audit
+> reports 3167 fully verified, 17 blockers, and 3185 first actionable. The
+> focused suite passes 151 tests with the two existing warnings.
+>
+> Continue with
+> `dsa/leetcode/3185_count-pairs-that-form-a-complete-day-ii`, a Medium
+> array/hash-table/counting problem with internal question ID `3418`. Its
+> pair contract, two official examples, positive value range, and Python
+> interface `Solution.countCompleteDayPairs(self, hours: List[int]) -> int`
+> are identical to problem 3184, but the length limit increases to
+> $5\cdot10^5$. The authenticated hints explicitly prescribe the same
+> left-to-right complementary-remainder count, so the 3184 accepted source is
+> the natural candidate but its exact 3185 form must still be remotely
+> verified. The partial package has a legacy document with retired sections,
+> a repeated official link, an incorrect second-example input (`5` instead of
+> `3`), and an invented third example; five ordinary cases; placeholder branch
+> bounds; and one 90,000-element benchmark with no scaling size or additional
+> tiers whose minimum value is illegal zero. It has only a verbose app-local
+> source, with no canonical approach, native artifact, or verified submission
+> evidence. The authenticated statement and Python editor are open in Chrome;
+> rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3185 was Accepted as exact
+> Python submission `2080085041` (714/714 tests, 952 ms). Its repaired package
+> now has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading complementary-remainder derivation, $O(n)$ time and
+> $O(1)$ auxiliary space, accepted native and app-local sources, verified
+> submission evidence, and three legal 24/48/96-element benchmark tiers. The
+> accepted scan passed scaling in three fresh trials with at most a `1.02x`
+> runtime ratio; a correct $O(n^2)$ pair enumeration finished every ordinary
+> and benchmark output and failed only scaling in three fresh trials, with
+> largest ratios from `21.47x` to `21.81x`. A separate calibration measured
+> the expected `+1.28` extra-growth exponent without hitting a safety cap. The
+> source matched brute force on 4,405 exhaustive and randomized arrays and
+> passed both 500,000-element boundary checks. The checker reports 3168
+> authored and 823 remaining; the audit reports 3168 fully verified, 17
+> blockers, and 3186 first actionable. The focused suite passes 151 tests with
+> the two existing warnings, and `git diff --check` reports no whitespace
+> errors.
+>
+> Continue with
+> `dsa/leetcode/3186_maximum-total-damage-with-spell-casting`, a Medium
+> array/hash-table/sorting/dynamic-programming problem with internal question
+> ID `3437`. Given `power`, each spell may be cast at most once; casting damage
+> $x$ forbids casting damage $x-2$, $x-1$, $x+1$, or $x+2$, and the required
+> result is the maximum total damage. The authenticated examples are
+> `[1,1,3,4] -> 6` and `[7,1,6,6] -> 13`; constraints are
+> $1\le n\le10^5$ and $1\le\texttt{power[i]}\le10^9$. The source-native
+> interface is Python
+> `Solution.maximumTotalDamage(self, power: List[int]) -> int`. The platform
+> hints establish that selecting a value uses all of its occurrences and
+> recommend dynamic programming over unique values. The partial package has a
+> legacy document with retired Solution sections, a repeated official link,
+> and an invented third example; only five ordinary cases; placeholder branch
+> bounds; and one 60,000-element benchmark with no scaling size or additional
+> tiers. It has a verbose app-local Counter/sort/binary-search DP source, but no
+> canonical approach, native artifact, or verified submission evidence. The
+> authenticated statement and Python editor are open in Chrome; rerun the live
+> checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3186 was Accepted as exact
+> Python submission `2080089587` (555/555 tests, 331 ms). Its repaired package
+> now has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading weighted-interval DP derivation, $O(n\log n)$ time and
+> $O(n)$ space, accepted native and app-local sources, verified submission
+> evidence, and three legal dense-unique benchmark tiers of 32/128/512 spells.
+> The accepted monotone-pointer implementation passed scaling in three trials
+> (`-0.01` to `+0.01`, at most `1.04x`); an independent binary-search
+> implementation from the same class also passed in three trials (`-0.21` to
+> `-0.18`, at most `0.39x`). A correct $O(u^2)$ predecessor scan finished every
+> ordinary and benchmark output and failed only scaling in three trials
+> (`+1.11` to `+1.12`, largest ratios `82.76x` to `83.93x`). The accepted
+> source matched an independent exhaustive/random oracle on 24,344 inputs,
+> every authored case, and two 100,000-element boundary workloads. The checker
+> reports 3169 authored and 822 remaining; the audit reports 3169 fully
+> verified, 17 blockers, and 3187 first actionable. The focused suite passes
+> 151 tests with the two existing warnings, and `git diff --check` reports no
+> whitespace errors.
+>
+> Continue with `dsa/leetcode/3187_peaks-in-array`, a Hard
+> array/Binary-Indexed-Tree/segment-tree problem with internal question ID
+> `3438`. A peak is strictly greater than both adjacent elements. Query type 1,
+> `[1,l,r]`, counts peaks strictly inside the subarray boundaries; query type
+> 2, `[2,index,val]`, changes one array value. Return the type-1 answers in
+> order. The authenticated examples are
+> `nums = [3,1,4,2,5], queries = [[2,3,4],[1,0,4]] -> [0]` and
+> `nums = [4,1,4,2,1,5], queries = [[2,2,4],[1,0,2],[1,0,4]] -> [0,1]`.
+> Constraints are $3\le n\le10^5$, $1\le\texttt{nums[i]}\le10^5$, and at
+> most $10^5$ legal queries. The source-native interface is Python
+> `Solution.countOfPeaks(self, nums: List[int], queries: List[List[int]]) -> List[int]`.
+> The hints specify a peak-indicator array, observe that an update affects only
+> indices `i-1`, `i`, and `i+1`, exclude query endpoints, and recommend a
+> Fenwick or segment tree. The partial package has a legacy document with
+> retired Solution sections, a repeated official link, and an invented third
+> example; its second example incorrectly changes the last query from
+> `[1,0,4]` to `[1,0,5]` and the result from `[0,1]` to `[1,1]`. It has only
+> five ordinary cases, placeholder branch bounds, and one 5,000-number plus
+> 5,000-query benchmark with no scaling size or additional tiers. It has a
+> verbose app-local Fenwick source but no canonical approach, native artifact,
+> or verified submission evidence. The authenticated statement and Python
+> editor are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3187 was Accepted as exact
+> Python submission `2080093193` (681/681 tests, 722 ms). Its repaired package
+> now has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading Fenwick-tree derivation, $O((n+q)\log n)$ time and
+> $O(n)$ space, accepted native and app-local sources, verified submission
+> evidence, and three legal mixed update/range-query tiers with workload sizes
+> 128/512/2048. The accepted Fenwick implementation passed scaling in three
+> trials (`-0.01` to `+0.01`, at most `1.02x`); an independent segment-tree
+> implementation also passed in three trials (`+0.01` to `+0.04`, at most
+> `0.77x`). A correct direct range-rescan implementation finished every
+> ordinary and benchmark output and failed only scaling in three trials
+> (`+0.94` to `+0.97`, largest ratios `20.86x` to `21.43x`). The accepted
+> source matched a direct simulator on 7,500 randomized operation sequences,
+> every authored case, and a maximum-size $n=q=100{,}000$ workload. The
+> checker reports 3170 authored and 821 remaining; the audit reports 3170
+> fully verified, 17 blockers, and 3188 first actionable. The focused suite
+> passes 151 tests with the two existing warnings, and `git diff --check`
+> reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3188_find-top-scoring-students-ii`, a Premium Hard SQL/database
+> problem with internal question ID `3503`. The authenticated schema has
+> `students(student_id, name, major)`,
+> `courses(course_id, name, credits, major, mandatory)`, and
+> `enrollments(student_id, course_id, semester, grade, GPA)`. A qualifying
+> student must have taken every mandatory course in their own major with grade
+> `A`, at least two elective courses in that major with grades of at least
+> `B`, and must have average GPA at least 2.5 over all enrollments, including
+> courses outside the major. Return only `student_id`, ordered ascending. The
+> sole authenticated example returns students 1 and 3. The native editor is
+> MySQL. The package currently contains only metadata, a TODO scaffold document
+> with retired Solution sections, and placeholder branch bounds; it has no
+> cases, benchmark, canonical approach, app-local SQL, native SQL artifact, or
+> submission evidence. The authenticated Premium statement and MySQL editor
+> are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3188 was Accepted as exact
+> MySQL submission `2080096397` (9/9 tests, 731 ms). Its repaired package now
+> has a source-faithful one-example database document, 12 legal ordinary SQL
+> fixtures, an exact three-heading conditional-aggregation derivation,
+> $O(r\log r)$ time and $O(r)$ space for $r$ total relation rows, identical
+> accepted native and app-local queries, verified submission evidence, and
+> three legal 259/1027/4099-row benchmark tiers. The accepted grouped query
+> passed all 15 ordinary-plus-benchmark executions and scaling (`-0.01`
+> excess growth, largest ratio `0.99x`); an independent same-class
+> preaggregation query also passed (`-0.01`, largest ratio `1.23x`). A correct
+> correlated-subquery implementation completed every expected output and
+> failed only scaling (`+1.01` excess growth, largest ratio `38.06x`). The
+> checker reports 3171 authored and 820 remaining; the audit reports 3171
+> fully verified, 17 blockers, and 3189 first actionable. The focused suite
+> passes 151 tests with the two existing warnings, and `git diff --check`
+> reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3189_minimum-moves-to-get-a-peaceful-board`, a Medium
+> array/greedy/sorting/counting-sort problem with internal question ID `3504`.
+> Given exactly $n$ distinct rook cells on an $n\times n$ board, one move
+> shifts one rook by one cell horizontally or vertically. Find the minimum
+> moves needed to leave exactly one rook in every row and every column, while
+> never placing two rooks in the same cell at any intermediate point. The
+> authenticated examples are `[[0,0],[1,0],[1,1]] -> 3` and
+> `[[0,0],[0,1],[0,2],[0,3]] -> 6`; constraints are $1\le n\le500$ and each
+> coordinate lies in $[0,n-1]`. The native Python interface is
+> `Solution.minMoves(self, rooks: List[List[int]]) -> int`. The authenticated
+> hints separate rows from columns: sort the row coordinates and match them
+> in order to targets $0,1,\ldots,n-1$, then do the same independently for
+> columns. The local package contains only metadata, a TODO scaffold document
+> with a repeated official link, retired Solution sections, and an invented
+> third example, plus placeholder branch bounds. It has no cases, benchmark,
+> canonical approach, app-local source, native artifact, or verified
+> submission evidence. The authenticated statement and Python editor are open
+> in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3189 was Accepted as exact
+> Python submission `2080099796` (720/720 tests, 15 ms). Its repaired package
+> now has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading rank-matching derivation with a collision-free movement
+> schedule, $O(n\log n)$ time and $O(n)$ auxiliary space, accepted native and
+> app-local sources, verified submission evidence, and three legal 32/128/500
+> benchmark tiers. The accepted sorter passed scaling in three trials
+> (`-0.02` to `-0.01` excess growth, at most `1.04x`); an independent linear
+> counting-coordinate implementation also passed in three trials (`+0.13` to
+> `+0.14`, at most `3.15x`). A correct repeated-minimum implementation
+> completed every ordinary and benchmark output and failed only scaling in
+> three trials (`+0.31` to `+0.32`, largest ratios `3.40x` to `3.55x`). The
+> accepted adapter matched a permutation oracle on every distinct placement
+> through $n=3$, 1,000 randomized boards through $n=7$, all authored cases,
+> and the maximum $n=500$ workload. The checker reports 3172 authored and 819
+> remaining; the audit reports 3172 fully verified, 17 blockers, and 3190
+> first actionable. The focused suite passes 151 tests with the two existing
+> warnings, and `git diff --check` reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3190_find-minimum-operations-to-make-all-elements-divisible-by-three`,
+> an Easy array/math problem with internal question ID `3476`. One operation
+> adds or subtracts exactly 1 from any chosen element; return the minimum total
+> operations that makes every element divisible by 3. The authenticated
+> examples are `[1,2,3,4] -> 3` and `[3,6,9] -> 0`; constraints are
+> $1\le n\le50$ and $1\le\texttt{nums[i]}\le50$. Every remainder 1 or 2 is
+> exactly one move from a multiple of 3, so the natural answer counts values
+> whose remainder is nonzero. The native Python interface is
+> `Solution.minimumOperations(self, nums: List[int]) -> int`. The partial
+> package has a legacy document with a repeated official link and retired
+> Solution sections, plus an invented third example. It has only five
+> ordinary cases, including illegal negative and zero values and values above
+> 50; placeholder branch bounds; and one illegal 90,000-element benchmark
+> containing values from 0 through 999,999, with no size or scaling tiers. A
+> verbose but correct app-local scan exists, but there is no canonical
+> approach, native artifact, or verified submission evidence. The
+> authenticated statement and Python editor are open in Chrome; rerun the
+> live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3190 was Accepted as exact
+> Python submission `2080102401` (660/660 tests, 3 ms). Its repaired package
+> now has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading modulo derivation, $O(n)$ time and $O(1)$ auxiliary
+> space, accepted native and app-local sources, verified submission evidence,
+> and three legal 3/12/50-element benchmark tiers spanning the full length
+> domain. The accepted scan passed scaling in three trials (`-0.00` to
+> `+0.01`, at most `1.03x`); an independent explicit-distance loop also
+> passed in three trials (`+0.01` to `+0.03`, at most `1.06x`). A correct
+> prefix-recount implementation completed every ordinary and benchmark output
+> and failed only scaling in three trials (`+0.79` to `+0.80`, largest ratios
+> `11.05x` to `11.24x`). The accepted adapter matched an independent distance
+> oracle on 1,554 exhaustive arrays, 10,000 randomized legal arrays, and every
+> authored case. The checker reports 3173 authored and 818 remaining; the
+> audit reports 3173 fully verified, 17 blockers, and 3191 first actionable.
+> The focused suite passes 151 tests with the two existing warnings, and
+> `git diff --check` reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3191_minimum-operations-to-make-binary-array-elements-equal-to-one-i`,
+> a Medium array/bit-manipulation/queue/sliding-window/prefix-sum problem with
+> internal question ID `3475`. One operation chooses exactly three consecutive
+> elements of the binary array and flips all three. Return the minimum number
+> of operations needed to make every element equal to 1, or `-1` when that is
+> impossible. The authenticated examples are `[0,1,1,1,0,0] -> 3` and
+> `[0,1,1,1] -> -1`; constraints are $3\le n\le10^5$ and
+> $\texttt{nums[i]}\in\{0,1\}$. The native Python interface is
+> `Solution.minOperations(self, nums: List[int]) -> int`. The authenticated
+> hints establish the left-to-right forced greedy rule: when the current first
+> unresolved bit is 0, only the length-three window starting there can still
+> change it. The partial package has a legacy document with a repeated official
+> link, retired Solution sections, and an invented third example; only five
+> ordinary cases, including an illegal length-two input; placeholder branch
+> bounds; and one 70,000-element benchmark with no size or additional tiers.
+> A verbose but correct app-local in-place greedy source exists, but there is
+> no canonical approach, native artifact, or verified submission evidence.
+> The authenticated statement and Python editor are open in Chrome; rerun the
+> live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3191 was Accepted as exact
+> Python submission `2080104306` (689/689 tests, 98 ms). Its repaired package
+> now has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading forced-greedy derivation, $O(n)$ time and $O(1)$
+> auxiliary space, accepted native and app-local sources, verified submission
+> evidence, and three legal all-zero benchmark tiers of 192/768/3072 bits.
+> The accepted in-place scan passed scaling in three trials (`-0.01` to
+> `+0.01`, at most `1.02x`); an independent constant-space parity scan also
+> passed in three trials (`+0.02` to `+0.03`, at most `1.50x`). A correct
+> repeated-first-zero implementation completed every ordinary and benchmark
+> output and failed only scaling in three trials (`+0.47` to `+0.50`,
+> largest ratios `3.29x` to `3.56x`). The accepted adapter matched exact
+> breadth-first distances for all 8,184 binary arrays of lengths 3 through 12,
+> an independent parity oracle on 2,000 randomized arrays, and every authored
+> case. The checker reports 3174 authored and 817 remaining; the audit reports
+> 3174 fully verified, 17 blockers, and 3192 first actionable. The focused
+> suite passes 151 tests with the two existing warnings, and
+> `git diff --check` reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3192_minimum-operations-to-make-binary-array-elements-equal-to-one-ii`,
+> a Medium array/dynamic-programming/greedy problem with internal question ID
+> `3477`. One operation chooses any index `i` and flips every binary array
+> element from `i` through the end; return the minimum operations needed to
+> make every element equal to 1. The authenticated examples are
+> `[0,1,1,0,1] -> 4` and `[1,0,0,0] -> 1`; constraints are
+> $1\le n\le10^5$ and $\texttt{nums[i]}\in\{0,1\}$. The native Python
+> interface is `Solution.minOperations(self, nums: List[int]) -> int`. The
+> authenticated hints establish the left-to-right suffix-parity greedy rule:
+> the only way to repair the current first unresolved zero is to start a suffix
+> flip there. The partial package has a legacy document with a repeated
+> official link, retired Solution sections, and an invented third example;
+> only five ordinary cases; placeholder branch bounds; and one 60,000-bit
+> benchmark with no size or additional tiers. A verbose but correct app-local
+> parity scan exists, but there is no canonical approach, native artifact, or
+> verified submission evidence. The authenticated statement and Python editor
+> are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3192 was Accepted as exact
+> Python submission `2080107656` (691/691 tests, 59 ms). Its repaired package
+> now has a source-faithful two-example document, 12 legal ordinary cases, an
+> exact three-heading forced suffix-parity derivation, $O(n)$ time and $O(1)$
+> auxiliary space, accepted native and app-local sources, verified submission
+> evidence, and three legal alternating benchmark tiers of 256/1024/4096 bits.
+> The accepted parity scan passed scaling in three trials (`-0.02` to `+0.01`
+> excess growth, at most `0.99x`); an independent run-boundary implementation
+> also passed in three trials (`-0.07` to `-0.04`, at most `0.66x`). A correct
+> explicit suffix-mutation implementation completed every ordinary and
+> benchmark output and failed only scaling in three trials (`+0.67` to
+> `+0.72`, largest ratios `12.63x` to `14.26x`). The accepted adapter matched
+> the closed-form run-boundary oracle on all 131,070 binary arrays of lengths
+> 1 through 16 and every authored case. The checker reports 3175 authored and
+> 816 remaining; the audit reports 3175 fully verified, 17 blockers, and 3193
+> first actionable. The focused suite passes 151 tests with the two existing
+> warnings, and `git diff --check` reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3193_count-the-number-of-inversions`, a Hard array/dynamic-
+> programming problem with internal question ID `3460`. Given $n$ and unique
+> prefix requirements `[end, cnt]`, count permutations of
+> `[0, 1, ..., n - 1]` for which every prefix ending at `end` has exactly
+> `cnt` inversions; return the count modulo $10^9+7$. The authenticated
+> examples are `n = 3, requirements = [[2,2],[0,0]] -> 2`,
+> `n = 3, requirements = [[2,2],[1,1],[0,0]] -> 1`, and
+> `n = 2, requirements = [[0,0],[1,0]] -> 1`. Constraints are
+> $2\le n\le300$, $1\le\lvert\texttt{requirements}\rvert\le n$, unique
+> `end` values in $[0,n-1]$, counts in $[0,400]$, and a guaranteed requirement
+> for `end = n - 1`. The native Python interface is
+> `Solution.numberOfPermutations(self, n: int, requirements: List[List[int]])
+> -> int`. The authenticated hints use inversion-count DP and zero all states
+> that disagree with a constrained prefix. The partial package has a legacy
+> document with a repeated official link and retired Solution sections, only
+> five ordinary cases, placeholder branch bounds, and one benchmark with no
+> size or scaling tiers. A verbose sliding-window DP app source exists, but
+> there is no canonical approach, native artifact, or verified submission
+> evidence. The authenticated statement and Python editor are open in Chrome;
+> rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3193 was Accepted as exact
+> Python submission `2080110617` (719/719 tests, 144 ms). Its repaired package
+> now has a source-faithful three-example document, 12 legal ordinary cases,
+> an exact three-heading insertion-DP and sliding-window derivation, $O(nC)$
+> time and $O(n+C)$ auxiliary space, accepted native and app-local sources,
+> verified submission evidence, and three legal `n * C` benchmark tiers of
+> 192/768/3072. The accepted sliding-window DP passed scaling in three trials
+> (`-0.03` to `+0.02` excess growth, at most `1.01x`); an independent prefix-
+> sum implementation also passed in three trials (`-0.05` to `+0.00`, at most
+> `1.16x`). A correct direct-transition-summation DP completed every ordinary
+> and benchmark output and failed only scaling in three trials (`+0.36` to
+> `+0.45`, with one largest-tier ratio of `8.31x`). The accepted adapter
+> matched full permutation enumeration on 840 randomized legal requirement
+> sets through $n=8$ and every authored case. The checker reports 3176 authored
+> and 815 remaining; the audit reports 3176 fully verified, 17 blockers, and
+> 3194 first actionable. The focused suite passes 151 tests with the two
+> existing warnings, and `git diff --check` reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3194_minimum-average-of-smallest-and-largest-elements`, an Easy
+> array/two-pointers/sorting problem with internal question ID `3471`. The
+> input is an even-length integer array. Repeat $n/2$ times: remove its current
+> smallest and largest elements and append their average to `averages`; return
+> the minimum value placed in `averages`. The authenticated examples are
+> `[7,8,3,4,15,13,4,1] -> 5.5`, `[1,9,8,3,10,5] -> 5.5`, and
+> `[1,2,3,7,8,9] -> 5.0`; constraints are even $n$ with
+> $2\le n\le50$ and $1\le\texttt{nums[i]}\le50$. The authenticated hint says
+> that after sorting, the averages are `(nums[i] + nums[n - i - 1]) / 2` for
+> every `i < n / 2`. The native Python interface is
+> `Solution.minimumAverage(self, nums: List[int]) -> float`. The partial
+> package has only five ordinary cases, placeholder branch bounds, and one
+> enormous benchmark without a size or scaling tiers. A verbose but correct
+> sorted two-pointer app source exists, but there is no canonical approach,
+> native artifact, or verified submission evidence. The authenticated
+> statement and Python editor are open in Chrome; rerun the live checker and
+> audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3194 was Accepted as exact
+> Python submission `2080113704` (720/720 tests, 0 ms). Its repaired package
+> now has a source-faithful three-example document, 12 legal ordinary cases,
+> an exact three-heading sorting and symmetric-pair derivation,
+> $O(n\log n)$ time and $O(n)$ auxiliary space, accepted native and app-local
+> sources, and verified submission evidence. Legal scaling is not an honest
+> discriminator over the complete $n\le50$ domain: the accepted sorter passed
+> three trials (`-0.03` to `+0.00` excess growth, at most `1.03x`), but a
+> correct repeated-minimum/maximum $O(n^2)$ simulation also passed all three
+> (`+0.08` to `+0.11`, at most `1.28x`), while a correct frequency-counting
+> implementation was unstable at the gate (`+0.14`, `+0.16`, and `+0.18`).
+> The package therefore uses a strictly validated `bounded_domain`
+> certificate instead of misleading runtime evidence. Its dedicated
+> regression matches the accepted adapter against direct removal on all
+> 16,275 arrays over values 1 through 5 at lengths 2, 4, and 6, plus 1,000
+> deterministic legal arrays spanning every even length through 50. The
+> checker reports 3177 authored and 814 remaining; the audit reports 3177
+> fully verified, 17 blockers, and 3195 first actionable. The focused suite
+> passes 153 tests with the two existing warnings, and `git diff --check`
+> reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3195_find-the-minimum-area-to-cover-all-ones-i`, a Medium
+> array/matrix problem with internal question ID `3461`. Given a 2D binary
+> `grid`, find the minimum area of an axis-aligned rectangle containing every
+> cell whose value is `1`. The authenticated examples are
+> `[[0,1,0],[1,0,1]] -> 6` and `[[1,0],[0,0]] -> 1`. Both dimensions lie in
+> $[1,1000]$, every cell is `0` or `1`, and at least one `1` is guaranteed.
+> The authenticated hint says to find the minimum and maximum coordinates of
+> a `1` in both directions. The native Python interface is
+> `Solution.minimumArea(self, grid: List[List[int]]) -> int`. The partial
+> package has a legacy document with a repeated official link and retired
+> Solution sections, only five ordinary cases, placeholder branch bounds,
+> and one legal 250-by-250 benchmark with no `size` or scaling tiers. A verbose
+> but correct bounding-box app source exists, but there is no canonical
+> approach, native artifact, or verified submission evidence. The
+> authenticated statement and Python editor are open in Chrome; rerun the
+> live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3195 was Accepted as exact
+> Python submission `2080116843` (713/713 tests, 2403 ms). Its repaired
+> package now has a source-faithful two-example document, 12 legal ordinary
+> cases, an exact three-heading bounding-box derivation, $O(RC)$ time and
+> $O(1)$ auxiliary space, accepted native and app-local sources, verified
+> submission evidence, and three legal dense-row benchmark tiers of
+> 32/128/512 cells. The accepted boundary scan passed scaling in three trials
+> (`-0.01` to `+0.00` excess growth, at most `1.03x`); an independent
+> coordinate-collection implementation also passed (`+0.02` to `+0.03`, at
+> most `1.24x`). A correct quadratic implementation completed every ordinary
+> and benchmark output and failed only scaling in all three trials (`+1.20`
+> to `+1.21`, largest ratios `118.29x` to `122.92x`). The accepted adapter
+> matched exhaustive rectangle enumeration and deterministic randomized
+> coordinate oracles on 5,673 legal grids, plus every authored case. The
+> checker reports 3178 authored and 813 remaining; the audit reports 3178
+> fully verified, 17 blockers, and 3196 first actionable. The focused suite
+> passes 151 tests with the two existing warnings, and `git diff --check`
+> reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3196_maximize-total-cost-of-alternating-subarrays`, a Medium
+> array/dynamic-programming problem with internal question ID `3464`. For a
+> subarray `nums[l..r]`, its cost is
+> $\sum_{i=l}^{r}\texttt{nums[i]}(-1)^{i-l}$. Split `nums` into contiguous
+> subarrays so every element belongs to exactly one, and maximize the sum of
+> their costs; leaving the array unsplit is allowed. The authenticated
+> examples are `[1,-2,3,4] -> 10`, `[1,-1,1,-1] -> 4`, `[0] -> 0`, and
+> `[1,-1] -> 2`. Constraints are $1\le n\le10^5$ and
+> $-10^9\le\texttt{nums[i]}\le10^9$. The authenticated hints formulate the
+> choice as flipping selected elements negative, forbid flipping consecutive
+> elements or the first element, give the two-state DP transitions, and ask
+> for constant-space optimization. The native Python interface is
+> `Solution.maximumTotalCost(self, nums: List[int]) -> int`. The partial
+> package has a legacy document with a repeated official link, retired
+> Solution sections, and incorrect example explanations; only five ordinary
+> cases; placeholder branch bounds; and one 60,000-element benchmark with no
+> `size` or scaling tiers. A verbose but likely correct constant-space DP app
+> source exists, but there is no canonical approach, native artifact, or
+> verified submission evidence. The authenticated statement and Python
+> editor are open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3196 was Accepted as exact
+> Python submission `2080118888` (692/692 tests, 35 ms). Its repaired package
+> now has a source-faithful four-example document, 12 legal ordinary cases,
+> an exact three-heading sign-choice and two-state DP derivation, $O(n)$ time
+> and $O(1)$ auxiliary space, accepted native and app-local sources, verified
+> submission evidence, and three legal alternating benchmark tiers of
+> 24/96/384 values. The accepted constant-space DP passed scaling in three
+> trials (`-0.00` to `+0.00` excess growth, at most `1.02x`); an independent
+> indexed constant-space recurrence also passed (`+0.14` to `+0.15`, at most
+> `1.73x`). A correct quadratic final-subarray DP completed every ordinary
+> and benchmark output and failed only scaling in all three trials (`+1.49`
+> to `+1.51`, largest ratios `233.30x` to `246.70x`). The accepted adapter
+> matched exhaustive partition enumeration and deterministic randomized
+> oracles on 100,655 legal arrays, plus every authored case. The checker
+> reports 3179 authored and 812 remaining; the audit reports 3179 fully
+> verified, 17 blockers, and 3197 first actionable. The focused suite passes
+> 151 tests with the two existing warnings, and `git diff --check` reports no
+> whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3197_find-the-minimum-area-to-cover-all-ones-ii`, a Hard
+> array/matrix/enumeration problem with internal question ID `3459`. Given a
+> binary `grid`, choose three non-overlapping axis-aligned rectangles of
+> non-zero area so every `1` lies in at least one rectangle, and minimize the
+> sum of their areas; rectangles may touch. The authenticated examples are
+> `[[1,0,1],[1,1,1]] -> 5` and `[[1,0,1,0],[0,1,0,1]] -> 5`. Both dimensions
+> lie in $[1,30]$, every cell is binary, and at least three `1` cells are
+> guaranteed. The authenticated hints observe that two non-overlapping
+> rectangles must be separated vertically or horizontally, then extend that
+> fact by enumerating horizontal and vertical splits for three rectangles.
+> The native Python interface is
+> `Solution.minimumSum(self, grid: List[List[int]]) -> int`. The partial
+> package has a legacy document with a repeated official link and retired
+> Solution sections, only five ordinary cases, placeholder branch bounds,
+> and one legal 30-by-30 benchmark with no `size` or scaling tiers. A complex
+> prefix-count and cached bounding-area app source exists and is likely
+> correct, but there is no canonical approach, native artifact, or verified
+> submission evidence. The authenticated statement and Python editor are
+> open in Chrome; rerun the live checker and audit before editing.
+
+> **Authoritative latest checkpoint:** Problem 3197 was Accepted as exact
+> Python submission `2080121042` (663/663 tests, 159 ms). Its repaired
+> package now has a source-faithful two-example document, 12 legal ordinary
+> cases, an exact three-heading six-partition-family derivation,
+> $O((R+C)(R^2+RC+C^2))$ time and $O(RC+R^2+C^2)$ auxiliary space, accepted
+> native and app-local sources, verified submission evidence, and three
+> legal centered-pattern benchmark tiers of 4/8/16 rows and columns. The
+> accepted adapter passed scaling (`-0.02` excess growth, `0.99x` runtime
+> ratio); an independent integral-image and binary-search implementation
+> also passed in three trials (`+0.13` to `+0.15`, at most `1.04x`). A
+> correct full-region scanner completed every ordinary and benchmark output
+> and failed only scaling in all three trials (`+1.46` to `+1.49`). The
+> accepted adapter matched an independent rectangle-assignment oracle on
+> all 557 legal grids across the tested dimensions through $3\times3$, 200
+> deterministic randomized $4\times4$ grids, and every authored case. The
+> checker reports 3180 authored and 811 remaining; the audit reports 3180
+> fully verified, 17 blockers, and 3198 first actionable. The focused suite
+> passes 151 tests with the two existing warnings, and `git diff --check`
+> reports no whitespace errors.
+>
+> Continue with
+> `dsa/leetcode/3198_find-cities-in-each-state`, an Easy MySQL database
+> problem. The authenticated `cities` table has `state varchar` and
+> `city varchar`, with `(state, city)` as its composite primary key. Produce
+> one row per state with its cities combined into a comma-and-space-separated
+> string; cities inside each string and result rows by state must both be in
+> ascending order. The authenticated example contains California, New York,
+> and Texas and outputs cities such as
+> `Los Angeles, San Diego, San Francisco` in sorted order. The natural native
+> solution is a grouped ordered `GROUP_CONCAT`, with an outer `ORDER BY
+> state`. The partial package contains only metadata, a legacy placeholder
+> document, and placeholder branch bounds: it has no cases, complexity
+> evidence, branch approach, app-local SQL, native SQL artifact, or verified
+> submission evidence. The authenticated statement is open in the logged-in
+> Chrome session with MySQL selected; rerun the live checker and audit before
+> editing, then obtain the internal question ID and remotely verify the exact
+> SQL source early.

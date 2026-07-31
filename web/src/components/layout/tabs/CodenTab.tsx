@@ -3,8 +3,6 @@ import type { CSSProperties, MouseEvent as ReactMouseEvent, ReactNode } from 're
 import { createPortal } from 'react-dom';
 import { Editor } from '@monaco-editor/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGolang } from '@fortawesome/free-brands-svg-icons/faGolang';
-import { faJava } from '@fortawesome/free-brands-svg-icons/faJava';
 import { faJs } from '@fortawesome/free-brands-svg-icons/faJs';
 import { faPython } from '@fortawesome/free-brands-svg-icons/faPython';
 import { MAX_DEBUG_CASES, useAppStore } from '../../../store/useAppStore';
@@ -81,12 +79,7 @@ interface DebugErrorDetail {
 
 const languageOptions: Array<{ id: SupportedLanguage; label: string; monaco: string; extension: string }> = [
   { id: 'python', label: 'Python', monaco: 'python', extension: 'py' },
-  { id: 'cpp', label: 'C++', monaco: 'cpp', extension: 'cpp' },
-  { id: 'java', label: 'Java', monaco: 'java', extension: 'java' },
-  { id: 'csharp', label: 'C#', monaco: 'csharp', extension: 'cs' },
   { id: 'javascript', label: 'JavaScript', monaco: 'javascript', extension: 'js' },
-  { id: 'go', label: 'Go', monaco: 'go', extension: 'go' },
-  { id: 'kotlin', label: 'Kotlin', monaco: 'kotlin', extension: 'kt' },
   { id: 'sql', label: 'SQL', monaco: 'sql', extension: 'sql' },
   { id: 'bash', label: 'Bash', monaco: 'shell', extension: 'sh' },
 ];
@@ -97,12 +90,7 @@ function languageMeta(language: SupportedLanguage) {
 
 function LanguageIcon({ language, teal = false }: { language: SupportedLanguage; teal?: boolean }) {
   if (language === 'python') return <FontAwesomeIcon icon={faPython} className={`h-4 w-4 ${teal ? 'text-coden-accent' : 'text-[#3776AB]'}`} aria-hidden="true" />;
-  if (language === 'java') return <FontAwesomeIcon icon={faJava} className={`h-4 w-4 ${teal ? 'text-coden-accent' : 'text-[#E76F00]'}`} aria-hidden="true" />;
   if (language === 'javascript') return <FontAwesomeIcon icon={faJs} className={`h-4 w-4 ${teal ? 'text-coden-accent' : 'text-[#F7DF1E]'}`} aria-hidden="true" />;
-  if (language === 'go') return <FontAwesomeIcon icon={faGolang} className={`h-5 w-5 ${teal ? 'text-coden-accent' : 'text-[#00ADD8]'}`} aria-hidden="true" />;
-  if (language === 'cpp') return <span className={`text-[11px] font-black tracking-[-0.08em] ${teal ? 'text-coden-accent' : 'text-[#659AD2]'}`} aria-hidden="true">C++</span>;
-  if (language === 'csharp') return <span className={`text-[11px] font-black tracking-[-0.08em] ${teal ? 'text-coden-accent' : 'text-[#9B4F96]'}`} aria-hidden="true">C#</span>;
-  if (language === 'kotlin') return <span className={`${teal ? 'text-coden-accent' : 'bg-gradient-to-br from-[#7F52FF] via-[#C711E1] to-[#F88909] bg-clip-text text-transparent'} text-sm font-black`} aria-hidden="true">K</span>;
   if (language === 'sql') {
     return (
       <svg viewBox="0 0 24 24" className={`h-4 w-4 ${teal ? 'text-coden-accent' : 'text-[#4479A1]'}`} fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -115,88 +103,18 @@ function LanguageIcon({ language, teal = false }: { language: SupportedLanguage;
   return <span className={`font-mono text-[11px] font-black ${teal ? 'text-coden-accent' : 'text-[#4EAA25]'}`} aria-hidden="true">&gt;_</span>;
 }
 
-function LanguageSelector({
-  value,
-  options,
-  onChange,
-}: {
-  value: SupportedLanguage;
-  options: typeof languageOptions;
-  onChange: (language: SupportedLanguage) => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const active = languageMeta(value);
-
-  useEffect(() => {
-    if (!open) return;
-    const closeOutside = (event: PointerEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
-    };
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false);
-    };
-    document.addEventListener('pointerdown', closeOutside);
-    window.addEventListener('keydown', closeOnEscape);
-    return () => {
-      document.removeEventListener('pointerdown', closeOutside);
-      window.removeEventListener('keydown', closeOnEscape);
-    };
-  }, [open]);
-
+function PrimaryLanguageBadge({ language }: { language: SupportedLanguage }) {
+  const metadata = languageMeta(language);
   return (
-    <div ref={rootRef} className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((current) => !current)}
-        className={`flex h-8 w-9 items-center justify-center rounded border border-coden-border px-0 shadow-sm transition-colors hover:bg-coden-border/70 focus-visible:border-coden-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-coden-accent/40 ${open ? 'bg-coden-border/70' : 'bg-coden-inner'}`}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        aria-label={`Solution language: ${active.label}`}
-      >
-        <span className="flex h-5 w-5 items-center justify-center"><LanguageIcon language={value} teal /></span>
-      </button>
-      {open && (
-        <div
-          role="listbox"
-          aria-label="Solution languages"
-          className="absolute left-0 top-full z-[80] mt-1 w-16 overflow-hidden rounded-md border border-coden-border bg-coden-surface p-1.5 shadow-2xl"
-        >
-          {options.map((option) => {
-            const selected = option.id === value;
-            return (
-              <button
-                key={option.id}
-                type="button"
-                role="option"
-                aria-selected={selected}
-                aria-label={option.label}
-                title={option.label}
-                onClick={() => {
-                  setOpen(false);
-                  if (!selected) onChange(option.id);
-                }}
-                className={`flex h-9 w-full items-center justify-center gap-1 rounded px-1 transition-colors ${selected ? 'bg-coden-border' : 'hover:bg-coden-inner'}`}
-              >
-                <span className="flex h-4 w-4 shrink-0 items-center justify-center text-coden-accent">
-                  {selected && <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m3 8 3 3 7-7" /></svg>}
-                </span>
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center"><LanguageIcon language={option.id} teal /></span>
-              </button>
-            );
-          })}
-        </div>
-      )}
+    <div
+      className="inline-flex h-8 items-center gap-2 rounded border border-coden-border bg-coden-inner px-2.5 text-xs font-semibold text-coden-text"
+      aria-label={`Verified LeetCode language: ${metadata.label}`}
+      title="Language of the verified LeetCode submission"
+    >
+      <span className="flex h-5 w-5 items-center justify-center"><LanguageIcon language={language} teal /></span>
+      <span>{metadata.label}</span>
     </div>
   );
-}
-
-function codenLanguageOptions(supportedLanguages: string[] | undefined) {
-  const functionLanguages = languageOptions.filter((item) => item.id !== 'sql' && item.id !== 'bash');
-  if (!supportedLanguages || supportedLanguages.length === 0) return functionLanguages;
-  const supported = new Set(supportedLanguages);
-  const options = languageOptions.filter((item) => supported.has(item.id));
-  return options.length > 0 ? options : languageOptions;
 }
 
 function clamp(value: number, min: number, max: number): number {
@@ -300,7 +218,6 @@ export function CodenTab() {
   const solutionResetRevision = useAppStore((s) => s.solutionResetRevision);
 
   const saveSource = useAppStore((s) => s.saveSource);
-  const setCodeLanguage = useAppStore((s) => s.setCodeLanguage);
   const [isMaximized, setIsMaximized] = useState(false);
   const [workspacePanel, setWorkspacePanel] = useState<'cases' | 'debugger'>('cases');
   const [resetRequest, setResetRequest] = useState<number | null>(null);
@@ -348,7 +265,6 @@ export function CodenTab() {
   const runtimeUnavailableReason = runnableInCoden
     ? ''
     : `${detail?.leetcode_category_title || 'This LeetCode category'} is tracked for LeetCode subsets and tags, but it is not runnable in cOde(n) yet.`;
-  const selectableLanguageOptions = runnableInCoden ? codenLanguageOptions(detail?.supported_languages) : languageOptions;
   const paneFontScales = useAppStore((s) => s.paneFontScales);
   const paneSizes = useAppStore((s) => s.paneSizes);
   const setPaneSize = useAppStore((s) => s.setPaneSize);
@@ -859,12 +775,8 @@ export function CodenTab() {
                     onRename={(version, name) => void renameVersion(version, name)}
                     onReset={setResetRequest}
                   />
-                  <span className="ml-1 text-[10px] font-bold uppercase tracking-wider text-coden-muted">Language</span>
-                  <LanguageSelector
-                    value={codeLanguage}
-                    options={selectableLanguageOptions}
-                    onChange={(language) => void setCodeLanguage(language)}
-                  />
+                  <span className="ml-1 text-[10px] font-bold uppercase tracking-wider text-coden-muted">Verified language</span>
+                  <PrimaryLanguageBadge language={codeLanguage} />
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
                   <EditorRunControls
@@ -988,12 +900,8 @@ export function CodenTab() {
                     onRename={(version, name) => void renameVersion(version, name)}
                     onReset={setResetRequest}
                   />
-                  <span className="ml-1 text-[10px] font-bold uppercase tracking-wider text-coden-muted">Language</span>
-                  <LanguageSelector
-                    value={codeLanguage}
-                    options={selectableLanguageOptions}
-                    onChange={(language) => void setCodeLanguage(language)}
-                  />
+                  <span className="ml-1 text-[10px] font-bold uppercase tracking-wider text-coden-muted">Verified language</span>
+                  <PrimaryLanguageBadge language={codeLanguage} />
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
                   <EditorRunControls

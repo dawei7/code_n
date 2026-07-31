@@ -8,48 +8,53 @@
 | Category | Algorithms |
 | Topics | Array, Counting, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-single-divisor-triplets](https://leetcode.com/problems/number-of-single-divisor-triplets/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-single-divisor-triplets/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-single-divisor-triplets/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An ordered triplet of distinct indices $(i,j,k)$ is a single divisor triplet when the sum
+
+$$
+\texttt{nums[i]}+\texttt{nums[j]}+\texttt{nums[k]}
+$$
+
+is divisible by exactly one of the three selected values. Divisibility is tested against each selected position, so equal values in two different positions still contribute two successful divisibility tests.
+
+Given the positive-integer array `nums`, count all ordered triplets of distinct indices that satisfy this condition. Different orders of the same three indices are separate triplets.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: a list of $n$ positive integers, where $3 \le n \le 10^5$ and every value lies in $[1,100]$.
+
+Let $U$ be the number of distinct values in `nums`; the contract guarantees $U \le 100$.
 
 **Return value**
 
-TODO
+Return the number of ordered single divisor triplets.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 6, 7, 3, 2]`
+- Output: `12`
+
+The value multisets `{4,3,2}` and `{4,7,3}` each qualify. Every selection uses three distinct indices and contributes all six orders.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 2]`
+- Output: `6`
+
+The sum is `5`, which is divisible only by the selected value `1`; all six orders of the three indices qualify.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 1, 1]`
+- Output: `0`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The sum `3` is divisible by the value at all three selected positions, not exactly one.

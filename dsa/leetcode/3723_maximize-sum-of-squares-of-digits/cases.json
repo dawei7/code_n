@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3723",
+  "cases": [
+    {
+      "id": "sample-three-good-integers",
+      "name": "sample: concentrating three into one digit maximizes the score",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 2,
+        "sum": 3
+      },
+      "expected": "30",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "score-comparison"
+      ]
+    },
+    {
+      "id": "sample-score-tie",
+      "name": "sample: descending digits win the maximum-integer tie-break",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 2,
+        "sum": 17
+      },
+      "expected": "98",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "sample-infeasible-one-digit",
+      "name": "sample: a one-digit value cannot have digit sum ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 1,
+        "sum": 10
+      },
+      "expected": "",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "infeasible",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-smallest-sum",
+      "name": "trial: the minimum positive sum leads one followed by zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 3,
+        "sum": 1
+      },
+      "expected": "100",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "smallest-sum",
+        "trailing-zeros"
+      ]
+    },
+    {
+      "id": "trial-single-nine",
+      "name": "trial: a single digit can reach its maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1,
+        "sum": 9
+      },
+      "expected": "9",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-digit",
+        "maximum-digit"
+      ]
+    },
+    {
+      "id": "trial-exact-capacity",
+      "name": "trial: every digit is nine at exact capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 4,
+        "sum": 36
+      },
+      "expected": "9999",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "capacity-boundary"
+      ]
+    },
+    {
+      "id": "trial-no-remainder",
+      "name": "trial: a sum divisible by nine emits no middle remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 5,
+        "sum": 18
+      },
+      "expected": "99000",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "no-remainder",
+        "trailing-zeros"
+      ]
+    },
+    {
+      "id": "real-one-remainder",
+      "name": "hidden: one remainder follows all nines",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 4,
+        "sum": 19
+      },
+      "expected": "9910",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "remainder"
+      ]
+    },
+    {
+      "id": "real-zero-padding",
+      "name": "hidden: several zero digits preserve the requested length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 8,
+        "sum": 10
+      },
+      "expected": "91000000",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "trailing-zeros",
+        "exact-length"
+      ]
+    },
+    {
+      "id": "real-just-above-capacity",
+      "name": "hidden: one above capacity is impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 3,
+        "sum": 28
+      },
+      "expected": "",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "infeasible",
+        "capacity-boundary"
+      ]
+    },
+    {
+      "id": "real-large-feasible",
+      "name": "hidden: a larger feasible result follows the same digit concentration",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 100,
+        "sum": 451
+      },
+      "expected": "9999999999999999999999999999999999999999999999999910000000000000000000000000000000000000000000000000",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-output"
+      ]
+    },
+    {
+      "id": "real-maximum-inputs-infeasible",
+      "name": "hidden: maximum source inputs fail feasibility immediately",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 200000,
+        "sum": 2000000
+      },
+      "expected": "",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-inputs",
+        "infeasible"
+      ]
+    }
+  ]
+}
+

@@ -8,76 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Stack, Greedy, Monotonic Stack |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-convert-all-elements-to-zero](https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/).
 
 ### Goal
-Given an array of integers, determine the minimum number of operations required to reduce all elements to zero. In one operation, you can select a contiguous subarray and decrement all its elements by one, provided that no element in the subarray is already zero. Alternatively, you may be tasked with finding the minimum operations to clear the array where an operation consists of choosing a range and reducing its values, often related to the "Building Blocks" or "Gas Station" style problems where we track the cumulative difference between adjacent elements.
+
+You are given an array of non-negative integers and may perform any number of operations. In one operation, choose a nonempty contiguous subarray and find its minimum non-negative value. Every occurrence of that minimum within the chosen subarray is then replaced by `0`; the other values remain unchanged.
+
+Selecting a range whose minimum is already `0` cannot change the array, so a useful operation acts inside a positive segment. Determine the fewest operations needed to make every array element zero.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of non-negative integers representing the current state of the array.
+- `nums`: A list of non-negative integers.
+
+Let $n$ be the length of `nums`. The constraints are $1 \le n \le 10^5$ and $0 \le \texttt{nums[i]} \le 10^5$.
 
 **Return value**
 
-- An integer representing the minimum number of operations required to make all elements in the array equal to zero.
+Return the minimum number of allowed subarray operations required to turn every element into `0`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 1]`
-- Output: `2`
-- Explanation: We can perform one operation on the range [0, 2] to get [0, 1, 0], then one operation on index 1 to get [0, 0, 0].
+- Input: `nums = [0, 2]`
+- Output: `1`
+- Explanation: Choosing the one-element subarray containing `2` changes it to `0`.
 
 **Example 2**
 
-- Input: `nums = [3, 1, 2]`
-- Output: `4`
-- Explanation: Each element must be reduced individually or in overlapping ranges; the total operations correspond to the sum of positive increments in the difference array.
+- Input: `nums = [3, 1, 2, 1]`
+- Output: `3`
+- Explanation: One operation removes both occurrences of `1`; the remaining isolated values `3` and `2` each require one operation.
 
 **Example 3**
 
-- Input: `nums = [0, 0, 0]`
-- Output: `0`
-- Explanation: The array is already zeroed out.
+- Input: `nums = [1, 2, 1, 2, 1, 2]`
+- Output: `4`
+- Explanation: The three `1` values can be removed together. They then separate the three `2` values, which require one operation each.
 
 ---
-
-## Solution
-### Approach
-The problem is solved using the **Difference Array** technique. By calculating the difference between adjacent elements (`diff[i] = nums[i] - nums[i-1]`), we can identify the number of operations required. Specifically, the total number of operations is the sum of all positive differences between adjacent elements (treating `nums[-1]` as 0). This is a greedy approach that effectively counts the number of "new" operations started as we traverse the array.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single linear pass to compute the differences.
-- **Space Complexity**: `O(1)`, as we only store a few variables to track the previous element and the running total of operations.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int]) -> int:
-    """
-    Calculates the minimum operations to reduce all elements to zero.
-    This is equivalent to finding the sum of positive increments in the
-    difference array of the input.
-    """
-    if not nums:
-        return 0
-
-    operations = 0
-    prev = 0
-
-    for x in nums:
-        # If the current number is greater than the previous,
-        # we must start (x - prev) new operations.
-        if x > prev:
-            operations += (x - prev)
-        prev = x
-
-    return operations
-```
-</details>

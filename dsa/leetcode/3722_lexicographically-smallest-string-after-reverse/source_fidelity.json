@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3722",
+    "frontend_id": "3722",
+    "title_slug": "lexicographically-smallest-string-after-reverse",
+    "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-reverse/description/",
+    "paid_only": false,
+    "content_sha256": "5a0fd8184ea4f030478131c097cb578eb7382276cfe605328c88e40be592850a",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"dcab\"",
+        "output": "\"acdb\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"abba\"",
+        "output": "\"aabb\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"zxy\"",
+        "output": "\"xzy\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "92d121049b78fa3bfe84a38a6ab9059b53563ec91028884657aefc31183f65ef",
+      "reference/contract.md": "46fbba809a347d5e277b751dda7e06259feb20197d065ed18a80c829505df301",
+      "reference/examples.md": "6885a8c44867839467ec3bf53d67d555aca157100631146ab58fdc78d009f797",
+      "reference/constraints.md": "b88f4d52e781421c3661d7db917658b5eedee54aae424eae9e7fbad157cbfbe0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

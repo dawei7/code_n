@@ -8,100 +8,48 @@
 | Category | Algorithms |
 | Topics | Array, Stack, Sorting, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [robot-collisions](https://leetcode.com/problems/robot-collisions/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/robot-collisions/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/robot-collisions/).
 
 ### Goal
-Given a set of robots positioned on a 1D line, each moving in a specific direction ('L' or 'R') at the same speed, determine the health of the survivors after all possible collisions occur. When two robots collide, the one with lower health is removed, and the one with higher health loses 1 unit of health. If they have equal health, both are removed. Collisions only happen when a robot moving right encounters a robot moving left.
+
+There are $n$ robots at distinct positions on a line. Robot `i` begins at `positions[i]`, has health `healths[i]`, and moves continuously at the same speed as every other robot: left when `directions[i]` is `"L"` and right when it is `"R"`. The input order is an identity order and need not match spatial order.
+
+When two robots meet, the one with lower health is removed and the survivor loses one health while continuing in its original direction. Equal-health robots are both removed. Resolve every collision, then return the final positive healths of surviving robots in their original input order. Return an empty array if none survive.
 
 ### Function Contract
+
+Let $n$ be the common length of the inputs.
+
 **Inputs**
 
-- `positions`: A list of integers representing the starting coordinate of each robot.
-- `healths`: A list of integers representing the initial health of each robot.
-- `directions`: A string where each character ('L' or 'R') denotes the movement direction of the robot at the corresponding index.
+- `positions`: An array of $n$ distinct starting coordinates, each between $1$ and $10^9$.
+- `healths`: An array of positive initial health values, each between $1$ and $10^9$.
+- `directions`: A length-$n$ string containing only `"L"` and `"R"`.
+
+The common length satisfies $1 \le n \le 10^5$.
 
 **Return value**
 
-- A list of integers representing the health of the surviving robots, ordered by their original input index.
+Return the surviving robots' final health values in original input order.
 
 ### Examples
+
 **Example 1**
 
 - Input: `positions = [5,4,3,2,1], healths = [2,17,9,15,10], directions = "RRRRR"`
 - Output: `[2,17,9,15,10]`
+- Explanation: Robots moving at equal speed in the same direction never meet.
 
 **Example 2**
 
-- Input: `positions = [3,5,2,6], healths = [10,10,10,10], directions = "RLRL"`
-- Output: `[10,10]`
+- Input: `positions = [3,5,2,6], healths = [10,10,15,12], directions = "RLRL"`
+- Output: `[14]`
+- Explanation: The equal-health pair disappears, while the robot originally at position `2` wins its collision and loses one health.
 
 **Example 3**
 
-- Input: `positions = [1,2,5,6], healths = [10,10,10,10], directions = "RLRL"`
+- Input: `positions = [1,2,5,6], healths = [10,10,11,11], directions = "RLRL"`
 - Output: `[]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Stack-based Simulation** combined with **Sorting**. Since robots only collide if they are moving toward each other, we first sort the robots by their initial positions. We then iterate through the sorted robots, using a stack to keep track of robots moving to the right ('R') that have not yet collided. When we encounter a robot moving to the left ('L'), we check the stack for potential collisions with 'R' robots, resolving them based on health values until the 'L' robot is destroyed, the stack is empty, or the 'L' robot survives and continues moving left.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log N)`, where `N` is the number of robots. The sorting step dominates the complexity, while the stack-based simulation processes each robot at most twice (once pushed, once popped).
-- **Space Complexity**: `O(N)` to store the sorted robot data and the stack of survivors.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(positions, healths, directions):
-    n = len(positions)
-    # Store robots as (position, health, direction, original_index)
-    robots = []
-    for i in range(n):
-        robots.append((positions[i], healths[i], directions[i], i))
-
-    # Sort robots by position to simulate movement along the line
-    robots.sort()
-
-    stack = []
-    survivors = []
-
-    for pos, health, direction, idx in robots:
-        if direction == 'R':
-            stack.append([pos, health, direction, idx])
-        else:
-            # Robot is moving 'L', check for collisions with 'R' robots in stack
-            while stack and stack[-1][2] == 'R':
-                if stack[-1][1] < health:
-                    # 'R' robot is destroyed
-                    stack.pop()
-                    health -= 1
-                elif stack[-1][1] > health:
-                    # 'L' robot is destroyed
-                    stack[-1][1] -= 1
-                    health = 0
-                    break
-                else:
-                    # Both destroyed
-                    stack.pop()
-                    health = 0
-                    break
-
-            if health > 0:
-                survivors.append((idx, health))
-
-    # Add remaining robots in stack to survivors
-    while stack:
-        r = stack.pop()
-        survivors.append((r[3], r[1]))
-
-    # Sort by original index to return in correct order
-    survivors.sort()
-    return [s[1] for s in survivors]
-```
-</details>
+- Explanation: Both approaching pairs have equal health, so every robot is removed.

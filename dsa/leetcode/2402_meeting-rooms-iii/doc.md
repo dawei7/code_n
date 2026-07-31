@@ -8,58 +8,57 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Sorting, Heap (Priority Queue), Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [meeting-rooms-iii](https://leetcode.com/problems/meeting-rooms-iii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/meeting-rooms-iii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/meeting-rooms-iii/).
 
 ### Goal
-You are given an integer `n`. There are `n` rooms numbered from `0` to `n - 1`.
 
-You are given a 2D integer array `meetings` where `meetings[i] = [start_i, end_i]` means a meeting will be held during the half-closed time interval `[start_i, end_i)`. All the values of `start_i` are unique.
+There are `n` meeting rooms numbered from 0 through `n - 1`. Each meeting has
+a unique original start time and occupies a half-closed interval `[start,end)`,
+so a room finishing at a time is available for a meeting starting at that same
+time.
 
-Meetings are allocated to rooms in the following manner:
-1. Each meeting will take place in the unused room with the lowest number.
-2. If there are no available rooms, the meeting will be delayed until a room becomes free. The delayed meeting should have the same duration as the original meeting.
-3. When a room becomes unused, meetings that have been delayed should be given the room in the order of their original start-times.
-
-Return the room number of the room that held the most meetings. If there are multiple rooms, return the room with the lowest number.
+Process meetings by original start time. A meeting uses the lowest-numbered
+unused room. If every room is busy, delay the meeting until the earliest room
+becomes free while preserving its original duration; meetings awaiting rooms
+retain priority by their original start times. After every meeting has been
+assigned, return the room that held the most meetings, breaking a count tie in
+favor of the lowest room number.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: int
-- `meetings`: List[List[int]]
+- `n`: The number of rooms, with $1 \le n \le 100$.
+- `meetings`: A list of $m$ pairs `[start, end]`, where
+  $1 \le m \le 10^5$, $0 \le \texttt{start}<\texttt{end}\le5\cdot10^5$,
+  and all start times are distinct.
 
 **Return value**
 
-int - room number holding the most meetings
+Return the smallest room number among those with the maximum number of
+assigned meetings after applying all allocation and delay rules.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 2, meetings = [[0, 10], [1, 5], [2, 7], [3, 4]]`
+- Input: `n = 2`, `meetings = [[0,10],[1,5],[2,7],[3,4]]`
 - Output: `0`
+- Explanation: Each room handles two meetings, so the smaller room wins the
+  tie.
 
 **Example 2**
 
-- Input: `n = 2, meetings = [[1, 6], [8, 13], [16, 24]]`
-- Output: `0`
+- Input: `n = 3`, `meetings = [[1,20],[2,10],[3,5],[4,9],[6,8]]`
+- Output: `1`
+- Explanation: Rooms 1 and 2 each handle two meetings, while room 0 handles
+  one; the smaller tied room is 1.
 
 **Example 3**
 
-- Input: `n = 2, meetings = [[8, 13], [3, 11]]`
+- Input: `n = 1`, `meetings = [[5,8],[0,2],[3,4]]`
 - Output: `0`
-
----
-
-## Solution
-### Approach
-- [Activity selection / interval choice](greedy_01_activity-selection.md)
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)` auxiliary space, excluding the output object unless the output itself is the constructed result.
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: The only room necessarily hosts all three meetings, regardless
+  of the input ordering.

@@ -76,6 +76,16 @@ class SolutionRoutesTests(_Base):
                 expected_files,
             )
 
+    def test_missing_language_defaults_to_verified_primary_language(self) -> None:
+        response = self.client.get("/api/solutions/lc_175")
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(response.json()["language"], "sql")
+
+    def test_non_primary_language_is_rejected_without_touching_legacy_files(self) -> None:
+        response = self.client.get("/api/solutions/lc_1?language=cpp")
+        self.assertEqual(response.status_code, 422, response.text)
+        self.assertFalse((user_solution_dir("lc_1") / "cpp_v1.cpp").exists())
+
     def test_legacy_alias_is_migrated_to_active_version(self) -> None:
         from server.app.user_solutions import migrate_legacy_solutions
 

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2496",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: alphanumeric strings use length",
+      "name": "sample: mixed alphanumeric and numeric strings",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,12 +19,13 @@
       "expected": 5,
       "tags": [
         "sample",
-        "strings"
+        "mixed",
+        "leading-zeroes"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: numeric strings with leading zeroes",
+      "name": "sample: equal numeric values with leading zeroes",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -36,47 +38,50 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "numeric",
+        "leading-zeroes"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: longest alphabetic string wins",
-      "kind": "sample",
+      "id": "trial-large-numeric-value",
+      "name": "trial: numeric value exceeds every text length",
+      "kind": "trial",
       "visible": true,
       "input": {
         "strs": [
           "abcde",
-          "abc",
-          "ab",
-          "a"
+          "999",
+          "12x"
         ]
       },
-      "expected": 5,
+      "expected": 999,
       "tags": [
-        "sample"
+        "trial",
+        "numeric-maximum"
       ]
     },
     {
-      "id": "trial-large-numeric-string",
-      "name": "trial: numeric value beats string length",
+      "id": "trial-longest-text",
+      "name": "trial: a text length is the maximum",
       "kind": "trial",
       "visible": true,
       "input": {
         "strs": [
           "000",
-          "00a",
-          "1234"
+          "abcdefghi",
+          "7z"
         ]
       },
-      "expected": 1234,
+      "expected": 9,
       "tags": [
-        "trial"
+        "trial",
+        "length-maximum"
       ]
     },
     {
       "id": "real-single-letter",
-      "name": "hidden: one nonnumeric string",
+      "name": "hidden: one alphabetic character",
       "kind": "real",
       "visible": false,
       "input": {
@@ -86,7 +91,83 @@
       },
       "expected": 1,
       "tags": [
-        "hidden"
+        "hidden",
+        "singleton",
+        "text"
+      ]
+    },
+    {
+      "id": "real-single-zero",
+      "name": "hidden: one zero digit has numeric value zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "0"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "singleton",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-all-zeroes",
+      "name": "hidden: many leading zeroes still represent zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "000000000",
+          "000",
+          "00"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "leading-zeroes",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-maximum-numeric",
+      "name": "hidden: a nine-digit numeric string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "999999999",
+          "abcdefgh",
+          "12345678x"
+        ]
+      },
+      "expected": 999999999,
+      "tags": [
+        "hidden",
+        "boundary",
+        "numeric"
+      ]
+    },
+    {
+      "id": "real-letter-anywhere",
+      "name": "hidden: any letter selects the full string length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "strs": [
+          "1a2345678",
+          "1234567b",
+          "c123456"
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "mixed",
+        "classification"
       ]
     }
   ]

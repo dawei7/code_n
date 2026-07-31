@@ -1,35 +1,51 @@
-import sys
-from functools import lru_cache
+from collections import deque
+from typing import List
 
-def solve(grid: list[list[int]]) -> int:
-    MOD = 10**9 + 7
-    m = len(grid)
-    n = len(grid[0])
 
-    # Directions for moving up, down, left, right
-    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+MODULUS = 1_000_000_007
+DIRECTIONS = ((1, 0), (-1, 0), (0, 1), (0, -1))
 
-    @lru_cache(None)
-    def dfs(r: int, c: int) -> int:
-        # A path consisting only of the current cell is 1 path
-        count = 1
 
-        # Explore neighbors
-        for dr, dc in directions:
-            nr, nc = r + dr, c + dc
+def solve(grid: List[List[int]]) -> int:
+    rows, columns = len(grid), len(grid[0])
+    smaller_neighbors = [[0] * columns for _ in range(rows)]
+    path_count = [[1] * columns for _ in range(rows)]
 
-            # Check boundary conditions
-            if 0 <= nr < m and 0 <= nc < n:
-                # Check strictly increasing condition
-                if grid[nr][nc] > grid[r][c]:
-                    count = (count + dfs(nr, nc)) % MOD
-        
-        return count
+    for row in range(rows):
+        for column in range(columns):
+            for row_step, column_step in DIRECTIONS:
+                next_row = row + row_step
+                next_column = column + column_step
+                if (
+                    0 <= next_row < rows
+                    and 0 <= next_column < columns
+                    and grid[next_row][next_column] < grid[row][column]
+                ):
+                    smaller_neighbors[row][column] += 1
 
-    total_paths = 0
-    # Iterate through each cell and sum up the paths starting from it
-    for r in range(m):
-        for c in range(n):
-            total_paths = (total_paths + dfs(r, c)) % MOD
-            
-    return total_paths
+    queue = deque(
+        (row, column)
+        for row in range(rows)
+        for column in range(columns)
+        if smaller_neighbors[row][column] == 0
+    )
+
+    while queue:
+        row, column = queue.popleft()
+        for row_step, column_step in DIRECTIONS:
+            next_row = row + row_step
+            next_column = column + column_step
+            if (
+                0 <= next_row < rows
+                and 0 <= next_column < columns
+                and grid[next_row][next_column] > grid[row][column]
+            ):
+                path_count[next_row][next_column] = (
+                    path_count[next_row][next_column]
+                    + path_count[row][column]
+                ) % MODULUS
+                smaller_neighbors[next_row][next_column] -= 1
+                if smaller_neighbors[next_row][next_column] == 0:
+                    queue.append((next_row, next_column))
+
+    return sum(map(sum, path_count)) % MODULUS

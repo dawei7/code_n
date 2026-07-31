@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2442",
+  "frontend_id": "2367",
+  "title_slug": "number-of-arithmetic-triplets",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.arithmeticTriplets",
+  "verified_submission_id": "2074438132",
+  "verified_at": "2026-07-20T10:23:52.999866+00:00"
+}

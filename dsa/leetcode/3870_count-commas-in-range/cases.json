@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3870",
+  "cases": [
+    {
+      "id": "sample-three-commas",
+      "name": "sample: the first three four-digit values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1002},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "four-digit"]
+    },
+    {
+      "id": "sample-no-commas",
+      "name": "sample: every value has fewer than four digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 998},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "below-threshold"]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "trial: minimum legal upper endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum", "below-threshold"]
+    },
+    {
+      "id": "trial-last-no-comma",
+      "name": "trial: the last three-digit endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 999},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "threshold-minus-one", "no-comma"]
+    },
+    {
+      "id": "trial-first-comma",
+      "name": "trial: the first formatted value contributes one comma",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1000},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "threshold", "one-comma"]
+    },
+    {
+      "id": "trial-two-commas",
+      "name": "trial: two consecutive four-digit values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1001},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "threshold-plus-one", "counting"]
+    },
+    {
+      "id": "real-last-four-digit",
+      "name": "hidden: all four-digit values are included",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 9999},
+      "expected": 9000,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "four-digit-boundary", "interval-size"]
+    },
+    {
+      "id": "real-first-five-digit",
+      "name": "hidden: crossing into five digits changes no comma count per value",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 10000},
+      "expected": 9001,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "five-digit-boundary", "one-comma"]
+    },
+    {
+      "id": "real-middle",
+      "name": "hidden: an interior five-digit endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 54321},
+      "expected": 53322,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "interior", "interval-size"]
+    },
+    {
+      "id": "real-last-five-digit",
+      "name": "hidden: the last five-digit endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 99999},
+      "expected": 99000,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-minus-one", "five-digit"]
+    },
+    {
+      "id": "real-maximum",
+      "name": "hidden: the maximum legal endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 100000},
+      "expected": 99001,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum", "six-digit"]
+    }
+  ]
+}

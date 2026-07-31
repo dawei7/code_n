@@ -8,48 +8,53 @@
 | Category | Algorithms |
 | Topics | Math, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [smallest-value-of-the-rearranged-number](https://leetcode.com/problems/smallest-value-of-the-rearranged-number/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/smallest-value-of-the-rearranged-number/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/smallest-value-of-the-rearranged-number/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Rearrange all decimal digits of an integer `num` to produce the smallest
+possible numeric value. Every digit occurrence must be used exactly once, and
+the rearranged representation may not begin with zero unless the number itself
+is zero.
+
+The sign is fixed: a positive input must remain positive, a negative input must
+remain negative, and zero remains zero. For a negative number, making the
+signed result smaller therefore means maximizing the magnitude formed by its
+digits.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `num`: an integer satisfying $-10^{15}\le\texttt{num}\le 10^{15}$.
+
+The minus sign is not a digit and cannot be moved or changed.
 
 **Return value**
 
-TODO
+Return the smallest signed integer obtainable by permuting every decimal digit
+of `num` without a leading zero.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 310`
+- Output: `103`
+
+Ascending digits would begin with zero, so the smallest nonzero digit is placed
+first and the zero follows it.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = -7605`
+- Output: `-7650`
+
+Descending magnitude digits form `7650`; applying the preserved negative sign
+makes this the smallest value.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 0`
+- Output: `0`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Zero has one digit and its only rearrangement is itself.

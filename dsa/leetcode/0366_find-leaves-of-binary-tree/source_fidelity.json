@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_366", "frontend_id": "366", "title_slug": "find-leaves-of-binary-tree", "url": "https://leetcode.com/problems/find-leaves-of-binary-tree/description/", "paid_only": true, "content_sha256": "7514a7ca182b62dffa17a43b98884c6a2017f351bc59bda32bea313230f1cb61", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "root = [1,2,3,4,5]", "output": "[[4,5,3],[2],[1]]", "has_explanation": true},
+      {"ordinal": 2, "input": "root = [1]", "output": "[[1]]", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "9514bd9cc96fa6214172ee7d532da98eaa1a4ed0ce9ad87ee33edad88e734e18",
+    "reference/contract.md": "dce012c88fcc956587c462de8e7d9ec79c0c650ba3d20b44bc94d2a3b24ad498",
+    "reference/examples.md": "241c40fe1b4538dd11476b725f0a952a2051b3271fa4b970a07d538009f877a9",
+    "reference/constraints.md": "11e55285bddfa89f17f876eec5f948533f94f966e04b85769b035d0a450a5278"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

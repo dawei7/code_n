@@ -1,0 +1,18 @@
+def solve(grid: list[list[int]], limit: int) -> int:
+    """Return the longest consistent order-preserving column subsequence."""
+
+    rows = len(grid)
+    columns = len(grid[0])
+    dp = [1] * columns
+    answer = 1
+
+    for right in range(columns):
+        for left in range(right):
+            for row in range(rows):
+                if abs(grid[row][right] - grid[row][left]) > limit:
+                    break
+            else:
+                dp[right] = max(dp[right], dp[left] + 1)
+        answer = max(answer, dp[right])
+
+    return answer

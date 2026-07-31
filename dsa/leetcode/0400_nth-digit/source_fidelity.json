@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_400", "frontend_id": "400", "title_slug": "nth-digit", "url": "https://leetcode.com/problems/nth-digit/description/", "paid_only": false, "content_sha256": "f259792b2dd5d5315301525f2d91c281cb5bd58ee4eb7b029e52f0311f38c35d", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 3", "output": "3", "has_explanation": false},
+      {"ordinal": 2, "input": "n = 11", "output": "0", "has_explanation": true}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "5b8c2762927b7000198abb555b8327712edae43996bc50d6e7e33ac86c3e0ace",
+    "reference/contract.md": "e4459a5cb36e7d6657627c0b31ea55b7360ba5499abc523fac7da2bf8bfa7be4",
+    "reference/examples.md": "09dc5d5ada6bc6bf9baefed2b6ca0c87d3c908a93660192e353dd0071fe722af",
+    "reference/constraints.md": "a0ca05416f6437e0ac82864e09b1288c88ba23bc1832d2ef0e063d1c62ba8182"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

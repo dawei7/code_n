@@ -3,92 +3,75 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: several mechanics share cars",
+      "name": "sample: mechanics split ten cars",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "ranks": [
-          4,
-          2,
-          3,
-          1
-        ],
-        "cars": 10
-      },
+      "input": { "ranks": [4, 2, 3, 1], "cars": 10 },
       "expected": 16,
-      "tags": [
-        "sample",
-        "binary-search"
-      ]
+      "tags": ["sample", "parallel-capacity"]
     },
     {
       "id": "sample-2",
-      "name": "sample: fastest mechanic dominates",
+      "name": "sample: fastest mechanic handles most cars",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "ranks": [
-          5,
-          1,
-          8
-        ],
-        "cars": 6
-      },
+      "input": { "ranks": [5, 1, 8], "cars": 6 },
       "expected": 16,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "unequal-ranks"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one mechanic one car",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "ranks": [
-          1
-        ],
-        "cars": 1
-      },
-      "expected": 1,
-      "tags": [
-        "sample",
-        "small"
-      ]
-    },
-    {
-      "id": "trial-single-mechanic-many-cars",
-      "name": "trial: single mechanic repairs four cars",
+      "id": "trial-single-car",
+      "name": "trial: one car goes to the fastest mechanic",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "ranks": [
-          2
-        ],
-        "cars": 4
-      },
-      "expected": 32,
-      "tags": [
-        "trial"
-      ]
+      "input": { "ranks": [4, 2, 3, 1], "cars": 1 },
+      "expected": 1,
+      "tags": ["trial", "single-car"]
     },
     {
-      "id": "real-equal-ranks",
-      "name": "hidden: equal ranks split work evenly",
+      "id": "trial-two-equal-mechanics",
+      "name": "trial: simultaneous equal-rank work",
+      "kind": "trial",
+      "visible": true,
+      "input": { "ranks": [2, 2], "cars": 3 },
+      "expected": 8,
+      "tags": ["trial", "simultaneous"]
+    },
+    {
+      "id": "real-single-mechanic",
+      "name": "hidden: one mechanic repairs several cars",
       "kind": "real",
       "visible": false,
-      "input": {
-        "ranks": [
-          3,
-          3,
-          3
-        ],
-        "cars": 9
-      },
-      "expected": 27,
-      "tags": [
-        "hidden"
-      ]
+      "input": { "ranks": [2], "cars": 4 },
+      "expected": 32,
+      "tags": ["hidden", "quadratic-time"]
+    },
+    {
+      "id": "real-threshold-jump",
+      "name": "hidden: next car requires a large time jump",
+      "kind": "real",
+      "visible": false,
+      "input": { "ranks": [1, 100], "cars": 10 },
+      "expected": 100,
+      "tags": ["hidden", "boundary"]
+    },
+    {
+      "id": "real-three-ranks",
+      "name": "hidden: first feasible mixed-rank time",
+      "kind": "real",
+      "visible": false,
+      "input": { "ranks": [1, 2, 3], "cars": 5 },
+      "expected": 8,
+      "tags": ["hidden", "binary-search-boundary"]
+    },
+    {
+      "id": "real-maximum-cars",
+      "name": "hidden: maximum car count with one mechanic",
+      "kind": "real",
+      "visible": false,
+      "input": { "ranks": [1], "cars": 1000000 },
+      "expected": 1000000000000,
+      "tags": ["hidden", "maximum", "integer-width"]
     }
   ]
 }

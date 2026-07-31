@@ -8,71 +8,42 @@
 | Category | Algorithms |
 | Topics | Array |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-subarrays-of-length-three-with-a-condition](https://leetcode.com/problems/count-subarrays-of-length-three-with-a-condition/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-subarrays-of-length-three-with-a-condition/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-subarrays-of-length-three-with-a-condition/).
 
 ### Goal
-Given an array of integers, identify the number of contiguous subarrays consisting of exactly three elements where the sum of the first and third elements is exactly equal to half of the middle element.
+
+Given an integer array `nums`, examine every contiguous subarray containing exactly three elements. A triplet is valid when the sum of its first and third values is exactly half of its middle value.
+
+Count all valid length-three subarrays. Neighboring candidates overlap, so each possible starting index from zero through `len(nums) - 3` must be evaluated independently. The array may contain positive values, negative values, and zero.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
+- `nums`: A list of integers with length $n$, where $3\le n\le100$ and every value lies between $-100$ and $100$ inclusive.
 
 **Return value**
 
-- An integer representing the count of valid subarrays of length three.
+- The number of indices $i$ for which the triplet `nums[i:i + 3]` satisfies
+
+$$
+2\bigl(\texttt{nums[i]}+\texttt{nums[i + 2]}\bigr)=\texttt{nums[i + 1]}.
+$$
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1, 2, 1, 4, 1]`
 - Output: `1`
-- Explanation: The only valid subarray is `[1, 2, 1]` because `1 + 1 = 2 / 2` is false? Wait, the condition is `nums[i] + nums[i+2] == nums[i+1] / 2`. For `[1, 2, 1]`, `1 + 1 = 2`, which is not `2 / 2`. Actually, the condition is `nums[i] + nums[i+2] * 2 == nums[i+1]`. Let's re-verify: `1 + 1 == 2 / 2` is false. The condition is `(nums[i] + nums[i+2]) * 2 == nums[i+1]`.
+
+Only `[1, 4, 1]` is valid: the two endpoint values sum to 2, exactly half of the middle value 4.
 
 **Example 2**
 
-- Input: `nums = [1, 2, 1, 4, 1]`
-- Output: `1`
-- Explanation: Subarray `[1, 4, 1]` satisfies `(1 + 1) * 2 == 4`.
+- Input: `nums = [1, 1, 1]`
+- Output: `0`
 
-**Example 3**
-
-- Input: `nums = [2, 2, 2, 2, 2]`
-- Output: `3`
-- Explanation: Subarrays `[2, 2, 2]` at indices `(0,1,2)`, `(1,2,3)`, and `(2,3,4)` all satisfy `(2 + 2) * 2 == 2`? No, the condition is `nums[i] + nums[i+2] == nums[i+1] / 2`.
-
----
-
-## Solution
-### Approach
-A single-pass sliding window approach (or simple iteration) checking every triplet `(nums[i], nums[i+1], nums[i+2])`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the array once.
-- **Space Complexity**: `O(1)`, as we only use a counter variable.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    """
-    Counts subarrays of length 3 where (nums[i] + nums[i+2]) * 2 == nums[i+1].
-    Note: The problem condition is defined as the sum of the first and third
-    elements being equal to half of the middle element, which is equivalent
-    to (nums[i] + nums[i+2]) * 2 == nums[i+1].
-    """
-    count = 0
-    # We iterate up to len(nums) - 3 to check every triplet
-    for i in range(len(nums) - 2):
-        if (nums[i] + nums[i + 2]) * 2 == nums[i + 1]:
-            count += 1
-    return count
-```
-</details>
+The only triplet has endpoint sum 2, which is not half of its middle value 1.

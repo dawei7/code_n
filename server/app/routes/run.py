@@ -24,6 +24,7 @@ from server.app.engine_runner import (
     run_player_code,
 )
 from server.app.schemas import AnalyzeRequest, AnalyzeResponse, RunRequest, RunResponse
+from server.app.primary_languages import primary_language_for_challenge
 from server.app.validated_cases import InvalidCustomCase, NoValidatedCases, select_cases_for_run
 
 
@@ -243,26 +244,23 @@ def run_challenge(challenge_id: str, body: RunRequest, background_tasks: Backgro
                 ),
             },
         )
-    supported_languages = {
-        str(language)
-        for language in reference_metadata.get("supported_languages", [])
-        if isinstance(language, str)
-    }
-    if supported_languages and body.language not in supported_languages:
+    primary_language = primary_language_for_challenge(challenge_id, reference_metadata)
+    if body.language != primary_language:
         raise HTTPException(
             status_code=422,
             detail={
-                "error": "language_not_supported_for_challenge",
+                "error": "language_not_primary_for_challenge",
                 "message": (
-                    f"{body.language} is not a supported language for this challenge. "
-                    f"Supported languages: {', '.join(sorted(supported_languages))}."
+                    f"{body.language} is not the verified primary language for this challenge. "
+                    f"Use {primary_language}."
                 ),
+                "primary_language": primary_language,
             },
         )
 
     progress = progress_store.load()
     active_set = normalize_algorithm_set(progress.active_set)
-    if active_set == "neetcode":
+    if active_set in {"neetcode", "leetcode_studyplan", "leetcode_quest"}:
         from server.app.routes.challenges import get_unlocked_challenges
         all_challenges = [cls() for cls in CHALLENGE_REGISTRY.values()]
         unlocked_set = get_unlocked_challenges(progress, all_challenges)

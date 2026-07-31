@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Minimum Area to Cover All Ones II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates the six possible geometric partition families and measures each piece with cached prefix-assisted bounding boxes.",
+      "time_complexity": "O((R + C)(R^2 + RC + C^2))",
+      "space_complexity": "O(RC + R^2 + C^2)"
     }
   ]
 }

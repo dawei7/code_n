@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2480",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(r+b)",
+  "summary": "The query scans the element rows and emits each requested metal-nonmetal pair once, matching the unavoidable input and output work with no genuine slower principal class to calibrate.",
+  "optimality": {
+    "symbol": "r+b",
+    "lower_bound": "Omega(r+b)",
+    "upper_bound": "O(r+b)",
+    "argument": "A correct query must classify the r input rows and, when metals and nonmetals are both present, must materialize all b requested pairs; filtered aliases plus the cross join scan the inputs and emit each output pair once."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Reading the element categories requires proportional input work, and the result contract independently requires writing all b metal-nonmetal pairs."},
+    {"kind":"upper_bound_proof","evidence":"The two aliases filter Elements by category and the cross join emits every surviving metal-nonmetal combination exactly once."},
+    {"kind":"boundary_property_cases","evidence":"Regression fixtures cover a full Cartesian product, one pair, absent categories, ignored Noble rows, and electron counts that do not match."}
+  ]
+}

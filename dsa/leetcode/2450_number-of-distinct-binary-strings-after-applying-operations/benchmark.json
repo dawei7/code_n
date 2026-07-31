@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2450",
+  "measurement_note": "Size is m=n-k+1, the number of eligible windows. With k=1, binary modular exponentiation grows logarithmically in m, while repeated modular doubling performs one step per window.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: sixteen independent windows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "0000000000000000", "k": 1},
+      "expected": 65536,
+      "tags": ["benchmark", "modular-exponentiation"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: sixty-four independent windows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"s": "0000000000000000000000000000000000000000000000000000000000000000", "k": 1},
+      "expected": 582344008,
+      "tags": ["benchmark", "modular-exponentiation"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two hundred forty-four independent windows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 244,
+      "input": {"s": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", "k": 1},
+      "expected": 430369350,
+      "tags": ["benchmark", "modular-exponentiation"]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_2882",
+  "cases": [
+    {
+      "id": "sample-repeated-john-email",
+      "name": "sample: keep the first customer using john@example.com",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"customers": [{"customer_id": 1, "name": "Ella", "email": "emily@example.com"}, {"customer_id": 2, "name": "David", "email": "michael@example.com"}, {"customer_id": 3, "name": "Zachary", "email": "sarah@example.com"}, {"customer_id": 4, "name": "Alice", "email": "john@example.com"}, {"customer_id": 5, "name": "Finn", "email": "john@example.com"}, {"customer_id": 6, "name": "Violet", "email": "alice@example.com"}]}},
+      "expected": {"columns": ["customer_id", "name", "email"], "rows": [[1, "Ella", "emily@example.com"], [2, "David", "michael@example.com"], [3, "Zachary", "sarah@example.com"], [4, "Alice", "john@example.com"], [6, "Violet", "alice@example.com"]]},
+      "tags": ["sample", "nonadjacent-output"]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "all email addresses are distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"customers": [{"customer_id": 10, "name": "Mia", "email": "mia@example.com"}, {"customer_id": 11, "name": "Noah", "email": "noah@example.com"}]}},
+      "expected": {"columns": ["customer_id", "name", "email"], "rows": [[10, "Mia", "mia@example.com"], [11, "Noah", "noah@example.com"]]},
+      "tags": ["no-duplicates"]
+    },
+    {
+      "id": "trial-three-equal-emails",
+      "name": "three adjacent rows share one email",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"customers": [{"customer_id": 20, "name": "Ada", "email": "team@example.com"}, {"customer_id": 21, "name": "Bo", "email": "team@example.com"}, {"customer_id": 22, "name": "Cy", "email": "team@example.com"}]}},
+      "expected": {"columns": ["customer_id", "name", "email"], "rows": [[20, "Ada", "team@example.com"]]},
+      "tags": ["adjacent-duplicates", "keep-first"]
+    },
+    {
+      "id": "real-email-only-key",
+      "name": "hidden: duplicate names do not imply duplicate emails",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"customers": [{"customer_id": 31, "name": "Alex", "email": "one@example.com"}, {"customer_id": 32, "name": "Alex", "email": "two@example.com"}, {"customer_id": 33, "name": "Rae", "email": "one@example.com"}, {"customer_id": 34, "name": "Alex", "email": "three@example.com"}, {"customer_id": 35, "name": "Sol", "email": "two@example.com"}]}},
+      "expected": {"columns": ["customer_id", "name", "email"], "rows": [[31, "Alex", "one@example.com"], [32, "Alex", "two@example.com"], [34, "Alex", "three@example.com"]]},
+      "tags": ["hidden", "subset-key", "order"]
+    }
+  ]
+}

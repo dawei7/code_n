@@ -13,6 +13,11 @@ import { getGuidedExample } from '../../api/guidedExamples';
 import type { ChallengeDetail, ChallengeSummary, SupportedLanguage } from '../../types/api';
 import type { PdfSaveResult } from '../../types/electron';
 import { BrandWordmark } from '../BrandWordmark';
+import {
+  MermaidDiagram,
+  mermaidSourceFromPreChildren,
+  waitForMermaidDiagrams,
+} from '../markdown/MermaidDiagram';
 
 
 export type PdfBundleProgress = {
@@ -314,6 +319,11 @@ function PdfMarkdown({ challengeId, markdown }: { challengeId: string; markdown:
             src={documentAssetUrl(challengeId, String(props.src || ''))}
           />
         ),
+        pre: ({ children, ...props }) => {
+          const diagram = mermaidSourceFromPreChildren(children);
+          if (diagram) return <MermaidDiagram source={diagram} />;
+          return <pre {...props}>{children}</pre>;
+        },
       }}
     >
       {markdown}
@@ -419,7 +429,7 @@ function supportedLanguage(value: string): SupportedLanguage | null {
   };
   const normalized = aliases[canonical] ?? canonical;
   const supported: SupportedLanguage[] = [
-    'python', 'cpp', 'java', 'csharp', 'javascript', 'go', 'kotlin', 'sql', 'bash',
+    'python', 'javascript', 'sql', 'bash',
   ];
   return supported.includes(normalized as SupportedLanguage)
     ? normalized as SupportedLanguage
@@ -430,12 +440,7 @@ function supportedLanguage(value: string): SupportedLanguage | null {
 function languageLabel(language: SupportedLanguage): string {
   const labels: Record<SupportedLanguage, string> = {
     python: 'Python 3',
-    cpp: 'C++',
-    java: 'Java',
-    csharp: 'C#',
     javascript: 'JavaScript',
-    go: 'Go',
-    kotlin: 'Kotlin',
     sql: 'SQL',
     bash: 'Bash',
   };
@@ -451,6 +456,7 @@ function monacoLanguage(language: SupportedLanguage): string {
 async function preparePrintAssets(root: HTMLElement): Promise<void> {
   await document.fonts?.ready;
   await colorizeSolutionSources(root);
+  await waitForMermaidDiagrams(root);
   root.querySelectorAll<HTMLDetailsElement>('details').forEach((details) => {
     details.open = true;
   });

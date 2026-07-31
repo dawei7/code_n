@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3916",
+  "cases": [
+    {
+      "id": "sample-two-values",
+      "name": "sample: two available values force the two alternating arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "l": 4, "r": 5},
+      "expected": 2,
+      "tags": ["sample", "two-values", "starts-both-directions"]
+    },
+    {
+      "id": "sample-three-values",
+      "name": "sample: ten length-three arrays over three values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "l": 1, "r": 3},
+      "expected": 10,
+      "tags": ["sample", "three-values", "length-three"]
+    },
+    {
+      "id": "trial-length-three-four-values",
+      "name": "trial: length three rejects only equal edges and monotone triples",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "l": 1, "r": 4},
+      "expected": 28,
+      "tags": ["trial", "length-three", "strictness"]
+    },
+    {
+      "id": "trial-four-two-values",
+      "name": "trial: two values continue to force exactly two arrays",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4, "l": 1, "r": 2},
+      "expected": 2,
+      "tags": ["trial", "two-values", "forced-alternation"]
+    },
+    {
+      "id": "trial-four-three-values",
+      "name": "trial: both comparison directions contribute at even length",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4, "l": 1, "r": 3},
+      "expected": 16,
+      "tags": ["trial", "three-values", "even-length"]
+    },
+    {
+      "id": "trial-five-three-values",
+      "name": "trial: repeated nonadjacent values remain legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "l": 1, "r": 3},
+      "expected": 26,
+      "tags": ["trial", "nonadjacent-equality", "odd-length"]
+    },
+    {
+      "id": "trial-six-four-values",
+      "name": "trial: a larger alphabet branches at every alternating step",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 6, "l": 1, "r": 4},
+      "expected": 314,
+      "tags": ["trial", "four-values", "multi-step"]
+    },
+    {
+      "id": "trial-shifted-five-values",
+      "name": "trial: translating the interval does not change the count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 7, "l": 5, "r": 9},
+      "expected": 4074,
+      "tags": ["trial", "translation-invariance", "five-values"]
+    },
+    {
+      "id": "trial-near-upper-bound-values",
+      "name": "trial: values near one billion behave only by rank",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 8, "l": 999999996, "r": 1000000000},
+      "expected": 11728,
+      "tags": ["trial", "large-values", "translation-invariance"]
+    },
+    {
+      "id": "trial-long-two-values",
+      "name": "trial: forced alternation persists for a longer array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 10, "l": 1, "r": 2},
+      "expected": 2,
+      "tags": ["trial", "two-values", "longer-length"]
+    },
+    {
+      "id": "trial-ten-three-values",
+      "name": "trial: three values exercise repeated prefix transitions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 10, "l": 1, "r": 3},
+      "expected": 288,
+      "tags": ["trial", "three-values", "dynamic-programming"]
+    },
+    {
+      "id": "trial-interpolation-needed",
+      "name": "trial: interval size greater than n requires polynomial evaluation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 20, "l": 123, "r": 456},
+      "expected": 774283233,
+      "tags": ["trial", "interpolation", "modulo"]
+    },
+    {
+      "id": "hidden-fifty-four-values",
+      "name": "hidden: long arrays over four high values stay rank-invariant",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 50, "l": 999999997, "r": 1000000000},
+      "expected": 142298065,
+      "tags": ["hidden", "large-values", "modulo"]
+    },
+    {
+      "id": "hidden-odd-near-maximum-interval",
+      "name": "hidden: odd maximum-scale length and a huge interval",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 199, "l": 2, "r": 1000000000},
+      "expected": 711887154,
+      "tags": ["hidden", "odd-length", "interpolation", "large-interval"]
+    },
+    {
+      "id": "hidden-maximum-length-two-values-low",
+      "name": "hidden: maximum length with the lowest two-value interval",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 200, "l": 1, "r": 2},
+      "expected": 2,
+      "tags": ["hidden", "maximum-length", "two-values"]
+    },
+    {
+      "id": "hidden-maximum-contract",
+      "name": "hidden: maximum length and maximum interval size",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 200, "l": 1, "r": 1000000000},
+      "expected": 122743172,
+      "tags": ["hidden", "maximum-length", "maximum-interval", "modulo"]
+    },
+    {
+      "id": "hidden-maximum-length-two-values-high",
+      "name": "hidden: the highest two-value interval matches the lowest one",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 200, "l": 999999999, "r": 1000000000},
+      "expected": 2,
+      "tags": ["hidden", "maximum-length", "translation-invariance"]
+    }
+  ]
+}

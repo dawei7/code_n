@@ -8,48 +8,39 @@
 | Category | pandas |
 | Topics | Uncategorized |
 | Supported Languages | python |
-| Official Link | [create-a-dataframe-from-list](https://leetcode.com/problems/create-a-dataframe-from-list/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/create-a-dataframe-from-list/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/create-a-dataframe-from-list/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+`student_data` is a two-dimensional list in which every row describes one student. The first value of a row is that student's identifier, and the second value is the student's age. Interpret the outer-list order as the required row order; the task does not ask for sorting or any other rearrangement.
+
+Create and return a pandas `DataFrame` from those records. The result must have exactly two columns named `student_id` and `age`, in that order, and its rows must appear in the same order as the corresponding rows of `student_data`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `student_data`: A two-dimensional list whose rows have the form `[student_id, age]`.
 
 **Return value**
 
-TODO
+A pandas `DataFrame` with columns `student_id` and `age`, preserving the input row order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `student_data = [[1, 15], [2, 11], [3, 11], [4, 20]]`
+- Output: a four-row DataFrame with columns `student_id` and `age` and rows `[1, 15]`, `[2, 11]`, `[3, 11]`, and `[4, 20]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `student_data = [[42, 18]]`
+- Output: a one-row DataFrame whose only row is `[42, 18]`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `student_data = [[9, 20], [2, 11], [7, 16]]`
+- Output: a three-row DataFrame retaining the row order `9`, `2`, `7` in its `student_id` column.

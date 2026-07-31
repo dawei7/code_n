@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3200",
   "cases": [
     {
-      "id": "sample-more-blue",
-      "name": "sample: start with blue to reach height three",
+      "id": "sample-height-three",
+      "name": "sample: blue starts a height-three triangle",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -12,13 +13,12 @@
       },
       "expected": 3,
       "tags": [
-        "sample",
-        "simulation"
+        "sample"
       ]
     },
     {
-      "id": "sample-two-rows",
-      "name": "sample: two rows from small piles",
+      "id": "sample-height-two",
+      "name": "sample: both piles are consumed by two rows",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -27,14 +27,13 @@
       },
       "expected": 2,
       "tags": [
-        "sample",
-        "small"
+        "sample"
       ]
     },
     {
-      "id": "trial-equal-one",
-      "name": "trial: one ball of each color",
-      "kind": "trial",
+      "id": "sample-one-row",
+      "name": "sample: neither color can fill row two",
+      "kind": "sample",
       "visible": true,
       "input": {
         "red": 1,
@@ -42,13 +41,13 @@
       },
       "expected": 1,
       "tags": [
-        "edge"
+        "sample"
       ]
     },
     {
-      "id": "trial-lopsided",
-      "name": "trial: lopsided colors limit alternation",
-      "kind": "trial",
+      "id": "sample-large-surplus",
+      "name": "sample: alternation limits a large red surplus",
+      "kind": "sample",
       "visible": true,
       "input": {
         "red": 10,
@@ -56,22 +55,119 @@
       },
       "expected": 2,
       "tags": [
-        "lopsided"
+        "sample"
       ]
     },
     {
-      "id": "real-balanced-large",
-      "name": "real: balanced larger piles",
+      "id": "trial-opposite-surplus",
+      "name": "trial: swapping colors preserves the answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "red": 1,
+        "blue": 10
+      },
+      "expected": 2,
+      "tags": [
+        "symmetry"
+      ]
+    },
+    {
+      "id": "trial-exact-four-rows",
+      "name": "trial: square and pronic sums exactly fund four rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "red": 4,
+        "blue": 6
+      },
+      "expected": 4,
+      "tags": [
+        "exact-boundary"
+      ]
+    },
+    {
+      "id": "trial-top-color-choice",
+      "name": "trial: choosing the correct top color gains a row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "red": 4,
+        "blue": 9
+      },
+      "expected": 4,
+      "tags": [
+        "starting-color"
+      ]
+    },
+    {
+      "id": "trial-equal-moderate",
+      "name": "trial: equal supplies are symmetric",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "red": 10,
+        "blue": 10
+      },
+      "expected": 5,
+      "tags": [
+        "equal-supplies"
+      ]
+    },
+    {
+      "id": "real-maximum-supplies",
+      "name": "real: both color counts are maximal",
       "kind": "real",
       "visible": false,
       "input": {
-        "red": 120,
-        "blue": 135
+        "red": 100,
+        "blue": 100
       },
-      "expected": 21,
+      "expected": 19,
       "tags": [
-        "real",
-        "height"
+        "maximum"
+      ]
+    },
+    {
+      "id": "real-odd-square-boundary",
+      "name": "real: an exact odd-row square controls the height",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "red": 9,
+        "blue": 5
+      },
+      "expected": 4,
+      "tags": [
+        "square-boundary"
+      ]
+    },
+    {
+      "id": "real-even-pronic-boundary",
+      "name": "real: an exact even-row sum controls the height",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "red": 16,
+        "blue": 20
+      },
+      "expected": 8,
+      "tags": [
+        "pronic-boundary"
+      ]
+    },
+    {
+      "id": "real-near-boundary",
+      "name": "real: one missing ball prevents the next required row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "red": 15,
+        "blue": 20
+      },
+      "expected": 7,
+      "tags": [
+        "near-boundary"
       ]
     }
   ]

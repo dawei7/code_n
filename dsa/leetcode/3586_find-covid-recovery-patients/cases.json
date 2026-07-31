@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3586",
+  "cases": [
+    {
+      "id": "sample-recovered-patients",
+      "name": "sample: recoveries ignore earlier negatives and inconclusive tests",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "patients": [
+          {"patient_id": 1, "patient_name": "Alice Smith", "age": 28},
+          {"patient_id": 2, "patient_name": "Bob Johnson", "age": 35},
+          {"patient_id": 3, "patient_name": "Carol Davis", "age": 42},
+          {"patient_id": 4, "patient_name": "David Wilson", "age": 31},
+          {"patient_id": 5, "patient_name": "Emma Brown", "age": 29}
+        ],
+        "covid_tests": [
+          {"test_id": 1, "patient_id": 1, "test_date": "2023-01-15", "result": "Positive"},
+          {"test_id": 2, "patient_id": 1, "test_date": "2023-01-25", "result": "Negative"},
+          {"test_id": 3, "patient_id": 2, "test_date": "2023-02-01", "result": "Positive"},
+          {"test_id": 4, "patient_id": 2, "test_date": "2023-02-05", "result": "Inconclusive"},
+          {"test_id": 5, "patient_id": 2, "test_date": "2023-02-12", "result": "Negative"},
+          {"test_id": 6, "patient_id": 3, "test_date": "2023-01-20", "result": "Negative"},
+          {"test_id": 7, "patient_id": 3, "test_date": "2023-02-10", "result": "Positive"},
+          {"test_id": 8, "patient_id": 3, "test_date": "2023-02-20", "result": "Negative"},
+          {"test_id": 9, "patient_id": 4, "test_date": "2023-01-10", "result": "Positive"},
+          {"test_id": 10, "patient_id": 4, "test_date": "2023-01-18", "result": "Positive"},
+          {"test_id": 11, "patient_id": 5, "test_date": "2023-02-15", "result": "Negative"},
+          {"test_id": 12, "patient_id": 5, "test_date": "2023-02-20", "result": "Negative"}
+        ]
+      }},
+      "expected": {"columns": ["patient_id", "patient_name", "age", "recovery_time"], "rows": [[1, "Alice Smith", 28, 10], [3, "Carol Davis", 42, 10], [2, "Bob Johnson", 35, 11]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["sample", "first-positive", "first-later-negative", "output-order"]
+    },
+    {
+      "id": "trial-strictly-later-negative",
+      "name": "trial: earlier and same-date negatives do not establish recovery",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "patients": [{"patient_id": 1, "patient_name": "Nia", "age": 40}],
+        "covid_tests": [
+          {"test_id": 1, "patient_id": 1, "test_date": "2024-01-01", "result": "Negative"},
+          {"test_id": 2, "patient_id": 1, "test_date": "2024-01-10", "result": "Positive"},
+          {"test_id": 3, "patient_id": 1, "test_date": "2024-01-10", "result": "Negative"},
+          {"test_id": 4, "patient_id": 1, "test_date": "2024-01-12", "result": "Inconclusive"},
+          {"test_id": 5, "patient_id": 1, "test_date": "2024-01-13", "result": "Negative"}
+        ]
+      }},
+      "expected": {"columns": ["patient_id", "patient_name", "age", "recovery_time"], "rows": [[1, "Nia", 40, 3]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["trial", "strict-date", "same-date-negative", "inconclusive"]
+    },
+    {
+      "id": "trial-first-recovery-cycle",
+      "name": "trial: later infection cycles do not replace the first recovery",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "patients": [{"patient_id": 1, "patient_name": "Omar", "age": 51}],
+        "covid_tests": [
+          {"test_id": 1, "patient_id": 1, "test_date": "2024-02-01", "result": "Positive"},
+          {"test_id": 2, "patient_id": 1, "test_date": "2024-02-05", "result": "Negative"},
+          {"test_id": 3, "patient_id": 1, "test_date": "2024-02-10", "result": "Positive"},
+          {"test_id": 4, "patient_id": 1, "test_date": "2024-02-11", "result": "Negative"}
+        ]
+      }},
+      "expected": {"columns": ["patient_id", "patient_name", "age", "recovery_time"], "rows": [[1, "Omar", 51, 4]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["trial", "multiple-cycles", "earliest-positive"]
+    },
+    {
+      "id": "real-exclusion-rules",
+      "name": "real: incomplete and non-later test histories are excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "patients": [
+          {"patient_id": 1, "patient_name": "Only Positive", "age": 20},
+          {"patient_id": 2, "patient_name": "Only Negative", "age": 21},
+          {"patient_id": 3, "patient_name": "Same Day", "age": 22},
+          {"patient_id": 4, "patient_name": "Inconclusive", "age": 23}
+        ],
+        "covid_tests": [
+          {"test_id": 1, "patient_id": 1, "test_date": "2024-03-01", "result": "Positive"},
+          {"test_id": 2, "patient_id": 2, "test_date": "2024-03-01", "result": "Negative"},
+          {"test_id": 3, "patient_id": 3, "test_date": "2024-03-01", "result": "Positive"},
+          {"test_id": 4, "patient_id": 3, "test_date": "2024-03-01", "result": "Negative"},
+          {"test_id": 5, "patient_id": 4, "test_date": "2024-03-01", "result": "Positive"},
+          {"test_id": 6, "patient_id": 4, "test_date": "2024-03-03", "result": "Inconclusive"}
+        ]
+      }},
+      "expected": {"columns": ["patient_id", "patient_name", "age", "recovery_time"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["real", "exclusions", "empty-output"]
+    },
+    {
+      "id": "real-time-and-name-order",
+      "name": "real: recovery time sorts first and name breaks ties",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "patients": [
+          {"patient_id": 1, "patient_name": "Zoe", "age": 30},
+          {"patient_id": 2, "patient_name": "Aaron", "age": 31},
+          {"patient_id": 3, "patient_name": "Mira", "age": 32}
+        ],
+        "covid_tests": [
+          {"test_id": 1, "patient_id": 1, "test_date": "2024-04-01", "result": "Positive"},
+          {"test_id": 2, "patient_id": 1, "test_date": "2024-04-06", "result": "Negative"},
+          {"test_id": 3, "patient_id": 2, "test_date": "2024-04-02", "result": "Positive"},
+          {"test_id": 4, "patient_id": 2, "test_date": "2024-04-07", "result": "Negative"},
+          {"test_id": 5, "patient_id": 3, "test_date": "2024-04-03", "result": "Positive"},
+          {"test_id": 6, "patient_id": 3, "test_date": "2024-04-05", "result": "Negative"}
+        ]
+      }},
+      "expected": {"columns": ["patient_id", "patient_name", "age", "recovery_time"], "rows": [[3, "Mira", 32, 2], [2, "Aaron", 31, 5], [1, "Zoe", 30, 5]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["real", "recovery-order", "name-tie-break"]
+    },
+    {
+      "id": "real-unsorted-test-rows",
+      "name": "real: minimum dates are independent of insertion order",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "patients": [{"patient_id": 7, "patient_name": "Priya", "age": 38}],
+        "covid_tests": [
+          {"test_id": 1, "patient_id": 7, "test_date": "2024-05-10", "result": "Positive"},
+          {"test_id": 2, "patient_id": 7, "test_date": "2024-05-08", "result": "Negative"},
+          {"test_id": 3, "patient_id": 7, "test_date": "2024-05-03", "result": "Positive"},
+          {"test_id": 4, "patient_id": 7, "test_date": "2024-05-20", "result": "Negative"}
+        ]
+      }},
+      "expected": {"columns": ["patient_id", "patient_name", "age", "recovery_time"], "rows": [[7, "Priya", 38, 5]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["real", "unsorted-input", "minimum-dates"]
+    },
+    {
+      "id": "real-leap-day-span",
+      "name": "real: date difference crosses leap day",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "patients": [{"patient_id": 9, "patient_name": "Quinn", "age": 44}],
+        "covid_tests": [
+          {"test_id": 1, "patient_id": 9, "test_date": "2024-02-28", "result": "Positive"},
+          {"test_id": 2, "patient_id": 9, "test_date": "2024-03-01", "result": "Negative"}
+        ]
+      }},
+      "expected": {"columns": ["patient_id", "patient_name", "age", "recovery_time"], "rows": [[9, "Quinn", 44, 2]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["real", "date-arithmetic", "leap-day"]
+    }
+  ]
+}

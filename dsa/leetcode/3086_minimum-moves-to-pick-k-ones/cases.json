@@ -2,120 +2,85 @@
   "challenge_id": "lc_3086",
   "cases": [
     {
-      "id": "sample-one-change",
-      "name": "sample: one change plus nearby existing ones",
+      "id": "sample-neighbor-and-change",
+      "name": "sample: combine one adjacent original with one created pickup",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          0,
-          0,
-          0,
-          1,
-          1,
-          0,
-          0,
-          1
-        ],
-        "k": 3,
-        "maxChanges": 1
-      },
+      "input": {"nums": [1, 1, 0, 0, 0, 1, 1, 0, 0, 1], "k": 3, "maxChanges": 1},
       "expected": 3,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
       "id": "sample-all-created",
-      "name": "sample: create all needed ones near Alice",
+      "name": "sample: create every required one",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "k": 2,
-        "maxChanges": 3
-      },
+      "input": {"nums": [0, 0, 0, 0], "k": 2, "maxChanges": 3},
       "expected": 4,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
-      "id": "sample-no-changes",
-      "name": "sample: move existing distant ones only",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          0,
-          0,
-          0,
-          0,
-          1
-        ],
-        "k": 2,
-        "maxChanges": 0
-      },
-      "expected": 5,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-adjacent-run",
-      "name": "trial: adjacent run gives cheap pickups",
+      "id": "trial-one-free",
+      "name": "trial: one initial pickup costs no move",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          0,
-          1,
-          1,
-          1,
-          0,
-          0
-        ],
-        "k": 3,
-        "maxChanges": 0
-      },
-      "expected": 2,
-      "tags": [
-        "trial"
-      ]
+      "input": {"nums": [1, 0], "k": 1, "maxChanges": 0},
+      "expected": 0,
+      "tags": ["trial", "free-pickup"]
     },
     {
-      "id": "real-mixed-changes",
-      "name": "real: combine existing median window with changes",
+      "id": "trial-one-created",
+      "name": "trial: one created pickup costs two moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 0], "k": 1, "maxChanges": 1},
+      "expected": 2,
+      "tags": ["trial", "no-original-ones"]
+    },
+    {
+      "id": "trial-three-consecutive",
+      "name": "trial: middle of three consecutive ones is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 1], "k": 3, "maxChanges": 0},
+      "expected": 2,
+      "tags": ["trial", "nearby-ones"]
+    },
+    {
+      "id": "trial-replace-far-original",
+      "name": "trial: a change replaces a distant original",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 0, 0, 1], "k": 2, "maxChanges": 1},
+      "expected": 2,
+      "tags": ["trial", "change-priority"]
+    },
+    {
+      "id": "real-even-median",
+      "name": "real: either median gathers two spaced originals",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          0,
-          1,
-          0,
-          0,
-          1,
-          0,
-          1,
-          0
-        ],
-        "k": 5,
-        "maxChanges": 2
-      },
-      "expected": 9,
-      "tags": [
-        "real",
-        "prefix-sum"
-      ]
+      "input": {"nums": [1, 0, 0, 0, 0, 1], "k": 2, "maxChanges": 0},
+      "expected": 5,
+      "tags": ["real", "even-window"]
+    },
+    {
+      "id": "real-three-spaced",
+      "name": "real: gather three spaced originals at the middle one",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 0, 0, 1, 0, 0, 1], "k": 3, "maxChanges": 0},
+      "expected": 6,
+      "tags": ["real", "median-window"]
+    },
+    {
+      "id": "real-cap-nearby-at-k",
+      "name": "real: only the requested nearby originals are collected",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1, 1, 0], "k": 2, "maxChanges": 0},
+      "expected": 1,
+      "tags": ["real", "exact-k"]
     }
   ]
 }

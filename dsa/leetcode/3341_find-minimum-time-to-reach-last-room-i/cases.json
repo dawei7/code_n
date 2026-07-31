@@ -2,163 +2,67 @@
   "challenge_id": "lc_3341",
   "cases": [
     {
-      "id": "sample-waiting-two-by-two",
-      "name": "sample: wait before entering the last room",
+      "id": "official-example-waiting",
+      "name": "official example: wait before the first move",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            4
-          ],
-          [
-            4,
-            4
-          ]
-        ]
-      },
+      "input": {"moveTime": [[0, 4], [4, 4]]},
       "expected": 6,
-      "tags": [
-        "sample",
-        "dijkstra"
-      ]
+      "tags": ["sample", "waiting"]
     },
     {
-      "id": "sample-open-grid",
-      "name": "sample: open rectangle uses shortest path length",
+      "id": "official-example-open-grid",
+      "name": "official example: open rectangular grid",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0
-          ]
-        ]
-      },
+      "input": {"moveTime": [[0, 0, 0], [0, 0, 0]]},
       "expected": 3,
-      "tags": [
-        "sample",
-        "grid"
-      ]
+      "tags": ["sample", "no-wait"]
     },
     {
-      "id": "sample-small-waits",
-      "name": "sample: small diagonal waits",
+      "id": "official-example-small-waits",
+      "name": "official example: opening times overlap travel",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            2
-          ]
-        ]
-      },
+      "input": {"moveTime": [[0, 1], [1, 2]]},
       "expected": 3,
-      "tags": [
-        "sample",
-        "grid"
-      ]
+      "tags": ["sample", "timing"]
     },
     {
-      "id": "trial-detour-around-late-room",
-      "name": "trial: detour avoids a late center room",
+      "id": "trial-detour-around-late-rooms",
+      "name": "trial: a longer-looking direction avoids late rooms",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            1,
-            50
-          ],
-          [
-            1,
-            50,
-            2
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
+      "input": {"moveTime": [[0, 1, 50], [1, 50, 2], [1, 1, 1]]},
       "expected": 5,
-      "tags": [
-        "test",
-        "shortest-path"
-      ]
+      "tags": ["trial", "detour"]
     },
     {
-      "id": "trial-single-room",
-      "name": "trial: already at destination",
+      "id": "trial-maximum-opening-time",
+      "name": "trial: maximum opening time at the destination",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "moveTime": [
-          [
-            0
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "edge",
-        "single-cell"
-      ]
+      "input": {"moveTime": [[0, 1000000000], [0, 1000000000]]},
+      "expected": 1000000001,
+      "tags": ["trial", "maximum-value", "waiting"]
     },
     {
-      "id": "real-grid-waits",
-      "name": "real: grid with late rooms and detours",
+      "id": "real-mixed-grid",
+      "name": "real: competing routes through mixed opening times",
       "kind": "real",
       "visible": false,
-      "input": {
-        "moveTime": [
-          [
-            0,
-            2,
-            9,
-            4
-          ],
-          [
-            1,
-            8,
-            3,
-            7
-          ],
-          [
-            2,
-            2,
-            2,
-            6
-          ],
-          [
-            9,
-            5,
-            1,
-            0
-          ]
-        ]
-      },
+      "input": {"moveTime": [[0, 2, 9, 4], [1, 8, 3, 7], [2, 2, 2, 6], [9, 5, 1, 0]]},
       "expected": 7,
-      "tags": [
-        "real",
-        "grid",
-        "dijkstra"
-      ]
+      "tags": ["real", "shortest-path", "stale-entries"]
+    },
+    {
+      "id": "real-late-direct-route",
+      "name": "real: spatially direct route is delayed",
+      "kind": "real",
+      "visible": false,
+      "input": {"moveTime": [[0, 100, 0, 0], [0, 0, 0, 0]]},
+      "expected": 4,
+      "tags": ["real", "detour", "rectangular"]
     }
   ]
 }

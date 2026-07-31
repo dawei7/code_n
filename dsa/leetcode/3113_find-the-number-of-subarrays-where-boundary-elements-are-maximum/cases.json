@@ -6,94 +6,108 @@
       "name": "sample: adjacent equal maxima form one extra subarray",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          4,
-          3,
-          3,
-          2
-        ]
-      },
+      "input": {"nums": [1, 4, 3, 3, 2]},
       "expected": 6,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
       "id": "sample-all-equal",
-      "name": "sample: every subarray is valid when all values match",
+      "name": "sample: every subarray qualifies when all values match",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          3,
-          3
-        ]
-      },
+      "input": {"nums": [3, 3, 3]},
       "expected": 6,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
-      "id": "trial-single",
-      "name": "trial: single element",
-      "kind": "trial",
+      "id": "sample-single",
+      "name": "sample: one element",
+      "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1
-        ]
-      },
+      "input": {"nums": [1]},
       "expected": 1,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["sample"]
     },
     {
-      "id": "trial-separated-by-larger",
-      "name": "trial: larger middle value blocks equal endpoints",
+      "id": "trial-increasing",
+      "name": "trial: strictly increasing values leave only singletons",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          1,
-          2,
-          3,
-          2
-        ]
-      },
-      "expected": 6,
-      "tags": [
-        "trial"
-      ]
+      "input": {"nums": [1, 2, 3, 4, 5]},
+      "expected": 5,
+      "tags": ["trial", "monotone"]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: strictly decreasing values leave only singletons",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 4, 3, 2, 1]},
+      "expected": 5,
+      "tags": ["trial", "monotone"]
+    },
+    {
+      "id": "trial-smaller-between-equals",
+      "name": "trial: smaller interior value does not block equal endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 1, 5]},
+      "expected": 4,
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "trial-larger-between-equals",
+      "name": "trial: larger interior value blocks equal endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3, 2]},
+      "expected": 3,
+      "tags": ["trial", "boundary"]
     },
     {
       "id": "real-mixed-stack",
       "name": "real: repeated maxima at several stack levels",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          5,
-          1,
-          5,
-          3,
-          5,
-          2,
-          2,
-          6,
-          6
-        ]
-      },
+      "input": {"nums": [5, 1, 5, 3, 5, 2, 2, 6, 6]},
       "expected": 14,
-      "tags": [
-        "real",
-        "stack"
-      ]
+      "tags": ["real", "stack"]
+    },
+    {
+      "id": "real-alternating",
+      "name": "real: equal maxima separated by smaller values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 1, 3, 1, 3]},
+      "expected": 8,
+      "tags": ["real", "repeated-maximum"]
+    },
+    {
+      "id": "real-ten-equal",
+      "name": "real: triangular count for a longer equal run",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 7, 7, 7, 7, 7, 7, 7, 7, 7]},
+      "expected": 55,
+      "tags": ["real", "all-equal"]
+    },
+    {
+      "id": "real-value-limit",
+      "name": "real: maximum allowed values with a smaller interior",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 1, 1000000000]},
+      "expected": 4,
+      "tags": ["real", "value-limit"]
+    },
+    {
+      "id": "real-repeated-blockers",
+      "name": "real: several equal groups separated by changing blockers",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 1, 2, 3, 3, 2, 3]},
+      "expected": 14,
+      "tags": ["real", "stack"]
     }
   ]
 }

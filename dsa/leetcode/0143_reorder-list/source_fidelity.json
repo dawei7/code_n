@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_143", "frontend_id": "143", "title_slug": "reorder-list", "url": "https://leetcode.com/problems/reorder-list/description/", "paid_only": false, "content_sha256": "521eaf31b49edbb247c3ae288eb6ee1efee5179fdd9b6a18be1a490be58b67ba", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [1,2,3,4]", "output": "[1,4,2,3]", "has_explanation": false},
+      {"ordinal": 2, "input": "head = [1,2,3,4,5]", "output": "[1,5,2,4,3]", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "b524b9818cdf831f00be250a99166a0c281bc13725f7f3b1b8205d236507395b", "reference/contract.md": "d75610b112d338b0e5907135fac585ff4d25c5b6121e0b8b4dfcd1829012e781", "reference/examples.md": "ebfc660ae3159a51769b01a2f78a025c128d618350b3e247f2fdd710dac6a56e", "reference/constraints.md": "0937db9007dc715ff0400d24a6605172dda3e67d087ec741da56a86d628cf9ef"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

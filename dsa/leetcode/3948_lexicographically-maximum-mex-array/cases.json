@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3948",
+  "cases": [
+    {
+      "id": "sample-decreasing-suffix-mex",
+      "name": "sample: suffix MEX falls after the first shortest segment",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0, 1, 0]},
+      "expected": [2, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "decreasing-mex", "multiple-segments"]
+    },
+    {
+      "id": "sample-complete-consecutive-set",
+      "name": "sample: the complete array has MEX three",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 0, 2]},
+      "expected": [3],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "single-segment", "reordered-values"]
+    },
+    {
+      "id": "sample-zero-mex-suffix",
+      "name": "sample: every single-element prefix has MEX zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 1]},
+      "expected": [0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "zero-mex", "length-tiebreak"]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero has MEX one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0]},
+      "expected": [1],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "single-element", "mex-one"]
+    },
+    {
+      "id": "trial-single-nonzero",
+      "name": "trial: one positive value has MEX zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5]},
+      "expected": [0],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "single-element", "zero-mex"]
+    },
+    {
+      "id": "trial-all-zeroes",
+      "name": "trial: each zero forms a MEX-one segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 0, 0]},
+      "expected": [1, 1, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "duplicates", "repeated-mex"]
+    },
+    {
+      "id": "trial-two-complete-blocks",
+      "name": "trial: two consecutive-value blocks each produce MEX three",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 1, 2, 0, 1, 2]},
+      "expected": [3, 3],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "repeated-blocks", "same-mex"]
+    },
+    {
+      "id": "trial-irrelevant-values-between-required",
+      "name": "trial: irrelevant values occur before the required prefix is complete",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 0, 5, 1, 0]},
+      "expected": [2, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "irrelevant-values", "shortest-prefix"]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "hidden: the maximum legal value does not affect a small MEX",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000, 0]},
+      "expected": [1],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "boundary", "maximum-value"]
+    },
+    {
+      "id": "real-duplicate-required-value",
+      "name": "hidden: duplicate zero does not satisfy the missing one",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 0, 1]},
+      "expected": [2],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "duplicates", "distinct-requirements"]
+    },
+    {
+      "id": "real-three-segment-descent",
+      "name": "hidden: suffix MEX values descend across three segments",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 2, 1, 0, 2]},
+      "expected": [3, 1, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "decreasing-mex", "three-segments"]
+    },
+    {
+      "id": "real-four-then-two",
+      "name": "hidden: a complete zero-through-three prefix leaves MEX two",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 0, 1, 3, 0, 1]},
+      "expected": [4, 2],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "reordered-values", "two-segments"]
+    },
+    {
+      "id": "real-all-positive",
+      "name": "hidden: positive-only input maximizes the number of zero entries",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1, 1]},
+      "expected": [0, 0, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "zero-mex", "length-tiebreak"]
+    },
+    {
+      "id": "real-four-then-one",
+      "name": "hidden: an out-of-order full prefix leaves one zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 1, 3, 2, 0]},
+      "expected": [4, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "full-prefix", "suffix-zero"]
+    },
+    {
+      "id": "real-mex-five",
+      "name": "hidden: all values below five appear before a final zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 0, 2, 1, 4, 3, 0]},
+      "expected": [5, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "large-mex", "duplicate-four"]
+    }
+  ]
+}

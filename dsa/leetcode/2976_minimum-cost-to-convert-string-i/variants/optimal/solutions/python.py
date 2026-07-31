@@ -1,36 +1,38 @@
-def solve(source: str, target: str, original: list[str], changed: list[str], cost: list[int]) -> int:
-    # Initialize distance matrix with infinity
-    # There are 26 lowercase English letters
-    inf = float('inf')
-    dist = [[inf] * 26 for _ in range(26)]
-    
-    # Distance to self is 0
-    for i in range(26):
-        dist[i][i] = 0
-        
-    # Populate initial transformation costs
-    for u, v, c in zip(original, changed, cost):
-        u_idx = ord(u) - ord('a')
-        v_idx = ord(v) - ord('a')
-        dist[u_idx][v_idx] = min(dist[u_idx][v_idx], c)
-        
-    # Floyd-Warshall algorithm to find all-pairs shortest paths
-    for k in range(26):
-        for i in range(26):
-            if dist[i][k] != inf:
-                for j in range(26):
-                    if dist[k][j] != inf:
-                        if dist[i][j] > dist[i][k] + dist[k][j]:
-                            dist[i][j] = dist[i][k] + dist[k][j]
-                            
-    total_cost = 0
-    for s, t in zip(source, target):
-        s_idx = ord(s) - ord('a')
-        t_idx = ord(t) - ord('a')
-        
-        if dist[s_idx][t_idx] == inf:
+from typing import List
+
+
+def solve(
+    source: str,
+    target: str,
+    original: List[str],
+    changed: List[str],
+    cost: List[int],
+) -> int:
+    alphabet = 26
+    infinity = 10**30
+    distance = [[infinity] * alphabet for _ in range(alphabet)]
+    for letter in range(alphabet):
+        distance[letter][letter] = 0
+
+    for start, end, price in zip(original, changed, cost):
+        first = ord(start) - ord("a")
+        second = ord(end) - ord("a")
+        distance[first][second] = min(distance[first][second], price)
+
+    for middle in range(alphabet):
+        for first in range(alphabet):
+            through_middle = distance[first][middle]
+            if through_middle == infinity:
+                continue
+            for second in range(alphabet):
+                candidate = through_middle + distance[middle][second]
+                if candidate < distance[first][second]:
+                    distance[first][second] = candidate
+
+    answer = 0
+    for start, end in zip(source, target):
+        price = distance[ord(start) - ord("a")][ord(end) - ord("a")]
+        if price == infinity:
             return -1
-        
-        total_cost += dist[s_idx][t_idx]
-        
-    return total_cost
+        answer += price
+    return answer

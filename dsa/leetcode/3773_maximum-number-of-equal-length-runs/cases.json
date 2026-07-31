@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3773",
+  "cases": [
+    {"id":"sample-1","name":"sample: three singleton runs in hello","kind":"sample","visible":true,"input":{"s":"hello"},"expected":3,"validator":{"kind":"exact"},"tags":["sample","singleton-runs"]},
+    {"id":"sample-2","name":"sample: two separated runs of length three","kind":"sample","visible":true,"input":{"s":"aaabaaa"},"expected":2,"validator":{"kind":"exact"},"tags":["sample","separated-equal-letter-runs"]},
+    {"id":"trial-single-character","name":"trial: the smallest string has one run","kind":"trial","visible":true,"input":{"s":"a"},"expected":1,"validator":{"kind":"exact"},"tags":["trial","minimum-length"]},
+    {"id":"trial-one-long-run","name":"trial: repeated letters form one maximal run","kind":"trial","visible":true,"input":{"s":"aaaaa"},"expected":1,"validator":{"kind":"exact"},"tags":["trial","maximality"]},
+    {"id":"trial-all-singletons","name":"trial: alternating letters all have run length one","kind":"trial","visible":true,"input":{"s":"abcde"},"expected":5,"validator":{"kind":"exact"},"tags":["trial","singleton-runs"]},
+    {"id":"trial-three-length-two-runs","name":"trial: different letters share a run length","kind":"trial","visible":true,"input":{"s":"aabbcc"},"expected":3,"validator":{"kind":"exact"},"tags":["trial","different-letters"]},
+    {"id":"real-mixed-run-lengths","name":"hidden: length two is the most frequent class","kind":"real","visible":false,"input":{"s":"aabbbccccdd"},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","mixed-lengths"]},
+    {"id":"real-tied-frequency-classes","name":"hidden: three run lengths tie for the maximum frequency","kind":"real","visible":false,"input":{"s":"abbcccdeefff"},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","frequency-tie"]},
+    {"id":"real-separated-same-letter","name":"hidden: separators make equal-letter runs distinct","kind":"real","visible":false,"input":{"s":"zzazzzaz"},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","separated-runs"]}
+  ]
+}

@@ -8,88 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Graph Theory, Heap (Priority Queue), Shortest Path |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-time-to-visit-disappearing-nodes](https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/) |
+| LeetCode | [minimum-time-to-visit-disappearing-nodes](https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/).
 
 ### Goal
-Given a graph represented by edges with travel times, determine the shortest time required to reach every node from the source node (node 0). Each node has a specific "disappearance time"; if the arrival time at a node is greater than or equal to its disappearance time, that node becomes unreachable. If a node cannot be reached before it disappears, the result for that node should be -1.
+
+An undirected graph has $n$ nodes numbered from $0$ through $n-1$. Each entry `[u, v, length]` in `edges` creates an edge between `u` and `v` that takes `length` units of time to traverse. The graph may be disconnected, and multiple edges may connect the same pair of nodes.
+
+For every node $i$, `disappear[i]` is the instant when that node vanishes and can no longer be visited. Starting at node $0$ at time $0$, find the minimum arrival time for every node. An arrival is valid only when it is strictly earlier than the destination's disappearance time; arriving exactly when it disappears is too late. Return $-1$ for every node that cannot be reached under this rule.
 
 ### Function Contract
+
+Let $m$ be the number of entries in `edges`.
+
 **Inputs**
 
-- `n`: An integer representing the number of nodes (labeled 0 to n-1).
-- `edges`: A list of lists where each inner list `[u, v, length]` represents an undirected edge between `u` and `v` with travel time `length`.
-- `disappear`: A list of integers where `disappear[i]` is the time at which node `i` becomes inaccessible.
+- `n`: The number of nodes, where $1 \le n \le 5\cdot10^4$.
+- `edges`: A list of $m$ undirected weighted edges `[u, v, length]`, where $0 \le m \le 10^5$, $0 \le u,v < n$, and $1 \le \texttt{length} \le 10^5$.
+- `disappear`: A length-$n$ list with $1 \le \texttt{disappear[i]} \le 10^5$.
 
 **Return value**
 
-- A list of integers of length `n`, where the `i`-th element is the minimum time to reach node `i`, or -1 if it is unreachable.
+- A length-$n$ list whose entry at index $i$ is the minimum valid arrival time from node $0$, or $-1$ when node $i$ is unreachable before disappearing.
 
 ### Examples
+
 **Example 1**
 
 - Input: `n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,1,5]`
-- Output: `[0,-1,3]`
+- Output: `[0,-1,4]`
+- Explanation: Node $1$ disappears before time $2$, so the route through it is invalid; node $2$ is reached directly at time $4$.
 
 **Example 2**
 
 - Input: `n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,3,5]`
 - Output: `[0,2,3]`
+- Explanation: Node $1$ is reached before time $3$, enabling the shorter arrival at node $2$.
 
 **Example 3**
 
 - Input: `n = 2, edges = [[0,1,1]], disappear = [1,1]`
 - Output: `[0,-1]`
-
----
-
-## Solution
-### Approach
-Dijkstra's Algorithm. We use a min-priority queue to greedily explore the shortest paths. We only push a neighbor into the queue if the arrival time is strictly less than the node's disappearance time.
-
-### Complexity Analysis
-- **Time Complexity**: `O(E log E + E log V)`, where `E` is the number of edges and `V` is the number of nodes, due to the priority queue operations.
-- **Space Complexity**: `O(V + E)` to store the adjacency list and the distance array.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import heapq
-from collections import defaultdict
-
-def solve(n: int, edges: list[list[int]], disappear: list[int]) -> list[int]:
-    adj = defaultdict(list)
-    for u, v, length in edges:
-        adj[u].append((v, length))
-        adj[v].append((u, length))
-
-    # distances[i] stores the minimum time to reach node i
-    distances = [-1] * n
-    distances[0] = 0
-
-    # Min-heap stores (current_time, node)
-    pq = [(0, 0)]
-
-    while pq:
-        curr_time, u = heapq.heappop(pq)
-
-        # If we found a longer path already, skip
-        if curr_time > distances[u] and distances[u] != -1:
-            continue
-
-        for v, weight in adj[u]:
-            new_time = curr_time + weight
-
-            # Check if the node is still available and if this path is shorter
-            if new_time < disappear[v]:
-                if distances[v] == -1 or new_time < distances[v]:
-                    distances[v] = new_time
-                    heapq.heappush(pq, (new_time, v))
-
-    return distances
-```
-</details>
+- Explanation: Reaching node $1$ at time $1$ is invalid because it disappears at that exact time.

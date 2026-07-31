@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2227",
+  "cases": [
+    {
+      "id": "sample-colliding-encryption",
+      "name": "sample: encryption and ambiguous dictionary decryption",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["Encrypter", "encrypt", "decrypt"],
+        "arguments": [[["a", "b", "c", "d"], ["ei", "zf", "ei", "am"], ["abcd", "acbd", "adbc", "badc", "dacb", "cadb", "cbda", "abad"]], ["abcd"], ["eizfeiam"]]
+      },
+      "expected": [null, "eizfeiam", 2],
+      "tags": ["sample", "collision"]
+    },
+    {
+      "id": "trial-single-key",
+      "name": "one key supports words of different lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Encrypter", "encrypt", "decrypt", "decrypt"],
+        "arguments": [[["a"], ["xy"], ["a", "aa"]], ["aa"], ["xy"], ["xyxy"]]
+      },
+      "expected": [null, "xyxy", 1, 1],
+      "tags": ["single-key", "different-lengths"]
+    },
+    {
+      "id": "trial-total-collision",
+      "name": "two plaintext letters share one ciphertext",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Encrypter", "decrypt", "decrypt"],
+        "arguments": [[["a", "b"], ["zz", "zz"], ["a", "b", "ab"]], ["zz"], ["zzzz"]]
+      },
+      "expected": [null, 2, 1],
+      "tags": ["collision", "frequency"]
+    },
+    {
+      "id": "trial-unknown-ciphertext",
+      "name": "ciphertext lookup matches one dictionary encryption",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Encrypter", "decrypt"],
+        "arguments": [[["a", "b"], ["aa", "bb"], ["a", "ab"]], ["aabb"]]
+      },
+      "expected": [null, 1],
+      "tags": ["lookup"]
+    },
+    {
+      "id": "real-unmapped-dictionary-word",
+      "name": "hidden: dictionary words with unmapped characters are excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Encrypter", "decrypt", "encrypt"],
+        "arguments": [[["a"], ["pq"], ["a", "b", "aa"]], ["pq"], ["aa"]]
+      },
+      "expected": [null, 1, "pqpq"],
+      "tags": ["hidden", "unmapped-dictionary"]
+    },
+    {
+      "id": "real-repeated-queries",
+      "name": "hidden: repeated decryptions preserve frequency counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Encrypter", "decrypt", "decrypt", "decrypt"],
+        "arguments": [[["a", "b", "c"], ["hi", "jk", "hi"], ["a", "c", "ac", "ca"]], ["hi"], ["hi"], ["hihi"]]
+      },
+      "expected": [null, 2, 2, 2],
+      "tags": ["hidden", "query-stability"]
+    },
+    {
+      "id": "real-order-sensitive",
+      "name": "hidden: concatenation preserves plaintext character order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Encrypter", "encrypt", "encrypt", "decrypt", "decrypt"],
+        "arguments": [[["a", "b"], ["ab", "cd"], ["ab", "ba"]], ["ab"], ["ba"], ["abcd"], ["cdab"]]
+      },
+      "expected": [null, "abcd", "cdab", 1, 1],
+      "tags": ["hidden", "order"]
+    },
+    {
+      "id": "real-zero-match",
+      "name": "hidden: syntactically valid blocks can have no dictionary match",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Encrypter", "decrypt"],
+        "arguments": [[["x", "y"], ["mn", "op"], ["x", "xy"]], ["opop"]]
+      },
+      "expected": [null, 0],
+      "tags": ["hidden", "zero-match"]
+    }
+  ]
+}

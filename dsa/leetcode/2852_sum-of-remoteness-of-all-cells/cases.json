@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2852",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four isolated positive cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[-1, 1, -1], [5, -1, 4], [-1, 3, -1]]},
+      "expected": 39,
+      "tags": ["sample", "isolated-components"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one pair and one isolated cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[-1, 3, 4], [-1, -1, -1], [3, -1, -1]]},
+      "expected": 13,
+      "tags": ["sample", "multiple-components"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one nonblocked cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1]]},
+      "expected": 0,
+      "tags": ["sample", "singleton"]
+    },
+    {
+      "id": "trial-all-blocked",
+      "name": "trial: no nonblocked cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[-1]]},
+      "expected": 0,
+      "tags": ["trial", "all-blocked"]
+    },
+    {
+      "id": "trial-fully-connected",
+      "name": "trial: every positive cell is mutually reachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 2], [3, 4]]},
+      "expected": 0,
+      "tags": ["trial", "single-component"]
+    },
+    {
+      "id": "real-two-diagonal-components",
+      "name": "hidden: diagonal cells do not share an edge",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, -1], [-1, 2]]},
+      "expected": 3,
+      "tags": ["hidden", "diagonal", "adjacency"]
+    },
+    {
+      "id": "real-three-unequal-components",
+      "name": "hidden: component sizes weight their shared remoteness",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, -1, 2], [-1, -1, -1], [3, 4, 5]]},
+      "expected": 36,
+      "tags": ["hidden", "component-size", "component-sum"]
+    },
+    {
+      "id": "real-maximum-values-isolated",
+      "name": "hidden: large values require a wide integer result",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1000000, -1], [-1, 1000000]]},
+      "expected": 2000000,
+      "tags": ["hidden", "large-values", "isolated"]
+    }
+  ]
+}

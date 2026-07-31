@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2316",
+  "cases": [
+    {"id":"sample-connected-triangle","name":"sample: one connected component","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1],[0,2],[1,2]]},"expected":0,"tags":["sample","connected"]},
+    {"id":"sample-three-components","name":"sample: two nontrivial components and one isolated node","kind":"sample","visible":true,"input":{"n":7,"edges":[[0,2],[0,5],[2,4],[1,6],[5,4]]},"expected":14,"tags":["sample","components"]},
+    {"id":"trial-single-node","name":"one node forms no pair","kind":"trial","visible":true,"input":{"n":1,"edges":[]},"expected":0,"tags":["boundary"]},
+    {"id":"trial-no-edges","name":"every pair is unreachable when there are no edges","kind":"trial","visible":true,"input":{"n":4,"edges":[]},"expected":6,"tags":["isolated-nodes"]},
+    {"id":"trial-two-components","name":"component sizes two and three contribute six pairs","kind":"trial","visible":true,"input":{"n":5,"edges":[[0,1],[2,3],[3,4]]},"expected":6,"tags":["component-sizes"]},
+    {"id":"real-mixed-components","name":"hidden: a cycle, an isolated node, and an edge","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[1,2],[2,0],[4,5]]},"expected":11,"tags":["hidden","cycle","isolated-node"]},
+    {"id":"real-connected-chain","name":"hidden: sparse connectivity still reaches every node","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[1,2],[2,3],[3,4],[4,5]]},"expected":0,"tags":["hidden","connected"]}
+  ]
+}

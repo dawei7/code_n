@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_221", "frontend_id": "221", "title_slug": "maximal-square", "url": "https://leetcode.com/problems/maximal-square/description/", "paid_only": false, "content_sha256": "791297c9d4b9bec23308a429ad3037d20a254f20e9fbc591ef2534676a18014e", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]", "output": "4", "has_explanation": false}, {"ordinal": 2, "input": "matrix = [[\"0\",\"1\"],[\"1\",\"0\"]]", "output": "1", "has_explanation": false}, {"ordinal": 3, "input": "matrix = [[\"0\"]]", "output": "0", "has_explanation": false}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "0b2a52e6ed970e3e06d790b2376308fff6992bb10fd115426e9631410f0f2313", "reference/contract.md": "9452966c4146fbb23d5ea146b9a7b55573c99906852c427140b6199e63f61ccf", "reference/examples.md": "9ae91eeca8f4824d273836dd2a66911a6e30728e855cc9048c1340d76de3a1bd", "reference/constraints.md": "938dde555df82721c198933df6b408a941a0493fa853d21160d36159eca4f989"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

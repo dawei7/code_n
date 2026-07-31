@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Construct the Minimum Bitwise Array I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Clears the highest bit in each prime's trailing run of one-bits to obtain the minimum predecessor.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2767",
+  "cases": [
+    {
+      "id": "sample-two",
+      "name": "sample: five followed by one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1011"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-pieces"
+      ]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: three copies of one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "single-bit-pieces"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: zero cannot form a beautiful piece",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: five to the zeroth power",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 1,
+      "tags": [
+        "power-zero",
+        "single-piece"
+      ]
+    },
+    {
+      "id": "trial-five",
+      "name": "trial: binary five is already beautiful",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "101"
+      },
+      "expected": 1,
+      "tags": [
+        "power-one",
+        "single-piece"
+      ]
+    },
+    {
+      "id": "real-twenty-five",
+      "name": "hidden: binary twenty-five is one piece",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "11001"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "power-two"
+      ]
+    },
+    {
+      "id": "real-repeated-five",
+      "name": "hidden: two binary fives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "101101"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "repeated-power"
+      ]
+    },
+    {
+      "id": "real-leading-zero",
+      "name": "hidden: the full string begins with zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0101"
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "leading-zero",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-unusable-suffix",
+      "name": "hidden: a valid prefix leaves only zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "100"
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "impossible-suffix"
+      ]
+    },
+    {
+      "id": "real-large-power-plus-one",
+      "name": "hidden: a large power followed by one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "111101000010011"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "large-power",
+        "two-pieces"
+      ]
+    }
+  ]
+}

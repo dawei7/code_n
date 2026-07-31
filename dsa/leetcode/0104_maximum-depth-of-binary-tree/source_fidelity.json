@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_104", "frontend_id": "104", "title_slug": "maximum-depth-of-binary-tree", "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/description/", "paid_only": false, "content_sha256": "0e3d253620d49195aaae3273d97b363b123ab0d029d33aaaf9884ace81d74e32", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "root = [3,9,20,null,null,15,7]", "output": "3", "has_explanation": false},
+      {"ordinal": 2, "input": "root = [1,null,2]", "output": "2", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "854928aee3ae3a09dd931e4d0431c18abac8f67a8e3f3d2b3ea349b90c18dda1", "reference/contract.md": "4596457e34c5f073e15c8add3a262173502a05c414fb6b120e599e8c569bd273", "reference/examples.md": "ce96d6c0ef5fb2cbb782725381325ca1c79cee26e59d778620a6df5a294471dc", "reference/constraints.md": "0489b19f8fa3e7a06140eb022d67e6ce7ea78b3e1f5016d0890323a358f94337"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

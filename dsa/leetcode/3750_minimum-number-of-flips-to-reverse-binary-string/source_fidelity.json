@@ -1,0 +1,14 @@
+{
+  "schema_version":1,
+  "source":{"provider":"leetcode","challenge_id":"lc_3750","frontend_id":"3750","title_slug":"minimum-number-of-flips-to-reverse-binary-string","url":"https://leetcode.com/problems/minimum-number-of-flips-to-reverse-binary-string/description/","paid_only":false,"content_sha256":"c10d4e327be6b6f0b60a5980cc247890f360c99f3c0f1263677bfd9b6b7a463d","checked_at":"2026-07-28"},
+  "structure":{"sections":["description","examples","constraints"],"examples":[
+    {"ordinal":1,"input":"n = 7","output":"0","has_explanation":true},
+    {"ordinal":2,"input":"n = 10","output":"4","has_explanation":true}
+  ],"constraint_count":1,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
+  "review":{"status":"verified","files":{
+    "reference/description.md":"802e81022b3acc280d362f0edafbe576bbe2850f1378b2726663572568d43a9d",
+    "reference/contract.md":"c6336a6d32fe3961c16eb08b6943de8c51dc42b48e042d882e27c6e0e6972eeb",
+    "reference/examples.md":"32ff9570c8cdbdc8a33d3bcf83c69617f98955be303e1a3801d437c1579679da",
+    "reference/constraints.md":"fac7ef0277259701ae96a1d369e67002712623c2aca447b7cae70f13c129e0d2"
+  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+}

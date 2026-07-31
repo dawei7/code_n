@@ -5,51 +5,47 @@
 | Source | LeetCode |
 | Frontend ID | 2309 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Hash Table, String, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [greatest-english-letter-in-upper-and-lower-case](https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a string `s` of English letters, find the alphabetically greatest letter
+that occurs in both lowercase and uppercase somewhere in the string.
+
+Return that letter in uppercase. If no alphabet letter has both forms present,
+return the empty string. One letter is greater than another when it appears
+later in the English alphabet. Occurrence order and repetition counts do not
+affect which qualifying letter is greatest.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A string of lowercase and uppercase English letters.
+
+The contract guarantees $1\le\lvert\texttt{s}\rvert\le1000$.
 
 **Return value**
 
-TODO
+The uppercase form of the greatest letter whose two cases both occur, or `""`
+when no such letter exists.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "lEeTcOdE"`
+- Output: `"E"`
+- Explanation: `e` and `E` are both present, and no greater letter has both
+  cases.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "arRAzFif"`
+- Output: `"R"`
+- Explanation: `A`, `F`, and `R` qualify; `R` is greatest.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "AbCdEfGhIjK"`
+- Output: `""`
+- Explanation: No letter occurs in both cases.

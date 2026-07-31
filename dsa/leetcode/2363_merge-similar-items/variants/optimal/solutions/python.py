@@ -1,19 +1,10 @@
-from collections import defaultdict
+from typing import List
 
-def solve(items1: list[list[int]], items2: list[list[int]]) -> list[list[int]]:
-    """
-    Merges two lists of [value, weight] pairs, summing weights of identical values,
-    and returns the result sorted by value in ascending order.
-    """
-    weights = defaultdict(int)
-    
-    # Accumulate weights from the first list
-    for val, weight in items1:
-        weights[val] += weight
-        
-    # Accumulate weights from the second list
-    for val, weight in items2:
-        weights[val] += weight
-        
-    # Sort by value (the dictionary keys) and format as [value, weight]
-    return sorted([[val, weight] for val, weight in weights.items()])
+
+def solve(items1: List[List[int]], items2: List[List[int]]) -> List[List[int]]:
+    weights = [0] * 1001
+    for value, weight in items1:
+        weights[value] += weight
+    for value, weight in items2:
+        weights[value] += weight
+    return [[value, weights[value]] for value in range(1, 1001) if weights[value]]

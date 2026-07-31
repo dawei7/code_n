@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2199",
+  "cases": [
+    {
+      "id":"sample-post-topics","name":"sample: whole words match case-insensitively and prefixes do not","kind":"sample","visible":true,
+      "input":{"tables":{"Keywords":[{"topic_id":1,"word":"handball"},{"topic_id":1,"word":"football"},{"topic_id":3,"word":"WAR"},{"topic_id":2,"word":"Vaccine"}],"Posts":[{"post_id":1,"content":"We call it soccer They call it football hahaha"},{"post_id":2,"content":"Americans prefer basketball while Europeans love handball and football"},{"post_id":3,"content":"stop the war and play handball"},{"post_id":4,"content":"warning I planted some flowers this morning and then got vaccinated"}]}},
+      "expected":{"columns":["post_id","topic"],"rows":[[1,"1"],[2,"1"],[3,"1,3"],[4,"Ambiguous!"]]},"validator":{"kind":"unordered_table"},"tags":["sample","whole-word","case-insensitive"]
+    },
+    {
+      "id":"trial-single-word-multiple-topics","name":"one word may express several topics","kind":"trial","visible":true,
+      "input":{"tables":{"Keywords":[{"topic_id":10,"word":"code"},{"topic_id":2,"word":"code"}],"Posts":[{"post_id":7,"content":"CODE"}]}},
+      "expected":{"columns":["post_id","topic"],"rows":[[7,"2,10"]]},"validator":{"kind":"unordered_table"},"tags":["shared-keyword","numeric-order"]
+    },
+    {
+      "id":"trial-first-and-last-word","name":"padding recognizes keywords at both text boundaries","kind":"trial","visible":true,
+      "input":{"tables":{"Keywords":[{"topic_id":4,"word":"alpha"},{"topic_id":9,"word":"omega"}],"Posts":[{"post_id":1,"content":"alpha middle omega"}]}},
+      "expected":{"columns":["post_id","topic"],"rows":[[1,"4,9"]]},"validator":{"kind":"unordered_table"},"tags":["word-boundary"]
+    },
+    {
+      "id":"real-prefixes-only","name":"hidden: embedded prefixes are not complete words","kind":"real","visible":false,
+      "input":{"tables":{"Keywords":[{"topic_id":3,"word":"war"}],"Posts":[{"post_id":1,"content":"warning warfare award"},{"post_id":2,"content":"war"}]}},
+      "expected":{"columns":["post_id","topic"],"rows":[[1,"Ambiguous!"],[2,"3"]]},"validator":{"kind":"unordered_table"},"tags":["hidden","prefix"]
+    },
+    {
+      "id":"real-synonyms-deduplicate","name":"hidden: multiple matching words emit one topic ID","kind":"real","visible":false,
+      "input":{"tables":{"Keywords":[{"topic_id":5,"word":"car"},{"topic_id":5,"word":"auto"},{"topic_id":8,"word":"road"}],"Posts":[{"post_id":11,"content":"Car and AUTO on the road"}]}},
+      "expected":{"columns":["post_id","topic"],"rows":[[11,"5,8"]]},"validator":{"kind":"unordered_table"},"tags":["hidden","deduplicate","case-insensitive"]
+    },
+    {
+      "id":"real-extra-spaces","name":"hidden: repeated spaces preserve whole-word matching","kind":"real","visible":false,
+      "input":{"tables":{"Keywords":[{"topic_id":6,"word":"green"}],"Posts":[{"post_id":4,"content":"  green   field  "},{"post_id":5,"content":"greenfield"}]}},
+      "expected":{"columns":["post_id","topic"],"rows":[[4,"6"],[5,"Ambiguous!"]]},"validator":{"kind":"unordered_table"},"tags":["hidden","spaces","boundary"]
+    },
+    {
+      "id":"real-all-ambiguous","name":"hidden: every unmatched post remains in the result","kind":"real","visible":false,
+      "input":{"tables":{"Keywords":[{"topic_id":1,"word":"known"}],"Posts":[{"post_id":20,"content":"nothing here"},{"post_id":21,"content":"unknown token"}]}},
+      "expected":{"columns":["post_id","topic"],"rows":[[20,"Ambiguous!"],[21,"Ambiguous!"]]},"validator":{"kind":"unordered_table"},"tags":["hidden","outer-join"]
+    }
+  ]
+}

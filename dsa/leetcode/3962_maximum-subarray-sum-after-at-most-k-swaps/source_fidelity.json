@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3962",
+    "frontend_id": "3962",
+    "title_slug": "maximum-subarray-sum-after-at-most-k-swaps",
+    "url": "https://leetcode.com/problems/maximum-subarray-sum-after-at-most-k-swaps/description/",
+    "paid_only": false,
+    "content_sha256": "2c2fcf1d9346fdf3feda506f6b2e37e72c3d0dc348038c797445fc21b9e1dccf",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,-1,0,2], k = 1",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,3,2,4], k = 2",
+        "output": "13",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [-1,-2], k = 0",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7945df481d52193b333cd23e86521303f7e183b29ebee9f750f4a30190eec762",
+      "reference/contract.md": "fdb601917d09f2e3dcedca1f4d05e39b866113f0475a31d04cab64398d534e09",
+      "reference/examples.md": "676e6b34035c53f4eb52fb8e68418e68ab9732471964e3100068ed4d0df4da36",
+      "reference/constraints.md": "130e18059729dc44f72994cb1b8adbb1ba9b5e3287c79a2be6152093aaee57b2"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

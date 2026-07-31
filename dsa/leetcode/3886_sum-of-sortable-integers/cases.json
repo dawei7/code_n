@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3886",
+  "cases": [
+    {
+      "id": "sample-single-full-rotation",
+      "name": "sample: only the full-length divisor can sort the array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "full-block",
+        "cyclic-rotation"
+      ]
+    },
+    {
+      "id": "sample-no-sortable-divisor",
+      "name": "sample: neither singleton nor full-length blocks can sort",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          6,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-solution",
+        "descending"
+      ]
+    },
+    {
+      "id": "sample-already-sorted-pair",
+      "name": "sample: every divisor of a sorted pair contributes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          8
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "already-sorted",
+        "divisor-sum"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: the sole divisor sorts a one-value array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-value"
+      ]
+    },
+    {
+      "id": "trial-descending-pair",
+      "name": "trial: a descending pair is sortable only as one rotating block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "two-values",
+        "full-block"
+      ]
+    },
+    {
+      "id": "trial-sorted-four",
+      "name": "trial: all divisors of a sorted length-four array contribute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "already-sorted",
+        "multiple-divisors"
+      ]
+    },
+    {
+      "id": "trial-rotated-pairs",
+      "name": "trial: independently rotating every pair sorts all blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          3,
+          6,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "multiple-blocks",
+        "block-length-two"
+      ]
+    },
+    {
+      "id": "trial-rotated-triples",
+      "name": "trial: independently rotating two triples sorts the array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          5,
+          6,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "multiple-blocks",
+        "block-length-three"
+      ]
+    },
+    {
+      "id": "real-full-length-six",
+      "name": "hidden: one rotation of the full array is the only valid partition",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          5,
+          6,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "full-block",
+        "proper-divisors-fail"
+      ]
+    },
+    {
+      "id": "real-block-ranges-reversed",
+      "name": "hidden: sortable individual pairs still fail global boundary order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "bad-cut",
+        "global-order"
+      ]
+    },
+    {
+      "id": "real-two-descents-per-block",
+      "name": "hidden: good value ranges do not repair circular order with two descents",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          5,
+          4,
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "circular-descents",
+        "block-order"
+      ]
+    },
+    {
+      "id": "real-equality-enables-two-lengths",
+      "name": "hidden: equality across boundaries allows two nontrivial divisors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "multiple-sortable-divisors"
+      ]
+    },
+    {
+      "id": "real-all-equal-six",
+      "name": "hidden: every divisor contributes when all values are equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "all-equal",
+        "all-divisors"
+      ]
+    },
+    {
+      "id": "real-maximum-value-rotation",
+      "name": "hidden: maximum values and duplicates preserve circular sorting",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          100000
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-rotated-length-four-blocks",
+      "name": "hidden: two length-four blocks rotate independently into global order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          4,
+          1,
+          2,
+          7,
+          8,
+          5,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "multiple-blocks",
+        "block-length-four"
+      ]
+    }
+  ]
+}

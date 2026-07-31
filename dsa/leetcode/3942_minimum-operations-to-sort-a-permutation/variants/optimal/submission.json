@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4184",
+  "frontend_id": "3942",
+  "title_slug": "minimum-operations-to-sort-a-permutation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minOperations",
+  "verified_submission_id": "2087434978",
+  "verified_at": "2026-07-30T11:41:26.693260+00:00"
+}

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two moves of size three balance the arrays",
+      "name": "sample: two transfers of size three",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,12 +24,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "math"
+        "balanced"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: total difference cannot be balanced",
+      "name": "sample: unequal totals make the target impossible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -49,13 +49,14 @@
       },
       "expected": -1,
       "tags": [
-        "sample"
+        "sample",
+        "sum-mismatch"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: k zero and arrays already equal",
-      "kind": "sample",
+      "id": "trial-zero-equal",
+      "name": "trial: zero step with equal arrays",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums1": [
@@ -70,12 +71,13 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "trial",
+        "zero-step"
       ]
     },
     {
-      "id": "trial-one-balanced-transfer",
-      "name": "trial: one unit transferred between two positions",
+      "id": "trial-zero-unequal",
+      "name": "trial: zero step cannot alter values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -87,30 +89,83 @@
           2,
           1
         ],
-        "k": 1
-      },
-      "expected": 1,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-k-zero-not-equal",
-      "name": "hidden: k zero cannot change unequal arrays",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums1": [
-          1
-        ],
-        "nums2": [
-          2
-        ],
         "k": 0
       },
       "expected": -1,
       "tags": [
-        "hidden"
+        "trial",
+        "zero-step",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-nondivisible",
+      "name": "hidden: balanced totals but non-divisible differences",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          2,
+          0
+        ],
+        "nums2": [
+          0,
+          2
+        ],
+        "k": 3
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "real-multiple-deficits",
+      "name": "hidden: one surplus fills two deficits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          9,
+          0,
+          0,
+          3
+        ],
+        "nums2": [
+          0,
+          3,
+          6,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiple-transfers"
+      ]
+    },
+    {
+      "id": "real-unit-sum-mismatch",
+      "name": "hidden: divisible differences with nonzero balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "balance"
       ]
     }
   ]

@@ -8,48 +8,55 @@
 | Category | Algorithms |
 | Topics | Array, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-words-found-in-sentences](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/).
-
 ### Goal
-Find the sentence containing the most space-separated words.
+
+A sentence consists of one or more words separated by single spaces. It has no
+space before its first word or after its last word.
+
+Given an array `sentences` in which every string follows that format, determine
+the greatest number of words appearing in any one sentence. More than one
+sentence may attain the maximum; only the word count is required.
 
 ### Function Contract
 **Inputs**
 
-- `sentences`: an array of non-empty sentences.
+- `sentences`: A nonempty list of lowercase English sentences. Every pair of
+  consecutive words has exactly one separating space, and no sentence has a
+  leading or trailing space.
+
+Let $n = \lvert\texttt{sentences}\rvert$, and let $S$ be the total number of
+characters across all sentences:
+
+$$
+S = \sum_{s \in \texttt{sentences}} \lvert s \rvert.
+$$
 
 **Return value**
 
-Return the maximum word count among the sentences.
+Return an integer equal to the maximum number of words in any string in
+`sentences`.
 
 ### Examples
 **Example 1**
 
-- Input: `sentences = ["alice and bob love leetcode","i think so too","this is great thanks very much"]`
+- Input: `sentences = ["alice and bob love leetcode", "i think so too", "this is great thanks very much"]`
 - Output: `6`
+
+The three sentences contain five, four, and six words, respectively.
 
 **Example 2**
 
-- Input: `sentences = ["please wait","continue to fight","continue to win"]`
+- Input: `sentences = ["please wait", "continue to fight", "continue to win"]`
 - Output: `3`
+
+The second and third sentences tie for the maximum.
 
 **Example 3**
 
-- Input: `sentences = ["one"]`
+- Input: `sentences = ["solitary"]`
 - Output: `1`
 
----
-
-## Solution
-### Approach
-For each sentence, the word count is one plus the number of spaces. Return the maximum count.
-
-### Complexity Analysis
-- **Time Complexity**: `O(total characters)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+A sentence without a space still contains one word.

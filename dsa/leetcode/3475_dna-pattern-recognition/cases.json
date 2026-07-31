@@ -1,0 +1,547 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3475",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: identify all four DNA patterns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 1,
+              "dna_sequence": "ATGCTAGCTAGCTAA",
+              "species": "Human"
+            },
+            {
+              "sample_id": 2,
+              "dna_sequence": "GGGTCAATCATC",
+              "species": "Human"
+            },
+            {
+              "sample_id": 3,
+              "dna_sequence": "ATATATCGTAGCTA",
+              "species": "Human"
+            },
+            {
+              "sample_id": 4,
+              "dna_sequence": "ATGGGGTCATCATAA",
+              "species": "Mouse"
+            },
+            {
+              "sample_id": 5,
+              "dna_sequence": "TCAGTCAGTCAG",
+              "species": "Mouse"
+            },
+            {
+              "sample_id": 6,
+              "dna_sequence": "ATATCGCGCTAG",
+              "species": "Zebrafish"
+            },
+            {
+              "sample_id": 7,
+              "dna_sequence": "CGTATGCGTCGTA",
+              "species": "Zebrafish"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            1,
+            "ATGCTAGCTAGCTAA",
+            "Human",
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            "GGGTCAATCATC",
+            "Human",
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            3,
+            "ATATATCGTAGCTA",
+            "Human",
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            4,
+            "ATGGGGTCATCATAA",
+            "Mouse",
+            1,
+            1,
+            0,
+            1
+          ],
+          [
+            5,
+            "TCAGTCAGTCAG",
+            "Mouse",
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            "ATATCGCGCTAG",
+            "Zebrafish",
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            7,
+            "CGTATGCGTCGTA",
+            "Zebrafish",
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-four-and-none",
+      "name": "trial: one sequence matches every pattern and one matches none",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 20,
+              "dna_sequence": "CCCCCCCC",
+              "species": "Control"
+            },
+            {
+              "sample_id": 10,
+              "dna_sequence": "ATGATATGGGTGA",
+              "species": "Synthetic"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            10,
+            "ATGATATGGGTGA",
+            "Synthetic",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            20,
+            "CCCCCCCC",
+            "Control",
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "independent-flags",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-each-stop-codon",
+      "name": "trial: each allowed stop codon is recognized only as a suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 4,
+              "dna_sequence": "CCCTAACCC",
+              "species": "Internal"
+            },
+            {
+              "sample_id": 3,
+              "dna_sequence": "CCCTGA",
+              "species": "Gamma"
+            },
+            {
+              "sample_id": 1,
+              "dna_sequence": "CCCTAA",
+              "species": "Alpha"
+            },
+            {
+              "sample_id": 2,
+              "dna_sequence": "CCCTAG",
+              "species": "Beta"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            1,
+            "CCCTAA",
+            "Alpha",
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            "CCCTAG",
+            "Beta",
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            3,
+            "CCCTGA",
+            "Gamma",
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            4,
+            "CCCTAACCC",
+            "Internal",
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "suffix"
+      ]
+    },
+    {
+      "id": "real-start-anchor",
+      "name": "hidden: ATG must begin at the first character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 2,
+              "dna_sequence": "CATGCC",
+              "species": "Middle"
+            },
+            {
+              "sample_id": 1,
+              "dna_sequence": "ATGCCC",
+              "species": "Beginning"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            1,
+            "ATGCCC",
+            "Beginning",
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            "CATGCC",
+            "Middle",
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "prefix"
+      ]
+    },
+    {
+      "id": "real-overlapping-atat",
+      "name": "hidden: overlapping ATAT occurrences still produce one presence flag",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 1,
+              "dna_sequence": "ATATAT",
+              "species": "Overlap"
+            },
+            {
+              "sample_id": 2,
+              "dna_sequence": "TATAC",
+              "species": "Near miss"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            1,
+            "ATATAT",
+            "Overlap",
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            "TATAC",
+            "Near miss",
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "motif",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-consecutive-g",
+      "name": "hidden: only at least three consecutive G characters qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 3,
+              "dna_sequence": "AGGGGA",
+              "species": "Four"
+            },
+            {
+              "sample_id": 1,
+              "dna_sequence": "AGGA",
+              "species": "Two"
+            },
+            {
+              "sample_id": 2,
+              "dna_sequence": "AGGGA",
+              "species": "Three"
+            },
+            {
+              "sample_id": 4,
+              "dna_sequence": "GGAGG",
+              "species": "Separated"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            1,
+            "AGGA",
+            "Two",
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            "AGGGA",
+            "Three",
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            3,
+            "AGGGGA",
+            "Four",
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            4,
+            "GGAGG",
+            "Separated",
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "consecutive"
+      ]
+    },
+    {
+      "id": "real-independent-boundaries",
+      "name": "hidden: internal codons do not imply start or stop flags",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 9,
+              "dna_sequence": "CATGCCCTAACC",
+              "species": "Internal"
+            },
+            {
+              "sample_id": 7,
+              "dna_sequence": "ATGCCCTAACCC",
+              "species": "Start only"
+            },
+            {
+              "sample_id": 8,
+              "dna_sequence": "CCCATGCCCTAA",
+              "species": "Stop only"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            7,
+            "ATGCCCTAACCC",
+            "Start only",
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            8,
+            "CCCATGCCCTAA",
+            "Stop only",
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            9,
+            "CATGCCCTAACC",
+            "Internal",
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "independence",
+        "anchors"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_373", "frontend_id": "373", "title_slug": "find-k-pairs-with-smallest-sums", "url": "https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/", "paid_only": false, "content_sha256": "6c969f85a74da53879020d28a7b31fd865bb63147fd06d4bc9ab14a663eb13d8", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums1 = [1,7,11], nums2 = [2,4,6], k = 3", "output": "[[1,2],[1,4],[1,6]]", "has_explanation": true},
+      {"ordinal": 2, "input": "nums1 = [1,1,2], nums2 = [1,2,3], k = 2", "output": "[[1,1],[1,1]]", "has_explanation": true}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "a2d84eb8dbab802c58865daacd159c9589719d92fc7e1f756c94d20379187288",
+    "reference/contract.md": "2bfc158dd96042eebef9691b79ffab7c2a5ed4c2f095eda612adc0c2f9c065b6",
+    "reference/examples.md": "7b0dde1f536e6261fd85db5dee33df61ea6c616868fc15545e06ce6375447dfa",
+    "reference/constraints.md": "7b00914f3711dcdf2ef77328888d7077c0e09149758d7e34861de99e82102e96"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

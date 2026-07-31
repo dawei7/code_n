@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-not-similar",
-      "name": "sample: one-step shift changes rows",
+      "name": "sample: four shifts do not restore three-column rows",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,7 +24,7 @@
             9
           ]
         ],
-        "k": 1
+        "k": 4
       },
       "expected": false,
       "tags": [
@@ -33,7 +33,7 @@
     },
     {
       "id": "sample-period-two",
-      "name": "sample: period-two rows survive shift",
+      "name": "sample: two-position patterns survive two shifts",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -61,12 +61,13 @@
       },
       "expected": true,
       "tags": [
-        "sample"
+        "sample",
+        "periodic"
       ]
     },
     {
-      "id": "sample-constant",
-      "name": "sample: constant matrix",
+      "id": "sample-all-equal",
+      "name": "sample: equal rows survive every shift",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -85,45 +86,14 @@
       "expected": true,
       "tags": [
         "sample",
-        "edge"
+        "equal-values"
       ]
     },
     {
-      "id": "trial-large-k-modulo",
-      "name": "trial: k larger than row length",
+      "id": "trial-single-column",
+      "name": "trial: one-column rows cannot change",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "mat": [
-          [
-            1,
-            2,
-            1,
-            2,
-            1,
-            2
-          ],
-          [
-            3,
-            3,
-            3,
-            3,
-            3,
-            3
-          ]
-        ],
-        "k": 14
-      },
-      "expected": true,
-      "tags": [
-        "modulo"
-      ]
-    },
-    {
-      "id": "real-single-column",
-      "name": "real: single column always similar",
-      "kind": "real",
-      "visible": false,
       "input": {
         "mat": [
           [
@@ -136,12 +106,180 @@
             3
           ]
         ],
-        "k": 100
+        "k": 50
+      },
+      "expected": true,
+      "tags": [
+        "single-column",
+        "maximum-k"
+      ]
+    },
+    {
+      "id": "trial-full-cycle",
+      "name": "trial: a multiple of the column count restores every row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ],
+        "k": 6
+      },
+      "expected": true,
+      "tags": [
+        "full-cycle"
+      ]
+    },
+    {
+      "id": "trial-one-periodic-row",
+      "name": "trial: one periodic row remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            1,
+            2
+          ]
+        ],
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "periodic"
+      ]
+    },
+    {
+      "id": "real-one-row-fails",
+      "name": "hidden: one nonperiodic row makes the matrix different",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            3,
+            3,
+            3,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            4
+          ]
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "real-odd-row-direction",
+      "name": "hidden: odd row rotates right under explicit semantics",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            7,
+            7,
+            7
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "k": 1
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "odd-row"
+      ]
+    },
+    {
+      "id": "real-period-three",
+      "name": "hidden: repeated three-value blocks survive three shifts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            4,
+            5,
+            6
+          ]
+        ],
+        "k": 3
       },
       "expected": true,
       "tags": [
         "hidden",
-        "edge"
+        "periodic"
+      ]
+    },
+    {
+      "id": "real-rectangular-false",
+      "name": "hidden: rectangular matrix with no matching period",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            5,
+            4,
+            3,
+            2,
+            1
+          ]
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "rectangular"
       ]
     }
   ]

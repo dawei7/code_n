@@ -5,51 +5,48 @@
 | Source | LeetCode |
 | Frontend ID | 2291 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-profit-from-trading-stocks](https://leetcode.com/problems/maximum-profit-from-trading-stocks/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-profit-from-trading-stocks/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-profit-from-trading-stocks/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Two 0-indexed arrays, `present` and `future`, describe the same collection of
+stocks. For stock $i$, `present[i]` is its price now and `future[i]` is its
+price one year from now. A stock may be bought at most once, and every purchase
+must be paid for from the fixed amount `budget` available today.
+
+Choose which stocks to buy without spending more than the budget. After one
+year, sell every chosen stock and return the maximum possible total profit,
+where a chosen stock contributes `future[i] - present[i]`. Buying nothing is
+allowed, so the result is never negative.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `present`: Current prices for $n$ stocks.
+- `future`: Prices for those same $n$ stocks one year later.
+- `budget`: The maximum total current price that may be spent.
+
+The arrays have equal length, $1 \le n \le 1000$; every price is between $0$
+and $100$ inclusive; and $0 \le \texttt{budget} \le 1000$.
 
 **Return value**
 
-TODO
+The greatest total future sale value minus total purchase cost among all
+subsets whose purchase cost is at most `budget`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `present = [5, 4, 6, 2, 3], future = [8, 5, 4, 3, 5], budget = 10`
+- Output: `6`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `present = [2, 2, 5], future = [3, 4, 10], budget = 6`
+- Output: `5`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `present = [3, 3, 12], future = [0, 3, 15], budget = 10`
+- Output: `0`

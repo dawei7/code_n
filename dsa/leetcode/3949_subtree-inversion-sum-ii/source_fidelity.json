@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3949",
+    "frontend_id": "3949",
+    "title_slug": "subtree-inversion-sum-ii",
+    "url": "https://leetcode.com/problems/subtree-inversion-sum-ii/description/",
+    "paid_only": false,
+    "content_sha256": "f3091317ffcc47153052908d06f1d53eed6c41be5e73506142074576a78bc01d",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "edges = [[0,1],[0,2],[0,3],[1,4],[1,5]], nums = [1,0,-10,3,4,5], k = 2",
+        "output": "23",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "edges = [[0,1],[1,2]], nums = [5,-10,-10], k = 1",
+        "output": "25",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 2",
+        "output": "12",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 4,
+        "input": "edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 3",
+        "output": "10",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 8,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8d53cc26a7262604e8ba5c9e0169e2c28147c8f488b74b4587568a807b513f8a",
+      "reference/contract.md": "56147dc50b40a217b9d1b90191729f9b23eaf16a96bd3c0449b7c8fd9a676caa",
+      "reference/examples.md": "ddaf635aa43cfb64a39a37c9ec9140170a12d5d5774a97c259c805bf049e5c1f",
+      "reference/constraints.md": "efc140805f54b2bfdb472047332e8c499caebbd01a2daccc28c1ce98b5bafa37"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

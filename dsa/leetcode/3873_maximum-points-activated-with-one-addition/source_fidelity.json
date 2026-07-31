@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3873",
+    "frontend_id": "3873",
+    "title_slug": "maximum-points-activated-with-one-addition",
+    "url": "https://leetcode.com/problems/maximum-points-activated-with-one-addition/description/",
+    "paid_only": false,
+    "content_sha256": "8b6f3fa9250e9c3260f123f332fdd8b6002cefd8f5fbcd39fff342de0b1a0480",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "points = [[1,1],[1,2],[2,2]]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "points = [[2,2],[1,1],[3,3]]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "points = [[2,3],[2,2],[1,1],[4,5]]",
+        "output": "4",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5755ffe28ad9d2e5a8133c7d350d2cccdf743bda981c7a0b36c57f6892d7891c",
+      "reference/contract.md": "0483ad70a244d8b04dff250928ed24ae08669d85e0a88efe27892f762ea345a5",
+      "reference/examples.md": "6b89b0c719575e2c2b4f69b73f95602bd9ac32f86a07025db21dccfa0da53e3f",
+      "reference/constraints.md": "64365644e50b418f68bc4e65d6e39df34a3fbebea5a1b5a5dd34a55283a9fa1e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -3,105 +3,111 @@
   "cases": [
     {
       "id": "sample-jump-run",
-      "name": "sample: removing each word changes best prefix",
+      "name": "sample: removing each repeated word changes the best prefix",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "words": [
-          "jump",
-          "run",
-          "run",
-          "jump",
-          "run"
-        ],
-        "k": 2
-      },
-      "expected": [
-        3,
-        4,
-        4,
-        3,
-        4
-      ],
-      "tags": [
-        "sample",
-        "trie"
-      ]
+      "input": {"words": ["jump", "run", "run", "jump", "run"], "k": 2},
+      "expected": [3, 4, 4, 3, 4],
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-no-common-prefix",
+      "name": "sample: every removal leaves unrelated strings",
+      "kind": "sample",
+      "visible": true,
+      "input": {"words": ["dog", "racer", "car"], "k": 2},
+      "expected": [0, 0, 0],
+      "tags": ["sample", "zero-prefix"]
     },
     {
       "id": "trial-not-enough-after-removal",
-      "name": "trial: fewer than k words remain",
+      "name": "trial: fewer than k strings remain",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "words": [
-          "a",
-          "ab"
-        ],
-        "k": 2
-      },
-      "expected": [
-        0,
-        0
-      ],
-      "tags": [
-        "trial",
-        "edge"
-      ]
+      "input": {"words": ["a", "ab"], "k": 2},
+      "expected": [0, 0],
+      "tags": ["trial", "insufficient"]
     },
     {
-      "id": "trial-shared-prefixes",
-      "name": "trial: shared prefixes at different depths",
+      "id": "trial-prefix-lengths",
+      "name": "trial: one word is a prefix of the others",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "words": [
-          "abc",
-          "abd",
-          "abf",
-          "xyz"
-        ],
-        "k": 2
-      },
-      "expected": [
-        2,
-        2,
-        2,
-        2
-      ],
-      "tags": [
-        "trial",
-        "prefix"
-      ]
+      "input": {"words": ["a", "ab", "abc"], "k": 2},
+      "expected": [2, 1, 1],
+      "tags": ["trial", "nested-prefixes"]
     },
     {
-      "id": "real-fragile-depth",
-      "name": "real: one fragile deepest prefix",
+      "id": "real-single-selection",
+      "name": "real: k equals one",
       "kind": "real",
       "visible": false,
-      "input": {
-        "words": [
-          "flower",
-          "flow",
-          "flight",
-          "flask",
-          "dog",
-          "dove"
-        ],
-        "k": 3
-      },
-      "expected": [
-        2,
-        2,
-        2,
-        2,
-        2,
-        2
-      ],
-      "tags": [
-        "real",
-        "fragile"
-      ]
+      "input": {"words": ["a", "alphabet", "cat", "zz"], "k": 1},
+      "expected": [8, 3, 8, 8],
+      "tags": ["real", "k-one"]
+    },
+    {
+      "id": "real-single-word",
+      "name": "real: removing the only word",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["only"], "k": 1},
+      "expected": [0],
+      "tags": ["real", "single-word", "insufficient"]
+    },
+    {
+      "id": "real-fragile-deep-prefix",
+      "name": "real: one removal destroys the unique qualifying branch",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["aaaa", "aaaa", "b"], "k": 2},
+      "expected": [0, 0, 4],
+      "tags": ["real", "fragile-depth", "duplicates"]
+    },
+    {
+      "id": "real-alternative-branch",
+      "name": "real: a second branch preserves the deepest depth",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["cat", "cat", "dog", "dog"], "k": 2},
+      "expected": [3, 3, 3, 3],
+      "tags": ["real", "multiple-valid-nodes"]
+    },
+    {
+      "id": "real-fallback-to-shallower-prefix",
+      "name": "real: removal falls back to a shallower qualifying prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abcd", "abcd", "abzz", "xy", "xy"], "k": 2},
+      "expected": [2, 2, 4, 4, 4],
+      "tags": ["real", "fallback", "depths"]
+    },
+    {
+      "id": "real-k-nearly-all",
+      "name": "real: k is one less than the array length",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["prefix", "presto", "prevent", "present"], "k": 3},
+      "expected": [3, 3, 3, 3],
+      "tags": ["real", "large-k", "shared-prefix"]
+    },
+    {
+      "id": "real-identical-strings",
+      "name": "real: all strings are identical",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["same", "same", "same", "same"], "k": 3},
+      "expected": [4, 4, 4, 4],
+      "tags": ["real", "identical"]
+    },
+    {
+      "id": "real-distinct-indices",
+      "name": "real: duplicate values at distinct indices remain selectable",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abc", "abc", "abc", "abd", "z"], "k": 3},
+      "expected": [2, 2, 2, 3, 3],
+      "tags": ["real", "distinct-indices", "duplicates"]
     }
   ]
 }

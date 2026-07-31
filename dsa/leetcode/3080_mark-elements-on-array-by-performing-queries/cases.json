@@ -3,171 +3,99 @@
   "cases": [
     {
       "id": "sample-progressive-marking",
-      "name": "sample: direct mark plus smallest unmarked values",
+      "name": "sample: explicit and smallest-value marking",
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [
-          1,
-          2,
-          2,
-          1,
-          2,
-          3,
-          1
-        ],
-        "queries": [
-          [
-            1,
-            2
-          ],
-          [
-            3,
-            3
-          ],
-          [
-            4,
-            2
-          ]
-        ]
+        "nums": [1, 2, 2, 1, 2, 3, 1],
+        "queries": [[1, 2], [3, 3], [4, 2]]
       },
-      "expected": [
-        8,
-        3,
-        0
-      ],
-      "tags": [
-        "sample"
-      ]
+      "expected": [8, 3, 0],
+      "tags": ["sample"]
     },
     {
-      "id": "sample-already-marked-index",
-      "name": "sample: repeated explicit index does not subtract twice",
+      "id": "sample-single-query",
+      "name": "sample: mark one index and one minimum",
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [
-          5,
-          3,
-          8
-        ],
-        "queries": [
-          [
-            0,
-            1
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            2,
-            0
-          ]
-        ]
+        "nums": [1, 4, 2, 3],
+        "queries": [[0, 1]]
       },
-      "expected": [
-        8,
-        0,
-        0
-      ],
-      "tags": [
-        "sample"
-      ]
+      "expected": [7],
+      "tags": ["sample"]
     },
     {
-      "id": "trial-k-exceeds-remaining",
-      "name": "trial: k can exceed remaining unmarked elements",
+      "id": "trial-already-marked-index",
+      "name": "trial: repeated explicit index is not subtracted twice",
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [
-          4,
-          1,
-          7
-        ],
-        "queries": [
-          [
-            1,
-            5
-          ]
-        ]
+        "nums": [5, 3, 8],
+        "queries": [[0, 1], [0, 1], [2, 0]]
       },
-      "expected": [
-        0
-      ],
-      "tags": [
-        "trial"
-      ]
+      "expected": [8, 0, 0],
+      "tags": ["trial", "repeated-index"]
+    },
+    {
+      "id": "trial-fewer-than-k-remain",
+      "name": "trial: mark all elements when fewer than k remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [4, 1, 7],
+        "queries": [[1, 2]]
+      },
+      "expected": [0],
+      "tags": ["trial", "exhaustion"]
     },
     {
       "id": "trial-zero-k",
-      "name": "trial: zero smallest marks after explicit mark",
+      "name": "trial: zero k performs only the explicit mark",
       "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [
-          6,
-          2,
-          9,
-          1
-        ],
-        "queries": [
-          [
-            2,
-            0
-          ],
-          [
-            3,
-            1
-          ]
-        ]
+        "nums": [6, 2, 9, 1],
+        "queries": [[2, 0], [3, 1]]
       },
-      "expected": [
-        9,
-        6
-      ],
-      "tags": [
-        "trial"
-      ]
+      "expected": [9, 6],
+      "tags": ["trial", "zero-k"]
     },
     {
       "id": "real-ties-by-index",
-      "name": "real: equal values are marked by smaller index first",
+      "name": "real: equal values use the smaller index first",
       "kind": "real",
       "visible": false,
       "input": {
-        "nums": [
-          4,
-          4,
-          2,
-          2,
-          5
-        ],
-        "queries": [
-          [
-            4,
-            2
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            3
-          ]
-        ]
+        "nums": [2, 2, 2, 2],
+        "queries": [[3, 2], [0, 1]]
       },
-      "expected": [
-        8,
-        0,
-        0
-      ],
-      "tags": [
-        "real",
-        "heap"
-      ]
+      "expected": [2, 0],
+      "tags": ["real", "ties", "index-order"]
+    },
+    {
+      "id": "real-explicit-mark-skipped-in-order",
+      "name": "real: ordered scan skips values marked explicitly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [4, 4, 2, 2, 5],
+        "queries": [[4, 2], [0, 1], [1, 3]]
+      },
+      "expected": [8, 0, 0],
+      "tags": ["real", "lazy-skip", "ties"]
+    },
+    {
+      "id": "real-large-running-sum",
+      "name": "real: running sum exceeds 32-bit range in the full domain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [100000, 100000, 100000, 100000, 100000],
+        "queries": [[2, 0], [2, 2], [0, 4]]
+      },
+      "expected": [400000, 200000, 0],
+      "tags": ["real", "large-values", "repeated-index"]
     }
   ]
 }

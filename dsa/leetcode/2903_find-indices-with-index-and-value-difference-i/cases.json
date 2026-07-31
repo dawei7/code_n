@@ -2,8 +2,8 @@
   "challenge_id": "lc_2903",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: pair far enough in index and value",
+      "id": "sample-far-enough-pair",
+      "name": "sample: one pair meets both differences",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,21 +16,21 @@
         "indexDifference": 2,
         "valueDifference": 4
       },
-      "tags": [
-        "sample",
-        "pair"
-      ],
       "expected": [
         0,
         3
       ],
       "validator": {
         "kind": "index_value_pair"
-      }
+      },
+      "tags": [
+        "sample",
+        "qualifying-pair"
+      ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: zero differences allow same index",
+      "id": "sample-zero-differences",
+      "name": "sample: zero requirements allow the same index",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,21 +41,21 @@
         "indexDifference": 0,
         "valueDifference": 0
       },
-      "tags": [
-        "sample",
-        "same-index"
-      ],
       "expected": [
         0,
         0
       ],
       "validator": {
         "kind": "index_value_pair"
-      }
+      },
+      "tags": [
+        "sample",
+        "same-index"
+      ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no value difference is large enough",
+      "id": "sample-no-solution",
+      "name": "sample: no sufficiently distant values differ enough",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -67,21 +67,21 @@
         "indexDifference": 2,
         "valueDifference": 4
       },
-      "tags": [
-        "sample",
-        "not-found"
-      ],
       "expected": [
         -1,
         -1
       ],
       "validator": {
         "kind": "index_value_pair"
-      }
+      },
+      "tags": [
+        "sample",
+        "not-found"
+      ]
     },
     {
       "id": "trial-late-valid-pair",
-      "name": "trial: valid pair appears near the end",
+      "name": "a qualifying pair appears only at the final endpoint",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -95,46 +95,194 @@
         "indexDifference": 3,
         "valueDifference": 15
       },
-      "tags": [
-        "trial",
-        "late"
-      ],
       "expected": [
         0,
         4
       ],
       "validator": {
         "kind": "index_value_pair"
-      }
+      },
+      "tags": [
+        "late-pair",
+        "prefix-minimum"
+      ]
     },
     {
-      "id": "real-negative-and-positive-values",
-      "name": "hidden: values on both sides of zero",
+      "id": "trial-infeasible-index-gap",
+      "name": "the required index gap exceeds every possible pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          50,
+          0
+        ],
+        "indexDifference": 100,
+        "valueDifference": 1
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "boundary",
+        "index-gap"
+      ]
+    },
+    {
+      "id": "real-earlier-maximum",
+      "name": "hidden: the earlier maximum detects the qualifying direction",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          -4,
-          2,
-          9,
-          -10,
-          6,
-          20
+          50,
+          25,
+          25,
+          0
         ],
-        "indexDifference": 2,
-        "valueDifference": 14
+        "indexDifference": 3,
+        "valueDifference": 50
       },
-      "tags": [
-        "hidden",
-        "pair"
-      ],
       "expected": [
         0,
-        5
+        3
       ],
       "validator": {
         "kind": "index_value_pair"
-      }
+      },
+      "tags": [
+        "hidden",
+        "prefix-maximum"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: the only valid pair spans the maximum-length array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          50
+        ],
+        "indexDifference": 99,
+        "valueDifference": 25
+      },
+      "expected": [
+        0,
+        99
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "boundary"
+      ]
     }
   ]
 }

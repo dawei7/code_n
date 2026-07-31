@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2227",
+  "frontend_id": "2104",
+  "title_slug": "sum-of-subarray-ranges",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.subArrayRanges",
+  "verified_submission_id": "2073280978",
+  "verified_at": "2026-07-19T09:09:48.841524+00:00"
+}

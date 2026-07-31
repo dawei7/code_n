@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2270",
+  "measurement_note": "Size is n, the array length. All-one arrays require evaluation of every legal split and have exactly n/2 valid positions for even n. The optimal total-plus-prefix scan takes O(n) time. Correctly resumming both sides for every split completes all tiers and fails only through O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: all-one array at n=16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 8,
+      "tags": ["benchmark","scale-small","all-splits"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: all-one array at n=64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 32,
+      "tags": ["benchmark","scale-medium","all-splits"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: all-one array at n=244",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 244,
+      "input": {"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 122,
+      "tags": ["benchmark","scale-large","all-splits"]
+    }
+  ]
+}

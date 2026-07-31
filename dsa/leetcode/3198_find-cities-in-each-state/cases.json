@@ -1,0 +1,598 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3198",
+  "cases": [
+    {
+      "id": "sample-three-states",
+      "name": "sample: city lists and state rows are both sorted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "California",
+              "city": "Los Angeles"
+            },
+            {
+              "state": "California",
+              "city": "San Francisco"
+            },
+            {
+              "state": "California",
+              "city": "San Diego"
+            },
+            {
+              "state": "Texas",
+              "city": "Houston"
+            },
+            {
+              "state": "Texas",
+              "city": "Austin"
+            },
+            {
+              "state": "Texas",
+              "city": "Dallas"
+            },
+            {
+              "state": "New York",
+              "city": "New York City"
+            },
+            {
+              "state": "New York",
+              "city": "Buffalo"
+            },
+            {
+              "state": "New York",
+              "city": "Rochester"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "California",
+            "Los Angeles, San Diego, San Francisco"
+          ],
+          [
+            "New York",
+            "Buffalo, New York City, Rochester"
+          ],
+          [
+            "Texas",
+            "Austin, Dallas, Houston"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "ordering",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-single-city",
+      "name": "trial: one city needs no separator",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Utah",
+              "city": "Provo"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Utah",
+            "Provo"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-row",
+        "separator"
+      ]
+    },
+    {
+      "id": "trial-one-state-unsorted",
+      "name": "trial: cities are sorted inside one state",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Ohio",
+              "city": "Toledo"
+            },
+            {
+              "state": "Ohio",
+              "city": "Akron"
+            },
+            {
+              "state": "Ohio",
+              "city": "Columbus"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Ohio",
+            "Akron, Columbus, Toledo"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "city-order"
+      ]
+    },
+    {
+      "id": "trial-state-order",
+      "name": "trial: state rows are sorted independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Wyoming",
+              "city": "Cheyenne"
+            },
+            {
+              "state": "Alabama",
+              "city": "Mobile"
+            },
+            {
+              "state": "Maine",
+              "city": "Portland"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Alabama",
+            "Mobile"
+          ],
+          [
+            "Maine",
+            "Portland"
+          ],
+          [
+            "Wyoming",
+            "Cheyenne"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "state-order"
+      ]
+    },
+    {
+      "id": "trial-shared-city",
+      "name": "trial: the same city name may belong to different states",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Oregon",
+              "city": "Springfield"
+            },
+            {
+              "state": "Illinois",
+              "city": "Springfield"
+            },
+            {
+              "state": "Oregon",
+              "city": "Salem"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Illinois",
+            "Springfield"
+          ],
+          [
+            "Oregon",
+            "Salem, Springfield"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "composite-key"
+      ]
+    },
+    {
+      "id": "real-interleaved-groups",
+      "name": "real: interleaved input rows are regrouped",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Nevada",
+              "city": "Reno"
+            },
+            {
+              "state": "Arizona",
+              "city": "Tucson"
+            },
+            {
+              "state": "Nevada",
+              "city": "Carson City"
+            },
+            {
+              "state": "Arizona",
+              "city": "Phoenix"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Arizona",
+            "Phoenix, Tucson"
+          ],
+          [
+            "Nevada",
+            "Carson City, Reno"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "interleaved"
+      ]
+    },
+    {
+      "id": "real-city-prefixes",
+      "name": "real: city names with common prefixes sort completely",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Test State",
+              "city": "Lake View"
+            },
+            {
+              "state": "Test State",
+              "city": "Lake"
+            },
+            {
+              "state": "Test State",
+              "city": "Lake City"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Test State",
+            "Lake, Lake City, Lake View"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "lexicographic-order"
+      ]
+    },
+    {
+      "id": "real-spaces-preserved",
+      "name": "real: spaces inside city names are preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "New Mexico",
+              "city": "Santa Fe"
+            },
+            {
+              "state": "New Mexico",
+              "city": "Las Cruces"
+            },
+            {
+              "state": "New Mexico",
+              "city": "Rio Rancho"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "New Mexico",
+            "Las Cruces, Rio Rancho, Santa Fe"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "string-preservation"
+      ]
+    },
+    {
+      "id": "real-state-prefixes",
+      "name": "real: state names with common prefixes determine row order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Northland",
+              "city": "Delta"
+            },
+            {
+              "state": "North",
+              "city": "Alpha"
+            },
+            {
+              "state": "North Coast",
+              "city": "Beta"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "North",
+            "Alpha"
+          ],
+          [
+            "North Coast",
+            "Beta"
+          ],
+          [
+            "Northland",
+            "Delta"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "state-order"
+      ]
+    },
+    {
+      "id": "real-uneven-groups",
+      "name": "real: states may contain different city counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Gamma",
+              "city": "C"
+            },
+            {
+              "state": "Alpha",
+              "city": "A"
+            },
+            {
+              "state": "Gamma",
+              "city": "A"
+            },
+            {
+              "state": "Gamma",
+              "city": "B"
+            },
+            {
+              "state": "Beta",
+              "city": "A"
+            },
+            {
+              "state": "Beta",
+              "city": "B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Alpha",
+            "A"
+          ],
+          [
+            "Beta",
+            "A, B"
+          ],
+          [
+            "Gamma",
+            "A, B, C"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "uneven-groups"
+      ]
+    },
+    {
+      "id": "real-reverse-input",
+      "name": "real: reverse-sorted input is fully reordered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Zulu",
+              "city": "Zed"
+            },
+            {
+              "state": "Zulu",
+              "city": "Able"
+            },
+            {
+              "state": "Echo",
+              "city": "Zulu"
+            },
+            {
+              "state": "Echo",
+              "city": "Echo"
+            },
+            {
+              "state": "Echo",
+              "city": "Able"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Echo",
+            "Able, Echo, Zulu"
+          ],
+          [
+            "Zulu",
+            "Able, Zed"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "reverse-input"
+      ]
+    },
+    {
+      "id": "real-separator-exact",
+      "name": "real: multiple names use exactly comma and space",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Separator",
+              "city": "Three"
+            },
+            {
+              "state": "Separator",
+              "city": "One"
+            },
+            {
+              "state": "Separator",
+              "city": "Two"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities"
+        ],
+        "rows": [
+          [
+            "Separator",
+            "One, Three, Two"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "separator"
+      ]
+    }
+  ]
+}
+

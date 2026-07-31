@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shifting Letters II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Records each inclusive range update at its difference-array boundaries and applies the net prefix shift.",
+      "time_complexity": "O(n+m)",
+      "space_complexity": "O(n)"
     }
   ]
 }

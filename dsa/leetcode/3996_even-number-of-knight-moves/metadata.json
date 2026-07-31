@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_3996",
+  "source": "leetcode",
+  "frontend_id": "3996",
+  "slug": "even-number-of-knight-moves",
+  "title": "Even Number of Knight Moves",
+  "difficulty": "Easy",
+  "acceptance_rate": 74.75828195572653,
+  "frequency": 0.0,
+  "elo_rating": 1260.2059872115,
+  "estimated_elo_rating": null,
+  "contest_source": "Weekly Contest 511",
+  "contest_slug": "weekly-contest-511",
+  "contest_problem_index": "Q1",
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/even-number-of-knight-moves/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

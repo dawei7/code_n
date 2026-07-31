@@ -5,51 +5,46 @@
 | Source | LeetCode |
 | Frontend ID | 2129 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | String |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [capitalize-the-title](https://leetcode.com/problems/capitalize-the-title/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/capitalize-the-title/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/capitalize-the-title/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a title containing one or more non-empty words. Every word uses
+English letters, adjacent words are separated by exactly one space, and the
+title has no leading or trailing spaces.
+
+Normalize each word according to its length. Words containing one or two
+letters must be entirely lowercase. For every longer word, make its first
+letter uppercase and all of its remaining letters lowercase. Return the title
+with the original word order and single-space separators preserved.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `title`: A string of length from $1$ through $100$, containing non-empty
+  English-letter words separated by single spaces.
 
 **Return value**
 
-TODO
+The title after applying the required capitalization rule independently to
+every word.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `title = "capiTalIze tHe titLe"`
+- Output: `"Capitalize The Title"`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `title = "First leTTeR of EACH Word"`
+- Output: `"First Letter of Each Word"`
+- Explanation: The two-letter word `"of"` becomes lowercase; every longer
+  word receives an uppercase initial letter and a lowercase remainder.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `title = "i lOve leetcode"`
+- Output: `"i Love Leetcode"`
+- Explanation: The one-letter word `"i"` remains lowercase.

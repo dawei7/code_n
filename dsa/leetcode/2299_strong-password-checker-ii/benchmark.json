@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2299",
+  "measurement_note": "Size is n, the password length. Every tier repeats the four-character block aA1!, so it satisfies all categories, contains no equal adjacent pair, and forces complete validation. One pass takes O(n) time. A correct implementation that redundantly rescans the entire password once for every position completes all legal tiers and fails through O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: valid 8-character repeated-category password",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "password": "aA1!aA1!"
+      },
+      "expected": true
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: valid 32-character repeated-category password",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "password": "aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!"
+      },
+      "expected": true
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: valid 96-character repeated-category password",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "password": "aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!aA1!"
+      },
+      "expected": true
+    }
+  ]
+}

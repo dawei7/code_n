@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Invalid Tweets II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans each tweet once, counts marker characters through replacement-length differences, and orders the qualifying identifiers.",
+      "time_complexity": "O(S + R log R)",
+      "space_complexity": "O(R)"
     }
   ]
 }

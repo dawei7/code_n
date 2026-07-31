@@ -15,7 +15,7 @@
       },
       "tags": [
         "sample",
-        "segment-tree"
+        "repeated-value"
       ],
       "expected": 15
     },
@@ -37,9 +37,9 @@
       "expected": 3
     },
     {
-      "id": "sample-3",
-      "name": "sample: all values distinct",
-      "kind": "sample",
+      "id": "trial-all-distinct",
+      "name": "trial: every subarray length is its distinct count",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -49,14 +49,14 @@
         ]
       },
       "tags": [
-        "sample",
-        "distinct"
+        "trial",
+        "all-distinct"
       ],
       "expected": 20
     },
     {
       "id": "trial-paired-duplicates",
-      "name": "trial: duplicate blocks update previous ranges",
+      "name": "trial: adjacent duplicate blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -69,13 +69,67 @@
       },
       "tags": [
         "trial",
-        "lazy"
+        "duplicates"
       ],
       "expected": 22
     },
     {
-      "id": "real-alternating-values",
-      "name": "hidden: alternating values create repeated range updates",
+      "id": "trial-alternating",
+      "name": "trial: repeated updates overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "tags": [
+        "trial",
+        "overlapping-ranges"
+      ],
+      "expected": 28
+    },
+    {
+      "id": "real-singleton",
+      "name": "hidden: singleton at maximum value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000
+        ]
+      },
+      "tags": [
+        "hidden",
+        "boundary"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-maximum-value-repeat",
+      "name": "hidden: maximum value reappears around another value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          100000
+        ]
+      },
+      "tags": [
+        "hidden",
+        "boundary",
+        "last-occurrence"
+      ],
+      "expected": 15
+    },
+    {
+      "id": "real-multiple-reappearances",
+      "name": "hidden: several values reappear at different distances",
       "kind": "real",
       "visible": false,
       "input": {
@@ -90,9 +144,35 @@
       },
       "tags": [
         "hidden",
-        "segment-tree"
+        "segment-tree",
+        "last-occurrence"
       ],
       "expected": 132
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: every subarray has one distinct value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "tags": [
+        "hidden",
+        "all-equal"
+      ],
+      "expected": 55
     }
   ]
 }

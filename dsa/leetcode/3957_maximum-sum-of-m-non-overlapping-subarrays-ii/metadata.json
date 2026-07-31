@@ -9,6 +9,9 @@
   "frequency": 0.0,
   "elo_rating": 2611.407493072,
   "estimated_elo_rating": null,
+  "contest_source": "Weekly Contest 505",
+  "contest_slug": "weekly-contest-505",
+  "contest_problem_index": "Q4",
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

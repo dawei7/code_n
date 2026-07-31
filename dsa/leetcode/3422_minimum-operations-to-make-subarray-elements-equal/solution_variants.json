@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Operations to Make Subarray Elements Equal and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains each length-k window's median and both partition sums with balanced heaps and lazy deletion, then evaluates its exact absolute-deviation cost.",
+      "time_complexity": "O(n log k)",
+      "space_complexity": "O(k)"
     }
   ]
 }

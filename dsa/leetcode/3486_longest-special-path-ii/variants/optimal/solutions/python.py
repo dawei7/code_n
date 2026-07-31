@@ -1,91 +1,77 @@
 from collections import defaultdict
-from heapq import heappop, heappush
 import sys
 
-sys.setrecursionlimit(200000)
+sys.setrecursionlimit(100000)
 
 
 def solve(edges: list[list[int]], nums: list[int]) -> list[int]:
-    n = len(nums)
-    graph = [[] for _ in range(n)]
-    for u, v, weight in edges:
-        graph[u].append((v, weight))
-        graph[v].append((u, weight))
+    node_count = len(nums)
+    graph: list[list[tuple[int, int]]] = [[] for _ in range(node_count)]
+    for first_node, second_node, length in edges:
+        graph[first_node].append((second_node, length))
+        graph[second_node].append((first_node, length))
 
     positions: dict[int, list[int]] = defaultdict(list)
-    second_heap: list[tuple[int, int, int]] = []
-    third_heap: list[tuple[int, int, int]] = []
-    second_version: dict[int, int] = defaultdict(int)
-    third_version: dict[int, int] = defaultdict(int)
-    prefix = [0] * (n + 1)
+    prefix_distance = [0] * node_count
     best_length = 0
     best_nodes = 1
 
-    def push_value_state(value: int) -> None:
-        stack = positions[value]
-        second_version[value] += 1
-        if len(stack) >= 2:
-            heappush(second_heap, (-stack[-2], value, second_version[value]))
-        third_version[value] += 1
-        if len(stack) >= 3:
-            heappush(third_heap, (-stack[-3], value, third_version[value]))
-
-    def is_current_second(entry: tuple[int, int, int]) -> bool:
-        depth, value, version = -entry[0], entry[1], entry[2]
-        stack = positions[value]
-        return version == second_version[value] and len(stack) >= 2 and stack[-2] == depth
-
-    def is_current_third(entry: tuple[int, int, int]) -> bool:
-        depth, value, version = -entry[0], entry[1], entry[2]
-        stack = positions[value]
-        return version == third_version[value] and len(stack) >= 3 and stack[-3] == depth
-
-    def clean_second() -> None:
-        while second_heap and not is_current_second(second_heap[0]):
-            heappop(second_heap)
-
-    def clean_third() -> None:
-        while third_heap and not is_current_third(third_heap[0]):
-            heappop(third_heap)
-
-    def max_third_depth() -> int:
-        clean_third()
-        return -third_heap[0][0] if third_heap else -1
-
-    def second_largest_pair_start() -> int:
-        clean_second()
-        if len(second_heap) < 2:
-            return -1
-        first = heappop(second_heap)
-        clean_second()
-        result = -second_heap[0][0] if second_heap else -1
-        heappush(second_heap, first)
-        return result
-
-    def dfs(node: int, parent: int, depth: int, distance: int) -> None:
+    def dfs(
+        node: int,
+        parent: int,
+        depth: int,
+        distance: int,
+        largest_second: tuple[int, int],
+        next_second: tuple[int, int],
+        largest_third: int,
+    ) -> None:
         nonlocal best_length, best_nodes
 
         value = nums[node]
-        positions[value].append(depth)
-        push_value_state(value)
+        value_positions = positions[value]
 
-        left = max(max_third_depth() + 1, second_largest_pair_start() + 1)
-        length = distance - prefix[left]
-        node_count = depth - left + 1
-        if length > best_length:
-            best_length = length
-            best_nodes = node_count
-        elif length == best_length and node_count < best_nodes:
-            best_nodes = node_count
+        if value_positions:
+            new_second = value_positions[-1]
+            if largest_second[1] == value:
+                largest_second = (new_second, value)
+            elif next_second[1] == value:
+                next_second = (new_second, value)
+                if next_second[0] > largest_second[0]:
+                    largest_second, next_second = next_second, largest_second
+            elif new_second > largest_second[0]:
+                next_second = largest_second
+                largest_second = (new_second, value)
+            elif new_second > next_second[0]:
+                next_second = (new_second, value)
 
-        for child, weight in graph[node]:
-            if child == parent:
-                continue
-            prefix[depth + 1] = distance + weight
-            dfs(child, node, depth + 1, distance + weight)
+        if len(value_positions) >= 2:
+            largest_third = max(largest_third, value_positions[-2])
 
-        positions[value].pop()
-        push_value_state(value)
+        value_positions.append(depth)
+        prefix_distance[depth] = distance
 
-    dfs(0, -1, 0, 0)
+        left_depth = max(largest_third, next_second[0]) + 1
+        path_length = distance - prefix_distance[left_depth]
+        path_nodes = depth - left_depth + 1
+        if path_length > best_length:
+            best_length = path_length
+            best_nodes = path_nodes
+        elif path_length == best_length and path_nodes < best_nodes:
+            best_nodes = path_nodes
+
+        for child, edge_length in graph[node]:
+            if child != parent:
+                dfs(
+                    child,
+                    node,
+                    depth + 1,
+                    distance + edge_length,
+                    largest_second,
+                    next_second,
+                    largest_third,
+                )
+
+        value_positions.pop()
+
+    dfs(0, -1, 0, 0, (-1, -1), (-1, -2), -1)
     return [best_length, best_nodes]

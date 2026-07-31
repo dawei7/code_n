@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2635",
+  "measurement_note": "Size is n, the source length, and the identity callback produces one result per input. Pushing into a single result array takes linear total time. A correct implementation that replaces the result with a spread copy at each position performs quadratic copying while completing all legal tiers.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: transform 64 elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"arr": null, "fnName": "identity", "fnArg": null, "arrPlan": {"kind": "range", "count": 64}},
+      "expected": {"length": 64, "first": 0, "last": 63, "sum": 2016},
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: transform 256 elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"arr": null, "fnName": "identity", "fnArg": null, "arrPlan": {"kind": "range", "count": 256}},
+      "expected": {"length": 256, "first": 0, "last": 255, "sum": 32640},
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: transform 1000 elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"arr": null, "fnName": "identity", "fnArg": null, "arrPlan": {"kind": "range", "count": 1000}},
+      "expected": {"length": 1000, "first": 0, "last": 999, "sum": 499500},
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

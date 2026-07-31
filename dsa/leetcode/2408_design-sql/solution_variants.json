@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design SQL and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maps table names and surviving row IDs directly while retaining an independent monotone counter for every table.",
+      "time_complexity": "O(n + q + E)",
+      "space_complexity": "O(n + S)"
     }
   ]
 }

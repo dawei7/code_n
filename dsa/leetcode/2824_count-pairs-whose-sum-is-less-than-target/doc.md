@@ -5,33 +5,36 @@
 | Source | LeetCode |
 | Frontend ID | 2824 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Two Pointers, Binary Search, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-pairs-whose-sum-is-less-than-target](https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/).
-
 ### Goal
-Given a list of integers and a target value, determine the total number of unique index pairs (i, j) such that i < j and the sum of the elements at these indices is strictly less than the target.
+
+You are given a 0-indexed integer array `nums` of length $n$ and an integer `target`.
+
+The array may contain positive values, negative values, and duplicates. A pair is determined by two different positions rather than by two distinct values, and requiring $i < j$ ensures that each choice of positions is considered only once.
+
+Count the index pairs $(i, j)$ for which $0 \le i < j < n$ and `nums[i] + nums[j] < target`. The comparison is strict: a pair whose sum equals `target` must not be included.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
-- `target`: An integer representing the threshold sum.
+- `nums`: A list of $n$ integers, where $1 \le n \le 50$ and every value is between $-50$ and $50$, inclusive.
+- `target`: An integer between $-50$ and $50$, inclusive.
+
+Each pair is identified by its two original indices, so equal values at different positions still form distinct pairs.
 
 **Return value**
 
-- An integer representing the count of valid pairs (i, j) where `i < j` and `nums[i] + nums[j] < target`.
+Return the number of index pairs whose sum is strictly less than `target`.
 
 ### Examples
 **Example 1**
 
 - Input: `nums = [-1, 1, 2, 3, 1], target = 2`
 - Output: `3`
-- Explanation: Valid pairs are (0, 1), (0, 3), and (0, 4) because their sums are 0, 2, and 0 respectively, all < 2.
+- Explanation: The valid index pairs are `(0, 1)`, `(0, 2)`, and `(0, 4)`. Pair `(0, 3)` is excluded because its sum equals `2` rather than being smaller.
 
 **Example 2**
 
@@ -40,47 +43,6 @@ Given a list of integers and a target value, determine the total number of uniqu
 
 **Example 3**
 
-- Input: `nums = [1, 2, 3, 4, 5], target = 10`
-- Output: `10`
-
----
-
-## Solution
-### Approach
-The optimal approach utilizes **Sorting** combined with the **Two Pointers** technique. By sorting the array first, we can efficiently determine how many elements, when paired with a fixed element at the left pointer, satisfy the condition. If `nums[left] + nums[right] < target`, then all elements between `left` and `right` also satisfy the condition when paired with `nums[left]`, allowing us to count them in constant time and increment the `left` pointer.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)` due to the sorting step, where `n` is the length of the input array. The two-pointer traversal itself is `O(n)`.
-- **Space Complexity**: `O(1)` or `O(n)` depending on the sorting implementation's space requirements (Python's Timsort uses `O(n)`).
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int], target: int) -> int:
-    """
-    Counts the number of pairs (i, j) such that i < j and nums[i] + nums[j] < target.
-    Uses sorting and the two-pointer technique for O(n log n) efficiency.
-    """
-    nums.sort()
-    count = 0
-    left = 0
-    right = len(nums) - 1
-
-    while left < right:
-        if nums[left] + nums[right] < target:
-            # If the sum of elements at left and right is less than target,
-            # then all elements between left and right will also satisfy
-            # the condition when paired with nums[left].
-            count += (right - left)
-            left += 1
-        else:
-            # Sum is too large, move the right pointer to decrease the sum.
-            right -= 1
-
-    return count
-```
-</details>
+- Input: `nums = [1, 1], target = 2`
+- Output: `0`
+- Explanation: The only pair has sum `2`, and equality does not satisfy the strict inequality.

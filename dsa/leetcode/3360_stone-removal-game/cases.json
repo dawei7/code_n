@@ -1,0 +1,755 @@
+{
+  "challenge_id": "lc_3360",
+  "cases": [
+    {
+      "id": "sample-n-01",
+      "name": "sample: initial pile of 1 stone",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-n-02",
+      "name": "real: initial pile of 2 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-03",
+      "name": "real: initial pile of 3 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-04",
+      "name": "real: initial pile of 4 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-05",
+      "name": "real: initial pile of 5 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-06",
+      "name": "real: initial pile of 6 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-07",
+      "name": "real: initial pile of 7 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-08",
+      "name": "real: initial pile of 8 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-n-09",
+      "name": "trial: initial pile of 9 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-n-10",
+      "name": "trial: initial pile of 10 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-n-11",
+      "name": "real: initial pile of 11 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 11
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "sample-n-12",
+      "name": "sample: initial pile of 12 stones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 12
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-n-13",
+      "name": "real: initial pile of 13 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 13
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-14",
+      "name": "real: initial pile of 14 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 14
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-15",
+      "name": "real: initial pile of 15 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 15
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-16",
+      "name": "real: initial pile of 16 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 16
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-17",
+      "name": "real: initial pile of 17 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 17
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-n-18",
+      "name": "trial: initial pile of 18 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 18
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-n-19",
+      "name": "trial: initial pile of 19 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 19
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-n-20",
+      "name": "real: initial pile of 20 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-21",
+      "name": "real: initial pile of 21 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 21
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-22",
+      "name": "real: initial pile of 22 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 22
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-23",
+      "name": "real: initial pile of 23 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 23
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-24",
+      "name": "real: initial pile of 24 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 24
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-25",
+      "name": "real: initial pile of 25 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 25
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-n-26",
+      "name": "trial: initial pile of 26 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 26
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-n-27",
+      "name": "trial: initial pile of 27 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 27
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-n-28",
+      "name": "real: initial pile of 28 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 28
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-29",
+      "name": "real: initial pile of 29 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 29
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-30",
+      "name": "real: initial pile of 30 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 30
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-31",
+      "name": "real: initial pile of 31 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 31
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-32",
+      "name": "real: initial pile of 32 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 32
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-n-33",
+      "name": "trial: initial pile of 33 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 33
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-n-34",
+      "name": "trial: initial pile of 34 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 34
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-n-35",
+      "name": "real: initial pile of 35 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 35
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-36",
+      "name": "real: initial pile of 36 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 36
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-37",
+      "name": "real: initial pile of 37 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 37
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-38",
+      "name": "real: initial pile of 38 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 38
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-n-39",
+      "name": "trial: initial pile of 39 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 39
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-n-40",
+      "name": "trial: initial pile of 40 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 40
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-n-41",
+      "name": "real: initial pile of 41 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 41
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-42",
+      "name": "real: initial pile of 42 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 42
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-43",
+      "name": "real: initial pile of 43 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 43
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-n-44",
+      "name": "trial: initial pile of 44 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 44
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-n-45",
+      "name": "trial: initial pile of 45 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 45
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-n-46",
+      "name": "real: initial pile of 46 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 46
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-n-47",
+      "name": "real: initial pile of 47 stones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 47
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "exhaustive-domain",
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-n-48",
+      "name": "trial: initial pile of 48 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 48
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-n-49",
+      "name": "trial: initial pile of 49 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 49
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-n-50",
+      "name": "trial: initial pile of 50 stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 50
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "exhaustive-domain",
+        "boundary"
+      ]
+    }
+  ]
+}

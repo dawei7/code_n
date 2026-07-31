@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3606",
+  "cases": [
+    {
+      "id": "sample-invalid-codes",
+      "name": "sample: empty and punctuation-bearing codes are rejected",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "code": [
+          "SAVE20",
+          "",
+          "PHARMA5",
+          "SAVE@20"
+        ],
+        "businessLine": [
+          "restaurant",
+          "grocery",
+          "pharmacy",
+          "restaurant"
+        ],
+        "isActive": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "expected": [
+        "PHARMA5",
+        "SAVE20"
+      ],
+      "tags": [
+        "sample",
+        "code-validation",
+        "category-order"
+      ]
+    },
+    {
+      "id": "sample-inactive-and-category",
+      "name": "sample: inactive and unknown-category coupons are rejected",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "code": [
+          "GROCERY15",
+          "ELECTRONICS_50",
+          "DISCOUNT10"
+        ],
+        "businessLine": [
+          "grocery",
+          "electronics",
+          "invalid"
+        ],
+        "isActive": [
+          false,
+          true,
+          true
+        ]
+      },
+      "expected": [
+        "ELECTRONICS_50"
+      ],
+      "tags": [
+        "sample",
+        "inactive",
+        "invalid-category"
+      ]
+    },
+    {
+      "id": "trial-all-four-categories",
+      "name": "trial: fixed business order overrides input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": [
+          "R",
+          "P",
+          "G",
+          "E"
+        ],
+        "businessLine": [
+          "restaurant",
+          "pharmacy",
+          "grocery",
+          "electronics"
+        ],
+        "isActive": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "expected": [
+        "E",
+        "G",
+        "P",
+        "R"
+      ],
+      "tags": [
+        "trial",
+        "all-categories",
+        "priority"
+      ]
+    },
+    {
+      "id": "trial-underscore-code",
+      "name": "trial: a nonempty underscore-only code is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": [
+          "___"
+        ],
+        "businessLine": [
+          "electronics"
+        ],
+        "isActive": [
+          true
+        ]
+      },
+      "expected": [
+        "___"
+      ],
+      "tags": [
+        "trial",
+        "underscore",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-all-invalid",
+      "name": "real: every coupon violates a different rule",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "code": [
+          "",
+          "HAS SPACE",
+          "DASH-CODE",
+          "OK"
+        ],
+        "businessLine": [
+          "electronics",
+          "grocery",
+          "pharmacy",
+          "unknown"
+        ],
+        "isActive": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "real",
+        "empty-output",
+        "invalid-rules"
+      ]
+    },
+    {
+      "id": "real-inactive-valid-shape",
+      "name": "real: a syntactically valid inactive coupon is excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "code": [
+          "ACTIVE_1",
+          "INACTIVE_2"
+        ],
+        "businessLine": [
+          "restaurant",
+          "electronics"
+        ],
+        "isActive": [
+          true,
+          false
+        ]
+      },
+      "expected": [
+        "ACTIVE_1"
+      ],
+      "tags": [
+        "real",
+        "inactive",
+        "filtering"
+      ]
+    },
+    {
+      "id": "real-ascii-lexicographic",
+      "name": "real: codes use ascending ASCII lexicographical order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "code": [
+          "a",
+          "A",
+          "1",
+          "_",
+          "0MvB",
+          "1OFw"
+        ],
+        "businessLine": [
+          "grocery",
+          "grocery",
+          "grocery",
+          "grocery",
+          "grocery",
+          "grocery"
+        ],
+        "isActive": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "expected": [
+        "0MvB",
+        "1",
+        "1OFw",
+        "A",
+        "_",
+        "a"
+      ],
+      "tags": [
+        "real",
+        "lexicographical",
+        "case-sensitive"
+      ]
+    },
+    {
+      "id": "real-category-before-code",
+      "name": "real: category rank is compared before coupon text",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "code": [
+          "ZZZ",
+          "AAA",
+          "000",
+          "MID"
+        ],
+        "businessLine": [
+          "electronics",
+          "restaurant",
+          "pharmacy",
+          "grocery"
+        ],
+        "isActive": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "expected": [
+        "ZZZ",
+        "MID",
+        "000",
+        "AAA"
+      ],
+      "tags": [
+        "real",
+        "compound-sort",
+        "category-order"
+      ]
+    },
+    {
+      "id": "real-duplicates-preserved",
+      "name": "real: separate equal coupons remain separate entries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "code": [
+          "SAVE",
+          "SAVE",
+          "SAVE"
+        ],
+        "businessLine": [
+          "pharmacy",
+          "pharmacy",
+          "grocery"
+        ],
+        "isActive": [
+          true,
+          true,
+          true
+        ]
+      },
+      "expected": [
+        "SAVE",
+        "SAVE",
+        "SAVE"
+      ],
+      "tags": [
+        "real",
+        "duplicates",
+        "stable-output"
+      ]
+    },
+    {
+      "id": "real-maximum-code-length",
+      "name": "real: a one-hundred-character alphanumeric code is valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "code": [
+          "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB@"
+        ],
+        "businessLine": [
+          "restaurant",
+          "electronics"
+        ],
+        "isActive": [
+          true,
+          true
+        ]
+      },
+      "expected": [
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      ],
+      "tags": [
+        "real",
+        "maximum-length",
+        "punctuation"
+      ]
+    }
+  ]
+}

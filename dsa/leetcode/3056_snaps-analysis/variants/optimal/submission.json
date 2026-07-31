@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3340",
+  "frontend_id": "3056",
+  "title_slug": "snaps-analysis",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2078964637",
+  "verified_at": "2026-07-24T03:44:00+02:00"
+}

@@ -1,0 +1,170 @@
+{
+  "challenge_id": "lc_3352",
+  "cases": [
+    {
+      "id": "sample-one-step",
+      "name": "sample: one-step reducible numbers below seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "one-operation"
+      ]
+    },
+    {
+      "id": "sample-two-steps",
+      "name": "sample: two-step reducible numbers below eight",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1000",
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "two-operations"
+      ]
+    },
+    {
+      "id": "sample-no-positive-candidate",
+      "name": "sample: bound one has no positive predecessor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "strict-bound"
+      ]
+    },
+    {
+      "id": "trial-bound-two",
+      "name": "trial: only one lies below two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "trial-bound-three",
+      "name": "trial: powers of two below three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11",
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "popcount-one",
+        "strict-bound"
+      ]
+    },
+    {
+      "id": "real-non-power-bound",
+      "name": "real: non-power-of-two upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "10101",
+        "k": 2
+      },
+      "expected": 15,
+      "tags": [
+        "digit-dp",
+        "mixed-bits"
+      ]
+    },
+    {
+      "id": "real-powers-one-step",
+      "name": "real: count powers of two below thirty-two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "100000",
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "one-operation",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-two-step-power-bound",
+      "name": "real: popcount classes below sixteen",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "10000",
+        "k": 2
+      },
+      "expected": 11,
+      "tags": [
+        "two-operations",
+        "combinations"
+      ]
+    },
+    {
+      "id": "real-large-k-all-small",
+      "name": "real: every positive predecessor qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1111",
+        "k": 5
+      },
+      "expected": 14,
+      "tags": [
+        "maximum-k",
+        "all-ones"
+      ]
+    },
+    {
+      "id": "real-depth-boundary",
+      "name": "real: maximum-popcount predecessor needs three steps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "100000",
+        "k": 2
+      },
+      "expected": 20,
+      "tags": [
+        "depth-boundary",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-mixed-bound-large-k",
+      "name": "real: every positive predecessor below mixed bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "101010",
+        "k": 5
+      },
+      "expected": 41,
+      "tags": [
+        "maximum-k",
+        "mixed-bits"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,407 @@
+{
+  "challenge_id": "lc_2821",
+  "cases": [
+    {
+      "id": "sample-single-fulfillment",
+      "name": "sample: one fulfilled promise gains fifty milliseconds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 30,
+            "value": null
+          }
+        ],
+        "ms": 50
+      },
+      "expected": [
+        {
+          "status": "resolved",
+          "value": null,
+          "completionTime": 80
+        }
+      ],
+      "tags": [
+        "sample",
+        "fulfillment"
+      ]
+    },
+    {
+      "id": "sample-two-fulfillments",
+      "name": "sample: source durations remain independent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 50,
+            "value": "first"
+          },
+          {
+            "delay": 80,
+            "value": "second"
+          }
+        ],
+        "ms": 70
+      },
+      "expected": [
+        {
+          "status": "resolved",
+          "value": "first",
+          "completionTime": 120
+        },
+        {
+          "status": "resolved",
+          "value": "second",
+          "completionTime": 150
+        }
+      ],
+      "tags": [
+        "sample",
+        "multiple",
+        "ordering"
+      ]
+    },
+    {
+      "id": "sample-two-rejections",
+      "name": "sample: rejected promises also receive the delay",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 20,
+            "reject": "first-error"
+          },
+          {
+            "delay": 100,
+            "reject": "second-error"
+          }
+        ],
+        "ms": 30
+      },
+      "expected": [
+        {
+          "status": "rejected",
+          "reason": "first-error",
+          "completionTime": 50
+        },
+        {
+          "status": "rejected",
+          "reason": "second-error",
+          "completionTime": 130
+        }
+      ],
+      "tags": [
+        "sample",
+        "rejection"
+      ]
+    },
+    {
+      "id": "trial-mixed-outcomes",
+      "name": "fulfillment and rejection preserve array positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 90,
+            "value": 7
+          },
+          {
+            "delay": 10,
+            "reject": "nope"
+          },
+          {
+            "delay": 40,
+            "value": {
+              "ok": true
+            }
+          }
+        ],
+        "ms": 25
+      },
+      "expected": [
+        {
+          "status": "resolved",
+          "value": 7,
+          "completionTime": 115
+        },
+        {
+          "status": "rejected",
+          "reason": "nope",
+          "completionTime": 35
+        },
+        {
+          "status": "resolved",
+          "value": {
+            "ok": true
+          },
+          "completionTime": 65
+        }
+      ],
+      "tags": [
+        "mixed-outcomes",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-simultaneous",
+      "name": "equal source times use independent timers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tasks": [
+          {
+            "delay": 15,
+            "value": "A"
+          },
+          {
+            "delay": 15,
+            "reject": "B"
+          },
+          {
+            "delay": 15,
+            "value": "C"
+          }
+        ],
+        "ms": 10
+      },
+      "expected": [
+        {
+          "status": "resolved",
+          "value": "A",
+          "completionTime": 25
+        },
+        {
+          "status": "rejected",
+          "reason": "B",
+          "completionTime": 25
+        },
+        {
+          "status": "resolved",
+          "value": "C",
+          "completionTime": 25
+        }
+      ],
+      "tags": [
+        "simultaneous",
+        "independent-timers"
+      ]
+    },
+    {
+      "id": "real-reference-values",
+      "name": "hidden: structured values are forwarded unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tasks": [
+          {
+            "delay": 0,
+            "value": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "delay": 1,
+            "value": {
+              "nested": {
+                "x": 4
+              }
+            }
+          }
+        ],
+        "ms": 500
+      },
+      "expected": [
+        {
+          "status": "resolved",
+          "value": [
+            1,
+            2,
+            3
+          ],
+          "completionTime": 500
+        },
+        {
+          "status": "resolved",
+          "value": {
+            "nested": {
+              "x": 4
+            }
+          },
+          "completionTime": 501
+        }
+      ],
+      "tags": [
+        "hidden",
+        "values",
+        "maximum-delay"
+      ]
+    },
+    {
+      "id": "real-maximum-functions",
+      "name": "hidden: ten wrappers preserve all positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tasks": [
+          {
+            "delay": 0,
+            "value": 0
+          },
+          {
+            "delay": 9,
+            "reject": "E1"
+          },
+          {
+            "delay": 2,
+            "value": 4
+          },
+          {
+            "delay": 3,
+            "value": 9
+          },
+          {
+            "delay": 6,
+            "reject": "E4"
+          },
+          {
+            "delay": 5,
+            "value": 25
+          },
+          {
+            "delay": 6,
+            "value": 36
+          },
+          {
+            "delay": 3,
+            "reject": "E7"
+          },
+          {
+            "delay": 8,
+            "value": 64
+          },
+          {
+            "delay": 9,
+            "value": 81
+          }
+        ],
+        "ms": 500
+      },
+      "expected": [
+        {
+          "status": "resolved",
+          "value": 0,
+          "completionTime": 500
+        },
+        {
+          "status": "rejected",
+          "reason": "E1",
+          "completionTime": 509
+        },
+        {
+          "status": "resolved",
+          "value": 4,
+          "completionTime": 502
+        },
+        {
+          "status": "resolved",
+          "value": 9,
+          "completionTime": 503
+        },
+        {
+          "status": "rejected",
+          "reason": "E4",
+          "completionTime": 506
+        },
+        {
+          "status": "resolved",
+          "value": 25,
+          "completionTime": 505
+        },
+        {
+          "status": "resolved",
+          "value": 36,
+          "completionTime": 506
+        },
+        {
+          "status": "rejected",
+          "reason": "E7",
+          "completionTime": 503
+        },
+        {
+          "status": "resolved",
+          "value": 64,
+          "completionTime": 508
+        },
+        {
+          "status": "resolved",
+          "value": 81,
+          "completionTime": 509
+        }
+      ],
+      "tags": [
+        "hidden",
+        "maximum-functions",
+        "mixed-outcomes"
+      ]
+    },
+    {
+      "id": "real-reverse-completion-order",
+      "name": "hidden: settlement order does not reorder wrappers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tasks": [
+          {
+            "delay": 100,
+            "value": "index-zero"
+          },
+          {
+            "delay": 70,
+            "value": "index-one"
+          },
+          {
+            "delay": 40,
+            "value": "index-two"
+          },
+          {
+            "delay": 10,
+            "value": "index-three"
+          }
+        ],
+        "ms": 10
+      },
+      "expected": [
+        {
+          "status": "resolved",
+          "value": "index-zero",
+          "completionTime": 110
+        },
+        {
+          "status": "resolved",
+          "value": "index-one",
+          "completionTime": 80
+        },
+        {
+          "status": "resolved",
+          "value": "index-two",
+          "completionTime": 50
+        },
+        {
+          "status": "resolved",
+          "value": "index-three",
+          "completionTime": 20
+        }
+      ],
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

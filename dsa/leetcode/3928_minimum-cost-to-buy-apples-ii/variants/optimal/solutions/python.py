@@ -1,0 +1,40 @@
+from heapq import heappop, heappush
+
+
+def solve(n: int, prices: list[int], roads: list[list[int]]) -> list[int]:
+    graph: list[list[tuple[int, int, int]]] = [[] for _ in range(n)]
+    for left, right, cost, tax in roads:
+        graph[left].append((right, cost, cost * tax))
+        graph[right].append((left, cost, cost * tax))
+
+    def shortest(start: int, carrying: bool) -> list[int]:
+        distances = [float("inf")] * n
+        distances[start] = 0
+        queue = [(0, start)]
+
+        while queue:
+            distance, node = heappop(queue)
+            if distance != distances[node]:
+                continue
+            for neighbor, empty_cost, loaded_cost in graph[node]:
+                edge_cost = loaded_cost if carrying else empty_cost
+                candidate = distance + edge_cost
+                if candidate < distances[neighbor]:
+                    distances[neighbor] = candidate
+                    heappush(queue, (candidate, neighbor))
+
+        return distances
+
+    answer = []
+    for start in range(n):
+        empty_distances = shortest(start, False)
+        loaded_distances = shortest(start, True)
+        answer.append(
+            min(
+                empty_distances[shop]
+                + prices[shop]
+                + loaded_distances[shop]
+                for shop in range(n)
+            )
+        )
+    return answer

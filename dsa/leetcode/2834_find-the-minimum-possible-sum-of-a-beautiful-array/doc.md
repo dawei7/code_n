@@ -5,51 +5,41 @@
 | Source | LeetCode |
 | Frontend ID | 2834 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Math, Greedy |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-minimum-possible-sum-of-a-beautiful-array](https://leetcode.com/problems/find-the-minimum-possible-sum-of-a-beautiful-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-minimum-possible-sum-of-a-beautiful-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-minimum-possible-sum-of-a-beautiful-array/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given positive integers `n` and `target`, form an array `nums` containing exactly `n` pairwise distinct positive integers. The array is beautiful when no two elements at distinct indices add up to `target`. A value may equal half of an even `target`: because all values are distinct, that value cannot occupy two different positions and pair with itself.
+
+Among every array satisfying these conditions, determine the smallest possible sum of its elements. The requested array itself does not need to be returned. Since the mathematical minimum can be very large, return the sum modulo $10^9+7$.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: The required array length, where $1 \le n \le 10^9$.
+- `target`: The forbidden sum, where $1 \le \texttt{target} \le 10^9$.
 
 **Return value**
 
-TODO
+Return the minimum possible sum of a beautiful array of length `n`, reduced modulo $10^9+7$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 2, target = 3`
+- Output: `4`
+- Explanation: `[1, 3]` is beautiful and has the minimum sum $4$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, target = 3`
+- Output: `8`
+- Explanation: `[1, 3, 4]` is beautiful and has the minimum sum $8$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 1, target = 1`
+- Output: `1`
+- Explanation: The one-element array `[1]` is beautiful.

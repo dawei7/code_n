@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2799",
+  "frontend_id": "2777",
+  "title_slug": "date-range-generator",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "dateRangeGenerator",
+  "verified_submission_id": "2076681923",
+  "verified_at": "2026-07-22T06:00:00+00:00"
+}

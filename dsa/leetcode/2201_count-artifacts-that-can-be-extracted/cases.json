@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2201",
+  "cases": [
+    {"id":"sample-one-complete","name":"sample: only the single-cell artifact is complete","kind":"sample","visible":true,"input":{"n":2,"artifacts":[[0,0,0,0],[0,1,1,1]],"dig":[[0,0],[0,1]]},"expected":1,"tags":["sample","partial"]},
+    {"id":"sample-both-complete","name":"sample: every artifact cell is dug","kind":"sample","visible":true,"input":{"n":2,"artifacts":[[0,0,0,0],[0,1,1,1]],"dig":[[0,0],[0,1],[1,1]]},"expected":2,"tags":["sample","complete"]},
+    {"id":"trial-single-complete","name":"one dug cell extracts one artifact","kind":"trial","visible":true,"input":{"n":1,"artifacts":[[0,0,0,0]],"dig":[[0,0]]},"expected":1,"tags":["minimum"]},
+    {"id":"trial-empty-ground","name":"digging only empty ground extracts nothing","kind":"trial","visible":true,"input":{"n":3,"artifacts":[[1,1,1,1]],"dig":[[0,0],[2,2]]},"expected":0,"tags":["empty-ground"]},
+    {"id":"trial-four-cell","name":"a two-by-two artifact requires all four cells","kind":"trial","visible":true,"input":{"n":3,"artifacts":[[0,0,1,1]],"dig":[[0,0],[0,1],[1,0],[1,1]]},"expected":1,"tags":["maximum-area"]},
+    {"id":"real-one-missing","name":"hidden: one missing corner prevents extraction","kind":"real","visible":false,"input":{"n":3,"artifacts":[[0,0,1,1]],"dig":[[0,0],[0,1],[1,0]]},"expected":0,"tags":["hidden","missing-corner"]},
+    {"id":"real-mixed-shapes","name":"hidden: horizontal vertical and single-cell artifacts coexist","kind":"real","visible":false,"input":{"n":5,"artifacts":[[0,0,0,1],[1,2,2,2],[4,4,4,4]],"dig":[[0,0],[0,1],[1,2],[4,4],[3,3]]},"expected":2,"tags":["hidden","mixed-shapes"]},
+    {"id":"real-all-partial","name":"hidden: each multi-cell artifact has an undug part","kind":"real","visible":false,"input":{"n":4,"artifacts":[[0,0,0,1],[2,0,3,0]],"dig":[[0,0],[2,0]]},"expected":0,"tags":["hidden","partial"]},
+    {"id":"real-unordered-dig","name":"hidden: excavation order does not affect membership","kind":"real","visible":false,"input":{"n":4,"artifacts":[[1,1,2,2],[3,3,3,3]],"dig":[[2,2],[3,3],[1,2],[2,1],[1,1]]},"expected":2,"tags":["hidden","unordered"]}
+  ]
+}

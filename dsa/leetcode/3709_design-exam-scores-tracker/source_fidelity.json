@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3709",
+    "frontend_id": "3709",
+    "title_slug": "design-exam-scores-tracker",
+    "url": "https://leetcode.com/problems/design-exam-scores-tracker/description/",
+    "paid_only": false,
+    "content_sha256": "f47b5626d59a9bd7d039e18aa191865ab5d487a44450336929113a02719d8f88",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "operations = [\"ExamTracker\", \"record\", \"totalScore\", \"record\", \"totalScore\", \"totalScore\", \"totalScore\", \"totalScore\"]; arguments = [[], [1, 98], [1, 1], [5, 99], [1, 3], [1, 5], [3, 4], [2, 5]]",
+        "output": "[null, null, 98, null, 98, 197, 0, 99]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "2104efcdad2aa2fd2d20232d5a4f8dd43ae9d2c80a850a2bbee00642e731a6fb",
+      "reference/contract.md": "943fdf75749db0b87f6bea3beee7ecf006a5c0a2474f43db28e442a6980fa5e4",
+      "reference/examples.md": "94d76876b4f07cb9187540d22c165cb35e83f6f5fa43ac20a75fae76115a2e1c",
+      "reference/constraints.md": "5f7d23a5986334a26319c0fbd8ba672c051033c5600953ac8de4e228c5c6c3ef"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

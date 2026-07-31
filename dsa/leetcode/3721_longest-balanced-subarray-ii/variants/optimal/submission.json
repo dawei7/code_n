@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4047",
+  "frontend_id": "3721",
+  "title_slug": "longest-balanced-subarray-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.longestBalanced",
+  "verified_submission_id": "2085051110",
+  "verified_at": "2026-07-28T16:31:55.225114+00:00"
+}

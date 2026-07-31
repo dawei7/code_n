@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Frequency Tracker and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Keeps value counts and positive frequency bucket populations synchronized for constant-time average operations.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(n)"
     }
   ]
 }

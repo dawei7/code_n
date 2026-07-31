@@ -8,87 +8,41 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Sorting, Heap (Priority Queue), Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [mark-elements-on-array-by-performing-queries](https://leetcode.com/problems/mark-elements-on-array-by-performing-queries/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/mark-elements-on-array-by-performing-queries/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/mark-elements-on-array-by-performing-queries/).
 
 ### Goal
-Given an array of integers and a sequence of queries, you must maintain a "marked" status for each index. For each query `(index, k)`, you first mark the element at the specified index (if not already marked). Then, you identify the `k` smallest unmarked elements in the array (breaking ties by index) and mark them as well. After each query, calculate the sum of all currently unmarked elements.
+
+You are given a 0-indexed array `nums` of $n$ positive integers and an array `queries` containing $m$ pairs. Every element of `nums` begins unmarked.
+
+Process the queries in their given order. For a query `[index, k]`, first mark the element at `index` if it is still unmarked. Then mark exactly $k$ of the remaining unmarked elements with the smallest values. When equal values are available, choose smaller indices first. If fewer than $k$ unmarked elements remain, mark all of them instead.
+
+After each query, record the sum of every element that is still unmarked. Return the $m$ recorded sums in query order.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the initial array.
-- `queries`: A list of lists, where each inner list contains two integers `[index, k]`.
+- `nums`: A list of $n$ positive integers.
+- `queries`: A list of $m$ pairs `[index, k]` describing the explicit index and the number of smallest unmarked elements to mark.
+
+The constraints are $1 \leq m \leq n \leq 10^5$, $1 \leq \texttt{nums[i]} \leq 10^5$, and $0 \leq \texttt{index}, k \leq n-1$ for every query.
 
 **Return value**
 
-- A list of integers representing the sum of unmarked elements after each query is processed.
+- A list of $m$ integers where entry $i$ is the sum of the unmarked elements after processing query $i$.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1, 2, 2, 1, 2, 3, 1]`, `queries = [[1, 2], [3, 3], [4, 2]]`
-- Output: `[8, 6, 0]`
+- Output: `[8, 3, 0]`
+- Explanation: The first query marks index `1` and the values at indices `0` and `3`, leaving a sum of `8`. Index `3` is already marked for the second query; the next three smallest eligible elements leave only the value `3`. The last query marks everything that remains.
 
 **Example 2**
 
 - Input: `nums = [1, 4, 2, 3]`, `queries = [[0, 1]]`
 - Output: `[7]`
-
-**Example 3**
-
-- Input: `nums = [1, 1, 1]`, `queries = [[0, 1], [1, 2]]`
-- Output: `[2, 0]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Min-Heap (Priority Queue) to efficiently retrieve the smallest unmarked elements. We store tuples of `(value, index)` in the heap. A boolean array (or set) tracks which indices have been marked to ensure we skip already marked elements during the heap extraction process.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log N + Q log N)`, where `N` is the length of `nums` and `Q` is the number of queries. Sorting the initial array takes `O(N log N)`, and each query involves heap operations that take `O(log N)`.
-- **Space Complexity**: `O(N)`, required to store the heap, the marked status array, and the initial array values.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import heapq
-
-def solve(nums, queries):
-    n = len(nums)
-    total_sum = sum(nums)
-    marked = [False] * n
-
-    # Create a min-heap of (value, index)
-    # This allows us to efficiently find the smallest unmarked elements
-    pq = []
-    for i in range(n):
-        heapq.heappush(pq, (nums[i], i))
-
-    results = []
-
-    for index, k in queries:
-        # Mark the element at the given index if not already marked
-        if not marked[index]:
-            marked[index] = True
-            total_sum -= nums[index]
-
-        # Mark k smallest unmarked elements
-        count = 0
-        while count < k and pq:
-            val, idx = heapq.heappop(pq)
-            if not marked[idx]:
-                marked[idx] = True
-                total_sum -= val
-                count += 1
-
-        results.append(total_sum)
-
-    return results
-```
-</details>
+- Explanation: Marking index `0` and then the smallest remaining value, `2`, leaves `4 + 3 = 7`.

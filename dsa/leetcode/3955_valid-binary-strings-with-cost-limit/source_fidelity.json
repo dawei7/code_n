@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3955",
+    "frontend_id": "3955",
+    "title_slug": "valid-binary-strings-with-cost-limit",
+    "url": "https://leetcode.com/problems/valid-binary-strings-with-cost-limit/description/",
+    "paid_only": false,
+    "content_sha256": "309c2a12eead7a427caf28c5e196f14a1fc91b2216148c110da00c6b4eabafc8",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 3, k = 1",
+        "output": "[\"000\",\"010\",\"100\"]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 1, k = 0",
+        "output": "[\"0\",\"1\"]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3f425c7636d3d7deb0823496c0e46fa5bb82750856fcc32522b7b10029c6d068",
+      "reference/contract.md": "540461b4d3abfbebb6776efd74ed82fce97277696c6c258de54e472fccae9ea7",
+      "reference/examples.md": "e58f073862a4aff15f58e01181a68ab8c6d701aa0967514bfd89dcd19e8ee94b",
+      "reference/constraints.md": "58751590ddf046c02a12e35485156f89ddcf81c939121e1009211bf93968d24b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

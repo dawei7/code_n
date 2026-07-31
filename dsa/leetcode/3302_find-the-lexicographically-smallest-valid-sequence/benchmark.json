@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3302",
+  "measurement_note": "The workload size n is word1 length, with word2 length n/2. The target differs only at its last character, so the backward feasibility scan covers the source and the output contains n/2 indices; quadratic source-target DP cannot scale.",
+  "cases": [
+    {"id":"benchmark-source-3000","name":"benchmark: half-length target within 3000 source characters","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 3000\nm = n // 2\ncase = {'word1': 'a' * n, 'word2': 'a' * (m - 1) + 'b'}\nexpected = list(range(m))"},"size":3000,"tags":["benchmark","suffix","large-output"]},
+    {"id":"benchmark-source-30000","name":"benchmark: half-length target within 30000 source characters","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 30000\nm = n // 2\ncase = {'word1': 'a' * n, 'word2': 'a' * (m - 1) + 'b'}\nexpected = list(range(m))"},"size":30000,"tags":["benchmark","suffix","large-output"]},
+    {"id":"benchmark-source-300000","name":"benchmark: maximum source with half-length target","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 300000\nm = n // 2\ncase = {'word1': 'a' * n, 'word2': 'a' * (m - 1) + 'b'}\nexpected = list(range(m))"},"size":300000,"tags":["benchmark","suffix","large-output","boundary"]}
+  ]
+}

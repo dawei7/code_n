@@ -8,79 +8,47 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-elements-with-maximum-frequency](https://leetcode.com/problems/count-elements-with-maximum-frequency/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-elements-with-maximum-frequency/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-elements-with-maximum-frequency/).
-
 ### Goal
-Given an array of integers, identify the frequency of each unique element. Determine the highest frequency present in the array, and return the total count of all elements that appear with that specific maximum frequency.
+You are given an array `nums` of positive integers. The frequency of a value
+is its number of occurrences in the array.
+
+Find the greatest frequency attained by any value. Return the sum of the
+frequencies of every value that attains that maximum. Equivalently, count all
+array positions whose value belongs to a maximum-frequency group.
+
+When several distinct values tie for the greatest frequency, include every
+occurrence of every tied value. Values with any smaller frequency contribute
+nothing to the returned total.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of integers where 1 ≤ nums[i] ≤ 100.
+- `nums`: the nonempty positive-integer array
+
+Let $N=\lvert\texttt{nums}\rvert$. The contract guarantees $1\le N\le100$
+and $1\le\texttt{nums[i]}\le100$.
 
 **Return value**
 
-- An integer representing the sum of the counts of all elements that share the maximum frequency.
+Return the total number of occurrences contributed by all values tied for the
+maximum frequency.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [1, 2, 2, 3, 1, 4]`
+- Input: `nums = [1,2,2,3,1,4]`
 - Output: `4`
-- Explanation: The frequencies are: 1: 2, 2: 2, 3: 1, 4: 1. The max frequency is 2. Elements 1 and 2 both appear 2 times, so 2 + 2 = 4.
+
+Values 1 and 2 each occur twice, so together their maximum-frequency groups
+contain four elements.
 
 **Example 2**
 
-- Input: `nums = [1, 2, 3, 4, 5]`
+- Input: `nums = [1,2,3,4,5]`
 - Output: `5`
-- Explanation: All elements appear once. The max frequency is 1. There are 5 such elements, so 1 * 5 = 5.
 
-**Example 3**
-
-- Input: `nums = [10, 12, 11, 10, 12, 11]`
-- Output: `6`
-- Explanation: All elements appear twice. The max frequency is 2. There are 3 such elements, so 2 * 3 = 6.
-
----
-
-## Solution
-### Approach
-The problem utilizes a Frequency Map (Hash Table) to perform a single-pass counting operation. By tracking the maximum frequency encountered during the counting process, we can calculate the final result in a second pass or by maintaining a running sum of elements that match the current maximum.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the number of elements in the input array, as we iterate through the list once to count frequencies and once through the frequency map.
-- **Space Complexity**: `O(k)`, where `k` is the number of unique elements in the array, used to store the frequency map.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import Counter
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    """
-    Calculates the total count of elements that appear with the maximum frequency.
-    """
-    if not nums:
-        return 0
-
-    # Count the frequency of each element
-    counts = Counter(nums)
-
-    # Find the maximum frequency value
-    max_freq = max(counts.values())
-
-    # Sum the frequencies of all elements that have the max_freq
-    total_count = 0
-    for freq in counts.values():
-        if freq == max_freq:
-            total_count += freq
-
-    return total_count
-```
-</details>
+Every value occurs once and therefore every array element belongs to a tied
+maximum-frequency group.

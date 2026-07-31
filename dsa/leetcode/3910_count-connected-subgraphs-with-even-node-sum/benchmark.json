@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3910",
+  "measurement_note": "Size is n, the number of graph nodes governing the required O(n 2^n) complexity. Each tier is an all-zero star, so every subset containing the center is connected and forces full traversal. The Accepted bitmask traversal and an independent adjacency-list traversal take O(n 2^n) time. A correct partition-enumeration control checks every bipartition of each center-containing subset, takes O(3^n) time, completes all 3/6/12-node tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-zero-star-3",
+      "name": "benchmark: 3-node all-zero star",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {"nums": [0, 0, 0], "edges": [[0, 1], [0, 2]]},
+      "expected": 6,
+      "tags": ["benchmark", "scale-small", "star", "all-zero", "partition-control"]
+    },
+    {
+      "id": "benchmark-zero-star-6",
+      "name": "benchmark: 6-node all-zero star",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"nums": [0, 0, 0, 0, 0, 0], "edges": [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]},
+      "expected": 37,
+      "tags": ["benchmark", "scale-medium", "star", "all-zero", "partition-control"]
+    },
+    {
+      "id": "benchmark-zero-star-12",
+      "name": "benchmark: 12-node all-zero star",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"nums": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "edges": [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8], [0, 9], [0, 10], [0, 11]]},
+      "expected": 2059,
+      "tags": ["benchmark", "scale-large", "star", "all-zero", "partition-control"]
+    }
+  ]
+}

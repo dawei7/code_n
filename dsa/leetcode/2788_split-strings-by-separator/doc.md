@@ -8,70 +8,51 @@
 | Category | Algorithms |
 | Topics | Array, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [split-strings-by-separator](https://leetcode.com/problems/split-strings-by-separator/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/split-strings-by-separator/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/split-strings-by-separator/).
 
 ### Goal
-Given a list of strings and a specific character separator, decompose each string in the list into smaller substrings based on the occurrences of the separator. The final result should be a flattened list containing all non-empty substrings extracted from the original strings, preserving their relative order.
+
+Given an array of strings `words` and a single character `separator`, split every word wherever that separator occurs. A word may contain the separator more than once, so processing one word can produce any number of pieces rather than only two.
+
+Combine the pieces from all words into one list in their original left-to-right order. The separator itself does not appear in a piece, and every empty piece created by a leading, trailing, or adjacent separator must be omitted.
 
 ### Function Contract
+
 **Inputs**
 
-- `words`: A list of strings (`List[str]`) to be processed.
-- `separator`: A single character (`str`) used as the delimiter for splitting.
+- `words`: An array of strings, where $1 \le \lvert\texttt{words}\rvert \le 100$ and $1 \le \lvert\texttt{words[i]}\rvert \le 20$. Each string contains lowercase English letters or characters from `".,|$#@"`.
+- `separator`: One character from `".,|$#@"` used as the delimiter.
+
+Let
+
+$$
+S = \sum_{w \in \texttt{words}} \lvert w \rvert
+$$
+
+denote the total number of input characters.
 
 **Return value**
 
-- A list of strings (`List[str]`) containing all non-empty segments resulting from the split operations.
+Return all non-empty pieces in encounter order after splitting each word by `separator`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `words = ["one.two.three","four.five","six"], separator = "."`
-- Output: `["one","two","three","four","five","six"]`
+- Input: `words = ["one.two.three", "four.five", "six"], separator = "."`
+- Output: `["one", "two", "three", "four", "five", "six"]`
+- Explanation: Periods divide the first two words, while the final word remains whole.
 
 **Example 2**
 
-- Input: `words = ["$easy$","$problem$"], separator = "$"`
-- Output: `["easy","problem"]`
+- Input: `words = ["$easy$", "$problem$"], separator = "$"`
+- Output: `["easy", "problem"]`
+- Explanation: The pieces outside the letters are empty and therefore excluded.
 
 **Example 3**
 
 - Input: `words = ["|||"], separator = "|"`
 - Output: `[]`
-
----
-
-## Solution
-### Approach
-The solution utilizes string traversal and the standard library's string splitting mechanism. By iterating through each word in the input list and applying a split operation, we filter out empty strings (which occur when the separator appears at the start, end, or consecutively) to produce the final flattened collection.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N)`, where `N` is the total number of characters across all strings in the input list. Each character is visited once during the split and filtering process.
-- **Space Complexity**: `O(N)`, as the output list stores the resulting substrings, which in the worst case (no separators) occupies space proportional to the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(words: List[str], separator: str) -> List[str]:
-    """
-    Splits each string in the list by the given separator and returns
-    a flattened list of all non-empty substrings.
-    """
-    result = []
-    for word in words:
-        # Split the string by the separator
-        parts = word.split(separator)
-        # Filter out empty strings and extend the result list
-        for part in parts:
-            if part:
-                result.append(part)
-    return result
-```
-</details>
+- Explanation: Splitting produces only empty pieces, so the result contains nothing.

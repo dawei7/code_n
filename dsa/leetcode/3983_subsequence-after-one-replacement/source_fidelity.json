@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3983",
+    "frontend_id": "3983",
+    "title_slug": "subsequence-after-one-replacement",
+    "url": "https://leetcode.com/problems/subsequence-after-one-replacement/description/",
+    "paid_only": false,
+    "content_sha256": "e05be26716cdd63eb752b5cd43e9591b597d227e474ec6e81beffcfe7f17106c",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"cat\", t = \"chat\"",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"plane\", t = \"apple\"",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f39d469216c5a850170c549c5803c2531a1ca1f72a2159768889d7292bf5fda4",
+      "reference/contract.md": "b6e94a6c190a8ded665326585c05ea91fab030e83583d19307a9061bf9c4743e",
+      "reference/examples.md": "958dca581192c9e2640c8858458ddfcd8b90717a246f6ce266b6c8ca22780cbe",
+      "reference/constraints.md": "280e821cbd8323011472eeb0f1da35c1f43142fb014551e198baa43a37a0b67e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

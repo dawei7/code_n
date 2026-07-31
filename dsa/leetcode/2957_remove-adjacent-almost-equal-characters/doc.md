@@ -8,48 +8,47 @@
 | Category | Algorithms |
 | Topics | String, Dynamic Programming, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [remove-adjacent-almost-equal-characters](https://leetcode.com/problems/remove-adjacent-almost-equal-characters/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/remove-adjacent-almost-equal-characters/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/remove-adjacent-almost-equal-characters/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a 0-indexed lowercase English string `word`. Two characters are
+almost-equal when they are identical or occupy adjacent positions in the
+alphabet. Equivalently, their alphabet codes differ by at most one; the
+alphabet does not wrap from `a` to `z`.
+
+In one operation, choose any index and replace its character with any lowercase
+English letter. Make changes so that no neighboring pair in the final string is
+almost-equal. Return the minimum number of operations needed; the resulting
+string itself is not required.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `word`: the lowercase English string to modify conceptually
+
+Let $N=\lvert\texttt{word}\rvert$. The contract guarantees $1\le N\le100$.
 
 **Return value**
 
-TODO
+The minimum number of single-position character replacements needed to make
+every adjacent pair differ by at least two alphabet positions.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "aaaaa"`
+- Output: `2`
+- Explanation: Changing the second and fourth characters to `c` produces `acaca`, whose adjacent pairs are all safe.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "abddez"`
+- Output: `2`
+- Explanation: Two replacements suffice to break the conflict at the beginning and the equal middle pair without creating new conflicts.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `word = "zyxyxyz"`
+- Output: `3`
+- Explanation: Three carefully placed replacements remove every equal or alphabet-adjacent neighboring pair.

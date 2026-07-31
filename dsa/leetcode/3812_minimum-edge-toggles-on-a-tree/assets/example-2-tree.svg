@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 390" role="img" aria-labelledby="title desc">
+  <title id="title">Example 2 initial tree</title>
+  <desc id="desc">A seven-node tree with edges labeled 0 through 5. Nodes 2 and 3 have initial color 1; every other node has initial color 0.</desc>
+  <rect width="760" height="390" rx="18" fill="#f8fafc"/>
+  <text x="380" y="30" text-anchor="middle" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="600" fill="#334155">Initial colors · red = 0 · green = 1</text>
+  <g stroke="#475569" stroke-width="4" stroke-linecap="round">
+    <line x1="100" y1="82" x2="235" y2="195"/>
+    <line x1="235" y1="195" x2="380" y2="195"/>
+    <line x1="380" y1="195" x2="525" y2="195"/>
+    <line x1="525" y1="195" x2="660" y2="82"/>
+    <line x1="525" y1="195" x2="660" y2="308"/>
+    <line x1="235" y1="195" x2="100" y2="308"/>
+  </g>
+  <g font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">
+    <g transform="translate(156 111)"><rect width="24" height="22" rx="11" fill="#e2e8f0"/><text x="12" y="16">0</text></g>
+    <g transform="translate(296 160)"><rect width="24" height="22" rx="11" fill="#e2e8f0"/><text x="12" y="16">1</text></g>
+    <g transform="translate(441 160)"><rect width="24" height="22" rx="11" fill="#e2e8f0"/><text x="12" y="16">2</text></g>
+    <g transform="translate(581 111)"><rect width="24" height="22" rx="11" fill="#e2e8f0"/><text x="12" y="16">3</text></g>
+    <g transform="translate(581 257)"><rect width="24" height="22" rx="11" fill="#e2e8f0"/><text x="12" y="16">4</text></g>
+    <g transform="translate(156 257)"><rect width="24" height="22" rx="11" fill="#e2e8f0"/><text x="12" y="16">5</text></g>
+  </g>
+  <g font-family="Inter,Segoe UI,sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">
+    <circle cx="100" cy="82" r="34" fill="#dc2626" stroke="#991b1b" stroke-width="3"/><text x="100" y="89">0</text>
+    <circle cx="235" cy="195" r="34" fill="#dc2626" stroke="#991b1b" stroke-width="3"/><text x="235" y="202">1</text>
+    <circle cx="380" cy="195" r="34" fill="#16a34a" stroke="#166534" stroke-width="3"/><text x="380" y="202">2</text>
+    <circle cx="525" cy="195" r="34" fill="#16a34a" stroke="#166534" stroke-width="3"/><text x="525" y="202">3</text>
+    <circle cx="660" cy="82" r="34" fill="#dc2626" stroke="#991b1b" stroke-width="3"/><text x="660" y="89">4</text>
+    <circle cx="660" cy="308" r="34" fill="#dc2626" stroke="#991b1b" stroke-width="3"/><text x="660" y="315">5</text>
+    <circle cx="100" cy="308" r="34" fill="#dc2626" stroke="#991b1b" stroke-width="3"/><text x="100" y="315">6</text>
+  </g>
+  <g font-family="Inter,Segoe UI,sans-serif" font-size="12" fill="#475569" text-anchor="middle">
+    <text x="100" y="133">node 0</text><text x="235" y="246">node 1</text><text x="380" y="246">node 2</text><text x="525" y="246">node 3</text>
+    <text x="660" y="133">node 4</text><text x="660" y="359">node 5</text><text x="100" y="359">node 6</text>
+  </g>
+</svg>

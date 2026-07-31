@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Winning Streak and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Labels win runs with a cumulative non-win count, aggregates each run, and retains every player.",
+      "time_complexity": "O(n \\log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

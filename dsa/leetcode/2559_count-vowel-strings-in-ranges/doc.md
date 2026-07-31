@@ -8,67 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, String, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-vowel-strings-in-ranges](https://leetcode.com/problems/count-vowel-strings-in-ranges/) |
+| LeetCode | [Count Vowel Strings in Ranges](https://leetcode.com/problems/count-vowel-strings-in-ranges/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-vowel-strings-in-ranges/).
 
 ### Goal
-Given a list of strings and a set of query ranges, determine how many strings in each range start and end with a vowel. A string is considered valid if both its first and last characters are in the set {'a', 'e', 'i', 'o', 'u'}.
+
+You are given a 0-indexed array `words` and a list of inclusive index ranges `queries`. A word qualifies as a vowel string when both its first character and its last character are vowels. For this problem, the vowels are exactly `a`, `e`, `i`, `o`, and `u`.
+
+Each query is a pair `[left, right]` asking how many qualifying words occur from index `left` through index `right`, including both endpoints. Return one count per query in the original query order.
 
 ### Function Contract
+
 **Inputs**
 
-- `words`: A list of strings consisting of lowercase English letters.
-- `queries`: A list of integer pairs `[li, ri]`, where each pair represents an inclusive range index in the `words` array.
+- `words`: A list of $n$ nonempty strings containing only lowercase English letters, where $1 \le n \le 10^5$, each length is at most $40$, and their combined length is at most $3\cdot10^5$.
+- `queries`: A list of $q$ pairs `[left, right]`, where $1 \le q \le 10^5$ and $0 \le \texttt{left} \le \texttt{right} < n$.
 
 **Return value**
 
-- A list of integers where each element corresponds to the count of valid strings within the specified range `[li, ri]` for each query.
+- A list of $q$ integers in which entry $i$ is the number of words that start and end with a vowel inside the inclusive range given by `queries[i]`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `words = ["aba","bcb","ece","aa","e"], queries = [[0,2],[1,4],[1,1]]`
-- Output: `[2,3,0]`
+- Input: `words = ["aba", "bcb", "ece", "aa", "e"], queries = [[0, 2], [1, 4], [1, 1]]`
+- Output: `[2, 3, 0]`
+- Explanation: The qualifying words are `aba`, `ece`, `aa`, and `e`; each range counts only those indices it contains.
 
 **Example 2**
 
-- Input: `words = ["a","e","i"], queries = [[0,2],[0,1],[2,2]]`
-- Output: `[3,2,1]`
+- Input: `words = ["a", "e", "i"], queries = [[0, 2], [0, 1], [2, 2]]`
+- Output: `[3, 2, 1]`
+- Explanation: Every word begins and ends with a vowel.
 
----
+**Example 3**
 
-## Solution
-### Approach
-The problem is solved using the **Prefix Sum** technique. By pre-calculating an array where each index `i` stores the cumulative count of valid strings from the start of the list up to index `i`, we can answer range queries in constant time $O(1)$ by calculating `prefix_sum[ri + 1] - prefix_sum[li]`.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N + Q)$, where $N$ is the number of words and $Q$ is the number of queries. We iterate through the words once to build the prefix sum array and through the queries once to compute the results.
-- **Space Complexity**: $O(N)$ to store the prefix sum array.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(words: list[str], queries: list[list[int]]) -> list[int]:
-    vowels = {'a', 'e', 'i', 'o', 'u'}
-    n = len(words)
-
-    # prefix_sum[i] stores the count of valid strings in words[0...i-1]
-    prefix_sum = [0] * (n + 1)
-
-    for i in range(n):
-        is_valid = 1 if (words[i][0] in vowels and words[i][-1] in vowels) else 0
-        prefix_sum[i + 1] = prefix_sum[i] + is_valid
-
-    results = []
-    for li, ri in queries:
-        # The number of valid strings in range [li, ri] is prefix_sum[ri + 1] - prefix_sum[li]
-        count = prefix_sum[ri + 1] - prefix_sum[li]
-        results.append(count)
-
-    return results
-```
-</details>
+- Input: `words = ["apple", "owl", "ice"], queries = [[0, 2], [1, 1]]`
+- Output: `[2, 0]`
+- Explanation: `apple` and `ice` qualify, while `owl` ends with a consonant.

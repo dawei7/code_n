@@ -1,0 +1,251 @@
+{
+  "challenge_id": "lc_2924",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one source leads a three-team chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "unique-source"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two source teams prevent a unique champion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "multiple-sources"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-single-team",
+      "name": "trial: the only team is champion without edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "edges": []
+      },
+      "tags": [
+        "trial",
+        "minimum-size"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-empty-graph",
+      "name": "trial: several isolated teams are all champion candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": []
+      },
+      "tags": [
+        "trial",
+        "empty-graph",
+        "multiple-sources"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-last-team-star",
+      "name": "trial: final-labeled team is the sole source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "champion-last",
+        "star"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-two-components",
+      "name": "hidden: disconnected source components prevent uniqueness",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-sources",
+        "disconnected"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-dense-order",
+      "name": "hidden: transitively closed total order has one source",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "dense",
+        "transitive"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-direct-and-transitive-edges",
+      "name": "hidden: redundant transitive edges do not change indegree status",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "transitive-closure"
+      ],
+      "expected": 1
+    }
+  ]
+}

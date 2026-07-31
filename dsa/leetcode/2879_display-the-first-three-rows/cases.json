@@ -1,0 +1,254 @@
+{
+  "challenge_id": "lc_2879",
+  "cases": [
+    {
+      "id": "sample-first-three-of-six",
+      "name": "sample: retain the first three of six employees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 3,
+              "name": "Bob",
+              "department": "Operations",
+              "salary": 48675
+            },
+            {
+              "employee_id": 90,
+              "name": "Alice",
+              "department": "Sales",
+              "salary": 11096
+            },
+            {
+              "employee_id": 9,
+              "name": "Tatiana",
+              "department": "Engineering",
+              "salary": 33805
+            },
+            {
+              "employee_id": 60,
+              "name": "Annabelle",
+              "department": "InformationTechnology",
+              "salary": 37678
+            },
+            {
+              "employee_id": 49,
+              "name": "Jonathan",
+              "department": "HumanResources",
+              "salary": 23793
+            },
+            {
+              "employee_id": 43,
+              "name": "Khaled",
+              "department": "Administration",
+              "salary": 40454
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "department",
+          "salary"
+        ],
+        "rows": [
+          [
+            3,
+            "Bob",
+            "Operations",
+            48675
+          ],
+          [
+            90,
+            "Alice",
+            "Sales",
+            11096
+          ],
+          [
+            9,
+            "Tatiana",
+            "Engineering",
+            33805
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-exactly-three",
+      "name": "exactly three rows are all retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "name": "Ada",
+              "department": "Engineering",
+              "salary": 90000
+            },
+            {
+              "employee_id": 2,
+              "name": "Lin",
+              "department": "Sales",
+              "salary": 70000
+            },
+            {
+              "employee_id": 3,
+              "name": "Bo",
+              "department": "Operations",
+              "salary": 60000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "department",
+          "salary"
+        ],
+        "rows": [
+          [
+            1,
+            "Ada",
+            "Engineering",
+            90000
+          ],
+          [
+            2,
+            "Lin",
+            "Sales",
+            70000
+          ],
+          [
+            3,
+            "Bo",
+            "Operations",
+            60000
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "exact-length"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "fewer than three rows are all retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 8,
+              "name": "Mia",
+              "department": "Research",
+              "salary": 81000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "department",
+          "salary"
+        ],
+        "rows": [
+          [
+            8,
+            "Mia",
+            "Research",
+            81000
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "short-input"
+      ]
+    },
+    {
+      "id": "real-order-and-cutoff",
+      "name": "hidden: repeated values preserve order and later rows are excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 10,
+              "name": "Same",
+              "department": "A",
+              "salary": 50000
+            },
+            {
+              "employee_id": 11,
+              "name": "Same",
+              "department": "A",
+              "salary": 50000
+            },
+            {
+              "employee_id": 12,
+              "name": "Same",
+              "department": "A",
+              "salary": 50000
+            },
+            {
+              "employee_id": 13,
+              "name": "Later",
+              "department": "B",
+              "salary": 90000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "name",
+          "department",
+          "salary"
+        ],
+        "rows": [
+          [
+            10,
+            "Same",
+            "A",
+            50000
+          ],
+          [
+            11,
+            "Same",
+            "A",
+            50000
+          ],
+          [
+            12,
+            "Same",
+            "A",
+            50000
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "order",
+        "cutoff"
+      ]
+    }
+  ]
+}

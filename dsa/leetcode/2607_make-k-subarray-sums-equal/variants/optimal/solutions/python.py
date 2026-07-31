@@ -1,27 +1,13 @@
-import math
+from math import gcd
 
-def solve(arr: list[int], k: int) -> int:
-    n = len(arr)
-    k = math.gcd(k, n)
-    visited = [False] * n
-    total_ops = 0
-    
-    for i in range(n):
-        if not visited[i]:
-            # Extract all elements belonging to the same cycle
-            cycle = []
-            curr = i
-            while not visited[curr]:
-                visited[curr] = True
-                cycle.append(arr[curr])
-                curr = (curr + k) % n
-            
-            # To minimize sum of absolute differences, 
-            # we transform all elements in the cycle to their median.
-            cycle.sort()
-            median = cycle[len(cycle) // 2]
-            
-            for val in cycle:
-                total_ops += abs(val - median)
-                
-    return total_ops
+
+def solve(arr, k):
+    group_count = gcd(len(arr), k)
+    operations = 0
+
+    for start in range(group_count):
+        group = sorted(arr[start::group_count])
+        median = group[len(group) // 2]
+        operations += sum(abs(value - median) for value in group)
+
+    return operations

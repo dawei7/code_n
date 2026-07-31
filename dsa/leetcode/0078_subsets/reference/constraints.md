@@ -1,0 +1,5 @@
+## Constraints
+
+- $1 \le \lvert\texttt{nums}\rvert \le 10$
+- $-10 \le \texttt{nums[i]} \le 10$
+- Every number in `nums` is unique.

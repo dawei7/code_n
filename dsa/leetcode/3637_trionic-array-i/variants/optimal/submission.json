@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3952",
+  "frontend_id": "3637",
+  "title_slug": "trionic-array-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isTrionic",
+  "verified_submission_id": "2083920869",
+  "verified_at": "2026-07-27T20:17:10.918005+00:00"
+}

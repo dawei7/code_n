@@ -1,0 +1,54 @@
+{
+  "challenge_id": "lc_2645",
+  "measurement_note": "Size is n, the word length. Repeated c characters force every character into a separate abc group. The reference counts group boundaries once in Theta(n) time. A correct slower implementation that recomputes the group count independently for every prefix performs Theta(n^2), completes all three legal tiers, and fails by scaling rather than by a safety cap.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 10 repeated c characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "word": "cccccccccc"
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "repeated"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 25 repeated c characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {
+        "word": "ccccccccccccccccccccccccc"
+      },
+      "expected": 50,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "repeated"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 50 repeated c characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "word": "cccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "repeated"
+      ]
+    }
+  ]
+}

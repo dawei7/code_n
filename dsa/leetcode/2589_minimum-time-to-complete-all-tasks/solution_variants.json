@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Time to Complete All Tasks and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Greedily activates the latest available seconds using Fenwick and predecessor structures.",
+      "time_complexity": "O(N log N)",
+      "space_complexity": "O(T)"
     }
   ]
 }

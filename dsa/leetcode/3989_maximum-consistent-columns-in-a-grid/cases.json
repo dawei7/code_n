@@ -1,0 +1,1620 @@
+{
+  "challenge_id": "lc_3989",
+  "cases": [
+    {
+      "id": "sample-single-row-removal",
+      "name": "sample: remove the final incompatible column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -2,
+            0,
+            3
+          ]
+        ],
+        "limit": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-row",
+        "equality-boundary"
+      ]
+    },
+    {
+      "id": "sample-multirow-removal",
+      "name": "sample: skip one column to satisfy every row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "multiple-rows",
+        "skipped-column"
+      ]
+    },
+    {
+      "id": "sample-no-compatible-pair",
+      "name": "sample: either of two incompatible columns may remain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -5,
+            5
+          ]
+        ],
+        "limit": 9
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-column-answer"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one matrix cell leaves one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7
+          ]
+        ],
+        "limit": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-dimensions"
+      ]
+    },
+    {
+      "id": "trial-all-adjacent",
+      "name": "trial: every adjacent step meets a unit limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "retain-all"
+      ]
+    },
+    {
+      "id": "trial-adjacent-not-pairwise",
+      "name": "trial: endpoints may exceed the limit through valid adjacent steps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            4,
+            8,
+            12
+          ]
+        ],
+        "limit": 4
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "adjacent-only",
+        "equality-boundary"
+      ]
+    },
+    {
+      "id": "trial-zero-limit-duplicates",
+      "name": "trial: zero limit selects the most frequent compatible value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            1,
+            1,
+            2,
+            2,
+            2
+          ]
+        ],
+        "limit": 0
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "zero-limit",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-skip-two-outliers",
+      "name": "trial: a compatible chain skips alternating outliers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            100,
+            1,
+            101,
+            2
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "subsequence",
+        "outliers"
+      ]
+    },
+    {
+      "id": "trial-every-pair-incompatible",
+      "name": "trial: no pair satisfies both rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            10,
+            20
+          ],
+          [
+            0,
+            -10,
+            -20
+          ]
+        ],
+        "limit": 5
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "multiple-rows",
+        "single-column-answer"
+      ]
+    },
+    {
+      "id": "trial-one-late-compatible-pair",
+      "name": "trial: only the last two columns form a valid pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            100,
+            1,
+            2
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "multiple-rows",
+        "late-pair"
+      ]
+    },
+    {
+      "id": "real-two-equal-best-chains",
+      "name": "hidden: two disjoint compatible chains tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            10,
+            1,
+            11,
+            2,
+            12
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiple-optima"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: extreme values connect through the midpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -100000,
+            0,
+            100000
+          ]
+        ],
+        "limit": 100000
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "maximum-limit",
+        "adjacent-only"
+      ]
+    },
+    {
+      "id": "real-zero-limit-all-rows",
+      "name": "hidden: identical columns satisfy zero limit in every row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            -2,
+            -2,
+            -2
+          ]
+        ],
+        "limit": 0
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "zero-limit",
+        "multiple-rows",
+        "retain-all"
+      ]
+    },
+    {
+      "id": "real-only-final-pair",
+      "name": "hidden: widely separated prefix leaves one final compatible edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            100,
+            200,
+            201
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "late-pair"
+      ]
+    },
+    {
+      "id": "real-interleaved-chains",
+      "name": "hidden: interleaved value bands preserve two index-ordered chains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            3,
+            1,
+            4,
+            2,
+            5
+          ]
+        ],
+        "limit": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "interleaved",
+        "multiple-optima"
+      ]
+    },
+    {
+      "id": "real-decreasing-values",
+      "name": "hidden: decreasing values remain valid in index order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            2,
+            1,
+            0
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "decreasing-values",
+        "order-semantics"
+      ]
+    },
+    {
+      "id": "real-extreme-return",
+      "name": "hidden: skip an incompatible extreme jump at maximum limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -100000,
+            0,
+            100000,
+            -100000
+          ]
+        ],
+        "limit": 100000
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "skipped-column"
+      ]
+    },
+    {
+      "id": "real-maximum-columns",
+      "name": "hidden: a wide grid has only incompatible columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            -64,
+            -63,
+            -62,
+            -61,
+            -60,
+            -59,
+            -58,
+            -57,
+            -56,
+            -55,
+            -54,
+            -53,
+            -52,
+            -51,
+            -50,
+            -49,
+            -48,
+            -47,
+            -46,
+            -45,
+            -44,
+            -43,
+            -42,
+            -41,
+            -40,
+            -39,
+            -38,
+            -37,
+            -36,
+            -35,
+            -34,
+            -33,
+            -32,
+            -31,
+            -30,
+            -29,
+            -28,
+            -27,
+            -26,
+            -25,
+            -24,
+            -23,
+            -22,
+            -21,
+            -20,
+            -19,
+            -18,
+            -17,
+            -16,
+            -15,
+            -14,
+            -13,
+            -12,
+            -11,
+            -10,
+            -9,
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ]
+        ],
+        "limit": 0
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "wide-columns",
+        "zero-limit",
+        "single-column-answer"
+      ]
+    },
+    {
+      "id": "real-maximum-rows",
+      "name": "hidden: one pair must satisfy all 250 rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "limit": 0
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "maximum-rows",
+        "zero-limit",
+        "retain-all"
+      ]
+    },
+    {
+      "id": "real-multirow-outlier-column",
+      "name": "hidden: a five-column chain skips one outlier in every row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            4,
+            100,
+            6,
+            8
+          ],
+          [
+            0,
+            1,
+            2,
+            100,
+            3,
+            4
+          ],
+          [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ]
+        ],
+        "limit": 2
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "multiple-rows",
+        "outlier-column",
+        "long-chain"
+      ]
+    }
+  ]
+}

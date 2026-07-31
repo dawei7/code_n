@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3504",
+  "measurement_note": "Size is n, the length of s; t has fixed length 8 at every tier. Uniform strings maximize palindrome radii. The accepted O(nm + n + m) method is linear in this authored size, while per-center expansion on s is Theta(n^2).",
+  "cases": [
+    {
+      "id": "benchmark-growing-s-64",
+      "name": "benchmark: uniform s of length 64 with fixed t",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "t": "aaaaaaaa"
+      },
+      "expected": 72,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "asymmetric-lengths",
+        "uniform"
+      ]
+    },
+    {
+      "id": "benchmark-growing-s-256",
+      "name": "benchmark: uniform s of length 256 with fixed t",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "t": "aaaaaaaa"
+      },
+      "expected": 264,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "asymmetric-lengths",
+        "uniform"
+      ]
+    },
+    {
+      "id": "benchmark-growing-s-512",
+      "name": "benchmark: uniform s of length 512 with fixed t",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "t": "aaaaaaaa"
+      },
+      "expected": 520,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "asymmetric-lengths",
+        "uniform"
+      ]
+    }
+  ]
+}

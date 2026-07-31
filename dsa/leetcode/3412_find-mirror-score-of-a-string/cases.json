@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3412",
+  "cases": [
+    {"id":"sample-two-pairs","name":"sample: two different mirror pairs","kind":"sample","visible":true,"input":{"s":"aczzx"},"expected":5,"tags":["sample","multiple-pairs"]},
+    {"id":"sample-no-pairs","name":"sample: no earlier mirrors exist","kind":"sample","visible":true,"input":{"s":"abcdef"},"expected":0,"tags":["sample","unmatched"]},
+    {"id":"trial-single-character","name":"trial: one character remains unmatched","kind":"trial","visible":true,"input":{"s":"m"},"expected":0,"tags":["minimum-length","unmatched"]},
+    {"id":"trial-basic-pair","name":"trial: alphabet endpoints mirror each other","kind":"trial","visible":true,"input":{"s":"az"},"expected":1,"tags":["single-pair","alphabet-boundary"]},
+    {"id":"trial-reversed-pair","name":"trial: mirroring works in either arrival order","kind":"trial","visible":true,"input":{"s":"za"},"expected":1,"tags":["single-pair","reverse-order"]},
+    {"id":"trial-closest-unmatched","name":"trial: each mirror uses the closest available index","kind":"trial","visible":true,"input":{"s":"aaazz"},"expected":4,"tags":["closest","stack"]},
+    {"id":"trial-alternating-pairs","name":"trial: marked indices cannot be reused","kind":"trial","visible":true,"input":{"s":"azaz"},"expected":2,"tags":["marked","alternating"]},
+    {"id":"real-nested-endpoints","name":"real: repeated endpoints pair from the inside out","kind":"real","visible":false,"input":{"s":"aazz"},"expected":4,"tags":["closest","repeated"]},
+    {"id":"real-three-mirror-types","name":"real: three mirror types score independently","kind":"real","visible":false,"input":{"s":"zyxabc"},"expected":9,"tags":["multiple-pairs","mirror-types"]},
+    {"id":"real-all-unmatched","name":"real: identical letters never mirror themselves","kind":"real","visible":false,"input":{"s":"aaaaaaaa"},"expected":0,"tags":["unmatched","repeated"]}
+  ]
+}

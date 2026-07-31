@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Ways to Express an Integer as Sum of Powers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts distinct powered subsets with descending one-dimensional subset-sum dynamic programming.",
+      "time_complexity": "O(nm)",
+      "space_complexity": "O(n)"
     }
   ]
 }

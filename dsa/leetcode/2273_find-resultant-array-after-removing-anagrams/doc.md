@@ -8,22 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-resultant-array-after-removing-anagrams](https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/).
-
 ### Goal
-Repeatedly remove a word when it is an anagram of the word immediately before it. Return the stable remaining sequence.
+You are given a 0-indexed array `words` whose elements contain only lowercase
+English letters. Two words are anagrams when one can be rearranged into the
+other using every original letter exactly once, including the same
+multiplicity of each letter.
+
+An operation may choose an index $i$ with $0 < i < \lvert\texttt{words}\rvert$
+when `words[i - 1]` and `words[i]` are anagrams, then delete `words[i]`. Continue
+until no adjacent pair permits another deletion. Although several indices may
+be eligible at the same time, every possible order of valid operations leads
+to the same final array.
+
+Return that stable array of remaining words. The relative order of all
+survivors must stay the same as in the input.
 
 ### Function Contract
 **Inputs**
 
-- `words`: a list of lowercase words.
+- `words`: a nonempty list of between 1 and 100 lowercase English words, each
+  with length between 1 and 10
+
+Let $S$ denote the total number of input characters:
+
+$$
+S = \sum_{w \in \texttt{words}} \lvert w \rvert.
+$$
 
 **Return value**
 
-The words left after all adjacent anagram removals, preserving order.
+The words remaining after all valid adjacent-anagram deletions, in their
+original relative order.
 
 ### Examples
 **Example 1**
@@ -40,16 +58,3 @@ The words left after all adjacent anagram removals, preserving order.
 
 - Input: `words = ["abc", "cba", "bac"]`
 - Output: `["abc"]`
-
----
-
-## Solution
-### Approach
-Compute a canonical signature for each word, such as its sorted characters or 26-letter frequency tuple. Keep the first word, then retain each later word only when its signature differs from the last retained signature. Removed words never change the signature of their surviving predecessor.
-
-### Complexity Analysis
-- **Time Complexity**: `O(L log A)` with per-word sorting, where `L` is total characters and `A` bounds word length
-- **Space Complexity**: `O(L)` for the output and signatures
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_2531",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one distinct-count gap cannot close", "kind": "sample", "visible": true, "input": {"word1": "ac", "word2": "b"}, "expected": false, "tags": ["sample", "impossible"]},
+    {"id": "sample-2", "name": "sample: singleton frequencies change both counts", "kind": "sample", "visible": true, "input": {"word1": "abcc", "word2": "aab"}, "expected": true, "tags": ["sample", "frequency-transition"]},
+    {"id": "sample-3", "name": "sample: disjoint equal-size alphabets", "kind": "sample", "visible": true, "input": {"word1": "abcde", "word2": "fghij"}, "expected": true, "tags": ["sample", "equal-counts"]},
+    {"id": "trial-equal-singletons", "name": "trial: different singleton characters swap", "kind": "trial", "visible": true, "input": {"word1": "a", "word2": "b"}, "expected": true, "tags": ["trial", "minimum-length"]},
+    {"id": "trial-same-character", "name": "trial: equal chosen characters leave strings unchanged", "kind": "trial", "visible": true, "input": {"word1": "ab", "word2": "ac"}, "expected": true, "tags": ["trial", "same-character-swap"]},
+    {"id": "real-one-vs-two", "name": "hidden: singleton alphabet cannot match two", "kind": "real", "visible": false, "input": {"word1": "a", "word2": "bc"}, "expected": false, "tags": ["hidden", "singleton"]},
+    {"id": "real-repeated-singletons", "name": "hidden: repeated one-character strings become two each", "kind": "real", "visible": false, "input": {"word1": "aa", "word2": "bb"}, "expected": true, "tags": ["hidden", "repeated"]},
+    {"id": "real-large-gap", "name": "hidden: one swap cannot close a two-character gap", "kind": "real", "visible": false, "input": {"word1": "abc", "word2": "a"}, "expected": false, "tags": ["hidden", "distinct-gap"]}
+  ]
+}

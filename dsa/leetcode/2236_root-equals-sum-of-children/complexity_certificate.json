@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2236",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The legal tree always has exactly three nodes and each node has one of 201 values, so the complete source domain is fixed and offers no honest asymptotic size axis.",
+  "workload_bound": {
+    "symbol": "t",
+    "maximum": 8120601,
+    "unit": "legal labeled three-node trees",
+    "source_constraint": "the tree has exactly a root and two children, and every value is from -100 through 100"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference reads the fixed root and two child values, performs one addition, and performs one equality comparison."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression covers all 40,401 child-value pairs with every legal equality root, adjacent false roots, and root-value boundaries."
+    }
+  ]
+}

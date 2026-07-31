@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_3016",
+  "cases": [
+    {
+      "id": "sample-five-distinct",
+      "name": "sample: five letters use one-push positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abcde"
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-repeated",
+      "name": "sample: three repeated letters all cost one push",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "xyzxyzxyzxyz"
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "frequency"
+      ]
+    },
+    {
+      "id": "single-letter",
+      "name": "boundary: one repeated character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "nine-distinct",
+      "name": "trial: ninth distinct letter enters the second level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefghi"
+      },
+      "expected": 10,
+      "tags": [
+        "level-boundary"
+      ]
+    },
+    {
+      "id": "frequency-ordering",
+      "name": "trial: common letters receive the cheapest slots",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaaaaaabbbbbcccdefghijkl"
+      },
+      "expected": 30,
+      "tags": [
+        "greedy",
+        "frequency"
+      ]
+    },
+    {
+      "id": "all-distinct",
+      "name": "real: all lowercase letters occur once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 56,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "all-equal-frequencies",
+      "name": "real: every letter occurs twice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 112,
+      "tags": [
+        "ties"
+      ]
+    },
+    {
+      "id": "dominant-letter",
+      "name": "real: one dominant frequency remains at cost one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaabcdefghijk"
+      },
+      "expected": 33,
+      "tags": [
+        "frequency"
+      ]
+    }
+  ]
+}

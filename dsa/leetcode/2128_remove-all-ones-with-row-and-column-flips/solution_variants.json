@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Remove All Ones With Row and Column Flips and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Checks that every row is either identical to the first row or its bitwise complement.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(1)"
     }
   ]
 }

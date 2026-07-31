@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3215",
+  "frontend_id": "2946",
+  "title_slug": "matrix-similarity-after-cyclic-shifts",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.areSimilar",
+  "verified_submission_id": "2078337023",
+  "verified_at": "2026-07-23T11:48:13.466972+00:00"
+}

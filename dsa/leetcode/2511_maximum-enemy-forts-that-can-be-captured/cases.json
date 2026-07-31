@@ -1,99 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2511",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: longest capture segment is between opposite forts",
+      "name": "sample: choose the longer of two valid moves",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "forts": [
-          1,
-          0,
-          0,
-          -1,
-          0,
-          0,
-          0,
-          0,
-          1
-        ]
-      },
+      "input": { "forts": [1,0,0,-1,0,0,0,0,1] },
       "expected": 4,
-      "tags": [
-        "sample",
-        "array"
-      ]
+      "tags": ["sample", "multiple-segments"]
     },
     {
       "id": "sample-2",
-      "name": "sample: adjacent opposite forts capture none",
+      "name": "sample: adjacent endpoints capture no enemies",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "forts": [
-          0,
-          0,
-          1,
-          -1
-        ]
-      },
+      "input": { "forts": [0,0,1,-1] },
       "expected": 0,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "adjacent-endpoints"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: same fort type cannot capture",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "forts": [
-          1,
-          0,
-          0,
-          0,
-          1
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-enemy-to-owned-fort",
-      "name": "trial: capture also works in the reverse direction",
+      "id": "trial-reverse-direction",
+      "name": "trial: move leftward from an owned fort",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "forts": [
-          -1,
-          0,
-          0,
-          1
-        ]
-      },
+      "input": { "forts": [-1,0,0,1] },
       "expected": 2,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "reverse-direction"]
     },
     {
-      "id": "real-single-fort",
-      "name": "hidden: one fort cannot form a capture path",
+      "id": "trial-same-boundaries",
+      "name": "trial: two owned forts do not form a valid move",
+      "kind": "trial",
+      "visible": true,
+      "input": { "forts": [1,0,0,0,1] },
+      "expected": 0,
+      "tags": ["trial", "same-boundary-type"]
+    },
+    {
+      "id": "trial-several-gaps",
+      "name": "trial: select the widest opposite-boundary gap",
+      "kind": "trial",
+      "visible": true,
+      "input": { "forts": [-1,0,1,0,0,0,-1,0,1] },
+      "expected": 3,
+      "tags": ["trial", "maximum-gap"]
+    },
+    {
+      "id": "real-single-owned-fort",
+      "name": "hidden: owned fort without an empty destination",
       "kind": "real",
       "visible": false,
-      "input": {
-        "forts": [
-          1
-        ]
-      },
+      "input": { "forts": [1] },
       "expected": 0,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "minimum-length"]
+    },
+    {
+      "id": "real-only-enemies",
+      "name": "hidden: no owned fort or empty destination",
+      "kind": "real",
+      "visible": false,
+      "input": { "forts": [0,0,0,0] },
+      "expected": 0,
+      "tags": ["hidden", "no-boundaries"]
+    },
+    {
+      "id": "real-empty-boundary-interruption",
+      "name": "hidden: an empty position ends the current enemy run",
+      "kind": "real",
+      "visible": false,
+      "input": { "forts": [1,0,-1,0,0,-1,0,0,0,1] },
+      "expected": 3,
+      "tags": ["hidden", "boundary-reset"]
     }
   ]
 }

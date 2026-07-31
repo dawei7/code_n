@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2433",
+  "frontend_id": "2347",
+  "title_slug": "best-poker-hand",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.bestHand",
+  "verified_submission_id": "2074403788",
+  "verified_at": "2026-07-20T09:52:59.659038+00:00"
+}

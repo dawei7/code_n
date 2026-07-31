@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3646",
+  "cases": [
+    {
+      "id": "trial-zero",
+      "name": "trial: zero advances to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-input"
+      ]
+    },
+    {
+      "id": "trial-one-is-special",
+      "name": "trial: strict successor after one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 22,
+      "tags": [
+        "trial",
+        "strict-successor"
+      ]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: two advances to twenty-two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 22,
+      "tags": [
+        "sample",
+        "two-digit"
+      ]
+    },
+    {
+      "id": "trial-before-twenty-two",
+      "name": "trial: value just below special candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 21
+      },
+      "expected": 22,
+      "tags": [
+        "trial",
+        "candidate-boundary"
+      ]
+    },
+    {
+      "id": "real-twenty-two-is-special",
+      "name": "real: strict successor after twenty-two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 22
+      },
+      "expected": 212,
+      "tags": [
+        "real",
+        "strict-successor"
+      ]
+    },
+    {
+      "id": "sample-thirty-three",
+      "name": "sample: next candidate uses digits one and two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 33
+      },
+      "expected": 212,
+      "tags": [
+        "sample",
+        "mixed-digits"
+      ]
+    },
+    {
+      "id": "real-before-two-twelve",
+      "name": "real: value immediately below two-twelve",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 211
+      },
+      "expected": 212,
+      "tags": [
+        "real",
+        "candidate-boundary"
+      ]
+    },
+    {
+      "id": "real-two-twelve-is-special",
+      "name": "real: advance from mixed-digit special number",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 212
+      },
+      "expected": 333,
+      "tags": [
+        "real",
+        "strict-successor"
+      ]
+    },
+    {
+      "id": "real-three-thirty-three-is-special",
+      "name": "real: advance to four repeated four times",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 333
+      },
+      "expected": 4444,
+      "tags": [
+        "real",
+        "odd-to-even-pattern"
+      ]
+    },
+    {
+      "id": "real-large-input",
+      "name": "real: trillion-scale input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000000
+      },
+      "expected": 2388883888832,
+      "tags": [
+        "real",
+        "large-input"
+      ]
+    },
+    {
+      "id": "real-maximum-input",
+      "name": "real: maximum legal input has successor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000000000
+      },
+      "expected": 2666888888886662,
+      "tags": [
+        "real",
+        "maximum-input",
+        "seventeen-digit-successor"
+      ]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum XOR Score Subarray Queries and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes every interval's XOR score and maximum contained score with coupled dynamic-programming recurrences.",
+      "time_complexity": "O(n^2 + q)",
+      "space_complexity": "O(n^2)"
     }
   ]
 }

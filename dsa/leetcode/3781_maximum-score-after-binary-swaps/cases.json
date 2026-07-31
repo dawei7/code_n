@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3781",
+  "cases": [
+    {"id":"sample-1","name":"sample: two ones move onto positions zero and two","kind":"sample","visible":true,"input":{"nums":[2,1,5,2,3],"s":"01010"},"expected":7,"validator":{"kind":"exact"},"tags":["sample","multiple-swaps"]},
+    {"id":"sample-2","name":"sample: no ones means no contribution","kind":"sample","visible":true,"input":{"nums":[4,7,2,9],"s":"0000"},"expected":0,"validator":{"kind":"exact"},"tags":["sample","no-ones"]},
+    {"id":"trial-all-ones","name":"trial: all positions are fixed contributors","kind":"trial","visible":true,"input":{"nums":[4,7,2,9],"s":"1111"},"expected":22,"validator":{"kind":"exact"},"tags":["trial","all-ones"]},
+    {"id":"trial-beneficial-swap","name":"trial: one moves left to a larger score","kind":"trial","visible":true,"input":{"nums":[10,1],"s":"01"},"expected":10,"validator":{"kind":"exact"},"tags":["trial","beneficial-swap"]},
+    {"id":"trial-skip-swap","name":"trial: zero operations preserve the larger original score","kind":"trial","visible":true,"input":{"nums":[1,10],"s":"01"},"expected":10,"validator":{"kind":"exact"},"tags":["trial","zero-operations"]},
+    {"id":"trial-two-ones","name":"trial: only one of two ones needs to move","kind":"trial","visible":true,"input":{"nums":[5,1,4],"s":"011"},"expected":9,"validator":{"kind":"exact"},"tags":["trial","multiple-ones"]},
+    {"id":"real-one-cannot-move-right","name":"hidden: a leading one cannot claim a later large value","kind":"real","visible":false,"input":{"nums":[1,100],"s":"10"},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","directionality"]},
+    {"id":"real-one-across-two-zeros","name":"hidden: one may cross several zeros","kind":"real","visible":false,"input":{"nums":[10,9,1],"s":"001"},"expected":10,"validator":{"kind":"exact"},"tags":["hidden","long-move"]},
+    {"id":"real-single-zero","name":"hidden: a one-character zero string scores zero","kind":"real","visible":false,"input":{"nums":[1000000000],"s":"0"},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","minimum-length","zero"]},
+    {"id":"real-single-one","name":"hidden: a one-character one string keeps its value","kind":"real","visible":false,"input":{"nums":[1000000000],"s":"1"},"expected":1000000000,"validator":{"kind":"exact"},"tags":["hidden","minimum-length","large-value"]},
+    {"id":"real-prefix-deadlines","name":"hidden: early ones cannot use later score positions","kind":"real","visible":false,"input":{"nums":[3,2,100,90],"s":"1100"},"expected":5,"validator":{"kind":"exact"},"tags":["hidden","prefix-deadline"]},
+    {"id":"real-mixed-reachability","name":"hidden: choose the best feasible positions across several deadlines","kind":"real","visible":false,"input":{"nums":[8,1,7,2,9,3],"s":"010101"},"expected":24,"validator":{"kind":"exact"},"tags":["hidden","mixed"]}
+  ]
+}

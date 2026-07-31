@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Median of the Uniqueness Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the distinct-count threshold and counts qualifying subarrays with a sliding window.",
+      "time_complexity": "O(n log D)",
+      "space_complexity": "O(D)"
     }
   ]
 }

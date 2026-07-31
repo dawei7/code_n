@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3881",
+  "cases": [
+    {
+      "id": "sample-none-visible",
+      "name": "sample: both neighbors are forced invisible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "pos": 1,
+        "k": 0
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "zero-visible"
+      ]
+    },
+    {
+      "id": "sample-one-left-visible",
+      "name": "sample: choose one visible person on the left",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "pos": 2,
+        "k": 1
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "one-visible"
+      ]
+    },
+    {
+      "id": "sample-single-observer",
+      "name": "sample: the sole observer has two choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "pos": 0,
+        "k": 0
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "single-person"
+      ]
+    },
+    {
+      "id": "trial-two-none-visible",
+      "name": "trial: one non-observer is forced invisible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "pos": 0,
+        "k": 0
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-visible",
+        "endpoint-observer"
+      ]
+    },
+    {
+      "id": "trial-two-all-visible",
+      "name": "trial: one non-observer is forced visible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "pos": 0,
+        "k": 1
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-visible",
+        "endpoint-observer"
+      ]
+    },
+    {
+      "id": "trial-left-endpoint-half",
+      "name": "trial: choose two visible people from four at left endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "pos": 0,
+        "k": 2
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "left-endpoint",
+        "binomial"
+      ]
+    },
+    {
+      "id": "trial-right-endpoint-half",
+      "name": "trial: observer position does not alter the count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "pos": 4,
+        "k": 2
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "right-endpoint",
+        "position-independence"
+      ]
+    },
+    {
+      "id": "trial-six-none-visible",
+      "name": "trial: all five others are forced invisible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "pos": 3,
+        "k": 0
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-visible",
+        "forced-directions"
+      ]
+    },
+    {
+      "id": "trial-six-all-visible",
+      "name": "trial: all five others are forced visible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "pos": 2,
+        "k": 5
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-visible",
+        "forced-directions"
+      ]
+    },
+    {
+      "id": "real-four-one-visible",
+      "name": "hidden: choose one of three visible people",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "pos": 1,
+        "k": 1
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "one-visible",
+        "binomial"
+      ]
+    },
+    {
+      "id": "real-four-two-visible",
+      "name": "hidden: complementary choice has equal count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "pos": 2,
+        "k": 2
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "two-visible",
+        "symmetry"
+      ]
+    },
+    {
+      "id": "real-ten-four-visible",
+      "name": "hidden: interior binomial coefficient",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "pos": 4,
+        "k": 4
+      },
+      "expected": 252,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "interior-k",
+        "binomial"
+      ]
+    },
+    {
+      "id": "real-ten-eight-visible",
+      "name": "hidden: complement symmetry reduces the product",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "pos": 7,
+        "k": 8
+      },
+      "expected": 18,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-k",
+        "symmetry"
+      ]
+    },
+    {
+      "id": "real-twenty-middle",
+      "name": "hidden: larger central coefficient remains exact",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "pos": 10,
+        "k": 9
+      },
+      "expected": 184756,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "central-k",
+        "larger-count"
+      ]
+    },
+    {
+      "id": "real-modular-result",
+      "name": "hidden: large coefficient requires modular reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100,
+        "pos": 37,
+        "k": 49
+      },
+      "expected": 538992043,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "modulo",
+        "large-coefficient"
+      ]
+    }
+  ]
+}

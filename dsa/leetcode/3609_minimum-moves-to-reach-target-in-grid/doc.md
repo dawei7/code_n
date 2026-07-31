@@ -8,48 +8,46 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-moves-to-reach-target-in-grid](https://leetcode.com/problems/minimum-moves-to-reach-target-in-grid/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-moves-to-reach-target-in-grid/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-moves-to-reach-target-in-grid/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Two points `(sx, sy)` and `(tx, ty)` lie on an infinitely large two-dimensional grid. Start at `(sx, sy)`. At a current point $(x,y)$, let $m = \max(x,y)$. One move may add $m$ to exactly one coordinate, changing the point to either $(x+m,y)$ or $(x,y+m)$.
+
+Find the minimum number of moves needed to reach `(tx, ty)`. Return `-1` when no sequence of allowed moves reaches the target. The starting coordinates do not exceed their corresponding target coordinates, and all coordinates are nonnegative.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `sx`: The starting x-coordinate.
+- `sy`: The starting y-coordinate.
+- `tx`: The target x-coordinate.
+- `ty`: The target y-coordinate.
+
+The constraints are $0 \le \texttt{sx} \le \texttt{tx} \le 10^9$ and $0 \le \texttt{sy} \le \texttt{ty} \le 10^9$.
 
 **Return value**
 
-TODO
+Return the minimum number of legal moves from the start to the target, or `-1` if the target is unreachable.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `sx = 1, sy = 2, tx = 5, ty = 4`
+- Output: `2`
+- Explanation: Move from `(1, 2)` to `(1, 4)`, then to `(5, 4)`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `sx = 0, sy = 1, tx = 2, ty = 3`
+- Output: `3`
+- Explanation: A shortest route is `(0, 1)`, `(1, 1)`, `(2, 1)`, `(2, 3)`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `sx = 1, sy = 1, tx = 2, ty = 2`
+- Output: `-1`
+- Explanation: Neither legal first move can lead to `(2, 2)`.

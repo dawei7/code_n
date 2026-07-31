@@ -8,94 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Union-Find, Prefix Sum, Ordered Set |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-segment-sum-after-removals](https://leetcode.com/problems/maximum-segment-sum-after-removals/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-segment-sum-after-removals/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-segment-sum-after-removals/).
 
 ### Goal
-Given an array of integers and a sequence of removal indices, determine the maximum segment sum of the remaining array after each removal. A segment is defined as a contiguous subarray of non-removed elements. When an element is removed, it effectively splits a segment into two smaller segments (or removes it entirely).
+
+You are given two 0-indexed integer arrays, `nums` and `remove_queries`, of the same length. Initially every entry of `nums` is present. Process the queries in order; query `i` removes the element at index `remove_queries[i]`. Every removal may shorten a current segment, split it into two segments, or eliminate it.
+
+A segment is a contiguous sequence of positive entries that have not been removed, and its segment sum is the sum of those entries. After every removal, find the greatest sum among all remaining segments. Return one answer for each query. If no entries remain, the maximum segment sum is zero. Every array index appears exactly once in `remove_queries`, so no position is removed twice.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the initial array.
-- `removeQueries`: A list of integers representing the indices to be removed sequentially.
+- `nums`: A list of $n$ positive integers, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^9$.
+- `remove_queries`: A permutation of the indices from $0$ through $n-1$ that gives the removal order.
 
 **Return value**
 
-- A list of integers where the $i$-th element represents the maximum segment sum after the $i$-th removal.
+- Return a list of length $n$ whose entry at index `i` is the maximum remaining segment sum after applying removal `i`.
+
+**Segment semantics**
+
+- Removed positions separate segments; values on opposite sides of a removed position are not contiguous.
+- Segment sums may exceed 32-bit signed integer range.
+- After the final query there are no segments, so the final answer is `0`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 5, 6, 1], removeQueries = [0, 3, 2, 4, 1]`
-- Output: `[14, 7, 2, 2, 0]`
+- Input: `nums = [1,2,5,6,1], remove_queries = [0,3,2,4,1]`
+- Output: `[14,7,2,2,0]`
+- Explanation: After removing index `0`, the remaining segment sums to 14. Removing index `3` splits it, leaving `[2,5]` as the largest segment with sum 7.
 
 **Example 2**
 
-- Input: `nums = [3, 2, 11, 1], removeQueries = [3, 2, 1, 0]`
-- Output: `[16, 5, 3, 0]`
-
-**Example 3**
-
-- Input: `nums = [5, 9, 2], removeQueries = [1, 0, 2]`
-- Output: `[5, 2, 0]`
-
----
-
-## Solution
-### Approach
-The problem is solved efficiently by processing the removals in **reverse order**. Instead of splitting segments, we start with an empty array and "add" elements back in the order opposite to the queries. This transforms the problem into a **Disjoint Set Union (DSU)** task, where we merge adjacent segments and track the maximum sum dynamically.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \cdot \alpha(N))$, where $N$ is the length of the array and $\alpha$ is the inverse Ackermann function, due to the DSU operations.
-- **Space Complexity**: $O(N)$ to store the DSU parent pointers, segment sums, and the status of removed elements.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], remove_queries: list[int]) -> list[int]:
-    n = len(nums)
-    parent = list(range(n))
-    sums = [0] * n
-    exists = [False] * n
-    ans = [0] * n
-
-    def find(i):
-        if parent[i] == i:
-            return i
-        parent[i] = find(parent[i])
-        return parent[i]
-
-    def union(i, j):
-        root_i = find(i)
-        root_j = find(j)
-        if root_i != root_j:
-            parent[root_i] = root_j
-            sums[root_j] += sums[root_i]
-
-    current_max = 0
-    results = []
-
-    # Process in reverse: adding elements back
-    for i in reversed(range(n)):
-        results.append(current_max)
-        idx = remove_queries[i]
-        exists[idx] = True
-        sums[idx] = nums[idx]
-
-        # Check left neighbor
-        if idx > 0 and exists[idx - 1]:
-            union(idx, idx - 1)
-        # Check right neighbor
-        if idx < n - 1 and exists[idx + 1]:
-            union(idx, idx + 1)
-
-        current_max = max(current_max, sums[find(idx)])
-
-    return results[::-1]
-```
-</details>
+- Input: `nums = [3,2,11,1], remove_queries = [3,2,1,0]`
+- Output: `[16,5,3,0]`
+- Explanation: The surviving prefix has sums 16, 5, and 3 after the first three removals; the last removal leaves no segment.

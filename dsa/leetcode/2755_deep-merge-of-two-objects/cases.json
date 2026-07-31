@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2755",
+  "cases": [
+    {
+      "id": "sample-object-union",
+      "name": "sample: shared primitive is replaced and unique keys remain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj1": {
+          "a": 1,
+          "c": 3
+        },
+        "obj2": {
+          "a": 2,
+          "b": 2
+        }
+      },
+      "expected": {
+        "a": 2,
+        "c": 3,
+        "b": 2
+      },
+      "tags": [
+        "sample",
+        "object-union"
+      ]
+    },
+    {
+      "id": "sample-array-type-mismatch",
+      "name": "sample: arrays merge by index and mismatched containers use the second value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj1": [
+          {},
+          2,
+          3
+        ],
+        "obj2": [
+          [],
+          5
+        ]
+      },
+      "expected": [
+        [],
+        5,
+        3
+      ],
+      "tags": [
+        "sample",
+        "arrays",
+        "type-mismatch"
+      ]
+    },
+    {
+      "id": "sample-deep-containers",
+      "name": "sample: nested objects and arrays merge recursively",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj1": {
+          "a": 1,
+          "b": {
+            "c": [
+              1,
+              [
+                2,
+                7
+              ],
+              5
+            ],
+            "d": 2
+          }
+        },
+        "obj2": {
+          "a": 1,
+          "b": {
+            "c": [
+              6,
+              [
+                6
+              ],
+              [
+                9
+              ]
+            ],
+            "e": 3
+          }
+        }
+      },
+      "expected": {
+        "a": 1,
+        "b": {
+          "c": [
+            6,
+            [
+              6,
+              7
+            ],
+            [
+              9
+            ]
+          ],
+          "d": 2,
+          "e": 3
+        }
+      },
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-root-primitive",
+      "name": "sample: non-container roots choose the second value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj1": true,
+        "obj2": null
+      },
+      "expected": null,
+      "tags": [
+        "sample",
+        "primitive",
+        "null"
+      ]
+    },
+    {
+      "id": "trial-first-array-longer",
+      "name": "trial: trailing elements from the first array remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "obj2": [
+          9,
+          8
+        ]
+      },
+      "expected": [
+        9,
+        8,
+        3,
+        4
+      ],
+      "tags": [
+        "arrays",
+        "first-longer"
+      ]
+    },
+    {
+      "id": "trial-second-array-longer",
+      "name": "trial: trailing elements from the second array are appended",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj1": [
+          1
+        ],
+        "obj2": [
+          2,
+          3,
+          {
+            "x": 4
+          }
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        {
+          "x": 4
+        }
+      ],
+      "tags": [
+        "arrays",
+        "second-longer"
+      ]
+    },
+    {
+      "id": "real-object-array-mismatch",
+      "name": "hidden: object and array containers do not merge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj1": {
+          "value": {
+            "x": 1
+          }
+        },
+        "obj2": {
+          "value": [
+            2,
+            3
+          ]
+        }
+      },
+      "expected": {
+        "value": [
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "hidden",
+        "container-type"
+      ]
+    },
+    {
+      "id": "real-null-versus-object",
+      "name": "hidden: null is a leaf rather than an object container",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj1": {
+          "value": null,
+          "keep": 1
+        },
+        "obj2": {
+          "value": {
+            "deep": true
+          }
+        }
+      },
+      "expected": {
+        "value": {
+          "deep": true
+        },
+        "keep": 1
+      },
+      "tags": [
+        "hidden",
+        "null"
+      ]
+    },
+    {
+      "id": "real-empty-and-nested",
+      "name": "hidden: empty containers and nested unique keys are preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj1": {
+          "empty": {},
+          "items": [
+            {
+              "left": 1
+            }
+          ]
+        },
+        "obj2": {
+          "empty": {
+            "added": 2
+          },
+          "items": [
+            {
+              "right": 3
+            },
+            4
+          ]
+        }
+      },
+      "expected": {
+        "empty": {
+          "added": 2
+        },
+        "items": [
+          {
+            "left": 1,
+            "right": 3
+          },
+          4
+        ]
+      },
+      "tags": [
+        "hidden",
+        "empty",
+        "nested-union"
+      ]
+    }
+  ]
+}

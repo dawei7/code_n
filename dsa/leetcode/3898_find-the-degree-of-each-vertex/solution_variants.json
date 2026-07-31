@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Degree of Each Vertex and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sums every adjacency-matrix row so each incident edge contributes exactly one to its vertex's degree.",
+      "time_complexity": "O(N^2)",
+      "space_complexity": "O(N)"
     }
   ]
 }

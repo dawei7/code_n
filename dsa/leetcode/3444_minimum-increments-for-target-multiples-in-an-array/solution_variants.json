@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Increments for Target Multiples in an Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses subset LCMs and bitmask DP to assign each number to any still-uncovered target subset.",
+      "time_complexity": "O(m 2^m + n 3^m)",
+      "space_complexity": "O(2^m)"
     }
   ]
 }

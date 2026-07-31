@@ -1,34 +1,38 @@
-import sys
-
-sys.setrecursionlimit(200000)
-
-
 def solve(n: int, edges: list[list[int]], price: list[int]) -> int:
-    if n == 1:
-        return 0
+    adjacency = [[] for _ in range(n)]
+    for first, second in edges:
+        adjacency[first].append(second)
+        adjacency[second].append(first)
 
-    adj = [[] for _ in range(n)]
-    for u, v in edges:
-        adj[u].append(v)
-        adj[v].append(u)
-
-    ans = 0
-
-    def dfs(u, p):
-        nonlocal ans
-
-        best_keep = price[u]
-        best_drop = 0
-
-        for v in adj[u]:
-            if v == p:
+    parent = [-1] * n
+    order = [0]
+    for node in order:
+        for neighbor in adjacency[node]:
+            if neighbor == parent[node]:
                 continue
-            child_keep, child_drop = dfs(v, u)
-            ans = max(ans, best_keep + child_drop, best_drop + child_keep)
-            best_keep = max(best_keep, price[u] + child_keep)
-            best_drop = max(best_drop, price[u] + child_drop)
+            parent[neighbor] = node
+            order.append(neighbor)
 
-        return best_keep, best_drop
+    with_endpoint = price[:]
+    without_endpoint = [0] * n
+    answer = 0
 
-    dfs(0, -1)
-    return ans
+    for node in reversed(order):
+        for child in adjacency[node]:
+            if parent[child] != node:
+                continue
+            answer = max(
+                answer,
+                with_endpoint[node] + without_endpoint[child],
+                without_endpoint[node] + with_endpoint[child],
+            )
+            with_endpoint[node] = max(
+                with_endpoint[node],
+                price[node] + with_endpoint[child],
+            )
+            without_endpoint[node] = max(
+                without_endpoint[node],
+                price[node] + without_endpoint[child],
+            )
+
+    return answer

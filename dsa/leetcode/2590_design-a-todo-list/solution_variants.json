@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design a Todo List and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores tasks by sequential ID and filters unfinished records for each ordered query.",
+      "time_complexity": "O(q^2 log q)",
+      "space_complexity": "O(q + S)"
     }
   ]
 }

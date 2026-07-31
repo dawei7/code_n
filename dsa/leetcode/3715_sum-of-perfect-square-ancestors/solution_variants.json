@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Perfect Square Ancestors and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts equal square-free kernels along the active root-to-node path.",
+      "time_complexity": "O(M log log M + n)",
+      "space_complexity": "O(M + n)"
     }
   ]
 }

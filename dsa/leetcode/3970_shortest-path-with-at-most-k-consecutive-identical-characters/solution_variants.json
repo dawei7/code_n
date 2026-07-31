@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shortest Path With At Most K Consecutive Identical Characters and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Runs Dijkstra on states that preserve both the current node and the trailing equal-label run length.",
+      "time_complexity": "O(k(n+m) log(nk))",
+      "space_complexity": "O(k(n+m))"
     }
   ]
 }

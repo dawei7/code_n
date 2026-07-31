@@ -8,48 +8,48 @@
 | Category | Algorithms |
 | Topics | Array, Bit Manipulation, Breadth-First Search, Matrix |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [remove-all-ones-with-row-and-column-flips-ii](https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a 0-indexed $m \times n$ binary matrix `grid`. An operation must
+select a cell `(i, j)` whose current value is `1`. That operation changes every
+cell in row `i` and every cell in column `j` to `0`; cells already equal to
+zero remain zero.
+
+Because an operation can only remove ones, each choice changes which later
+intersections are still legal to select. Return the minimum number of
+operations required to make every cell zero.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `grid`: a rectangular binary matrix with $1 \le m,n \le 15$ and
+  $1 \le mn \le 15$.
+
+Every `grid[i][j]` is either `0` or `1`.
 
 **Return value**
 
-TODO
+Return the minimum number of legal row-and-column clearing operations needed
+to remove all ones. Return `0` when the matrix is already all zero.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1,1,1],[1,1,1],[0,1,0]]`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[0,1,0],[1,0,1],[0,1,0]]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `grid = [[0,0],[0,0]]`
+- Output: `0`

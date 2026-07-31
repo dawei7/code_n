@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Length of Anagram Concatenation and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Tests only lengths that divide the string and compares a fixed 26-letter frequency vector for every aligned block.",
+      "time_complexity": "O(n sqrt(n))",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -5,51 +5,47 @@
 | Source | LeetCode |
 | Frontend ID | 2299 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | String |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [strong-password-checker-ii](https://leetcode.com/problems/strong-password-checker-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/strong-password-checker-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/strong-password-checker-ii/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Determine whether `password` satisfies every strong-password rule:
+
+- its length is at least eight;
+- it contains at least one lowercase English letter;
+- it contains at least one uppercase English letter;
+- it contains at least one digit;
+- it contains at least one character from `"!@#$%^&*()-+"`; and
+- no two adjacent characters are equal.
+
+Return `true` only when all six requirements hold. A repeated character is
+allowed at nonadjacent positions.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `password`: A string made only from English letters, digits, and the allowed special-character set.
+
+Its length is between 1 and 100, inclusive.
 
 **Return value**
 
-TODO
+`true` if `password` meets every stated strength criterion; otherwise
+`false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `password = "IloveLe3tcode!"`
+- Output: `true`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `password = "Me+You--IsMyDream"`
+- Output: `false`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `password = "1aB!"`
+- Output: `false`

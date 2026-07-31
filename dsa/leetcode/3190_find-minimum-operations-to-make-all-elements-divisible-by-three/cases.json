@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3190",
   "cases": [
     {
       "id": "sample-mixed-remainders",
-      "name": "sample: two values need one operation",
+      "name": "sample: mixed remainders",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,7 +23,7 @@
     },
     {
       "id": "sample-already-divisible",
-      "name": "sample: all values divisible by three",
+      "name": "sample: every value is divisible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,65 +36,321 @@
       "expected": 0,
       "tags": [
         "sample",
-        "zero"
+        "zero-operations"
       ]
     },
     {
-      "id": "trial-negative-values",
-      "name": "trial: negative values use modulo distance",
+      "id": "trial-single-remainder-one",
+      "name": "one value can be decremented once",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          -1,
-          -2,
-          -3,
-          0,
           1
         ]
       },
-      "expected": 3,
+      "expected": 1,
       "tags": [
-        "negative"
+        "minimum-n",
+        "remainder-one"
       ]
     },
     {
-      "id": "trial-all-nondivisible",
-      "name": "trial: every value needs one operation",
+      "id": "trial-single-remainder-two",
+      "name": "one value can be incremented once",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          1,
-          2,
-          4,
-          5,
-          7,
-          8
+          2
         ]
       },
-      "expected": 6,
+      "expected": 1,
       "tags": [
-        "all-change"
+        "minimum-n",
+        "remainder-two"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large positive values",
+      "id": "trial-single-divisible",
+      "name": "one divisible value needs no change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          48
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-n",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "real-upper-bound-value",
+      "name": "hidden: maximum legal value has remainder two",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          1000000,
-          999999,
-          999998,
-          1234567
+          50
         ]
       },
-      "expected": 3,
+      "expected": 1,
       "tags": [
-        "real",
-        "large"
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-all-multiples",
+      "name": "hidden: every legal multiple of three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          6,
+          9,
+          12,
+          15,
+          18,
+          21,
+          24,
+          27,
+          30,
+          33,
+          36,
+          39,
+          42,
+          45,
+          48
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "all-divisible"
+      ]
+    },
+    {
+      "id": "real-all-remainder-one",
+      "name": "hidden: every legal remainder-one value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43,
+          46,
+          49
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "hidden",
+        "remainder-one"
+      ]
+    },
+    {
+      "id": "real-all-remainder-two",
+      "name": "hidden: every legal remainder-two value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          5,
+          8,
+          11,
+          14,
+          17,
+          20,
+          23,
+          26,
+          29,
+          32,
+          35,
+          38,
+          41,
+          44,
+          47,
+          50
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "hidden",
+        "remainder-two"
+      ]
+    },
+    {
+      "id": "real-duplicate-remainders",
+      "name": "hidden: duplicate values contribute independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          49,
+          50
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-complete-value-range",
+      "name": "hidden: every value from one through fifty",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "hidden",
+        "maximum-n",
+        "value-range"
+      ]
+    },
+    {
+      "id": "real-maximum-all-change",
+      "name": "hidden: fifty maximum values all need one operation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      },
+      "expected": 50,
+      "tags": [
+        "hidden",
+        "maximum-n",
+        "duplicates"
       ]
     }
   ]

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3525",
+  "cases": [
+    {"id":"sample-persistent-updates","name":"sample: three persistent updates and suffix starts","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5],"k":3,"queries":[[2,2,0,2],[3,3,3,0],[0,1,0,1]]},"expected":[2,2,2],"tags":["sample","persistent-updates"]},
+    {"id":"sample-powers-of-two","name":"sample: repeated update with different target remainder","kind":"sample","visible":true,"input":{"nums":[1,2,4,8,16,32],"k":4,"queries":[[0,2,0,2],[0,2,0,1]]},"expected":[1,0],"tags":["sample","zero-remainder"]},
+    {"id":"sample-binary","name":"sample: update removes the only even value","kind":"sample","visible":true,"input":{"nums":[1,1,2,1,1],"k":2,"queries":[[2,1,0,1]]},"expected":[5],"tags":["sample","full-range"]},
+    {"id":"trial-single","name":"trial: single element changes remainder","kind":"trial","visible":true,"input":{"nums":[7],"k":5,"queries":[[0,9,0,4],[0,10,0,0]]},"expected":[1,1],"tags":["trial","single-element"]},
+    {"id":"trial-update-before-start","name":"trial: update before start does not affect selected suffix","kind":"trial","visible":true,"input":{"nums":[2,3,4],"k":5,"queries":[[0,10,1,2],[2,5,1,0]]},"expected":[1,1],"tags":["trial","suffix-start"]},
+    {"id":"real-modulus-one","name":"real: every remaining prefix has remainder zero","kind":"real","visible":false,"input":{"nums":[2,3],"k":1,"queries":[[0,4,0,0],[1,5,1,0]]},"expected":[2,1],"tags":["real","modulus-one"]},
+    {"id":"real-ordered-products","name":"real: prefix multiplication order is preserved","kind":"real","visible":false,"input":{"nums":[2,3,4],"k":5,"queries":[[1,3,0,1]]},"expected":[1],"tags":["real","merge-order"]},
+    {"id":"real-persistent-and-start","name":"real: second query sees the first update","kind":"real","visible":false,"input":{"nums":[1,2,3],"k":3,"queries":[[1,4,0,1],[2,2,1,2]]},"expected":[2,1],"tags":["real","persistent-updates","suffix-start"]}
+  ]
+}

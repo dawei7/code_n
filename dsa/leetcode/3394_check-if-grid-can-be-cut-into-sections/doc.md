@@ -8,88 +8,48 @@
 | Category | Algorithms |
 | Topics | Array, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-grid-can-be-cut-into-sections](https://leetcode.com/problems/check-if-grid-can-be-cut-into-sections/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-grid-can-be-cut-into-sections/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-grid-can-be-cut-into-sections/).
 
 ### Goal
-Determine if a grid of size `n x n` can be partitioned into at least three distinct sections by making either horizontal or vertical cuts. A cut is valid if it spans the entire width or height of the grid and does not intersect any of the given rectangular regions. Specifically, we must check if we can create at least three sections using only horizontal cuts or only vertical cuts.
+
+An integer `n` defines an $n\times n$ grid whose origin is at its bottom-left corner. Each entry `[start_x, start_y, end_x, end_y]` in `rectangles` describes a non-overlapping axis-aligned rectangle: `(start_x, start_y)` is its bottom-left corner and `(end_x, end_y)` is its top-right corner.
+
+Determine whether two complete horizontal cuts or two complete vertical cuts can divide the grid into three sections. The two cuts must have the same orientation. Every resulting section must contain at least one rectangle, and every rectangle must lie wholly inside exactly one section; a cut therefore cannot pass through a rectangle's interior. A cut may coincide with rectangle boundaries.
+
+Return `True` when either orientation permits such a division, and `False` otherwise.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: An integer representing the dimensions of the `n x n` grid.
-- `rectangles`: A list of lists, where each sub-list `[x1, y1, x2, y2]` defines a rectangle with top-left corner `(x1, y1)` and bottom-right corner `(x2, y2)`.
+- `n`: The grid side length, with $3\le n\le10^9$.
+- `rectangles`: A list of $r$ non-overlapping rectangles, where $3\le r\le10^5$. Each rectangle has the form `[start_x, start_y, end_x, end_y]` and satisfies $0\le\texttt{start_x}<\texttt{end_x}\le n$ and $0\le\texttt{start_y}<\texttt{end_y}\le n$.
 
 **Return value**
 
-- `bool`: Returns `True` if it is possible to divide the grid into at least three sections using either horizontal or vertical cuts, otherwise `False`.
+- `True` if two horizontal cuts or two vertical cuts can form three nonempty valid sections; otherwise, `False`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 3, rectangles = [[0,0,1,1],[1,1,2,2]]`
+- Input: `n = 5, rectangles = [[1, 0, 5, 2], [0, 2, 2, 4], [3, 2, 5, 3], [0, 4, 4, 5]]`
 - Output: `True`
+
+Horizontal cuts at `y = 2` and `y = 4` assign every rectangle wholly to one of three nonempty sections.
 
 **Example 2**
 
-- Input: `n = 3, rectangles = [[0,0,1,1],[1,0,2,1],[0,1,2,2]]`
-- Output: `False`
+- Input: `n = 4, rectangles = [[0, 0, 1, 1], [2, 0, 3, 4], [0, 2, 2, 3], [3, 0, 4, 3]]`
+- Output: `True`
+
+Vertical cuts at `x = 2` and `x = 3` satisfy all requirements.
 
 **Example 3**
 
-- Input: `n = 5, rectangles = [[0,0,5,1],[2,1,5,5]]`
-- Output: `True`
+- Input: `n = 4, rectangles = [[0, 2, 2, 4], [1, 0, 3, 2], [2, 2, 3, 4], [3, 0, 4, 2], [3, 2, 4, 4]]`
+- Output: `False`
 
----
-
-## Solution
-### Approach
-The problem is solved using a **Greedy Interval Merging** approach. To determine if we can make at least two cuts (creating three sections), we track the intervals occupied by rectangles along a specific axis. We sort these intervals and merge overlapping ones. If the number of merged intervals is less than 3, it implies we have enough "gaps" between the rectangles to place at least two lines that do not intersect any rectangle.
-
-### Complexity Analysis
-- **Time Complexity**: `O(R log R)`, where `R` is the number of rectangles, due to the sorting of intervals.
-- **Space Complexity**: `O(R)` to store the intervals.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(n: int, rectangles: list[list[int]]) -> bool:
-    def can_cut(intervals):
-        # Sort intervals by start point
-        intervals.sort()
-
-        count = 0
-        current_end = 0
-
-        for start, end in intervals:
-            # If there is a gap between the current end and the next start,
-            # we can potentially place a cut here.
-            if start >= current_end:
-                count += 1
-                current_end = end
-            else:
-                current_end = max(current_end, end)
-
-        # If we found at least 2 gaps, we can create 3 sections.
-        # The logic: if we have 2 gaps, we have 3 segments.
-        return count >= 3
-
-    # Check horizontal cuts (using y-coordinates)
-    # A horizontal cut is possible if we can find 2 lines y=k1, y=k2
-    # that don't intersect any rectangle.
-    y_intervals = [[r[1], r[3]] for r in rectangles]
-    if can_cut(y_intervals):
-        return True
-
-    # Check vertical cuts (using x-coordinates)
-    x_intervals = [[r[0], r[2]] for r in rectangles]
-    if can_cut(x_intervals):
-        return True
-
-    return False
-```
-</details>
+Neither two horizontal cuts nor two vertical cuts can create three valid nonempty sections.

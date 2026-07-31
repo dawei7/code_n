@@ -1,0 +1,56 @@
+{
+    "challenge_id":  "lc_2982",
+    "cases":  [
+                  {
+                      "id":  "benchmark-length-32",
+                      "name":  "benchmark: alternating string of length 32",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  32,
+                      "input":  {
+                                    "s":  "abababababababababababababababab"
+                                },
+                      "expected":  1,
+                      "tags":  [
+                                   "benchmark",
+                                   "scaling",
+                                   "string-length",
+                                   "substring-enumeration-baseline"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-length-96",
+                      "name":  "benchmark: alternating string of length 96",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  96,
+                      "input":  {
+                                    "s":  "abababababababababababababababababababababababababababababababababababababababababababababababab"
+                                },
+                      "expected":  1,
+                      "tags":  [
+                                   "benchmark",
+                                   "scaling",
+                                   "string-length",
+                                   "substring-enumeration-baseline"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-length-256",
+                      "name":  "benchmark: alternating string of length 256",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  256,
+                      "input":  {
+                                    "s":  "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab"
+                                },
+                      "expected":  1,
+                      "tags":  [
+                                   "benchmark",
+                                   "scaling",
+                                   "string-length",
+                                   "substring-enumeration-baseline"
+                               ]
+                  }
+              ]
+}

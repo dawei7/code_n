@@ -8,48 +8,38 @@
 | Category | Algorithms |
 | Topics | Tree, Depth-First Search, Breadth-First Search, Binary Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-level-of-tree-with-minimum-sum](https://leetcode.com/problems/find-the-level-of-tree-with-minimum-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-level-of-tree-with-minimum-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-level-of-tree-with-minimum-sum/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given the root of a non-empty binary tree whose nodes hold positive values, consider the sum of all node values at each depth. The root belongs to level $1$; every other node's level is one more than its distance in edges from the root.
+
+Return the level number having the minimum value sum. If several levels share that minimum, return the smallest level number, which is the tied level closest to the root.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `root`: The root of a binary tree containing between $1$ and $10^5$ nodes, inclusive. Every node value satisfies $1 \le \texttt{Node.val} \le 10^9$.
 
 **Return value**
 
-TODO
+Return the 1-indexed level with the smallest sum of node values. On a tie, return the lowest numerical level.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [50, 6, 2, 30, 80, 7]`
+- Output: `2`
+- Explanation: The level sums are $50$, $8$, and $117$, so level $2$ is minimum.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [36, 17, 10, null, null, 24]`
+- Output: `3`
+- Explanation: The sums are $36$ at level $1$, $27$ at level $2$, and $24$ at level $3$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `root = [5, null, 5, null, 5]`
+- Output: `1`
+- Explanation: Every level sums to $5$, so the smallest level number wins the tie.

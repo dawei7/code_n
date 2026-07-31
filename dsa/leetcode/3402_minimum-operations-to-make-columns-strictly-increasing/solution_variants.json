@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Operations to Make Columns Strictly Increasing and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans each column from top to bottom and raises every cell to the smallest value that is strictly greater than its adjusted predecessor.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(1)"
     }
   ]
 }

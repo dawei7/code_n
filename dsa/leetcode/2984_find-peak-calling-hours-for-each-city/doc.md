@@ -8,48 +8,46 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [find-peak-calling-hours-for-each-city](https://leetcode.com/problems/find-peak-calling-hours-for-each-city/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-peak-calling-hours-for-each-city/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-peak-calling-hours-for-each-city/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+The `Calls` table records each call's caller, recipient, timestamp, and city.
+Its primary key is the combination `(caller_id, recipient_id, call_time)`, so
+every row represents one distinct call.
+
+For each city, group calls by the hour of day in which `call_time` falls and
+find the greatest call count. Return every hour attaining that maximum; when a
+city has a tie, all of its tied peak hours must appear. The result columns are
+`city`, `peak_calling_hour`, and `number_of_calls`. Sort first by
+`peak_calling_hour` descending and then by `city` descending.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `Calls(caller_id, recipient_id, call_time, city)`: one row per call, with a `datetime` timestamp and city name
+
+Let $R$ be the number of rows in `Calls`.
 
 **Return value**
 
-TODO
+Return one row for every peak `(city, hour)` pair, including all ties, with its
+call count and the required descending ordering.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: Houston has three calls during hour `22` and one during `21`; New York has one call during each of hours `13` and `14`.
+- Output: `[("Houston",22,3),("New York",14,1),("New York",13,1)]`
+- Explanation: Both New York hours tie for that city's maximum; hour `22` sorts before `14` and `13`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: One city has calls at `00:05` and `23:55`.
+- Output: Both hours with count `1`.
+- Explanation: Calendar dates do not matter; grouping uses the hour of day.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: Two cities share the same peak hour.
+- Output: Their rows are ordered by city descending within that hour.

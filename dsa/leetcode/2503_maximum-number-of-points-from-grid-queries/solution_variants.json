@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Number of Points From Grid Queries and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts queries and incrementally expands the reachable region through a minimum-value boundary heap.",
+      "time_complexity": "O(m n log(m n) + k log k)",
+      "space_complexity": "O(m n + k)"
     }
   ]
 }

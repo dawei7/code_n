@@ -1,96 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2401",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: length three nice window",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          3,
-          8,
-          48,
-          10
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "bitmask"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: every pair conflicts",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          3,
-          1,
-          5,
-          11,
-          13
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: contiguous window matters",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-disjoint-powers",
-      "name": "trial: all powers of two are compatible",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          4,
-          8
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-single-number",
-      "name": "hidden: one number",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          7
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: three-element nice interval","kind":"sample","visible":true,"input":{"nums":[1,3,8,48,10]},"expected":3,"tags":["sample","window"]},
+    {"id":"sample-2","name":"sample: every pair conflicts","kind":"sample","visible":true,"input":{"nums":[3,1,5,11,13]},"expected":1,"tags":["sample","conflicts"]},
+    {"id":"trial-single","name":"trial: one element is always nice","kind":"trial","visible":true,"input":{"nums":[1000000000]},"expected":1,"tags":["single"]},
+    {"id":"trial-disjoint-powers","name":"trial: disjoint powers of two fill the window","kind":"trial","visible":true,"input":{"nums":[1,2,4,8]},"expected":4,"tags":["powers-of-two"]},
+    {"id":"trial-conflict-expires","name":"trial: removing an old bit permits a longer suffix","kind":"trial","visible":true,"input":{"nums":[1,2,1,4]},"expected":3,"tags":["shrink","expired-bit"]},
+    {"id":"real-adjacent-shared-bit","name":"hidden: two values share one bit","kind":"real","visible":false,"input":{"nums":[6,10]},"expected":1,"tags":["hidden","shared-bit"]},
+    {"id":"real-multiple-removals","name":"hidden: incoming value conflicts with several residents","kind":"real","visible":false,"input":{"nums":[1,2,4,3,8,16]},"expected":4,"tags":["hidden","multiple-removals"]},
+    {"id":"real-two-long-windows","name":"hidden: later disjoint suffix becomes optimal","kind":"real","visible":false,"input":{"nums":[7,8,16,1,2,4,32]},"expected":6,"tags":["hidden","suffix"]}
   ]
 }

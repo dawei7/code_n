@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Nested Array Generator and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Traverses lazily with an explicit stack of array-index frames, yielding integers in recursive left-to-right order.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(d)"
     }
   ]
 }

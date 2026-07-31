@@ -1,34 +1,20 @@
-from collections import defaultdict
-
 def solve(nums: list[int], k: int) -> int:
-    n = len(nums)
-    if k > n:
-        return 0
-    
-    max_sum = 0
-    current_sum = 0
-    counts = defaultdict(int)
-    distinct_count = 0
-    
-    for i in range(n):
-        # Add current element to window
-        val = nums[i]
-        if counts[val] == 0:
-            distinct_count += 1
-        counts[val] += 1
-        current_sum += val
-        
-        # Remove element sliding out of window
-        if i >= k:
-            out_val = nums[i - k]
-            counts[out_val] -= 1
-            if counts[out_val] == 0:
-                distinct_count -= 1
-            current_sum -= out_val
-            
-        # Check if window is valid
-        if i >= k - 1:
-            if distinct_count == k:
-                max_sum = max(max_sum, current_sum)
-                
-    return max_sum
+    counts: dict[int, int] = {}
+    window_sum = 0
+    best = 0
+
+    for right, value in enumerate(nums):
+        counts[value] = counts.get(value, 0) + 1
+        window_sum += value
+
+        if right >= k:
+            outgoing = nums[right - k]
+            window_sum -= outgoing
+            counts[outgoing] -= 1
+            if counts[outgoing] == 0:
+                del counts[outgoing]
+
+        if right >= k - 1 and len(counts) == k:
+            best = max(best, window_sum)
+
+    return best

@@ -1,0 +1,15 @@
+{
+  "challenge_id": "lc_2664",
+  "cases": [
+    {"id":"sample-single-cell","name":"sample: one-cell board","kind":"sample","visible":true,"input":{"m":1,"n":1,"r":0,"c":0},"expected":[[0]],"tags":["sample","boundary"]},
+    {"id":"sample-three-by-four","name":"sample: corner start on three by four board","kind":"sample","visible":true,"input":{"m":3,"n":4,"r":0,"c":0},"expected":[[0,3,6,9],[7,10,1,4],[2,5,8,11]],"tags":["sample","corner"]},
+    {"id":"trial-three-by-four-edge","name":"trial: edge-middle start","kind":"trial","visible":true,"input":{"m":3,"n":4,"r":1,"c":0},"expected":[[9,6,1,4],[0,3,10,7],[11,8,5,2]],"tags":["edge","rectangular"]},
+    {"id":"trial-transposed-board","name":"trial: transposed three by four dimensions","kind":"trial","visible":true,"input":{"m":4,"n":3,"r":0,"c":1},"expected":[[9,0,7],[6,3,10],[1,8,5],[4,11,2]],"tags":["transposed","rectangular"]},
+    {"id":"real-three-by-four-opposite-corner","name":"hidden: opposite corner start","kind":"real","visible":false,"input":{"m":3,"n":4,"r":0,"c":3},"expected":[[9,6,3,0],[4,1,10,7],[11,8,5,2]],"tags":["hidden","corner"]},
+    {"id":"real-four-by-five","name":"hidden: twenty-cell board","kind":"real","visible":false,"input":{"m":4,"n":5,"r":0,"c":2},"expected":[[6,17,0,13,4],[1,12,5,18,9],[16,7,10,3,14],[11,2,15,8,19]],"tags":["hidden","twenty-cells"]},
+    {"id":"real-five-by-four","name":"hidden: transposed twenty-cell board","kind":"real","visible":false,"input":{"m":5,"n":4,"r":2,"c":0},"expected":[[6,1,16,11],[17,12,7,2],[0,5,10,15],[13,18,3,8],[4,9,14,19]],"tags":["hidden","transposed"]},
+    {"id":"real-five-by-five-corner","name":"hidden: maximum board from a corner","kind":"real","visible":false,"input":{"m":5,"n":5,"r":0,"c":0},"expected":[[0,19,8,13,2],[9,14,1,18,23],[20,7,22,3,12],[15,10,5,24,17],[6,21,16,11,4]],"tags":["hidden","maximum","corner"]},
+    {"id":"real-five-by-five-center","name":"hidden: maximum board from the center","kind":"real","visible":false,"input":{"m":5,"n":5,"r":2,"c":2},"expected":[[18,1,12,7,24],[11,6,17,2,13],[16,19,0,23,8],[5,10,21,14,3],[20,15,4,9,22]],"tags":["hidden","maximum","center"]},
+    {"id":"real-five-by-five-opposite-corner","name":"hidden: maximum board from opposite corner","kind":"real","visible":false,"input":{"m":5,"n":5,"r":4,"c":4},"expected":[[4,19,14,9,2],[13,8,3,20,15],[18,5,22,1,10],[23,12,7,16,21],[6,17,24,11,0]],"tags":["hidden","maximum","corner"]}
+  ]
+}

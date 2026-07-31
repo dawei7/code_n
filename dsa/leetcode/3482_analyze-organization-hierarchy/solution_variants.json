@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Analyze Organization Hierarchy and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds hierarchy levels and the ancestor-descendant closure with recursive CTEs, then aggregates each reporting subtree once.",
+      "time_complexity": "O(a + n log n)",
+      "space_complexity": "O(a + n)"
     }
   ]
 }

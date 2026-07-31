@@ -6,173 +6,111 @@
       "name": "sample: four required partitions",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          4,
-          3,
-          3,
-          2
-        ],
-        "and_values": [
-          0,
-          3,
-          3,
-          2
-        ]
-      },
+      "input": { "nums": [1, 4, 3, 3, 2], "and_values": [0, 3, 3, 2] },
       "expected": 12,
-      "tags": [
-        "sample",
-        "partition"
-      ]
+      "tags": ["sample", "partition"]
     },
     {
       "id": "sample-2",
-      "name": "sample: three partitions over repeated sevens",
+      "name": "sample: minimize among several divisions",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          3,
-          5,
-          7,
-          7,
-          7,
-          5
-        ],
-        "and_values": [
-          0,
-          7,
-          5
-        ]
-      },
+      "input": { "nums": [2, 3, 5, 7, 7, 7, 5], "and_values": [0, 7, 5] },
       "expected": 17,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "minimum"]
     },
     {
       "id": "sample-3",
       "name": "sample: impossible single target",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "and_values": [
-          2
-        ]
-      },
+      "input": { "nums": [1, 2, 3, 4], "and_values": [2] },
       "expected": -1,
-      "tags": [
-        "sample",
-        "impossible"
-      ]
+      "tags": ["sample", "impossible"]
     },
     {
-      "id": "trial-one-partition",
-      "name": "trial: whole array forms one partition",
+      "id": "trial-single-element",
+      "name": "trial: one element is one partition",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          7,
-          3,
-          3,
-          1
-        ],
-        "and_values": [
-          1
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "single-partition"
-      ]
-    },
-    {
-      "id": "trial-minimize-last-values",
-      "name": "trial: choose cuts that minimize ending values",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          15,
-          7,
-          3,
-          3,
-          12,
-          4,
-          4
-        ],
-        "and_values": [
-          3,
-          4
-        ]
-      },
+      "input": { "nums": [7], "and_values": [7] },
       "expected": 7,
-      "tags": [
-        "minimize"
-      ]
+      "tags": ["boundary", "single-element"]
     },
     {
-      "id": "real-many-zero-ands",
-      "name": "real: repeated zero targets with several valid cuts",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          14,
-          12,
-          10,
-          8,
-          7,
-          3,
-          15,
-          1,
-          5
-        ],
-        "and_values": [
-          8,
-          3,
-          1
-        ]
-      },
-      "expected": 16,
-      "tags": [
-        "real",
-        "and"
-      ]
+      "id": "trial-whole-array",
+      "name": "trial: the whole array forms one partition",
+      "kind": "trial",
+      "visible": true,
+      "input": { "nums": [7, 3, 3, 1], "and_values": [1] },
+      "expected": 1,
+      "tags": ["single-partition", "and-chain"]
     },
     {
-      "id": "real-more-targets-than-possible",
-      "name": "real: too many required partitions",
+      "id": "trial-all-singletons",
+      "name": "trial: every element must end a partition",
+      "kind": "trial",
+      "visible": true,
+      "input": { "nums": [5, 3, 6], "and_values": [5, 3, 6] },
+      "expected": 14,
+      "tags": ["all-singletons", "endpoint-sum"]
+    },
+    {
+      "id": "trial-minimize-endpoints",
+      "name": "trial: merge equivalent states by lower endpoint cost",
+      "kind": "trial",
+      "visible": true,
+      "input": { "nums": [15, 7, 3, 3, 12, 4, 4], "and_values": [3, 4] },
+      "expected": 7,
+      "tags": ["minimum", "state-merging"]
+    },
+    {
+      "id": "real-several-target-zeros",
+      "name": "real: two zero-AND partitions",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          5,
-          5,
-          5
-        ],
-        "and_values": [
-          5,
-          5,
-          5,
-          5
-        ]
-      },
+      "input": { "nums": [1, 2, 4, 1, 2, 4], "and_values": [0, 0] },
+      "expected": 5,
+      "tags": ["real", "zero-target"]
+    },
+    {
+      "id": "real-discussion-regression",
+      "name": "real: alternating target masks",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [1, 4, 3, 5, 6, 1, 5, 2], "and_values": [0, 1, 0] },
+      "expected": 9,
+      "tags": ["real", "regression", "multiple-cuts"]
+    },
+    {
+      "id": "real-shared-running-ands",
+      "name": "real: repeated descending AND chains",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [31, 15, 7, 3, 1, 31, 15, 7, 3, 1], "and_values": [1, 1] },
+      "expected": 2,
+      "tags": ["real", "state-compression"]
+    },
+    {
+      "id": "real-target-bit-cannot-return",
+      "name": "real: missing target bit makes division impossible",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [7, 7], "and_values": [3] },
       "expected": -1,
-      "tags": [
-        "real",
-        "impossible"
-      ]
+      "tags": ["real", "impossible", "bit-pruning"]
+    },
+    {
+      "id": "real-maximum-partition-count",
+      "name": "real: ten singleton partitions at maximum values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999],
+        "and_values": [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]
+      },
+      "expected": 999990,
+      "tags": ["real", "maximum-m", "maximum-value"]
     }
   ]
 }

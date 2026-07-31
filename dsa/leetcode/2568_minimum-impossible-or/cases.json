@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one and two make four impossible",
+      "name": "sample: one and two make four the first impossible value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,7 +15,7 @@
       "expected": 4,
       "tags": [
         "sample",
-        "bit-manipulation"
+        "powers-of-two"
       ]
     },
     {
@@ -32,13 +32,14 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "missing-one"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: first missing power is sixteen",
-      "kind": "sample",
+      "id": "trial-consecutive-powers",
+      "name": "trial: four consecutive powers make sixteen first missing",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -50,7 +51,8 @@
       },
       "expected": 16,
       "tags": [
-        "sample"
+        "trial",
+        "powers-of-two"
       ]
     },
     {
@@ -66,12 +68,13 @@
       },
       "expected": 2,
       "tags": [
-        "trial"
+        "trial",
+        "non-power"
       ]
     },
     {
       "id": "real-no-one",
-      "name": "hidden: without one, one is impossible",
+      "name": "hidden: a lone non-power cannot form one",
       "kind": "real",
       "visible": false,
       "input": {
@@ -81,7 +84,116 @@
       },
       "expected": 1,
       "tags": [
-        "hidden"
+        "hidden",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-duplicates-and-gap",
+      "name": "hidden: duplicate powers do not fill a missing bit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          8,
+          8
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-extra-bits-do-not-help",
+      "name": "hidden: multi-bit values cannot isolate missing two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "non-powers"
+      ]
+    },
+    {
+      "id": "real-unsorted-powers",
+      "name": "hidden: input order does not affect expressibility",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          16,
+          1,
+          8,
+          2,
+          4,
+          31
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-all-legal-powers",
+      "name": "hidden: answer may exceed the element bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768,
+          65536,
+          131072,
+          262144,
+          524288,
+          1048576,
+          2097152,
+          4194304,
+          8388608,
+          16777216,
+          33554432,
+          67108864,
+          134217728,
+          268435456,
+          536870912
+        ]
+      },
+      "expected": 1073741824,
+      "tags": [
+        "hidden",
+        "maximum-bit",
+        "boundary"
       ]
     }
   ]

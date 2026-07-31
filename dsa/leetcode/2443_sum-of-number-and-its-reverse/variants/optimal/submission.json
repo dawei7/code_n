@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2541",
+  "frontend_id": "2443",
+  "title_slug": "sum-of-number-and-its-reverse",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sumOfNumberAndReverse",
+  "verified_submission_id": "2074980303",
+  "verified_at": "2026-07-20T18:25:59.697722+00:00"
+}

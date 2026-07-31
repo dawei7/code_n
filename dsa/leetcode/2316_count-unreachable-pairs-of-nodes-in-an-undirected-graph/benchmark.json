@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2316",
+  "measurement_note": "Size is n, the number of nodes. Every tier has no edges, so all n singleton components must be recognized and the answer is n(n-1)/2. A component traversal is linear in n. A correct implementation that starts a separate reachability traversal from every node completes all tiers but is quadratic.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 32 isolated nodes","kind":"benchmark","visible":false,"size":32,"input":{"n":32,"edges":[]},"expected":496},
+    {"id":"benchmark-scale-2","name":"benchmark: 128 isolated nodes","kind":"benchmark","visible":false,"size":128,"input":{"n":128,"edges":[]},"expected":8128},
+    {"id":"benchmark-scale-3","name":"benchmark: 512 isolated nodes","kind":"benchmark","visible":false,"size":512,"input":{"n":512,"edges":[]},"expected":130816}
+  ]
+}

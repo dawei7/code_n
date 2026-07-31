@@ -3,7 +3,32 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: divisor three wins",
+      "name": "sample: tied maximum selects smallest divisor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          9,
+          15,
+          50
+        ],
+        "divisors": [
+          5,
+          3,
+          7,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one divisor uniquely wins",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -23,12 +48,12 @@
       "expected": 3,
       "tags": [
         "sample",
-        "divisibility"
+        "unique-winner"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: tie chooses smallest divisor",
+      "id": "sample-3",
+      "name": "sample: first divisor wins",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,25 +64,25 @@
           10
         ],
         "divisors": [
-          5,
-          7,
-          5
+          10,
+          16,
+          20
         ]
       },
-      "expected": 5,
+      "expected": 10,
       "tags": [
         "sample",
-        "tie"
+        "scores"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no divisor matches",
-      "kind": "sample",
+      "id": "trial-zero-scores",
+      "name": "trial: all scores are zero",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          12
+          13
         ],
         "divisors": [
           10,
@@ -66,84 +91,101 @@
       },
       "expected": 10,
       "tags": [
-        "sample",
-        "zero-score"
-      ]
-    },
-    {
-      "id": "trial-smallest-tie",
-      "name": "trial: smaller divisor wins a full-score tie",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          6,
-          12,
-          18,
-          24
-        ],
-        "divisors": [
-          6,
-          3,
-          4,
-          9
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "trial",
-        "tie"
-      ]
-    },
-    {
-      "id": "trial-all-zero-score",
-      "name": "trial: all divisors score zero",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          7,
-          11,
-          13
-        ],
-        "divisors": [
-          2,
-          3,
-          5
-        ]
-      },
-      "expected": 2,
-      "tags": [
         "trial",
         "zero-score"
       ]
     },
     {
-      "id": "real-divisor-one",
-      "name": "hidden: divisor one beats all others",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-divisor-one",
+      "name": "trial: one divides every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
-          100,
-          99,
-          98,
-          97,
-          96
+          6,
+          10,
+          15
         ],
         "divisors": [
-          1,
-          2,
-          3,
-          4,
           5,
-          6
+          2,
+          1
         ]
       },
       "expected": 1,
       "tags": [
-        "hidden",
+        "trial",
         "divisor-one"
+      ]
+    },
+    {
+      "id": "real-duplicate-divisors",
+      "name": "hidden: repeated candidate values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          12,
+          18
+        ],
+        "divisors": [
+          4,
+          3,
+          4,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-equal-full-scores",
+      "name": "hidden: multiple divisors divide all values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          60,
+          120,
+          180
+        ],
+        "divisors": [
+          10,
+          6,
+          5,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: upper-bound values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999
+        ],
+        "divisors": [
+          1000000000,
+          3,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

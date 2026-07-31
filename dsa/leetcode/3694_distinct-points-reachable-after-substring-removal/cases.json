@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3694",
+  "cases": [
+    {
+      "id": "sample-remove-one-from-lul",
+      "name": "sample: three removals produce two endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "LUL", "k": 1},
+      "expected": 2,
+      "tags": ["sample", "duplicate-endpoint"]
+    },
+    {
+      "id": "sample-remove-whole-string",
+      "name": "sample: removing the whole walk leaves the origin",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "UDLR", "k": 4},
+      "expected": 1,
+      "tags": ["sample", "whole-string"]
+    },
+    {
+      "id": "sample-identical-remaining-walk",
+      "name": "sample: either removal leaves the same upward move",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "UU", "k": 1},
+      "expected": 1,
+      "tags": ["sample", "duplicate-window"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: the minimum-length string has one removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "U", "k": 1},
+      "expected": 1,
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-opposite-moves",
+      "name": "trial: removing either opposite move gives distinct endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "UD", "k": 1},
+      "expected": 2,
+      "tags": ["trial", "opposites"]
+    },
+    {
+      "id": "trial-four-directions",
+      "name": "trial: each unit removal has a distinct vector",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "UDLR", "k": 1},
+      "expected": 4,
+      "tags": ["trial", "all-directions"]
+    },
+    {
+      "id": "trial-repeated-up-window",
+      "name": "trial: identical length-two windows collapse to one endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "UUUU", "k": 2},
+      "expected": 1,
+      "tags": ["trial", "repeated-window"]
+    },
+    {
+      "id": "real-mixed-cycle-and-tail",
+      "name": "hidden: mixed windows repeat some displacement vectors",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "URDLUR", "k": 2},
+      "expected": 4,
+      "tags": ["hidden", "mixed-windows"]
+    },
+    {
+      "id": "real-direction-blocks",
+      "name": "hidden: direction blocks generate six removed vectors",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "RRUULLDD", "k": 3},
+      "expected": 6,
+      "tags": ["hidden", "direction-blocks"]
+    },
+    {
+      "id": "real-two-balanced-window-vectors",
+      "name": "hidden: balanced length-four windows collapse into two vectors",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ULDRURDL", "k": 4},
+      "expected": 2,
+      "tags": ["hidden", "balanced-window"]
+    },
+    {
+      "id": "real-alternating-cancellation",
+      "name": "hidden: every alternating pair has zero displacement",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "UDUDUD", "k": 2},
+      "expected": 1,
+      "tags": ["hidden", "cancellation"]
+    },
+    {
+      "id": "real-partial-direction-blocks",
+      "name": "hidden: windows crossing block boundaries stay distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "LLRRUU", "k": 3},
+      "expected": 4,
+      "tags": ["hidden", "direction-blocks"]
+    }
+  ]
+}

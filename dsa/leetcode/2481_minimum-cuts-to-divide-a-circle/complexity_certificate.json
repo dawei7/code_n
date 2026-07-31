@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2481",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The solution performs a fixed number of comparisons and arithmetic operations on one integer, while the complete legal input domain contains only the values 1 through 100.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 100,
+    "unit": "requested slices",
+    "source_constraint": "The public contract restricts n to an integer from 1 through 100."
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"Every input follows at most two comparisons, one parity operation, and one optional integer division, independent of n."},
+    {"kind":"boundary_property_cases","evidence":"Regression covers n equal to 1 and 2, representative odd and even values, and both parity classes at the upper boundary."}
+  ]
+}

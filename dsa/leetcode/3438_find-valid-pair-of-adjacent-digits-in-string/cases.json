@@ -1,0 +1,14 @@
+{
+  "challenge_id": "lc_3438",
+  "cases": [
+    {"id":"sample-two-three","name":"sample: valid pair after an invalid prefix","kind":"sample","visible":true,"input":{"s":"2523533"},"expected":"23","tags":["sample"]},
+    {"id":"sample-two-one","name":"sample: valid pair at the end","kind":"sample","visible":true,"input":{"s":"221"},"expected":"21","tags":["sample"]},
+    {"id":"sample-equal","name":"sample: equal adjacent digits","kind":"sample","visible":true,"input":{"s":"22"},"expected":"","tags":["sample","equal"]},
+    {"id":"trial-leftmost","name":"trial: two valid pairs return the first","kind":"trial","visible":true,"input":{"s":"122333"},"expected":"12","tags":["trial","leftmost"]},
+    {"id":"trial-no-frequency-match","name":"trial: no digit has its required frequency","kind":"trial","visible":true,"input":{"s":"1112"},"expected":"","tags":["trial","frequency"]},
+    {"id":"real-two-valid-boundaries","name":"real: first valid boundary wins","kind":"real","visible":false,"input":{"s":"333221"},"expected":"32","tags":["real","leftmost"]},
+    {"id":"real-valid-seven-one","name":"real: larger digit frequency","kind":"real","visible":false,"input":{"s":"77777771"},"expected":"71","tags":["real","large-digit"]},
+    {"id":"real-all-identical","name":"real: all adjacent digits equal","kind":"real","visible":false,"input":{"s":"111"},"expected":"","tags":["real","equal"]},
+    {"id":"real-maximum-length","name":"real: maximum length without a valid pair","kind":"real","visible":false,"input":{"s":"9898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898"},"expected":"","tags":["real","maximum-n"]}
+  ]
+}

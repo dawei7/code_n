@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3675",
+  "cases": [
+    {
+      "id": "sample-merge-y-into-z",
+      "name": "sample: y merges into z before wrapping",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "yz"},
+      "expected": 2,
+      "tags": ["sample", "merge", "wraparound"]
+    },
+    {
+      "id": "sample-already-a",
+      "name": "sample: the target string needs no operation",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": 0,
+      "tags": ["sample", "already-target"]
+    },
+    {
+      "id": "trial-direct-wrap",
+      "name": "trial: z wraps to a in one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "zzzz"},
+      "expected": 1,
+      "tags": ["trial", "wraparound", "duplicates"]
+    },
+    {
+      "id": "trial-maximum-distance",
+      "name": "trial: b requires twenty-five successor steps",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "b"},
+      "expected": 25,
+      "tags": ["trial", "maximum-answer"]
+    },
+    {
+      "id": "real-existing-a-and-later-groups",
+      "name": "hidden: existing a remains while b absorbs later letters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "azbza"},
+      "expected": 25,
+      "tags": ["hidden", "existing-target", "merge"]
+    },
+    {
+      "id": "real-middle-letter-smallest",
+      "name": "hidden: the smallest occupied rank controls the route",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zmxzm"},
+      "expected": 14,
+      "tags": ["hidden", "smallest-rank"]
+    },
+    {
+      "id": "real-every-letter",
+      "name": "hidden: all alphabet letters merge during the sweep from b",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "expected": 25,
+      "tags": ["hidden", "full-alphabet"]
+    },
+    {
+      "id": "real-many-target-characters",
+      "name": "hidden: repeated a characters still require zero operations",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaaaaaaaaaaaaaa"},
+      "expected": 0,
+      "tags": ["hidden", "duplicates", "already-target"]
+    }
+  ]
+}

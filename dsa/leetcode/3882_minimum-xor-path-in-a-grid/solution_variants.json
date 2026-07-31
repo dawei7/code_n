@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum XOR Path in a Grid and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Propagates the bounded set of reachable 10-bit XOR states through the grid.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(n)"
     }
   ]
 }

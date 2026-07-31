@@ -1,57 +1,62 @@
-import sys
+def solve(n: int, edges: list[list[int]], queries: list[list[int]]) -> list[int]:
+    adjacency = [[] for _ in range(n + 1)]
+    weights = {}
+    for left, right, weight in edges:
+        adjacency[left].append((right, weight))
+        adjacency[right].append((left, weight))
+        weights[(min(left, right), max(left, right))] = weight
 
-# Increase recursion depth for deep trees
-sys.setrecursionlimit(200000)
+    parent = [0] * (n + 1)
+    initial_distance = [0] * (n + 1)
+    entry = [0] * (n + 1)
+    exit_time = [0] * (n + 1)
+    timer = 0
+    stack = [(1, 0, 0, False)]
 
-def solve(n, edges, queries):
-    adj = [[] for _ in range(n)]
-    for u, v, w in edges:
-        adj[u].append((v, w))
-        adj[v].append((u, w))
-    
-    LOG = n.bit_length()
-    up = [[-1] * LOG for _ in range(n)]
-    depth = [0] * n
-    dist = [0] * n
-    
-    def dfs(u, p, d, w):
-        depth[u] = d
-        dist[u] = w
-        up[u][0] = p
-        for v, weight in adj[u]:
-            if v != p:
-                dfs(v, u, d + 1, w + weight)
-                
-    dfs(0, -1, 0, 0)
-    
-    for i in range(1, LOG):
-        for u in range(n):
-            if up[u][i-1] != -1:
-                up[u][i] = up[up[u][i-1]][i-1]
-                
-    def get_lca(u, v):
-        if depth[u] < depth[v]:
-            u, v = v, u
-        
-        diff = depth[u] - depth[v]
-        for i in range(LOG):
-            if (diff >> i) & 1:
-                u = up[u][i]
-        
-        if u == v:
-            return u
-        
-        for i in range(LOG - 1, -1, -1):
-            if up[u][i] != up[v][i]:
-                u = up[u][i]
-                v = up[v][i]
-        
-        return up[u][0]
-    
-    results = []
-    for u, v in queries:
-        lca = get_lca(u, v)
-        d = dist[u] + dist[v] - 2 * dist[lca]
-        results.append(d)
-        
-    return results
+    while stack:
+        node, previous, distance, exiting = stack.pop()
+        if exiting:
+            exit_time[node] = timer
+            continue
+
+        parent[node] = previous
+        initial_distance[node] = distance
+        entry[node] = timer
+        timer += 1
+        stack.append((node, previous, distance, True))
+        for neighbor, weight in reversed(adjacency[node]):
+            if neighbor != previous:
+                stack.append((neighbor, node, distance + weight, False))
+
+    fenwick = [0] * (n + 1)
+
+    def add(index: int, delta: int) -> None:
+        index += 1
+        while index <= n:
+            fenwick[index] += delta
+            index += index & -index
+
+    def point(index: int) -> int:
+        total = 0
+        index += 1
+        while index:
+            total += fenwick[index]
+            index -= index & -index
+        return total
+
+    answer = []
+    for query in queries:
+        if query[0] == 1:
+            _, left, right, new_weight = query
+            key = (min(left, right), max(left, right))
+            delta = new_weight - weights[key]
+            weights[key] = new_weight
+            child = left if parent[left] == right else right
+            add(entry[child], delta)
+            if exit_time[child] < n:
+                add(exit_time[child], -delta)
+        else:
+            node = query[1]
+            answer.append(initial_distance[node] + point(entry[node]))
+
+    return answer

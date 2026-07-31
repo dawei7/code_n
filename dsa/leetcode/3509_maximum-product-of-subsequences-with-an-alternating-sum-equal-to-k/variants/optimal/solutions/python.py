@@ -1,33 +1,61 @@
-from collections import defaultdict
-
-
 def solve(nums: list[int], k: int, limit: int) -> int:
-    if abs(k) > sum(nums):
+    total = sum(nums)
+    if abs(k) > total:
         return -1
 
-    over_limit = limit + 1
-    states: list[dict[int, set[int]]] = [defaultdict(set), defaultdict(set)]
+    offset = total
+    width = 2 * total + 1
+    mask = (1 << width) - 1
+
+    without_zero = [0, 0]
+    with_zero = [0, 0]
+    products: dict[int, list[int]] = {}
 
     for value in nums:
-        updated: list[dict[int, set[int]]] = [
-            defaultdict(set, {total: set(products) for total, products in states[0].items()}),
-            defaultdict(set, {total: set(products) for total, products in states[1].items()}),
+        even_without, odd_without = without_zero
+        even_with, odd_with = with_zero
+
+        if value == 0:
+            with_zero = [
+                even_with | odd_with | odd_without,
+                odd_with | even_with | even_without | (1 << offset),
+            ]
+            continue
+
+        without_zero = [
+            even_without | (odd_without >> value),
+            odd_without
+            | ((even_without << value) & mask)
+            | (1 << (offset + value)),
+        ]
+        with_zero = [
+            even_with | (odd_with >> value),
+            odd_with | ((even_with << value) & mask),
         ]
 
+        additions: dict[int, list[int]] = {}
         if value <= limit:
-            updated[1][value].add(value)
+            additions[value] = [0, 1 << (offset + value)]
 
-        for parity in (0, 1):
-            sign = 1 if parity == 0 else -1
-            next_parity = 1 - parity
-            for total, products in states[parity].items():
-                next_total = total + sign * value
-                target = updated[next_parity][next_total]
-                for product in products:
-                    next_product = product * value
-                    target.add(next_product if next_product <= limit else over_limit)
-        states = updated
+        for product, (even_sums, odd_sums) in list(products.items()):
+            next_product = product * value
+            if next_product > limit:
+                continue
+            target = additions.setdefault(next_product, [0, 0])
+            target[0] |= odd_sums >> value
+            target[1] |= (even_sums << value) & mask
 
-    candidates = states[0].get(k, set()) | states[1].get(k, set())
-    valid = [product for product in candidates if product <= limit]
-    return max(valid) if valid else -1
+        for product, (even_sums, odd_sums) in additions.items():
+            target = products.setdefault(product, [0, 0])
+            target[0] |= even_sums
+            target[1] |= odd_sums
+
+    target_bit = 1 << (offset + k)
+    answer = -1
+    for product, (even_sums, odd_sums) in products.items():
+        if (even_sums | odd_sums) & target_bit:
+            answer = max(answer, product)
+
+    if answer != -1:
+        return answer
+    return 0 if (with_zero[0] | with_zero[1]) & target_bit else -1

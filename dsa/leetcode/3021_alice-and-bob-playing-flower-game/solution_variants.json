@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Alice and Bob Playing Flower Game and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts opposite-parity lane sizes through the closed form floor(n*m/2).",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
     }
   ]
 }

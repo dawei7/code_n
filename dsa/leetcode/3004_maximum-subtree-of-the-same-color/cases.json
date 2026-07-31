@@ -1,0 +1,10 @@
+{"challenge_id":"lc_3004","cases":[
+{"id":"sample-mixed-star","name":"sample: mixed-color star","kind":"sample","visible":true,"input":{"edges":[[0,1],[0,2],[0,3]],"colors":[1,1,2,3]},"expected":1,"tags":["sample"]},
+{"id":"sample-uniform-star","name":"sample: uniform star","kind":"sample","visible":true,"input":{"edges":[[0,1],[0,2],[0,3]],"colors":[1,1,1,1]},"expected":4,"tags":["sample","uniform"]},
+{"id":"sample-uniform-branch","name":"sample: uniform subtree below mixed root","kind":"sample","visible":true,"input":{"edges":[[0,1],[0,2],[2,3],[2,4]],"colors":[1,2,3,3,3]},"expected":3,"tags":["sample"]},
+{"id":"trial-single-node","name":"trial: one node","kind":"trial","visible":true,"input":{"edges":[],"colors":[100000]},"expected":1,"tags":["single","boundary"]},
+{"id":"trial-uniform-chain-tail","name":"trial: uniform suffix of a chain","kind":"trial","visible":true,"input":{"edges":[[0,1],[1,2],[2,3],[3,4]],"colors":[1,1,2,2,2]},"expected":3,"tags":["chain"]},
+{"id":"real-invalid-descendant","name":"real: matching child hides a different descendant","kind":"real","visible":false,"input":{"edges":[[0,1],[1,2],[1,3],[3,4]],"colors":[5,5,5,5,6]},"expected":1,"tags":["hidden","propagation"]},
+{"id":"real-deep-uniform-branch","name":"real: largest uniform branch is not at root","kind":"real","visible":false,"input":{"edges":[[0,1],[0,2],[2,3],[3,4],[3,5]],"colors":[9,9,4,4,4,4]},"expected":4,"tags":["hidden","branch"]},
+{"id":"real-large-color-values","name":"real: upper-bound colors compare by equality","kind":"real","visible":false,"input":{"edges":[[0,1],[0,2]],"colors":[100000,100000,100000]},"expected":3,"tags":["hidden","color-boundary"]}
+]}

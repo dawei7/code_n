@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3307",
+  "frontend_id": "3068",
+  "title_slug": "find-the-maximum-sum-of-node-values",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maximumValueSum",
+  "verified_submission_id": "2078999442",
+  "verified_at": "2026-07-24T05:03:51+02:00"
+}

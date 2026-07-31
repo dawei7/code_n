@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_3081",
+  "cases": [
+    {
+      "id": "sample-all-questions",
+      "name": "sample: distinct letters produce zero value",
+      "kind": "sample",
+      "visible": true,
+      "input": { "s": "???" },
+      "expected": "abc",
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-existing-a",
+      "name": "sample: balance around existing letters",
+      "kind": "sample",
+      "visible": true,
+      "input": { "s": "a?a?" },
+      "expected": "abac",
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-single-question",
+      "name": "trial: one placeholder chooses a",
+      "kind": "trial",
+      "visible": true,
+      "input": { "s": "?" },
+      "expected": "a",
+      "tags": ["trial", "single-character"]
+    },
+    {
+      "id": "trial-no-questions",
+      "name": "trial: completed input remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": { "s": "leetcode" },
+      "expected": "leetcode",
+      "tags": ["trial", "no-replacement"]
+    },
+    {
+      "id": "trial-avoid-frequent-letter",
+      "name": "trial: replacements avoid an already frequent letter",
+      "kind": "trial",
+      "visible": true,
+      "input": { "s": "aaaa????" },
+      "expected": "aaaabcde",
+      "tags": ["trial", "frequency-balance"]
+    },
+    {
+      "id": "real-interleaved-positions",
+      "name": "real: selected letters are sorted across placeholder positions",
+      "kind": "real",
+      "visible": false,
+      "input": { "s": "z?z??" },
+      "expected": "zazbc",
+      "tags": ["real", "lexicographic-order"]
+    },
+    {
+      "id": "real-twenty-seven-questions",
+      "name": "real: selection wraps after all twenty-six letters",
+      "kind": "real",
+      "visible": false,
+      "input": { "s": "???????????????????????????" },
+      "expected": "aabcdefghijklmnopqrstuvwxyz",
+      "tags": ["real", "alphabet-cycle", "ties"]
+    },
+    {
+      "id": "real-lexicographic-global-tie",
+      "name": "real: selected letters must be reordered globally",
+      "kind": "real",
+      "visible": false,
+      "input": { "s": "abcdefghijklmnopqrstuvwxy??" },
+      "expected": "abcdefghijklmnopqrstuvwxyaz",
+      "tags": ["real", "lexicographic-order", "existing-alphabet"]
+    }
+  ]
+}

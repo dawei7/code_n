@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Mirror Distance of an Integer and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Extracts the decimal digits from right to left while building the reversed integer arithmetically.",
+      "time_complexity": "O(log N)",
+      "space_complexity": "O(1)"
     }
   ]
 }

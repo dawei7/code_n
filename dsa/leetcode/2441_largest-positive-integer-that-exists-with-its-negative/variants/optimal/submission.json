@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2524",
+  "frontend_id": "2441",
+  "title_slug": "largest-positive-integer-that-exists-with-its-negative",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findMaxK",
+  "verified_submission_id": "2074969112",
+  "verified_at": "2026-07-20T18:17:15.851292+00:00"
+}

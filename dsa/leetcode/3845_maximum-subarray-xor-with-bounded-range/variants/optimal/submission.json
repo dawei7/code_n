@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4204",
+  "frontend_id": "3845",
+  "title_slug": "maximum-subarray-xor-with-bounded-range",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maxXor",
+  "verified_submission_id": "2086013337",
+  "verified_at": "2026-07-29T10:59:08.063322+00:00"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_34", "frontend_id": "34",
+    "title_slug": "find-first-and-last-position-of-element-in-sorted-array",
+    "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/",
+    "paid_only": false, "content_sha256": "9e5c5dabbea884dc572c08885d3f0e1b6cbdb05535e5f7e8f726d293e09344b2", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [5,7,7,8,8,10], target = 8", "output": "[3,4]", "has_explanation": false},
+      {"ordinal": 2, "input": "nums = [5,7,7,8,8,10], target = 6", "output": "[-1,-1]", "has_explanation": false},
+      {"ordinal": 3, "input": "nums = [], target = 0", "output": "[-1,-1]", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "30176bb3e7c3a153202cde04792b7864147c5095b45d1d14837217a9c8193c81",
+      "reference/contract.md": "6390e56755525aa11f5e2ca6b1b9371c00d4f642cd857576f3a03d433c62d203",
+      "reference/examples.md": "a95f56084f3b4beda18a491518aa72c0294f437929869bc267d25f8d64f25f54",
+      "reference/constraints.md": "cb86cdd16ca9117f125bc7d9d294b668640a7c59b974f57a6f505fad7285e2c1"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

@@ -1,0 +1,14 @@
+{"schema_version":1,"challenge_id":"lc_3744","cases":[
+{"id":"sample-first-character","name":"sample: first character of the expanded phrase","kind":"sample","visible":true,"input":{"s":"hello world","k":0},"expected":"h","validator":{"kind":"exact"},"tags":["sample","first-index"]},
+{"id":"sample-separator","name":"sample: separator after the expanded first word","kind":"sample","visible":true,"input":{"s":"hello world","k":15},"expected":" ","validator":{"kind":"exact"},"tags":["sample","separator"]},
+{"id":"trial-single-letter","name":"trial: one source and expanded character","kind":"trial","visible":true,"input":{"s":"a","k":0},"expected":"a","validator":{"kind":"exact"},"tags":["trial","single-character"]},
+{"id":"trial-second-block-start","name":"trial: first copy of the second character","kind":"trial","visible":true,"input":{"s":"abc","k":1},"expected":"b","validator":{"kind":"exact"},"tags":["trial","block-boundary"]},
+{"id":"trial-second-block-end","name":"trial: last copy of the second character","kind":"trial","visible":true,"input":{"s":"abc","k":2},"expected":"b","validator":{"kind":"exact"},"tags":["trial","block-boundary"]},
+{"id":"real-third-block-start","name":"hidden: first copy of the third character","kind":"real","visible":false,"input":{"s":"abc","k":3},"expected":"c","validator":{"kind":"exact"},"tags":["hidden","block-boundary"]},
+{"id":"real-third-block-end","name":"hidden: final expanded character of one word","kind":"real","visible":false,"input":{"s":"abc","k":5},"expected":"c","validator":{"kind":"exact"},"tags":["hidden","word-end"]},
+{"id":"real-one-letter-separator","name":"hidden: separator between one-letter words","kind":"real","visible":false,"input":{"s":"a b","k":1},"expected":" ","validator":{"kind":"exact"},"tags":["hidden","separator"]},
+{"id":"real-reset-after-space","name":"hidden: repetition position resets in the next word","kind":"real","visible":false,"input":{"s":"ab c","k":4},"expected":"c","validator":{"kind":"exact"},"tags":["hidden","word-reset"]},
+{"id":"real-repeated-letter","name":"hidden: identical source characters still form separate blocks","kind":"real","visible":false,"input":{"s":"zz","k":2},"expected":"z","validator":{"kind":"exact"},"tags":["hidden","duplicate-characters"]},
+{"id":"real-tenth-block-end","name":"hidden: final copy at a triangular boundary","kind":"real","visible":false,"input":{"s":"abcdefghij","k":54},"expected":"j","validator":{"kind":"exact"},"tags":["hidden","large-block-boundary"]},
+{"id":"real-second-word-interior","name":"hidden: an interior copy in the second word","kind":"real","visible":false,"input":{"s":"ab cd","k":5},"expected":"d","validator":{"kind":"exact"},"tags":["hidden","multiple-words"]}
+]}

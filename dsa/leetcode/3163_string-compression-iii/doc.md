@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [string-compression-iii](https://leetcode.com/problems/string-compression-iii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/string-compression-iii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/string-compression-iii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Compress a nonempty string `word` by repeatedly consuming a prefix from what remains. Each chosen prefix must contain only one repeated character and must be as long as possible without exceeding nine characters.
+
+For every consumed prefix, append its one-digit length followed by its character to an initially empty result string. Continue until all of `word` has been consumed, then return the resulting compression. A run longer than nine characters is therefore divided into consecutive chunks.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `word`: A string containing only lowercase English letters.
+
+Let $n = \lvert\texttt{word}\rvert$. The constraints satisfy $1 \le n \le 2\cdot10^5$.
 
 **Return value**
 
-TODO
+- The compressed string formed by the required count-character chunks.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "abcde"`
+- Output: `"1a1b1c1d1e"`
+
+Every maximal equal-character prefix has length one.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "aaaaaaaaaaaaaabb"`
+- Output: `"9a5a2b"`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The fourteen `a` characters are consumed as chunks of nine and five, followed by the two-character `b` run.

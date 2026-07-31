@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_253", "frontend_id": "253", "title_slug": "meeting-rooms-ii", "url": "https://leetcode.com/problems/meeting-rooms-ii/description/", "paid_only": true, "content_sha256": "05b495d33ba10566b98b6ae1efd049d5682aedeb0c2957fd008f45f806d092d0", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "intervals = [[0,30],[5,10],[15,20]]", "output": "2", "has_explanation": false}, {"ordinal": 2, "input": "intervals = [[7,10],[2,4]]", "output": "1", "has_explanation": false}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "fc48e66365e7d7aebec13d249ca7280883f14b613f4e7438feb347623c7a4cd7", "reference/contract.md": "64b55b78a4283382ae23e5d65fdc945668e27f9f29ec8b04402a209c71751d48", "reference/examples.md": "6f99790bce0116f129f1b132bf5ec5484cf33c4e20cccc71915a92b7c1ec47b3", "reference/constraints.md": "2fc083e1593ab6576f3dda171f9e26a3f554be222330badab03d1031b5e6f941"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

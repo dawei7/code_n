@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3002",
+  "frontend_id": "2783",
+  "title_slug": "flight-occupancy-and-waitlist-analysis",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2076742421",
+  "verified_at": "2026-07-22T06:45:00+00:00"
+}

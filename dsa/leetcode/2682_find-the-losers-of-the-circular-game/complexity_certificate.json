@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2682",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The complete legal domain contains at most fifty friends, too few for stable runtime scaling, while the accepted simulation performs constant work per newly visited friend followed by one linear scan.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 50,
+    "unit": "friends",
+    "source_constraint": "1 <= k <= n <= 50"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"The boolean guard permits at most n loop iterations because each iteration marks one previously unvisited friend; producing the answer then scans exactly n boolean entries."},
+    {"kind":"exhaustive_domain","evidence":"The regression enumerates every legal pair 1 <= k <= n <= 50 and compares the reference result with an independent set-based simulation oracle."},
+    {"kind":"boundary_property_cases","evidence":"Cases cover one and fifty friends, immediate repetition, full modular wraparound, unit and non-unit passing distances, empty loser output, and ascending output order."}
+  ]
+}

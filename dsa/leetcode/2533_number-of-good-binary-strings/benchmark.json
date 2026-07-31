@@ -1,0 +1,63 @@
+{
+  "challenge_id": "lc_2533",
+  "measurement_note": "Size is L, maxLength, with minLength = L and both group sizes equal to one. Every binary string of length L is valid. The fixed-chunk recurrence takes O(L), while enumerating every possible final block length for each state takes O(L^2).",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: all binary strings of length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "minLength": 32,
+        "maxLength": 32,
+        "oneGroup": 1,
+        "zeroGroup": 1
+      },
+      "expected": 294967268,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "block-enumeration-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: all binary strings of length 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "minLength": 128,
+        "maxLength": 128,
+        "oneGroup": 1,
+        "zeroGroup": 1
+      },
+      "expected": 279632277,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "block-enumeration-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: all binary strings of length 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "minLength": 256,
+        "maxLength": 256,
+        "oneGroup": 1,
+        "zeroGroup": 1
+      },
+      "expected": 792845266,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "block-enumeration-contrast"
+      ]
+    }
+  ]
+}

@@ -8,29 +8,34 @@
 | Category | Algorithms |
 | Topics | Array |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-indices-of-stable-mountains](https://leetcode.com/problems/find-indices-of-stable-mountains/) |
+| LeetCode | [Find Indices of Stable Mountains](https://leetcode.com/problems/find-indices-of-stable-mountains/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-indices-of-stable-mountains/).
 
 ### Goal
-Identify all indices `i` (where `i > 0`) in an array of mountain heights such that the mountain immediately preceding it (at index `i - 1`) has a height strictly greater than a given threshold value `threshold`.
+
+Mountains are arranged in a row, and `height[i]` records the height of mountain $i$. A mountain is stable when the mountain immediately before it has height strictly greater than `threshold`.
+
+Mountain `0` has no predecessor and is never stable. For every later index, only `height[i - 1]` determines stability; the current mountain's own height is irrelevant. Return all stable indices in any order.
 
 ### Function Contract
+
 **Inputs**
 
-- `height`: A list of integers representing the heights of a sequence of mountains.
-- `threshold`: An integer representing the height limit for stability.
+- `height`: A list of $n$ mountain heights, each from `1` through `100`, with $2 \le n \le 100$.
+- `threshold`: The strict comparison threshold, from `1` through `100`.
 
 **Return value**
 
-- A list of integers containing all indices `i` (1-indexed or 0-indexed based on problem constraints, here 1 to n-1) where `height[i-1] > threshold`.
+Return every index $i$ from `1` through `n - 1` for which `height[i - 1] > threshold`. The canonical implementation returns them in ascending order.
 
 ### Examples
+
 **Example 1**
 
 - Input: `height = [1, 2, 3, 4, 5], threshold = 2`
 - Output: `[3, 4]`
+- Explanation: The predecessors at indices `2` and `3` exceed `2`.
 
 **Example 2**
 
@@ -41,36 +46,4 @@ Identify all indices `i` (where `i > 0`) in an array of mountain heights such th
 
 - Input: `height = [10, 1, 10, 1, 10], threshold = 10`
 - Output: `[]`
-
----
-
-## Solution
-### Approach
-Linear scan (Iteration). The problem requires a single pass through the array starting from the second element to check the condition against the previous element.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the `height` array, as we iterate through the list exactly once.
-- **Space Complexity**: `O(k)`, where `k` is the number of stable mountains found, required to store the resulting list of indices.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(height: List[int], threshold: int) -> List[int]:
-    """
-    Finds indices i such that height[i-1] > threshold.
-    The range of i is from 1 to len(height) - 1.
-    """
-    stable_indices = []
-
-    # We start from index 1 because the condition depends on height[i-1]
-    for i in range(1, len(height)):
-        if height[i - 1] > threshold:
-            stable_indices.append(i)
-
-    return stable_indices
-```
-</details>
+- Explanation: Equality with the threshold is not sufficient.

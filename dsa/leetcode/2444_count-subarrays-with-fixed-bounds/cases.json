@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2444",
   "cases": [
     {
@@ -6,101 +7,72 @@
       "name": "sample: out-of-range value resets window",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          3,
-          5,
-          2,
-          7,
-          5
-        ],
-        "min_k": 1,
-        "max_k": 5
-      },
+      "input": {"nums": [1, 3, 5, 2, 7, 5], "min_k": 1, "max_k": 5},
       "expected": 2,
-      "tags": [
-        "sample",
-        "sliding-window"
-      ]
+      "tags": ["sample", "invalid-boundary"]
     },
     {
       "id": "sample-2",
-      "name": "sample: min and max are equal",
+      "name": "sample: equal bounds make every subarray valid",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "min_k": 1,
-        "max_k": 1
-      },
+      "input": {"nums": [1, 1, 1, 1], "min_k": 1, "max_k": 1},
       "expected": 10,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "equal-bounds"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one full-span subarray",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3
-        ],
-        "min_k": 1,
-        "max_k": 3
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-alternating-bounds",
-      "name": "trial: alternating min and max values",
+      "id": "trial-full-span",
+      "name": "trial: only the full array contains both bounds",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5,
-          1,
-          5
-        ],
-        "min_k": 1,
-        "max_k": 5
-      },
-      "expected": 6,
-      "tags": [
-        "trial"
-      ]
+      "input": {"nums": [1, 2, 3], "min_k": 1, "max_k": 3},
+      "expected": 1,
+      "tags": ["trial", "full-span"]
     },
     {
-      "id": "real-equal-bound-prefix",
-      "name": "hidden: equal bounds count only the valid run",
+      "id": "trial-alternating",
+      "name": "trial: alternating bounds create overlapping windows",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 5, 1, 5], "min_k": 1, "max_k": 5},
+      "expected": 6,
+      "tags": ["trial", "overlap"]
+    },
+    {
+      "id": "real-separated-segments",
+      "name": "hidden: invalid value separates valid pairs",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          2,
-          2,
-          3
-        ],
-        "min_k": 2,
-        "max_k": 2
-      },
+      "input": {"nums": [1, 5, 6, 1, 5], "min_k": 1, "max_k": 5},
+      "expected": 2,
+      "tags": ["hidden", "reset"]
+    },
+    {
+      "id": "real-missing-maximum",
+      "name": "hidden: values stay in range but maximum is absent",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 2], "min_k": 1, "max_k": 3},
+      "expected": 0,
+      "tags": ["hidden", "missing-bound"]
+    },
+    {
+      "id": "real-equal-bound-runs",
+      "name": "hidden: equal-bound runs separated by invalid value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 3, 2], "min_k": 2, "max_k": 2},
+      "expected": 4,
+      "tags": ["hidden", "equal-bounds", "reset"]
+    },
+    {
+      "id": "real-upper-values",
+      "name": "hidden: bounds at constraint extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000, 1, 1000000], "min_k": 1, "max_k": 1000000},
       "expected": 3,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "value-boundary"]
     }
   ]
 }

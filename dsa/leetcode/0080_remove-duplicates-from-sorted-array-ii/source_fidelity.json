@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_80", "frontend_id": "80",
+    "title_slug": "remove-duplicates-from-sorted-array-ii",
+    "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/",
+    "paid_only": false, "content_sha256": "69fb88806fd0c6a77fb1fd2969abbd8d2c2953a661cf2c5c398adf9b7701a3a4", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "custom_judge", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,1,1,2,2,3]", "output": "5, nums = [1,1,2,2,3,_]", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [0,0,1,1,1,1,2,3,3]", "output": "7, nums = [0,0,1,1,2,3,3,_,_]", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0f8257f7ace7a0cf5059765d8d0288971842e6ba2e1eec28d86dfcba0a621348",
+      "reference/contract.md": "33d4176f3770abf144ae476ed1d2413266f531638c5c5f1ed42d00b2501faa4f",
+      "reference/custom_judge.md": "e69689d66df9a3e7a8e10c5a7835702cde51e7a0c687d27bd60c208be19e5212",
+      "reference/examples.md": "705e7dc80400571642a77957df1d03dbc0b801c900639f2e6de06b3f851becd0",
+      "reference/constraints.md": "6c3c9813371af66feb69fe024fef37aad3050171b70084a65f0d97ea41586404"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

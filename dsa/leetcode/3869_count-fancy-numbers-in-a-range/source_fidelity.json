@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3869",
+    "frontend_id": "3869",
+    "title_slug": "count-fancy-numbers-in-a-range",
+    "url": "https://leetcode.com/problems/count-fancy-numbers-in-a-range/description/",
+    "paid_only": false,
+    "content_sha256": "3981431a948ea8bc4157d241b28d1150b500b85f1468e6aee03242eb9f7d7ecb",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "l = 8, r = 10",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "l = 12340, r = 12341",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "l = 123456788, r = 123456788",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b1d60222ed4d12bf59b4e2962fc575fa583555dc2a661e5446b41f8efd080ab8",
+      "reference/contract.md": "4f9829e73d3861d845b6ec406e7e622fceee61f274944db4a2d88e47d7abd6aa",
+      "reference/examples.md": "6497eb1ae5a096edb893c1ee2d1529617ff99485082e3ae45494f3ad8360bc85",
+      "reference/constraints.md": "f8133e13ebfab37dbbf3b185fb07112a996b54b3e5642169471b9930b81f5c37"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

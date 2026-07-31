@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3064",
+  "frontend_id": "2888",
+  "title_slug": "reshape-data-concatenate",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "concatenateTables",
+  "verified_submission_id": "2077921240",
+  "verified_at": "2026-07-23T05:27:02+00:00"
+}

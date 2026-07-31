@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Deep Merge of Two Objects and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Recursively merges matching container types while preserving unique keys and replacing all incompatible or primitive pairs with the second value.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

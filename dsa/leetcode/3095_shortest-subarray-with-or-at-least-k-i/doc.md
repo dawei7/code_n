@@ -8,69 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Bit Manipulation, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [shortest-subarray-with-or-at-least-k-i](https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/).
 
 ### Goal
-Given an array of non-negative integers and an integer `k`, identify the length of the smallest contiguous subarray whose elements, when combined using the bitwise OR operation, result in a value greater than or equal to `k`. If no such subarray exists, return -1.
+
+You are given an array `nums` whose elements are non-negative integers, together with a non-negative threshold `k`. A non-empty array is called **special** when the bitwise OR of all its elements is at least `k`.
+
+Among every non-empty contiguous subarray of `nums`, find the minimum possible length of one that is special. Return that length, or return `-1` when no contiguous subarray can reach the threshold.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of non-negative integers.
-- `k`: A non-negative integer representing the target threshold.
+- `nums`: A list of $n$ non-negative integers, where $1 \le n \le 50$ and $0 \le \texttt{nums[i]} \le 50$.
+- `k`: The required bitwise-OR threshold, satisfying $0 \le k < 64$.
+
+A subarray must contain consecutive elements and must not be empty.
 
 **Return value**
 
-- An integer representing the minimum length of a valid subarray, or -1 if no valid subarray is found.
+Return the length of the shortest subarray whose bitwise OR is at least `k`. Return `-1` if no such subarray exists.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1, 2, 3], k = 2`
 - Output: `1`
+- Explanation: The one-element subarray `[3]` has OR value `3`; `[2]` is another valid one-element choice.
 
 **Example 2**
 
 - Input: `nums = [2, 1, 8], k = 10`
 - Output: `3`
+- Explanation: The full array has OR value `11`, while neither a single element nor either length-two subarray reaches `10`.
 
 **Example 3**
 
 - Input: `nums = [1, 2], k = 0`
 - Output: `1`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Brute Force approach (given the small constraints of this specific version of the problem) or a Sliding Window approach. Since the bitwise OR operation is monotonic (adding elements to a subarray can only increase or keep the OR sum the same), we can iterate through all possible subarrays and track the minimum length that satisfies the condition.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)` where `n` is the length of the array, as we check all possible subarrays.
-- **Space Complexity**: `O(1)` as we only use a few variables to track the current OR sum and the minimum length.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], k: int) -> int:
-    n = len(nums)
-    min_len = float('inf')
-
-    for i in range(n):
-        current_or = 0
-        for j in range(i, n):
-            current_or |= nums[j]
-            if current_or >= k:
-                min_len = min(min_len, j - i + 1)
-                # Since we want the shortest, once we hit k,
-                # we don't need to extend this specific start index further
-                break
-
-    return int(min_len) if min_len != float('inf') else -1
-```
-</details>
+- Explanation: Every non-negative OR value is at least zero, so any single element is already special.

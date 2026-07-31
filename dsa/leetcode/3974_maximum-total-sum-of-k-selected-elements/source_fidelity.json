@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3974",
+    "frontend_id": "3974",
+    "title_slug": "maximum-total-sum-of-k-selected-elements",
+    "url": "https://leetcode.com/problems/maximum-total-sum-of-k-selected-elements/description/",
+    "paid_only": false,
+    "content_sha256": "b4a3ac4ac6ae1555421162a100063fa01bdfb4482bc20861748ea878037cfeca",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [6,1,2,9], k = 3, mul = 2",
+        "output": "26",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [3,7,5,2], k = 2, mul = 4",
+        "output": "43",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [4,4], k = 1, mul = 1",
+        "output": "4",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ba93984e80175e984143f698a31d89b0f3f5892b69943b97347bd6b16d7f6d45",
+      "reference/contract.md": "43e29f3883dda47bae2b941e37f3934509008d038309501b2a0050b0db19d56b",
+      "reference/examples.md": "a036d3a19f180fba3911325ef0e1bad07f8277680d1912bee05dc97f66d964da",
+      "reference/constraints.md": "7706230a8f8dc3911f25811177e2e3707a13b147f2d5d6d8e91695a71d90913f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

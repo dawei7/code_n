@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the K-Beauty of a Number and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Examines every length-k decimal window, skips zero, and tests divisibility against the original number.",
+      "time_complexity": "O(dk)",
+      "space_complexity": "O(k)"
     }
   ]
 }

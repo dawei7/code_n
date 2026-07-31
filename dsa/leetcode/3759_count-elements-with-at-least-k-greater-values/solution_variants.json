@@ -1,16 +1,1 @@
-{
-  "schema_version": 1,
-  "challenge_id": "lc_3759",
-  "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Elements With at Least K Greater Values and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_3759","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Selects the kth-largest threshold with three-way Quickselect, then counts values strictly below it.","time_complexity":"O(n)","space_complexity":"O(n)"}]}

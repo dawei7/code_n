@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_2651",
+  "cases": [
+    {"id":"sample-no-wrap","name":"sample: arrival remains on the same day","kind":"sample","visible":true,"input":{"arrivalTime":15,"delayedTime":5},"expected":20,"tags":["sample","no-wrap"]},
+    {"id":"sample-midnight","name":"sample: sum lands exactly at midnight","kind":"sample","visible":true,"input":{"arrivalTime":13,"delayedTime":11},"expected":0,"tags":["sample","midnight"]},
+    {"id":"trial-one-hour","name":"trial: smallest arrival and delay","kind":"trial","visible":true,"input":{"arrivalTime":1,"delayedTime":1},"expected":2,"tags":["minimum","no-wrap"]},
+    {"id":"trial-single-wrap","name":"trial: sum crosses midnight","kind":"trial","visible":true,"input":{"arrivalTime":23,"delayedTime":2},"expected":1,"tags":["wrap"]},
+    {"id":"real-full-day","name":"hidden: twenty-four-hour delay preserves hour","kind":"real","visible":false,"input":{"arrivalTime":7,"delayedTime":24},"expected":7,"tags":["hidden","full-day"]},
+    {"id":"real-latest-midnight","name":"hidden: latest scheduled hour plus one","kind":"real","visible":false,"input":{"arrivalTime":23,"delayedTime":1},"expected":0,"tags":["hidden","boundary","midnight"]},
+    {"id":"real-latest-sum","name":"hidden: maximum possible sum","kind":"real","visible":false,"input":{"arrivalTime":23,"delayedTime":24},"expected":23,"tags":["hidden","maximum","full-day"]},
+    {"id":"real-wrap-nonzero","name":"hidden: wrapped result is nonzero","kind":"real","visible":false,"input":{"arrivalTime":18,"delayedTime":9},"expected":3,"tags":["hidden","wrap"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3982",
+  "frontend_id": "3661",
+  "title_slug": "maximum-walls-destroyed-by-robots",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxWalls",
+  "verified_submission_id": "2083975597",
+  "verified_at": "2026-07-27T22:26:17.612611+00:00"
+}

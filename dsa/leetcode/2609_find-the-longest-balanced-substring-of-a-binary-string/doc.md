@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-longest-balanced-substring-of-a-binary-string](https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a binary string `s`. A substring is balanced when it consists of some zeroes followed by the same number of ones. Every zero in that substring must therefore occur before every one; arrangements that switch back to zero after a one are not balanced.
+
+Find the greatest length among all balanced substrings of `s`. A substring must occupy consecutive positions in the original string. The empty substring also qualifies, so the result is zero when no nonempty balanced substring exists.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string containing only `0` and `1`, with $1 \leq \lvert s \rvert \leq 50$.
 
 **Return value**
 
-TODO
+Return the length of the longest balanced substring.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "01000111"`
+- Output: `6`
+- Explanation: `"000111"` is balanced and has length six.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "00111"`
+- Output: `4`
+- Explanation: `"0011"` is the longest balanced choice.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "111"`
+- Output: `0`
+- Explanation: No nonempty substring contains a zero-run followed by an equally long one-run.

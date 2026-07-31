@@ -1,0 +1,123 @@
+{
+  "challenge_id": "lc_3390",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: longest streak for both teams",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Teams": [
+          {"player_id": 1, "team_name": "Arsenal"}, {"player_id": 2, "team_name": "Arsenal"},
+          {"player_id": 3, "team_name": "Arsenal"}, {"player_id": 4, "team_name": "Arsenal"},
+          {"player_id": 5, "team_name": "Chelsea"}, {"player_id": 6, "team_name": "Chelsea"},
+          {"player_id": 7, "team_name": "Chelsea"}, {"player_id": 8, "team_name": "Chelsea"}
+        ],
+        "Passes": [
+          {"pass_from": 1, "time_stamp": "00:05", "pass_to": 2}, {"pass_from": 2, "time_stamp": "00:07", "pass_to": 3},
+          {"pass_from": 3, "time_stamp": "00:08", "pass_to": 4}, {"pass_from": 4, "time_stamp": "00:10", "pass_to": 5},
+          {"pass_from": 6, "time_stamp": "00:15", "pass_to": 7}, {"pass_from": 7, "time_stamp": "00:17", "pass_to": 8},
+          {"pass_from": 8, "time_stamp": "00:20", "pass_to": 6}, {"pass_from": 6, "time_stamp": "00:22", "pass_to": 5},
+          {"pass_from": 1, "time_stamp": "00:25", "pass_to": 2}, {"pass_from": 2, "time_stamp": "00:27", "pass_to": 3}
+        ]
+      }},
+      "expected": {"columns": ["team_name", "longest_streak"], "rows": [["Arsenal", 3], ["Chelsea", 4]]},
+      "tags": ["sample", "window-function"]
+    },
+    {
+      "id": "trial-interceptions-split-streaks",
+      "name": "trial: interceptions split each team's sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Teams": [
+          {"player_id": 1, "team_name": "A"}, {"player_id": 2, "team_name": "A"},
+          {"player_id": 3, "team_name": "B"}, {"player_id": 4, "team_name": "B"}
+        ],
+        "Passes": [
+          {"pass_from": 1, "time_stamp": "00:01", "pass_to": 2}, {"pass_from": 2, "time_stamp": "00:02", "pass_to": 3},
+          {"pass_from": 1, "time_stamp": "00:03", "pass_to": 2}, {"pass_from": 2, "time_stamp": "00:04", "pass_to": 1},
+          {"pass_from": 3, "time_stamp": "00:05", "pass_to": 4}, {"pass_from": 4, "time_stamp": "00:06", "pass_to": 3},
+          {"pass_from": 3, "time_stamp": "00:07", "pass_to": 1}, {"pass_from": 4, "time_stamp": "00:08", "pass_to": 3}
+        ]
+      }},
+      "expected": {"columns": ["team_name", "longest_streak"], "rows": [["A", 2], ["B", 2]]},
+      "tags": ["interception", "multiple-streaks"]
+    },
+    {
+      "id": "trial-other-team-does-not-break",
+      "name": "trial: another team's passes do not break a streak",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Teams": [
+          {"player_id": 1, "team_name": "Alpha"}, {"player_id": 2, "team_name": "Alpha"},
+          {"player_id": 3, "team_name": "Beta"}, {"player_id": 4, "team_name": "Beta"}
+        ],
+        "Passes": [
+          {"pass_from": 1, "time_stamp": "01:00", "pass_to": 2}, {"pass_from": 3, "time_stamp": "02:00", "pass_to": 1},
+          {"pass_from": 2, "time_stamp": "03:00", "pass_to": 1}, {"pass_from": 4, "time_stamp": "04:00", "pass_to": 3},
+          {"pass_from": 1, "time_stamp": "05:00", "pass_to": 2}
+        ]
+      }},
+      "expected": {"columns": ["team_name", "longest_streak"], "rows": [["Alpha", 3], ["Beta", 1]]},
+      "tags": ["partitioning", "interleaved-teams"]
+    },
+    {
+      "id": "real-omit-all-intercepted-team",
+      "name": "real: omit a team with no successful outgoing pass",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Teams": [
+          {"player_id": 1, "team_name": "Chelsea"}, {"player_id": 2, "team_name": "Chelsea"}, {"player_id": 3, "team_name": "Chelsea"},
+          {"player_id": 4, "team_name": "Liverpool"}, {"player_id": 5, "team_name": "Liverpool"}, {"player_id": 6, "team_name": "Liverpool"}
+        ],
+        "Passes": [
+          {"pass_from": 2, "time_stamp": "16:32", "pass_to": 4}, {"pass_from": 3, "time_stamp": "18:27", "pass_to": 6},
+          {"pass_from": 1, "time_stamp": "29:33", "pass_to": 4}, {"pass_from": 3, "time_stamp": "45:43", "pass_to": 5},
+          {"pass_from": 6, "time_stamp": "54:23", "pass_to": 5}, {"pass_from": 6, "time_stamp": "72:38", "pass_to": 2}
+        ]
+      }},
+      "expected": {"columns": ["team_name", "longest_streak"], "rows": [["Liverpool", 1]]},
+      "tags": ["output-domain", "remote-regression"]
+    },
+    {
+      "id": "real-all-teams-omitted",
+      "name": "real: return no rows when every pass is intercepted",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Teams": [
+          {"player_id": 1, "team_name": "North"}, {"player_id": 2, "team_name": "North"},
+          {"player_id": 3, "team_name": "South"}, {"player_id": 4, "team_name": "South"}
+        ],
+        "Passes": [
+          {"pass_from": 1, "time_stamp": "10:00", "pass_to": 3}, {"pass_from": 3, "time_stamp": "20:00", "pass_to": 2},
+          {"pass_from": 2, "time_stamp": "30:00", "pass_to": 4}
+        ]
+      }},
+      "expected": {"columns": ["team_name", "longest_streak"], "rows": []},
+      "tags": ["empty-result", "all-intercepted"]
+    },
+    {
+      "id": "real-leading-and-trailing-interceptions",
+      "name": "real: ignore zero-length groups around a successful island",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Teams": [
+          {"player_id": 1, "team_name": "Zulu"}, {"player_id": 2, "team_name": "Zulu"},
+          {"player_id": 3, "team_name": "Alpha"}, {"player_id": 4, "team_name": "Alpha"}
+        ],
+        "Passes": [
+          {"pass_from": 1, "time_stamp": "01:00", "pass_to": 3}, {"pass_from": 2, "time_stamp": "02:00", "pass_to": 1},
+          {"pass_from": 1, "time_stamp": "03:00", "pass_to": 2}, {"pass_from": 2, "time_stamp": "04:00", "pass_to": 4},
+          {"pass_from": 3, "time_stamp": "05:00", "pass_to": 4}
+        ]
+      }},
+      "expected": {"columns": ["team_name", "longest_streak"], "rows": [["Alpha", 1], ["Zulu", 2]]},
+      "tags": ["boundary-groups", "ordering"]
+    }
+  ]
+}

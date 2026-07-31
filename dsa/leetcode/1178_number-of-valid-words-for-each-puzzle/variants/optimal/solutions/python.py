@@ -5,23 +5,23 @@ def solve(words, puzzles):
     counts = Counter()
     for word in words:
         mask = 0
-        for ch in set(word):
-            mask |= 1 << (ord(ch) - ord("a"))
+        for character in set(word):
+            mask |= 1 << (ord(character) - ord("a"))
         if mask.bit_count() <= 7:
             counts[mask] += 1
 
     answers = []
     for puzzle in puzzles:
-        first = 1 << (ord(puzzle[0]) - ord("a"))
-        rest = 0
-        for ch in puzzle[1:]:
-            rest |= 1 << (ord(ch) - ord("a"))
+        required = 1 << (ord(puzzle[0]) - ord("a"))
+        optional = 0
+        for character in puzzle[1:]:
+            optional |= 1 << (ord(character) - ord("a"))
         total = 0
-        sub = rest
+        submask = optional
         while True:
-            total += counts[sub | first]
-            if sub == 0:
+            total += counts[submask | required]
+            if submask == 0:
                 break
-            sub = (sub - 1) & rest
+            submask = (submask - 1) & optional
         answers.append(total)
     return answers

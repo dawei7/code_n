@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | String, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [lexicographically-smallest-string-after-a-swap](https://leetcode.com/problems/lexicographically-smallest-string-after-a-swap/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/lexicographically-smallest-string-after-a-swap/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/lexicographically-smallest-string-after-a-swap/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a string `s` containing only decimal digits. You may perform at most one operation: choose two adjacent digits that have the same parity and swap them. Two digits have the same parity when they are both even or both odd.
+
+Return the lexicographically smallest string obtainable under this rule. Making no swap is allowed, so an operation that would make the string larger is never required. Lexicographic comparison is decided by the first position at which two candidate strings differ.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string of decimal digits, with $2 \leq \lvert\texttt{s}\rvert \leq 100$.
 
 **Return value**
 
-TODO
+Return the lexicographically smallest string obtainable by making zero or one legal adjacent swap.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "45320"`
+- Output: `"43520"`
+- Explanation: The adjacent digits `5` and `3` are both odd. Swapping them produces the smallest legal result.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "001"`
+- Output: `"001"`
+- Explanation: The only same-parity adjacent pair contains equal digits, so no swap can improve the string.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "42"`
+- Output: `"24"`
+- Explanation: Both digits are even, and moving `2` to the first position makes the string smaller.

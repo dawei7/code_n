@@ -1,34 +1,22 @@
 def solve(nums: list[int]) -> int:
-    MOD = 10**9 + 7
-    n = len(nums)
-    max_val = max(nums)
-    
-    # dp[v] stores the number of ways to have arr1[i] = v
-    # Initialize for i = 0: arr1[0] can be any value from 0 to nums[0]
-    dp = [1] * (max_val + 1)
-    for v in range(max_val + 1):
-        if v > nums[0]:
-            dp[v] = 0
-            
-    for i in range(1, n):
-        new_dp = [0] * (max_val + 1)
-        # Prefix sums of the previous dp state to optimize transition
-        prefix_sum = [0] * (max_val + 2)
-        for v in range(max_val + 1):
-            prefix_sum[v + 1] = (prefix_sum[v] + dp[v]) % MOD
-            
-        for v in range(nums[i] + 1):
-            # Conditions:
-            # 1. arr1[i-1] <= v
-            # 2. arr2[i-1] >= arr2[i] => nums[i-1] - arr1[i-1] >= nums[i] - v
-            #    => arr1[i-1] <= v - (nums[i] - nums[i-1])
-            # So, arr1[i-1] <= min(v, v - nums[i] + nums[i-1])
-            
-            upper = min(v, v - nums[i] + nums[i-1])
-            if upper >= 0:
-                # Sum of dp[0...upper]
-                limit = min(upper, nums[i-1])
-                new_dp[v] = prefix_sum[limit + 1]
-        dp = new_dp
-        
-    return sum(dp) % MOD
+    modulus = 1_000_000_007
+    ways = [1] * (nums[0] + 1)
+
+    for previous_value, current_value in zip(nums, nums[1:]):
+        prefix = []
+        running_sum = 0
+        for count in ways:
+            running_sum = (running_sum + count) % modulus
+            prefix.append(running_sum)
+
+        minimum_increase = max(0, current_value - previous_value)
+        next_ways = [0] * (current_value + 1)
+        for current_first in range(minimum_increase, current_value + 1):
+            previous_limit = current_first - minimum_increase
+            if previous_limit < len(prefix):
+                next_ways[current_first] = prefix[previous_limit]
+            else:
+                next_ways[current_first] = prefix[-1]
+        ways = next_ways
+
+    return sum(ways) % modulus

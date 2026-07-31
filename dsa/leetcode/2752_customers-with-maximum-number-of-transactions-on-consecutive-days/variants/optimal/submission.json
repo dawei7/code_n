@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2855",
+  "frontend_id": "2752",
+  "title_slug": "customers-with-maximum-number-of-transactions-on-consecutive-days",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2076506353",
+  "verified_at": "2026-07-22T03:05:00+00:00"
+}
+

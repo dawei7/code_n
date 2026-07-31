@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_2950",
+  "cases": [
+    {
+      "id": "sample-asdf",
+      "name": "sample: six divisible substrings across several groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "asdf"
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-bdh",
+      "name": "sample: singles and the complete word qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "bdh"
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-abcd",
+      "name": "sample: four singles and two pairs qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abcd"
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: every single letter is divisible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-same-group",
+      "name": "trial: all substrings have mapped average one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abab"
+      },
+      "expected": 10,
+      "tags": [
+        "same-group"
+      ]
+    },
+    {
+      "id": "trial-adjacent-groups",
+      "name": "trial: a nonintegral pair average is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ac"
+      },
+      "expected": 2,
+      "tags": [
+        "nonintegral-average"
+      ]
+    },
+    {
+      "id": "real-highest-group",
+      "name": "hidden: every substring has mapped average nine",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "xyzxyz"
+      },
+      "expected": 21,
+      "tags": [
+        "hidden",
+        "highest-group"
+      ]
+    },
+    {
+      "id": "real-group-boundaries",
+      "name": "hidden: letters straddle several mapping boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "bcefhiklnoqruvx"
+      },
+      "expected": 38,
+      "tags": [
+        "hidden",
+        "mapping-boundaries"
+      ]
+    },
+    {
+      "id": "real-mixed-averages",
+      "name": "hidden: different substrings realize different integer averages",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "azbycxdwev"
+      },
+      "expected": 23,
+      "tags": [
+        "hidden",
+        "mixed-averages"
+      ]
+    },
+    {
+      "id": "real-repeated-pattern",
+      "name": "hidden: repeated alphabet pattern creates overlapping matches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "leetcodealgorithm"
+      },
+      "expected": 52,
+      "tags": [
+        "hidden",
+        "overlapping"
+      ]
+    }
+  ]
+}
+

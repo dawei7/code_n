@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2445",
+  "frontend_id": "2368",
+  "title_slug": "reachable-nodes-with-restrictions",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.reachableNodes",
+  "verified_submission_id": "2074443154",
+  "verified_at": "2026-07-20T10:28:43.864308+00:00"
+}

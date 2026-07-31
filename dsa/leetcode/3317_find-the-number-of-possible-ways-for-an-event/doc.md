@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Math, Dynamic Programming, Combinatorics |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-number-of-possible-ways-for-an-event](https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An event has $n$ distinct performers and $x$ distinct stages. Every performer is assigned to exactly one stage. Performers assigned to the same stage form one band and perform together, while any number of stages may remain empty.
+
+After the performances, the jury independently gives each nonempty band an integer score from 1 through $y$. Two events are different if at least one performer uses a different stage or if at least one band receives a different score. Count all possible events and return the result modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The number of distinct performers, with $1\leq n\leq1000$.
+- `x`: The number of distinct available stages, with $1\leq x\leq1000$.
+- `y`: The number of possible scores for each nonempty band, with $1\leq y\leq1000$.
 
 **Return value**
 
-TODO
+Return the number of distinct stage assignments and band-score assignments modulo $1{,}000{,}000{,}007$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 1, x = 2, y = 3`
+- Output: `6`
+
+The performer has two stage choices, and the resulting band has three score choices.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, x = 2, y = 1`
+- Output: `32`
+
+Every performer independently chooses one of two stages, and the only available score adds no extra choice.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 3, x = 3, y = 4`
+- Output: `684`

@@ -8,6 +8,7 @@ written into the canonical dataset.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import os
@@ -75,6 +76,82 @@ def _statement_text(content_html: str) -> str:
     return "\n".join(line for line in lines if line)
 
 
+def _statement_structure(content_html: str) -> dict[str, Any]:
+    """Expose authoring-relevant structure without persisting source prose."""
+
+    example_matches = list(
+        re.finditer(
+            r'<strong\b[^>]*class=["\'][^"\']*\bexample\b[^"\']*["\'][^>]*>'
+            r"\s*Example\s+(\d+)\s*:",
+            content_html,
+            flags=re.IGNORECASE,
+        )
+    )
+    examples: list[dict[str, Any]] = []
+    for index, match in enumerate(example_matches):
+        end = (
+            example_matches[index + 1].start()
+            if index + 1 < len(example_matches)
+            else len(content_html)
+        )
+        body = content_html[match.end() : end]
+        example_text = html.unescape(re.sub(r"<[^>]+>", "", body))
+        example: dict[str, Any] = {
+            "ordinal": int(match.group(1)),
+            "has_explanation": bool(
+                re.search(r"\bExplanation\s*:", body, flags=re.IGNORECASE)
+            ),
+        }
+        for label in ("Input", "Output"):
+            fact_match = re.search(
+                rf"(?mi)^\s*{label}:\s*(.+?)\s*$",
+                example_text,
+            )
+            if fact_match:
+                example[label.lower()] = fact_match.group(1)
+        examples.append(example)
+
+    constraint_count = 0
+    constraints_match = re.search(
+        r"<strong\b[^>]*>\s*Constraints\s*:\s*</strong>(.*?)(?:</ul>)",
+        content_html,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if constraints_match:
+        constraint_count = len(
+            re.findall(r"<li\b", constraints_match.group(1), flags=re.IGNORECASE)
+        )
+
+    first_example_start = example_matches[0].start() if example_matches else len(content_html)
+    preamble = content_html[:first_example_start]
+    named_preamble_sections: list[tuple[int, str]] = []
+    for section_id, pattern in (
+        ("custom_judge", r"\bCustom\s+Judge\s*:"),
+        ("note", r"\bNote\s*:"),
+    ):
+        section_match = re.search(pattern, preamble, flags=re.IGNORECASE)
+        if section_match:
+            named_preamble_sections.append((section_match.start(), section_id))
+
+    sections = ["description"]
+    sections.extend(
+        section_id for _position, section_id in sorted(named_preamble_sections)
+    )
+    if examples:
+        sections.append("examples")
+    if constraints_match:
+        sections.append("constraints")
+    if re.search(r"\bFollow(?:-|\s+)up\s*:", content_html, flags=re.IGNORECASE):
+        sections.append("follow_up")
+    return {
+        "sections": sections,
+        "examples": examples,
+        "constraint_count": constraint_count,
+        "image_count": len(re.findall(r"<img\b", content_html, flags=re.IGNORECASE)),
+        "table_count": len(re.findall(r"<table\b", content_html, flags=re.IGNORECASE)),
+    }
+
+
 def fetch_question(client: requests.Session, challenge_id: str) -> dict[str, Any]:
     metadata = leetcode_metadata(challenge_id)
     if not metadata:
@@ -127,6 +204,8 @@ def _question_evidence(
         "title": str(question.get("title") or ""),
         "title_slug": str(question.get("titleSlug") or ""),
         "paid_only": bool(question.get("isPaidOnly")),
+        "content_sha256": hashlib.sha256(content_html.encode("utf-8")).hexdigest(),
+        "structure": _statement_structure(content_html),
         "content_text": _statement_text(content_html),
         "content_html": content_html,
         "code_snippets": question.get("codeSnippets") or [],

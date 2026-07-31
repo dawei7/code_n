@@ -8,48 +8,44 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [consecutive-transactions-with-increasing-amounts](https://leetcode.com/problems/consecutive-transactions-with-increasing-amounts/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/consecutive-transactions-with-increasing-amounts/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/consecutive-transactions-with-increasing-amounts/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Transactions` table records a transaction identifier, its customer, the calendar date of the transaction, and its amount. A customer has at most one transaction on any particular date.
+
+Find every maximal period in which the same customer made transactions on at least three consecutive calendar days and each day's `amount` was strictly greater than the preceding day's amount. A customer may have more than one qualifying period when a missing date or a non-increasing amount separates the periods.
+
+For each qualifying period, report the customer and its first and last dates. Sort the rows by `customer_id`, then `consecutive_start`, then `consecutive_end`, all in ascending order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Transactions`: A table with integer columns `transaction_id`, `customer_id`, and `amount`, plus date column `transaction_date`. `transaction_id` is the primary key, and each `(customer_id, transaction_date)` pair is unique.
 
 **Return value**
 
-TODO
+Return the columns `customer_id`, `consecutive_start`, and `consecutive_end`. Each row represents one maximal qualifying run of at least three dates, in the required ascending order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: Customer `101` has amounts `100`, `150`, and `200` on `2023-05-01` through `2023-05-03`.
+- Output: `(101, 2023-05-01, 2023-05-03)`
+- Explanation: All three dates are consecutive and both amount transitions are strictly increasing.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: Customer `102` transacts on `2023-05-01`, `2023-05-03`, and `2023-05-04` with increasing amounts.
+- Output: No row for customer `102`.
+- Explanation: The missing transaction on May 2 breaks calendar-day consecutiveness.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: Customer `105` has increasing daily transactions from May 1 through May 4 and another increasing run from May 12 through May 14.
+- Output: `(105, 2023-05-01, 2023-05-04)` and `(105, 2023-05-12, 2023-05-14)`
+- Explanation: The gap separates two maximal qualifying periods for the same customer.

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3861",
+    "frontend_id": "3861",
+    "title_slug": "minimum-capacity-box",
+    "url": "https://leetcode.com/problems/minimum-capacity-box/description/",
+    "paid_only": false,
+    "content_sha256": "575a98e6b43e8ab3c4c349bface8172a826910a716a0b66ca862afd31ceccc4f",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "capacity = [1,5,3,7], itemSize = 3",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "capacity = [3,5,4,3], itemSize = 2",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "capacity = [4], itemSize = 5",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3b5cfd72084105750fb04bbf211d76812975a948141f6cc8898975bf9ff7a7a2",
+      "reference/contract.md": "0fd9397532432ff7dd3d7ce763bf124e38be4443364c6468b7607a4ca74b7e5a",
+      "reference/examples.md": "0130b2997e881d5725236e8d20bb4e132ba64b00e5acd044baff52dc1b4c5adf",
+      "reference/constraints.md": "e9927e64182d1c8e5fe73d6323b43bafd43f8063808c7eaa39bedbec3fe65003"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

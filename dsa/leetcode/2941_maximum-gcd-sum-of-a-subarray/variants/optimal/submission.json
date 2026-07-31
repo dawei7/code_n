@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3232",
+  "frontend_id": "2941",
+  "title_slug": "maximum-gcd-sum-of-a-subarray",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maxGcdSum",
+  "verified_submission_id": "2078315407",
+  "verified_at": "2026-07-23T11:23:05.366151+00:00"
+}

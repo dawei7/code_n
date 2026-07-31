@@ -1,60 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3380",
+  "measurement_note": "Size is n^3, the diagonal-pair-by-point inspection budget of the reference algorithm. The legal four-, seven-, and ten-point tiers contain many axis-aligned corner combinations. The correct slower baseline enumerates every four-point subset and scans all n points for each rectangular subset.",
   "cases": [
     {
-      "id": "benchmark-small-rectangle-enumeration",
-      "name": "benchmark: maximum small input rectangle enumeration",
+      "id": "benchmark-diagonal-enumeration-4",
+      "name": "benchmark: one four-point rectangle",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "points": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            3
-          ],
-          [
-            3,
-            0
-          ],
-          [
-            3,
-            3
-          ],
-          [
-            6,
-            0
-          ],
-          [
-            6,
-            3
-          ],
-          [
-            0,
-            6
-          ],
-          [
-            3,
-            6
-          ],
-          [
-            6,
-            6
-          ],
-          [
-            9,
-            9
-          ]
-        ]
-      },
+      "size": 64,
+      "input": {"points": [[0, 0], [0, 4], [4, 0], [4, 4]]},
+      "expected": 16,
+      "tags": ["benchmark", "scale-small", "four-point-subsets"]
+    },
+    {
+      "id": "benchmark-diagonal-enumeration-7",
+      "name": "benchmark: two-by-three grid plus isolated point",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 343,
+      "input": {"points": [[0, 0], [0, 3], [0, 6], [3, 0], [3, 3], [3, 6], [100, 100]]},
       "expected": 9,
-      "tags": [
-        "benchmark",
-        "geometry"
-      ]
+      "tags": ["benchmark", "scale-medium", "four-point-subsets"]
+    },
+    {
+      "id": "benchmark-diagonal-enumeration-10",
+      "name": "benchmark: three-by-three grid plus isolated point",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"points": [[0, 0], [0, 3], [0, 6], [3, 0], [3, 3], [3, 6], [6, 0], [6, 3], [6, 6], [100, 100]]},
+      "expected": 9,
+      "tags": ["benchmark", "scale-large", "four-point-subsets"]
     }
   ]
 }

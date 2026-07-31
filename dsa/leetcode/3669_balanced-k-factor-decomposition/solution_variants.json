@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Balanced K-Factor Decomposition and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerate each non-decreasing divisor decomposition once and retain the factor list with minimum endpoint spread.",
+      "time_complexity": "O(F)",
+      "space_complexity": "O(k)"
     }
   ]
 }

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2351",
+  "cases": [
+    {
+      "id": "sample-several-repeated-letters",
+      "name": "sample: compare the positions of second occurrences",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abccbaacz"},
+      "expected": "c",
+      "tags": ["sample", "ordering"]
+    },
+    {
+      "id": "sample-only-repeated-letter",
+      "name": "sample: only one letter repeats",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcdd"},
+      "expected": "d",
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-minimum-length",
+      "name": "minimum-length string repeats immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aa"},
+      "expected": "a",
+      "tags": ["boundary", "adjacent"]
+    },
+    {
+      "id": "trial-first-position-is-not-decisive",
+      "name": "an earlier first occurrence can repeat later",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "bacab"},
+      "expected": "a",
+      "tags": ["ordering"]
+    },
+    {
+      "id": "trial-latest-possible-first-repeat",
+      "name": "all 26 letters appear before the first repeat",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyzz"},
+      "expected": "z",
+      "tags": ["boundary", "alphabet"]
+    },
+    {
+      "id": "real-leading-duplicate",
+      "name": "hidden: a leading duplicate decides immediately",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zzxyx"},
+      "expected": "z",
+      "tags": ["hidden", "early-return"]
+    },
+    {
+      "id": "real-three-occurrences",
+      "name": "hidden: later occurrences do not change the answer",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "qwertytrewq"},
+      "expected": "t",
+      "tags": ["hidden", "multiple-repeats"]
+    }
+  ]
+}

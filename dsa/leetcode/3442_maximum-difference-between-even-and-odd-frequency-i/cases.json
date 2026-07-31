@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_3442",
+  "cases": [
+    {"id":"sample-five-minus-two","name":"sample: largest odd minus smallest even","kind":"sample","visible":true,"input":{"s":"aaaaabbc"},"expected":3,"tags":["sample"]},
+    {"id":"sample-three-minus-two","name":"sample: two letters have odd frequency","kind":"sample","visible":true,"input":{"s":"abcabcab"},"expected":1,"tags":["sample"]},
+    {"id":"trial-negative","name":"trial: every achievable difference is negative","kind":"trial","visible":true,"input":{"s":"abb"},"expected":-1,"tags":["trial","negative"]},
+    {"id":"trial-several-even","name":"trial: choose the smaller even frequency","kind":"trial","visible":true,"input":{"s":"aabbbbccc"},"expected":1,"tags":["trial","minimum-even"]},
+    {"id":"real-multiple-parities","name":"real: several odd and even candidates","kind":"real","visible":false,"input":{"s":"abbcccddddeeeeee"},"expected":1,"tags":["real","extrema"]},
+    {"id":"real-negative-choice","name":"real: select two rather than four as even count","kind":"real","visible":false,"input":{"s":"mmmmssy"},"expected":-1,"tags":["real","negative"]},
+    {"id":"real-large-odd","name":"real: large odd frequency dominates","kind":"real","visible":false,"input":{"s":"aaaaaaaaabbccccccccc"},"expected":7,"tags":["real","large-odd"]},
+    {"id":"real-full-length","name":"real: maximum legal length","kind":"real","visible":false,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbccccccccccccccccccccccccccccccccccccccccccccccccc"},"expected":47,"tags":["real","maximum-n"]}
+  ]
+}

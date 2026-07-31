@@ -1,0 +1,160 @@
+{
+  "challenge_id": "lc_2939",
+  "cases": [
+    {
+      "id": "sample-balanced-four-bits",
+      "name": "sample: balance four controllable bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 12,
+        "b": 5,
+        "n": 4
+      },
+      "expected": 98,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-neighboring-inputs",
+      "name": "sample: neighboring inputs with five controllable bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 6,
+        "b": 7,
+        "n": 5
+      },
+      "expected": 930,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-bits",
+      "name": "sample: three controllable bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 6,
+        "n": 3
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-controllable-bits",
+      "name": "trial: n is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 5,
+        "b": 9,
+        "n": 0
+      },
+      "expected": 45,
+      "tags": [
+        "zero-bits"
+      ]
+    },
+    {
+      "id": "trial-both-zero",
+      "name": "trial: both inputs begin at zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 0,
+        "b": 0,
+        "n": 3
+      },
+      "expected": 49,
+      "tags": [
+        "equal-inputs"
+      ]
+    },
+    {
+      "id": "trial-equal-inputs",
+      "name": "trial: equal factors can both maximize every low bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 10,
+        "b": 10,
+        "n": 4
+      },
+      "expected": 225,
+      "tags": [
+        "equal-inputs"
+      ]
+    },
+    {
+      "id": "real-all-low-bits-differ",
+      "name": "hidden: distribute every controllable bit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 0,
+        "b": 15,
+        "n": 4
+      },
+      "expected": 56,
+      "tags": [
+        "hidden",
+        "balancing"
+      ]
+    },
+    {
+      "id": "real-fixed-high-prefix",
+      "name": "hidden: fixed high bits make one factor larger",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 32,
+        "b": 0,
+        "n": 4
+      },
+      "expected": 705,
+      "tags": [
+        "hidden",
+        "high-bits"
+      ]
+    },
+    {
+      "id": "real-fifty-equal-bits",
+      "name": "hidden: fifty controllable equal bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 0,
+        "b": 0,
+        "n": 50
+      },
+      "expected": 178448631,
+      "tags": [
+        "hidden",
+        "maximum-n"
+      ]
+    },
+    {
+      "id": "real-fifty-differing-bits",
+      "name": "hidden: fifty controllable differing bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 0,
+        "b": 1125899906842623,
+        "n": 50
+      },
+      "expected": 544612161,
+      "tags": [
+        "hidden",
+        "maximum-n",
+        "balancing"
+      ]
+    }
+  ]
+}

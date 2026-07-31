@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="120" viewBox="0 0 360 120" role="img" aria-labelledby="title desc">
+  <title id="title">Example 1 tree</title>
+  <desc id="desc">A path from good node zero through bad node one to good node two.</desc>
+  <rect width="360" height="120" rx="12" fill="#f8fafc"/>
+  <g stroke="#475569" stroke-width="4"><line x1="75" y1="52" x2="180" y2="52"/><line x1="180" y1="52" x2="285" y2="52"/></g>
+  <g stroke="#fff" stroke-width="3"><circle cx="75" cy="52" r="25" fill="#238636"/><circle cx="180" cy="52" r="25" fill="#c93c37"/><circle cx="285" cy="52" r="25" fill="#238636"/></g>
+  <g fill="#fff" font-family="Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle"><text x="75" y="58">0</text><text x="180" y="58">1</text><text x="285" y="58">2</text></g>
+  <g font-family="Arial,sans-serif" font-size="12"><circle cx="128" cy="96" r="7" fill="#238636"/><text x="140" y="100" fill="#334155">good</text><circle cx="210" cy="96" r="7" fill="#c93c37"/><text x="222" y="100" fill="#334155">bad</text></g>
+</svg>

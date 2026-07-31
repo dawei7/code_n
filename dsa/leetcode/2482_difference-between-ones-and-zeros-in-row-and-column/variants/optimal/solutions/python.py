@@ -1,23 +1,15 @@
-from typing import List
+def solve(grid):
+    row_count = len(grid)
+    column_count = len(grid[0])
+    row_balance = [2 * sum(row) - column_count for row in grid]
+    column_ones = [0] * column_count
 
-def solve(grid: List[List[int]]) -> List[List[int]]:
-    m = len(grid)
-    n = len(grid[0])
-    
-    ones_row = [0] * m
-    ones_col = [0] * n
-    
-    # Precompute the number of ones in each row and column
-    for r in range(m):
-        for c in range(n):
-            if grid[r][c] == 1:
-                ones_row[r] += 1
-                ones_col[c] += 1
-                
-    # Construct the difference matrix
-    diff = [[0] * n for _ in range(m)]
-    for r in range(m):
-        for c in range(n):
-            diff[r][c] = 2 * ones_row[r] + 2 * ones_col[c] - m - n
-            
-    return diff
+    for row in grid:
+        for column, value in enumerate(row):
+            column_ones[column] += value
+
+    column_balance = [2 * ones - row_count for ones in column_ones]
+    return [
+        [row_balance[row] + column_balance[column] for column in range(column_count)]
+        for row in range(row_count)
+    ]

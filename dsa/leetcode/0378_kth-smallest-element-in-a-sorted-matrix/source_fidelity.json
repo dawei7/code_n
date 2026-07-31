@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_378", "frontend_id": "378", "title_slug": "kth-smallest-element-in-a-sorted-matrix", "url": "https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/description/", "paid_only": false, "content_sha256": "cfbbc15cc6e9e2ba52840144bb9107c0f648e1a51e590f0b44d340662a005d71", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8", "output": "13", "has_explanation": true},
+      {"ordinal": 2, "input": "matrix = [[-5]], k = 1", "output": "-5", "has_explanation": false}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "7648e3091cde40dff7dea591c68c216fa3aa4b7ca84ef1ab716ca0cc2d28126d",
+    "reference/contract.md": "cce3c25a3891e981656dbae75d4f037a8b937540882f0e9cd09f08aa273deb42",
+    "reference/examples.md": "7ae0a77a207deddf1371c7c48aa0664e6fca5a0585db153b29a932c6eba6748d",
+    "reference/constraints.md": "69a82a13edc44aaf8ab1fcf759049bda80067b3b991d88564146a9f93e8e5dfa",
+    "reference/follow_up.md": "d92bfeb1cd1cf58eb4ed3f98284904509f772b8a7d5b76635284ab7b313e27a1"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

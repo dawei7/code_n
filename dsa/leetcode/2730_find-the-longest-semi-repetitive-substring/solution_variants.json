@@ -1,16 +1,1 @@
-{
-  "schema_version": 1,
-  "challenge_id": "lc_2730",
-  "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Longest Semi-Repetitive Substring and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_2730","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Maintain a sliding window and move its left boundary past the older equal pair whenever a second pair appears.","time_complexity":"O(n)","space_complexity":"O(1)"}]}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3706",
+    "frontend_id": "3706",
+    "title_slug": "maximum-distance-between-unequal-words-in-array-ii",
+    "url": "https://leetcode.com/problems/maximum-distance-between-unequal-words-in-array-ii/description/",
+    "paid_only": true,
+    "content_sha256": "87f6e53798b7cae06f44f88fe89b60c8526013cbbc5d9ca7b25774edf499592f",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "words = [\"leetcode\",\"leetcode\",\"codeforces\"]", "output": "3", "has_explanation": true},
+      {"ordinal": 2, "input": "words = [\"a\",\"b\",\"c\",\"a\",\"a\"]", "output": "4", "has_explanation": true},
+      {"ordinal": 3, "input": "words = [\"z\",\"z\",\"z\"]", "output": "0", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "25e63a22b08a31a4b0a69794830171e0775b9d8c04c90f0550ec8b1af7aafff7",
+      "reference/contract.md": "0d4dda4e74dd21472639d9679b8027b8db8a9d2637af16c04343f8120f20217b",
+      "reference/examples.md": "c8de6b13aaa1b48ab966915eab2d17d941d3c7c7950bbdb5c458854903bf95c4",
+      "reference/constraints.md": "9463e9b0173b9765a31bf28c2a8183a6aa597f4bc3041c79f883e461f01e7dda"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

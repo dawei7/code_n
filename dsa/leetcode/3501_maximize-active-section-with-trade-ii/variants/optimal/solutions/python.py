@@ -1,77 +1,80 @@
-from bisect import bisect_left, bisect_right
+def solve(s: str, queries: list[list[int]]) -> list[int]:
+    n = len(s)
+    starts = []
+    ends = []
+    bits = []
+    run_at = [0] * n
+    start = 0
 
+    while start < n:
+        end = start + 1
+        while end < n and s[end] == s[start]:
+            end += 1
+        run_id = len(starts)
+        starts.append(start)
+        ends.append(end - 1)
+        bits.append(s[start])
+        for position in range(start, end):
+            run_at[position] = run_id
+        start = end
 
-class RangeMax:
-    def __init__(self, values: list[int]):
-        self.size = 1
-        while self.size < len(values):
-            self.size *= 2
-        self.tree = [0] * (2 * self.size)
-        for index, value in enumerate(values):
-            self.tree[self.size + index] = value
-        for index in range(self.size - 1, 0, -1):
-            self.tree[index] = max(self.tree[index * 2], self.tree[index * 2 + 1])
+    run_count = len(starts)
+    size = 1
+    while size < run_count:
+        size *= 2
+    tree = [0] * (2 * size)
 
-    def query(self, left: int, right: int) -> int:
+    for run_id in range(1, run_count - 1):
+        if bits[run_id] == "1":
+            left_zeros = ends[run_id - 1] - starts[run_id - 1] + 1
+            right_zeros = ends[run_id + 1] - starts[run_id + 1] + 1
+            tree[size + run_id] = left_zeros + right_zeros
+
+    for node in range(size - 1, 0, -1):
+        tree[node] = max(tree[2 * node], tree[2 * node + 1])
+
+    def range_max(left: int, right: int) -> int:
         if left > right:
             return 0
-        left += self.size
-        right += self.size
+        left += size
+        right += size
         best = 0
         while left <= right:
             if left % 2 == 1:
-                best = max(best, self.tree[left])
+                best = max(best, tree[left])
                 left += 1
             if right % 2 == 0:
-                best = max(best, self.tree[right])
+                best = max(best, tree[right])
                 right -= 1
             left //= 2
             right //= 2
         return best
 
+    active = s.count("1")
+    answer = []
 
-def solve(s: str, queries: list[list[int]]) -> list[int]:
-    n = len(s)
-    ones_prefix = [0] * (n + 1)
-    for index, char in enumerate(s):
-        ones_prefix[index + 1] = ones_prefix[index] + (char == "1")
-
-    runs: list[tuple[str, int, int]] = []
-    start = 0
-    for index in range(1, n + 1):
-        if index == n or s[index] != s[start]:
-            runs.append((s[start], start, index - 1))
-            start = index
-
-    candidates: list[tuple[int, int, int, int, int]] = []
-    for run_index in range(1, len(runs) - 1):
-        char, left, right = runs[run_index]
-        if char == "1" and runs[run_index - 1][0] == "0" and runs[run_index + 1][0] == "0":
-            left_zero_start = runs[run_index - 1][1]
-            right_zero_end = runs[run_index + 1][2]
-            full_gain = (left - left_zero_start) + (right_zero_end - right)
-            candidates.append((left, right, left_zero_start, right_zero_end, full_gain))
-
-    starts = [candidate[0] for candidate in candidates]
-    ends = [candidate[1] for candidate in candidates]
-    tree = RangeMax([candidate[4] for candidate in candidates])
-
-    def actual_gain(index: int, left_bound: int, right_bound: int) -> int:
-        left, right, left_zero_start, right_zero_end, _full = candidates[index]
-        if left <= left_bound or right >= right_bound:
-            return 0
-        return (left - max(left_bound, left_zero_start)) + (min(right_bound, right_zero_end) - right)
-
-    answer: list[int] = []
-    total_ones = ones_prefix[n]
     for left, right in queries:
-        first = bisect_right(starts, left)
-        last = bisect_left(ends, right) - 1
-        gain = 0
+        left_run = run_at[left]
+        right_run = run_at[right]
+        first = left_run + 1 if bits[left_run] == "0" else left_run + 2
+        last = right_run - 1 if bits[right_run] == "0" else right_run - 2
+        best_gain = 0
+
         if first <= last:
-            gain = max(gain, actual_gain(first, left, right))
-            if first != last:
-                gain = max(gain, actual_gain(last, left, right))
-                gain = max(gain, tree.query(first + 1, last - 1))
-        answer.append(total_ones + gain)
+            first_gain = (
+                starts[first] - max(left, starts[first - 1])
+                + min(right, ends[first + 1]) - ends[first]
+            )
+            last_gain = (
+                starts[last] - max(left, starts[last - 1])
+                + min(right, ends[last + 1]) - ends[last]
+            )
+            best_gain = max(
+                first_gain,
+                last_gain,
+                range_max(first + 1, last - 1),
+            )
+
+        answer.append(active + best_gain)
+
     return answer

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3831",
+    "frontend_id": "3831",
+    "title_slug": "median-of-a-binary-search-tree-level",
+    "url": "https://leetcode.com/problems/median-of-a-binary-search-tree-level/description/",
+    "paid_only": true,
+    "content_sha256": "809336408ee7a2fee7e95786103043f3854392a9ea4069e7cf347280ee914aa4",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [4,null,5,null,7], level = 2",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [6,3,8], level = 1",
+        "output": "8",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "root = [2,1], level = 2",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 3,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 3,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "338a52146e0a5968dd66db20bd3a984ed2e01b057a35bbda19f77196c2a77b47",
+      "reference/contract.md": "57515e37db01ec6c9f81d0017d50979c9fb3e860245854a38ea844595adbbb5a",
+      "reference/examples.md": "46aab174f16c228e41d226861d177d7f861fec9a8ed8e0c128a61595bc30ff8d",
+      "reference/constraints.md": "ca76dd9680a61747f79bcd76ae4a74edfc1e4ae2bff5b05946816cd9596295e5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

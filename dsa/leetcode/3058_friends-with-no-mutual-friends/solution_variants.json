@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Friends With No Mutual Friends and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Expands each friendship into bidirectional adjacency and retains an original pair only when no common neighbor exists.",
+      "time_complexity": "O(m d + m log m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

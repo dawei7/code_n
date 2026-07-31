@@ -1,0 +1,189 @@
+{
+  "challenge_id": "lc_2548",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: take a whole item and a fraction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            50,
+            1
+          ],
+          [
+            10,
+            8
+          ]
+        ],
+        "capacity": 5
+      },
+      "expected": 55,
+      "tags": [
+        "sample",
+        "fractional"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: available weight is insufficient",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            100,
+            30
+          ]
+        ],
+        "capacity": 50
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-exact-total-weight",
+      "name": "trial: consume every item completely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            8,
+            2
+          ],
+          [
+            12,
+            3
+          ]
+        ],
+        "capacity": 5
+      },
+      "expected": 20,
+      "tags": [
+        "trial",
+        "exact-total"
+      ]
+    },
+    {
+      "id": "trial-fraction-of-best-item",
+      "name": "trial: capacity fits within the richest item",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            9,
+            3
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "capacity": 2
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "fractional"
+      ]
+    },
+    {
+      "id": "real-density-over-price",
+      "name": "hidden: density outranks total price",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "items": [
+          [
+            10,
+            5
+          ],
+          [
+            9,
+            3
+          ]
+        ],
+        "capacity": 4
+      },
+      "expected": 11,
+      "tags": [
+        "hidden",
+        "density"
+      ]
+    },
+    {
+      "id": "real-single-exact",
+      "name": "hidden: one item exactly fills the bag",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "items": [
+          [
+            7,
+            4
+          ]
+        ],
+        "capacity": 4
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "single"
+      ]
+    },
+    {
+      "id": "real-equal-density",
+      "name": "hidden: tied densities allow either order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "items": [
+          [
+            6,
+            3
+          ],
+          [
+            10,
+            5
+          ]
+        ],
+        "capacity": 4
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-small-shortfall",
+      "name": "hidden: shortfall by one unit is impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "items": [
+          [
+            5,
+            2
+          ],
+          [
+            9,
+            3
+          ]
+        ],
+        "capacity": 6
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "impossible"
+      ]
+    }
+  ]
+}

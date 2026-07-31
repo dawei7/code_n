@@ -1,0 +1,1519 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3328",
+  "measurement_note": "Size is n, the number of city rows. Every three rows form a distinct qualifying state, so correlated per-state rescans grow quadratically while one grouped aggregation processes and orders the corpus directly.",
+  "cases": [
+    {
+      "id": "benchmark-distinct-states-12",
+      "name": "benchmark: aggregate 12 rows across 4 states",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "State 000",
+              "city": "Z000B"
+            },
+            {
+              "state": "State 000",
+              "city": "S000C"
+            },
+            {
+              "state": "State 000",
+              "city": "S000A"
+            },
+            {
+              "state": "State 001",
+              "city": "Z001B"
+            },
+            {
+              "state": "State 001",
+              "city": "S001C"
+            },
+            {
+              "state": "State 001",
+              "city": "S001A"
+            },
+            {
+              "state": "State 002",
+              "city": "Z002B"
+            },
+            {
+              "state": "State 002",
+              "city": "S002C"
+            },
+            {
+              "state": "State 002",
+              "city": "S002A"
+            },
+            {
+              "state": "State 003",
+              "city": "Z003B"
+            },
+            {
+              "state": "State 003",
+              "city": "S003C"
+            },
+            {
+              "state": "State 003",
+              "city": "S003A"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": [
+          [
+            "State 000",
+            "S000A, S000C, Z000B",
+            2
+          ],
+          [
+            "State 001",
+            "S001A, S001C, Z001B",
+            2
+          ],
+          [
+            "State 002",
+            "S002A, S002C, Z002B",
+            2
+          ],
+          [
+            "State 003",
+            "S003A, S003C, Z003B",
+            2
+          ]
+        ]
+      },
+      "size": 12,
+      "tags": [
+        "benchmark",
+        "grouping",
+        "ordered-concatenation",
+        "many-states"
+      ]
+    },
+    {
+      "id": "benchmark-distinct-states-48",
+      "name": "benchmark: aggregate 48 rows across 16 states",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "State 000",
+              "city": "Z000B"
+            },
+            {
+              "state": "State 000",
+              "city": "S000C"
+            },
+            {
+              "state": "State 000",
+              "city": "S000A"
+            },
+            {
+              "state": "State 001",
+              "city": "Z001B"
+            },
+            {
+              "state": "State 001",
+              "city": "S001C"
+            },
+            {
+              "state": "State 001",
+              "city": "S001A"
+            },
+            {
+              "state": "State 002",
+              "city": "Z002B"
+            },
+            {
+              "state": "State 002",
+              "city": "S002C"
+            },
+            {
+              "state": "State 002",
+              "city": "S002A"
+            },
+            {
+              "state": "State 003",
+              "city": "Z003B"
+            },
+            {
+              "state": "State 003",
+              "city": "S003C"
+            },
+            {
+              "state": "State 003",
+              "city": "S003A"
+            },
+            {
+              "state": "State 004",
+              "city": "Z004B"
+            },
+            {
+              "state": "State 004",
+              "city": "S004C"
+            },
+            {
+              "state": "State 004",
+              "city": "S004A"
+            },
+            {
+              "state": "State 005",
+              "city": "Z005B"
+            },
+            {
+              "state": "State 005",
+              "city": "S005C"
+            },
+            {
+              "state": "State 005",
+              "city": "S005A"
+            },
+            {
+              "state": "State 006",
+              "city": "Z006B"
+            },
+            {
+              "state": "State 006",
+              "city": "S006C"
+            },
+            {
+              "state": "State 006",
+              "city": "S006A"
+            },
+            {
+              "state": "State 007",
+              "city": "Z007B"
+            },
+            {
+              "state": "State 007",
+              "city": "S007C"
+            },
+            {
+              "state": "State 007",
+              "city": "S007A"
+            },
+            {
+              "state": "State 008",
+              "city": "Z008B"
+            },
+            {
+              "state": "State 008",
+              "city": "S008C"
+            },
+            {
+              "state": "State 008",
+              "city": "S008A"
+            },
+            {
+              "state": "State 009",
+              "city": "Z009B"
+            },
+            {
+              "state": "State 009",
+              "city": "S009C"
+            },
+            {
+              "state": "State 009",
+              "city": "S009A"
+            },
+            {
+              "state": "State 010",
+              "city": "Z010B"
+            },
+            {
+              "state": "State 010",
+              "city": "S010C"
+            },
+            {
+              "state": "State 010",
+              "city": "S010A"
+            },
+            {
+              "state": "State 011",
+              "city": "Z011B"
+            },
+            {
+              "state": "State 011",
+              "city": "S011C"
+            },
+            {
+              "state": "State 011",
+              "city": "S011A"
+            },
+            {
+              "state": "State 012",
+              "city": "Z012B"
+            },
+            {
+              "state": "State 012",
+              "city": "S012C"
+            },
+            {
+              "state": "State 012",
+              "city": "S012A"
+            },
+            {
+              "state": "State 013",
+              "city": "Z013B"
+            },
+            {
+              "state": "State 013",
+              "city": "S013C"
+            },
+            {
+              "state": "State 013",
+              "city": "S013A"
+            },
+            {
+              "state": "State 014",
+              "city": "Z014B"
+            },
+            {
+              "state": "State 014",
+              "city": "S014C"
+            },
+            {
+              "state": "State 014",
+              "city": "S014A"
+            },
+            {
+              "state": "State 015",
+              "city": "Z015B"
+            },
+            {
+              "state": "State 015",
+              "city": "S015C"
+            },
+            {
+              "state": "State 015",
+              "city": "S015A"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": [
+          [
+            "State 000",
+            "S000A, S000C, Z000B",
+            2
+          ],
+          [
+            "State 001",
+            "S001A, S001C, Z001B",
+            2
+          ],
+          [
+            "State 002",
+            "S002A, S002C, Z002B",
+            2
+          ],
+          [
+            "State 003",
+            "S003A, S003C, Z003B",
+            2
+          ],
+          [
+            "State 004",
+            "S004A, S004C, Z004B",
+            2
+          ],
+          [
+            "State 005",
+            "S005A, S005C, Z005B",
+            2
+          ],
+          [
+            "State 006",
+            "S006A, S006C, Z006B",
+            2
+          ],
+          [
+            "State 007",
+            "S007A, S007C, Z007B",
+            2
+          ],
+          [
+            "State 008",
+            "S008A, S008C, Z008B",
+            2
+          ],
+          [
+            "State 009",
+            "S009A, S009C, Z009B",
+            2
+          ],
+          [
+            "State 010",
+            "S010A, S010C, Z010B",
+            2
+          ],
+          [
+            "State 011",
+            "S011A, S011C, Z011B",
+            2
+          ],
+          [
+            "State 012",
+            "S012A, S012C, Z012B",
+            2
+          ],
+          [
+            "State 013",
+            "S013A, S013C, Z013B",
+            2
+          ],
+          [
+            "State 014",
+            "S014A, S014C, Z014B",
+            2
+          ],
+          [
+            "State 015",
+            "S015A, S015C, Z015B",
+            2
+          ]
+        ]
+      },
+      "size": 48,
+      "tags": [
+        "benchmark",
+        "grouping",
+        "ordered-concatenation",
+        "many-states"
+      ]
+    },
+    {
+      "id": "benchmark-distinct-states-192",
+      "name": "benchmark: aggregate 192 rows across 64 states",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "State 000",
+              "city": "Z000B"
+            },
+            {
+              "state": "State 000",
+              "city": "S000C"
+            },
+            {
+              "state": "State 000",
+              "city": "S000A"
+            },
+            {
+              "state": "State 001",
+              "city": "Z001B"
+            },
+            {
+              "state": "State 001",
+              "city": "S001C"
+            },
+            {
+              "state": "State 001",
+              "city": "S001A"
+            },
+            {
+              "state": "State 002",
+              "city": "Z002B"
+            },
+            {
+              "state": "State 002",
+              "city": "S002C"
+            },
+            {
+              "state": "State 002",
+              "city": "S002A"
+            },
+            {
+              "state": "State 003",
+              "city": "Z003B"
+            },
+            {
+              "state": "State 003",
+              "city": "S003C"
+            },
+            {
+              "state": "State 003",
+              "city": "S003A"
+            },
+            {
+              "state": "State 004",
+              "city": "Z004B"
+            },
+            {
+              "state": "State 004",
+              "city": "S004C"
+            },
+            {
+              "state": "State 004",
+              "city": "S004A"
+            },
+            {
+              "state": "State 005",
+              "city": "Z005B"
+            },
+            {
+              "state": "State 005",
+              "city": "S005C"
+            },
+            {
+              "state": "State 005",
+              "city": "S005A"
+            },
+            {
+              "state": "State 006",
+              "city": "Z006B"
+            },
+            {
+              "state": "State 006",
+              "city": "S006C"
+            },
+            {
+              "state": "State 006",
+              "city": "S006A"
+            },
+            {
+              "state": "State 007",
+              "city": "Z007B"
+            },
+            {
+              "state": "State 007",
+              "city": "S007C"
+            },
+            {
+              "state": "State 007",
+              "city": "S007A"
+            },
+            {
+              "state": "State 008",
+              "city": "Z008B"
+            },
+            {
+              "state": "State 008",
+              "city": "S008C"
+            },
+            {
+              "state": "State 008",
+              "city": "S008A"
+            },
+            {
+              "state": "State 009",
+              "city": "Z009B"
+            },
+            {
+              "state": "State 009",
+              "city": "S009C"
+            },
+            {
+              "state": "State 009",
+              "city": "S009A"
+            },
+            {
+              "state": "State 010",
+              "city": "Z010B"
+            },
+            {
+              "state": "State 010",
+              "city": "S010C"
+            },
+            {
+              "state": "State 010",
+              "city": "S010A"
+            },
+            {
+              "state": "State 011",
+              "city": "Z011B"
+            },
+            {
+              "state": "State 011",
+              "city": "S011C"
+            },
+            {
+              "state": "State 011",
+              "city": "S011A"
+            },
+            {
+              "state": "State 012",
+              "city": "Z012B"
+            },
+            {
+              "state": "State 012",
+              "city": "S012C"
+            },
+            {
+              "state": "State 012",
+              "city": "S012A"
+            },
+            {
+              "state": "State 013",
+              "city": "Z013B"
+            },
+            {
+              "state": "State 013",
+              "city": "S013C"
+            },
+            {
+              "state": "State 013",
+              "city": "S013A"
+            },
+            {
+              "state": "State 014",
+              "city": "Z014B"
+            },
+            {
+              "state": "State 014",
+              "city": "S014C"
+            },
+            {
+              "state": "State 014",
+              "city": "S014A"
+            },
+            {
+              "state": "State 015",
+              "city": "Z015B"
+            },
+            {
+              "state": "State 015",
+              "city": "S015C"
+            },
+            {
+              "state": "State 015",
+              "city": "S015A"
+            },
+            {
+              "state": "State 016",
+              "city": "Z016B"
+            },
+            {
+              "state": "State 016",
+              "city": "S016C"
+            },
+            {
+              "state": "State 016",
+              "city": "S016A"
+            },
+            {
+              "state": "State 017",
+              "city": "Z017B"
+            },
+            {
+              "state": "State 017",
+              "city": "S017C"
+            },
+            {
+              "state": "State 017",
+              "city": "S017A"
+            },
+            {
+              "state": "State 018",
+              "city": "Z018B"
+            },
+            {
+              "state": "State 018",
+              "city": "S018C"
+            },
+            {
+              "state": "State 018",
+              "city": "S018A"
+            },
+            {
+              "state": "State 019",
+              "city": "Z019B"
+            },
+            {
+              "state": "State 019",
+              "city": "S019C"
+            },
+            {
+              "state": "State 019",
+              "city": "S019A"
+            },
+            {
+              "state": "State 020",
+              "city": "Z020B"
+            },
+            {
+              "state": "State 020",
+              "city": "S020C"
+            },
+            {
+              "state": "State 020",
+              "city": "S020A"
+            },
+            {
+              "state": "State 021",
+              "city": "Z021B"
+            },
+            {
+              "state": "State 021",
+              "city": "S021C"
+            },
+            {
+              "state": "State 021",
+              "city": "S021A"
+            },
+            {
+              "state": "State 022",
+              "city": "Z022B"
+            },
+            {
+              "state": "State 022",
+              "city": "S022C"
+            },
+            {
+              "state": "State 022",
+              "city": "S022A"
+            },
+            {
+              "state": "State 023",
+              "city": "Z023B"
+            },
+            {
+              "state": "State 023",
+              "city": "S023C"
+            },
+            {
+              "state": "State 023",
+              "city": "S023A"
+            },
+            {
+              "state": "State 024",
+              "city": "Z024B"
+            },
+            {
+              "state": "State 024",
+              "city": "S024C"
+            },
+            {
+              "state": "State 024",
+              "city": "S024A"
+            },
+            {
+              "state": "State 025",
+              "city": "Z025B"
+            },
+            {
+              "state": "State 025",
+              "city": "S025C"
+            },
+            {
+              "state": "State 025",
+              "city": "S025A"
+            },
+            {
+              "state": "State 026",
+              "city": "Z026B"
+            },
+            {
+              "state": "State 026",
+              "city": "S026C"
+            },
+            {
+              "state": "State 026",
+              "city": "S026A"
+            },
+            {
+              "state": "State 027",
+              "city": "Z027B"
+            },
+            {
+              "state": "State 027",
+              "city": "S027C"
+            },
+            {
+              "state": "State 027",
+              "city": "S027A"
+            },
+            {
+              "state": "State 028",
+              "city": "Z028B"
+            },
+            {
+              "state": "State 028",
+              "city": "S028C"
+            },
+            {
+              "state": "State 028",
+              "city": "S028A"
+            },
+            {
+              "state": "State 029",
+              "city": "Z029B"
+            },
+            {
+              "state": "State 029",
+              "city": "S029C"
+            },
+            {
+              "state": "State 029",
+              "city": "S029A"
+            },
+            {
+              "state": "State 030",
+              "city": "Z030B"
+            },
+            {
+              "state": "State 030",
+              "city": "S030C"
+            },
+            {
+              "state": "State 030",
+              "city": "S030A"
+            },
+            {
+              "state": "State 031",
+              "city": "Z031B"
+            },
+            {
+              "state": "State 031",
+              "city": "S031C"
+            },
+            {
+              "state": "State 031",
+              "city": "S031A"
+            },
+            {
+              "state": "State 032",
+              "city": "Z032B"
+            },
+            {
+              "state": "State 032",
+              "city": "S032C"
+            },
+            {
+              "state": "State 032",
+              "city": "S032A"
+            },
+            {
+              "state": "State 033",
+              "city": "Z033B"
+            },
+            {
+              "state": "State 033",
+              "city": "S033C"
+            },
+            {
+              "state": "State 033",
+              "city": "S033A"
+            },
+            {
+              "state": "State 034",
+              "city": "Z034B"
+            },
+            {
+              "state": "State 034",
+              "city": "S034C"
+            },
+            {
+              "state": "State 034",
+              "city": "S034A"
+            },
+            {
+              "state": "State 035",
+              "city": "Z035B"
+            },
+            {
+              "state": "State 035",
+              "city": "S035C"
+            },
+            {
+              "state": "State 035",
+              "city": "S035A"
+            },
+            {
+              "state": "State 036",
+              "city": "Z036B"
+            },
+            {
+              "state": "State 036",
+              "city": "S036C"
+            },
+            {
+              "state": "State 036",
+              "city": "S036A"
+            },
+            {
+              "state": "State 037",
+              "city": "Z037B"
+            },
+            {
+              "state": "State 037",
+              "city": "S037C"
+            },
+            {
+              "state": "State 037",
+              "city": "S037A"
+            },
+            {
+              "state": "State 038",
+              "city": "Z038B"
+            },
+            {
+              "state": "State 038",
+              "city": "S038C"
+            },
+            {
+              "state": "State 038",
+              "city": "S038A"
+            },
+            {
+              "state": "State 039",
+              "city": "Z039B"
+            },
+            {
+              "state": "State 039",
+              "city": "S039C"
+            },
+            {
+              "state": "State 039",
+              "city": "S039A"
+            },
+            {
+              "state": "State 040",
+              "city": "Z040B"
+            },
+            {
+              "state": "State 040",
+              "city": "S040C"
+            },
+            {
+              "state": "State 040",
+              "city": "S040A"
+            },
+            {
+              "state": "State 041",
+              "city": "Z041B"
+            },
+            {
+              "state": "State 041",
+              "city": "S041C"
+            },
+            {
+              "state": "State 041",
+              "city": "S041A"
+            },
+            {
+              "state": "State 042",
+              "city": "Z042B"
+            },
+            {
+              "state": "State 042",
+              "city": "S042C"
+            },
+            {
+              "state": "State 042",
+              "city": "S042A"
+            },
+            {
+              "state": "State 043",
+              "city": "Z043B"
+            },
+            {
+              "state": "State 043",
+              "city": "S043C"
+            },
+            {
+              "state": "State 043",
+              "city": "S043A"
+            },
+            {
+              "state": "State 044",
+              "city": "Z044B"
+            },
+            {
+              "state": "State 044",
+              "city": "S044C"
+            },
+            {
+              "state": "State 044",
+              "city": "S044A"
+            },
+            {
+              "state": "State 045",
+              "city": "Z045B"
+            },
+            {
+              "state": "State 045",
+              "city": "S045C"
+            },
+            {
+              "state": "State 045",
+              "city": "S045A"
+            },
+            {
+              "state": "State 046",
+              "city": "Z046B"
+            },
+            {
+              "state": "State 046",
+              "city": "S046C"
+            },
+            {
+              "state": "State 046",
+              "city": "S046A"
+            },
+            {
+              "state": "State 047",
+              "city": "Z047B"
+            },
+            {
+              "state": "State 047",
+              "city": "S047C"
+            },
+            {
+              "state": "State 047",
+              "city": "S047A"
+            },
+            {
+              "state": "State 048",
+              "city": "Z048B"
+            },
+            {
+              "state": "State 048",
+              "city": "S048C"
+            },
+            {
+              "state": "State 048",
+              "city": "S048A"
+            },
+            {
+              "state": "State 049",
+              "city": "Z049B"
+            },
+            {
+              "state": "State 049",
+              "city": "S049C"
+            },
+            {
+              "state": "State 049",
+              "city": "S049A"
+            },
+            {
+              "state": "State 050",
+              "city": "Z050B"
+            },
+            {
+              "state": "State 050",
+              "city": "S050C"
+            },
+            {
+              "state": "State 050",
+              "city": "S050A"
+            },
+            {
+              "state": "State 051",
+              "city": "Z051B"
+            },
+            {
+              "state": "State 051",
+              "city": "S051C"
+            },
+            {
+              "state": "State 051",
+              "city": "S051A"
+            },
+            {
+              "state": "State 052",
+              "city": "Z052B"
+            },
+            {
+              "state": "State 052",
+              "city": "S052C"
+            },
+            {
+              "state": "State 052",
+              "city": "S052A"
+            },
+            {
+              "state": "State 053",
+              "city": "Z053B"
+            },
+            {
+              "state": "State 053",
+              "city": "S053C"
+            },
+            {
+              "state": "State 053",
+              "city": "S053A"
+            },
+            {
+              "state": "State 054",
+              "city": "Z054B"
+            },
+            {
+              "state": "State 054",
+              "city": "S054C"
+            },
+            {
+              "state": "State 054",
+              "city": "S054A"
+            },
+            {
+              "state": "State 055",
+              "city": "Z055B"
+            },
+            {
+              "state": "State 055",
+              "city": "S055C"
+            },
+            {
+              "state": "State 055",
+              "city": "S055A"
+            },
+            {
+              "state": "State 056",
+              "city": "Z056B"
+            },
+            {
+              "state": "State 056",
+              "city": "S056C"
+            },
+            {
+              "state": "State 056",
+              "city": "S056A"
+            },
+            {
+              "state": "State 057",
+              "city": "Z057B"
+            },
+            {
+              "state": "State 057",
+              "city": "S057C"
+            },
+            {
+              "state": "State 057",
+              "city": "S057A"
+            },
+            {
+              "state": "State 058",
+              "city": "Z058B"
+            },
+            {
+              "state": "State 058",
+              "city": "S058C"
+            },
+            {
+              "state": "State 058",
+              "city": "S058A"
+            },
+            {
+              "state": "State 059",
+              "city": "Z059B"
+            },
+            {
+              "state": "State 059",
+              "city": "S059C"
+            },
+            {
+              "state": "State 059",
+              "city": "S059A"
+            },
+            {
+              "state": "State 060",
+              "city": "Z060B"
+            },
+            {
+              "state": "State 060",
+              "city": "S060C"
+            },
+            {
+              "state": "State 060",
+              "city": "S060A"
+            },
+            {
+              "state": "State 061",
+              "city": "Z061B"
+            },
+            {
+              "state": "State 061",
+              "city": "S061C"
+            },
+            {
+              "state": "State 061",
+              "city": "S061A"
+            },
+            {
+              "state": "State 062",
+              "city": "Z062B"
+            },
+            {
+              "state": "State 062",
+              "city": "S062C"
+            },
+            {
+              "state": "State 062",
+              "city": "S062A"
+            },
+            {
+              "state": "State 063",
+              "city": "Z063B"
+            },
+            {
+              "state": "State 063",
+              "city": "S063C"
+            },
+            {
+              "state": "State 063",
+              "city": "S063A"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": [
+          [
+            "State 000",
+            "S000A, S000C, Z000B",
+            2
+          ],
+          [
+            "State 001",
+            "S001A, S001C, Z001B",
+            2
+          ],
+          [
+            "State 002",
+            "S002A, S002C, Z002B",
+            2
+          ],
+          [
+            "State 003",
+            "S003A, S003C, Z003B",
+            2
+          ],
+          [
+            "State 004",
+            "S004A, S004C, Z004B",
+            2
+          ],
+          [
+            "State 005",
+            "S005A, S005C, Z005B",
+            2
+          ],
+          [
+            "State 006",
+            "S006A, S006C, Z006B",
+            2
+          ],
+          [
+            "State 007",
+            "S007A, S007C, Z007B",
+            2
+          ],
+          [
+            "State 008",
+            "S008A, S008C, Z008B",
+            2
+          ],
+          [
+            "State 009",
+            "S009A, S009C, Z009B",
+            2
+          ],
+          [
+            "State 010",
+            "S010A, S010C, Z010B",
+            2
+          ],
+          [
+            "State 011",
+            "S011A, S011C, Z011B",
+            2
+          ],
+          [
+            "State 012",
+            "S012A, S012C, Z012B",
+            2
+          ],
+          [
+            "State 013",
+            "S013A, S013C, Z013B",
+            2
+          ],
+          [
+            "State 014",
+            "S014A, S014C, Z014B",
+            2
+          ],
+          [
+            "State 015",
+            "S015A, S015C, Z015B",
+            2
+          ],
+          [
+            "State 016",
+            "S016A, S016C, Z016B",
+            2
+          ],
+          [
+            "State 017",
+            "S017A, S017C, Z017B",
+            2
+          ],
+          [
+            "State 018",
+            "S018A, S018C, Z018B",
+            2
+          ],
+          [
+            "State 019",
+            "S019A, S019C, Z019B",
+            2
+          ],
+          [
+            "State 020",
+            "S020A, S020C, Z020B",
+            2
+          ],
+          [
+            "State 021",
+            "S021A, S021C, Z021B",
+            2
+          ],
+          [
+            "State 022",
+            "S022A, S022C, Z022B",
+            2
+          ],
+          [
+            "State 023",
+            "S023A, S023C, Z023B",
+            2
+          ],
+          [
+            "State 024",
+            "S024A, S024C, Z024B",
+            2
+          ],
+          [
+            "State 025",
+            "S025A, S025C, Z025B",
+            2
+          ],
+          [
+            "State 026",
+            "S026A, S026C, Z026B",
+            2
+          ],
+          [
+            "State 027",
+            "S027A, S027C, Z027B",
+            2
+          ],
+          [
+            "State 028",
+            "S028A, S028C, Z028B",
+            2
+          ],
+          [
+            "State 029",
+            "S029A, S029C, Z029B",
+            2
+          ],
+          [
+            "State 030",
+            "S030A, S030C, Z030B",
+            2
+          ],
+          [
+            "State 031",
+            "S031A, S031C, Z031B",
+            2
+          ],
+          [
+            "State 032",
+            "S032A, S032C, Z032B",
+            2
+          ],
+          [
+            "State 033",
+            "S033A, S033C, Z033B",
+            2
+          ],
+          [
+            "State 034",
+            "S034A, S034C, Z034B",
+            2
+          ],
+          [
+            "State 035",
+            "S035A, S035C, Z035B",
+            2
+          ],
+          [
+            "State 036",
+            "S036A, S036C, Z036B",
+            2
+          ],
+          [
+            "State 037",
+            "S037A, S037C, Z037B",
+            2
+          ],
+          [
+            "State 038",
+            "S038A, S038C, Z038B",
+            2
+          ],
+          [
+            "State 039",
+            "S039A, S039C, Z039B",
+            2
+          ],
+          [
+            "State 040",
+            "S040A, S040C, Z040B",
+            2
+          ],
+          [
+            "State 041",
+            "S041A, S041C, Z041B",
+            2
+          ],
+          [
+            "State 042",
+            "S042A, S042C, Z042B",
+            2
+          ],
+          [
+            "State 043",
+            "S043A, S043C, Z043B",
+            2
+          ],
+          [
+            "State 044",
+            "S044A, S044C, Z044B",
+            2
+          ],
+          [
+            "State 045",
+            "S045A, S045C, Z045B",
+            2
+          ],
+          [
+            "State 046",
+            "S046A, S046C, Z046B",
+            2
+          ],
+          [
+            "State 047",
+            "S047A, S047C, Z047B",
+            2
+          ],
+          [
+            "State 048",
+            "S048A, S048C, Z048B",
+            2
+          ],
+          [
+            "State 049",
+            "S049A, S049C, Z049B",
+            2
+          ],
+          [
+            "State 050",
+            "S050A, S050C, Z050B",
+            2
+          ],
+          [
+            "State 051",
+            "S051A, S051C, Z051B",
+            2
+          ],
+          [
+            "State 052",
+            "S052A, S052C, Z052B",
+            2
+          ],
+          [
+            "State 053",
+            "S053A, S053C, Z053B",
+            2
+          ],
+          [
+            "State 054",
+            "S054A, S054C, Z054B",
+            2
+          ],
+          [
+            "State 055",
+            "S055A, S055C, Z055B",
+            2
+          ],
+          [
+            "State 056",
+            "S056A, S056C, Z056B",
+            2
+          ],
+          [
+            "State 057",
+            "S057A, S057C, Z057B",
+            2
+          ],
+          [
+            "State 058",
+            "S058A, S058C, Z058B",
+            2
+          ],
+          [
+            "State 059",
+            "S059A, S059C, Z059B",
+            2
+          ],
+          [
+            "State 060",
+            "S060A, S060C, Z060B",
+            2
+          ],
+          [
+            "State 061",
+            "S061A, S061C, Z061B",
+            2
+          ],
+          [
+            "State 062",
+            "S062A, S062C, Z062B",
+            2
+          ],
+          [
+            "State 063",
+            "S063A, S063C, Z063B",
+            2
+          ]
+        ]
+      },
+      "size": 192,
+      "tags": [
+        "benchmark",
+        "grouping",
+        "ordered-concatenation",
+        "many-states"
+      ]
+    }
+  ]
+}

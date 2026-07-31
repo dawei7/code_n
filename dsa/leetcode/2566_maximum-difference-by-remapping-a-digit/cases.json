@@ -1,0 +1,132 @@
+{
+  "challenge_id": "lc_2566",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: repeated one controls both extrema",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 11891
+      },
+      "expected": 99009,
+      "tags": [
+        "sample",
+        "repeated-digit"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two-digit extrema use different remappings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 90
+      },
+      "expected": 99,
+      "tags": [
+        "sample",
+        "independent-remappings"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "trial: one digit ranges from zero to nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-all-nines",
+      "name": "trial: maximum is already saturated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 999
+      },
+      "expected": 999,
+      "tags": [
+        "trial",
+        "all-nines"
+      ]
+    },
+    {
+      "id": "real-repeated-leading-digit",
+      "name": "hidden: every selected leading digit is replaced",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 555
+      },
+      "expected": 999,
+      "tags": [
+        "hidden",
+        "repeated-digit"
+      ]
+    },
+    {
+      "id": "real-internal-zero",
+      "name": "hidden: zero can be selected only for the maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 909
+      },
+      "expected": 999,
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-distinct-digits",
+      "name": "hidden: the most significant digit controls both extrema",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 123456
+      },
+      "expected": 900000,
+      "tags": [
+        "hidden",
+        "distinct-digits"
+      ]
+    },
+    {
+      "id": "real-power-of-ten-boundary",
+      "name": "hidden: largest legal input allows leading zeroes in the minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 100000000
+      },
+      "expected": 900000000,
+      "tags": [
+        "hidden",
+        "maximum-input",
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "real-long-trailing-zeroes",
+      "name": "hidden: remapping the leading one changes one position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 10000
+      },
+      "expected": 90000,
+      "tags": [
+        "hidden",
+        "leading-digit"
+      ]
+    }
+  ]
+}

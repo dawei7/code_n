@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Words Within Two Edits of Dictionary and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Compares each query with dictionary words, stopping a comparison as soon as its third mismatch appears.",
+      "time_complexity": "O(Q D n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

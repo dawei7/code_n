@@ -8,48 +8,39 @@
 | Category | Algorithms |
 | Topics | Array, Bit Manipulation, Recursion, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [partition-array-into-two-equal-product-subsets](https://leetcode.com/problems/partition-array-into-two-equal-product-subsets/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/partition-array-into-two-equal-product-subsets/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/partition-array-into-two-equal-product-subsets/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an array of distinct positive integers, divide all of its elements between two subsets. The subsets must be disjoint, neither may be empty, and every original element must belong to exactly one of them.
+
+Determine whether the product of the values in each subset can equal `target`. Both subsets must reach that same prescribed product; merely having equal products with a different value does not qualify.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: An array of $n$ distinct positive integers, where $3\le n\le12$ and every value is at most 100.
+- `target`: The required product of each subset, with $1\le\texttt{target}\le10^{15}$.
 
 **Return value**
 
-TODO
+Return `true` when all elements can be partitioned into two nonempty subsets whose products both equal `target`; otherwise return `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3,1,6,8,4], target = 24`
+- Output: `true`
+- Explanation: `[3,8]` and `[1,6,4]` are disjoint, cover the array, and both have product 24.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2,5,3,7], target = 15`
+- Output: `false`
+- Explanation: No complete two-way partition gives both subsets product 15.
 
 ---
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

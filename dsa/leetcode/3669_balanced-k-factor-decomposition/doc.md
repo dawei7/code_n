@@ -8,48 +8,46 @@
 | Category | Algorithms |
 | Topics | Math, Backtracking, Number Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [balanced-k-factor-decomposition](https://leetcode.com/problems/balanced-k-factor-decomposition/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/balanced-k-factor-decomposition/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/balanced-k-factor-decomposition/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given positive integers `n` and `k`, decompose `n` into exactly `k` positive integer factors. Multiplying all returned factors must reproduce `n`.
+
+For a decomposition, compare its largest and smallest factors. Its imbalance is their difference, $max-min$. Among every valid $k$-factor decomposition, choose one whose imbalance is as small as possible.
+
+Return any optimal decomposition. The factors may appear in any order, and distinct optimal outputs are equally valid.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: an integer satisfying $4\le n\le10^5$.
+- `k`: an integer satisfying $2\le k\le5$.
+
+The value `k` is strictly smaller than the number of positive divisors of `n`, ensuring a nontrivial legal search domain.
 
 **Return value**
 
-TODO
+Return exactly `k` positive integers whose product is `n` and whose maximum-minus-minimum difference is minimum among all such decompositions.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 100`, `k = 2`
+- Output: `[10, 10]`
+- The product is `100` and the spread is zero.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 44`, `k = 3`
+- Output: `[2, 2, 11]`
+- Its spread `9` is smaller than those of `[1, 1, 44]`, `[1, 2, 22]`, and `[1, 4, 11]`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 36`, `k = 4`
+- Output: `[2, 2, 3, 3]`
+- The factors differ by at most one.

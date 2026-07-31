@@ -31,12 +31,12 @@
       ],
       "tags": [
         "sample",
-        "union-find"
+        "split"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: removals from right to left",
+      "name": "sample: remove a suffix from right to left",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -60,45 +60,104 @@
         0
       ],
       "tags": [
-        "sample"
+        "sample",
+        "prefix"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: middle first",
-      "kind": "sample",
+      "id": "trial-single",
+      "name": "trial: remove the only position",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          5,
-          9,
+          7
+        ],
+        "remove_queries": [
+          0
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-balanced-split",
+      "name": "trial: equal sums on both sides of a removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          7,
+          3,
           2
         ],
         "remove_queries": [
-          1,
+          2,
           0,
-          2
+          4,
+          1,
+          3
         ]
       },
       "expected": [
         5,
-        2,
+        5,
+        3,
+        3,
         0
       ],
       "tags": [
-        "sample"
+        "split",
+        "tie"
       ]
     },
     {
-      "id": "real-three-elements",
-      "name": "hidden: center removal splits both sides",
+      "id": "real-endpoints",
+      "name": "hidden: endpoint removals then interior removals",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          5,
+          1,
           2,
-          4,
-          6
+          10
+        ],
+        "remove_queries": [
+          0,
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        13,
+        3,
+        2,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "endpoints"
+      ]
+    },
+    {
+      "id": "real-large-sums",
+      "name": "hidden: segment sums require more than 32 bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          1000000000
         ],
         "remove_queries": [
           1,
@@ -107,12 +166,49 @@
         ]
       },
       "expected": [
+        1000000000,
+        1000000000,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-changing-largest-side",
+      "name": "hidden: maximum moves among separated segments",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          2,
+          6,
+          4,
+          5,
+          3
+        ],
+        "remove_queries": [
+          1,
+          4,
+          3,
+          0,
+          5,
+          2
+        ]
+      },
+      "expected": [
+        18,
+        10,
+        8,
         6,
         6,
         0
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "multiple-segments"
       ]
     }
   ]

@@ -8,75 +8,53 @@
 | Category | Algorithms |
 | Topics | Array, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-height-of-a-triangle](https://leetcode.com/problems/maximum-height-of-a-triangle/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-height-of-a-triangle/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-height-of-a-triangle/).
 
 ### Goal
-Given two piles of colored balls (red and blue), determine the maximum height of a triangle that can be constructed. The triangle is built row by row, where the $i$-th row (1-indexed) must contain exactly $i$ balls of the same color. The colors must alternate between rows. You can choose to start the first row with either red or blue balls.
+
+You have `red` red balls and `blue` blue balls. Build a triangle one complete row at a time: row $1$ contains one ball, row $2$ contains two balls, row $3$ contains three balls, and row $i$ must contain exactly $i$ balls.
+
+Every ball in one row must have the same color. Adjacent rows must use different colors, so row colors alternate throughout the triangle. You may choose either red or blue for the top row, and unused balls are allowed.
+
+Return the greatest height, meaning the largest number of complete rows that can be built without using more balls of either color than are available.
 
 ### Function Contract
+
 **Inputs**
 
-- `red`: An integer representing the total number of red balls available.
-- `blue`: An integer representing the total number of blue balls available.
+- `red`: The available number of red balls.
+- `blue`: The available number of blue balls.
+
+Both values are integers in $[1,100]$.
 
 **Return value**
 
-- An integer representing the maximum possible height of the triangle.
+- The maximum attainable triangle height when the first row may use either color.
 
 ### Examples
+
 **Example 1**
 
 - Input: `red = 2, blue = 4`
 - Output: `3`
+- Explanation: Red rows of sizes $1$ and $3$ would need four balls, so the valid height-three arrangement instead starts with blue and uses row colors blue, red, blue.
 
 **Example 2**
 
 - Input: `red = 2, blue = 1`
 - Output: `2`
+- Explanation: A one-ball blue row followed by a two-ball red row uses both piles exactly.
 
 **Example 3**
 
 - Input: `red = 1, blue = 1`
 - Output: `1`
+- Explanation: Either color can fill the first row, but neither pile can fill a second row of two balls.
 
----
+**Example 4**
 
-## Solution
-### Approach
-The problem can be solved using a greedy simulation approach. Since the constraints are small, we can simulate the construction process twice: once starting with a red row and once starting with a blue row. In each simulation, we keep track of the remaining balls of each color and increment the row height as long as we have enough balls of the required color to complete the current row.
-
-### Complexity Analysis
-- **Time Complexity**: $O(\sqrt{N + M})$, where $N$ and $M$ are the number of red and blue balls respectively. The height of the triangle grows as $O(\sqrt{N+M})$, and we perform a constant number of simulations.
-- **Space Complexity**: $O(1)$, as we only use a few integer variables to track the state of the simulation.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(red: int, blue: int) -> int:
-    def get_max_height(first_color: int, second_color: int) -> int:
-        height = 0
-        row = 1
-        while True:
-            if row % 2 == 1:
-                if first_color >= row:
-                    first_color -= row
-                else:
-                    break
-            else:
-                if second_color >= row:
-                    second_color -= row
-                else:
-                    break
-            height += 1
-            row += 1
-        return height
-
-    # Try starting with red, then try starting with blue
-    return max(get_max_height(red, blue), get_max_height(blue, red))
-```
-</details>
+- Input: `red = 10, blue = 1`
+- Output: `2`
+- Explanation: Starting with blue permits rows of sizes one and two; the next blue row would require three balls.

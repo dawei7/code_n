@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3587",
+  "cases": [
+    {
+      "id": "sample-even-majority",
+      "name": "sample: even-majority arrangement needs three swaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 4, 6, 5, 7]},
+      "expected": 3,
+      "tags": ["sample", "even-majority", "adjacent-swaps"]
+    },
+    {
+      "id": "sample-even-start",
+      "name": "sample: one swap reaches the even-start pattern",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 4, 5, 7]},
+      "expected": 1,
+      "tags": ["sample", "even-start", "balanced-counts"]
+    },
+    {
+      "id": "sample-already-alternating",
+      "name": "sample: an already alternating array costs zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3]},
+      "expected": 0,
+      "tags": ["sample", "zero-swaps", "odd-majority"]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: a parity imbalance makes alternation impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 5, 6, 8]},
+      "expected": -1,
+      "tags": ["sample", "impossible", "parity-counts"]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: a singleton is valid regardless of parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1000000000]},
+      "expected": 0,
+      "tags": ["trial", "singleton", "boundary"]
+    },
+    {
+      "id": "trial-odd-start-cheaper",
+      "name": "trial: balanced counts choose the cheaper odd-start pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 3, 2, 4]},
+      "expected": 1,
+      "tags": ["trial", "odd-start", "minimum-of-two"]
+    },
+    {
+      "id": "real-odd-majority-forces-start",
+      "name": "real: odd majority forces odd positions at both ends",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 3, 2, 5, 4]},
+      "expected": 2,
+      "tags": ["real", "odd-majority", "forced-pattern"]
+    },
+    {
+      "id": "real-balanced-even-start-cheaper",
+      "name": "real: balanced counts can favor the even-start pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 4, 1, 6, 3, 5]},
+      "expected": 2,
+      "tags": ["real", "even-start", "minimum-of-two"]
+    },
+    {
+      "id": "real-large-displacement",
+      "name": "real: grouped parities require the sum of all crossings",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 4, 6, 8, 1, 3, 5, 7]},
+      "expected": 6,
+      "tags": ["real", "grouped-parities", "crossings"]
+    },
+    {
+      "id": "real-imbalance-by-two",
+      "name": "real: a count difference of two is already impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 4, 6, 8, 1, 3]},
+      "expected": -1,
+      "tags": ["real", "impossible", "difference-two"]
+    }
+  ]
+}

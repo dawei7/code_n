@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find COVID Recovery Patients and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregates each patient's earliest positive once, then joins and aggregates the earliest strictly later negative before ordering recovered patients.",
+      "time_complexity": "O(T log T + P log P)",
+      "space_complexity": "O(T + P)"
     }
   ]
 }

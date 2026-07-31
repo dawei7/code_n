@@ -8,83 +8,37 @@
 | Category | Algorithms |
 | Topics | Array, Matrix, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-submatrices-with-top-left-element-and-sum-less-than-k](https://leetcode.com/problems/count-submatrices-with-top-left-element-and-sum-less-than-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-submatrices-with-top-left-element-and-sum-less-than-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-submatrices-with-top-left-element-and-sum-less-than-k/).
 
 ### Goal
-Given a 2D grid of non-negative integers and an integer `k`, determine the total number of submatrices that start at the top-left corner (0, 0) and have a total sum of elements strictly less than `k`.
+
+You are given a zero-indexed matrix `grid` of non-negative integers and an integer `k`. Count the submatrices that contain the matrix's top-left element and whose element sum is less than or equal to `k`.
+
+Because such a submatrix must contain `grid[0][0]`, its top and left boundaries are fixed at row `0` and column `0`. It is therefore determined by choosing its bottom-right corner `(r, c)`, and it contains every cell in rows `0` through `r` and columns `0` through `c`.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: A list of lists of integers representing the 2D matrix.
-- `k`: An integer representing the threshold sum.
+- `grid`: An $m \times n$ matrix of integers, where $1 \le m,n \le 1000$ and every value lies between $0$ and $1000$, inclusive.
+- `k`: The inclusive sum limit, where $1 \le k \le 10^9$.
 
 **Return value**
 
-- An integer representing the count of submatrices starting at (0, 0) with a sum less than `k`.
+Return the number of top-left-anchored submatrices whose sum is at most `k`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `grid = [[7,6,3],[6,6,1]], k = 18`
 - Output: `4`
+- Explanation: Four choices of bottom-right corner produce anchored submatrices with sums no greater than `18`.
 
 **Example 2**
 
 - Input: `grid = [[7,2,9],[1,5,0],[2,6,6]], k = 20`
 - Output: `6`
-
----
-
-## Solution
-### Approach
-The problem is solved using 2D Prefix Sums. By precomputing a prefix sum matrix where each cell `(i, j)` stores the sum of the rectangle from `(0, 0)` to `(i, j)`, we can determine the sum of any submatrix starting at `(0, 0)` in constant time. The algorithm iterates through every cell in the grid, calculates the prefix sum, and increments a counter if the sum is less than `k`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(m * n)`, where `m` is the number of rows and `n` is the number of columns, as we traverse the grid once to compute prefix sums.
-- **Space Complexity**: `O(m * n)` to store the prefix sum matrix (or `O(1)` if modifying the input grid in-place).
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(grid: list[list[int]], k: int) -> int:
-    if not grid or not grid[0]:
-        return 0
-
-    rows = len(grid)
-    cols = len(grid[0])
-
-    # Create a 2D prefix sum array
-    # prefix_sum[i][j] will store the sum of the submatrix from (0,0) to (i,j)
-    prefix_sum = [[0] * cols for _ in range(rows)]
-    count = 0
-
-    for r in range(rows):
-        row_running_sum = 0
-        for c in range(cols):
-            row_running_sum += grid[r][c]
-
-            # The sum of the submatrix (0,0) to (r,c) is:
-            # current row's running sum + the prefix sum of the row above
-            if r == 0:
-                prefix_sum[r][c] = row_running_sum
-            else:
-                prefix_sum[r][c] = row_running_sum + prefix_sum[r-1][c]
-
-            if prefix_sum[r][c] < k:
-                count += 1
-            else:
-                # Since all elements are non-negative, if the sum at (r,c)
-                # is >= k, any submatrix extending further will also be >= k.
-                # However, we must continue to fill the prefix_sum table
-                # for future calculations.
-                pass
-
-    return count
-```
-</details>
+- Explanation: Six anchored submatrices have sums no greater than `20`.

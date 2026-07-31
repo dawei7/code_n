@@ -1,23 +1,17 @@
-import math
+from math import gcd
+
 
 def solve(nums: list[int], k: int) -> int:
-    """
-    Calculates the number of subarrays with GCD equal to k.
-    Uses the property that GCD is non-increasing as we extend the subarray.
-    """
-    n = len(nums)
-    count = 0
-    
-    for i in range(n):
-        current_gcd = nums[i]
-        for j in range(i, n):
-            current_gcd = math.gcd(current_gcd, nums[j])
-            
-            if current_gcd == k:
-                count += 1
-            elif current_gcd < k:
-                # Since the GCD can only decrease or stay the same,
-                # if it drops below k, it will never return to k.
-                break
-                
-    return count
+    ending_counts: dict[int, int] = {}
+    answer = 0
+
+    for value in nums:
+        next_counts = {value: 1}
+        for previous_gcd, count in ending_counts.items():
+            current_gcd = gcd(previous_gcd, value)
+            next_counts[current_gcd] = next_counts.get(current_gcd, 0) + count
+
+        ending_counts = next_counts
+        answer += ending_counts.get(k, 0)
+
+    return answer

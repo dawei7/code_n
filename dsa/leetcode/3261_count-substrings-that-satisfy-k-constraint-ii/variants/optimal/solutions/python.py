@@ -1,35 +1,29 @@
 def solve(s: str, k: int, queries: list[list[int]]) -> list[int]:
-    n = len(s)
-    left_bound = [0] * n
-    # prefix_sum[i] stores the sum of (i - left_bound[i] + 1) for 0 to i-1
-    prefix_sum = [0] * (n + 1)
-    
-    count = [0, 0]
+    length = len(s)
+    rightmost_valid = [length - 1] * length
+    valid_suffix_prefix = [0] * (length + 1)
+
+    counts = [0, 0]
     left = 0
-    for right in range(n):
-        count[int(s[right])] += 1
-        while count[0] > k and count[1] > k:
-            count[int(s[left])] -= 1
+    for right, bit in enumerate(s):
+        counts[int(bit)] += 1
+        while counts[0] > k and counts[1] > k:
+            rightmost_valid[left] = right - 1
+            counts[int(s[left])] -= 1
             left += 1
-        left_bound[right] = left
-        prefix_sum[right + 1] = prefix_sum[right] + (right - left + 1)
-        
-    results = []
-    for l, r in queries:
-        # Find the first index 'i' in [l, r] such that left_bound[i] >= l
-        # This is the point where the valid window is fully contained within [l, r]
-        import bisect
-        idx = bisect.bisect_left(left_bound, l, l, r + 1)
-        
-        # Substrings ending before idx: start at left_bound[i], end at i.
-        # Since left_bound[i] < l, we must cap the start at l.
-        # Number of valid substrings = (i - l + 1) * (i - l + 2) // 2
-        count_before = (idx - l) * (idx - l + 1) // 2
-        
-        # Substrings ending at or after idx: start at left_bound[i], end at i.
-        # These are fully contained within [l, r].
-        count_after = prefix_sum[r + 1] - prefix_sum[idx]
-        
-        results.append(count_before + count_after)
-        
-    return results
+        valid_suffix_prefix[right + 1] = (
+            valid_suffix_prefix[right] + right - left + 1
+        )
+
+    answer = []
+    for query_left, query_right in queries:
+        prefix_end = min(query_right, rightmost_valid[query_left])
+        prefix_length = prefix_end - query_left + 1
+        prefix_count = prefix_length * (prefix_length + 1) // 2
+        tail_count = (
+            valid_suffix_prefix[query_right + 1]
+            - valid_suffix_prefix[prefix_end + 1]
+        )
+        answer.append(prefix_count + tail_count)
+
+    return answer

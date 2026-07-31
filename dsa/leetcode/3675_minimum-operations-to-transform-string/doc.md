@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | String, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-transform-string](https://leetcode.com/problems/minimum-operations-to-transform-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-transform-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-transform-string/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string `s` of lowercase English letters, an operation chooses one letter currently appearing in the string and changes every occurrence of that letter to its alphabetic successor. The alphabet is circular, so changing `z` produces `a`.
+
+Apply the operation any number of times and determine the minimum count needed to turn every character into `a`. Occurrences of the chosen letter always move together, and they may merge with occurrences already holding the successor letter.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a non-empty lowercase English string of length $n$, where $1\le n\le5\cdot10^5$.
 
 **Return value**
 
-TODO
+Return the minimum number of global letter-successor operations required to make `s` consist only of `a` characters.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "yz"`
+- Output: `2`
+
+Changing `y` merges both positions at `z`; changing `z` once more wraps both to `a`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "a"`
+- Output: `0`
+
+The target condition already holds.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abz"`
+- Output: `25`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The `b` group must advance through the alphabet to `a`; it absorbs the `z` group along the way, while the original `a` remains unchanged.

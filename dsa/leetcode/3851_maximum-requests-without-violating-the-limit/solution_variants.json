@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Requests Without Violating the Limit and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Groups requests by user, sorts each timeline, and greedily retains the earliest feasible records with a sliding deque.",
+      "time_complexity": "O(N log N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

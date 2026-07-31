@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3036",
   "cases": [
     {
-      "id": "sample-kmp-repeated",
-      "name": "sample: repeated relation pattern",
+      "id": "sample-increasing",
+      "name": "sample: strictly increasing windows",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -11,16 +12,39 @@
           1,
           2,
           3,
-          2,
-          3,
           4,
-          3,
-          4,
-          5
+          5,
+          6
         ],
         "pattern": [
           1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-mixed-relations",
+      "name": "sample: increase equal decrease",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
           1,
+          4,
+          4,
+          1,
+          3,
+          5,
+          5,
+          3
+        ],
+        "pattern": [
+          1,
+          0,
           -1
         ]
       },
@@ -30,32 +54,7 @@
       ]
     },
     {
-      "id": "sample-equality",
-      "name": "sample: equality relation search",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          5,
-          5,
-          5,
-          6,
-          6,
-          5
-        ],
-        "pattern": [
-          0,
-          0,
-          1
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-relation",
+      "id": "trial-single-decrease",
       "name": "trial: single decreasing relation",
       "kind": "trial",
       "visible": true,
@@ -77,8 +76,30 @@
       ]
     },
     {
+      "id": "trial-single-equality",
+      "name": "trial: single equality relation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "pattern": [
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
       "id": "trial-overlap",
-      "name": "trial: overlapping KMP matches",
+      "name": "trial: overlapping matches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -98,41 +119,109 @@
       },
       "expected": 2,
       "tags": [
-        "trial"
+        "trial",
+        "overlap"
       ]
     },
     {
-      "id": "real-longer-pattern",
-      "name": "real: longer relation pattern with overlaps",
+      "id": "real-full-window",
+      "name": "real: pattern spans the complete array",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
           3,
-          4,
-          4,
-          2,
-          5,
-          5,
           1,
-          2,
-          2,
+          1,
+          5,
+          2
+        ],
+        "pattern": [
+          -1,
           0,
-          3
+          1,
+          -1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-no-match",
+      "name": "real: no increasing pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2
+        ],
+        "pattern": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-prefix-fallback",
+      "name": "real: mismatch falls back to a pattern border",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          6,
+          6,
+          7,
+          7,
+          8,
+          9
         ],
         "pattern": [
           1,
           0,
-          -1,
           1,
-          0,
-          -1
+          1
         ]
       },
-      "expected": 2,
+      "expected": 1,
       "tags": [
         "real",
         "kmp"
+      ]
+    },
+    {
+      "id": "real-value-limits",
+      "name": "real: extreme values and overlapping matches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1
+        ],
+        "pattern": [
+          1,
+          -1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "boundary"
       ]
     }
   ]

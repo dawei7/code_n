@@ -5,51 +5,43 @@
 | Source | LeetCode |
 | Frontend ID | 2283 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Hash Table, String, Counting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-number-has-equal-digit-count-and-digit-value](https://leetcode.com/problems/check-if-number-has-equal-digit-count-and-digit-value/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-number-has-equal-digit-count-and-digit-value/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-number-has-equal-digit-count-and-digit-value/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+The string `num` contains $n$ decimal digits and is indexed from zero. For
+each index $i$, interpret `num[i]` as a numeric count.
+
+Return `true` exactly when, for every $0 \le i < n$, digit $i$ occurs in the
+whole string exactly `num[i]` times. Return `false` if any index's required
+count differs from its actual frequency. Every comparison uses frequencies
+from the complete original string.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `num`: A string of $n$ decimal digits.
+
+Here, $1 \le n \le 10$.
 
 **Return value**
 
-TODO
+`true` if every indexed digit frequency equals the value stored at that index;
+otherwise, `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = "1210"`
+- Output: `true`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = "030"`
+- Output: `false`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num = "2020"`
+- Output: `true`

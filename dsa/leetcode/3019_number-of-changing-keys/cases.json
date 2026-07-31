@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3019",
+  "cases": [
+    {
+      "id": "sample-mixed-groups",
+      "name": "sample: changes between three case-insensitive groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aAbBcC"
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-key",
+      "name": "sample: case changes do not change the key",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "AaAaAaaA"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "case"
+      ]
+    },
+    {
+      "id": "single-character",
+      "name": "boundary: no transition exists",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "Z"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "two-different",
+      "name": "trial: one transition changes keys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aB"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "palindromic-groups",
+      "name": "trial: normalized groups change twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abBA"
+      },
+      "expected": 2,
+      "tags": [
+        "case"
+      ]
+    },
+    {
+      "id": "long-same-key",
+      "name": "real: repeated case alternation stays on one key",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zZzZZzzZ"
+      },
+      "expected": 0,
+      "tags": [
+        "case"
+      ]
+    },
+    {
+      "id": "every-transition",
+      "name": "real: every adjacent normalized letter differs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aBcDeFgHiJ"
+      },
+      "expected": 9,
+      "tags": [
+        "maximum"
+      ]
+    },
+    {
+      "id": "repeated-groups",
+      "name": "real: group boundaries alone count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "cCcdDDDeEfF"
+      },
+      "expected": 3,
+      "tags": [
+        "groups"
+      ]
+    }
+  ]
+}

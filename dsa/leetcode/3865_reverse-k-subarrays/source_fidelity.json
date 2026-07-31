@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3865",
+    "frontend_id": "3865",
+    "title_slug": "reverse-k-subarrays",
+    "url": "https://leetcode.com/problems/reverse-k-subarrays/description/",
+    "paid_only": true,
+    "content_sha256": "539021cc6b2c2a25d0a4b45c2092e72ca313d512f542669a4ec0ba30b9cdfcd8",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,4,3,5,6], k = 3",
+        "output": "[2,1,3,4,6,5]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [5,4,4,2], k = 1",
+        "output": "[2,4,4,5]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3ffcc931f3c2b9d1ce706e6e9556c8b1ae8dc9d315ce8511a7b40b5925963706",
+      "reference/contract.md": "d7358113bcf2ee9bd4104ebe6a8805ee454378710687b28e433d6125ae731730",
+      "reference/examples.md": "27339cd62f6b3a96ce561b9be680536b9057caf58ea5aceea887a6249ebb8121",
+      "reference/constraints.md": "767fb4519cc4a669449f92e839bc4f4d85d293df72af5162b30aaaf0a1124191"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4346",
+  "frontend_id": "3983",
+  "title_slug": "subsequence-after-one-replacement",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canMakeSubsequence",
+  "verified_submission_id": "2088084869",
+  "verified_at": "2026-07-30T22:39:33.7748039+00:00"
+}

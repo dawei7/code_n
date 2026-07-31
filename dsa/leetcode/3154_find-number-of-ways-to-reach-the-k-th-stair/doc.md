@@ -8,48 +8,38 @@
 | Category | Algorithms |
 | Topics | Math, Dynamic Programming, Bit Manipulation, Memoization, Combinatorics |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-number-of-ways-to-reach-the-k-th-stair](https://leetcode.com/problems/find-number-of-ways-to-reach-the-k-th-stair/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-number-of-ways-to-reach-the-k-th-stair/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-number-of-ways-to-reach-the-k-th-stair/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+An infinite staircase is numbered upward from stair $0$. Alice begins on stair $1$ with an integer `jump` initially equal to $0$. From stair `i`, she may move down to `i - 1`, provided she is not on stair $0$ and her preceding operation was not another downward move.
+
+Alternatively, she may move upward to `i + 2^jump`; after that operation, `jump` increases by one. Given a non-negative target `k`, return the number of operation sequences that reach stair `k`. Reaching `k` does not force Alice to stop: a longer sequence that leaves and later returns to `k` counts separately.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `k`: The target stair, where $0 \le k \le 10^9$.
 
 **Return value**
 
-TODO
+Return the total number of valid finite operation sequences whose endpoint is stair `k`, including the empty sequence when the starting stair is already the target.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `k = 0`
+- Output: `2`
+- Explanation: Alice can move down immediately, or move down, up by $2^0$, and move down again.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `k = 1`
+- Output: `4`
+- Explanation: The empty sequence counts, and three longer valid sequences end at stair $1$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `k = 2`
+- Output: `4`
+- Explanation: Four distinct placements of legal downward operations among the first few upward jumps end at stair $2$.

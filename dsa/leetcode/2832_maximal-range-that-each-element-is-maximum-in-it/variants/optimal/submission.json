@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3088",
+  "frontend_id": "2832",
+  "title_slug": "maximal-range-that-each-element-is-maximum-in-it",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maximumLengthOfRanges",
+  "verified_submission_id": "2077348764",
+  "verified_at": "2026-07-22T16:06:00+00:00"
+}

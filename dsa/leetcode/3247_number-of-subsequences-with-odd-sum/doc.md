@@ -8,48 +8,39 @@
 | Category | Algorithms |
 | Topics | Array, Math, Dynamic Programming, Combinatorics |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-subsequences-with-odd-sum](https://leetcode.com/problems/number-of-subsequences-with-odd-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-subsequences-with-odd-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-subsequences-with-odd-sum/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an integer array `nums`, count the subsequences whose selected elements have an odd sum. A subsequence is determined by choosing any set of indices while preserving their original relative order; equal values at different indices represent different choices.
+
+The empty subsequence has sum zero and therefore is not counted. Return the number of odd-sum subsequences modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: An array of length $n$, where $1 \le n \le 10^5$ and every value lies from 1 through $10^9$.
 
 **Return value**
 
-TODO
+- The number of index-defined subsequences with odd element sum, reduced modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,1,1]`
+- Output: `4`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,2]`
+- Output: `4`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [2,4,6]`
+- Output: `0`

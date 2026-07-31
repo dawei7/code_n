@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_363", "frontend_id": "363", "title_slug": "max-sum-of-rectangle-no-larger-than-k", "url": "https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/description/", "paid_only": false, "content_sha256": "533938afaff079617efaad64a8f909436ec2769ff9a5933e37b775ad566bc06a", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "matrix = [[1,0,1],[0,-2,3]], k = 2", "output": "2", "has_explanation": true},
+      {"ordinal": 2, "input": "matrix = [[2,2,-1]], k = 3", "output": "3", "has_explanation": false}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "368ea536976f0c4e39a773f77358fc7912efbca43700df87305a4d63c7e8e14b",
+    "reference/contract.md": "4f528d3bdaa1d7b3b3ae8f95ead09fd02e135bdbc71ce3f8f909bb7780ba68bc",
+    "reference/examples.md": "ed2b05c4f0b2bd8d0457eb889a2e222a11a2718710a8f14c9199e819e4110f15",
+    "reference/constraints.md": "3314b96046e765ee6c4a6c7df14a16da5af4e971dfe80b4a547b5f89a2ec9973",
+    "reference/follow_up.md": "6333ce289339d608786aae186b76adfd81e799f3faab66b68ad49b059be83b14"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

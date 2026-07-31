@@ -1,42 +1,60 @@
 import heapq
 
+
 def solve(nums: list[int]) -> int:
-    """
-    Solves the Minimum Pair Removal to Sort Array II problem.
-    Uses a greedy strategy with a heap to identify and remove 
-    inversions that prevent the array from being sorted.
-    """
-    n = len(nums)
-    if n <= 1:
+    size = len(nums)
+    if size < 2:
         return 0
-    
-    # Identify initial inversions
-    # An inversion is a pair (i, i+1) where nums[i] > nums[i+1]
-    inversions = []
-    for i in range(n - 1):
-        if nums[i] > nums[i+1]:
-            heapq.heappush(inversions, i)
-            
-    removals = 0
-    # We use a set to track removed indices to handle dynamic updates
-    removed = [False] * n
-    
-    # Simulation: greedily remove inversions
-    # Note: This is a simplified logic representation of the greedy removal
-    # In a real scenario, we would maintain a doubly linked list to 
-    # update neighbors after removal in O(1).
-    
-    # For the sake of the optimal structure:
-    # If the array cannot be sorted, return -1.
-    # This implementation assumes the standard greedy removal logic.
-    
-    # Placeholder for the simulation logic:
-    # While inversions exist, remove the pair and check if new inversions are created.
-    
-    # Final check if sorted
-    current = [x for i, x in enumerate(nums) if not removed[i]]
-    for i in range(len(current) - 1):
-        if current[i] > current[i+1]:
-            return -1
-            
-    return removals
+
+    values = nums[:]
+    previous = [index - 1 for index in range(size)]
+    following = [index + 1 for index in range(size)]
+    following[-1] = -1
+    active = [True] * size
+
+    heap = [
+        (values[index] + values[index + 1], index, index + 1)
+        for index in range(size - 1)
+    ]
+    heapq.heapify(heap)
+    inversions = sum(
+        values[index] > values[index + 1] for index in range(size - 1)
+    )
+
+    operations = 0
+    while inversions:
+        while True:
+            pair_sum, left, right = heapq.heappop(heap)
+            if (
+                active[left]
+                and active[right]
+                and following[left] == right
+                and values[left] + values[right] == pair_sum
+            ):
+                break
+
+        before = previous[left]
+        after = following[right]
+
+        if before != -1:
+            inversions -= values[before] > values[left]
+        inversions -= values[left] > values[right]
+        if after != -1:
+            inversions -= values[right] > values[after]
+
+        values[left] = pair_sum
+        active[right] = False
+        following[left] = after
+        if after != -1:
+            previous[after] = left
+
+        if before != -1:
+            inversions += values[before] > values[left]
+            heapq.heappush(heap, (values[before] + values[left], before, left))
+        if after != -1:
+            inversions += values[left] > values[after]
+            heapq.heappush(heap, (values[left] + values[after], left, after))
+
+        operations += 1
+
+    return operations

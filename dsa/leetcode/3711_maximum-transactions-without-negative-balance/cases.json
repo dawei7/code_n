@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3711",
+  "cases": [
+    {
+      "id": "sample-skip-large-debit",
+      "name": "sample: skip the debit that exceeds the early balance",
+      "kind": "sample",
+      "visible": true,
+      "input": {"transactions": [2, -5, 3, -1, -2]},
+      "expected": 4,
+      "tags": ["sample", "skip-debit"]
+    },
+    {
+      "id": "sample-all-negative",
+      "name": "sample: no negative transaction can start from zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"transactions": [-1, -2, -3]},
+      "expected": 0,
+      "tags": ["sample", "all-negative"]
+    },
+    {
+      "id": "sample-take-all",
+      "name": "sample: the complete sequence preserves a non-negative balance",
+      "kind": "sample",
+      "visible": true,
+      "input": {"transactions": [3, -2, 3, -2, 1, -1]},
+      "expected": 6,
+      "tags": ["sample", "take-all"]
+    },
+    {
+      "id": "trial-single-positive",
+      "name": "trial: one receipt is always feasible",
+      "kind": "trial",
+      "visible": true,
+      "input": {"transactions": [7]},
+      "expected": 1,
+      "tags": ["trial", "minimum-length", "positive"]
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "trial: one debit cannot be performed from zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"transactions": [-7]},
+      "expected": 0,
+      "tags": ["trial", "minimum-length", "negative"]
+    },
+    {
+      "id": "trial-zero-amount",
+      "name": "trial: zero-value transactions can all be retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {"transactions": [0, 0, 0, 0]},
+      "expected": 4,
+      "tags": ["trial", "zero-values"]
+    },
+    {
+      "id": "real-exchange-earlier-debit",
+      "name": "hidden: remove an earlier larger debit instead of the current one",
+      "kind": "real",
+      "visible": false,
+      "input": {"transactions": [5, -4, -2, -2]},
+      "expected": 3,
+      "tags": ["hidden", "greedy-exchange"]
+    },
+    {
+      "id": "real-later-receipt-cannot-rescue",
+      "name": "hidden: an initial deficit must be skipped before later receipts",
+      "kind": "real",
+      "visible": false,
+      "input": {"transactions": [-5, 10, -5]},
+      "expected": 2,
+      "tags": ["hidden", "prefix-feasibility"]
+    },
+    {
+      "id": "real-multiple-exchanges",
+      "name": "hidden: repeated forced repairs retain the least harmful debits",
+      "kind": "real",
+      "visible": false,
+      "input": {"transactions": [8, -6, -5, 4, -4, -3, -2]},
+      "expected": 5,
+      "tags": ["hidden", "multiple-exchanges"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: maximum receipts and debits require a wide balance",
+      "kind": "real",
+      "visible": false,
+      "input": {"transactions": [1000000000, 1000000000, -1000000000, -1000000000, -1000000000]},
+      "expected": 4,
+      "tags": ["hidden", "value-boundary", "wide-integer"]
+    },
+    {
+      "id": "real-positive-after-rejections",
+      "name": "hidden: later receipts remain selectable after early debits are removed",
+      "kind": "real",
+      "visible": false,
+      "input": {"transactions": [-9, -8, 3, 4, 5, -7, -2]},
+      "expected": 5,
+      "tags": ["hidden", "early-rejections", "later-receipts"]
+    },
+    {
+      "id": "real-take-all-with-zero-final",
+      "name": "hidden: reaching exactly zero after several debits remains valid",
+      "kind": "real",
+      "visible": false,
+      "input": {"transactions": [6, -1, -2, 0, -3]},
+      "expected": 5,
+      "tags": ["hidden", "zero-balance", "take-all"]
+    }
+  ]
+}

@@ -19,8 +19,9 @@ from engine.counter import ComplexityClass
 from engine.special_environments import category_is_runnable, starter_source as environment_starter_source
 from challenges.spec import AlgorithmSpec, Sample
 from server.app.challenge_packages import (
-    iter_leetcode_doc_paths,
+    iter_leetcode_package_dirs,
     leetcode_cases_path,
+    leetcode_doc_markdown,
     leetcode_metadata,
     leetcode_package_id,
     leetcode_solution_variant_complexity,
@@ -299,6 +300,13 @@ def _section(text: str, start: str, end_markers: tuple[str, ...]) -> str:
 
 
 def _goal(text: str) -> str:
+    description = _section(
+        text,
+        "## Description",
+        ("## Function Contract", "## Examples", "## Constraints", "## Underlying"),
+    )
+    if description:
+        return description
     return _section(
         text,
         "### Goal",
@@ -310,7 +318,14 @@ def _inputs(text: str) -> list[tuple[str, str]]:
     body = _section(
         text,
         "**Inputs**",
-        ("**Return value**", "### Output", "### Examples", "## Underlying"),
+        (
+            "**Return value**",
+            "### Output",
+            "## Examples",
+            "### Examples",
+            "## Constraints",
+            "## Underlying",
+        ),
     )
     if not body:
         body = _section(text, "### Input", ("### Output", "### Examples", "## Underlying"))
@@ -428,10 +443,18 @@ def _normalize_sample_input_names(raw: str) -> str:
 
 
 def _return_value(text: str) -> str:
-    body = _section(text, "**Return value**", ("### Examples", "## Underlying"))
+    body = _section(
+        text,
+        "**Return value**",
+        ("## Examples", "### Examples", "## Constraints", "## Underlying"),
+    )
     if body:
         return body.strip()
-    return _section(text, "### Output", ("### Examples", "## Underlying")).strip() or "Return the result."
+    return _section(
+        text,
+        "### Output",
+        ("## Examples", "### Examples", "## Constraints", "## Underlying"),
+    ).strip() or "Return the result."
 
 
 def _examples(text: str) -> list[Sample]:
@@ -440,7 +463,7 @@ def _examples(text: str) -> list[Sample]:
     in_examples = False
     for raw_line in text.splitlines():
         line = raw_line.strip()
-        if line == "### Examples":
+        if line in {"## Examples", "### Examples"}:
             in_examples = True
             continue
         if in_examples and (line == "---" or line.startswith("## ")):
@@ -508,8 +531,8 @@ def _parse_complexity(text: str) -> ComplexityClass:
     return ComplexityClass.UNKNOWN
 
 
-def _build_spec(path: Path) -> AlgorithmSpec | None:
-    text = path.read_text(encoding="utf-8")
+def _build_spec(path: Path, text: str | None = None) -> AlgorithmSpec | None:
+    text = text if text is not None else path.read_text(encoding="utf-8")
     title_match = re.search(r"^#\s+(.+)$", text, flags=re.MULTILINE)
     frontend_id = _read_field(text, "Frontend ID")
     if not title_match or not frontend_id:
@@ -677,8 +700,12 @@ def _collect_specs() -> list[AlgorithmSpec]:
     if not LEETCODE_ROOT.exists():
         return []
     specs = []
-    for path in iter_leetcode_doc_paths():
-        spec = _build_spec(path)
+    for package_dir in iter_leetcode_package_dirs():
+        challenge_id = leetcode_package_id(package_dir)
+        text = leetcode_doc_markdown(challenge_id) if challenge_id else None
+        if text is None:
+            continue
+        spec = _build_spec(package_dir / "doc.md", text)
         if spec is not None:
             specs.append(spec)
     return specs

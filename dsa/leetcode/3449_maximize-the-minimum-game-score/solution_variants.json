@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize the Minimum Game Score and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the minimum score and greedily counts the forced edge bounces for each target.",
+      "time_complexity": "O(n log(m p + 1))",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2169",
+  "cases": [
+    {"id": "sample-unequal", "name": "sample: alternating subtraction sides", "kind": "sample", "visible": true, "input": {"num1": 2, "num2": 3}, "expected": 3, "tags": ["sample", "unequal"]},
+    {"id": "sample-equal", "name": "sample: equal values finish in one operation", "kind": "sample", "visible": true, "input": {"num1": 10, "num2": 10}, "expected": 1, "tags": ["sample", "equal"]},
+    {"id": "trial-first-zero", "name": "first input already zero", "kind": "trial", "visible": true, "input": {"num1": 0, "num2": 7}, "expected": 0, "tags": ["zero", "early-stop"]},
+    {"id": "trial-second-zero", "name": "second input already zero", "kind": "trial", "visible": true, "input": {"num1": 9, "num2": 0}, "expected": 0, "tags": ["zero", "early-stop"]},
+    {"id": "trial-both-zero", "name": "both inputs already zero", "kind": "trial", "visible": true, "input": {"num1": 0, "num2": 0}, "expected": 0, "tags": ["zero", "minimum"]},
+    {"id": "trial-quotient-batch", "name": "large quotient represents repeated subtractions", "kind": "trial", "visible": true, "input": {"num1": 5, "num2": 4}, "expected": 5, "tags": ["quotient", "coprime"]},
+    {"id": "real-common-divisor", "name": "hidden: nontrivial common divisor", "kind": "real", "visible": false, "input": {"num1": 15, "num2": 6}, "expected": 4, "tags": ["hidden", "gcd"]},
+    {"id": "real-swapped", "name": "hidden: swapping inputs preserves the count", "kind": "real", "visible": false, "input": {"num1": 6, "num2": 15}, "expected": 4, "tags": ["hidden", "symmetry"]},
+    {"id": "real-upper-equal", "name": "hidden: equal values at the upper bound", "kind": "real", "visible": false, "input": {"num1": 100000, "num2": 100000}, "expected": 1, "tags": ["hidden", "upper-bound", "equal"]}
+  ]
+}

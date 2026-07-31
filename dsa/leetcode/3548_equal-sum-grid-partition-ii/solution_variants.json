@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Equal Sum Grid Partition II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Checks each orientation and larger-side direction with prefix sums, seen values, and explicit one-dimensional endpoint rules.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(mn)"
     }
   ]
 }

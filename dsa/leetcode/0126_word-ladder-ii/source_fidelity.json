@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_126", "frontend_id": "126", "title_slug": "word-ladder-ii", "url": "https://leetcode.com/problems/word-ladder-ii/description/", "paid_only": false, "content_sha256": "d4383c0caf2e0666b7b678e484617e6dda0d4669731f01668fef88abcdfb31f9", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]", "output": "[[\"hit\",\"hot\",\"dot\",\"dog\",\"cog\"],[\"hit\",\"hot\",\"lot\",\"log\",\"cog\"]]", "has_explanation": true},
+      {"ordinal": 2, "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]", "output": "[]", "has_explanation": true}
+    ],
+    "constraint_count": 8,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "08ea50d88f115f2e9cdadb378457ca16c83c05e358aebbc47c6481455f4255b3", "reference/contract.md": "fdc9506506240d52a0eca347148728501ef1fc868df0ead6ec7c8142d2bc9123", "reference/examples.md": "f224561eec2d702aed96273891ca45a55610bd3ee94702331e4e5703c56e448f", "reference/constraints.md": "3ff4421999da25e9d899f23e8249dab4682d8ca6bb3d23256c0966675c873975"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

@@ -8,48 +8,48 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-steps-to-make-two-strings-anagram-ii](https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Two lowercase strings `s` and `t` may contain different numbers of each
+letter. In one step, append any one lowercase character to either string.
+Existing characters cannot be removed or changed.
+
+Find the minimum number of append operations needed so the two resulting
+strings are anagrams. Anagrams contain equal frequencies of every character;
+their character order may differ or remain the same. Appends may be required
+on both strings to balance different letters.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a lowercase English string.
+- `t`: another lowercase English string.
+
+Each input length is in $[1,2\cdot10^5]$.
 
 **Return value**
 
-TODO
+Return the minimum total number of single-character appends needed to make
+`s` and `t` anagrams.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "leetcode"`, `t = "coats"`
+- Output: `7`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "night"`, `t = "thing"`
+- Output: `0`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "a"`, `t = "b"`
+- Output: `2`

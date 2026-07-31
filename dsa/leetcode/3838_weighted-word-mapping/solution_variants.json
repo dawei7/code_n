@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Weighted Word Mapping and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sums each word's character weights once and converts its residue through the reverse alphabet.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(W)"
     }
   ]
 }

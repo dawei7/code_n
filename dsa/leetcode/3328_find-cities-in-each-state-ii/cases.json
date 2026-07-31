@@ -1,0 +1,334 @@
+{
+  "challenge_id": "lc_3328",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official state and city groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "New York",
+              "city": "New York City"
+            },
+            {
+              "state": "New York",
+              "city": "Newark"
+            },
+            {
+              "state": "New York",
+              "city": "Buffalo"
+            },
+            {
+              "state": "New York",
+              "city": "Rochester"
+            },
+            {
+              "state": "California",
+              "city": "San Francisco"
+            },
+            {
+              "state": "California",
+              "city": "Sacramento"
+            },
+            {
+              "state": "California",
+              "city": "San Diego"
+            },
+            {
+              "state": "California",
+              "city": "Los Angeles"
+            },
+            {
+              "state": "Texas",
+              "city": "Tyler"
+            },
+            {
+              "state": "Texas",
+              "city": "Temple"
+            },
+            {
+              "state": "Texas",
+              "city": "Taylor"
+            },
+            {
+              "state": "Texas",
+              "city": "Dallas"
+            },
+            {
+              "state": "Pennsylvania",
+              "city": "Philadelphia"
+            },
+            {
+              "state": "Pennsylvania",
+              "city": "Pittsburgh"
+            },
+            {
+              "state": "Pennsylvania",
+              "city": "Pottstown"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": [
+          [
+            "Pennsylvania",
+            "Philadelphia, Pittsburgh, Pottstown",
+            3
+          ],
+          [
+            "Texas",
+            "Dallas, Taylor, Temple, Tyler",
+            3
+          ],
+          [
+            "New York",
+            "Buffalo, Newark, New York City, Rochester",
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "grouping",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-exact-threshold",
+      "name": "trial: exactly three cities with one match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Alabama",
+              "city": "Mobile"
+            },
+            {
+              "state": "Alabama",
+              "city": "Auburn"
+            },
+            {
+              "state": "Alabama",
+              "city": "Birmingham"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": [
+          [
+            "Alabama",
+            "Auburn, Birmingham, Mobile",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "minimum-count",
+        "single-match"
+      ]
+    },
+    {
+      "id": "trial-too-few",
+      "name": "trial: matching state has only two cities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Ohio",
+              "city": "Oxford"
+            },
+            {
+              "state": "Ohio",
+              "city": "Toledo"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "below-threshold",
+        "excluded"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: enough cities but no matching initial",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "California",
+              "city": "Los Angeles"
+            },
+            {
+              "state": "California",
+              "city": "Sacramento"
+            },
+            {
+              "state": "California",
+              "city": "San Diego"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "no-match",
+        "excluded"
+      ]
+    },
+    {
+      "id": "real-count-and-state-order",
+      "name": "real: count priority followed by alphabetical state tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Colorado",
+              "city": "Pueblo"
+            },
+            {
+              "state": "Arizona",
+              "city": "Tucson"
+            },
+            {
+              "state": "Alaska",
+              "city": "Nome"
+            },
+            {
+              "state": "Arizona",
+              "city": "Austin"
+            },
+            {
+              "state": "Colorado",
+              "city": "Colorado Springs"
+            },
+            {
+              "state": "Alaska",
+              "city": "Anchorage"
+            },
+            {
+              "state": "Arizona",
+              "city": "Albany"
+            },
+            {
+              "state": "Colorado",
+              "city": "Denver"
+            },
+            {
+              "state": "Alaska",
+              "city": "Juneau"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": [
+          [
+            "Arizona",
+            "Albany, Austin, Tucson",
+            2
+          ],
+          [
+            "Alaska",
+            "Anchorage, Juneau, Nome",
+            1
+          ],
+          [
+            "Colorado",
+            "Colorado Springs, Denver, Pueblo",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sort-priority",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-retain-nonmatching-cities",
+      "name": "real: nonmatching cities remain in concatenated output",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "cities": [
+            {
+              "state": "Texas",
+              "city": "Waco"
+            },
+            {
+              "state": "Texas",
+              "city": "Taylor"
+            },
+            {
+              "state": "Texas",
+              "city": "Dallas"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "state",
+          "cities",
+          "matching_letter_count"
+        ],
+        "rows": [
+          [
+            "Texas",
+            "Dallas, Taylor, Waco",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "conditional-count",
+        "full-group"
+      ]
+    }
+  ]
+}

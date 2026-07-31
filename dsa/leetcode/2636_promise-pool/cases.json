@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2636",
+  "cases": [
+    {
+      "id": "sample-two-workers",
+      "name": "sample: refill a two-slot pool",
+      "kind": "sample",
+      "visible": true,
+      "input": {"durations": [300, 400, 200], "n": 2},
+      "expected": {"startTimes": [0, 0, 300], "finishTimes": [300, 400, 500], "completionTime": 500, "maxPending": 2},
+      "tags": ["sample", "pool-refill", "two-workers"]
+    },
+    {
+      "id": "sample-limit-exceeds-work",
+      "name": "sample: every function starts immediately",
+      "kind": "sample",
+      "visible": true,
+      "input": {"durations": [300, 400, 200], "n": 5},
+      "expected": {"startTimes": [0, 0, 0], "finishTimes": [300, 400, 200], "completionTime": 400, "maxPending": 3},
+      "tags": ["sample", "limit-above-length", "parallel-start"]
+    },
+    {
+      "id": "sample-serial",
+      "name": "sample: pool limit one is serial",
+      "kind": "sample",
+      "visible": true,
+      "input": {"durations": [300, 400, 200], "n": 1},
+      "expected": {"startTimes": [0, 300, 700], "finishTimes": [300, 700, 900], "completionTime": 900, "maxPending": 1},
+      "tags": ["sample", "serial", "pool-one"]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty function array resolves immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {"durations": [], "n": 4},
+      "expected": {"startTimes": [], "finishTimes": [], "completionTime": 0, "maxPending": 0},
+      "tags": ["trial", "empty-input", "immediate-resolution"]
+    },
+    {
+      "id": "trial-equal-finishes",
+      "name": "trial: tied slots refill in worker order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"durations": [5, 5, 1, 1], "n": 2},
+      "expected": {"startTimes": [0, 0, 5, 5], "finishTimes": [5, 5, 6, 6], "completionTime": 6, "maxPending": 2},
+      "tags": ["trial", "tie", "refill-order"]
+    },
+    {
+      "id": "real-zero-duration",
+      "name": "real: immediately resolved work still respects order",
+      "kind": "real",
+      "visible": false,
+      "input": {"durations": [0, 0, 3, 0], "n": 2},
+      "expected": {"startTimes": [0, 0, 0, 0], "finishTimes": [0, 0, 3, 0], "completionTime": 3, "maxPending": 2},
+      "tags": ["real", "immediate-resolution", "start-order"]
+    },
+    {
+      "id": "real-fast-slot-refills",
+      "name": "real: fastest slot repeatedly claims next work",
+      "kind": "real",
+      "visible": false,
+      "input": {"durations": [10, 2, 2, 2, 2], "n": 2},
+      "expected": {"startTimes": [0, 0, 2, 4, 6], "finishTimes": [10, 2, 4, 6, 8], "completionTime": 10, "maxPending": 2},
+      "tags": ["real", "work-conserving", "repeated-refill"]
+    },
+    {
+      "id": "real-maximum-functions",
+      "name": "real: ten functions under three-slot limit",
+      "kind": "real",
+      "visible": false,
+      "input": {"durations": [8, 3, 5, 2, 7, 1, 4, 6, 2, 3], "n": 3},
+      "expected": {"startTimes": [0, 0, 0, 3, 5, 5, 6, 8, 10, 12], "finishTimes": [8, 3, 5, 5, 12, 6, 10, 14, 12, 15], "completionTime": 15, "maxPending": 3},
+      "tags": ["real", "maximum-functions", "scheduler-stress"]
+    }
+  ]
+}

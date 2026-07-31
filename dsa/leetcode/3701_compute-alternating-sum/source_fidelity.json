@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3701",
+    "frontend_id": "3701",
+    "title_slug": "compute-alternating-sum",
+    "url": "https://leetcode.com/problems/compute-alternating-sum/description/",
+    "paid_only": false,
+    "content_sha256": "9b32caa8c1a2214f8e22366a326a6baef70d1444107df2b04a8527f803416a7d",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,3,5,7]", "output": "-4", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [100]", "output": "100", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6ab7e03a2a006b9f435914b98b568c4f7e5cfe52794137fa0b7b4dd6dcc3ddfb",
+      "reference/contract.md": "7e8767aa84af7b7d601b9dce76d0dc32678c27ea49a84bae817bd9f027f51765",
+      "reference/examples.md": "7f698ad2e2b33ae22f783d084a9dad847cc876872bd42cea9eab9e7098acd10f",
+      "reference/constraints.md": "e113be7cc6711793cd3fa637f85bc84e1f43667f8aed40b13d9e95f855417eee"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_2937",
+  "cases": [
+    {"id":"sample-common-prefix","name":"sample: trim two differing suffixes","kind":"sample","visible":true,"input":{"s1":"abc","s2":"abb","s3":"ab"},"expected":2,"tags":["sample"]},
+    {"id":"sample-no-common-first-character","name":"sample: first characters differ","kind":"sample","visible":true,"input":{"s1":"dac","s2":"bac","s3":"cac"},"expected":-1,"tags":["sample","impossible"]},
+    {"id":"trial-already-equal","name":"trial: no deletions are needed","kind":"trial","visible":true,"input":{"s1":"code","s2":"code","s3":"code"},"expected":0,"tags":["no-operations"]},
+    {"id":"trial-one-is-prefix","name":"trial: shortest string is the target prefix","kind":"trial","visible":true,"input":{"s1":"a","s2":"abc","s3":"ab"},"expected":3,"tags":["prefix"]},
+    {"id":"trial-single-character-equal","name":"trial: identical one-character strings","kind":"trial","visible":true,"input":{"s1":"z","s2":"z","s3":"z"},"expected":0,"tags":["minimum"]},
+    {"id":"real-single-character-mismatch","name":"hidden: length-one mismatch cannot be repaired","kind":"real","visible":false,"input":{"s1":"a","s2":"a","s3":"b"},"expected":-1,"tags":["hidden","impossible"]},
+    {"id":"real-long-common-prefix","name":"hidden: retain a long prefix before different suffixes","kind":"real","visible":false,"input":{"s1":"algorithmx","s2":"algorithmyy","s3":"algorithmzzz"},"expected":6,"tags":["hidden","long-prefix"]},
+    {"id":"real-unequal-lengths","name":"hidden: all strings delete different suffix lengths","kind":"real","visible":false,"input":{"s1":"prefixone","s2":"prefixtwooo","s3":"prefixthree"},"expected":13,"tags":["hidden","unequal-lengths"]}
+  ]
+}

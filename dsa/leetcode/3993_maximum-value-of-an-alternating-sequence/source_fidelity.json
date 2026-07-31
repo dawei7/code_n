@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3993",
+    "frontend_id": "3993",
+    "title_slug": "maximum-value-of-an-alternating-sequence",
+    "url": "https://leetcode.com/problems/maximum-value-of-an-alternating-sequence/description/",
+    "paid_only": false,
+    "content_sha256": "6ad25075b1d83c7f68b2607f2139587a3a2597acb4933c2a08248eabf4d49b6b",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 4, s = 3, m = 5",
+        "output": "12",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 2, s = 4, m = 3",
+        "output": "7",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d3ad9bacdb61d67114c6f9cc0ef2c51b673d88d43846bbf226f884dc31e450e2",
+      "reference/contract.md": "fee2d60e93fa816f6f5378f1400512e532aeab23eea2f0ea29de026d00ae1199",
+      "reference/examples.md": "1dae25b18b640c7b71a236a902b7b4f3e8edc4b1e30b74118fd5a53644f2c4bf",
+      "reference/constraints.md": "24eb9f74ffb5b76d6949a44b810b736de35fe1f0bb167c3a24fcc98e22fc5f9d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

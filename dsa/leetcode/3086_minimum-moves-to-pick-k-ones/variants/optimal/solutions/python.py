@@ -1,36 +1,37 @@
-from itertools import accumulate
-
-
 def solve(nums: list[int], k: int, maxChanges: int) -> int:
-    ones = [i for i, value in enumerate(nums) if value == 1]
-    if not ones:
-        return k * 2
+    ones = [i for i, value in enumerate(nums) if value]
 
-    adjacent_pickups = 0
-    n = len(nums)
-    for index in ones:
-        count = 1
-        if index > 0 and nums[index - 1] == 1:
-            count += 1
-        if index + 1 < n and nums[index + 1] == 1:
-            count += 1
-        adjacent_pickups = max(adjacent_pickups, count)
+    nearby = 0
+    for i, value in enumerate(nums):
+        if value:
+            count = 1
+            if i > 0 and nums[i - 1]:
+                count += 1
+            if i + 1 < len(nums) and nums[i + 1]:
+                count += 1
+            nearby = max(nearby, count)
 
-    adjacent_pickups = min(adjacent_pickups, k)
-    if adjacent_pickups + maxChanges >= k:
-        return adjacent_pickups - 1 + (k - adjacent_pickups) * 2
+    nearby = min(nearby, k)
+    if maxChanges >= k - nearby:
+        return max(0, nearby - 1) + 2 * (k - nearby)
 
-    needed_existing = k - maxChanges
-    prefix = list(accumulate(ones, initial=0))
-    best = 10**30
+    needed = k - maxChanges
+    prefix = [0]
+    for position in ones:
+        prefix.append(prefix[-1] + position)
 
-    for left in range(len(ones) - needed_existing + 1):
-        right = left + needed_existing - 1
-        mid = (left + right) // 2
-        center = ones[mid]
+    best = float("inf")
+    for left in range(len(ones) - needed + 1):
+        right = left + needed
+        mid = (left + right - 1) // 2
+        median = ones[mid]
 
-        left_cost = center * (mid - left + 1) - (prefix[mid + 1] - prefix[left])
-        right_cost = (prefix[right + 1] - prefix[mid]) - center * (right - mid + 1)
-        best = min(best, left_cost + right_cost)
+        cost = median * (mid - left) - (prefix[mid] - prefix[left])
+        cost += (
+            prefix[right]
+            - prefix[mid + 1]
+            - median * (right - mid - 1)
+        )
+        best = min(best, cost)
 
-    return best + maxChanges * 2
+    return int(best) + 2 * maxChanges

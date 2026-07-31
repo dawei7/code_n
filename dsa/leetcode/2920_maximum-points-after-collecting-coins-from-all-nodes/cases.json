@@ -2,8 +2,8 @@
   "challenge_id": "lc_2920",
   "cases": [
     {
-      "id": "sample-path-penalty",
-      "name": "sample: path with penalties",
+      "id": "sample-1",
+      "name": "sample: path mixes penalty and halving methods",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -29,15 +29,16 @@
         ],
         "k": 5
       },
-      "expected": 11,
       "tags": [
         "sample",
-        "tree-dp"
-      ]
+        "path",
+        "mixed-methods"
+      ],
+      "expected": 11
     },
     {
-      "id": "sample-root-k-zero",
-      "name": "sample: root with no penalty",
+      "id": "sample-2",
+      "name": "sample: zero penalty makes full values optimal",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,32 +59,40 @@
         ],
         "k": 0
       },
-      "expected": 16,
       "tags": [
         "sample",
-        "branching"
-      ]
+        "branching",
+        "zero-penalty"
+      ],
+      "expected": 16
     },
     {
-      "id": "trial-single-node",
-      "name": "trial: single node prefers halving",
+      "id": "trial-two-nodes",
+      "name": "trial: minimum tree prefers halving at both nodes",
       "kind": "trial",
       "visible": true,
       "input": {
-        "edges": [],
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
         "coins": [
-          6
+          6,
+          2
         ],
         "k": 4
       },
-      "expected": 3,
       "tags": [
-        "edge"
-      ]
+        "trial",
+        "minimum-size"
+      ],
+      "expected": 3
     },
     {
       "id": "trial-balanced-tree",
-      "name": "trial: balanced tree with mixed coins",
+      "name": "trial: branching subtrees choose independently after root",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,14 +133,125 @@
         ],
         "k": 6
       },
-      "expected": 69,
       "tags": [
-        "branching"
-      ]
+        "trial",
+        "branching",
+        "tree-dp"
+      ],
+      "expected": 69
     },
     {
-      "id": "real-long-path",
-      "name": "real: long path accumulates halvings",
+      "id": "trial-star-high-children",
+      "name": "trial: root halving tradeoff affects four valuable children",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "coins": [
+          1,
+          100,
+          100,
+          100,
+          100
+        ],
+        "k": 50
+      },
+      "tags": [
+        "trial",
+        "star",
+        "subtree-effect"
+      ],
+      "expected": 151
+    },
+    {
+      "id": "real-all-zero-coins",
+      "name": "hidden: halving avoids every negative penalty",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "coins": [
+          0,
+          0,
+          0
+        ],
+        "k": 5
+      },
+      "tags": [
+        "hidden",
+        "zero-coins"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "real-deep-compounded-halving",
+      "name": "hidden: high endpoints surround low path nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "coins": [
+          10000,
+          1,
+          1,
+          1,
+          10000
+        ],
+        "k": 10000
+      },
+      "tags": [
+        "hidden",
+        "path",
+        "maximum-values"
+      ],
+      "expected": 5312
+    },
+    {
+      "id": "real-zero-penalty-path",
+      "name": "hidden: full collection dominates throughout a path",
       "kind": "real",
       "visible": false,
       "input": {
@@ -155,152 +275,24 @@
           [
             4,
             5
-          ],
-          [
-            5,
-            6
-          ],
-          [
-            6,
-            7
-          ],
-          [
-            7,
-            8
-          ],
-          [
-            8,
-            9
-          ],
-          [
-            9,
-            10
-          ],
-          [
-            10,
-            11
-          ],
-          [
-            11,
-            12
-          ],
-          [
-            12,
-            13
-          ],
-          [
-            13,
-            14
-          ],
-          [
-            14,
-            15
-          ],
-          [
-            15,
-            16
-          ],
-          [
-            16,
-            17
           ]
         ],
         "coins": [
-          40,
-          37,
-          92,
-          13,
-          58,
-          21,
-          144,
+          0,
+          1,
+          2,
           3,
-          89,
-          55,
-          34,
-          233,
-          8,
-          5,
-          377,
-          11,
-          19,
-          610
+          4,
+          10000
         ],
-        "k": 9
+        "k": 0
       },
-      "expected": 1687,
       "tags": [
         "hidden",
-        "path"
-      ]
-    },
-    {
-      "id": "real-wide-root",
-      "name": "real: wide rooted tree",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "edges": [
-          [
-            0,
-            1
-          ],
-          [
-            0,
-            2
-          ],
-          [
-            0,
-            3
-          ],
-          [
-            1,
-            4
-          ],
-          [
-            1,
-            5
-          ],
-          [
-            2,
-            6
-          ],
-          [
-            2,
-            7
-          ],
-          [
-            3,
-            8
-          ],
-          [
-            3,
-            9
-          ],
-          [
-            8,
-            10
-          ]
-        ],
-        "coins": [
-          100,
-          5,
-          200,
-          17,
-          33,
-          41,
-          12,
-          88,
-          9,
-          77,
-          123
-        ],
-        "k": 15
-      },
-      "expected": 549,
-      "tags": [
-        "hidden",
-        "branching"
-      ]
+        "boundary",
+        "zero-penalty"
+      ],
+      "expected": 10010
     }
   ]
 }

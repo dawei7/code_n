@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Stack, Sorting, Monotonic Stack |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [finding-the-number-of-visible-mountains](https://leetcode.com/problems/finding-the-number-of-visible-mountains/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/finding-the-number-of-visible-mountains/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/finding-the-number-of-visible-mountains/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Each pair `peaks[i] = [x_i, y_i]` describes a right-angled isosceles mountain whose peak is $(x_i,y_i)$, whose base lies on the $x$-axis, and whose ascending and descending slopes are $1$ and $-1$. Thus its base endpoints are $x_i-y_i$ and $x_i+y_i$.
+
+A mountain is visible only when its peak lies neither inside nor on the border of any other mountain. Completely overlapping mountains hide one another, so duplicate peaks are all invisible. Return the number of mountains whose peaks remain visible under these rules.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `peaks`: A list of $n$ coordinate pairs `[x_i, y_i]`.
+
+The number of peaks and every coordinate are between $1$ and $10^5$.
 
 **Return value**
 
-TODO
+Return the number of peaks that are not contained in or on any other mountain.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `peaks = [[2,2],[6,3],[5,4]]`
+- Output: `2`
+
+The peak at `(6,3)` lies on the side of the mountain centered at `(5,4)`, while the other two peaks are visible.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `peaks = [[1,3],[1,3]]`
+- Output: `0`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The two mountains completely overlap, so each peak lies within the other mountain.

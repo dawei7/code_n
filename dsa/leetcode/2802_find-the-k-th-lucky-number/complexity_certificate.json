@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2802",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(log k)",
+  "summary": "The returned string has Theta(log k) digits, giving an output-size lower bound that the accepted direct binary mapping matches.",
+  "optimality": {
+    "symbol": "m",
+    "lower_bound": "Omega(m)",
+    "upper_bound": "O(m)",
+    "argument": "The k-th lucky number has m = floor(log2(k + 1)) characters, and returning it requires writing all m characters. The accepted source converts k + 1 to its m + 1 binary digits and maps each of the final m bits once, so it uses O(m) = O(log k) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Any correct implementation must materialize each of the m characters in the required string, establishing Omega(m) worst-case time."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Binary conversion and the one-pass zero-to-four and one-to-seven mapping each process O(m) digits."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression enumerates every lucky string through ten digits independently, checks transitions between output lengths, and verifies the maximum legal k."
+    }
+  ]
+}

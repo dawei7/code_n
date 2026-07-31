@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Length of Longest V-Shaped Diagonal Segment and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Computes diagonal alternating suffixes, then adds the best optional clockwise turn with a second directional dynamic program.",
+      "time_complexity": "O(nm)",
+      "space_complexity": "O(nm)"
     }
   ]
 }

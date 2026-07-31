@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3917",
+    "frontend_id": "3917",
+    "title_slug": "count-indices-with-opposite-parity",
+    "url": "https://leetcode.com/problems/count-indices-with-opposite-parity/description/",
+    "paid_only": false,
+    "content_sha256": "6b58dca661795ec330274a6e72187c4a7b0792d05d41a2a3fde3570da96c2dfe",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3,4]",
+        "output": "[2,1,1,0]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1]",
+        "output": "[0]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7d03d8e3e56a538dbb906ae6fc0acd1253cef415a76695557be7130281fc10d9",
+      "reference/contract.md": "27087d547e2995191d8ca07dc9324e424c0bbbe2080b5aa8e3e2ac530a8777bc",
+      "reference/examples.md": "51eb36e6b7001cbe193fb40df059044816ee74a9e51366fbdbf7ab4ddee09006",
+      "reference/constraints.md": "d2127229092b15d517c2a2f84532ab2c7224a0fad3d9a5f8d7184c3ca7e9fc19"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

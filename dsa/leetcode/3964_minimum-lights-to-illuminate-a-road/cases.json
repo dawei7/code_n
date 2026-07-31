@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3964",
+  "cases": [
+    {
+      "id": "sample-no-existing",
+      "name": "sample: no existing bulbs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lights": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-invisible"
+      ]
+    },
+    {
+      "id": "sample-one-existing",
+      "name": "sample: one existing interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lights": [
+          0,
+          0,
+          0,
+          2,
+          0
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "existing-coverage"
+      ]
+    },
+    {
+      "id": "trial-single-invisible",
+      "name": "trial: single invisible position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lights": [
+          0
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-position"
+      ]
+    },
+    {
+      "id": "trial-single-visible",
+      "name": "trial: single visible position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lights": [
+          1
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-position"
+      ]
+    },
+    {
+      "id": "trial-two-invisible",
+      "name": "trial: two invisible positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lights": [
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "short-road"
+      ]
+    },
+    {
+      "id": "trial-three-invisible",
+      "name": "trial: one new bulb covers three positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lights": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "radius-one"
+      ]
+    },
+    {
+      "id": "trial-left-bulb-covers-all",
+      "name": "trial: left bulb covers whole road",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lights": [
+          5,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "clamped-interval"
+      ]
+    },
+    {
+      "id": "trial-one-right-gap",
+      "name": "trial: one right-side gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lights": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "greedy-placement"
+      ]
+    },
+    {
+      "id": "real-overlapping-existing",
+      "name": "real: overlapping existing intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lights": [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-three-separated-gaps",
+      "name": "real: several separated invisible gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lights": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "multiple-additions"
+      ]
+    },
+    {
+      "id": "real-large-middle-radius",
+      "name": "real: middle bulb leaves one suffix gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lights": [
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "interval-boundary"
+      ]
+    },
+    {
+      "id": "real-seven-invisible",
+      "name": "real: seven invisible positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lights": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "all-invisible"
+      ]
+    },
+    {
+      "id": "real-left-gap-after-radius",
+      "name": "real: existing radius leaves far-right gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lights": [
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "clamped-interval"
+      ]
+    },
+    {
+      "id": "real-right-radius-covers-all",
+      "name": "real: right-edge bulb covers whole road",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lights": [
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "clamped-interval"
+      ]
+    },
+    {
+      "id": "real-two-local-bulbs",
+      "name": "real: two local existing bulbs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lights": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "mixed-coverage"
+      ]
+    }
+  ]
+}

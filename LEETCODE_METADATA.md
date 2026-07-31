@@ -1,10 +1,31 @@
 # LeetCode Metadata Maintenance
 
-This document owns the repeatable workflows for mutable LeetCode attributes
-and newly published problems. A new agent session should use these commands
-instead of hand-editing package metadata.
+This document owns the provenance and historical workflows for LeetCode
+attributes and the final canonical problem import. A new agent session should
+follow the freeze policy below instead of hand-editing package metadata.
 
-## Stored mutable fields
+## Final metadata freeze
+
+The application metadata was frozen on **2026-07-29**, together with the final
+4,005-problem corpus. The authenticated capture contains the official
+difficulty, acceptance rate, and Premium Frequency visible at that time. Any
+bundled company/list membership or relevance signal is likewise a historical
+snapshot of what the source exposed by the freeze date; it must not be
+presented as current or predictive company interview activity.
+
+The final Elo refresh used ZeroTrac revision
+`a99138e145f303597b85290519aaf3d219b3a3e7`, whose upstream data was last
+updated at `2026-07-24T10:15:30Z`. ZeroTrac supplied 2,545 real ratings. The
+remaining 1,460 problems retain explicitly labelled estimates; in particular,
+frontend ID 4005 had no ZeroTrac rating at the freeze and therefore keeps an
+estimated Elo.
+
+Do not refresh LeetCode metadata, company relevance, ZeroTrac ratings, or Elo
+estimates after the freeze. The commands below remain documented only to make
+the final capture reproducible and auditable. A future refresh requires an
+explicit user decision to replace this freeze policy.
+
+## Stored snapshot fields
 
 Every `dsa/leetcode/<frontend_id>_<slug>/metadata.json` and matching
 `dsa/leetcode/index.json` record contains:
@@ -15,6 +36,11 @@ Every `dsa/leetcode/<frontend_id>_<slug>/metadata.json` and matching
   no rating for the problem.
 - `estimated_elo_rating`: cOde(n)'s explicit fallback for a problem without a
   real ZeroTrac rating. It is `null` whenever a real rating exists.
+- `contest_source`: the readable ZeroTrac contest label, such as
+  `Biweekly Contest 143`, or `null` when `ratings.txt` has no entry.
+- `contest_slug`: the source-native contest slug, such as
+  `biweekly-contest-143`, or `null`.
+- `contest_problem_index`: the source-native position such as `Q4`, or `null`.
 
 Frequency and Elo are independent. Frequency is a relative LeetCode prominence
 signal; it is not acceptance rate, problem difficulty, or a probability that a
@@ -26,9 +52,25 @@ mirror. Exactly one of `elo_rating` and `estimated_elo_rating` is populated.
 The Elo problem set is real-only: estimated values never make a problem
 eligible for that set.
 
-## Refresh Frequency and estimated Elo
+Contest provenance comes from `ratings.txt` at the same frozen ZeroTrac
+revision as the Elo snapshot. It is available for all 2,545 real-rated
+problems: 1,797 Weekly Contest entries and 748 Biweekly Contest entries. The
+snapshot stores the sparse `contest_sources` mapping and its revision-pinned
+source URL; every package and index record mirrors the three optional fields.
+The human-readable label is derived only from the validated source slug, while
+the original slug and problem index are retained unchanged.
 
-Run the complete refresh from the repository root:
+To reproduce or verify this provenance without changing any frozen rating,
+estimate, Frequency value, or other LeetCode metadata, run:
+
+```powershell
+.\.venv\Scripts\python.exe tools\sync_zerotrac_ratings.py --contest-provenance-only
+.\.venv\Scripts\python.exe tools\sync_zerotrac_ratings.py --verify-contest-provenance
+```
+
+## Final Frequency and Elo capture procedure
+
+The final complete refresh was run from the repository root with:
 
 ```powershell
 .\.venv\Scripts\python.exe tools\update_leetcode_metrics.py --refresh-zerotrac
@@ -94,16 +136,18 @@ estimates stop at the real-rating 75th percentile to retain margin below the
 hardest real contest problems. The exact model version and fitted bands are
 recorded in `dsa/leetcode/_meta/leetcode-metrics.json`.
 
-## Import newly published problems
+## Maintain the frozen 4,005-problem corpus
 
-Run the weekly importer:
+The application corpus ends permanently at frontend ID 4005. Run the importer
+to add any missing eligible IDs through that boundary or to audit the freeze:
 
 ```powershell
 .\.venv\Scripts\python.exe tools\import_new_leetcode_problems.py
 ```
 
 It fetches the current official LeetCode problem list and compares numeric
-frontend IDs against `dsa/leetcode/index.json`. For each genuinely new ID it:
+frontend IDs through 4005 against `dsa/leetcode/index.json`. For each genuinely
+new eligible ID it:
 
 - creates the canonical zero-padded package directory;
 - writes source metadata with explicit mutable-metric fields;
@@ -113,15 +157,19 @@ frontend IDs against `dsa/leetcode/index.json`. For each genuinely new ID it:
 
 Existing package metadata, documents, cases, benchmarks, solutions, and
 submission evidence are not rewritten by this mode. Identity conflicts stop
-the import. If no new frontend IDs exist, it reports zero additions.
+the import. IDs above 4005 are reported and intentionally ignored. Once the
+canonical index contains all 4,005 packages, the importer must always report
+zero additions and must never grow the corpus, even as LeetCode publishes
+later problems.
 
-After an import, refresh the authenticated metrics so new packages receive
-current Frequency values:
+Before the final freeze, an import was followed by an authenticated metrics
+refresh so new packages received current Frequency values:
 
 ```powershell
 .\.venv\Scripts\python.exe tools\update_leetcode_metrics.py --refresh-zerotrac
 ```
 
+This command is historical and must not be rerun after the metadata freeze.
 New packages are scaffolds, not completed migrations. They still need the
 normal documentation, correctness cases, complexity evidence, app-local
 solution, native submission artifact, and remote verification workflow.

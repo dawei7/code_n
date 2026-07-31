@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Subsequence With Decreasing Adjacent Difference and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Compresses states by ending value and last difference, with suffix maxima for every legal extension threshold.",
+      "time_complexity": "O(nV)",
+      "space_complexity": "O(V^2)"
     }
   ]
 }

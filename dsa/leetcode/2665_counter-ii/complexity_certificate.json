@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2665",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "Each method call must return one number, and the accepted closures perform only one fixed-size state update, leaving no genuine slower principal class for scaling.",
+  "optimality": {
+    "symbol": "q",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Every operation must produce one numeric result and therefore requires Omega(1) work. Each accepted method reads and updates at most one captured number using a fixed number of operations, giving O(1) time per call."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Returning the required numeric result imposes a constant lower bound on every method invocation."},
+    {"kind":"upper_bound_proof","evidence":"Increment and decrement perform one arithmetic update, while reset performs one assignment to the captured initialization value."},
+    {"kind":"boundary_property_cases","evidence":"Cases cover zero calls, every operation, repeated resets, alternating updates, crossing zero, and both initialization bounds."}
+  ]
+}

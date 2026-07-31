@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3448",
+  "frontend_id": "3140",
+  "title_slug": "consecutive-available-seats-ii",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2079679629",
+  "verified_at": "2026-07-24T16:29:00+02:00"
+}

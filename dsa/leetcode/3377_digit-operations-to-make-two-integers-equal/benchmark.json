@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3377",
+  "measurement_note": "Size is U = 10^d, the candidate integer universe represented by the sieve and distance table for d decimal digits. The legal two-, three-, and four-digit tiers force broad weighted searches. The reference extracts the next state with a binary heap, while the correct slower Dijkstra baseline scans the entire unvisited state set for the minimum distance.",
+  "cases": [
+    {
+      "id": "benchmark-dijkstra-2-digits",
+      "name": "benchmark: broad two-digit route",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"n": 22, "m": 88},
+      "expected": 629,
+      "tags": ["benchmark", "scale-small", "linear-selection-dijkstra"]
+    },
+    {
+      "id": "benchmark-dijkstra-3-digits",
+      "name": "benchmark: broad three-digit route",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"n": 100, "m": 999},
+      "expected": 8406,
+      "tags": ["benchmark", "scale-medium", "linear-selection-dijkstra"]
+    },
+    {
+      "id": "benchmark-dijkstra-4-digits",
+      "name": "benchmark: broad four-digit route",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {"n": 1000, "m": 9999},
+      "expected": 94923,
+      "tags": ["benchmark", "scale-large", "linear-selection-dijkstra"]
+    }
+  ]
+}

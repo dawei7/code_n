@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Inversion Count in Subarrays of Fixed Length and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Slides a frequency Fenwick tree across the array and adjusts the exact inversion count for the departing and arriving values.",
+      "time_complexity": "O(N log N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

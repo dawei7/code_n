@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2819",
+  "cases": [
+    {
+      "id": "sample-first",
+      "name": "sample: two threshold regimes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          9,
+          22,
+          10,
+          19
+        ],
+        "queries": [
+          [
+            18,
+            4
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        34,
+        -21
+      ],
+      "tags": [
+        "sample",
+        "mixed-thresholds"
+      ]
+    },
+    {
+      "id": "sample-second",
+      "name": "sample: varied counts on one price set",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          5,
+          4,
+          3,
+          7,
+          11,
+          9
+        ],
+        "queries": [
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        16,
+        7,
+        1
+      ],
+      "tags": [
+        "sample",
+        "multiple-queries"
+      ]
+    },
+    {
+      "id": "sample-third",
+      "name": "sample: threshold above and below all prices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          5,
+          6,
+          7
+        ],
+        "queries": [
+          [
+            10,
+            1
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        12,
+        0
+      ],
+      "tags": [
+        "sample",
+        "threshold-extremes"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one price under three thresholds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          10
+        ],
+        "queries": [
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            20,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        10,
+        10
+      ],
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate prefix and suffix prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          5,
+          5,
+          20,
+          20
+        ],
+        "queries": [
+          [
+            10,
+            2
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            5,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        5,
+        -10
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-low-threshold",
+      "name": "hidden: expensive chocolates create negative losses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          1,
+          100,
+          101
+        ],
+        "queries": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        -197
+      ],
+      "tags": [
+        "hidden",
+        "negative-loss"
+      ]
+    },
+    {
+      "id": "real-high-threshold",
+      "name": "hidden: all prices are fully paid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          2,
+          4,
+          6
+        ],
+        "queries": [
+          [
+            10,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "hidden",
+        "all-affordable"
+      ]
+    },
+    {
+      "id": "real-value-boundary",
+      "name": "hidden: maximum price creates the minimum loss",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          1,
+          1000000000
+        ],
+        "queries": [
+          [
+            1,
+            1
+          ],
+          [
+            1000000000,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        -999999998,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-convex-splits",
+      "name": "hidden: optima use interior prefix-suffix splits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          2,
+          8,
+          9,
+          17,
+          20,
+          31
+        ],
+        "queries": [
+          [
+            10,
+            3
+          ],
+          [
+            15,
+            4
+          ],
+          [
+            7,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        -9,
+        18,
+        -19
+      ],
+      "tags": [
+        "hidden",
+        "interior-split"
+      ]
+    }
+  ]
+}

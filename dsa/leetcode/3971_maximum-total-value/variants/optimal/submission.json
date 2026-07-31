@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4274",
+  "frontend_id": "3971",
+  "title_slug": "maximum-total-value",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxTotalValue",
+  "verified_submission_id": "2087968806",
+  "verified_at": "2026-07-30T18:51:14.681112+00:00"
+}

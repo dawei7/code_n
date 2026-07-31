@@ -1,0 +1,533 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3204",
+  "cases": [
+    {
+      "id": "sample-four-users",
+      "name": "sample: common and any permission masks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 5
+            },
+            {
+              "user_id": 2,
+              "permissions": 12
+            },
+            {
+              "user_id": 3,
+              "permissions": 7
+            },
+            {
+              "user_id": 4,
+              "permissions": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-user",
+      "name": "trial: one user supplies both aggregates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 42
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            42,
+            42
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-identical-masks",
+      "name": "trial: identical masks remain unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 13
+            },
+            {
+              "user_id": 2,
+              "permissions": 13
+            },
+            {
+              "user_id": 3,
+              "permissions": 13
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            13,
+            13
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-zero-mask",
+      "name": "trial: a zero mask clears only the common result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 15
+            },
+            {
+              "user_id": 2,
+              "permissions": 0
+            },
+            {
+              "user_id": 3,
+              "permissions": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-disjoint-bits",
+      "name": "trial: disjoint masks have no common permission",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 1
+            },
+            {
+              "user_id": 2,
+              "permissions": 2
+            },
+            {
+              "user_id": 3,
+              "permissions": 4
+            },
+            {
+              "user_id": 4,
+              "permissions": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "disjoint-bits"
+      ]
+    },
+    {
+      "id": "trial-shared-high-bit",
+      "name": "trial: one high bit is shared by every user",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 40
+            },
+            {
+              "user_id": 2,
+              "permissions": 56
+            },
+            {
+              "user_id": 3,
+              "permissions": 104
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            40,
+            120
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "shared-bit"
+      ]
+    },
+    {
+      "id": "real-subset-masks",
+      "name": "real: narrower masks remove optional permissions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 63
+            },
+            {
+              "user_id": 2,
+              "permissions": 31
+            },
+            {
+              "user_id": 3,
+              "permissions": 15
+            },
+            {
+              "user_id": 4,
+              "permissions": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            7,
+            63
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "nested-masks"
+      ]
+    },
+    {
+      "id": "real-alternating-patterns",
+      "name": "real: alternating bit patterns cover a full byte",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 170
+            },
+            {
+              "user_id": 2,
+              "permissions": 85
+            },
+            {
+              "user_id": 3,
+              "permissions": 204
+            },
+            {
+              "user_id": 4,
+              "permissions": 51
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            0,
+            255
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "alternating-bits"
+      ]
+    },
+    {
+      "id": "real-repeated-and-outlier",
+      "name": "real: one outlier changes both aggregates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 21
+            },
+            {
+              "user_id": 2,
+              "permissions": 21
+            },
+            {
+              "user_id": 3,
+              "permissions": 21
+            },
+            {
+              "user_id": 4,
+              "permissions": 29
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            21,
+            29
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "duplicates",
+        "outlier"
+      ]
+    },
+    {
+      "id": "real-large-permissions",
+      "name": "real: high non-sign bits are preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 1073741823
+            },
+            {
+              "user_id": 2,
+              "permissions": 805306367
+            },
+            {
+              "user_id": 3,
+              "permissions": 536870911
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            268435455,
+            1073741823
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-one-common-flag",
+      "name": "real: exactly one flag belongs to every user",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 9
+            },
+            {
+              "user_id": 2,
+              "permissions": 11
+            },
+            {
+              "user_id": 3,
+              "permissions": 13
+            },
+            {
+              "user_id": 4,
+              "permissions": 15
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            9,
+            15
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "common-bit"
+      ]
+    },
+    {
+      "id": "real-sparse-and-dense",
+      "name": "real: sparse and dense masks combine correctly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_permissions": [
+            {
+              "user_id": 1,
+              "permissions": 512
+            },
+            {
+              "user_id": 2,
+              "permissions": 1023
+            },
+            {
+              "user_id": 3,
+              "permissions": 768
+            },
+            {
+              "user_id": 4,
+              "permissions": 640
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "common_perms",
+          "any_perms"
+        ],
+        "rows": [
+          [
+            512,
+            1023
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sparse-mask",
+        "dense-mask"
+      ]
+    }
+  ]
+}
+

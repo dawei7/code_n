@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2137",
+  "cases": [
+    {"id": "sample-high-loss", "name": "sample: heavy loss limits the common level", "kind": "sample", "visible": true, "input": {"buckets": [1,2,7], "loss": 80}, "expected": 2.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["sample", "high-loss"]},
+    {"id": "sample-half-loss", "name": "sample: half of every transfer is spilled", "kind": "sample", "visible": true, "input": {"buckets": [2,4,6], "loss": 50}, "expected": 3.5, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["sample", "fractional"]},
+    {"id": "sample-already-equal", "name": "sample: no transfer is required", "kind": "sample", "visible": true, "input": {"buckets": [3,3,3,3], "loss": 40}, "expected": 3.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["sample", "equal"]},
+    {"id": "trial-no-loss", "name": "without loss the arithmetic mean is attainable", "kind": "trial", "visible": true, "input": {"buckets": [0,4,8], "loss": 0}, "expected": 4.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["no-loss"]},
+    {"id": "trial-single-bucket", "name": "one bucket keeps its original level", "kind": "trial", "visible": true, "input": {"buckets": [17], "loss": 99}, "expected": 17.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["minimum-size"]},
+    {"id": "real-two-buckets", "name": "hidden: one donor fills one receiver", "kind": "real", "visible": false, "input": {"buckets": [0,10], "loss": 50}, "expected": 3.3333333333333335, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "fractional"]},
+    {"id": "real-near-total-loss", "name": "hidden: one percent of poured water survives", "kind": "real", "visible": false, "input": {"buckets": [0,100], "loss": 99}, "expected": 0.9900990099009901, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "loss-bound"]},
+    {"id": "real-all-empty", "name": "hidden: empty buckets equalize at zero", "kind": "real", "visible": false, "input": {"buckets": [0,0,0], "loss": 50}, "expected": 0.0, "validator": {"kind": "float_close", "tolerance": 0.00001}, "tags": ["hidden", "zero"]}
+  ]
+}

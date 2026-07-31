@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3466",
+  "frontend_id": "3209",
+  "title_slug": "number-of-subarrays-with-and-value-of-k",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.countSubarrays",
+  "verified_submission_id": "2080141932",
+  "verified_at": "2026-07-25T01:11:49.648410+00:00"
+}

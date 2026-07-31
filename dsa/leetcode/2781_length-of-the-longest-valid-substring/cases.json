@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: forbidden suffix trims window",
+      "name": "sample: overlapping forbidden suffix trims the window",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,13 +15,13 @@
       },
       "tags": [
         "sample",
-        "strings"
+        "sliding-window"
       ],
       "expected": 4
     },
     {
       "id": "sample-2",
-      "name": "sample: several short forbidden strings",
+      "name": "sample: single-character and two-character bans",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -34,13 +34,49 @@
       },
       "tags": [
         "sample",
-        "strings"
+        "mixed-lengths"
       ],
       "expected": 4
     },
     {
-      "id": "trial-no-forbidden-hit",
-      "name": "trial: forbidden words do not appear",
+      "id": "trial-all-characters-forbidden",
+      "name": "trial: every non-empty substring is invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abc",
+        "forbidden": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-answer"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "trial-single-no-hit",
+      "name": "trial: one character remains valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a",
+        "forbidden": [
+          "b"
+        ]
+      },
+      "tags": [
+        "trial",
+        "minimum-length"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-no-hit",
+      "name": "trial: no forbidden pattern occurs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -52,13 +88,13 @@
       },
       "tags": [
         "trial",
-        "none"
+        "whole-word"
       ],
       "expected": 6
     },
     {
-      "id": "trial-overlapping-forbidden",
-      "name": "trial: overlapping forbidden substrings",
+      "id": "trial-overlapping",
+      "name": "trial: overlapping forbidden patterns",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -75,8 +111,60 @@
       "expected": 2
     },
     {
-      "id": "real-longer-mixed",
-      "name": "hidden: mixed forbidden lengths",
+      "id": "trial-nested-lengths",
+      "name": "trial: shortest ending match determines the boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaa",
+        "forbidden": [
+          "aa",
+          "aaa"
+        ]
+      },
+      "tags": [
+        "trial",
+        "nested"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-max-forbidden-length",
+      "name": "trial: ten-character forbidden pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefghijx",
+        "forbidden": [
+          "abcdefghij"
+        ]
+      },
+      "tags": [
+        "trial",
+        "length-ten"
+      ],
+      "expected": 10
+    },
+    {
+      "id": "real-separated-hits",
+      "name": "hidden: valid region after an early forbidden hit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "xabcde",
+        "forbidden": [
+          "abc"
+        ]
+      },
+      "tags": [
+        "hidden",
+        "boundary-update"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-mixed-patterns",
+      "name": "hidden: several forbidden lengths and positions",
       "kind": "real",
       "visible": false,
       "input": {

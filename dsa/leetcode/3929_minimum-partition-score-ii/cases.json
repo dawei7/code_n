@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3929",
+  "cases": [
+    {
+      "id": "sample-two-groups",
+      "name": "sample: choose the best of three possible cuts",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [5, 1, 2, 1], "k": 2},
+      "expected": 25,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "two-groups", "unequal-segments"]
+    },
+    {
+      "id": "sample-one-group",
+      "name": "sample: the whole array is one subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4], "k": 1},
+      "expected": 55,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "one-group", "whole-array"]
+    },
+    {
+      "id": "sample-every-element-separate",
+      "name": "sample: every element must be its own subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 1, 1], "k": 3},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "maximum-groups", "singletons"]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value has one triangular contribution",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7], "k": 1},
+      "expected": 28,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "single-group"]
+    },
+    {
+      "id": "trial-balanced-ones",
+      "name": "trial: equal values favor equal-length groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 1, 1], "k": 2},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "balanced-partition", "convex-cost"]
+    },
+    {
+      "id": "trial-isolate-maximum-prefix",
+      "name": "trial: isolate a maximum-valued leading element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1000, 1, 1], "k": 2},
+      "expected": 500503,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "maximum-value", "boundary-cut"]
+    },
+    {
+      "id": "trial-middle-cuts",
+      "name": "trial: optimum uses two interior cuts",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [3, 1, 4, 1, 5], "k": 3},
+      "expected": 40,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "three-groups", "interior-cuts"]
+    },
+    {
+      "id": "trial-tied-cuts",
+      "name": "trial: either cut gives the same optimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 2, 2], "k": 2},
+      "expected": 13,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "tied-cuts", "equal-values"]
+    },
+    {
+      "id": "real-all-singletons",
+      "name": "hidden: maximum k on a mixed array",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 2, 1], "k": 4},
+      "expected": 20,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-groups", "mixed-values"]
+    },
+    {
+      "id": "real-symmetric-peaks",
+      "name": "hidden: symmetric peaks make the central cut optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 1, 1, 8], "k": 2},
+      "expected": 90,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "symmetric", "interior-cut"]
+    },
+    {
+      "id": "real-maximum-element-one-group",
+      "name": "hidden: maximum element participates in one large value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1000], "k": 1},
+      "expected": 501501,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-value", "wide-integer"]
+    },
+    {
+      "id": "real-maximum-element-separated",
+      "name": "hidden: separating the maximum value lowers the score",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1000], "k": 2},
+      "expected": 500501,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-value", "singletons"]
+    },
+    {
+      "id": "real-multiple-interior-options",
+      "name": "hidden: several competing interior split points",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 1, 7, 2, 6, 3], "k": 3},
+      "expected": 105,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "three-groups", "competing-cuts"]
+    },
+    {
+      "id": "real-penalty-plateau",
+      "name": "hidden: exact k lies on an equal marginal interval",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1, 1], "k": 3},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "penalty-tie", "exact-groups"]
+    },
+    {
+      "id": "real-isolate-two-peaks",
+      "name": "hidden: isolate equal peaks around a central block",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 1, 1, 1, 6], "k": 3},
+      "expected": 48,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "boundary-groups", "convex-cost"]
+    }
+  ]
+}

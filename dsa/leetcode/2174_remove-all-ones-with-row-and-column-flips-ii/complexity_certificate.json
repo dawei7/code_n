@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2174",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(k 2^k)",
+  "summary": "The matrix contains at most 15 cells, so the complete remaining-one state space has at most 32768 masks; moreover every legal rectangular shape has at most three rows or at most three columns, preventing an honest deeper operation-order scaling trend.",
+  "workload_bound": {
+    "symbol": "k",
+    "maximum": 15,
+    "unit": "matrix cells",
+    "source_constraint": "the contract requires m*n at most 15, with every cell binary"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The memoized reference evaluates no more than 2^15 = 32768 masks and tests at most 15 legal cell choices per computed mask."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares exhaustive small binary matrices and deterministic legal 15-cell matrices against an independent bottom-up mask oracle, including zero, dense, sparse, asymmetric, single-row, and single-column boundaries."
+    }
+  ]
+}

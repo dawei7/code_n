@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Number of Possible Ways for an Event and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts performer partitions with Stirling numbers, then labels and scores every nonempty band.",
+      "time_complexity": "O(n min(n, x))",
+      "space_complexity": "O(min(n, x))"
     }
   ]
 }

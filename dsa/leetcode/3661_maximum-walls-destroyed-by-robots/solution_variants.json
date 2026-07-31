@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Walls Destroyed by Robots and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sort the line, count each adjacent gap's left, right, and union coverage with binary search, then optimize robot directions using a two-state chain DP.",
+      "time_complexity": "O((R + W) log(R + W))",
+      "space_complexity": "O(R + W)"
     }
   ]
 }

@@ -1,0 +1,623 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3841",
+  "cases": [
+    {
+      "id": "sample-path-update",
+      "name": "sample: an update changes a full path from valid to invalid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "s": "aac",
+        "queries": [
+          "query 0 2",
+          "update 1 b",
+          "query 0 2"
+        ]
+      },
+      "expected": [
+        true,
+        false
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "path-query",
+        "update"
+      ]
+    },
+    {
+      "id": "sample-star-operations",
+      "name": "sample: queries on separate star branches observe root updates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "s": "abca",
+        "queries": [
+          "query 1 2",
+          "update 0 b",
+          "query 2 3",
+          "update 3 a",
+          "query 1 3"
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "star-tree",
+        "no-op-update"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: a single-node path remains palindromic after an update",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "edges": [],
+        "s": "a",
+        "queries": [
+          "query 0 0",
+          "update 0 z",
+          "query 0 0"
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-tree",
+        "single-node-path"
+      ]
+    },
+    {
+      "id": "trial-two-node-change",
+      "name": "trial: matching two adjacent letters after an update",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "s": "ab",
+        "queries": [
+          "query 0 1",
+          "update 1 a",
+          "query 0 1"
+        ]
+      },
+      "expected": [
+        false,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-nodes",
+        "update"
+      ]
+    },
+    {
+      "id": "trial-chain-parity-change",
+      "name": "trial: one chain update changes two different query ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "s": "abca",
+        "queries": [
+          "query 0 3",
+          "query 1 2",
+          "update 2 b",
+          "query 0 3",
+          "query 1 2"
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "chain",
+        "multiple-query-ranges"
+      ]
+    },
+    {
+      "id": "trial-reversed-endpoints",
+      "name": "trial: reversing path endpoints leaves parity unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "s": "abba",
+        "queries": [
+          "query 2 3",
+          "query 3 2",
+          "update 1 c",
+          "query 2 3"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "reversed-endpoints",
+        "interior-lca"
+      ]
+    },
+    {
+      "id": "real-star-root-replacement",
+      "name": "hidden: a root update affects paths between every pair of branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "s": "abcba",
+        "queries": [
+          "query 1 3",
+          "query 2 4",
+          "update 0 d",
+          "query 1 3",
+          "query 2 4"
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "root-update",
+        "star-tree"
+      ]
+    },
+    {
+      "id": "real-balanced-lca-paths",
+      "name": "hidden: balanced-tree paths use the root as lowest common ancestor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "s": "abacaba",
+        "queries": [
+          "query 3 6",
+          "query 4 5",
+          "update 0 b",
+          "query 3 6",
+          "query 4 5"
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "balanced-tree",
+        "root-lca"
+      ]
+    },
+    {
+      "id": "real-chain-successive-updates",
+      "name": "hidden: successive updates toggle full and internal chain paths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "s": "aaaaaa",
+        "queries": [
+          "query 0 5",
+          "update 2 b",
+          "query 0 5",
+          "query 1 4",
+          "update 4 b",
+          "query 0 5",
+          "query 1 4"
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        true,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "chain",
+        "successive-updates"
+      ]
+    },
+    {
+      "id": "real-no-op-then-change",
+      "name": "hidden: no-op assignment does not alter a later answer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "s": "abc",
+        "queries": [
+          "query 0 2",
+          "update 1 b",
+          "query 0 2",
+          "update 1 a",
+          "query 0 2"
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "no-op-update",
+        "effective-update"
+      ]
+    },
+    {
+      "id": "real-subtree-boundaries",
+      "name": "hidden: updates affect descendant root masks but not unrelated paths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "s": "abcba",
+        "queries": [
+          "query 3 4",
+          "update 1 d",
+          "query 3 4",
+          "query 2 4",
+          "update 2 a",
+          "query 2 4"
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "subtree-update",
+        "separate-branch"
+      ]
+    },
+    {
+      "id": "real-full-alphabet",
+      "name": "hidden: all letter bits and endpoint-inclusive paths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 26,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            14,
+            15
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            16,
+            17
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            19,
+            20
+          ],
+          [
+            20,
+            21
+          ],
+          [
+            21,
+            22
+          ],
+          [
+            22,
+            23
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            24,
+            25
+          ]
+        ],
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "queries": [
+          "query 0 25",
+          "query 0 0",
+          "query 0 24",
+          "update 1 a",
+          "query 0 1",
+          "query 0 2"
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        false,
+        true,
+        true
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "full-alphabet",
+        "bit-boundaries"
+      ]
+    }
+  ]
+}

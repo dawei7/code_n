@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1335",
+  "frontend_id": "2226",
+  "title_slug": "maximum-candies-allocated-to-k-children",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "class Solution.maximumCandies",
+  "verified_submission_id": "2073902343",
+  "verified_at": "2026-07-19T21:18:21.153315+00:00"
+}

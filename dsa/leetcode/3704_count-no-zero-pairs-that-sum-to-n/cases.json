@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3704",
+  "cases": [
+    {
+      "id": "sample-minimum-target",
+      "name": "sample: only one ordered pair sums to two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2},
+      "expected": 1,
+      "tags": ["sample", "minimum-boundary"]
+    },
+    {
+      "id": "sample-two-orders",
+      "name": "sample: swapping unequal addends gives a second pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3},
+      "expected": 2,
+      "tags": ["sample", "ordered-pairs"]
+    },
+    {
+      "id": "sample-eleven",
+      "name": "sample: decompositions containing ten are excluded",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 11},
+      "expected": 8,
+      "tags": ["sample", "zero-digit"]
+    },
+    {
+      "id": "trial-ten",
+      "name": "trial: every positive single-digit split of ten is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 10},
+      "expected": 9,
+      "tags": ["trial", "carry"]
+    },
+    {
+      "id": "trial-twenty",
+      "name": "trial: the central ten-plus-ten split is invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 20},
+      "expected": 18,
+      "tags": ["trial", "zero-digit", "carry"]
+    },
+    {
+      "id": "trial-two-digit-nines",
+      "name": "trial: many two-digit no-zero decompositions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 99},
+      "expected": 80,
+      "tags": ["trial", "two-digits"]
+    },
+    {
+      "id": "trial-hundred",
+      "name": "trial: addition crosses into a new decimal column",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 100},
+      "expected": 90,
+      "tags": ["trial", "final-carry"]
+    },
+    {
+      "id": "real-one-hundred-one",
+      "name": "hidden: zero in the target does not permit zero addend digits",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 101},
+      "expected": 80,
+      "tags": ["hidden", "zero-target-digit"]
+    },
+    {
+      "id": "real-one-hundred-nine",
+      "name": "hidden: mixed target digits and carry transitions",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 109},
+      "expected": 72,
+      "tags": ["hidden", "zero-target-digit", "carry"]
+    },
+    {
+      "id": "real-one-thousand",
+      "name": "hidden: several final-carry constructions reach a power of ten",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000},
+      "expected": 738,
+      "tags": ["hidden", "power-of-ten", "zero-target-digit"]
+    },
+    {
+      "id": "real-alternating-zero-target",
+      "name": "hidden: a long target alternates one and zero digits",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 101010101010101},
+      "expected": 11145125560320,
+      "tags": ["hidden", "large-input", "zero-target-digit"]
+    },
+    {
+      "id": "real-maximum-target",
+      "name": "hidden: maximum legal target and sixteen digit columns",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000000000},
+      "expected": 50891681057058,
+      "tags": ["hidden", "maximum-boundary", "final-carry"]
+    }
+  ]
+}

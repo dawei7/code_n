@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_399", "frontend_id": "399", "title_slug": "evaluate-division", "url": "https://leetcode.com/problems/evaluate-division/description/", "paid_only": false, "content_sha256": "2dd71f4bfa04a12d2fb06208e78f3a1a0e89b37a945ae0bbdd478f2e7aaca8c5", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "equations = [[\"a\",\"b\"],[\"b\",\"c\"]], values = [2.0,3.0], queries = [[\"a\",\"c\"],[\"b\",\"a\"],[\"a\",\"e\"],[\"a\",\"a\"],[\"x\",\"x\"]]", "output": "[6.00000,0.50000,-1.00000,1.00000,-1.00000]", "has_explanation": true},
+      {"ordinal": 2, "input": "equations = [[\"a\",\"b\"],[\"b\",\"c\"],[\"bc\",\"cd\"]], values = [1.5,2.5,5.0], queries = [[\"a\",\"c\"],[\"c\",\"b\"],[\"bc\",\"cd\"],[\"cd\",\"bc\"]]", "output": "[3.75000,0.40000,5.00000,0.20000]", "has_explanation": false},
+      {"ordinal": 3, "input": "equations = [[\"a\",\"b\"]], values = [0.5], queries = [[\"a\",\"b\"],[\"b\",\"a\"],[\"a\",\"c\"],[\"x\",\"y\"]]", "output": "[0.50000,2.00000,-1.00000,-1.00000]", "has_explanation": false}
+    ],
+    "constraint_count": 9,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "184e89ba4d4a3aa721eb61cea9497762af8fa83614e6d3801ccb78d48966ec46",
+    "reference/contract.md": "dfa8a2fbdc42527f3b9584c50679913d2b7a6f5134f0863b3f8fcf2c0e33d40a",
+    "reference/note.md": "e5911c121f4fa414fd974f97dc678618e7a04b8e7fa8b92372126a6eba09ee28",
+    "reference/examples.md": "028cf9f88f0370c818cc1dc04c0643abacd3cf43fe7902355da7fccc8417cd26",
+    "reference/constraints.md": "4889b7e41a0b0b879f6107c49aec5ff67526e7c280dc0615e5403f13340968da"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

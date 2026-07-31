@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Total Beauty of the Gardens and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates the number of complete gardens and uses prefix sums plus binary search to maximize the remaining minimum.",
+      "time_complexity": "O(n log n + n log target)",
+      "space_complexity": "O(n)"
     }
   ]
 }

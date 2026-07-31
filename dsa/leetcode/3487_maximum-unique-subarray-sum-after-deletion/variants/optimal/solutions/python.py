@@ -1,5 +1,12 @@
 def solve(nums: list[int]) -> int:
-    positives = {value for value in nums if value > 0}
-    if positives:
-        return sum(positives)
-    return max(nums)
+    seen_positive = [False] * 101
+    positive_sum = 0
+    maximum = nums[0]
+
+    for value in nums:
+        maximum = max(maximum, value)
+        if value > 0 and not seen_positive[value]:
+            seen_positive[value] = True
+            positive_sum += value
+
+    return positive_sum if positive_sum > 0 else maximum

@@ -5,51 +5,36 @@
 | Source | LeetCode |
 | Frontend ID | 2832 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Stack, Monotonic Stack |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximal-range-that-each-element-is-maximum-in-it](https://leetcode.com/problems/maximal-range-that-each-element-is-maximum-in-it/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximal-range-that-each-element-is-maximum-in-it/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximal-range-that-each-element-is-maximum-in-it/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a 0-indexed array `nums` whose integers are all distinct. Construct a 0-indexed array `ans` of the same length.
+
+For every index `i`, `ans[i]` is the greatest possible length of a contiguous subarray `nums[l..r]` whose maximum element is `nums[i]`. Because every value is unique, such a subarray necessarily contains index `i`. The one-element range `nums[i..i]` is always valid.
+
+Return `ans`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ pairwise distinct integers, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^5$.
 
 **Return value**
 
-TODO
+Return a list of length $n$ in which entry `i` is the maximum length of a contiguous subarray containing `nums[i]` and no value greater than `nums[i]`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 5, 4, 3, 6]`
+- Output: `[1, 4, 2, 1, 5]`
+- Explanation: The value `5` can be the maximum from indices `0` through `3`, while the final value `6` can be the maximum of the entire array.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1, 2, 3, 4, 5]`
+- Output: `[1, 2, 3, 4, 5]`
+- Explanation: For each `i`, the prefix `nums[0..i]` is the longest range whose maximum is `nums[i]`.

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4354",
+  "frontend_id": "3978",
+  "title_slug": "unique-middle-element",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isMiddleElementUnique",
+  "verified_submission_id": "2088053811",
+  "verified_at": "2026-07-30T21:04:59.3736893+00:00"
+}

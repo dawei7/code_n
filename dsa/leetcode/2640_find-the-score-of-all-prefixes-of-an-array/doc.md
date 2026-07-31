@@ -8,77 +8,36 @@
 | Category | Algorithms |
 | Topics | Array, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-score-of-all-prefixes-of-an-array](https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/).
 
 ### Goal
-Given an array of integers, calculate the "score" for every prefix of the array. The score of a prefix is defined as the sum of the "converted" elements of that prefix. An element is converted by adding the current element to the maximum value encountered in the prefix up to that point. The final output is an array where each index `i` contains the cumulative score of the prefix ending at `i`.
+
+For an integer array `arr`, define its conversion array `conver` by setting `conver[i] = arr[i] + max(arr[0..i])`. Thus, each converted value combines the original entry with the largest entry that appears at or before its index. The score of `arr` is the sum of all values in this conversion array.
+
+You are given a 0-indexed positive-integer array `nums` of length $n$. Return an array `ans` of the same length such that `ans[i]` is the score of the prefix `nums[0..i]`. Each prefix retains the conversion values determined by the running maxima at their respective positions.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
+- `nums`: A positive-integer array of length $n$, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^9$.
 
 **Return value**
 
-- A list of integers (`List[int]`) representing the score of each prefix.
+- Return a length-$n$ integer array where entry $i$ is the sum of `nums[j] + max(nums[0..j])` over all $0 \le j \le i$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [2, 3, 7, 6, 1]`
-- Output: `[4, 10, 24, 36, 42]`
+- Input: `nums = [2, 3, 7, 5, 10]`
+- Output: `[4, 10, 24, 36, 56]`
+- Explanation: The conversion array is `[4, 6, 14, 12, 20]`; its successive prefix sums form the answer.
 
 **Example 2**
 
 - Input: `nums = [1, 1, 2, 4, 8, 16]`
 - Output: `[2, 4, 8, 16, 32, 64]`
-
-**Example 3**
-
-- Input: `nums = [10, 2, 5, 1]`
-- Output: `[20, 22, 32, 34]`
-
----
-
-## Solution
-### Approach
-The problem utilizes a **Prefix Sum** approach combined with **Running Maximum** tracking. By maintaining the maximum value seen so far as we iterate through the array, we can compute the converted value for each index in constant time and accumulate these values to form the prefix score.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass through the array.
-- **Space Complexity**: `O(n)` to store the resulting array of scores.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> List[int]:
-    """
-    Calculates the score of all prefixes of an array.
-    The score of a prefix is the sum of (nums[i] + max(nums[0...i])) for all i.
-    """
-    n = len(nums)
-    scores = [0] * n
-
-    current_max = 0
-    running_score = 0
-
-    for i in range(n):
-        # Update the maximum value encountered so far
-        if nums[i] > current_max:
-            current_max = nums[i]
-
-        # The converted value is nums[i] + current_max
-        # The prefix score is the cumulative sum of these converted values
-        running_score += (nums[i] + current_max)
-        scores[i] = running_score
-
-    return scores
-```
-</details>
+- Explanation: Every new power of two is also the running maximum, while the repeated initial one contributes another two.

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Nodes With Value One and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines query parity at each label with inherited flip parity from its parent.",
+      "time_complexity": "O(n + q)",
+      "space_complexity": "O(n)"
     }
   ]
 }

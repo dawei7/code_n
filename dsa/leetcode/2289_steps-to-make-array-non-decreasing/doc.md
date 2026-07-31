@@ -5,25 +5,33 @@
 | Source | LeetCode |
 | Frontend ID | 2289 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Linked List, Dynamic Programming, Stack, Monotonic Stack, Simulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [steps-to-make-array-non-decreasing](https://leetcode.com/problems/steps-to-make-array-non-decreasing/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/steps-to-make-array-non-decreasing/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/steps-to-make-array-non-decreasing/).
-
 ### Goal
-In each simultaneous step, remove every element smaller than the element immediately to its left. Return the number of steps until the array becomes nondecreasing.
+Begin with a 0-indexed integer array `nums`. During one step, inspect every
+adjacent pair in the array as it exists at the start of that step. Remove
+every element `nums[i]` with $i>0$ whose left neighbor is strictly greater:
+$\texttt{nums}[i-1] > \texttt{nums}[i]$. All qualifying elements are removed
+simultaneously.
+
+Repeat this operation until the remaining array is non-decreasing, meaning
+each element is at least its predecessor. Return the number of removal steps
+that were performed. A non-decreasing input requires zero steps.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: an integer array.
+- `nums`: A nonempty array of positive integers.
+
+Let $n = \lvert\texttt{nums}\rvert$. The contract guarantees
+$1 \le n \le 10^5$ and $1 \le \texttt{nums}[i] \le 10^9$.
 
 **Return value**
 
-The number of simultaneous deletion rounds.
+The number of simultaneous-deletion rounds needed before `nums` becomes
+non-decreasing.
 
 ### Examples
 **Example 1**
@@ -35,21 +43,3 @@ The number of simultaneous deletion rounds.
 
 - Input: `nums = [4, 5, 7, 7, 13]`
 - Output: `0`
-
-**Example 3**
-
-- Input: `nums = [3, 2, 1]`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-Scan left to right with a decreasing monotonic stack of pairs `(value, removal_round)`. For a new value, pop all preceding values no greater than it while taking the maximum of their rounds. If a larger value remains, the new value disappears one round after that maximum; otherwise it survives with round zero. The largest assigned round is the answer.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

@@ -1,0 +1,122 @@
+{
+  "challenge_id": "lc_2847",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three distinct prime digit factors",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 105},
+      "expected": "357",
+      "tags": ["sample", "composite"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one-digit answer",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 7},
+      "expected": "7",
+      "tags": ["sample", "single-digit"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: forbidden prime factor",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 44},
+      "expected": "-1",
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-product-one",
+      "name": "trial: smallest positive product",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1},
+      "expected": "1",
+      "tags": ["trial", "minimum"]
+    },
+    {
+      "id": "trial-ten",
+      "name": "trial: two factors form the smallest two-digit number",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 10},
+      "expected": "25",
+      "tags": ["trial", "ordering"]
+    },
+    {
+      "id": "real-nine",
+      "name": "hidden: upper one-digit boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 9},
+      "expected": "9",
+      "tags": ["hidden", "single-digit"]
+    },
+    {
+      "id": "real-twelve",
+      "name": "hidden: six packs factors two and three",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 12},
+      "expected": "26",
+      "tags": ["hidden", "factor-packing"]
+    },
+    {
+      "id": "real-thirty-six",
+      "name": "hidden: nine and four beat repeated sixes",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 36},
+      "expected": "49",
+      "tags": ["hidden", "greedy-choice"]
+    },
+    {
+      "id": "real-one-hundred",
+      "name": "hidden: repeated fives with a grouped power of two",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 100},
+      "expected": "455",
+      "tags": ["hidden", "repeated-factor"]
+    },
+    {
+      "id": "real-prime-seventeen",
+      "name": "hidden: prime greater than every usable prime digit",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 17},
+      "expected": "-1",
+      "tags": ["hidden", "prime", "impossible"]
+    },
+    {
+      "id": "real-power-of-two",
+      "name": "hidden: repeated eights pack a power of two",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 512},
+      "expected": "888",
+      "tags": ["hidden", "repeated-digit"]
+    },
+    {
+      "id": "real-mixed-primes",
+      "name": "hidden: six combines two and three between five and seven",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 210},
+      "expected": "567",
+      "tags": ["hidden", "mixed-factors"]
+    },
+    {
+      "id": "real-maximum-input",
+      "name": "hidden: maximum input with many repeated factors",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000000000000},
+      "expected": "555555555555555555888888",
+      "tags": ["hidden", "maximum", "long-output"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2649",
+  "frontend_id": "2579",
+  "title_slug": "count-total-number-of-colored-cells",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.coloredCells",
+  "verified_submission_id": "2075643309",
+  "verified_at": "2026-07-21T09:52:00+00:00"
+}

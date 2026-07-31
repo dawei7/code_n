@@ -1,0 +1,515 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3203",
+  "cases": [
+    {
+      "id": "sample-star-and-edge",
+      "name": "sample: a four-node star merged with an edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-identical-branching-trees",
+      "name": "sample: identical branching trees are joined at centers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            2,
+            7
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            2,
+            7
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "trial-two-singletons",
+      "name": "trial: the connecting edge joins two singleton trees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges1": [],
+        "edges2": []
+      },
+      "expected": 1,
+      "tags": [
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-singleton-and-edge",
+      "name": "trial: a singleton attaches to either endpoint of an edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges1": [],
+        "edges2": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-even-and-odd-diameters",
+      "name": "trial: paths with even and odd diameters use their radii",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "path",
+        "radius"
+      ]
+    },
+    {
+      "id": "trial-two-stars",
+      "name": "trial: centers of two stars give a three-edge cross path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "star",
+        "center"
+      ]
+    },
+    {
+      "id": "real-original-diameter-dominates",
+      "name": "real: a long path remains the merged diameter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "edges2": []
+      },
+      "expected": 5,
+      "tags": [
+        "dominant-diameter",
+        "singleton"
+      ]
+    },
+    {
+      "id": "real-even-diameter-and-edge",
+      "name": "real: a five-node path joined to an edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "path",
+        "even-diameter"
+      ]
+    },
+    {
+      "id": "real-balanced-and-short",
+      "name": "real: a balanced binary tree joined to a short path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "balanced-tree"
+      ]
+    },
+    {
+      "id": "real-asymmetric-branches",
+      "name": "real: asymmetric branches expose the true diameter endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "asymmetric",
+        "diameter"
+      ]
+    },
+    {
+      "id": "real-independent-label-spaces",
+      "name": "real: matching numeric labels remain in separate trees",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "node-labels",
+        "independent-trees"
+      ]
+    },
+    {
+      "id": "real-two-long-paths",
+      "name": "real: two seven-node paths are connected at their centers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges1": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "edges2": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "path",
+        "centers"
+      ]
+    }
+  ]
+}
+

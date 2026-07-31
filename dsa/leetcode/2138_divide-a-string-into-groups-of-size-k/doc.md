@@ -5,51 +5,40 @@
 | Source | LeetCode |
 | Frontend ID | 2138 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | String, Simulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [divide-a-string-into-groups-of-size-k](https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Partition a lowercase string from left to right into consecutive groups of
+exactly $k$ characters. The first group receives the first $k$ characters, the
+second receives the next $k$, and each original character belongs to exactly
+one group.
+
+If fewer than $k$ original characters remain for the final group, append
+enough copies of `fill` to complete it. No padding is added when the string
+length is already divisible by $k$. Return all groups in their original order,
+so removing only the added final padding and concatenating the groups recovers
+the input string.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string of length from $1$ through $100$.
+- `k`: The group size, from $1$ through $100$.
+- `fill`: A single lowercase English letter used only for final padding.
 
 **Return value**
 
-TODO
+The ordered list of length-$k$ groups.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcdefghi"`, `k = 3`, `fill = "x"`
+- Output: `["abc","def","ghi"]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "abcdefghij"`, `k = 3`, `fill = "x"`
+- Output: `["abc","def","ghi","jxx"]`

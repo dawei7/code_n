@@ -5,51 +5,36 @@
 | Source | LeetCode |
 | Frontend ID | 3640 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [trionic-array-ii](https://leetcode.com/problems/trionic-array-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/trionic-array-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/trionic-array-ii/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an integer array `nums`, a trionic subarray is a contiguous range `nums[l...r]` for which two interior indices $p$ and $q$ satisfy $l<p<q<r$.
+
+From $l$ through $p$ the values must be strictly increasing; from $p$ through $q$ they must be strictly decreasing; and from $q$ through $r$ they must again be strictly increasing. Each phase therefore contains at least one adjacent comparison.
+
+Return the maximum sum among all trionic subarrays. Values may be negative, so the best range need not be the longest one or the whole array. At least one trionic subarray is guaranteed to exist.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ integers, where $4 \le n \le 10^5$ and $-10^9 \le \texttt{nums[i]} \le 10^9$.
 
 **Return value**
 
-TODO
+Return the greatest element sum of any contiguous subarray following the strict increasing-decreasing-increasing pattern.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, -2, -1, -3, 0, 2, -1]`
+- Output: `-4`
+- Explanation: The range `[-2, -1, -3, 0, 2]` has the three required phases and sum $-4$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1, 4, 2, 7]`
+- Output: `14`
+- Explanation: The entire array increases, decreases, then increases, and its sum is 14.

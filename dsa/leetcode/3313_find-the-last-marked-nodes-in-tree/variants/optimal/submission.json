@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3497",
+  "frontend_id": "3313",
+  "title_slug": "find-the-last-marked-nodes-in-tree",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.lastMarkedNodes",
+  "verified_submission_id": "2080865633",
+  "verified_at": "2026-07-25T15:07:00Z"
+}

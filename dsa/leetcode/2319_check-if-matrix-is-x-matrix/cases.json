@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2319",
+  "cases": [
+    {"id":"sample-valid-four","name":"sample: valid four by four X-matrix","kind":"sample","visible":true,"input":{"grid":[[2,0,0,1],[0,3,1,0],[0,5,2,0],[4,0,0,2]]},"expected":true,"tags":["sample","valid"]},
+    {"id":"sample-invalid-three","name":"sample: misplaced values violate both rules","kind":"sample","visible":true,"input":{"grid":[[5,7,0],[0,3,1],[0,5,0]]},"expected":false,"tags":["sample","invalid"]},
+    {"id":"trial-valid-three","name":"odd center is one shared nonzero diagonal cell","kind":"trial","visible":true,"input":{"grid":[[1,0,2],[0,3,0],[4,0,5]]},"expected":true,"tags":["odd-size","center"]},
+    {"id":"trial-zero-main-diagonal","name":"a zero on the main diagonal is invalid","kind":"trial","visible":true,"input":{"grid":[[1,0,2],[0,0,0],[3,0,4]]},"expected":false,"tags":["diagonal-zero"]},
+    {"id":"trial-off-diagonal-nonzero","name":"a nonzero outside both diagonals is invalid","kind":"trial","visible":true,"input":{"grid":[[1,0,0,2],[0,3,4,0],[0,5,6,9],[7,0,0,8]]},"expected":false,"tags":["off-diagonal"]},
+    {"id":"real-valid-five","name":"hidden: valid odd-sized matrix","kind":"real","visible":false,"input":{"grid":[[1,0,0,0,2],[0,3,0,4,0],[0,0,5,0,0],[0,6,0,7,0],[8,0,0,0,9]]},"expected":true,"tags":["hidden","odd-size"]},
+    {"id":"real-secondary-zero","name":"hidden: zero on secondary diagonal","kind":"real","visible":false,"input":{"grid":[[1,0,0,2],[0,3,0,0],[0,5,6,0],[7,0,0,8]]},"expected":false,"tags":["hidden","secondary-diagonal"]}
+  ]
+}

@@ -5,26 +5,36 @@
 | Source | LeetCode |
 | Frontend ID | 2284 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, String, Counting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sender-with-largest-word-count](https://leetcode.com/problems/sender-with-largest-word-count/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sender-with-largest-word-count/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sender-with-largest-word-count/).
-
 ### Goal
-Sum the number of words sent by each sender. Return the sender with the largest total, breaking ties by lexicographically larger name.
+A chat log contains $n$ messages. `messages[i]` was written by `senders[i]`,
+and the same sender may appear at several indices. Each message contains one or
+more words separated by single spaces, without leading or trailing spaces. A
+sender's word count is the total number of words across all of that sender's
+messages.
+
+Return the sender with the greatest total word count. If several senders share
+that maximum, choose the lexicographically largest name. Comparison is
+case-sensitive: uppercase letters precede lowercase letters, and names such as
+`"Alice"` and `"alice"` identify different senders.
 
 ### Function Contract
 **Inputs**
 
-- `messages`: space-separated messages.
-- `senders`: sender names at matching indices.
+- `messages`: An array of $n$ valid space-separated messages.
+- `senders`: An array of $n$ sender names aligned with `messages`.
+
+Here, $1 \le n \le 10^4$, each message has length at most 100, and each sender
+name has length at most 10. Let $L$ be the total number of characters across
+all messages.
 
 **Return value**
 
-The winning sender's name.
+The name with the largest accumulated word count, resolving a tie in favor of
+the lexicographically largest sender.
 
 ### Examples
 **Example 1**
@@ -39,18 +49,5 @@ The winning sender's name.
 
 **Example 3**
 
-- Input: `messages = ["one", "two three"]`, `senders = ["Zoe", "Amy"]`
-- Output: `"Amy"`
-
----
-
-## Solution
-### Approach
-Count words in each message and add them to a hash map keyed by sender. Select the pair with maximum `(word_count, sender_name)`, using ordinary lexicographic order for the second component.
-
-### Complexity Analysis
-- **Time Complexity**: `O(L)`, where `L` is the total message length
-- **Space Complexity**: `O(s)`, where `s` is the number of senders
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `messages = ["a", "b"]`, `senders = ["Alice", "alice"]`
+- Output: `"alice"`

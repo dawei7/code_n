@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Integers With Popcount-Depth Equal to K I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Classify possible set-bit counts by their own depth, then count bounded binary values with each qualifying count using combinations.",
+      "time_complexity": "O((log n)^2)",
+      "space_complexity": "O(log n)"
     }
   ]
 }

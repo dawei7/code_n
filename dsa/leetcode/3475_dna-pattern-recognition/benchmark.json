@@ -1,0 +1,2449 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3475",
+  "measurement_note": "Size is r, the Samples row count. Tiers 8, 32, and 128 span 16x; every fixed-length sequence matches all four predicates, and descending sample ids exercise the required ascending sort. The accepted query scans and projects each row once before sorting. A correct baseline that cross joins Samples with itself before deduplicating the projected rows must return every expected result and fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-samples-8",
+      "name": "benchmark: 8 pattern-rich samples",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 8,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 7,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 6,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 5,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 4,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 3,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 2,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 1,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            1,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            4,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            5,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            6,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            8,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ],
+      "size": 8
+    },
+    {
+      "id": "benchmark-samples-32",
+      "name": "benchmark: 32 pattern-rich samples",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 32,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 31,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 30,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 29,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 28,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 27,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 26,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 25,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 24,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 23,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 22,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 21,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 20,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 19,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 18,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 17,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 16,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 15,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 14,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 13,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 12,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 11,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 10,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 9,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 8,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 7,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 6,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 5,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 4,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 3,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 2,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 1,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            1,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            4,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            5,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            6,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            8,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            9,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            10,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            11,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            12,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            13,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            14,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            15,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            16,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            17,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            18,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            19,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            20,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            21,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            22,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            23,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            24,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            25,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            26,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            27,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            28,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            29,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            30,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            32,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ],
+      "size": 32
+    },
+    {
+      "id": "benchmark-samples-128",
+      "name": "benchmark: 128 pattern-rich samples",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Samples": [
+            {
+              "sample_id": 128,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 127,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 126,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 125,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 124,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 123,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 122,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 121,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 120,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 119,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 118,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 117,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 116,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 115,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 114,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 113,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 112,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 111,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 110,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 109,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 108,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 107,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 106,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 105,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 104,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 103,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 102,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 101,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 100,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 99,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 98,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 97,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 96,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 95,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 94,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 93,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 92,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 91,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 90,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 89,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 88,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 87,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 86,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 85,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 84,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 83,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 82,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 81,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 80,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 79,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 78,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 77,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 76,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 75,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 74,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 73,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 72,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 71,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 70,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 69,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 68,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 67,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 66,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 65,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 64,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 63,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 62,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 61,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 60,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 59,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 58,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 57,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 56,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 55,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 54,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 53,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 52,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 51,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 50,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 49,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 48,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 47,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 46,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 45,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 44,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 43,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 42,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 41,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 40,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 39,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 38,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 37,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 36,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 35,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 34,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 33,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 32,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 31,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 30,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 29,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 28,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 27,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 26,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 25,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 24,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 23,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 22,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 21,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 20,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 19,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 18,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 17,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 16,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 15,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 14,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 13,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 12,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 11,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 10,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 9,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 8,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 7,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 6,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            },
+            {
+              "sample_id": 5,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 0"
+            },
+            {
+              "sample_id": 4,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 4"
+            },
+            {
+              "sample_id": 3,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 3"
+            },
+            {
+              "sample_id": 2,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 2"
+            },
+            {
+              "sample_id": 1,
+              "dna_sequence": "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+              "species": "Species 1"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sample_id",
+          "dna_sequence",
+          "species",
+          "has_start",
+          "has_stop",
+          "has_atat",
+          "has_ggg"
+        ],
+        "rows": [
+          [
+            1,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            4,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            5,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            6,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            7,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            8,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            9,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            10,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            11,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            12,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            13,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            14,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            15,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            16,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            17,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            18,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            19,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            20,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            21,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            22,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            23,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            24,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            25,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            26,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            27,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            28,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            29,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            30,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            31,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            32,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            33,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            34,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            35,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            36,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            37,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            38,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            39,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            40,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            41,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            42,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            43,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            44,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            45,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            46,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            47,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            48,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            49,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            50,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            51,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            52,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            53,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            54,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            55,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            56,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            57,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            58,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            59,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            60,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            61,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            62,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            63,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            64,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            65,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            66,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            67,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            68,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            69,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            70,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            71,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            72,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            73,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            74,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            75,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            76,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            77,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            78,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            79,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            80,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            81,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            82,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            83,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            84,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            85,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            86,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            87,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            88,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            89,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            90,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            91,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            92,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            93,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            94,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            95,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            96,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            97,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            98,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            99,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            100,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            101,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            102,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            103,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            104,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            105,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            106,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            107,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            108,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            109,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            110,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            111,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            112,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            113,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            114,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            115,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            116,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            117,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            118,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            119,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            120,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            121,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            122,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            123,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            124,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 4",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            125,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 0",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            126,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 1",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            127,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 2",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            128,
+            "ATGCCCCCCCCCCCCCCCCCCCCCCCCATATGGGTAA",
+            "Species 3",
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ],
+      "size": 128
+    }
+  ]
+}

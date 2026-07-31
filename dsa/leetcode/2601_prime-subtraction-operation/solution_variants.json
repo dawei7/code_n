@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Prime Subtraction Operation and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sieves all relevant primes and greedily minimizes each value above its finalized predecessor.",
+      "time_complexity": "O(M log log M + n log M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

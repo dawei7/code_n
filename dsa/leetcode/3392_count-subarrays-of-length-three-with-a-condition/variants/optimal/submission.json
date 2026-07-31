@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3685",
+  "frontend_id": "3392",
+  "title_slug": "count-subarrays-of-length-three-with-a-condition",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countSubarrays",
+  "verified_submission_id": "2081320089",
+  "verified_at": "2026-07-26T01:47:00Z"
+}

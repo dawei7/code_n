@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Handling Sum Queries After Update and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains the number of one bits under lazy range flips and updates the aggregate nums2 sum in constant time.",
+      "time_complexity": "O(n + q log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

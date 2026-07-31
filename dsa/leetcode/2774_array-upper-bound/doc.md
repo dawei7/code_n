@@ -8,48 +8,45 @@
 | Category | JavaScript |
 | Topics | Uncategorized |
 | Supported Languages | javascript |
-| Official Link | [array-upper-bound](https://leetcode.com/problems/array-upper-bound/) |
+| LeetCode | [2774. Array Upper Bound](https://leetcode.com/problems/array-upper-bound/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/array-upper-bound/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Extend JavaScript's `Array` prototype with a method named `upperBound`. The receiving array contains numbers sorted in ascending order and may include duplicate values. Calling `nums.upperBound(target)` must locate the final occurrence of the supplied target number.
+
+Return that occurrence's zero-based index. If no array element equals `target`, return `-1`. The method must work on every valid numeric array, including arrays whose matching values occupy the first or last positions, and it should exploit the sorted order to meet the requested logarithmic running time.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A non-empty ascending array of $n$ numbers that receives `upperBound` through `Array.prototype`.
+- `target`: The number whose last occurrence is requested.
+
+The inputs satisfy $1 \le n \le 10^4$ and $-10^4 \le \texttt{nums}[i],\texttt{target} \le 10^4$.
 
 **Return value**
 
-TODO
+Return the greatest index $i$ for which `nums[i] === target`, or `-1` when no such index exists.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 4, 5], target = 5`
+- Output: `2`
+- Explanation: The target appears at the final array index.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 4, 5], target = 2`
+- Output: `-1`
+- Explanation: No element equals `2`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [3, 4, 6, 6, 6, 6, 7], target = 6`
+- Output: `5`
+- Explanation: The duplicate run of `6` ends at index `5`.

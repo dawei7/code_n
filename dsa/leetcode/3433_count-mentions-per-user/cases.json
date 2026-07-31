@@ -1,143 +1,15 @@
 {
   "challenge_id": "lc_3433",
   "cases": [
-    {
-      "id": "sample-here-after-online",
-      "name": "sample: offline user returns before HERE",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "numberOfUsers": 2,
-        "events": [
-          [
-            "MESSAGE",
-            "10",
-            "id1 id0"
-          ],
-          [
-            "OFFLINE",
-            "11",
-            "0"
-          ],
-          [
-            "MESSAGE",
-            "71",
-            "HERE"
-          ]
-        ]
-      },
-      "expected": [
-        2,
-        2
-      ],
-      "tags": [
-        "sample",
-        "events"
-      ]
-    },
-    {
-      "id": "trial-same-time-offline-first",
-      "name": "trial: status change before message at same timestamp",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "numberOfUsers": 2,
-        "events": [
-          [
-            "OFFLINE",
-            "10",
-            "0"
-          ],
-          [
-            "MESSAGE",
-            "10",
-            "HERE"
-          ]
-        ]
-      },
-      "expected": [
-        0,
-        1
-      ],
-      "tags": [
-        "trial",
-        "ordering"
-      ]
-    },
-    {
-      "id": "trial-duplicate-ids",
-      "name": "trial: duplicate explicit mentions count repeatedly",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "numberOfUsers": 3,
-        "events": [
-          [
-            "MESSAGE",
-            "5",
-            "id1 id1 id2"
-          ],
-          [
-            "MESSAGE",
-            "6",
-            "ALL"
-          ]
-        ]
-      },
-      "expected": [
-        1,
-        3,
-        2
-      ],
-      "tags": [
-        "trial",
-        "duplicates"
-      ]
-    },
-    {
-      "id": "real-unsorted-events",
-      "name": "real: sort by timestamp and event priority",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "numberOfUsers": 4,
-        "events": [
-          [
-            "MESSAGE",
-            "70",
-            "HERE"
-          ],
-          [
-            "OFFLINE",
-            "20",
-            "2"
-          ],
-          [
-            "MESSAGE",
-            "20",
-            "HERE"
-          ],
-          [
-            "MESSAGE",
-            "21",
-            "id2 id3 id3"
-          ],
-          [
-            "MESSAGE",
-            "1",
-            "ALL"
-          ]
-        ]
-      },
-      "expected": [
-        3,
-        3,
-        2,
-        5
-      ],
-      "tags": [
-        "real"
-      ]
-    }
+    {"id":"sample-return-before-here","name":"sample: offline user returns before HERE","kind":"sample","visible":true,"input":{"numberOfUsers":2,"events":[["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","71","HERE"]]},"expected":[2,2],"tags":["sample"]},
+    {"id":"sample-all-includes-offline","name":"sample: ALL includes offline users","kind":"sample","visible":true,"input":{"numberOfUsers":2,"events":[["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","12","ALL"]]},"expected":[2,2],"tags":["sample"]},
+    {"id":"sample-here-excludes-offline","name":"sample: HERE excludes offline user","kind":"sample","visible":true,"input":{"numberOfUsers":2,"events":[["OFFLINE","10","0"],["MESSAGE","12","HERE"]]},"expected":[0,1],"tags":["sample"]},
+    {"id":"trial-same-time-offline-first","name":"trial: listed message precedes same-time status change","kind":"trial","visible":true,"input":{"numberOfUsers":2,"events":[["MESSAGE","10","HERE"],["OFFLINE","10","0"]]},"expected":[0,1],"tags":["trial","ordering"]},
+    {"id":"trial-duplicate-ids","name":"trial: duplicate explicit mentions count repeatedly","kind":"trial","visible":true,"input":{"numberOfUsers":3,"events":[["MESSAGE","5","id1 id1 id2"],["MESSAGE","6","ALL"]]},"expected":[1,3,2],"tags":["trial","duplicates"]},
+    {"id":"real-return-exactly-sixty","name":"real: automatic return at message timestamp","kind":"real","visible":false,"input":{"numberOfUsers":3,"events":[["OFFLINE","20","1"],["MESSAGE","80","HERE"]]},"expected":[1,1,1],"tags":["real","return-boundary"]},
+    {"id":"real-explicit-while-offline","name":"real: explicit ids include offline users","kind":"real","visible":false,"input":{"numberOfUsers":2,"events":[["OFFLINE","10","0"],["MESSAGE","20","id0 id0 id1"]]},"expected":[2,1],"tags":["real","explicit"]},
+    {"id":"real-repeated-offline","name":"real: two offline intervals for one user","kind":"real","visible":false,"input":{"numberOfUsers":2,"events":[["OFFLINE","10","0"],["MESSAGE","20","HERE"],["OFFLINE","70","0"],["MESSAGE","80","HERE"],["MESSAGE","130","HERE"]]},"expected":[1,3],"tags":["real","repeated-status"]},
+    {"id":"real-unsorted-events","name":"real: chronological and priority sorting","kind":"real","visible":false,"input":{"numberOfUsers":4,"events":[["MESSAGE","80","HERE"],["MESSAGE","20","HERE"],["OFFLINE","20","2"],["MESSAGE","21","id2 id3 id3"],["MESSAGE","1","ALL"]]},"expected":[3,3,3,5],"tags":["real","unsorted"]},
+    {"id":"real-one-user","name":"real: broadcasts to one user","kind":"real","visible":false,"input":{"numberOfUsers":1,"events":[["MESSAGE","2","ALL"],["MESSAGE","1","HERE"],["MESSAGE","3","id0 id0"]]},"expected":[4],"tags":["real","minimum-users"]}
   ]
 }

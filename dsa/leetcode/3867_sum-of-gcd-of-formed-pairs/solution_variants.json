@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of GCD of Formed Pairs and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds the prefix-derived GCD values with a running maximum, sorts them, and pairs opposite extremes.",
+      "time_complexity": "O(N log N + N log V)",
+      "space_complexity": "O(N)"
     }
   ]
 }

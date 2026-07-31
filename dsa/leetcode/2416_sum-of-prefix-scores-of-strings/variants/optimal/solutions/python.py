@@ -1,30 +1,26 @@
-from typing import List
-
 class TrieNode:
-    def __init__(self):
+    def __init__(self) -> None:
         self.children = {}
         self.count = 0
 
-def solve(words: List[str]) -> List[int]:
+
+def solve(words: list[str]) -> list[int]:
     root = TrieNode()
-    
-    # Build the Trie
+
     for word in words:
         node = root
-        for char in word:
-            if char not in node.children:
-                node.children[char] = TrieNode()
-            node = node.children[char]
+        for character in word:
+            if character not in node.children:
+                node.children[character] = TrieNode()
+            node = node.children[character]
             node.count += 1
-            
-    # Calculate scores
-    results = []
+
+    answer = []
     for word in words:
-        score = 0
         node = root
-        for char in word:
-            node = node.children[char]
+        score = 0
+        for character in word:
+            node = node.children[character]
             score += node.count
-        results.append(score)
-        
-    return results
+        answer.append(score)
+    return answer

@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3610",
+  "cases": [
+    {
+      "id": "sample-two-primes",
+      "name": "sample: form ten from 2 and 3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "m": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "repetition"
+      ]
+    },
+    {
+      "id": "sample-three-fives",
+      "name": "sample: form fifteen with three fives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 15,
+        "m": 5
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "repetition"
+      ]
+    },
+    {
+      "id": "sample-direct-prime",
+      "name": "sample: seven is directly available",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "m": 6
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-prime"
+      ]
+    },
+    {
+      "id": "trial-target-one",
+      "name": "trial: no prime can form one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 1
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "minimum-target",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-first-prime",
+      "name": "trial: target is the first prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "m": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-prime"
+      ]
+    },
+    {
+      "id": "trial-odd-only-two",
+      "name": "trial: odd target with only prime two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "m": 1
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "impossible",
+        "one-denomination"
+      ]
+    },
+    {
+      "id": "trial-second-prime",
+      "name": "trial: target is the second prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "m": 2
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-prime"
+      ]
+    },
+    {
+      "id": "trial-greedy-dead-end",
+      "name": "trial: two twos beat greedy use of three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "m": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "greedy-trap"
+      ]
+    },
+    {
+      "id": "trial-greedy-suboptimal",
+      "name": "trial: two elevens beat a greedy decomposition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 22,
+        "m": 6
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "greedy-trap"
+      ]
+    },
+    {
+      "id": "real-prime-not-yet-available",
+      "name": "hidden: prime target outside the available prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 17,
+        "m": 6
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "prime-prefix"
+      ]
+    },
+    {
+      "id": "real-prime-becomes-available",
+      "name": "hidden: expanding the prefix makes the target direct",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 17,
+        "m": 7
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "single-prime"
+      ]
+    },
+    {
+      "id": "real-repeated-largest-prime",
+      "name": "hidden: repeated seven is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 49,
+        "m": 4
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "repetition"
+      ]
+    },
+    {
+      "id": "real-large-m-prime-target",
+      "name": "hidden: a large prefix includes a large prime target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 997,
+        "m": 1000
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "large",
+        "single-prime"
+      ]
+    },
+    {
+      "id": "real-large-only-two-even",
+      "name": "hidden: maximum even target using only twos",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000,
+        "m": 1
+      },
+      "expected": 500,
+      "tags": [
+        "hidden",
+        "large",
+        "one-denomination"
+      ]
+    },
+    {
+      "id": "real-large-only-two-odd",
+      "name": "hidden: maximum odd target cannot use only twos",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 999,
+        "m": 1
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "large",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-large-two-denominations",
+      "name": "hidden: combine twos and threes at the upper target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000,
+        "m": 2
+      },
+      "expected": 334,
+      "tags": [
+        "hidden",
+        "large",
+        "two-denominations"
+      ]
+    },
+    {
+      "id": "real-large-full-prefix",
+      "name": "hidden: three plus 997 forms the upper target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000,
+        "m": 1000
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "large",
+        "large-prefix"
+      ]
+    }
+  ]
+}

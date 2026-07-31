@@ -1,0 +1,54 @@
+{
+  "challenge_id": "lc_3154",
+  "measurement_note": "Size is k + 2, matching the logarithmic bound's positive argument. Power-of-two targets force exhaustive slot-subset enumeration to inspect O(k) subsets while the binomial formula checks O(log(k + 2)) jump counts.",
+  "cases": [
+    {
+      "id": "benchmark-power-64",
+      "name": "benchmark: count ways to reach stair 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 66,
+      "input": {
+        "k": 64
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "power-of-two",
+        "slot-subsets"
+      ]
+    },
+    {
+      "id": "benchmark-power-1024",
+      "name": "benchmark: count ways to reach stair 1024",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1026,
+      "input": {
+        "k": 1024
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "power-of-two",
+        "slot-subsets"
+      ]
+    },
+    {
+      "id": "benchmark-power-16384",
+      "name": "benchmark: count ways to reach stair 16384",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16386,
+      "input": {
+        "k": 16384
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "power-of-two",
+        "slot-subsets"
+      ]
+    }
+  ]
+}

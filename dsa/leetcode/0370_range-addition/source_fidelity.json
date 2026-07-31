@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_370", "frontend_id": "370", "title_slug": "range-addition", "url": "https://leetcode.com/problems/range-addition/description/", "paid_only": true, "content_sha256": "3dc9a9d9a81a8171544b2ecd677ecac5ad53a898a64a4fb62ce47c0dafefd2a3", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "length = 5, updates = [[1,3,2],[2,4,3],[0,2,-2]]", "output": "[-2,0,3,5,3]", "has_explanation": false},
+      {"ordinal": 2, "input": "length = 10, updates = [[2,4,6],[5,6,8],[1,9,-4]]", "output": "[0,-4,2,2,2,4,4,-4,-4,-4]", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "cc7569e8058fb82494ae925277c405aa23d5090b795966e61be1156effa9920e",
+    "reference/contract.md": "6851cc10f6aefb4ad8d1745496f9f685564e6a7431bbaba8944e395ca12521a0",
+    "reference/examples.md": "fbff3b9f29b39a784e5df802e83fde9bb09e28ce6ee30c12e29455ebec7da0c3",
+    "reference/constraints.md": "746e39da8a96ce1ba46140db44468fbcb6847b832caa9224f44f5ce1fb044f9c"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

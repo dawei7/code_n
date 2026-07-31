@@ -1,18 +1,14 @@
-from typing import List
+def solve(dimensions):
+    best_diagonal = 0
+    best_area = 0
 
-def solve(dimensions: List[List[int]]) -> int:
-    max_diag_sq = -1
-    max_area = -1
-    
-    for w, h in dimensions:
-        diag_sq = w * w + h * h
-        area = w * h
-        
-        if diag_sq > max_diag_sq:
-            max_diag_sq = diag_sq
-            max_area = area
-        elif diag_sq == max_diag_sq:
-            if area > max_area:
-                max_area = area
-                
-    return max_area
+    for length, width in dimensions:
+        diagonal = length * length + width * width
+        area = length * width
+        if diagonal > best_diagonal or (
+            diagonal == best_diagonal and area > best_area
+        ):
+            best_diagonal = diagonal
+            best_area = area
+
+    return best_area

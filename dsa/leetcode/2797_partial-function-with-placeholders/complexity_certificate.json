@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2797",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(a + r)",
+  "summary": "Every captured argument must be classified as fixed or placeholder and every unused call-time argument must be forwarded, giving a linear lower bound that the accepted one-pass merge matches.",
+  "optimality": {
+    "symbol": "a + r",
+    "lower_bound": "Omega(a + r)",
+    "upper_bound": "O(a + r)",
+    "argument": "A correct wrapper must inspect all a captured entries because any one may be a placeholder, and in the zero-placeholder case it must forward all r call-time values. Thus the worst case requires Omega(a + r) work. The accepted source scans args once, consumes each replacement once, and appends the remaining restArgs suffix once, establishing O(a + r)."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Skipping a captured position can miss a placeholder, while skipping an unused call-time position changes the required argument list."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Two monotone indices visit each captured and call-time entry at most once before one target invocation."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Node regression covers every authored case, wrapper reuse without captured-array mutation, receiver forwarding, and independently maximal captured and call-time array lengths."
+    }
+  ]
+}

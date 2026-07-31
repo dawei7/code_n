@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3621",
+  "cases": [
+    {
+      "id": "sample-four-depth-one",
+      "name": "sample: powers of two through four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "depth-one"
+      ]
+    },
+    {
+      "id": "sample-seven-depth-two",
+      "name": "sample: three values reach two first",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "depth-two"
+      ]
+    },
+    {
+      "id": "trial-one-depth-zero",
+      "name": "trial: one starts at the terminal value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum",
+        "depth-zero"
+      ]
+    },
+    {
+      "id": "trial-one-depth-one",
+      "name": "trial: one must not be classified as depth one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum",
+        "special-case"
+      ]
+    },
+    {
+      "id": "trial-two-depth-one",
+      "name": "trial: the first nontrivial power of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "trial-seven-depth-three",
+      "name": "trial: seven follows three then two then one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "inclusive-bound"
+      ]
+    },
+    {
+      "id": "trial-fifteen-depth-two",
+      "name": "trial: all four-bit patterns are available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 15,
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "all-ones-bound"
+      ]
+    },
+    {
+      "id": "trial-before-power-depth-one",
+      "name": "trial: powers of two below thirty-two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 31,
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "power-boundary"
+      ]
+    },
+    {
+      "id": "real-at-power-depth-one",
+      "name": "hidden: include a power-of-two upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 32,
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "power-boundary",
+        "inclusive-bound"
+      ]
+    },
+    {
+      "id": "real-byte-all-ones-depth-three",
+      "name": "hidden: classify every eight-bit popcount",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 255,
+        "k": 3
+      },
+      "expected": 140,
+      "tags": [
+        "hidden",
+        "all-ones-bound",
+        "combinations"
+      ]
+    },
+    {
+      "id": "real-twenty-bits-depth-two",
+      "name": "hidden: dense twenty-bit combination sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1048575,
+        "k": 2
+      },
+      "expected": 135850,
+      "tags": [
+        "hidden",
+        "dense",
+        "combinations"
+      ]
+    },
+    {
+      "id": "real-irregular-depth-two",
+      "name": "hidden: irregular prefix count for depth two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 123456789,
+        "k": 2
+      },
+      "expected": 13510040,
+      "tags": [
+        "hidden",
+        "irregular-bound",
+        "digit-counting"
+      ]
+    },
+    {
+      "id": "real-irregular-depth-three",
+      "name": "hidden: irregular prefix count for depth three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 123456789,
+        "k": 3
+      },
+      "expected": 56913806,
+      "tags": [
+        "hidden",
+        "irregular-bound",
+        "digit-counting"
+      ]
+    },
+    {
+      "id": "real-max-depth-two",
+      "name": "hidden: maximum n with depth two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000000000,
+        "k": 2
+      },
+      "expected": 18469940886122,
+      "tags": [
+        "hidden",
+        "maximum",
+        "depth-two"
+      ]
+    },
+    {
+      "id": "real-max-depth-four",
+      "name": "hidden: maximum n reaches the deepest attainable class",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000000000,
+        "k": 4
+      },
+      "expected": 498389083131446,
+      "tags": [
+        "hidden",
+        "maximum",
+        "depth-four"
+      ]
+    },
+    {
+      "id": "real-max-depth-five",
+      "name": "hidden: requested depth is unattainable",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000000000,
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "maximum",
+        "unattainable-depth"
+      ]
+    }
+  ]
+}

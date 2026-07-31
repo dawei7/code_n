@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Palindromic Path in Graph and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Grow palindromic simple paths outward from odd and even centers while memoizing their visited masks and endpoints.",
+      "time_complexity": "O(2^n n^4)",
+      "space_complexity": "O(2^n n^2)"
     }
   ]
 }

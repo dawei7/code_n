@@ -1,23 +1,13 @@
-from typing import List
+"""Optimal solution for LeetCode 3033: Modify the Matrix."""
 
-def solve(matrix: List[List[int]]) -> List[List[int]]:
-    rows = len(matrix)
-    cols = len(matrix[0])
-    
-    # Precompute the maximum value for each column
-    col_maxes = []
-    for c in range(cols):
-        current_max = -1
-        for r in range(rows):
-            if matrix[r][c] > current_max:
-                current_max = matrix[r][c]
-        col_maxes.append(current_max)
-    
-    # Create a result matrix or modify in place
-    # Here we modify in place for efficiency
-    for r in range(rows):
-        for c in range(cols):
-            if matrix[r][c] == -1:
-                matrix[r][c] = col_maxes[c]
-                
-    return matrix
+
+def solve(matrix: list[list[int]]) -> list[list[int]]:
+    answer = [row[:] for row in matrix]
+
+    for col in range(len(matrix[0])):
+        column_maximum = max(row[col] for row in matrix)
+        for row in range(len(matrix)):
+            if answer[row][col] == -1:
+                answer[row][col] = column_maximum
+
+    return answer

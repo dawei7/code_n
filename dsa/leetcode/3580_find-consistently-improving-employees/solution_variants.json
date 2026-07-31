@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Consistently Improving Employees and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Ranks reviews once per employee, aggregates the latest three ratings, and filters for a strict chronological increase.",
+      "time_complexity": "O(R log R + E log E)",
+      "space_complexity": "O(R + E)"
     }
   ]
 }

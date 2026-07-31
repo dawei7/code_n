@@ -8,104 +8,37 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String, Tree, Depth-First Search |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-subtree-sizes-after-changes](https://leetcode.com/problems/find-subtree-sizes-after-changes/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-subtree-sizes-after-changes/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-subtree-sizes-after-changes/).
 
 ### Goal
-Given a tree represented by a parent array and a string of characters, we perform a transformation: for every node, if its parent has the same character value, the node's parent is updated to the nearest ancestor that shares the same character. After these updates, we must calculate the size of the subtree for every node in the modified tree structure.
+
+You are given a rooted tree with nodes numbered from $0$ to $n-1$. The array `parent` describes its original edges: node $0$ is the root with `parent[0] = -1`, and `parent[x]` is the parent of every other node $x$. The string `s` assigns the character `s[x]` to node $x$.
+
+Change the tree simultaneously for every non-root node. For a node $x$, inspect only its ancestors in the original tree and find the closest ancestor $y$ for which `s[x] == s[y]`. If such an ancestor exists, make $y$ the new parent of $x$; otherwise, retain `parent[x]`. Because all changes are simultaneous, a parent changed for one node cannot affect another node's ancestor search. Return the subtree size of every node after all new parent relationships have taken effect.
 
 ### Function Contract
+
 **Inputs**
 
-- `parent`: A list of integers where `parent[i]` is the parent of node `i` (root is 0 with `parent[0] = -1`).
-- `s`: A string where `s[i]` is the character associated with node `i`.
+- `parent`: A list of $n$ integers describing a valid rooted tree, where `parent[0] = -1` and $1 \le n \le 10^5$.
+- `s`: A lowercase English string of length $n$ whose character at index $x$ labels node $x$.
 
 **Return value**
 
-- A list of integers representing the subtree size for each node in the modified tree.
+- A list `answer` of length $n$ where `answer[x]` is the number of nodes in the subtree rooted at $x$ after the simultaneous changes.
 
 ### Examples
+
 **Example 1**
 
 - Input: `parent = [-1, 0, 0, 1, 1, 1], s = "abaabc"`
 - Output: `[6, 3, 1, 1, 1, 1]`
+- Explanation: Node $3$ moves from node $1$ to node $0$, its closest original ancestor carrying `a`.
 
 **Example 2**
 
-- Input: `parent = [-1, 0, 0, 0], s = "aabc"`
-- Output: `[4, 1, 1, 1]`
-
-**Example 3**
-
-- Input: `parent = [-1, 0, 1, 2], s = "abab"`
-- Output: `[4, 3, 2, 1]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a two-pass Depth-First Search (DFS) approach. First, we build an adjacency list to represent the tree. We then perform a DFS to identify the "new" parent for each node by tracking the most recent ancestor for each character 'a'-'z'. After remapping the parent pointers, we perform a second DFS to compute the subtree sizes based on the new tree structure.
-
-### Complexity Analysis
-- **Time Complexity**: O(N), where N is the number of nodes. We traverse the tree twice: once to remap parents and once to calculate subtree sizes.
-- **Space Complexity**: O(N) to store the adjacency list, the new parent mapping, and the recursion stack.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import sys
-
-# Increase recursion depth for deep trees
-sys.setrecursionlimit(200000)
-
-def solve(parent, s):
-    n = len(parent)
-    adj = [[] for _ in range(n)]
-    for i in range(1, n):
-        adj[parent[i]].append(i)
-
-    new_parent = list(parent)
-    # Track the most recent ancestor for each character 'a'-'z'
-    last_seen = [-1] * 26
-
-    def find_new_parents(u, p_map):
-        char_idx = ord(s[u]) - ord('a')
-        old_p = p_map[char_idx]
-
-        if old_p != -1:
-            new_parent[u] = old_p
-
-        # Save state to backtrack
-        prev_val = p_map[char_idx]
-        p_map[char_idx] = u
-
-        for v in adj[u]:
-            find_new_parents(v, p_map)
-
-        # Restore state
-        p_map[char_idx] = prev_val
-
-    find_new_parents(0, last_seen)
-
-    # Build new adjacency list based on updated parents
-    new_adj = [[] for _ in range(n)]
-    for i in range(1, n):
-        new_adj[new_parent[i]].append(i)
-
-    subtree_sizes = [0] * n
-
-    def compute_sizes(u):
-        size = 1
-        for v in new_adj[u]:
-            size += compute_sizes(v)
-        subtree_sizes[u] = size
-        return size
-
-    compute_sizes(0)
-    return subtree_sizes
-```
-</details>
+- Input: `parent = [-1, 0, 4, 0, 1], s = "abbba"`
+- Output: `[5, 2, 1, 1, 1]`
+- Explanation: Node $4$ moves to node $0$, while node $2$ moves to node $1$ by following the original ancestry through node $4$.

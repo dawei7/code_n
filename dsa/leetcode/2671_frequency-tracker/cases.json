@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_2671",
+  "cases": [
+    {"id":"sample-add-twice","name":"sample: one number reaches frequency two","kind":"sample","visible":true,"input":{"operations":["FrequencyTracker","add","add","hasFrequency"],"arguments":[[],[3],[3],[2]]},"expected":[null,null,null,true],"tags":["sample","add"]},
+    {"id":"sample-delete-only","name":"sample: deleting the only occurrence","kind":"sample","visible":true,"input":{"operations":["FrequencyTracker","add","deleteOne","hasFrequency"],"arguments":[[],[1],[1],[1]]},"expected":[null,null,null,false],"tags":["sample","delete"]},
+    {"id":"sample-query-empty","name":"sample: query before and after an addition","kind":"sample","visible":true,"input":{"operations":["FrequencyTracker","hasFrequency","add","hasFrequency"],"arguments":[[],[2],[3],[1]]},"expected":[null,false,null,true],"tags":["sample","empty"]},
+    {"id":"trial-delete-absent","name":"trial: deleting an absent number changes nothing","kind":"trial","visible":true,"input":{"operations":["FrequencyTracker","deleteOne","add","deleteOne","hasFrequency"],"arguments":[[],[8],[5],[8],[1]]},"expected":[null,null,null,null,true],"tags":["boundary","absent"]},
+    {"id":"trial-shared-bucket","name":"trial: another value keeps the frequency bucket occupied","kind":"trial","visible":true,"input":{"operations":["FrequencyTracker","add","add","hasFrequency","deleteOne","hasFrequency"],"arguments":[[],[1],[2],[1],[1],[1]]},"expected":[null,null,null,true,null,true],"tags":["bucket","collision"]},
+    {"id":"real-bucket-transitions","name":"hidden: values move through different frequency buckets","kind":"real","visible":false,"input":{"operations":["FrequencyTracker","add","add","add","add","add","hasFrequency","hasFrequency","deleteOne","hasFrequency","hasFrequency"],"arguments":[[],[5],[5],[5],[7],[7],[2],[3],[7],[2],[1]]},"expected":[null,null,null,null,null,null,true,true,null,false,true],"tags":["hidden","transitions"]},
+    {"id":"real-return-to-zero","name":"hidden: repeated deletion removes a value completely","kind":"real","visible":false,"input":{"operations":["FrequencyTracker","add","add","deleteOne","deleteOne","deleteOne","hasFrequency","add","hasFrequency"],"arguments":[[],[100000],[100000],[100000],[100000],[100000],[1],[99999],[1]]},"expected":[null,null,null,null,null,null,false,null,true],"tags":["hidden","zero","boundary"]}
+  ]
+}

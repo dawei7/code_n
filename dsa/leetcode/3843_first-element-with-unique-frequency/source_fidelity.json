@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3843",
+    "frontend_id": "3843",
+    "title_slug": "first-element-with-unique-frequency",
+    "url": "https://leetcode.com/problems/first-element-with-unique-frequency/description/",
+    "paid_only": false,
+    "content_sha256": "d43c5014bc22e8b9b7cccf4068490b518a1dca5c46c0960abc19150199228d97",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [20,10,30,30]",
+        "output": "30",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [20,20,10,30,30,30]",
+        "output": "20",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [10,10,20,20]",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6397ed41c1e7222b8a908401277993296c3b8578a84a11f10483229ac6a1530e",
+      "reference/contract.md": "6c2f5d8ef26b19ab276b4eff479227b84fc77eaad6b7f0f33e3faa3f8d191ea8",
+      "reference/examples.md": "00f43005a834bc755d78db331a97bf143cb09efb355b3d96855246212759a2a7",
+      "reference/constraints.md": "390c552f1103d6deeea306353fdd0413c4fd55061bf147112f52f5a3d9229bb7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

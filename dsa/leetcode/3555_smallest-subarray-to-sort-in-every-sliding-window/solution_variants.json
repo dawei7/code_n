@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Smallest Subarray to Sort in Every Sliding Window and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Finds each window's inversion core, measures its extrema, and expands only across values that cannot remain outside the sorted segment.",
+      "time_complexity": "O((n-k+1)k)",
+      "space_complexity": "O(k)"
     }
   ]
 }

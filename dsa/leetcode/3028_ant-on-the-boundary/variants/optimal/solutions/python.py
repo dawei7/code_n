@@ -1,14 +1,13 @@
+"""Optimal solution for LeetCode 3028: Ant on the Boundary."""
+
+
 def solve(nums: list[int]) -> int:
-    """
-    Calculates the number of times an ant returns to the origin (0)
-    given a sequence of moves.
-    """
-    current_position = 0
-    return_count = 0
-    
-    for move in nums:
-        current_position += move
-        if current_position == 0:
-            return_count += 1
-            
-    return return_count
+    position = 0
+    answer = 0
+
+    for movement in nums:
+        position += movement
+        if position == 0:
+            answer += 1
+
+    return answer

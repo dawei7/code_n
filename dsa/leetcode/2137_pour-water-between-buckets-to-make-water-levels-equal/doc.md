@@ -5,51 +5,47 @@
 | Source | LeetCode |
 | Frontend ID | 2137 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Binary Search |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [pour-water-between-buckets-to-make-water-levels-equal](https://leetcode.com/problems/pour-water-between-buckets-to-make-water-levels-equal/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/pour-water-between-buckets-to-make-water-levels-equal/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/pour-water-between-buckets-to-make-water-levels-equal/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You have $n$ buckets whose initial water amounts are given in gallons. You may
+pour any real-valued quantity from one bucket into another. Whenever $k$
+gallons are poured, `loss` percent of $k$ is spilled, so only the remaining
+fraction reaches the destination.
+
+Transfer water until every bucket contains the same amount. Determine the
+maximum common level that can be achieved. An answer within $10^{-5}$ of the
+exact value is accepted.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `buckets`: A list of $n$ integer water amounts with $1\le n\le 10^5$ and
+  $0\le \texttt{buckets[i]}\le 10^5$.
+- `loss`: The percentage lost from every poured quantity, from `0` through
+  `99`.
+
+Let $R=\max(\texttt{buckets})-\min(\texttt{buckets})$ and let $\varepsilon$
+denote the required numerical precision.
 
 **Return value**
 
-TODO
+The maximum equal water level as a floating-point value.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `buckets = [1,2,7]`, `loss = 80`
+- Output: `2.00000`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `buckets = [2,4,6]`, `loss = 50`
+- Output: `3.50000`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `buckets = [3,3,3,3]`, `loss = 40`
+- Output: `3.00000`

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Split Strings by Separator and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Splits each word and appends only non-empty pieces in encounter order.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(S)"
     }
   ]
 }

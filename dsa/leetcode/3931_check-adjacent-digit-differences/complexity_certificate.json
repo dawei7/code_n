@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3931",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(N)",
+  "summary": "Every digit can affect an adjacent-pair decision, giving a linear worst-case input-reading lower bound that the single scan already matches, so no genuine principal slower class needs runtime scaling.",
+  "optimality": {
+    "symbol": "N",
+    "lower_bound": "Omega(N)",
+    "upper_bound": "O(N)",
+    "argument": "On an all-equal valid string, changing any uninspected digit to a distant value can change the result to false; inspecting all N digits is therefore necessary in the worst case, while the reference checks each of the N - 1 adjacent pairs once."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An unread position in an all-equal valid string can be changed to create an adjacent difference greater than two and reverse the required boolean answer."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The accepted reference performs one constant-work comparison for each consecutive pair and retains no input-sized auxiliary structure."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhaustively checks all 111,100 digit strings of lengths two through five against an independent numeric oracle; authored cases also cover the inclusive threshold, leading zeroes, early and late failures, and maximum length."
+    }
+  ]
+}

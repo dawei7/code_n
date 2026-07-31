@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3297",
+  "measurement_note": "The workload size n is the length of word1. A single required z at the final position forces a complete scan, and all n possible starts form valid substrings ending there.",
+  "cases": [
+    {"id":"benchmark-source-1000","name":"benchmark: one required letter at the end of 1000 characters","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 1000\ncase = {'word1': 'a' * (n - 1) + 'z', 'word2': 'z'}\nexpected = n"},"size":1000,"tags":["benchmark","sliding-window"]},
+    {"id":"benchmark-source-10000","name":"benchmark: one required letter at the end of 10000 characters","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 10000\ncase = {'word1': 'a' * (n - 1) + 'z', 'word2': 'z'}\nexpected = n"},"size":10000,"tags":["benchmark","sliding-window"]},
+    {"id":"benchmark-source-100000","name":"benchmark: one required letter at the end of 100000 characters","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 100000\ncase = {'word1': 'a' * (n - 1) + 'z', 'word2': 'z'}\nexpected = n"},"size":100000,"tags":["benchmark","sliding-window"]}
+  ]
+}

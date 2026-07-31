@@ -14,8 +14,10 @@ class Router:
         packet = (source, destination, timestamp)
         if packet in self.packets:
             return False
+
         if len(self.queue) == self.limit:
             self._remove_oldest()
+
         self.queue.append(packet)
         self.packets.add(packet)
         self.timestamps[destination].append(timestamp)
@@ -24,13 +26,14 @@ class Router:
     def forwardPacket(self) -> list[int]:
         if not self.queue:
             return []
-        source, destination, timestamp = self._remove_oldest()
-        return [source, destination, timestamp]
+        return list(self._remove_oldest())
 
     def getCount(self, destination: int, startTime: int, endTime: int) -> int:
         values = self.timestamps.get(destination, [])
         left = self.left_index.get(destination, 0)
-        return bisect_right(values, endTime, lo=left) - bisect_left(values, startTime, lo=left)
+        return bisect_right(values, endTime, lo=left) - bisect_left(
+            values, startTime, lo=left
+        )
 
     def _remove_oldest(self) -> tuple[int, int, int]:
         packet = self.queue.popleft()
@@ -42,6 +45,7 @@ class Router:
 def solve(operations: list[str], arguments: list[list[int]]) -> list[object]:
     router: Router | None = None
     output: list[object] = []
+
     for operation, args in zip(operations, arguments):
         if operation == "Router":
             router = Router(args[0])
@@ -55,4 +59,5 @@ def solve(operations: list[str], arguments: list[list[int]]) -> list[object]:
         elif operation == "getCount":
             assert router is not None
             output.append(router.getCount(args[0], args[1], args[2]))
+
     return output

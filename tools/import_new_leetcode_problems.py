@@ -1,9 +1,11 @@
-"""Import newly published LeetCode problems without rewriting existing packages.
+"""Import eligible LeetCode problems without rewriting existing packages.
 
-This is the weekly-maintenance entry point. It delegates to the canonical
-dataset sync in ``--new-problems-only`` mode, creates each new ``metadata.json``
-and ``doc.md`` from the repository template, updates the canonical index and
+This entry point delegates to the canonical dataset sync in
+``--new-problems-only`` mode, creates each eligible ``metadata.json`` and
+``doc.md`` from the repository template, updates the canonical index and
 subsets, and computes an initial estimated Elo from locally available inputs.
+The application corpus is permanently capped at frontend ID 4005; later
+LeetCode problems are reported and intentionally ignored.
 """
 
 from __future__ import annotations

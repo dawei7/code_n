@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4005",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Counts one-operation divisibility relationships by factoring distinct values and enumerating their divisors, then scores only targets already present.",
+      "time_complexity": "O(P + U sqrt(V) + D)",
+      "space_complexity": "O(sqrt(V) + U)"
+    }
+  ]
+}

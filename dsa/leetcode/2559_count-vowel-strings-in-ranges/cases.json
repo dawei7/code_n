@@ -41,7 +41,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: all words are vowel strings",
+      "name": "sample: every word qualifies",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -71,17 +71,18 @@
         1
       ],
       "tags": [
-        "sample"
+        "sample",
+        "all-valid"
       ]
     },
     {
-      "id": "trial-one-valid-word",
-      "name": "trial: only one word starts and ends with vowels",
-      "kind": "trial",
+      "id": "sample-3",
+      "name": "sample: only both vowel endpoints qualify",
+      "kind": "sample",
       "visible": true,
       "input": {
         "words": [
-          "abc",
+          "apple",
           "owl",
           "ice"
         ],
@@ -97,21 +98,22 @@
         ]
       },
       "expected": [
-        1,
+        2,
         0
       ],
       "tags": [
-        "trial"
+        "sample",
+        "endpoint-check"
       ]
     },
     {
-      "id": "real-single-consonant-word",
-      "name": "hidden: one consonant-only word",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-letter-vowel",
+      "name": "trial: one vowel is both endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
-          "b"
+          "u"
         ],
         "queries": [
           [
@@ -121,10 +123,161 @@
         ]
       },
       "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "single-letter"
+      ]
+    },
+    {
+      "id": "trial-one-sided-endpoints",
+      "name": "trial: one vowel endpoint is insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "ba",
+          "bc"
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0,
         0
       ],
       "tags": [
-        "hidden"
+        "trial",
+        "endpoint-check"
+      ]
+    },
+    {
+      "id": "real-inclusive-boundaries",
+      "name": "hidden: both queried boundary words qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "e"
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "inclusive-range"
+      ]
+    },
+    {
+      "id": "real-repeated-overlapping",
+      "name": "hidden: repeated and overlapping queries preserve order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aa",
+          "bb",
+          "ee",
+          "cc"
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "repeated-query",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-long-endpoint-only",
+      "name": "hidden: interior letters do not affect qualification",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbu",
+          "ezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "maximum-word-length"
       ]
     }
   ]

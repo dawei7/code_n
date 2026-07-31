@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3894",
+    "frontend_id": "3894",
+    "title_slug": "traffic-signal-color",
+    "url": "https://leetcode.com/problems/traffic-signal-color/description/",
+    "paid_only": false,
+    "content_sha256": "c455882aadbedc6f68313164257bcbc9ee34de7627b167a1e4f59c5c95c075c1",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "timer = 60",
+        "output": "\"Red\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "timer = 5",
+        "output": "\"Invalid\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "90b1f8407932c27d7e00822f0b1101e48859e9b05822c8e6d2fc8d1930a4a42c",
+      "reference/contract.md": "a4e3a706b21c38204d7e53765c37a1d1d8c66750da0a6e4f527dfd496325fd6c",
+      "reference/examples.md": "dda6b8bcfe3bb87d77751be9528b64f34406c0bdd934e933822f627bbcf5ed40",
+      "reference/constraints.md": "456fb35fe28ad88d17f682237cefd74e03b321a76a63f3e35908247fec8014cf"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

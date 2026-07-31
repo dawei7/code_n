@@ -1,0 +1,780 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3626",
+  "cases": [
+    {
+      "id": "sample-inventory-imbalance",
+      "name": "sample: three qualifying stores",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Downtown Tech",
+              "location": "New York"
+            },
+            {
+              "store_id": 2,
+              "store_name": "Suburb Mall",
+              "location": "Chicago"
+            },
+            {
+              "store_id": 3,
+              "store_name": "City Center",
+              "location": "Los Angeles"
+            },
+            {
+              "store_id": 4,
+              "store_name": "Corner Shop",
+              "location": "Miami"
+            },
+            {
+              "store_id": 5,
+              "store_name": "Plaza Store",
+              "location": "Seattle"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Laptop",
+              "quantity": 5,
+              "price": 999.99
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Mouse",
+              "quantity": 50,
+              "price": 19.99
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "Keyboard",
+              "quantity": 25,
+              "price": 79.99
+            },
+            {
+              "inventory_id": 4,
+              "store_id": 1,
+              "product_name": "Monitor",
+              "quantity": 15,
+              "price": 299.99
+            },
+            {
+              "inventory_id": 5,
+              "store_id": 2,
+              "product_name": "Phone",
+              "quantity": 3,
+              "price": 699.99
+            },
+            {
+              "inventory_id": 6,
+              "store_id": 2,
+              "product_name": "Charger",
+              "quantity": 100,
+              "price": 25.99
+            },
+            {
+              "inventory_id": 7,
+              "store_id": 2,
+              "product_name": "Case",
+              "quantity": 75,
+              "price": 15.99
+            },
+            {
+              "inventory_id": 8,
+              "store_id": 2,
+              "product_name": "Headphones",
+              "quantity": 20,
+              "price": 149.99
+            },
+            {
+              "inventory_id": 9,
+              "store_id": 3,
+              "product_name": "Tablet",
+              "quantity": 2,
+              "price": 499.99
+            },
+            {
+              "inventory_id": 10,
+              "store_id": 3,
+              "product_name": "Stylus",
+              "quantity": 80,
+              "price": 29.99
+            },
+            {
+              "inventory_id": 11,
+              "store_id": 3,
+              "product_name": "Cover",
+              "quantity": 60,
+              "price": 39.99
+            },
+            {
+              "inventory_id": 12,
+              "store_id": 4,
+              "product_name": "Watch",
+              "quantity": 10,
+              "price": 299.99
+            },
+            {
+              "inventory_id": 13,
+              "store_id": 4,
+              "product_name": "Band",
+              "quantity": 25,
+              "price": 49.99
+            },
+            {
+              "inventory_id": 14,
+              "store_id": 5,
+              "product_name": "Camera",
+              "quantity": 8,
+              "price": 599.99
+            },
+            {
+              "inventory_id": 15,
+              "store_id": 5,
+              "product_name": "Lens",
+              "quantity": 12,
+              "price": 199.99
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            3,
+            "City Center",
+            "Los Angeles",
+            "Tablet",
+            "Stylus",
+            40
+          ],
+          [
+            2,
+            "Suburb Mall",
+            "Chicago",
+            "Phone",
+            "Case",
+            25
+          ],
+          [
+            1,
+            "Downtown Tech",
+            "New York",
+            "Laptop",
+            "Mouse",
+            10
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "ordering",
+        "minimum-product-count"
+      ]
+    },
+    {
+      "id": "trial-exactly-three-products",
+      "name": "trial: exactly three products qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Alpha",
+              "location": "North"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Cheap",
+              "quantity": 30,
+              "price": 5
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Middle",
+              "quantity": 8,
+              "price": 20
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "Expensive",
+              "quantity": 6,
+              "price": 50
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            1,
+            "Alpha",
+            "North",
+            "Expensive",
+            "Cheap",
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "exactly-three"
+      ]
+    },
+    {
+      "id": "trial-only-two-products",
+      "name": "trial: two products is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Small",
+              "location": "East"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Cheap",
+              "quantity": 20,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Expensive",
+              "quantity": 2,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "minimum-product-count",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-equal-quantities",
+      "name": "trial: equal extreme quantities are not imbalanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Balanced",
+              "location": "West"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Cheap",
+              "quantity": 7,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Middle",
+              "quantity": 4,
+              "price": 5
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "Expensive",
+              "quantity": 7,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "strict-inequality",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-expensive-has-more-stock",
+      "name": "trial: expensive product has greater stock",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Reverse",
+              "location": "South"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Cheap",
+              "quantity": 3,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Middle",
+              "quantity": 5,
+              "price": 5
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "Expensive",
+              "quantity": 9,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "imbalance-filter",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-ratio-rounding",
+      "name": "hidden: ratio rounds to two decimal places",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Rounder",
+              "location": "Central"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "Cheap",
+              "quantity": 10,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "Middle",
+              "quantity": 4,
+              "price": 3
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "Expensive",
+              "quantity": 3,
+              "price": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            1,
+            "Rounder",
+            "Central",
+            "Expensive",
+            "Cheap",
+            3.33
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "rounding"
+      ]
+    },
+    {
+      "id": "real-ratio-then-name-order",
+      "name": "hidden: equal ratios use store-name ordering",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Zulu",
+              "location": "Z"
+            },
+            {
+              "store_id": 2,
+              "store_name": "Alpha",
+              "location": "A"
+            },
+            {
+              "store_id": 3,
+              "store_name": "Beta",
+              "location": "B"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 1,
+              "product_name": "ZC",
+              "quantity": 20,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 1,
+              "product_name": "ZM",
+              "quantity": 5,
+              "price": 2
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 1,
+              "product_name": "ZE",
+              "quantity": 2,
+              "price": 3
+            },
+            {
+              "inventory_id": 4,
+              "store_id": 2,
+              "product_name": "AC",
+              "quantity": 30,
+              "price": 1
+            },
+            {
+              "inventory_id": 5,
+              "store_id": 2,
+              "product_name": "AM",
+              "quantity": 4,
+              "price": 2
+            },
+            {
+              "inventory_id": 6,
+              "store_id": 2,
+              "product_name": "AE",
+              "quantity": 3,
+              "price": 3
+            },
+            {
+              "inventory_id": 7,
+              "store_id": 3,
+              "product_name": "BC",
+              "quantity": 18,
+              "price": 1
+            },
+            {
+              "inventory_id": 8,
+              "store_id": 3,
+              "product_name": "BM",
+              "quantity": 5,
+              "price": 2
+            },
+            {
+              "inventory_id": 9,
+              "store_id": 3,
+              "product_name": "BE",
+              "quantity": 3,
+              "price": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            2,
+            "Alpha",
+            "A",
+            "AE",
+            "AC",
+            10
+          ],
+          [
+            1,
+            "Zulu",
+            "Z",
+            "ZE",
+            "ZC",
+            10
+          ],
+          [
+            3,
+            "Beta",
+            "B",
+            "BE",
+            "BC",
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-store-without-inventory",
+      "name": "hidden: stores without inventory do not appear",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 1,
+              "store_name": "Empty",
+              "location": "None"
+            },
+            {
+              "store_id": 2,
+              "store_name": "Stocked",
+              "location": "Here"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 2,
+              "product_name": "Cheap",
+              "quantity": 12,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 2,
+              "product_name": "Middle",
+              "quantity": 4,
+              "price": 2
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 2,
+              "product_name": "Expensive",
+              "quantity": 2,
+              "price": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            2,
+            "Stocked",
+            "Here",
+            "Expensive",
+            "Cheap",
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "missing-inventory"
+      ]
+    },
+    {
+      "id": "real-middle-products-irrelevant",
+      "name": "hidden: middle-priced quantities do not affect extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "stores": [
+            {
+              "store_id": 7,
+              "store_name": "Many",
+              "location": "Hub"
+            }
+          ],
+          "inventory": [
+            {
+              "inventory_id": 1,
+              "store_id": 7,
+              "product_name": "Cheapest",
+              "quantity": 21,
+              "price": 1
+            },
+            {
+              "inventory_id": 2,
+              "store_id": 7,
+              "product_name": "Low",
+              "quantity": 1,
+              "price": 2
+            },
+            {
+              "inventory_id": 3,
+              "store_id": 7,
+              "product_name": "High",
+              "quantity": 1000,
+              "price": 8
+            },
+            {
+              "inventory_id": 4,
+              "store_id": 7,
+              "product_name": "Most",
+              "quantity": 4,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "store_id",
+          "store_name",
+          "location",
+          "most_exp_product",
+          "cheapest_product",
+          "imbalance_ratio"
+        ],
+        "rows": [
+          [
+            7,
+            "Many",
+            "Hub",
+            "Most",
+            "Cheapest",
+            5.25
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "extreme-prices"
+      ]
+    }
+  ]
+}

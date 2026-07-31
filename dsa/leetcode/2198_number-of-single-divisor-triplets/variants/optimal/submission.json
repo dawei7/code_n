@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1383",
+  "frontend_id": "2198",
+  "title_slug": "number-of-single-divisor-triplets",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.singleDivisorTriplet",
+  "verified_submission_id": "2073838814",
+  "verified_at": "2026-07-19T18:54:15.908439+00:00"
+}

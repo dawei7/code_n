@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2393",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increases separated by decrease and equality",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          4,
+          4,
+          6
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fully increasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "fully-increasing"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: equality breaks every longer range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "strictness",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-decreasing",
+      "name": "hidden: only singleton ranges qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "real-several-runs",
+      "name": "hidden: triangular counts from several run lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "runs"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: upper-bound values preserve strict comparison",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          999998,
+          999999,
+          1000000
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "maximum-values"
+      ]
+    }
+  ]
+}

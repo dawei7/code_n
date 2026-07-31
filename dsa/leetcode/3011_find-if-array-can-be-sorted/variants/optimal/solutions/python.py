@@ -1,27 +1,20 @@
-def solve(nums: list[int]) -> bool:
-    def count_set_bits(n: int) -> int:
-        return bin(n).count('1')
+def solve(nums):
+    previous_maximum = 0
+    index = 0
 
-    if not nums:
-        return True
+    while index < len(nums):
+        bits = nums[index].bit_count()
+        group_minimum = nums[index]
+        group_maximum = nums[index]
+        index += 1
 
-    prev_max = -1
-    curr_min = nums[0]
-    curr_max = nums[0]
-    prev_bits = count_set_bits(nums[0])
+        while index < len(nums) and nums[index].bit_count() == bits:
+            group_minimum = min(group_minimum, nums[index])
+            group_maximum = max(group_maximum, nums[index])
+            index += 1
 
-    for i in range(1, len(nums)):
-        curr_bits = count_set_bits(nums[i])
-        
-        if curr_bits == prev_bits:
-            curr_min = min(curr_min, nums[i])
-            curr_max = max(curr_max, nums[i])
-        else:
-            if prev_max > curr_min:
-                return False
-            prev_max = curr_max
-            curr_min = nums[i]
-            curr_max = nums[i]
-            prev_bits = curr_bits
-            
-    return prev_max <= curr_min
+        if group_minimum < previous_maximum:
+            return False
+        previous_maximum = group_maximum
+
+    return True

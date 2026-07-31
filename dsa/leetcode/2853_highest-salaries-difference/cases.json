@@ -1,0 +1,113 @@
+{
+  "challenge_id": "lc_2853",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: engineering has the larger maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salaries": [
+            {"emp_name": "Kathy", "department": "Engineering", "salary": 50000},
+            {"emp_name": "Roy", "department": "Marketing", "salary": 30000},
+            {"emp_name": "Charles", "department": "Engineering", "salary": 45000},
+            {"emp_name": "Jack", "department": "Engineering", "salary": 85000},
+            {"emp_name": "Benjamin", "department": "Marketing", "salary": 34000},
+            {"emp_name": "Anthony", "department": "Marketing", "salary": 42000},
+            {"emp_name": "Edward", "department": "Engineering", "salary": 102000},
+            {"emp_name": "Terry", "department": "Engineering", "salary": 44000},
+            {"emp_name": "Evelyn", "department": "Marketing", "salary": 53000},
+            {"emp_name": "Arthur", "department": "Engineering", "salary": 32000}
+          ]
+        }
+      },
+      "expected": {"columns": ["salary_difference"], "rows": [[49000]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["sample", "conditional-aggregation"]
+    },
+    {
+      "id": "trial-one-row-per-department",
+      "name": "trial: each target department has one employee",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Salaries": [
+        {"emp_name": "Ada", "department": "Engineering", "salary": 100},
+        {"emp_name": "Bea", "department": "Marketing", "salary": 40}
+      ]}},
+      "expected": {"columns": ["salary_difference"], "rows": [[60]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["trial", "single-row-groups"]
+    },
+    {
+      "id": "trial-equal-maxima",
+      "name": "trial: departmental maxima are equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Salaries": [
+        {"emp_name": "E1", "department": "Engineering", "salary": 90},
+        {"emp_name": "E2", "department": "Engineering", "salary": 120},
+        {"emp_name": "M1", "department": "Marketing", "salary": 120}
+      ]}},
+      "expected": {"columns": ["salary_difference"], "rows": [[0]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["trial", "equal-maxima"]
+    },
+    {
+      "id": "real-marketing-higher",
+      "name": "hidden: absolute value handles a larger marketing maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Salaries": [
+        {"emp_name": "E1", "department": "Engineering", "salary": 75},
+        {"emp_name": "M1", "department": "Marketing", "salary": 30},
+        {"emp_name": "M2", "department": "Marketing", "salary": 125}
+      ]}},
+      "expected": {"columns": ["salary_difference"], "rows": [[50]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "absolute-value"]
+    },
+    {
+      "id": "real-ignore-other-departments",
+      "name": "hidden: unrelated department salaries do not affect either maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Salaries": [
+        {"emp_name": "E1", "department": "Engineering", "salary": 90},
+        {"emp_name": "M1", "department": "Marketing", "salary": 50},
+        {"emp_name": "S1", "department": "Sales", "salary": 1000}
+      ]}},
+      "expected": {"columns": ["salary_difference"], "rows": [[40]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "department-filter"]
+    },
+    {
+      "id": "real-highest-row-not-first",
+      "name": "hidden: row order does not determine the maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Salaries": [
+        {"emp_name": "E-low", "department": "Engineering", "salary": 10},
+        {"emp_name": "M-low", "department": "Marketing", "salary": 20},
+        {"emp_name": "E-high", "department": "Engineering", "salary": 200},
+        {"emp_name": "M-high", "department": "Marketing", "salary": 170}
+      ]}},
+      "expected": {"columns": ["salary_difference"], "rows": [[30]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "row-order", "maximum"]
+    },
+    {
+      "id": "real-same-name-two-departments",
+      "name": "hidden: the composite key permits one name in both departments",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Salaries": [
+        {"emp_name": "Pat", "department": "Engineering", "salary": 80},
+        {"emp_name": "Pat", "department": "Marketing", "salary": 30}
+      ]}},
+      "expected": {"columns": ["salary_difference"], "rows": [[50]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "composite-key"]
+    }
+  ]
+}

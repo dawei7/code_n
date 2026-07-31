@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2293",
+  "cases": [
+    {"id":"sample-three-rounds","name":"sample: three alternating reduction levels","kind":"sample","visible":true,"input":{"nums":[1,3,5,2,4,8,2,2]},"expected":1,"tags":["sample","multi-round"]},
+    {"id":"sample-single","name":"sample: one value needs no reduction","kind":"sample","visible":true,"input":{"nums":[3]},"expected":3,"tags":["sample","single-element"]},
+    {"id":"trial-one-pair","name":"one pair uses the minimum at index zero","kind":"trial","visible":true,"input":{"nums":[7,2]},"expected":2,"tags":["one-round","minimum"]},
+    {"id":"trial-four-values","name":"second pair uses maximum before the final minimum","kind":"trial","visible":true,"input":{"nums":[9,1,2,8]},"expected":1,"tags":["parity"]},
+    {"id":"trial-equal","name":"equal values survive either operation","kind":"trial","visible":true,"input":{"nums":[5,5,5,5,5,5,5,5]},"expected":5,"tags":["equal-values"]},
+    {"id":"real-decreasing","name":"hidden: decreasing values exercise both operations","kind":"real","visible":false,"input":{"nums":[8,7,6,5,4,3,2,1]},"expected":3,"tags":["hidden","parity"]},
+    {"id":"real-large-values","name":"hidden: values may reach the upper bound","kind":"real","visible":false,"input":{"nums":[1000000000,1,999999999,2]},"expected":1,"tags":["hidden","bounds"]},
+    {"id":"real-sixteen","name":"hidden: four complete reduction levels","kind":"real","visible":false,"input":{"nums":[16,1,15,2,14,3,13,4,12,5,11,6,10,7,9,8]},"expected":1,"tags":["hidden","deep-reduction"]}
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_3970",
+  "cases": [
+    {
+      "id": "sample-direct-route-required",
+      "name": "sample: direct route avoids a repeated starting label",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "edges": [[0,1,1],[1,2,1],[0,2,3]], "labels": "aab", "k": 1},
+      "expected": 3,
+      "tags": ["sample", "direct-route", "run-limit"]
+    },
+    {
+      "id": "sample-cheaper-two-label-run",
+      "name": "sample: increasing k admits the cheaper route",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "edges": [[0,1,1],[1,2,1],[0,2,3]], "labels": "aab", "k": 2},
+      "expected": 2,
+      "tags": ["sample", "weighted-choice", "exact-limit"]
+    },
+    {
+      "id": "sample-only-route-invalid",
+      "name": "sample: the only route exceeds the label-run limit",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "edges": [[0,1,1],[1,2,1]], "labels": "aaa", "k": 2},
+      "expected": -1,
+      "tags": ["sample", "unreachable", "same-label"]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: source is already the destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "edges": [], "labels": "z", "k": 1},
+      "expected": 0,
+      "tags": ["trial", "minimum-n", "zero-edge-route"]
+    },
+    {
+      "id": "trial-no-edges",
+      "name": "trial: separate nodes with no edges are unreachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "edges": [], "labels": "ab", "k": 1},
+      "expected": -1,
+      "tags": ["trial", "empty-edges", "unreachable"]
+    },
+    {
+      "id": "trial-first-edge-blocked",
+      "name": "trial: equal endpoint labels violate k equal to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "edges": [[0,1,7]], "labels": "aa", "k": 1},
+      "expected": -1,
+      "tags": ["trial", "k-one", "same-label"]
+    },
+    {
+      "id": "trial-first-edge-allowed",
+      "name": "trial: the same edge is legal at a limit of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "edges": [[0,1,7]], "labels": "aa", "k": 2},
+      "expected": 7,
+      "tags": ["trial", "exact-limit", "same-label"]
+    },
+    {
+      "id": "trial-cheap-invalid-direct-edge",
+      "name": "trial: a costlier detour is the cheapest valid route",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4, "edges": [[0,3,1],[0,1,3],[1,3,3]], "labels": "abca", "k": 1},
+      "expected": 6,
+      "tags": ["trial", "invalid-cheapest-edge", "label-reset"]
+    },
+    {
+      "id": "real-weighted-route-selection",
+      "name": "hidden: multiple valid routes require weighted minimization",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "edges": [[0,4,10000],[0,1,2],[1,2,2],[2,4,3],[0,3,5],[3,4,5]], "labels": "abcde", "k": 1},
+      "expected": 7,
+      "tags": ["hidden", "positive-weights", "maximum-edge-weight"]
+    },
+    {
+      "id": "real-directed-orientation",
+      "name": "hidden: reverse-facing edges do not connect the source",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 3, "edges": [[1,0,1],[2,1,1]], "labels": "abc", "k": 1},
+      "expected": -1,
+      "tags": ["hidden", "directed-graph", "unreachable"]
+    },
+    {
+      "id": "real-parallel-edges",
+      "name": "hidden: parallel edges retain their individual weights",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 3, "edges": [[0,1,9],[0,1,2],[1,2,4]], "labels": "abc", "k": 1},
+      "expected": 6,
+      "tags": ["hidden", "parallel-edges", "weighted-choice"]
+    },
+    {
+      "id": "real-node-needs-two-run-states",
+      "name": "hidden: a costlier arrival preserves a legal final transition",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "edges": [[0,1,1],[1,3,1],[0,2,2],[2,3,2],[3,4,1]], "labels": "aabaa", "k": 3},
+      "expected": 5,
+      "tags": ["hidden", "stateful-distance", "run-length"]
+    },
+    {
+      "id": "real-alternating-chain",
+      "name": "hidden: every label change resets a limit-one run",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "edges": [[0,1,1],[1,2,2],[2,3,3],[3,4,4]], "labels": "ababa", "k": 1},
+      "expected": 10,
+      "tags": ["hidden", "alternating-labels", "k-one"]
+    },
+    {
+      "id": "real-run-exactly-k",
+      "name": "hidden: a same-label route may end exactly at the limit",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "edges": [[0,1,1],[1,2,1],[2,3,1]], "labels": "aaaa", "k": 4},
+      "expected": 3,
+      "tags": ["hidden", "exact-limit", "same-label-chain"]
+    },
+    {
+      "id": "real-run-exceeds-k",
+      "name": "hidden: one additional equal label invalidates the chain",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "edges": [[0,1,1],[1,2,1],[2,3,1],[3,4,1]], "labels": "aaaaa", "k": 4},
+      "expected": -1,
+      "tags": ["hidden", "over-limit", "same-label-chain"]
+    }
+  ]
+}

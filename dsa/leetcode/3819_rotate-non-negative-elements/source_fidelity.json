@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3819",
+    "frontend_id": "3819",
+    "title_slug": "rotate-non-negative-elements",
+    "url": "https://leetcode.com/problems/rotate-non-negative-elements/description/",
+    "paid_only": false,
+    "content_sha256": "b30c96518a3f8ab3a351a5fa088cc569048b328e64f7135169ac8659f7b62561",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums = [1,-2,3,-4], k = 3`",
+        "output": "`[3,-2,1,-4]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums = [-3,-2,7], k = 1`",
+        "output": "`[-3,-2,7]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`nums = [5,4,-9,6], k = 2`",
+        "output": "`[6,5,-9,4]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6d6b41749096825eca8233d6765ca2a3d5038fef400d2ed7d1914d3db1faebda",
+      "reference/contract.md": "472435b7faba41109c9d87c2b874fa72a57f803e8a5c6cb08e1fbe2df49f7cc1",
+      "reference/examples.md": "d8bece17726f5a47e99c807ebb815a005407280cce073bbc3e2bd3380a182068",
+      "reference/constraints.md": "4bb4f74a75c48929a463d12e27388d95f5cd469b5d057bb87af996163bb26188"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

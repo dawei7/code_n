@@ -1,44 +1,68 @@
-def solve(nums: list[int], k: int) -> int:
-    """
-    Calculates the X value of the array by analyzing bitwise contributions
-    of all subarrays.
-    """
+def solve(nums: list[int], k: int, queries: list[list[int]]) -> list[int]:
     n = len(nums)
-    ans = 0
-    
-    # We process each bit position independently.
-    # For each bit, we count how many subarrays have an XOR sum
-    # with that bit set.
-    for bit in range(31):
-        # Current bit contribution
-        count_ones = 0
-        
-        # Prefix XORs for the current bit
-        # prefix_xor[i] is the XOR sum of nums[0...i-1]
-        # We only care about the 'bit'-th bit.
-        current_prefix = 0
-        
-        # Track counts of prefix XORs seen so far (0 or 1)
-        # count[0] is number of prefixes with bit 0, count[1] with bit 1
-        counts = [1, 0]
-        
-        total_subarrays_with_bit = 0
-        
-        for x in nums:
-            # Update prefix XOR for this bit
-            if (x >> bit) & 1:
-                current_prefix ^= 1
-            
-            # If current_prefix is 1, we need previous prefix to be 0
-            # If current_prefix is 0, we need previous prefix to be 1
-            total_subarrays_with_bit += counts[1 - current_prefix]
-            
-            # Update counts
-            counts[current_prefix] += 1
-            
-        # If the number of subarrays with this bit set satisfies the condition
-        # (e.g., divisible by k or similar logic depending on specific problem variant)
-        if total_subarrays_with_bit % k == 0:
-            ans |= (1 << bit)
-            
-    return ans
+    size = 1
+    while size < n:
+        size *= 2
+
+    products = [1 % k] * (2 * size)
+    counts = [[0] * k for _ in range(2 * size)]
+
+    for index, value in enumerate(nums):
+        remainder = value % k
+        products[size + index] = remainder
+        counts[size + index][remainder] = 1
+
+    def merge(left_product, left_counts, right_product, right_counts):
+        merged_counts = left_counts.copy()
+        for remainder, count in enumerate(right_counts):
+            merged_counts[(left_product * remainder) % k] += count
+        return (left_product * right_product) % k, merged_counts
+
+    def pull(node):
+        products[node], counts[node] = merge(
+            products[2 * node], counts[2 * node],
+            products[2 * node + 1], counts[2 * node + 1],
+        )
+
+    for node in range(size - 1, 0, -1):
+        pull(node)
+
+    def update(index, value):
+        node = size + index
+        remainder = value % k
+        products[node] = remainder
+        counts[node] = [0] * k
+        counts[node][remainder] = 1
+        node //= 2
+        while node:
+            pull(node)
+            node //= 2
+
+    def suffix_summary(start):
+        left_product = right_product = 1 % k
+        left_counts = [0] * k
+        right_counts = [0] * k
+        left = size + start
+        right = size + n
+
+        while left < right:
+            if left % 2:
+                left_product, left_counts = merge(
+                    left_product, left_counts, products[left], counts[left]
+                )
+                left += 1
+            if right % 2:
+                right -= 1
+                right_product, right_counts = merge(
+                    products[right], counts[right], right_product, right_counts
+                )
+            left //= 2
+            right //= 2
+
+        return merge(left_product, left_counts, right_product, right_counts)
+
+    result = []
+    for index, value, start, x in queries:
+        update(index, value)
+        result.append(suffix_summary(start)[1][x])
+    return result

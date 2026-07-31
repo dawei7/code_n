@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3069",
+  "frontend_id": "2886",
+  "title_slug": "change-data-type",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "changeDatatype",
+  "verified_submission_id": "2077904567",
+  "verified_at": "2026-07-23T05:13:59+00:00"
+}

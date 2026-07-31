@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3104",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: overlapping alphabet cycles at n=128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx"},
+      "expected": -1,
+      "tags": ["benchmark", "scaling", "overlapping-occurrences"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: overlapping alphabet cycles at n=256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv"},
+      "expected": -1,
+      "tags": ["benchmark", "scaling", "overlapping-occurrences"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: overlapping alphabet cycles at n=512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr"},
+      "expected": -1,
+      "tags": ["benchmark", "scaling", "overlapping-occurrences"]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Final Array State After K Multiplication Operations I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains current values in a heap keyed by value and original index, replacing the minimum after each operation.",
+      "time_complexity": "O(n+k log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

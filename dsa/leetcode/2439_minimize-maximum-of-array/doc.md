@@ -8,74 +8,36 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Dynamic Programming, Greedy, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimize-maximum-of-array](https://leetcode.com/problems/minimize-maximum-of-array/) |
+| LeetCode | [Minimize Maximum of Array](https://leetcode.com/problems/minimize-maximum-of-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimize-maximum-of-array/).
 
 ### Goal
-Given an array of non-negative integers, you are permitted to perform an operation any number of times: choose an index `i` (where `i > 0`) and decrease `nums[i]` by 1 while increasing `nums[i-1]` by 1. The objective is to minimize the maximum value present in the array after performing any number of these operations.
+
+You are given a 0-indexed array `nums` containing $n$ non-negative integers. In one operation, choose an index `i` with $1 \le i < n$ and `nums[i] > 0`. Decrease `nums[i]` by one and increase `nums[i - 1]` by one.
+
+You may perform this operation any number of times, including zero. Because every unit can move only toward a smaller index, determine the minimum possible value of the largest array element after choosing the operations optimally.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of non-negative integers.
+- `nums`: A list of $n$ non-negative integers, where $2 \le n \le 10^5$ and $0 \le \texttt{nums[i]} \le 10^9$.
 
 **Return value**
 
-- An integer representing the smallest possible maximum value of the array after optimal operations.
+- The smallest maximum element attainable by applying any number of the permitted operations.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [3, 7, 1, 6]`
 - Output: `5`
-- Explanation: Move 1 from index 1 to 0, then 1 from index 3 to 2, etc., to balance the values.
+- Explanation: Operations can transform the array through `[4, 6, 1, 6]` and `[4, 6, 2, 5]` to `[5, 5, 2, 5]`. No arrangement with maximum below 5 is possible.
 
 **Example 2**
 
 - Input: `nums = [10, 1]`
 - Output: `10`
-- Explanation: We can only move values from right to left. Since index 0 cannot pass values to the left, the value at index 0 remains 10.
-
-**Example 3**
-
-- Input: `nums = [13, 13, 13, 13]`
-- Output: `13`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Greedy Prefix Sum** approach. Since operations only allow moving values from index `i` to `i-1`, any value at index `i` can eventually contribute to the average of all elements from index `0` to `i`. The maximum value in the array will be at least the ceiling of the prefix average at any point `i`. By iterating through the array and maintaining a running prefix sum, we calculate `ceil(prefix_sum / (i + 1))` and track the maximum of these values.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass through the array.
-- **Space Complexity**: `O(1)`, as we only store a few variables for the running sum and the maximum result.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import math
-
-def solve(nums: list[int]) -> int:
-    """
-    Calculates the minimum possible maximum value of the array after
-    performing the allowed operations.
-    """
-    max_val = 0
-    prefix_sum = 0
-
-    for i, val in enumerate(nums):
-        prefix_sum += val
-        # The average of the prefix [0...i] is the minimum possible
-        # maximum value for this segment. We take the ceiling of the average.
-        current_avg = math.ceil(prefix_sum / (i + 1))
-        if current_avg > max_val:
-            max_val = current_avg
-
-    return max_val
-```
-</details>
+- Explanation: The first value cannot move right, so leaving the array unchanged is optimal.

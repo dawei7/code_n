@@ -8,48 +8,47 @@
 | Category | Algorithms |
 | Topics | Depth-First Search, Breadth-First Search, Graph Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [remove-methods-from-project](https://leetcode.com/problems/remove-methods-from-project/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/remove-methods-from-project/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/remove-methods-from-project/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A project contains `n` methods numbered from `0` through `n - 1`. Each pair `[a, b]` in `invocations` is directed: method `a` invokes method `b`. A known bug begins at method `k`, so `k` and every method reachable from it through one or more invocation edges are suspicious.
+
+The entire suspicious group may be removed only when no method outside that group invokes a method inside it. If that condition holds, return all nonsuspicious methods. If even one outside-to-inside invocation exists, removing all suspicious methods is impossible and no method may be removed, so return every method. The returned methods may appear in any order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The number of methods, where $1\leq n\leq10^5$.
+- `k`: The initially buggy method, where $0\leq k<n$.
+- `invocations`: Up to $2\cdot10^5$ distinct directed pairs `[a, b]`, with $0\leq a,b<n$ and $a\neq b$.
 
 **Return value**
 
-TODO
+Return all remaining method numbers after applying the all-or-nothing removal rule. Any output order is valid.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4, k = 1, invocations = [[1, 2], [0, 1], [3, 2]]`
+- Output: `[0, 1, 2, 3]`
+
+Methods 1 and 2 are suspicious, but methods 0 and 3 invoke that group, so nothing can be removed.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, k = 0, invocations = [[1, 2], [0, 2], [0, 1], [3, 4]]`
+- Output: `[3, 4]`
+
+The suspicious set is `{0, 1, 2}` and has no incoming invocation from methods 3 or 4.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, k = 2, invocations = [[1, 2], [0, 1], [2, 0]]`
+- Output: `[]`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every method is reachable from method 2, so all methods may be removed.

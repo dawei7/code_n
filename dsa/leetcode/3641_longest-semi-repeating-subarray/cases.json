@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3641",
+  "cases": [
+    {
+      "id": "sample-two-repeating",
+      "name": "sample: longest range has two repeating values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "two-repeating"
+      ]
+    },
+    {
+      "id": "sample-one-value-many-times",
+      "name": "sample: many copies still count as one repeating value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "duplicate-occurrences"
+      ]
+    },
+    {
+      "id": "sample-zero-k",
+      "name": "sample: zero repeating values permits one copy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "k-zero"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element never repeats",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-all-unique",
+      "name": "trial: all unique values satisfy k zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 0
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "all-unique"
+      ]
+    },
+    {
+      "id": "trial-one-repeating",
+      "name": "trial: one duplicated value and several singletons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "one-repeating"
+      ]
+    },
+    {
+      "id": "trial-two-groups-k-one",
+      "name": "trial: window excludes one of two duplicate groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "window-shrink"
+      ]
+    },
+    {
+      "id": "real-count-transition",
+      "name": "hidden: removing one copy stops a value repeating",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          2,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "frequency-transition"
+      ]
+    },
+    {
+      "id": "real-many-copies",
+      "name": "hidden: extra copies do not increase repeat-value count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          2,
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "duplicate-occurrences"
+      ]
+    },
+    {
+      "id": "real-separated-duplicates",
+      "name": "hidden: distant copies constrain the window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          1,
+          5,
+          2,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "separated-duplicates"
+      ]
+    },
+    {
+      "id": "real-k-covers-all",
+      "name": "hidden: k covers every repeated distinct value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "full-window"
+      ]
+    },
+    {
+      "id": "real-high-values",
+      "name": "hidden: values at the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          99999,
+          100000,
+          99998,
+          99999
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating groups create several feasible maxima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          3,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    }
+  ]
+}

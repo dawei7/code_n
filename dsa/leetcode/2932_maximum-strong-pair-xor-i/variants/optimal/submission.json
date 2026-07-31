@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3193",
+  "frontend_id": "2932",
+  "title_slug": "maximum-strong-pair-xor-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maximumStrongPairXor",
+  "verified_submission_id": "2078265006",
+  "verified_at": "2026-07-23T10:29:40.003540+00:00"
+}

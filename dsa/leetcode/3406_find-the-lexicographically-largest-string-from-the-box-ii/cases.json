@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_3406",
+  "cases": [
+    {
+      "id": "sample-largest-prefix-piece",
+      "name": "sample: the longest prefix is the largest piece",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word": "dbca", "numFriends": 2},
+      "expected": "dbc",
+      "tags": ["sample", "split-bound"]
+    },
+    {
+      "id": "sample-one-character-pieces",
+      "name": "sample: every friend receives one equal character",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word": "gggg", "numFriends": 4},
+      "expected": "g",
+      "tags": ["sample", "all-equal"]
+    },
+    {
+      "id": "trial-one-friend",
+      "name": "trial: one friend receives the entire word",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "leetcode", "numFriends": 1},
+      "expected": "leetcode",
+      "tags": ["edge", "one-friend"]
+    },
+    {
+      "id": "trial-one-character-each",
+      "name": "trial: the largest individual character wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "azby", "numFriends": 4},
+      "expected": "z",
+      "tags": ["edge", "single-character"]
+    },
+    {
+      "id": "trial-short-winning-suffix",
+      "name": "trial: the winning suffix is shorter than the cap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "banana", "numFriends": 2},
+      "expected": "nana",
+      "tags": ["suffix", "short-result"]
+    },
+    {
+      "id": "trial-repeated-pattern",
+      "name": "trial: repeated prefixes require comparison past a tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "ababab", "numFriends": 2},
+      "expected": "babab",
+      "tags": ["repeated-prefix", "two-pointers"]
+    },
+    {
+      "id": "trial-winning-middle-suffix",
+      "name": "trial: the best piece begins in the middle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word": "aaaaabaaaaa", "numFriends": 3},
+      "expected": "baaaaa",
+      "tags": ["suffix", "middle-start"]
+    },
+    {
+      "id": "real-longer-tied-suffix",
+      "name": "real: a longer suffix wins after an equal prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"word": "cabcab", "numFriends": 3},
+      "expected": "cabc",
+      "tags": ["real", "prefix-tie"]
+    },
+    {
+      "id": "real-long-input",
+      "name": "real: a late larger character dominates a long prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "numFriends": 100},
+      "expected": "baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["real", "long-input", "late-maximum"]
+    }
+  ]
+}

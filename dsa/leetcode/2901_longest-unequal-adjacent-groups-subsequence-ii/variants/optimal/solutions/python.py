@@ -1,36 +1,36 @@
-def solve(words: list[str], groups: list[int]) -> list[str]:
-    n = len(words)
-    dp = [1] * n
-    parent = [-1] * n
-    
-    def is_valid(s1, s2):
-        if len(s1) != len(s2):
-            return False
-        diff = 0
-        for c1, c2 in zip(s1, s2):
-            if c1 != c2:
-                diff += 1
-            if diff > 1:
-                return False
-        return diff == 1
+from typing import List
 
-    for i in range(n):
-        for j in range(i):
-            if groups[i] != groups[j] and is_valid(words[i], words[j]):
-                if dp[j] + 1 > dp[i]:
-                    dp[i] = dp[j] + 1
-                    parent[i] = j
-    
-    max_len = 0
-    curr = -1
-    for i in range(n):
-        if dp[i] > max_len:
-            max_len = dp[i]
-            curr = i
-            
-    result = []
-    while curr != -1:
-        result.append(words[curr])
-        curr = parent[curr]
-        
-    return result[::-1]
+
+def solve(words: List[str], groups: List[int]) -> List[str]:
+    count = len(words)
+    lengths = [1] * count
+    previous = [-1] * count
+    best_end = 0
+
+    for end in range(count):
+        for start in range(end):
+            if groups[start] == groups[end]:
+                continue
+            if len(words[start]) != len(words[end]):
+                continue
+
+            differences = 0
+            for left, right in zip(words[start], words[end]):
+                if left != right:
+                    differences += 1
+                    if differences > 1:
+                        break
+
+            if differences == 1 and lengths[start] + 1 > lengths[end]:
+                lengths[end] = lengths[start] + 1
+                previous[end] = start
+
+        if lengths[end] > lengths[best_end]:
+            best_end = end
+
+    answer = []
+    while best_end != -1:
+        answer.append(words[best_end])
+        best_end = previous[best_end]
+    answer.reverse()
+    return answer

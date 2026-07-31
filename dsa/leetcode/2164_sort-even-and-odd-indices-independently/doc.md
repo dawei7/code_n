@@ -8,22 +8,33 @@
 | Category | Algorithms |
 | Topics | Array, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sort-even-and-odd-indices-independently](https://leetcode.com/problems/sort-even-and-odd-indices-independently/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sort-even-and-odd-indices-independently/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sort-even-and-odd-indices-independently/).
-
 ### Goal
-Rearrange values at even indices into nondecreasing order and values at odd indices into nonincreasing order, without moving a value between index parities.
+
+Rearrange a 0-indexed integer array while keeping every value within its
+original index-parity group. Values that began at even indices may be permuted
+only among even indices, and values that began at odd indices may be permuted
+only among odd indices.
+
+Place the even-indexed values in non-decreasing order from left to right.
+Independently, place the odd-indexed values in non-increasing order from left
+to right. Return the array after both parity-specific orderings have been
+applied.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: an integer array.
+- `nums`: an array of between 1 and 100 integers, each between 1 and 100.
+
+Index parity refers to the original zero-based positions.
 
 **Return value**
 
-The array after independently sorting the two parity groups.
+Return an array whose even-indexed subsequence is the sorted non-decreasing
+version of the input's even-indexed values and whose odd-indexed subsequence is
+the sorted non-increasing version of the input's odd-indexed values.
 
 ### Examples
 **Example 1**
@@ -31,25 +42,20 @@ The array after independently sorting the two parity groups.
 - Input: `nums = [4, 1, 2, 3]`
 - Output: `[2, 3, 4, 1]`
 
+The even-indexed values `[4, 2]` become `[2, 4]`, while the odd-indexed values
+`[1, 3]` become `[3, 1]`.
+
 **Example 2**
 
 - Input: `nums = [2, 1]`
 - Output: `[2, 1]`
+
+Each parity group contains one value, so neither position changes.
 
 **Example 3**
 
 - Input: `nums = [5, 8, 3, 6, 1]`
 - Output: `[1, 8, 3, 6, 5]`
 
----
-
-## Solution
-### Approach
-Extract values from even and odd positions into separate lists. Sort the even list ascending and the odd list descending, then write or interleave them back into their matching positions.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The three even positions receive `1`, `3`, and `5`; the odd positions already
+contain `8` and `6` in non-increasing order.

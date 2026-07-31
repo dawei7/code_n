@@ -1,0 +1,17 @@
+{
+  "challenge_id": "lc_3109",
+  "cases": [
+    {"id": "sample-first-permutation", "name": "sample: first two-value permutation", "kind": "sample", "visible": true, "input": {"perm": [1,2]}, "expected": 0, "tags": ["sample"]},
+    {"id": "sample-three-values", "name": "sample: fifth permutation of three values", "kind": "sample", "visible": true, "input": {"perm": [3,1,2]}, "expected": 4, "tags": ["sample"]},
+    {"id": "trial-singleton", "name": "trial: singleton has rank zero", "kind": "trial", "visible": true, "input": {"perm": [1]}, "expected": 0, "tags": ["trial", "boundary"]},
+    {"id": "trial-last-pair", "name": "trial: reversed pair is last", "kind": "trial", "visible": true, "input": {"perm": [2,1]}, "expected": 1, "tags": ["trial"]},
+    {"id": "real-one-swap", "name": "real: one suffix swap", "kind": "real", "visible": false, "input": {"perm": [1,3,2]}, "expected": 1, "tags": ["real"]},
+    {"id": "real-first-block-after-one", "name": "real: first permutation beginning with two", "kind": "real", "visible": false, "input": {"perm": [2,1,3]}, "expected": 2, "tags": ["real", "factorial-block"]},
+    {"id": "real-four-values", "name": "real: several Lehmer digits contribute", "kind": "real", "visible": false, "input": {"perm": [2,4,1,3]}, "expected": 10, "tags": ["real", "mixed"]},
+    {"id": "real-five-values", "name": "real: rank one hundred", "kind": "real", "visible": false, "input": {"perm": [5,1,4,2,3]}, "expected": 100, "tags": ["real", "mixed"]},
+    {"id": "real-ascending-ten", "name": "real: ascending permutation remains first", "kind": "real", "visible": false, "input": {"perm": [1,2,3,4,5,6,7,8,9,10]}, "expected": 0, "tags": ["real", "ascending"]},
+    {"id": "real-descending-ten", "name": "real: descending permutation is last", "kind": "real", "visible": false, "input": {"perm": [10,9,8,7,6,5,4,3,2,1]}, "expected": 3628799, "tags": ["real", "descending"]},
+    {"id": "real-mixed-ten", "name": "real: mixed ten-value permutation", "kind": "real", "visible": false, "input": {"perm": [7,2,10,1,5,9,3,8,4,6]}, "expected": 2253220, "tags": ["real", "mixed"]},
+    {"id": "real-modulo-twenty", "name": "real: descending rank requires modulo", "kind": "real", "visible": false, "input": {"perm": [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]}, "expected": 146326062, "tags": ["real", "modulo", "descending"]}
+  ]
+}

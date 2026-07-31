@@ -1,0 +1,12 @@
+{"schema_version":1,"challenge_id":"lc_3798","cases":[
+{"id":"sample-1","name":"sample: complete string is already even","kind":"sample","visible":true,"input":{"s":"1112"},"expected":"1112","validator":{"kind":"exact"},"tags":["sample","no-deletion"]},
+{"id":"sample-2","name":"sample: delete a trailing one","kind":"sample","visible":true,"input":{"s":"221"},"expected":"22","validator":{"kind":"exact"},"tags":["sample","suffix-deletion"]},
+{"id":"sample-3","name":"sample: no even subsequence exists","kind":"sample","visible":true,"input":{"s":"1"},"expected":"","validator":{"kind":"exact"},"tags":["sample","impossible"]},
+{"id":"trial-single-two","name":"trial: one even digit","kind":"trial","visible":true,"input":{"s":"2"},"expected":"2","validator":{"kind":"exact"},"tags":["trial","minimum"]},
+{"id":"trial-all-ones","name":"trial: several odd digits remain impossible","kind":"trial","visible":true,"input":{"s":"111"},"expected":"","validator":{"kind":"exact"},"tags":["trial","impossible"]},
+{"id":"trial-internal-last-two","name":"trial: retain the complete prefix through the last two","kind":"trial","visible":true,"input":{"s":"21211"},"expected":"212","validator":{"kind":"exact"},"tags":["trial","suffix-deletion"]},
+{"id":"real-many-twos","name":"hidden: every digit is retained when the final digit is two","kind":"real","visible":false,"input":{"s":"12222"},"expected":"12222","validator":{"kind":"exact"},"tags":["hidden","no-deletion"]},
+{"id":"real-leading-two","name":"hidden: only the leading two can terminate an even result","kind":"real","visible":false,"input":{"s":"21111"},"expected":"2","validator":{"kind":"exact"},"tags":["hidden","long-suffix-deletion"]},
+{"id":"real-alternating-prefix","name":"hidden: alternating digits followed by odd suffix","kind":"real","visible":false,"input":{"s":"121212111"},"expected":"121212","validator":{"kind":"exact"},"tags":["hidden","suffix-deletion"]},
+{"id":"real-maximum-length-impossible","name":"hidden: maximum-length all-one string","kind":"real","visible":false,"input":{"s":"1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"},"expected":"","validator":{"kind":"exact"},"tags":["hidden","maximum","impossible"]}
+]}

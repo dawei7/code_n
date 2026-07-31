@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3457",
   "cases": [
     {
@@ -21,35 +22,35 @@
       "expected": 14,
       "tags": [
         "sample",
-        "sorting"
+        "two-days"
       ]
     },
     {
       "id": "sample-one-large",
-      "name": "sample: one large pizza among ones",
+      "name": "sample: one large pizza among unit weights",
       "kind": "sample",
       "visible": true,
       "input": {
         "pizzas": [
+          2,
           1,
           1,
           1,
           1,
           1,
           1,
-          1,
-          2
+          1
         ]
       },
       "expected": 3,
       "tags": [
         "sample",
-        "even-day"
+        "duplicates"
       ]
     },
     {
       "id": "trial-one-day",
-      "name": "trial: single day takes the largest",
+      "name": "trial: one odd day scores the maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -67,8 +68,8 @@
       ]
     },
     {
-      "id": "trial-duplicates",
-      "name": "trial: duplicate weights",
+      "id": "trial-duplicate-tiers",
+      "name": "trial: duplicate weights across three days",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -94,8 +95,8 @@
       ]
     },
     {
-      "id": "real-mixed-weights",
-      "name": "real: mixed twelve pizzas",
+      "id": "real-mixed-twelve",
+      "name": "real: three days with increasing weights",
       "kind": "real",
       "visible": false,
       "input": {
@@ -117,7 +118,84 @@
       "expected": 32,
       "tags": [
         "real",
+        "three-days"
+      ]
+    },
+    {
+      "id": "real-four-days",
+      "name": "real: even number of days",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pizzas": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      "expected": 55,
+      "tags": [
+        "real",
+        "four-days"
+      ]
+    },
+    {
+      "id": "real-separated-heavy-tier",
+      "name": "real: upper weights compete for two roles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pizzas": [
+          1,
+          2,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105
+        ]
+      },
+      "expected": 208,
+      "tags": [
+        "real",
         "greedy"
+      ]
+    },
+    {
+      "id": "real-large-result",
+      "name": "real: large weights require wide integer result",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "pizzas": [
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000
+        ]
+      },
+      "expected": 200000,
+      "tags": [
+        "real",
+        "large-values"
       ]
     }
   ]

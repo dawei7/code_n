@@ -2,170 +2,747 @@
   "challenge_id": "lc_3242",
   "cases": [
     {
-      "id": "sample-center-adjacent",
-      "name": "sample: adjacent sum for center value",
+      "id": "sample-official-three-by-three",
+      "name": "sample: orthogonal and diagonal queries in three by three grid",
       "kind": "sample",
       "visible": true,
       "input": {
-        "grid": [
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "adjacentSum",
+          "diagonalSum",
+          "diagonalSum"
+        ],
+        "arguments": [
           [
-            0,
-            1,
-            2
+            [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                3,
+                4,
+                5
+              ],
+              [
+                6,
+                7,
+                8
+              ]
+            ]
           ],
           [
-            3,
-            4,
-            5
+            1
           ],
           [
-            6,
-            7,
+            4
+          ],
+          [
+            4
+          ],
+          [
             8
           ]
-        ],
-        "value": 4,
-        "query_type": "adjacent"
+        ]
       },
-      "expected": 16,
+      "expected": [
+        null,
+        6,
+        16,
+        16,
+        4
+      ],
       "tags": [
         "sample",
         "design"
       ]
     },
     {
-      "id": "sample-corner-diagonal",
-      "name": "sample: diagonal sum for corner value",
+      "id": "sample-official-four-by-four",
+      "name": "sample: permuted four by four grid",
       "kind": "sample",
       "visible": true,
       "input": {
-        "grid": [
-          [
-            0,
-            1,
-            2
-          ],
-          [
-            3,
-            4,
-            5
-          ],
-          [
-            6,
-            7,
-            8
-          ]
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum"
         ],
-        "value": 0,
-        "query_type": "diagonal"
+        "arguments": [
+          [
+            [
+              [
+                1,
+                2,
+                0,
+                3
+              ],
+              [
+                4,
+                7,
+                15,
+                6
+              ],
+              [
+                8,
+                9,
+                10,
+                11
+              ],
+              [
+                12,
+                13,
+                14,
+                5
+              ]
+            ]
+          ],
+          [
+            15
+          ],
+          [
+            9
+          ]
+        ]
       },
-      "expected": 4,
+      "expected": [
+        null,
+        23,
+        45
+      ],
       "tags": [
         "sample",
-        "diagonal"
+        "permutation"
       ]
     },
     {
-      "id": "trial-edge-adjacent",
-      "name": "trial: edge value has three adjacent neighbors",
+      "id": "sample-reversed-three-by-three",
+      "name": "sample: reversed three by three grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                8,
+                7,
+                6
+              ],
+              [
+                5,
+                4,
+                3
+              ],
+              [
+                2,
+                1,
+                0
+              ]
+            ]
+          ],
+          [
+            0
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        4,
+        16
+      ],
+      "tags": [
+        "sample",
+        "corner"
+      ]
+    },
+    {
+      "id": "trial-top-left-corner",
+      "name": "trial: top-left corner queries",
       "kind": "trial",
       "visible": true,
       "input": {
-        "grid": [
-          [
-            5,
-            6,
-            7
-          ],
-          [
-            8,
-            9,
-            10
-          ],
-          [
-            11,
-            12,
-            13
-          ]
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum"
         ],
-        "value": 6,
-        "query_type": "adjacent"
+        "arguments": [
+          [
+            [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                3,
+                4,
+                5
+              ],
+              [
+                6,
+                7,
+                8
+              ]
+            ]
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
       },
-      "expected": 21,
+      "expected": [
+        null,
+        4,
+        4
+      ],
       "tags": [
-        "edge"
+        "corner",
+        "boundary"
       ]
     },
     {
-      "id": "trial-center-diagonal",
-      "name": "trial: center has four diagonal neighbors",
+      "id": "trial-top-edge",
+      "name": "trial: non-corner top edge queries",
       "kind": "trial",
       "visible": true,
       "input": {
-        "grid": [
-          [
-            5,
-            6,
-            7
-          ],
-          [
-            8,
-            9,
-            10
-          ],
-          [
-            11,
-            12,
-            13
-          ]
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum"
         ],
-        "value": 9,
-        "query_type": "diagonal"
+        "arguments": [
+          [
+            [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                3,
+                4,
+                5
+              ],
+              [
+                6,
+                7,
+                8
+              ]
+            ]
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
       },
-      "expected": 36,
+      "expected": [
+        null,
+        6,
+        8
+      ],
       "tags": [
-        "diagonal"
+        "edge",
+        "boundary"
       ]
     },
     {
-      "id": "real-four-by-four",
-      "name": "real: four by four unique grid",
+      "id": "trial-center",
+      "name": "trial: interior center queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                3,
+                4,
+                5
+              ],
+              [
+                6,
+                7,
+                8
+              ]
+            ]
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        16,
+        16
+      ],
+      "tags": [
+        "interior"
+      ]
+    },
+    {
+      "id": "trial-repeated-query",
+      "name": "trial: repeated center query is stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum",
+          "adjacentSum"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                2,
+                5,
+                8
+              ],
+              [
+                1,
+                4,
+                7
+              ],
+              [
+                0,
+                3,
+                6
+              ]
+            ]
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        16,
+        16,
+        16
+      ],
+      "tags": [
+        "repeated-query",
+        "immutable"
+      ]
+    },
+    {
+      "id": "real-reversed-four-by-four",
+      "name": "real: opposite corners in reversed grid",
       "kind": "real",
       "visible": false,
       "input": {
-        "grid": [
-          [
-            0,
-            1,
-            2,
-            3
-          ],
-          [
-            4,
-            5,
-            6,
-            7
-          ],
-          [
-            8,
-            9,
-            10,
-            11
-          ],
-          [
-            12,
-            13,
-            14,
-            15
-          ]
+        "operations": [
+          "NeighborSum",
+          "diagonalSum",
+          "adjacentSum"
         ],
-        "value": 10,
-        "query_type": "adjacent"
+        "arguments": [
+          [
+            [
+              [
+                15,
+                14,
+                13,
+                12
+              ],
+              [
+                11,
+                10,
+                9,
+                8
+              ],
+              [
+                7,
+                6,
+                5,
+                4
+              ],
+              [
+                3,
+                2,
+                1,
+                0
+              ]
+            ]
+          ],
+          [
+            15
+          ],
+          [
+            0
+          ]
+        ]
       },
-      "expected": 40,
+      "expected": [
+        null,
+        10,
+        5
+      ],
       "tags": [
-        "real",
-        "design"
+        "corner",
+        "permutation"
+      ]
+    },
+    {
+      "id": "real-irregular-center",
+      "name": "real: irregular three by three center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                4,
+                0,
+                8
+              ],
+              [
+                3,
+                1,
+                7
+              ],
+              [
+                5,
+                2,
+                6
+              ]
+            ]
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        12,
+        23
+      ],
+      "tags": [
+        "interior",
+        "permutation"
+      ]
+    },
+    {
+      "id": "real-four-by-four-interior",
+      "name": "real: four by four interior query",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                0,
+                5,
+                10,
+                15
+              ],
+              [
+                1,
+                6,
+                11,
+                12
+              ],
+              [
+                2,
+                7,
+                8,
+                13
+              ],
+              [
+                3,
+                4,
+                9,
+                14
+              ]
+            ]
+          ],
+          [
+            8
+          ],
+          [
+            8
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        40,
+        36
+      ],
+      "tags": [
+        "interior",
+        "four-by-four"
+      ]
+    },
+    {
+      "id": "real-mixed-corners-center",
+      "name": "real: mixed center and corner queries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum",
+          "adjacentSum",
+          "diagonalSum"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                6,
+                1,
+                8
+              ],
+              [
+                7,
+                5,
+                3
+              ],
+              [
+                2,
+                0,
+                4
+              ]
+            ]
+          ],
+          [
+            5
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        11,
+        20,
+        8,
+        5
+      ],
+      "tags": [
+        "mixed-queries",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "real-maximum-side",
+      "name": "real: maximum side length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "NeighborSum",
+          "adjacentSum",
+          "diagonalSum"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              [
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29
+              ],
+              [
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39
+              ],
+              [
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49
+              ],
+              [
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59
+              ],
+              [
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                66,
+                67,
+                68,
+                69
+              ],
+              [
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77,
+                78,
+                79
+              ],
+              [
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                87,
+                88,
+                89
+              ],
+              [
+                90,
+                91,
+                92,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98,
+                99
+              ]
+            ]
+          ],
+          [
+            55
+          ],
+          [
+            99
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        220,
+        88
+      ],
+      "tags": [
+        "maximum",
+        "ten-by-ten"
       ]
     }
   ]

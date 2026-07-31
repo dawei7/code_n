@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_138", "frontend_id": "138", "title_slug": "copy-list-with-random-pointer", "url": "https://leetcode.com/problems/copy-list-with-random-pointer/description/", "paid_only": false, "content_sha256": "7a0098151f5507debdc2ba7bca569241d569b65d6711f88a3b5641a08db02a4e", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [[7,null],[13,0],[11,4],[10,2],[1,0]]", "output": "[[7,null],[13,0],[11,4],[10,2],[1,0]]", "has_explanation": false},
+      {"ordinal": 2, "input": "head = [[1,1],[2,1]]", "output": "[[1,1],[2,1]]", "has_explanation": false},
+      {"ordinal": 3, "input": "head = [[3,null],[3,0],[3,null]]", "output": "[[3,null],[3,0],[3,null]]", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 3, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 3}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "b5585da0f0e9dd3972a86cb74fbea97010e60dcbe6bab5c26ed3d28d75f62d03", "reference/contract.md": "5c9b892061123c954f5f4629c07c5e8356b27d3dfb07e07ecb3ae168e06987c9", "reference/examples.md": "cec896eaaf0521b7e203877e20b2603da5f28c2ad1b21dbb91aa3589ada9414d", "reference/constraints.md": "595843cf944b1b4e40e325653005ebb82a47e855a1027b2641c11e863511f367"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Rearrange Characters to Make Target String and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts available and per-copy letter frequencies, then uses the tightest frequency quotient.",
+      "time_complexity": "O(S + T)",
+      "space_complexity": "O(1)"
     }
   ]
 }

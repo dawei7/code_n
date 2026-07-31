@@ -1,0 +1,5 @@
+## Constraints
+
+- $1 \le \texttt{nums.length} \le 1000$
+- $1 \le \texttt{nums[i]} \le 10^6$
+- $0 \le \texttt{digit} \le 9$

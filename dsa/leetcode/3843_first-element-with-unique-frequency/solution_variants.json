@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for First Element with Unique Frequency and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts values, counts how many distinct values share each frequency, then preserves the array's left-to-right order.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(D)"
     }
   ]
 }

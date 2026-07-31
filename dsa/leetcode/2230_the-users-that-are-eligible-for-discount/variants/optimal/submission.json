@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2371",
+  "frontend_id": "2230",
+  "title_slug": "the-users-that-are-eligible-for-discount",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "procedure",
+  "verified_submission_id": "2073907565",
+  "verified_at": "2026-07-19T21:39:15.234932+00:00"
+}

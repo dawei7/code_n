@@ -2,228 +2,97 @@
   "challenge_id": "lc_3067",
   "cases": [
     {
-      "id": "sample-line-speed-one",
-      "name": "sample: line tree with signal speed one",
+      "id": "official-path-speed-one",
+      "name": "official: path tree with signal speed one",
       "kind": "sample",
       "visible": true,
       "input": {
-        "edges": [
-          [
-            0,
-            1,
-            1
-          ],
-          [
-            1,
-            2,
-            5
-          ],
-          [
-            2,
-            3,
-            13
-          ],
-          [
-            3,
-            4,
-            9
-          ],
-          [
-            4,
-            5,
-            2
-          ]
-        ],
+        "edges": [[0, 1, 1], [1, 2, 5], [2, 3, 13], [3, 4, 9], [4, 5, 2]],
         "signalSpeed": 1
       },
-      "expected": [
-        0,
-        4,
-        6,
-        6,
-        4,
-        0
-      ],
-      "tags": [
-        "sample"
-      ]
+      "expected": [0, 4, 6, 6, 4, 0],
+      "tags": ["sample", "official"]
     },
     {
-      "id": "sample-branched-speed-three",
-      "name": "sample: branched tree with speed three",
+      "id": "official-branched-speed-three",
+      "name": "official: branched tree with signal speed three",
       "kind": "sample",
       "visible": true,
       "input": {
-        "edges": [
-          [
-            0,
-            6,
-            3
-          ],
-          [
-            6,
-            5,
-            3
-          ],
-          [
-            6,
-            1,
-            1
-          ],
-          [
-            1,
-            2,
-            2
-          ],
-          [
-            2,
-            3,
-            4
-          ],
-          [
-            2,
-            4,
-            4
-          ]
-        ],
+        "edges": [[0, 6, 3], [6, 5, 3], [0, 3, 1], [3, 2, 7], [3, 1, 6], [3, 4, 2]],
         "signalSpeed": 3
       },
-      "expected": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        3
-      ],
-      "tags": [
-        "sample"
-      ]
+      "expected": [2, 0, 0, 0, 0, 0, 2],
+      "tags": ["sample", "official"]
     },
     {
-      "id": "trial-star",
-      "name": "trial: star tree pairs through center",
+      "id": "two-servers",
+      "name": "trial: two servers cannot form a pair through either endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [[0, 1, 5]], "signalSpeed": 5},
+      "expected": [0, 0],
+      "tags": ["trial", "minimum-size"]
+    },
+    {
+      "id": "all-divisible-star",
+      "name": "trial: all star branches qualify through the center",
       "kind": "trial",
       "visible": true,
       "input": {
-        "edges": [
-          [
-            0,
-            1,
-            2
-          ],
-          [
-            0,
-            2,
-            4
-          ],
-          [
-            0,
-            3,
-            6
-          ]
-        ],
+        "edges": [[0, 1, 2], [0, 2, 4], [0, 3, 6], [0, 4, 8]],
         "signalSpeed": 2
       },
-      "expected": [
-        3,
-        0,
-        0,
-        0
-      ],
-      "tags": [
-        "trial"
-      ]
+      "expected": [6, 0, 0, 0, 0],
+      "tags": ["trial", "star"]
     },
     {
-      "id": "trial-no-divisible",
-      "name": "trial: no divisible distances in separate branches",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "edges": [
-          [
-            0,
-            1,
-            1
-          ],
-          [
-            1,
-            2,
-            1
-          ],
-          [
-            1,
-            3,
-            2
-          ]
-        ],
-        "signalSpeed": 5
-      },
-      "expected": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-mixed-tree",
-      "name": "real: mixed weighted tree",
+      "id": "partly-divisible-star",
+      "name": "real: only two star branches have divisible distances",
       "kind": "real",
       "visible": false,
       "input": {
-        "edges": [
-          [
-            0,
-            1,
-            2
-          ],
-          [
-            1,
-            2,
-            3
-          ],
-          [
-            1,
-            3,
-            4
-          ],
-          [
-            3,
-            4,
-            2
-          ],
-          [
-            3,
-            5,
-            6
-          ],
-          [
-            5,
-            6,
-            2
-          ]
-        ],
+        "edges": [[0, 1, 1], [0, 2, 2], [0, 3, 3], [0, 4, 4]],
+        "signalSpeed": 2
+      },
+      "expected": [1, 0, 0, 0, 0],
+      "tags": ["real", "divisibility"]
+    },
+    {
+      "id": "all-divisible-path",
+      "name": "real: every path distance is divisible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [[0, 1, 2], [1, 2, 2], [2, 3, 2], [3, 4, 2]],
+        "signalSpeed": 2
+      },
+      "expected": [0, 3, 4, 3, 0],
+      "tags": ["real", "path"]
+    },
+    {
+      "id": "mixed-weighted-tree",
+      "name": "real: mixed weighted branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [[0, 1, 2], [1, 2, 3], [1, 3, 4], [3, 4, 2], [3, 5, 6], [5, 6, 2]],
         "signalSpeed": 4
       },
-      "expected": [
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0
-      ],
-      "tags": [
-        "real",
-        "tree"
-      ]
+      "expected": [0, 0, 0, 1, 0, 0, 0],
+      "tags": ["real", "tree"]
+    },
+    {
+      "id": "no-divisible-distance",
+      "name": "real: signal speed exceeds every path distance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [[0, 1, 1], [1, 2, 1], [1, 3, 2]],
+        "signalSpeed": 10
+      },
+      "expected": [0, 0, 0, 0],
+      "tags": ["real", "zero-answer"]
     }
   ]
 }

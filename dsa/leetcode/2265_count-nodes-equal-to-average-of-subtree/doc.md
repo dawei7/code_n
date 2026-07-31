@@ -5,51 +5,49 @@
 | Source | LeetCode |
 | Frontend ID | 2265 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Tree, Depth-First Search, Binary Tree |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-nodes-equal-to-average-of-subtree](https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given the root of a binary tree, examine every node together with all of its
+descendants. Those nodes form that node's subtree, including the node itself.
+
+For a subtree containing $k$ nodes with total value $S$, its average is
+$\left\lfloor S/k\right\rfloor$: divide the sum by the number of nodes and
+round the result down to the nearest integer. Count how many nodes have a value
+equal to the average of their own subtree.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `root`: The root of a nonempty binary tree containing $n$ nodes.
+
+The tree contains $1\le n\le1000$ nodes, and every node value is an integer in
+the range $0\le\texttt{Node.val}\le1000$.
 
 **Return value**
 
-TODO
+Return the number of nodes whose value equals the floor of the sum of all
+values in their subtree divided by the number of nodes in that subtree.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [4,8,5,0,1,null,6]`
+- Output: `5`
+
+The root's subtree has sum $24$ and six nodes, so its average is $4$. The
+nodes with values `5`, `0`, `1`, and `6` also match their respective subtree
+averages.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [1]`
+- Output: `1`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The only node is also the only member of its subtree.

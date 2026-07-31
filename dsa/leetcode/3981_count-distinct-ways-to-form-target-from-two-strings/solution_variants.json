@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Distinct Ways to Form Target from Two Strings and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Tracks the latest chosen index in each word and uses directional prefix sums to extend every target prefix without enumerating the next index from each state.",
+      "time_complexity": "O(tnm)",
+      "space_complexity": "O(nm)"
     }
   ]
 }

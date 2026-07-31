@@ -1,0 +1,14 @@
+{
+  "schema_version":1,
+  "source":{"provider":"leetcode","challenge_id":"lc_3744","frontend_id":"3744","title_slug":"find-kth-character-in-expanded-string","url":"https://leetcode.com/problems/find-kth-character-in-expanded-string/description/","paid_only":true,"content_sha256":"47c0a2df28044195bc6a59ebe9153f53b5e41c29f9664de9b9f018e533311ad5","checked_at":"2026-07-28"},
+  "structure":{"sections":["description","examples","constraints"],"examples":[
+    {"ordinal":1,"input":"s = \"hello world\", k = 0","output":"\"h\"","has_explanation":true},
+    {"ordinal":2,"input":"s = \"hello world\", k = 15","output":"\" \"","has_explanation":true}
+  ],"constraint_count":5,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
+  "review":{"status":"verified","files":{
+    "reference/description.md":"8921b91599158304b4851fb8b1cac46eed14670751d2b81a78b91a9343c87cc2",
+    "reference/contract.md":"003bb20b666ce939987e54fe57c7512bc946f6ea38e894b3b57c7239f0863958",
+    "reference/examples.md":"d2a95c19a6a92fe5e285d48affadc3e7b836c11b4ae37711341ddaee7419ff8e",
+    "reference/constraints.md":"46fb3242008c5c7a6cd047ed2f5e2895624b4963efff23eb9839036a86668ff2"
+  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+}

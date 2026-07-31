@@ -1,0 +1,5 @@
+{"schema_version":1,"challenge_id":"lc_3790","measurement_note":"Size is k. Each tier has a smallest valid repunit of length k - 1. Remainder updates use O(k) fixed-width work, while constructing the full arbitrary-precision repunit incurs superlinear digit-arithmetic growth.","cases":[
+{"id":"benchmark-long-cycle-1193","name":"benchmark: 1192-digit repunit modulo 1193","kind":"benchmark","visible":false,"size":1193,"input":{"k":1193},"expected":1192,"validator":{"kind":"exact"},"tags":["benchmark","long-cycle","scale-small"]},
+{"id":"benchmark-long-cycle-4793","name":"benchmark: 4792-digit repunit modulo 4793","kind":"benchmark","visible":false,"size":4793,"input":{"k":4793},"expected":4792,"validator":{"kind":"exact"},"tags":["benchmark","long-cycle","scale-medium"]},
+{"id":"benchmark-long-cycle-19181","name":"benchmark: 19180-digit repunit modulo 19181","kind":"benchmark","visible":false,"size":19181,"input":{"k":19181},"expected":19180,"validator":{"kind":"exact"},"tags":["benchmark","long-cycle","scale-large"]}
+]}

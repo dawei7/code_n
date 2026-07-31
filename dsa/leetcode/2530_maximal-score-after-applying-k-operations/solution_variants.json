@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximal Score After Applying K Operations and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Repeatedly extracts the largest available reward from a max-heap and reinserts its ceiling-divided successor.",
+      "time_complexity": "O(n + k log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

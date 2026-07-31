@@ -2,12 +2,12 @@
   "challenge_id": "lc_2910",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two values can each use one group",
+      "id": "sample-two-boxes",
+      "name": "sample: two values fit boxes whose sizes differ by one",
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [
+        "balls": [
           3,
           2,
           3,
@@ -15,19 +15,19 @@
           3
         ]
       },
+      "expected": 2,
       "tags": [
         "sample",
-        "groups"
-      ],
-      "expected": 2
+        "balanced-boxes"
+      ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: singleton frequency forces small base size",
+      "id": "sample-singleton-forces-small-boxes",
+      "name": "sample: one singleton limits every box size",
       "kind": "sample",
       "visible": true,
       "input": {
-        "nums": [
+        "balls": [
           10,
           10,
           10,
@@ -36,91 +36,143 @@
           1
         ]
       },
+      "expected": 4,
       "tags": [
         "sample",
-        "frequency"
-      ],
-      "expected": 4
+        "singleton"
+      ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: two frequencies with sizes two and six",
-      "kind": "sample",
+      "id": "trial-all-distinct",
+      "name": "distinct values each require their own singleton box",
+      "kind": "trial",
       "visible": true,
       "input": {
-        "nums": [
+        "balls": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "all-distinct",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "one value can occupy a single box",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balls": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "all-equal",
+        "single-box"
+      ]
+    },
+    {
+      "id": "trial-sizes-three-and-four",
+      "name": "frequencies four and six share box sizes three and four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balls": [
           1,
           1,
-          3,
-          3,
-          3,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "mixed-frequencies",
+        "largest-base"
+      ]
+    },
+    {
+      "id": "real-several-compatible-frequencies",
+      "name": "hidden: frequencies two, three, and three need one box each",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "balls": [
+          1,
+          1,
+          2,
+          2,
+          2,
           3,
           3,
           3
         ]
       },
+      "expected": 3,
       "tags": [
-        "sample",
-        "assignment"
-      ],
-      "expected": 3
+        "hidden",
+        "global-balance"
+      ]
     },
     {
-      "id": "trial-single-value",
-      "name": "trial: one value needs one group",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          5
-        ]
-      },
-      "tags": [
-        "trial",
-        "single"
-      ],
-      "expected": 1
-    },
-    {
-      "id": "real-mixed-frequencies",
-      "name": "hidden: several frequencies share a valid base size",
+      "id": "real-singleton-with-larger-frequencies",
+      "name": "hidden: a singleton forces every box to size one or two",
       "kind": "real",
       "visible": false,
       "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          1,
+        "balls": [
           1,
           2,
           2,
           2,
-          2,
-          2,
-          2,
           3,
           3,
-          3,
-          3,
-          3,
-          3,
-          3,
-          4,
-          4,
-          4,
-          4,
-          4,
-          4,
-          4,
-          4
+          3
         ]
       },
+      "expected": 5,
       "tags": [
         "hidden",
-        "frequency"
-      ],
-      "expected": 10
+        "singleton-bound"
+      ]
+    },
+    {
+      "id": "real-nonconsecutive-labels",
+      "name": "hidden: labels do not affect frequency-only grouping",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "balls": [
+          1000000000,
+          5,
+          1000000000,
+          5,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
     }
   ]
 }

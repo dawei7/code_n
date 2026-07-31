@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2256",
+  "cases": [
+    {"id":"sample-middle","name":"sample: minimum occurs at an interior split","kind":"sample","visible":true,"input":{"nums":[2,5,3,9,5,3]},"expected":3,"tags":["sample","interior"]},
+    {"id":"sample-single-zero","name":"sample: one zero element","kind":"sample","visible":true,"input":{"nums":[0]},"expected":0,"tags":["sample","single"]},
+    {"id":"trial-tie-earliest","name":"equal values produce an earliest-index tie","kind":"trial","visible":true,"input":{"nums":[1,1,1,1]},"expected":0,"tags":["tie","earliest"]},
+    {"id":"trial-last-index","name":"minimum can occur at the final index","kind":"trial","visible":true,"input":{"nums":[0,100]},"expected":1,"tags":["empty-suffix","last-index"]},
+    {"id":"trial-flooring","name":"integer division controls a tied minimum","kind":"trial","visible":true,"input":{"nums":[5,1,1]},"expected":1,"tags":["floor","tie"]},
+    {"id":"real-all-zero","name":"hidden: all zero differences retain index zero","kind":"real","visible":false,"input":{"nums":[0,0,0,0,0]},"expected":0,"tags":["hidden","zeros","tie"]},
+    {"id":"real-large-leading","name":"hidden: a large leading value favors the empty suffix split","kind":"real","visible":false,"input":{"nums":[100000,0,0,0]},"expected":3,"tags":["hidden","large-value","last-index"]},
+    {"id":"real-equal-minima","name":"hidden: equal minimum differences preserve the first position","kind":"real","visible":false,"input":{"nums":[4,2,0,8]},"expected":0,"tags":["hidden","tie","floor"]}
+  ]
+}

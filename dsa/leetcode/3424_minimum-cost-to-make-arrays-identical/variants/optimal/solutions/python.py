@@ -2,8 +2,8 @@ from typing import List
 
 
 def solve(arr: List[int], brr: List[int], k: int) -> int:
-    cost_without_rearranging = sum(abs(a - b) for a, b in zip(arr, brr))
-    cost_with_rearranging = k + sum(
+    direct_cost = sum(abs(a - b) for a, b in zip(arr, brr))
+    rearranged_cost = k + sum(
         abs(a - b) for a, b in zip(sorted(arr), sorted(brr))
     )
-    return min(cost_without_rearranging, cost_with_rearranging)
+    return min(direct_cost, rearranged_cost)

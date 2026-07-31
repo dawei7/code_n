@@ -5,51 +5,41 @@
 | Source | LeetCode |
 | Frontend ID | 3655 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Divide and Conquer, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [xor-after-range-multiplication-queries-ii](https://leetcode.com/problems/xor-after-range-multiplication-queries-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/xor-after-range-multiplication-queries-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/xor-after-range-multiplication-queries-ii/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given an integer array `nums` and up to $10^5$ multiplication queries. A query `[l, r, k, v]` visits the arithmetic progression of indices
+
+$$
+l,\ l+k,\ l+2k,\ \ldots
+$$
+
+through the last visited index not exceeding `r`. Multiply every visited current value by `v` and reduce it modulo $10^9+7$. Apply the complete query sequence and return the bitwise XOR of all final array values.
+
+This version has substantially larger array and query limits than the direct-simulation version, so an implementation must avoid visiting every affected index of every dense query separately.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: An array of $n$ positive integers, where $1\le n\le10^5$ and each value is at most $10^9$.
+- `queries`: Between 1 and $10^5$ rows `[l, r, k, v]`, where $0\le l\le r<n$, $1\le k\le n$, and $1\le v\le10^5$.
 
 **Return value**
 
-TODO
+Return the XOR of all values after every requested modular multiplication has taken effect.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,1,1]`, `queries = [[0,2,1,4]]`
+- Output: `4`
+- Explanation: All entries become 4, and the XOR of three copies of 4 is 4.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [2,3,1,5,4]`, `queries = [[1,4,2,3],[0,2,1,2]]`
+- Output: `31`
+- Explanation: The final array is `[4,18,2,15,4]`.

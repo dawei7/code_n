@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2504",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all six professions in descending id order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "person_id": 1,
+              "name": "Alex",
+              "profession": "Singer"
+            },
+            {
+              "person_id": 3,
+              "name": "Alice",
+              "profession": "Actor"
+            },
+            {
+              "person_id": 2,
+              "name": "Bob",
+              "profession": "Player"
+            },
+            {
+              "person_id": 4,
+              "name": "Messi",
+              "profession": "Doctor"
+            },
+            {
+              "person_id": 6,
+              "name": "Tyson",
+              "profession": "Engineer"
+            },
+            {
+              "person_id": 5,
+              "name": "Meir",
+              "profession": "Lawyer"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "person_id",
+          "name"
+        ],
+        "rows": [
+          [
+            6,
+            "Tyson(E)"
+          ],
+          [
+            5,
+            "Meir(L)"
+          ],
+          [
+            4,
+            "Messi(D)"
+          ],
+          [
+            3,
+            "Alice(A)"
+          ],
+          [
+            2,
+            "Bob(P)"
+          ],
+          [
+            1,
+            "Alex(S)"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "formatting",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: one doctor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "person_id": 42,
+              "name": "Ava",
+              "profession": "Doctor"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "person_id",
+          "name"
+        ],
+        "rows": [
+          [
+            42,
+            "Ava(D)"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-shuffled-ids",
+      "name": "trial: input order does not determine result order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "person_id": 2,
+              "name": "Sam",
+              "profession": "Singer"
+            },
+            {
+              "person_id": 10,
+              "name": "Lee",
+              "profession": "Player"
+            },
+            {
+              "person_id": 5,
+              "name": "Kai",
+              "profession": "Actor"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "person_id",
+          "name"
+        ],
+        "rows": [
+          [
+            10,
+            "Lee(P)"
+          ],
+          [
+            5,
+            "Kai(A)"
+          ],
+          [
+            2,
+            "Sam(S)"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "descending-order"
+      ]
+    },
+    {
+      "id": "real-name-with-space",
+      "name": "hidden: preserve spaces already inside a name",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "person_id": 7,
+              "name": "Mary Jane",
+              "profession": "Lawyer"
+            },
+            {
+              "person_id": 12,
+              "name": "Bo",
+              "profession": "Engineer"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "person_id",
+          "name"
+        ],
+        "rows": [
+          [
+            12,
+            "Bo(E)"
+          ],
+          [
+            7,
+            "Mary Jane(L)"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "name-spacing"
+      ]
+    },
+    {
+      "id": "real-nonconsecutive-ids",
+      "name": "hidden: widely separated ids still sort numerically",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "person_id": 100,
+              "name": "Noah",
+              "profession": "Doctor"
+            },
+            {
+              "person_id": 1,
+              "name": "Mia",
+              "profession": "Engineer"
+            },
+            {
+              "person_id": 55,
+              "name": "Liam",
+              "profession": "Lawyer"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "person_id",
+          "name"
+        ],
+        "rows": [
+          [
+            100,
+            "Noah(D)"
+          ],
+          [
+            55,
+            "Liam(L)"
+          ],
+          [
+            1,
+            "Mia(E)"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "primary-key-order"
+      ]
+    },
+    {
+      "id": "real-no-added-whitespace",
+      "name": "hidden: parentheses immediately follow every name",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "person_id": 8,
+              "name": "X",
+              "profession": "Actor"
+            },
+            {
+              "person_id": 9,
+              "name": "Y",
+              "profession": "Singer"
+            },
+            {
+              "person_id": 10,
+              "name": "Z",
+              "profession": "Player"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "person_id",
+          "name"
+        ],
+        "rows": [
+          [
+            10,
+            "Z(P)"
+          ],
+          [
+            9,
+            "Y(S)"
+          ],
+          [
+            8,
+            "X(A)"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "punctuation"
+      ]
+    }
+  ]
+}

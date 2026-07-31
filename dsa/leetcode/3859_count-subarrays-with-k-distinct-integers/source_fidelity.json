@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3859",
+    "frontend_id": "3859",
+    "title_slug": "count-subarrays-with-k-distinct-integers",
+    "url": "https://leetcode.com/problems/count-subarrays-with-k-distinct-integers/description/",
+    "paid_only": false,
+    "content_sha256": "390b06dccfaf630e2b2fc5bfcfaabcb9e59f9cc6873ca36266caa7cc0fc180e5",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,1,2,2], k = 2, m = 2",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [3,1,2,4], k = 2, m = 1",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 2,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a7da8b36ad8f4933b0da1d55079a1463e092796ded621614f9b6edaaee9d65e5",
+      "reference/contract.md": "af90bbe39322e9215461cb2e8dcb3cce9a3f21dfe0a43e8d48c977bdac3eee00",
+      "reference/examples.md": "fae850cde24dd316c67b2ee13117b66d4b6b6bd57cabfc43f00852c2fcbafa86",
+      "reference/constraints.md": "b9571a11186faebfcdd50be78f0facdc6ec51555de9402fa9da1e988591dfe43"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

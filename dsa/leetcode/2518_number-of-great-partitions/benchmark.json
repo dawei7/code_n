@@ -1,22 +1,87 @@
 {
   "challenge_id": "lc_2518",
+  "measurement_note": "Size is n, the number of indexed elements. With n unit values and k=n/2, only balanced assignments are great. Knapsack uses polynomial O(nk) work, while direct enumeration visits all 2^n assignments.",
   "cases": [
     {
-      "id": "benchmark-one-balanced-split",
-      "name": "benchmark: only the two balanced sides are great",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 unit values require balanced groups",
       "kind": "benchmark",
       "visible": false,
+      "size": 4,
       "input": {
         "nums": [
-          2,
-          3,
-          5
+          1,
+          1,
+          1,
+          1
         ],
-        "k": 5
+        "k": 2
       },
-      "expected": 2,
+      "expected": 6,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "balanced",
+        "exponential-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 unit values require balanced groups",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 70,
+      "tags": [
+        "benchmark",
+        "balanced",
+        "exponential-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 unit values require balanced groups",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 8
+      },
+      "expected": 12870,
+      "tags": [
+        "benchmark",
+        "balanced",
+        "exponential-contrast"
       ]
     }
   ]

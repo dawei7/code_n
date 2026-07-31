@@ -5,51 +5,36 @@
 | Source | LeetCode |
 | Frontend ID | 3638 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming, Stack, Greedy, Monotonic Stack |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-balanced-shipments](https://leetcode.com/problems/maximum-balanced-shipments/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-balanced-shipments/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-balanced-shipments/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An array `weight` lists parcel weights in their fixed line order. A shipment is any contiguous subarray. It is balanced when the final parcel's weight is strictly less than the maximum weight appearing anywhere in that shipment.
+
+Choose as many non-overlapping balanced shipments as possible. A parcel may belong to at most one selected shipment, and parcels not used by any shipment are allowed.
+
+Return the maximum number of balanced shipments.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `weight`: A list of $n$ positive parcel weights, where $2 \le n \le 10^5$ and $1 \le \texttt{weight[i]} \le 10^9$.
 
 **Return value**
 
-TODO
+Return the greatest number of pairwise non-overlapping contiguous shipments whose last weight is strictly below that shipment's maximum.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `weight = [2, 5, 1, 4, 3]`
+- Output: `2`
+- Explanation: Select `[2, 5, 1]` and `[4, 3]`; their final values 1 and 3 are below maxima 5 and 4.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `weight = [4, 4]`
+- Output: `0`
+- Explanation: Equality is insufficient, and a one-parcel shipment cannot be balanced.

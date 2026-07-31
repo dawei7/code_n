@@ -5,51 +5,35 @@
 | Source | LeetCode |
 | Frontend ID | 2839 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | String |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-strings-can-be-made-equal-with-operations-i](https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-i/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Two strings `s1` and `s2` each contain exactly four lowercase English letters. On either string, an operation chooses indices $i$ and $j$ whose difference is exactly two and swaps the characters at those positions. An operation may be performed any number of times, including zero times.
+
+Determine whether the allowed swaps can make the two strings equal. Because the only possible index pairs are $(0,2)$ and $(1,3)$, a character always stays among positions having the same index parity.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s1`: A string of exactly four lowercase English letters.
+- `s2`: A string of exactly four lowercase English letters.
 
 **Return value**
 
-TODO
+Return `true` if some sequence of the permitted distance-two swaps can transform the strings into the same value; otherwise return `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s1 = "abcd", s2 = "cdab"`
+- Output: `true`
+- Explanation: Swap positions `0` and `2`, then positions `1` and `3`, in `s1` to obtain `s2`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s1 = "abcd", s2 = "dacb"`
+- Output: `false`
+- Explanation: The target places characters into opposite-parity positions, which no allowed swap can do.

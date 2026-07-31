@@ -5,51 +5,42 @@
 | Source | LeetCode |
 | Frontend ID | 2232 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | String, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimize-result-by-adding-parentheses-to-expression](https://leetcode.com/problems/minimize-result-by-adding-parentheses-to-expression/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimize-result-by-adding-parentheses-to-expression/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimize-result-by-adding-parentheses-to-expression/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The string `expression` has the form `"<num1>+<num2>"`, where both operands are positive integers written with digits from `1` through `9`. Insert exactly one opening parenthesis somewhere before the plus sign and one closing parenthesis somewhere after it.
+
+The resulting text must be a valid mathematical expression. Digits outside the parentheses act as multiplicative factors: for example, `"2(47+38)"` means $2(47+38)$, while `"1(2+3)4"` means $1(2+3)4$. Return a valid placement whose evaluated value is as small as possible. If several placements attain the same minimum, any one is acceptable.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `expression`: A length-three-to-ten string containing exactly one plus sign, with a nonempty positive integer on each side.
+
+Every permitted placement and its value fit in a signed 32-bit integer.
 
 **Return value**
 
-TODO
+Return `expression` with one legal pair of parentheses added so that its mathematical value is minimal.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `expression = "247+38"`
+- Output: `"2(47+38)"`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `expression = "12+34"`
+- Output: `"1(2+3)4"`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `expression = "999+999"`
+- Output: `"(999+999)"`

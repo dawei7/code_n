@@ -230,10 +230,13 @@ def select_cases_for_run(
     if mode == "real_test":
         visible = [case for case in suite if case.visible and case.kind in {"sample", "trial"}]
         hidden = [case for case in suite if case.kind == "real"]
-        benchmark_cases = [case for case in suite if case.kind == "benchmark"]
+        certificate_complete = leetcode_complexity_certificate_status(challenge_id).complete
+        benchmark_cases = (
+            [] if certificate_complete else [case for case in suite if case.kind == "benchmark"]
+        )
         if not hidden:
             raise NoValidatedCases(f"{challenge_id} has no hidden real-test cases.")
-        if not benchmark_cases and not leetcode_complexity_certificate_status(challenge_id).complete:
+        if not benchmark_cases and not certificate_complete:
             raise NoValidatedCases(
                 f"{challenge_id} has neither benchmark cases nor a verified complexity certificate."
             )

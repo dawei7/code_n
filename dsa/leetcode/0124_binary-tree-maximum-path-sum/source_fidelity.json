@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_124", "frontend_id": "124", "title_slug": "binary-tree-maximum-path-sum", "url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/description/", "paid_only": false, "content_sha256": "3f2bd85383fdea82418219a2e6617c91aeccaa5bbbc5c0b90a17ec1701e0bb62", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "root = [1,2,3]", "output": "6", "has_explanation": true},
+      {"ordinal": 2, "input": "root = [-10,9,20,null,null,15,7]", "output": "42", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "f4141abd0de73227ea4760c6a34e9fa57379c1cfe016375f60a6f20825c681de", "reference/contract.md": "d99a707ff11b5d5ed3a75ac68f95c3e81eee1f6049692962877209a728090aa1", "reference/examples.md": "13cbb53992221f44c0ac035705abfa43a071e624b718e292efb6a9af65212215", "reference/constraints.md": "e892a7e3d3a5ce243862ade2e32e31ea9fd7dddbc7b6dd3828d76fb6323ae0ef"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

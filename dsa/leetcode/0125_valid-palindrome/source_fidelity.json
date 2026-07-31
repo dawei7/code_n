@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_125", "frontend_id": "125", "title_slug": "valid-palindrome", "url": "https://leetcode.com/problems/valid-palindrome/description/", "paid_only": false, "content_sha256": "52837c1bca0e3dbdb9a8a1f5a321bd9aa0369180502b04b7fc4f5fadb94ac178", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"A man, a plan, a canal: Panama\"", "output": "true", "has_explanation": true},
+      {"ordinal": 2, "input": "s = \"race a car\"", "output": "false", "has_explanation": true},
+      {"ordinal": 3, "input": "s = \" \"", "output": "true", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "9e070a5aee2c7267f6a5c6db8fbf1db92232f5cb9cee1a6b607e32a4b2a8475c", "reference/contract.md": "2ee9b3a5895420b4f33aa2ce7ee6aaa7753a5844dd57db0e61f1349a703bfced", "reference/examples.md": "e281da0fc385917f08ca962327e28e8f0287cacf4bb2b410dbdf7e09a249a606", "reference/constraints.md": "0950bb1e46a63208950747b5ec06af507cf38e8f7ae34660d8622921590c542a"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

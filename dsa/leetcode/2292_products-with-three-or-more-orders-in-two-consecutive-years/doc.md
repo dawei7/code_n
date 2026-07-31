@@ -5,51 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 2292 |
 | Difficulty | Medium |
-| Category | Database |
 | Topics | Database |
-| Supported Languages | sql |
-| Official Link | [products-with-three-or-more-orders-in-two-consecutive-years](https://leetcode.com/problems/products-with-three-or-more-orders-in-two-consecutive-years/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/products-with-three-or-more-orders-in-two-consecutive-years/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/products-with-three-or-more-orders-in-two-consecutive-years/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+The `Orders` table records purchases. Each row has a unique `order_id`, the
+ordered `product_id`, a `quantity`, and the order's `purchase_date`. An order
+counts once for this task regardless of its quantity.
+
+Report the IDs of products that have at least three orders in one calendar
+year and at least three orders again in the immediately following calendar
+year. A product may qualify through any pair of consecutive years, and it must
+appear only once in the result. The rows may be returned in any order.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `Orders`: Rows with integer `order_id`, integer `product_id`, integer `quantity`, and date-valued `purchase_date`; `order_id` is unique.
+
+Let $r$ be the number of order rows and $g$ the number of distinct
+product-year groups.
 
 **Return value**
 
-TODO
+A one-column table named `product_id` containing every qualifying product
+exactly once, in any order.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: product `1` has three orders in 2020 and three in 2021; product `2` has one order in 2022
+- Output: product `1`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: a product has three orders in 2020 and three in 2022, but none in 2021
+- Output: no rows
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: a product has four orders in 2023 and five in 2024
+- Output: that product once

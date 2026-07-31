@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3199",
+  "cases": [
+    {
+      "id": "sample-single-triplet",
+      "name": "sample: the sole XOR is zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": [
+          1
+        ],
+        "b": [
+          2
+        ],
+        "c": [
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-repeated-values",
+      "name": "sample: repeated values at different indices count separately",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": [
+          1,
+          1
+        ],
+        "b": [
+          2,
+          3
+        ],
+        "c": [
+          1,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: zero has even popcount parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          0
+        ],
+        "b": [
+          0
+        ],
+        "c": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-even-parity",
+      "name": "trial: all parity classes are even",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          0,
+          3,
+          5
+        ],
+        "b": [
+          6,
+          9
+        ],
+        "c": [
+          10,
+          12
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "all-qualify"
+      ]
+    },
+    {
+      "id": "trial-all-odd-parity",
+      "name": "trial: three odd parity classes never qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          1,
+          2
+        ],
+        "b": [
+          4,
+          7
+        ],
+        "c": [
+          8,
+          11
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "none-qualify"
+      ]
+    },
+    {
+      "id": "trial-exactly-two-odd-arrays",
+      "name": "trial: exactly two odd classes always qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          1,
+          2,
+          4
+        ],
+        "b": [
+          7,
+          8
+        ],
+        "c": [
+          0,
+          3
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "two-odd"
+      ]
+    },
+    {
+      "id": "real-mixed-parities",
+      "name": "real: all four successful parity patterns contribute",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          0,
+          1,
+          3,
+          7
+        ],
+        "b": [
+          2,
+          5,
+          6
+        ],
+        "c": [
+          4,
+          9,
+          10
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "mixed-parity"
+      ]
+    },
+    {
+      "id": "real-numeric-parity-trap",
+      "name": "real: numeric evenness differs from popcount parity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          2,
+          3
+        ],
+        "b": [
+          4,
+          6
+        ],
+        "c": [
+          8,
+          10
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "semantic-trap"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "real: the maximum value is handled by popcount",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          100,
+          99
+        ],
+        "b": [
+          98,
+          97
+        ],
+        "c": [
+          96,
+          95
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-unbalanced-lengths",
+      "name": "real: independently sized arrays multiply index choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          0
+        ],
+        "b": [
+          1,
+          3,
+          7,
+          15
+        ],
+        "c": [
+          2,
+          5,
+          8
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "lengths"
+      ]
+    },
+    {
+      "id": "real-duplicate-heavy",
+      "name": "real: duplicate-heavy arrays preserve multiplicity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          3,
+          3,
+          3
+        ],
+        "b": [
+          1,
+          1
+        ],
+        "c": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-boundary-mixture",
+      "name": "real: zero and one hundred appear with both parity classes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          0,
+          100
+        ],
+        "b": [
+          1,
+          99
+        ],
+        "c": [
+          2,
+          98
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundaries"
+      ]
+    }
+  ]
+}
+

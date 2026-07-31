@@ -34,6 +34,7 @@ COOKIE_PATH = LEETCODE_ROOT / "_local" / ".leetcode_cookie"
 REPORT_PATH = LEETCODE_ROOT / "_reports" / "sync_report.json"
 GRAPHQL_URL = "https://leetcode.com/graphql"
 PACKAGE_ID_WIDTH = 4
+CANONICAL_PROBLEM_LIMIT = 4005
 
 
 PROBLEMSET_QUERY = """
@@ -198,6 +199,39 @@ def sort_key(question: dict[str, Any]) -> tuple[int, str]:
     return (int(frontend_id) if frontend_id.isdigit() else 10**9, str(question.get("slug") or ""))
 
 
+def frontend_id_number(question: dict[str, Any]) -> int:
+    frontend_id = str(question.get("frontend_id") or "")
+    if not frontend_id.isdigit():
+        raise RuntimeError(f"LeetCode frontend id must be numeric, got {frontend_id!r}")
+    return int(frontend_id)
+
+
+def within_canonical_limit(question: dict[str, Any]) -> bool:
+    return frontend_id_number(question) <= CANONICAL_PROBLEM_LIMIT
+
+
+def validate_canonical_questions(
+    questions: list[dict[str, Any]],
+    *,
+    context: str,
+) -> None:
+    if len(questions) > CANONICAL_PROBLEM_LIMIT:
+        raise RuntimeError(
+            f"{context} contains {len(questions)} problems; the cOde(n) corpus is "
+            f"permanently capped at {CANONICAL_PROBLEM_LIMIT}."
+        )
+    over_limit = sorted(
+        frontend_id_number(question)
+        for question in questions
+        if not within_canonical_limit(question)
+    )
+    if over_limit:
+        raise RuntimeError(
+            f"{context} contains frontend ids above the permanent "
+            f"{CANONICAL_PROBLEM_LIMIT} ceiling: {over_limit}"
+        )
+
+
 def category_slug(category_title: str) -> str:
     return slugify(category_title or "uncategorized")
 
@@ -270,6 +304,9 @@ def metadata_for_question(question: dict[str, Any]) -> dict[str, Any]:
         "frequency": question.get("frequency"),
         "elo_rating": question.get("elo_rating"),
         "estimated_elo_rating": question.get("estimated_elo_rating"),
+        "contest_source": question.get("contest_source"),
+        "contest_slug": question.get("contest_slug"),
+        "contest_problem_index": question.get("contest_problem_index"),
         "category": question["category"],
         "category_title": question["category_title"],
         "topics": question["topics"],
@@ -303,6 +340,11 @@ def render_doc(question: dict[str, Any], template: str) -> str:
 
 
 def write_package(question: dict[str, Any], metadata: dict[str, Any], *, scaffold_docs: bool) -> str:
+    if not within_canonical_limit(question):
+        raise RuntimeError(
+            f"Refusing to write frontend id {question.get('frontend_id')!r}; "
+            f"the cOde(n) corpus is permanently capped at {CANONICAL_PROBLEM_LIMIT}."
+        )
     directory = package_dir(question)
     directory.mkdir(parents=True, exist_ok=True)
     metadata_path = directory / "metadata.json"
@@ -340,7 +382,14 @@ def write_package(question: dict[str, Any], metadata: dict[str, Any], *, scaffol
         ):
             metadata["subsets"] = sorted(set(metadata["subsets"]) | {"neetcode_250"})
             metadata["tags"] = sorted(set(metadata["tags"]) | {"subset:neetcode_250"})
-    for field in ("frequency", "elo_rating", "estimated_elo_rating"):
+    for field in (
+        "frequency",
+        "elo_rating",
+        "estimated_elo_rating",
+        "contest_source",
+        "contest_slug",
+        "contest_problem_index",
+    ):
         if field in existing:
             metadata[field] = existing[field]
     metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -390,6 +439,7 @@ def write_package(question: dict[str, Any], metadata: dict[str, Any], *, scaffol
 
 
 def write_index(questions: list[dict[str, Any]]) -> None:
+    validate_canonical_questions(questions, context="Canonical index payload")
     existing_metrics: dict[str, dict[str, Any]] = {}
     if INDEX_PATH.is_file():
         try:
@@ -407,7 +457,14 @@ def write_index(questions: list[dict[str, Any]]) -> None:
     for question in questions:
         normalized = dict(question)
         existing = existing_metrics.get(str(question.get("frontend_id") or ""), {})
-        for field in ("frequency", "elo_rating", "estimated_elo_rating"):
+        for field in (
+            "frequency",
+            "elo_rating",
+            "estimated_elo_rating",
+            "contest_source",
+            "contest_slug",
+            "contest_problem_index",
+        ):
             if normalized.get(field) is None and field in existing:
                 normalized[field] = existing[field]
             else:
@@ -451,6 +508,7 @@ def subset_record(kind: str, slug: str, name: str, challenge_ids: list[str], *, 
 
 
 def write_subsets(questions: list[dict[str, Any]]) -> None:
+    validate_canonical_questions(questions, context="Canonical subset payload")
     category_members: dict[str, list[str]] = defaultdict(list)
     category_names: dict[str, str] = {}
     topic_members: dict[str, list[str]] = defaultdict(list)
@@ -514,7 +572,16 @@ def write_subsets(questions: list[dict[str, Any]]) -> None:
 
 def sync_problemset(args: argparse.Namespace) -> dict[str, Any]:
     LEETCODE_ROOT.mkdir(parents=True, exist_ok=True)
-    questions = fetch_questions(page_size=args.page_size)
+    upstream_questions = fetch_questions(page_size=args.page_size)
+    questions = [
+        question for question in upstream_questions if within_canonical_limit(question)
+    ]
+    ignored_above_limit = [
+        str(question["frontend_id"])
+        for question in upstream_questions
+        if not within_canonical_limit(question)
+    ]
+    validate_canonical_questions(questions, context="Filtered LeetCode problem list")
     doc_statuses = Counter()
     for question in questions:
         metadata = metadata_for_question(question)
@@ -531,7 +598,11 @@ def sync_problemset(args: argparse.Namespace) -> dict[str, Any]:
     categories = Counter(question["category"] for question in questions)
     report = {
         "mode": "problemset",
+        "canonical_limit": CANONICAL_PROBLEM_LIMIT,
+        "upstream_total": len(upstream_questions),
         "total": len(questions),
+        "ignored_above_limit_count": len(ignored_above_limit),
+        "ignored_above_limit_frontend_ids": ignored_above_limit,
         "categories": dict(sorted(categories.items())),
         "doc_statuses": dict(sorted(doc_statuses.items())),
         "subsets_path": str(SUBSETS_PATH.relative_to(REPO_ROOT)).replace("\\", "/"),
@@ -551,13 +622,22 @@ def sync_new_problems(args: argparse.Namespace) -> dict[str, Any]:
     LEETCODE_ROOT.mkdir(parents=True, exist_ok=True)
     upstream_questions = fetch_questions(page_size=args.page_size)
     existing_questions = load_questions_from_index()
+    validate_canonical_questions(existing_questions, context="Existing canonical index")
+    eligible_upstream_questions = [
+        question for question in upstream_questions if within_canonical_limit(question)
+    ]
+    ignored_above_limit = [
+        str(question["frontend_id"])
+        for question in upstream_questions
+        if not within_canonical_limit(question)
+    ]
     existing_by_id = {
         str(question.get("frontend_id") or ""): question
         for question in existing_questions
         if isinstance(question, dict) and question.get("frontend_id")
     }
 
-    for question in upstream_questions:
+    for question in eligible_upstream_questions:
         frontend_id = str(question.get("frontend_id") or "")
         existing = existing_by_id.get(frontend_id)
         if existing is None:
@@ -570,13 +650,17 @@ def sync_new_problems(args: argparse.Namespace) -> dict[str, Any]:
 
     new_questions = [
         question
-        for question in upstream_questions
+        for question in eligible_upstream_questions
         if str(question.get("frontend_id") or "") not in existing_by_id
     ]
     if not new_questions:
         report = {
             "mode": "new_problems",
+            "canonical_limit": CANONICAL_PROBLEM_LIMIT,
             "upstream_total": len(upstream_questions),
+            "eligible_upstream_total": len(eligible_upstream_questions),
+            "ignored_above_limit_count": len(ignored_above_limit),
+            "ignored_above_limit_frontend_ids": ignored_above_limit,
             "previous_total": len(existing_questions),
             "new_problem_count": 0,
             "new_frontend_ids": [],
@@ -590,7 +674,17 @@ def sync_new_problems(args: argparse.Namespace) -> dict[str, Any]:
                 isinstance(question.get("frequency"), (int, float))
                 for question in existing_questions
             ),
-            "next_step": "No new LeetCode frontend ids were published.",
+            "next_step": (
+                f"The canonical corpus is frozen at {CANONICAL_PROBLEM_LIMIT}; "
+                "newer frontend ids were intentionally ignored."
+                if ignored_above_limit
+                else (
+                    f"The canonical corpus is frozen at {CANONICAL_PROBLEM_LIMIT}; "
+                    "no further additions are permitted."
+                    if len(existing_questions) == CANONICAL_PROBLEM_LIMIT
+                    else "No new eligible LeetCode frontend ids were published."
+                )
+            ),
         }
         write_report(report)
         return report
@@ -616,7 +710,11 @@ def sync_new_problems(args: argparse.Namespace) -> dict[str, Any]:
 
     report = {
         "mode": "new_problems",
+        "canonical_limit": CANONICAL_PROBLEM_LIMIT,
         "upstream_total": len(upstream_questions),
+        "eligible_upstream_total": len(eligible_upstream_questions),
+        "ignored_above_limit_count": len(ignored_above_limit),
+        "ignored_above_limit_frontend_ids": ignored_above_limit,
         "previous_total": len(existing_questions),
         "new_problem_count": len(new_questions),
         "new_frontend_ids": [str(question["frontend_id"]) for question in new_questions],

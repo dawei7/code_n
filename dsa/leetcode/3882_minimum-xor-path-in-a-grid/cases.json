@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3882",
+  "cases": [
+    {
+      "id": "sample-two-by-two-first",
+      "name": "sample: lower route has smaller XOR",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "two-paths"
+      ]
+    },
+    {
+      "id": "sample-two-by-two-second",
+      "name": "sample: upper route has smaller XOR",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            6,
+            7
+          ],
+          [
+            5,
+            8
+          ]
+        ]
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "two-paths"
+      ]
+    },
+    {
+      "id": "sample-single-row-zero",
+      "name": "sample: unique row path has XOR zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            7,
+            5
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: a zero singleton has cost zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-cell",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-maximum",
+      "name": "trial: a maximum-valued singleton returns itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1023
+          ]
+        ]
+      },
+      "expected": 1023,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-cell",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-single-row-cancellation",
+      "name": "trial: one row XORs every cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-row",
+        "xor-cancellation"
+      ]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "trial: one column has one forced path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-column",
+        "forced-path"
+      ]
+    },
+    {
+      "id": "trial-equal-route-costs",
+      "name": "trial: both two-by-two routes share one cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicate-cost",
+        "two-paths"
+      ]
+    },
+    {
+      "id": "real-zero-rectangle",
+      "name": "hidden: all-zero rectangle has minimum zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zeros",
+        "rectangle"
+      ]
+    },
+    {
+      "id": "real-maximum-two-by-two",
+      "name": "hidden: odd path length preserves maximum value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1023,
+            1023
+          ],
+          [
+            1023,
+            1023
+          ]
+        ]
+      },
+      "expected": 1023,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "odd-path-length"
+      ]
+    },
+    {
+      "id": "real-maximum-two-by-three",
+      "name": "hidden: even path length cancels repeated values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1023,
+            1023,
+            1023
+          ],
+          [
+            1023,
+            1023,
+            1023
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "even-path-length"
+      ]
+    },
+    {
+      "id": "real-distinct-powers",
+      "name": "hidden: compare three distinct-value routes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            8,
+            16,
+            32
+          ]
+        ]
+      },
+      "expected": 39,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "powers-of-two",
+        "multiple-paths"
+      ]
+    },
+    {
+      "id": "real-three-by-three",
+      "name": "hidden: several intermediate XOR states compete",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            7,
+            3
+          ],
+          [
+            2,
+            5,
+            8
+          ],
+          [
+            6,
+            4,
+            9
+          ]
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "three-by-three",
+        "state-competition"
+      ]
+    },
+    {
+      "id": "real-single-row-boundaries",
+      "name": "hidden: boundary values on one forced path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1023,
+            511,
+            255,
+            127,
+            63
+          ]
+        ]
+      },
+      "expected": 703,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "single-row",
+        "value-boundaries"
+      ]
+    },
+    {
+      "id": "real-four-by-four-zero-minimum",
+      "name": "hidden: one of many paths reaches XOR zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            5,
+            9,
+            2,
+            7
+          ],
+          [
+            4,
+            1,
+            8,
+            3
+          ],
+          [
+            6,
+            10,
+            12,
+            15
+          ],
+          [
+            14,
+            13,
+            11,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "four-by-four",
+        "zero-minimum"
+      ]
+    }
+  ]
+}

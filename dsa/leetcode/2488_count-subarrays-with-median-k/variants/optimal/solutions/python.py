@@ -1,38 +1,20 @@
 def solve(nums: list[int], k: int) -> int:
-    n = len(nums)
-    k_index = -1
-    for i in range(n):
-        if nums[i] == k:
-            k_index = i
-            break
-    
-    # counts stores the frequency of prefix sums to the left of k_index
-    # We use a dictionary to store the balance: (count of > k) - (count of < k)
-    counts = {0: 1}
-    current_balance = 0
-    
-    # Traverse left from k_index to store prefix balances
-    for i in range(k_index - 1, -1, -1):
-        if nums[i] < k:
-            current_balance -= 1
-        else:
-            current_balance += 1
-        counts[current_balance] = counts.get(current_balance, 0) + 1
-        
-    ans = 0
-    current_balance = 0
-    # Traverse right from k_index and check for valid subarrays
-    # A subarray is valid if the total balance is 0 or 1
-    for i in range(k_index, n):
-        if nums[i] < k:
-            current_balance -= 1
-        elif nums[i] > k:
-            current_balance += 1
-            
-        # We need total_balance to be 0 or 1
-        # left_balance + right_balance = 0 => left_balance = -right_balance
-        # left_balance + right_balance = 1 => left_balance = 1 - right_balance
-        ans += counts.get(-current_balance, 0)
-        ans += counts.get(1 - current_balance, 0)
-        
-    return ans
+    pivot = nums.index(k)
+
+    left_counts = {0: 1}
+    balance = 0
+    for index in range(pivot - 1, -1, -1):
+        balance += 1 if nums[index] > k else -1
+        left_counts[balance] = left_counts.get(balance, 0) + 1
+
+    answer = 0
+    balance = 0
+    for index in range(pivot, len(nums)):
+        if nums[index] > k:
+            balance += 1
+        elif nums[index] < k:
+            balance -= 1
+        answer += left_counts.get(-balance, 0)
+        answer += left_counts.get(1 - balance, 0)
+
+    return answer

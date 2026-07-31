@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3864",
+  "cases": [
+    {
+      "id": "sample-full-split",
+      "name": "sample: splitting to characters minimizes cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1010",
+        "encCost": 2,
+        "flatCost": 1
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "full-split",
+        "sensitive-elements"
+      ]
+    },
+    {
+      "id": "sample-one-level-split",
+      "name": "sample: one equal split is optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1010",
+        "encCost": 3,
+        "flatCost": 10
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-level-split",
+        "minimum-cost"
+      ]
+    },
+    {
+      "id": "sample-zero-segment",
+      "name": "sample: zero-only segment stays intact",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "00",
+        "encCost": 1,
+        "flatCost": 2
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-only",
+        "flat-cost"
+      ]
+    },
+    {
+      "id": "trial-single-sensitive",
+      "name": "trial: one sensitive character cannot split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "encCost": 5,
+        "flatCost": 2
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-character",
+        "sensitive"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero pays flat cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "encCost": 5,
+        "flatCost": 2
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-character",
+        "flat-cost"
+      ]
+    },
+    {
+      "id": "trial-odd-length",
+      "name": "trial: odd root must remain intact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "101",
+        "encCost": 2,
+        "flatCost": 1
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "odd-length",
+        "no-split"
+      ]
+    },
+    {
+      "id": "real-sensitive-pair",
+      "name": "hidden: splitting two sensitive characters is cheaper",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "11",
+        "encCost": 1,
+        "flatCost": 100
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "sensitive-pair",
+        "split"
+      ]
+    },
+    {
+      "id": "real-expensive-sensitive-pair",
+      "name": "hidden: mixed pair splits under high encryption cost",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "10",
+        "encCost": 100,
+        "flatCost": 1
+      },
+      "expected": 101,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-pair",
+        "split"
+      ]
+    },
+    {
+      "id": "real-cheap-encryption-pair",
+      "name": "hidden: mixed pair stays intact when flat cost is high",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "10",
+        "encCost": 1,
+        "flatCost": 100
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-pair",
+        "unsplit"
+      ]
+    },
+    {
+      "id": "real-odd-halves",
+      "name": "hidden: even root may split into unsplittable odd halves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "111000",
+        "encCost": 2,
+        "flatCost": 5
+      },
+      "expected": 23,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "odd-halves",
+        "one-split"
+      ]
+    },
+    {
+      "id": "real-long-zero-segment",
+      "name": "hidden: zero-only power of two remains one segment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "00000000",
+        "encCost": 100,
+        "flatCost": 7
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero-only",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-alternating-deep-split",
+      "name": "hidden: alternating power of two splits to characters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "10101010",
+        "encCost": 3,
+        "flatCost": 2
+      },
+      "expected": 20,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alternating",
+        "deep-split"
+      ]
+    },
+    {
+      "id": "real-all-sensitive-deep-split",
+      "name": "hidden: sensitive power of two splits fully",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "11111111",
+        "encCost": 2,
+        "flatCost": 100
+      },
+      "expected": 16,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-sensitive",
+        "deep-split"
+      ]
+    }
+  ]
+}

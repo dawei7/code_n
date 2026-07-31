@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3896",
+    "frontend_id": "3896",
+    "title_slug": "minimum-operations-to-transform-array-into-alternating-prime",
+    "url": "https://leetcode.com/problems/minimum-operations-to-transform-array-into-alternating-prime/description/",
+    "paid_only": false,
+    "content_sha256": "463b50535673f01162ceb25284e5d336d8c334670841bd95710eaba1c330a9d8",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3,4]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [5,6,7,8]",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [4,4]",
+        "output": "1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "570f42d0cfa294ca8760ff5cf82f0e475d96aa53bce94e8b103de36a949d0c49",
+      "reference/contract.md": "733667e11844026204419f5d9358deb1fcca26399e0f8d64ea69fe761468dd28",
+      "reference/examples.md": "d7245a2b6d423f970f39d5237502837c14656cd7173dde30533cfc1355f6f32a",
+      "reference/constraints.md": "390c552f1103d6deeea306353fdd0413c4fd55061bf147112f52f5a3d9229bb7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

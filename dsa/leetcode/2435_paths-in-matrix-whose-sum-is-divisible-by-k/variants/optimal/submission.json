@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2521",
+  "frontend_id": "2435",
+  "title_slug": "paths-in-matrix-whose-sum-is-divisible-by-k",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numberOfPaths",
+  "verified_submission_id": "2074923308",
+  "verified_at": "2026-07-20T17:43:15.914635+00:00"
+}

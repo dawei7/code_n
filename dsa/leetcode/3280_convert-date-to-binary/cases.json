@@ -1,0 +1,173 @@
+{
+  "challenge_id": "lc_3280",
+  "cases": [
+    {
+      "id": "sample-leap-day",
+      "name": "sample: leap day in 2080",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "date": "2080-02-29"
+      },
+      "expected": "100000100000-10-11101",
+      "tags": [
+        "sample",
+        "leap-day"
+      ]
+    },
+    {
+      "id": "sample-lower-bound",
+      "name": "sample: lower date boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "date": "1900-01-01"
+      },
+      "expected": "11101101100-1-1",
+      "tags": [
+        "sample",
+        "lower-bound"
+      ]
+    },
+    {
+      "id": "trial-century-leap-day",
+      "name": "trial: Gregorian leap century",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2000-02-29"
+      },
+      "expected": "11111010000-10-11101",
+      "tags": [
+        "leap-day",
+        "century"
+      ]
+    },
+    {
+      "id": "trial-year-end",
+      "name": "trial: final day of a year",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2000-12-31"
+      },
+      "expected": "11111010000-1100-11111",
+      "tags": [
+        "year-end",
+        "two-digit-components"
+      ]
+    },
+    {
+      "id": "trial-single-digit-month-day",
+      "name": "trial: leading decimal zeros disappear",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2024-03-04"
+      },
+      "expected": "11111101000-11-100",
+      "tags": [
+        "leading-zero",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-powers-of-two",
+      "name": "trial: month and day are powers of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2048-08-16"
+      },
+      "expected": "100000000000-1000-10000",
+      "tags": [
+        "powers-of-two",
+        "binary"
+      ]
+    },
+    {
+      "id": "trial-non-leap-february",
+      "name": "trial: valid February boundary in a common year",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "1900-02-28"
+      },
+      "expected": "11101101100-10-11100",
+      "tags": [
+        "february",
+        "common-year"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "real: upper date boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "date": "2100-12-31"
+      },
+      "expected": "100000110100-1100-11111",
+      "tags": [
+        "upper-bound",
+        "year-end"
+      ]
+    },
+    {
+      "id": "real-century-start",
+      "name": "real: first day of leap century",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "date": "2000-01-01"
+      },
+      "expected": "11111010000-1-1",
+      "tags": [
+        "century",
+        "year-start"
+      ]
+    },
+    {
+      "id": "real-month-thirty-days",
+      "name": "real: final day of a thirty-day month",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "date": "1999-04-30"
+      },
+      "expected": "11111001111-100-11110",
+      "tags": [
+        "month-boundary",
+        "thirty-days"
+      ]
+    },
+    {
+      "id": "real-month-thirty-one-days",
+      "name": "real: final day of a thirty-one-day month",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "date": "2099-07-31"
+      },
+      "expected": "100000110011-111-11111",
+      "tags": [
+        "month-boundary",
+        "thirty-one-days"
+      ]
+    },
+    {
+      "id": "real-interior-leap-day",
+      "name": "real: leap day near upper boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "date": "2096-02-29"
+      },
+      "expected": "100000110000-10-11101",
+      "tags": [
+        "leap-day",
+        "upper-range"
+      ]
+    }
+  ]
+}

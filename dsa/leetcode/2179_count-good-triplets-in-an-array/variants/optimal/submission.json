@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2280",
+  "frontend_id": "2179",
+  "title_slug": "count-good-triplets-in-an-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.goodTriplets",
+  "verified_submission_id": "2073721305",
+  "verified_at": "2026-07-19T17:02:38.658024+00:00"
+}

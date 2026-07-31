@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Bind Function to Context and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Returns a closure that invokes the target as a temporary Symbol-keyed method of the fixed context object.",
+      "time_complexity": "O(a)",
+      "space_complexity": "O(a)"
     }
   ]
 }

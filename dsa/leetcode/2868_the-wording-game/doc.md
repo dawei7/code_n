@@ -8,48 +8,53 @@
 | Category | Algorithms |
 | Topics | Array, Math, Two Pointers, String, Greedy, Game Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [the-wording-game](https://leetcode.com/problems/the-wording-game/) |
+| LeetCode | [The Wording Game](https://leetcode.com/problems/the-wording-game/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/the-wording-game/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Alice and Bob own lexicographically sorted word lists `a` and `b`. Alice begins by playing the lexicographically smallest word in `a`. After that forced opening, the players alternate turns and select words from their own lists.
+
+A new word must be lexicographically greater than the word played immediately before it. Its first letter must also be either the same as the previous word's first letter or the next letter of the alphabet. A player who has no legal word on their turn loses.
+
+All words across the two lists are distinct. Assuming both players choose optimally, determine whether Alice can force a win.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `a`: Alice's nonempty list of lowercase words in lexicographic order.
+- `b`: Bob's nonempty list of lowercase words in lexicographic order.
+
+Each list contains at most $10^5$ words. Define
+
+$$
+S = \sum_{w \in \texttt{a}} \lvert w \rvert + \sum_{w \in \texttt{b}} \lvert w \rvert.
+$$
+
+The combined words are distinct and $S \le 10^6$.
 
 **Return value**
 
-TODO
+- `true` if Alice wins with optimal play; otherwise `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `a = ["avokado","dabar"], b = ["brazil"]`
+- Output: `false`
+- Explanation: Alice must open with `"avokado"`. Bob can advance to `"brazil"`, after which Alice cannot legally jump from initial `b` to her remaining `d` word.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `a = ["ananas","atlas","banana"], b = ["albatros","cikla","nogomet"]`
+- Output: `true`
+- Explanation: Bob's only word beginning with `a` is smaller than Alice's forced opening, and he has no playable word beginning with `b`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `a = ["hrvatska","zastava"], b = ["bijeli","galeb"]`
+- Output: `true`
+- Explanation: Both of Bob's words are lexicographically smaller than Alice's opening and start before `h`, so Bob has no legal move.

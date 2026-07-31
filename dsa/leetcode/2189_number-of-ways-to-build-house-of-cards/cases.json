@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2189",
+  "cases": [
+    {"id":"sample-sixteen","name":"sample: sixteen cards form two houses","kind":"sample","visible":true,"input":{"n":16},"expected":2,"tags":["sample","multiple-houses"]},
+    {"id":"sample-single-triangle","name":"sample: two cards form one triangle","kind":"sample","visible":true,"input":{"n":2},"expected":1,"tags":["sample","single-row"]},
+    {"id":"sample-impossible-four","name":"sample: four cards cannot form a valid house","kind":"sample","visible":true,"input":{"n":4},"expected":0,"tags":["sample","impossible"]},
+    {"id":"trial-minimum","name":"one card cannot form a triangle","kind":"trial","visible":true,"input":{"n":1},"expected":0,"tags":["minimum","impossible"]},
+    {"id":"trial-one-wide-row","name":"five cards form one row with two triangles","kind":"trial","visible":true,"input":{"n":5},"expected":1,"tags":["single-row","horizontal-card"]},
+    {"id":"real-supported-stack","name":"hidden: seven cards form rows of widths two and one","kind":"real","visible":false,"input":{"n":7},"expected":1,"tags":["hidden","multiple-rows"]},
+    {"id":"real-two-decompositions","name":"hidden: thirteen cards admit two width subsets","kind":"real","visible":false,"input":{"n":13},"expected":2,"tags":["hidden","subset-count"]},
+    {"id":"real-larger-count","name":"hidden: larger total has many distinct houses","kind":"real","visible":false,"input":{"n":100},"expected":209,"tags":["hidden","many-houses"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4248",
+  "frontend_id": "3871",
+  "title_slug": "count-commas-in-range-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.countCommas",
+  "verified_submission_id": "2086473676",
+  "verified_at": "2026-07-29T17:14:34.597930+00:00"
+}

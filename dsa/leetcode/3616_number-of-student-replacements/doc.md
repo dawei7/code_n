@@ -8,48 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-student-replacements](https://leetcode.com/problems/number-of-student-replacements/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-student-replacements/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-student-replacements/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Students arrive in the order given by `ranks`, where `ranks[i]` is the rank of the $i$th arriving student. A smaller integer represents a better rank. The first arriving student is selected initially and does not count as a replacement.
+
+For every later arrival, replace the selected student only when the new student's rank is strictly better than the current selected rank. Equal or larger rank values leave the selection unchanged. Return the total number of replacements made after processing the complete arrival sequence.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `ranks`: The students' positive integer ranks in arrival order.
+
+The constraints are $1 \le \lvert\texttt{ranks}\rvert \le 10^5$ and $1 \le \texttt{ranks[i]} \le 10^5$.
 
 **Return value**
 
-TODO
+Return the number of later students whose strictly smaller rank replaces the currently selected student.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `ranks = [4, 1, 2]`
+- Output: `1`
+- Explanation: Rank 1 replaces rank 4; rank 2 is not better than rank 1.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `ranks = [2, 2, 3]`
+- Output: `0`
+- Explanation: Equality is not strictly better, and rank 3 is worse.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `ranks = [5, 4, 3, 2, 1]`
+- Output: `4`
+- Explanation: Every arrival after the first establishes a new best rank.

@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String, Counting, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-same-end-substrings](https://leetcode.com/problems/number-of-same-end-substrings/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-same-end-substrings/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-same-end-substrings/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a 0-indexed lowercase English string `s` and an array `queries`.
+Each query `[left, right]` selects the inclusive substring from index `left`
+through index `right`.
+
+A nonempty string is same-end when its first and last characters are equal.
+This includes every single-character string, since its two ends are the same
+position. For each selected range, count all contiguous substrings lying
+entirely inside that range that are same-end. Return the counts in the same
+order as the input queries.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: the lowercase English source string
+- `queries`: inclusive `[left, right]` index pairs describing ranges of `s`
+
+Let $N=\lvert\texttt{s}\rvert$ and $Q=\lvert\texttt{queries}\rvert$. The
+contract guarantees $2\le N\le3\cdot10^4$, $1\le Q\le3\cdot10^4$, and
+$0\le\texttt{left}\le\texttt{right}<N$ for every query.
 
 **Return value**
 
-TODO
+An array whose entry at index `i` is the number of same-end substrings inside
+the inclusive range described by `queries[i]`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcaab", queries = [[0,0],[1,4],[2,5],[0,5]]`
+- Output: `[1,5,5,10]`
+- Explanation: Each range counts its singletons plus longer substrings whose endpoint characters match.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "abcd", queries = [[0,3]]`
+- Output: `[4]`
+- Explanation: All letters differ, so only the four single-character substrings qualify.

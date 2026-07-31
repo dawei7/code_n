@@ -1,40 +1,36 @@
 def solve(nums: list[int], remove_queries: list[int]) -> list[int]:
     n = len(nums)
     parent = list(range(n))
-    sums = [0] * n
-    exists = [False] * n
-    ans = [0] * n
+    segment_sum = [0] * n
+    active = [False] * n
+    answer = [0] * n
 
-    def find(i):
-        if parent[i] == i:
-            return i
-        parent[i] = find(parent[i])
-        return parent[i]
+    def find(index: int) -> int:
+        while parent[index] != index:
+            parent[index] = parent[parent[index]]
+            index = parent[index]
+        return index
 
-    def union(i, j):
-        root_i = find(i)
-        root_j = find(j)
-        if root_i != root_j:
-            parent[root_i] = root_j
-            sums[root_j] += sums[root_i]
+    def union(first: int, second: int) -> None:
+        first_root = find(first)
+        second_root = find(second)
+        if first_root == second_root:
+            return
+        parent[second_root] = first_root
+        segment_sum[first_root] += segment_sum[second_root]
 
-    current_max = 0
-    results = []
+    maximum = 0
+    for query_index in range(n - 1, -1, -1):
+        answer[query_index] = maximum
+        index = remove_queries[query_index]
+        active[index] = True
+        segment_sum[index] = nums[index]
 
-    # Process in reverse: adding elements back
-    for i in reversed(range(n)):
-        results.append(current_max)
-        idx = remove_queries[i]
-        exists[idx] = True
-        sums[idx] = nums[idx]
+        if index > 0 and active[index - 1]:
+            union(index, index - 1)
+        if index + 1 < n and active[index + 1]:
+            union(index, index + 1)
 
-        # Check left neighbor
-        if idx > 0 and exists[idx - 1]:
-            union(idx, idx - 1)
-        # Check right neighbor
-        if idx < n - 1 and exists[idx + 1]:
-            union(idx, idx + 1)
+        maximum = max(maximum, segment_sum[find(index)])
 
-        current_max = max(current_max, sums[find(idx)])
-
-    return results[::-1]
+    return answer

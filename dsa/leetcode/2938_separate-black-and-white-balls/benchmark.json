@@ -1,0 +1,57 @@
+{
+  "challenge_id": "lc_2938",
+  "cases": [
+    {
+      "id": "benchmark-length-32",
+      "name": "benchmark: 16 black balls before 16 white balls",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "11111111111111110000000000000000"
+      },
+      "expected": 256,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-inversion-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-length-128",
+      "name": "benchmark: 64 black balls before 64 white balls",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "11111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": 4096,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-inversion-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-length-512",
+      "name": "benchmark: 256 black balls before 256 white balls",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": 65536,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-inversion-baseline"
+      ]
+    }
+  ]
+}
+

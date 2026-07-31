@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2636",
+  "status": "verified",
+  "method": "bounded_concurrency",
+  "required_time": "O(m)",
+  "summary": "The source permits at most ten asynchronous functions and ten pool slots, while correctness depends on start order, the pending-promise safety limit, work-conserving refill, and eventual completion rather than scalable wall-clock growth.",
+  "workload_bound": {
+    "symbol": "m",
+    "maximum": 10,
+    "unit": "asynchronous functions",
+    "source_constraint": "functions.length is between zero and ten and the pool limit n is between one and ten"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "At most min(m, n) workers are created; each of the m indices is claimed once, invoked once, and awaited once before its worker can claim another index."},
+    {"kind": "scheduler_stress", "evidence": "Authored schedules cover zero and ten functions, pool limits one and above the work count, equal finishes, zero-duration work, and repeated refill by the fastest slot."},
+    {"kind": "semantic_validator", "evidence": "The deterministic app adapter records every start and finish time, completion time, and maximum pending count so cases verify input start order, the n-promise cap, immediate refill, and complete execution."},
+    {"kind": "deadlock_timeout", "evidence": "The exact native worker source is remotely Accepted under the provider timeout, while every local schedule case deterministically reaches zero remaining work and a finite completion time."}
+  ]
+}

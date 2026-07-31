@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Relative Loss After Buying Chocolates and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts prices once, represents each optimum as a low-price prefix plus high-price suffix, and binary-searches the convex split for every query.",
+      "time_complexity": "O((n + q) \\log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

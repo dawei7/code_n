@@ -3,14 +3,6 @@
   "challenge_id": "lc_3731",
   "default_variant": "optimal",
   "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Missing Elements and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
+    {"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Uses the surviving minimum and maximum as range bounds and filters that range through a membership set.","time_complexity":"O(n + R)","space_complexity":"O(n + R)"}
   ]
 }

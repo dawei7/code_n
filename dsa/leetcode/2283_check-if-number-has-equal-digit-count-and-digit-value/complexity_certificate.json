@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2283",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The legal string has at most ten characters, which is too small for an honest timing trend. In the generalized length model, exact digit frequencies require reading every character in the worst case, and the two linear scans match that lower bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "An implementation must inspect every input character in the worst case because changing an unread character can change the frequency of a digit constrained by the indexed requirements. Counting ten digit frequencies and comparing the n indexed requirements each take O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An adversary can change an unread character and thereby change a required frequency, establishing an Omega(n) worst-case input-inspection lower bound."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "One complete frequency scan followed by at most n constant-time comparisons establishes O(n) time and O(1) space over the fixed decimal alphabet."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhaustively checks every decimal string through length five and deterministic valid, invalid, leading-zero, maximum-length, and randomized strings through length ten against a direct count oracle."
+    }
+  ]
+}

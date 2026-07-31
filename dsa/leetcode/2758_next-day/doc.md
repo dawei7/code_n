@@ -8,48 +8,46 @@
 | Category | JavaScript |
 | Topics | Uncategorized |
 | Supported Languages | javascript |
-| Official Link | [next-day](https://leetcode.com/problems/next-day/) |
+| LeetCode | [Next Day](https://leetcode.com/problems/next-day/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/next-day/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Extend every JavaScript `Date` object with a `nextDay()` method. Calling the method on a valid date must produce the following calendar day as a string in `YYYY-MM-DD` format.
+
+The calculation must handle calendar boundaries correctly. In particular, advancing a day may cross the end of a month or year, and February must follow the leap-year rules already implemented by `Date`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+The native submission adds no standalone function parameters. The method is invoked on a valid `Date` instance through `date.nextDay()`.
+
+For the app-local adapter:
+
+- `date`: A date string for which `new Date(date)` creates a valid `Date` object.
 
 **Return value**
 
-TODO
+Return the next calendar day as a `YYYY-MM-DD` string. The receiver itself does not need to be modified.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `date = "2014-06-20"`
+- Output: `"2014-06-21"`
+- Explanation: June 21 is the calendar day immediately after June 20.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `date = "2017-10-31"`
+- Output: `"2017-11-01"`
+- Explanation: Advancing one day crosses from October into November.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `date = "2020-02-28"`
+- Output: `"2020-02-29"`
+- Explanation: The year 2020 is a leap year, so February contains a 29th day.

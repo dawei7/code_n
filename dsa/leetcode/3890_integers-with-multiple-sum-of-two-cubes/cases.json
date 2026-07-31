@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3890",
+  "cases": [
+    {
+      "id": "sample-two-good-integers",
+      "name": "sample: two good integers occur through the inclusive bound",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4104
+      },
+      "expected": [
+        1729,
+        4104
+      ],
+      "tags": [
+        "sample",
+        "multiple-representations",
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "sample-no-good-integer",
+      "name": "sample: no good integer occurs below 579",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 578
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "empty-result",
+        "small-bound"
+      ]
+    },
+    {
+      "id": "trial-minimum-bound",
+      "name": "trial: the minimum bound has no positive cube sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "minimum-bound",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-equal-base-single-pair",
+      "name": "trial: an equal-base representation alone is not enough",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "equal-bases",
+        "distinct-pairs"
+      ]
+    },
+    {
+      "id": "trial-before-first-good",
+      "name": "trial: one less than the first good integer remains empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1728
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "threshold",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-first-good-inclusive",
+      "name": "trial: the first good integer is included at equality",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1729
+      },
+      "expected": [
+        1729
+      ],
+      "tags": [
+        "trial",
+        "first-good",
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "trial-before-second-good",
+      "name": "trial: a bound before 4104 contains only 1729",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4103
+      },
+      "expected": [
+        1729
+      ],
+      "tags": [
+        "trial",
+        "threshold",
+        "sorted-output"
+      ]
+    },
+    {
+      "id": "trial-third-good-inclusive",
+      "name": "trial: the third good integer appears at its exact boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 13832
+      },
+      "expected": [
+        1729,
+        4104,
+        13832
+      ],
+      "tags": [
+        "trial",
+        "inclusive-boundary",
+        "multiple-results"
+      ]
+    },
+    {
+      "id": "real-smallest-cube-sum",
+      "name": "hidden: one plus one cubed is only one canonical representation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "single-representation",
+        "equal-bases"
+      ]
+    },
+    {
+      "id": "real-distinct-base-single-pair",
+      "name": "hidden: one cubed plus two cubed is still only one representation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 9
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "single-representation",
+        "distinct-bases"
+      ]
+    },
+    {
+      "id": "real-after-second-good",
+      "name": "hidden: moving just beyond 4104 adds no duplicate result",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4105
+      },
+      "expected": [
+        1729,
+        4104
+      ],
+      "tags": [
+        "hidden",
+        "post-threshold",
+        "no-new-result"
+      ]
+    },
+    {
+      "id": "real-gap-after-second-good",
+      "name": "hidden: a wider bound still contains only the first two values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10000
+      },
+      "expected": [
+        1729,
+        4104
+      ],
+      "tags": [
+        "hidden",
+        "gap",
+        "sorted-output"
+      ]
+    },
+    {
+      "id": "real-before-third-good",
+      "name": "hidden: one less than 13832 excludes the third value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 13831
+      },
+      "expected": [
+        1729,
+        4104
+      ],
+      "tags": [
+        "hidden",
+        "threshold",
+        "exclusive-predecessor"
+      ]
+    },
+    {
+      "id": "real-before-fourth-good",
+      "name": "hidden: one less than 20683 retains the first three values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20682
+      },
+      "expected": [
+        1729,
+        4104,
+        13832
+      ],
+      "tags": [
+        "hidden",
+        "threshold",
+        "multiple-results"
+      ]
+    },
+    {
+      "id": "real-fourth-good-inclusive",
+      "name": "hidden: 20683 adds the fourth distinct cube-sum collision",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20683
+      },
+      "expected": [
+        1729,
+        4104,
+        13832,
+        20683
+      ],
+      "tags": [
+        "hidden",
+        "inclusive-boundary",
+        "multiple-results"
+      ]
+    }
+  ]
+}
+

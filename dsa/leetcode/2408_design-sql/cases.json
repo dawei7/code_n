@@ -1,0 +1,567 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2408",
+  "cases": [
+    {
+      "id": "sample-export-after-removal",
+      "name": "sample: insert select export and remove",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "SQL",
+          "ins",
+          "sel",
+          "ins",
+          "exp",
+          "rmv",
+          "sel",
+          "exp"
+        ],
+        "arguments": [
+          [
+            [
+              "one",
+              "two",
+              "three"
+            ],
+            [
+              2,
+              3,
+              1
+            ]
+          ],
+          [
+            "two",
+            [
+              "first",
+              "second",
+              "third"
+            ]
+          ],
+          [
+            "two",
+            1,
+            3
+          ],
+          [
+            "two",
+            [
+              "fourth",
+              "fifth",
+              "sixth"
+            ]
+          ],
+          [
+            "two"
+          ],
+          [
+            "two",
+            1
+          ],
+          [
+            "two",
+            2,
+            2
+          ],
+          [
+            "two"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        "third",
+        true,
+        [
+          "1,first,second,third",
+          "2,fourth,fifth,sixth"
+        ],
+        null,
+        "fifth",
+        [
+          "2,fourth,fifth,sixth"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "stateful"
+      ]
+    },
+    {
+      "id": "sample-invalid-width",
+      "name": "sample: removed cells and invalid row widths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "SQL",
+          "ins",
+          "sel",
+          "rmv",
+          "sel",
+          "ins",
+          "ins"
+        ],
+        "arguments": [
+          [
+            [
+              "one",
+              "two",
+              "three"
+            ],
+            [
+              2,
+              3,
+              1
+            ]
+          ],
+          [
+            "two",
+            [
+              "first",
+              "second",
+              "third"
+            ]
+          ],
+          [
+            "two",
+            1,
+            3
+          ],
+          [
+            "two",
+            1
+          ],
+          [
+            "two",
+            1,
+            2
+          ],
+          [
+            "two",
+            [
+              "fourth",
+              "fifth"
+            ]
+          ],
+          [
+            "two",
+            [
+              "fourth",
+              "fifth",
+              "sixth"
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        "third",
+        null,
+        "<null>",
+        false,
+        true
+      ],
+      "tags": [
+        "sample",
+        "validation"
+      ]
+    },
+    {
+      "id": "trial-id-not-reused",
+      "name": "deleting the latest row does not recycle its id",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "SQL",
+          "ins",
+          "rmv",
+          "ins",
+          "exp"
+        ],
+        "arguments": [
+          [
+            [
+              "data"
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            "data",
+            [
+              "alpha"
+            ]
+          ],
+          [
+            "data",
+            1
+          ],
+          [
+            "data",
+            [
+              "beta"
+            ]
+          ],
+          [
+            "data"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        null,
+        true,
+        [
+          "2,beta"
+        ]
+      ],
+      "tags": [
+        "auto-increment",
+        "deletion"
+      ]
+    },
+    {
+      "id": "trial-unknown-table",
+      "name": "unknown table operations follow their neutral results",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "SQL",
+          "ins",
+          "rmv",
+          "sel",
+          "exp",
+          "ins",
+          "exp"
+        ],
+        "arguments": [
+          [
+            [
+              "known"
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            "missing",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "missing",
+            1
+          ],
+          [
+            "missing",
+            1,
+            1
+          ],
+          [
+            "missing"
+          ],
+          [
+            "known",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "known"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        null,
+        "<null>",
+        [],
+        true,
+        [
+          "1,a,b"
+        ]
+      ],
+      "tags": [
+        "invalid-table"
+      ]
+    },
+    {
+      "id": "trial-column-bounds",
+      "name": "selection columns are one indexed and bounded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "SQL",
+          "ins",
+          "sel",
+          "sel",
+          "sel"
+        ],
+        "arguments": [
+          [
+            [
+              "t"
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            "t",
+            [
+              "left",
+              "right"
+            ]
+          ],
+          [
+            "t",
+            1,
+            0
+          ],
+          [
+            "t",
+            1,
+            1
+          ],
+          [
+            "t",
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        "<null>",
+        "left",
+        "<null>"
+      ],
+      "tags": [
+        "column-boundary"
+      ]
+    },
+    {
+      "id": "real-independent-counters",
+      "name": "hidden: tables assign ids independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "SQL",
+          "ins",
+          "ins",
+          "ins",
+          "rmv",
+          "ins",
+          "exp",
+          "exp"
+        ],
+        "arguments": [
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            "a",
+            [
+              "x"
+            ]
+          ],
+          [
+            "b",
+            [
+              "y",
+              "z"
+            ]
+          ],
+          [
+            "a",
+            [
+              "w"
+            ]
+          ],
+          [
+            "a",
+            1
+          ],
+          [
+            "b",
+            [
+              "p",
+              "q"
+            ]
+          ],
+          [
+            "a"
+          ],
+          [
+            "b"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        true,
+        true,
+        null,
+        true,
+        [
+          "2,w"
+        ],
+        [
+          "1,y,z",
+          "2,p,q"
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "multiple-tables"
+      ]
+    },
+    {
+      "id": "real-failed-insert-keeps-counter",
+      "name": "hidden: malformed insertion does not consume an id",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "SQL",
+          "ins",
+          "ins",
+          "ins",
+          "exp"
+        ],
+        "arguments": [
+          [
+            [
+              "t"
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            "t",
+            [
+              "bad"
+            ]
+          ],
+          [
+            "t",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "t",
+            [
+              "c",
+              "d",
+              "e"
+            ]
+          ],
+          [
+            "t"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        true,
+        false,
+        [
+          "1,a,b"
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "counter"
+      ]
+    },
+    {
+      "id": "real-no-op-removals",
+      "name": "hidden: absent removals preserve live rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "SQL",
+          "ins",
+          "rmv",
+          "rmv",
+          "sel",
+          "exp"
+        ],
+        "arguments": [
+          [
+            [
+              "t"
+            ],
+            [
+              1
+            ]
+          ],
+          [
+            "t",
+            [
+              "v"
+            ]
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "missing",
+            1
+          ],
+          [
+            "t",
+            1,
+            1
+          ],
+          [
+            "t"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        null,
+        null,
+        "v",
+        [
+          "1,v"
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "no-op"
+      ]
+    }
+  ]
+}

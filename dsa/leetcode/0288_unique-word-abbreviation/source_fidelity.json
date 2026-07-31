@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_288", "frontend_id": "288", "title_slug": "unique-word-abbreviation", "url": "https://leetcode.com/problems/unique-word-abbreviation/description/", "paid_only": true, "content_sha256": "5249f86eee52f69b747b079bd1feace0ee32bb36cb9933aa38be603473117b26", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "operations = [\"ValidWordAbbr\",\"isUnique\",\"isUnique\",\"isUnique\",\"isUnique\",\"isUnique\"], arguments = [[[\"deer\",\"door\",\"cake\",\"card\"]],[\"dear\"],[\"cart\"],[\"cane\"],[\"make\"],[\"cake\"]]", "output": "[null,false,true,false,true,true]", "has_explanation": true}],
+    "constraint_count": 6,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "02b3877708b9070de1796b1ad32d15490f73c26449cd65c29701cd94657276b0",
+      "reference/contract.md": "f66fe8b43be3cead2c1a38c8437f85bec21e0685d641395e5cdd3657df53e5ac",
+      "reference/examples.md": "b5fd49642c4c016130685b06e87360b262aa15f5379cdda0f841846dd6c55945",
+      "reference/constraints.md": "cc7cff53224d60d874b73f01cfb414fb3ff165301316ee29ba8b6e8a9044030e"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

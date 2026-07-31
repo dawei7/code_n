@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_334", "frontend_id": "334", "title_slug": "increasing-triplet-subsequence", "url": "https://leetcode.com/problems/increasing-triplet-subsequence/description/", "paid_only": false, "content_sha256": "f375dfdb2127c0714a725a5838b2b62fb4b5ca46e5873dc178917cd5ac65b58c", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,2,3,4,5]", "output": "true", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [5,4,3,2,1]", "output": "false", "has_explanation": true},
+      {"ordinal": 3, "input": "nums = [2,1,5,0,4,6]", "output": "true", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "c045e800cbeea7d7ff327e7142ccb1127f1b73edbb8bcfd50fad99bef3c34171",
+    "reference/contract.md": "89cb91cf46d173128fbe7a39b62020a97fba953e5a50465b156da1069092522a",
+    "reference/examples.md": "9c3194dccd05cbd3962ef16a60f9cf044878b5c28b6bd41a73f498d3a3da1884",
+    "reference/constraints.md": "2c76e228dc66d727fba6e4e05a479feb2d5c942460869e1da87a9bc96cd9793d",
+    "reference/follow_up.md": "e0149e94a3d334ea529ca9b00748d1542c2af027460d8af04d0b4bac83797511"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

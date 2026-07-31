@@ -1,0 +1,155 @@
+{
+  "challenge_id": "lc_3399",
+  "cases": [
+    {
+      "id": "sample-break-long-zero-run",
+      "name": "sample: one flip reduces the longest zero run to two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "000001",
+        "numOps": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "sample-alternating-target",
+      "name": "sample: two flips make the string alternating",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0000",
+        "numOps": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-already-alternating",
+      "name": "sample: no flips are needed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0101",
+        "numOps": 0
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character always forms a block of one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "numOps": 1
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-no-operations",
+      "name": "trial: zero operations preserve the original longest run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000",
+        "numOps": 0
+      },
+      "expected": 3,
+      "tags": [
+        "edge",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-one-flip-alternates",
+      "name": "trial: a boundary run can be fixed with one flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "001",
+        "numOps": 1
+      },
+      "expected": 1,
+      "tags": [
+        "regression",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-one-flip-not-enough",
+      "name": "trial: one flip cannot reach either alternating pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0110",
+        "numOps": 1
+      },
+      "expected": 2,
+      "tags": [
+        "regression",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-two-flips-alternate",
+      "name": "trial: either alternating pattern is considered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "01101",
+        "numOps": 2
+      },
+      "expected": 1,
+      "tags": [
+        "regression",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-long-identical-run",
+      "name": "real: a long run needs several regularly spaced flips",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "000000000000000000000",
+        "numOps": 6
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "run-splitting"
+      ]
+    },
+    {
+      "id": "real-mixed-runs",
+      "name": "real: the budget is shared across independent runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1111000001111100011110000",
+        "numOps": 4
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "mixed-runs"
+      ]
+    }
+  ]
+}

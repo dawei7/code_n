@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3803",
+  "cases": [
+    {"id":"sample-1","name":"sample: first two distinct prefixes qualify","kind":"sample","visible":true,"input":{"s":"abc"},"expected":2,"validator":{"kind":"exact"},"tags":["sample","distinct-characters"]},
+    {"id":"sample-2","name":"sample: repeated character changes only the remainder","kind":"sample","visible":true,"input":{"s":"dd"},"expected":1,"validator":{"kind":"exact"},"tags":["sample","repeated-character"]},
+    {"id":"sample-3","name":"sample: two distinct letters across three prefixes","kind":"sample","visible":true,"input":{"s":"bob"},"expected":2,"validator":{"kind":"exact"},"tags":["sample","two-distinct"]},
+    {"id":"trial-single-character","name":"trial: the only prefix is a residue","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"validator":{"kind":"exact"},"tags":["trial","minimum"]},
+    {"id":"trial-three-equal-characters","name":"trial: remainder zero cannot match","kind":"trial","visible":true,"input":{"s":"aaa"},"expected":1,"validator":{"kind":"exact"},"tags":["trial","repeated-character","remainder-zero"]},
+    {"id":"trial-four-equal-characters","name":"trial: the remainder cycles back to one","kind":"trial","visible":true,"input":{"s":"aaaa"},"expected":2,"validator":{"kind":"exact"},"tags":["trial","remainder-cycle"]},
+    {"id":"real-third-distinct-stops-future-matches","name":"hidden: three distinct letters prevent later residues","kind":"real","visible":false,"input":{"s":"abcdef"},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","third-distinct"]},
+    {"id":"real-two-letter-cycle","name":"hidden: two distinct letters match remainder two repeatedly","kind":"real","visible":false,"input":{"s":"abbaba"},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","two-distinct","remainder-cycle"]},
+    {"id":"real-delayed-second-distinct","name":"hidden: a new distinct letter arrives at remainder zero","kind":"real","visible":false,"input":{"s":"aab"},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","delayed-distinct"]},
+    {"id":"real-alphabet","name":"hidden: every lowercase letter appears once","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyz"},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","full-alphabet"]},
+    {"id":"real-maximum-repeated","name":"hidden: maximum length with one distinct letter","kind":"real","visible":false,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":34,"validator":{"kind":"exact"},"tags":["hidden","maximum-length","one-distinct"]},
+    {"id":"real-maximum-alternating","name":"hidden: maximum length with two distinct letters","kind":"real","visible":false,"input":{"s":"abababababababababababababababababababababababababababababababababababababababababababababababababab"},"expected":34,"validator":{"kind":"exact"},"tags":["hidden","maximum-length","two-distinct"]}
+  ]
+}

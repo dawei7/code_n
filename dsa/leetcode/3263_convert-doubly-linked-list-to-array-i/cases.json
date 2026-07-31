@@ -1,0 +1,427 @@
+{
+  "challenge_id": "lc_3263",
+  "cases": [
+    {
+      "id": "sample-palindrome",
+      "name": "sample: palindromic seven-node list",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "sample-repeated-twos",
+      "name": "sample: five equal values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-alternating",
+      "name": "sample: alternating values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          3,
+          2,
+          3,
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-single-minimum",
+      "name": "trial: one node at minimum value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "minimum",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-single-maximum",
+      "name": "trial: one node at maximum value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          50
+        ]
+      },
+      "expected": [
+        50
+      ],
+      "tags": [
+        "maximum",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-two-nodes",
+      "name": "trial: two distinct nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          7,
+          19
+        ]
+      },
+      "expected": [
+        7,
+        19
+      ],
+      "tags": [
+        "short",
+        "order"
+      ]
+    },
+    {
+      "id": "trial-ascending",
+      "name": "trial: ascending values remain ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "tags": [
+        "ascending",
+        "order"
+      ]
+    },
+    {
+      "id": "real-descending",
+      "name": "real: descending values remain ordered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "descending",
+        "order"
+      ]
+    },
+    {
+      "id": "real-bound-alternation",
+      "name": "real: alternating value bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          50,
+          1,
+          50,
+          1,
+          50,
+          1,
+          50
+        ]
+      },
+      "expected": [
+        1,
+        50,
+        1,
+        50,
+        1,
+        50,
+        1,
+        50
+      ],
+      "tags": [
+        "bounds",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-mixed-duplicates",
+      "name": "real: mixed runs and repeated values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          8,
+          8,
+          3,
+          14,
+          14,
+          14,
+          2,
+          8,
+          2
+        ]
+      },
+      "expected": [
+        8,
+        8,
+        3,
+        14,
+        14,
+        14,
+        2,
+        8,
+        2
+      ],
+      "tags": [
+        "mixed",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-even-palindrome",
+      "name": "real: even-length palindrome",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          5,
+          12,
+          23,
+          23,
+          12,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        12,
+        23,
+        23,
+        12,
+        5
+      ],
+      "tags": [
+        "palindrome",
+        "even"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "real: all fifty legal nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          18,
+          35,
+          2,
+          19,
+          36,
+          3,
+          20,
+          37,
+          4,
+          21,
+          38,
+          5,
+          22,
+          39,
+          6,
+          23,
+          40,
+          7,
+          24,
+          41,
+          8,
+          25,
+          42,
+          9,
+          26,
+          43,
+          10,
+          27,
+          44,
+          11,
+          28,
+          45,
+          12,
+          29,
+          46,
+          13,
+          30,
+          47,
+          14,
+          31,
+          48,
+          15,
+          32,
+          49,
+          16,
+          33,
+          50,
+          17,
+          34
+        ]
+      },
+      "expected": [
+        1,
+        18,
+        35,
+        2,
+        19,
+        36,
+        3,
+        20,
+        37,
+        4,
+        21,
+        38,
+        5,
+        22,
+        39,
+        6,
+        23,
+        40,
+        7,
+        24,
+        41,
+        8,
+        25,
+        42,
+        9,
+        26,
+        43,
+        10,
+        27,
+        44,
+        11,
+        28,
+        45,
+        12,
+        29,
+        46,
+        13,
+        30,
+        47,
+        14,
+        31,
+        48,
+        15,
+        32,
+        49,
+        16,
+        33,
+        50,
+        17,
+        34
+      ],
+      "tags": [
+        "maximum-length",
+        "mixed"
+      ]
+    }
+  ]
+}

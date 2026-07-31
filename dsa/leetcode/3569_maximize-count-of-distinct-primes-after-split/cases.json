@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3569",
+  "cases": [
+    {
+      "id": "sample-overlapping-primes",
+      "name": "sample: updates increase the best prime overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums":[2,1,3,1,2],"queries":[[1,2],[3,3]]},
+      "expected": [3,4],
+      "tags": ["sample","persistent-updates","overlap"]
+    },
+    {
+      "id": "sample-remove-only-prime",
+      "name": "sample: removing the only prime leaves score zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums":[2,1,4],"queries":[[0,1]]},
+      "expected": [0],
+      "tags": ["sample","prime-disappears","composite"]
+    },
+    {
+      "id": "trial-two-cells",
+      "name": "trial: smallest array transitions from duplicate prime to no primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums":[2,3],"queries":[[0,3],[1,4],[0,4]]},
+      "expected": [2,1,0],
+      "tags": ["trial","minimum-length","prime-disappears"]
+    },
+    {
+      "id": "trial-first-last-change",
+      "name": "trial: updates move prime interval extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums":[2,3,2,3],"queries":[[0,2],[1,4],[3,5]]},
+      "expected": [4,3,3],
+      "tags": ["trial","repeated-assignment","interval-extremes"]
+    },
+    {
+      "id": "real-prime-reappears",
+      "name": "real: primes disappear, reappear, and change overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums":[2,3,2,5,3],"queries":[[4,5],[0,7],[2,4]]},
+      "expected": [4,5,4],
+      "tags": ["real","prime-reappears","multiple-updates"]
+    },
+    {
+      "id": "real-value-boundary",
+      "name": "real: distinguish a large prime from the maximum composite value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums":[100000,99991,1,99991],"queries":[[0,99991],[1,100000],[3,1]]},
+      "expected": [2,2,1],
+      "tags": ["real","value-boundary","sieve"]
+    },
+    {
+      "id": "real-unchanged-primes",
+      "name": "real: repeated assignments preserve distinct singleton primes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums":[2,3,5,7],"queries":[[1,3],[2,5]]},
+      "expected": [4,4],
+      "tags": ["real","repeated-assignment","single-occurrence"]
+    }
+  ]
+}

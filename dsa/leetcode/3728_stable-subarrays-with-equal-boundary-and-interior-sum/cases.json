@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3728",
+  "cases": [
+    {
+      "id": "sample-nested-positive-ranges",
+      "name": "sample: the full range and one nested length-three range are stable",
+      "kind": "sample",
+      "visible": true,
+      "input": {"capacity": [9, 3, 3, 3, 9]},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "nested-subarrays"]
+    },
+    {
+      "id": "sample-no-equal-boundaries",
+      "name": "sample: strictly increasing values contain no eligible endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {"capacity": [1, 2, 3, 4, 5]},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "empty-result"]
+    },
+    {
+      "id": "sample-negative-interior-sum",
+      "name": "sample: a negative boundary equals the complete interior sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"capacity": [-4, 4, 0, 0, -8, -4]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "negative-values"]
+    },
+    {
+      "id": "trial-minimum-positive",
+      "name": "trial: the minimum-length positive range is stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"capacity": [1, 1, 1]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-minimum-negative",
+      "name": "trial: the minimum-length negative range is stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"capacity": [-1, -1, -1]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "negative-values"]
+    },
+    {
+      "id": "trial-equal-boundaries-wrong-sum",
+      "name": "trial: equal boundaries alone are not sufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {"capacity": [1, 0, 1]},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "semantic-trap"]
+    },
+    {
+      "id": "real-four-zeros",
+      "name": "hidden: every valid subarray of four zeros is stable",
+      "kind": "real",
+      "visible": false,
+      "input": {"capacity": [0, 0, 0, 0]},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "zeros", "overlapping-subarrays"]
+    },
+    {
+      "id": "real-five-zeros",
+      "name": "hidden: repeated keys count all six valid zero ranges",
+      "kind": "real",
+      "visible": false,
+      "input": {"capacity": [0, 0, 0, 0, 0]},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "zeros", "nested-subarrays"]
+    },
+    {
+      "id": "real-full-range-only",
+      "name": "hidden: only the complete range has the required interior sum",
+      "kind": "real",
+      "visible": false,
+      "input": {"capacity": [3, 1, 2, 3]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "full-range"]
+    },
+    {
+      "id": "real-repeated-positive-values",
+      "name": "hidden: only length-three ranges survive among repeated twos",
+      "kind": "real",
+      "visible": false,
+      "input": {"capacity": [2, 2, 2, 2, 2]},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "duplicates", "overlapping-subarrays"]
+    },
+    {
+      "id": "real-positive-boundary",
+      "name": "hidden: maximum positive values form one minimum-length match",
+      "kind": "real",
+      "visible": false,
+      "input": {"capacity": [1000000000, 1000000000, 1000000000]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "value-boundary"]
+    },
+    {
+      "id": "real-negative-boundary",
+      "name": "hidden: minimum negative values form one minimum-length match",
+      "kind": "real",
+      "visible": false,
+      "input": {"capacity": [-1000000000, -1000000000, -1000000000]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "value-boundary", "negative-values"]
+    },
+    {
+      "id": "real-cancelling-interior",
+      "name": "hidden: opposite interior values sum to zero between zero boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"capacity": [0, 1, -1, 0]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "zero-boundary", "negative-values"]
+    }
+  ]
+}

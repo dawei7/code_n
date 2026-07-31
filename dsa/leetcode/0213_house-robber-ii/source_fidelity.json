@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_213", "frontend_id": "213", "title_slug": "house-robber-ii", "url": "https://leetcode.com/problems/house-robber-ii/description/", "paid_only": false, "content_sha256": "eb7b43b936f7e5ecf1f691f3f7ab57b276abc5e92a1317ca9686c5db1e5d19ba", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "nums = [2,3,2]", "output": "3", "has_explanation": true}, {"ordinal": 2, "input": "nums = [1,2,3,1]", "output": "4", "has_explanation": true}, {"ordinal": 3, "input": "nums = [1,2,3]", "output": "3", "has_explanation": false}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "872d18c76c34dc7a127465a3db76b3c84d7bb371b695b790723450c9b2df00ee", "reference/contract.md": "c9f53476aff57be16d5c57782d7b0c4c8ddafbbd966e59d24afc04273093d8a6", "reference/examples.md": "f8769ed6060ac2884e118f8b97a94012f8b89ce54f4a99a4a26895c94d274b31", "reference/constraints.md": "81611e284054409c68a38013c36ee650df1bcea3ab6dac9b0a100dbc014d1f5b"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

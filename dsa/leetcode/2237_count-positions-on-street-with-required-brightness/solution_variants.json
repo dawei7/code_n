@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Positions on Street With Required Brightness and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses interval difference events and one prefix scan to recover every position's brightness.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(n)"
     }
   ]
 }

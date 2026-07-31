@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Product Recommendation Pairs and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Forms each customer's unordered product pairs once, groups equal pairs, filters by shared-customer count, and joins product categories.",
+      "time_complexity": "O(P\\log P + J\\log J + I\\log I)",
+      "space_complexity": "O(J + I)"
     }
   ]
 }

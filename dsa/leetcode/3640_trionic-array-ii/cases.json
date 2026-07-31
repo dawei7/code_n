@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3640",
+  "cases": [
+    {
+      "id": "sample-negative",
+      "name": "sample: best trionic subarray has negative sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -2,
+          -1,
+          -3,
+          0,
+          2,
+          -1
+        ]
+      },
+      "expected": -4,
+      "tags": [
+        "sample",
+        "negative-sum"
+      ]
+    },
+    {
+      "id": "sample-minimal",
+      "name": "sample: four values form one trionic subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          7
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-positive-suffix",
+      "name": "trial: discard a harmful prefix before the first rise",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100,
+          1,
+          5,
+          2,
+          6
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "trial",
+        "choose-subarray"
+      ]
+    },
+    {
+      "id": "trial-negative-start-choice",
+      "name": "trial: restart inside an increasing run for a larger sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10,
+          -5,
+          4,
+          3,
+          8
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "restart-increasing"
+      ]
+    },
+    {
+      "id": "trial-all-negative",
+      "name": "trial: retain the least harmful valid negative pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -2,
+          -4,
+          -1
+        ]
+      },
+      "expected": -12,
+      "tags": [
+        "trial",
+        "negative-sum"
+      ]
+    },
+    {
+      "id": "real-later-pattern",
+      "name": "hidden: a later trionic pattern beats an earlier one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          5,
+          2,
+          6,
+          0,
+          7
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "multiple-patterns"
+      ]
+    },
+    {
+      "id": "real-long-phases",
+      "name": "hidden: all three phases contain multiple comparisons",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          6,
+          10,
+          8,
+          5,
+          2,
+          4,
+          9
+        ]
+      },
+      "expected": 48,
+      "tags": [
+        "hidden",
+        "long-phases"
+      ]
+    },
+    {
+      "id": "real-plateau-separator",
+      "name": "hidden: equality resets every partial phase",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          5,
+          5,
+          10,
+          7,
+          12
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "hidden",
+        "plateau",
+        "reset"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: sums require wider than 32-bit arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          1000000000,
+          500000000,
+          1000000000
+        ]
+      },
+      "expected": 3499999999,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-negative-prefix-extension",
+      "name": "hidden: extending an increasing state can still be optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -8,
+          -3,
+          2,
+          1,
+          5,
+          9
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "real-overlapping-candidates",
+      "name": "hidden: overlapping trionic ranges share turns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          8,
+          3,
+          6,
+          1,
+          9,
+          10
+        ]
+      },
+      "expected": 29,
+      "tags": [
+        "hidden",
+        "overlapping"
+      ]
+    },
+    {
+      "id": "real-final-extension",
+      "name": "hidden: the final increasing phase accumulates several values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          9,
+          4,
+          5,
+          7,
+          11
+        ]
+      },
+      "expected": 39,
+      "tags": [
+        "hidden",
+        "final-extension"
+      ]
+    }
+  ]
+}

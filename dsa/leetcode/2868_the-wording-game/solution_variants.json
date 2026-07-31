@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for The Wording Game and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Keeps one dominant word per player and initial letter, then solves the constant-size game graph.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3937",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: all equal at N = 4 and K = 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [1,1,1,1], "k": 16},
+      "expected": 2,
+      "tags": ["benchmark", "scale-small", "all-equal"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: all equal at N = 4 and K = 40",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 160,
+      "input": {"nums": [1,1,1,1], "k": 40},
+      "expected": 2,
+      "tags": ["benchmark", "scale-medium", "all-equal"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: all equal at N = 4 and K = 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 400,
+      "input": {"nums": [1,1,1,1], "k": 100},
+      "expected": 2,
+      "tags": ["benchmark", "scale-large", "all-equal"]
+    }
+  ]
+}

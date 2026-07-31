@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_172", "frontend_id": "172", "title_slug": "factorial-trailing-zeroes", "url": "https://leetcode.com/problems/factorial-trailing-zeroes/description/", "paid_only": false, "content_sha256": "3e0b82ee6540943207b8d099aba3b1d6a4157e6b87a80450f7a47469899ae383", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 3", "output": "0", "has_explanation": true},
+      {"ordinal": 2, "input": "n = 5", "output": "1", "has_explanation": true},
+      {"ordinal": 3, "input": "n = 0", "output": "0", "has_explanation": false}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "64b18fdc75c7e7bcc9ff39d42dcd820c6a6edf801122e269854607b2fcd00af0", "reference/contract.md": "189503f9265e694bc5abda3f3abdad69323c3a9ea1633409f0f5d3a7617f1e66", "reference/note.md": "31ae534fd5ec2f23c4aff41aa238494120e806c2e69a34148f700b09fda7caa3", "reference/examples.md": "5f82ad6642f7cd0963adae9bda6de069e5f45569d39ac10bba04ea673a61eae4", "reference/constraints.md": "4fd3752934f298e072e611e31c3acecbd4061fd563b164804bb96b7b0355ab50", "reference/follow_up.md": "4bdd55720ff695cb18de004bc470078f978d92311093c50291c6b86b05eda525"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

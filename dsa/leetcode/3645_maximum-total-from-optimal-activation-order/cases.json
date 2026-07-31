@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3645",
+  "cases": [
+    {
+      "id": "sample-all-groups",
+      "name": "sample: one element from each limit group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "value": [
+          3,
+          5,
+          8
+        ],
+        "limit": [
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "all-selected"
+      ]
+    },
+    {
+      "id": "sample-limit-one",
+      "name": "sample: limit-one group chooses maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "value": [
+          4,
+          2,
+          6
+        ],
+        "limit": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "capacity-one"
+      ]
+    },
+    {
+      "id": "sample-mixed-limits",
+      "name": "sample: mixed groups total twelve",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "value": [
+          4,
+          1,
+          5,
+          2
+        ],
+        "limit": [
+          3,
+          3,
+          2,
+          3
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "mixed-limits"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: singleton is collected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": [
+          9
+        ],
+        "limit": [
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-group-smaller-than-limit",
+      "name": "trial: undersized group contributes every value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": [
+          2,
+          7,
+          4
+        ],
+        "limit": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "trial",
+        "undersized-group"
+      ]
+    },
+    {
+      "id": "trial-capacity-truncates",
+      "name": "trial: group keeps its three largest values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": [
+          1,
+          10,
+          4,
+          8,
+          6
+        ],
+        "limit": [
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "trial",
+        "top-values"
+      ]
+    },
+    {
+      "id": "real-several-capacities",
+      "name": "real: independent quotas across groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "value": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3,
+          6,
+          4
+        ],
+        "limit": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 37,
+      "tags": [
+        "real",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "real-unsorted-input-order",
+      "name": "real: pair order does not affect selection",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "value": [
+          5,
+          100,
+          6,
+          90,
+          7,
+          80
+        ],
+        "limit": [
+          4,
+          1,
+          4,
+          2,
+          4,
+          2
+        ]
+      },
+      "expected": 288,
+      "tags": [
+        "real",
+        "unsorted-limits"
+      ]
+    },
+    {
+      "id": "real-equal-values",
+      "name": "real: equal values fill quota",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "value": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "limit": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "real: maximum element values accumulate correctly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "value": [
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000
+        ],
+        "limit": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ]
+      },
+      "expected": 1000000,
+      "tags": [
+        "real",
+        "maximum-values"
+      ]
+    }
+  ]
+}

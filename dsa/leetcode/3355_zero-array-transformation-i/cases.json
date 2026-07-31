@@ -2,148 +2,94 @@
   "challenge_id": "lc_3355",
   "cases": [
     {
-      "id": "sample-can-zero",
-      "name": "sample: one query covers both positive indices",
+      "id": "sample-select-endpoints",
+      "name": "sample: one query covers both required endpoints",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          0,
-          1
-        ],
-        "queries": [
-          [
-            0,
-            2
-          ]
-        ]
-      },
+      "input": {"nums": [1, 0, 1], "queries": [[0, 2]]},
       "expected": true,
-      "tags": [
-        "sample",
-        "difference-array"
-      ]
+      "tags": ["sample", "subset-choice"]
     },
     {
-      "id": "sample-cannot-zero",
-      "name": "sample: insufficient coverage for first element",
+      "id": "sample-insufficient-left",
+      "name": "sample: left value exceeds its coverage",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          4,
-          3,
-          2,
-          1
-        ],
-        "queries": [
-          [
-            1,
-            3
-          ],
-          [
-            0,
-            2
-          ]
-        ]
-      },
+      "input": {"nums": [4, 3, 2, 1], "queries": [[1, 3], [0, 2]]},
       "expected": false,
-      "tags": [
-        "sample",
-        "difference-array"
-      ]
+      "tags": ["sample", "insufficient-coverage"]
     },
     {
       "id": "trial-already-zero",
-      "name": "trial: zero array remains zero under any queries",
+      "name": "trial: zero array needs no selected indices",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          0,
-          0,
-          0
-        ],
-        "queries": [
-          [
-            0,
-            1
-          ]
-        ]
-      },
+      "input": {"nums": [0, 0, 0], "queries": [[0, 1]]},
       "expected": true,
-      "tags": [
-        "edge",
-        "zero-array"
-      ]
+      "tags": ["zero-array", "empty-subsets"]
     },
     {
-      "id": "trial-overlapping-coverage",
-      "name": "trial: overlapping ranges provide enough independent decrements",
+      "id": "trial-single-index-enough",
+      "name": "trial: repeated singleton queries meet demand",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          1,
-          2,
-          0
-        ],
-        "queries": [
-          [
-            0,
-            2
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            2,
-            3
-          ]
-        ]
-      },
+      "input": {"nums": [2], "queries": [[0, 0], [0, 0]]},
       "expected": true,
-      "tags": [
-        "regression",
-        "coverage"
-      ]
+      "tags": ["single-index", "exact-coverage"]
     },
     {
-      "id": "real-coverage-gap",
-      "name": "real: one position is just short of coverage",
+      "id": "real-single-index-short",
+      "name": "real: singleton demand exceeds query count",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          2,
-          1,
-          3,
-          1
-        ],
-        "queries": [
-          [
-            0,
-            4
-          ],
-          [
-            1,
-            3
-          ],
-          [
-            3,
-            4
-          ]
-        ]
-      },
+      "input": {"nums": [3], "queries": [[0, 0], [0, 0]]},
+      "expected": false,
+      "tags": ["single-index", "insufficient-coverage"]
+    },
+    {
+      "id": "real-overlapping-sufficient",
+      "name": "real: overlapping ranges provide varied coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 2, 1], "queries": [[0, 4], [1, 3], [2, 2]]},
       "expected": true,
-      "tags": [
-        "real",
-        "difference-array"
-      ]
+      "tags": ["overlap", "exact-coverage"]
+    },
+    {
+      "id": "real-interior-deficit",
+      "name": "real: one interior index lacks coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 2, 1], "queries": [[0, 1], [2, 3]]},
+      "expected": false,
+      "tags": ["disjoint-ranges", "interior-deficit"]
+    },
+    {
+      "id": "real-extra-coverage",
+      "name": "real: unused decrements are harmless",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 0, 1], "queries": [[0, 2], [0, 2], [1, 1]]},
+      "expected": true,
+      "tags": ["extra-coverage", "subset-choice"]
+    },
+    {
+      "id": "real-uncovered-zero",
+      "name": "real: an uncovered zero does not need a query",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 1, 0], "queries": [[1, 1]]},
+      "expected": true,
+      "tags": ["uncovered-zero", "singleton-range"]
+    },
+    {
+      "id": "real-boundary-ranges",
+      "name": "real: endpoints covered independently",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 1, 2], "queries": [[0, 0], [0, 2], [2, 2]]},
+      "expected": true,
+      "tags": ["boundary-indices", "overlap"]
     }
   ]
 }

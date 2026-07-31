@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2112",
+  "cases": [
+    {
+      "id": "sample-single-winner",
+      "name": "sample: airport two has the largest weighted traffic",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "departure_airport": 1,
+              "arrival_airport": 2,
+              "flights_count": 4
+            },
+            {
+              "departure_airport": 2,
+              "arrival_airport": 1,
+              "flights_count": 5
+            },
+            {
+              "departure_airport": 2,
+              "arrival_airport": 4,
+              "flights_count": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "airport_id"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "single-winner"
+      ]
+    },
+    {
+      "id": "sample-four-way-tie",
+      "name": "sample: four airports tie at nine flights",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "departure_airport": 1,
+              "arrival_airport": 2,
+              "flights_count": 4
+            },
+            {
+              "departure_airport": 2,
+              "arrival_airport": 1,
+              "flights_count": 5
+            },
+            {
+              "departure_airport": 3,
+              "arrival_airport": 4,
+              "flights_count": 5
+            },
+            {
+              "departure_airport": 4,
+              "arrival_airport": 3,
+              "flights_count": 4
+            },
+            {
+              "departure_airport": 5,
+              "arrival_airport": 6,
+              "flights_count": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "airport_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-single-route",
+      "name": "one route ties its two endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "departure_airport": 10,
+              "arrival_airport": 20,
+              "flights_count": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "airport_id"
+        ],
+        "rows": [
+          [
+            10
+          ],
+          [
+            20
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "single-route",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-arrival-heavy-winner",
+      "name": "an arrival-only accumulation wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "departure_airport": 1,
+              "arrival_airport": 9,
+              "flights_count": 10
+            },
+            {
+              "departure_airport": 2,
+              "arrival_airport": 9,
+              "flights_count": 5
+            },
+            {
+              "departure_airport": 9,
+              "arrival_airport": 3,
+              "flights_count": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "airport_id"
+        ],
+        "rows": [
+          [
+            9
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "arrival-traffic",
+        "weighted-counts"
+      ]
+    },
+    {
+      "id": "real-chain-all-tie",
+      "name": "hidden: equal route weights tie every chain endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "departure_airport": 1,
+              "arrival_airport": 2,
+              "flights_count": 3
+            },
+            {
+              "departure_airport": 3,
+              "arrival_airport": 4,
+              "flights_count": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "airport_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ties",
+        "disconnected-routes"
+      ]
+    },
+    {
+      "id": "real-weight-not-route-count",
+      "name": "hidden: flight weights dominate route degree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "departure_airport": 1,
+              "arrival_airport": 2,
+              "flights_count": 100
+            },
+            {
+              "departure_airport": 2,
+              "arrival_airport": 3,
+              "flights_count": 1
+            },
+            {
+              "departure_airport": 2,
+              "arrival_airport": 4,
+              "flights_count": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "airport_id"
+        ],
+        "rows": [
+          [
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "weighted-counts",
+        "route-degree-trap"
+      ]
+    }
+  ]
+}

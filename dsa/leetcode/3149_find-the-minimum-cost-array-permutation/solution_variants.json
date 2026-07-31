@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Minimum Cost Array Permutation and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Fixes the cycle at zero, memoizes the minimum completion cost for each visited mask and last value, then reconstructs ties greedily.",
+      "time_complexity": "O(n^2 2^n)",
+      "space_complexity": "O(n 2^n)"
     }
   ]
 }

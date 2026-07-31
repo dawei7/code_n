@@ -1,33 +1,41 @@
 def solve(nums: list[int], k: int) -> int:
-    mod = 10**9 + 7
-    arr = sorted(nums)
-    n = len(arr)
+    mod = 1_000_000_007
+    nums = sorted(nums)
+    n = len(nums)
 
-    diffs = sorted({arr[j] - arr[i] for i in range(n) for j in range(i + 1, n) if arr[j] > arr[i]})
-    if not diffs:
-        return 0
+    differences = sorted(
+        {
+            nums[j] - nums[i]
+            for i in range(n)
+            for j in range(i + 1, n)
+            if nums[j] > nums[i]
+        }
+    )
 
-    def count_with_min_gap(gap: int) -> int:
-        dp = [[0] * n for _ in range(k + 1)]
-        for i in range(n):
-            dp[1][i] = 1
+    def count_with_minimum_gap(gap: int) -> int:
+        previous = [1] * n
 
-        for length in range(2, k + 1):
+        for _ in range(2, k + 1):
+            current = [0] * n
             prefix = 0
             left = 0
-            for right in range(n):
-                while left < right and arr[right] - arr[left] >= gap:
-                    prefix = (prefix + dp[length - 1][left]) % mod
-                    left += 1
-                dp[length][right] = prefix
 
-        return sum(dp[k]) % mod
+            for right in range(n):
+                while left < right and nums[right] - nums[left] >= gap:
+                    prefix = (prefix + previous[left]) % mod
+                    left += 1
+                current[right] = prefix
+
+            previous = current
+
+        return sum(previous) % mod
 
     answer = 0
-    previous = 0
-    for gap in diffs:
-        count = count_with_min_gap(gap)
-        answer = (answer + (gap - previous) * count) % mod
-        previous = gap
+    previous_gap = 0
+
+    for gap in differences:
+        count = count_with_minimum_gap(gap)
+        answer = (answer + (gap - previous_gap) * count) % mod
+        previous_gap = gap
 
     return answer

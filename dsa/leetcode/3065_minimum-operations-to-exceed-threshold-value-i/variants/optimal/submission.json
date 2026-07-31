@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3349",
+  "frontend_id": "3065",
+  "title_slug": "minimum-operations-to-exceed-threshold-value-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minOperations",
+  "verified_submission_id": "2078987720",
+  "verified_at": "2026-07-24T04:39:09+02:00"
+}

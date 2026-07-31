@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3724",
+  "cases": [
+    {
+      "id": "sample-append-before-adjustments",
+      "name": "sample: append two before transforming all three positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          8
+        ],
+        "nums2": [
+          1,
+          7,
+          3
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "append-before"
+      ]
+    },
+    {
+      "id": "sample-append-exact-target",
+      "name": "sample: copy an existing three for the final position",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          3,
+          6
+        ],
+        "nums2": [
+          2,
+          4,
+          5,
+          3
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-extra"
+      ]
+    },
+    {
+      "id": "sample-copy-mid-transformation",
+      "name": "sample: copy three while the original moves from two to three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          3,
+          4
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-source"
+      ]
+    },
+    {
+      "id": "trial-only-append",
+      "name": "trial: identical original positions and matching copy need one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          8
+        ],
+        "nums2": [
+          5,
+          8,
+          5
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-extra",
+        "only-append"
+      ]
+    },
+    {
+      "id": "trial-target-inside-interval",
+      "name": "trial: append while an original crosses the final target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          10,
+          6
+        ]
+      },
+      "expected": 10,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "inside-interval"
+      ]
+    },
+    {
+      "id": "trial-target-above-interval",
+      "name": "trial: the appended copy must increase beyond its source interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          3,
+          7
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "above-interval"
+      ]
+    },
+    {
+      "id": "trial-target-below-interval",
+      "name": "trial: the appended copy must decrease below its source interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          9
+        ],
+        "nums2": [
+          7,
+          2
+        ]
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "below-interval"
+      ]
+    },
+    {
+      "id": "real-best-of-several-intervals",
+      "name": "hidden: choose the closest among several transformation intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          2,
+          20,
+          50
+        ],
+        "nums2": [
+          3,
+          15,
+          55,
+          18
+        ]
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "source-choice"
+      ]
+    },
+    {
+      "id": "real-point-interval",
+      "name": "hidden: an unchanged original contributes a one-point copy interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          4,
+          9
+        ],
+        "nums2": [
+          4,
+          12,
+          5
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "unchanged-position"
+      ]
+    },
+    {
+      "id": "real-copy-before-moving-down",
+      "name": "hidden: copying before a downward transformation can be optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          10
+        ],
+        "nums2": [
+          1,
+          20
+        ]
+      },
+      "expected": 20,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "detour-distance"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: source-boundary values use a 64-bit-safe total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          100000
+        ],
+        "nums2": [
+          100000,
+          1,
+          50000
+        ]
+      },
+      "expected": 199999,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "large-cost"
+      ]
+    },
+    {
+      "id": "real-mixed-directions",
+      "name": "hidden: upward and downward original paths share one base sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          10,
+          1,
+          8,
+          4
+        ],
+        "nums2": [
+          2,
+          9,
+          3,
+          12,
+          7
+        ]
+      },
+      "expected": 30,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-directions"
+      ]
+    }
+  ]
+}
+

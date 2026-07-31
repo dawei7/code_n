@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_62", "frontend_id": "62",
+    "title_slug": "unique-paths",
+    "url": "https://leetcode.com/problems/unique-paths/description/",
+    "paid_only": false, "content_sha256": "af67b8aa9562e871e7dbe772a4ec236d8a085bfb1fabdd03516fb07972abe96e", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "m = 3, n = 7", "output": "28", "has_explanation": false},
+      {"ordinal": 2, "input": "m = 3, n = 2", "output": "3", "has_explanation": true}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "cd0f3f3ca9051701ef818a22c1f57fccd017670ccbe8bb55140278f6455607b1",
+      "reference/contract.md": "af58a104efdd8200214631a746cc717418ec21a383703cd5a5f1d0e6c4d2ce60",
+      "reference/examples.md": "e09ca6a46de569a7be5dbb366df1f8f98fdce1ce4460eb8e6827acf7b9aa72a7",
+      "reference/constraints.md": "6c7a5da13ce3306c3fd0c40f26573d510d4c1dfca6db46c806bcfe1fa31d236a"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

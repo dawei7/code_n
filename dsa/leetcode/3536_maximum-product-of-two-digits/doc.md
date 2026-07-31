@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Math, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-product-of-two-digits](https://leetcode.com/problems/maximum-product-of-two-digits/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-product-of-two-digits/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-product-of-two-digits/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a positive integer `n`, choose two different digit positions from its decimal representation and multiply the digits stored at those positions. Return the greatest product obtainable from any such pair.
+
+Equal digit values may be selected together only when that digit occurs in at least two positions. For example, both `2` digits in `22` may be used, but a single occurrence cannot be reused.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: A positive integer with at least two decimal digits, where $10 \le n \le 10^9$.
 
 **Return value**
 
-TODO
+- The maximum product of the digits at two distinct positions in `n`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 31`
+- Output: `3`
+- Explanation: The only pair of digits is `3` and `1`, whose product is `3`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 22`
+- Output: `4`
+- Explanation: The two separate occurrences of `2` may be multiplied together.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 124`
+- Output: `8`
+- Explanation: Among the three digit pairs, `2 * 4` gives the largest product.

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3858",
+    "frontend_id": "3858",
+    "title_slug": "minimum-bitwise-or-from-grid",
+    "url": "https://leetcode.com/problems/minimum-bitwise-or-from-grid/description/",
+    "paid_only": false,
+    "content_sha256": "55683d45f22c55660ba0917c84ca8bff93992534d780a6154615123438d86dc5",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "grid = [[1,5],[2,4]]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[3,5],[6,4]]",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "grid = [[7,9,8]]",
+        "output": "7",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c0f041bd2e646346b0d7dbabb956fe49f6d118e0e0407eca4b33dde4b5d14f0c",
+      "reference/contract.md": "21c9f3b3f99ba631f8f52be47b9918d7f257da3220f0b23227e1da965e952590",
+      "reference/examples.md": "6cd68d4e5e30d344b8a93478a8e6b4509dccb73aadac17a90139a34c0c40089d",
+      "reference/constraints.md": "104a40e2142becd1bb16cddb7265553ef4e0a6499ae19f760e325a5cb338362e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

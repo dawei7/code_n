@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3206",
   "cases": [
     {
-      "id": "sample-no-groups",
-      "name": "sample: no alternating triplet",
+      "id": "sample-all-blue",
+      "name": "sample: equal colors contain no alternating group",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,13 +16,12 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
-        "circular"
+        "sample"
       ]
     },
     {
       "id": "sample-three-groups",
-      "name": "sample: circular groups at the edge",
+      "name": "sample: three circular centers alternate",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -36,48 +36,185 @@
       "expected": 3,
       "tags": [
         "sample",
-        "circular"
+        "wraparound"
       ]
     },
     {
-      "id": "trial-perfect-cycle",
-      "name": "trial: every center alternates",
+      "id": "trial-minimum-one-center",
+      "name": "trial: one center alternates in a three-tile circle",
       "kind": "trial",
       "visible": true,
       "input": {
         "colors": [
           0,
           1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-even-perfect-cycle",
+      "name": "trial: every center alternates on an even cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
           0,
           1,
           0,
           1
         ]
       },
-      "expected": 6,
+      "expected": 4,
       "tags": [
-        "alternating"
+        "perfect-alternation"
       ]
     },
     {
-      "id": "trial-short",
-      "name": "trial: short array has no group",
+      "id": "trial-all-red",
+      "name": "trial: an all-red circle has no valid center",
       "kind": "trial",
       "visible": true,
       "input": {
         "colors": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-single-blue-run",
+      "name": "trial: one blue tile creates one alternating center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "isolated-color"
+      ]
+    },
+    {
+      "id": "real-boundary-center-zero",
+      "name": "real: index zero is counted through circular neighbors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": [
+          1,
+          0,
+          0,
           0,
           1
         ]
       },
       "expected": 0,
       "tags": [
-        "edge"
+        "wraparound"
       ]
     },
     {
-      "id": "real-mixed-cycle",
-      "name": "real: mixed circular pattern",
+      "id": "real-boundary-final-center",
+      "name": "real: the final index uses index zero as its right neighbor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "wraparound"
+      ]
+    },
+    {
+      "id": "real-odd-near-alternation",
+      "name": "real: an odd cycle has a single broken boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "odd-cycle"
+      ]
+    },
+    {
+      "id": "real-two-color-runs",
+      "name": "real: run boundaries alone do not make the middle alternate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "runs"
+      ]
+    },
+    {
+      "id": "real-multiple-isolated-tiles",
+      "name": "real: isolated tiles of both colors are counted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "isolated-colors"
+      ]
+    },
+    {
+      "id": "real-long-mixed-circle",
+      "name": "real: mixed internal and boundary groups are all checked",
       "kind": "real",
       "visible": false,
       "input": {
@@ -90,13 +227,14 @@
           0,
           1,
           0,
-          1
+          1,
+          0
         ]
       },
-      "expected": 3,
+      "expected": 6,
       "tags": [
-        "real",
-        "circular"
+        "mixed",
+        "wraparound"
       ]
     }
   ]

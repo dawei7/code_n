@@ -3,110 +3,93 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: pay parity penalty once",
+      "name": "sample: one profitable parity change",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          3,
-          6,
-          1,
-          9,
-          2
-        ],
-        "x": 5
-      },
-      "tags": [
-        "sample",
-        "dp"
-      ],
-      "expected": 13
+      "input": {"nums": [2, 3, 6, 1, 9, 2], "x": 5},
+      "expected": 13,
+      "tags": ["sample", "mixed-parity"]
     },
     {
       "id": "sample-2",
-      "name": "sample: stay on odd parity",
+      "name": "sample: all values share parity",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          4,
-          6,
-          8
-        ],
-        "x": 3
-      },
-      "tags": [
-        "sample",
-        "same-parity"
-      ],
-      "expected": 20
+      "input": {"nums": [2, 4, 6, 8], "x": 3},
+      "expected": 20,
+      "tags": ["sample", "same-parity"]
     },
     {
-      "id": "trial-zero-penalty",
-      "name": "trial: zero penalty can take all values",
+      "id": "trial-two-same-parity",
+      "name": "trial: minimum length without penalty",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          2,
-          7,
-          4
-        ],
-        "x": 0
-      },
-      "tags": [
-        "trial",
-        "zero-penalty"
-      ],
-      "expected": 18
+      "input": {"nums": [3, 7], "x": 100},
+      "expected": 10,
+      "tags": ["trial", "boundary"]
     },
     {
-      "id": "trial-expensive-switch",
-      "name": "trial: expensive switch skips tempting value",
+      "id": "trial-switch-profitable",
+      "name": "trial: one expensive value justifies switching",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          8,
-          1,
-          10,
-          1,
-          10
-        ],
-        "x": 9
-      },
-      "tags": [
-        "trial",
-        "penalty"
-      ],
-      "expected": 28
+      "input": {"nums": [1, 100], "x": 10},
+      "expected": 91,
+      "tags": ["trial", "switch"]
     },
     {
-      "id": "real-mixed-longer",
-      "name": "hidden: longer mixed parity sequence",
+      "id": "trial-switch-unprofitable",
+      "name": "trial: stop at mandatory first index",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 100], "x": 200},
+      "expected": 5,
+      "tags": ["trial", "skip"]
+    },
+    {
+      "id": "trial-switch-back",
+      "name": "trial: switch once after extending initial parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 100, 99], "x": 5},
+      "expected": 196,
+      "tags": ["trial", "state-transition"]
+    },
+    {
+      "id": "real-skip-intermediate-parity",
+      "name": "hidden: skip costly parity interruptions",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          7,
-          6,
-          5,
-          20,
-          3,
-          30,
-          1,
-          40
-        ],
-        "x": 8
-      },
-      "tags": [
-        "hidden",
-        "mixed"
-      ],
-      "expected": 95
+      "input": {"nums": [8, 1, 10, 1, 10], "x": 9},
+      "expected": 28,
+      "tags": ["hidden", "skip"]
+    },
+    {
+      "id": "real-start-odd",
+      "name": "hidden: odd initial state and later changes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 6, 5, 20, 3, 30, 1, 40], "x": 8},
+      "expected": 95,
+      "tags": ["hidden", "odd-start"]
+    },
+    {
+      "id": "real-regression-many-choices",
+      "name": "hidden: preserve only the best score per ending parity",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 50, 65, 85, 8, 73, 55, 50, 29, 95, 5, 68, 52, 79], "x": 74},
+      "expected": 470,
+      "tags": ["hidden", "regression", "dominance"]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: score exceeds 32-bit signed range",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000, 1000000, 999999, 1000000, 999999], "x": 1},
+      "expected": 4999995,
+      "tags": ["hidden", "large-score"]
     }
   ]
 }

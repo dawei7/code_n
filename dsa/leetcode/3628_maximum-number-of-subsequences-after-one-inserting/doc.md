@@ -5,51 +5,40 @@
 | Source | LeetCode |
 | Frontend ID | 3628 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | String, Dynamic Programming, Greedy, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-subsequences-after-one-inserting](https://leetcode.com/problems/maximum-number-of-subsequences-after-one-inserting/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-subsequences-after-one-inserting/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-subsequences-after-one-inserting/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a string `s` made of uppercase English letters. You may insert at most one uppercase English letter at any position, including before the first character or after the last character.
+
+After that optional insertion, count the subsequences equal to `"LCT"`. A subsequence keeps the original relative order of its chosen characters but does not require them to be adjacent. Return the largest possible number of `"LCT"` subsequences obtainable by choosing the inserted letter and its position optimally.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A string of length $n$, where $1 \le n \le 10^5$, containing only uppercase English letters.
 
 **Return value**
 
-TODO
+Return the maximum number of `"LCT"` subsequences after inserting at most one uppercase letter.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "LMCT"`
+- Output: `2`
+- Explanation: Insert `"L"` at the beginning so either L can begin the subsequence.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "LCCT"`
+- Output: `4`
+- Explanation: Inserting another `"L"` at the beginning creates two choices for L and two for C.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "L"`
+- Output: `0`
+- Explanation: One inserted character is insufficient to form all three required letters.

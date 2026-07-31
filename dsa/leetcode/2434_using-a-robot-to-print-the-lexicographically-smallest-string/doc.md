@@ -8,48 +8,47 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Stack, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [using-a-robot-to-print-the-lexicographically-smallest-string](https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/) |
+| LeetCode | [Using a Robot to Print the Lexicographically Smallest String](https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A robot receives a lowercase string `s` and starts with an empty temporary string `t`. At each step, it may remove the first character of `s` and append that character to `t`, or remove the last character of `t` and write it onto the output paper.
+
+Continue until both `s` and `t` are empty. Every input character must therefore move through the temporary string before being printed, while `t` behaves as a stack. Choose the operation order that makes the complete written string lexicographically smallest, and return that string.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A nonempty string containing only lowercase English letters.
+
+Its length $n$ satisfies $1 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+- The lexicographically smallest string the robot can write using valid operations.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "zza"`
+- Output: `"azz"`
+
+Push all three characters into `t`, then pop them in reverse order.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "bac"`
+- Output: `"abc"`
+
+After pushing `"ba"`, pop both characters to write `"ab"`, then move and print `"c"`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "bdda"`
+- Output: `"addb"`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The smallest character is reached before printing the stack in the best available order.

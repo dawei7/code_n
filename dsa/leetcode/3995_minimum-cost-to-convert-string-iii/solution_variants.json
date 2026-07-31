@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3995",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses prefix dynamic programming to choose disjoint matching rule applications and unchanged positions at minimum total cost.",
+      "time_complexity": "O(nRL)",
+      "space_complexity": "O(n+R)"
+    }
+  ]
+}

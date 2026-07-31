@@ -2,8 +2,8 @@
   "challenge_id": "lc_3266",
   "cases": [
     {
-      "id": "sample-five-ops-mod",
-      "name": "sample: five operations with modulo rule",
+      "id": "sample-five-operations",
+      "name": "sample: five ordinary operations",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -25,99 +25,315 @@
         6
       ],
       "tags": [
-        "sample"
+        "sample",
+        "simulation"
       ]
     },
     {
-      "id": "sample-multiplier-one",
-      "name": "sample: multiplier one returns modulo values",
+      "id": "sample-products-before-modulo",
+      "name": "sample: large unreduced products",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
-          100000
+          100000,
+          2000
         ],
         "k": 2,
-        "multiplier": 1
+        "multiplier": 1000000
       },
       "expected": [
-        100000
+        999999307,
+        999999993
       ],
       "tags": [
         "sample",
-        "edge"
+        "modulo"
       ]
     },
     {
-      "id": "trial-large-k-small-array",
-      "name": "trial: large k on tiny array",
+      "id": "sample-identity-billion",
+      "name": "sample: identity factor with one billion operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          3,
+          3
+        ],
+        "k": 1000000000,
+        "multiplier": 1
+      },
+      "expected": [
+        7,
+        3,
+        3
+      ],
+      "tags": [
+        "sample",
+        "identity",
+        "large-k"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one value receives every operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 1000000000,
+        "multiplier": 3
+      },
+      "expected": [
+        179698218
+      ],
+      "tags": [
+        "singleton",
+        "large-k"
+      ]
+    },
+    {
+      "id": "trial-equal-ties",
+      "name": "trial: equal values distribute by index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "k": 5,
+        "multiplier": 2
+      },
+      "expected": [
+        8,
+        8,
+        4
+      ],
+      "tags": [
+        "ties",
+        "remainder"
+      ]
+    },
+    {
+      "id": "trial-small-warmup",
+      "name": "trial: unbalanced values require warm-up",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           1,
-          2
+          10,
+          100
         ],
-        "k": 10,
+        "k": 8,
         "multiplier": 3
       },
       "expected": [
         243,
-        486
+        270,
+        100
       ],
       "tags": [
-        "large-k"
+        "warm-up",
+        "mixed"
       ]
     },
     {
-      "id": "trial-tie-distribution",
-      "name": "trial: tie order affects extra operations",
+      "id": "trial-complete-rounds",
+      "name": "trial: remaining operations form complete rounds",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          5,
-          5,
-          6
+          4,
+          4,
+          4,
+          4
         ],
-        "k": 7,
-        "multiplier": 2
+        "k": 12,
+        "multiplier": 5
       },
       "expected": [
-        40,
-        20,
-        24
+        500,
+        500,
+        500,
+        500
       ],
       "tags": [
-        "tie"
+        "complete-rounds",
+        "ties"
       ]
     },
     {
-      "id": "real-balanced-phase",
-      "name": "real: simulation phase then round distribution",
+      "id": "real-large-initials",
+      "name": "real: initial values near the source maximum",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          4,
-          9,
-          2,
-          15,
-          7
+          1000000000,
+          999999999,
+          500000000
         ],
-        "k": 23,
-        "multiplier": 3
+        "k": 17,
+        "multiplier": 1000000
       },
       "expected": [
-        972,
-        729,
-        1458,
-        1215,
-        567
+        2401000,
+        999980799,
+        499991600
       ],
       "tags": [
-        "real",
-        "rounds"
+        "large-values",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-remainder-order",
+      "name": "real: equal balanced values receive indexed extras",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "k": 100000003,
+        "multiplier": 2
+      },
+      "expected": [
+        619044794,
+        619044794,
+        619044794,
+        309522397,
+        309522397
+      ],
+      "tags": [
+        "large-k",
+        "remainder"
+      ]
+    },
+    {
+      "id": "real-varied-warmup",
+      "name": "real: several warm-up depths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          7,
+          31,
+          1000,
+          999999
+        ],
+        "k": 123456789,
+        "multiplier": 7
+      },
+      "expected": [
+        137261411,
+        39217546,
+        137261411,
+        943981715,
+        622766106,
+        11438714
+      ],
+      "tags": [
+        "warm-up",
+        "large-k"
+      ]
+    },
+    {
+      "id": "real-factor-one",
+      "name": "real: identity factor preserves all positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          42,
+          999999937
+        ],
+        "k": 876543210,
+        "multiplier": 1
+      },
+      "expected": [
+        1000000000,
+        1,
+        42,
+        999999937
+      ],
+      "tags": [
+        "identity",
+        "bounds"
+      ]
+    },
+    {
+      "id": "real-many-values",
+      "name": "real: twenty deterministic values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          50000000,
+          99999999,
+          149999998,
+          199999997,
+          249999996,
+          299999995,
+          349999994,
+          399999993,
+          449999992,
+          499999991,
+          549999990,
+          599999989,
+          649999988,
+          699999987,
+          749999986,
+          799999985,
+          849999984,
+          899999983,
+          949999982
+        ],
+        "k": 999999999,
+        "multiplier": 13
+      },
+      "expected": [
+        395779793,
+        773100436,
+        326487808,
+        879875187,
+        433262559,
+        986649938,
+        540037310,
+        93424682,
+        646812061,
+        200199433,
+        753586812,
+        306974184,
+        450797046,
+        339519151,
+        228241256,
+        116963361,
+        5685466,
+        894407578,
+        783129683,
+        671851788
+      ],
+      "tags": [
+        "mixed",
+        "large-k"
       ]
     }
   ]

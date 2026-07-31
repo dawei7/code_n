@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2111",
+  "cases": [
+    {
+      "id": "sample-strictly-decreasing",
+      "name": "sample: k one requires four changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": [5, 4, 3, 2, 1], "k": 1},
+      "expected": 4,
+      "tags": ["sample", "decreasing", "single-group"]
+    },
+    {
+      "id": "sample-already-valid",
+      "name": "sample: both modulo groups are non-decreasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": [4, 1, 5, 2, 6, 2], "k": 2},
+      "expected": 0,
+      "tags": ["sample", "already-valid", "duplicates"]
+    },
+    {
+      "id": "sample-three-groups",
+      "name": "sample: two groups require changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": [4, 1, 5, 2, 6, 2], "k": 3},
+      "expected": 2,
+      "tags": ["sample", "multiple-groups"]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "equal values form a non-decreasing subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [2, 2, 2, 2], "k": 1},
+      "expected": 0,
+      "tags": ["duplicates", "non-decreasing"]
+    },
+    {
+      "id": "trial-k-equals-length",
+      "name": "no comparison exists when k equals n",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [3, 1, 2], "k": 3},
+      "expected": 0,
+      "tags": ["maximum-k", "singleton-groups"]
+    },
+    {
+      "id": "real-one-bad-group",
+      "name": "hidden: one modulo group descends",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": [5, 1, 4, 2, 3, 3], "k": 2},
+      "expected": 2,
+      "tags": ["hidden", "group-independence"]
+    },
+    {
+      "id": "real-duplicate-subsequence",
+      "name": "hidden: upper-bound insertion preserves equal values",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": [3, 1, 2, 2, 2, 4], "k": 1},
+      "expected": 1,
+      "tags": ["hidden", "duplicates", "lnds"]
+    }
+  ]
+}

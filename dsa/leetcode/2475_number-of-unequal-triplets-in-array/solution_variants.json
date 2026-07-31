@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Unequal Triplets in Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts equal-value groups and combines each group with positions belonging to earlier and later groups.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(u)"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1612",
+  "frontend_id": "1488",
+  "title_slug": "avoid-flood-in-the-city",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.avoidFlood",
+  "verified_submission_id": "2074764031",
+  "verified_at": "2026-07-20T15:47:57.320069+00:00"
+}

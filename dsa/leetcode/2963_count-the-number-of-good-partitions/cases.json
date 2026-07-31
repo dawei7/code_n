@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-all-distinct",
-      "name": "sample: all values distinct",
+      "name": "sample: every boundary is available",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,12 +16,13 @@
       },
       "expected": 8,
       "tags": [
-        "sample"
+        "sample",
+        "all-distinct"
       ]
     },
     {
-      "id": "sample-single-block",
-      "name": "sample: one repeated value block",
+      "id": "sample-one-component",
+      "name": "sample: one repeated value spans the array",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -34,12 +35,13 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "single-component"
       ]
     },
     {
-      "id": "sample-overlap-prefix",
-      "name": "sample: overlapping first and third",
+      "id": "sample-prefix-component",
+      "name": "sample: repeated value joins the prefix",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -52,12 +54,29 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "sample",
+        "overlap"
       ]
     },
     {
-      "id": "trial-two-independent-blocks",
-      "name": "trial: two independent blocks",
+      "id": "trial-singleton",
+      "name": "trial: singleton has one partition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-three-components",
+      "name": "trial: two repeated blocks followed by singleton",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -73,12 +92,34 @@
       },
       "expected": 4,
       "tags": [
-        "partitions"
+        "components"
+      ]
+    },
+    {
+      "id": "trial-crossing-intervals",
+      "name": "trial: crossing occurrence intervals merge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          4,
+          3,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "crossing-intervals"
       ]
     },
     {
       "id": "real-nested-intervals",
-      "name": "real: nested value intervals",
+      "name": "real: nested intervals form a long prefix component",
       "kind": "real",
       "visible": false,
       "input": {
@@ -95,7 +136,50 @@
       },
       "expected": 4,
       "tags": [
-        "hidden"
+        "hidden",
+        "nested-intervals"
+      ]
+    },
+    {
+      "id": "real-two-independent-pairs",
+      "name": "real: two repeated components",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          7,
+          1000000000,
+          8,
+          9,
+          8
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-fully-interlocked",
+      "name": "real: all values belong to one interlocked component",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "single-component"
       ]
     }
   ]

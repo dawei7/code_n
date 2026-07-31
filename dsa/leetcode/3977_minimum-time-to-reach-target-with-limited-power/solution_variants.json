@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Time to Reach Target With Limited Power and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Runs Dijkstra's algorithm on node-and-remaining-power states, then applies the required time-first, power-second choice at the target.",
+      "time_complexity": "O(P(n + m) log(nP))",
+      "space_complexity": "O(nP + m)"
     }
   ]
 }

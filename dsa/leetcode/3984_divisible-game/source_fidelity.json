@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3984",
+    "frontend_id": "3984",
+    "title_slug": "divisible-game",
+    "url": "https://leetcode.com/problems/divisible-game/description/",
+    "paid_only": false,
+    "content_sha256": "b62ca24747bd238bf63e44940d1e60a68686155e4120d7a21d1d52a3cf6891d4",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,4,6,8]",
+        "output": "36",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [2,1,2]",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1]",
+        "output": "1000000005",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a11bcd2af1001b5e4a6200e37b360b90b6f7cd40063b4489e0bfff2f5911a010",
+      "reference/contract.md": "db76ecea051131bd473f19ebb05c835dbc8af2652918b1b6796a94cc81be55b6",
+      "reference/examples.md": "567d554c1ebc028c1fc4493d8ba5629a45f2177d9946e077eb780ce4a2412444",
+      "reference/constraints.md": "924782241fac7079f1db949096fcdc818d41fccba882be6916d0a66d42a0c567"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3834",
+  "cases": [
+    {
+      "id": "sample-cascade-to-four",
+      "name": "sample: one merge creates the next equal pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        3,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "cascade",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-collapse-to-eight",
+      "name": "sample: the complete array collapses through two merges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          4
+        ]
+      },
+      "expected": [
+        8
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "complete-collapse",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-no-operation",
+      "name": "sample: distinct neighbors leave the array unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          7,
+          5
+        ]
+      },
+      "expected": [
+        3,
+        7,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "no-merge",
+        "explained"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: a singleton has no adjacent pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-cascade-left",
+      "name": "trial: a suffix merge cascades into its left neighbor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "cascade",
+        "created-pair"
+      ]
+    },
+    {
+      "id": "trial-leftmost-order",
+      "name": "trial: competing pairs obey the leftmost rule",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        4,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "leftmost-order",
+        "semantic-trap"
+      ]
+    },
+    {
+      "id": "trial-deep-cascade",
+      "name": "trial: repeated boundary merges consume the whole prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          4,
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        16
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "deep-cascade",
+        "complete-collapse"
+      ]
+    },
+    {
+      "id": "real-separated-duplicates",
+      "name": "hidden: repeated values separated by neighbors never merge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "separated-duplicates",
+        "no-merge"
+      ]
+    },
+    {
+      "id": "real-independent-pairs",
+      "name": "hidden: two non-cascading pairs merge independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        6
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "independent-pairs"
+      ]
+    },
+    {
+      "id": "real-odd-equal-run",
+      "name": "hidden: an odd equal run leaves one original value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        4,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "odd-run",
+        "leftmost-order"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: maximum inputs produce a value above the input bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          100000
+        ]
+      },
+      "expected": [
+        200000
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "output-growth"
+      ]
+    },
+    {
+      "id": "real-multi-stage-order",
+      "name": "hidden: several stages preserve the deterministic merge order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          8,
+          16,
+          16
+        ]
+      },
+      "expected": [
+        32,
+        16
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multi-stage-cascade",
+        "leftmost-order"
+      ]
+    }
+  ]
+}
+

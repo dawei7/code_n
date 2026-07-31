@@ -8,85 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Sorting, Heap (Priority Queue) |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-k-sum-of-an-array](https://leetcode.com/problems/find-the-k-sum-of-an-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-k-sum-of-an-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-k-sum-of-an-array/).
 
 ### Goal
-Given an array of integers, calculate the k-th largest subsequence sum. A subsequence is formed by deleting zero or more elements from the original array. Note that the empty subsequence has a sum of 0.
+
+Given an integer array `nums` and a positive integer `k`, consider every subsequence obtainable by deleting any set of elements without changing the order of those retained. Associate each subsequence with the sum of its elements; the empty subsequence is included and has sum zero.
+
+Sort all $2^n$ subsequence sums in non-increasing order and retain duplicates produced by different choices of indices. Return the value at rank `k`. Thus the K-Sum is the $k$-th largest obtainable sum, not the $k$-th distinct sum.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers.
-- `k`: An integer representing the rank of the subsequence sum to find.
+- `nums`: A list of $n$ integers, where $1 \le n \le 10^5$ and $-10^9 \le \texttt{nums[i]} \le 10^9$.
+- `k`: A rank satisfying $1 \le k \le \min(2000, 2^n)$.
 
 **Return value**
 
-- An integer representing the k-th largest subsequence sum.
+- Return the $k$-th largest subsequence sum, counting equal sums at their full multiplicity.
+
+**Ranking semantics**
+
+- Choosing different index sets creates different subsequences even when their sums are equal.
+- The empty subsequence contributes one sum of zero.
+- The answer may require 64-bit signed integer range.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [2, 4, -2], k = 5`
+- Input: `nums = [2,4,-2], k = 5`
 - Output: `2`
-- Explanation: The subsequence sums are: [4, 2, 2, 2, 0, 0, -2, -2]. The 5th largest is 2.
+- Explanation: The descending sums are `6, 4, 4, 2, 2, 0, 0, -2`, so rank five is `2`.
 
 **Example 2**
 
-- Input: `nums = [1, -2, 3, 4, -10, 12], k = 16`
+- Input: `nums = [1,-2,3,4,-10,12], k = 16`
 - Output: `10`
-
-**Example 3**
-
-- Input: `nums = [10, -2, 10], k = 1`
-- Output: `20`
-
----
-
-## Solution
-### Approach
-The problem is solved by first calculating the maximum possible subsequence sum (the sum of all positive numbers). To find the subsequent k-1 sums, we treat the problem as finding the smallest "losses" from the maximum sum. We transform the array by taking the absolute values of all elements and sorting them. We then use a min-heap to explore combinations of these absolute values, which represent the subtractions from the maximum sum.
-
-### Complexity Analysis
-- **Time Complexity**: O(n log n + k log k), where n is the length of the array. Sorting takes O(n log n), and extracting k elements from the heap takes O(k log k).
-- **Space Complexity**: O(n + k), to store the sorted array and the heap elements.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import heapq
-
-def solve(nums: list[int], k: int) -> int:
-    # The maximum subsequence sum is the sum of all positive numbers.
-    max_sum = sum(x for x in nums if x > 0)
-
-    # We want to find the (k-1)-th smallest "loss" from the max_sum.
-    # A loss is created by either removing a positive number or adding a negative number.
-    # Both operations are equivalent to subtracting abs(x) from the max_sum.
-    abs_nums = sorted([abs(x) for x in nums])
-
-    # If k=1, the answer is simply the max_sum.
-    if k == 1:
-        return max_sum
-
-    # Min-heap stores (loss, index)
-    # We explore the smallest losses using a heap.
-    pq = [(abs_nums[0], 0)]
-    current_loss = 0
-
-    for _ in range(k - 1):
-        current_loss, i = heapq.heappop(pq)
-
-        if i + 1 < len(abs_nums):
-            # Option 1: Add the next element to the current loss
-            heapq.heappush(pq, (current_loss + abs_nums[i + 1], i + 1))
-            # Option 2: Replace the current element with the next element
-            heapq.heappush(pq, (current_loss - abs_nums[i] + abs_nums[i + 1], i + 1))
-
-    return max_sum - current_loss
-```
-</details>

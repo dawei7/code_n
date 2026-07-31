@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2622",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "Hash-map lookup and one timer registration or cancellation give expected constant time for every public operation, matching the unavoidable constant work per call and leaving no genuine slower principal class required by the contract.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Every public call must return a result or install one entry, requiring Omega(1) work. Expected constant-time map operations plus at most one timer cancellation and one timer registration provide O(1) expected time per set, get, and count operation."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "Each operation must perform at least one constant-time state observation or update before returning its required result."},
+    {"kind": "upper_bound_proof", "evidence": "A map stores active entries, count reads its size, and set performs only expected constant-time map work plus fixed timer operations."},
+    {"kind": "boundary_property_cases", "evidence": "Cases cover expiration, active overwrite, expired-key reinsertion, multiple keys, zero duration, and cancellation of a stale replacement timer."}
+  ]
+}

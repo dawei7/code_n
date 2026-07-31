@@ -1,56 +1,56 @@
-import math
-from collections import defaultdict
+from collections import Counter
 
-def is_prime(n):
-    if n < 2:
-        return False
-    if n == 2 or n == 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    for i in range(5, int(math.sqrt(n)) + 1, 6):
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-    return True
 
-def solve(mat):
+def solve(mat: list[list[int]]) -> int:
     rows = len(mat)
-    cols = len(mat[0])
-    counts = defaultdict(int)
-    
-    directions = [
-        (0, 1), (0, -1), (1, 0), (-1, 0),
-        (1, 1), (1, -1), (-1, 1), (-1, -1)
-    ]
-    
-    for r in range(rows):
-        for c in range(cols):
-            for dr, dc in directions:
-                curr_num = 0
-                curr_r, curr_c = r, c
-                
-                while 0 <= curr_r < rows and 0 <= curr_c < cols:
-                    curr_num = curr_num * 10 + mat[curr_r][curr_c]
-                    
-                    if curr_num > 10:
-                        if is_prime(curr_num):
-                            counts[curr_num] += 1
-                    
-                    curr_r += dr
-                    curr_c += dc
-                    
-    if not counts:
+    columns = len(mat[0])
+    directions = (
+        (-1, -1), (-1, 0), (-1, 1),
+        (0, -1),             (0, 1),
+        (1, -1),  (1, 0),   (1, 1),
+    )
+    prime_cache: dict[int, bool] = {}
+
+    def is_prime(value: int) -> bool:
+        if value in prime_cache:
+            return prime_cache[value]
+
+        if value < 2:
+            result = False
+        elif value == 2:
+            result = True
+        elif value % 2 == 0:
+            result = False
+        else:
+            result = True
+            divisor = 3
+            while divisor * divisor <= value:
+                if value % divisor == 0:
+                    result = False
+                    break
+                divisor += 2
+
+        prime_cache[value] = result
+        return result
+
+    frequencies = Counter()
+
+    for start_row in range(rows):
+        for start_column in range(columns):
+            for row_step, column_step in directions:
+                row = start_row
+                column = start_column
+                value = 0
+
+                while 0 <= row < rows and 0 <= column < columns:
+                    value = value * 10 + mat[row][column]
+                    if value > 10 and is_prime(value):
+                        frequencies[value] += 1
+
+                    row += row_step
+                    column += column_step
+
+    if not frequencies:
         return -1
-    
-    max_freq = 0
-    best_prime = -1
-    
-    for prime, freq in counts.items():
-        if freq > max_freq:
-            max_freq = freq
-            best_prime = prime
-        elif freq == max_freq:
-            if prime > best_prime:
-                best_prime = prime
-                
-    return best_prime
+
+    return max(frequencies, key=lambda value: (frequencies[value], value))

@@ -1,7 +1,7 @@
 def solve(nums: list[int], k: int) -> int:
-    neg_inf = -10**30
-    best = [neg_inf] * (k + 1)
-    ending = [neg_inf] * (k + 1)
+    negative_infinity = -10**30
+    best = [negative_infinity] * (k + 1)
+    ending = [negative_infinity] * (k + 1)
     best[0] = 0
 
     for value in nums:

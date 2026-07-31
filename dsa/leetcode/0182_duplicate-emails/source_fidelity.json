@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_182", "frontend_id": "182", "title_slug": "duplicate-emails", "url": "https://leetcode.com/problems/duplicate-emails/description/", "paid_only": false, "content_sha256": "5b0aa680696ac755137e81c12462985dfdc1b01c6d8b93c9e51d4321e5ed2809", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["person_table", "description", "examples"],
+    "examples": [
+      {"ordinal": 1, "input": "Person = [[1,\"a@b.com\"],[2,\"c@d.com\"],[3,\"a@b.com\"]]", "output": "Email = [\"a@b.com\"]", "has_explanation": true}
+    ],
+    "constraint_count": 0,
+    "visuals": {"source_images": 0, "source_tables": 3, "source_diagrams": 0, "local_images": 0, "local_tables": 3, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/person_table.md": "3f55cd1c8146bbf29f0d4c36b14c73f55fbc0d2bd6dfa8e6f57a6fa525f58fac", "reference/description.md": "0490198fdf95b8fda30264b970fca982bdd50aae6f0933ad8c765e40c224fa37", "reference/contract.md": "348ad4efdd79c6f0b85fd10108822984c6cfb15688247015c877c450e7627887", "reference/examples.md": "c2a75839b52942afaf69ae2add7fdbbcfce5425bff132173a07925a1ace69352"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

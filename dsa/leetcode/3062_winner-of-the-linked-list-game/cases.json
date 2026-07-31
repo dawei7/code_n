@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_3062",
+  "cases": [
+    {
+      "id": "sample-even-single-pair",
+      "name": "sample: Even wins one pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"head": [2, 1]},
+      "expected": "Even",
+      "tags": ["sample", "minimum"]
+    },
+    {
+      "id": "sample-odd-majority",
+      "name": "sample: Odd wins two of three pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"head": [2, 5, 4, 7, 20, 5]},
+      "expected": "Odd",
+      "tags": ["sample", "odd"]
+    },
+    {
+      "id": "sample-tied-score",
+      "name": "sample: one point for each team",
+      "kind": "sample",
+      "visible": true,
+      "input": {"head": [4, 5, 2, 1]},
+      "expected": "Tie",
+      "tags": ["sample", "tie"]
+    },
+    {
+      "id": "trial-even-sweep",
+      "name": "Even wins every pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"head": [100, 1, 98, 3, 96, 5]},
+      "expected": "Even",
+      "tags": ["boundary-values", "even"]
+    },
+    {
+      "id": "real-odd-sweep",
+      "name": "hidden: Odd wins every pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [2, 99, 4, 97, 6, 95, 8, 93]},
+      "expected": "Odd",
+      "tags": ["hidden", "odd"]
+    },
+    {
+      "id": "real-final-pair-breaks-tie",
+      "name": "hidden: final pair decides the winner",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [10, 1, 2, 9, 8, 3, 4, 7, 6, 5]},
+      "expected": "Even",
+      "tags": ["hidden", "full-traversal"]
+    },
+    {
+      "id": "real-long-alternating-tie",
+      "name": "hidden: alternating pair winners tie",
+      "kind": "real",
+      "visible": false,
+      "input": {"head": [2, 1, 4, 9, 8, 3, 6, 7, 10, 5, 12, 13]},
+      "expected": "Tie",
+      "tags": ["hidden", "tie", "alternating"]
+    }
+  ]
+}

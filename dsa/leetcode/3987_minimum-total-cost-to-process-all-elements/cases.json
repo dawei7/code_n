@@ -1,0 +1,167 @@
+{
+  "challenge_id": "lc_3987",
+  "cases": [
+    {
+      "id": "sample-two-operations",
+      "name": "sample: two later deficits cost three total",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4], "k": 4},
+      "expected": 3,
+      "tags": ["sample", "two-operations"]
+    },
+    {
+      "id": "sample-five-operations",
+      "name": "sample: two batched deficits use five operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 1, 7, 14], "k": 4},
+      "expected": 15,
+      "tags": ["sample", "multiple-operations-per-element"]
+    },
+    {
+      "id": "sample-initial-resource-suffices",
+      "name": "sample: initial resource covers the full demand",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4], "k": 10},
+      "expected": 0,
+      "tags": ["sample", "zero-operations"]
+    },
+    {
+      "id": "trial-minimum-contract",
+      "name": "trial: the minimum single value uses the free block",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "k": 1},
+      "expected": 0,
+      "tags": ["trial", "minimum-length", "zero-operations"]
+    },
+    {
+      "id": "trial-first-paid-block",
+      "name": "trial: one extra block costs one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2], "k": 1},
+      "expected": 1,
+      "tags": ["trial", "single-element", "one-operation"]
+    },
+    {
+      "id": "trial-two-blocks-at-once",
+      "name": "trial: one element requires two paid blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5], "k": 2},
+      "expected": 3,
+      "tags": ["trial", "single-element", "batched-operations"]
+    },
+    {
+      "id": "trial-exact-second-block",
+      "name": "trial: exact divisibility needs one paid block",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6], "k": 3},
+      "expected": 1,
+      "tags": ["trial", "exact-multiple"]
+    },
+    {
+      "id": "trial-exact-initial-block",
+      "name": "trial: total demand exactly equals the initial block",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3], "k": 5},
+      "expected": 0,
+      "tags": ["trial", "exact-multiple", "zero-operations"]
+    },
+    {
+      "id": "trial-exact-two-blocks",
+      "name": "trial: total demand exactly equals two blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3, 5], "k": 5},
+      "expected": 1,
+      "tags": ["trial", "exact-multiple"]
+    },
+    {
+      "id": "trial-one-past-two-blocks",
+      "name": "trial: one unit past two blocks needs a third",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 3, 4], "k": 5},
+      "expected": 3,
+      "tags": ["trial", "ceiling-boundary"]
+    },
+    {
+      "id": "real-single-distributed-equivalent",
+      "name": "hidden: one large requirement has a triangular cost",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10], "k": 3},
+      "expected": 6,
+      "tags": ["hidden", "single-element", "triangular-cost"]
+    },
+    {
+      "id": "real-multiple-distributed-equivalent",
+      "name": "hidden: distributed demand has the same total-based cost",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 3, 3], "k": 3},
+      "expected": 6,
+      "tags": ["hidden", "distribution-invariance"]
+    },
+    {
+      "id": "real-late-multi-block-deficit",
+      "name": "hidden: a late requirement needs many blocks together",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 100], "k": 10},
+      "expected": 55,
+      "tags": ["hidden", "late-deficit", "batched-operations"]
+    },
+    {
+      "id": "real-maximum-k-exactly-suffices",
+      "name": "hidden: maximum k exactly covers the total demand",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [999999999, 1], "k": 1000000000},
+      "expected": 0,
+      "tags": ["hidden", "maximum-k", "exact-multiple"]
+    },
+    {
+      "id": "real-maximum-value-one-unit-blocks",
+      "name": "hidden: a maximum value with unit blocks requires modular arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000], "k": 1},
+      "expected": 28,
+      "tags": ["hidden", "maximum-value", "modulo"]
+    },
+    {
+      "id": "real-two-maximum-values",
+      "name": "hidden: two maximum values exceed fixed-width triangular arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 1000000000], "k": 1},
+      "expected": 105,
+      "tags": ["hidden", "wide-integer", "modulo"]
+    },
+    {
+      "id": "real-five-free-sized-blocks",
+      "name": "hidden: five maximum values need four paid blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 1000000000, 1000000000, 1000000000, 1000000000], "k": 1000000000},
+      "expected": 10,
+      "tags": ["hidden", "maximum-values", "exact-multiple"]
+    },
+    {
+      "id": "real-many-unit-requirements",
+      "name": "hidden: many unit requirements accumulate paid blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "k": 1},
+      "expected": 190,
+      "tags": ["hidden", "repeated-values", "triangular-cost"]
+    }
+  ]
+}

@@ -23,7 +23,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: all small numbers are banned",
+      "name": "sample: every affordable value is banned",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,12 +41,13 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "sample",
+        "zero-picks"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: no in-range banned values matter",
+      "name": "sample: out-of-range ban has no effect",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,39 +59,102 @@
       },
       "expected": 7,
       "tags": [
-        "sample"
+        "sample",
+        "out-of-range-ban"
       ]
     },
     {
-      "id": "trial-sum-limit-without-bans",
-      "name": "trial: sum limit stops before the upper bound",
+      "id": "trial-duplicate-bans",
+      "name": "trial: duplicate bans represent one forbidden value",
       "kind": "trial",
       "visible": true,
       "input": {
-        "banned": [],
-        "n": 3,
-        "maxSum": 3
+        "banned": [
+          2,
+          2,
+          2
+        ],
+        "n": 5,
+        "maxSum": 15
       },
-      "expected": 2,
+      "expected": 4,
       "tags": [
-        "trial"
+        "trial",
+        "duplicates"
       ]
     },
     {
-      "id": "real-only-number-banned",
-      "name": "hidden: the only candidate is banned",
+      "id": "trial-exact-budget",
+      "name": "trial: prefix of allowed values exactly fills budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "banned": [
+          100
+        ],
+        "n": 4,
+        "maxSum": 6
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "exact-budget"
+      ]
+    },
+    {
+      "id": "real-smallest-banned",
+      "name": "hidden: skip the smallest candidate before budget stop",
       "kind": "real",
       "visible": false,
       "input": {
         "banned": [
           1
         ],
-        "n": 1,
-        "maxSum": 10
+        "n": 3,
+        "maxSum": 3
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "smallest-banned"
+      ]
+    },
+    {
+      "id": "real-all-banned",
+      "name": "hidden: all in-range values are forbidden",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "banned": [
+          1,
+          2,
+          3
+        ],
+        "n": 3,
+        "maxSum": 100
       },
       "expected": 0,
       "tags": [
-        "hidden"
+        "hidden",
+        "all-banned"
+      ]
+    },
+    {
+      "id": "real-budget-stop",
+      "name": "hidden: later values cannot fit after first failure",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "banned": [
+          10
+        ],
+        "n": 4,
+        "maxSum": 4
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "budget-stop"
       ]
     }
   ]

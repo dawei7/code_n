@@ -8,48 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sort-array-by-moving-items-to-empty-space](https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given an integer array `nums` of length $n$ containing every value from $0$ through $n-1$ exactly once. Values $1$ through $n-1$ represent numbered items, while `0` represents one empty space.
+
+In one operation, choose any item and move it into the empty position; the item's previous position becomes the new empty space. The array is sorted when all item numbers appear in ascending order and the empty space is at either end. Thus the two valid final layouts are `[0, 1, ..., n - 1]` and `[1, 2, ..., n - 1, 0]`.
+
+Return the minimum number of operations required to reach either valid layout.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A permutation of every integer from $0$ through $n-1$.
+
+The array length satisfies $2\le n\le10^5$.
 
 **Return value**
 
-TODO
+- The minimum number of moves into the empty space needed to produce either sorted layout.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 2, 0, 3, 1]`
+- Output: `3`
+- Explanation: Moving items `2`, `1`, and `4` into the successive empty positions produces `[0, 1, 2, 3, 4]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 2, 3, 4, 0]`
+- Output: `0`
+- Explanation: The items are already ascending with the empty space at the end.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1, 0, 2, 4, 3]`
+- Output: `2`
+- Explanation: Two moves can produce `[1, 2, 3, 4, 0]`.

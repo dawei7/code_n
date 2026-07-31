@@ -8,50 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-artifacts-that-can-be-extracted](https://leetcode.com/problems/count-artifacts-that-can-be-extracted/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-artifacts-that-can-be-extracted/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-artifacts-that-can-be-extracted/).
 
 ### Goal
-Count rectangular artifacts whose every occupied cell has been dug from an `n x n` grid. Artifact rectangles do not overlap.
+
+An $n \times n$ 0-indexed grid contains non-overlapping rectangular artifacts. Each artifact description `[r1, c1, r2, c2]` gives its inclusive top-left and bottom-right cells. Every artifact occupies at most four cells.
+
+The coordinates in `dig` are the distinct cells whose mud will be removed. Digging a cell uncovers any artifact part there, and an artifact can be extracted only when every cell in its rectangle has been dug. Return the number of completely uncovered artifacts.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: the grid side length.
-- `artifacts`: rectangles `[top_row, left_column, bottom_row, right_column]`, with inclusive bounds.
-- `dig`: coordinates of dug cells.
+- `n`: the grid side length, where $1 \le n \le 1000$.
+- `artifacts`: between $1$ and $\min(n^2,10^5)$ non-overlapping inclusive rectangles, each covering at most four cells.
+- `dig`: between $1$ and $\min(n^2,10^5)$ unique in-bounds cell coordinates.
+
+Let $a$ be the number of artifacts and $d$ the number of dug cells.
 
 **Return value**
 
-The number of artifacts that can be fully extracted.
+Return the number of artifacts for which every covered grid cell appears in `dig`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 2`, `artifacts = [[0, 0, 0, 0], [0, 1, 1, 1]]`, `dig = [[0, 0], [0, 1]]`
+- Input: `n = 2`, `artifacts = [[0,0,0,0],[0,1,1,1]]`, `dig = [[0,0],[0,1]]`
 - Output: `1`
+
+The single-cell artifact is complete, but the vertical artifact still has an undug cell at `(1,1)`.
 
 **Example 2**
 
-- Input: `n = 2`, `artifacts = [[0, 0, 0, 0]]`, `dig = [[0, 0], [0, 1]]`
-- Output: `1`
+- Input: `n = 2`, `artifacts = [[0,0,0,0],[0,1,1,1]]`, `dig = [[0,0],[0,1],[1,1]]`
+- Output: `2`
 
-**Example 3**
-
-- Input: `n = 3`, `artifacts = [[0, 0, 1, 1]]`, `dig = [[0, 0], [0, 1], [1, 0]]`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-Store dug coordinates in a hash set. For each artifact, inspect every cell in its inclusive rectangle and count it only if all those coordinates are present. Non-overlap ensures the total artifact area is bounded by the grid area.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2 + d)`, where `d` is the number of dug cells
-- **Space Complexity**: `O(d)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every cell belonging to either artifact has been dug.

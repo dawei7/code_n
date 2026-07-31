@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3186",
+  "frontend_id": "2909",
+  "title_slug": "minimum-sum-of-mountain-triplets-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minimumSum",
+  "verified_submission_id": "2078102362",
+  "verified_at": "2026-07-23T08:04:56.275661+00:00"
+}

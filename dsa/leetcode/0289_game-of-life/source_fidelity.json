@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_289", "frontend_id": "289", "title_slug": "game-of-life", "url": "https://leetcode.com/problems/game-of-life/description/", "paid_only": false, "content_sha256": "aee3bbb6581cf5adaa1583b6c9bcb523927bbe7a7dc335c80a7ae9f170ef772c", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [{"ordinal": 1, "input": "board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]", "output": "[[0,0,0],[1,0,1],[0,1,1],[0,1,0]]", "has_explanation": false}, {"ordinal": 2, "input": "board = [[1,1],[1,0]]", "output": "[[1,1],[1,1]]", "has_explanation": false}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "79a352faba84228999b82dd6c8dde0d6375657841017fd24b4c0030a0cce7e34", "reference/contract.md": "6e6794fca2442cd7691a837165864e6e23b6f73cee4145ee39d10545fe3a7f8c", "reference/examples.md": "bbd82a6f4fb55cf0880ea580fa124d6dfa9b4bb6ca6a8212a22dee1d132b5dc6", "reference/constraints.md": "7fa18a1e092db3366573fb60a8479924f374e43a45826c3f739ed69f54a31c89", "reference/follow_up.md": "351fc221dcf8bdd4c6cc44835d20653b63718bf255cb042624a62fce91df08a3"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

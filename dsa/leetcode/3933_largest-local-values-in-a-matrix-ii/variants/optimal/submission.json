@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3802",
+  "frontend_id": "3933",
+  "title_slug": "largest-local-values-in-a-matrix-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.countLocalMaximums",
+  "verified_submission_id": "2087191141",
+  "verified_at": "2026-07-30T08:17:20.719569+00:00"
+}

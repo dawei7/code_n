@@ -1,0 +1,483 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3939",
+  "cases": [
+    {
+      "id": "sample-chain-only-node-two",
+      "name": "sample: only the final chain node forms a divisible independent subset",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1
+        ],
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "chain",
+        "single-node"
+      ]
+    },
+    {
+      "id": "sample-star-two-sibling-pairs",
+      "name": "sample: two sibling pairs satisfy both conditions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "nums": [
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "star",
+        "siblings"
+      ]
+    },
+    {
+      "id": "trial-single-divisible",
+      "name": "trial: a divisible single root is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1
+        ],
+        "nums": [
+          10
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-node",
+        "divisible"
+      ]
+    },
+    {
+      "id": "trial-single-not-divisible",
+      "name": "trial: a nondivisible single root contributes no subset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1
+        ],
+        "nums": [
+          7
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-node",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-modulus-one-chain",
+      "name": "trial: modulus one counts every nonempty independent chain subset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2
+        ],
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "modulus-one",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-grandparent-grandchild",
+      "name": "trial: nonadjacent generations may be selected together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1
+        ],
+        "nums": [
+          1,
+          100,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "grandparent",
+        "adjacency"
+      ]
+    },
+    {
+      "id": "trial-root-only",
+      "name": "trial: only the root has a divisible value combination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0
+        ],
+        "nums": [
+          3,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "root",
+        "star"
+      ]
+    },
+    {
+      "id": "trial-all-divisible-star",
+      "name": "trial: every independent set is divisible in a small star",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-divisible",
+        "star"
+      ]
+    },
+    {
+      "id": "real-balanced-mixed-residues",
+      "name": "hidden: a balanced tree combines residue distributions from both sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "nums": [
+          5,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 5
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "balanced-tree",
+        "mixed-residues"
+      ]
+    },
+    {
+      "id": "real-no-divisible-subset",
+      "name": "hidden: every independent sum stays below a large divisor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0
+        ],
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 100
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-modulus",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "real-mixed-five-node-tree",
+      "name": "hidden: repeated child merges preserve modular counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5
+        ],
+        "k": 7
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-children",
+        "residue-wrap"
+      ]
+    },
+    {
+      "id": "real-parity-residues",
+      "name": "hidden: parity residues include several independent combinations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2
+        ],
+        "nums": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        "k": 2
+      },
+      "expected": 11,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "modulus-two",
+        "mixed-tree"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: maximum node values reduce cleanly modulo one hundred",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "nums": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ],
+        "k": 100
+      },
+      "expected": 40,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "balanced-tree"
+      ]
+    },
+    {
+      "id": "real-deep-chain-residues",
+      "name": "hidden: reverse label order completes a deeper chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "k": 6
+      },
+      "expected": 25,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "chain",
+        "postorder"
+      ]
+    },
+    {
+      "id": "real-larger-star-modulus-one",
+      "name": "hidden: a larger star counts every leaf subset plus the root choice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "k": 1
+      },
+      "expected": 2048,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "star",
+        "modulus-one"
+      ]
+    }
+  ]
+}
+

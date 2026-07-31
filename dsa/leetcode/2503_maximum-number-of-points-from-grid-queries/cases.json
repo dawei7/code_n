@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: offline expansion answers three thresholds",
+      "name": "sample: offline expansion answers unsorted thresholds",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -66,13 +66,14 @@
         0
       ],
       "tags": [
-        "sample"
+        "sample",
+        "blocked-start"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: diagonal low cell is unreachable until threshold grows",
-      "kind": "sample",
+      "id": "trial-strict-threshold",
+      "name": "trial: cells equal to the threshold are excluded",
+      "kind": "trial",
       "visible": true,
       "input": {
         "grid": [
@@ -97,60 +98,158 @@
         4
       ],
       "tags": [
-        "sample"
+        "trial",
+        "strict-inequality"
       ]
     },
     {
-      "id": "trial-single-cell-thresholds",
-      "name": "trial: threshold must be greater than the start value",
+      "id": "trial-unordered-duplicates",
+      "name": "trial: duplicate thresholds preserve original order",
       "kind": "trial",
       "visible": true,
       "input": {
         "grid": [
           [
-            2
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            5,
+            7
+          ],
+          [
+            3,
+            5,
+            1
           ]
         ],
         "queries": [
-          1,
+          6,
           2,
-          3
+          6,
+          5
         ]
       },
       "expected": [
-        0,
-        0,
-        1
+        8,
+        1,
+        8,
+        5
       ],
       "tags": [
-        "trial"
+        "trial",
+        "duplicate-queries"
       ]
     },
     {
-      "id": "real-two-by-two-partial",
-      "name": "hidden: one high cell stays excluded",
+      "id": "real-low-cells-behind-barrier",
+      "name": "hidden: low cells remain unreachable behind an ineligible barrier",
       "kind": "real",
       "visible": false,
       "input": {
         "grid": [
           [
             1,
+            100,
+            2
+          ],
+          [
+            2,
+            100,
             2
           ],
           [
             3,
-            4
+            4,
+            5
           ]
         ],
         "queries": [
-          4
+          3,
+          5,
+          101
         ]
       },
       "expected": [
-        3
+        2,
+        4,
+        9
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "barrier"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: one threshold step reveals the entire grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            7,
+            7,
+            7
+          ],
+          [
+            7,
+            7,
+            7
+          ]
+        ],
+        "queries": [
+          7,
+          8
+        ]
+      },
+      "expected": [
+        0,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-rectangular-path",
+      "name": "hidden: a narrow path grows one threshold at a time",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            4,
+            5,
+            6
+          ],
+          [
+            2,
+            3,
+            8,
+            7
+          ]
+        ],
+        "queries": [
+          2,
+          4,
+          7,
+          9
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "tags": [
+        "hidden",
+        "rectangular"
       ]
     }
   ]

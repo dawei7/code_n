@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Mentions Per User and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts events and lazily accrues global ALL and online HERE mentions.",
+      "time_complexity": "O(E log E + E log U + M + U)",
+      "space_complexity": "O(E + U)"
     }
   ]
 }

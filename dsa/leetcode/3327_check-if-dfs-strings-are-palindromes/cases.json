@@ -2,8 +2,8 @@
   "challenge_id": "lc_3327",
   "cases": [
     {
-      "id": "sample-all-palindromes",
-      "name": "sample: every subtree DFS string is a palindrome",
+      "id": "sample-mixed",
+      "name": "sample: mixed subtree palindrome results",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -13,29 +13,27 @@
           0,
           1,
           1,
-          2,
           2
         ],
-        "s": "aabcbab"
+        "s": "aababa"
       },
       "expected": [
-        false,
-        false,
-        false,
         true,
+        true,
+        false,
         true,
         true,
         true
       ],
       "tags": [
         "sample",
-        "tree",
-        "postorder-dfs"
+        "postorder",
+        "mixed"
       ]
     },
     {
-      "id": "sample-mixed-palindromes",
-      "name": "sample: only leaf subtrees and one branch pass",
+      "id": "sample-all",
+      "name": "sample: palindromic root and leaf subtrees",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,17 +41,13 @@
           -1,
           0,
           0,
-          1,
-          1,
-          2,
-          2
+          0,
+          0
         ],
-        "s": "abcdeff"
+        "s": "aabcb"
       },
       "expected": [
-        false,
-        false,
-        false,
+        true,
         true,
         true,
         true,
@@ -61,13 +55,32 @@
       ],
       "tags": [
         "sample",
-        "tree",
-        "hashing"
+        "star",
+        "all-true"
       ]
     },
     {
-      "id": "trial-tiny-two-node-chain",
-      "name": "trial: two nodes with non-palindromic root DFS string",
+      "id": "trial-single",
+      "name": "trial: one-node tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1
+        ],
+        "s": "z"
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "minimum",
+        "leaf"
+      ]
+    },
+    {
+      "id": "trial-two-chain",
+      "name": "trial: two-node non-palindromic chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -82,13 +95,13 @@
         true
       ],
       "tags": [
-        "edge",
-        "tree"
+        "chain",
+        "even-length"
       ]
     },
     {
-      "id": "trial-ordered-children-postorder",
-      "name": "trial: branching tree that depends on child-index postorder",
+      "id": "trial-even-root",
+      "name": "trial: even-length root palindrome",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -96,36 +109,24 @@
           -1,
           0,
           0,
-          1,
-          1,
-          2,
-          2,
-          4,
-          4,
-          6
+          0
         ],
-        "s": "abacabaazb"
+        "s": "aabb"
       },
       "expected": [
-        false,
-        false,
-        false,
         true,
-        true,
-        true,
-        false,
         true,
         true,
         true
       ],
       "tags": [
-        "regression",
-        "postorder-dfs"
+        "even-length",
+        "star"
       ]
     },
     {
-      "id": "real-layered-postorder",
-      "name": "real: layered tree with mixed palindrome answers",
+      "id": "real-internal-palindrome",
+      "name": "real: internal palindrome inside non-palindromic root",
       "kind": "real",
       "visible": false,
       "input": {
@@ -134,35 +135,49 @@
           0,
           0,
           1,
-          1,
-          3,
-          3,
-          2,
-          7,
-          7,
-          8,
-          8
+          1
         ],
-        "s": "abacabadabca"
+        "s": "abcba"
       },
       "expected": [
         false,
         true,
-        false,
-        false,
-        true,
-        true,
-        true,
-        false,
-        false,
         true,
         true,
         true
       ],
       "tags": [
-        "real",
-        "tree",
-        "postorder-dfs"
+        "branching",
+        "interval"
+      ]
+    },
+    {
+      "id": "real-ordered-children",
+      "name": "real: child indices determine postorder text",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        "s": "cababc"
+      },
+      "expected": [
+        false,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "child-order",
+        "hidden"
       ]
     }
   ]

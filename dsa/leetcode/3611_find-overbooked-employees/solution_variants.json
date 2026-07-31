@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Overbooked Employees and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregate meeting hours by employee and Monday-based week, retain heavy weeks, then count and order qualifying employees.",
+      "time_complexity": "O(M log M + E log E)",
+      "space_complexity": "O(M + E)"
     }
   ]
 }

@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3470",
   "cases": [
     {
@@ -6,93 +7,81 @@
       "name": "sample: sixth alternating permutation",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "n": 4,
-        "k": 6
-      },
-      "expected": [
-        3,
-        4,
-        1,
-        2
-      ],
-      "tags": [
-        "sample",
-        "alternating"
-      ]
+      "input": {"n": 4, "k": 6},
+      "expected": [3, 4, 1, 2],
+      "tags": ["sample", "lexicographical-rank"]
     },
     {
       "id": "sample-three-second",
       "name": "sample: second permutation with odd majority",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "n": 3,
-        "k": 2
-      },
-      "expected": [
-        3,
-        2,
-        1
-      ],
-      "tags": [
-        "sample",
-        "odd-majority"
-      ]
+      "input": {"n": 3, "k": 2},
+      "expected": [3, 2, 1],
+      "tags": ["sample", "odd-majority"]
     },
     {
-      "id": "trial-impossible-rank",
-      "name": "trial: rank beyond available permutations",
-      "kind": "trial",
+      "id": "sample-rank-out-of-range",
+      "name": "sample: requested rank does not exist",
+      "kind": "sample",
       "visible": true,
-      "input": {
-        "n": 3,
-        "k": 3
-      },
+      "input": {"n": 2, "k": 3},
       "expected": [],
-      "tags": [
-        "trial",
-        "empty"
-      ]
+      "tags": ["sample", "out-of-range"]
     },
     {
-      "id": "trial-single",
-      "name": "trial: single number",
+      "id": "trial-single-valid",
+      "name": "trial: sole one-element permutation",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "n": 1,
-        "k": 1
-      },
-      "expected": [
-        1
-      ],
-      "tags": [
-        "trial",
-        "edge"
-      ]
+      "input": {"n": 1, "k": 1},
+      "expected": [1],
+      "tags": ["trial", "minimum-n"]
     },
     {
-      "id": "real-six-middle-rank",
-      "name": "real: six values middle rank",
+      "id": "trial-single-invalid-rank",
+      "name": "trial: second rank for one element is absent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "k": 2},
+      "expected": [],
+      "tags": ["trial", "minimum-n", "out-of-range"]
+    },
+    {
+      "id": "real-last-even-length",
+      "name": "real: final rank when both starting parities are possible",
       "kind": "real",
       "visible": false,
-      "input": {
-        "n": 6,
-        "k": 17
-      },
-      "expected": [
-        2,
-        3,
-        4,
-        1,
-        6,
-        5
-      ],
-      "tags": [
-        "real",
-        "factorial"
-      ]
+      "input": {"n": 4, "k": 8},
+      "expected": [4, 3, 2, 1],
+      "tags": ["real", "even-n", "last-rank"]
+    },
+    {
+      "id": "real-last-odd-length",
+      "name": "real: final rank must still begin odd",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "k": 12},
+      "expected": [5, 4, 3, 2, 1],
+      "tags": ["real", "odd-n", "last-rank"]
+    },
+    {
+      "id": "real-huge-rank-missing",
+      "name": "real: legal k exceeds the complete permutation count",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 10, "k": 1000000000000000},
+      "expected": [],
+      "tags": ["real", "maximum-k", "out-of-range"]
+    },
+    {
+      "id": "real-largest-n-first",
+      "name": "real: first rank at the maximum length",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 100, "k": 1},
+      "expected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100],
+      "tags": ["real", "maximum-n", "first-rank"]
     }
   ]
 }

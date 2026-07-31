@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Stack, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-mirror-score-of-a-string](https://leetcode.com/problems/find-mirror-score-of-a-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-mirror-score-of-a-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-mirror-score-of-a-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a lowercase English string `s`. A letter's mirror is the letter in the same position when the alphabet is reversed: `a` mirrors `z`, `b` mirrors `y`, and so on.
+
+Initially every index is unmarked and the score is zero. Process the indices from left to right. At index `i`, find the closest unmarked index `j` to its left whose character is the mirror of `s[i]`. If one exists, mark both `i` and `j` and add `i - j` to the score. If none exists, leave `i` unmarked and continue. Return the score after the complete scan.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: The lowercase English string to process.
+
+The constraint is $1\le\lvert\texttt{s}\rvert\le10^5$.
 
 **Return value**
 
-TODO
+- The total score produced by the prescribed left-to-right matching process.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aczzx"`
+- Output: `5`
+
+The `z` at index 2 pairs with the `a` at index 0 for 2 points. The `x` at index 4 then pairs with the `c` at index 1 for 3 more points.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcdef"`
+- Output: `0`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+No character has an earlier unmarked mirror.

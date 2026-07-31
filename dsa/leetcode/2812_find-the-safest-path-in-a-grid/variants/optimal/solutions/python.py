@@ -1,48 +1,43 @@
-import heapq
 from collections import deque
+from heapq import heappop, heappush
+
 
 def solve(grid: list[list[int]]) -> int:
     n = len(grid)
-    if grid[0][0] == 1 or grid[n-1][n-1] == 1:
-        return 0
-    
-    # Multi-source BFS to calculate distance to nearest thief
-    dist = [[-1] * n for _ in range(n)]
+    distance = [[-1] * n for _ in range(n)]
     queue = deque()
-    
-    for r in range(n):
-        for c in range(n):
-            if grid[r][c] == 1:
-                dist[r][c] = 0
-                queue.append((r, c))
-                
+    for row in range(n):
+        for column in range(n):
+            if grid[row][column] == 1:
+                distance[row][column] = 0
+                queue.append((row, column))
+    directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
     while queue:
-        r, c = queue.popleft()
-        for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-            nr, nc = r + dr, c + dc
-            if 0 <= nr < n and 0 <= nc < n and dist[nr][nc] == -1:
-                dist[nr][nc] = dist[r][c] + 1
-                queue.append((nr, nc))
-                
-    # Dijkstra-like approach to find the path with max-min safeness
-    # Max-heap stores (-safeness, r, c)
-    pq = [(-dist[0][0], 0, 0)]
-    visited = [[False] * n for _ in range(n)]
-    visited[0][0] = True
-    
-    while pq:
-        d, r, c = heapq.heappop(pq)
-        d = -d
-        
-        if r == n - 1 and c == n - 1:
-            return d
-            
-        for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-            nr, nc = r + dr, c + dc
-            if 0 <= nr < n and 0 <= nc < n and not visited[nr][nc]:
-                visited[nr][nc] = True
-                # The safeness of the path is the min of current path and next cell
-                new_dist = min(d, dist[nr][nc])
-                heapq.heappush(pq, (-new_dist, nr, nc))
-                
+        row, column = queue.popleft()
+        for dr, dc in directions:
+            next_row, next_column = row + dr, column + dc
+            if (
+                0 <= next_row < n
+                and 0 <= next_column < n
+                and distance[next_row][next_column] == -1
+            ):
+                distance[next_row][next_column] = distance[row][column] + 1
+                queue.append((next_row, next_column))
+    best = [[-1] * n for _ in range(n)]
+    best[0][0] = distance[0][0]
+    heap = [(-distance[0][0], 0, 0)]
+    while heap:
+        negative_safety, row, column = heappop(heap)
+        safety = -negative_safety
+        if safety < best[row][column]:
+            continue
+        if row == n - 1 and column == n - 1:
+            return safety
+        for dr, dc in directions:
+            next_row, next_column = row + dr, column + dc
+            if 0 <= next_row < n and 0 <= next_column < n:
+                candidate = min(safety, distance[next_row][next_column])
+                if candidate > best[next_row][next_column]:
+                    best[next_row][next_column] = candidate
+                    heappush(heap, (-candidate, next_row, next_column))
     return 0

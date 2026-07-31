@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Apply Substitutions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Memoizes each key's acyclic dependency expansion, then resolves the final text from those completed values.",
+      "time_complexity": "O(L + E)",
+      "space_complexity": "O(E + k)"
     }
   ]
 }

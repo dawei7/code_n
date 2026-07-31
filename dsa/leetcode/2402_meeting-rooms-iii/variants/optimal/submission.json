@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2479",
+  "frontend_id": "2402",
+  "title_slug": "meeting-rooms-iii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.mostBooked",
+  "verified_submission_id": "2074612880",
+  "verified_at": "2026-07-20T13:37:03.217893+00:00"
+}

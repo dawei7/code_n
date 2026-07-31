@@ -8,125 +8,50 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Tree, Depth-First Search |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [subtree-inversion-sum](https://leetcode.com/problems/subtree-inversion-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/subtree-inversion-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/subtree-inversion-sum/).
 
 ### Goal
-Given a tree where each node contains a value, calculate the total number of inversions across all possible subtrees. An inversion in a subtree is defined as a pair of nodes $(u, v)$ within that subtree such that $u$ is an ancestor of $v$ (or vice versa) and their values satisfy a specific ordering condition (typically $val[u] > val[v]$). The goal is to return the sum of these inversion counts for every node considered as the root of a subtree.
+
+An undirected tree is rooted at node `0`. Node `i` initially holds `nums[i]`. An inversion operation chooses a node and multiplies the value of every node in its rooted subtree by $-1$.
+
+You may choose any subset of nodes to invert, subject to a spacing rule along ancestor chains. Whenever two chosen nodes have an ancestor-descendant relationship, their tree distance must be at least `k`. Chosen nodes in different branches are not constrained by their distance because neither is an ancestor of the other.
+
+After applying all chosen subtree inversions, return the greatest possible sum of all node values. Nested inversions compose: a node's final sign changes once for every chosen ancestor, including itself.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: An integer representing the number of nodes in the tree.
-- `edges`: A list of lists where each inner list `[u, v]` represents an undirected edge between nodes.
-- `values`: A list of integers where `values[i]` is the value associated with node `i`.
+- `edges`: The `n - 1` undirected edges of a valid tree.
+- `nums`: The initial value at every node; its length defines $n$.
+- `k`: The minimum distance permitted between two inverted nodes on the same ancestor chain.
+
+The constraints are $2 \le n \le 5 \cdot 10^4$, $-5 \cdot 10^4 \le \texttt{nums[i]} \le 5 \cdot 10^4$, and $1 \le k \le 50$.
 
 **Return value**
 
-- A list of integers where the $i$-th element is the total number of inversions found within the subtree rooted at node $i$.
+Return the maximum possible total node value after any valid collection of subtree inversions.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 3, edges = [[0, 1], [1, 2]], values = [1, 2, 3]`
-- Output: `[0, 0, 0]`
+- Input: `edges = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]], nums = [4, -8, -6, 3, 7, -2, 5], k = 2`
+- Output: `27`
+- Explanation: Inverting nodes `0`, `3`, `4`, and `6` produces `[-4, 8, 6, 3, 7, 2, 5]`.
 
 **Example 2**
 
-- Input: `n = 3, edges = [[0, 1], [0, 2]], values = [3, 2, 1]`
-- Output: `[2, 0, 0]`
+- Input: `edges = [[0, 1], [1, 2], [2, 3], [3, 4]], nums = [-1, 3, -2, 4, -5], k = 2`
+- Output: `9`
+- Explanation: Inverting the leaf at node `4` changes only `-5` to `5`.
 
 **Example 3**
 
-- Input: `n = 4, edges = [[0, 1], [1, 2], [2, 3]], values = [4, 3, 2, 1]`
-- Output: `[6, 3, 1, 0]`
+- Input: `edges = [[0, 1], [0, 2]], nums = [0, -1, -2], k = 3`
+- Output: `3`
+- Explanation: Nodes `1` and `2` are in different branches, so both may be inverted despite their common parent.
 
 ---
-
-## Solution
-### Approach
-The problem is solved using a combination of **Depth-First Search (DFS)** for tree traversal and a **Fenwick Tree (Binary Indexed Tree)** or **Merge Sort** approach to count inversions efficiently. Since we need to calculate inversions for every subtree, we perform a post-order traversal. As we backtrack from children to parents, we merge the inversion counts and use the Fenwick Tree to count pairs $(u, v)$ where $u$ is in the current subtree and $v$ is a new node being added, maintaining $O(N \log N)$ complexity.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \log N)$, where $N$ is the number of nodes. Each node is processed, and Fenwick Tree operations take logarithmic time.
-- **Space Complexity**: $O(N)$, required for the adjacency list, the recursion stack, and the Fenwick Tree storage.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import sys
-
-# Increase recursion depth for deep trees
-sys.setrecursionlimit(200000)
-
-def solve(n, edges, values):
-    adj = [[] for _ in range(n)]
-    for u, v in edges:
-        adj[u].append(v)
-        adj[v].append(u)
-
-    # Coordinate compression for Fenwick Tree
-    sorted_vals = sorted(list(set(values)))
-    rank = {val: i + 1 for i, val in enumerate(sorted_vals)}
-    m = len(sorted_vals)
-
-    bit = [0] * (m + 1)
-
-    def update(i, delta):
-        while i <= m:
-            bit[i] += delta
-            i += i & (-i)
-
-    def query(i):
-        s = 0
-        while i > 0:
-            s += bit[i]
-            i -= i & (-i)
-        return s
-
-    results = [0] * n
-
-    # We use a post-order traversal to aggregate inversion counts
-    # For this specific problem, we collect values in subtrees
-    # and use a Fenwick tree to count inversions.
-
-    def dfs(u, p):
-        # Current node's contribution
-        current_inversions = 0
-
-        # To handle subtree inversions, we merge results from children
-        # In a standard approach, we'd use small-to-large merging
-        # or a persistent segment tree.
-
-        subtree_vals = [values[u]]
-
-        for v in adj[u]:
-            if v != p:
-                child_vals, child_inv = dfs(v, u)
-                current_inversions += child_inv
-
-                # Count inversions between current subtree and child subtree
-                # This is a simplified representation of the merge logic
-                for val in child_vals:
-                    # Count elements > val already in subtree
-                    current_inversions += (len(subtree_vals) - query(rank[val]))
-
-                for val in child_vals:
-                    update(rank[val], 1)
-                    subtree_vals.append(val)
-
-        update(rank[values[u]], 1)
-        results[u] = current_inversions
-        return subtree_vals, current_inversions
-
-    # Note: The above is a conceptual implementation of the O(N log^2 N) approach.
-    # For strict O(N log N), one would use DSU on trees (Sack).
-
-    dfs(0, -1)
-    return results
-```
-</details>

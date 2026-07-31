@@ -11,9 +11,10 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException
 
 from challenges.registry import CHALLENGE_REGISTRY
-from engine.languages import SupportedLanguage, normalize_language
+from engine.languages import PrimaryLanguage, SupportedLanguage, normalize_language
 from engine.solutions import _solution_template
 from engine.special_environments import starter_source as environment_starter_source
+from server.app.primary_languages import primary_language_for_challenge
 from server.app.schemas import (
     SolutionGet,
     SolutionPut,
@@ -63,6 +64,32 @@ def _require_challenge(challenge_id: str):
     return challenge_cls()
 
 
+def _require_primary_language(
+    challenge_id: str,
+    challenge,
+    requested: PrimaryLanguage | None,
+) -> SupportedLanguage:
+    spec = getattr(challenge, "_spec", None)
+    metadata = getattr(spec, "reference_metadata", {}) or {}
+    primary = primary_language_for_challenge(challenge_id, metadata)
+    if requested is None:
+        return primary
+    language = normalize_language(requested)
+    if language != primary:
+        raise HTTPException(
+            status_code=422,
+            detail={
+                "error": "language_not_primary_for_challenge",
+                "message": (
+                    f"{language} is not the verified primary language for this challenge. "
+                    f"Use {primary}."
+                ),
+                "primary_language": primary,
+            },
+        )
+    return language
+
+
 def _solution_path(
     challenge_id: str,
     language: str | None = "python",
@@ -107,9 +134,10 @@ def _solution_response(challenge_id: str, language: str) -> SolutionVersionsGet:
 @router.get("/solutions/{challenge_id}")
 def get_solution(
     challenge_id: str,
-    language: SupportedLanguage = "python",
+    language: PrimaryLanguage | None = None,
 ) -> SolutionVersionsGet:
-    language_id = normalize_language(language)
+    challenge = _require_challenge(challenge_id)
+    language_id = _require_primary_language(challenge_id, challenge, language)
     return _solution_response(challenge_id, language_id)
 
 
@@ -117,10 +145,10 @@ def get_solution(
 def put_solution(
     challenge_id: str,
     body: SolutionPut,
-    language: SupportedLanguage = "python",
+    language: PrimaryLanguage | None = None,
 ) -> SolutionGet:
     challenge = _require_challenge(challenge_id)
-    language_id = normalize_language(language)
+    language_id = _require_primary_language(challenge_id, challenge, language)
     starter = _get_starter(challenge, language_id)
     ensure_solution_versions(challenge_id, language_id, starter)
     path = active_solution_path(challenge_id, language_id)
@@ -137,10 +165,10 @@ def put_solution(
 def switch_version(
     challenge_id: str,
     body: VersionSwitchRequest,
-    language: SupportedLanguage = "python",
+    language: PrimaryLanguage | None = None,
 ) -> SolutionVersionsGet:
     challenge = _require_challenge(challenge_id)
-    language_id = normalize_language(language)
+    language_id = _require_primary_language(challenge_id, challenge, language)
     try:
         ensure_solution_versions(
             challenge_id,
@@ -158,10 +186,10 @@ def rename_version(
     challenge_id: str,
     version: int,
     body: VersionRenameRequest,
-    language: SupportedLanguage = "python",
+    language: PrimaryLanguage | None = None,
 ) -> SolutionVersionsGet:
-    _require_challenge(challenge_id)
-    language_id = normalize_language(language)
+    challenge = _require_challenge(challenge_id)
+    language_id = _require_primary_language(challenge_id, challenge, language)
     try:
         set_version_name(challenge_id, language_id, version, body.name)
     except ValueError as exc:
@@ -173,10 +201,10 @@ def rename_version(
 def reset_version(
     challenge_id: str,
     version: int,
-    language: SupportedLanguage = "python",
+    language: PrimaryLanguage | None = None,
 ) -> SolutionVersionsGet:
     challenge = _require_challenge(challenge_id)
-    language_id = normalize_language(language)
+    language_id = _require_primary_language(challenge_id, challenge, language)
     try:
         path = user_solution_path(challenge_id, language_id, version, create=True)
     except ValueError as exc:

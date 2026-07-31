@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_61", "frontend_id": "61",
+    "title_slug": "rotate-list",
+    "url": "https://leetcode.com/problems/rotate-list/description/",
+    "paid_only": false, "content_sha256": "a53d1ef1346dd63748831d7c18114b6e8a6d5bc061df8764d54e7ffa2ce9900c", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [1,2,3,4,5], k = 2", "output": "[4,5,1,2,3]", "has_explanation": false},
+      {"ordinal": 2, "input": "head = [0,1,2], k = 4", "output": "[2,0,1]", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ebcf673b44e6137d8e500a433ee18432a88b315538bda17993e2c37c27933d22",
+      "reference/contract.md": "a156036342ac9c1a16a69ada76bbf45cffd4cf54ddeb3009298e6b24410f7adf",
+      "reference/examples.md": "97053019c43d2c0fac727e20cc5e955e860e192738bc15434899125ce98d955b",
+      "reference/constraints.md": "d38005811a799155b9f05b6aa1fc9e41585d9a9ca2bf12d1dee20ce8d9e4d00c"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

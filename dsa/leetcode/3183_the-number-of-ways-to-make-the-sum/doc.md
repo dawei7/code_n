@@ -8,48 +8,47 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [the-number-of-ways-to-make-the-sum](https://leetcode.com/problems/the-number-of-ways-to-make-the-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/the-number-of-ways-to-make-the-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/the-number-of-ways-to-make-the-sum/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A coin supply contains unlimited coins of values 1, 2, and 6, but it contains exactly two available coins of value 4. Given a target sum `n`, count the distinct combinations of available coins whose values add to `n`.
+
+Only the number of coins of each value matters. Reordering the same multiset does not create another combination, and a valid combination may use zero, one, or two value-4 coins but never more than two.
+
+Return the number of combinations modulo $10^9 + 7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The target sum, with $1 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+- The number of order-independent coin combinations totaling `n`, reduced modulo $10^9 + 7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4`
+- Output: `4`
+
+The combinations are `[1, 1, 1, 1]`, `[1, 1, 2]`, `[2, 2]`, and `[4]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 12`
+- Output: `22`
+
+A selection such as `[4, 4, 4]` is invalid because only two value-4 coins are available.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5`
+- Output: `4`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The combinations are `[1, 1, 1, 1, 1]`, `[1, 1, 1, 2]`, `[1, 2, 2]`, and `[1, 4]`.

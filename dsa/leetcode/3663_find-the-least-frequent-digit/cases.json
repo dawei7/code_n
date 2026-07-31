@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3663",
+  "cases": [
+    {
+      "id": "sample-unique-minimum",
+      "name": "sample: digit one occurs once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1553322
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "unique-minimum"
+      ]
+    },
+    {
+      "id": "sample-tied-minimum",
+      "name": "sample: smallest of three tied digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 723344511
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "trial: one-digit input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "minimum-digits"
+      ]
+    },
+    {
+      "id": "trial-zero-wins-tie",
+      "name": "trial: zero is the smallest tied present digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1012
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all digits are equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7777
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "one-distinct-digit"
+      ]
+    },
+    {
+      "id": "real-all-unique",
+      "name": "hidden: every present digit occurs once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 987654
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "all-unique",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-smallest-digit-not-least",
+      "name": "hidden: high frequency prevents smallest present digit winning",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 111223
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "frequency-priority"
+      ]
+    },
+    {
+      "id": "real-many-zeroes",
+      "name": "hidden: one is rarer than zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "zero",
+        "ten-digits"
+      ]
+    },
+    {
+      "id": "real-maximum-input",
+      "name": "hidden: maximum signed 32-bit input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2147483647
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "maximum-input",
+        "ten-digits"
+      ]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Distinct Binary Strings After Applying Operations and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts independent length-k flip windows and computes the resulting power of two with modular exponentiation.",
+      "time_complexity": "O(log(n - k + 1))",
+      "space_complexity": "O(1)"
     }
   ]
 }

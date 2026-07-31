@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_2891",
+  "cases": [
+    {
+      "id": "sample-six-animals",
+      "name": "sample: filter and order six animals",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"animals": [{"name": "Tatiana", "species": "Snake", "age": 98, "weight": 464}, {"name": "Khaled", "species": "Giraffe", "age": 50, "weight": 41}, {"name": "Alex", "species": "Leopard", "age": 6, "weight": 328}, {"name": "Jonathan", "species": "Monkey", "age": 45, "weight": 463}, {"name": "Stefan", "species": "Bear", "age": 100, "weight": 50}, {"name": "Tommy", "species": "Panda", "age": 26, "weight": 349}]}},
+      "expected": {"columns": ["name"], "rows": [["Tatiana"], ["Jonathan"], ["Tommy"], ["Alex"]]},
+      "tags": ["sample", "filter", "descending-sort"]
+    },
+    {
+      "id": "trial-strict-threshold",
+      "name": "weight 100 is excluded while 101 qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"animals": [{"name": "Moose", "species": "Mammal", "age": 8, "weight": 101}, {"name": "Wolf", "species": "Mammal", "age": 5, "weight": 100}, {"name": "Fox", "species": "Mammal", "age": 3, "weight": 99}, {"name": "Bison", "species": "Mammal", "age": 12, "weight": 430}]}},
+      "expected": {"columns": ["name"], "rows": [["Bison"], ["Moose"]]},
+      "tags": ["strict-boundary", "input-order"]
+    },
+    {
+      "id": "trial-no-heavy-animals",
+      "name": "no animal passes the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"animals": [{"name": "Rabbit", "species": "Mammal", "age": 2, "weight": 4}, {"name": "Eagle", "species": "Bird", "age": 7, "weight": 7}]}},
+      "expected": {"columns": ["name"], "rows": []},
+      "tags": ["empty-result", "below-threshold"]
+    },
+    {
+      "id": "real-mixed-heavy-animals",
+      "name": "hidden: qualifying rows are sorted independently of input order",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"animals": [{"name": "Yak", "species": "Mammal", "age": 14, "weight": 280}, {"name": "Otter", "species": "Mammal", "age": 4, "weight": 32}, {"name": "Walrus", "species": "Mammal", "age": 19, "weight": 905}, {"name": "Tiger", "species": "Mammal", "age": 9, "weight": 220}, {"name": "Crane", "species": "Bird", "age": 6, "weight": 100}, {"name": "Gorilla", "species": "Mammal", "age": 18, "weight": 160}]}},
+      "expected": {"columns": ["name"], "rows": [["Walrus"], ["Yak"], ["Tiger"], ["Gorilla"]]},
+      "tags": ["hidden", "mixed-rows", "descending-sort"]
+    }
+  ]
+}

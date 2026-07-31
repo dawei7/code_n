@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2494",
+  "frontend_id": "2416",
+  "title_slug": "sum-of-prefix-scores-of-strings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sumPrefixScores",
+  "verified_submission_id": "2074693333",
+  "verified_at": "2026-07-20T14:48:24.826726+00:00"
+}

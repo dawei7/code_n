@@ -1,0 +1,228 @@
+{
+  "challenge_id": "lc_3426",
+  "cases": [
+    {
+      "id": "sample-square-two",
+      "name": "sample: two pieces on a 2 by 2 grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "square"
+      ]
+    },
+    {
+      "id": "sample-line-three",
+      "name": "sample: three pieces on a four-cell row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 4,
+        "k": 3
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "one-dimensional"
+      ]
+    },
+    {
+      "id": "trial-minimum-grid",
+      "name": "trial: minimum two-cell grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 2,
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two-pieces-line",
+      "name": "trial: pair distance sum on a row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 5,
+        "k": 2
+      },
+      "expected": 20,
+      "tags": [
+        "trial",
+        "two-pieces"
+      ]
+    },
+    {
+      "id": "real-all-cells-line",
+      "name": "real: every cell of a row occupied",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 1,
+        "n": 5,
+        "k": 5
+      },
+      "expected": 20,
+      "tags": [
+        "all-cells",
+        "one-dimensional"
+      ]
+    },
+    {
+      "id": "real-rectangle-two",
+      "name": "real: all cell pairs in a rectangle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "k": 2
+      },
+      "expected": 25,
+      "tags": [
+        "rectangle",
+        "two-pieces"
+      ]
+    },
+    {
+      "id": "real-rectangle-three",
+      "name": "real: each pair appears in four arrangements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "k": 3
+      },
+      "expected": 100,
+      "tags": [
+        "combinations"
+      ]
+    },
+    {
+      "id": "real-rectangle-four",
+      "name": "real: complementary binomial choice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "k": 4
+      },
+      "expected": 150,
+      "tags": [
+        "combinations",
+        "symmetry"
+      ]
+    },
+    {
+      "id": "real-square-middle-k",
+      "name": "real: square grid with middle piece count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "k": 5
+      },
+      "expected": 2520,
+      "tags": [
+        "square",
+        "combinations"
+      ]
+    },
+    {
+      "id": "real-modular-rectangle",
+      "name": "real: modular arithmetic on an asymmetric rectangle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 10,
+        "n": 20,
+        "k": 100
+      },
+      "expected": 171211359,
+      "tags": [
+        "rectangle",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-modular-square",
+      "name": "real: modular arithmetic on a square grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 16,
+        "n": 16,
+        "k": 128
+      },
+      "expected": 988197033,
+      "tags": [
+        "square",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-long-line-two",
+      "name": "real: long line with two pieces",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 1,
+        "n": 256,
+        "k": 2
+      },
+      "expected": 2796160,
+      "tags": [
+        "one-dimensional",
+        "two-pieces"
+      ]
+    },
+    {
+      "id": "real-long-line-all",
+      "name": "real: long line fully occupied",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 1,
+        "n": 256,
+        "k": 256
+      },
+      "expected": 2796160,
+      "tags": [
+        "one-dimensional",
+        "all-cells"
+      ]
+    },
+    {
+      "id": "real-transposed-line-all",
+      "name": "real: transposed long line fully occupied",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 256,
+        "n": 1,
+        "k": 256
+      },
+      "expected": 2796160,
+      "tags": [
+        "transpose",
+        "all-cells"
+      ]
+    }
+  ]
+}

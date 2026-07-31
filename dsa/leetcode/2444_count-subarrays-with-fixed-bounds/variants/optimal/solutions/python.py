@@ -1,26 +1,17 @@
 def solve(nums: list[int], min_k: int, max_k: int) -> int:
-    ans = 0
-    bad_idx = -1
-    min_idx = -1
-    max_idx = -1
+    last_invalid = -1
+    last_minimum = -1
+    last_maximum = -1
+    answer = 0
 
-    for i, x in enumerate(nums):
-        # If the current number is outside the allowed range,
-        # it resets the potential window.
-        if not (min_k <= x <= max_k):
-            bad_idx = i
+    for index, value in enumerate(nums):
+        if value < min_k or value > max_k:
+            last_invalid = index
+        if value == min_k:
+            last_minimum = index
+        if value == max_k:
+            last_maximum = index
 
-        # Update the last seen positions of min_k and max_k
-        if x == min_k:
-            min_idx = i
-        if x == max_k:
-            max_idx = i
+        answer += max(0, min(last_minimum, last_maximum) - last_invalid)
 
-        # The number of valid subarrays ending at i is determined by the
-        # distance between the closest boundary (min or max) and the
-        # last 'bad' index.
-        count = min(min_idx, max_idx) - bad_idx
-        if count > 0:
-            ans += count
-
-    return ans
+    return answer

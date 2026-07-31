@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3963",
+    "frontend_id": "3963",
+    "title_slug": "create-grid-with-exactly-one-path",
+    "url": "https://leetcode.com/problems/create-grid-with-exactly-one-path/description/",
+    "paid_only": false,
+    "content_sha256": "5934d21c8548b6dcce367b860719a6576eabddd4bd668047acfe0bb0ac6cb1b5",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "m = 2, n = 3",
+        "output": "[\"..#\",\"#..\"]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "m = 3, n = 3",
+        "output": "[\"..#\",\"#..\",\"##.\"]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "m = 1, n = 4",
+        "output": "[\"....\"]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4d32e772401a46bca0e47ba483812bdc51f0a4ea77ebf674724b9491028d8a4b",
+      "reference/contract.md": "21dcb321e2f9719bbffe7631bf8151cbe70436d3bb79ed59810a9d5b45029ee2",
+      "reference/examples.md": "a07e82ab71b0dd529fb0809ecb34cf63bdd0787cfbb0cafbcdf92f4a32fd703c",
+      "reference/constraints.md": "df8b77ba1d831ef772d04d26799d27ba37f1fc2db26618b34b4329bdcec69d30"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

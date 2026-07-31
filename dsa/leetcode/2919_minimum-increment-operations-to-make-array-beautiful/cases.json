@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: raise one value to cover adjacent windows",
+      "name": "sample: two raised positions cover all windows",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,13 +18,13 @@
       },
       "tags": [
         "sample",
-        "dp"
+        "dynamic-programming"
       ],
       "expected": 3
     },
     {
       "id": "sample-2",
-      "name": "sample: one incremented value can satisfy both windows",
+      "name": "sample: one position covers both windows",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,13 +38,13 @@
       },
       "tags": [
         "sample",
-        "windows"
+        "overlapping-windows"
       ],
       "expected": 2
     },
     {
       "id": "sample-3",
-      "name": "sample: every length-three window is already beautiful",
+      "name": "sample: the only window is already covered",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -62,8 +62,27 @@
       "expected": 0
     },
     {
+      "id": "trial-three-low-values",
+      "name": "trial: exactly one of three values must reach the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "k": 5
+      },
+      "tags": [
+        "trial",
+        "minimum-length"
+      ],
+      "expected": 5
+    },
+    {
       "id": "trial-existing-endpoints",
-      "name": "trial: endpoints already cover the windows",
+      "name": "trial: existing threshold values cover adjacent windows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -77,13 +96,35 @@
       },
       "tags": [
         "trial",
-        "covered"
+        "already-covered"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "real-zero-threshold",
+      "name": "hidden: every value already meets threshold zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 0
+      },
+      "tags": [
+        "hidden",
+        "boundary",
+        "zero-threshold"
       ],
       "expected": 0
     },
     {
       "id": "real-overlapping-windows",
-      "name": "hidden: best increment position covers several windows",
+      "name": "hidden: optimal raised positions jointly cover several windows",
       "kind": "real",
       "visible": false,
       "input": {
@@ -102,6 +143,47 @@
         "overlap"
       ],
       "expected": 8
+    },
+    {
+      "id": "real-middle-window-gap",
+      "name": "hidden: endpoint values leave the middle window uncovered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          0,
+          0,
+          0,
+          3
+        ],
+        "k": 3
+      },
+      "tags": [
+        "hidden",
+        "gap"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "real-billion-threshold-covered",
+      "name": "hidden: existing maximum value covers the only window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1000000000,
+          0
+        ],
+        "k": 1000000000
+      },
+      "tags": [
+        "hidden",
+        "boundary",
+        "maximum"
+      ],
+      "expected": 0
     }
   ]
 }

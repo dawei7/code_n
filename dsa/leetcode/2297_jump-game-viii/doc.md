@@ -5,51 +5,48 @@
 | Source | LeetCode |
 | Frontend ID | 2297 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming, Stack, Graph Theory, Monotonic Stack, Shortest Path |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [jump-game-viii](https://leetcode.com/problems/jump-game-viii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/jump-game-viii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/jump-game-viii/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+A 0-indexed array `nums` describes $n$ positions, and the walk begins at index
+$0$. A forward jump from $i$ to $j$, where $i<j$, is allowed in either of two
+cases: if `nums[i] <= nums[j]`, every value strictly between them must be less
+than `nums[i]`; or if `nums[i] > nums[j]`, every intervening value must be at
+least `nums[i]`.
+
+The parallel array `costs` gives the price of landing at each position:
+jumping to $j$ adds `costs[j]`, while the starting position has no charge.
+Choose valid forward jumps that reach index $n-1$ and return the minimum total
+landing cost.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: The values that determine which forward jumps are legal.
+- `costs`: Nonnegative landing costs for the same $n$ positions.
+
+The arrays have equal length, $1 \le n \le 10^5$, and every entry of either
+array is between $0$ and $10^5$ inclusive.
 
 **Return value**
 
-TODO
+The minimum sum of destination costs along a valid path from index $0$ to
+index $n-1$. For $n=1$, return `0`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 2, 4, 4, 1], costs = [3, 7, 6, 4, 2]`
+- Output: `8`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0, 1, 2], costs = [1, 1, 1]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [7], costs = [100]`
+- Output: `0`

@@ -1,27 +1,24 @@
-def solve(m: int, n: int, hFences: list[int], vFences: list[int]) -> int:
-    MOD = 10**9 + 7
-    
-    # Include the boundaries of the field
-    h_coords = sorted([1] + hFences + [m])
-    v_coords = sorted([1] + vFences + [n])
-    
-    # Calculate all possible distances between any two horizontal fences
-    h_distances = set()
-    for i in range(len(h_coords)):
-        for j in range(i + 1, len(h_coords)):
-            h_distances.add(h_coords[j] - h_coords[i])
-            
-    # Calculate all possible distances between any two vertical fences
-    # and check if they exist in the horizontal distances set
-    max_side = -1
-    for i in range(len(v_coords)):
-        for j in range(i + 1, len(v_coords)):
-            dist = v_coords[j] - v_coords[i]
-            if dist in h_distances:
-                if dist > max_side:
-                    max_side = dist
-                    
-    if max_side == -1:
+from typing import List
+
+
+def solve(m: int, n: int, hFences: List[int], vFences: List[int]) -> int:
+    horizontal = sorted([1, m, *hFences])
+    vertical = sorted([1, n, *vFences])
+
+    horizontal_spans = {
+        horizontal[right] - horizontal[left]
+        for right in range(1, len(horizontal))
+        for left in range(right)
+    }
+    vertical_spans = {
+        vertical[right] - vertical[left]
+        for right in range(1, len(vertical))
+        for left in range(right)
+    }
+
+    common = horizontal_spans & vertical_spans
+    if not common:
         return -1
-    
-    return (max_side * max_side) % MOD
+
+    side = max(common)
+    return side * side % 1_000_000_007

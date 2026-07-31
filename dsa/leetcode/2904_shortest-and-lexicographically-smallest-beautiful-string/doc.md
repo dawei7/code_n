@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | String, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [shortest-and-lexicographically-smallest-beautiful-string](https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You receive a binary string `s` and a positive integer `k`. A substring is called beautiful when it contains exactly `k` occurrences of `"1"`.
+
+Among all beautiful substrings, first minimize the substring length. If several beautiful substrings share that minimum length, choose the lexicographically smallest one. For equal-length strings, lexicographic order is determined by the first position at which their characters differ.
+
+Return the selected substring. If `s` has no substring containing exactly `k` ones, return the empty string.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A binary string with length from $1$ through $100$.
+- `k`: The exact required number of ones, where $1\le k\le \lvert s\rvert$.
 
 **Return value**
 
-TODO
+Return the shortest substring of `s` containing exactly `k` ones, breaking equal-length ties by lexicographic order. Return `""` when no such substring exists.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "100011001", k = 3`
+- Output: `"11001"`
+- Explanation: Length five is the minimum possible, and `"11001"` is the lexicographically smallest beautiful substring of that length.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "1011", k = 2`
+- Output: `"11"`
+- Explanation: The adjacent ones form a shorter beautiful substring than either length-three alternative.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "000", k = 1`
+- Output: `""`
+- Explanation: The string contains no ones, so no beautiful substring exists.

@@ -8,86 +8,53 @@
 | Category | Algorithms |
 | Topics | Array, Union-Find, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [make-lexicographically-smallest-array-by-swapping-elements](https://leetcode.com/problems/make-lexicographically-smallest-array-by-swapping-elements/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/make-lexicographically-smallest-array-by-swapping-elements/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/make-lexicographically-smallest-array-by-swapping-elements/).
-
 ### Goal
-Given an array of integers and a threshold value, you are permitted to swap any two elements if their absolute difference is less than or equal to the threshold. The objective is to rearrange the array to achieve the lexicographically smallest possible sequence by performing any number of these valid swaps.
+You are given a 0-indexed array of positive integers `nums` and a positive
+integer `limit`. In one operation, choose any two indices `i` and `j`
+whose current values satisfy
+$\lvert\texttt{nums[i]}-\texttt{nums[j]}\rvert\le\texttt{limit}$, then
+swap those values. Perform any number of operations.
+
+Return the lexicographically smallest reachable array. Between two arrays, the
+lexicographically smaller one has the smaller value at their first differing
+index.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of integers representing the initial array.
-- `limit`: An integer representing the maximum allowed absolute difference between two elements for a swap to be valid.
+- `nums`: the positive values that may be swapped
+- `limit`: the inclusive maximum difference permitted for one swap
+
+Let $N=\lvert\texttt{nums}\rvert$. The contract guarantees
+$1\le N\le10^5$, $1\le\texttt{nums[i]}\le10^9$, and
+$1\le\texttt{limit}\le10^9$.
 
 **Return value**
 
-- A list of integers representing the lexicographically smallest array achievable.
+The lexicographically smallest array reachable through zero or more legal
+swaps.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [1, 5, 3, 9, 8], limit = 2`
-- Output: `[1, 3, 5, 8, 9]`
+- Input: `nums = [1,5,3,9,8], limit = 2`
+- Output: `[1,3,5,8,9]`
+- Explanation: Values `1,3,5` form one swappable component and `8,9` form
+  another.
 
 **Example 2**
 
-- Input: `nums = [1, 7, 6, 18, 2, 1], limit = 3`
-- Output: `[1, 1, 6, 7, 18, 2]`
+- Input: `nums = [1,7,6,18,2,1], limit = 3`
+- Output: `[1,6,7,18,1,2]`
+- Explanation: The component containing values `1,1,2` occupies indices
+  `0,4,5`, while `6,7` occupy indices `1,2`; value `18` stays fixed.
 
 **Example 3**
 
-- Input: `nums = [1, 7, 28, 19, 10], limit = 3`
-- Output: `[1, 7, 28, 19, 10]`
-
----
-
-## Solution
-### Approach
-The problem can be modeled as finding connected components in a graph where an edge exists between two indices if the values at those indices can be swapped. Since transitivity applies (if $a$ can swap with $b$, and $b$ with $c$, then $a$ can effectively move to $c$'s position), we can group elements into "swappable sets." By sorting the array and identifying contiguous segments where the difference between adjacent sorted elements is $\le$ `limit`, we can partition the indices into groups. Within each group, the values can be rearranged in any order, so we sort the values and place them back into the sorted indices of that group.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \log N)$, where $N$ is the length of the array. This is dominated by the initial sorting of the elements.
-- **Space Complexity**: $O(N)$ to store the sorted array, the groups, and the resulting output array.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import deque
-
-def solve(nums: list[int], limit: int) -> list[int]:
-    n = len(nums)
-    # Store pairs of (value, original_index) and sort them
-    sorted_nums = sorted([(nums[i], i) for i in range(n)])
-
-    # Groups will store lists of indices that can be swapped with each other
-    groups = []
-    if n > 0:
-        current_group = [sorted_nums[0]]
-        for i in range(1, n):
-            if sorted_nums[i][0] - sorted_nums[i-1][0] <= limit:
-                current_group.append(sorted_nums[i])
-            else:
-                groups.append(current_group)
-                current_group = [sorted_nums[i]]
-        groups.append(current_group)
-
-    result = [0] * n
-
-    # For each group, the values can be placed in any of the indices belonging to that group.
-    # To get the lexicographically smallest result, we place the smallest values
-    # in the smallest indices.
-    for group in groups:
-        indices = sorted([item[1] for item in group])
-        values = sorted([item[0] for item in group])
-
-        for i in range(len(indices)):
-            result[indices[i]] = values[i]
-
-    return result
-```
-</details>
+- Input: `nums = [1,7,28,19,10], limit = 3`
+- Output: `[1,7,28,19,10]`
+- Explanation: No pair of distinct values is close enough to connect, so the
+  original array is already the smallest reachable one.

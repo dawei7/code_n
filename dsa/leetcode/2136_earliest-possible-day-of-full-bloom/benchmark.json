@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2136",
+  "measurement_note": "Size is n, the seed count. Unit planting durations and ascending growth times require reversing the priority order and scanning every seed. Comparison sorting takes O(n log n) time. Repeated linear selection of the largest remaining growth time completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: ascending growth times at n=8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "plantTime": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "growTime": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "reverse-priority"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: ascending growth times at n=16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "plantTime": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "growTime": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "reverse-priority"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: ascending growth times at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "plantTime": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "growTime": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ]
+      },
+      "expected": 33,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "reverse-priority"
+      ]
+    }
+  ]
+}

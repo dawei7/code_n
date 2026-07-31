@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3855",
+  "cases": [
+    {
+      "id": "sample-two-digits",
+      "name": "sample: four two-digit numbers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l": 1, "r": 2, "k": 2},
+      "expected": 66,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "multiple-digits", "direct-sum"]
+    },
+    {
+      "id": "sample-leading-zeros",
+      "name": "sample: leading-zero sequences remain included",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l": 0, "r": 1, "k": 3},
+      "expected": 444,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "leading-zeros", "three-positions"]
+    },
+    {
+      "id": "sample-one-repeated-digit",
+      "name": "sample: one long sequence requires modular reduction",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l": 5, "r": 5, "k": 10},
+      "expected": 555555520,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "single-digit-choice", "modulo"]
+    },
+    {
+      "id": "trial-one-position-all-digits",
+      "name": "trial: one position sums all decimal digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 0, "r": 9, "k": 1},
+      "expected": 45,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "one-position", "full-digit-range"]
+    },
+    {
+      "id": "trial-three-digit-range",
+      "name": "trial: a nonzero three-digit interval contributes symmetrically",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 2, "r": 4, "k": 2},
+      "expected": 297,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "arithmetic-digit-sum", "two-positions"]
+    },
+    {
+      "id": "trial-zero-through-two",
+      "name": "trial: leading zeros with three choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 0, "r": 2, "k": 2},
+      "expected": 99,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "leading-zeros", "multiple-choices"]
+    },
+    {
+      "id": "real-only-zero-maximum-length",
+      "name": "hidden: only zero remains zero at maximum k",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 0, "r": 0, "k": 1000000000},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-k", "zero-digit"]
+    },
+    {
+      "id": "real-one-repeated-one",
+      "name": "hidden: repeated ones form a repunit",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 1, "r": 1, "k": 6},
+      "expected": 111111,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "single-digit-choice", "geometric-series"]
+    },
+    {
+      "id": "real-repeated-nine-modulo",
+      "name": "hidden: ten repeated nines cross the modulus",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 9, "r": 9, "k": 10},
+      "expected": 999999936,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-digit", "modulo"]
+    },
+    {
+      "id": "real-middle-digit-range",
+      "name": "hidden: five middle digits across four positions",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 3, "r": 7, "k": 4},
+      "expected": 3471875,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "middle-range", "four-positions"]
+    },
+    {
+      "id": "real-full-range-maximum-length",
+      "name": "hidden: every digit at maximum k",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 0, "r": 9, "k": 1000000000},
+      "expected": 224500073,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "full-digit-range", "maximum-k"]
+    },
+    {
+      "id": "real-large-arbitrary-exponent",
+      "name": "hidden: a large non-round k requires binary exponentiation",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 4, "r": 9, "k": 123456789},
+      "expected": 283565244,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "large-k", "nonzero-range"]
+    },
+    {
+      "id": "real-single-maximum-digit",
+      "name": "hidden: one position with one digit",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 9, "r": 9, "k": 1},
+      "expected": 9,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "one-position", "single-choice"]
+    }
+  ]
+}

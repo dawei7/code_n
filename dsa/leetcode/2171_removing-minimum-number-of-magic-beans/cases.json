@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2171",
+  "cases": [
+    {"id": "sample-reduce-and-empty", "name": "sample: empty one bag and reduce larger bags", "kind": "sample", "visible": true, "input": {"beans": [4, 1, 6, 5]}, "expected": 4, "tags": ["sample", "mixed"]},
+    {"id": "sample-keep-largest", "name": "sample: keep only the largest bag", "kind": "sample", "visible": true, "input": {"beans": [2, 10, 3, 2]}, "expected": 7, "tags": ["sample", "empty-bags"]},
+    {"id": "trial-equal", "name": "equal bags need no removals", "kind": "trial", "visible": true, "input": {"beans": [5, 5]}, "expected": 0, "tags": ["already-equal"]},
+    {"id": "trial-single", "name": "one bag is already valid", "kind": "trial", "visible": true, "input": {"beans": [1]}, "expected": 0, "tags": ["minimum-length"]},
+    {"id": "trial-increasing", "name": "three increasing bags favor one retained level", "kind": "trial", "visible": true, "input": {"beans": [1, 2, 3]}, "expected": 2, "tags": ["increasing"]},
+    {"id": "trial-upper-outlier", "name": "empty two tiny bags beside an upper-bound bag", "kind": "trial", "visible": true, "input": {"beans": [100000, 1, 1]}, "expected": 2, "tags": ["upper-bound", "outlier"]},
+    {"id": "real-two-extremes", "name": "hidden: one small and one upper-bound bag", "kind": "real", "visible": false, "input": {"beans": [1, 100000]}, "expected": 1, "tags": ["hidden", "extremes"]},
+    {"id": "real-duplicate-mode", "name": "hidden: preserve a repeated smaller level", "kind": "real", "visible": false, "input": {"beans": [3, 3, 3, 9]}, "expected": 6, "tags": ["hidden", "duplicates"]},
+    {"id": "real-all-upper", "name": "hidden: all bags at the upper bound", "kind": "real", "visible": false, "input": {"beans": [100000, 100000, 100000]}, "expected": 0, "tags": ["hidden", "upper-bound", "already-equal"]}
+  ]
+}

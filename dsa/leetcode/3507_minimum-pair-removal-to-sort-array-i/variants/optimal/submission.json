@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3773",
+  "frontend_id": "3507",
+  "title_slug": "minimum-pair-removal-to-sort-array-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumPairRemoval",
+  "verified_submission_id": "2082518239",
+  "verified_at": "2026-07-26T19:32:00Z"
+}

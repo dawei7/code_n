@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Friday Purchase III  and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds the fixed Friday-membership grid, left-joins users and same-day purchases, and aggregates every required pair including zeros.",
+      "time_complexity": "O(u + p)",
+      "space_complexity": "O(u + p)"
     }
   ]
 }

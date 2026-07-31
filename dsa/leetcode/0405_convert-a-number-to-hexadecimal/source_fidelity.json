@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_405", "frontend_id": "405", "title_slug": "convert-a-number-to-hexadecimal", "url": "https://leetcode.com/problems/convert-a-number-to-hexadecimal/description/", "paid_only": false, "content_sha256": "e36b6bca91760e760741967a5f806b61d5406ead2cdac0df0b9b53609003222a", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "num = 26", "output": "\"1a\"", "has_explanation": false},
+      {"ordinal": 2, "input": "num = -1", "output": "\"ffffffff\"", "has_explanation": false}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "eee1155630c6370c72ebdfd3e17bb55fd019684727fe6bda2e3b338724330e2f",
+    "reference/contract.md": "5b9055c60bbe287ac5a7c722585597d02ab4b811997d2a7885273594622cedc4",
+    "reference/note.md": "098d334dc14bf2b0ad989196468d27f7bbe66dd2d07b22602b5d9fe1e42ca5e4",
+    "reference/examples.md": "b52a6f34ef243f003f5b5b2b43ec3cbace17bb7a7659768d3652413d1c698a43",
+    "reference/constraints.md": "5115028a5ec8db908b9e45cb01155931902e83e152b0904e546330ecdf4469f0"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

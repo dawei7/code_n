@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3521",
+  "cases": [
+    {
+      "id": "sample-recommendations",
+      "name": "sample: three qualifying product pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "ProductPurchases": [
+          {"user_id":1,"product_id":101,"quantity":2},{"user_id":1,"product_id":102,"quantity":1},{"user_id":1,"product_id":103,"quantity":3},
+          {"user_id":2,"product_id":101,"quantity":1},{"user_id":2,"product_id":102,"quantity":5},{"user_id":2,"product_id":104,"quantity":1},
+          {"user_id":3,"product_id":101,"quantity":2},{"user_id":3,"product_id":103,"quantity":1},{"user_id":3,"product_id":105,"quantity":4},
+          {"user_id":4,"product_id":101,"quantity":1},{"user_id":4,"product_id":102,"quantity":1},{"user_id":4,"product_id":103,"quantity":2},{"user_id":4,"product_id":104,"quantity":3},
+          {"user_id":5,"product_id":102,"quantity":2},{"user_id":5,"product_id":104,"quantity":1}
+        ],
+        "ProductInfo": [
+          {"product_id":101,"category":"Electronics","price":100},{"product_id":102,"category":"Books","price":20},{"product_id":103,"category":"Clothing","price":35},{"product_id":104,"category":"Kitchen","price":50},{"product_id":105,"category":"Sports","price":75}
+        ]
+      }},
+      "expected": {"columns":["product1_id","product2_id","product1_category","product2_category","customer_count"],"rows":[[101,102,"Electronics","Books",3],[101,103,"Electronics","Clothing",3],[102,104,"Books","Kitchen",3]]},
+      "tags": ["sample","self-join","threshold"]
+    },
+    {
+      "id": "trial-threshold-and-quantity",
+      "name": "trial: inclusive threshold and quantity independence",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "ProductPurchases": [
+          {"user_id":10,"product_id":7,"quantity":1},{"user_id":10,"product_id":12,"quantity":99},
+          {"user_id":11,"product_id":7,"quantity":40},{"user_id":11,"product_id":12,"quantity":1},
+          {"user_id":12,"product_id":7,"quantity":3},{"user_id":12,"product_id":12,"quantity":8},
+          {"user_id":13,"product_id":7,"quantity":1},{"user_id":13,"product_id":20,"quantity":1},
+          {"user_id":14,"product_id":7,"quantity":1},{"user_id":14,"product_id":20,"quantity":1}
+        ],
+        "ProductInfo": [{"product_id":7,"category":"A","price":5.5},{"product_id":12,"category":"B","price":9.0},{"product_id":20,"category":"C","price":11.0}]
+      }},
+      "expected": {"columns":["product1_id","product2_id","product1_category","product2_category","customer_count"],"rows":[[7,12,"A","B",3]]},
+      "tags": ["trial","inclusive-threshold","quantity"]
+    },
+    {
+      "id": "real-no-qualifying-pairs",
+      "name": "real: all shared counts below three",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "ProductPurchases": [
+          {"user_id":1,"product_id":2,"quantity":1},{"user_id":1,"product_id":9,"quantity":1},
+          {"user_id":2,"product_id":2,"quantity":1},{"user_id":2,"product_id":9,"quantity":1},
+          {"user_id":3,"product_id":15,"quantity":1}
+        ],
+        "ProductInfo": [{"product_id":2,"category":"Low","price":1},{"product_id":9,"category":"High","price":2},{"product_id":15,"category":"Solo","price":3}]
+      }},
+      "expected": {"columns":["product1_id","product2_id","product1_category","product2_category","customer_count"],"rows":[]},
+      "tags": ["real","empty-result","below-threshold"]
+    },
+    {
+      "id": "real-count-and-id-ordering",
+      "name": "real: descending counts and ascending pair tie-breakers",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "ProductPurchases": [
+          {"user_id":1,"product_id":1,"quantity":1},{"user_id":1,"product_id":3,"quantity":1},{"user_id":1,"product_id":8,"quantity":1},
+          {"user_id":2,"product_id":1,"quantity":1},{"user_id":2,"product_id":3,"quantity":1},{"user_id":2,"product_id":8,"quantity":1},
+          {"user_id":3,"product_id":1,"quantity":1},{"user_id":3,"product_id":3,"quantity":1},{"user_id":3,"product_id":8,"quantity":1},
+          {"user_id":4,"product_id":1,"quantity":1},{"user_id":4,"product_id":3,"quantity":1},
+          {"user_id":5,"product_id":2,"quantity":1},{"user_id":5,"product_id":9,"quantity":1},
+          {"user_id":6,"product_id":2,"quantity":1},{"user_id":6,"product_id":9,"quantity":1},
+          {"user_id":7,"product_id":2,"quantity":1},{"user_id":7,"product_id":9,"quantity":1}
+        ],
+        "ProductInfo": [{"product_id":1,"category":"C1","price":1},{"product_id":2,"category":"C2","price":2},{"product_id":3,"category":"C3","price":3},{"product_id":8,"category":"C8","price":8},{"product_id":9,"category":"C9","price":9}]
+      }},
+      "expected": {"columns":["product1_id","product2_id","product1_category","product2_category","customer_count"],"rows":[[1,3,"C1","C3",4],[1,8,"C1","C8",3],[2,9,"C2","C9",3],[3,8,"C3","C8",3]]},
+      "tags": ["real","ordering","multi-product-user"]
+    },
+    {
+      "id": "real-nonconsecutive-identifiers",
+      "name": "real: normalize nonconsecutive product identifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "ProductPurchases": [
+          {"user_id":21,"product_id":900,"quantity":2},{"user_id":21,"product_id":4,"quantity":1},
+          {"user_id":22,"product_id":900,"quantity":1},{"user_id":22,"product_id":4,"quantity":4},
+          {"user_id":23,"product_id":900,"quantity":5},{"user_id":23,"product_id":4,"quantity":2}
+        ],
+        "ProductInfo": [{"product_id":4,"category":"First","price":12.5},{"product_id":900,"category":"Last","price":99.9}]
+      }},
+      "expected": {"columns":["product1_id","product2_id","product1_category","product2_category","customer_count"],"rows":[[4,900,"First","Last",3]]},
+      "tags": ["real","pair-normalization","category-join"]
+    }
+  ]
+}

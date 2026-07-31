@@ -3,10 +3,11 @@
   "cases": [
     {
       "id": "sample-four-enemies",
-      "name": "sample: four enemies sorted by danger",
+      "name": "sample: four varied enemies",
       "kind": "sample",
       "visible": true,
       "input": {
+        "power": 4,
         "damage": [
           1,
           2,
@@ -18,113 +19,285 @@
           5,
           6,
           8
-        ],
-        "power": 4
+        ]
       },
       "expected": 39,
       "tags": [
         "sample",
-        "greedy"
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-equal-damage",
+      "name": "sample: equal rates favor shorter enemies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "power": 1,
+        "damage": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "health": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "equal-damage"
       ]
     },
     {
       "id": "sample-single-enemy",
-      "name": "sample: one enemy",
+      "name": "sample: lone enemy needs eight attacks",
       "kind": "sample",
       "visible": true,
       "input": {
+        "power": 8,
         "damage": [
-          1
+          40
         ],
         "health": [
-          1
-        ],
-        "power": 1
+          59
+        ]
       },
-      "expected": 1,
+      "expected": 320,
       "tags": [
         "sample",
-        "edge"
+        "singleton"
       ]
     },
     {
-      "id": "trial-tie-ratios",
-      "name": "trial: equal ratio tie does not change total",
+      "id": "trial-one-hit-each",
+      "name": "trial: every enemy dies in one hit",
       "kind": "trial",
       "visible": true,
       "input": {
+        "power": 100,
         "damage": [
-          4,
-          2,
-          8
-        ],
-        "health": [
-          8,
-          4,
-          16
-        ],
-        "power": 2
-      },
-      "expected": 140,
-      "tags": [
-        "tie"
-      ]
-    },
-    {
-      "id": "trial-high-health-low-damage",
-      "name": "trial: high health low damage enemy waits",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "damage": [
-          9,
-          1,
           5,
-          3
+          2,
+          9
         ],
         "health": [
-          10,
+          1,
           100,
-          9,
-          4
-        ],
-        "power": 5
+          50
+        ]
       },
-      "expected": 77,
+      "expected": 25,
       "tags": [
-        "ordering"
+        "one-hit",
+        "damage-order"
       ]
     },
     {
-      "id": "real-mixed-enemies",
-      "name": "real: mixed enemy profile",
+      "id": "trial-rounding",
+      "name": "trial: health division rounds upward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": 3,
+        "damage": [
+          4,
+          7
+        ],
+        "health": [
+          3,
+          4
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "rounding",
+        "two-enemies"
+      ]
+    },
+    {
+      "id": "trial-equal-ratios",
+      "name": "trial: equal ratios have interchangeable order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": 2,
+        "damage": [
+          2,
+          4,
+          6
+        ],
+        "health": [
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 50,
+      "tags": [
+        "equal-ratios"
+      ]
+    },
+    {
+      "id": "trial-high-rate-long",
+      "name": "trial: ratio balances rate and duration",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": 5,
+        "damage": [
+          100,
+          3,
+          20
+        ],
+        "health": [
+          100,
+          5,
+          30
+        ]
+      },
+      "expected": 2601,
+      "tags": [
+        "mixed",
+        "ratio"
+      ]
+    },
+    {
+      "id": "real-two-enemies",
+      "name": "real: exact pairwise exchange boundary",
       "kind": "real",
       "visible": false,
       "input": {
+        "power": 4,
         "damage": [
-          5,
-          1,
-          6,
-          4,
-          2,
-          9,
-          3
+          7,
+          11
         ],
         "health": [
-          2,
-          3,
-          5,
-          6,
-          3,
-          20,
-          7
-        ],
-        "power": 3
+          13,
+          20
+        ]
       },
-      "expected": 237,
+      "expected": 118,
       "tags": [
-        "real",
-        "greedy"
+        "two-enemies",
+        "cross-product"
+      ]
+    },
+    {
+      "id": "real-many-ties",
+      "name": "real: several equal attack counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "power": 6,
+        "damage": [
+          8,
+          1,
+          5,
+          3,
+          9
+        ],
+        "health": [
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "expected": 114,
+      "tags": [
+        "ties",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-divisible-health",
+      "name": "real: every health divides by power",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "power": 10,
+        "damage": [
+          2,
+          7,
+          4,
+          9
+        ],
+        "health": [
+          10,
+          20,
+          30,
+          40
+        ]
+      },
+      "expected": 122,
+      "tags": [
+        "divisible",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: large rates and health use wide totals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "power": 1,
+        "damage": [
+          10000,
+          9999,
+          7777
+        ],
+        "health": [
+          10000,
+          9999,
+          8888
+        ]
+      },
+      "expected": 524624200,
+      "tags": [
+        "bounds",
+        "wide-integer"
+      ]
+    },
+    {
+      "id": "real-eight-enemies",
+      "name": "real: eight deterministic enemies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "power": 7,
+        "damage": [
+          13,
+          2,
+          19,
+          5,
+          11,
+          17,
+          3,
+          23
+        ],
+        "health": [
+          31,
+          8,
+          70,
+          22,
+          45,
+          63,
+          15,
+          91
+        ]
+      },
+      "expected": 2592,
+      "tags": [
+        "mixed",
+        "larger"
       ]
     }
   ]

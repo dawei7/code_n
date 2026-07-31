@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3639",
+  "cases": [
+    {
+      "id": "sample-active-immediately",
+      "name": "sample: middle activation creates four valid substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "order": [
+          1,
+          0,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "time-zero"
+      ]
+    },
+    {
+      "id": "sample-all-required",
+      "name": "sample: all three positions must activate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cat",
+        "order": [
+          0,
+          2,
+          1
+        ],
+        "k": 6
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "full-activation"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: requested count exceeds all substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "xy",
+        "order": [
+          0,
+          1
+        ],
+        "k": 4
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one activated character satisfies one substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "order": [
+          0
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-edge-first",
+      "name": "trial: activating an edge covers only its prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "order": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "edge-activation"
+      ]
+    },
+    {
+      "id": "trial-center-first",
+      "name": "trial: central activation covers both directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcde",
+        "order": [
+          2,
+          0,
+          4,
+          1,
+          3
+        ],
+        "k": 9
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "center-activation"
+      ]
+    },
+    {
+      "id": "trial-exact-first-count",
+      "name": "trial: threshold exactly matches time-zero coverage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "order": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "k": 6
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "inclusive-threshold"
+      ]
+    },
+    {
+      "id": "real-second-step",
+      "name": "hidden: activation occurs after two replacements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdef",
+        "order": [
+          0,
+          5,
+          2,
+          3,
+          1,
+          4
+        ],
+        "k": 11
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "multiple-stars"
+      ]
+    },
+    {
+      "id": "real-adjacent-stars",
+      "name": "hidden: adjacent activations avoid double counting",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdef",
+        "order": [
+          2,
+          3,
+          0,
+          5,
+          1,
+          4
+        ],
+        "k": 15
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-separated-stars",
+      "name": "hidden: separated activations split inactive runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefg",
+        "order": [
+          1,
+          5,
+          3,
+          0,
+          2,
+          4,
+          6
+        ],
+        "k": 20
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "inactive-runs"
+      ]
+    },
+    {
+      "id": "real-full-count",
+      "name": "hidden: every position is needed for every substring",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "hello",
+        "order": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "k": 15
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "full-activation"
+      ]
+    },
+    {
+      "id": "real-letters-irrelevant",
+      "name": "hidden: original character values do not affect counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzxyzz",
+        "order": [
+          4,
+          1,
+          5,
+          0,
+          3,
+          2
+        ],
+        "k": 10
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "string-content"
+      ]
+    },
+    {
+      "id": "real-large-impossible",
+      "name": "hidden: k may exceed the quadratic substring total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abc",
+        "order": [
+          2,
+          1,
+          0
+        ],
+        "k": 1000000000
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "impossible",
+        "large-k"
+      ]
+    }
+  ]
+}

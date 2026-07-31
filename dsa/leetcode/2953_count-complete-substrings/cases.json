@@ -1,0 +1,151 @@
+{
+  "challenge_id": "lc_2953",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: two two-letter groups and their union",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "igigee",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-blocks",
+      "name": "sample: all consecutive block combinations qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aaabbbccc",
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one character occurs exactly once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-single-too-few",
+      "name": "trial: one character does not reach k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-inclusive-gap",
+      "name": "trial: alphabet difference two is permitted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ac",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "real-breaking-gap",
+      "name": "hidden: alphabet difference three splits segments",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "ad",
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "segment-boundary"
+      ]
+    },
+    {
+      "id": "real-overlapping-one-letter",
+      "name": "hidden: overlapping repeated-letter windows qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aaaa",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "overlapping"
+      ]
+    },
+    {
+      "id": "real-two-letters",
+      "name": "hidden: two letters each occur exactly twice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abab",
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "two-distinct"
+      ]
+    },
+    {
+      "id": "real-extra-frequency",
+      "name": "hidden: overrepresented letters disqualify longer windows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aaabac",
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "frequency"
+      ]
+    },
+    {
+      "id": "real-many-segments",
+      "name": "hidden: large alphabet jumps create independent segments",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcxyzab",
+        "k": 1
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "segments"
+      ]
+    }
+  ]
+}
+

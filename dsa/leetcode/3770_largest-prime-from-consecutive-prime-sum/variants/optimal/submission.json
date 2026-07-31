@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4085",
+  "frontend_id": "3770",
+  "title_slug": "largest-prime-from-consecutive-prime-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.largestPrime",
+  "verified_submission_id": "2085374587",
+  "verified_at": "2026-07-28T22:06:42.431514+00:00"
+}

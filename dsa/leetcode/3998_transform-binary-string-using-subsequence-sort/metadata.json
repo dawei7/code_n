@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_3998",
+  "source": "leetcode",
+  "frontend_id": "3998",
+  "slug": "transform-binary-string-using-subsequence-sort",
+  "title": "Transform Binary String Using Subsequence Sort",
+  "difficulty": "Medium",
+  "acceptance_rate": 37.81112737920937,
+  "frequency": 3.9,
+  "elo_rating": 1862.3952723083,
+  "estimated_elo_rating": null,
+  "contest_source": "Weekly Contest 511",
+  "contest_slug": "weekly-contest-511",
+  "contest_problem_index": "Q3",
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/transform-binary-string-using-subsequence-sort/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

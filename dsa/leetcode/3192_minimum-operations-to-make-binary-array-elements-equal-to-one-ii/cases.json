@@ -6,103 +6,108 @@
       "name": "sample: repeated suffix flips",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          0,
-          1,
-          1,
-          0,
-          1
-        ]
-      },
+      "input": {"nums": [0, 1, 1, 0, 1]},
       "expected": 4,
-      "tags": [
-        "sample",
-        "suffix-flip"
-      ]
+      "tags": ["sample", "suffix-flip"]
     },
     {
       "id": "sample-single-flip",
       "name": "sample: one suffix fixes trailing zeros",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          0,
-          0,
-          0
-        ]
-      },
+      "input": {"nums": [1, 0, 0, 0]},
       "expected": 1,
-      "tags": [
-        "sample",
-        "suffix-flip"
-      ]
+      "tags": ["sample", "suffix-flip"]
     },
     {
-      "id": "trial-already-ones",
+      "id": "trial-single-one",
+      "name": "trial: one already correct bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": 0,
+      "tags": ["minimum-length", "already-ones"]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0]},
+      "expected": 1,
+      "tags": ["minimum-length", "suffix-flip"]
+    },
+    {
+      "id": "trial-all-ones",
       "name": "trial: already all ones",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          1
-        ]
-      },
+      "input": {"nums": [1, 1, 1, 1, 1]},
       "expected": 0,
-      "tags": [
-        "edge"
-      ]
+      "tags": ["already-ones"]
+    },
+    {
+      "id": "trial-all-zeros",
+      "name": "trial: one flip covers every zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 0, 0, 0, 0]},
+      "expected": 1,
+      "tags": ["all-zeros"]
     },
     {
       "id": "trial-alternating-start-zero",
-      "name": "trial: alternating from zero",
+      "name": "trial: every index forces a flip",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          0,
-          1,
-          0,
-          1,
-          0,
-          1
-        ]
-      },
+      "input": {"nums": [0, 1, 0, 1, 0, 1]},
       "expected": 6,
-      "tags": [
-        "alternating"
-      ]
+      "tags": ["alternating", "maximum-transitions"]
+    },
+    {
+      "id": "trial-alternating-start-one",
+      "name": "trial: alternating array begins correctly",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 0, 1, 0, 1]},
+      "expected": 4,
+      "tags": ["alternating"]
     },
     {
       "id": "real-long-runs",
-      "name": "real: long same-value runs",
+      "name": "real: several constant runs",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          1,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          1,
-          1,
-          0
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "real",
-        "runs"
-      ]
+      "input": {"nums": [0, 0, 1, 1, 1, 0, 0, 1]},
+      "expected": 4,
+      "tags": ["real", "runs"]
+    },
+    {
+      "id": "real-isolated-zero",
+      "name": "real: isolated zero requires two boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 0, 1, 1]},
+      "expected": 2,
+      "tags": ["real", "isolated-zero"]
+    },
+    {
+      "id": "real-isolated-one",
+      "name": "real: isolated one inside zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 0, 1, 0, 0]},
+      "expected": 3,
+      "tags": ["real", "isolated-one"]
+    },
+    {
+      "id": "real-mixed-boundaries",
+      "name": "real: mixed boundary pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1]},
+      "expected": 6,
+      "tags": ["real", "transitions"]
     }
   ]
 }

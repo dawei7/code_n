@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2648",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "Each generator advance must produce one value and can update the two-value recurrence state in constant time, matching the per-yield lower bound.",
+  "optimality": {
+    "symbol": "k",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Every call to next must return one yielded number and therefore requires Omega(1) work. The generator yields the stored previous value and performs one addition plus a constant-size state update, giving O(1) time per advance."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Producing the required yielded value on one generator advance takes at least constant work."},
+    {"kind":"upper_bound_proof","evidence":"Each advance performs one yield, one addition, and one two-variable reassignment regardless of the number of earlier calls."},
+    {"kind":"boundary_property_cases","evidence":"Authored cases independently verify zero, one, and two advances, longer recurrence prefixes, persistent state, and the maximum fifty-call prefix."}
+  ]
+}

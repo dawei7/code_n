@@ -2,15 +2,13 @@
   "schema_version": 1,
   "challenge_id": "lc_3227",
   "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Vowels Game in a String and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+  "variants": [{
+    "id": "optimal",
+    "label": "Optimal",
+    "kind": "optimal",
+    "directory": "variants/optimal",
+    "summary": "Returns whether the string contains at least one vowel, the exact condition for Alice to win.",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)"
+  }]
 }

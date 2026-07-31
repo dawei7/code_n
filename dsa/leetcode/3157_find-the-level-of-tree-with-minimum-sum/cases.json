@@ -1,0 +1,251 @@
+{
+  "challenge_id": "lc_3157",
+  "cases": [
+    {
+      "id": "sample-first",
+      "name": "sample: second level has the minimum sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          50,
+          6,
+          2,
+          30,
+          80,
+          7
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "sample-deep-minimum",
+      "name": "sample: third level has the minimum sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          36,
+          17,
+          10,
+          null,
+          null,
+          24
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "sparse"
+      ]
+    },
+    {
+      "id": "sample-all-levels-tie",
+      "name": "sample: equal sums select level one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          null,
+          5,
+          null,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "tie",
+        "right-skewed"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: one-node tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-wide-deep-minimum",
+      "name": "trial: four small leaves form the minimum level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          100,
+          40,
+          50,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "complete-tree",
+        "deep-minimum"
+      ]
+    },
+    {
+      "id": "trial-adjacent-tie",
+      "name": "trial: root and children have equal sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "tie",
+        "strict-update"
+      ]
+    },
+    {
+      "id": "real-large-level-sums",
+      "name": "real: level sums exceed 32-bit arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "large-values",
+        "overflow"
+      ]
+    },
+    {
+      "id": "real-sparse-minimum",
+      "name": "real: missing children still share one level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          20,
+          5,
+          8,
+          null,
+          1,
+          null,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sparse-tree"
+      ]
+    },
+    {
+      "id": "real-right-skewed",
+      "name": "real: minimum lies at the end of a right chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          9,
+          null,
+          8,
+          null,
+          7,
+          null,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "right-skewed",
+        "deep-minimum"
+      ]
+    },
+    {
+      "id": "real-left-skewed",
+      "name": "real: minimum lies at the end of a left chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          4,
+          3,
+          null,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "left-skewed",
+        "deep-minimum"
+      ]
+    },
+    {
+      "id": "real-middle-minimum",
+      "name": "real: middle level is below both neighbors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          100,
+          1,
+          2,
+          50,
+          50,
+          50,
+          50
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "middle-level"
+      ]
+    },
+    {
+      "id": "real-nonadjacent-tie",
+      "name": "real: root ties a deeper minimum level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          5,
+          2,
+          10,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "tie",
+        "nonadjacent"
+      ]
+    }
+  ]
+}
+

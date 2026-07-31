@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Words Containing Character and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans each word for the target character and records every matching index.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(1)"
     }
   ]
 }

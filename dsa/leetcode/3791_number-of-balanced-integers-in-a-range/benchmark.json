@@ -1,0 +1,5 @@
+{"schema_version":1,"challenge_id":"lc_3791","measurement_note":"Size is the inclusive range width. Digit DP depends only on the endpoint digit count, while direct per-integer balance checks take O(size * D) time.","cases":[
+{"id":"benchmark-prefix-1000","name":"benchmark: count balanced integers through 1000","kind":"benchmark","visible":false,"size":1000,"input":{"low":1,"high":1000},"expected":54,"validator":{"kind":"exact"},"tags":["benchmark","prefix-range","scale-small"]},
+{"id":"benchmark-prefix-10000","name":"benchmark: count balanced integers through 10000","kind":"benchmark","visible":false,"size":10000,"input":{"low":1,"high":10000},"expected":669,"validator":{"kind":"exact"},"tags":["benchmark","prefix-range","scale-medium"]},
+{"id":"benchmark-prefix-100000","name":"benchmark: count balanced integers through 100000","kind":"benchmark","visible":false,"size":100000,"input":{"low":1,"high":100000},"expected":4839,"validator":{"kind":"exact"},"tags":["benchmark","prefix-range","scale-large"]}
+]}

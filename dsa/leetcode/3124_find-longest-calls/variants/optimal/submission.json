@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3432",
+  "frontend_id": "3124",
+  "title_slug": "find-longest-calls",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2079533289",
+  "verified_at": "2026-07-24T13:59:00+02:00"
+}

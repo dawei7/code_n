@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3466",
+  "cases": [
+    {
+      "id": "sample-two-switches",
+      "name": "sample: lane one to lane two and back",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lane1": [
+          1,
+          -2,
+          -10,
+          3
+        ],
+        "lane2": [
+          -5,
+          10,
+          0,
+          1
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "two-switches"
+      ]
+    },
+    {
+      "id": "sample-exit-early",
+      "name": "sample: exit before a final loss",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lane1": [
+          1,
+          -1,
+          -1,
+          -1
+        ],
+        "lane2": [
+          0,
+          3,
+          4,
+          -5
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "early-exit"
+      ]
+    },
+    {
+      "id": "sample-enter-late",
+      "name": "sample: enter late and switch immediately",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lane1": [
+          -5,
+          -4,
+          -3
+        ],
+        "lane2": [
+          -1,
+          2,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "late-entry"
+      ]
+    },
+    {
+      "id": "sample-stay-in-lane-two",
+      "name": "sample: tolerate an internal lane-two toll",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lane1": [
+          -3,
+          -3,
+          -3
+        ],
+        "lane2": [
+          9,
+          -2,
+          4
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "one-switch"
+      ]
+    },
+    {
+      "id": "sample-single-negative-mile",
+      "name": "sample: nonempty trip has a negative result",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lane1": [
+          -10
+        ],
+        "lane2": [
+          -2
+        ]
+      },
+      "expected": -2,
+      "tags": [
+        "sample",
+        "single-mile",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-single-lane-one",
+      "name": "trial: one positive mile in the entry lane",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lane1": [
+          5
+        ],
+        "lane2": [
+          -10
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "single-mile"
+      ]
+    },
+    {
+      "id": "trial-lane-two-only",
+      "name": "trial: immediate switch starts a lane-two trip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lane1": [
+          -5,
+          -5
+        ],
+        "lane2": [
+          4,
+          6
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "immediate-switch"
+      ]
+    },
+    {
+      "id": "trial-exactly-two-switches",
+      "name": "trial: all three lane segments are profitable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lane1": [
+          10,
+          -100,
+          10
+        ],
+        "lane2": [
+          -100,
+          50,
+          -100
+        ]
+      },
+      "expected": 70,
+      "tags": [
+        "trial",
+        "two-switches"
+      ]
+    },
+    {
+      "id": "real-no-switch-best",
+      "name": "hidden: remain in lane one for the full trip",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lane1": [
+          3,
+          4,
+          5
+        ],
+        "lane2": [
+          -100,
+          -100,
+          -100
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "no-switch"
+      ]
+    },
+    {
+      "id": "real-mixed-entry-exit",
+      "name": "hidden: optimize both endpoints and switches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lane1": [
+          -8,
+          20,
+          -30,
+          7,
+          8
+        ],
+        "lane2": [
+          5,
+          -10,
+          40,
+          -20,
+          6
+        ]
+      },
+      "expected": 75,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-discussion-trap",
+      "name": "hidden: a tempting third switch is forbidden",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lane1": [
+          1,
+          6,
+          -5,
+          93,
+          -1,
+          -1
+        ],
+        "lane2": [
+          0,
+          -4,
+          -3,
+          -1,
+          4,
+          -5
+        ]
+      },
+      "expected": 99,
+      "tags": [
+        "hidden",
+        "switch-limit"
+      ]
+    },
+    {
+      "id": "real-wide-sum",
+      "name": "hidden: result exceeds signed 32-bit range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lane1": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ],
+        "lane2": [
+          -1000000000,
+          -1000000000,
+          -1000000000,
+          -1000000000,
+          -1000000000,
+          -1000000000
+        ]
+      },
+      "expected": 6000000000,
+      "tags": [
+        "hidden",
+        "wide-integer"
+      ]
+    },
+    {
+      "id": "real-zero-values",
+      "name": "hidden: zero is valid for a nonempty trip",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "lane1": [
+          0,
+          0,
+          0
+        ],
+        "lane2": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    }
+  ]
+}

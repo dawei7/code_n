@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_145", "frontend_id": "145", "title_slug": "binary-tree-postorder-traversal", "url": "https://leetcode.com/problems/binary-tree-postorder-traversal/description/", "paid_only": false, "content_sha256": "c8112b908bbb47fe272c5e0d9b03aa9cab024b7a5f1ee015a67c8ad4918db506", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "root = [1,null,2,3]", "output": "[3,2,1]", "has_explanation": true},
+      {"ordinal": 2, "input": "root = [1,2,3,4,5,null,8,null,null,6,7,9]", "output": "[4,6,7,5,2,9,8,3,1]", "has_explanation": true},
+      {"ordinal": 3, "input": "root = []", "output": "[]", "has_explanation": false},
+      {"ordinal": 4, "input": "root = [1]", "output": "[1]", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "fdd654b46234d3ab49b54a90f6c8feaf587ebaa1d43833716444f38cd3ee9ba4", "reference/contract.md": "8542421cfc263999cd3406e6112f6210e551f9a70d06596d61e0f8af634a1324", "reference/examples.md": "70565f74faae144bd3ede50389a78d0d8d89d5ae696f171481007f3e9f00c723", "reference/constraints.md": "46f842ffc03ca3780a9cff50990afcf4ff407af32b9f4018fbf77b64fa7065f6", "reference/follow_up.md": "888a27b434724e8d3ebd363bd5017d7de209555177ee3f010b3f186fa6b4a980"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

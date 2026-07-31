@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3930",
+  "cases": [
+    {
+      "id": "sample-two-updates",
+      "name": "sample: largest then second-largest exponent",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2], "p": 4, "queries": [[3, 1], [1, 2]]},
+      "expected": [64, 4096],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "sequential-state", "changing-rank"]
+    },
+    {
+      "id": "sample-duplicate-maximum",
+      "name": "sample: duplicate maximum changes the second-largest rank",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7, 5], "p": 6, "queries": [[4, 3], [7, 2]]},
+      "expected": [1296, 220296870],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "duplicates", "modular-power"]
+    },
+    {
+      "id": "trial-new-largest",
+      "name": "trial: inserted value becomes the largest",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 1], "p": 3, "queries": [[9, 1]]},
+      "expected": [19683],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "largest-rank", "single-query"]
+    },
+    {
+      "id": "trial-current-smallest",
+      "name": "trial: maximum k selects the current smallest",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [9, 1], "p": 3, "queries": [[5, 3]]},
+      "expected": [3],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "smallest-rank", "exponent-one"]
+    },
+    {
+      "id": "trial-duplicate-frequencies",
+      "name": "trial: equal values occupy separate rank positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 5], "p": 2, "queries": [[5, 1], [4, 3]]},
+      "expected": [32, 33554432],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "duplicates", "frequency-counts"]
+    },
+    {
+      "id": "trial-exponent-one-chain",
+      "name": "trial: repeated exponent one preserves the state",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "p": 999999999, "queries": [[2, 2], [3, 3]]},
+      "expected": [999999999, 999999999],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "exponent-one", "state-carry"]
+    },
+    {
+      "id": "trial-alternating-boundaries",
+      "name": "trial: ranks alternate between largest and interior",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "p": 2, "queries": [[10, 1], [5, 2], [20, 1]]},
+      "expected": [1024, 898961331, 688423210],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "rank-boundaries", "sequential-state"]
+    },
+    {
+      "id": "trial-future-compressed-values",
+      "name": "trial: later insertion coordinates are compressed up front",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [100, 10], "p": 7, "queries": [[50, 2], [75, 2], [1, 5]]},
+      "expected": [839709617, 262415370, 262415370],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "coordinate-compression", "smallest-rank"]
+    },
+    {
+      "id": "real-all-values-equal",
+      "name": "hidden: every rank resolves to the same duplicated value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 7], "p": 6, "queries": [[7, 1], [7, 4], [7, 2]]},
+      "expected": [279936, 586971998, 67506398],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "all-duplicates", "varying-ranks"]
+    },
+    {
+      "id": "real-growing-smallest-boundary",
+      "name": "hidden: each query asks for the current smallest",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [9, 4], "p": 5, "queries": [[7, 3], [2, 4], [1, 5]]},
+      "expected": [625, 390625, 390625],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-k", "rank-conversion"]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: maximum bases and exponents require modular power",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000], "p": 1000000000, "queries": [[999999999, 1], [1000000000, 2]]},
+      "expected": [312556845, 259616729],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-value", "modular-exponentiation"]
+    },
+    {
+      "id": "real-duplicate-rank-boundary",
+      "name": "hidden: ranks cross a block of duplicate values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 2, 4], "p": 11, "queries": [[3, 2], [4, 3], [5, 1]]},
+      "expected": [14641, 541924058, 233922452],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "duplicate-boundary", "largest-rank"]
+    },
+    {
+      "id": "real-smallest-then-largest",
+      "name": "hidden: consecutive queries select opposite rank extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 2], "p": 13, "queries": [[1, 3], [10, 1]]},
+      "expected": [13, 858490890],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "rank-extremes", "state-carry"]
+    },
+    {
+      "id": "real-changing-interior-ranks",
+      "name": "hidden: several interior order statistics change over time",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 3, 6], "p": 17, "queries": [[5, 2], [9, 1], [4, 4], [7, 3]]},
+      "expected": [24137569, 145212036, 130422850, 771688836],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "interior-ranks", "multiple-queries"]
+    },
+    {
+      "id": "real-base-one",
+      "name": "hidden: modular powers preserve a base of one",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 1], "p": 1, "queries": [[500, 2], [999, 1]]},
+      "expected": [1, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "base-one", "large-exponent"]
+    }
+  ]
+}

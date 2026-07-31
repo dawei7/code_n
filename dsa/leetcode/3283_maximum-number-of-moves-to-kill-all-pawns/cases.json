@@ -1,144 +1,17 @@
 {
   "challenge_id": "lc_3283",
   "cases": [
-    {
-      "id": "sample-one-pawn",
-      "name": "sample: one pawn from knight start",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "kx": 1,
-        "ky": 1,
-        "positions": [
-          [
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "single"
-      ]
-    },
-    {
-      "id": "sample-three-pawns",
-      "name": "sample: alternating optimal play",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "kx": 0,
-        "ky": 2,
-        "positions": [
-          [
-            1,
-            1
-          ],
-          [
-            2,
-            2
-          ],
-          [
-            3,
-            3
-          ]
-        ]
-      },
-      "expected": 8,
-      "tags": [
-        "sample",
-        "game"
-      ]
-    },
-    {
-      "id": "trial-two-pawns",
-      "name": "trial: two reachable pawns",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "kx": 0,
-        "ky": 0,
-        "positions": [
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            4
-          ]
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "small"
-      ]
-    },
-    {
-      "id": "trial-corner-cluster",
-      "name": "trial: pawns near board corners",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "kx": 7,
-        "ky": 7,
-        "positions": [
-          [
-            0,
-            0
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            6,
-            5
-          ],
-          [
-            8,
-            9
-          ]
-        ]
-      },
-      "expected": 15,
-      "tags": [
-        "corners"
-      ]
-    },
-    {
-      "id": "real-four-pawns",
-      "name": "real: four-pawn minimax state",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "kx": 12,
-        "ky": 11,
-        "positions": [
-          [
-            4,
-            5
-          ],
-          [
-            10,
-            2
-          ],
-          [
-            18,
-            17
-          ],
-          [
-            7,
-            22
-          ]
-        ]
-      },
-      "expected": 26,
-      "tags": [
-        "real",
-        "minimax"
-      ]
-    }
+    {"id":"sample-corner","name":"sample: bounded corner distance","kind":"sample","visible":true,"input":{"kx":1,"ky":1,"positions":[[0,0]]},"expected":4,"tags":["sample","corner"]},
+    {"id":"sample-three-pawns","name":"sample: three-turn optimal game","kind":"sample","visible":true,"input":{"kx":0,"ky":2,"positions":[[1,1],[2,2],[3,3]]},"expected":8,"tags":["sample","minimax"]},
+    {"id":"sample-pass-pawn","name":"sample: passing a pawn does not capture it","kind":"sample","visible":true,"input":{"kx":0,"ky":0,"positions":[[1,2],[2,4]]},"expected":3,"tags":["sample","pass-through"]},
+    {"id":"trial-one-knight-move","name":"trial: adjacent knight destination","kind":"trial","visible":true,"input":{"kx":10,"ky":10,"positions":[[11,12]]},"expected":1,"tags":["single-pawn","one-move"]},
+    {"id":"trial-far-corner","name":"trial: separated cells along the top edge","kind":"trial","visible":true,"input":{"kx":0,"ky":0,"positions":[[0,10]]},"expected":6,"tags":["single-pawn","board-edge"]},
+    {"id":"trial-reversed-corners","name":"trial: edge distance is symmetric","kind":"trial","visible":true,"input":{"kx":0,"ky":10,"positions":[[0,0]]},"expected":6,"tags":["symmetry","board-edge"]},
+    {"id":"trial-two-symmetric-pawns","name":"trial: two symmetric pawn choices","kind":"trial","visible":true,"input":{"kx":25,"ky":25,"positions":[[23,24],[27,26]]},"expected":3,"tags":["two-pawns","symmetry"]},
+    {"id":"real-near-corner-game","name":"real: three pawns near a corner","kind":"real","visible":false,"input":{"kx":0,"ky":0,"positions":[[1,2],[2,1],[3,3]]},"expected":5,"tags":["corner","minimax"]},
+    {"id":"real-four-around-center","name":"real: four pawns around the knight","kind":"real","visible":false,"input":{"kx":24,"ky":24,"positions":[[25,26],[26,25],[23,22],[22,23]]},"expected":7,"tags":["four-pawns","center"]},
+    {"id":"real-boundary-and-interior","name":"real: boundary and interior pawn mix","kind":"real","visible":false,"input":{"kx":1,"ky":1,"positions":[[0,0],[2,3],[4,4]]},"expected":8,"tags":["boundary","mixed"]},
+    {"id":"real-upper-corner-cluster","name":"real: upper corner pawn cluster","kind":"real","visible":false,"input":{"kx":48,"ky":48,"positions":[[49,49],[47,46],[45,47]]},"expected":7,"tags":["upper-bound","cluster"]},
+    {"id":"real-five-pawn-game","name":"real: five-pawn alternating game","kind":"real","visible":false,"input":{"kx":20,"ky":20,"positions":[[18,19],[19,22],[22,21],[21,18],[24,20]]},"expected":9,"tags":["five-pawns","minimax"]}
   ]
 }

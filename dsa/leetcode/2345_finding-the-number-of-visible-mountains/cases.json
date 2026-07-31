@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2345",
+  "cases": [
+    {"id":"sample-border","name":"sample: one peak lies on another mountain's side","kind":"sample","visible":true,"input":{"peaks":[[2,2],[6,3],[5,4]]},"expected":2,"tags":["sample","border"]},
+    {"id":"sample-duplicates","name":"sample: completely overlapping mountains hide each other","kind":"sample","visible":true,"input":{"peaks":[[1,3],[1,3]]},"expected":0,"tags":["sample","duplicates"]},
+    {"id":"trial-single","name":"one mountain is visible","kind":"trial","visible":true,"input":{"peaks":[[5,2]]},"expected":1,"tags":["single-mountain"]},
+    {"id":"trial-same-left","name":"a longer interval with the same left endpoint contains the shorter","kind":"trial","visible":true,"input":{"peaks":[[3,2],[5,4]]},"expected":1,"tags":["same-left","sorting-tie"]},
+    {"id":"trial-same-right","name":"a wider interval contains one sharing its right endpoint","kind":"trial","visible":true,"input":{"peaks":[[3,2],[4,1]]},"expected":1,"tags":["same-right","border"]},
+    {"id":"trial-crossing","name":"overlapping intervals without containment are both visible","kind":"trial","visible":true,"input":{"peaks":[[3,2],[6,2]]},"expected":2,"tags":["overlap"]},
+    {"id":"real-contained-duplicate","name":"hidden: duplicate inner peaks and one outer mountain","kind":"real","visible":false,"input":{"peaks":[[2,1],[2,1],[5,5]]},"expected":1,"tags":["hidden","duplicates","containment"]},
+    {"id":"real-shared-center","name":"hidden: the tallest mountain at one x-coordinate contains the rest","kind":"real","visible":false,"input":{"peaks":[[10,2],[10,5],[10,3]]},"expected":1,"tags":["hidden","nested"]},
+    {"id":"real-rejection-regression","name":"hidden: equal-left larger interval must be processed first","kind":"real","visible":false,"input":{"peaks":[[3,19],[39,7],[15,39],[23,13],[8,28],[2,26],[38,15],[38,7],[16,17]]},"expected":1,"tags":["hidden","same-left","regression"]}
+  ]
+}

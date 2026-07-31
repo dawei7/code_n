@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_284", "frontend_id": "284", "title_slug": "peeking-iterator", "url": "https://leetcode.com/problems/peeking-iterator/description/", "paid_only": false, "content_sha256": "997c5b789a040ce7e4cf1f45cd9aa96f637a13b3381f1f060f4ac6c2281a33c8", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints", "follow_up"],
+    "examples": [{"ordinal": 1, "input": "operations = [\"PeekingIterator\", \"next\", \"peek\", \"next\", \"next\", \"hasNext\"], arguments = [[[1, 2, 3]], [], [], [], [], []]", "output": "[null, 1, 2, 2, 3, false]", "has_explanation": true}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "132f0952e79411b67821a15b863144d701759035e1c6c063b10f2289158d36f9", "reference/contract.md": "a155ce49b824a86f90d0022eb2662dcf07d7365875d9e4e08d7cabde4a5b527a", "reference/note.md": "6a1c5b1db492dfb8cf40c87a098f2e25556106e888361725666cfc47576d74c3", "reference/examples.md": "c6f164942f864c1f336e87782412e88343f437f8e4c6e0e37b63a0af228992ca", "reference/constraints.md": "896c3d0b74ce07a17075d0ce0d89598b799e573bf4821adf53a056aeab43d18e", "reference/follow_up.md": "2bdc9049c0f3c8140b3c97868da8bcffc0f287b20969d335676fabc25f6ea732"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

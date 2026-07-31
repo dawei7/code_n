@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_3991",
+  "cases": [
+    {
+      "id": "sample-two-reversals",
+      "name": "sample: sort with length three then length two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 0, 1], "pre": [2, 3]},
+      "expected": 2,
+      "tags": ["sample", "reachable", "minimum-distance"]
+    },
+    {
+      "id": "sample-unreachable",
+      "name": "sample: no allowed sequence sorts the permutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 0, 2], "pre": [1, 3]},
+      "expected": -1,
+      "tags": ["sample", "unreachable", "self-loop"]
+    },
+    {
+      "id": "sample-already-sorted",
+      "name": "sample: sorted input needs no operation",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0, 1], "pre": [2]},
+      "expected": 0,
+      "tags": ["sample", "already-sorted", "zero-operations"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: the only one-element permutation is sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0], "pre": [1]},
+      "expected": 0,
+      "tags": ["trial", "minimum-length", "self-loop"]
+    },
+    {
+      "id": "trial-two-elements-full-prefix",
+      "name": "trial: one full reversal sorts two elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 0], "pre": [2]},
+      "expected": 1,
+      "tags": ["trial", "one-operation", "full-prefix"]
+    },
+    {
+      "id": "trial-only-noop",
+      "name": "trial: length one cannot swap two elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 0], "pre": [1]},
+      "expected": -1,
+      "tags": ["trial", "unreachable", "self-loop"]
+    },
+    {
+      "id": "trial-sorted-with-several-prefixes",
+      "name": "trial: do not disturb a sorted permutation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 1, 2, 3], "pre": [2, 3, 4]},
+      "expected": 0,
+      "tags": ["trial", "already-sorted", "early-return"]
+    },
+    {
+      "id": "trial-reverse-entire-array",
+      "name": "trial: the only allowed full reversal reaches the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [3, 2, 1, 0], "pre": [4]},
+      "expected": 1,
+      "tags": ["trial", "one-operation", "single-generator"]
+    },
+    {
+      "id": "trial-single-short-prefix",
+      "name": "trial: one length-three reversal sorts a fixed suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 1, 0, 3], "pre": [3]},
+      "expected": 1,
+      "tags": ["trial", "one-operation", "unchanged-suffix"]
+    },
+    {
+      "id": "trial-reuse-generators",
+      "name": "trial: sorting requires reusing the two allowed lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 0, 3, 2], "pre": [2, 4]},
+      "expected": 4,
+      "tags": ["trial", "repeated-operations", "shortest-path"]
+    },
+    {
+      "id": "real-full-prefix-two-state-component",
+      "name": "hidden: a rotation is unreachable with only full reversal",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4, 0], "pre": [5]},
+      "expected": -1,
+      "tags": ["hidden", "unreachable", "two-state-component"]
+    },
+    {
+      "id": "real-all-prefixes-short-route",
+      "name": "hidden: all useful lengths sort a rotation in two moves",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4, 0], "pre": [2, 3, 4, 5]},
+      "expected": 2,
+      "tags": ["hidden", "reachable", "multiple-generators"]
+    },
+    {
+      "id": "real-restricted-five-elements",
+      "name": "hidden: a restricted generator set has a three-step route",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 0, 1, 3, 2], "pre": [2, 4, 5]},
+      "expected": 3,
+      "tags": ["hidden", "restricted-prefixes", "minimum-distance"]
+    },
+    {
+      "id": "real-six-elements-full-reversal",
+      "name": "hidden: reverse a maximum even prefix once",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 4, 3, 2, 1, 0], "pre": [6]},
+      "expected": 1,
+      "tags": ["hidden", "one-operation", "full-prefix"]
+    },
+    {
+      "id": "real-six-elements-deep-state",
+      "name": "hidden: an all-prefix state is seven moves from sorted",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 5, 1, 4, 0, 2], "pre": [1, 2, 3, 4, 5, 6]},
+      "expected": 7,
+      "tags": ["hidden", "deep-search", "all-prefixes"]
+    },
+    {
+      "id": "real-eight-elements-even-prefixes",
+      "name": "hidden: one maximum even reversal sorts eight elements",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 6, 5, 4, 3, 2, 1, 0], "pre": [2, 4, 6, 8]},
+      "expected": 1,
+      "tags": ["hidden", "maximum-length", "one-operation"]
+    },
+    {
+      "id": "real-eight-elements-odd-prefixes",
+      "name": "hidden: odd prefix lengths cannot repair the first swap",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 0, 2, 3, 4, 5, 6, 7], "pre": [1, 3, 5, 7]},
+      "expected": -1,
+      "tags": ["hidden", "maximum-length", "unreachable"]
+    },
+    {
+      "id": "real-eight-elements-only-full-prefix",
+      "name": "hidden: a rotation is outside the full-reversal component",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 0, 1, 2, 3, 4, 5, 6], "pre": [8]},
+      "expected": -1,
+      "tags": ["hidden", "maximum-length", "two-state-component"]
+    },
+    {
+      "id": "real-noop-among-useful-prefixes",
+      "name": "hidden: length one does not change a useful shortest route",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 0, 2], "pre": [1, 2]},
+      "expected": 1,
+      "tags": ["hidden", "self-loop", "visited-set"]
+    },
+    {
+      "id": "real-four-elements-farthest",
+      "name": "hidden: a farthest four-element all-prefix state",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 0, 3, 1], "pre": [1, 2, 3, 4]},
+      "expected": 4,
+      "tags": ["hidden", "all-prefixes", "deep-search"]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count K-th Roots in a Range and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts two prefixes by finding their exact integer k-th roots with binary search.",
+      "time_complexity": "O(log R log K)",
+      "space_complexity": "O(1)"
     }
   ]
 }

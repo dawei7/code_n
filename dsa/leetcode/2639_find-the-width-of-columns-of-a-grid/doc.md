@@ -8,78 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Matrix |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-width-of-columns-of-a-grid](https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/).
 
 ### Goal
-Given a 2D integer matrix, determine the maximum character width of each column. The width of a column is defined as the number of digits in the longest integer within that column, accounting for the negative sign if the integer is negative.
+
+You are given an $m \times n$ integer matrix `grid`. The width of a column is the greatest written length of any integer in that column. A negative integer's written length includes its leading minus sign, while a nonnegative integer's length is simply its number of decimal digits.
+
+Determine every column width independently and return an array `ans` of length $n$, where `ans[i]` is the width of column $i$. Each matrix entry lies between $-10^9$ and $10^9$, inclusive, so ordinary decimal notation is sufficient and zero has width one.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: A list of lists of integers (`List[List[int]]`) representing the matrix.
+- `grid`: An $m \times n$ rectangular matrix of integers, where $1 \le m,n \le 100$ and $-10^9 \le \texttt{grid[r][c]} \le 10^9$.
+
+Here, $m$ is the number of rows and $n$ is the number of columns.
 
 **Return value**
 
-- A list of integers (`List[int]`) where the $i$-th element represents the maximum width found in the $i$-th column of the grid.
+- Return a length-$n$ integer array whose entry at index $i$ is the maximum decimal-string length among the values in column $i$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `grid = [[1],[22],[333]]`
+- Input: `grid = [[1], [22], [333]]`
 - Output: `[3]`
+- Explanation: The only column contains values of lengths one, two, and three, so its width is three.
 
 **Example 2**
 
-- Input: `grid = [[-15,1,3],[15,7,12]]`
-- Output: `[3,1,2]`
-
-**Example 3**
-
-- Input: `grid = [[0]]`
-- Output: `[1]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a linear scan approach. We iterate through each column index, and for every column, we iterate through all rows to find the string representation length of each integer. We maintain a running maximum for each column index.
-
-### Complexity Analysis
-- **Time Complexity**: $O(m \times n)$, where $m$ is the number of rows and $n$ is the number of columns, as we must visit every element in the grid exactly once.
-- **Space Complexity**: $O(n)$ to store the result list containing the maximum width for each of the $n$ columns.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(grid: List[List[int]]) -> List[int]:
-    """
-    Calculates the maximum width of each column in a 2D grid.
-    The width is defined by the number of characters in the string representation
-    of the integer, including the negative sign.
-    """
-    if not grid or not grid[0]:
-        return []
-
-    rows = len(grid)
-    cols = len(grid[0])
-    result = []
-
-    for c in range(cols):
-        max_width = 0
-        for r in range(rows):
-            # Convert integer to string to easily count digits and sign
-            width = len(str(grid[r][c]))
-            if width > max_width:
-                max_width = width
-        result.append(max_width)
-
-    return result
-```
-</details>
+- Input: `grid = [[-15, 1, 3], [15, 7, 12], [5, 6, -2]]`
+- Output: `[3, 1, 2]`
+- Explanation: The first column needs three characters for `-15`; the other columns need at most one and two characters, respectively.

@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3662",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: only d and b qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aadbbcccca",
+        "k": 3
+      },
+      "expected": "dbb",
+      "tags": [
+        "sample",
+        "mixed-frequencies"
+      ]
+    },
+    {
+      "id": "sample-all-unique",
+      "name": "sample: every unique character qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "xyz",
+        "k": 2
+      },
+      "expected": "xyz",
+      "tags": [
+        "sample",
+        "all-qualify"
+      ]
+    },
+    {
+      "id": "trial-threshold-equality",
+      "name": "trial: counts equal to k are removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabcc",
+        "k": 2
+      },
+      "expected": "b",
+      "tags": [
+        "trial",
+        "strict-threshold"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "trial: k equals one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 1
+      },
+      "expected": "",
+      "tags": [
+        "trial",
+        "minimum-k",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-one-character-at-length-threshold",
+      "name": "trial: one repeated character reaches k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa",
+        "k": 5
+      },
+      "expected": "",
+      "tags": [
+        "trial",
+        "threshold-equality",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-interleaved",
+      "name": "hidden: retained occurrences preserve interleaving",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abacabad",
+        "k": 3
+      },
+      "expected": "bcbd",
+      "tags": [
+        "hidden",
+        "stable-order",
+        "mixed-frequencies"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: maximum length separates counts around k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccc",
+        "k": 31
+      },
+      "expected": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccc",
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "threshold-boundary"
+      ]
+    },
+    {
+      "id": "real-one-qualifying-letter",
+      "name": "hidden: only one letter type remains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzzyyyx",
+        "k": 3
+      },
+      "expected": "x",
+      "tags": [
+        "hidden",
+        "one-qualifier"
+      ]
+    }
+  ]
+}

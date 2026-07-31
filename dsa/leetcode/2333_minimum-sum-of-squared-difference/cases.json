@@ -1,117 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2333",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: reduce two unit differences",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums1": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "nums2": [
-          2,
-          3,
-          4,
-          5
-        ],
-        "k1": 1,
-        "k2": 1
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: no operations",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums1": [
-          1,
-          1,
-          1,
-          1,
-          1
-        ],
-        "nums2": [
-          10,
-          10,
-          10,
-          10,
-          10
-        ],
-        "k1": 0,
-        "k2": 0
-      },
-      "expected": 405,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: larger mixed arrays",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums1": [
-          7,
-          10,
-          8,
-          10,
-          3,
-          10,
-          3,
-          5
-        ],
-        "nums2": [
-          1,
-          2,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ],
-        "k1": 10,
-        "k2": 10
-      },
-      "expected": 97,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-two-differences",
-      "name": "hidden: reduce the largest difference first",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums1": [
-          5,
-          5
-        ],
-        "nums2": [
-          1,
-          10
-        ],
-        "k1": 3,
-        "k2": 0
-      },
-      "expected": 18,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-no-operations","name":"sample: unchanged squared differences","kind":"sample","visible":true,"input":{"nums1":[1,2,3,4],"nums2":[2,10,20,19],"k1":0,"k2":0},"expected":579,"tags":["sample","zero-operations"]},
+    {"id":"sample-balanced-reductions","name":"sample: operations reduce separate largest differences","kind":"sample","visible":true,"input":{"nums1":[1,4,10,12],"nums2":[5,8,6,9],"k1":1,"k2":1},"expected":43,"tags":["sample","greedy"]},
+    {"id":"trial-excess-operations","name":"operations exceed the total absolute difference","kind":"trial","visible":true,"input":{"nums1":[1],"nums2":[10],"k1":10,"k2":10},"expected":0,"tags":["boundary","zero-result"]},
+    {"id":"trial-one-reduction","name":"one operation targets either tied maximum","kind":"trial","visible":true,"input":{"nums1":[0,10],"nums2":[10,0],"k1":1,"k2":0},"expected":181,"tags":["ties"]},
+    {"id":"trial-multiple-levels","name":"batch reductions cross several difference levels","kind":"trial","visible":true,"input":{"nums1":[5,5,5],"nums2":[1,2,3],"k1":2,"k2":2},"expected":9,"tags":["levels"]},
+    {"id":"real-large-values","name":"hidden: upper-bound differences require a wide count table","kind":"real","visible":false,"input":{"nums1":[0,100000],"nums2":[100000,0],"k1":1,"k2":2},"expected":19999400005,"tags":["hidden","large-values"]},
+    {"id":"real-already-equal","name":"hidden: equal arrays already have zero cost","kind":"real","visible":false,"input":{"nums1":[7,7,7],"nums2":[7,7,7],"k1":0,"k2":0},"expected":0,"tags":["hidden","equal"]}
   ]
 }

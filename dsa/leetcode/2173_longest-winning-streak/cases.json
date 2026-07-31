@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2173",
+  "cases": [
+    {
+      "id": "sample-mixed-players",
+      "name": "sample: wins, interruptions, and a player without wins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Matches": [
+            {"player_id": 1, "match_day": "2022-01-17", "result": "Win"},
+            {"player_id": 1, "match_day": "2022-01-18", "result": "Win"},
+            {"player_id": 1, "match_day": "2022-01-25", "result": "Win"},
+            {"player_id": 1, "match_day": "2022-01-31", "result": "Draw"},
+            {"player_id": 1, "match_day": "2022-02-08", "result": "Win"},
+            {"player_id": 2, "match_day": "2022-02-06", "result": "Lose"},
+            {"player_id": 2, "match_day": "2022-02-08", "result": "Lose"},
+            {"player_id": 3, "match_day": "2022-03-30", "result": "Win"}
+          ]
+        }
+      },
+      "expected": {"columns": ["player_id", "longest_streak"], "rows": [[1, 3], [2, 0], [3, 1]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "zero-streak", "interruption"]
+    },
+    {
+      "id": "trial-single-win",
+      "name": "one match is a streak of one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Matches": [{"player_id": 9, "match_day": "2024-05-01", "result": "Win"}]}},
+      "expected": {"columns": ["player_id", "longest_streak"], "rows": [[9, 1]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["single-row", "win"]
+    },
+    {
+      "id": "trial-no-wins",
+      "name": "draws and losses produce zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Matches": [
+        {"player_id": 4, "match_day": "2024-01-01", "result": "Draw"},
+        {"player_id": 4, "match_day": "2024-01-02", "result": "Lose"},
+        {"player_id": 4, "match_day": "2024-01-03", "result": "Draw"}
+      ]}},
+      "expected": {"columns": ["player_id", "longest_streak"], "rows": [[4, 0]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["zero-streak", "no-wins"]
+    },
+    {
+      "id": "trial-both-breakers",
+      "name": "both draws and losses interrupt wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Matches": [
+        {"player_id": 5, "match_day": "2024-02-01", "result": "Win"},
+        {"player_id": 5, "match_day": "2024-02-02", "result": "Draw"},
+        {"player_id": 5, "match_day": "2024-02-03", "result": "Win"},
+        {"player_id": 5, "match_day": "2024-02-04", "result": "Win"},
+        {"player_id": 5, "match_day": "2024-02-05", "result": "Lose"},
+        {"player_id": 5, "match_day": "2024-02-06", "result": "Win"}
+      ]}},
+      "expected": {"columns": ["player_id", "longest_streak"], "rows": [[5, 2]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["draw-break", "loss-break"]
+    },
+    {
+      "id": "real-interleaved-unsorted",
+      "name": "hidden: input order and other players do not change chronology",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Matches": [
+        {"player_id": 2, "match_day": "2024-03-03", "result": "Win"},
+        {"player_id": 1, "match_day": "2024-03-04", "result": "Win"},
+        {"player_id": 1, "match_day": "2024-03-01", "result": "Win"},
+        {"player_id": 2, "match_day": "2024-03-01", "result": "Lose"},
+        {"player_id": 1, "match_day": "2024-03-03", "result": "Win"},
+        {"player_id": 2, "match_day": "2024-03-02", "result": "Win"},
+        {"player_id": 1, "match_day": "2024-03-02", "result": "Draw"}
+      ]}},
+      "expected": {"columns": ["player_id", "longest_streak"], "rows": [[1, 2], [2, 2]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "chronological-order", "partitioning"]
+    },
+    {
+      "id": "real-calendar-gaps",
+      "name": "hidden: days without matches do not break a streak",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Matches": [
+        {"player_id": 7, "match_day": "2020-01-01", "result": "Win"},
+        {"player_id": 7, "match_day": "2020-06-15", "result": "Win"},
+        {"player_id": 7, "match_day": "2023-12-31", "result": "Win"}
+      ]}},
+      "expected": {"columns": ["player_id", "longest_streak"], "rows": [[7, 3]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "date-gap", "all-wins"]
+    },
+    {
+      "id": "real-equal-max-runs",
+      "name": "hidden: equal longest runs still yield one player row",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Matches": [
+        {"player_id": 8, "match_day": "2024-04-01", "result": "Win"},
+        {"player_id": 8, "match_day": "2024-04-02", "result": "Win"},
+        {"player_id": 8, "match_day": "2024-04-03", "result": "Lose"},
+        {"player_id": 8, "match_day": "2024-04-04", "result": "Win"},
+        {"player_id": 8, "match_day": "2024-04-05", "result": "Win"}
+      ]}},
+      "expected": {"columns": ["player_id", "longest_streak"], "rows": [[8, 2]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "equal-maxima", "one-row-per-player"]
+    }
+  ]
+}

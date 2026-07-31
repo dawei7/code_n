@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Product Sales Analysis V and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Joins prices to sales, sums line spending per user, and applies the required two-key ordering.",
+      "time_complexity": "O((s + p) log s)",
+      "space_complexity": "O(s + p)"
     }
   ]
 }

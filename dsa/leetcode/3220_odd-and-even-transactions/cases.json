@@ -1,0 +1,628 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3220",
+  "cases": [
+    {
+      "id": "sample-mixed-dates",
+      "name": "sample: mixed parities across three dates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 150,
+              "transaction_date": "2024-07-01"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 200,
+              "transaction_date": "2024-07-01"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 75,
+              "transaction_date": "2024-07-01"
+            },
+            {
+              "transaction_id": 4,
+              "amount": 300,
+              "transaction_date": "2024-07-02"
+            },
+            {
+              "transaction_id": 5,
+              "amount": 50,
+              "transaction_date": "2024-07-02"
+            },
+            {
+              "transaction_id": 6,
+              "amount": 120,
+              "transaction_date": "2024-07-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-07-01",
+            75,
+            350
+          ],
+          [
+            "2024-07-02",
+            0,
+            350
+          ],
+          [
+            "2024-07-03",
+            0,
+            120
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "trial: one odd transaction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 9,
+              "transaction_date": "2024-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-01-01",
+            9,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-row",
+        "odd-only"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: one even transaction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 8,
+              "transaction_date": "2024-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-01-01",
+            0,
+            8
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-row",
+        "even-only"
+      ]
+    },
+    {
+      "id": "trial-duplicate-amounts",
+      "name": "trial: duplicate amounts all contribute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 5,
+              "transaction_date": "2024-02-02"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 5,
+              "transaction_date": "2024-02-02"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 6,
+              "transaction_date": "2024-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-02-02",
+            10,
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-input-order",
+      "name": "trial: dates are sorted independently of input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 3,
+              "transaction_date": "2024-03-03"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 2,
+              "transaction_date": "2024-01-01"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 7,
+              "transaction_date": "2024-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-01-01",
+            0,
+            2
+          ],
+          [
+            "2024-02-02",
+            7,
+            0
+          ],
+          [
+            "2024-03-03",
+            3,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-many-even",
+      "name": "trial: an even-only date returns zero odd sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 2,
+              "transaction_date": "2024-04-01"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 4,
+              "transaction_date": "2024-04-01"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 6,
+              "transaction_date": "2024-04-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-04-01",
+            0,
+            12
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "even-only"
+      ]
+    },
+    {
+      "id": "real-many-odd",
+      "name": "real: an odd-only date returns zero even sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 1,
+              "transaction_date": "2024-05-01"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 3,
+              "transaction_date": "2024-05-01"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 9,
+              "transaction_date": "2024-05-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-05-01",
+            13,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "odd-only"
+      ]
+    },
+    {
+      "id": "real-same-date-mixed",
+      "name": "real: alternating parity on one date",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 1,
+              "transaction_date": "2024-06-01"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 2,
+              "transaction_date": "2024-06-01"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 3,
+              "transaction_date": "2024-06-01"
+            },
+            {
+              "transaction_id": 4,
+              "amount": 4,
+              "transaction_date": "2024-06-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-06-01",
+            4,
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-year-boundary",
+      "name": "real: dates sort across a year boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 11,
+              "transaction_date": "2025-01-01"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 10,
+              "transaction_date": "2024-12-31"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-12-31",
+            0,
+            10
+          ],
+          [
+            "2025-01-01",
+            11,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-large-amounts",
+      "name": "real: large amounts aggregate by parity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 999,
+              "transaction_date": "2024-08-08"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 1000,
+              "transaction_date": "2024-08-08"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 997,
+              "transaction_date": "2024-08-08"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-08-08",
+            1996,
+            1000
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "amounts"
+      ]
+    },
+    {
+      "id": "real-repeated-dates",
+      "name": "real: multiple groups receive independent sums",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 2,
+              "transaction_date": "2024-09-01"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 3,
+              "transaction_date": "2024-09-02"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 4,
+              "transaction_date": "2024-09-01"
+            },
+            {
+              "transaction_id": 4,
+              "amount": 5,
+              "transaction_date": "2024-09-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-09-01",
+            0,
+            6
+          ],
+          [
+            "2024-09-02",
+            8,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "id": "real-four-dates",
+      "name": "real: four dates with varied group sizes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "amount": 1,
+              "transaction_date": "2024-10-04"
+            },
+            {
+              "transaction_id": 2,
+              "amount": 2,
+              "transaction_date": "2024-10-01"
+            },
+            {
+              "transaction_id": 3,
+              "amount": 4,
+              "transaction_date": "2024-10-01"
+            },
+            {
+              "transaction_id": 4,
+              "amount": 7,
+              "transaction_date": "2024-10-03"
+            },
+            {
+              "transaction_id": 5,
+              "amount": 8,
+              "transaction_date": "2024-10-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transaction_date",
+          "odd_sum",
+          "even_sum"
+        ],
+        "rows": [
+          [
+            "2024-10-01",
+            0,
+            6
+          ],
+          [
+            "2024-10-02",
+            0,
+            8
+          ],
+          [
+            "2024-10-03",
+            7,
+            0
+          ],
+          [
+            "2024-10-04",
+            1,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering",
+        "groups"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3727",
+    "frontend_id": "3727",
+    "title_slug": "maximum-alternating-sum-of-squares",
+    "url": "https://leetcode.com/problems/maximum-alternating-sum-of-squares/description/",
+    "paid_only": false,
+    "content_sha256": "ec3055a3877bad382dcb51ee735b454ce561e44a1d2b705acfeeefb2111f7b4a",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3]",
+        "output": "12",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,-1,2,-2,3,-3]",
+        "output": "16",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6a132ddb082c9ce41d3de0a317d6ad5029b83d0608da3b0ee3a3b554d67ffb81",
+      "reference/contract.md": "1c54cae98cd1a1aa9551b8fb33e5d1a22e967b9721e0315e753b78636a3c4f2c",
+      "reference/examples.md": "70c075c9640dfb17a28733118be40210b24ea8715ce628cb590fdfd5a5d213c1",
+      "reference/constraints.md": "56c22125c81ce04142e815f1d57a38bd0be0cdf4c55c358072406059c3a3fadf"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

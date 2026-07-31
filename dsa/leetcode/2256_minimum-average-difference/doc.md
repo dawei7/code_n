@@ -5,30 +5,49 @@
 | Source | LeetCode |
 | Frontend ID | 2256 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-average-difference](https://leetcode.com/problems/minimum-average-difference/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-average-difference/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-average-difference/).
 
 ### Goal
-Split an array after each index and compare the integer-truncated average of the prefix with that of the remaining suffix. An empty suffix has average zero. Return the earliest index with minimum absolute difference.
+
+For every index $i$ in the 0-indexed array `nums`, split the array immediately
+after that position. The left part contains the first $i+1$ elements, and the
+right part contains the remaining $n-i-1$ elements. Compute each part's average
+using integer division, which rounds down because all values are nonnegative.
+The average of the empty right part at the final index is defined as zero.
+
+The average difference at $i$ is the absolute difference between those two
+integer averages. Find the minimum difference over all split positions and
+return its index. When several indices attain the same minimum, return the
+smallest index.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: a nonempty array of nonnegative integers.
+- `nums`: A nonempty array of $n$ integers, where $1\le n\le10^5$ and $0\le\texttt{nums[i]}\le10^5$.
 
 **Return value**
 
-The smallest index attaining the minimum average difference.
+Return the smallest index minimizing
+
+$$
+\left|
+\left\lfloor\frac{\sum_{j=0}^{i}\texttt{nums[j]}}{i+1}\right\rfloor
+-
+\left\lfloor\frac{\sum_{j=i+1}^{n-1}\texttt{nums[j]}}{n-i-1}\right\rfloor
+\right|,
+$$
+
+where the second average is $0$ when $i=n-1$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [2, 5, 3, 9, 5, 3]`
+- Input: `nums = [2,5,3,9,5,3]`
 - Output: `3`
 
 **Example 2**
@@ -38,18 +57,5 @@ The smallest index attaining the minimum average difference.
 
 **Example 3**
 
-- Input: `nums = [1, 1, 1]`
+- Input: `nums = [1,1,1,1]`
 - Output: `0`
-
----
-
-## Solution
-### Approach
-Compute the total sum, then scan while maintaining a prefix sum. At index `i`, use integer division for `prefix / (i + 1)` and, when nonempty, `(total - prefix) / (n - i - 1)` for the suffix. Update the answer only on a strictly smaller difference so ties retain the earliest index.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

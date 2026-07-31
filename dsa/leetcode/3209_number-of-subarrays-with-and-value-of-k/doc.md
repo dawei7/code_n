@@ -8,80 +8,47 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Bit Manipulation, Segment Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-subarrays-with-and-value-of-k](https://leetcode.com/problems/number-of-subarrays-with-and-value-of-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-subarrays-with-and-value-of-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-subarrays-with-and-value-of-k/).
 
 ### Goal
-Given an array of integers and a target integer `k`, determine the total count of contiguous subarrays where the bitwise AND of all elements within the subarray equals `k`.
+
+Given `nums` and a target integer `k`, consider every nonempty contiguous subarray. Compute the bitwise AND of all values in that subarray.
+
+For a chosen interval, a bit remains set in its result only when that bit is set in every element of the interval. The interval must use consecutive positions; elements cannot be skipped or reordered.
+
+Return the total number of subarrays whose AND is exactly `k`. Subarrays are distinguished by their start and end indices, even when their values are identical.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (1 <= nums.length <= 10^5, 1 <= nums[i] <= 10^9).
-- `k`: An integer (0 <= k <= 10^9).
+- `nums`: A nonempty integer array with $1 \le \lvert\texttt{nums}\rvert \le 10^5$ and $0 \le \texttt{nums}[i] \le 10^9$.
+- `k`: The required bitwise-AND value, with $0 \le k \le 10^9$.
+
+Let $n=\lvert\texttt{nums}\rvert$ and $M=1+\max(\texttt{nums})$.
 
 **Return value**
 
-- An integer representing the total count of subarrays whose bitwise AND result is exactly `k`.
+- The number of nonempty contiguous subarrays whose element-wise bitwise AND equals `k`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 1, 1], k = 1`
+- Input: `nums = [1,1,1], k = 1`
 - Output: `6`
+- Explanation: All six nonempty subarrays contain only ones and therefore have AND value `1`.
 
 **Example 2**
 
-- Input: `nums = [1, 1, 2], k = 1`
+- Input: `nums = [1,1,2], k = 1`
 - Output: `3`
+- Explanation: The two singleton `1` subarrays and the length-two prefix have AND value `1`.
 
 **Example 3**
 
-- Input: `nums = [1, 2, 3], k = 2`
+- Input: `nums = [1,2,3], k = 2`
 - Output: `2`
-
----
-
-## Solution
-### Approach
-The solution leverages the property that for a fixed right endpoint of a subarray, the bitwise AND value is non-increasing as the left endpoint moves to the left. Furthermore, there are at most O(log(max(nums))) distinct bitwise AND values ending at any index `i`. We maintain a dictionary (or list of pairs) representing the counts of all possible AND values ending at the current index. By iterating through the array once and updating these values, we can efficiently count the occurrences of `k`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n * log(max(nums)))`, where `n` is the length of the array. Since each element has at most 30 bits, the number of distinct AND values is bounded by the number of bits.
-- **Space Complexity**: `O(log(max(nums)))` to store the active AND values and their frequencies for the current index.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import defaultdict
-
-def solve(nums: list[int], k: int) -> int:
-    """
-    Calculates the number of subarrays with bitwise AND equal to k.
-    Uses the property that there are at most O(log(max_val)) distinct
-    bitwise AND values ending at any index.
-    """
-    total_count = 0
-    # current_ands stores {and_value: frequency} for subarrays ending at the previous index
-    current_ands = defaultdict(int)
-
-    for x in nums:
-        next_ands = defaultdict(int)
-        # A subarray of length 1
-        next_ands[x] += 1
-
-        # Extend existing subarrays ending at the previous index
-        for val, count in current_ands.items():
-            next_ands[val & x] += count
-
-        # Add the count of subarrays ending at this index that result in k
-        total_count += next_ands.get(k, 0)
-        current_ands = next_ands
-
-    return total_count
-```
-</details>
+- Explanation: The singleton `[2]` and subarray `[2,3]` have AND value `2`.

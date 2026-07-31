@@ -1,27 +1,25 @@
-from collections import defaultdict
-from typing import List
+def solve(mat: list[list[int]]) -> int:
+    rows = len(mat)
+    columns = len(mat[0])
+    positions = {}
 
-def solve(mat: List[List[int]]) -> int:
-    m, n = len(mat), len(mat[0])
-    val_to_coords = defaultdict(list)
-    for r in range(m):
-        for c in range(n):
-            val_to_coords[mat[r][c]].append((r, c))
-            
-    row_max = [0] * m
-    col_max = [0] * n
-    
-    for val in sorted(val_to_coords.keys()):
-        coords = val_to_coords[val]
-        # Store the new dp values for this batch
+    for row in range(rows):
+        for column in range(columns):
+            positions.setdefault(mat[row][column], []).append((row, column))
+
+    row_best = [0] * rows
+    column_best = [0] * columns
+    answer = 0
+
+    for value in sorted(positions):
         updates = []
-        for r, c in coords:
-            dp_val = max(row_max[r], col_max[c]) + 1
-            updates.append((r, c, dp_val))
-        
-        # Apply updates to row_max and col_max
-        for r, c, dp_val in updates:
-            row_max[r] = max(row_max[r], dp_val)
-            col_max[c] = max(col_max[c], dp_val)
-            
-    return max(max(row_max), max(col_max))
+        for row, column in positions[value]:
+            length = 1 + max(row_best[row], column_best[column])
+            updates.append((row, column, length))
+            answer = max(answer, length)
+
+        for row, column, length in updates:
+            row_best[row] = max(row_best[row], length)
+            column_best[column] = max(column_best[column], length)
+
+    return answer

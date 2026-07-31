@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3966",
+    "frontend_id": "3966",
+    "title_slug": "count-good-integers-in-a-range",
+    "url": "https://leetcode.com/problems/count-good-integers-in-a-range/description/",
+    "paid_only": false,
+    "content_sha256": "1cf8e52c64594e71657b888173c8e5ce82fd01359513854e49d6122d8b706654",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "l = 10, r = 15, k = 1",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "l = 201, r = 204, k = 2",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d45b5ab12fe827e87478fac12252c6852fcfd2302b7fd9f800b164e6d66f514b",
+      "reference/contract.md": "09a9a6eb628734c6d8c2dfd280d0066a16c255cbf5e1b9a20301761c9ad872d5",
+      "reference/examples.md": "d73e7b1167f2ba42d14d620360afc797273c29911e17d7f5a5abcc7befda5b84",
+      "reference/constraints.md": "1072d773a3afeaee407f2a922e6e321c1e2df899de94c63d2c3b68e32f59854c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

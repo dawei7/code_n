@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_364", "frontend_id": "364", "title_slug": "nested-list-weight-sum-ii", "url": "https://leetcode.com/problems/nested-list-weight-sum-ii/description/", "paid_only": true, "content_sha256": "a0479afe07291359e7d1ca22a49f280cfccbea6894e3e6509b12d932d4c4ec63", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nestedList = [[1,1],2,[1,1]]", "output": "8", "has_explanation": true},
+      {"ordinal": 2, "input": "nestedList = [1,[4,[6]]]", "output": "17", "has_explanation": true}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "a992164c89c43d83b1db3bf0eefe076241a3e5c35229586e1314fa94395f12f6",
+    "reference/contract.md": "f152e62835d8483c4f8f87f72c4103862fd43464af0ff29f6168eb78ab9aba57",
+    "reference/examples.md": "594c5c9132097fcb8460c932aaaea44a57be05c642bd60c077edd61e98f9bca8",
+    "reference/constraints.md": "f9728b706b5c8b2021ae61bc44bf300a2eaaba70a784b28162461d6c6de13c4c"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Math, Dynamic Programming, Backtracking, Bit Manipulation, Geometry, Bitmask |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-lines-to-cover-points](https://leetcode.com/problems/minimum-number-of-lines-to-cover-points/) |
+| LeetCode | [minimum-number-of-lines-to-cover-points](https://leetcode.com/problems/minimum-number-of-lines-to-cover-points/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-lines-to-cover-points/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An array `points` gives distinct points on the Cartesian plane. You may add
+straight lines of any position or slope. A point is covered when it lies on at
+least one added line, and one line may cover any number of collinear points.
+
+Return the minimum number of straight lines whose union covers every given
+point. Lines may intersect and a point may lie on more than one selected line;
+only complete coverage and the number of lines matter.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `points`: An array of $n$ distinct coordinate pairs `[x, y]`, where
+  $1 \leq n \leq 10$ and $-100 \leq x,y \leq 100$.
 
 **Return value**
 
-TODO
+Return the fewest straight lines needed to cover all points.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `points = [[0, 1], [2, 3], [4, 5], [4, 3]]`
+- Output: `2`
+- Explanation: One line covers `(0, 1)` and `(4, 5)` together with `(2, 3)`;
+  another line covers the remaining point.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `points = [[0, 2], [-2, -2], [1, 4]]`
+- Output: `1`
+- Explanation: All three points lie on the same straight line.

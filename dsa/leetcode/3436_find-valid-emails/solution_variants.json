@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Valid Emails and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Applies one anchored regular expression and orders the qualifying rows by user id.",
+      "time_complexity": "O(S + r log r)",
+      "space_complexity": "O(r)"
     }
   ]
 }

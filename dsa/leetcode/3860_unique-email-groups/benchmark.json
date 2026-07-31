@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3860",
+  "measurement_note": "Size is E, the email count. Every short address already has a unique normalized local name and the same domain, so set insertion remains expected O(E) while the correct slower control scans an ever-growing list of prior normalized addresses.",
+  "cases": [
+    {
+      "id": "benchmark-16-unique-emails",
+      "name": "benchmark: 16 unique normalized emails",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"emails": ["u0@d.com","u1@d.com","u2@d.com","u3@d.com","u4@d.com","u5@d.com","u6@d.com","u7@d.com","u8@d.com","u9@d.com","u10@d.com","u11@d.com","u12@d.com","u13@d.com","u14@d.com","u15@d.com"]},
+      "expected": 16,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "unique-normalized", "list-membership-control"],
+      "size": 16
+    },
+    {
+      "id": "benchmark-64-unique-emails",
+      "name": "benchmark: 64 unique normalized emails",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"emails": ["u0@d.com","u1@d.com","u2@d.com","u3@d.com","u4@d.com","u5@d.com","u6@d.com","u7@d.com","u8@d.com","u9@d.com","u10@d.com","u11@d.com","u12@d.com","u13@d.com","u14@d.com","u15@d.com","u16@d.com","u17@d.com","u18@d.com","u19@d.com","u20@d.com","u21@d.com","u22@d.com","u23@d.com","u24@d.com","u25@d.com","u26@d.com","u27@d.com","u28@d.com","u29@d.com","u30@d.com","u31@d.com","u32@d.com","u33@d.com","u34@d.com","u35@d.com","u36@d.com","u37@d.com","u38@d.com","u39@d.com","u40@d.com","u41@d.com","u42@d.com","u43@d.com","u44@d.com","u45@d.com","u46@d.com","u47@d.com","u48@d.com","u49@d.com","u50@d.com","u51@d.com","u52@d.com","u53@d.com","u54@d.com","u55@d.com","u56@d.com","u57@d.com","u58@d.com","u59@d.com","u60@d.com","u61@d.com","u62@d.com","u63@d.com"]},
+      "expected": 64,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "unique-normalized", "list-membership-control"],
+      "size": 64
+    },
+    {
+      "id": "benchmark-256-unique-emails",
+      "name": "benchmark: 256 unique normalized emails",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"emails": ["u0@d.com","u1@d.com","u2@d.com","u3@d.com","u4@d.com","u5@d.com","u6@d.com","u7@d.com","u8@d.com","u9@d.com","u10@d.com","u11@d.com","u12@d.com","u13@d.com","u14@d.com","u15@d.com","u16@d.com","u17@d.com","u18@d.com","u19@d.com","u20@d.com","u21@d.com","u22@d.com","u23@d.com","u24@d.com","u25@d.com","u26@d.com","u27@d.com","u28@d.com","u29@d.com","u30@d.com","u31@d.com","u32@d.com","u33@d.com","u34@d.com","u35@d.com","u36@d.com","u37@d.com","u38@d.com","u39@d.com","u40@d.com","u41@d.com","u42@d.com","u43@d.com","u44@d.com","u45@d.com","u46@d.com","u47@d.com","u48@d.com","u49@d.com","u50@d.com","u51@d.com","u52@d.com","u53@d.com","u54@d.com","u55@d.com","u56@d.com","u57@d.com","u58@d.com","u59@d.com","u60@d.com","u61@d.com","u62@d.com","u63@d.com","u64@d.com","u65@d.com","u66@d.com","u67@d.com","u68@d.com","u69@d.com","u70@d.com","u71@d.com","u72@d.com","u73@d.com","u74@d.com","u75@d.com","u76@d.com","u77@d.com","u78@d.com","u79@d.com","u80@d.com","u81@d.com","u82@d.com","u83@d.com","u84@d.com","u85@d.com","u86@d.com","u87@d.com","u88@d.com","u89@d.com","u90@d.com","u91@d.com","u92@d.com","u93@d.com","u94@d.com","u95@d.com","u96@d.com","u97@d.com","u98@d.com","u99@d.com","u100@d.com","u101@d.com","u102@d.com","u103@d.com","u104@d.com","u105@d.com","u106@d.com","u107@d.com","u108@d.com","u109@d.com","u110@d.com","u111@d.com","u112@d.com","u113@d.com","u114@d.com","u115@d.com","u116@d.com","u117@d.com","u118@d.com","u119@d.com","u120@d.com","u121@d.com","u122@d.com","u123@d.com","u124@d.com","u125@d.com","u126@d.com","u127@d.com","u128@d.com","u129@d.com","u130@d.com","u131@d.com","u132@d.com","u133@d.com","u134@d.com","u135@d.com","u136@d.com","u137@d.com","u138@d.com","u139@d.com","u140@d.com","u141@d.com","u142@d.com","u143@d.com","u144@d.com","u145@d.com","u146@d.com","u147@d.com","u148@d.com","u149@d.com","u150@d.com","u151@d.com","u152@d.com","u153@d.com","u154@d.com","u155@d.com","u156@d.com","u157@d.com","u158@d.com","u159@d.com","u160@d.com","u161@d.com","u162@d.com","u163@d.com","u164@d.com","u165@d.com","u166@d.com","u167@d.com","u168@d.com","u169@d.com","u170@d.com","u171@d.com","u172@d.com","u173@d.com","u174@d.com","u175@d.com","u176@d.com","u177@d.com","u178@d.com","u179@d.com","u180@d.com","u181@d.com","u182@d.com","u183@d.com","u184@d.com","u185@d.com","u186@d.com","u187@d.com","u188@d.com","u189@d.com","u190@d.com","u191@d.com","u192@d.com","u193@d.com","u194@d.com","u195@d.com","u196@d.com","u197@d.com","u198@d.com","u199@d.com","u200@d.com","u201@d.com","u202@d.com","u203@d.com","u204@d.com","u205@d.com","u206@d.com","u207@d.com","u208@d.com","u209@d.com","u210@d.com","u211@d.com","u212@d.com","u213@d.com","u214@d.com","u215@d.com","u216@d.com","u217@d.com","u218@d.com","u219@d.com","u220@d.com","u221@d.com","u222@d.com","u223@d.com","u224@d.com","u225@d.com","u226@d.com","u227@d.com","u228@d.com","u229@d.com","u230@d.com","u231@d.com","u232@d.com","u233@d.com","u234@d.com","u235@d.com","u236@d.com","u237@d.com","u238@d.com","u239@d.com","u240@d.com","u241@d.com","u242@d.com","u243@d.com","u244@d.com","u245@d.com","u246@d.com","u247@d.com","u248@d.com","u249@d.com","u250@d.com","u251@d.com","u252@d.com","u253@d.com","u254@d.com","u255@d.com"]},
+      "expected": 256,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "unique-normalized", "list-membership-control"],
+      "size": 256
+    }
+  ]
+}

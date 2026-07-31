@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3700",
+    "frontend_id": "3700",
+    "title_slug": "number-of-zigzag-arrays-ii",
+    "url": "https://leetcode.com/problems/number-of-zigzag-arrays-ii/description/",
+    "paid_only": false,
+    "content_sha256": "b91c6202c4e6d375bafdf91c4655c29040b17c2c9add9302e60ce63d955e5106",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 3, l = 4, r = 5", "output": "2", "has_explanation": true},
+      {"ordinal": 2, "input": "n = 3, l = 1, r = 3", "output": "10", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "52fdac257f6ce7ca5c17eb84f13fe2471cd59b9ec90ed0fbd04ad354308651e6",
+      "reference/contract.md": "e17e6e8a09e86559c5bba10a4a5073ada56f5aef3979e8dc07bd3840f460e1a7",
+      "reference/examples.md": "597872eab077382f8aa235ef1a2b44bde39b612ae33ef6eb2c33d5bb0488974c",
+      "reference/constraints.md": "94c5ef25c4d940d2af3d2093db7ec6b8fa59f9f4e74b220cf0e302640dae332f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

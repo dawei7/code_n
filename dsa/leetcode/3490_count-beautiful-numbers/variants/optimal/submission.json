@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3796",
+  "frontend_id": "3490",
+  "title_slug": "count-beautiful-numbers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.beautifulNumbers",
+  "verified_submission_id": "2082338593",
+  "verified_at": "2026-07-26T17:01:00Z"
+}

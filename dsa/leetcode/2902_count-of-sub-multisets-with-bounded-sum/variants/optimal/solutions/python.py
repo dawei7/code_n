@@ -1,36 +1,28 @@
 from collections import Counter
+from typing import List
 
-def solve(nums: list[int], l: int, r: int) -> int:
-    MOD = 10**9 + 7
 
-    # Count frequencies of each number
+def solve(nums: List[int], l: int, r: int) -> int:
+    modulus = 1_000_000_007
     counts = Counter(nums)
+    zero_count = counts.pop(0, 0)
 
-    # dp[i] stores the number of ways to get sum i
     dp = [0] * (r + 1)
-    dp[0] = 1
+    dp[0] = zero_count + 1
 
-    # Current maximum possible sum reachable so far
-    current_max = 0
+    for value, multiplicity in counts.items():
+        next_dp = dp.copy()
+        window_width = (multiplicity + 1) * value
 
-    for val, count in counts.items():
-        if val == 0:
-            # Zeros can be included in any sub-multiset
-            # If there are 'z' zeros, each existing sub-multiset can be
-            # combined with any subset of zeros (2^z ways)
-            for i in range(r + 1):
-                dp[i] = (dp[i] * (count + 1)) % MOD
-            continue
+        for total in range(value, r + 1):
+            next_dp[total] = (
+                next_dp[total] + next_dp[total - value]
+            ) % modulus
+            if total >= window_width:
+                next_dp[total] = (
+                    next_dp[total] - dp[total - window_width]
+                ) % modulus
 
-        new_dp = list(dp)
-        # Sliding window sum to update DP table
-        # For a value 'val' with 'count' occurrences:
-        # dp[i] = sum(dp[i - k * val]) for 0 <= k <= count
-        for i in range(val, r + 1):
-            new_dp[i] = (new_dp[i] + new_dp[i - val]) % MOD
-            if i >= (count + 1) * val:
-                new_dp[i] = (new_dp[i] - dp[i - (count + 1) * val] + MOD) % MOD
-        dp = new_dp
+        dp = next_dp
 
-    # The result is the sum of ways to get sums from l to r
-    return sum(dp[l : r + 1]) % MOD
+    return sum(dp[l : r + 1]) % modulus

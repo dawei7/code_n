@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4282",
+  "frontend_id": "3913",
+  "title_slug": "sort-vowels-by-frequency",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.sortVowels",
+  "verified_submission_id": "2086846228",
+  "verified_at": "2026-07-30T03:21:45.563914+00:00"
+}

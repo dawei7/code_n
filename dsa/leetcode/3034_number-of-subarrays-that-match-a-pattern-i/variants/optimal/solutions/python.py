@@ -1,31 +1,17 @@
+"""Optimal solution for LeetCode 3034: Number of Subarrays That Match a Pattern I."""
+
+
 def solve(nums: list[int], pattern: list[int]) -> int:
-    n = len(nums)
-    m = len(pattern)
-    
-    # Transform nums into a relationship sequence
-    # rels[i] represents the relationship between nums[i] and nums[i+1]
-    rels = []
-    for i in range(n - 1):
-        if nums[i+1] > nums[i]:
-            rels.append(1)
-        elif nums[i+1] == nums[i]:
-            rels.append(0)
-        else:
-            rels.append(-1)
-            
-    count = 0
-    # We need to find how many subarrays of length m in rels match pattern
-    # The number of possible starting positions is len(rels) - m + 1
-    if len(rels) < m:
-        return 0
-        
-    for i in range(len(rels) - m + 1):
-        match = True
-        for j in range(m):
-            if rels[i + j] != pattern[j]:
-                match = False
+    answer = 0
+
+    for start in range(len(nums) - len(pattern)):
+        for offset, expected_relation in enumerate(pattern):
+            left = nums[start + offset]
+            right = nums[start + offset + 1]
+            actual_relation = (right > left) - (right < left)
+            if actual_relation != expected_relation:
                 break
-        if match:
-            count += 1
-            
-    return count
+        else:
+            answer += 1
+
+    return answer

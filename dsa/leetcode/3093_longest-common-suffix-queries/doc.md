@@ -8,94 +8,55 @@
 | Category | Algorithms |
 | Topics | Array, String, Trie |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-common-suffix-queries](https://leetcode.com/problems/longest-common-suffix-queries/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/longest-common-suffix-queries/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-common-suffix-queries/).
 
 ### Goal
-Given two arrays of strings, `wordsContainer` and `wordsQuery`, determine the index of the string in `wordsContainer` that shares the longest common suffix with each string in `wordsQuery`. If multiple strings in `wordsContainer` share the same maximum suffix length, choose the one with the minimum length. If there is still a tie, choose the one with the smallest original index.
+
+Two arrays of lowercase strings are given: `wordsContainer`, which supplies candidate words, and `wordsQuery`, which supplies independent queries. For every query, select the container word sharing the longest possible suffix with it. The empty suffix is shared when no final character matches.
+
+If several container words attain the same longest common suffix length, prefer the shortest complete word. If that still leaves a tie, prefer the word appearing at the smallest index in `wordsContainer`.
+
+Return one container index for each query, preserving the order of `wordsQuery`.
 
 ### Function Contract
+
 **Inputs**
 
-- `wordsContainer`: A list of strings representing the dictionary to search within.
-- `wordsQuery`: A list of strings representing the queries to perform.
+- `wordsContainer`: a nonempty list of lowercase English strings.
+- `wordsQuery`: a nonempty list of lowercase English query strings.
+
+Each list contains at most $10^4$ strings, and each string has length from $1$ through $5\cdot10^3$. Define
+
+$$
+C=\sum_{w\in\texttt{wordsContainer}}\lvert w\rvert
+\qquad\text{and}\qquad
+Q=\sum_{w\in\texttt{wordsQuery}}\lvert w\rvert.
+$$
+
+Both $C$ and $Q$ are at most $5\cdot10^5$.
 
 **Return value**
 
-- A list of integers where each integer corresponds to the index of the best-matching string in `wordsContainer` for the respective query in `wordsQuery`.
+Return a list of indices. For each `wordsQuery[i]`, choose the index maximizing common-suffix length, then minimizing the container word's length, then minimizing its index.
 
 ### Examples
+
 **Example 1**
 
-- Input: `wordsContainer = ["abcd","bcd","xbcd"], wordsQuery = ["cd","bcd","xyz"]`
-- Output: `[1,1,1]`
+- Input: `wordsContainer = ["abcd", "bcd", "xbcd"]`, `wordsQuery = ["cd", "bcd", "xyz"]`
+- Output: `[1, 1, 1]`
+- Explanation: All three words match `"cd"` and `"bcd"`, so shortest word `"bcd"` wins. No final character matches `"xyz"`, and the same globally shortest word wins the empty-suffix tie.
 
 **Example 2**
 
-- Input: `wordsContainer = ["abcdef","bcd","xyz"], wordsQuery = ["xyz","abc"]`
-- Output: `[2,0]`
+- Input: `wordsContainer = ["abcdefgh", "poiuygh", "ghghgh"]`, `wordsQuery = ["gh", "acbfgh", "acbfegh"]`
+- Output: `[2, 0, 2]`
+- Explanation: The shortest word wins the two-character `"gh"` ties, but index 0 uniquely matches the longer suffix `"fgh"` for the middle query.
 
 **Example 3**
 
-- Input: `wordsContainer = ["a","b","c"], wordsQuery = ["d","e","f"]`
-- Output: `[0,0,0]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Trie (Prefix Tree)**. Since we are matching suffixes, we insert the reversed strings of `wordsContainer` into the Trie. Each node in the Trie stores the index of the "best" string encountered so far that passes through that node (based on the criteria: longest suffix, shortest length, smallest index). During query time, we reverse the query string and traverse the Trie until we can no longer match characters, returning the index stored at the last reachable node.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \cdot L + M \cdot K)$, where $N$ is the number of words in `wordsContainer`, $L$ is the average length of these words, $M$ is the number of queries, and $K$ is the average length of query strings.
-- **Space Complexity**: $O(N \cdot L \cdot \Sigma)$, where $\Sigma$ is the alphabet size (26), representing the space required to store the Trie nodes.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        # Stores (length_of_word, index_in_container)
-        self.best = (float('inf'), float('inf'))
-
-def solve(wordsContainer, wordsQuery):
-    root = TrieNode()
-
-    def insert(word, index):
-        length = len(word)
-        node = root
-        # Update root if this word is better than current best
-        if (length, index) < node.best:
-            node.best = (length, index)
-
-        # Insert reversed word
-        for char in reversed(word):
-            if char not in node.children:
-                node.children[char] = TrieNode()
-            node = node.children[char]
-            if (length, index) < node.best:
-                node.best = (length, index)
-
-    # Build the Trie
-    for i, word in enumerate(wordsContainer):
-        insert(word, i)
-
-    results = []
-    for query in wordsQuery:
-        node = root
-        # Traverse Trie with reversed query
-        for char in reversed(query):
-            if char in node.children:
-                node = node.children[char]
-            else:
-                break
-        results.append(node.best[1])
-
-    return results
-```
-</details>
+- Input: `wordsContainer = ["za", "ya", "b"]`, `wordsQuery = ["qa", "x"]`
+- Output: `[0, 2]`
+- Explanation: Equal-length `"a"` matches use the earlier index, while no match for `"x"` falls back to the globally shortest word.

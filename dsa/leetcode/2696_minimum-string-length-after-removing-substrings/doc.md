@@ -8,48 +8,38 @@
 | Category | Algorithms |
 | Topics | String, Stack, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-string-length-after-removing-substrings](https://leetcode.com/problems/minimum-string-length-after-removing-substrings/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/minimum-string-length-after-removing-substrings/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-string-length-after-removing-substrings/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string `s` containing only uppercase English letters, repeatedly remove occurrences of either `"AB"` or `"CD"`. Each operation may choose any current occurrence of one of those two substrings.
+
+After a removal, the characters on its left and right become adjacent. That concatenation can create a new removable occurrence that did not exist before, so the process may continue through several newly exposed pairs.
+
+Return the minimum length obtainable after performing any number of valid removals.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string of uppercase English letters with $1 \leq \lvert s \rvert \leq 100$.
 
 **Return value**
 
-TODO
+Return an integer equal to the smallest possible length after removing any sequence of `"AB"` and `"CD"` occurrences.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "ABFCACDB"`
+- Output: `2`
+- Explanation: Successive removals can leave `"FC"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "ACBBD"`
+- Output: `5`
+- Explanation: Neither removable pair occurs, so the string is unchanged.

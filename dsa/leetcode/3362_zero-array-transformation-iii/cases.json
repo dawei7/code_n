@@ -30,12 +30,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "heap"
+        "overlap"
       ]
     },
     {
       "id": "sample-remove-two",
-      "name": "sample: remove two redundant queries",
+      "name": "sample: two queries are redundant",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -67,7 +67,7 @@
       "expected": 2,
       "tags": [
         "sample",
-        "heap"
+        "greedy"
       ]
     },
     {
@@ -96,8 +96,69 @@
       ]
     },
     {
-      "id": "trial-return-removed-not-used",
-      "name": "trial: answer is removable count, not used count",
+      "id": "trial-all-zero",
+      "name": "trial: an existing zero array needs no queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "edge",
+        "all-zero",
+        "remove-all"
+      ]
+    },
+    {
+      "id": "trial-farthest-end",
+      "name": "trial: the farthest-ending query avoids an extra selection",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "regression",
+        "exchange-greedy"
+      ]
+    },
+    {
+      "id": "trial-return-removed",
+      "name": "trial: return the removed count rather than the selected count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,18 +189,92 @@
       ]
     },
     {
-      "id": "real-overlap-greedy",
-      "name": "real: farthest-ending active query is needed",
+      "id": "real-unsorted-overlaps",
+      "name": "real: unsorted intervals with mixed starts and ends",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          2,
-          1,
-          2,
-          1,
           0,
+          1,
+          1,
+          2,
           1
+        ],
+        "queries": [
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "unsorted",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-uncovered-hole",
+      "name": "real: one positive index has no covering query",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "impossible",
+        "coverage-hole"
+      ]
+    },
+    {
+      "id": "real-duplicate-full-ranges",
+      "name": "real: duplicate full ranges meet high endpoint demands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          3
         ],
         "queries": [
           [
@@ -147,30 +282,73 @@
             2
           ],
           [
-            2,
-            5
+            0,
+            2
           ],
           [
             0,
-            5
+            2
           ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "duplicates",
+        "high-demand"
+      ]
+    },
+    {
+      "id": "real-late-starts",
+      "name": "real: late-starting intervals enter the sweep on demand",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          2,
+          2,
+          1
+        ],
+        "queries": [
           [
             1,
             3
           ],
           [
-            3,
-            5
+            2,
+            3
           ],
           [
             0,
-            0
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            3
           ]
         ]
       },
-      "expected": 4,
+      "expected": 3,
       "tags": [
         "real",
+        "late-start",
         "heap"
       ]
     }

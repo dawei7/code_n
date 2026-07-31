@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3121",
+  "cases": [
+    {
+      "id": "benchmark-order-scan-64",
+      "name": "benchmark: one long ordered pair at length 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": { "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" },
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "ordering"]
+    },
+    {
+      "id": "benchmark-order-scan-192",
+      "name": "benchmark: one long ordered pair at length 192",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": { "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" },
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "ordering"]
+    },
+    {
+      "id": "benchmark-order-scan-512",
+      "name": "benchmark: one long ordered pair at length 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": { "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" },
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "ordering"]
+    }
+  ]
+}

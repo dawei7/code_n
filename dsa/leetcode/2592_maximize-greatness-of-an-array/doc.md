@@ -8,77 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Two Pointers, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-greatness-of-an-array](https://leetcode.com/problems/maximize-greatness-of-an-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-greatness-of-an-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-greatness-of-an-array/).
 
 ### Goal
-Given an array of integers, rearrange its elements to form a permutation such that the number of indices `i` where the new element is strictly greater than the original element at that index is maximized. Return this maximum count.
+
+You are given a 0-indexed integer array `nums`. Rearrange all of its elements into a permutation `perm` of your choice.
+
+The greatness of that arrangement is the number of indices `i` for which `perm[i] > nums[i]`. The comparison is strict, so assigning an equal value to a position does not contribute. Every original element must appear exactly once in `perm`, including duplicate values.
+
+Return the largest greatness achievable by any permutation.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
+- `nums`: A list of $n$ integers, where $1 \leq n \leq 10^5$ and $0 \leq \texttt{nums[i]} \leq 10^9$.
 
 **Return value**
 
-- An integer representing the maximum number of indices where the permuted array elements are strictly greater than the original elements.
+- The maximum number of positions whose assigned permutation value is strictly greater than the original value at that position.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1,3,5,2,1,3,1]`
 - Output: `4`
+
+For example, `perm = [2,5,1,3,3,1,1]` wins at indices `0`, `1`, `3`, and `4`.
 
 **Example 2**
 
 - Input: `nums = [1,2,3,4]`
 - Output: `3`
 
-**Example 3**
-
-- Input: `nums = [10,10,10]`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Greedy approach combined with Sorting**. By sorting the array, we can efficiently pair the smallest available elements with the smallest possible elements that are strictly greater than them. A **Two Pointers** technique is used to traverse the sorted array: one pointer tracks the "target" (the element we want to beat) and the other tracks the "candidate" (the element we use to beat the target).
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log N)` due to the sorting step, where `N` is the length of the input array. The subsequent two-pointer traversal is `O(N)`.
-- **Space Complexity**: `O(1)` or `O(N)` depending on the sorting implementation's space requirements (Python's Timsort is `O(N)`).
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    """
-    Maximizes the number of indices i such that permuted_nums[i] > nums[i].
-
-    Strategy:
-    1. Sort the array to easily find the smallest elements that can satisfy the condition.
-    2. Use two pointers: 'i' for the smallest element we are trying to beat,
-       and 'j' for the candidate element we are using to beat it.
-    3. If nums[j] > nums[i], we have a successful pair, increment count and move both pointers.
-    4. If nums[j] <= nums[i], we must move 'j' to find a larger candidate.
-    """
-    nums.sort()
-    n = len(nums)
-    i = 0
-    count = 0
-
-    for j in range(n):
-        if nums[j] > nums[i]:
-            count += 1
-            i += 1
-
-    return count
-```
-</details>
+The permutation `[2,3,4,1]` wins at the first three positions.

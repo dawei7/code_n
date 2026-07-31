@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3574",
+  "frontend_id": "3262",
+  "title_slug": "find-overlapping-shifts",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2080369495",
+  "verified_at": "2026-07-25T06:28:01.814577+00:00"
+}

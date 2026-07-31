@@ -5,51 +5,50 @@
 | Source | LeetCode |
 | Frontend ID | 2238 |
 | Difficulty | Medium |
-| Category | Database |
 | Topics | Database |
-| Supported Languages | sql |
-| Official Link | [number-of-times-a-driver-was-a-passenger](https://leetcode.com/problems/number-of-times-a-driver-was-a-passenger/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-times-a-driver-was-a-passenger/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-times-a-driver-was-a-passenger/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Rides` table records rides by unique `ride_id`. Each row names the
+`driver_id` of the person who drove that ride and the `passenger_id` of the
+person who rode as its passenger. Within one row, the driver and passenger are
+different people.
+
+Report every distinct person who appears as a driver in at least one row. For
+each such driver, count how many rows list that same person as the passenger.
+A driver who never appears in the passenger column must still be included with
+a count of zero. The result rows may be returned in any order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Rides`: A table with integer columns `ride_id`, `driver_id`, and `passenger_id`.
+
+`ride_id` is unique, and every row satisfies `driver_id != passenger_id`.
 
 **Return value**
 
-TODO
+Return one row per distinct driver with columns `driver_id` and `cnt`, where
+`cnt` is the number of `Rides` rows whose `passenger_id` equals that driver.
+Result order is unrestricted.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `Rides = [[1, 7, 1], [2, 7, 2], [3, 11, 1], [4, 11, 7], [5, 11, 7], [6, 11, 3]]`
+- Output: `[[7, 2], [11, 0]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `Rides = [[1, 4, 9]]`
+- Output: `[[4, 0]]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `Rides = [[1, 1, 2], [2, 2, 1]]`
+- Output: `[[1, 1], [2, 1]]`

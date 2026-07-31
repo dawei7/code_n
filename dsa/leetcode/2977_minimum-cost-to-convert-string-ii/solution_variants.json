@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Cost to Convert String II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines all-pairs rule-string conversion costs with a prefix dynamic program and simultaneous trie matching.",
+      "time_complexity": "O(M^3 + N^2 + S)",
+      "space_complexity": "O(M^2 + N + S)"
     }
   ]
 }

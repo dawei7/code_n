@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_2450",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two overlapping windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "1001", "k": 3},
+      "expected": 4,
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: whole-string window",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "10110", "k": 5},
+      "expected": 2,
+      "tags": ["sample", "whole-string"]
+    },
+    {
+      "id": "trial-single-bit",
+      "name": "trial: one-bit string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "0", "k": 1},
+      "expected": 2,
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "trial-independent-bits",
+      "name": "trial: every bit is an independent window",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "101010", "k": 1},
+      "expected": 64,
+      "tags": ["trial", "single-character-windows"]
+    },
+    {
+      "id": "real-four-windows",
+      "name": "hidden: four eligible windows",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "000000", "k": 3},
+      "expected": 16,
+      "tags": ["hidden", "overlap"]
+    },
+    {
+      "id": "real-content-independent",
+      "name": "hidden: content does not affect the count",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "1110010110", "k": 7},
+      "expected": 16,
+      "tags": ["hidden", "content-independent"]
+    },
+    {
+      "id": "real-long-power",
+      "name": "hidden: twenty independent bit flips",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "01010101010101010101", "k": 1},
+      "expected": 1048576,
+      "tags": ["hidden", "modular-power"]
+    }
+  ]
+}

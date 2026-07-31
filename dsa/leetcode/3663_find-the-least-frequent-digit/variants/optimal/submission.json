@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3994",
+  "frontend_id": "3663",
+  "title_slug": "find-the-least-frequent-digit",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getLeastFrequentDigit",
+  "verified_submission_id": "2083978365",
+  "verified_at": "2026-07-27T22:35:19.767632+00:00"
+}

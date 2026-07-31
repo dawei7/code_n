@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Apply Operations to Maximize Score and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts each index's selectable subarrays with asymmetric monotonic-stack boundaries, then greedily spends those multiplicities on values from largest to smallest.",
+      "time_complexity": "O(V \\log \\log V + n \\log n)",
+      "space_complexity": "O(V + n)"
     }
   ]
 }

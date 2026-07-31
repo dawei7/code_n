@@ -8,48 +8,55 @@
 | Category | Algorithms |
 | Topics | Math, String, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-ways-to-divide-a-long-corridor](https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/) |
+| LeetCode | [number-of-ways-to-divide-a-long-corridor](https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A 0-indexed string `corridor` describes a line in a library. Each `S`
+represents a seat and each `P` represents a decorative plant. Fixed room
+dividers already stand immediately before the first character and after the
+last character.
+
+At most one additional divider may be installed in each gap between adjacent
+characters. The resulting nonoverlapping sections must each contain exactly
+two seats and may contain any number of plants. Two divisions differ when at
+least one gap contains a divider in one division but not the other.
+
+Return the number of valid divisions modulo $10^9+7$. If no division can give
+every section exactly two seats, return `0`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `corridor`: A string of length $n$, where $1 \leq n \leq 10^5$, containing
+  only `S` and `P`.
 
 **Return value**
 
-TODO
+Return the number of distinct sets of internal divider positions that create
+sections with exactly two seats, reduced modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `corridor = "SSPPSPS"`
+- Output: `3`
+- Explanation: The plants between the second and third seats create three
+  possible gaps for the sole internal divider.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `corridor = "PPSPSP"`
+- Output: `1`
+- Explanation: The corridor already contains exactly two seats, so no
+  additional divider is installed.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `corridor = "S"`
+- Output: `0`
+- Explanation: One seat cannot form a valid section.

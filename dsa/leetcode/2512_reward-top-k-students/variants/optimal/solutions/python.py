@@ -1,22 +1,11 @@
-def solve(positive_feedback: list[str], negative_feedback: list[str], report: list[str], student_id: list[int], k: int) -> list[int]:
-    pos_set = set(positive_feedback)
-    neg_set = set(negative_feedback)
-    
-    student_scores = []
-    
-    for i in range(len(student_id)):
-        score = 0
-        words = report[i].split()
-        for word in words:
-            if word in pos_set:
-                score += 3
-            elif word in neg_set:
-                score -= 1
-        
-        # We store (-score, id) to use Python's default sort/heap behavior:
-        # Sort by score descending (via negative score) and ID ascending.
-        student_scores.append((-score, student_id[i]))
-    
-    student_scores.sort()
-    
-    return [student_scores[i][1] for i in range(k)]
+def solve(positive_feedback, negative_feedback, report, student_id, k):
+    word_score = {word: 3 for word in positive_feedback}
+    word_score.update((word, -1) for word in negative_feedback)
+
+    ranking = []
+    for feedback, identifier in zip(report, student_id):
+        score = sum(word_score.get(word, 0) for word in feedback.split())
+        ranking.append((-score, identifier))
+
+    ranking.sort()
+    return [identifier for _, identifier in ranking[:k]]

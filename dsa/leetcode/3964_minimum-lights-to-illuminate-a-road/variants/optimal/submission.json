@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4330",
+  "frontend_id": "3964",
+  "title_slug": "minimum-lights-to-illuminate-a-road",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minLights",
+  "verified_submission_id": "2087833487",
+  "verified_at": "2026-07-30T17:10:00+00:00"
+}

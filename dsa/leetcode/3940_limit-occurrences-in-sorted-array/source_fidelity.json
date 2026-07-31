@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3940",
+    "frontend_id": "3940",
+    "title_slug": "limit-occurrences-in-sorted-array",
+    "url": "https://leetcode.com/problems/limit-occurrences-in-sorted-array/description/",
+    "paid_only": false,
+    "content_sha256": "64f4d250d2a8251bd11c430a2cee196c26b1866a701e17c131e7deea9a6bc5b9",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,1,1,2,2,3], k = 2",
+        "output": "[1,1,2,2,3]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,3], k = 1",
+        "output": "[1,2,3]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9a010bb99792e5abe343f89de84a52e68608ae011069facae23f137ddbd0d0ff",
+      "reference/contract.md": "eeee8731746833e46853cf2634b8de531b72213a5e98b6cafa457484f29c045c",
+      "reference/note.md": "16d6e40144052a35dd5038f97a3d7746140aebb8c9ebd2fd0b972ba51d437ad7",
+      "reference/examples.md": "9e25b9002a2ecf726395e281cce60e01de024eaac95a1de01f063e8ec351af56",
+      "reference/constraints.md": "a142f844447fc819f22c4f32323fcb22cdee6a6656c3c706f80ebca5119fb977",
+      "reference/follow_up.md": "9578572af5d831394e4d53617e1d756afa79803e7c95aa831f1d946d7bcb5539"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

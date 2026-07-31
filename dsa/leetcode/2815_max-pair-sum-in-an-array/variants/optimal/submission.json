@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2902",
+  "frontend_id": "2815",
+  "title_slug": "max-pair-sum-in-an-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSum",
+  "verified_submission_id": "2077194201",
+  "verified_at": "2026-07-22T14:02:00+00:00"
+}

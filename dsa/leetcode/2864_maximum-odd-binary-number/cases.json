@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2864",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one set bit must finish the number",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "010"},
+      "expected": "001",
+      "tags": ["sample", "leading-zeros"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: remaining set bit leads",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "0101"},
+      "expected": "1001",
+      "tags": ["sample", "mixed-bits"]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: minimum-length input",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "1"},
+      "expected": "1",
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: every bit is already set",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "1111"},
+      "expected": "1111",
+      "tags": ["trial", "all-ones"]
+    },
+    {
+      "id": "trial-single-one-many-zeros",
+      "name": "trial: leading zeros are necessary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "10000"},
+      "expected": "00001",
+      "tags": ["trial", "single-one", "leading-zeros"]
+    },
+    {
+      "id": "real-alternating-bits",
+      "name": "hidden: all high-value set bits move left",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "101010"},
+      "expected": "110001",
+      "tags": ["hidden", "alternating"]
+    },
+    {
+      "id": "real-two-ones-no-zeros",
+      "name": "hidden: two set bits remain unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "11"},
+      "expected": "11",
+      "tags": ["hidden", "no-zeros"]
+    },
+    {
+      "id": "real-unordered-mix",
+      "name": "hidden: multiplicities alone determine the answer",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "00111001"},
+      "expected": "11100001",
+      "tags": ["hidden", "mixed-bits"]
+    }
+  ]
+}

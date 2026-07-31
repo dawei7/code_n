@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Beautiful Numbers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts zero-containing values directly, then uses digit DP over feasible sums and each zero-free product's still-missing divisor.",
+      "time_complexity": "O(D^4)",
+      "space_complexity": "O(D^3)"
     }
   ]
 }

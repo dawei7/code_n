@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Special Subsequences and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sweeps the third index while incrementally counting every newly eligible left-pair ratio and matching it against right-pair ratios.",
+      "time_complexity": "O(n^2 log V)",
+      "space_complexity": "O(n^2)"
     }
   ]
 }

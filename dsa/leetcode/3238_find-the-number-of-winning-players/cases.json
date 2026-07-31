@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3238",
   "cases": [
     {
       "id": "sample-two-winners",
-      "name": "sample: players exceed their index",
+      "name": "sample: two players reach their thresholds",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -11,184 +12,418 @@
         "pick": [
           [
             0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
             1
           ],
           [
-            1,
-            2
-          ],
-          [
-            1,
-            2
+            2,
+            1
           ],
           [
             2,
-            3
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            2,
-            3
+            0
           ]
         ]
       },
-      "expected": 3,
+      "expected": 2,
       "tags": [
-        "sample",
-        "counting"
+        "sample"
       ]
     },
     {
-      "id": "sample-no-winners",
-      "name": "sample: no color count is high enough",
+      "id": "sample-colors-do-not-combine",
+      "name": "sample: different colors do not combine",
       "kind": "sample",
       "visible": true,
       "input": {
-        "n": 3,
+        "n": 5,
         "pick": [
           [
             1,
             1
           ],
           [
-            2,
+            1,
             2
           ],
           [
-            2,
+            1,
             3
+          ],
+          [
+            1,
+            4
           ]
         ]
       },
       "expected": 0,
       "tags": [
         "sample",
-        "none"
+        "colors"
       ]
     },
     {
-      "id": "trial-player-zero",
-      "name": "trial: player zero wins after one pick",
-      "kind": "trial",
+      "id": "sample-player-two-wins",
+      "name": "sample: player two picks one color three times",
+      "kind": "sample",
       "visible": true,
       "input": {
-        "n": 1,
+        "n": 5,
         "pick": [
           [
-            0,
-            7
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
           ]
         ]
       },
       "expected": 1,
       "tags": [
-        "edge"
+        "sample"
       ]
     },
     {
-      "id": "trial-many-colors",
-      "name": "trial: many colors do not combine",
+      "id": "trial-player-zero",
+      "name": "trial: player zero wins with one pick",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "pick": [
+          [
+            0,
+            10
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "player-zero"
+      ]
+    },
+    {
+      "id": "trial-player-one-split-colors",
+      "name": "trial: player one splits two picks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "pick": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "id": "trial-exact-threshold",
+      "name": "trial: exact player threshold wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "pick": [
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "threshold"
+      ]
+    },
+    {
+      "id": "trial-multiple-winning-colors",
+      "name": "trial: one player wins with two colors",
       "kind": "trial",
       "visible": true,
       "input": {
         "n": 3,
         "pick": [
           [
-            2,
-            1
-          ],
-          [
-            2,
+            1,
             2
           ],
           [
-            2,
-            1
-          ],
-          [
-            2,
+            1,
             2
           ],
           [
-            2,
-            1
+            1,
+            3
+          ],
+          [
+            1,
+            3
           ]
         ]
       },
       "expected": 1,
       "tags": [
+        "count-once"
+      ]
+    },
+    {
+      "id": "real-every-player-wins",
+      "name": "real: every player reaches a threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "pick": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "all-players"
+      ]
+    },
+    {
+      "id": "real-no-winners",
+      "name": "real: no same-color threshold is reached",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "pick": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "none"
+      ]
+    },
+    {
+      "id": "real-color-boundaries",
+      "name": "real: both color boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "pick": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
         "colors"
       ]
     },
     {
-      "id": "real-mixed-picks",
-      "name": "real: mixed repeated picks",
+      "id": "real-highest-player-threshold",
+      "name": "real: player nine needs ten same-color picks",
       "kind": "real",
       "visible": false,
       "input": {
-        "n": 5,
+        "n": 10,
         "pick": [
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            9,
+            7
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "threshold"
+      ]
+    },
+    {
+      "id": "real-order-independent",
+      "name": "real: interleaved winners",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "pick": [
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
           [
             0,
             2
           ],
           [
-            3,
-            1
-          ],
-          [
-            3,
-            1
-          ],
-          [
-            3,
-            1
-          ],
-          [
-            3,
-            1
-          ],
-          [
-            4,
-            7
-          ],
-          [
-            4,
-            7
-          ],
-          [
-            4,
-            7
-          ],
-          [
-            4,
-            7
-          ],
-          [
-            4,
-            7
+            1,
+            3
           ],
           [
             2,
-            9
-          ],
-          [
-            2,
-            8
-          ],
-          [
-            2,
-            9
+            4
           ]
         ]
       },
       "expected": 3,
       "tags": [
-        "real",
-        "counting"
+        "interleaved"
       ]
     }
   ]

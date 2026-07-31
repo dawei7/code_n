@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Occurrences of an Element in an Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes every index containing the target, then answers each occurrence-number query by direct lookup.",
+      "time_complexity": "O(n + q)",
+      "space_complexity": "O(n)"
     }
   ]
 }

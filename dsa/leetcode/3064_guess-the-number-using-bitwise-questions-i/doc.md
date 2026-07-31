@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Bit Manipulation, Interactive |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [guess-the-number-using-bitwise-questions-i](https://leetcode.com/problems/guess-the-number-using-bitwise-questions-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/guess-the-number-using-bitwise-questions-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/guess-the-number-using-bitwise-questions-i/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An unknown positive integer $n$ must be recovered through a predefined interactive API. The hidden number fits in 30 bits.
+
+Calling `commonSetBits(num)` returns how many bit positions contain `1` in both $n$ and the query value `num`. Equivalently, the response is the number of set bits in `n & num`. Every query value must remain between $0$ and $2^{30}-1$; results for values outside that interval are not guaranteed to be reliable.
+
+Determine and return the exact hidden number $n$ using the information supplied by this API.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The hidden integer, satisfying $1 \le n \le 2^{30}-1$.
+
+In LeetCode's native interactive interface, `findNumber()` receives no explicit parameter. It learns about $n$ only by calling `commonSetBits(num)`. The cOde(n) adapter exposes `n` so it can provide the same deterministic oracle locally.
+
+For every legal query $0 \le 	exttt{num} \le 2^{30}-1$, the oracle returns the population count of `n & num`.
 
 **Return value**
 
-TODO
+Return the exact hidden integer $n$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 31`
+- Output: `31`
+- Explanation: The API responses contain enough information to recover the five low set bits of `31`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 33`
+- Output: `33`
+- Explanation: The recovered number has set bits at positions zero and five.

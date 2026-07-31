@@ -1,0 +1,54 @@
+{
+  "challenge_id": "lc_2844",
+  "measurement_note": "Size is n, the number of digits. Repeated nonzero digits force every suffix matcher to scan fully and leave deletion of all digits as the answer. The optimal four-pattern scan is linear, while a correct alternative that enumerates every ordered digit pair is quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 digits with no usable suffix pair",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "num": "1111111111111111"
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "small",
+        "pair-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 48 digits with no usable suffix pair",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "num": "111111111111111111111111111111111111111111111111"
+      },
+      "expected": 48,
+      "tags": [
+        "benchmark",
+        "medium",
+        "pair-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 96 digits with no usable suffix pair",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "num": "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": 96,
+      "tags": [
+        "benchmark",
+        "large",
+        "pair-enumeration"
+      ]
+    }
+  ]
+}

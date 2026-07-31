@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2391",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: all three garbage trucks travel",
+      "name": "sample: paper and glass stop at different houses",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,12 +23,12 @@
       "expected": 21,
       "tags": [
         "sample",
-        "prefix-sum"
+        "different-stops"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: metal reaches second house",
+      "name": "sample: all three trucks operate",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,12 +44,32 @@
       },
       "expected": 37,
       "tags": [
-        "sample"
+        "sample",
+        "all-types"
       ]
     },
     {
-      "id": "trial-one-type-per-house",
-      "name": "trial: one garbage type per house",
+      "id": "trial-one-type-later",
+      "name": "trial: only metal leaves house zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "garbage": [
+          "MPG",
+          "M"
+        ],
+        "travel": [
+          5
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "one-truck"
+      ]
+    },
+    {
+      "id": "trial-distinct-stops",
+      "name": "trial: each truck has a different final house",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -64,28 +85,73 @@
       },
       "expected": 6,
       "tags": [
-        "trial"
+        "different-stops"
       ]
     },
     {
-      "id": "real-one-type-per-house",
-      "name": "hidden: trucks stop at different houses",
+      "id": "real-all-at-final",
+      "name": "hidden: every truck reaches the final house",
       "kind": "real",
       "visible": false,
       "input": {
         "garbage": [
           "M",
           "P",
-          "G"
+          "GMP"
         ],
         "travel": [
-          1,
-          1
+          2,
+          3
         ]
       },
-      "expected": 6,
+      "expected": 20,
       "tags": [
-        "hidden"
+        "hidden",
+        "final-house"
+      ]
+    },
+    {
+      "id": "real-no-later-paper",
+      "name": "hidden: one truck never travels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "garbage": [
+          "P",
+          "GG",
+          "M"
+        ],
+        "travel": [
+          4,
+          7
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "hidden",
+        "absent-later"
+      ]
+    },
+    {
+      "id": "real-many-units",
+      "name": "hidden: pickup multiplicity is counted separately",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "garbage": [
+          "MMMM",
+          "PPPP",
+          "GGGG"
+        ],
+        "travel": [
+          10,
+          20
+        ]
+      },
+      "expected": 52,
+      "tags": [
+        "hidden",
+        "pickup-count"
       ]
     }
   ]

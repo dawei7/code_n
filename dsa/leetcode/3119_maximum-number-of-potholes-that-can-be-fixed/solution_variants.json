@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Number of Potholes That Can Be Fixed and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Extracts pothole-run lengths and spends the fixed per-operation overhead on the longest available runs first.",
+      "time_complexity": "O(n + r log r)",
+      "space_complexity": "O(r)"
     }
   ]
 }

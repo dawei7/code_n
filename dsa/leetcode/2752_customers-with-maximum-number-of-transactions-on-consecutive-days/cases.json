@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2752",
+  "cases": [
+    {
+      "id": "sample-tied-longest",
+      "name": "sample: two customers tie with three consecutive days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 101,
+              "transaction_date": "2023-05-01",
+              "amount": 100
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 101,
+              "transaction_date": "2023-05-02",
+              "amount": 150
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 101,
+              "transaction_date": "2023-05-03",
+              "amount": 200
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 102,
+              "transaction_date": "2023-05-01",
+              "amount": 50
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 102,
+              "transaction_date": "2023-05-03",
+              "amount": 100
+            },
+            {
+              "transaction_id": 6,
+              "customer_id": 102,
+              "transaction_date": "2023-05-04",
+              "amount": 200
+            },
+            {
+              "transaction_id": 7,
+              "customer_id": 105,
+              "transaction_date": "2023-05-01",
+              "amount": 100
+            },
+            {
+              "transaction_id": 8,
+              "customer_id": 105,
+              "transaction_date": "2023-05-02",
+              "amount": 150
+            },
+            {
+              "transaction_id": 9,
+              "customer_id": 105,
+              "transaction_date": "2023-05-03",
+              "amount": 200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            101
+          ],
+          [
+            105
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-single-transaction",
+      "name": "trial: one transaction forms the only streak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 1,
+              "transaction_date": "2024-01-10",
+              "amount": 99
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-gap-splits-streak",
+      "name": "trial: a missing date splits a customer's streak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 2,
+              "transaction_date": "2024-02-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 2,
+              "transaction_date": "2024-02-02",
+              "amount": 10
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 2,
+              "transaction_date": "2024-02-04",
+              "amount": 10
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 3,
+              "transaction_date": "2024-03-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 3,
+              "transaction_date": "2024-03-02",
+              "amount": 10
+            },
+            {
+              "transaction_id": 6,
+              "customer_id": 3,
+              "transaction_date": "2024-03-03",
+              "amount": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "date-gap"
+      ]
+    },
+    {
+      "id": "trial-amount-irrelevant",
+      "name": "trial: amounts do not affect consecutive dates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 4,
+              "transaction_date": "2024-04-01",
+              "amount": 50
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 4,
+              "transaction_date": "2024-04-02",
+              "amount": -5
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 4,
+              "transaction_date": "2024-04-03",
+              "amount": 0
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 4,
+              "transaction_date": "2024-04-04",
+              "amount": 999
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 5,
+              "transaction_date": "2024-05-01",
+              "amount": 1
+            },
+            {
+              "transaction_id": 6,
+              "customer_id": 5,
+              "transaction_date": "2024-05-02",
+              "amount": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "amount"
+      ]
+    },
+    {
+      "id": "real-two-winning-islands-same-customer",
+      "name": "hidden: separate maximum streaks preserve repeated customer rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 7,
+              "transaction_date": "2024-06-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 7,
+              "transaction_date": "2024-06-02",
+              "amount": 10
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 7,
+              "transaction_date": "2024-06-10",
+              "amount": 10
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 7,
+              "transaction_date": "2024-06-11",
+              "amount": 10
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 8,
+              "transaction_date": "2024-07-01",
+              "amount": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            7
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "duplicate-output",
+        "judge-semantics"
+      ]
+    },
+    {
+      "id": "real-ordering-and-tie",
+      "name": "hidden: tied winning streak rows sort by customer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 30,
+              "transaction_date": "2024-08-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 30,
+              "transaction_date": "2024-08-02",
+              "amount": 10
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 10,
+              "transaction_date": "2024-09-05",
+              "amount": 10
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 10,
+              "transaction_date": "2024-09-06",
+              "amount": 10
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 20,
+              "transaction_date": "2024-10-01",
+              "amount": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id"
+        ],
+        "rows": [
+          [
+            10
+          ],
+          [
+            30
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "tie"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_233", "frontend_id": "233", "title_slug": "number-of-digit-one", "url": "https://leetcode.com/problems/number-of-digit-one/description/", "paid_only": false, "content_sha256": "365bd0dd57f8f925cf16701ad0023e0a5c62cfefddf419e2d1be4e44d6b64e79", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "n = 13", "output": "6", "has_explanation": false}, {"ordinal": 2, "input": "n = 0", "output": "0", "has_explanation": false}],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "4baaf958cf9619b7bd5d4665cf1d49ef2e8e79b1c939b15bd86818d54cca8c0b", "reference/contract.md": "302cabff73572c4bfc9d3b918b03bb361c1cb780b545f1a8cdbe830fb38e405e", "reference/examples.md": "aaa4bdf795cb949428d3cbad37efe39cd710eb6fc0adf0fe7941c35cd6caf60a", "reference/constraints.md": "12fe6d363255b02c08067056beb3d925c85f5f68631b28a81f90a5c3e47c5f5d"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

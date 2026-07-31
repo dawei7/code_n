@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: earliest valid split",
+      "name": "sample: only the middle split is valid",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +19,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "number-theory"
+        "valid-split"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: shared factors cross every split",
+      "name": "sample: crossing prime factors prevent every split",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,13 +39,14 @@
       },
       "expected": -1,
       "tags": [
-        "sample"
+        "sample",
+        "no-split"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: first element can split away",
-      "kind": "sample",
+      "id": "trial-first-index",
+      "name": "trial: the earliest split is immediately valid",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -56,30 +57,65 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
-        "edge"
+        "trial",
+        "first-index"
       ]
     },
     {
-      "id": "trial-two-coprime-values",
-      "name": "trial: two coprime values",
+      "id": "trial-single-element",
+      "name": "trial: one element cannot form two nonempty sides",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          5,
           7
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "hidden: products of ones are coprime",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1
         ]
       },
       "expected": 0,
       "tags": [
-        "trial",
-        "small"
+        "hidden",
+        "ones"
       ]
     },
     {
-      "id": "real-late-valid-split",
-      "name": "hidden: split after repeated prime powers",
+      "id": "real-second-index",
+      "name": "hidden: first crossing closes at index one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          7,
+          11
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "smallest-index"
+      ]
+    },
+    {
+      "id": "real-prime-interval",
+      "name": "hidden: one prime interval closes before another begins",
       "kind": "real",
       "visible": false,
       "input": {
@@ -87,14 +123,88 @@
           2,
           4,
           8,
-          16,
           3,
           9
         ]
       },
-      "expected": 3,
+      "expected": 2,
       "tags": [
-        "hidden"
+        "hidden",
+        "repeated-factors"
+      ]
+    },
+    {
+      "id": "real-overlapping-intervals",
+      "name": "hidden: overlapping prime intervals cover all cuts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          35,
+          10,
+          77
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "overlapping-intervals"
+      ]
+    },
+    {
+      "id": "real-leading-one",
+      "name": "hidden: a leading one creates an immediate split",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          6,
+          10,
+          15,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "one",
+        "first-index"
+      ]
+    },
+    {
+      "id": "real-same-prime",
+      "name": "hidden: both sides contain the same only prime",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "two-elements"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: disjoint factors near the value ceiling",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          999983
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "maximum-value"
       ]
     }
   ]

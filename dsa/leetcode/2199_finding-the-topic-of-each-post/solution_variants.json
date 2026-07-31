@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Finding the Topic of Each Post and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Left-joins padded, lowercased post text to whole-word keywords and aggregates distinct topic IDs in numeric order.",
+      "time_complexity": "O(pkL + t log t)",
+      "space_complexity": "O(t)"
     }
   ]
 }

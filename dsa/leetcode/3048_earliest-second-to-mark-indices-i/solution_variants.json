@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Earliest Second to Mark Indices I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the earliest feasible prefix and greedily reserves each index's last occurrence for marking.",
+      "time_complexity": "O((n + m) log m)",
+      "space_complexity": "O(n)"
     }
   ]
 }

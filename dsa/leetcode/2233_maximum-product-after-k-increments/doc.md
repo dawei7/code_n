@@ -5,52 +5,43 @@
 | Source | LeetCode |
 | Frontend ID | 2233 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Greedy, Heap (Priority Queue) |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-product-after-k-increments](https://leetcode.com/problems/maximum-product-after-k-increments/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-product-after-k-increments/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-product-after-k-increments/).
 
 ### Goal
-Perform exactly `k` operations, each increasing one array value by one. Maximize the final product and return it modulo `1,000,000,007`.
+
+You are given an array `nums` of non-negative integers and an integer `k`. One operation chooses any array element and increases it by exactly one. Perform at most `k` such operations so that the product of all final array values is as large as possible.
+
+The product must be maximized as an ordinary integer before modular reduction; the modulo operation must not influence how increments are assigned. Return that maximum product modulo $10^9+7$. Because increasing a non-negative factor cannot reduce the product, some optimal assignment always uses the complete operation budget.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: a list of nonnegative integers.
-- `k`: the exact number of unit increments.
+- `nums`: A nonempty list of non-negative integers.
+- `k`: A positive integer giving the maximum number of unit increments.
+
+Let $n=\lvert\texttt{nums}\rvert$. Both $n$ and `k` are at most $10^5$, and every initial value is at most $10^6$.
 
 **Return value**
 
-The maximum possible product modulo `1,000,000,007`.
+Return the greatest product obtainable with at most `k` increments, reduced modulo $1{,}000{,}000{,}007$ only after the maximizing allocation is determined.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [0, 4]`, `k = 5`
+- Input: `nums = [0, 4], k = 5`
 - Output: `20`
 
 **Example 2**
 
-- Input: `nums = [6, 3, 3, 2]`, `k = 2`
+- Input: `nums = [6, 3, 3, 2], k = 2`
 - Output: `216`
 
 **Example 3**
 
-- Input: `nums = [1]`, `k = 3`
+- Input: `nums = [1], k = 3`
 - Output: `4`
-
----
-
-## Solution
-### Approach
-Put all values in a min-heap. Repeatedly remove the smallest value, increment it, and push it back. Equalizing the smallest factors maximizes the product for a fixed increment budget. After all operations, multiply heap values modulo the required constant.
-
-### Complexity Analysis
-- **Time Complexity**: `O((n + k) log n)`
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

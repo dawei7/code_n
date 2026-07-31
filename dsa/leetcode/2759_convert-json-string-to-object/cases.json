@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2759",
+  "cases": [
+    {
+      "id": "sample-object",
+      "name": "sample: object containing an array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "str": "{\"a\":2,\"b\":[1,2,3]}"
+      },
+      "expected": {
+        "a": 2,
+        "b": [
+          1,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "sample",
+        "object",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-boolean",
+      "name": "sample: top-level boolean",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "str": "true"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "primitive",
+        "boolean"
+      ]
+    },
+    {
+      "id": "sample-mixed-array",
+      "name": "sample: mixed nested array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "str": "[1,5,\"false\",{\"a\":2}]"
+      },
+      "expected": [
+        1,
+        5,
+        "false",
+        {
+          "a": 2
+        }
+      ],
+      "tags": [
+        "sample",
+        "array",
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-empty-containers",
+      "name": "trial: empty object and array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str": "{\"object\":{},\"array\":[]}"
+      },
+      "expected": {
+        "object": {},
+        "array": []
+      },
+      "tags": [
+        "empty",
+        "containers"
+      ]
+    },
+    {
+      "id": "trial-numbers",
+      "name": "trial: JSON number forms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str": "[-12,0,3.5,6.02e23,-4E-2]"
+      },
+      "expected": [
+        -12,
+        0,
+        3.5,
+        6.02e+23,
+        -0.04
+      ],
+      "tags": [
+        "numbers",
+        "fraction",
+        "exponent"
+      ]
+    },
+    {
+      "id": "real-null-string-punctuation",
+      "name": "hidden: null and punctuation inside strings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "str": "{\"nothing\":null,\"text\":\",:[]{}\",\"word\":\"hello world\"}"
+      },
+      "expected": {
+        "nothing": null,
+        "text": ",:[]{}",
+        "word": "hello world"
+      },
+      "tags": [
+        "hidden",
+        "null",
+        "quoted-punctuation"
+      ]
+    },
+    {
+      "id": "real-deep-mixture",
+      "name": "hidden: recursively mixed values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "str": "{\"a\":[false,{\"b\":[null,true,7]}],\"c\":\"done\"}"
+      },
+      "expected": {
+        "a": [
+          false,
+          {
+            "b": [
+              null,
+              true,
+              7
+            ]
+          }
+        ],
+        "c": "done"
+      },
+      "tags": [
+        "hidden",
+        "nested",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-prototype-key",
+      "name": "hidden: prototype-like key is ordinary data",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "str": "{\"__proto__\":{\"safe\":true},\"constructor\":5}"
+      },
+      "expected": {
+        "__proto__": {
+          "safe": true
+        },
+        "constructor": 5
+      },
+      "tags": [
+        "hidden",
+        "prototype-key"
+      ]
+    },
+    {
+      "id": "real-duplicate-key",
+      "name": "hidden: later duplicate key wins",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "str": "{\"x\":1,\"x\":2}"
+      },
+      "expected": {
+        "x": 2
+      },
+      "tags": [
+        "hidden",
+        "duplicate-key"
+      ]
+    }
+  ]
+}

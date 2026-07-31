@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Array Sum and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Processes each value with a two-dimensional DP over the counts of both operations already used.",
+      "time_complexity": "O(n * op1 * op2)",
+      "space_complexity": "O(op1 * op2)"
     }
   ]
 }

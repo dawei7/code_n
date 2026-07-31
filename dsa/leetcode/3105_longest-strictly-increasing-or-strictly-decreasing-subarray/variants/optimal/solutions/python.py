@@ -1,24 +1,16 @@
-from typing import List
+def solve(nums: list[int]) -> int:
+    increasing = decreasing = answer = 1
 
-def solve(nums: List[int]) -> int:
-    if not nums:
-        return 0
-    
-    max_len = 1
-    inc_len = 1
-    dec_len = 1
-    
-    for i in range(1, len(nums)):
-        if nums[i] > nums[i - 1]:
-            inc_len += 1
-            dec_len = 1
-        elif nums[i] < nums[i - 1]:
-            dec_len += 1
-            inc_len = 1
+    for index in range(1, len(nums)):
+        if nums[index] > nums[index - 1]:
+            increasing += 1
+            decreasing = 1
+        elif nums[index] < nums[index - 1]:
+            decreasing += 1
+            increasing = 1
         else:
-            inc_len = 1
-            dec_len = 1
-        
-        max_len = max(max_len, inc_len, dec_len)
-        
-    return max_len
+            increasing = decreasing = 1
+
+        answer = max(answer, increasing, decreasing)
+
+    return answer

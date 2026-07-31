@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3817",
+  "measurement_note": "Size is N, the digit-string length. Every tier is an all-zero string, so only index 0 is good. The direct solution checks the one forced suffix for each index, while the slower control visits every possible start for every endpoint in O(N^2) time.",
+  "cases": [
+    {
+      "id": "benchmark-64-zeros",
+      "name": "benchmark: all-zero digit string of length 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "all-zero",
+        "no-early-match",
+        "quadratic-start-scan"
+      ]
+    },
+    {
+      "id": "benchmark-256-zeros",
+      "name": "benchmark: all-zero digit string of length 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "all-zero",
+        "no-early-match",
+        "quadratic-start-scan"
+      ]
+    },
+    {
+      "id": "benchmark-512-zeros",
+      "name": "benchmark: all-zero digit string of length 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "all-zero",
+        "no-early-match",
+        "quadratic-start-scan"
+      ]
+    }
+  ]
+}
+

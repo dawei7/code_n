@@ -8,73 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Simulation, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-minimum-amount-of-time-to-brew-potions](https://leetcode.com/problems/find-the-minimum-amount-of-time-to-brew-potions/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-minimum-amount-of-time-to-brew-potions/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-minimum-amount-of-time-to-brew-potions/).
 
 ### Goal
-Given a sequence of potions to brew, where each potion $i$ requires a specific amount of time `brewTime[i]` and can only be started after a certain number of previous potions have been completed, determine the earliest possible time to finish brewing all potions. You are allowed to brew at most one potion at any given time.
+
+A laboratory has $n$ wizards arranged in a fixed order and $m$ potions that must also be brewed in their given order. Potion $j$ has mana capacity `mana[j]`. It visits every wizard from index $0$ through $n-1$, and wizard $i$ needs `skill[i] * mana[j]` units of time to work on it. A wizard can work on only one potion at a time.
+
+Each potion follows a no-wait rule: when one wizard finishes it, the next wizard must begin that same potion immediately. The start times therefore have to synchronize the whole pipeline; delaying a potion between two wizards is forbidden even when that delay would otherwise avoid a conflict. Determine the earliest time at which every potion has completed the entire sequence of wizards.
 
 ### Function Contract
+
 **Inputs**
 
-- `brewTime`: A list of integers where `brewTime[i]` represents the time required to brew the $i$-th potion.
-- `prevAction`: A list of integers where `prevAction[i]` represents the index of the potion that must be completed before potion $i$ can begin. If `prevAction[i] == -1`, the potion has no dependencies.
+- `skill`: A list of $n$ positive integers giving each wizard's skill multiplier.
+- `mana`: A list of $m$ positive integers giving the potions' mana capacities in required brewing order.
+
+The dimensions satisfy $1\le n,m\le5000$, and every value in either list is between $1$ and $5000$.
 
 **Return value**
 
-- An integer representing the minimum total time required to complete all potions in the sequence.
+Return the minimum time required to finish all $m$ potions.
 
 ### Examples
+
 **Example 1**
 
-- Input: `brewTime = [2, 3], prevAction = [-1, 0]`
-- Output: `5`
+- Input: `skill = [1,5,2,4], mana = [5,1,4,2]`
+- Output: `110`
+- Explanation: The four potions can start at times `0`, `52`, `54`, and `86`; the last potion leaves the final wizard at time `110`.
 
 **Example 2**
 
-- Input: `brewTime = [1, 2, 3], prevAction = [-1, 0, 1]`
-- Output: `6`
+- Input: `skill = [1,1,1], mana = [1,1,1]`
+- Output: `5`
+- Explanation: Starting the potions at times `0`, `1`, and `2` keeps the three-wizard pipeline continuously synchronized.
 
 **Example 3**
 
-- Input: `brewTime = [5, 2, 3], prevAction = [-1, -1, -1]`
-- Output: `10`
-
----
-
-## Solution
-### Approach
-The problem is modeled as a Directed Acyclic Graph (DAG) where potions are nodes and dependencies are edges. Since we must brew potions sequentially and respect dependencies, the total time is the sum of the `brewTime` of all potions, provided there are no constraints on parallel processing. If the problem implies a dependency chain, we use topological sorting or simple iterative accumulation to calculate the completion time.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N)$, where $N$ is the number of potions, as we iterate through the lists once to calculate the total duration.
-- **Space Complexity**: $O(1)$ (excluding input storage), as we only maintain a running sum of the brew times.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(skill: list[int], mana: list[int]) -> int:
-    prefix = [0]
-    for value in skill:
-        prefix.append(prefix[-1] + value)
-
-    start = 0
-    previous_mana = mana[0]
-    total_skill = prefix[-1]
-    for current_mana in mana[1:]:
-        next_start = 0
-        for wizard in range(len(skill)):
-            previous_done = start + previous_mana * prefix[wizard + 1]
-            current_arrival = current_mana * prefix[wizard]
-            if previous_done - current_arrival > next_start:
-                next_start = previous_done - current_arrival
-        start = next_start
-        previous_mana = current_mana
-
-    return start + previous_mana * total_skill
-```
-</details>
+- Input: `skill = [1,2,3,4], mana = [1,2]`
+- Output: `21`

@@ -1,142 +1,308 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3213",
   "cases": [
     {
-      "id": "sample-overlap-costs",
-      "name": "sample: overlapping words choose minimum cost",
+      "id": "sample-three-word-construction",
+      "name": "sample: three words form the minimum-cost target",
       "kind": "sample",
       "visible": true,
       "input": {
         "target": "abcdef",
         "words": [
-          "ab",
+          "abdef",
           "abc",
-          "cd",
+          "d",
           "def",
-          "abcd",
           "ef"
         ],
         "costs": [
-          2,
-          5,
-          2,
-          2,
+          100,
+          1,
+          1,
           10,
-          1
+          5
         ]
       },
-      "expected": 5,
+      "expected": 7,
       "tags": [
-        "sample",
-        "dp"
+        "sample"
       ]
     },
     {
-      "id": "sample-impossible",
-      "name": "sample: target cannot be constructed",
+      "id": "sample-impossible-alphabet",
+      "name": "sample: no word matches the target prefix",
       "kind": "sample",
       "visible": true,
       "input": {
         "target": "aaaa",
         "words": [
-          "b",
-          "aa"
+          "z",
+          "zz",
+          "zzz"
         ],
         "costs": [
           1,
-          3
+          10,
+          100
         ]
       },
-      "expected": 6,
+      "expected": -1,
       "tags": [
         "sample",
         "impossible"
       ]
     },
     {
-      "id": "trial-duplicate-word-cost",
-      "name": "trial: duplicate words keep cheapest cost",
+      "id": "trial-single-word",
+      "name": "trial: one exact word constructs the target",
       "kind": "trial",
       "visible": true,
       "input": {
-        "target": "leetcode",
+        "target": "code",
         "words": [
-          "leet",
-          "code",
-          "le",
-          "et",
           "code"
         ],
         "costs": [
-          5,
-          7,
-          3,
-          4,
-          2
+          7
         ]
       },
       "expected": 7,
+      "tags": [
+        "single-word"
+      ]
+    },
+    {
+      "id": "trial-reuse-word",
+      "name": "trial: one dictionary word is reused",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "ababab",
+        "words": [
+          "ab",
+          "aba",
+          "b"
+        ],
+        "costs": [
+          2,
+          10,
+          9
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "reuse"
+      ]
+    },
+    {
+      "id": "trial-duplicate-cheapest",
+      "name": "trial: duplicate text keeps only its cheapest cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "aaaa",
+        "words": [
+          "a",
+          "a",
+          "aa"
+        ],
+        "costs": [
+          9,
+          2,
+          5
+        ]
+      },
+      "expected": 8,
       "tags": [
         "duplicates"
       ]
     },
     {
-      "id": "trial-many-small-pieces",
-      "name": "trial: many small pieces beat a large word",
+      "id": "trial-longer-vs-shorter",
+      "name": "trial: several short words beat one long word",
       "kind": "trial",
       "visible": true,
       "input": {
-        "target": "abababa",
+        "target": "abcd",
         "words": [
           "a",
           "b",
-          "ab",
-          "aba",
-          "bab"
+          "c",
+          "d",
+          "abcd"
         ],
         "costs": [
-          2,
-          2,
-          3,
-          8,
-          8
+          1,
+          1,
+          1,
+          1,
+          10
         ]
       },
-      "expected": 11,
+      "expected": 4,
       "tags": [
-        "overlap"
+        "competing-segmentations"
       ]
     },
     {
-      "id": "real-shared-prefixes",
-      "name": "real: shared trie prefixes",
+      "id": "real-long-word-cheaper",
+      "name": "real: one long word beats reusable pieces",
       "kind": "real",
       "visible": false,
       "input": {
-        "target": "daweicode",
+        "target": "mississippi",
         "words": [
-          "da",
-          "daw",
-          "wei",
-          "eicode",
-          "code",
-          "weicode",
-          "i"
+          "miss",
+          "issi",
+          "ppi",
+          "mississippi",
+          "i",
+          "s",
+          "p"
         ],
         "costs": [
-          3,
           4,
-          2,
-          8,
+          4,
+          4,
           5,
-          4,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "long-word"
+      ]
+    },
+    {
+      "id": "real-impossible-suffix",
+      "name": "real: a valid prefix cannot cover the final suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "abcde",
+        "words": [
+          "ab",
+          "abc",
+          "cd"
+        ],
+        "costs": [
+          1,
+          2,
           1
         ]
       },
-      "expected": 7,
+      "expected": -1,
       "tags": [
-        "real",
-        "trie"
+        "impossible-suffix"
+      ]
+    },
+    {
+      "id": "real-overlapping-not-allowed",
+      "name": "real: overlapping matches do not form a concatenation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "aaaaa",
+        "words": [
+          "aaa",
+          "aa"
+        ],
+        "costs": [
+          3,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "concatenation"
+      ]
+    },
+    {
+      "id": "real-cost-tradeoff",
+      "name": "real: dynamic programming compares multiple split points",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "pineapple",
+        "words": [
+          "pine",
+          "apple",
+          "pineapple",
+          "p",
+          "ine",
+          "app",
+          "le"
+        ],
+        "costs": [
+          4,
+          4,
+          12,
+          1,
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "cost-tradeoff"
+      ]
+    },
+    {
+      "id": "real-unused-word-longer",
+      "name": "real: oversized matching alternatives are ignored at boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "cat",
+        "words": [
+          "c",
+          "at",
+          "cat",
+          "catalog"
+        ],
+        "costs": [
+          2,
+          2,
+          5,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-many-lengths",
+      "name": "real: several dictionary lengths reach the same endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "abcabc",
+        "words": [
+          "a",
+          "ab",
+          "abc",
+          "bc",
+          "c",
+          "abcabc"
+        ],
+        "costs": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          10
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "distinct-lengths"
       ]
     }
   ]

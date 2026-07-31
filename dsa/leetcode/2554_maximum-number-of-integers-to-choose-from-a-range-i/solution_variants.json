@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Number of Integers to Choose From a Range I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores the forbidden values in a set and greedily takes allowed integers in ascending order until the budget cannot fit the next one.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

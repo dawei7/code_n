@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3802",
+    "frontend_id": "3802",
+    "title_slug": "number-of-ways-to-paint-sheets",
+    "url": "https://leetcode.com/problems/number-of-ways-to-paint-sheets/description/",
+    "paid_only": true,
+    "content_sha256": "a8842eaeef0b45ef8d08ffdf045728a950518a5cd4bc2b5d6ceda4c519b42790",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`n = 4, limit = [3,1,2]`",
+        "output": "`6`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`n = 3, limit = [1,2]`",
+        "output": "`2`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`n = 3, limit = [2,2]`",
+        "output": "`4`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "77643cb639bf49963945bfabef91fccca47748809669778b989586abff27e016",
+      "reference/contract.md": "7f8440ffadddda990af4d462ef3344b257766cfecd11b579d7548e09d7ac3e9b",
+      "reference/note.md": "517c0d62b30f3add23fee075091af00fe2fe7f622e1e3d0342a1107bacb112a9",
+      "reference/examples.md": "40cb09b7c20ce2d406197909d785643c8a8823810aa2475f255f8fdfc9520958",
+      "reference/constraints.md": "d42d6132c14be5b21224b0c6ee93ee9f4961aeefbe03f86bdcb0c819ceb80ba3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

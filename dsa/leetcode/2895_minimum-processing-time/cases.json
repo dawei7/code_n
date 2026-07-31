@@ -2,139 +2,76 @@
   "challenge_id": "lc_2895",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: earliest processor handles longest tasks",
+      "id": "sample-balanced-start-times",
+      "name": "sample: earlier processor receives the longer group",
       "kind": "sample",
       "visible": true,
       "input": {
-        "processorTime": [
-          8,
-          10
-        ],
-        "tasks": [
-          1,
-          2,
-          2,
-          3,
-          4,
-          5,
-          7,
-          8
-        ]
+        "processorTime": [8, 10],
+        "tasks": [2, 2, 3, 1, 8, 7, 4, 5]
       },
-      "tags": [
-        "sample",
-        "greedy"
-      ],
-      "expected": 16
+      "expected": 16,
+      "tags": ["sample", "greedy-pairing"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: later processor receives smaller batch",
+      "id": "sample-late-second-processor",
+      "name": "sample: shorter group compensates for a late start",
       "kind": "sample",
       "visible": true,
       "input": {
-        "processorTime": [
-          10,
-          20
-        ],
-        "tasks": [
-          1,
-          2,
-          2,
-          3,
-          3,
-          4,
-          5,
-          8
-        ]
+        "processorTime": [10, 20],
+        "tasks": [2, 3, 1, 2, 5, 8, 4, 3]
       },
-      "tags": [
-        "sample",
-        "sorting"
-      ],
-      "expected": 23
+      "expected": 23,
+      "tags": ["sample", "unequal-start-times"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: equal task lengths",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "processorTime": [
-          1,
-          5
-        ],
-        "tasks": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
-        ]
-      },
-      "tags": [
-        "sample",
-        "equal-tasks"
-      ],
-      "expected": 6
-    },
-    {
-      "id": "trial-one-processor",
-      "name": "trial: one processor gets all four tasks",
+      "id": "trial-single-processor",
+      "name": "one processor uses all four cores",
       "kind": "trial",
       "visible": true,
       "input": {
-        "processorTime": [
-          4
-        ],
-        "tasks": [
-          2,
-          3,
-          4,
-          9
-        ]
+        "processorTime": [0],
+        "tasks": [1, 4, 2, 3]
       },
-      "tags": [
-        "trial",
-        "single-processor"
-      ],
-      "expected": 13
+      "expected": 4,
+      "tags": ["boundary", "single-processor"]
     },
     {
-      "id": "real-three-processors",
-      "name": "hidden: three processors with mixed task lengths",
+      "id": "trial-equal-start-times",
+      "name": "equal availability times make processor order irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "processorTime": [5, 5],
+        "tasks": [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      "expected": 13,
+      "tags": ["ties", "group-maxima"]
+    },
+    {
+      "id": "trial-opposite-extremes",
+      "name": "long tasks offset the earliest start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "processorTime": [100, 1],
+        "tasks": [1, 100, 1, 99, 1, 98, 1, 97]
+      },
+      "expected": 101,
+      "tags": ["exchange-argument", "opposite-order"]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: maximum values can produce a result above one billion",
       "kind": "real",
       "visible": false,
       "input": {
-        "processorTime": [
-          1,
-          7,
-          12
-        ],
-        "tasks": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ]
+        "processorTime": [1000000000, 0],
+        "tasks": [1000000000, 1000000000, 1000000000, 1000000000, 1, 1, 1, 1]
       },
-      "tags": [
-        "hidden",
-        "greedy"
-      ],
-      "expected": 16
+      "expected": 1000000001,
+      "tags": ["hidden", "maximum-values", "integer-range"]
     }
   ]
 }

@@ -8,90 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Math, Number Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-element-sum-of-a-complete-subset-of-indices](https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/).
 
 ### Goal
-Given an array of integers, identify a "complete subset" of indices. A subset of indices is complete if, for any two indices in the subset, their product is a perfect square. The objective is to find the maximum possible sum of elements located at the indices forming such a subset.
+
+Consider `nums` as a 1-indexed array. Select a nonempty subset of its indices. The subset is complete when the product of every pair of selected indices is a perfect square; in other words, any two distinct selected indices $i$ and $j$ must make $ij$ a perfect square.
+
+The value of a selected subset is the sum of the array elements at those indices. Return the greatest value among all complete subsets. The condition concerns the indices, not the values stored in `nums`.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (1-indexed for the purpose of the problem, where `nums[i]` corresponds to index `i+1`).
+- `nums`: The positive element values, interpreted with indices from $1$ through $n$.
+
+Let $n$ be the length of `nums`. The input satisfies $1 \le n \le 10^4$ and $1 \le \texttt{nums[i]} \le 10^9$.
 
 **Return value**
 
-- An integer representing the maximum sum of elements whose indices form a complete subset.
+- Return the maximum sum of values at indices whose every pairwise product is a perfect square.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [8, 7, 3, 5, 7, 2, 4, 9]`
 - Output: `16`
-- Explanation: The indices {1, 4} form a complete subset because 1 * 4 = 4 (a perfect square). The sum is nums[0] + nums[3] = 8 + 5 = 13. However, the subset {8} gives 9, and {7} gives 7. The maximum sum is 16 (from index 7, where 7 is a perfect square itself).
+- Explanation: Select 1-indexed positions $2$ and $8$. Their product is $2 \cdot 8 = 16$, and their values sum to `7 + 9 = 16`.
 
 **Example 2**
 
-- Input: `nums = [5, 10, 3, 10, 1, 13, 7, 9, 4]`
-- Output: `22`
-
-**Example 3**
-
-- Input: `nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`
-- Output: `19`
-
----
-
-## Solution
-### Approach
-The core insight is that two numbers $i$ and $j$ have a product $i \times j$ that is a perfect square if and only if their "square-free parts" are identical. The square-free part of an integer $n$ is obtained by dividing $n$ by the largest perfect square that divides it. We can group all indices $i \in [1, n]$ by their square-free part and sum the values of `nums` for each group.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \sqrt{N})$, where $N$ is the length of the array. We iterate through each index and compute its square-free part by checking divisors up to $\sqrt{N}$.
-- **Space Complexity**: $O(N)$ to store the sums associated with each unique square-free part.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import math
-from collections import defaultdict
-
-def solve(nums: list[int]) -> int:
-    """
-    Calculates the maximum element-sum of a complete subset of indices.
-    Indices i and j form a complete subset if i * j is a perfect square.
-    This is equivalent to saying i and j have the same square-free part.
-    """
-    n = len(nums)
-    # Map to store the sum of elements for each square-free part
-    groups = defaultdict(int)
-
-    def get_square_free(k: int) -> int:
-        """Returns the square-free part of k."""
-        res = 1
-        d = 2
-        temp = k
-        while d * d <= temp:
-            count = 0
-            while temp % d == 0:
-                count += 1
-                temp //= d
-            if count % 2 == 1:
-                res *= d
-            d += 1
-        if temp > 1:
-            res *= temp
-        return res
-
-    # Iterate through 1-based indices
-    for i in range(1, n + 1):
-        sf = get_square_free(i)
-        groups[sf] += nums[i - 1]
-
-    return max(groups.values())
-```
-</details>
+- Input: `nums = [8, 10, 3, 8, 1, 13, 7, 9, 4]`
+- Output: `20`
+- Explanation: Positions $1$, $4$, and $9$ are pairwise compatible because $1 \cdot 4$, $1 \cdot 9$, and $4 \cdot 9$ are perfect squares. Their values sum to `8 + 8 + 4 = 20`.

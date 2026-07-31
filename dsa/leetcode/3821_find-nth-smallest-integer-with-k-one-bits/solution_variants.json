@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Nth Smallest Integer With K One Bits and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Unranks the requested 50-bit string from most significant to least significant bit using binomial block counts.",
+      "time_complexity": "O(B)",
+      "space_complexity": "O(1)"
     }
   ]
 }

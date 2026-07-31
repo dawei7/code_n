@@ -1,20 +1,16 @@
-from collections import Counter
+from typing import List
 
-def solve(nums: list[int]) -> int:
-    """
-    The optimal strategy is to identify the most frequent element.
-    Let 'max_freq' be the frequency of the most common element and 'n' be the total length.
-    If max_freq > n / 2, the minimum remaining length is (max_freq - (n - max_freq)) = 2 * max_freq - n.
-    Otherwise, the minimum length is n % 2.
-    """
+
+def solve(nums: List[int]) -> int:
     n = len(nums)
-    if n == 0:
-        return 0
-    
-    counts = Counter(nums)
-    max_freq = max(counts.values())
-    
-    if max_freq > n // 2:
-        return 2 * max_freq - n
-    else:
-        return n % 2
+    max_frequency = 1
+    run_length = 1
+
+    for i in range(1, n):
+        if nums[i] == nums[i - 1]:
+            run_length += 1
+        else:
+            run_length = 1
+        max_frequency = max(max_frequency, run_length)
+
+    return max(n % 2, 2 * max_frequency - n)

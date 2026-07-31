@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3643",
+  "cases": [
+    {
+      "id": "sample-offset-three",
+      "name": "sample: offset three by three square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            8
+          ],
+          [
+            9,
+            10,
+            11,
+            12
+          ],
+          [
+            13,
+            14,
+            15,
+            16
+          ]
+        ],
+        "x": 1,
+        "y": 0,
+        "k": 3
+      },
+      "expected": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          13,
+          14,
+          15,
+          8
+        ],
+        [
+          9,
+          10,
+          11,
+          12
+        ],
+        [
+          5,
+          6,
+          7,
+          16
+        ]
+      ],
+      "tags": [
+        "sample",
+        "offset"
+      ]
+    },
+    {
+      "id": "sample-two-by-two",
+      "name": "sample: rightmost two by two square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            4,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4,
+            2
+          ]
+        ],
+        "x": 0,
+        "y": 2,
+        "k": 2
+      },
+      "expected": [
+        [
+          3,
+          4,
+          4,
+          2
+        ],
+        [
+          2,
+          3,
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "sample",
+        "partial-width"
+      ]
+    },
+    {
+      "id": "trial-side-one",
+      "name": "trial: side length one is unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7,
+            8
+          ],
+          [
+            9,
+            10
+          ]
+        ],
+        "x": 1,
+        "y": 1,
+        "k": 1
+      },
+      "expected": [
+        [
+          7,
+          8
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "tags": [
+        "trial",
+        "minimum-k"
+      ]
+    },
+    {
+      "id": "trial-full-odd",
+      "name": "trial: full odd square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "x": 0,
+        "y": 0,
+        "k": 3
+      },
+      "expected": [
+        [
+          7,
+          8,
+          9
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "trial",
+        "odd-k",
+        "full-grid"
+      ]
+    },
+    {
+      "id": "trial-full-even",
+      "name": "trial: full even square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            8
+          ],
+          [
+            9,
+            10,
+            11,
+            12
+          ],
+          [
+            13,
+            14,
+            15,
+            16
+          ]
+        ],
+        "x": 0,
+        "y": 0,
+        "k": 4
+      },
+      "expected": [
+        [
+          13,
+          14,
+          15,
+          16
+        ],
+        [
+          9,
+          10,
+          11,
+          12
+        ],
+        [
+          5,
+          6,
+          7,
+          8
+        ],
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "tags": [
+        "trial",
+        "even-k",
+        "full-grid"
+      ]
+    },
+    {
+      "id": "real-interior-square",
+      "name": "real: interior square preserves border",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          [
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          [
+            21,
+            22,
+            23,
+            24,
+            25
+          ]
+        ],
+        "x": 1,
+        "y": 1,
+        "k": 3
+      },
+      "expected": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          6,
+          17,
+          18,
+          19,
+          10
+        ],
+        [
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        [
+          16,
+          7,
+          8,
+          9,
+          20
+        ],
+        [
+          21,
+          22,
+          23,
+          24,
+          25
+        ]
+      ],
+      "tags": [
+        "real",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-bottom-right",
+      "name": "real: square touches bottom and right edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            10,
+            11,
+            12,
+            13
+          ],
+          [
+            20,
+            21,
+            22,
+            23
+          ],
+          [
+            30,
+            31,
+            32,
+            33
+          ]
+        ],
+        "x": 1,
+        "y": 2,
+        "k": 2
+      },
+      "expected": [
+        [
+          10,
+          11,
+          12,
+          13
+        ],
+        [
+          20,
+          21,
+          32,
+          33
+        ],
+        [
+          30,
+          31,
+          22,
+          23
+        ]
+      ],
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-single-row",
+      "name": "real: one-row grid permits only singleton square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            4,
+            3,
+            2,
+            1
+          ]
+        ],
+        "x": 0,
+        "y": 2,
+        "k": 1
+      },
+      "expected": [
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ],
+      "tags": [
+        "real",
+        "single-row"
+      ]
+    },
+    {
+      "id": "real-rectangular",
+      "name": "real: square inside rectangular matrix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ],
+          [
+            10,
+            11,
+            12
+          ],
+          [
+            13,
+            14,
+            15
+          ]
+        ],
+        "x": 2,
+        "y": 0,
+        "k": 3
+      },
+      "expected": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          13,
+          14,
+          15
+        ],
+        [
+          10,
+          11,
+          12
+        ],
+        [
+          7,
+          8,
+          9
+        ]
+      ],
+      "tags": [
+        "real",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "real-repeated-values",
+      "name": "real: repeated values retain positions outside square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3
+          ],
+          [
+            4,
+            4,
+            5,
+            5,
+            6,
+            6
+          ],
+          [
+            7,
+            7,
+            8,
+            8,
+            9,
+            9
+          ],
+          [
+            10,
+            10,
+            11,
+            11,
+            12,
+            12
+          ]
+        ],
+        "x": 0,
+        "y": 1,
+        "k": 4
+      },
+      "expected": [
+        [
+          1,
+          10,
+          11,
+          11,
+          12,
+          3
+        ],
+        [
+          4,
+          7,
+          8,
+          8,
+          9,
+          6
+        ],
+        [
+          7,
+          4,
+          5,
+          5,
+          6,
+          9
+        ],
+        [
+          10,
+          1,
+          2,
+          2,
+          3,
+          12
+        ]
+      ],
+      "tags": [
+        "real",
+        "repeated-values"
+      ]
+    }
+  ]
+}

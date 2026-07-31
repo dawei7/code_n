@@ -2,37 +2,8 @@
   "challenge_id": "lc_2901",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: one-character words with group change",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "e",
-          "a",
-          "b"
-        ],
-        "groups": [
-          0,
-          0,
-          1
-        ]
-      },
-      "tags": [
-        "sample",
-        "hamming"
-      ],
-      "expected": [
-        "e",
-        "b"
-      ],
-      "validator": {
-        "kind": "hamming_alternating_subsequence"
-      }
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: choose compatible three-letter words",
+      "id": "sample-two-valid-successors",
+      "name": "sample: either compatible successor gives an optimum",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,21 +18,21 @@
           2
         ]
       },
-      "tags": [
-        "sample",
-        "dp"
-      ],
       "expected": [
         "bab",
         "dab"
       ],
       "validator": {
         "kind": "hamming_alternating_subsequence"
-      }
+      },
+      "tags": [
+        "sample",
+        "multiple-valid-answers"
+      ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: all one-character adjacent words differ",
+      "id": "sample-all-one-character-words",
+      "name": "sample: every one-character word extends the chain",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -78,10 +49,6 @@
           4
         ]
       },
-      "tags": [
-        "sample",
-        "full-length"
-      ],
       "expected": [
         "a",
         "b",
@@ -90,11 +57,15 @@
       ],
       "validator": {
         "kind": "hamming_alternating_subsequence"
-      }
+      },
+      "tags": [
+        "sample",
+        "full-length"
+      ]
     },
     {
-      "id": "trial-length-mismatch-blocks-edge",
-      "name": "trial: different word lengths cannot connect",
+      "id": "trial-length-mismatch",
+      "name": "different word lengths cannot form a transition",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -105,27 +76,79 @@
           "bbc"
         ],
         "groups": [
-          0,
           1,
-          0,
-          1
+          2,
+          1,
+          2
         ]
       },
-      "tags": [
-        "trial",
-        "length"
-      ],
       "expected": [
         "aa",
         "ab"
       ],
       "validator": {
         "kind": "hamming_alternating_subsequence"
-      }
+      },
+      "tags": [
+        "unequal-lengths",
+        "blocked-edge"
+      ]
+    },
+    {
+      "id": "trial-same-group-blocks-edge",
+      "name": "Hamming distance one is insufficient when groups match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "ab"
+        ],
+        "groups": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        "aa"
+      ],
+      "validator": {
+        "kind": "hamming_alternating_subsequence"
+      },
+      "tags": [
+        "same-group",
+        "single-word"
+      ]
+    },
+    {
+      "id": "trial-distance-greater-than-one",
+      "name": "different groups are insufficient when two characters differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "bb"
+        ],
+        "groups": [
+          1,
+          2
+        ]
+      },
+      "expected": [
+        "aa"
+      ],
+      "validator": {
+        "kind": "hamming_alternating_subsequence"
+      },
+      "tags": [
+        "hamming-distance",
+        "single-word"
+      ]
     },
     {
       "id": "real-long-hamming-chain",
-      "name": "hidden: dynamic programming reconstructs a longer chain",
+      "name": "hidden: parent links reconstruct the complete compatible chain",
       "kind": "real",
       "visible": false,
       "input": {
@@ -138,18 +161,14 @@
           "bcc"
         ],
         "groups": [
-          0,
           1,
-          0,
+          2,
           1,
-          0,
-          1
+          2,
+          1,
+          2
         ]
       },
-      "tags": [
-        "hidden",
-        "dp"
-      ],
       "expected": [
         "aaa",
         "aab",
@@ -160,7 +179,12 @@
       ],
       "validator": {
         "kind": "hamming_alternating_subsequence"
-      }
+      },
+      "tags": [
+        "hidden",
+        "dynamic-programming",
+        "reconstruction"
+      ]
     }
   ]
 }

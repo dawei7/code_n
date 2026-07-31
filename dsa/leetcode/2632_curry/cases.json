@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2632",
+  "cases": [
+    {
+      "id": "sample-one-at-a-time",
+      "name": "sample: one argument per call",
+      "kind": "sample",
+      "visible": true,
+      "input": {"fnName": "sum", "arity": 3, "inputs": [[1], [2], [3]], "inputPlan": null},
+      "expected": 6,
+      "tags": ["sample", "single-argument-calls"]
+    },
+    {
+      "id": "sample-two-then-one",
+      "name": "sample: mixed argument counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {"fnName": "sum", "arity": 3, "inputs": [[1, 2], [3]], "inputPlan": null},
+      "expected": 6,
+      "tags": ["sample", "mixed-groups"]
+    },
+    {
+      "id": "sample-empty-calls",
+      "name": "sample: empty calls before completion",
+      "kind": "sample",
+      "visible": true,
+      "input": {"fnName": "sum", "arity": 3, "inputs": [[], [], [1, 2, 3]], "inputPlan": null},
+      "expected": 6,
+      "tags": ["sample", "empty-calls"]
+    },
+    {
+      "id": "sample-zero-arity",
+      "name": "sample: zero-parameter function",
+      "kind": "sample",
+      "visible": true,
+      "input": {"fnName": "life", "arity": 0, "inputs": [[]], "inputPlan": null},
+      "expected": 42,
+      "tags": ["sample", "zero-arity"]
+    },
+    {
+      "id": "trial-all-at-once",
+      "name": "trial: all parameters in first call",
+      "kind": "trial",
+      "visible": true,
+      "input": {"fnName": "product", "arity": 4, "inputs": [[2, 3, 4, 5]], "inputPlan": null},
+      "expected": 120,
+      "tags": ["trial", "single-call"]
+    },
+    {
+      "id": "trial-order-sensitive",
+      "name": "trial: argument order spans batches",
+      "kind": "trial",
+      "visible": true,
+      "input": {"fnName": "digits", "arity": 4, "inputs": [[1, 2], [], [3], [4]], "inputPlan": null},
+      "expected": 1234,
+      "tags": ["trial", "argument-order", "empty-call"]
+    },
+    {
+      "id": "real-many-empty-groups",
+      "name": "real: empty groups do not advance arity",
+      "kind": "real",
+      "visible": false,
+      "input": {"fnName": "sum", "arity": 2, "inputs": [[], [10], [], [], [20]], "inputPlan": null},
+      "expected": 30,
+      "tags": ["real", "empty-calls", "arity"]
+    },
+    {
+      "id": "real-values-include-zero",
+      "name": "real: zero arguments are retained",
+      "kind": "real",
+      "visible": false,
+      "input": {"fnName": "digits", "arity": 3, "inputs": [[5], [0, 7]], "inputPlan": null},
+      "expected": 507,
+      "tags": ["real", "zero-value", "order"]
+    }
+  ]
+}

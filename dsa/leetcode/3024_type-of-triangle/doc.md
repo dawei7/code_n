@@ -5,25 +5,23 @@
 | Source | LeetCode |
 | Frontend ID | 3024 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Math, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [type-of-triangle](https://leetcode.com/problems/type-of-triangle/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/type-of-triangle/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/type-of-triangle/).
-
 ### Goal
-Given an array of three integers representing the lengths of the sides of a potential triangle, determine if the sides can form a valid triangle. If they can, classify the triangle as "equilateral" (all sides equal), "isosceles" (exactly two sides equal), or "scalene" (no sides equal). If the sides cannot form a valid triangle, return "none".
+You are given a 0-indexed integer array `nums` containing exactly three positive side lengths. A valid triangle must satisfy the strict triangle inequality: the sum of every pair of side lengths is greater than the remaining length. Equality produces a degenerate shape and therefore does not count as a triangle.
+
+If the three lengths form a triangle, classify it by its equal sides. An **equilateral** triangle has three equal lengths, an **isosceles** triangle has exactly two equal lengths, and a **scalene** triangle has three different lengths. Return the corresponding lowercase name, or return `"none"` when no triangle can be formed.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of three integers representing the side lengths.
+- `nums`: A list of exactly three integers, each between $1$ and $100$ inclusive.
 
 **Return value**
 
-- A string: "equilateral", "isosceles", "scalene", or "none".
+One of `"equilateral"`, `"isosceles"`, `"scalene"`, or `"none"`, according to the validity and side-length classification.
 
 ### Examples
 **Example 1**
@@ -31,48 +29,11 @@ Given an array of three integers representing the lengths of the sides of a pote
 - Input: `nums = [3, 3, 3]`
 - Output: `"equilateral"`
 
+All three equal positive lengths form an equilateral triangle.
+
 **Example 2**
-
-- Input: `nums = [3, 4, 3]`
-- Output: `"isosceles"`
-
-**Example 3**
 
 - Input: `nums = [3, 4, 5]`
 - Output: `"scalene"`
 
----
-
-## Solution
-### Approach
-The solution relies on the **Triangle Inequality Theorem**, which states that for any triangle, the sum of the lengths of any two sides must be strictly greater than the length of the third side. By sorting the sides such that $a \le b \le c$, we only need to verify that $a + b > c$. Once validity is confirmed, we use set theory or equality comparisons to count the number of unique side lengths to classify the triangle type.
-
-### Complexity Analysis
-- **Time Complexity**: $O(1)$. Since the input size is fixed at three elements, sorting and comparisons take constant time.
-- **Space Complexity**: $O(1)$. We only use a constant amount of extra space for variables.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int]) -> str:
-    # Sort the sides to easily check the triangle inequality
-    nums.sort()
-    a, b, c = nums
-
-    # Triangle Inequality Theorem: sum of two smaller sides must be > largest side
-    if a + b <= c:
-        return "none"
-
-    # Count unique sides using a set
-    unique_sides = len(set(nums))
-
-    if unique_sides == 1:
-        return "equilateral"
-    elif unique_sides == 2:
-        return "isosceles"
-    else:
-        return "scalene"
-```
-</details>
+Every pair has a sum greater than the third length, and all three lengths differ.

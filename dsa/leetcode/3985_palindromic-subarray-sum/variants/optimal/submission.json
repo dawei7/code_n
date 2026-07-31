@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4031",
+  "frontend_id": "3985",
+  "title_slug": "palindromic-subarray-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getSum",
+  "verified_submission_id": "2088095984",
+  "verified_at": "2026-07-30T23:22:43.8450366+00:00"
+}

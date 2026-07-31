@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2378",
+  "frontend_id": "2284",
+  "title_slug": "sender-with-largest-word-count",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.largestWordCount",
+  "verified_submission_id": "2073991301",
+  "verified_at": "2026-07-20T02:34:41.625237+00:00"
+}

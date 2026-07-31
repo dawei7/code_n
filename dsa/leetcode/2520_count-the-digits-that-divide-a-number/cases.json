@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2520",
+  "cases": [
+    {"id":"sample-seven","name":"sample: one digit divides itself","kind":"sample","visible":true,"input":{"num":7},"expected":1,"tags":["sample","boundary"]},
+    {"id":"sample-repeated-one","name":"sample: repeated divisor occurrences","kind":"sample","visible":true,"input":{"num":121},"expected":2,"tags":["sample","repeated-digits"]},
+    {"id":"sample-all-divide","name":"sample: every digit divides","kind":"sample","visible":true,"input":{"num":1248},"expected":4,"tags":["sample"]},
+    {"id":"trial-none-divide","name":"trial: no digit divides","kind":"trial","visible":true,"input":{"num":37},"expected":0,"tags":["trial","zero-result"]},
+    {"id":"trial-repeated-two","name":"trial: repeated non-unit divisor","kind":"trial","visible":true,"input":{"num":212},"expected":3,"tags":["trial","repeated-digits"]},
+    {"id":"hidden-one-match","name":"hidden: exactly one matching digit","kind":"real","visible":false,"input":{"num":19},"expected":1,"tags":["hidden"]},
+    {"id":"hidden-distinct-digits","name":"hidden: large number with distinct digits","kind":"real","visible":false,"input":{"num":123456789},"expected":3,"tags":["hidden","large"]},
+    {"id":"hidden-upper-valid-boundary","name":"hidden: largest valid nine-digit value","kind":"real","visible":false,"input":{"num":999999999},"expected":9,"tags":["hidden","boundary","repeated-digits"]}
+  ]
+}

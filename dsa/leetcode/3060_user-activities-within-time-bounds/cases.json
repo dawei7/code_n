@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3060",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: qualifying viewer sessions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Sessions": [
+        {"user_id": 101, "session_start": "2023-11-01 08:00:00", "session_end": "2023-11-01 09:00:00", "session_id": 1, "session_type": "Viewer"},
+        {"user_id": 101, "session_start": "2023-11-01 10:00:00", "session_end": "2023-11-01 11:00:00", "session_id": 2, "session_type": "Streamer"},
+        {"user_id": 102, "session_start": "2023-11-01 13:00:00", "session_end": "2023-11-01 14:00:00", "session_id": 3, "session_type": "Viewer"},
+        {"user_id": 102, "session_start": "2023-11-01 15:00:00", "session_end": "2023-11-01 16:00:00", "session_id": 4, "session_type": "Viewer"},
+        {"user_id": 101, "session_start": "2023-11-02 09:00:00", "session_end": "2023-11-02 10:00:00", "session_id": 5, "session_type": "Viewer"},
+        {"user_id": 102, "session_start": "2023-11-02 12:00:00", "session_end": "2023-11-02 13:00:00", "session_id": 6, "session_type": "Streamer"},
+        {"user_id": 101, "session_start": "2023-11-02 13:00:00", "session_end": "2023-11-02 14:00:00", "session_id": 7, "session_type": "Streamer"},
+        {"user_id": 102, "session_start": "2023-11-02 16:00:00", "session_end": "2023-11-02 17:00:00", "session_id": 8, "session_type": "Viewer"},
+        {"user_id": 103, "session_start": "2023-11-01 08:00:00", "session_end": "2023-11-01 09:00:00", "session_id": 9, "session_type": "Viewer"},
+        {"user_id": 103, "session_start": "2023-11-02 20:00:00", "session_end": "2023-11-02 23:00:00", "session_id": 10, "session_type": "Viewer"},
+        {"user_id": 103, "session_start": "2023-11-03 09:00:00", "session_end": "2023-11-03 10:00:00", "session_id": 11, "session_type": "Viewer"}
+      ]}},
+      "expected": {"columns": ["user_id"], "rows": [[102], [103]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["sample", "same-type", "ordering"]
+    },
+    {
+      "id": "sample-exact-twelve-hours",
+      "name": "sample: inclusive twelve-hour boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Sessions": [
+        {"user_id": 1, "session_start": "2024-01-01 00:00:00", "session_end": "2024-01-01 01:00:00", "session_id": 1, "session_type": "Viewer"},
+        {"user_id": 1, "session_start": "2024-01-01 13:00:00", "session_end": "2024-01-01 14:00:00", "session_id": 2, "session_type": "Viewer"}
+      ]}},
+      "expected": {"columns": ["user_id"], "rows": [[1]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["sample", "boundary", "inclusive"]
+    },
+    {
+      "id": "trial-different-types",
+      "name": "trial: nearby sessions of different types do not pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Sessions": [
+        {"user_id": 2, "session_start": "2024-01-01 08:00:00", "session_end": "2024-01-01 09:00:00", "session_id": 3, "session_type": "Viewer"},
+        {"user_id": 2, "session_start": "2024-01-01 10:00:00", "session_end": "2024-01-01 11:00:00", "session_id": 4, "session_type": "Streamer"}
+      ]}},
+      "expected": {"columns": ["user_id"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["trial", "type-isolation", "empty-output"]
+    },
+    {
+      "id": "real-beyond-boundary",
+      "name": "hidden: one second beyond twelve hours is excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Sessions": [
+        {"user_id": 3, "session_start": "2024-02-01 00:00:00", "session_end": "2024-02-01 01:00:00", "session_id": 5, "session_type": "Streamer"},
+        {"user_id": 3, "session_start": "2024-02-01 13:00:01", "session_end": "2024-02-01 14:00:00", "session_id": 6, "session_type": "Streamer"}
+      ]}},
+      "expected": {"columns": ["user_id"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["boundary", "exact-time"]
+    },
+    {
+      "id": "real-input-order-and-deduplication",
+      "name": "hidden: order chronologically and return each user once",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Sessions": [
+        {"user_id": 9, "session_start": "2024-03-01 06:00:00", "session_end": "2024-03-01 07:00:00", "session_id": 9, "session_type": "Viewer"},
+        {"user_id": 4, "session_start": "2024-03-02 10:00:00", "session_end": "2024-03-02 11:00:00", "session_id": 8, "session_type": "Streamer"},
+        {"user_id": 9, "session_start": "2024-03-01 00:00:00", "session_end": "2024-03-01 01:00:00", "session_id": 7, "session_type": "Viewer"},
+        {"user_id": 9, "session_start": "2024-03-01 10:00:00", "session_end": "2024-03-01 11:00:00", "session_id": 10, "session_type": "Viewer"},
+        {"user_id": 4, "session_start": "2024-03-01 00:00:00", "session_end": "2024-03-01 01:00:00", "session_id": 11, "session_type": "Streamer"}
+      ]}},
+      "expected": {"columns": ["user_id"], "rows": [[9]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["input-order", "deduplication", "ordering"]
+    },
+    {
+      "id": "real-single-session",
+      "name": "hidden: one session cannot qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Sessions": [
+        {"user_id": 12, "session_start": "2024-04-01 08:00:00", "session_end": "2024-04-01 09:00:00", "session_id": 12, "session_type": "Viewer"}
+      ]}},
+      "expected": {"columns": ["user_id"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["singleton", "empty-output"]
+    }
+  ]
+}

@@ -9,10 +9,14 @@ from server.app.config import LEETCODE_ROOT
 
 AlgorithmSetId = Literal[
     "leetcode",
+    "leetcode_id",
     "elo",
+    "elo_buckets",
     "frequency",
+    "frequency_buckets",
     "leetcode_company",
     "leetcode_studyplan",
+    "leetcode_quest",
     "neetcode",
     "algomaster",
     "custom",
@@ -21,23 +25,32 @@ ResolvedAlgorithmSetId = AlgorithmSetId
 
 KNOWN_ALGORITHM_SETS: set[str] = {
     "leetcode",
+    "leetcode_id",
     "elo",
+    "elo_buckets",
     "frequency",
+    "frequency_buckets",
     "leetcode_company",
     "leetcode_studyplan",
+    "leetcode_quest",
     "neetcode",
     "algomaster",
     "custom",
 }
 LEETCODE_VIEW_SETS: set[str] = {
     "leetcode",
+    "leetcode_id",
     "elo",
+    "elo_buckets",
     "frequency",
+    "frequency_buckets",
     "leetcode_company",
     "leetcode_studyplan",
+    "leetcode_quest",
 }
 
 ALGOMASTER_MANIFEST_PATH = LEETCODE_ROOT / "_meta" / "algomaster-subsets.json"
+LEETCODE_QUEST_MANIFEST_PATH = LEETCODE_ROOT / "_meta" / "leetcode-quest-subsets.json"
 
 
 def normalize_algorithm_set(value: str | None) -> ResolvedAlgorithmSetId:
@@ -137,6 +150,56 @@ def algomaster_memberships_by_id() -> dict[str, tuple[dict, ...]]:
     return {challenge_id: tuple(memberships) for challenge_id, memberships in by_challenge.items()}
 
 
+@lru_cache(maxsize=1)
+def leetcode_quest_manifest() -> dict:
+    if not LEETCODE_QUEST_MANIFEST_PATH.is_file():
+        return {}
+    try:
+        payload = json.loads(LEETCODE_QUEST_MANIFEST_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+@lru_cache(maxsize=1)
+def leetcode_quest_memberships_by_id() -> dict[str, tuple[dict, ...]]:
+    by_challenge: dict[str, list[dict]] = {}
+    for problem in leetcode_quest_manifest().get("problems", []):
+        if not isinstance(problem, dict):
+            continue
+        challenge_id = str(problem.get("challenge_id") or "")
+        quest_slug = str(problem.get("quest_slug") or "")
+        if not challenge_id or not quest_slug:
+            continue
+        by_challenge.setdefault(challenge_id, []).append(
+            {
+                "kind": "leetcode_quest",
+                "subset_slug": quest_slug,
+                "subset_name": str(problem.get("quest_name") or quest_slug),
+                "subset_order": int(problem.get("quest_order", 0) or 0),
+                "path": [
+                    str(problem.get("unit_name") or "Uncategorized"),
+                    str(problem.get("level_name") or "Level"),
+                ],
+                "path_orders": [
+                    int(problem.get("unit_order", 0) or 0),
+                    int(problem.get("level_order", 0) or 0),
+                ],
+                "section_order": int(problem.get("unit_order", 0) or 0),
+                "level_order": int(problem.get("level_order", 0) or 0),
+                "problem_order": int(problem.get("problem_order", 0) or 0),
+                "order": int(problem.get("order", 0) or 0),
+                "source_url": str(problem.get("source_url") or ""),
+                "favorite_slug": str(problem.get("favorite_slug") or ""),
+                "leetcode_slug": str(problem.get("leetcode_slug") or ""),
+            }
+        )
+    return {
+        challenge_id: tuple(memberships)
+        for challenge_id, memberships in by_challenge.items()
+    }
+
+
 def external_subset_memberships_for(challenge_id: str) -> list[dict]:
     memberships: list[dict] = []
     metadata = leetcode_metadata_for(challenge_id)
@@ -148,6 +211,10 @@ def external_subset_memberships_for(challenge_id: str) -> list[dict]:
             if isinstance(membership, dict) and str(membership.get("kind") or "") == "neetcode"
         )
     memberships.extend(dict(membership) for membership in algomaster_memberships_by_id().get(challenge_id, ()))
+    memberships.extend(
+        dict(membership)
+        for membership in leetcode_quest_memberships_by_id().get(challenge_id, ())
+    )
     return memberships
 
 
@@ -155,11 +222,17 @@ def is_algomaster_leetcode_challenge(challenge_id: str) -> bool:
     return challenge_id in algomaster_memberships_by_id()
 
 
+def is_leetcode_quest_challenge(challenge_id: str) -> bool:
+    return challenge_id in leetcode_quest_memberships_by_id()
+
+
 def is_challenge_in_set(challenge_id: str, active_set: ResolvedAlgorithmSetId) -> bool:
     if active_set == "neetcode":
         return is_leetcode_challenge(challenge_id) and is_neetcode_leetcode_challenge(challenge_id)
     if active_set == "algomaster":
         return is_leetcode_challenge(challenge_id) and is_algomaster_leetcode_challenge(challenge_id)
+    if active_set == "leetcode_quest":
+        return is_leetcode_challenge(challenge_id) and is_leetcode_quest_challenge(challenge_id)
     if active_set in LEETCODE_VIEW_SETS:
         return is_leetcode_challenge(challenge_id)
     return False
@@ -167,13 +240,17 @@ def is_challenge_in_set(challenge_id: str, active_set: ResolvedAlgorithmSetId) -
 
 def challenge_set_label(set_id: str) -> str:
     labels = {
-        "leetcode": "LeetCode problems",
-        "elo": "LeetCode problems by Elo",
-        "frequency": "LeetCode problems by Frequency",
-        "leetcode_company": "LeetCode company subsets",
-        "leetcode_studyplan": "LeetCode study-plan subsets",
-        "neetcode": "NeetCode subsets of LeetCode",
-        "algomaster": "AlgoMaster subsets of LeetCode",
-        "custom": "Personal LeetCode problem sets",
+        "leetcode": "All Problems by Topics",
+        "leetcode_id": "All Problems by ID",
+        "elo": "Elo by Category",
+        "elo_buckets": "Elo Buckets",
+        "frequency": "Frequency by Topics",
+        "frequency_buckets": "Frequency Buckets",
+        "leetcode_company": "Company View",
+        "leetcode_studyplan": "Study Plans",
+        "leetcode_quest": "LeetCode Quests",
+        "neetcode": "NeetCode Subsets",
+        "algomaster": "AlgoMaster Subsets",
+        "custom": "Personal",
     }
     return labels.get(set_id, set_id)

@@ -8,48 +8,64 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [longest-team-pass-streak](https://leetcode.com/problems/longest-team-pass-streak/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/longest-team-pass-streak/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-team-pass-streak/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Teams` table assigns every match participant to a team. The `Passes` table records each attempted pass through its sender, receiver, and `time_stamp`. A pass is successful for the sender's team when both players belong to that same team; receiving the ball on another team is an interception.
+
+For each team, consider only passes sent by that team's players and place them in chronological order. Successful passes extend the current streak, while an interception ends it. Passes sent by another team do not interrupt this team's sequence. Return the greatest positive streak attained by every team that completes at least one successful pass, omitting teams whose outgoing passes are all intercepted, and order the rows by `team_name` in ascending order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Teams(player_id, team_name)`: One row per player. `player_id` is unique, and `team_name` identifies the player's team.
+- `Passes(pass_from, time_stamp, pass_to)`: One row per pass. `(pass_from, time_stamp)` is unique, both player columns identify rows in `Teams`, and `time_stamp` uses the match-minute format `MM:SS` from `00:00` through `90:00`.
+
+Let $t$ be the number of player rows and $p$ the number of pass rows.
 
 **Return value**
 
-TODO
+- A table with columns `team_name` and `longest_streak`, ordered by `team_name` in ascending order. Only teams with a positive successful-pass streak appear.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+`Teams`
 
-**Example 2**
+| player_id | team_name |
+|---:|---|
+| 1 | Arsenal |
+| 2 | Arsenal |
+| 3 | Arsenal |
+| 4 | Arsenal |
+| 5 | Chelsea |
+| 6 | Chelsea |
+| 7 | Chelsea |
+| 8 | Chelsea |
 
-- Input: `TODO`
-- Output: `TODO`
+`Passes`
 
-**Example 3**
+| pass_from | time_stamp | pass_to |
+|---:|:---:|---:|
+| 1 | 00:05 | 2 |
+| 2 | 00:07 | 3 |
+| 3 | 00:08 | 4 |
+| 4 | 00:10 | 5 |
+| 6 | 00:15 | 7 |
+| 7 | 00:17 | 8 |
+| 8 | 00:20 | 6 |
+| 6 | 00:22 | 5 |
+| 1 | 00:25 | 2 |
+| 2 | 00:27 | 3 |
 
-- Input: `TODO`
-- Output: `TODO`
+Output
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+| team_name | longest_streak |
+|---|---:|
+| Arsenal | 3 |
+| Chelsea | 4 |

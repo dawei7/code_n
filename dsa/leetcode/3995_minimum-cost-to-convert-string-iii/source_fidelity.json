@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3995",
+    "frontend_id": "3995",
+    "title_slug": "minimum-cost-to-convert-string-iii",
+    "url": "https://leetcode.com/problems/minimum-cost-to-convert-string-iii/description/",
+    "paid_only": false,
+    "content_sha256": "b88fb58517e378e10c78d92874534d4e8caa21bbb3f526fe03c0a0e7ac2f6a91",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "source = \"hello\", target = \"world\", rules = [[\"he\",\"wo\"],[\"llo\",\"rld\"]], costs = [3,4]",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "source = \"cat\", target = \"dog\", rules = [[\"c*t\",\"dog\"]], costs = [2]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "source = \"test\", target = \"next\", rules = [[\"*e*t\",\"next\"]], costs = [4]",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 4,
+        "input": "source = \"ab\", target = \"bc\", rules = [[\"a*\",\"bd\"]], costs = [9]",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 8,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b0239f593b90b690ad06feea7848217ebf357cfa66bbf862f6f0f3dfdf6d6458",
+      "reference/contract.md": "9133bda483e5aa7a7e28ab234800f55652f95a0f3272d70c2db523106cb23d19",
+      "reference/examples.md": "47cbeb7372d5272462d3a1a5ade65ec206b3cfa8836604761dd90be1edb0b440",
+      "reference/constraints.md": "9cabe74e99dbb3c26ac568eda70a4c75cf1bb1ac8dab780165774c7bedeb4daa"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

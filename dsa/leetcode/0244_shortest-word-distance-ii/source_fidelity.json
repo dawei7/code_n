@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_244", "frontend_id": "244", "title_slug": "shortest-word-distance-ii", "url": "https://leetcode.com/problems/shortest-word-distance-ii/description/", "paid_only": true, "content_sha256": "ac26b2f1ff999ad33b75e9bf07e964750eca65aecdfbe965e36bbe820e824a9e", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "[\"WordDistance\",\"shortest\",\"shortest\"], [[[\"practice\",\"makes\",\"perfect\",\"coding\",\"makes\"]],[\"coding\",\"practice\"],[\"makes\",\"coding\"]]", "output": "[null,3,1]", "has_explanation": true}],
+    "constraint_count": 6,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "d4528af398791b667094828afa8e8ba58b9613690e4b1dcccd227334de3ff370", "reference/contract.md": "d89c19e02564989a5edfad93f12b4158420645d2e0611e6f7f826671dd7227b9", "reference/examples.md": "ed4fe525dfeacb63614b9042add7f264da0a5aa1e2221f775bd676101292f6d5", "reference/constraints.md": "1503f481df65f59357b8601c8863a119605027fb3cb5161fba24621bc81d2f88"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

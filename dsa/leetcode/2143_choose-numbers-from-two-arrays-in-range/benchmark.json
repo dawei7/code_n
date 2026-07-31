@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2143",
+  "measurement_note": "Size is n. Both arrays contain n ones, so the reachable signed-difference width S grows with n. Sharing states across all possible left endpoints takes O(nS) time. A correct implementation that restarts a difference DP for every left endpoint completes all tiers and fails only by O(n^2 S) scaling.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 equal pairs", "kind": "benchmark", "visible": false, "size": 4, "input": {"nums1": [1,1,1,1], "nums2": [1,1,1,1]}, "expected": 12, "tags": ["benchmark", "scale-small", "branching"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 8 equal pairs", "kind": "benchmark", "visible": false, "size": 8, "input": {"nums1": [1,1,1,1,1,1,1,1], "nums2": [1,1,1,1,1,1,1,1]}, "expected": 174, "tags": ["benchmark", "scale-medium", "branching"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 16 equal pairs", "kind": "benchmark", "visible": false, "size": 16, "input": {"nums1": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], "nums2": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]}, "expected": 30508, "tags": ["benchmark", "scale-large", "branching"]}
+  ]
+}

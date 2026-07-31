@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3763",
+  "frontend_id": "3453",
+  "title_slug": "separate-squares-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.separateSquares",
+  "verified_submission_id": "2081943282",
+  "verified_at": "2026-07-26T11:20:49Z"
+}

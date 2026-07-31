@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2377",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: medal priorities and country tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Olympic": [
+            {"country": "China", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20},
+            {"country": "South Sudan", "gold_medals": 0, "silver_medals": 0, "bronze_medals": 1},
+            {"country": "USA", "gold_medals": 10, "silver_medals": 10, "bronze_medals": 20},
+            {"country": "Israel", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 3},
+            {"country": "Egypt", "gold_medals": 2, "silver_medals": 2, "bronze_medals": 2}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["country", "gold_medals", "silver_medals", "bronze_medals"],
+        "rows": [["China", 10, 10, 20], ["USA", 10, 10, 20], ["Israel", 2, 2, 3], ["Egypt", 2, 2, 2], ["South Sudan", 0, 0, 1]]
+      },
+      "tags": ["sample", "ordering"]
+    },
+    {
+      "id": "trial-gold-first",
+      "name": "gold outweighs all lower medal counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Olympic": [
+            {"country": "A", "gold_medals": 1, "silver_medals": 0, "bronze_medals": 0},
+            {"country": "B", "gold_medals": 0, "silver_medals": 100, "bronze_medals": 100}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["country", "gold_medals", "silver_medals", "bronze_medals"],
+        "rows": [["A", 1, 0, 0], ["B", 0, 100, 100]]
+      },
+      "tags": ["gold", "priority"]
+    },
+    {
+      "id": "trial-silver-tie-break",
+      "name": "silver resolves equal gold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Olympic": [
+            {"country": "Low", "gold_medals": 3, "silver_medals": 1, "bronze_medals": 20},
+            {"country": "High", "gold_medals": 3, "silver_medals": 2, "bronze_medals": 0}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["country", "gold_medals", "silver_medals", "bronze_medals"],
+        "rows": [["High", 3, 2, 0], ["Low", 3, 1, 20]]
+      },
+      "tags": ["silver", "tie"]
+    },
+    {
+      "id": "trial-bronze-tie-break",
+      "name": "bronze resolves equal gold and silver",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Olympic": [
+            {"country": "One", "gold_medals": 4, "silver_medals": 5, "bronze_medals": 1},
+            {"country": "Two", "gold_medals": 4, "silver_medals": 5, "bronze_medals": 2}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["country", "gold_medals", "silver_medals", "bronze_medals"],
+        "rows": [["Two", 4, 5, 2], ["One", 4, 5, 1]]
+      },
+      "tags": ["bronze", "tie"]
+    },
+    {
+      "id": "real-country-tie-break",
+      "name": "hidden: country name is final ascending key",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Olympic": [
+            {"country": "Zulu", "gold_medals": 1, "silver_medals": 1, "bronze_medals": 1},
+            {"country": "Alpha", "gold_medals": 1, "silver_medals": 1, "bronze_medals": 1},
+            {"country": "Mike", "gold_medals": 1, "silver_medals": 1, "bronze_medals": 1}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["country", "gold_medals", "silver_medals", "bronze_medals"],
+        "rows": [["Alpha", 1, 1, 1], ["Mike", 1, 1, 1], ["Zulu", 1, 1, 1]]
+      },
+      "tags": ["hidden", "lexicographic"]
+    },
+    {
+      "id": "real-zero-medals",
+      "name": "hidden: zero medal rows still sort by all keys",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Olympic": [
+            {"country": "C", "gold_medals": 0, "silver_medals": 0, "bronze_medals": 0},
+            {"country": "A", "gold_medals": 0, "silver_medals": 1, "bronze_medals": 0},
+            {"country": "B", "gold_medals": 0, "silver_medals": 0, "bronze_medals": 1}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["country", "gold_medals", "silver_medals", "bronze_medals"],
+        "rows": [["A", 0, 1, 0], ["B", 0, 0, 1], ["C", 0, 0, 0]]
+      },
+      "tags": ["hidden", "zero"]
+    }
+  ]
+}

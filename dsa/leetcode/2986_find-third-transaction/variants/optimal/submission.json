@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3283",
+  "frontend_id": "2986",
+  "title_slug": "find-third-transaction",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2078563579",
+  "verified_at": "2026-07-23T15:21:52.075363+00:00"
+}

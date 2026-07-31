@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2436",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two valid groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [12, 6, 3, 14, 8]},
+      "expected": 2,
+      "tags": ["sample", "forced-cut"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: whole array remains valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 12, 6, 14]},
+      "expected": 1,
+      "tags": ["sample", "one-group"]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one prime value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [17]},
+      "expected": 1,
+      "tags": ["trial", "single"]
+    },
+    {
+      "id": "trial-every-value-separated",
+      "name": "trial: pairwise coprime neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3, 5, 7]},
+      "expected": 4,
+      "tags": ["trial", "all-cuts"]
+    },
+    {
+      "id": "real-choice-of-boundary",
+      "name": "hidden: either side can share the middle value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 10, 15]},
+      "expected": 2,
+      "tags": ["hidden", "boundary"]
+    },
+    {
+      "id": "real-long-second-group",
+      "name": "hidden: second group retains a common divisor",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 4, 3, 9, 6]},
+      "expected": 2,
+      "tags": ["hidden", "long-group"]
+    },
+    {
+      "id": "real-late-forced-cut",
+      "name": "hidden: GCD becomes one late in the group",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [30, 6, 10, 15]},
+      "expected": 2,
+      "tags": ["hidden", "late-cut"]
+    },
+    {
+      "id": "real-large-coprime-values",
+      "name": "hidden: large coprime values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 999999937]},
+      "expected": 2,
+      "tags": ["hidden", "maximum"]
+    }
+  ]
+}

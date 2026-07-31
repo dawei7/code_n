@@ -8,48 +8,45 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [first-letter-capitalization](https://leetcode.com/problems/first-letter-capitalization/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/first-letter-capitalization/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/first-letter-capitalization/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `user_content` table stores a unique `content_id` and a text value `content_text` for each row. Transform every word in each text so that its first letter is uppercase and every remaining letter is lowercase. A word begins at the start of the text or immediately after a space.
+
+Existing spaces are data and must remain unchanged, including leading spaces, trailing spaces, and multiple consecutive spaces. The text contains no special characters. Return one row per source record with its identifier, the untouched source text named `original_text`, and the transformed text named `converted_text`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `user_content`: A table with unique integer column `content_id` and text column `content_text`.
+
+Let $n$ be the number of rows and define
+
+$$
+S=\sum_{r\in\texttt{user_content}}\lvert r.\texttt{content_text}\rvert.
+$$
 
 **Return value**
 
-TODO
+- A result table with columns `content_id`, `original_text`, and `converted_text`, ordered by `content_id` ascending.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input row: `(1, "hello world of SQL")`
+- Output row: `(1, "hello world of SQL", "Hello World Of Sql")`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input row: `(2, "the QUICK brown fox")`
+- Output row: `(2, "the QUICK brown fox", "The Quick Brown Fox")`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input row: `(3, "data science AND machine learning")`
+- Output row: `(3, "data science AND machine learning", "Data Science And Machine Learning")`

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3675",
+  "cases": [
+    {
+      "id": "benchmark-letter-scan-32",
+      "name": "benchmark: scan 32 distributed non-a letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "zyxwvutsrqponmlkjihgfedcbzyxwvut"
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark",
+        "full-scan",
+        "distributed-letters"
+      ]
+    },
+    {
+      "id": "benchmark-letter-scan-128",
+      "name": "benchmark: scan 128 distributed non-a letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "zyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyx"
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark",
+        "full-scan",
+        "distributed-letters"
+      ]
+    },
+    {
+      "id": "benchmark-letter-scan-512",
+      "name": "benchmark: scan 512 distributed non-a letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "zyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqponmlkjihgfedcbzyxwvutsrqpo"
+      },
+      "expected": 25,
+      "tags": [
+        "benchmark",
+        "full-scan",
+        "distributed-letters"
+      ]
+    }
+  ]
+}
+

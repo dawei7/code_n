@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for CEO Subordinate Hierarchy and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Traverses the reporting tree with a recursive CTE while carrying the CEO salary and hierarchy depth.",
+      "time_complexity": "O(e log e)",
+      "space_complexity": "O(e)"
     }
   ]
 }

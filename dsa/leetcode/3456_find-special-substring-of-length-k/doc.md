@@ -5,51 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 3456 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | String |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-special-substring-of-length-k](https://leetcode.com/problems/find-special-substring-of-length-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-special-substring-of-length-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-special-substring-of-length-k/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Determine whether `s` contains a substring of exactly `k` copies of one lowercase letter. The substring must be a complete run: if a character exists immediately before it, that character must be different, and the same condition applies to a character immediately after it.
+
+Consequently, selecting `k` characters from inside a longer equal-character run is not valid, even though those selected characters are identical. A qualifying substring may begin at the first character or end at the final character, where the corresponding outside-neighbor condition is absent.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A nonempty lowercase English string.
+- `k`: The exact required length of the uniform substring.
+
+The constraints are $1 \le k \le \lvert s\rvert \le 100$.
 
 **Return value**
 
-TODO
+Return `True` if `s` has a maximal equal-character run of length exactly `k`; otherwise return `False`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaabaaa", k = 3`
+- Output: `true`
+
+The final `aaa` has length three, is preceded by `b`, and has no following character.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc", k = 2`
+- Output: `false`
+
+No two adjacent characters are equal.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaaa", k = 3`
+- Output: `false`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every three-character selection belongs to a longer run, so its outside boundary repeats `a`.

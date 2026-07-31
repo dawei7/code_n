@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2268",
+  "cases": [
+    {"id":"sample-repeated-letter","name":"sample: four distinct letters fit in cheap positions","kind":"sample","visible":true,"input":{"s":"apple"},"expected":5,"tags":["sample","duplicates"]},
+    {"id":"sample-twelve-distinct","name":"sample: three letters require two presses","kind":"sample","visible":true,"input":{"s":"abcdefghijkl"},"expected":15,"tags":["sample","two-cost-levels"]},
+    {"id":"trial-single-letter","name":"one character needs one press","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"tags":["minimum-length"]},
+    {"id":"trial-nine-distinct","name":"all nine cheap positions are used","kind":"trial","visible":true,"input":{"s":"abcdefghi"},"expected":9,"tags":["cost-boundary"]},
+    {"id":"trial-ten-distinct","name":"the tenth distinct letter costs two presses","kind":"trial","visible":true,"input":{"s":"abcdefghij"},"expected":11,"tags":["cost-boundary"]},
+    {"id":"real-all-letters","name":"hidden: all three slot-cost levels are required","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyz"},"expected":51,"tags":["hidden","full-alphabet"]},
+    {"id":"real-skewed-frequencies","name":"hidden: frequent letters receive the cheapest positions","kind":"real","visible":false,"input":{"s":"aaaaabbbbcccdde"},"expected":15,"tags":["hidden","frequency-order"]},
+    {"id":"real-one-letter-run","name":"hidden: one repeated letter always costs one press each","kind":"real","visible":false,"input":{"s":"mmmmmmmmmmmm"},"expected":12,"tags":["hidden","single-distinct"]}
+  ]
+}

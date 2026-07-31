@@ -8,95 +8,49 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Sorting, Counting, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-almost-equal-pairs-ii](https://leetcode.com/problems/count-almost-equal-pairs-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-almost-equal-pairs-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-almost-equal-pairs-ii/).
 
 ### Goal
-Given an array of integers, determine the number of pairs `(i, j)` such that `i < j` and the two numbers can be made equal by performing at most two "swap" operations on the digits of one of the numbers. A swap operation involves choosing two indices in the string representation of the number and swapping the digits at those positions.
+
+Two positive integers are almost equal when they can be made equal using at most two operations in total. Each operation chooses either one of the two integers and swaps any two digit positions within that chosen integer. Both swaps, when used, may be performed on the same chosen integer; doing nothing or using only one swap is also allowed.
+
+A swap may move zero to the front. Leading zeros are discarded when the resulting digit sequence is interpreted as an integer, so values with different displayed digit lengths can still be almost equal.
+
+Given `nums`, count index pairs `(i, j)` with $i < j$ whose values are almost equal. Repeated equal values at different indices form separate pairs.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers where each integer is between 1 and 1,000,000.
+- `nums`: A list of $n$ positive integers, where $2 \le n \le 5000$ and every value is less than $10^7$.
+
+Let $d$ be the maximum decimal digit count, so $d \le 7$.
 
 **Return value**
 
-- An integer representing the total count of pairs `(i, j)` that satisfy the "almost equal" condition.
+- The number of index pairs that can be made equal using zero, one, or two digit swaps applied to either member of the pair.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1023, 2310]`
-- Output: `1`
-- Explanation: 1023 can become 2310 by swapping '1' with '2' and '0' with '3'.
+- Input: `nums = [1023,2310,2130,213]`
+- Output: `4`
+
+The qualifying pairs are `(1023,2310)`, `(1023,213)`, `(2310,2130)`, and `(2310,213)`.
 
 **Example 2**
 
-- Input: `nums = [1, 10, 30]`
+- Input: `nums = [1,10,100]`
 - Output: `3`
-- Explanation: (1, 10), (1, 30), and (10, 30) are all valid pairs after padding with leading zeros.
+
+Every pair qualifies through a swap that moves a nonzero digit past one or more leading zeros.
 
 **Example 3**
 
-- Input: `nums = [12, 12]`
-- Output: `1`
+- Input: `nums = [123456,456123]`
+- Output: `0`
 
----
-
-## Solution
-### Approach
-The problem is solved by normalizing all numbers to the same string length (padding with leading zeros) and using a Hash Map to store the frequency of numbers encountered so far. For each number, we generate all possible variations reachable within two swaps. Since the maximum number of digits is 7, the number of permutations is small enough to generate efficiently. We use a set to store unique variations to avoid double-counting when checking against the frequency map.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N * D^4)`, where `N` is the length of the input array and `D` is the maximum number of digits (7). Generating all variations within 2 swaps involves choosing 2 pairs of indices, which is roughly `O(D^4)`.
-- **Space Complexity**: `O(N * D^4)` to store the frequency map of all possible variations for each number.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import defaultdict
-
-def solve(nums: list[int]) -> int:
-    # Normalize all numbers to the same length (max 7 digits)
-    max_len = len(str(max(nums)))
-
-    def get_variations(n_str):
-        s = list(n_str.zfill(max_len))
-        res = {tuple(s)}
-
-        # 1 swap
-        n = len(s)
-        for i in range(n):
-            for j in range(i + 1, n):
-                s[i], s[j] = s[j], s[i]
-                res.add(tuple(s))
-                # 2 swaps: perform another swap on the result of the first
-                for k in range(n):
-                    for l in range(k + 1, n):
-                        s[k], s[l] = s[l], s[k]
-                        res.add(tuple(s))
-                        s[k], s[l] = s[l], s[k] # backtrack
-                s[i], s[j] = s[j], s[i] # backtrack
-        return res
-
-    count = 0
-    freq = defaultdict(int)
-
-    for x in nums:
-        s_x = str(x).zfill(max_len)
-        variations = get_variations(s_x)
-
-        # For each variation, check how many times we've seen it before
-        for var in variations:
-            count += freq[var]
-
-        # Add the original number to the frequency map
-        freq[tuple(s_x)] += 1
-
-    return count
-```
-</details>
+These arrangements differ by three disjoint position swaps, so two operations are insufficient.

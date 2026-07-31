@@ -1,25 +1,15 @@
 def solve(grid: list[list[int]]) -> int:
     rows = len(grid)
-    cols = len(grid[0])
-    
-    # Calculate flips needed to make all rows palindromic
-    row_flips = 0
-    for r in range(rows):
-        left, right = 0, cols - 1
-        while left < right:
-            if grid[r][left] != grid[r][right]:
-                row_flips += 1
-            left += 1
-            right -= 1
-            
-    # Calculate flips needed to make all columns palindromic
-    col_flips = 0
-    for c in range(cols):
-        top, bottom = 0, rows - 1
-        while top < bottom:
-            if grid[top][c] != grid[bottom][c]:
-                col_flips += 1
-            top += 1
-            bottom -= 1
-            
-    return min(row_flips, col_flips)
+    columns = len(grid[0])
+
+    row_mismatches = sum(
+        grid[row][left] != grid[row][columns - 1 - left]
+        for row in range(rows)
+        for left in range(columns // 2)
+    )
+    column_mismatches = sum(
+        grid[top][column] != grid[rows - 1 - top][column]
+        for top in range(rows // 2)
+        for column in range(columns)
+    )
+    return min(row_mismatches, column_mismatches)

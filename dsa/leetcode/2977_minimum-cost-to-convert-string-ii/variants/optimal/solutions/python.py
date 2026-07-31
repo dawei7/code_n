@@ -1,64 +1,75 @@
-import collections
+from typing import List
 
-def solve(source: str, target: str, original: list[str], changed: list[str], cost: list[int]) -> int:
-    # Map all unique substrings to IDs
-    trie = {}
-    def get_id(s, create=False):
-        node = trie
-        for char in s:
-            if char not in node:
-                if not create: return -1
-                node[char] = {}
-            node = node[char]
-        if '#' not in node:
-            if not create: return -1
-            node['#'] = len(ids)
-            ids.append(s)
-        return node['#']
 
-    ids = []
-    for s in original: get_id(s, True)
-    for s in changed: get_id(s, True)
-    
-    n_nodes = len(ids)
-    dist = [[float('inf')] * n_nodes for _ in range(n_nodes)]
-    for i in range(n_nodes): dist[i][i] = 0
-    
-    for o, c, w in zip(original, changed, cost):
-        u, v = get_id(o), get_id(c)
-        dist[u][v] = min(dist[u][v], w)
-        
-    # Floyd-Warshall for all-pairs shortest paths
-    for k in range(n_nodes):
-        for i in range(n_nodes):
-            if dist[i][k] == float('inf'): continue
-            for j in range(n_nodes):
-                if dist[i][j] > dist[i][k] + dist[k][j]:
-                    dist[i][j] = dist[i][k] + dist[k][j]
-                    
+def solve(
+    source: str,
+    target: str,
+    original: List[str],
+    changed: List[str],
+    cost: List[int],
+) -> int:
+    identifiers = {}
+    for word in original + changed:
+        if word not in identifiers:
+            identifiers[word] = len(identifiers)
+
+    count = len(identifiers)
+    infinity = 10**30
+    distance = [[infinity] * count for _ in range(count)]
+    for word_id in range(count):
+        distance[word_id][word_id] = 0
+
+    for start, end, price in zip(original, changed, cost):
+        first = identifiers[start]
+        second = identifiers[end]
+        distance[first][second] = min(distance[first][second], price)
+
+    for middle in range(count):
+        for first in range(count):
+            through_middle = distance[first][middle]
+            if through_middle == infinity:
+                continue
+            for second in range(count):
+                candidate = through_middle + distance[middle][second]
+                if candidate < distance[first][second]:
+                    distance[first][second] = candidate
+
+    children = [{}]
+    terminal = [-1]
+    for word, word_id in identifiers.items():
+        node = 0
+        for character in word:
+            next_node = children[node].get(character)
+            if next_node is None:
+                next_node = len(children)
+                children[node][character] = next_node
+                children.append({})
+                terminal.append(-1)
+            node = next_node
+        terminal[node] = word_id
+
     n = len(source)
-    dp = [float('inf')] * (n + 1)
-    dp[0] = 0
-    
-    # DP with Trie lookups
-    for i in range(n):
-        if dp[i] == float('inf'): continue
-        
-        # Option 1: Characters match, no cost
-        if source[i] == target[i]:
-            dp[i+1] = min(dp[i+1], dp[i])
-            
-        # Option 2: Try all possible transformations starting at i
-        curr_s, curr_t = trie, trie
-        for j in range(i, n):
-            if source[j] not in curr_s or target[j] not in curr_t:
+    best = [infinity] * (n + 1)
+    best[0] = 0
+
+    for start in range(n):
+        if best[start] == infinity:
+            continue
+        if source[start] == target[start]:
+            best[start + 1] = min(best[start + 1], best[start])
+
+        source_node = 0
+        target_node = 0
+        for end in range(start, n):
+            source_node = children[source_node].get(source[end], -1)
+            target_node = children[target_node].get(target[end], -1)
+            if source_node == -1 or target_node == -1:
                 break
-            curr_s = curr_s[source[j]]
-            curr_t = curr_t[target[j]]
-            
-            if '#' in curr_s and '#' in curr_t:
-                u, v = curr_s['#'], curr_t['#']
-                if dist[u][v] != float('inf'):
-                    dp[j+1] = min(dp[j+1], dp[i] + dist[u][v])
-                    
-    return dp[n] if dp[n] != float('inf') else -1
+            source_id = terminal[source_node]
+            target_id = terminal[target_node]
+            if source_id != -1 and target_id != -1:
+                price = distance[source_id][target_id]
+                if price != infinity:
+                    best[end + 1] = min(best[end + 1], best[start] + price)
+
+    return -1 if best[n] == infinity else best[n]

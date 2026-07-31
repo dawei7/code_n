@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2427",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four factors of six",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": 12, "b": 6},
+      "expected": 4,
+      "tags": ["sample", "composite-gcd"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: common prime factor five",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": 25, "b": 30},
+      "expected": 2,
+      "tags": ["sample", "prime-gcd"]
+    },
+    {
+      "id": "trial-coprime-primes",
+      "name": "trial: coprime inputs share only one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"a": 17, "b": 19},
+      "expected": 1,
+      "tags": ["trial", "coprime"]
+    },
+    {
+      "id": "trial-both-one",
+      "name": "trial: minimum input boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"a": 1, "b": 1},
+      "expected": 1,
+      "tags": ["trial", "minimum"]
+    },
+    {
+      "id": "real-perfect-square-gcd",
+      "name": "hidden: square-root divisor counts once",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": 36, "b": 36},
+      "expected": 9,
+      "tags": ["hidden", "perfect-square"]
+    },
+    {
+      "id": "real-one-divides-other",
+      "name": "hidden: smaller input is the gcd",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": 8, "b": 32},
+      "expected": 4,
+      "tags": ["hidden", "divisibility"]
+    },
+    {
+      "id": "real-composite-gcd",
+      "name": "hidden: inputs reduce to gcd twelve",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": 48, "b": 180},
+      "expected": 6,
+      "tags": ["hidden", "gcd-reduction"]
+    },
+    {
+      "id": "real-maximum-equal",
+      "name": "hidden: maximum equal inputs",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": 1000, "b": 1000},
+      "expected": 16,
+      "tags": ["hidden", "maximum"]
+    }
+  ]
+}

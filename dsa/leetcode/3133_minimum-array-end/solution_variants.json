@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Array End and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Embeds the bits of n - 1 into the zero-bit positions of x to select the nth and smallest possible supermask.",
+      "time_complexity": "O(log n + log x)",
+      "space_complexity": "O(1)"
     }
   ]
 }

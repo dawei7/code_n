@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Largest Local Values in a Matrix II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sweeps cell values downward and uses a two-dimensional prefix sum to detect strictly greater neighbors.",
+      "time_complexity": "O(VNM)",
+      "space_complexity": "O(NM + V)"
     }
   ]
 }

@@ -1,23 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2348",
+  "measurement_note": "Size is n, with every value zero. The incremental run count is linear. A correct implementation that explicitly enumerates every zero-filled interval completes all tiers but is quadratic.",
   "cases": [
-    {
-      "id": "benchmark-four-zeros",
-      "name": "benchmark: one long block",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "nums": [
-          0,
-          0,
-          0,
-          0
-        ]
-      },
-      "expected": 10,
-      "tags": [
-        "benchmark"
-      ]
-    }
+    {"id":"benchmark-scale-1","name":"benchmark: 8 zeros","kind":"benchmark","visible":false,"size":8,"input":{"nums":[0,0,0,0,0,0,0,0]},"expected":36},
+    {"id":"benchmark-scale-2","name":"benchmark: 32 zeros","kind":"benchmark","visible":false,"size":32,"input":{"nums":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"expected":528},
+    {"id":"benchmark-scale-3","name":"benchmark: 64 zeros","kind":"benchmark","visible":false,"size":64,"input":{"nums":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"expected":2080}
   ]
 }

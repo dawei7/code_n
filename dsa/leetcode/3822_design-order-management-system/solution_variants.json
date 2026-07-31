@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Order Management System and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains an authoritative order map and a set of active IDs for every order-type/price pair.",
+      "time_complexity": "O(Q + T)",
+      "space_complexity": "O(A)"
     }
   ]
 }

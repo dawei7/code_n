@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3955",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n * R)",
+  "summary": "The complete legal domain has only 298 (n, k) pairs, n is at most 12, and even the largest unrestricted result contains only 377 strings, leaving no honest runtime scaling range for an output-generating algorithm.",
+  "workload_bound": {
+    "symbol": "N",
+    "maximum": 12,
+    "unit": "binary-string positions",
+    "source_constraint": "n is an integer between 1 and 12 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The remotely accepted and app-local implementations visit only prefixes that respect the cost and adjacency guards; each visited prefix extends with zeros to a returned string, so at most O(n * R) states are visited, while the recursion and path are bounded by n."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression checks both stored source forms for all 298 legal (n, k) pairs against independent enumeration of all 2^n binary strings, including duplicate detection; authored cases cover n = 1 and n = 12, zero and maximum budgets, index-zero cost, adjacency pruning, cost pruning, and unordered output."
+    }
+  ]
+}

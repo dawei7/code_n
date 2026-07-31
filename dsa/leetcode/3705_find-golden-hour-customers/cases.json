@@ -1,0 +1,882 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3705",
+  "cases": [
+    {
+      "id": "sample-five-customers",
+      "name": "sample: customers 103, 101, and 105 satisfy every criterion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 101,
+              "order_timestamp": "2024-03-01 12:30:00",
+              "order_amount": 25.5,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 2,
+              "customer_id": 101,
+              "order_timestamp": "2024-03-02 19:15:00",
+              "order_amount": 32,
+              "payment_method": "app",
+              "order_rating": 4
+            },
+            {
+              "order_id": 3,
+              "customer_id": 101,
+              "order_timestamp": "2024-03-03 13:45:00",
+              "order_amount": 28.75,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 4,
+              "customer_id": 101,
+              "order_timestamp": "2024-03-04 20:30:00",
+              "order_amount": 41,
+              "payment_method": "app",
+              "order_rating": null
+            },
+            {
+              "order_id": 5,
+              "customer_id": 102,
+              "order_timestamp": "2024-03-01 11:30:00",
+              "order_amount": 18.5,
+              "payment_method": "cash",
+              "order_rating": 4
+            },
+            {
+              "order_id": 6,
+              "customer_id": 102,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 22,
+              "payment_method": "card",
+              "order_rating": 3
+            },
+            {
+              "order_id": 7,
+              "customer_id": 102,
+              "order_timestamp": "2024-03-03 15:30:00",
+              "order_amount": 19.75,
+              "payment_method": "cash",
+              "order_rating": null
+            },
+            {
+              "order_id": 8,
+              "customer_id": 103,
+              "order_timestamp": "2024-03-01 19:00:00",
+              "order_amount": 55,
+              "payment_method": "app",
+              "order_rating": 5
+            },
+            {
+              "order_id": 9,
+              "customer_id": 103,
+              "order_timestamp": "2024-03-02 20:45:00",
+              "order_amount": 48.5,
+              "payment_method": "app",
+              "order_rating": 4
+            },
+            {
+              "order_id": 10,
+              "customer_id": 103,
+              "order_timestamp": "2024-03-03 18:30:00",
+              "order_amount": 62,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 11,
+              "customer_id": 104,
+              "order_timestamp": "2024-03-01 10:00:00",
+              "order_amount": 15,
+              "payment_method": "cash",
+              "order_rating": 3
+            },
+            {
+              "order_id": 12,
+              "customer_id": 104,
+              "order_timestamp": "2024-03-02 09:30:00",
+              "order_amount": 18,
+              "payment_method": "cash",
+              "order_rating": 2
+            },
+            {
+              "order_id": 13,
+              "customer_id": 104,
+              "order_timestamp": "2024-03-03 16:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 3
+            },
+            {
+              "order_id": 14,
+              "customer_id": 105,
+              "order_timestamp": "2024-03-01 12:15:00",
+              "order_amount": 30,
+              "payment_method": "app",
+              "order_rating": 4
+            },
+            {
+              "order_id": 15,
+              "customer_id": 105,
+              "order_timestamp": "2024-03-02 13:00:00",
+              "order_amount": 35.5,
+              "payment_method": "app",
+              "order_rating": 5
+            },
+            {
+              "order_id": 16,
+              "customer_id": 105,
+              "order_timestamp": "2024-03-03 11:45:00",
+              "order_amount": 28,
+              "payment_method": "card",
+              "order_rating": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": [
+          [
+            103,
+            3,
+            100,
+            4.67
+          ],
+          [
+            101,
+            4,
+            100,
+            4.67
+          ],
+          [
+            105,
+            3,
+            100,
+            4.33
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "all-criteria",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-exact-sixty-percent",
+      "name": "trial: exactly three of five peak orders qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 201,
+              "order_timestamp": "2024-03-02 11:30:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 2,
+              "customer_id": 201,
+              "order_timestamp": "2024-03-03 14:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 3,
+              "customer_id": 201,
+              "order_timestamp": "2024-03-04 18:30:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 4,
+              "customer_id": 201,
+              "order_timestamp": "2024-03-05 10:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 5,
+              "customer_id": 201,
+              "order_timestamp": "2024-03-06 17:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": [
+          [
+            201,
+            5,
+            60,
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "inclusive-peak-threshold"
+      ]
+    },
+    {
+      "id": "trial-inclusive-time-endpoints",
+      "name": "trial: all four peak interval endpoints are included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 202,
+              "order_timestamp": "2024-03-02 11:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 2,
+              "customer_id": 202,
+              "order_timestamp": "2024-03-03 14:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 3,
+              "customer_id": 202,
+              "order_timestamp": "2024-03-04 18:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 4,
+              "customer_id": 202,
+              "order_timestamp": "2024-03-05 21:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": [
+          [
+            202,
+            4,
+            100,
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "time-boundaries"
+      ]
+    },
+    {
+      "id": "trial-outside-time-endpoints",
+      "name": "trial: times immediately outside every interval do not count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 203,
+              "order_timestamp": "2024-03-02 10:59:59",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 2,
+              "customer_id": 203,
+              "order_timestamp": "2024-03-03 14:00:01",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 3,
+              "customer_id": 203,
+              "order_timestamp": "2024-03-04 17:59:59",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 4,
+              "customer_id": 203,
+              "order_timestamp": "2024-03-05 21:00:01",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "outside-peak",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-too-few-orders",
+      "name": "trial: two excellent peak orders do not meet the order minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 204,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 2,
+              "customer_id": 204,
+              "order_timestamp": "2024-03-03 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "minimum-orders",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-average-exactly-four",
+      "name": "trial: a raw average exactly four qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 205,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 3
+            },
+            {
+              "order_id": 2,
+              "customer_id": 205,
+              "order_timestamp": "2024-03-03 13:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 3,
+              "customer_id": 205,
+              "order_timestamp": "2024-03-04 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": [
+          [
+            205,
+            3,
+            100,
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "inclusive-rating-threshold"
+      ]
+    },
+    {
+      "id": "trial-average-below-four",
+      "name": "trial: a rating average below four excludes the customer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 206,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 2,
+              "customer_id": 206,
+              "order_timestamp": "2024-03-03 13:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 3,
+              "customer_id": 206,
+              "order_timestamp": "2024-03-04 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "rating-threshold",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-exactly-half-rated",
+      "name": "trial: two rated orders out of four meet the completion threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 207,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 2,
+              "customer_id": 207,
+              "order_timestamp": "2024-03-03 13:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 3
+            },
+            {
+              "order_id": 3,
+              "customer_id": 207,
+              "order_timestamp": "2024-03-04 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            },
+            {
+              "order_id": 4,
+              "customer_id": 207,
+              "order_timestamp": "2024-03-05 20:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": [
+          [
+            207,
+            4,
+            100,
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "inclusive-completion-threshold",
+        "null-ratings"
+      ]
+    },
+    {
+      "id": "real-below-half-rated",
+      "name": "hidden: two ratings out of five are insufficient",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 208,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 2,
+              "customer_id": 208,
+              "order_timestamp": "2024-03-03 13:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 3,
+              "customer_id": 208,
+              "order_timestamp": "2024-03-04 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            },
+            {
+              "order_id": 4,
+              "customer_id": 208,
+              "order_timestamp": "2024-03-05 20:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            },
+            {
+              "order_id": 5,
+              "customer_id": 208,
+              "order_timestamp": "2024-03-06 11:30:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "completion-threshold",
+        "null-ratings"
+      ]
+    },
+    {
+      "id": "real-whole-percent-rounding",
+      "name": "hidden: two peak orders out of three are displayed as 67 percent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 210,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 2,
+              "customer_id": 210,
+              "order_timestamp": "2024-03-03 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 3,
+              "customer_id": 210,
+              "order_timestamp": "2024-03-04 16:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": [
+          [
+            210,
+            3,
+            67,
+            4.5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "percentage-rounding",
+        "null-ratings"
+      ]
+    },
+    {
+      "id": "real-descending-id-tie",
+      "name": "hidden: equal averages use descending customer identifier",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 211,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 2,
+              "customer_id": 211,
+              "order_timestamp": "2024-03-03 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 3,
+              "customer_id": 211,
+              "order_timestamp": "2024-03-04 13:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 4,
+              "customer_id": 212,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            },
+            {
+              "order_id": 5,
+              "customer_id": 212,
+              "order_timestamp": "2024-03-03 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 4
+            },
+            {
+              "order_id": 6,
+              "customer_id": 212,
+              "order_timestamp": "2024-03-04 13:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": [
+          [
+            212,
+            3,
+            100,
+            4.67
+          ],
+          [
+            211,
+            3,
+            100,
+            4.67
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-all-unrated",
+      "name": "hidden: a customer with no ratings fails completion and average",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "restaurant_orders": [
+            {
+              "order_id": 1,
+              "customer_id": 213,
+              "order_timestamp": "2024-03-02 12:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            },
+            {
+              "order_id": 2,
+              "customer_id": 213,
+              "order_timestamp": "2024-03-03 19:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            },
+            {
+              "order_id": 3,
+              "customer_id": 213,
+              "order_timestamp": "2024-03-04 13:00:00",
+              "order_amount": 20,
+              "payment_method": "card",
+              "order_rating": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_orders",
+          "peak_hour_percentage",
+          "average_rating"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "all-unrated",
+        "empty-result"
+      ]
+    }
+  ]
+}

@@ -8,48 +8,41 @@
 | Category | pandas |
 | Topics | Uncategorized |
 | Supported Languages | python |
-| Official Link | [modify-columns](https://leetcode.com/problems/modify-columns/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/modify-columns/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/modify-columns/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A company stores each employee's `name` and integer `salary` in a DataFrame. The company plans to give every employee a pay rise by replacing each salary with twice its current value.
+
+Modify the `salary` column for all rows and return the resulting DataFrame. Keep the original `name`, preserve employee order, and retain the two-column schema `name`, `salary`; only the salary values change, with every new value equal to two times the corresponding input salary.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `employees`: A pandas DataFrame with object column `name` and integer column `salary`.
+
+Let $n$ be the number of employee rows.
 
 **Return value**
 
-TODO
+Return the employee DataFrame with every `salary` replaced by twice its original value, while names, columns, and row order remain unchanged.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `employees = [{"name": "Jack", "salary": 19666}, {"name": "Piper", "salary": 74754}, {"name": "Mia", "salary": 62509}, {"name": "Ulysses", "salary": 54866}]`
+- Output: `[{"name": "Jack", "salary": 39332}, {"name": "Piper", "salary": 149508}, {"name": "Mia", "salary": 125018}, {"name": "Ulysses", "salary": 109732}]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `employees = [{"name": "Ada", "salary": 1}]`
+- Output: `[{"name": "Ada", "salary": 2}]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `employees = [{"name": "Lin", "salary": 3200}, {"name": "Sam", "salary": 3200}]`
+- Output: `[{"name": "Lin", "salary": 6400}, {"name": "Sam", "salary": 6400}]`

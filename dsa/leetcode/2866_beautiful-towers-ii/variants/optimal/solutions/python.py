@@ -1,32 +1,35 @@
-def solve(maxHeights: list[int]) -> int:
-    n = len(maxHeights)
-    
-    def get_sums(arr):
-        sums = [0] * n
-        stack = []  # Stores indices
-        current_sum = 0
-        for i in range(n):
-            while stack and arr[stack[-1]] > arr[i]:
-                idx = stack.pop()
-                prev_idx = stack[-1] if stack else -1
-                # Remove the contribution of the popped element
-                current_sum -= (idx - prev_idx) * arr[idx]
-            
-            # Add contribution of current element
-            prev_idx = stack[-1] if stack else -1
-            current_sum += (i - prev_idx) * arr[i]
-            sums[i] = current_sum
-            stack.append(i)
-        return sums
+from typing import List
 
-    left_sums = get_sums(maxHeights)
-    right_sums = get_sums(maxHeights[::-1])[::-1]
-    
-    max_total = 0
-    for i in range(n):
-        # Total sum = left_sum + right_sum - peak_height
-        total = left_sums[i] + right_sums[i] - maxHeights[i]
-        if total > max_total:
-            max_total = total
-            
-    return max_total
+
+def solve(maxHeights: List[int]) -> int:
+    n = len(maxHeights)
+    left = [0] * n
+    stack: List[int] = []
+
+    for i, height in enumerate(maxHeights):
+        while stack and maxHeights[stack[-1]] > height:
+            stack.pop()
+        if stack:
+            previous = stack[-1]
+            left[i] = left[previous] + (i - previous) * height
+        else:
+            left[i] = (i + 1) * height
+        stack.append(i)
+
+    right = [0] * n
+    stack.clear()
+    answer = 0
+
+    for i in range(n - 1, -1, -1):
+        height = maxHeights[i]
+        while stack and maxHeights[stack[-1]] > height:
+            stack.pop()
+        if stack:
+            next_index = stack[-1]
+            right[i] = right[next_index] + (next_index - i) * height
+        else:
+            right[i] = (n - i) * height
+        answer = max(answer, left[i] + right[i] - height)
+        stack.append(i)
+
+    return answer

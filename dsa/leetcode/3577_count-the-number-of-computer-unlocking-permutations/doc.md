@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Math, Brainteaser, Combinatorics |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-the-number-of-computer-unlocking-permutations](https://leetcode.com/problems/count-the-number-of-computer-unlocking-permutations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-computer-unlocking-permutations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-the-number-of-computer-unlocking-permutations/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+There are $n$ locked computers labeled from $0$ through $n-1$. Computer $i$ has a distinct password whose difficulty is `complexity[i]`. The password of computer $0$ is already decrypted and acts as the root of the unlocking process.
+
+To unlock computer $i>0$, some already unlocked computer $j$ must satisfy both $j<i$ and `complexity[j] < complexity[i]`. Thus an earlier label alone is insufficient: its password must also have strictly lower complexity.
+
+Count the permutations of all computer labels that give a valid unlocking order, with computer $0$ first as the initially available root. Return the count modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `complexity`: An integer array of length $n$, where $2\le n\le10^5$ and $1\le\texttt{complexity[i]}\le10^9$.
 
 **Return value**
 
-TODO
+Return the number of valid unlocking permutations modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `complexity = [1,2,3]`
+- Output: `2`
+- Explanation: After computer `0`, either `1` or `2` may be unlocked first because the root has lower complexity than both.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `complexity = [3,3,3,4,4,4]`
+- Output: `0`
+- Explanation: Computer `1` cannot be unlocked: the only smaller label is `0`, whose complexity is not strictly lower.
 
 ---
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

@@ -1,46 +1,28 @@
-import collections
-
 def solve(n: int, edges: list[list[int]], price: list[int], trips: list[list[int]]) -> int:
-    adj = collections.defaultdict(list)
-    for u, v in edges:
-        adj[u].append(v)
-        adj[v].append(u)
-    
-    freq = [0] * n
-    
-    def get_path(curr, target, parent, path):
-        path.append(curr)
-        if curr == target:
+    adjacency = [[] for _ in range(n)]
+    for first, second in edges:
+        adjacency[first].append(second)
+        adjacency[second].append(first)
+    usage = [0] * n
+    def count_path(node: int, parent: int, target: int) -> bool:
+        if node == target:
+            usage[node] += 1
             return True
-        for neighbor in adj[curr]:
-            if neighbor != parent:
-                if get_path(neighbor, target, curr, path):
-                    return True
-        path.pop()
+        for neighbor in adjacency[node]:
+            if neighbor != parent and count_path(neighbor, node, target):
+                usage[node] += 1
+                return True
         return False
-    
     for start, end in trips:
-        path = []
-        get_path(start, end, -1, path)
-        for node in path:
-            freq[node] += 1
-            
-    # dp[u][0]: min cost for subtree u, u is NOT halved
-    # dp[u][1]: min cost for subtree u, u IS halved
-    memo = {}
-    
-    def dfs(u, p):
-        cost0 = price[u] * freq[u]
-        cost1 = (price[u] // 2) * freq[u]
-        
-        for v in adj[u]:
-            if v == p:
+        count_path(start, -1, end)
+    def minimize(node: int, parent: int) -> tuple[int, int]:
+        full = usage[node] * price[node]
+        halved = usage[node] * (price[node] // 2)
+        for neighbor in adjacency[node]:
+            if neighbor == parent:
                 continue
-            c0, c1 = dfs(v, u)
-            cost0 += min(c0, c1)
-            cost1 += c0
-            
-        return cost0, cost1
-    
-    res0, res1 = dfs(0, -1)
-    return min(res0, res1)
+            child_full, child_halved = minimize(neighbor, node)
+            full += min(child_full, child_halved)
+            halved += child_full
+        return full, halved
+    return min(minimize(0, -1))

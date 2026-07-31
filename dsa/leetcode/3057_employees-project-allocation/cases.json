@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3057",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: compare workloads within each team",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Project": [
+          {"project_id": 1, "employee_id": 1, "workload": 45},
+          {"project_id": 1, "employee_id": 2, "workload": 90},
+          {"project_id": 2, "employee_id": 3, "workload": 12},
+          {"project_id": 2, "employee_id": 4, "workload": 68}
+        ],
+        "Employees": [
+          {"employee_id": 1, "name": "Khaled", "team": "A"},
+          {"employee_id": 2, "name": "Ali", "team": "B"},
+          {"employee_id": 3, "name": "John", "team": "B"},
+          {"employee_id": 4, "name": "Doe", "team": "A"}
+        ]
+      }},
+      "expected": {"columns": ["employee_id", "project_id", "employee_name", "project_workload"], "rows": [[2, 1, "Ali", 90], [4, 2, "Doe", 68]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["sample", "team-average", "ordering"]
+    },
+    {
+      "id": "sample-equal-workloads",
+      "name": "sample: equality does not qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Project": [{"project_id": 2, "employee_id": 1, "workload": 10}, {"project_id": 3, "employee_id": 2, "workload": 10}],
+        "Employees": [{"employee_id": 1, "name": "A", "team": "X"}, {"employee_id": 2, "name": "B", "team": "X"}]
+      }},
+      "expected": {"columns": ["employee_id", "project_id", "employee_name", "project_workload"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["sample", "strict-comparison"]
+    },
+    {
+      "id": "trial-singleton-team",
+      "name": "trial: singleton equals its own average",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Project": [{"project_id": 9, "employee_id": 8, "workload": 99}],
+        "Employees": [{"employee_id": 8, "name": "Solo", "team": "S"}]
+      }},
+      "expected": {"columns": ["employee_id", "project_id", "employee_name", "project_workload"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["boundary", "singleton"]
+    },
+    {
+      "id": "real-fractional-average",
+      "name": "hidden: preserve a fractional team average",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Project": [
+          {"project_id": 4, "employee_id": 1, "workload": 1},
+          {"project_id": 5, "employee_id": 2, "workload": 2},
+          {"project_id": 6, "employee_id": 3, "workload": 2}
+        ],
+        "Employees": [
+          {"employee_id": 1, "name": "One", "team": "F"},
+          {"employee_id": 2, "name": "Two", "team": "F"},
+          {"employee_id": 3, "name": "Three", "team": "F"}
+        ]
+      }},
+      "expected": {"columns": ["employee_id", "project_id", "employee_name", "project_workload"], "rows": [[2, 5, "Two", 2], [3, 6, "Three", 2]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["average", "fractional"]
+    },
+    {
+      "id": "real-team-isolation-and-order",
+      "name": "hidden: isolate teams and order identifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Project": [
+          {"project_id": 70, "employee_id": 7, "workload": 50},
+          {"project_id": 20, "employee_id": 2, "workload": 10},
+          {"project_id": 40, "employee_id": 4, "workload": 100},
+          {"project_id": 10, "employee_id": 1, "workload": 0}
+        ],
+        "Employees": [
+          {"employee_id": 7, "name": "Seven", "team": "X"},
+          {"employee_id": 2, "name": "Two", "team": "X"},
+          {"employee_id": 4, "name": "Four", "team": "A"},
+          {"employee_id": 1, "name": "One", "team": "A"}
+        ]
+      }},
+      "expected": {"columns": ["employee_id", "project_id", "employee_name", "project_workload"], "rows": [[4, 40, "Four", 100], [7, 70, "Seven", 50]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["team-isolation", "ordering"]
+    }
+  ]
+}

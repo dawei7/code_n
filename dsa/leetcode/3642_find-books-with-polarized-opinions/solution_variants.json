@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Books with Polarized Opinions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregate every book's session count, rating extrema, and extreme-rating count once, then join the qualifying groups to their book details.",
+      "time_complexity": "O(R + B log B)",
+      "space_complexity": "O(B)"
     }
   ]
 }

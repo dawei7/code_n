@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | String, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-the-number-of-substrings-with-dominant-ones](https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a binary string `s`. A substring has dominant ones when its number of `1` characters is at least the square of its number of `0` characters. The zero count is squared before comparison, while the one count enters linearly, and equality qualifies.
+
+Count every nonempty contiguous substring satisfying this condition. Substrings with different endpoint positions count separately even when their text is identical.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A binary string with $1 \leq \lvert\texttt{s}\rvert \leq 4\cdot10^4$.
+
+Let $n=\lvert\texttt{s}\rvert$.
 
 **Return value**
 
-TODO
+Return the number of substrings for which $#1\geq(\#0)^2$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "00011"`
+- Output: `5`
+- Explanation: The dominant substrings are the two single `1` characters, `"01"`, `"11"`, and `"011"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "101101"`
+- Output: `16`
+- Explanation: Of the $21$ total substrings, exactly five fail the dominance inequality.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "1111"`
+- Output: `10`
+- Explanation: Every substring contains zero zeroes, so all $4\cdot5/2$ substrings qualify.

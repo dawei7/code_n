@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2523",
+  "frontend_id": "2388",
+  "title_slug": "change-null-values-in-a-table-to-the-previous-value",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2074536977",
+  "verified_at": "2026-07-20T12:18:05.843137+00:00"
+}

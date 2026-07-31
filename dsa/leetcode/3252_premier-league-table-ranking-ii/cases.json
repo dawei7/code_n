@@ -1,0 +1,1087 @@
+{
+  "challenge_id": "lc_3252",
+  "cases": [
+    {
+      "id": "sample-official-league",
+      "name": "sample: official ten-team league",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Chelsea",
+              "matches_played": 22,
+              "wins": 13,
+              "draws": 2,
+              "losses": 7
+            },
+            {
+              "team_id": 2,
+              "team_name": "Nottingham Forest",
+              "matches_played": 27,
+              "wins": 6,
+              "draws": 6,
+              "losses": 15
+            },
+            {
+              "team_id": 3,
+              "team_name": "Liverpool",
+              "matches_played": 17,
+              "wins": 1,
+              "draws": 8,
+              "losses": 8
+            },
+            {
+              "team_id": 4,
+              "team_name": "Aston Villa",
+              "matches_played": 20,
+              "wins": 1,
+              "draws": 6,
+              "losses": 13
+            },
+            {
+              "team_id": 5,
+              "team_name": "Fulham",
+              "matches_played": 31,
+              "wins": 18,
+              "draws": 1,
+              "losses": 12
+            },
+            {
+              "team_id": 6,
+              "team_name": "Burnley",
+              "matches_played": 26,
+              "wins": 6,
+              "draws": 9,
+              "losses": 11
+            },
+            {
+              "team_id": 7,
+              "team_name": "Newcastle United",
+              "matches_played": 33,
+              "wins": 11,
+              "draws": 10,
+              "losses": 12
+            },
+            {
+              "team_id": 8,
+              "team_name": "Sheffield United",
+              "matches_played": 20,
+              "wins": 18,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 9,
+              "team_name": "Luton Town",
+              "matches_played": 5,
+              "wins": 4,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 10,
+              "team_name": "Everton",
+              "matches_played": 14,
+              "wins": 2,
+              "draws": 6,
+              "losses": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Sheffield United",
+            56,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Fulham",
+            55,
+            2,
+            "Tier 1"
+          ],
+          [
+            "Newcastle United",
+            43,
+            3,
+            "Tier 1"
+          ],
+          [
+            "Chelsea",
+            41,
+            4,
+            "Tier 1"
+          ],
+          [
+            "Burnley",
+            27,
+            5,
+            "Tier 2"
+          ],
+          [
+            "Nottingham Forest",
+            24,
+            6,
+            "Tier 2"
+          ],
+          [
+            "Everton",
+            12,
+            7,
+            "Tier 2"
+          ],
+          [
+            "Luton Town",
+            12,
+            7,
+            "Tier 2"
+          ],
+          [
+            "Liverpool",
+            11,
+            9,
+            "Tier 3"
+          ],
+          [
+            "Aston Villa",
+            9,
+            10,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "boundaries",
+        "ties"
+      ]
+    },
+    {
+      "id": "sample-three-distinct",
+      "name": "sample: one team in each tier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Alpha",
+              "matches_played": 3,
+              "wins": 3,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "Bravo",
+              "matches_played": 2,
+              "wins": 2,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 3,
+              "team_name": "Charlie",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Alpha",
+            9,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Bravo",
+            6,
+            2,
+            "Tier 2"
+          ],
+          [
+            "Charlie",
+            3,
+            3,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "three-tiers"
+      ]
+    },
+    {
+      "id": "sample-all-tied",
+      "name": "sample: every team shares the higher tier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Delta",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "Alpha",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 3,
+              "team_name": "Charlie",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 4,
+              "team_name": "Bravo",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Alpha",
+            3,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Bravo",
+            3,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Charlie",
+            3,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Delta",
+            3,
+            1,
+            "Tier 1"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "all-tied"
+      ]
+    },
+    {
+      "id": "trial-single-team",
+      "name": "trial: one team belongs to Tier 1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 7,
+              "team_name": "Solo",
+              "matches_played": 3,
+              "wins": 2,
+              "draws": 1,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Solo",
+            7,
+            1,
+            "Tier 1"
+          ]
+        ]
+      },
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-two-teams",
+      "name": "trial: rounded boundaries for two teams",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Winner",
+              "matches_played": 2,
+              "wins": 2,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "Runner",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Winner",
+            6,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Runner",
+            3,
+            2,
+            "Tier 2"
+          ]
+        ]
+      },
+      "tags": [
+        "small-league",
+        "rounding"
+      ]
+    },
+    {
+      "id": "trial-four-distinct",
+      "name": "trial: ceiling makes two of four teams Tier 1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "A",
+              "matches_played": 4,
+              "wins": 4,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "B",
+              "matches_played": 3,
+              "wins": 3,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 3,
+              "team_name": "C",
+              "matches_played": 2,
+              "wins": 2,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 4,
+              "team_name": "D",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "A",
+            12,
+            1,
+            "Tier 1"
+          ],
+          [
+            "B",
+            9,
+            2,
+            "Tier 1"
+          ],
+          [
+            "C",
+            6,
+            3,
+            "Tier 2"
+          ],
+          [
+            "D",
+            3,
+            4,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "rounding",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-top-boundary-tie",
+      "name": "trial: tie at the Tier 1 boundary stays higher",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "A",
+              "matches_played": 4,
+              "wins": 4,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "C",
+              "matches_played": 3,
+              "wins": 3,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 3,
+              "team_name": "B",
+              "matches_played": 3,
+              "wins": 3,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 4,
+              "team_name": "D",
+              "matches_played": 2,
+              "wins": 2,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 5,
+              "team_name": "E",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 6,
+              "team_name": "F",
+              "matches_played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "A",
+            12,
+            1,
+            "Tier 1"
+          ],
+          [
+            "B",
+            9,
+            2,
+            "Tier 1"
+          ],
+          [
+            "C",
+            9,
+            2,
+            "Tier 1"
+          ],
+          [
+            "D",
+            6,
+            4,
+            "Tier 2"
+          ],
+          [
+            "E",
+            3,
+            5,
+            "Tier 3"
+          ],
+          [
+            "F",
+            0,
+            6,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "tier-1-boundary",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-middle-boundary-tie",
+      "name": "real: tie inside the Tier 2 boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "A",
+              "matches_played": 4,
+              "wins": 4,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "B",
+              "matches_played": 3,
+              "wins": 3,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 3,
+              "team_name": "D",
+              "matches_played": 2,
+              "wins": 2,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 4,
+              "team_name": "C",
+              "matches_played": 2,
+              "wins": 2,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 5,
+              "team_name": "E",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 6,
+              "team_name": "F",
+              "matches_played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "A",
+            12,
+            1,
+            "Tier 1"
+          ],
+          [
+            "B",
+            9,
+            2,
+            "Tier 1"
+          ],
+          [
+            "C",
+            6,
+            3,
+            "Tier 2"
+          ],
+          [
+            "D",
+            6,
+            3,
+            "Tier 2"
+          ],
+          [
+            "E",
+            3,
+            5,
+            "Tier 3"
+          ],
+          [
+            "F",
+            0,
+            6,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "tier-2-boundary",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-rank-gap-crossing",
+      "name": "real: a three-way top tie creates a rank gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Zulu",
+              "matches_played": 5,
+              "wins": 5,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "Alpha",
+              "matches_played": 5,
+              "wins": 5,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 3,
+              "team_name": "Mike",
+              "matches_played": 5,
+              "wins": 5,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 4,
+              "team_name": "D",
+              "matches_played": 4,
+              "wins": 4,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 5,
+              "team_name": "E",
+              "matches_played": 3,
+              "wins": 3,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 6,
+              "team_name": "F",
+              "matches_played": 2,
+              "wins": 2,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 7,
+              "team_name": "G",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Alpha",
+            15,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Mike",
+            15,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Zulu",
+            15,
+            1,
+            "Tier 1"
+          ],
+          [
+            "D",
+            12,
+            4,
+            "Tier 2"
+          ],
+          [
+            "E",
+            9,
+            5,
+            "Tier 2"
+          ],
+          [
+            "F",
+            6,
+            6,
+            "Tier 3"
+          ],
+          [
+            "G",
+            3,
+            7,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "rank-gap",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-alphabetical-ties",
+      "name": "real: names order tied rows independently of ids",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 99,
+              "team_name": "Able",
+              "matches_played": 4,
+              "wins": 3,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 1,
+              "team_name": "Zulu",
+              "matches_played": 4,
+              "wins": 3,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 50,
+              "team_name": "Middle",
+              "matches_played": 4,
+              "wins": 3,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "Bottom",
+              "matches_played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Able",
+            10,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Middle",
+            10,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Zulu",
+            10,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Bottom",
+            0,
+            4,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "ordering",
+        "team-id"
+      ]
+    },
+    {
+      "id": "real-losses-ignored",
+      "name": "real: losses and match counts do not change equal scores",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Few Losses",
+              "matches_played": 3,
+              "wins": 2,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 2,
+              "team_name": "Many Losses",
+              "matches_played": 22,
+              "wins": 2,
+              "draws": 0,
+              "losses": 20
+            },
+            {
+              "team_id": 3,
+              "team_name": "Draw Specialist",
+              "matches_played": 7,
+              "wins": 2,
+              "draws": 0,
+              "losses": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Draw Specialist",
+            6,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Few Losses",
+            6,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Many Losses",
+            6,
+            1,
+            "Tier 1"
+          ]
+        ]
+      },
+      "tags": [
+        "losses",
+        "points"
+      ]
+    },
+    {
+      "id": "real-five-team-rounding",
+      "name": "real: five distinct teams exercise both ceilings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "One",
+              "matches_played": 5,
+              "wins": 5,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 2,
+              "team_name": "Two",
+              "matches_played": 4,
+              "wins": 4,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 3,
+              "team_name": "Three",
+              "matches_played": 3,
+              "wins": 3,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 4,
+              "team_name": "Four",
+              "matches_played": 2,
+              "wins": 2,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 5,
+              "team_name": "Five",
+              "matches_played": 1,
+              "wins": 1,
+              "draws": 0,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "One",
+            15,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Two",
+            12,
+            2,
+            "Tier 1"
+          ],
+          [
+            "Three",
+            9,
+            3,
+            "Tier 2"
+          ],
+          [
+            "Four",
+            6,
+            4,
+            "Tier 2"
+          ],
+          [
+            "Five",
+            3,
+            5,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "rounding",
+        "five-teams"
+      ]
+    }
+  ]
+}

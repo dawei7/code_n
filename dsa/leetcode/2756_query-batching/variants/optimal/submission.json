@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2806",
+  "frontend_id": "2756",
+  "title_slug": "query-batching",
+  "paid_only": true,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "QueryBatcher",
+  "verified_submission_id": "2076524120",
+  "verified_at": "2026-07-22T03:34:00+00:00"
+}

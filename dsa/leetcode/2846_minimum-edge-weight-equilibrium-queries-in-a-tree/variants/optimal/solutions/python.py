@@ -1,62 +1,59 @@
-import collections
-import sys
-
 def solve(n, edges, queries):
-    sys.setrecursionlimit(max(sys.getrecursionlimit(), n + 10))
+    adjacency = [[] for _ in range(n)]
+    for first, second, weight in edges:
+        adjacency[first].append((second, weight))
+        adjacency[second].append((first, weight))
 
-    adj = collections.defaultdict(list)
-    for u, v, w in edges:
-        adj[u].append((v, w))
-        adj[v].append((u, w))
-
-    LOG = n.bit_length()
-    up = [[-1] * LOG for _ in range(n)]
+    levels = n.bit_length()
+    ancestors = [[-1] * levels for _ in range(n)]
     depth = [0] * n
-    # counts[node][weight-1] stores frequency of weight on path from root to node
-    counts = [[0] * 26 for _ in range(n)]
+    prefix_counts = [[0] * 26 for _ in range(n)]
 
-    def dfs(u, p, d, current_counts):
-        depth[u] = d
-        up[u][0] = p
-        counts[u] = list(current_counts)
-        for v, w in adj[u]:
-            if v != p:
-                current_counts[w - 1] += 1
-                dfs(v, u, d + 1, current_counts)
-                current_counts[w - 1] -= 1
+    stack = [(0, -1)]
+    while stack:
+        node, parent = stack.pop()
+        for neighbor, weight in adjacency[node]:
+            if neighbor == parent:
+                continue
+            ancestors[neighbor][0] = node
+            depth[neighbor] = depth[node] + 1
+            prefix_counts[neighbor] = prefix_counts[node].copy()
+            prefix_counts[neighbor][weight - 1] += 1
+            stack.append((neighbor, node))
 
-    dfs(0, -1, 0, [0] * 26)
+    for level in range(1, levels):
+        for node in range(n):
+            middle = ancestors[node][level - 1]
+            if middle != -1:
+                ancestors[node][level] = ancestors[middle][level - 1]
 
-    for i in range(1, LOG):
-        for u in range(n):
-            if up[u][i - 1] != -1:
-                up[u][i] = up[up[u][i - 1]][i - 1]
+    def lowest_common_ancestor(first, second):
+        if depth[first] < depth[second]:
+            first, second = second, first
 
-    def get_lca(u, v):
-        if depth[u] < depth[v]:
-            u, v = v, u
-        for i in range(LOG - 1, -1, -1):
-            if depth[u] - (1 << i) >= depth[v]:
-                u = up[u][i]
-        if u == v:
-            return u
-        for i in range(LOG - 1, -1, -1):
-            if up[u][i] != up[v][i]:
-                u = up[u][i]
-                v = up[v][i]
-        return up[u][0]
+        difference = depth[first] - depth[second]
+        for level in range(levels):
+            if difference & (1 << level):
+                first = ancestors[first][level]
 
-    results = []
-    for u, v in queries:
-        lca = get_lca(u, v)
-        path_len = depth[u] + depth[v] - 2 * depth[lca]
+        if first == second:
+            return first
 
-        max_freq = 0
-        for i in range(26):
-            freq = counts[u][i] + counts[v][i] - 2 * counts[lca][i]
-            if freq > max_freq:
-                max_freq = freq
+        for level in range(levels - 1, -1, -1):
+            if ancestors[first][level] != ancestors[second][level]:
+                first = ancestors[first][level]
+                second = ancestors[second][level]
+        return ancestors[first][0]
 
-        results.append(path_len - max_freq)
-
-    return results
+    answer = []
+    for first, second in queries:
+        ancestor = lowest_common_ancestor(first, second)
+        path_length = depth[first] + depth[second] - 2 * depth[ancestor]
+        largest_frequency = max(
+            prefix_counts[first][weight]
+            + prefix_counts[second][weight]
+            - 2 * prefix_counts[ancestor][weight]
+            for weight in range(26)
+        )
+        answer.append(path_length - largest_frequency)
+    return answer

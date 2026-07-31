@@ -51,7 +51,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: single node trip can be halved",
+      "name": "sample: self trip",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -76,12 +76,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "edge"
+        "self-trip"
       ]
     },
     {
       "id": "trial-one-path",
-      "name": "trial: one simple path",
+      "name": "trial: partial chain path",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "trial-branch-and-self-trip",
-      "name": "trial: branch with self trip",
+      "id": "trial-branch",
+      "name": "trial: branch and self trips",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,7 +168,35 @@
       ]
     },
     {
-      "id": "real-chain-overlap",
+      "id": "real-single",
+      "name": "hidden: repeated one-node trips",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "edges": [],
+        "price": [
+          8
+        ],
+        "trips": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-overlap",
       "name": "hidden: overlapping chain trips",
       "kind": "real",
       "visible": false,
@@ -212,7 +240,47 @@
       "expected": 30,
       "tags": [
         "hidden",
-        "chain"
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-unused",
+      "name": "hidden: unused expensive node",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "price": [
+          2,
+          1000,
+          4,
+          6
+        ],
+        "trips": [
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "unused"
       ]
     }
   ]

@@ -3,11 +3,11 @@
 
 A pair search treats both values as choices. Once the current value `x` is fixed, however, its partner is forced to be `target - x`. The problem becomes a membership question: has that complement appeared earlier?
 
-Keep a hash table from each previously seen value to its index. At index `i`, compute the complement and look it up. If present, return its stored index with `i`; otherwise store the current value and continue.
+Keep a hash table from each previously seen value to its index. At each `index`, compute the `complement` and look it up. If present, return its stored index with `index`; otherwise store the current value and continue.
 
 **Look up before inserting**
 
-The order of those two operations enforces the “different elements” rule. At the moment of lookup, the table contains only earlier indices, so a match can never reuse position `i` itself.
+The order of those two operations enforces the “different elements” rule. At the moment of lookup, the table contains only earlier indices, so a match can never reuse the current `index` itself.
 
 This also handles duplicates correctly. For `nums = [3, 3]` and `target = 6`, the first `3` finds nothing and is stored. The second `3` then finds the earlier occurrence and returns `[0, 1]`.
 

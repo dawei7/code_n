@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Remove Methods From Project and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Marks every method reachable from k, then rejects removal if any edge enters that suspicious set from outside.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_28", "frontend_id": "28",
+    "title_slug": "find-the-index-of-the-first-occurrence-in-a-string",
+    "url": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/",
+    "paid_only": false, "content_sha256": "97f9a8eefd03f65d584cdfac6c4073d17acea64f7bb72446e158b8f4f8631d40", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "haystack = \"sadbutsad\", needle = \"sad\"", "output": "0", "has_explanation": true},
+      {"ordinal": 2, "input": "haystack = \"leetcode\", needle = \"leeto\"", "output": "-1", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7d4bb9edf67b5a45f801b9a08597e8c1ceb9ecfa39331641cfc8d7b365f11c9a",
+      "reference/contract.md": "38ea144d32bd37ee078206003b8b19c69b840242b9369e48af7a7371bd0ba42a",
+      "reference/examples.md": "503c7b43f56dc832ed7803e8a87e93b10b0098ddf76e583d24e9895dca74e294",
+      "reference/constraints.md": "957221d4ae6741416ec40718078a24828cd49cdb50788e68f40aef23ab78ff6e"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

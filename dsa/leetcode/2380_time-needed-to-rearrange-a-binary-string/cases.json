@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2380",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several simultaneous rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "0110101"},
+      "expected": 4,
+      "tags": ["sample", "simulation"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already stable",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "11100"},
+      "expected": 0,
+      "tags": ["sample", "zero"]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "single zero is stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "0"},
+      "expected": 0,
+      "tags": ["minimum", "zero"]
+    },
+    {
+      "id": "trial-one-swap",
+      "name": "one eligible pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "01"},
+      "expected": 1,
+      "tags": ["minimum-swap"]
+    },
+    {
+      "id": "trial-pipeline",
+      "name": "three ones cross three zeros in a pipeline",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "000111"},
+      "expected": 5,
+      "tags": ["pipeline", "congestion"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: no one can move",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "000000"},
+      "expected": 0,
+      "tags": ["hidden", "all-zero"]
+    },
+    {
+      "id": "real-all-one",
+      "name": "hidden: no zero precedes a one",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "111111"},
+      "expected": 0,
+      "tags": ["hidden", "all-one"]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: later ones queue behind earlier ones",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "01010101"},
+      "expected": 4,
+      "tags": ["hidden", "alternating"]
+    }
+  ]
+}

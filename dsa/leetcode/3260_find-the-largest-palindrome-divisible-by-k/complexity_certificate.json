@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3260",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The required decimal string has exactly n characters, imposing an output-size lower bound of Omega(n), while the divisor is fixed to at most nine and the accepted remainder DP performs constant bounded work per output position.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Any solution must materialize all n digits of the returned palindrome. The accepted construction processes each independent digit with at most nine remainders and ten digit choices, which are fixed constants under k <= 9, then mirrors O(n) characters."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "Returning an explicit n-digit decimal string requires writing n output characters."},
+    {"kind": "upper_bound_proof", "evidence": "Power generation, bounded-remainder suffix DP, greedy reconstruction, and mirroring each perform O(n) work because k is at most nine."},
+    {"kind": "boundary_property_cases", "evidence": "Regression evidence exhausts small lengths and all legal divisors against descending palindrome search, then validates palindrome, divisibility, length, and leading-digit properties at large and maximum lengths."}
+  ]
+}

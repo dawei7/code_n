@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2369",
+  "frontend_id": "2219",
+  "title_slug": "maximum-sum-score-of-array",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "class Solution.maximumSumScore",
+  "verified_submission_id": "2073892417",
+  "verified_at": "2026-07-19T20:44:39.463951+00:00"
+}

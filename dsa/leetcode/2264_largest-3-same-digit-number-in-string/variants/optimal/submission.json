@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2346",
+  "frontend_id": "2264",
+  "title_slug": "largest-3-same-digit-number-in-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.largestGoodInteger",
+  "verified_submission_id": "2073950267",
+  "verified_at": "2026-07-20T00:33:44.835250+00:00"
+}

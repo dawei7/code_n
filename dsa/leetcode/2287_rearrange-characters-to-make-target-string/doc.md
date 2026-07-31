@@ -5,51 +5,49 @@
 | Source | LeetCode |
 | Frontend ID | 2287 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Hash Table, String, Counting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [rearrange-characters-to-make-target-string](https://leetcode.com/problems/rearrange-characters-to-make-target-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/rearrange-characters-to-make-target-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/rearrange-characters-to-make-target-string/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Two 0-indexed strings, `s` and `target`, contain lowercase English letters.
+Letters may be taken from `s` and rearranged to form copies of `target`.
+Each occurrence in `s` can be used at most once, but unused letters do not
+matter.
+
+Return the maximum number of complete copies of `target` that can be assembled
+simultaneously. Because rearrangement is allowed, only the available and
+required frequency of each letter affects the answer; the original positions
+do not.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: The source string whose individual letter occurrences may be consumed.
+- `target`: The nonempty string to reproduce as many times as possible.
+
+Both strings contain only lowercase English letters, with
+$1 \le \lvert\texttt{s}\rvert \le 100$ and
+$1 \le \lvert\texttt{target}\rvert \le 10$. Let
+$S = \lvert\texttt{s}\rvert$ and $T = \lvert\texttt{target}\rvert$.
 
 **Return value**
 
-TODO
+The greatest nonnegative integer number of complete copies of `target` that
+the letters of `s` can form without reusing an occurrence.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "ilovecodingonleetcode"`, `target = "code"`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcba"`, `target = "abc"`
+- Output: `1`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "abbaccaddaeea"`, `target = "aaaaa"`
+- Output: `1`

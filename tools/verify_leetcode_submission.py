@@ -89,6 +89,7 @@ def submit_candidate(
     challenge_id: str,
     credentials: LeetCodeCredentials,
     variant_id: str | None = None,
+    candidate_source: Path | None = None,
 ) -> dict:
     manifest, manifest_path = load_manifest(challenge_id, variant_id)
     account = _account_status(credentials)
@@ -100,7 +101,15 @@ def submit_candidate(
         raise RuntimeError("This candidate requires LeetCode Premium access for the connected account.")
 
     slug = str(manifest["title_slug"])
-    source_path = manifest_path.parent / str(manifest["source"])
+    canonical_source_path = manifest_path.parent / str(manifest["source"])
+    source_path = candidate_source or canonical_source_path
+    source_path = source_path.resolve()
+    if not source_path.is_file():
+        raise RuntimeError(f"Submission candidate source is missing: {source_path}")
+    if source_path.suffix != canonical_source_path.suffix:
+        raise RuntimeError(
+            "Submission candidate source must use the canonical source file extension."
+        )
     response = client.post(
         f"{BASE_URL}/problems/{slug}/submit/",
         json={
@@ -149,7 +158,26 @@ def submit_candidate(
     accepted = status == "Accepted" or result.get("status_code") == 10
     print(f"LeetCode submission {submission_id}: {status}")
     if not accepted:
+        for key in (
+            "compile_error",
+            "full_compile_error",
+            "runtime_error",
+            "full_runtime_error",
+            "last_testcase",
+            "expected_output",
+            "code_output",
+        ):
+            detail = result.get(key)
+            if detail:
+                print(f"{key}: {detail}")
         return {"accepted": False, "submission_id": submission_id, "status": status}
+
+    if candidate_source is not None:
+        print(
+            "Accepted replacement candidate; canonical verified source and manifest "
+            "remain unchanged."
+        )
+        return {"accepted": True, "submission_id": submission_id, "status": status}
 
     manifest.update(
         {
@@ -178,6 +206,14 @@ def main() -> int:
         action="store_true",
         help="Required acknowledgement that this creates a real LeetCode submission.",
     )
+    parser.add_argument(
+        "--candidate-source",
+        type=Path,
+        help=(
+            "Submit staged replacement bytes without changing the canonical verified "
+            "source or manifest."
+        ),
+    )
     args = parser.parse_args()
     if not args.confirm_submit:
         parser.error("--confirm-submit is required; verification creates a real external submission.")
@@ -186,6 +222,7 @@ def main() -> int:
             args.challenge_id,
             credentials_from_environment(),
             args.variant,
+            args.candidate_source,
         )
     except (RuntimeError, requests.RequestException, ValueError, KeyError) as exc:
         print(f"Verification failed: {exc}", file=sys.stderr)

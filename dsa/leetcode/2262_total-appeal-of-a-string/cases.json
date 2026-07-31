@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2262",
+  "cases": [
+    {"id":"sample-repeated-pattern","name":"sample: repeated letters change endpoint contributions","kind":"sample","visible":true,"input":{"s":"abbca"},"expected":28,"tags":["sample","repeats"]},
+    {"id":"sample-all-distinct-short","name":"sample: every character is distinct","kind":"sample","visible":true,"input":{"s":"code"},"expected":20,"tags":["sample","distinct"]},
+    {"id":"trial-single","name":"one character has one unit of appeal","kind":"trial","visible":true,"input":{"s":"a"},"expected":1,"tags":["minimum-length"]},
+    {"id":"trial-all-equal","name":"every all-equal substring has appeal one","kind":"trial","visible":true,"input":{"s":"aaaa"},"expected":10,"tags":["all-equal"]},
+    {"id":"trial-returning-letter","name":"a returning letter contributes only after its prior index","kind":"trial","visible":true,"input":{"s":"aba"},"expected":9,"tags":["last-occurrence"]},
+    {"id":"real-two-equal","name":"hidden: two equal letters create three appeal units","kind":"real","visible":false,"input":{"s":"zz"},"expected":3,"tags":["hidden","duplicate"]},
+    {"id":"real-periodic","name":"hidden: periodic letters reuse three last positions","kind":"real","visible":false,"input":{"s":"abcabc"},"expected":46,"tags":["hidden","periodic"]},
+    {"id":"real-full-alphabet","name":"hidden: all 26 distinct letters sum substring lengths","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyz"},"expected":3276,"tags":["hidden","alphabet","large-result"]}
+  ]
+}

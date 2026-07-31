@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-two-ends",
-      "name": "sample: sick computers at both ends",
+      "name": "sample: infection grows inward from both ends",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -20,7 +20,7 @@
     },
     {
       "id": "sample-single-middle",
-      "name": "sample: one initially sick middle computer",
+      "name": "sample: one initial infection has two fronts",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,30 +35,59 @@
       ]
     },
     {
-      "id": "sample-all-sick",
-      "name": "sample: all computers already sick",
-      "kind": "sample",
+      "id": "trial-minimum-left",
+      "name": "trial: one healthy person beside a sick endpoint",
+      "kind": "trial",
       "visible": true,
       "input": {
-        "n": 4,
+        "n": 2,
         "sick": [
-          0,
-          1,
-          2,
-          3
+          0
         ]
       },
       "expected": 1,
       "tags": [
-        "sample",
-        "edge"
+        "minimum"
       ]
     },
     {
-      "id": "trial-internal-gaps",
-      "name": "trial: multiple internal gaps",
+      "id": "trial-surrounded-single",
+      "name": "trial: one healthy person lies between sick neighbors",
       "kind": "trial",
       "visible": true,
+      "input": {
+        "n": 3,
+        "sick": [
+          0,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "surrounded"
+      ]
+    },
+    {
+      "id": "trial-one-direction",
+      "name": "trial: infection can advance only to the right",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "sick": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "one-sided"
+      ]
+    },
+    {
+      "id": "real-multiple-gaps",
+      "name": "hidden: endpoint and internal gaps interleave",
+      "kind": "real",
+      "visible": false,
       "input": {
         "n": 9,
         "sick": [
@@ -69,24 +98,83 @@
       },
       "expected": 480,
       "tags": [
-        "combinatorics"
+        "hidden",
+        "gaps"
       ]
     },
     {
-      "id": "real-one-sided-gap",
-      "name": "real: long one-sided gap",
+      "id": "real-alternating-sick",
+      "name": "hidden: every healthy person is immediately exposed",
       "kind": "real",
       "visible": false,
       "input": {
-        "n": 10,
+        "n": 7,
         "sick": [
           0,
+          2,
+          4,
           6
         ]
       },
-      "expected": 896,
+      "expected": 6,
       "tags": [
-        "hidden"
+        "hidden",
+        "factorial"
+      ]
+    },
+    {
+      "id": "real-two-front-gap",
+      "name": "hidden: one internal gap has two infection fronts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "sick": [
+          1,
+          4
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "hidden",
+        "internal-gap"
+      ]
+    },
+    {
+      "id": "real-consecutive-sick",
+      "name": "hidden: adjacent sick people leave only endpoint chains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "sick": [
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "consecutive"
+      ]
+    },
+    {
+      "id": "real-modulus",
+      "name": "hidden: several long gaps require modular arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "sick": [
+          2,
+          7,
+          15
+        ]
+      },
+      "expected": 365734183,
+      "tags": [
+        "hidden",
+        "modulus"
       ]
     }
   ]

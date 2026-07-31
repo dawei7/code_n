@@ -1,33 +1,30 @@
 import heapq
-from collections import defaultdict
 
-def solve(n: int, edges: list[list[int]], disappear: list[int]) -> list[int]:
-    adj = defaultdict(list)
+
+def solve(
+    n: int,
+    edges: list[list[int]],
+    disappear: list[int],
+) -> list[int]:
+    graph = [[] for _ in range(n)]
     for u, v, length in edges:
-        adj[u].append((v, length))
-        adj[v].append((u, length))
-    
-    # distances[i] stores the minimum time to reach node i
-    distances = [-1] * n
+        graph[u].append((v, length))
+        graph[v].append((u, length))
+
+    infinity = float("inf")
+    distances = [infinity] * n
     distances[0] = 0
-    
-    # Min-heap stores (current_time, node)
-    pq = [(0, 0)]
-    
-    while pq:
-        curr_time, u = heapq.heappop(pq)
-        
-        # If we found a longer path already, skip
-        if curr_time > distances[u] and distances[u] != -1:
+    heap = [(0, 0)]
+
+    while heap:
+        time, node = heapq.heappop(heap)
+        if time != distances[node]:
             continue
-            
-        for v, weight in adj[u]:
-            new_time = curr_time + weight
-            
-            # Check if the node is still available and if this path is shorter
-            if new_time < disappear[v]:
-                if distances[v] == -1 or new_time < distances[v]:
-                    distances[v] = new_time
-                    heapq.heappush(pq, (new_time, v))
-                    
-    return distances
+
+        for neighbor, length in graph[node]:
+            arrival = time + length
+            if arrival < distances[neighbor] and arrival < disappear[neighbor]:
+                distances[neighbor] = arrival
+                heapq.heappush(heap, (arrival, neighbor))
+
+    return [-1 if distance == infinity else distance for distance in distances]

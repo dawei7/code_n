@@ -5,25 +5,30 @@
 | Source | LeetCode |
 | Frontend ID | 3192 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming, Greedy |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-make-binary-array-elements-equal-to-one-ii](https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-ii/).
-
 ### Goal
-Given a binary array, you can perform an operation where you select an index `i` and flip all elements from `i` to the end of the array (0 becomes 1, 1 becomes 0). Determine the minimum number of operations required to make every element in the array equal to 1.
+You are given a binary array `nums`. An operation chooses any index `i` and
+flips every element from `i` through the end of the array. Flipping changes a
+`0` to `1` and a `1` to `0`.
+
+You may apply this operation any number of times, including zero. Return the
+minimum number of operations needed to make every element of `nums` equal to
+`1`.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`) containing only 0s and 1s.
+- `nums`: A binary integer array of length $n$, where $1 \le n \le 10^5$.
+
+Every value of `nums` is either `0` or `1`.
 
 **Return value**
 
-- An integer representing the minimum number of operations needed to transform the entire array into 1s.
+The minimum number of suffix-flip operations that makes every array element
+equal to `1`.
 
 ### Examples
 **Example 1**
@@ -31,48 +36,13 @@ Given a binary array, you can perform an operation where you select an index `i`
 - Input: `nums = [0, 1, 1, 0, 1]`
 - Output: `4`
 
+One minimum sequence flips suffixes beginning at indices `1`, `0`, `4`, and
+`3`.
+
 **Example 2**
 
 - Input: `nums = [1, 0, 0, 0]`
 - Output: `1`
 
-**Example 3**
-
-- Input: `nums = [0, 1, 0]`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-The problem can be solved using a **Greedy** approach. Since an operation at index `i` affects all subsequent elements, we can iterate through the array from left to right. We maintain a state variable representing the current "flip count" (or parity of flips). If the current element, after accounting for the total number of flips performed so far, is 0, we must perform an operation to flip it to 1. This operation increments our total flip count, which effectively toggles the state for all remaining elements.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single linear pass.
-- **Space Complexity**: `O(1)`, as we only store a single integer to track the number of flips.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    """
-    Calculates the minimum operations to make all elements 1.
-    We track the number of flips performed. If the current element's
-    effective value (original value XORed with flip parity) is 0,
-    we must perform a flip.
-    """
-    flips = 0
-    for num in nums:
-        # If flips is even, the current element is unchanged.
-        # If flips is odd, the current element is inverted.
-        # We need the effective value to be 1.
-        if (num + flips) % 2 == 0:
-            flips += 1
-
-    return flips
-```
-</details>
+Flipping the suffix beginning at index `1` changes all three trailing zeros
+to ones.

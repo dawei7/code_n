@@ -8,88 +8,49 @@
 | Category | Algorithms |
 | Topics | Array, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-equal-sum-of-two-arrays-after-replacing-zeros](https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/).
 
 ### Goal
-Given two integer arrays containing non-negative integers and zeros, replace every zero with a positive integer (at least 1) such that the sum of elements in both arrays becomes equal. Determine the minimum possible sum that can be achieved. If it is impossible to make the sums equal, return -1.
+
+You are given two integer arrays, `nums1` and `nums2`, whose entries are
+non-negative. Replace every zero in both arrays with a strictly positive
+integer. Nonzero entries cannot be changed.
+
+Choose the replacements so that the two resulting array sums are equal, and
+return the minimum common sum that can be obtained. If no assignment of
+positive replacements can make the sums equal, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums1`: A list of non-negative integers.
-- `nums2`: A list of non-negative integers.
+- `nums1`: The first non-empty array of non-negative integers.
+- `nums2`: The second non-empty array of non-negative integers.
+
+Let $n=\lvert\texttt{nums1}\rvert$ and
+$m=\lvert\texttt{nums2}\rvert$. The constraints are
+$1\le n,m\le 10^5$ and
+$0\le\texttt{nums1[i]},\texttt{nums2[i]}\le 10^6$.
 
 **Return value**
 
-- An integer representing the minimum equal sum, or -1 if no such sum exists.
+- The minimum attainable equal sum, or `-1` when equality is impossible.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums1 = [3,2,0,1], nums2 = [2,0,0,0]`
-- Output: `7`
+- Input: `nums1 = [3, 2, 0, 1, 0], nums2 = [6, 5, 0]`
+- Output: `12`
+- Explanation: Replacing the first array's zeros with `2` and `4`, and
+  the second array's zero with `1`, gives sums of 12. No smaller common sum
+  is possible.
 
 **Example 2**
 
-- Input: `nums1 = [2,0,2,0], nums2 = [1,4]`
+- Input: `nums1 = [2, 0, 2, 0], nums2 = [1, 4]`
 - Output: `-1`
-
-**Example 3**
-
-- Input: `nums1 = [1,0,0], nums2 = [1]`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Greedy approach. Since each zero must be replaced by at least 1, the minimum sum for an array is its current sum plus the count of zeros. If an array has no zeros, its sum is fixed. By comparing the minimum possible sums and the presence of zeros, we can determine if the arrays can be balanced. If one array has no zeros, its sum must be exactly equal to the other array's potential range. If both have zeros, we can always increase the smaller sum to match the larger one.
-
-### Complexity Analysis
-- **Time Complexity**: O(N + M), where N and M are the lengths of `nums1` and `nums2` respectively, as we iterate through each array once to calculate sums and zero counts.
-- **Space Complexity**: O(1), as we only use a few variables to store sums and counts.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums1: list[int], nums2: list[int]) -> int:
-    sum1 = 0
-    zeros1 = 0
-    for x in nums1:
-        if x == 0:
-            zeros1 += 1
-        else:
-            sum1 += x
-
-    sum2 = 0
-    zeros2 = 0
-    for x in nums2:
-        if x == 0:
-            zeros2 += 1
-        else:
-            sum2 += x
-
-    min_sum1 = sum1 + zeros1
-    min_sum2 = sum2 + zeros2
-
-    # If an array has no zeros, its sum is fixed.
-    # We can only increase the sum of an array if it contains at least one zero.
-
-    if zeros1 == 0 and zeros2 == 0:
-        return sum1 if sum1 == sum2 else -1
-
-    if zeros1 == 0:
-        return sum1 if sum1 >= min_sum2 else -1
-
-    if zeros2 == 0:
-        return sum2 if sum2 >= min_sum1 else -1
-
-    # If both have zeros, the minimum equal sum is the max of the two minimums.
-    return max(min_sum1, min_sum2)
-```
-</details>
+- Explanation: The first array has minimum attainable sum 6, while the
+  zero-free second array is fixed at 5 and cannot be increased.

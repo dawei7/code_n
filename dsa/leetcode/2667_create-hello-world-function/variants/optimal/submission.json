@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2739",
+  "frontend_id": "2667",
+  "title_slug": "create-hello-world-function",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "createHelloWorld",
+  "verified_submission_id": "2076332381",
+  "verified_at": "2026-07-21T19:43:23+00:00"
+}

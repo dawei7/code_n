@@ -72,8 +72,6 @@ def solve(queries: list[list[int]]) -> list[bool]:
     for query in queries:
         if query[0] == 1:
             x = query[1]
-            if present[x]:
-                continue
             before = bit_sum(x)
             prev_obstacle = bit_find(before)
             next_obstacle = bit_find(before + 1)

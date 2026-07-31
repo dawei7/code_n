@@ -6,50 +6,46 @@
 | Frontend ID | 2193 |
 | Difficulty | Hard |
 | Category | Algorithms |
-| Topics | Two Pointers, String, Greedy, Binary Indexed Tree |
+| Topics | Two Pointers, String, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-moves-to-make-palindrome](https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string `s` containing only lowercase English letters, one move may
+swap any two adjacent characters. Such swaps preserve the multiset of
+characters but can rearrange their positions.
+
+Find the minimum number of moves required to arrange the entire string as a
+palindrome. The input guarantees that some palindromic arrangement is
+possible, so at most one character has an odd frequency.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a lowercase English string of length $n$, where $1\le n\le2000$, whose
+  character counts permit a palindrome.
 
 **Return value**
 
-TODO
+Return the minimum number of adjacent swaps needed to make `s` a palindrome.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aabb"`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "letelt"`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "ntiin"`
+- Output: `1`

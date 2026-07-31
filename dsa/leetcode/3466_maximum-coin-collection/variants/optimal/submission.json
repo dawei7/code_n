@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3806",
+  "frontend_id": "3466",
+  "title_slug": "maximum-coin-collection",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxCoins",
+  "verified_submission_id": "2082058396",
+  "verified_at": "2026-07-26T13:11:35Z"
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3722",
+  "cases": [
+    {
+      "id": "sample-prefix-three",
+      "name": "sample: reverse a length-three prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "dcab"
+      },
+      "expected": "acdb",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "sample-suffix-three",
+      "name": "sample: reverse a length-three suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abba"
+      },
+      "expected": "aabb",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "suffix",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-prefix-two",
+      "name": "sample: reverse a length-two prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "zxy"
+      },
+      "expected": "xzy",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: the only reversal leaves one character unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "q"
+      },
+      "expected": "q",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-k-one-keeps-minimum",
+      "name": "trial: a length-one reversal preserves an already minimal input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": "abc",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "k-one",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-whole-string",
+      "name": "trial: reversing the whole string produces the minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cba"
+      },
+      "expected": "abc",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "real-suffix-two",
+      "name": "hidden: reversing the final pair can beat every prefix reversal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abdc"
+      },
+      "expected": "abcd",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "suffix"
+      ]
+    },
+    {
+      "id": "real-repeated-characters",
+      "name": "hidden: duplicate-heavy candidates are compared normally",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "baaa"
+      },
+      "expected": "aaab",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-prefix-tie-depth",
+      "name": "hidden: candidates sharing an initial letter differ later",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "cabca"
+      },
+      "expected": "acbac",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "lexicographic-comparison"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: every legal operation yields the same string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaa"
+      },
+      "expected": "aaaaaa",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-equal",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "real-two-characters",
+      "name": "hidden: both full and endpoint reversals are considered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ba"
+      },
+      "expected": "ab",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum-length-plus-one"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: maximum-length repeated input remains unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      },
+      "expected": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "all-equal"
+      ]
+    }
+  ]
+}
+

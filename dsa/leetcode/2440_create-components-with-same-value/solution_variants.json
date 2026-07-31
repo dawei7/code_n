@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Create Components With Same Value and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Tests feasible divisors from most components downward using iterative postorder subtree sums.",
+      "time_complexity": "O(n d(S))",
+      "space_complexity": "O(n)"
     }
   ]
 }

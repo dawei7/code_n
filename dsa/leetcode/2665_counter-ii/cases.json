@@ -1,0 +1,14 @@
+{
+  "challenge_id": "lc_2665",
+  "cases": [
+    {"id":"sample-increment-reset-decrement","name":"sample: each operation updates shared state","kind":"sample","visible":true,"input":{"init":5,"calls":["increment","reset","decrement"]},"expected":[6,5,4],"tags":["sample","all-operations"]},
+    {"id":"sample-repeated-updates","name":"sample: repeated increment and reset calls","kind":"sample","visible":true,"input":{"init":0,"calls":["increment","increment","decrement","reset","reset"]},"expected":[1,2,1,0,0],"tags":["sample","state"]},
+    {"id":"trial-no-calls","name":"trial: creating an unused counter emits nothing","kind":"trial","visible":true,"input":{"init":7,"calls":[]},"expected":[],"tags":["zero-calls","boundary"]},
+    {"id":"trial-single-increment","name":"trial: increment returns the updated value","kind":"trial","visible":true,"input":{"init":-1,"calls":["increment"]},"expected":[0],"tags":["increment","cross-zero"]},
+    {"id":"real-single-decrement","name":"hidden: decrement returns the updated value","kind":"real","visible":false,"input":{"init":0,"calls":["decrement"]},"expected":[-1],"tags":["hidden","decrement"]},
+    {"id":"real-reset-discards-history","name":"hidden: reset repeatedly restores the original value","kind":"real","visible":false,"input":{"init":12,"calls":["decrement","decrement","increment","reset","increment","reset"]},"expected":[11,10,11,12,13,12],"tags":["hidden","reset","history"]},
+    {"id":"real-lower-bound","name":"hidden: values may fall below the initialization bound","kind":"real","visible":false,"input":{"init":-1000,"calls":["decrement","decrement","reset"]},"expected":[-1001,-1002,-1000],"tags":["hidden","lower-bound"]},
+    {"id":"real-upper-bound","name":"hidden: values may rise above the initialization bound","kind":"real","visible":false,"input":{"init":1000,"calls":["increment","increment","reset"]},"expected":[1001,1002,1000],"tags":["hidden","upper-bound"]},
+    {"id":"real-alternating","name":"hidden: alternating updates share one current value","kind":"real","visible":false,"input":{"init":3,"calls":["increment","decrement","decrement","increment","increment","decrement"]},"expected":[4,3,2,3,4,3],"tags":["hidden","alternating","state"]}
+  ]
+}

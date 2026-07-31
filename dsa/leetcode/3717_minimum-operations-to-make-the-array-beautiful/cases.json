@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3717",
+  "cases": [
+    {
+      "id": "sample-increment-middle",
+      "name": "sample: increment the middle value twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          7,
+          9
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "middle-element"
+      ]
+    },
+    {
+      "id": "sample-already-beautiful",
+      "name": "sample: three ones need no operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "already-beautiful"
+      ]
+    },
+    {
+      "id": "sample-single-element",
+      "name": "sample: one element is vacuously beautiful",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-divisibility-chain",
+      "name": "trial: an existing powers-of-two chain costs zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "already-beautiful"
+      ]
+    },
+    {
+      "id": "trial-greedy-trap",
+      "name": "trial: a larger middle multiple gives a cheaper suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          7,
+          10
+        ]
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "greedy-trap",
+        "global-optimum"
+      ]
+    },
+    {
+      "id": "trial-fixed-large-first",
+      "name": "trial: the fixed first value can force later values above the source maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          40,
+          50,
+          1
+        ]
+      },
+      "expected": 109,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "fixed-first",
+        "bound"
+      ]
+    },
+    {
+      "id": "trial-one-increment",
+      "name": "trial: one later element rounds to the next multiple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-operation"
+      ]
+    },
+    {
+      "id": "real-decreasing-suffix",
+      "name": "hidden: a fixed divisor raises both smaller suffix values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "decreasing-values"
+      ]
+    },
+    {
+      "id": "real-shared-final-value",
+      "name": "hidden: several suffix positions optimally share one multiple",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "shared-multiple"
+      ]
+    },
+    {
+      "id": "real-multiple-levels",
+      "name": "hidden: the best chain passes through different multiple levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          9,
+          17
+        ]
+      },
+      "expected": 10,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-levels"
+      ]
+    },
+    {
+      "id": "real-one-as-first",
+      "name": "hidden: a first value of one leaves flexible later choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          50,
+          1,
+          50
+        ]
+      },
+      "expected": 49,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "unit-divisor",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-maximum-first",
+      "name": "hidden: a maximum first value forces every smaller suffix value upward",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          50,
+          1,
+          50,
+          1
+        ]
+      },
+      "expected": 98,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "fixed-first",
+        "maximum-values"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: a maximum-length beautiful array stays unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "maximum-values",
+        "already-beautiful"
+      ]
+    }
+  ]
+}
+

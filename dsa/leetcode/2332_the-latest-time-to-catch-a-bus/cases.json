@@ -1,96 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2332",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: last bus full",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "buses": [
-          10,
-          20
-        ],
-        "passengers": [
-          2,
-          17,
-          18,
-          19
-        ],
-        "capacity": 2
-      },
-      "expected": 16,
-      "tags": [
-        "sample",
-        "sorting"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: arrive at final bus time",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "buses": [
-          20,
-          30,
-          10
-        ],
-        "passengers": [
-          19,
-          13,
-          26,
-          4,
-          25,
-          11,
-          21
-        ],
-        "capacity": 2
-      },
-      "expected": 20,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: cannot match passenger time",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "buses": [
-          10
-        ],
-        "passengers": [
-          10
-        ],
-        "capacity": 1
-      },
-      "expected": 9,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-open-seat",
-      "name": "hidden: bus has spare capacity",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "buses": [
-          5
-        ],
-        "passengers": [
-          2,
-          3
-        ],
-        "capacity": 3
-      },
-      "expected": 5,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-full-final-bus","name":"sample: occupied times force an earlier arrival","kind":"sample","visible":true,"input":{"buses":[10,20],"passengers":[2,17,18,19],"capacity":2},"expected":16,"tags":["sample","full-bus"]},
+    {"id":"sample-unsorted-schedule","name":"sample: buses and passengers begin unsorted","kind":"sample","visible":true,"input":{"buses":[20,30,10],"passengers":[19,13,26,4,25,11,21],"capacity":2},"expected":20,"tags":["sample","unsorted"]},
+    {"id":"trial-departure-occupied","name":"full single bus requires arriving one minute earlier","kind":"trial","visible":true,"input":{"buses":[10],"passengers":[10],"capacity":1},"expected":9,"tags":["boundary","full-bus"]},
+    {"id":"trial-spare-seat","name":"spare seat permits arrival at departure time","kind":"trial","visible":true,"input":{"buses":[10],"passengers":[2],"capacity":2},"expected":10,"tags":["spare-seat"]},
+    {"id":"trial-consecutive-collisions","name":"consecutive occupied times retreat to one","kind":"trial","visible":true,"input":{"buses":[5],"passengers":[2,3,4,5],"capacity":4},"expected":1,"tags":["collision-chain"]},
+    {"id":"real-full-later-bus","name":"hidden: both buses fill and final passenger sets the bound","kind":"real","visible":false,"input":{"buses":[5,12],"passengers":[3,4,6,11],"capacity":2},"expected":10,"tags":["hidden","multiple-buses"]},
+    {"id":"real-final-spare-seat","name":"hidden: final bus has room at its departure","kind":"real","visible":false,"input":{"buses":[8,15],"passengers":[2,7,8,9,14],"capacity":3},"expected":15,"tags":["hidden","spare-seat"]}
   ]
 }

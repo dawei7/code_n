@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3139",
+  "frontend_id": "2916",
+  "title_slug": "subarrays-distinct-element-sum-of-squares-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.sumCounts",
+  "verified_submission_id": "2078146262",
+  "verified_at": "2026-07-23T08:49:15.427988+00:00"
+}

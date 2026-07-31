@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3964",
+    "frontend_id": "3964",
+    "title_slug": "minimum-lights-to-illuminate-a-road",
+    "url": "https://leetcode.com/problems/minimum-lights-to-illuminate-a-road/description/",
+    "paid_only": false,
+    "content_sha256": "4b033e4a6032af73cde63844eeebb8c8df75001926b3cbd9dccdb038af8358db",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "lights = [0,0,0,0]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "lights = [0,0,0,2,0]",
+        "output": "1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "688bf4632a3c3908e613ee7d9fe6588936d919a7ede75f1c5f5e1aea8e5e90d9",
+      "reference/contract.md": "bde98d6298ebfd652c65b25cf184fb6eae3d5aa1ae4316af5cc33492678d2d25",
+      "reference/examples.md": "d98061b7a804cf8bc5ab7adc247de4dd22bb649731f3629ff36149dbfae14423",
+      "reference/constraints.md": "ab1e10c5ea3050c494bbf3f973a9ade82c191b3582681e97e3c8402fbb8d62fe"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

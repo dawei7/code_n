@@ -1,0 +1,14 @@
+{
+  "schema_version":1,
+  "provider":"leetcode.com",
+  "status":"verified",
+  "question_id":"3258",
+  "frontend_id":"3053",
+  "title_slug":"classifying-triangles-by-lengths",
+  "paid_only":true,
+  "language":"mysql",
+  "source":"solutions/leetcode_mysql.sql",
+  "native_entrypoint":"SQL query",
+  "verified_submission_id":"2078958362",
+  "verified_at":"2026-07-24T01:27:00Z"
+}

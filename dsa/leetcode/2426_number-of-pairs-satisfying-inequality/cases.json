@@ -3,88 +3,75 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three valid pairs",
+      "name": "sample: all three pairs qualify",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums1": [
-          3,
-          2,
-          5
-        ],
-        "nums2": [
-          2,
-          2,
-          1
-        ],
-        "diff": 1
-      },
+      "input": {"nums1": [3, 2, 5], "nums2": [2, 2, 1], "diff": 1},
       "expected": 3,
-      "tags": [
-        "sample",
-        "merge-sort"
-      ]
+      "tags": ["sample", "all-valid"]
     },
     {
       "id": "sample-2",
-      "name": "sample: negative diff blocks both pairs",
+      "name": "sample: negative tolerance rejects the pair",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums1": [
-          3,
-          -1
-        ],
-        "nums2": [
-          -2,
-          2
-        ],
-        "diff": -1
-      },
+      "input": {"nums1": [3, -1], "nums2": [-2, 2], "diff": -1},
       "expected": 0,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "negative-diff"]
     },
     {
-      "id": "trial-one-valid-pair",
-      "name": "trial: single valid pair",
+      "id": "trial-increasing-differences",
+      "name": "trial: every earlier transformed value is smaller",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums1": [
-          1,
-          2
-        ],
-        "nums2": [
-          0,
-          0
-        ],
-        "diff": 0
-      },
-      "expected": 1,
-      "tags": [
-        "trial"
-      ]
+      "input": {"nums1": [1, 2, 3], "nums2": [0, 0, 0], "diff": 0},
+      "expected": 3,
+      "tags": ["trial", "increasing"]
     },
     {
-      "id": "real-one-element",
-      "name": "hidden: one element has no pair",
+      "id": "trial-decreasing-differences",
+      "name": "trial: no earlier transformed value is small enough",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [3, 2, 1], "nums2": [0, 0, 0], "diff": 0},
+      "expected": 0,
+      "tags": ["trial", "decreasing"]
+    },
+    {
+      "id": "real-equality-negative-diff",
+      "name": "hidden: inclusive boundary with negative tolerance",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums1": [
-          5
-        ],
-        "nums2": [
-          3
-        ],
-        "diff": 10
-      },
-      "expected": 0,
-      "tags": [
-        "hidden"
-      ]
+      "input": {"nums1": [0, 2], "nums2": [0, 0], "diff": -2},
+      "expected": 1,
+      "tags": ["hidden", "equality"]
+    },
+    {
+      "id": "real-duplicate-differences",
+      "name": "hidden: every duplicate occurrence contributes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [4, 4, 4, 4], "nums2": [1, 1, 1, 1], "diff": 0},
+      "expected": 6,
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "real-mixed-signed-values",
+      "name": "hidden: transformed values cross zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [-3, 4, -1, 2], "nums2": [2, -2, 3, 0], "diff": 2},
+      "expected": 4,
+      "tags": ["hidden", "signed"]
+    },
+    {
+      "id": "real-large-positive-diff",
+      "name": "hidden: tolerance makes all pairs valid",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [10, -10, 5, -5], "nums2": [-10, 10, -5, 5], "diff": 100},
+      "expected": 6,
+      "tags": ["hidden", "large-diff"]
     }
   ]
 }

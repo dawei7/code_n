@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Centered Subarrays and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Extends every subarray from each left endpoint while maintaining its sum and set of contained values.",
+      "time_complexity": "O(N^2)",
+      "space_complexity": "O(N)"
     }
   ]
 }

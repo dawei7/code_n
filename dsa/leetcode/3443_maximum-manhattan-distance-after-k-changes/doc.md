@@ -8,48 +8,39 @@
 | Category | Algorithms |
 | Topics | Hash Table, Math, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-manhattan-distance-after-k-changes](https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Starting at $(0,0)$ on an infinite grid, follow a string of moves in order. `N` and `S` change the vertical coordinate by one, while `E` and `W` change the horizontal coordinate by one.
+
+Before following the path, you may replace at most `k` characters with any of the four directions. Determine the greatest Manhattan distance from the origin that can be reached after any prefix of the resulting path. For a position $(x,y)$, this distance is $\lvert x\rvert+\lvert y\rvert$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A movement string of length $n$, where $1\le n\le10^5$, containing only `N`, `S`, `E`, and `W`.
+- `k`: The maximum number of directions that may be changed, where $0\le k\le n$.
 
 **Return value**
 
-TODO
+Return the maximum achievable Manhattan distance from the origin at any time while executing the moves in order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "NWSE", k = 1`
+- Output: `3`
+
+Changing `S` to `N` produces `"NWNE"`, whose third move reaches distance $3$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "NSWWEW", k = 3`
+- Output: `6`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The path can be changed to `"NNWWWW"`, ending at Manhattan distance $6$.

@@ -2,8 +2,8 @@
   "challenge_id": "lc_3282",
   "cases": [
     {
-      "id": "sample-best-middle",
-      "name": "sample: jump through better middle value",
+      "id": "sample-new-maximum",
+      "name": "sample: later prefix maximum improves score",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,12 +17,12 @@
       "expected": 7,
       "tags": [
         "sample",
-        "greedy"
+        "increasing-maximum"
       ]
     },
     {
       "id": "sample-first-dominates",
-      "name": "sample: first value dominates all jumps",
+      "name": "sample: first value dominates every edge",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -36,68 +36,207 @@
       },
       "expected": 16,
       "tags": [
-        "sample"
+        "sample",
+        "direct-jump"
       ]
     },
     {
-      "id": "trial-all-equal",
-      "name": "trial: equal values accumulate each edge",
+      "id": "trial-single-element",
+      "name": "trial: already at the destination",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          1,
-          1,
-          1
+          5
         ]
       },
-      "expected": 2,
+      "expected": 0,
       "tags": [
-        "edge"
+        "singleton",
+        "zero-score"
       ]
     },
     {
-      "id": "trial-zero-prefix",
-      "name": "trial: zero prefix before better value",
+      "id": "trial-two-elements",
+      "name": "trial: one mandatory edge",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          0,
-          0,
-          5,
+          7,
+          100
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "two-elements",
+        "last-ignored"
+      ]
+    },
+    {
+      "id": "trial-strictly-increasing",
+      "name": "trial: every index sets a new maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
           1,
-          2
+          2,
+          3,
+          4,
+          5
         ]
       },
       "expected": 10,
       "tags": [
-        "zero"
+        "increasing",
+        "many-jumps"
       ]
     },
     {
-      "id": "real-longer-profile",
-      "name": "real: longer hidden score profile",
+      "id": "trial-strictly-decreasing",
+      "name": "trial: first value remains maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "decreasing",
+        "direct-jump"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: equal rates make jump choices irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "equal-values",
+        "ties"
+      ]
+    },
+    {
+      "id": "real-late-large-value",
+      "name": "real: largest value appears only at destination",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
           2,
-          7,
           1,
-          9,
-          3,
-          8,
-          4,
-          6,
-          10,
-          5
+          1,
+          100000
         ]
       },
-      "expected": 71,
+      "expected": 6,
       "tags": [
-        "real",
-        "prefix-max"
+        "last-ignored",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "real-repeated-records",
+      "name": "real: repeated prefix records",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          5,
+          5,
+          1,
+          9,
+          9,
+          3
+        ]
+      },
+      "expected": 35,
+      "tags": [
+        "equal-maxima",
+        "records"
+      ]
+    },
+    {
+      "id": "real-alternating-records",
+      "name": "real: alternating lows and new highs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          7,
+          2,
+          10,
+          4,
+          12,
+          1
+        ]
+      },
+      "expected": 52,
+      "tags": [
+        "records",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-upper-bound-values",
+      "name": "real: maximum values require wide total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000,
+          100000,
+          100000
+        ]
+      },
+      "expected": 400000,
+      "tags": [
+        "upper-bound",
+        "wide-integer"
+      ]
+    },
+    {
+      "id": "real-long-plateau",
+      "name": "real: early record persists across a plateau",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          20,
+          2,
+          2,
+          2,
+          2,
+          19,
+          3
+        ]
+      },
+      "expected": 121,
+      "tags": [
+        "plateau",
+        "prefix-maximum"
       ]
     }
   ]

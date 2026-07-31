@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3714",
+    "frontend_id": "3714",
+    "title_slug": "longest-balanced-substring-ii",
+    "url": "https://leetcode.com/problems/longest-balanced-substring-ii/description/",
+    "paid_only": false,
+    "content_sha256": "7990d83d9f889954dd03b59c0b71f29e0e3f3f6b68c59ce5a9d2db9339bfbea6",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"abbac\"", "output": "4", "has_explanation": true},
+      {"ordinal": 2, "input": "s = \"aabcc\"", "output": "3", "has_explanation": true},
+      {"ordinal": 3, "input": "s = \"aba\"", "output": "2", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "69607c1cbc03066d7ab32c1a793ce2e64aa4a19b6ce3ba7f07a59ecd6efc99fc",
+      "reference/contract.md": "d593ca7f4b4aac2f7f48baf448b95278988432b0953a5256e1156780507ea086",
+      "reference/examples.md": "b1c222aff57061b9fc3a22a1ec2c956ca527a686879e112de4b618aeb67b6cda",
+      "reference/constraints.md": "0527ed2c695bd904efcceaf4b40f7391ffff79e20b40386a5618f21c97d4b04d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

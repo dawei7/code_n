@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3927",
+    "frontend_id": "3927",
+    "title_slug": "minimize-array-sum-using-divisible-replacements",
+    "url": "https://leetcode.com/problems/minimize-array-sum-using-divisible-replacements/description/",
+    "paid_only": false,
+    "content_sha256": "c132bf5200efcf246f40314e98395831e5c3686c41731ebaaa57d5c1b9f150ee",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [3,6,2]",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,2,8,3]",
+        "output": "9",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [7,5,9]",
+        "output": "21",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5baa7697a2c0f905394d723d67bd797b7d521215580c28586c44c02c81a182e8",
+      "reference/contract.md": "31a4219786769ee40380f3585263e9fb19e3f626bea65fc07474d9f8c89d8de7",
+      "reference/examples.md": "b50730e7d815d74a54dda7a3517397c73bfc44c4f9f71a6055f195d19e4399b5",
+      "reference/constraints.md": "ba6b1b711f37a72bcf1fb49a77c061d13ace0e755f6d3f77f63195d3132aa383"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "challenge_id": "lc_2647",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five seeds for side three",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3},
+      "expected": [[1,1],[2,1],[2,3],[3,1],[3,5]],
+      "validator": {"kind": "color_red_triangle"},
+      "tags": ["sample", "nonunique-output"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three boundary seeds for side two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2},
+      "expected": [[1,1],[2,1],[2,3]],
+      "validator": {"kind": "color_red_triangle"},
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: the tip is the whole triangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1},
+      "expected": [[1,1]],
+      "validator": {"kind": "color_red_triangle"},
+      "tags": ["minimum", "tip"]
+    },
+    {
+      "id": "trial-four-row-block",
+      "name": "trial: one complete four-row pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4},
+      "expected": [[1,1],[2,3],[3,2],[4,1],[4,3],[4,5],[4,7]],
+      "validator": {"kind": "color_red_triangle"},
+      "tags": ["four-row-pattern"]
+    },
+    {
+      "id": "real-remainder-one",
+      "name": "hidden: four-row block plus one-row remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5},
+      "expected": [[1,1],[2,1],[3,3],[3,5],[4,2],[5,1],[5,3],[5,5],[5,7],[5,9]],
+      "validator": {"kind": "color_red_triangle"},
+      "tags": ["hidden", "remainder-one"]
+    },
+    {
+      "id": "real-remainder-two",
+      "name": "hidden: four-row block plus two-row remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 6},
+      "expected": [[1,1],[2,1],[2,3],[3,1],[4,3],[4,5],[4,7],[5,2],[6,1],[6,3],[6,5],[6,7],[6,9],[6,11]],
+      "validator": {"kind": "color_red_triangle"},
+      "tags": ["hidden", "remainder-two"]
+    },
+    {
+      "id": "real-two-blocks",
+      "name": "hidden: two complete four-row blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 8},
+      "expected": [[1,1],[2,3],[3,2],[4,1],[4,3],[4,5],[4,7],[5,1],[6,3],[6,5],[6,7],[6,9],[6,11],[7,2],[8,1],[8,3],[8,5],[8,7],[8,9],[8,11],[8,13],[8,15]],
+      "validator": {"kind": "color_red_triangle"},
+      "tags": ["hidden", "multiple-blocks"]
+    },
+    {
+      "id": "real-larger",
+      "name": "hidden: three complete four-row blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 12},
+      "expected": [[1,1],[2,3],[3,2],[4,1],[4,3],[4,5],[4,7],[5,1],[6,3],[6,5],[6,7],[6,9],[6,11],[7,2],[8,1],[8,3],[8,5],[8,7],[8,9],[8,11],[8,13],[8,15],[9,1],[10,3],[10,5],[10,7],[10,9],[10,11],[10,13],[10,15],[10,17],[10,19],[11,2],[12,1],[12,3],[12,5],[12,7],[12,9],[12,11],[12,13],[12,15],[12,17],[12,19],[12,21],[12,23]],
+      "validator": {"kind": "color_red_triangle"},
+      "tags": ["hidden", "multiple-blocks"]
+    }
+  ]
+}

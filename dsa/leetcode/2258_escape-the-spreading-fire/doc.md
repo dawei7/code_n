@@ -5,51 +5,52 @@
 | Source | LeetCode |
 | Frontend ID | 2258 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Binary Search, Breadth-First Search, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [escape-the-spreading-fire](https://leetcode.com/problems/escape-the-spreading-fire/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/escape-the-spreading-fire/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/escape-the-spreading-fire/).
 
 ### Goal
-Starting at the top-left cell, wait for some number of minutes and then move one cell per minute to reach the bottom-right safehouse while fire spreads simultaneously through non-wall cells. Entering a cell at the same time as fire is forbidden except at the safehouse. Find the longest safe initial wait.
+
+A field is represented by an $m\times n$ grid. Grass cells are `0`, initial
+fire cells are `1`, and impassable walls are `2`. You begin at the top-left
+grass cell and need to reach the safehouse at the bottom-right grass cell.
+
+During each minute, you first move to one cardinally adjacent grass cell.
+After that move, every fire cell spreads simultaneously to adjacent non-wall
+cells. You may wait at the starting cell before making the first move, but the
+route must remain safe. Reaching the safehouse at the same minute the fire
+reaches it is allowed; occupying any other cell when the fire arrives is not.
+
+Return the greatest initial waiting time that still permits escape. Return
+`-1` when even leaving immediately cannot succeed. If arbitrarily long waits
+remain safe, return $10^9$.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: `0` for grass, `1` for initial fire, and `2` for a wall.
+- `grid`: An $m\times n$ matrix with $2\le m,n\le300$ and $4\le mn\le2\cdot10^4$.
+- Each cell is `0`, `1`, or `2`; the start and safehouse are both grass.
 
 **Return value**
 
-The maximum safe waiting time; `-1` if escape is impossible even immediately, or `1_000_000_000` if waiting indefinitely remains safe.
+Return the maximum safe number of minutes to wait at `(0, 0)`, using `-1` for
+an impossible escape and `1000000000` when every finite waiting time is safe.
 
 ### Examples
+
 **Example 1**
 
-- Input: `grid = [[0, 0], [0, 0]]`
-- Output: `1_000_000_000`
+- Input: `grid = [[0,2,0,0,0,0,0],[0,0,0,2,2,1,0],[0,2,0,0,1,2,0],[0,0,2,2,2,0,2],[0,0,0,0,0,0,0]]`
+- Output: `3`
 
 **Example 2**
 
-- Input: `grid = [[0, 1], [0, 0]]`
+- Input: `grid = [[0,0,0,0],[0,1,2,0],[0,2,0,0]]`
 - Output: `-1`
 
 **Example 3**
 
-- Input: `grid = [[0, 0, 0], [0, 2, 0], [1, 2, 0]]`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-Run multi-source BFS from all initial fires to record their earliest arrival at every reachable cell. Binary-search the initial waiting time. For each candidate, BFS the person's path with absolute arrival times: every ordinary cell requires arrival strictly before fire, while the safehouse permits arrival at the same time. If a wait of at least the grid-cell bound works, fire can never force failure and the required sentinel is returned.
-
-### Complexity Analysis
-- **Time Complexity**: `O(mn log(mn))`
-- **Space Complexity**: `O(mn)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `grid = [[0,0,0],[2,2,0],[1,2,0]]`
+- Output: `1000000000`

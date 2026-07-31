@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3874",
+  "cases": [
+    {
+      "id": "sample-four-around-one-peak",
+      "name": "sample: four endpoint pairs around one peak",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 3, 2], "k": 1},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "single-peak"]
+    },
+    {
+      "id": "sample-no-peak",
+      "name": "sample: a strictly increasing array has no peak",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7, 8, 9], "k": 2},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "no-peak"]
+    },
+    {
+      "id": "sample-six-around-late-peak",
+      "name": "sample: six endpoint pairs around a late peak",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 3, 5, 1], "k": 2},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "boundary-clipping"]
+    },
+    {
+      "id": "trial-one-element",
+      "name": "trial: one element cannot be a global peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5], "k": 1},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "no-peak"]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: two elements have no interior index",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 1], "k": 2},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "two-elements", "no-peak"]
+    },
+    {
+      "id": "trial-plateau",
+      "name": "trial: equal neighbors prevent strict peaks",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 3, 3, 1], "k": 4},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "plateau", "strict-comparison"]
+    },
+    {
+      "id": "trial-single-peak-large-k",
+      "name": "trial: array boundaries limit a large k window",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 1, 2, 5, 4, 3, 2], "k": 7},
+      "expected": 16,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "single-peak", "large-k"]
+    },
+    {
+      "id": "trial-two-peaks-large-k",
+      "name": "trial: neighboring peaks bound endpoint choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 3, 1, 4, 1], "k": 5},
+      "expected": 8,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "two-peaks", "neighbor-boundary"]
+    },
+    {
+      "id": "real-two-peaks-small-k",
+      "name": "hidden: k clips both peaks to immediate neighbors",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 3, 1, 4, 1], "k": 1},
+      "expected": 8,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "two-peaks", "small-k"]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "hidden: a peak can be negative",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-5, -1, -3], "k": 3},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "negative-values", "single-peak"]
+    },
+    {
+      "id": "real-three-alternating-peaks",
+      "name": "hidden: three peaks partition the endpoint ranges",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 2, 0, 3, 0, 4, 0], "k": 7},
+      "expected": 12,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "three-peaks", "alternating"]
+    },
+    {
+      "id": "real-uneven-peak-spacing",
+      "name": "hidden: uneven neighboring gaps produce different products",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 5, 0, 0, 6, 0, 0], "k": 3},
+      "expected": 15,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "uneven-spacing", "distance-limit"]
+    },
+    {
+      "id": "real-early-peak-k-clipped",
+      "name": "hidden: an early peak is clipped on the right by k",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 5, 4, 3, 2, 1], "k": 2},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "early-peak", "k-clipping"]
+    },
+    {
+      "id": "real-irregular-values",
+      "name": "hidden: only strict local maxima divide an irregular array",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 4, 2, 3, 0], "k": 2},
+      "expected": 10,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "irregular", "multiple-peaks"]
+    },
+    {
+      "id": "real-four-peaks",
+      "name": "hidden: four separated peaks use both neighbor and k bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 10, 1, 9, 1, 8, 1, 7, 1], "k": 3},
+      "expected": 16,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "four-peaks", "neighbor-boundary"]
+    }
+  ]
+}

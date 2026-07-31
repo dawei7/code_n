@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3805",
+    "frontend_id": "3805",
+    "title_slug": "count-caesar-cipher-pairs",
+    "url": "https://leetcode.com/problems/count-caesar-cipher-pairs/description/",
+    "paid_only": false,
+    "content_sha256": "0431c975045cda7c3f3a7a7b3fda5bce28417b19688ca30264ceed2f4abf1ca5",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`words = [\"fusion\",\"layout\"]`",
+        "output": "`1`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`words = [\"ab\",\"aa\",\"za\",\"aa\"]`",
+        "output": "`2`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8fc03bedf5f7150e30e4ca051616d9b904b4d0136af51e6c974a2106047935f9",
+      "reference/contract.md": "cd85c4f535defbf3114552caa4942cf78869d24fd6407f206c4d6493d732cac9",
+      "reference/examples.md": "e0373114277de75629f008735f7ffa486f0ab62bb0cd40295b101a4d9a0eda1b",
+      "reference/constraints.md": "ed5719e1e41e43128e7556c61fe6cdfd7ea64ddf167b5f44af46758f2a08a27d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Candidates for Data Scientist Position II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Joins only equal skills, filters complete candidate-project coverage, then ranks eligible candidates with the required tie-break.",
+      "time_complexity": "O((C + P + J) log(C + P + J))",
+      "space_complexity": "O(C + P + J)"
     }
   ]
 }

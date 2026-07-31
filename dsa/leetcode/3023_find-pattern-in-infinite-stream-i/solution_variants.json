@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Pattern in Infinite Stream I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds a KMP prefix table for the pattern and carries its match state forward as each stream bit is consumed once.",
+      "time_complexity": "O(S + M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

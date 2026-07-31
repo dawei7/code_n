@@ -1,28 +1,8 @@
 {
   "challenge_id": "lc_3292",
   "cases": [
-    {
-      "id": "benchmark-trie-greedy-ii",
-      "name": "benchmark: long target with prefix trie II",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "words": [
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
-          "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
-          "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc",
-          "bcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca",
-          "cabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabc",
-          "bcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca"
-        ],
-        "target": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcbcabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabcaabca"
-      },
-      "expected": 33,
-      "tags": [
-        "benchmark",
-        "trie",
-        "greedy"
-      ]
-    }
+    {"id":"benchmark-z-work-4096","name":"benchmark: 32 words and target length 128","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"w, t = 32, 128\ncase = {'words': ['a' * t for _ in range(w)], 'target': 'a' * t}\nexpected = 1"},"size":4096,"tags":["benchmark","z-function","wt"]},
+    {"id":"benchmark-z-work-16384","name":"benchmark: 32 words and target length 512","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"w, t = 32, 512\ncase = {'words': ['a' * t for _ in range(w)], 'target': 'a' * t}\nexpected = 1"},"size":16384,"tags":["benchmark","z-function","wt"]},
+    {"id":"benchmark-z-work-65536","name":"benchmark: 32 words and target length 2048","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"w, t = 32, 2048\ncase = {'words': ['a' * t for _ in range(w)], 'target': 'a' * t}\nexpected = 1"},"size":65536,"tags":["benchmark","z-function","wt"]}
   ]
 }

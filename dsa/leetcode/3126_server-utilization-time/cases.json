@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3126",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official server sessions",
+      "kind": "sample",
+      "visible": true,
+      "input": { "tables": { "Servers": [
+        { "server_id": 3, "status_time": "2023-11-04 16:29:47", "session_status": "start" },
+        { "server_id": 3, "status_time": "2023-11-05 01:49:47", "session_status": "stop" },
+        { "server_id": 3, "status_time": "2023-11-25 01:37:08", "session_status": "start" },
+        { "server_id": 3, "status_time": "2023-11-25 03:50:08", "session_status": "stop" },
+        { "server_id": 1, "status_time": "2023-11-13 03:05:31", "session_status": "start" },
+        { "server_id": 1, "status_time": "2023-11-13 11:10:31", "session_status": "stop" },
+        { "server_id": 4, "status_time": "2023-11-29 15:11:17", "session_status": "start" },
+        { "server_id": 4, "status_time": "2023-11-29 15:42:17", "session_status": "stop" },
+        { "server_id": 4, "status_time": "2023-11-20 00:31:44", "session_status": "start" },
+        { "server_id": 4, "status_time": "2023-11-20 07:03:44", "session_status": "stop" },
+        { "server_id": 1, "status_time": "2023-11-20 00:27:11", "session_status": "start" },
+        { "server_id": 1, "status_time": "2023-11-20 01:41:11", "session_status": "stop" },
+        { "server_id": 3, "status_time": "2023-11-04 23:16:48", "session_status": "start" },
+        { "server_id": 3, "status_time": "2023-11-05 01:15:48", "session_status": "stop" },
+        { "server_id": 4, "status_time": "2023-11-30 15:09:18", "session_status": "start" },
+        { "server_id": 4, "status_time": "2023-11-30 20:48:18", "session_status": "stop" },
+        { "server_id": 4, "status_time": "2023-11-25 21:09:06", "session_status": "start" },
+        { "server_id": 4, "status_time": "2023-11-26 04:58:06", "session_status": "stop" },
+        { "server_id": 5, "status_time": "2023-11-16 19:42:22", "session_status": "start" },
+        { "server_id": 5, "status_time": "2023-11-16 21:08:22", "session_status": "stop" }
+      ] } },
+      "expected": { "columns": ["total_uptime_days"], "rows": [[1]] },
+      "validator": { "kind": "ordered_table" },
+      "tags": ["sample", "multiple-servers", "overlapping-events"]
+    },
+    {
+      "id": "trial-exact-day",
+      "name": "trial: one exact full day",
+      "kind": "trial",
+      "visible": true,
+      "input": { "tables": { "Servers": [
+        { "server_id": 1, "status_time": "2024-01-01 00:00:00", "session_status": "start" },
+        { "server_id": 1, "status_time": "2024-01-02 00:00:00", "session_status": "stop" }
+      ] } },
+      "expected": { "columns": ["total_uptime_days"], "rows": [[1]] },
+      "validator": { "kind": "ordered_table" },
+      "tags": ["trial", "exact-day"]
+    },
+    {
+      "id": "trial-sub-day",
+      "name": "trial: nearly one day rounds down",
+      "kind": "trial",
+      "visible": true,
+      "input": { "tables": { "Servers": [
+        { "server_id": 1, "status_time": "2024-01-01 00:00:00", "session_status": "start" },
+        { "server_id": 1, "status_time": "2024-01-01 23:59:59", "session_status": "stop" }
+      ] } },
+      "expected": { "columns": ["total_uptime_days"], "rows": [[0]] },
+      "validator": { "kind": "ordered_table" },
+      "tags": ["trial", "floor", "sub-day"]
+    },
+    {
+      "id": "trial-partials-combine",
+      "name": "trial: partial days across servers combine",
+      "kind": "trial",
+      "visible": true,
+      "input": { "tables": { "Servers": [
+        { "server_id": 1, "status_time": "2024-02-01 00:00:00", "session_status": "start" },
+        { "server_id": 1, "status_time": "2024-02-01 18:00:00", "session_status": "stop" },
+        { "server_id": 2, "status_time": "2024-02-03 05:00:00", "session_status": "start" },
+        { "server_id": 2, "status_time": "2024-02-03 15:00:00", "session_status": "stop" }
+      ] } },
+      "expected": { "columns": ["total_uptime_days"], "rows": [[1]] },
+      "validator": { "kind": "ordered_table" },
+      "tags": ["trial", "multiple-servers", "global-floor"]
+    },
+    {
+      "id": "real-consecutive-starts",
+      "name": "hidden: consecutive starts precede consecutive stops",
+      "kind": "real",
+      "visible": false,
+      "input": { "tables": { "Servers": [
+        { "server_id": 7, "status_time": "2024-03-01 00:00:00", "session_status": "start" },
+        { "server_id": 7, "status_time": "2024-03-01 01:00:00", "session_status": "start" },
+        { "server_id": 7, "status_time": "2024-03-01 20:00:00", "session_status": "stop" },
+        { "server_id": 7, "status_time": "2024-03-01 21:00:00", "session_status": "stop" }
+      ] } },
+      "expected": { "columns": ["total_uptime_days"], "rows": [[1]] },
+      "validator": { "kind": "ordered_table" },
+      "tags": ["real", "consecutive-status", "pairing"]
+    },
+    {
+      "id": "real-unordered-two-days",
+      "name": "hidden: unordered rows total exactly two days",
+      "kind": "real",
+      "visible": false,
+      "input": { "tables": { "Servers": [
+        { "server_id": 2, "status_time": "2024-04-05 18:00:00", "session_status": "stop" },
+        { "server_id": 1, "status_time": "2024-04-02 06:00:00", "session_status": "stop" },
+        { "server_id": 2, "status_time": "2024-04-05 00:00:00", "session_status": "start" },
+        { "server_id": 1, "status_time": "2024-04-01 00:00:00", "session_status": "start" }
+      ] } },
+      "expected": { "columns": ["total_uptime_days"], "rows": [[2]] },
+      "validator": { "kind": "ordered_table" },
+      "tags": ["real", "unordered", "exact-days"]
+    }
+  ]
+}

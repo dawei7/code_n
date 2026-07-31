@@ -1,21 +1,16 @@
-from typing import List
-
-def solve(grid: List[List[int]]) -> List[int]:
+def solve(grid: list[list[int]]) -> list[int]:
     result = []
     take = True
-    
-    for r in range(len(grid)):
-        # Determine the range based on row index
-        # Even rows: left to right (0 to n-1)
-        # Odd rows: right to left (n-1 to 0)
-        if r % 2 == 0:
-            cols = range(len(grid[r]))
+
+    for row, values in enumerate(grid):
+        if row % 2 == 0:
+            columns = range(len(values))
         else:
-            cols = range(len(grid[r]) - 1, -1, -1)
-            
-        for c in cols:
+            columns = range(len(values) - 1, -1, -1)
+
+        for column in columns:
             if take:
-                result.append(grid[r][c])
+                result.append(values[column])
             take = not take
-            
+
     return result

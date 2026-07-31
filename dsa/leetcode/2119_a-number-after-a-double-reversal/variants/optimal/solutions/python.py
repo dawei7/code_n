@@ -1,0 +1,2 @@
+def solve(num: int) -> bool:
+    return num == 0 or num % 10 != 0

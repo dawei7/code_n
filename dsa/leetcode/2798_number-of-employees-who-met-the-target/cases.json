@@ -2,108 +2,79 @@
   "challenge_id": "lc_2798",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: three employees meet target",
+      "id": "sample-three-meet",
+      "name": "sample: three employees meet the target",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "hours": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ],
-        "target": 2
-      },
-      "tags": [
-        "sample",
-        "count"
-      ],
-      "expected": 3
+      "input": {"hours": [0, 1, 2, 3, 4], "target": 2},
+      "expected": 3,
+      "tags": ["sample", "mixed"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: no employees meet high target",
+      "id": "sample-none-meet",
+      "name": "sample: no employee meets a high target",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "hours": [
-          5,
-          1,
-          4,
-          2,
-          2
-        ],
-        "target": 6
-      },
-      "tags": [
-        "sample",
-        "none"
-      ],
-      "expected": 0
+      "input": {"hours": [5, 1, 4, 2, 2], "target": 6},
+      "expected": 0,
+      "tags": ["sample", "none"]
     },
     {
       "id": "trial-all-meet",
-      "name": "trial: all employees meet target",
+      "name": "trial: every employee meets the target",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "hours": [
-          8,
-          8,
-          9
-        ],
-        "target": 8
-      },
-      "tags": [
-        "trial",
-        "all"
-      ],
-      "expected": 3
+      "input": {"hours": [8, 8, 9], "target": 8},
+      "expected": 3,
+      "tags": ["trial", "all", "equality"]
     },
     {
       "id": "trial-exact-boundary",
-      "name": "trial: exact target counts",
+      "name": "trial: equality counts while smaller values do not",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "hours": [
-          3,
-          2,
-          3,
-          1
-        ],
-        "target": 3
-      },
-      "tags": [
-        "trial",
-        "boundary"
-      ],
-      "expected": 2
+      "input": {"hours": [3, 2, 3, 1], "target": 3},
+      "expected": 2,
+      "tags": ["trial", "inclusive-threshold"]
+    },
+    {
+      "id": "real-zero-target",
+      "name": "hidden: zero target includes every non-negative value",
+      "kind": "real",
+      "visible": false,
+      "input": {"hours": [0, 0, 1, 100000], "target": 0},
+      "expected": 4,
+      "tags": ["hidden", "zero-target", "value-boundaries"]
+    },
+    {
+      "id": "real-single-employee",
+      "name": "hidden: minimum array length below target",
+      "kind": "real",
+      "visible": false,
+      "input": {"hours": [0], "target": 1},
+      "expected": 0,
+      "tags": ["hidden", "minimum-length"]
     },
     {
       "id": "real-mixed-hours",
-      "name": "hidden: mixed hours around target",
+      "name": "hidden: unordered values around the threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {"hours": [10, 0, 7, 6, 8, 5, 7], "target": 7},
+      "expected": 4,
+      "tags": ["hidden", "mixed", "duplicates"]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: fifty employees with alternating qualification",
       "kind": "real",
       "visible": false,
       "input": {
-        "hours": [
-          10,
-          0,
-          7,
-          6,
-          8,
-          5,
-          7
-        ],
-        "target": 7
+        "hours": [0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000, 0, 100000],
+        "target": 100000
       },
-      "tags": [
-        "hidden",
-        "mixed"
-      ],
-      "expected": 4
+      "expected": 25,
+      "tags": ["hidden", "maximum-length", "maximum-value"]
     }
   ]
 }

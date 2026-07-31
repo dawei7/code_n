@@ -1,0 +1,610 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3965",
+  "cases": [
+    {
+      "id": "sample-chain",
+      "name": "sample: three-task chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "baseTime": [
+          9,
+          5,
+          3
+        ]
+      },
+      "expected": 17,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "chain"
+      ]
+    },
+    {
+      "id": "sample-two-leaves",
+      "name": "sample: root with two leaves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "baseTime": [
+          4,
+          7,
+          6
+        ]
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "sample-mixed-depth",
+      "name": "sample: mixed leaf depths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "baseTime": [
+          5,
+          8,
+          2,
+          1
+        ]
+      },
+      "expected": 18,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-depth"
+      ]
+    },
+    {
+      "id": "trial-single-task",
+      "name": "trial: root is a leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "edges": [],
+        "baseTime": [
+          7
+        ]
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-task"
+      ]
+    },
+    {
+      "id": "trial-four-chain",
+      "name": "trial: four-task chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "baseTime": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 10,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-three-leaf-star",
+      "name": "trial: root with three leaves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "baseTime": [
+          10,
+          1,
+          5,
+          9
+        ]
+      },
+      "expected": 27,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "star"
+      ]
+    },
+    {
+      "id": "trial-balanced-tree",
+      "name": "trial: balanced two-level tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "baseTime": [
+          5,
+          2,
+          3,
+          4,
+          7,
+          1,
+          6
+        ]
+      },
+      "expected": 21,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-arbitrary-labels",
+      "name": "trial: arbitrary child labels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "baseTime": [
+          8,
+          4,
+          10,
+          2,
+          3,
+          7
+        ]
+      },
+      "expected": 34,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "edge-order"
+      ]
+    },
+    {
+      "id": "real-shuffled-edges",
+      "name": "real: shuffled edge order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "baseTime": [
+          2,
+          3,
+          5,
+          7,
+          11
+        ]
+      },
+      "expected": 30,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "edge-order"
+      ]
+    },
+    {
+      "id": "real-multi-level",
+      "name": "real: several internal branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8,
+        "edges": [
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "baseTime": [
+          9,
+          1,
+          8,
+          4,
+          6,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 44,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "mixed-depth"
+      ]
+    },
+    {
+      "id": "real-base-boundaries",
+      "name": "real: large and small leaf durations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "baseTime": [
+          100000,
+          100000,
+          1
+        ]
+      },
+      "expected": 299999,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-large-chain-values",
+      "name": "real: large values on a chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "baseTime": [
+          100000,
+          100000,
+          100000,
+          100000,
+          100000
+        ]
+      },
+      "expected": 500000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "large-result"
+      ]
+    },
+    {
+      "id": "real-wide-star",
+      "name": "real: wide star with powers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "baseTime": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ]
+      },
+      "expected": 63,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "star"
+      ]
+    },
+    {
+      "id": "real-two-tasks",
+      "name": "real: two-task boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "baseTime": [
+          99999,
+          100000
+        ]
+      },
+      "expected": 199999,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "two-tasks"
+      ]
+    },
+    {
+      "id": "real-deep-right-branch",
+      "name": "real: deeper right branch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 9,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "baseTime": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": 55,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "mixed-depth"
+      ]
+    }
+  ]
+}

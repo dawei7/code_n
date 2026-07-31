@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2259",
+  "measurement_note": "Size is the length n of number. The greedy first-difference scan takes O(n) time. A correct implementation that constructs every possible deletion candidate completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 removable equal digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "number": "99999999",
+        "digit": "9"
+      },
+      "expected": "9999999",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "candidate-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 removable equal digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "number": "99999999999999999999999999999999",
+        "digit": "9"
+      },
+      "expected": "9999999999999999999999999999999",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "candidate-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 removable equal digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "number": "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+        "digit": "9"
+      },
+      "expected": "999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "candidate-enumeration"
+      ]
+    }
+  ]
+}

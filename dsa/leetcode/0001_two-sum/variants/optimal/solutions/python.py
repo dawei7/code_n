@@ -3,9 +3,9 @@
 
 def solve(nums: list[int], target: int) -> list[int]:
     seen: dict[int, int] = {}
-    for i, value in enumerate(nums):
-        need = target - value
-        if need in seen:
-            return [seen[need], i]
-        seen[value] = i
+    for index, value in enumerate(nums):
+        complement = target - value
+        if complement in seen:
+            return [seen[complement], index]
+        seen[value] = index
     return []

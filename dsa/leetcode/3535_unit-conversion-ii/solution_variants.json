@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Unit Conversion II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Build a bidirectional conversion tree, assign every unit a factor relative to unit 0, and answer each query as a ratio of two factors.",
+      "time_complexity": "O(n + Q)",
+      "space_complexity": "O(n)"
     }
   ]
 }

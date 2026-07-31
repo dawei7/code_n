@@ -1,16 +1,22 @@
-def solve(n: int, k: int, stayScore: list[list[int]], travelScore: list[list[int]]) -> int:
-    dp = [0] * n
+def solve(
+    n: int,
+    k: int,
+    stayScore: list[list[int]],
+    travelScore: list[list[int]],
+) -> int:
+    best = [0] * n
 
     for day in range(k):
-        new_dp = [0] * n
-        for curr_city in range(n):
-            best_prev = dp[curr_city] + stayScore[day][curr_city]
+        next_best = [0] * n
+        for destination in range(n):
+            score = best[destination] + stayScore[day][destination]
+            for source in range(n):
+                if source == destination:
+                    continue
+                candidate = best[source] + travelScore[source][destination]
+                if candidate > score:
+                    score = candidate
+            next_best[destination] = score
+        best = next_best
 
-            for prev_city in range(n):
-                if prev_city != curr_city:
-                    best_prev = max(best_prev, dp[prev_city] + travelScore[prev_city][curr_city])
-
-            new_dp[curr_city] = best_prev
-        dp = new_dp
-
-    return max(dp)
+    return max(best)

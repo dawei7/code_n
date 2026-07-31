@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: long numeric word",
+      "name": "sample: several divisible prefixes",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -28,7 +28,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: alternating prefix divisibility",
+      "name": "sample: alternating divisibility by ten",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,36 +42,21 @@
         1
       ],
       "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: divisor one",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "word": "1",
-        "m": 1
-      },
-      "expected": [
-        1
-      ],
-      "tags": [
         "sample",
-        "small"
+        "decimal-place"
       ]
     },
     {
-      "id": "trial-leading-zero-prefixes",
-      "name": "trial: zero prefixes are divisible",
+      "id": "trial-divisor-one",
+      "name": "trial: every prefix is divisible by one",
       "kind": "trial",
       "visible": true,
       "input": {
-        "word": "0000",
-        "m": 7
+        "word": "90701",
+        "m": 1
       },
       "expected": [
+        1,
         1,
         1,
         1,
@@ -79,17 +64,55 @@
       ],
       "tags": [
         "trial",
-        "edge"
+        "divisor-one"
       ]
     },
     {
-      "id": "real-divisible-by-nine",
-      "name": "hidden: divisibility by digit sum",
+      "id": "trial-leading-zeroes",
+      "name": "trial: leading zero prefixes are divisible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "0012",
+        "m": 3
+      },
+      "expected": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "tags": [
+        "trial",
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "real-single-zero",
+      "name": "hidden: one zero digit",
       "kind": "real",
       "visible": false,
       "input": {
-        "word": "123456789",
-        "m": 9
+        "word": "0",
+        "m": 1000000000
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "hidden",
+        "zero",
+        "maximum-divisor"
+      ]
+    },
+    {
+      "id": "real-large-divisor-hit",
+      "name": "hidden: the final prefix equals the maximum divisor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "1000000000",
+        "m": 1000000000
       },
       "expected": [
         0,
@@ -99,11 +122,102 @@
         0,
         0,
         0,
-        1,
+        0,
+        0,
         1
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "maximum-divisor"
+      ]
+    },
+    {
+      "id": "real-repeated-ones",
+      "name": "hidden: periodic divisibility by three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "111111",
+        "m": 3
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "periodic"
+      ]
+    },
+    {
+      "id": "real-no-divisible-prefix",
+      "name": "hidden: no prefix has zero remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "12345",
+        "m": 97
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "no-hit"
+      ]
+    },
+    {
+      "id": "real-overflow-length",
+      "name": "hidden: long numeric value is handled as remainders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "987654321012345678909876543210",
+        "m": 999999937
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "overflow-avoidance"
       ]
     }
   ]

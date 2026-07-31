@@ -1,98 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3449",
   "cases": [
     {
       "id": "sample-two-cells",
-      "name": "sample: two cells with three moves",
+      "name": "sample: alternate across two cells",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "points": [
-          2,
-          4
-        ],
-        "m": 3
-      },
+      "input": {"points": [2, 4], "m": 3},
       "expected": 4,
-      "tags": [
-        "sample",
-        "binary-search"
-      ]
+      "tags": ["sample", "two-cells"]
     },
     {
       "id": "sample-three-cells",
-      "name": "sample: three cells with limited moves",
+      "name": "sample: limited moves on three cells",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "points": [
-          1,
-          2,
-          3
-        ],
-        "m": 5
-      },
+      "input": {"points": [1, 2, 3], "m": 5},
       "expected": 2,
-      "tags": [
-        "sample",
-        "path"
-      ]
+      "tags": ["sample", "path"]
     },
     {
-      "id": "trial-single-cell",
-      "name": "trial: one cell can be revisited",
+      "id": "trial-cannot-reach-all",
+      "name": "trial: fewer moves than board cells",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "points": [
-          5
-        ],
-        "m": 5
-      },
+      "input": {"points": [7, 2, 9, 3], "m": 3},
+      "expected": 0,
+      "tags": ["trial", "zero-answer"]
+    },
+    {
+      "id": "trial-two-cell-ending",
+      "name": "trial: best walk ends on the left cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {"points": [3, 1], "m": 4},
+      "expected": 2,
+      "tags": ["trial", "final-edge"]
+    },
+    {
+      "id": "real-even-two-cell-gains",
+      "name": "real: repeated two-cell alternation",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [5, 5], "m": 6},
       "expected": 15,
-      "tags": [
-        "trial",
-        "single"
-      ]
-    },
-    {
-      "id": "trial-tight-end",
-      "name": "trial: last cell is the bottleneck",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "points": [
-          3,
-          1
-        ],
-        "m": 4
-      },
-      "expected": 2,
-      "tags": [
-        "trial",
-        "edge"
-      ]
+      "tags": ["real", "alternation"]
     },
     {
       "id": "real-varied-points",
-      "name": "real: varied point gains",
+      "name": "real: several competing bottlenecks",
       "kind": "real",
       "visible": false,
-      "input": {
-        "points": [
-          5,
-          1,
-          4,
-          2,
-          7
-        ],
-        "m": 14
-      },
+      "input": {"points": [5, 1, 4, 2, 7], "m": 14},
       "expected": 4,
-      "tags": [
-        "real",
-        "greedy-check"
-      ]
+      "tags": ["real", "greedy"]
+    },
+    {
+      "id": "real-large-move-budget",
+      "name": "real: result requires 64-bit arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [1000000, 1], "m": 1000000000},
+      "expected": 500000000,
+      "tags": ["real", "large-values"]
+    },
+    {
+      "id": "real-expensive-middle",
+      "name": "real: high-value middle does not remove edge costs",
+      "kind": "real",
+      "visible": false,
+      "input": {"points": [2, 1000000, 2], "m": 9},
+      "expected": 4,
+      "tags": ["real", "movement"]
     }
   ]
 }

@@ -1,0 +1,127 @@
+{
+  "challenge_id": "lc_3335",
+  "cases": [
+    {
+      "id": "official-example-one",
+      "name": "official example: two y values split on the second round",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcyy",
+        "t": 2
+      },
+      "tags": [
+        "sample",
+        "two-rounds"
+      ],
+      "expected": 7
+    },
+    {
+      "id": "official-example-two",
+      "name": "official example: an existing z splits immediately",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "azbk",
+        "t": 1
+      },
+      "tags": [
+        "sample",
+        "z-split"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "single-non-z",
+      "name": "one non-z character preserves length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": 1
+      },
+      "tags": [
+        "single-character",
+        "no-split"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "single-z",
+      "name": "one z becomes two characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "t": 1
+      },
+      "tags": [
+        "single-character",
+        "split"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "boundary-before-split",
+      "name": "a reaches z after twenty-five transformations but has not split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": 25
+      },
+      "tags": [
+        "alphabet-boundary",
+        "simultaneous"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "boundary-split",
+      "name": "a splits on the twenty-sixth transformation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": 26
+      },
+      "tags": [
+        "alphabet-boundary",
+        "split"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "mixed-long-evolution",
+      "name": "several near-boundary letters over many rounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "xyz",
+        "t": 100
+      },
+      "tags": [
+        "real",
+        "modulo",
+        "frequency-dp"
+      ],
+      "expected": 48
+    },
+    {
+      "id": "full-alphabet-long-evolution",
+      "name": "every starting letter over one thousand rounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "t": 1000
+      },
+      "tags": [
+        "real",
+        "modulo",
+        "long-run"
+      ],
+      "expected": 836719952
+    }
+  ]
+}

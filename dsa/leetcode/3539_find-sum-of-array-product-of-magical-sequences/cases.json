@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3539",
+  "cases": [
+    {
+      "id": "sample-permutations",
+      "name": "sample: all distinct-index permutations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 5,
+        "k": 5,
+        "nums": [
+          1,
+          10,
+          100,
+          10000,
+          1000000
+        ]
+      },
+      "expected": 991600007,
+      "tags": [
+        "sample",
+        "permutations"
+      ]
+    },
+    {
+      "id": "sample-distinct-pairs",
+      "name": "sample: ordered pairs of distinct indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "k": 2,
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 170,
+      "tags": [
+        "sample",
+        "ordered-pairs"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one index and one selection",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "k": 1,
+        "nums": [
+          28
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-one-selection",
+      "name": "trial: every one-element sequence is magical",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "k": 1,
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "weighted-sum"
+      ]
+    },
+    {
+      "id": "trial-repeated-index-carry",
+      "name": "trial: selecting one index twice creates a carry",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "k": 1,
+        "nums": [
+          2,
+          3
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "trial",
+        "binary-carry"
+      ]
+    },
+    {
+      "id": "real-cross-index-carry",
+      "name": "real: multiplicities combine across adjacent bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "k": 1,
+        "nums": [
+          2,
+          3
+        ]
+      },
+      "expected": 36,
+      "tags": [
+        "real",
+        "carry-chain"
+      ]
+    },
+    {
+      "id": "real-single-valid-popcount",
+      "name": "real: one available index with matching popcount",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 5,
+        "k": 2,
+        "nums": [
+          7
+        ]
+      },
+      "expected": 16807,
+      "tags": [
+        "real",
+        "single-index"
+      ]
+    },
+    {
+      "id": "real-single-invalid-popcount",
+      "name": "real: one available index with mismatched popcount",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 5,
+        "k": 1,
+        "nums": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "no-magical-sequence"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: products require modular reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "k": 2,
+        "nums": [
+          100000000,
+          99999999,
+          2
+        ]
+      },
+      "expected": 454999974,
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-mixed-counts",
+      "name": "real: several count vectors share the target popcount",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 4,
+        "k": 2,
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 542,
+      "tags": [
+        "real",
+        "multinomial"
+      ]
+    }
+  ]
+}

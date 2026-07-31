@@ -8,74 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Depth-First Search, Breadth-First Search, Matrix, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-knight-tour-configuration](https://leetcode.com/problems/check-knight-tour-configuration/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-knight-tour-configuration/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-knight-tour-configuration/).
 
 ### Goal
-Given an $n \times n$ grid representing a sequence of moves made by a knight on a chessboard, determine if the sequence forms a valid knight's tour. A valid tour must start at the top-left corner (0, 0) with the value 0, and each subsequent move must follow the standard L-shaped movement pattern of a knight, visiting every cell from 0 to $n^2 - 1$ exactly once.
+
+A knight is meant to tour an $n \times n$ chessboard, beginning at the top-left cell and visiting every cell exactly once. The matrix `grid` records the visit order: `grid[row][col]` is the zero-based move number at which the knight visits `(row, col)`.
+
+Every value from $0$ through $n^2-1$ occurs exactly once. Consecutive move numbers must describe legal knight moves: two cells in one axis and one cell in the other axis.
+
+Return whether the recorded order is a valid complete tour that starts at `(0, 0)`.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: A 2D list of integers of size $n \times n$ representing the order in which cells were visited.
+- `grid`: A square matrix of distinct integers containing every value from $0$ through $n^2-1$ exactly once.
+
+The board dimension satisfies $3 \leq n \leq 7$.
 
 **Return value**
 
-- `bool`: Returns `True` if the provided grid represents a valid knight's tour, otherwise `False`.
+- `true` if move zero is at the top-left cell and every pair of consecutive moves forms a legal knight move; otherwise, `false`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `grid = [[0,11,16,5,20],[17,4,19,10,15],[12,1,8,21,6],[3,18,23,14,9],[24,13,2,7,22]]`
-- Output: `True`
+- Output: `true`
+
+The visit order starts at the top-left and every transition from move zero through move 24 has coordinate differences one and two.
 
 **Example 2**
 
 - Input: `grid = [[0,3,6],[5,8,1],[2,7,4]]`
-- Output: `False`
+- Output: `false`
 
----
-
-## Solution
-### Approach
-The problem is solved using **Simulation**. Since the grid contains exactly one instance of every number from $0$ to $n^2 - 1$, we can map each value to its coordinate $(r, c)$. We then iterate through the sequence from $0$ to $n^2 - 1$ and verify that the distance between the coordinates of step $i$ and step $i+1$ satisfies the knight's move condition: $|r_1 - r_2| \times |c_1 - c_2| = 2$ (specifically, the set of absolute differences must be $\{1, 2\}$).
-
-### Complexity Analysis
-- **Time Complexity**: $O(n^2)$, where $n$ is the dimension of the grid. We traverse the grid once to map the positions and once to validate the moves.
-- **Space Complexity**: $O(n^2)$ to store the mapping of each step value to its $(r, c)$ coordinate.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(grid: list[list[int]]) -> bool:
-    n = len(grid)
-    # Map each step value to its (row, col) coordinate
-    pos = [None] * (n * n)
-    for r in range(n):
-        for c in range(n):
-            pos[grid[r][c]] = (r, c)
-
-    # A valid tour must start at (0, 0)
-    if grid[0][0] != 0:
-        return False
-
-    # Validate each consecutive move
-    for i in range(n * n - 1):
-        r1, c1 = pos[i]
-        r2, c2 = pos[i + 1]
-
-        dr = abs(r1 - r2)
-        dc = abs(c1 - c2)
-
-        # A knight move is valid if the absolute differences are {1, 2}
-        # This is equivalent to checking if the product is 2 and sum is 3
-        if not ((dr == 1 and dc == 2) or (dr == 2 and dc == 1)):
-            return False
-
-    return True
-```
-</details>
+The transition from move `7` to move `8` is not a legal knight move.

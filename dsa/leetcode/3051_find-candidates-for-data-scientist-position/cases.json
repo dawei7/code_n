@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3051",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: two candidates have all required skills",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Candidates": [
+        {"candidate_id":123,"skill":"Python"},{"candidate_id":234,"skill":"R"},{"candidate_id":123,"skill":"Tableau"},{"candidate_id":123,"skill":"PostgreSQL"},{"candidate_id":234,"skill":"PowerBI"},{"candidate_id":234,"skill":"SQL Server"},{"candidate_id":147,"skill":"Python"},{"candidate_id":147,"skill":"Tableau"},{"candidate_id":147,"skill":"Java"},{"candidate_id":147,"skill":"PostgreSQL"},{"candidate_id":256,"skill":"Tableau"},{"candidate_id":102,"skill":"DataAnalysis"}
+      ]}},
+      "expected": {"columns":["candidate_id"],"rows":[[123],[147]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["sample","complete-skill-set"]
+    },
+    {
+      "id": "sample-one-missing",
+      "name": "sample: one missing required skill prevents qualification",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Candidates": [
+        {"candidate_id":1,"skill":"Python"},{"candidate_id":1,"skill":"Tableau"},{"candidate_id":1,"skill":"Java"}
+      ]}},
+      "expected": {"columns":["candidate_id"],"rows":[]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["sample","missing-skill"]
+    },
+    {
+      "id": "sample-extra-skills",
+      "name": "sample: unrelated extra skills do not disqualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Candidates": [
+        {"candidate_id":7,"skill":"R"},{"candidate_id":7,"skill":"Python"},{"candidate_id":7,"skill":"PostgreSQL"},{"candidate_id":7,"skill":"Tableau"}
+      ]}},
+      "expected": {"columns":["candidate_id"],"rows":[[7]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["sample","extra-skills"]
+    },
+    {
+      "id": "trial-exact-names",
+      "name": "trial: similar skill names do not count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Candidates": [
+        {"candidate_id":8,"skill":"Python"},{"candidate_id":8,"skill":"Tableau"},{"candidate_id":8,"skill":"Postgres"}
+      ]}},
+      "expected": {"columns":["candidate_id"],"rows":[]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["trial","exact-match"]
+    },
+    {
+      "id": "real-numeric-order",
+      "name": "hidden: qualifying IDs use numeric ascending order",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Candidates": [
+        {"candidate_id":10,"skill":"Python"},{"candidate_id":2,"skill":"Python"},{"candidate_id":10,"skill":"Tableau"},{"candidate_id":2,"skill":"Tableau"},{"candidate_id":10,"skill":"PostgreSQL"},{"candidate_id":2,"skill":"PostgreSQL"}
+      ]}},
+      "expected": {"columns":["candidate_id"],"rows":[[2],[10]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["hidden","output-order"]
+    },
+    {
+      "id": "real-skills-split-across-candidates",
+      "name": "hidden: required skills cannot be pooled across people",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Candidates": [
+        {"candidate_id":1,"skill":"Python"},{"candidate_id":2,"skill":"Tableau"},{"candidate_id":3,"skill":"PostgreSQL"}
+      ]}},
+      "expected": {"columns":["candidate_id"],"rows":[]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["hidden","group-boundary"]
+    }
+  ]
+}

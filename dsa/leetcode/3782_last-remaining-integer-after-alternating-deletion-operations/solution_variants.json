@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Last Remaining Integer After Alternating Deletion Operations and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Recursively maps the survivor's position through each halved sequence while accounting for sweep direction and length parity.",
+      "time_complexity": "O(log N)",
+      "space_complexity": "O(log N)"
     }
   ]
 }

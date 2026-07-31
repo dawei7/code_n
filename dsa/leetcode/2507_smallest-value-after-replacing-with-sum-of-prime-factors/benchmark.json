@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2507",
+  "measurement_note": "Size is n. Each input is prime, forcing square-root trial division to inspect candidates through sqrt(n), while a correct full divisor scan continues linearly to n before recognizing the prime.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: prime near one hundred",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 101,
+      "input": { "n": 101 },
+      "expected": 101,
+      "tags": ["benchmark", "prime", "factorization"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: prime near one thousand",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1009,
+      "input": { "n": 1009 },
+      "expected": 1009,
+      "tags": ["benchmark", "prime", "factorization"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: prime near ten thousand",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10009,
+      "input": { "n": 10009 },
+      "expected": 10009,
+      "tags": ["benchmark", "prime", "factorization"]
+    }
+  ]
+}

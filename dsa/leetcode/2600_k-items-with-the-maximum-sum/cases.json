@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2600",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: choose only positive items",
+      "kind": "sample",
+      "visible": true,
+      "input": { "numOnes": 3, "numZeros": 2, "numNegOnes": 0, "k": 2 },
+      "expected": 2,
+      "tags": ["sample", "ones-only"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: zeros fill remaining selections",
+      "kind": "sample",
+      "visible": true,
+      "input": { "numOnes": 3, "numZeros": 2, "numNegOnes": 0, "k": 4 },
+      "expected": 3,
+      "tags": ["sample", "zeros"]
+    },
+    {
+      "id": "trial-no-selection",
+      "name": "trial: choose zero items",
+      "kind": "trial",
+      "visible": true,
+      "input": { "numOnes": 5, "numZeros": 5, "numNegOnes": 5, "k": 0 },
+      "expected": 0,
+      "tags": ["trial", "k-zero"]
+    },
+    {
+      "id": "trial-forced-negatives",
+      "name": "trial: exact count requires negative items",
+      "kind": "trial",
+      "visible": true,
+      "input": { "numOnes": 2, "numZeros": 1, "numNegOnes": 4, "k": 5 },
+      "expected": 0,
+      "tags": ["trial", "negative-items"]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "hidden: bag contains only negative items",
+      "kind": "real",
+      "visible": false,
+      "input": { "numOnes": 0, "numZeros": 0, "numNegOnes": 7, "k": 4 },
+      "expected": -4,
+      "tags": ["hidden", "all-negative"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: bag contains only zero items",
+      "kind": "real",
+      "visible": false,
+      "input": { "numOnes": 0, "numZeros": 8, "numNegOnes": 0, "k": 8 },
+      "expected": 0,
+      "tags": ["hidden", "all-zero"]
+    },
+    {
+      "id": "real-take-everything",
+      "name": "hidden: exact selection consumes the full bag",
+      "kind": "real",
+      "visible": false,
+      "input": { "numOnes": 4, "numZeros": 3, "numNegOnes": 2, "k": 9 },
+      "expected": 2,
+      "tags": ["hidden", "full-bag"]
+    },
+    {
+      "id": "real-maximum-counts",
+      "name": "hidden: maximum counts in every category",
+      "kind": "real",
+      "visible": false,
+      "input": { "numOnes": 50, "numZeros": 50, "numNegOnes": 50, "k": 125 },
+      "expected": 25,
+      "tags": ["hidden", "maximum"]
+    }
+  ]
+}

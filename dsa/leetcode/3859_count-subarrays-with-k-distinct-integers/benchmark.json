@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3859",
+  "measurement_note": "Size is N, the array length. Every tier contains one repeated value with k = 1 and m = 1, so all N(N + 1)/2 subarrays qualify. The accepted window processes each boundary a constant number of times, while the correct slower control explicitly visits every subarray.",
+  "cases": [
+    {
+      "id": "benchmark-32-repeated-values",
+      "name": "benchmark: 32 repeated values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1
+        ],
+        "k": 1,
+        "m": 1
+      },
+      "expected": 528,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "all-subarrays", "quadratic-control"],
+      "size": 32
+    },
+    {
+      "id": "benchmark-64-repeated-values",
+      "name": "benchmark: 64 repeated values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1
+        ],
+        "k": 1,
+        "m": 1
+      },
+      "expected": 2080,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "all-subarrays", "quadratic-control"],
+      "size": 64
+    },
+    {
+      "id": "benchmark-128-repeated-values",
+      "name": "benchmark: 128 repeated values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1
+        ],
+        "k": 1,
+        "m": 1
+      },
+      "expected": 8256,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "all-subarrays", "quadratic-control"],
+      "size": 128
+    }
+  ]
+}

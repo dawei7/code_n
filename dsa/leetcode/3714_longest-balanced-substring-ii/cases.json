@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3714",
+  "cases": [
+    {
+      "id": "sample-two-equal-frequencies",
+      "name": "sample: a and b each occur twice in the longest substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abbac"},
+      "expected": 4,
+      "tags": ["sample", "two-character-balance"]
+    },
+    {
+      "id": "sample-three-singletons",
+      "name": "sample: one occurrence of each allowed character balances",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aabcc"},
+      "expected": 3,
+      "tags": ["sample", "three-character-balance"]
+    },
+    {
+      "id": "sample-tied-pairs",
+      "name": "sample: ab and ba tie as longest balanced substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aba"},
+      "expected": 2,
+      "tags": ["sample", "tied-answers"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: a one-character string is balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "b"},
+      "expected": 1,
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-single-character-run",
+      "name": "trial: the whole repeated run is balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "cccccc"},
+      "expected": 6,
+      "tags": ["trial", "one-distinct-character"]
+    },
+    {
+      "id": "trial-two-character-whole",
+      "name": "trial: two letters with equal counts use the complete string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aabb"},
+      "expected": 4,
+      "tags": ["trial", "two-character-balance"]
+    },
+    {
+      "id": "real-three-counts-before-extra",
+      "name": "hidden: an extra c is excluded after equal counts of three",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaabbbcccc"},
+      "expected": 9,
+      "tags": ["hidden", "three-character-balance"]
+    },
+    {
+      "id": "real-reset-two-character-state",
+      "name": "hidden: excluded letters split independent pair segments",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaaabcbcb"},
+      "expected": 6,
+      "tags": ["hidden", "pair-state-reset"]
+    },
+    {
+      "id": "real-complete-three-state",
+      "name": "hidden: equal prefix-difference states span the whole string",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abccbaabc"},
+      "expected": 9,
+      "tags": ["hidden", "three-character-state", "whole-string"]
+    },
+    {
+      "id": "real-interior-pair-balance",
+      "name": "hidden: the best two-character interval lies inside mixed letters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "acacbbbcca"},
+      "expected": 6,
+      "tags": ["hidden", "two-character-balance", "interior-substring"]
+    },
+    {
+      "id": "real-extra-endpoint",
+      "name": "hidden: twelve balanced characters precede one extra a",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaabbbbcccca"},
+      "expected": 12,
+      "tags": ["hidden", "three-character-balance", "extra-endpoint"]
+    },
+    {
+      "id": "real-nested-types",
+      "name": "hidden: one-, two-, and three-character candidates compete",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaacbbbaaccc"},
+      "expected": 9,
+      "tags": ["hidden", "candidate-types"]
+    }
+  ]
+}

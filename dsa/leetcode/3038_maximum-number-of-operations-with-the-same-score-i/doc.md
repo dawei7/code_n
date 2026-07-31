@@ -5,73 +5,41 @@
 | Source | LeetCode |
 | Frontend ID | 3038 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Simulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-operations-with-the-same-score-i](https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-i/).
-
 ### Goal
-Given an array of integers, perform a sequence of operations where each operation removes the first two elements of the array. An operation is valid only if the sum of the two removed elements equals the sum of the two elements removed in the very first operation. The goal is to determine the maximum number of operations that can be performed until the condition is no longer met or there are fewer than two elements remaining.
+You are given an integer array `nums`. One operation removes the first two remaining elements, and the score of that operation is their sum.
+
+Operations may continue while at least two elements remain, but every performed operation must have the same score. Return the maximum number of consecutive front-removal operations that can be performed under this rule. Once the next pair has a different sum, processing stops; a later pair cannot be reached or counted.
 
 ### Function Contract
+Let $n=\lvert\texttt{nums}\rvert$.
+
 **Inputs**
 
-- `nums`: A list of integers where the length is always even.
+- `nums`: An integer array with $2 \le n \le 100$ and $1 \le \texttt{nums[i]} \le 1000$.
 
 **Return value**
 
-- An integer representing the total count of valid operations performed.
+Return the number of consecutive pairs, beginning with `nums[0]` and `nums[1]`, whose sums equal the score established by that first pair. A final unpaired element is ignored.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [3, 2, 1, 4]`
+- Input: `nums = [3,2,1,4,5]`
 - Output: `2`
-- Explanation: First op: 3+2=5. Second op: 1+4=5. Both match, total 2.
+- Explanation: Removing `[3,2]` and then `[1,4]` gives score `5` both times. Only one element then remains.
 
 **Example 2**
 
-- Input: `nums = [3, 2, 6, 1, 4]`
-- Output: `1`
-- Explanation: First op: 3+2=5. Second op: 6+1=7. 7 != 5, stop.
+- Input: `nums = [1,5,3,3,4,1,3,2,2,3]`
+- Output: `2`
+- Explanation: The first two scores are `6`, but the next front pair `[4,1]` scores `5`, so no later pair can be processed.
 
 **Example 3**
 
-- Input: `nums = [1, 1, 1, 1, 1, 1]`
-- Output: `3`
-- Explanation: All pairs sum to 2.
-
----
-
-## Solution
-### Approach
-Simulation using a greedy approach. Since the problem requires the sum of every subsequent pair to match the sum of the first pair, we simply calculate the target sum once and iterate through the array in steps of two, incrementing a counter until the condition fails or the array is exhausted.
-
-### Complexity Analysis
-- **Time Complexity**: O(n), where n is the length of the input array, as we traverse the array at most once.
-- **Space Complexity**: O(1), as we only store the target sum and the operation counter.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int]) -> int:
-    if len(nums) < 2:
-        return 0
-
-    target_sum = nums[0] + nums[1]
-    count = 0
-
-    for i in range(0, len(nums), 2):
-        if i + 1 < len(nums) and (nums[i] + nums[i + 1] == target_sum):
-            count += 1
-        else:
-            break
-
-    return count
-```
-</details>
+- Input: `nums = [5,3]`
+- Output: `1`
+- Explanation: The only available pair defines the score and produces one operation.

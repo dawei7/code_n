@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2474",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increasing totals, a missing year, and equal totals",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Orders": [
+        {"order_id":1,"customer_id":1,"order_date":"2019-07-01","price":1100},
+        {"order_id":2,"customer_id":1,"order_date":"2019-11-01","price":1200},
+        {"order_id":3,"customer_id":1,"order_date":"2020-05-26","price":3000},
+        {"order_id":4,"customer_id":1,"order_date":"2021-08-31","price":3100},
+        {"order_id":5,"customer_id":1,"order_date":"2022-12-07","price":4700},
+        {"order_id":6,"customer_id":2,"order_date":"2015-01-01","price":700},
+        {"order_id":7,"customer_id":2,"order_date":"2017-11-07","price":1000},
+        {"order_id":8,"customer_id":3,"order_date":"2017-01-01","price":900},
+        {"order_id":9,"customer_id":3,"order_date":"2018-11-07","price":900}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[[1]]},
+      "tags": ["sample","year-gap","strict-increase"]
+    },
+    {
+      "id": "trial-single-year",
+      "name": "trial: one observed year qualifies vacuously",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Orders": [
+        {"order_id":10,"customer_id":4,"order_date":"2022-06-01","price":50},
+        {"order_id":11,"customer_id":4,"order_date":"2022-12-01","price":75}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[[4]]},
+      "tags": ["trial","single-year"]
+    },
+    {
+      "id": "trial-aggregate-before-comparing",
+      "name": "trial: multiple orders must be aggregated within each year",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Orders": [
+        {"order_id":20,"customer_id":5,"order_date":"2020-01-01","price":40},
+        {"order_id":21,"customer_id":5,"order_date":"2020-09-01","price":60},
+        {"order_id":22,"customer_id":5,"order_date":"2021-01-01","price":101},
+        {"order_id":23,"customer_id":5,"order_date":"2022-01-01","price":102}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[[5]]},
+      "tags": ["trial","aggregation"]
+    },
+    {
+      "id": "real-equal-yearly-totals",
+      "name": "hidden: equal adjacent totals fail strict increase",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Orders": [
+        {"order_id":30,"customer_id":6,"order_date":"2020-03-01","price":10},
+        {"order_id":31,"customer_id":6,"order_date":"2021-03-01","price":10},
+        {"order_id":32,"customer_id":6,"order_date":"2022-03-01","price":12}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[]},
+      "tags": ["hidden","equal-totals"]
+    },
+    {
+      "id": "real-decreasing-total",
+      "name": "hidden: a later decrease disqualifies the customer",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Orders": [
+        {"order_id":40,"customer_id":7,"order_date":"2018-05-01","price":10},
+        {"order_id":41,"customer_id":7,"order_date":"2019-05-01","price":20},
+        {"order_id":42,"customer_id":7,"order_date":"2020-05-01","price":15}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[]},
+      "tags": ["hidden","decrease"]
+    },
+    {
+      "id": "real-interior-gap",
+      "name": "hidden: an interior year without orders has total zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Orders": [
+        {"order_id":50,"customer_id":8,"order_date":"2018-02-01","price":5},
+        {"order_id":51,"customer_id":8,"order_date":"2020-02-01","price":50}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[]},
+      "tags": ["hidden","missing-year"]
+    },
+    {
+      "id": "real-several-customers",
+      "name": "hidden: customers are evaluated independently",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Orders": [
+        {"order_id":60,"customer_id":9,"order_date":"2020-01-01","price":1},
+        {"order_id":61,"customer_id":9,"order_date":"2021-01-01","price":2},
+        {"order_id":62,"customer_id":10,"order_date":"2020-01-01","price":4},
+        {"order_id":63,"customer_id":10,"order_date":"2021-01-01","price":3},
+        {"order_id":64,"customer_id":11,"order_date":"2019-01-01","price":7}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[[9],[11]]},
+      "tags": ["hidden","partitioning","single-year"]
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "challenge_id": "lc_2959",
+  "cases": [
+    {
+      "id": "sample-restricted-three",
+      "name": "sample: only one two-branch set remains close enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "maxDistance": 5,
+        "roads": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            0,
+            2,
+            10
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "closure-removes-roads"
+      ]
+    },
+    {
+      "id": "sample-parallel-roads",
+      "name": "sample: parallel roads and indirect shortest path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "maxDistance": 5,
+        "roads": [
+          [
+            0,
+            1,
+            20
+          ],
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "parallel-roads"
+      ]
+    },
+    {
+      "id": "sample-one-branch",
+      "name": "sample: single branch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "maxDistance": 10,
+        "roads": []
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-parallel-minimum",
+      "name": "trial: shortest parallel road controls the pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "maxDistance": 3,
+        "roads": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "parallel-roads"
+      ]
+    },
+    {
+      "id": "trial-path-removal-disconnects",
+      "name": "trial: closing the middle removes the only route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "maxDistance": 3,
+        "roads": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "removed-intermediate"
+      ]
+    },
+    {
+      "id": "real-star-distance-two",
+      "name": "real: center keeps every leaf pair within two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "maxDistance": 2,
+        "roads": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "star"
+      ]
+    },
+    {
+      "id": "real-all-subsets-valid",
+      "name": "real: complete unit graph makes every subset valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "maxDistance": 1,
+        "roads": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "real-indirect-route",
+      "name": "real: retained intermediate enables a short route",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "maxDistance": 6,
+        "roads": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            20
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "shortest-path"
+      ]
+    }
+  ]
+}

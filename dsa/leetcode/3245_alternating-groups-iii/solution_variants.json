@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Alternating Groups III and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains equal-color boundary edges and a Fenwick-indexed multiset of circular alternating-run lengths.",
+      "time_complexity": "O((n+q) log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

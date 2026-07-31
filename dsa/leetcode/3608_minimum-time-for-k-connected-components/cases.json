@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3608",
+  "cases": [
+    {
+      "id": "sample-single-edge",
+      "name": "sample: remove the only edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "single-edge"
+      ]
+    },
+    {
+      "id": "sample-isolate-all",
+      "name": "sample: both chain edges must be removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            4
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "chain",
+        "all-components"
+      ]
+    },
+    {
+      "id": "sample-already-disconnected",
+      "name": "sample: the initial graph already has enough components",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            2,
+            5
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-time",
+        "initial-components"
+      ]
+    },
+    {
+      "id": "trial-one-node",
+      "name": "trial: a one-node graph already meets k equals one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "edges": [],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-node",
+        "no-edges"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "trial: every graph has at least one component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            6
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "k-one",
+        "zero-time"
+      ]
+    },
+    {
+      "id": "real-cycle-needs-two-removals",
+      "name": "real: removing one cycle edge does not disconnect the graph",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "cycle",
+        "redundant-edge"
+      ]
+    },
+    {
+      "id": "real-equal-time-group",
+      "name": "real: equal-time edges disappear together",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            3,
+            10
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "equal-times",
+        "grouping"
+      ]
+    },
+    {
+      "id": "real-three-initial-components",
+      "name": "real: separate edge pairs and an isolate meet the target initially",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            2,
+            3,
+            20
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "disconnected",
+        "isolated-node"
+      ]
+    },
+    {
+      "id": "real-unsorted-times",
+      "name": "real: input order does not determine removal order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            9
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            7
+          ],
+          [
+            3,
+            4,
+            4
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "unsorted-times",
+        "threshold"
+      ]
+    },
+    {
+      "id": "real-billion-time",
+      "name": "real: a removal time may equal one billion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            1000000000
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 1000000000,
+      "tags": [
+        "real",
+        "large-time",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "real-no-edges-many-nodes",
+      "name": "real: every node is initially isolated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [],
+        "k": 6
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "no-edges",
+        "all-isolated"
+      ]
+    }
+  ]
+}

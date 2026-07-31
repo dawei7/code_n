@@ -5,53 +5,49 @@
 | Source | LeetCode |
 | Frontend ID | 2261 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, Trie, Rolling Hash, Hash Function, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [k-divisible-elements-subarrays](https://leetcode.com/problems/k-divisible-elements-subarrays/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/k-divisible-elements-subarrays/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/k-divisible-elements-subarrays/).
 
 ### Goal
-Count distinct nonempty subarrays containing at most `k` elements divisible by `p`. Subarrays are distinct by value sequence, not by their positions.
+
+Given `nums`, consider every nonempty subarray: every contiguous sequence
+formed by choosing a start and end index. A subarray is eligible when at most
+`k` of its elements are divisible by `p`.
+
+Count eligible subarrays by their value sequence rather than by where they
+occur. Two sequences are distinct if their lengths differ or if some value at
+the same relative position differs. Consequently, repeated occurrences of the
+same sequence contribute only once, even when they come from different index
+ranges. Return the number of distinct eligible sequences.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: an integer array.
-- `k`: the maximum number of divisible elements.
-- `p`: the divisor.
+- `nums`: An array of $n$ integers, where $1\le n\le200$ and $1\le\texttt{nums[i]}\le200$.
+- `k`: The maximum allowed number of divisible elements, with $1\le k\le n$.
+- `p`: A divisor between $1$ and $200$.
 
 **Return value**
 
-The number of distinct qualifying subarray value sequences.
+Return the number of distinct nonempty contiguous value sequences containing
+at most `k` elements `value` for which `value % p == 0`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [2, 3, 3, 2, 2]`, `k = 2`, `p = 2`
+- Input: `nums = [2,3,3,2,2], k = 2, p = 2`
 - Output: `11`
 
 **Example 2**
 
-- Input: `nums = [1, 2, 3, 4]`, `k = 1`, `p = 4`
+- Input: `nums = [1,2,3,4], k = 4, p = 1`
 - Output: `10`
 
 **Example 3**
 
-- Input: `nums = [2, 2]`, `k = 0`, `p = 2`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-Start a subarray at every index and extend it rightward while counting values divisible by `p`. Stop that start when the count exceeds `k`; otherwise insert the current value sequence into a set. A trie or collision-safe rolling representation can avoid repeatedly copying complete tuples, but the same bounded enumeration principle applies.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)` extensions, with additional representation cost if full tuples are copied
-- **Space Complexity**: `O(n^2)` in the worst case for distinct subarrays
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1,1,1], k = 3, p = 2`
+- Output: `3`
