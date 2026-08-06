@@ -1,5 +1,7 @@
 ## Description
 
-You are given two lowercase English strings `s` and `target`, both of length $n$. Among every permutation of the characters in `s`, return the lexicographically smallest string that is strictly greater than `target`. If no such permutation exists, return the empty string.
+You are given two strings `s` and `target`, both having length `n`, consisting of lowercase English letters.
 
-For equal-length strings, `a` is lexicographically strictly greater than `b` when their first differing position contains a letter in `a` that comes later in the alphabet than the corresponding letter in `b`.
+Return the **lexicographically smallest <span data-keyword="permutation-string">permutation</span>** of `s` that is **strictly** greater than `target`. If no permutation of `s` is lexicographically strictly greater than `target`, return an empty string.
+
+A string `a` is **lexicographically strictly greater **than a string `b` (of the same length) if in the first position where `a` and `b` differ, string `a` has a letter that appears later in the alphabet than the corresponding letter in `b`.

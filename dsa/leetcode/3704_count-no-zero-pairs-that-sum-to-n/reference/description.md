@@ -1,7 +1,12 @@
 ## Description
 
-A **no-zero integer** is a positive integer whose decimal representation contains no digit `0`.
+A **no-zero** integer is a **positive** integer that **does not contain the digit** 0 in its decimal representation.
 
-Given the integer `n`, count the ordered pairs `(a, b)` such that both `a` and `b` are no-zero integers and `a + b = n`.
+Given an integer `n`, count the number of pairs `(a, b)` where:
 
-Return the number of qualifying pairs.
+<ul>
+	<li>`a` and `b` are **no-zero** integers.</li>
+	<li>`a + b = n`</li>
+</ul>
+
+Return an integer denoting the number of such pairs.

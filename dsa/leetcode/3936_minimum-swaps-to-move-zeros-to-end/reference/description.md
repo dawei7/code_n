@@ -1,7 +1,7 @@
 ## Description
 
-An integer array `nums` may be changed by swapping the values at any two distinct indices. A swap is one operation, regardless of how far apart the selected positions are.
+You are given an integer array `nums`.
 
-Use as few operations as possible to place every zero at the end of the array. Equivalently, if the array contains $Z$ zeroes, its final $Z$ positions must all contain zero, while every earlier position must contain a nonzero value. The relative order of the nonzero values is not part of the required result.
+In one operation, you can choose any two **distinct** indices `i` and `j` and swap `nums[i]` and `nums[j]`.
 
-Return the minimum number of swaps; the rearranged array itself is not returned.
+Return an integer denoting the **minimum** number of operations required to move all 0s to the end of the array.

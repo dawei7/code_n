@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/sort-vowels-by-frequency/description/",
     "paid_only": false,
     "content_sha256": "40f2c468a8d18896830bdcdee842664a32216a81f3b5e9a2c3a93c1591d0e652",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \"leetcode\"",
-        "output": "\"leetcedo\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"aeiaaioooa\"",
-        "output": "\"aaaaoooiie\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"baeiou\"",
-        "output": "\"baeiou\"",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "5b37d8090465b07101cfdd23e3081271ec74a6980db667a65b49c71442625343",
+      "reference/description.md": "78df2fbd192908b6bd91480de95836542b79c2feec6d3d21d5fdfb8735ef77b8",
       "reference/contract.md": "5b5ab7f942d08b219b8d1370da81785a332493e0c63c794bda8f1ea4f04fca00",
       "reference/examples.md": "ff5fa0591e01a43f5e0bd1d666d376a00dd34fa0f5dea29024144fb35544794f",
       "reference/constraints.md": "6330828b552026db802f47ada79847eda3d2ab2e90ad4b55bc3336568a73761e"

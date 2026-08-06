@@ -1,5 +1,18 @@
 ## Description
 
-You are given a binary tree whose `Node` objects store an integer `val` plus `left`, `right`, and `next` pointers.
+Given a binary tree
 
-Set every `next` pointer to the node immediately to its right on the same level. When a node has no such neighbor, set its `next` pointer to `NULL`. All `next` pointers begin as `NULL`.
+```
+
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+
+```
+
+Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to `NULL`.
+
+Initially, all next pointers are set to `NULL`.

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/count-monobit-integers/description/",
     "paid_only": false,
     "content_sha256": "fb4d5062b8586e09e9907a0729cca070f407f1dd443f908a241052e62ba3dc89",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,15 +19,9 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 1",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 4",
+        "input": "n = 6",
         "output": "3",
-        "has_explanation": true
+        "has_explanation": false
       }
     ],
     "constraint_count": 1,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "302f475f3eb7f8807472d3eef451bdd4b1a604def608fa806ee44502be7907b4",
+      "reference/description.md": "b3770c4c7e9b1d3ac3b78676d537b8ff91058ef027801a02326f801b5a7cf4b5",
       "reference/contract.md": "18871dc85559fbb381f80e276546be067947e53cb148e488148b59147b4e220d",
       "reference/examples.md": "958a0671e8882fa2e2d8ef46fb7b777c025fd1bab4e774c3ad229649112d4cb0",
       "reference/constraints.md": "448e8b7a2a643d2a3ec53721654647fd9902f496c9434354306df8632fcca54c"

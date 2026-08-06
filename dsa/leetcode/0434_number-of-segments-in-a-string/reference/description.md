@@ -1,4 +1,5 @@
 ## Description
 
-Given a string `s`, return how many segments it contains. A segment is a contiguous sequence of non-space
-characters. Spaces separate neighboring segments and are not themselves part of any segment.
+Given a string `s`, return *the number of segments in the string*.
+
+A **segment** is defined to be a contiguous sequence of **non-space characters**.

@@ -1,8 +1,5 @@
 ## Description
 
-An $m \times n$ matrix `board` contains battleship cells `"X"` and empty cells `"."`. Return the number of
-battleships placed on the board.
+Given an `m x n` matrix `board` where each cell is a battleship `'X'` or empty `'.'`, return *the number of the **battleships** on* `board`.
 
-Each battleship is straight and lies either horizontally or vertically. Its shape is therefore $1 \times k$ or
-$k \times 1$ for some positive length $k$. Distinct battleships have at least one horizontal or vertical separating
-cell, so cells from different ships never share an edge.
+**Battleships** can only be placed horizontally or vertically on `board`. In other words, they can only be made of the shape `1 x k` (`1` row, `k` columns) or `k x 1` (`k` rows, `1` column), where `k` can be of any size. At least one horizontal or vertical cell separates between two battleships (i.e., there are no adjacent battleships).

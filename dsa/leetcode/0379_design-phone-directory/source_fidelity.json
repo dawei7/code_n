@@ -1,18 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_379", "frontend_id": "379", "title_slug": "design-phone-directory", "url": "https://leetcode.com/problems/design-phone-directory/description/", "paid_only": true, "content_sha256": "583bd2b892c98e6bbb87f9184058eb9db2bb88e5db079cd19e44f7f55e6eb7fb", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_379",
+    "frontend_id": "379",
+    "title_slug": "design-phone-directory",
+    "url": "https://leetcode.com/problems/design-phone-directory/description/",
+    "paid_only": true,
+    "content_sha256": "583bd2b892c98e6bbb87f9184058eb9db2bb88e5db079cd19e44f7f55e6eb7fb",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "operations = [\"PhoneDirectory\",\"get\",\"get\",\"check\",\"get\",\"check\",\"release\",\"check\"], arguments = [[3],[],[],[2],[],[2],[2],[2]]", "output": "[null,0,1,true,2,false,null,true]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "operations = [\"PhoneDirectory\",\"get\",\"get\",\"check\",\"get\",\"check\",\"release\",\"check\"], arguments = [[3],[],[],[2],[],[2],[2],[2]]",
+        "output": "[null,0,1,true,2,false,null,true]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "df25a2ec07a60f8cf351f6627a974cf60dbe99e44b6b5a1351343a7bd45252bf",
-    "reference/contract.md": "addf4a0116772e4a020092cd872d9bcd980f4f75125d5f005afc04589685c457",
-    "reference/examples.md": "151493c3d2376f2eeeb2ee8c1dcb14fbf6e6c59e870e20fd60fb63a91e755c53",
-    "reference/constraints.md": "2757f3dba5cd7c10ff9d81ba5683b20c52c547794092e829d5ac3830dbc4f32a"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "df25a2ec07a60f8cf351f6627a974cf60dbe99e44b6b5a1351343a7bd45252bf",
+      "reference/contract.md": "addf4a0116772e4a020092cd872d9bcd980f4f75125d5f005afc04589685c457",
+      "reference/examples.md": "151493c3d2376f2eeeb2ee8c1dcb14fbf6e6c59e870e20fd60fb63a91e755c53",
+      "reference/constraints.md": "2757f3dba5cd7c10ff9d81ba5683b20c52c547794092e829d5ac3830dbc4f32a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

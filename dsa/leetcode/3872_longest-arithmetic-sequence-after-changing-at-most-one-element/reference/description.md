@@ -1,7 +1,9 @@
 ## Description
 
-You are given an integer array `nums`. A subarray is a contiguous portion of that array. Such a subarray is **arithmetic** when every pair of consecutive elements has the same difference.
+You are given an integer array `nums`.
 
-Before choosing the subarray, you may replace at most one element of `nums` with any integer. The replacement is optional, and the new integer is not restricted to the original value range.
+A <span data-keyword="subarray">subarray</span> is **arithmetic** if the difference between consecutive elements in the subarray is constant.
 
-Return the greatest possible length of an arithmetic subarray after making this optional replacement.
+You can replace **at most one** element in `nums` with any **integer**. Then, you select an arithmetic subarray from `nums`.
+
+Return an integer denoting the **maximum** length of the arithmetic subarray you can select.

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3349",
+    "frontend_id": "3349",
+    "title_slug": "adjacent-increasing-subarrays-detection-i",
+    "url": "https://leetcode.com/problems/adjacent-increasing-subarrays-detection-i/description/",
+    "paid_only": false,
+    "content_sha256": "3d52c7048f7e06bd941dc6b0dc0e66bf723bae71bfbedba22c5d8ccea1afb742",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "49de3c3ca6dd1a0bfcddf5e4a6456469d5f8a4bc13a57f9c109d98ea968daf86",
+      "reference/contract.md": "058f7e4299f1004012f84991bb3be129e1a9a44950e94803658ed5ed9ea2d364",
+      "reference/examples.md": "a125eaf726ac79826958e71edf3f031d9cba2c42714c4246696f15e6bc7cd2dd",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

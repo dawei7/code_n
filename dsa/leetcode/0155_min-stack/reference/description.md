@@ -1,13 +1,15 @@
 ## Description
 
-Design a stack that supports `push`, `pop`, `top`, and retrieval of its minimum element, all in constant time.
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
-Implement the `MinStack` class with these operations:
+Implement the `MinStack` class:
 
-- `MinStack()` initializes an empty stack.
-- `push(value)` places `value` on top of the stack.
-- `pop()` removes the top element.
-- `top()` returns the top element without removing it.
-- `getMin()` returns the smallest element currently in the stack.
+<ul>
+	<li>`MinStack()` initializes the stack object.</li>
+	<li>`void push(int value)` pushes the element `value` onto the stack.</li>
+	<li>`void pop()` removes the element on the top of the stack.</li>
+	<li>`int top()` gets the top element of the stack.</li>
+	<li>`int getMin()` retrieves the minimum element in the stack.</li>
+</ul>
 
-Every operation must run in $O(1)$ time.
+You must implement a solution with `O(1)` time complexity for each function.

@@ -1,18 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_346", "frontend_id": "346", "title_slug": "moving-average-from-data-stream", "url": "https://leetcode.com/problems/moving-average-from-data-stream/description/", "paid_only": true, "content_sha256": "3d4264afde24a090ec2720baadd3454452d405e004d9de72d8f04dcfdc10fe3d", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_346",
+    "frontend_id": "346",
+    "title_slug": "moving-average-from-data-stream",
+    "url": "https://leetcode.com/problems/moving-average-from-data-stream/description/",
+    "paid_only": true,
+    "content_sha256": "3d4264afde24a090ec2720baadd3454452d405e004d9de72d8f04dcfdc10fe3d",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "operations = [\"MovingAverage\",\"next\",\"next\",\"next\",\"next\"], arguments = [[3],[1],[10],[3],[5]]", "output": "[null,1.0,5.5,4.66667,6.0]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "operations = [\"MovingAverage\",\"next\",\"next\",\"next\",\"next\"], arguments = [[3],[1],[10],[3],[5]]",
+        "output": "[null,1.0,5.5,4.66667,6.0]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "b9ac92eb2f0209f360525284e11369dcffd7bdf05e129f341a54133b0632bc10",
-    "reference/contract.md": "c3adc8b2115650f45fe8473651824f31c70d495f7441350065f9f8d8da84678e",
-    "reference/examples.md": "33ee763f0feb8963bc9c3f5c2572f458808a9f23089aa398e813dabbf74c66d0",
-    "reference/constraints.md": "8fb72dfd4f68bb2a5a0a0fefb66746889c017f9c8c14b470ae88077e59ac8c60"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b9ac92eb2f0209f360525284e11369dcffd7bdf05e129f341a54133b0632bc10",
+      "reference/contract.md": "c3adc8b2115650f45fe8473651824f31c70d495f7441350065f9f8d8da84678e",
+      "reference/examples.md": "33ee763f0feb8963bc9c3f5c2572f458808a9f23089aa398e813dabbf74c66d0",
+      "reference/constraints.md": "8fb72dfd4f68bb2a5a0a0fefb66746889c017f9c8c14b470ae88077e59ac8c60"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

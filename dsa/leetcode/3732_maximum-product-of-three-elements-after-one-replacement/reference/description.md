@@ -2,8 +2,8 @@
 
 You are given an integer array `nums`.
 
-You must replace exactly one array element with an integer from the inclusive range $[-10^5,10^5]$.
+You **must** replace **exactly one** element in the array with **any** integer value in the range `[-10^5, 10^5]` (inclusive).
 
-After that single replacement, choose any three elements at distinct indices and compute their product.
+After performing this single replacement, determine the **maximum possible product** of **any three** elements at **distinct indices** from the modified array.
 
-Return the maximum product that can be achieved.
+Return an integer denoting the **maximum product** achievable.

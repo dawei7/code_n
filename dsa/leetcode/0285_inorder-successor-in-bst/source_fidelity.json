@@ -1,23 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_285", "frontend_id": "285", "title_slug": "inorder-successor-in-bst", "url": "https://leetcode.com/problems/inorder-successor-in-bst/description/", "paid_only": true, "content_sha256": "20cb22cf099fbe62f750c09455c7f269e5c9dbf085c739647282164fc841cd2d", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_285",
+    "frontend_id": "285",
+    "title_slug": "inorder-successor-in-bst",
+    "url": "https://leetcode.com/problems/inorder-successor-in-bst/description/",
+    "paid_only": true,
+    "content_sha256": "20cb22cf099fbe62f750c09455c7f269e5c9dbf085c739647282164fc841cd2d",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "root = [2,1,3], p = 1", "output": "2", "has_explanation": true},
-      {"ordinal": 2, "input": "root = [5,3,6,2,4,null,null,1], p = 6", "output": "null", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "root = [2,1,3], p = 1",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [5,3,6,2,4,null,null,1], p = 6",
+        "output": "null",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "6bb9c77c7c94e9104f716b75bf3cfe89cc8b31545934770ed9b34341a06cac88",
+      "reference/description.md": "dc7a950eaed02fd299f59951545403265ba955cb251e7d202f282effc78b13dc",
       "reference/contract.md": "17cee6eaa484d3201c457b0a6d502fca0ec66a4091649df715500100b62a1377",
       "reference/examples.md": "6cc5c6b86a2540bd9f2bd89a702f6055af2a6e52b2a5e3b2c693ba8d99e1514a",
       "reference/constraints.md": "bbc76cbaa6731ae400ce8370dbcd3161369ec35a15a9bf7177d525ad88fe3836"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

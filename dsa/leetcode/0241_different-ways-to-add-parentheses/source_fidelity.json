@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_241", "frontend_id": "241", "title_slug": "different-ways-to-add-parentheses", "url": "https://leetcode.com/problems/different-ways-to-add-parentheses/description/", "paid_only": false, "content_sha256": "f57e19c7fd1825edef7190514de020f7eec2c6e9d31ccba0dff255aef5e43e6f", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "expression = \"2-1-1\"", "output": "[0,2]", "has_explanation": true}, {"ordinal": 2, "input": "expression = \"2*3-4*5\"", "output": "[-34,-14,-10,-10,10]", "has_explanation": true}],
-    "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_241",
+    "frontend_id": "241",
+    "title_slug": "different-ways-to-add-parentheses",
+    "url": "https://leetcode.com/problems/different-ways-to-add-parentheses/description/",
+    "paid_only": false,
+    "content_sha256": "f57e19c7fd1825edef7190514de020f7eec2c6e9d31ccba0dff255aef5e43e6f",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "4863213b02a4c10f3b14143bfa16c5972c8024a14b55b6b5e82d9d4c5d3f00f8", "reference/contract.md": "ac5bec1409d112bc3282b48181b369e72c3b2f3d85be0f4e00a035eb5d41683a", "reference/examples.md": "ae68f1b01c6f9d1af24238e01d3e322729bfd98ee79e2baca00e82821082ead3", "reference/constraints.md": "9814092234acce2a485a3decdae280b62413e4a98647e22e4ba36eee551572ae"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "expression = \"2-1-1\"",
+        "output": "[0,2]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "expression = \"2*3-4*5\"",
+        "output": "[-34,-14,-10,-10,10]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "49a33d133677d36029ff94c20e946453b5a4d9b563d5ecadb6aa97103cf6daa9",
+      "reference/contract.md": "ac5bec1409d112bc3282b48181b369e72c3b2f3d85be0f4e00a035eb5d41683a",
+      "reference/examples.md": "ae68f1b01c6f9d1af24238e01d3e322729bfd98ee79e2baca00e82821082ead3",
+      "reference/constraints.md": "9814092234acce2a485a3decdae280b62413e4a98647e22e4ba36eee551572ae"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

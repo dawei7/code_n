@@ -1,5 +1,9 @@
 ## Description
 
-Given a string `s` representing an arithmetic expression, evaluate the complete expression and return its integer value.
+Given a string `s` which represents an expression, *evaluate this expression and return its value*. 
 
-Integer division truncates toward zero. The expression is guaranteed to be valid, and every intermediate result lies in the signed 32-bit range $[-2^{31},2^{31}-1]$.
+The integer division should truncate toward zero.
+
+You may assume that the given expression is always valid. All intermediate results will be in the range of `[-2^31, 2^31 - 1]`.
+
+**Note:** You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as `eval()`.

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/house-robber-v/description/",
     "paid_only": false,
     "content_sha256": "d2b1e37223ad2db3b6381b5766b4b6a6bb988cfe794668195db95adfad6e5d4d",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [1,4,3,5], colors = [1,1,2,2]",
-        "output": "9",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [3,1,2,4], colors = [2,3,2,2]",
-        "output": "8",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums = [10,1,3,9], colors = [1,1,1,2]",
-        "output": "22",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "b6c50dd1b5e6e54ad210d6220aba05b056d833d3383923bff996bec9b472b694",
+      "reference/description.md": "63848345e5e20d5dd67a118a36845e3f924a959de54bdaac8a51e74052e9c0c8",
       "reference/contract.md": "007f875378ac7b7d3c3d82179eab6e22551127cfa2dd3715361f2ec9678f9a19",
       "reference/examples.md": "a55a0cc09a911cf100e87e959dd6071ccbf4042ae3a1cd1adf63550a8bc2bb0b",
       "reference/constraints.md": "9d5849cb27a2c840aee60525650a7c88aa2b53bf2181f8b15827e1e41459de3b"

@@ -1,11 +1,15 @@
 ## Description
 
-You are given an integer array `nums1` of length $n$ and an integer array `nums2` of length $n+1$. Transform `nums1` into `nums2` using as few operations as possible.
+<p data-end="180" data-start="93">You are given two integer arrays `nums1` of length `n` and `nums2` of length `n + 1`.
 
-For each operation, choose an index `i` that currently exists in `nums1` and do one of the following:
+You want to transform `nums1` into `nums2` using the **minimum** number of operations.
 
-- increase `nums1[i]` by `1`;
-- decrease `nums1[i]` by `1`; or
-- append the current value of `nums1[i]` to the end of the array.
+You may perform the following operations **any** number of times, each time choosing an index `i`:
 
-Any operation may be used any number of times. Return the minimum total operation count needed to make the arrays identical.
+<ul>
+	<li>**Increase** `nums1[i]` by 1.</li>
+	<li>**Decrease** `nums1[i]` by 1.</li>
+	<li>**Append** `nums1[i]` to the **end** of the array.</li>
+</ul>
+
+Return the **minimum** number of operations required to transform `nums1` into `nums2`.

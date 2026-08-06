@@ -1,0 +1,11 @@
+## Description
+
+Given an array of **distinct** integers `arr`, find all pairs of elements with the minimum absolute difference of any two elements.
+
+Return a list of pairs in ascending order(with respect to pairs), each pair `[a, b]` follows
+
+<ul>
+	<li>`a, b` are from `arr`</li>
+	<li>`a < b`</li>
+	<li>`b - a` equals to the minimum absolute difference of any two elements in `arr`</li>
+</ul>

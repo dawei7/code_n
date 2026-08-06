@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_214", "frontend_id": "214", "title_slug": "shortest-palindrome", "url": "https://leetcode.com/problems/shortest-palindrome/description/", "paid_only": false, "content_sha256": "89ec841d09e1239a5277bafa23df25b533a5284f2dd58b6709b8d313d104a2b8", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "s = \"aacecaaa\"", "output": "\"aaacecaaa\"", "has_explanation": false}, {"ordinal": 2, "input": "s = \"abcd\"", "output": "\"dcbabcd\"", "has_explanation": false}],
-    "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_214",
+    "frontend_id": "214",
+    "title_slug": "shortest-palindrome",
+    "url": "https://leetcode.com/problems/shortest-palindrome/description/",
+    "paid_only": false,
+    "content_sha256": "89ec841d09e1239a5277bafa23df25b533a5284f2dd58b6709b8d313d104a2b8",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "265961879ff0a2b23ada9c93b1d149aad73a38ecb547bcc98844cc0b906ed166", "reference/contract.md": "dbd7bc645c37d2ff71506112d13bd154e029886cf550f943b535cc35b57968a2", "reference/examples.md": "a0a4994f3ca149447af3213f0bfc9a9801613a7160d7000b6b3cdf4bc343e22e", "reference/constraints.md": "16655c837180edee9754ffe2b248201c12ea3c19e3eca952f9bfcd565467c837"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"aacecaaa\"",
+        "output": "\"aaacecaaa\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"abcd\"",
+        "output": "\"dcbabcd\"",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "76b4293ade241d5388d934228fb93b0661df6f50bd068d4fab62916bf2d2b1d7",
+      "reference/contract.md": "dbd7bc645c37d2ff71506112d13bd154e029886cf550f943b535cc35b57968a2",
+      "reference/examples.md": "a0a4994f3ca149447af3213f0bfc9a9801613a7160d7000b6b3cdf4bc343e22e",
+      "reference/constraints.md": "16655c837180edee9754ffe2b248201c12ea3c19e3eca952f9bfcd565467c837"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

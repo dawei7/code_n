@@ -1,0 +1,16 @@
+## Description
+
+You are given a string `s` consisting only of lowercase English letters.
+
+You can perform the following operation any number of times (including zero):
+
+<ul>
+	<li>
+	Choose any character `c` in the string and replace **every** occurrence of `c` with the **next** lowercase letter in the English alphabet.
+
+	</li>
+</ul>
+
+Return the **minimum** number of operations required to transform `s` into a string consisting of **only** `'a'` characters.
+
+**Note: **Consider the alphabet as circular, thus `'a'` comes after `'z'`.

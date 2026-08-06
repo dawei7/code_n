@@ -1,8 +1,10 @@
 ## Description
 
-Given a singly linked list, choose and return a node value at random so that every node has the same probability of being selected.
+Given a singly linked list, return a random node's value from the linked list. Each node must have the **same probability** of being chosen.
 
 Implement the `Solution` class:
 
-- `Solution(head)` stores access to the list beginning at `head`.
-- `getRandom()` independently selects one node with uniform probability and returns its value.
+<ul>
+	<li>`Solution(ListNode head)` Initializes the object with the head of the singly-linked list `head`.</li>
+	<li>`int getRandom()` Chooses a node randomly from the list and returns its value. All the nodes of the list should be equally likely to be chosen.</li>
+</ul>

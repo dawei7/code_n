@@ -1,21 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_331", "frontend_id": "331", "title_slug": "verify-preorder-serialization-of-a-binary-tree", "url": "https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/description/", "paid_only": false, "content_sha256": "206a9f278f500ec2a49284a8744fece14907939c9fa70de619aa71bc37bde229", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_331",
+    "frontend_id": "331",
+    "title_slug": "verify-preorder-serialization-of-a-binary-tree",
+    "url": "https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/description/",
+    "paid_only": false,
+    "content_sha256": "206a9f278f500ec2a49284a8744fece14907939c9fa70de619aa71bc37bde229",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "preorder = \"9,3,4,#,#,1,#,#,2,#,6,#,#\"", "output": "true", "has_explanation": false},
-      {"ordinal": 2, "input": "preorder = \"1,#\"", "output": "false", "has_explanation": false},
-      {"ordinal": 3, "input": "preorder = \"9,#,#,1\"", "output": "false", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "preorder = \"9,3,4,#,#,1,#,#,2,#,6,#,#\"",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "preorder = \"1,#\"",
+        "output": "false",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "preorder = \"9,#,#,1\"",
+        "output": "false",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "a1e7e2295051d69b1a08fbb5f59c9425982f5803e9f0cff47c9f5f881d26b6b9",
-    "reference/contract.md": "14ceeef21ddd39b825a38afd3e44e89d3eeb88297d0399ce093600fb9db266eb",
-    "reference/note.md": "a2a8ee6e61798de0569298b38f9f968774e63eb381c457efd0a04255b9c88d1a",
-    "reference/examples.md": "188cbfb4b915e6c6c793382c54806655b8521c2cea832fa4ef1e410c12f39fa3",
-    "reference/constraints.md": "f23baabf8561b6fd8f4cbcfd13764a0a3c5f92d6ade32d9f7b818d4e7e870060"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c9c4b3f2725b64d77bf26add6e27c3d2496dfc7a2852091577b513d8229cfe41",
+      "reference/contract.md": "14ceeef21ddd39b825a38afd3e44e89d3eeb88297d0399ce093600fb9db266eb",
+      "reference/note.md": "a2a8ee6e61798de0569298b38f9f968774e63eb381c457efd0a04255b9c88d1a",
+      "reference/examples.md": "188cbfb4b915e6c6c793382c54806655b8521c2cea832fa4ef1e410c12f39fa3",
+      "reference/constraints.md": "f23baabf8561b6fd8f4cbcfd13764a0a3c5f92d6ade32d9f7b818d4e7e870060"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,19 +1,70 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_151", "frontend_id": "151", "title_slug": "reverse-words-in-a-string", "url": "https://leetcode.com/problems/reverse-words-in-a-string/description/", "paid_only": false, "content_sha256": "c9cad23b72a00ddb087a34f0ec05537e382dd1d88d7fd6e435f72221e6a5f5d3", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_151",
+    "frontend_id": "151",
+    "title_slug": "reverse-words-in-a-string",
+    "url": "https://leetcode.com/problems/reverse-words-in-a-string/description/",
+    "paid_only": false,
+    "content_sha256": "c9cad23b72a00ddb087a34f0ec05537e382dd1d88d7fd6e435f72221e6a5f5d3",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"the sky is blue\"", "output": "\"blue is sky the\"", "has_explanation": false},
-      {"ordinal": 2, "input": "s = \"  hello world  \"", "output": "\"world hello\"", "has_explanation": true},
-      {"ordinal": 3, "input": "s = \"a good   example\"", "output": "\"example good a\"", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"the sky is blue\"",
+        "output": "\"blue is sky the\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"  hello world  \"",
+        "output": "\"world hello\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"a good   example\"",
+        "output": "\"example good a\"",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "f5c8d103d360bb83a02b3c5f4b0b619ee6f5cfd6c4e9b91982c73d96bfecde12", "reference/contract.md": "52a1d42fc363268e885884869f60ba0c461f711dab3bdb96f0c259b747dcd8d7", "reference/note.md": "f015d1c7b01fca5ee7edc71f85fcad6184eccd53ef42b65bd3e6e9647129849d", "reference/examples.md": "56940630ecd576002c14381c5b61a25c1d0aba4fba2d6b496412c5364f26fed6", "reference/constraints.md": "64cb2d7b5b4b8d1b5b29a1064f0ee7a18c2f0c3714f3e3bd702a41fdbb91628f", "reference/follow_up.md": "12d7ef4d331c7a82c33b69b26545270025d6e7a1c44b5fe96833fcacd6973810"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "79769eb70f971d306825cd45efd1081d301169ea552e203b65d81e8c1d0821cf",
+      "reference/contract.md": "52a1d42fc363268e885884869f60ba0c461f711dab3bdb96f0c259b747dcd8d7",
+      "reference/note.md": "f015d1c7b01fca5ee7edc71f85fcad6184eccd53ef42b65bd3e6e9647129849d",
+      "reference/examples.md": "56940630ecd576002c14381c5b61a25c1d0aba4fba2d6b496412c5364f26fed6",
+      "reference/constraints.md": "64cb2d7b5b4b8d1b5b29a1064f0ee7a18c2f0c3714f3e3bd702a41fdbb91628f",
+      "reference/follow_up.md": "12d7ef4d331c7a82c33b69b26545270025d6e7a1c44b5fe96833fcacd6973810"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

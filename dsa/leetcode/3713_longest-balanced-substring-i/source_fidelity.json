@@ -8,16 +8,23 @@
     "url": "https://leetcode.com/problems/longest-balanced-substring-i/description/",
     "paid_only": false,
     "content_sha256": "e2b93f2d9502921e1d476bc54c398ee54bf2a99ecf570f6472fcd85160429d0d",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [
-      {"ordinal": 1, "input": "s = \"abbac\"", "output": "4", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"zzabccy\"", "output": "4", "has_explanation": true},
-      {"ordinal": 3, "input": "s = \"aba\"", "output": "2", "has_explanation": true}
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
     ],
-    "constraint_count": 2,
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -30,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "876f04a132da2bbd1224dd7d1d602fc73a44cb5c2a193616b1d1198a9a76e81d",
+      "reference/description.md": "093a61e9be062415ad69de52ea0d75fdc379fdc043303ccda54c23f8e7446565",
       "reference/contract.md": "049019995418a47a2b23b6d5414ea83c44de36ef5d77a8e4aaeddced6a4b5702",
       "reference/examples.md": "27dd171df97e3212c96693da06b45a90eae7c42e0d1e481666b1831e31660079",
       "reference/constraints.md": "3bc21cd777339315b8c3de27a6a2d8ddfa5e0dd0196ac0bc2e5b72072130addb"

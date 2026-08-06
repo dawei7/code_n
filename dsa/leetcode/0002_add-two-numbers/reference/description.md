@@ -1,13 +1,5 @@
 ## Description
 
-Two non-empty singly linked lists encode two non-negative integers. Each node stores one decimal digit, and the digits appear in reverse place-value order: the head is the ones digit, the next node is the tens digit, and so forth.
+You are given two **non-empty** linked lists representing two non-negative integers. The digits are stored in **reverse order**, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 
-Add the encoded integers and return their sum as another linked list using the same reverse order. Neither input contains a leading zero at its most-significant end unless the entire represented number is zero.
-
-The source illustration's information is reproduced accessibly below:
-
-| List or result | Stored nodes | Represented integer |
-|---|---|---:|
-| `l1` | `2 -> 4 -> 3` | 342 |
-| `l2` | `5 -> 6 -> 4` | 465 |
-| Sum | `7 -> 0 -> 8` | 807 |
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.

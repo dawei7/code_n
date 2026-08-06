@@ -1,8 +1,12 @@
 ## Description
 
-You receive an $m \times n$ integer matrix with two ordering properties:
+You are given an `m x n` integer matrix `matrix` with the following two properties:
 
-- Every row is sorted in non-decreasing order.
-- The first value in each row is greater than the final value in the preceding row.
+<ul>
+	<li>Each row is sorted in non-decreasing order.</li>
+	<li>The first integer of each row is greater than the last integer of the previous row.</li>
+</ul>
 
-Given `target`, return whether it appears anywhere in the matrix. The algorithm must run in $O(\log(mn))$ time.
+Given an integer `target`, return `true` *if* `target` *is in* `matrix` *or* `false` *otherwise*.
+
+You must write a solution in `O(log(m * n))` time complexity.

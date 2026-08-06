@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1044",
+    "frontend_id": "1044",
+    "title_slug": "longest-duplicate-substring",
+    "url": "https://leetcode.com/problems/longest-duplicate-substring/description/",
+    "paid_only": false,
+    "content_sha256": "3e64bf4867774434f4bb0135ab627e57fbe95704420d6a7d5bcb814f0eb4a22b",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6d80b049825daa994f0a4625d2ef229f78c92e55769db349cc5dc64e8305e07a",
+      "reference/contract.md": "058f7e4299f1004012f84991bb3be129e1a9a44950e94803658ed5ed9ea2d364",
+      "reference/examples.md": "a125eaf726ac79826958e71edf3f031d9cba2c42714c4246696f15e6bc7cd2dd",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

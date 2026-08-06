@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/vowel-consonant-score/description/",
     "paid_only": false,
     "content_sha256": "651324988ce899cc8b95c908bda1436bfac7e13746fd3a58c35f93f477404920",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "`s = \"cooear\"`",
-        "output": "`2`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`s = \"axeyizou\"`",
-        "output": "`1`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "`s = \"au 123\"`",
-        "output": "`0`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "3c47623f1d2e2920848aef05efba34ddb8667d2defffa197814e51d87a3e704a",
+      "reference/description.md": "499f0c4fb4c545dc29a984e4ab0c3be8e5592de0d9fff2a4fb45d3a5e5747b03",
       "reference/contract.md": "9b96c9a3eb2bd223bd9e7ae3e26992a6caefd902340a4b802e56f540bd952c79",
       "reference/examples.md": "281a174d97491c237f518a3374c8ec71d7e8876a551d923caf41832b3693ba3a",
       "reference/constraints.md": "e3843f924918cc20b9f0ff1d20f1ae8b90cf3ea1b7907deb4241a8d4624a7bac"

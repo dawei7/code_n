@@ -1,9 +1,16 @@
 ## Description
 
-Determine whether a partially filled $9 \times 9$ Sudoku board is valid. Only cells that already contain digits participate in this check.
+Determine if a `9 x 9` Sudoku board is valid. Only the filled cells need to be validated **according to the following rules**:
 
-The filled cells must obey all three Sudoku rules:
+<ol>
+	<li>Each row must contain the digits `1-9` without repetition.</li>
+	<li>Each column must contain the digits `1-9` without repetition.</li>
+	<li>Each of the nine `3 x 3` sub-boxes of the grid must contain the digits `1-9` without repetition.</li>
+</ol>
 
-1. No row may repeat a digit from `1` through `9`.
-2. No column may repeat a digit from `1` through `9`.
-3. None of the nine $3 \times 3$ sub-boxes may repeat a digit from `1` through `9`.
+**Note:**
+
+<ul>
+	<li>A Sudoku board (partially filled) could be valid but is not necessarily solvable.</li>
+	<li>Only the filled cells need to be validated according to the mentioned rules.</li>
+</ul>

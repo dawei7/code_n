@@ -1,5 +1,5 @@
 ## Description
 
-Given an integer array `nums` of length $n$, make every element equal using the minimum possible number of moves.
+Given an integer array `nums` of size `n`, return *the minimum number of moves required to make all array elements equal*.
 
-One move increments exactly $n - 1$ array elements by `1`. Return the minimum number of such moves required; the final array itself is not needed.
+In one move, you can increment `n - 1` elements of the array by `1`.

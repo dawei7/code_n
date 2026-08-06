@@ -1,8 +1,8 @@
 ## Description
 
-Write an efficient algorithm that searches an $m \times n$ integer `matrix` for `target`. The matrix satisfies both ordering properties:
+Write an efficient algorithm that searches for a value `target` in an `m x n` integer matrix `matrix`. This matrix has the following properties:
 
-- Every row is sorted in ascending order from left to right.
-- Every column is sorted in ascending order from top to bottom.
-
-Return whether any matrix cell equals `target`.
+<ul>
+	<li>Integers in each row are sorted in ascending from left to right.</li>
+	<li>Integers in each column are sorted in ascending from top to bottom.</li>
+</ul>

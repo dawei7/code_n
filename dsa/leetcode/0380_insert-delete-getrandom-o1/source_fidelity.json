@@ -1,18 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_380", "frontend_id": "380", "title_slug": "insert-delete-getrandom-o1", "url": "https://leetcode.com/problems/insert-delete-getrandom-o1/description/", "paid_only": false, "content_sha256": "19dec9f83e887348c503dbeaf9f8bb6602ecce1c155d9f7379058620d4a262d5", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_380",
+    "frontend_id": "380",
+    "title_slug": "insert-delete-getrandom-o1",
+    "url": "https://leetcode.com/problems/insert-delete-getrandom-o1/description/",
+    "paid_only": false,
+    "content_sha256": "19dec9f83e887348c503dbeaf9f8bb6602ecce1c155d9f7379058620d4a262d5",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "operations = [\"RandomizedSet\",\"insert\",\"remove\",\"insert\",\"getRandom\",\"remove\",\"insert\",\"getRandom\"], arguments = [[],[1],[2],[2],[],[1],[2],[]]", "output": "[null,true,false,true,2,true,false,2]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "operations = [\"RandomizedSet\",\"insert\",\"remove\",\"insert\",\"getRandom\",\"remove\",\"insert\",\"getRandom\"], arguments = [[],[1],[2],[2],[],[1],[2],[]]",
+        "output": "[null,true,false,true,2,true,false,2]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "ecf30f66dba3b23f04c0a53d315fa0f86d57045c416a3593e4bae5995c906cf6",
-    "reference/contract.md": "ca7c933b9259f377ba976dbe42bc67dadfe2ebb4fc9669f79fb56ad41d68e19b",
-    "reference/examples.md": "03e6421bb2c6abf2c607e17a636d52d109f8155fb22ad9380634a607fa4fb165",
-    "reference/constraints.md": "4264264287fba5592154293b08df06964bec81fd2800a1a0909249ac49395085"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "bc41c3acfb005ba7e737a324b6ed767f2a33a05ef67f9c8d91347853ea2d8860",
+      "reference/contract.md": "ca7c933b9259f377ba976dbe42bc67dadfe2ebb4fc9669f79fb56ad41d68e19b",
+      "reference/examples.md": "03e6421bb2c6abf2c607e17a636d52d109f8155fb22ad9380634a607fa4fb165",
+      "reference/constraints.md": "4264264287fba5592154293b08df06964bec81fd2800a1a0909249ac49395085"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

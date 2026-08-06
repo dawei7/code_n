@@ -1,7 +1,5 @@
 ## Description
 
-Given the `root` of a binary tree and an integer `targetSum`, count the paths whose node values add exactly to the
-target.
+Given the `root` of a binary tree and an integer `targetSum`, return *the number of paths where the sum of the values along the path equals* `targetSum`.
 
-A path may start and end at any nodes; it does not have to begin at the root or finish at a leaf. It must move only
-downward, following parent-to-child links.
+The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).

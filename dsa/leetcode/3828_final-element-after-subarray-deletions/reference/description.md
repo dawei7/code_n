@@ -1,11 +1,13 @@
 ## Description
 
-Consider an integer array `nums`.
+You are given an integer array `nums`.
 
-Alice and Bob play an alternating-turn deletion game on this array, with Alice taking the first turn.
+Two players, Alice and Bob, play a game in turns, with Alice playing first.
 
-- On each turn, the current player selects a nonempty subarray `nums[l..r]`. If the array currently has length `m`, the chosen block must satisfy `r - l + 1 < m`.
-- The chosen subarray is deleted, after which the elements on its two sides are concatenated into the new array.
-- Play continues until exactly one element remains.
+<ul>
+	<li>In each turn, the current player chooses any **<span data-keyword="subarray-nonempty">subarray</span>** `nums[l..r]` such that `r - l + 1 < m`, where `m` is the **current length** of the array.</li>
+	<li>The selected **subarray is removed**, and the remaining elements are **concatenated** to form the new array.</li>
+	<li>The game continues until **only one** element remains.</li>
+</ul>
 
-Alice tries to maximize the value of that final element, whereas Bob tries to minimize it. Assuming optimal decisions from both players, return the value left at the end of the game.
+Alice aims to **maximize** the final element, while Bob aims to **minimize** it. Assuming both play optimally, return the value of the final remaining element.

@@ -1,13 +1,7 @@
 ## Description
 
-You are given a string `s` containing only lowercase English letters. In one
-operation, choose a contiguous substring that is not the entire string, then
-sort the chosen characters into non-descending alphabetical order. Characters
-outside that substring stay in their current positions.
+<p data-end="244" data-start="156">You are given a string `s` consisting of lowercase English letters.
 
-The objective is to make the complete string non-descending using as few such
-operations as possible. The chosen substring may occupy a prefix or suffix as
-long as at least one character of the full string is excluded.
+In one operation, you can select any **<span data-keyword="substring-nonempty">substring</span>** of `s` that is **not** the entire string and **sort** it in **non-descending alphabetical** order.
 
-Return the minimum operation count. If the restriction against sorting the
-entire string makes the target ordering unreachable, return `-1`.
+Return the **minimum** number of operations required to make `s` sorted in **non-descending** order. If it is not possible, return -1.

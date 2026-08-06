@@ -1,8 +1,12 @@
 ## Description
 
-You are given a lowercase English string `s` of length $n$. Perform exactly one operation: choose an integer $k$ with $1 \leq k \leq n$, then either
+You are given a string `s` of length `n` consisting of lowercase English letters.
 
-- reverse the first $k$ characters of `s`, or
-- reverse the last $k$ characters of `s`.
+You must perform **exactly** one operation by choosing any integer `k` such that `1 <= k <= n` and either:
 
-Return the lexicographically smallest string obtainable after that one operation.
+<ul>
+	<li>reverse the **first** `k` characters of `s`, or</li>
+	<li>reverse the **last** `k` characters of `s`.</li>
+</ul>
+
+Return the **<span data-keyword="lexicographically-smaller-string">lexicographically smallest</span>** string that can be obtained after **exactly** one such operation.

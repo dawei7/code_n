@@ -1,0 +1,7 @@
+## Description
+
+You are given an array of strings `words` and a string `target`.
+
+A string `x` is called **valid** if `x` is a <span data-keyword="string-prefix">prefix</span> of **any** string in `words`.
+
+Return the **minimum** number of **valid** strings that can be *concatenated* to form `target`. If it is **not** possible to form `target`, return `-1`.

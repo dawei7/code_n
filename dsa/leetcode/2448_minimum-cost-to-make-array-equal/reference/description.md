@@ -1,0 +1,13 @@
+## Description
+
+You are given two **0-indexed** arrays `nums` and `cost` consisting each of `n` **positive** integers.
+
+You can do the following operation **any** number of times:
+
+<ul>
+	<li>Increase or decrease **any** element of the array `nums` by `1`.</li>
+</ul>
+
+The cost of doing one operation on the `i^th` element is `cost[i]`.
+
+Return *the **minimum** total cost such that all the elements of the array *`nums`* become **equal***.

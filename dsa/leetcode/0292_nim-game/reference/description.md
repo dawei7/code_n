@@ -1,10 +1,12 @@
 ## Description
 
-You and a friend play a game with one heap of stones:
+You are playing the following Nim Game with your friend:
 
-- The heap initially contains `n` stones.
-- You move first, and the two players then alternate turns.
-- On a turn, a player removes `1`, `2`, or `3` stones.
-- Whoever removes the final stone wins.
+<ul>
+	<li>Initially, there is a heap of stones on the table.</li>
+	<li>You and your friend will alternate taking turns, and **you go first**.</li>
+	<li>On each turn, the person whose turn it is will remove 1 to 3 stones from the heap.</li>
+	<li>The one who removes the last stone is the winner.</li>
+</ul>
 
-Given `n`, return `true` if you can force a win when both players act optimally. Otherwise, return `false`.
+Given `n`, the number of stones in the heap, return `true`* if you can win the game assuming both you and your friend play optimally, otherwise return *`false`.

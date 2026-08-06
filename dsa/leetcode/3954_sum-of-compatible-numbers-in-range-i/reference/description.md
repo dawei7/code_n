@@ -1,10 +1,19 @@
 ## Description
 
-You are given two integers, `n` and `k`. Consider a positive integer `x` compatible when it meets both requirements below:
+You are given two integers `n` and `k`.
 
-- its absolute distance from `n` is at most `k`, so `abs(n - x) <= k`;
-- its bitwise AND with `n` is zero, so `(n & x) == 0`.
+A **positive** integer `x` is called **compatible** if it satisfies both of the following conditions:
 
-Return the sum of every positive compatible integer `x`.
+<ul>
+    <li>`abs(n - x) <= k`</li>
+    <li>`(n & x) == 0`</li>
+</ul>
 
-Here, `&` is the bitwise AND operator. For any integers `i` and `j`, their absolute difference is `abs(i - j)`.
+Return the sum of all **compatible** integers `x`.
+
+**Note**:
+
+<ul>
+    <li>Here, `&` denotes the **bitwise AND** operator.</li>
+    <li>The **absolute** difference between integers `i` and `j` is defined as `abs(i - j)`.</li>
+</ul>

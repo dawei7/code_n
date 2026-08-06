@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/password-strength/description/",
     "paid_only": false,
     "content_sha256": "d28a4d3a755944a2523b1506eb82f4fdd60c4cf22db85138e5446a3e984d0931",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "password = \"aA1!\"",
-        "output": "11",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "password = \"bbB11#\"",
-        "output": "11",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "2c02e88ad878b5e94717d0a31ed43054ed8e66ba4bdf437da7f642727b96197d",
+      "reference/description.md": "8ee6cc2a9d03dfb3978f30d9ba815f33a547760c3a057c8961ac240230f92726",
       "reference/contract.md": "ec313278c32c42c723ed23711160a9897ad533492d868aa60de9d8dde2f7f51f",
       "reference/examples.md": "e6b8173425269349e4fc81a455fd679fef9665c2a0518799573145cdfaf67413",
       "reference/constraints.md": "d6fda9ce7d8b9f0260b9f8917a857460429180dc680bda99e5df6d25d5a640cb"

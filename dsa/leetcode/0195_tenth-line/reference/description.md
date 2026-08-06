@@ -1,3 +1,3 @@
 ## Description
 
-Given the text file `file.txt`, print only its tenth line.
+Given a text file `file.txt`, print just the 10th line of the file.

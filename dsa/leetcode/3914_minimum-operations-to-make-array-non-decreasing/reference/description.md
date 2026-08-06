@@ -1,5 +1,9 @@
 ## Description
 
-Given an integer array `nums`, an operation selects any non-empty contiguous subarray `nums[l..r]` and adds the same positive integer `x` to every selected element. Operations may use different subarrays and different positive values.
+<p data-end="140" data-start="88">You are given an integer array `nums` of length `n`.
 
-The goal is to make `nums` non-decreasing, meaning `nums[i] <= nums[i + 1]` at every adjacent pair. The cost is the sum of the chosen `x` values—not the number of operations or the number of elements changed. Return the smallest possible total cost over all valid operation sequences.
+In one operation, you may choose any **<span data-keyword="subarray-nonempty">subarray</span>** `nums[l..r]` and **increase** each element in that **subarray** by `x`, where `x` is any **positive** integer.
+
+Return the **minimum** possible **sum** of the values of `x` across all operations required to make the array **non-decreasing**.
+
+An array is **non-decreasing** if `nums[i] <= nums[i + 1]` for all `0 <= i < n - 1`.

@@ -11,7 +11,11 @@
     "checked_at": "2026-08-02"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
@@ -19,7 +23,12 @@
         "output": "true",
         "has_explanation": true
       },
-      {"ordinal": 2, "input": "word = \"apple\", abbr = \"a2e\"", "output": "false", "has_explanation": true}
+      {
+        "ordinal": 2,
+        "input": "word = \"apple\", abbr = \"a2e\"",
+        "output": "false",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 5,
     "visuals": {

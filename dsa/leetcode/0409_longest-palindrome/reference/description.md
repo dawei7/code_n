@@ -1,7 +1,5 @@
 ## Description
 
-Given a string `s` of lowercase and uppercase English letters, use its available character occurrences to build a
-palindrome. The characters may be rearranged, and occurrences that are not needed may be left unused.
+Given a string `s` which consists of lowercase or uppercase letters, return the length of the **longest <span data-keyword="palindrome-string">palindrome</span>** that can be built with those letters.
 
-Return the greatest possible length of such a palindrome. Letter comparisons are case-sensitive, so an uppercase
-letter and its lowercase counterpart are different characters; for example, `"Aa"` is not a palindrome.
+Letters are **case sensitive**, for example, `"Aa"` is not considered a palindrome.

@@ -1,10 +1,14 @@
 ## Description
 
-Design a wrapper around an existing iterator that adds a `peek` operation while retaining `next` and `hasNext`.
+Design an iterator that supports the `peek` operation on an existing iterator in addition to the `hasNext` and the `next` operations.
 
-Implement the `PeekingIterator` class with these operations:
+Implement the `PeekingIterator` class:
 
-- `PeekingIterator(Iterator<int> nums)` initializes the wrapper from the supplied integer iterator.
-- `int next()` returns the next value and advances to the following element.
-- `boolean hasNext()` returns `true` when at least one element remains.
-- `int peek()` returns the next value without advancing the iterator.
+<ul>
+	<li>`PeekingIterator(Iterator<int> nums)` Initializes the object with the given integer iterator `iterator`.</li>
+	<li>`int next()` Returns the next element in the array and moves the pointer to the next element.</li>
+	<li>`boolean hasNext()` Returns `true` if there are still elements in the array.</li>
+	<li>`int peek()` Returns the next element in the array **without** moving the pointer.</li>
+</ul>
+
+**Note:** Each language may have a different implementation of the constructor and `Iterator`, but they all support the `int next()` and `boolean hasNext()` functions.

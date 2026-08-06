@@ -1,7 +1,9 @@
 ## Description
 
-You are given a binary string `s`, so every character is either `'0'` or `'1'`. A string is balanced when it contains the same number of zeros and ones.
+You are given a binary string `s` consisting only of characters `'0'` and `'1'`.
 
-Before selecting a substring, you may swap any two characters of `s` at most once. The swapped positions do not need to be adjacent. You may also leave the string unchanged.
+A string is **balanced** if it contains an **equal** number of `'0'`s and `'1'`s.
 
-After that optional swap, select a contiguous balanced substring and return the greatest length that can be obtained. The empty substring is balanced and has length zero, so a valid result always exists.
+You can perform **at most one** swap between any two characters in `s`. Then, you select a **balanced** <span data-keyword="substring">substring</span> from `s`.
+
+Return an integer representing the **maximum** length of the **balanced** substring you can select.

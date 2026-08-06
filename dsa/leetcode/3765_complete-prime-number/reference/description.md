@@ -1,7 +1,15 @@
 ## Description
 
-You are given a positive integer `num` and must examine its usual decimal representation.
+You are given an integer `num`.
 
-For every permitted length `k`, take the first `k` digits as a prefix and the last `k` digits as a suffix. The full digit sequence belongs to both families. The value `num` is a **Complete Prime Number** only when every resulting integer is prime.
+A number `num` is called a **Complete <span data-keyword="prime-number">Prime Number</span>** if every **prefix** and every **suffix** of `num` is **prime**.
 
-Return `true` if this condition holds for all prefix and suffix lengths; otherwise, return `false`.
+Return `true` if `num` is a Complete Prime Number, otherwise return `false`.
+
+**Note**:
+
+<ul>
+	<li>A **prefix** of a number is formed by the **first** `k` digits of the number.</li>
+	<li>A **suffix** of a number is formed by the **last** `k` digits of the number.</li>
+	<li>Single-digit numbers are considered Complete Prime Numbers only if they are **prime**.</li>
+</ul>

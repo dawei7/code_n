@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_72", "frontend_id": "72",
+    "provider": "leetcode",
+    "challenge_id": "lc_72",
+    "frontend_id": "72",
     "title_slug": "edit-distance",
     "url": "https://leetcode.com/problems/edit-distance/description/",
-    "paid_only": false, "content_sha256": "a0bc8fe5153b3224a2107387768902cd78c423c4baba1f483d1e9e4001078c8c", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "a0bc8fe5153b3224a2107387768902cd78c423c4baba1f483d1e9e4001078c8c",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "word1 = \"horse\", word2 = \"ros\"", "output": "3", "has_explanation": true},
-      {"ordinal": 2, "input": "word1 = \"intention\", word2 = \"execution\"", "output": "5", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "word1 = \"horse\", word2 = \"ros\"",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "word1 = \"intention\", word2 = \"execution\"",
+        "output": "5",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "660dbad574e25c38f5f70c582b46984a68b8c25e92f7df88b8378521fa8d6956",
+      "reference/description.md": "1da8bada6a84af3015f37dd10bf5be4a0deb178f10cdabdf246ffb6821bf06cb",
       "reference/contract.md": "ac98d8564e7780aa28757d0b6ba69256c5a9b9f0a0718600cf9c52663fef6d1d",
       "reference/examples.md": "1175eae2e941cb805dd710abfbf7e06f9910620b504d9e7a3558508362233704",
       "reference/constraints.md": "ff3fe598fb02e41921e120e4ed1c8be95514cdc7991d03b09bee7ed5e68f01bc"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

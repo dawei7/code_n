@@ -1,5 +1,5 @@
 ## Description
 
-Given the integer array `nums`, find the maximum possible length of a subsequence whose elements have a non-zero bitwise XOR.
+You are given an integer array `nums`.
 
-Return that maximum length. If every subsequence has bitwise XOR equal to zero, return `0`.
+Return the length of the **longest <span data-keyword="subsequence-array-nonempty">subsequence</span>** in `nums` whose bitwise **XOR** is **non-zero**. If no such **subsequence** exists, return 0.

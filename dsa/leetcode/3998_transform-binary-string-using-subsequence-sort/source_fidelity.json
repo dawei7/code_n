@@ -8,44 +8,36 @@
     "url": "https://leetcode.com/problems/transform-binary-string-using-subsequence-sort/description/",
     "paid_only": false,
     "content_sha256": "16483f67c62c848e4ca9282006f8987ac5e6d6625640826fb2e8b85e9feaaad6",
-    "checked_at": "2026-07-31"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \"101\", strs = [\"1?1\",\"0?1\",\"0?0\"]",
-        "output": "[true,true,false]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"1100\", strs = [\"0011\",\"11?1\",\"1?1?\"]",
-        "output": "[true,false,true]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"1010\", strs = [\"0011\"]",
-        "output": "[true]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 5,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 3,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 3,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "d177fe43f740c1a83bd01b528d2cb4d6a61ba861ad2fc86082e98c269c4da361",
+      "reference/description.md": "a9cd517a2118314a92d75af92ee88f7fe7443263218bf94d929fda2ec3093991",
       "reference/contract.md": "f8130f4538b5f5d1b90014d3c5b10bbb2f33c80374d6c61eb0986e22645c4ac0",
       "reference/examples.md": "ff3081c82d7aac5b28245d46913168fc79307d1023afc3893f8a0eb2ac7fedeb",
       "reference/constraints.md": "a982777fde35497375c561d3b2bd207cde62786d97f0d41681a15a7639e27bcf"

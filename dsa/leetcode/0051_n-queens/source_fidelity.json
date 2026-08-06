@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_51", "frontend_id": "51",
+    "provider": "leetcode",
+    "challenge_id": "lc_51",
+    "frontend_id": "51",
     "title_slug": "n-queens",
     "url": "https://leetcode.com/problems/n-queens/description/",
-    "paid_only": false, "content_sha256": "f68e2c0cafee98afc91e9b63d437ae39e383e09eac2e012ed253d96d5b5ea924", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "f68e2c0cafee98afc91e9b63d437ae39e383e09eac2e012ed253d96d5b5ea924",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "n = 4", "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]", "has_explanation": true},
-      {"ordinal": 2, "input": "n = 1", "output": "[[\"Q\"]]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "n = 4",
+        "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 1",
+        "output": "[[\"Q\"]]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "3df84cd4fea769e78edcb910034dfee45338943b2786b4988f389772b4f30ab5",
+      "reference/description.md": "f92831c10b3e06d6f40869603af458768de2b56a625d826b5263e4fbeff7b292",
       "reference/contract.md": "214f7f91744a187dd790de6158049a3d2736c01b72e330978074bfb44523f92c",
       "reference/examples.md": "22c5d3980389fffa3c355dd9d613ae2ba80c62736ec9de8f0b24250aebabe6ea",
       "reference/constraints.md": "26fa2b42119f60bc5d0b851177c42cd94e4412e5c75619472c9a9f21e4ebfce8"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

@@ -1,7 +1,7 @@
 ## Description
 
-Given the `head` of a linked list, return the node at which its cycle begins. Return `null` if the list has no cycle.
+Given the `head` of a linked list, return *the node where the cycle begins. If there is no cycle, return *`null`.
 
-A cycle exists when repeatedly following `next` pointers can reach a node again. In displayed tests, `pos` is the zero-based index of the node to which the tail connects, or `-1` when no cycle exists. This value describes the constructed input and is not passed to your function.
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the `next` pointer. Internally, `pos` is used to denote the index of the node that tail's `next` pointer is connected to (**0-indexed**). It is `-1` if there is no cycle. **Note that** `pos` **is not passed as a parameter**.
 
-Do not modify the linked list.
+**Do not modify** the linked list.

@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_239", "frontend_id": "239", "title_slug": "sliding-window-maximum", "url": "https://leetcode.com/problems/sliding-window-maximum/description/", "paid_only": false, "content_sha256": "23c14ebad3e9b9d8cdaee368ad6ae99bee11f812126d30469abfe988ddabebaf", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "nums = [1,3,-1,-3,5,3,6,7], k = 3", "output": "[3,3,5,5,6,7]", "has_explanation": true}, {"ordinal": 2, "input": "nums = [1], k = 1", "output": "[1]", "has_explanation": false}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 1, "local_images": 0, "local_tables": 1, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_239",
+    "frontend_id": "239",
+    "title_slug": "sliding-window-maximum",
+    "url": "https://leetcode.com/problems/sliding-window-maximum/description/",
+    "paid_only": false,
+    "content_sha256": "23c14ebad3e9b9d8cdaee368ad6ae99bee11f812126d30469abfe988ddabebaf",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "de085705dd8582eee0958e4e5e4b693ce498259ddb07897cb6edf58a13268acc", "reference/contract.md": "c2f6c3ab53c1f3f719bce4c7c2b912e5717a80f67c4715846ff6b5e53b05c735", "reference/examples.md": "3c3b8b21a21e82a72c199bdc6b1d313694d0dbcdc04532d59cf221a102b6ee4d", "reference/constraints.md": "af44bc2bb88943726dd8eb3708b4f82a6321e9c003686bb25b297e307d80f324"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,3,-1,-3,5,3,6,7], k = 3",
+        "output": "[3,3,5,5,6,7]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1], k = 1",
+        "output": "[1]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 1,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "97c8a3e5608f0d2ae1ea0b1d84b925af07b4b051ff28f2b1d6323fe1f736cfc9",
+      "reference/contract.md": "c2f6c3ab53c1f3f719bce4c7c2b912e5717a80f67c4715846ff6b5e53b05c735",
+      "reference/examples.md": "3c3b8b21a21e82a72c199bdc6b1d313694d0dbcdc04532d59cf221a102b6ee4d",
+      "reference/constraints.md": "af44bc2bb88943726dd8eb3708b4f82a6321e9c003686bb25b297e307d80f324"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,3 +1,5 @@
 ## Description
 
-Given an $m \times n$ grid of non-negative numbers, choose a path from the top-left cell to the bottom-right cell that minimizes the sum of every visited value. Return that minimum sum.
+Given a `m x n` `grid` filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
+
+**Note:** You can only move either down or right at any point in time.

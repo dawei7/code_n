@@ -1,5 +1,7 @@
 ## Description
 
-You are given an array `prices`, where `prices[i]` is one stock's price on day `i`.
+You are given an array `prices` where `prices[i]` is the price of a given stock on the `i^th` day.
 
-Return the maximum profit you can obtain while completing at most two transactions.
+Find the maximum profit you can achieve. You may complete **at most two transactions**.
+
+**Note:** You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).

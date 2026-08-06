@@ -1,7 +1,7 @@
 ## Description
 
-Given the `root` of a **complete** binary tree, return the total number of nodes it contains.
+Given the `root` of a **complete** binary tree, return the number of the nodes in the tree.
 
-In a complete binary tree, every level before the last is full, and the nodes on the last level occupy the leftmost available positions. At last-level height `h`, that level may contain anywhere from `1` through $2^h$ nodes.
+According to **<a href="http://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees" target="_blank">Wikipedia</a>**, every level, except possibly the last, is completely filled in a complete binary tree, and all nodes in the last level are as far left as possible. It can have between `1` and `2^h` nodes inclusive at the last level `h`.
 
-Design an algorithm whose running time is less than $O(n)$.
+Design an algorithm that runs in less than <code data-stringify-type="code">O(n)</code> time complexity.

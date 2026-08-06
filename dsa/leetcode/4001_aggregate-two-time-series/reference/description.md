@@ -1,7 +1,18 @@
 ## Description
 
-You are given two two-dimensional integer arrays, `series1` and `series2`. Every entry is `[timestamp, value]`, and each array's timestamps are strictly increasing.
+You are given two 2D integer arrays `series1` and `series2`.
 
-When a timestamp is absent from one series, that series contributes the value at its next available timestamp, if such an entry exists; it contributes zero when there is no later entry. Form the union of the timestamps explicitly present in either input and, at each one, add the two series' applicable values.
+Each element in both series is of the form `[timestamp, value]`, where:
 
-Return the aggregated `[timestamp, summedValue]` pairs in strictly increasing timestamp order. Do not introduce timestamps that are absent from both inputs.
+<ul>
+	<li>`timestamp` is an integer representing the time.</li>
+	<li>`value` is an integer representing the value at that timestamp.</li>
+</ul>
+
+Each array is sorted in <span data-keyword="strictly-increasing-array">strictly increasing</span> order of `timestamp`.
+
+For any timestamp **not present** in a series, its value is taken from the **next available timestamp** in the same series if one exists. Otherwise, its value is considered 0.
+
+The **aggregated series** is formed by summing the corresponding values from both series at every timestamp that appears in either series.
+
+Return the **aggregated series** as a 2D integer array of `[timestamp, summedValue]` pairs, sorted in **strictly increasing** order of timestamp.

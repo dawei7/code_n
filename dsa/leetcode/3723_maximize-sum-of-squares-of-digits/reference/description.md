@@ -1,8 +1,14 @@
 ## Description
 
-You receive two positive integers, `num` and `sum`. A positive integer is **good** when both conditions hold:
+You are given two **positive** integers `num` and `sum`.
 
-- it has exactly `num` digits, and
-- its digits add up to exactly `sum`.
+A positive integer `n` is **good** if it satisfies both of the following:
 
-The score of a good integer is the sum of the squares of all its digits. Return, as a string, a good integer with the greatest possible score. When several good integers share that score, return the numerically greatest one. If no good integer exists, return `""`.
+<ul>
+	<li>The number of digits in `n` is **exactly** `num`.</li>
+	<li>The sum of digits in `n` is **exactly** `sum`.</li>
+</ul>
+
+The **score** of a **good** integer `n` is the sum of the squares of digits in `n`.
+
+Return a **string** denoting the **good** integer `n` that achieves the **maximum** **score**. If there are multiple possible integers, return the **maximum **​​​​​​​one. If no such integer exists, return an empty string.

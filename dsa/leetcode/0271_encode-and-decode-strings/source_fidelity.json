@@ -1,11 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_271", "frontend_id": "271", "title_slug": "encode-and-decode-strings", "url": "https://leetcode.com/problems/encode-and-decode-strings/description/", "paid_only": true, "content_sha256": "673c00b95c910f56fc0e20329dae56fcc6dd4e763db59b508cde59aff66a42ef", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "dummy_input = [\"Hello\",\"World\"]", "output": "[\"Hello\",\"World\"]", "has_explanation": true}, {"ordinal": 2, "input": "dummy_input = [\"\"]", "output": "[\"\"]", "has_explanation": false}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 1, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_271",
+    "frontend_id": "271",
+    "title_slug": "encode-and-decode-strings",
+    "url": "https://leetcode.com/problems/encode-and-decode-strings/description/",
+    "paid_only": true,
+    "content_sha256": "673c00b95c910f56fc0e20329dae56fcc6dd4e763db59b508cde59aff66a42ef",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "582c48094404504a948262eb44fcfb7af48f39a2626c6bac3d1776aaf71547ba", "reference/contract.md": "854b75cfd5f8a826bf1d5daf1a5e4af3d7d328d4b62e9693476cd5ae78e4c2a8", "reference/examples.md": "db382b96025b0a41abf07c62df91f70ea0fd62a54e9b22218cf57215c28ace5b", "reference/constraints.md": "ea665b3a9ae385478eab24822e707d07ee22b74f86c50773e96b16fdd3eb4337", "reference/follow_up.md": "8313a757a7be7b7ad1916e45944df05a53b3ed643fdb1cead198542d58bb3bb3"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "dummy_input = [\"Hello\",\"World\"]",
+        "output": "[\"Hello\",\"World\"]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "dummy_input = [\"\"]",
+        "output": "[\"\"]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 1,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "313e8b1c18f5f53d9ee182c8203be35e3f9db19cbe2bfcab02dcb8410dc96c3e",
+      "reference/contract.md": "854b75cfd5f8a826bf1d5daf1a5e4af3d7d328d4b62e9693476cd5ae78e4c2a8",
+      "reference/examples.md": "db382b96025b0a41abf07c62df91f70ea0fd62a54e9b22218cf57215c28ace5b",
+      "reference/constraints.md": "ea665b3a9ae385478eab24822e707d07ee22b74f86c50773e96b16fdd3eb4337",
+      "reference/follow_up.md": "8313a757a7be7b7ad1916e45944df05a53b3ed643fdb1cead198542d58bb3bb3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

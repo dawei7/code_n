@@ -1,19 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_296", "frontend_id": "296", "title_slug": "best-meeting-point", "url": "https://leetcode.com/problems/best-meeting-point/description/", "paid_only": true, "content_sha256": "fb2263e728eb272b1e01730b2e5b05145332e66e94a69ff53ef3cfac7aca81b0", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_296",
+    "frontend_id": "296",
+    "title_slug": "best-meeting-point",
+    "url": "https://leetcode.com/problems/best-meeting-point/description/",
+    "paid_only": true,
+    "content_sha256": "fb2263e728eb272b1e01730b2e5b05145332e66e94a69ff53ef3cfac7aca81b0",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]", "output": "6", "has_explanation": true},
-      {"ordinal": 2, "input": "grid = [[1,1]]", "output": "1", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[1,1]]",
+        "output": "1",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 5,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "afc03c676322cd43572ea0e9b0f53c93b609ad1109aa0ce41e08c3ce7498a814",
-    "reference/contract.md": "bfba41bf2d8f42c900b7f76a35b4961aa0daedb8141da81cef02ad0b52b1dac0",
-    "reference/examples.md": "757de74e2676f80cf77ab52fd47b3426059fa56ffbbe00a250dbdc8fbf863501",
-    "reference/constraints.md": "15273d3cce8a901084e3b12796ff4c060aed29493a81780ff5e86a3918b81534"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "afc03c676322cd43572ea0e9b0f53c93b609ad1109aa0ce41e08c3ce7498a814",
+      "reference/contract.md": "bfba41bf2d8f42c900b7f76a35b4961aa0daedb8141da81cef02ad0b52b1dac0",
+      "reference/examples.md": "757de74e2676f80cf77ab52fd47b3426059fa56ffbbe00a250dbdc8fbf863501",
+      "reference/constraints.md": "15273d3cce8a901084e3b12796ff4c060aed29493a81780ff5e86a3918b81534"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

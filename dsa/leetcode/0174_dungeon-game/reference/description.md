@@ -1,7 +1,13 @@
 ## Description
 
-A princess is imprisoned in the bottom-right room of an `m x n` dungeon grid. A knight begins in the top-left room and must reach her.
+The demons had captured the princess and imprisoned her in **the bottom-right corner** of a `dungeon`. The `dungeon` consists of `m x n` rooms laid out in a 2D grid. Our valiant knight was initially positioned in **the top-left room** and must fight his way through `dungeon` to rescue the princess.
 
-The knight starts with a positive amount of health. If his health ever becomes `0` or negative, he dies immediately. Entering a room changes his health by that room's integer value: a negative value represents damage from a demon, `0` represents an empty room, and a positive value represents a health-giving magic orb.
+The knight has an initial health point represented by a positive integer. If at any point his health point drops to `0` or below, he dies immediately.
 
-At each step, the knight may move only rightward or downward. Return the minimum initial health that allows him to reach the princess alive.
+Some of the rooms are guarded by demons (represented by negative integers), so the knight loses health upon entering these rooms; other rooms are either empty (represented as 0) or contain magic orbs that increase the knight's health (represented by positive integers).
+
+To reach the princess as quickly as possible, the knight decides to move only **rightward** or **downward** in each step.
+
+Return *the knight's minimum initial health so that he can rescue the princess*.
+
+**Note** that any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.

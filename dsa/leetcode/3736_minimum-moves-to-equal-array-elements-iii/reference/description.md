@@ -1,7 +1,7 @@
 ## Description
 
-You are given an integer array `nums`. The goal is to reach a state in which every position contains the same integer.
+You are given an integer array `nums`.
 
-In one move, select any single index `i` and increase `nums[i]` by exactly `1`. That move affects no other element; the permitted operation never decreases a value. The same index may be selected again in later moves.
+In one move, you may **increase** the value of any single element `nums[i]` by 1.
 
-Return the minimum total number of such moves required to make all elements of `nums` equal.
+Return the **minimum total** number of **moves** required so that all elements in `nums` become **equal**.

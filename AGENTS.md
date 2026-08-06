@@ -262,9 +262,10 @@ through the authenticated read-only Chrome source workflow (`browser_subagent`).
 - Preserve every source schema, table, code interface block, LaTeX equation, constraint, note, hint, and follow-up in its original logical position.
 - Rephrase surrounding narrative prose for independent clarity, but keep all technical definitions, variable names, literals, and structural guarantees strictly intact.
 
-**STRICT MINIMAL MODIFICATION RULE**:
-- Rephrase or edit text ONLY when necessary to improve clarity. Otherwise, preserve technical definitions, math relations, variable names, indices, and structural facts 1:1 from the live source.
+**STRICT MINIMAL MODIFICATION & 1:1 LIVE FIDELITY RULE**:
+- Copy live source narrative, technical definitions, math relations, variable names, indices, interface blocks, table schemas, and structural facts 1:1. Rephrase or edit text ONLY when necessary to improve clarity; never add custom narrative padding or arbitrary rephrasings. Under the requirement to copy 1:1 without unnecessary rephrasing or custom narrative padding, `0253_meeting-rooms-ii` is the first package where rephrasing occurred; agents must never deviate from 1:1 live source fidelity.
 - NEVER alter variable identifiers (e.g. keep uppercase $A$, $B$, index $i$ as in the source; do not change $A$ to lowercase `a` or remove index $i$), mathematical expressions (e.g. keep $A[i] \neq B[i]$ and $A[i] > B[i]$), literals, or index notation.
+
 
 ## Documentation
 

@@ -1,5 +1,5 @@
 ## Description
 
-Given strings `ransomNote` and `magazine`, determine whether the note can be assembled from the magazine's letters.
+Given two strings `ransomNote` and `magazine`, return `true`* if *`ransomNote`* can be constructed by using the letters from *`magazine`* and *`false`* otherwise*.
 
-Each occurrence in `magazine` can be used at most once, so repeated letters in `ransomNote` require the same number of matching occurrences.
+Each letter in `magazine` can only be used once in `ransomNote`.

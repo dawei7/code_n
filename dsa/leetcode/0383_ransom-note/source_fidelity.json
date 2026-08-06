@@ -1,20 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_383", "frontend_id": "383", "title_slug": "ransom-note", "url": "https://leetcode.com/problems/ransom-note/description/", "paid_only": false, "content_sha256": "6879923f358075e5c5d653aacd87c7b69774150120eccbc3a601cca16bbedb35", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_383",
+    "frontend_id": "383",
+    "title_slug": "ransom-note",
+    "url": "https://leetcode.com/problems/ransom-note/description/",
+    "paid_only": false,
+    "content_sha256": "6879923f358075e5c5d653aacd87c7b69774150120eccbc3a601cca16bbedb35",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "ransomNote = \"a\", magazine = \"b\"", "output": "false", "has_explanation": false},
-      {"ordinal": 2, "input": "ransomNote = \"aa\", magazine = \"ab\"", "output": "false", "has_explanation": false},
-      {"ordinal": 3, "input": "ransomNote = \"aa\", magazine = \"aab\"", "output": "true", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "ransomNote = \"a\", magazine = \"b\"",
+        "output": "false",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "ransomNote = \"aa\", magazine = \"ab\"",
+        "output": "false",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "ransomNote = \"aa\", magazine = \"aab\"",
+        "output": "true",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "e2bba1e0d081e6e14df8d7fc4aec15ba97560e81686d305f1918d549c5b33fcb",
-    "reference/contract.md": "1467b7f3cf4ab4547aecbf8a8a1bde0feaa9e92c1bde908ff4582abe957a8843",
-    "reference/examples.md": "aaca0cf1537926f961f50248037ef11288ae18e4190d5bcf647c8278509285ef",
-    "reference/constraints.md": "d70db9ea35a06140323795231bbb62639a2461397ce2392e47c45013d0fac4d3"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "997ad8b856d52168b7d272ff02937f496a32505b8235cfa66406de1bbbc58a10",
+      "reference/contract.md": "1467b7f3cf4ab4547aecbf8a8a1bde0feaa9e92c1bde908ff4582abe957a8843",
+      "reference/examples.md": "aaca0cf1537926f961f50248037ef11288ae18e4190d5bcf647c8278509285ef",
+      "reference/constraints.md": "d70db9ea35a06140323795231bbb62639a2461397ce2392e47c45013d0fac4d3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

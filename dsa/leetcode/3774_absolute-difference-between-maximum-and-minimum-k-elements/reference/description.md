@@ -2,9 +2,11 @@
 
 You are given an integer array `nums` and an integer `k`.
 
-Compute these two quantities:
+Find the absolute difference between:
 
-- the sum of the `k` largest array elements; and
-- the sum of the `k` smallest array elements.
+<ul>
+	<li>the **sum** of the `k` **largest** elements in the array; and</li>
+	<li>the **sum** of the `k` **smallest** elements in the array.</li>
+</ul>
 
-Return the absolute difference between those sums. Every occurrence is an element, so duplicate values are counted separately when they belong to either group. The array's original order does not affect either value-based sum.
+Return an integer denoting this difference.

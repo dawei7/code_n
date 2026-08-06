@@ -1,5 +1,5 @@
 ## Description
 
-Given an unsorted integer array `nums`, return the smallest positive integer that does not appear in the array.
+Given an unsorted integer array `nums`. Return the *smallest positive integer* that is *not present* in `nums`.
 
-The algorithm must run in $O(n)$ time while using only $O(1)$ auxiliary space.
+You must implement an algorithm that runs in `O(n)` time and uses `O(1)` auxiliary space.

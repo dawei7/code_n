@@ -1,21 +1,35 @@
 ## Description
 
-The `restaurant_orders` table records restaurant purchases and optional customer ratings:
+Table: `restaurant_orders`
 
-| Column | Type | Meaning |
-|---|---|---|
-| `order_id` | `int` | Unique row identifier |
-| `customer_id` | `int` | Customer placing the order |
-| `order_timestamp` | `datetime` | Date and time of the order |
-| `order_amount` | `decimal` | Order amount |
-| `payment_method` | `varchar` | One of `cash`, `card`, or `app` |
-| `order_rating` | `int` | Rating from 1 through 5, or `NULL` when unrated |
+```
 
-Find every **golden hour customer**. A customer qualifies only when all of these conditions hold:
++------------------+----------+
+| Column Name      | Type     | 
++------------------+----------+
+| order_id         | int      |
+| customer_id      | int      |
+| order_timestamp  | datetime |
+| order_amount     | decimal  |
+| payment_method   | varchar  |
+| order_rating     | int      |
++------------------+----------+
+order_id is the unique identifier for this table.
+payment_method can be cash, card, or app.
+order_rating is between 1 and 5, where 5 is the best (NULL if not rated).
+order_timestamp contains both date and time information.
 
-- they placed at least three orders;
-- at least 60% of their orders occurred during either inclusive peak interval, `11:00:00`–`14:00:00` or `18:00:00`–`21:00:00`;
-- the average over rated orders is at least 4.0; and
-- at least 50% of their orders have a non-`NULL` rating.
+```
 
-For each qualifying customer, return their identifier, order count, whole-number peak-hour percentage, and average rating rounded to two decimal places. Sort by `average_rating` descending and then by `customer_id` descending.
+Write a solution to find **golden hour customers** - customers who consistently order during peak hours and provide high satisfaction. A customer is a **golden hour customer** if they meet ALL the following criteria:
+
+<ul>
+	<li>Made **at least** `3` orders.</li>
+	<li>**At least** `60%` of their orders are during **peak hours **(`11:00`-`14:00` or `18:00`-`21:00`).</li>
+	<li>Their **average rating** for rated orders is at least `4.0,` round it to` 2 `decimal places.</li>
+	<li>Have rated **at least** `50%` of their orders.</li>
+</ul>
+
+Return *the result table ordered by* `average_rating` *in **descending** order, then by* `customer_id`​​​​​​​ *in **descending** order*.
+
+The result format is in the following example.

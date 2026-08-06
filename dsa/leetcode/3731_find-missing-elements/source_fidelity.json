@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/find-missing-elements/description/",
     "paid_only": false,
     "content_sha256": "44897cf4d389dcd1d706039a513ad58eb3429a653c3ca0aad58be7d08f1b638b",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -17,11 +17,14 @@
       "constraints"
     ],
     "examples": [
-      {"ordinal":1,"input":"nums = [1,4,2,5]","output":"[3]","has_explanation":true},
-      {"ordinal":2,"input":"nums = [7,8,6,9]","output":"[]","has_explanation":true},
-      {"ordinal":3,"input":"nums = [5,1]","output":"[2,3,4]","has_explanation":true}
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -34,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "88d61dcfb0b888be3aa62f0adc54c4d4894d6b0af658bb020000f65cf0410b11",
+      "reference/description.md": "853a918edc85dafe84cdef57e119792a3a8e8f4aa832ca50edd375c7b89bdd31",
       "reference/contract.md": "43ce70d5ad324ccd850fd67e4cda8c1498f93e56adfd2ae2a929c2fe2506375b",
       "reference/examples.md": "30304b633df6f7f7799a59832abad2125a4f613597dc3b7b4fd768f6a2fdb966",
       "reference/constraints.md": "e2de1c4f8511523356ac6f84d1f0a44e6e8692038f43aebc2b779492c40c3842"

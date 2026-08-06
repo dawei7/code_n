@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/multi-source-flood-fill/description/",
     "paid_only": false,
     "content_sha256": "7c22818a987a375987bac232043a68c5c8e59dfd1730271429f18d4ea5cd8cd8",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,37 +19,25 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 3, m = 3, sources = [[0,0,1],[2,2,2]]",
-        "output": "[[1,1,2],[1,2,2],[2,2,2]]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 3, m = 3, sources = [[0,1,3],[1,1,5]]",
-        "output": "[[3,3,3],[5,5,5],[5,5,5]]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "n = 2, m = 2, sources = [[1,1,5]]",
-        "output": "[[5,5],[5,5]]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 8,
+    "constraint_count": 1,
     "visuals": {
-      "source_images": 3,
+      "source_images": 0,
       "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 3,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "69d3d6e31cad81902d94f342fbdb3ef6e355421d50c031d8aab4b4ed65a4b61c",
+      "reference/description.md": "09356879b0c4e50db632e8b7aa80b89646a0837eb1983c9796674017dfc4fc97",
       "reference/contract.md": "69fa8bf75539d7294a4a916e1433548e2d2f61c2b396d6b48e5542b907ab2cc7",
       "reference/examples.md": "8f54c2903cf51b42bd005a8362a1401de921705a850c23c8e1d1cf1912dda283",
       "reference/constraints.md": "61f12424c461af23b4d03f675018141e52631d2322a4c7343f1b82be1803a722"

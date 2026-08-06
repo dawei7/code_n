@@ -1,7 +1,7 @@
 ## Description
 
-You are given a string `s` made only of lowercase English letters. A substring is a nonempty contiguous portion of that string, and a palindrome reads identically from left to right and from right to left.
+You are given a string `s` consisting of lowercase English letters.
 
-Call a substring almost-palindromic when removing exactly one of its characters leaves a palindrome. The removed character may occur anywhere in the chosen substring, including either endpoint; the operation is mandatory rather than optional.
+A <span data-keyword="substring-nonempty">substring</span> is **almost-palindromic** if it becomes a <span data-keyword="palindrome-string">palindrome</span> after removing **exactly** one character from it.
 
-Return the length of the longest almost-palindromic substring contained in `s`.
+Return an integer denoting the length of the **longest** **almost-palindromic** substring in `s`.

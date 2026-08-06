@@ -1,0 +1,7 @@
+## Description
+
+You are given an array `nums` which is a <span data-keyword="permutation">permutation</span> of `[0, 1, 2, ..., n - 1]`. The **score** of any permutation of `[0, 1, 2, ..., n - 1]` named `perm` is defined as:
+
+`score(perm) = |perm[0] - nums[perm[1]]| + |perm[1] - nums[perm[2]]| + ... + |perm[n - 1] - nums[perm[0]]|`
+
+Return the permutation `perm` which has the **minimum** possible score. If *multiple* permutations exist with this score, return the one that is <span data-keyword="lexicographically-smaller-array">lexicographically smallest</span> among them.

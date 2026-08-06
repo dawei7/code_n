@@ -1,5 +1,5 @@
 ## Description
 
-Given integers `n` and `k`, return every possible combination of `k` distinct numbers chosen from the inclusive range $[1,n]$.
+Given two integers `n` and `k`, return *all possible combinations of* `k` *numbers chosen from the range* `[1, n]`.
 
-The combinations may be returned in any order.
+You may return the answer in **any order**.

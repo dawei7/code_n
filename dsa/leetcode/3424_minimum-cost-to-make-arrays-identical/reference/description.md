@@ -1,0 +1,13 @@
+## Description
+
+You are given two integer arrays `arr` and `brr` of length `n`, and an integer `k`. You can perform the following operations on `arr` *any* number of times:
+
+<ul>
+	<li>Split `arr` into *any* number of **contiguous** <span data-keyword="subarray-nonempty">subarrays</span> and rearrange these subarrays in *any order*. This operation has a fixed cost of `k`.</li>
+	<li>
+	Choose any element in `arr` and add or subtract a positive integer `x` to it. The cost of this operation is `x`.
+
+	</li>
+</ul>
+
+Return the **minimum **total cost to make `arr` **equal** to `brr`.

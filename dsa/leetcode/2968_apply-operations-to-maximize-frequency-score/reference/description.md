@@ -1,0 +1,15 @@
+## Description
+
+You are given a **0-indexed** integer array `nums` and an integer `k`.
+
+You can perform the following operation on the array **at most** `k` times:
+
+<ul>
+	<li>Choose any index `i` from the array and **increase** or **decrease** `nums[i]` by `1`.</li>
+</ul>
+
+The score of the final array is the **frequency** of the most frequent element in the array.
+
+Return *the **maximum** score you can achieve*.
+
+The frequency of an element is the number of occurences of that element in the array.

@@ -8,15 +8,23 @@
     "url": "https://leetcode.com/problems/longest-subsequence-with-non-zero-bitwise-xor/description/",
     "paid_only": false,
     "content_sha256": "9ef6e74658a5e099ae8401145fd7ffb0cf05c862e1a93810dc2ee5826e9ba2ee",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [
-      {"ordinal": 1, "input": "nums = [1,2,3]", "output": "2", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [2,3,4]", "output": "3", "has_explanation": true}
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
     ],
-    "constraint_count": 2,
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -29,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "bbaf2031a44be916a1aae17eb70dc321e2c722ca1f5eaf1f09791400a2e01394",
+      "reference/description.md": "ebbcf2e4e57461906a91ba907d074a9a846854b507c311ecd4e7550f9792f669",
       "reference/contract.md": "4d12566fd8eaa0f826571a234e15b8b0c6c6dad758f0ead5b03a1adf5382ef86",
       "reference/examples.md": "c35bf1f50486274099b0ebe36ffcdfded10ae683b049d4831aca6142133ce94d",
       "reference/constraints.md": "a840a95006c3cb818de3781503091d459bcc3feb2258e3bbed07a76e20129c64"

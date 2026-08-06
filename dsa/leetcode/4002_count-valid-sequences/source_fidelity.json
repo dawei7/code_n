@@ -8,44 +8,36 @@
     "url": "https://leetcode.com/problems/count-valid-sequences/description/",
     "paid_only": false,
     "content_sha256": "d346a8b2709ca92be40a82747f5b908c7c2cb94aae887122696b6fce21df372f",
-    "checked_at": "2026-07-31"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 5, k = 3",
+        "input": "n = 6",
         "output": "3",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 3, k = 2",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "n = 5, k = 5",
-        "output": "0",
-        "has_explanation": true
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 2,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 2,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "f053380ee3cfc3c14ec9c8d5913be6d17a280c4873bfdb6d9065d34cdfc59478",
+      "reference/description.md": "21f57e4bb487c61a02af7b31075743cf00492237b5d5106d24fb483f4208400a",
       "reference/contract.md": "021e2fb2c255dde2c3b99852f1f199d6954ecfce0ae674d8d8f57d992f1425d9",
       "reference/examples.md": "1b0c0f93472150a63bcc20b0a7e6e6e8fe275ff707271fbb9b8ac7f0b82a0443",
       "reference/constraints.md": "23a8ca97a5b246d7ec3ec0266737a9249a7e0315514edd7ab37b5c903fd29753"

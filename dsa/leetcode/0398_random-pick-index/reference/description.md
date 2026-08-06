@@ -1,8 +1,10 @@
 ## Description
 
-Given an integer array `nums` that may contain duplicate values, randomly return an index at which a requested target occurs. Every requested target is guaranteed to exist.
+Given an integer array `nums` with possible **duplicates**, randomly output the index of a given `target` number. You can assume that the given target number must exist in the array.
 
 Implement the `Solution` class:
 
-- `Solution(nums)` initializes the selector with `nums`.
-- `pick(target)` returns a random index `i` satisfying `nums[i] == target`. When several indices qualify, each must be returned with equal probability.
+<ul>
+	<li>`Solution(int[] nums)` Initializes the object with the array `nums`.</li>
+	<li>`int pick(int target)` Picks a random index `i` from `nums` where `nums[i] == target`. If there are multiple valid i's, then each index should have an equal probability of returning.</li>
+</ul>

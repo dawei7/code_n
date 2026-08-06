@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3086",
+    "frontend_id": "3086",
+    "title_slug": "minimum-moves-to-pick-k-ones",
+    "url": "https://leetcode.com/problems/minimum-moves-to-pick-k-ones/description/",
+    "paid_only": false,
+    "content_sha256": "a5a61d79556dea334cf2a5700e8dab6180fab9cb9abf75b88a3ed9d937e1698a",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d36ae277704fa8b1f2cbfdd254cb9821ccb3f457c66c0179cf23fea5a11856b1",
+      "reference/contract.md": "058f7e4299f1004012f84991bb3be129e1a9a44950e94803658ed5ed9ea2d364",
+      "reference/examples.md": "a125eaf726ac79826958e71edf3f031d9cba2c42714c4246696f15e6bc7cd2dd",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

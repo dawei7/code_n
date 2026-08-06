@@ -1,5 +1,5 @@
 ## Description
 
-Given a non-empty integer array `nums`, every value appears twice except for one value that appears once. Find and return that single value.
+Given a **non-empty** array of integers `nums`, every element appears *twice* except for one. Find that single one.
 
-Your solution must run in linear time and use only constant extra space.
+You must implement a solution with a linear runtime complexity and use only constant extra space.

@@ -1,5 +1,7 @@
 ## Description
 
-Split the integer array `nums` at one boundary to form exactly two nonempty contiguous subarrays named `left` and `right`. The entire `left` subarray must be strictly increasing, while the entire `right` subarray must be strictly decreasing.
+You are given an integer array `nums`.
 
-For every valid split, compare the two subarray sums. Return the smallest possible absolute difference between those sums. If no boundary satisfies both monotonicity requirements, return `-1`.
+Split the array into **exactly** two <span data-keyword="subarray-nonempty">subarrays</span>, `left` and `right`, such that `left` is **<span data-keyword="strictly-increasing-array">strictly increasing</span> ** and `right` is **<span data-keyword="strictly-decreasing-array">strictly decreasing</span>**.
+
+Return the **minimum possible absolute difference** between the sums of `left` and `right`. If no valid split exists, return `-1`.

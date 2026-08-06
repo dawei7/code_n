@@ -1,0 +1,3 @@
+## Description
+
+Given an integer array `nums`, return *the **maximum possible sum **of elements of the array such that it is divisible by three*.

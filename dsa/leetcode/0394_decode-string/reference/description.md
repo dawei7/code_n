@@ -1,5 +1,9 @@
 ## Description
 
-Given an encoded string, return its decoded form. Each expression `k[encoded_string]` means that the bracketed content is repeated exactly positive integer `k` times; encoded expressions may be nested.
+Given an encoded string, return its decoded string.
 
-The input is always valid: it contains no extra whitespace, brackets are balanced, and digits appear only as repeat counts. In particular, malformed forms such as `3a` and `2[4]` do not occur. Generated cases guarantee that the decoded output length never exceeds $10^5$.
+The encoding rule is: `k[encoded_string]`, where the `encoded_string` inside the square brackets is being repeated exactly `k` times. Note that `k` is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, `k`. For example, there will not be input like `3a` or `2[4]`.
+
+The test cases are generated so that the length of the output will never exceed `10^5`.

@@ -1,9 +1,11 @@
 ## Description
 
-You are given a string `s` of lowercase English letters and an integer `k`. All indices and distances below refer to the current form of the string, which may become shorter as merges occur.
+You are given a string `s` consisting of lowercase English letters and an integer `k`.
 
-Two equal characters are close when the distance between their current indices is at most `k`. A merge keeps the left character and removes the right character. Perform exactly one merge at a time, update the string and its indices, and continue until no close equal pair remains.
+Two **equal** characters in the **current** string `s` are considered **close** if the distance between their indices is **at most** `k`.
 
-Return the string left after every possible merge has been performed.
+When two characters are **close**, the right one merges into the left. Merges happen **one at a time**, and after each merge, the string updates until no more merges are possible.
 
-**Note.** When more than one merge is currently possible, choose the pair with the smallest left index. If that left index can pair with several right indices, choose the smallest such right index.
+Return the resulting string after performing all possible merges.
+
+**Note**: If multiple merges are possible, always merge the pair with the **smallest left** index. If multiple pairs share the smallest left index, choose the pair with the **smallest right** index.

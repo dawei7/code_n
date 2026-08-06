@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_1054",
+    "frontend_id": "1054",
+    "title_slug": "distant-barcodes",
+    "url": "https://leetcode.com/problems/distant-barcodes/description/",
+    "paid_only": false,
+    "content_sha256": "e4617422ee2cc5a2496a2721d14fa0aa0eed2ffd572af83ad9c7c433b45cdb9c",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9ba3565ef0ac29bbac5a6e1d7470cb091d3e6484a59e0716db5f301653640a81",
+      "reference/contract.md": "058f7e4299f1004012f84991bb3be129e1a9a44950e94803658ed5ed9ea2d364",
+      "reference/examples.md": "a125eaf726ac79826958e71edf3f031d9cba2c42714c4246696f15e6bc7cd2dd",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

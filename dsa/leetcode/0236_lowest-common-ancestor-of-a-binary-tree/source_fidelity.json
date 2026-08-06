@@ -1,11 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_236", "frontend_id": "236", "title_slug": "lowest-common-ancestor-of-a-binary-tree", "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/", "paid_only": false, "content_sha256": "6bd76e69c1271744e0d139ad01713c1d1542c1c6c19457d06bcabe9537c2750b", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1", "output": "3", "has_explanation": true}, {"ordinal": 2, "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4", "output": "5", "has_explanation": true}, {"ordinal": 3, "input": "root = [1,2], p = 1, q = 2", "output": "1", "has_explanation": false}],
-    "constraint_count": 5,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_236",
+    "frontend_id": "236",
+    "title_slug": "lowest-common-ancestor-of-a-binary-tree",
+    "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/",
+    "paid_only": false,
+    "content_sha256": "6bd76e69c1271744e0d139ad01713c1d1542c1c6c19457d06bcabe9537c2750b",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "977a56e15cecc4025c0c24980458bab2f4d11315105cf215084ba1f288e989fc", "reference/contract.md": "cff5ef49714892a73c7942d04972da617ff49ba14d7f754110054984dcfcc363", "reference/examples.md": "01fa46fa840fca5c5e874a983def71626c2f31f37a4ebf8ddb5c149de8dfbb99", "reference/constraints.md": "bd1ee68ea5af969935492b72aa4aa34e8a8d7e407242dc2a99a1428e94108df3"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "root = [1,2], p = 1, q = 2",
+        "output": "1",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "69c551fcdf2175bd0bafbe58152b1fc22a59a77a637bd24568ddb037ee41ba94",
+      "reference/contract.md": "cff5ef49714892a73c7942d04972da617ff49ba14d7f754110054984dcfcc363",
+      "reference/examples.md": "01fa46fa840fca5c5e874a983def71626c2f31f37a4ebf8ddb5c149de8dfbb99",
+      "reference/constraints.md": "bd1ee68ea5af969935492b72aa4aa34e8a8d7e407242dc2a99a1428e94108df3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

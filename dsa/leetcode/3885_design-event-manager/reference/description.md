@@ -1,11 +1,13 @@
 ## Description
 
-An initial collection of events is provided. Every event has a unique `eventId` and an associated `priority`.
+You are given an initial list of events, where each event has a unique `eventId` and a `priority`.
 
-Implement the stateful `EventManager` class with these operations:
+Implement the `EventManager` class:
 
-- `EventManager(events)` initializes all listed events, where each pair is `[eventId, priority]`.
-- `updatePriority(eventId, newPriority)` replaces the priority of the specified active event.
-- `pollHighest()` removes and returns the active event with greatest priority. If several active events share that priority, it removes the one with the smallest `eventId`. It returns `-1` when no active event remains.
+<ul>
+	<li>`EventManager(int[][] events)` Initializes the manager with the given events, where `events[i] = [eventId_i, priority_​​​​​​​i]`.</li>
+	<li>`void updatePriority(int eventId, int newPriority)` Updates the priority of the **active** event with id `eventId` to `newPriority`.</li>
+	<li>`int pollHighest()` Removes and returns the `eventId` of the **active** event with the **highest** priority. If multiple active events have the same priority, return the **smallest** `eventId` among them. If there are no active events, return -1.</li>
+</ul>
 
-An event is active exactly until it is removed by `pollHighest()`; priority updates do not remove it.
+An event is called **active** if it has not been removed by `pollHighest()`.

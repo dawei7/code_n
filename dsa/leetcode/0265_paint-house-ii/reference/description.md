@@ -1,7 +1,10 @@
 ## Description
 
-The houses form a row, and every house must be painted with one of `k` colors. Painting costs depend on both the house and the chosen color. A valid plan paints every house while ensuring that neighboring houses never share a color.
+There are a row of `n` houses, where each house can be painted one of `k` colors. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.
 
-The `n x k` matrix `costs` records these prices: `costs[i][j]` is the cost of assigning color `j` to house `i`. For example, `costs[0][0]` refers to color `0` on house `0`, while `costs[1][2]` refers to color `2` on house `1`.
+The cost of painting each house with a certain color is represented by an `n x k` cost matrix `costs`.
 
-Return the minimum total cost among all valid painting plans.
+- For example, `costs[0][0]` is the cost of painting house `0` with color `0`; `costs[1][2]` is the cost of painting house `1` with color `2`, and so on...
+
+Return the minimum cost to paint all houses.
+

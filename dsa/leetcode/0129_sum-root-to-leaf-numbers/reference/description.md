@@ -1,9 +1,13 @@
 ## Description
 
-You are given the `root` of a binary tree whose node values are digits from `0` through `9`.
+You are given the `root` of a binary tree containing digits from `0` to `9` only.
 
-Each root-to-leaf path represents one decimal number. For example, the path `1 -> 2 -> 3` represents `123`.
+Each root-to-leaf path in the tree represents a number.
 
-Return the sum of the numbers represented by all root-to-leaf paths. The generated cases guarantee that this total fits in a signed 32-bit integer.
+<ul>
+	<li>For example, the root-to-leaf path `1 -> 2 -> 3` represents the number `123`.</li>
+</ul>
 
-A leaf is a node with no children.
+Return *the total sum of all root-to-leaf numbers*. Test cases are generated so that the answer will fit in a **32-bit** integer.
+
+A **leaf** node is a node with no children.

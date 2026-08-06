@@ -1,7 +1,7 @@
 ## Description
 
-You are given an integer array `nums` containing at least three elements.
+You are given an integer array `nums`.
 
-Select values `a`, `b`, and `c` from three distinct array indices. The selected values themselves do not need to be different, so equal values may be used when they come from different positions.
+Choose three elements `a`, `b`, and `c` from `nums` at **distinct** indices such that the value of the expression `a + b - c` is maximized.
 
-Choose those three positions to maximize the expression `a + b - c`, and return its greatest possible integer value. The roles of `a` and `b` are interchangeable, while the value chosen as `c` is subtracted.
+Return an integer denoting the **maximum possible value** of this expression.

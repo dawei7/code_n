@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_984",
+    "frontend_id": "984",
+    "title_slug": "string-without-aaa-or-bbb",
+    "url": "https://leetcode.com/problems/string-without-aaa-or-bbb/description/",
+    "paid_only": false,
+    "content_sha256": "2cc21b82857428a9749c228c75b00094826f00073fb316c068bfb5db3e941e87",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9c793a5ff615722ae88d9ad7deb805e6a56a26e5bd85d0259f855c26f6a97879",
+      "reference/contract.md": "058f7e4299f1004012f84991bb3be129e1a9a44950e94803658ed5ed9ea2d364",
+      "reference/examples.md": "a125eaf726ac79826958e71edf3f031d9cba2c42714c4246696f15e6bc7cd2dd",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

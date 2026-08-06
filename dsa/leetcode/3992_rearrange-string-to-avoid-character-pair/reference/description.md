@@ -1,7 +1,12 @@
 ## Description
 
-You are given a string `s` together with two distinct lowercase English letters, `x` and `y`. Rearrange all characters of `s` to form a new string `t`.
+You are given a string `s` and two distinct lowercase English letters `x` and `y`.
 
-The result must be a permutation of `s`, so it contains exactly the same characters with the same multiplicities. It must also place every occurrence of `y` before every occurrence of `x`. Characters other than `x` and `y` may appear anywhere.
+Rearrange the characters of `s` to construct a new string `t` such that:
 
-Return any string `t` that satisfies both requirements.
+<ul>
+	<li>`t` is a <span data-keyword="permutation-string">permutation</span> of `s`.</li>
+	<li>Every occurrence of `y` appears before every occurrence of `x` in `t`.</li>
+</ul>
+
+Return any valid string `t`.

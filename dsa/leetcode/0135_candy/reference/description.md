@@ -1,10 +1,12 @@
 ## Description
 
-There are `n` children standing in a line, with each child's rating stored in integer array `ratings`.
+There are `n` children standing in a line. Each child is assigned a rating value given in the integer array `ratings`.
 
-Distribute candies subject to both requirements:
+You are giving candies to these children subjected to the following requirements:
 
-- Every child receives at least one candy.
-- A child with a higher rating than an immediate neighbor receives more candies than that neighbor.
+<ul>
+	<li>Each child must have at least one candy.</li>
+	<li>Children with a higher rating get more candies than their neighbors.</li>
+</ul>
 
-Return the minimum total number of candies needed for a valid distribution.
+Return *the minimum number of candies you need to have to distribute the candies to the children*.

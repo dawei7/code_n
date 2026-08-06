@@ -1,7 +1,12 @@
 ## Description
 
-You are given an integer array `nums` of length `n` together with integers `m`, `l`, and `r`.
+You are given an integer array `nums` of length `n`, and three integers `m`, `l`, and `r`.
 
-Choose at least one and at most `m` non-overlapping subarrays of `nums`. Every chosen subarray must have a length in the inclusive range `[l, r]`. Maximize the sum of all values contained in the selected subarrays and return that maximum total.
+Your task is to select **at least** one and **at most** `m` **non-overlapping <span data-keyword="subarray-nonempty">subarrays</span>** from `nums` such that:
 
-Because at least one subarray is required, the answer may be negative when every legal choice has a negative sum.
+<ul>
+	<li>Each selected **subarray** has a length between `[l, r]` (inclusive).</li>
+	<li>The total sum of all selected **subarrays** is **maximized**.</li>
+</ul>
+
+Return the **maximum** total sum you can achieve.

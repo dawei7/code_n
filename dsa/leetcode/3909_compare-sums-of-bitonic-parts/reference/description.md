@@ -1,5 +1,28 @@
 ## Description
 
-An array `nums` is bitonic: it increases strictly until one peak element and then decreases strictly. Divide it at that peak into an ascending part from index `0` through the peak and a descending part from the peak through index `n - 1`. Both ranges are inclusive, so the peak contributes to both sums.
+You are given a **bitonic** array `nums` of length `n`.
 
-Compare the sum of the ascending part with the sum of the descending part. Return `0` when the ascending sum is larger, `1` when the descending sum is larger, and `-1` when the two sums are equal.
+Split the array into **two** parts:
+
+<ul>
+	<li>**Ascending part**: from index 0 to the peak element (inclusive).</li>
+	<li>**Descending part**: from the peak element to index `n - 1` (inclusive).</li>
+</ul>
+
+The peak element belongs to both parts.
+
+Return:
+
+<ul>
+	<li>0 if the sum of the **ascending** part is greater.</li>
+	<li>1 if the sum of the **descending** part is greater.</li>
+	<li>-1 if both sums are **equal**.</li>
+</ul>
+
+**Notes**:
+
+<ul>
+	<li>A **bitonic** array is an array that is **strictly increasing** up to a **single peak** element and then **strictly decreasing**.</li>
+	<li>An array is said to be **strictly increasing** if each element is **strictly greater** than its **previous** one (if exists).</li>
+	<li>An array is said to be **strictly decreasing** if each element is **strictly smaller** than its **previous** one (if exists).</li>
+</ul>

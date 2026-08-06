@@ -1,9 +1,9 @@
 ## Description
 
-You are given a string `s` made of lowercase English words separated by single spaces.
+You are given a string `s` consisting of lowercase English words, each separated by a single space.
 
-Count the vowels in the first word. For every later word, reverse its characters when its vowel count equals that first-word count; otherwise, leave it unchanged. The first word establishes the target and is not reversed.
+Determine how many vowels appear in the **first** word. Then, reverse each following word that has the **same vowel count**. Leave all remaining words unchanged.
 
-Return the resulting words joined in their original order with single spaces.
+Return the resulting string.
 
-The vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
+Vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.

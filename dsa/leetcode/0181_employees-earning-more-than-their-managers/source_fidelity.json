@@ -1,17 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_181", "frontend_id": "181", "title_slug": "employees-earning-more-than-their-managers", "url": "https://leetcode.com/problems/employees-earning-more-than-their-managers/description/", "paid_only": false, "content_sha256": "7e9514ea834a6e1de398f0142f0ab032507b3075bed5aa75ad40bf15ef470476", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_181",
+    "frontend_id": "181",
+    "title_slug": "employees-earning-more-than-their-managers",
+    "url": "https://leetcode.com/problems/employees-earning-more-than-their-managers/description/",
+    "paid_only": false,
+    "content_sha256": "7e9514ea834a6e1de398f0142f0ab032507b3075bed5aa75ad40bf15ef470476",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["employee_table", "description", "examples"],
+    "sections": [
+      "employee_table",
+      "description",
+      "examples"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "Employee = [[1,\"Joe\",70000,3],[2,\"Henry\",80000,4],[3,\"Sam\",60000,null],[4,\"Max\",90000,null]]", "output": "Employee = [\"Joe\"]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "Employee = [[1,\"Joe\",70000,3],[2,\"Henry\",80000,4],[3,\"Sam\",60000,null],[4,\"Max\",90000,null]]",
+        "output": "Employee = [\"Joe\"]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 0,
-    "visuals": {"source_images": 0, "source_tables": 3, "source_diagrams": 0, "local_images": 0, "local_tables": 3, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/employee_table.md": "bc47889f37fbe54edbbe2ecb2b724382d4a9a23fde581547397d8a5699e92138", "reference/description.md": "6dbcec46168c6033a40b81447ea5e522b579c6b9f1ee49d4f3fdfaa2af5bb25c", "reference/contract.md": "62a65d8fd5abc9cd765dc4bca569a17144bafeda4352a6d65885817b3fea72d4", "reference/examples.md": "f61c1b2b3a0b8c1a6f4af307ab94cc0e00dda3a29932a0dd2169038c0d4a25a0"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/employee_table.md": "bc47889f37fbe54edbbe2ecb2b724382d4a9a23fde581547397d8a5699e92138",
+      "reference/description.md": "beab28a34235e9c6ceb8d0cf11a669e8570c5d5651aa0f12f0c7b131bec871f1",
+      "reference/contract.md": "62a65d8fd5abc9cd765dc4bca569a17144bafeda4352a6d65885817b3fea72d4",
+      "reference/examples.md": "f61c1b2b3a0b8c1a6f4af307ab94cc0e00dda3a29932a0dd2169038c0d4a25a0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

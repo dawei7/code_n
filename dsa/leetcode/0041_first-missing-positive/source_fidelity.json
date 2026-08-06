@@ -1,29 +1,66 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_41", "frontend_id": "41",
+    "provider": "leetcode",
+    "challenge_id": "lc_41",
+    "frontend_id": "41",
     "title_slug": "first-missing-positive",
     "url": "https://leetcode.com/problems/first-missing-positive/description/",
-    "paid_only": false, "content_sha256": "ecb118101260ae953f49b91a1901681fef1ae49e7692b75b33913f20eaa25da7", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "ecb118101260ae953f49b91a1901681fef1ae49e7692b75b33913f20eaa25da7",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [1,2,0]", "output": "3", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [3,4,-1,1]", "output": "2", "has_explanation": true},
-      {"ordinal": 3, "input": "nums = [7,8,9,11,12]", "output": "1", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,0]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [3,4,-1,1]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [7,8,9,11,12]",
+        "output": "1",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "d73af624cdf6f21d56425f09ea2622803eb85371136a2abb236544ac4dd0af6f",
+      "reference/description.md": "43490f3aa48937196e25479ff2f877d6e4a0b4836fb8098e3a30103ed13ce9a3",
       "reference/contract.md": "5a1eeefa949c9d5ecf0e15f6145fbff9ba82b83f8a8d7c3dfe09b76546b5aa65",
       "reference/examples.md": "04903e8bb148f2f6fcc95206f374bfc3a214b4d321cc4b8bc7cab2cc220dff44",
       "reference/constraints.md": "f5a36cc62bec517765b08b58851f9b800850d4c5c981a66654fd5c3ecf59af17"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

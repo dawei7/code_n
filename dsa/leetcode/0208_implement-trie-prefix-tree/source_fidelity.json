@@ -1,11 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_208", "frontend_id": "208", "title_slug": "implement-trie-prefix-tree", "url": "https://leetcode.com/problems/implement-trie-prefix-tree/description/", "paid_only": false, "content_sha256": "a5edcf3889f34152fd5b1ff56b04ca88a4fd4146508f65c7c6c6af61590c1c77", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "[\"Trie\",\"insert\",\"search\",\"search\",\"startsWith\",\"insert\",\"search\"], [[],[\"apple\"],[\"apple\"],[\"app\"],[\"app\"],[\"app\"],[\"app\"]]", "output": "[null,null,true,false,true,null,true]", "has_explanation": true}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 1, "local_images": 0, "local_tables": 1, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_208",
+    "frontend_id": "208",
+    "title_slug": "implement-trie-prefix-tree",
+    "url": "https://leetcode.com/problems/implement-trie-prefix-tree/description/",
+    "paid_only": false,
+    "content_sha256": "a5edcf3889f34152fd5b1ff56b04ca88a4fd4146508f65c7c6c6af61590c1c77",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "789ba3832ff67430ad21664a393d28e12ca53ae246b46c45a1f1ba055d418e8d", "reference/contract.md": "ec68bacf189204dd778d68a66c74dc7106e980b2febb70070123df43ef16e477", "reference/examples.md": "4842699711e063be2dcb4abaf46feb18d97122aa9adf534021585e9878e15532", "reference/constraints.md": "f341e913665dfe2e4af9ca90292563ac878881da011f43373a142981afe1060a"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "[\"Trie\",\"insert\",\"search\",\"search\",\"startsWith\",\"insert\",\"search\"], [[],[\"apple\"],[\"apple\"],[\"app\"],[\"app\"],[\"app\"],[\"app\"]]",
+        "output": "[null,null,true,false,true,null,true]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 1,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e07cfb3af3e44e2c26b7bfd5bd5c8371f9ab6c2df8a7ae76adff7e28f9bc3400",
+      "reference/contract.md": "ec68bacf189204dd778d68a66c74dc7106e980b2febb70070123df43ef16e477",
+      "reference/examples.md": "4842699711e063be2dcb4abaf46feb18d97122aa9adf534021585e9878e15532",
+      "reference/constraints.md": "f341e913665dfe2e4af9ca90292563ac878881da011f43373a142981afe1060a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

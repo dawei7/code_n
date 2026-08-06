@@ -1,11 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_234", "frontend_id": "234", "title_slug": "palindrome-linked-list", "url": "https://leetcode.com/problems/palindrome-linked-list/description/", "paid_only": false, "content_sha256": "992fb6f3416c5a64382d0e6c8a5681a637d789f11ce0ef069fdf86cb2e2d1784", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "head = [1,2,2,1]", "output": "true", "has_explanation": false}, {"ordinal": 2, "input": "head = [1,2]", "output": "false", "has_explanation": false}],
-    "constraint_count": 2,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_234",
+    "frontend_id": "234",
+    "title_slug": "palindrome-linked-list",
+    "url": "https://leetcode.com/problems/palindrome-linked-list/description/",
+    "paid_only": false,
+    "content_sha256": "992fb6f3416c5a64382d0e6c8a5681a637d789f11ce0ef069fdf86cb2e2d1784",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "7ce0a7e86ff0d68cecc6e34118a71de4e0eade35c2d9fd2b93bc1fba0dd2cc0b", "reference/contract.md": "5a416feb45dc5c353d3a3bce852d2b95b9d2e6694e0656d5dd919995bc87da8b", "reference/examples.md": "dae6fe52248d8dbf6cb69642ac7744fd0d3b4e3651d6c095a3319aac31ca992b", "reference/constraints.md": "f211ab856178a49cbac75310acfcb9f62c33f112d406d1b65dc6c8cb2a21dca3", "reference/follow_up.md": "55600f7ef9a4885bfcecc2c7503e960547e5348ca6831930804d82af4cbb8cde"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "head = [1,2,2,1]",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "head = [1,2]",
+        "output": "false",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c93ac6e620699b9c54127366d6ed7f8a866e4a90e852d18d44b29ef9bb37c820",
+      "reference/contract.md": "5a416feb45dc5c353d3a3bce852d2b95b9d2e6694e0656d5dd919995bc87da8b",
+      "reference/examples.md": "dae6fe52248d8dbf6cb69642ac7744fd0d3b4e3651d6c095a3319aac31ca992b",
+      "reference/constraints.md": "f211ab856178a49cbac75310acfcb9f62c33f112d406d1b65dc6c8cb2a21dca3",
+      "reference/follow_up.md": "55600f7ef9a4885bfcecc2c7503e960547e5348ca6831930804d82af4cbb8cde"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

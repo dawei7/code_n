@@ -1,3 +1,3 @@
 ## Description
 
-Implement a power function that calculates the real number $x$ raised to the integer exponent $n$ and returns $x^n$.
+Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_blank">pow(x, n)</a>, which calculates `x` raised to the power `n` (i.e., `x^n`).

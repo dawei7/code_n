@@ -1,13 +1,13 @@
 ## Description
 
-You are given two integers, `l` and `r`.
+You are given two integers `l` and `r`.
 
-Call an integer **good** when its decimal digits form a strictly monotone sequence: the digits must be either strictly increasing throughout or strictly decreasing throughout. Every one-digit positive integer is good.
+An integer is called **good** if its digits form a **strictly monotone** sequence, meaning the digits are **strictly increasing** or **strictly decreasing**. All single-digit integers are considered good.
 
-An integer is **fancy** when either the integer itself is good or the sum of its decimal digits is good.
+An integer is called **fancy** if it is good, or if the **sum of its digits** is good.
 
-Return the number of fancy integers in the inclusive range `[l, r]`.
+Return an integer representing the number of fancy integers in the range `[l, r]` (inclusive).
 
-A digit sequence is strictly increasing when every digit after the first is strictly greater than the digit immediately before it.
+A sequence is said to be **strictly increasing** if each element is **strictly greater** than its previous one (if exists).
 
-A digit sequence is strictly decreasing when every digit after the first is strictly less than the digit immediately before it.
+A sequence is said to be **strictly decreasing** if each element is **strictly less** than its previous one (if exists).

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/mirror-frequency-distance/description/",
     "paid_only": false,
     "content_sha256": "425bf2e2d9232b6eae38cca5a989f89d78fe194077ea0cefc5f97cc34ec1ab42",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,37 +19,25 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \"ab1z9\"",
+        "input": "n = 6",
         "output": "3",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"4m7n\"",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"byby\"",
-        "output": "0",
-        "has_explanation": true
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 3,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 3,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "cbe8e86e9297b1a163f507a9af3ef2487e69acaeca09de460d6f30bbbe54aa8b",
+      "reference/description.md": "42f8d786483ecd4b254ab164d32048abcce81095cb0f3b8e170a78379c9339a7",
       "reference/contract.md": "8929fccc25abd6a14d17a18c2f87c353a1734680f92413c12863186f9291accd",
       "reference/examples.md": "cf4bf67c68f34dcfbb828ec46b4c622177eba6a42915f7e2083c28ca6e686908",
       "reference/constraints.md": "a1a7dfe81c61615243019fe8bf3bf9393bcffcaaac808cf79e73df33a45a6667"
@@ -64,4 +52,3 @@
     }
   }
 }
-

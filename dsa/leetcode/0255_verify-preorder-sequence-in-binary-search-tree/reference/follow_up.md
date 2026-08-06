@@ -1,3 +1,4 @@
 ## Follow-up
 
-Can the sequence be verified using only constant extra space?
+Could you do it using only constant space complexity?
+

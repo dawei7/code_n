@@ -1,29 +1,62 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_26", "frontend_id": "26",
+    "provider": "leetcode",
+    "challenge_id": "lc_26",
+    "frontend_id": "26",
     "title_slug": "remove-duplicates-from-sorted-array",
     "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/",
-    "paid_only": false, "content_sha256": "4a6bf888c1a5e3023ed4ee8785ea10e25f1e92f0caeb7e8c038dbcc5ba7ca189", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "4a6bf888c1a5e3023ed4ee8785ea10e25f1e92f0caeb7e8c038dbcc5ba7ca189",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "custom_judge", "examples", "constraints"],
+    "sections": [
+      "description",
+      "custom_judge",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [1,1,2]", "output": "2, nums = [1,2,_]", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [0,0,1,1,1,2,2,3,3,4]", "output": "5, nums = [0,1,2,3,4,_,_,_,_,_]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "nums = [1,1,2]",
+        "output": "2, nums = [1,2,_]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [0,0,1,1,1,2,2,3,3,4]",
+        "output": "5, nums = [0,1,2,3,4,_,_,_,_,_]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "7759fe9c4f018c6b1689cffc0bfef596e0d3a2f545c0d5e85e0260a6b5336f9f",
+      "reference/description.md": "af12b8bc8cde4f72c283c563f54e2e5d97f26217c1181c48285325079bd046d5",
       "reference/contract.md": "0815303d3e093f61a1d2975a9ce5cf059e573340492e0cbfb7036e26b8526ed2",
       "reference/custom_judge.md": "e9fe709c244506fea468f02f90cfde77e77ebce3c5fee9ee95d9ae1047c55aea",
       "reference/examples.md": "55e0d970ffdbe3ed9c7677551471091f716e2c13a6d0f153252c94854b6892b4",
       "reference/constraints.md": "b52f2e8d494345201af9c79dbd5ddcb7592a2c428c6a8ce9a8733cb996334c7e"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

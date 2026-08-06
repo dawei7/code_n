@@ -1,7 +1,5 @@
 ## Description
 
-You are given two positive integers, `n` and `k`.
+You are given two positive integers `n` and `k`.
 
-Consider all positive integers whose binary representation contains exactly `k` one bits, arranged in increasing numerical order. Return the integer at one-based position `n` in that sequence; the requested value is the `n`th smallest qualifying positive integer.
-
-The input is guaranteed to have an answer strictly smaller than $2^{50}$.
+Return an integer denoting the `n^th` smallest positive integer that has **exactly** `k` ones in its binary representation. It is guaranteed that the answer is **strictly less** than `2^50`.

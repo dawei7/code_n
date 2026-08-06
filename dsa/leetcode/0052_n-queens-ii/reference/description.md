@@ -1,5 +1,5 @@
 ## Description
 
-The n-queens puzzle places $n$ queens on an $n \times n$ chessboard with no two queens able to attack each other.
+The **n-queens** puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other.
 
-Given `n`, return how many distinct non-attacking arrangements exist.
+Given an integer `n`, return *the number of distinct solutions to the **n-queens puzzle***.

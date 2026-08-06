@@ -1,5 +1,5 @@
 ## Description
 
-Given an array `nums` of distinct integers and an integer `target`, count the ordered combinations of values from `nums` whose sum is exactly `target`.
+Given an array of **distinct** integers `nums` and a target integer `target`, return *the number of possible combinations that add up to* `target`.
 
-Different orders count separately even when they use the same values. The test data guarantees that the resulting count fits in a 32-bit integer.
+The test cases are generated so that the answer can fit in a **32-bit** integer.

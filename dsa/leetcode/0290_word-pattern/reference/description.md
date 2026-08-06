@@ -1,9 +1,11 @@
 ## Description
 
-Given a `pattern` and a word string `s`, determine whether `s` follows that pattern.
+Given a `pattern` and a string `s`, find if `s` follows the same pattern.
 
-Following the pattern requires a full match and a bijection between pattern letters and the nonempty words in `s`:
+Here **follow** means a full match, such that there is a bijection between a letter in `pattern` and a **non-empty** word in `s`. Specifically:
 
-- Each letter in `pattern` maps to exactly one word in `s`.
-- Each distinct word in `s` maps to exactly one letter in `pattern`.
-- Two different letters cannot map to one word, and two different words cannot map to one letter.
+<ul>
+	<li>Each letter in `pattern` maps to **exactly** one unique word in `s`.</li>
+	<li>Each unique word in `s` maps to **exactly** one letter in `pattern`.</li>
+	<li>No two letters map to the same word, and no two words map to the same letter.</li>
+</ul>

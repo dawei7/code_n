@@ -8,34 +8,39 @@
     "url": "https://leetcode.com/problems/most-common-course-pairs/description/",
     "paid_only": false,
     "content_sha256": "b894dad7a012f59e0a7f612743e9bfd5ecd3fa95a95edd1180668f821565d51b",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`course_completions` table (19 rows)",
-        "output": "seven ordered course-transition rows",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 0,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 3,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 3,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "d9d4ec319bc656624f3727d040ed13f0289fc41363af1af6e7525f48cf80305c",
+      "reference/description.md": "d9b4a51f15ebe42e9cbdf6d6b14136482d19c1f60b0b437d53685da3fb199e0e",
       "reference/contract.md": "80c9c89638c747274c6c572d5e4812f8a193d358f2a95183811f1eac7b22952b",
-      "reference/examples.md": "83794c2ef9568ab00cc68405c1127a3c47f2aa413bcc8a6f749a3917f1ac7d7a"
+      "reference/examples.md": "83794c2ef9568ab00cc68405c1127a3c47f2aa413bcc8a6f749a3917f1ac7d7a",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
     },
     "assertions": {
       "semantic_coverage": true,

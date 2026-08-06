@@ -2,8 +2,14 @@
 
 You are given an integer array `nums`.
 
-A nonempty subarray is called **stable** when it contains no inversion. Equivalently, there must not be indices $i<j$ within that subarray for which `nums[i] > nums[j]`; its values are therefore in non-decreasing order.
+A **<span data-keyword="subarray-nonempty">subarray</span>** of `nums` is called **stable** if it contains **no inversions**, i.e., there is no pair of indices `i < j` such that `nums[i] > nums[j]`.
 
-You are also given a two-dimensional integer array `queries` containing $q$ ranges. A query `queries[i] = [l_i,r_i]` asks for the number of stable subarrays lying completely inside the inclusive segment `nums[l_i..r_i]`.
+You are also given a **2D integer array** `queries` of length `q`, where each `queries[i] = [l_i, r_i]` represents a query. For each query `[l_i, r_i]`, compute the number of **stable subarrays** that lie entirely within the segment `nums[l_i..r_i]`.
 
-Return an array `ans` of length $q$ in the original query order, where `ans[i]` is the count for the $i$th query.
+Return an integer array `ans` of length `q`, where `ans[i]` is the answer to the `i^th` query.​​​​​​​​​​​​​​
+
+**Note**:
+
+<ul>
+	<li>A single element subarray is considered stable.</li>
+</ul>

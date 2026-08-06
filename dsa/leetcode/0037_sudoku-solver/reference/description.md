@@ -1,11 +1,13 @@
 ## Description
 
-Complete a Sudoku puzzle by replacing every empty cell with a digit.
+Write a program to solve a Sudoku puzzle by filling the empty cells.
 
-A completed board must meet all of these requirements:
+A sudoku solution must satisfy **all of the following rules**:
 
-1. Every row contains each digit from `1` through `9` exactly once.
-2. Every column contains each digit from `1` through `9` exactly once.
-3. Each of the nine $3 \times 3$ sub-boxes contains every digit from `1` through `9` exactly once.
+<ol>
+	<li>Each of the digits `1-9` must occur exactly once in each row.</li>
+	<li>Each of the digits `1-9` must occur exactly once in each column.</li>
+	<li>Each of the digits `1-9` must occur exactly once in each of the 9 `3x3` sub-boxes of the grid.</li>
+</ol>
 
-The character `.` marks an empty cell that must be filled.
+The `'.'` character indicates empty cells.

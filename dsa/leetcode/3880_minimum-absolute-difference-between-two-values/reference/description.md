@@ -1,7 +1,9 @@
 ## Description
 
-You are given an integer array `nums` whose entries are limited to `0`, `1`, and `2`.
+You are given an integer array `nums` consisting only of 0, 1, and 2.
 
-An index pair `(i, j)` is valid when `nums[i]` is `1` and `nums[j]` is `2`. Either index may occur first in the array because the pair's distance is the absolute difference $\lvert i-j\rvert$.
+A pair of indices `(i, j)` is called **valid** if `nums[i] == 1` and `nums[j] == 2`.
 
-Return the smallest distance among all valid pairs. If the array does not contain both required values and therefore has no valid pair, return `-1`.
+Return the **minimum** absolute difference between `i` and `j` among all valid pairs. If no valid pair exists, return -1.
+
+The absolute difference between indices `i` and `j` is defined as `abs(i - j)`.

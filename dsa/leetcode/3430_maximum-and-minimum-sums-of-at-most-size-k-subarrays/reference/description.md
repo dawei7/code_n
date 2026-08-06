@@ -1,0 +1,3 @@
+## Description
+
+You are given an integer array `nums` and a **positive** integer `k`. Return the sum of the **maximum** and **minimum** elements of all <span data-keyword="subarray-nonempty">subarrays</span> with **at most** `k` elements.

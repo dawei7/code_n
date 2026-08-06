@@ -1,5 +1,5 @@
 ## Description
 
-Given a list of non-negative integers `nums`, arrange every value so that their concatenation forms the largest possible number, then return that number.
+Given a list of non-negative integers `nums`, arrange them such that they form the largest number and return it.
 
-Because the result may be too large for an integer type, return it as a string.
+Since the result may be very large, so you need to return a string instead of an integer.

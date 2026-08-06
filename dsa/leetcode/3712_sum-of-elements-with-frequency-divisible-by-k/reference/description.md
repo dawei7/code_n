@@ -2,4 +2,6 @@
 
 You are given an integer array `nums` and an integer `k`.
 
-For each distinct value, consider its total frequency in `nums`. Return the sum of all array elements whose value has a frequency divisible by `k`. If no value qualifies, return `0`.
+Return an integer denoting the **sum** of all elements in `nums` whose **<span data-keyword="frequency-array">frequency</span>** is divisible by `k`, or 0 if there are no such elements.
+
+**Note:** An element is included in the sum **exactly** as many times as it appears in the array if its total frequency is divisible by `k`.

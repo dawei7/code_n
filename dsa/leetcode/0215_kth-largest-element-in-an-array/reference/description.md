@@ -1,7 +1,7 @@
 ## Description
 
-Given an integer array `nums` and an integer `k`, return the element occupying rank `k` when all array elements are ordered from largest to smallest.
+Given an integer array `nums` and an integer `k`, return *the* `k^th` *largest element in the array*.
 
-This is the $k$th largest **occurrence**, not the $k$th distinct value, so duplicate values occupy separate positions in the ordering.
+Note that it is the `k^th` largest element in the sorted order, not the `k^th` distinct element.
 
-Can you find the result without sorting the array?
+Can you solve it without sorting?

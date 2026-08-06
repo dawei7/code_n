@@ -8,31 +8,23 @@
     "url": "https://leetcode.com/problems/maximum-bitwise-and-after-increment-operations/description/",
     "paid_only": false,
     "content_sha256": "e576cb5928737ce077cde85769300c061756cc2ff4f6bb5cbd58c79eb40dd6a4",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`nums = [3,1,2], k = 8, m = 2`",
-        "output": "`6`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`nums = [1,2,8,4], k = 7, m = 3`",
-        "output": "`4`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "`nums = [1,1], k = 3, m = 2`",
-        "output": "`2`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 4,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -45,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "14f6e1554378eae436ad2d54556aeef3f93408fd612a77c977c263a766e1575f",
+      "reference/description.md": "7c3ec19dbb8eb9f47ec8e8a09e45dd4e8e0086e71e614dd6594fd0e6728835dd",
       "reference/contract.md": "9bb682c477a0eefabad4344d82b79b05dfc74437113628ffad3e2abe5bb714c6",
       "reference/examples.md": "fe391338ba9b0ea72a4f07a8829a372aba4becb477fa399fbded774eca604eb7",
       "reference/constraints.md": "e37be2a3ee090d92c94f9a27d7d955c28bdddfd6f3b0771495f0822c9fd553fa"

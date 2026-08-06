@@ -1,5 +1,5 @@
 ## Description
 
-Given an ascending array of distinct integers and an integer `target`, return the target's index when it is present. Otherwise, return the index where inserting `target` would preserve the array's ascending order. Let $n = \lvert\texttt{nums}\rvert$.
+Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
-The algorithm must run in $O(\log n)$ time.
+You must write an algorithm with `O(log n)` runtime complexity.

@@ -1,0 +1,5 @@
+## Description
+
+You are given an integer array `nums`.
+
+Return an integer that is the **maximum** distance between the **indices** of two (not necessarily different) prime numbers in `nums`*.*

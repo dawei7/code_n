@@ -1,10 +1,12 @@
 ## Description
 
-Implement a `RandomizedSet` with these operations:
+Implement the `RandomizedSet` class:
 
-- `RandomizedSet()` initializes an empty set.
-- `insert(val)` adds `val` only when it is absent and returns whether insertion occurred.
-- `remove(val)` deletes `val` only when it is present and returns whether removal occurred.
-- `getRandom()` returns a uniformly random value from the current set. It is called only while the set is nonempty.
+<ul>
+	<li>`RandomizedSet()` Initializes the `RandomizedSet` object.</li>
+	<li>`bool insert(int val)` Inserts an item `val` into the set if not present. Returns `true` if the item was not present, `false` otherwise.</li>
+	<li>`bool remove(int val)` Removes an item `val` from the set if present. Returns `true` if the item was present, `false` otherwise.</li>
+	<li>`int getRandom()` Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the **same probability** of being returned.</li>
+</ul>
 
-Every operation must run in average $O(1)$ time.
+You must implement the functions of the class such that each function works in **average** `O(1)` time complexity.

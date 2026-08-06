@@ -1,7 +1,13 @@
 ## Description
 
-An $n$-by-$m$ grid begins with one or more colored source cells. Each row of `sources` has the form `[row, column, color]`; those distinct coordinates start with the specified positive colors, while every other cell starts uncolored with value `0`.
+You are given two integers `n` and `m` representing the number of rows and columns of a grid, respectively.
 
-Time advances in simultaneous steps. During one step, every colored cell offers its color to each uncolored cell directly above, below, left, or right of it. A cell reached by several colors during the same step takes the largest offered color. Only uncolored cells can change, so an initially colored cell or a cell filled during an earlier step is never recolored.
+You are also given a 2D integer array `sources`, where `sources[i] = [r_i, c_i, color_​​​​​​​i]` indicates that the cell `(r_i, c_i)` is initially colored with `color_i`. All other cells are initially uncolored and represented as 0.
 
-Continue until no uncolored cell can be reached, then return the complete grid of final colors.
+At each time step, every currently colored cell spreads its color to all adjacent **uncolored** cells in the four directions: up, down, left, and right. All spreads happen simultaneously.
+
+If **multiple** colors reach the same uncolored cell at the same time step, the cell takes the color with the **maximum** value.
+
+The process continues until no more cells can be colored.
+
+Return a 2D integer array representing the final state of the grid, where each cell contains its final color.

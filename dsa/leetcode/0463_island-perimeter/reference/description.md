@@ -1,7 +1,8 @@
 ## Description
 
-You are given a rectangular `row` by `col` grid representing a map. A cell value of `1` is land, and `0` is water.
+You are given `row x col` `grid` representing a map where `grid[i][j] = 1` represents land and `grid[i][j] = 0` represents water.
 
-Cells connect only across horizontal or vertical sides, never diagonally. The map is completely surrounded by water and contains exactly one island made of one or more connected land cells. The island has no lakes: no interior water region is separated from the water surrounding the island.
+Grid cells are connected **horizontally/vertically** (not diagonally). The `grid` is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells).
 
-Each cell is a unit square. Return the island's perimeter, measured as the number of unit land edges that touch water or the outside of the grid. The grid's width and height do not exceed `100`.
+The island doesn't have "lakes", meaning the water inside isn't connected to the water around the island. One cell is a square with side length 1. The grid is rectangular, width and height don't exceed 100. Return the perimeter of the island.
+

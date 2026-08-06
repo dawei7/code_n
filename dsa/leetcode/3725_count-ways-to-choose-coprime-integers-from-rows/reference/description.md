@@ -1,5 +1,7 @@
 ## Description
 
-You are given an $m \times n$ matrix `mat` containing positive integers. Form a selection by choosing exactly one cell from every row.
+You are given a `m x n` matrix `mat` of positive integers.
 
-Count the selections for which the greatest common divisor of all chosen integers is `1`. Because the count can be large, return it modulo $10^9+7$.
+Return an integer denoting the number of ways to choose **exactly one** integer from each row of `mat` such that the **greatest common divisor** of all chosen integers is 1.
+
+Since the answer may be very large, return it **modulo** `10^9 + 7`.

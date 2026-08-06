@@ -1,9 +1,16 @@
 ## Description
 
-An item catalog is represented by `items`, where `items[i] = [factor_i, price_i]` gives the factor and purchase price of indexed type $i$. Every type has unlimited stock. You may purchase any nonnegative number of copies as long as their combined cost does not exceed `budget`.
+You are given a 2D integer array `items`, where `items[i] = [factor_i, price_i]` represents the `i^th` item. You are also given an integer `budget`.
 
-Purchased copies can also produce free copies. Each purchased copy of source type $i$ may award at most one copy of a different indexed target type $j$. Such a match is allowed only when $i\ne j$ and `factor_j % factor_i == 0`.
+There are unlimited copies of each item available for purchase. You may buy any number of copies of any items such that the total cost of the purchased copies is at most `budget`.
 
-Every ordered source-target pair `(i, j)` may be used at most once, even if many copies of source type $i$ are purchased. Thus one source type can award at most one free copy of each eligible target, and additional purchases of that source stop producing rewards after all its eligible targets have been matched. Different source types remain independent: several sources may each award a free copy of the same target type.
+After buying items, you may receive free copies according to the following rules:
 
-Return the largest total number of copies obtainable, counting both purchased and free copies, while spending at most `budget` on purchases.
+<ul>
+	<li>Each purchased copy of item `i` can give you **at most one** free copy of another item `j`.</li>
+	<li>The free item must satisfy `i != j` and `factor_i` divides `factor_j`.</li>
+	<li>For each ordered pair `(i, j)`, you can receive a free copy of item `j` from purchases of item `i` **at most once**, regardless of how many copies of item `i` you buy.</li>
+	<li>The same item `j` can be received multiple times for free if it is received from purchases of different item types.</li>
+</ul>
+
+Return the **maximum total number of item copies** you can obtain, including both purchased copies and free copies, while spending at most `budget` on purchased items.

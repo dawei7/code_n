@@ -1,10 +1,14 @@
 ## Description
 
-Consider an array of length `n` that was sorted in ascending order and then rotated between `1` and `n` times. For example, starting from `nums = [0, 1, 4, 4, 5, 6, 7]`:
+Suppose an array of length `n` sorted in ascending order is **rotated** between `1` and `n` times. For example, the array `nums = [0,1,4,4,5,6,7]` might become:
 
-- Four rotations produce `[4, 5, 6, 7, 0, 1, 4]`.
-- Seven rotations produce `[0, 1, 4, 4, 5, 6, 7]` again.
+<ul>
+	<li>`[4,5,6,7,0,1,4]` if it was rotated `4` times.</li>
+	<li>`[0,1,4,4,5,6,7]` if it was rotated `7` times.</li>
+</ul>
 
-One rotation changes `[a[0], a[1], a[2], ..., a[n-1]]` into `[a[n-1], a[0], a[1], a[2], ..., a[n-2]]`.
+Notice that **rotating** an array `[a[0], a[1], a[2], ..., a[n-1]]` 1 time results in the array `[a[n-1], a[0], a[1], a[2], ..., a[n-2]]`.
 
-Given such a sorted and rotated array `nums`, which may contain duplicates, return its minimum element. Reduce the overall number of operations as much as possible.
+Given the sorted rotated array `nums` that may contain **duplicates**, return *the minimum element of this array*.
+
+You must decrease the overall operation steps as much as possible.

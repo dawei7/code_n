@@ -2,8 +2,8 @@
 
 You are given an integer array `nums`.
 
-For a positive integer, its **binary reflection** is obtained by writing its binary digits, reversing their order, and reading the reversed digits as a binary number. Zeros that become leading digits after the reversal do not affect the resulting numeric value.
+The **binary reflection** of a **positive** integer is defined as the number obtained by reversing the order of its **binary** digits (ignoring any leading zeros) and interpreting the resulting binary number as a decimal.
 
-Sort `nums` in ascending order of binary reflection. When two distinct values have an equal reflection, place the smaller original value first.
+Sort the array in **ascending** order based on the binary reflection of each element. If two different numbers have the same binary reflection, the **smaller** original number should appear first.
 
-Return the sorted array.
+Return the resulting sorted array.

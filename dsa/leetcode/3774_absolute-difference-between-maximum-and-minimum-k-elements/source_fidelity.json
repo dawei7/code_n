@@ -1,23 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider":"leetcode","challenge_id":"lc_3774","frontend_id":"3774","title_slug":"absolute-difference-between-maximum-and-minimum-k-elements","url":"https://leetcode.com/problems/absolute-difference-between-maximum-and-minimum-k-elements/description/","paid_only":false,"content_sha256":"27e8656972cdc68c76014b48e458ae8f791f125c8d225c08a93f0470e3dbee64","checked_at":"2026-07-29"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3774",
+    "frontend_id": "3774",
+    "title_slug": "absolute-difference-between-maximum-and-minimum-k-elements",
+    "url": "https://leetcode.com/problems/absolute-difference-between-maximum-and-minimum-k-elements/description/",
+    "paid_only": false,
+    "content_sha256": "27e8656972cdc68c76014b48e458ae8f791f125c8d225c08a93f0470e3dbee64",
+    "checked_at": "2026-08-06"
+  },
   "structure": {
-    "sections": ["description","examples","constraints"],
-    "examples": [
-      {"ordinal":1,"input":"`nums = [5,2,2,4], k = 2`","output":"`5`","has_explanation":true},
-      {"ordinal":2,"input":"`nums = [100], k = 1`","output":"`0`","has_explanation":true}
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
     ],
-    "constraint_count": 3,
-    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md":"85192c554d26139c4de229f96752fdf2271d74c1a2d893628b3412c1eb2b3725",
-      "reference/contract.md":"ca1ccc430b992bdc1b192a63eb9e4dba104526339db5e8da9212c8837bf75dce",
-      "reference/examples.md":"f8f577d8681f9a5d37bc38d37444075cd7b6591cff3635d52932a488ed3ac3e4",
-      "reference/constraints.md":"470612ae64a71f09fa71327983812377d8de2a043928f329219d6f6b9d857d16"
+      "reference/description.md": "e5655c649c5b44067709900f26528508da9a2044b16b16b744893d3252958d3a",
+      "reference/contract.md": "ca1ccc430b992bdc1b192a63eb9e4dba104526339db5e8da9212c8837bf75dce",
+      "reference/examples.md": "f8f577d8681f9a5d37bc38d37444075cd7b6591cff3635d52932a488ed3ac3e4",
+      "reference/constraints.md": "470612ae64a71f09fa71327983812377d8de2a043928f329219d6f6b9d857d16"
     },
-    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

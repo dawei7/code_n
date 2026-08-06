@@ -1,11 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_276", "frontend_id": "276", "title_slug": "paint-fence", "url": "https://leetcode.com/problems/paint-fence/description/", "paid_only": true, "content_sha256": "30458c77af152784a786a40a8c824957f4d3f0656871475a022ea03b0bed912b", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "n = 3, k = 2", "output": "6", "has_explanation": true}, {"ordinal": 2, "input": "n = 1, k = 1", "output": "1", "has_explanation": false}, {"ordinal": 3, "input": "n = 7, k = 2", "output": "42", "has_explanation": false}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_276",
+    "frontend_id": "276",
+    "title_slug": "paint-fence",
+    "url": "https://leetcode.com/problems/paint-fence/description/",
+    "paid_only": true,
+    "content_sha256": "30458c77af152784a786a40a8c824957f4d3f0656871475a022ea03b0bed912b",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "acda0088f768f53ea6cf3b154275161c5bc0947398866bdeb593fc5386a3ac95", "reference/contract.md": "4acf3d68c07a8f880f8139707166d9026b257508197e169325bf14c386eb3b20", "reference/examples.md": "2d9d2f8c334971a465fac31236ba5030bdef7d593d3999b87f800bf82ac02e67", "reference/constraints.md": "845b4ed64dc03b57d2af9ba1927bf8fcfa59386607593046da694e86dbfd3271"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 3, k = 2",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 1, k = 1",
+        "output": "1",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 7, k = 2",
+        "output": "42",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7c00d843f84312f3a1ecd05477d8b7c121315977d46aaddfdc0dec7e554e5962",
+      "reference/contract.md": "4acf3d68c07a8f880f8139707166d9026b257508197e169325bf14c386eb3b20",
+      "reference/examples.md": "2d9d2f8c334971a465fac31236ba5030bdef7d593d3999b87f800bf82ac02e67",
+      "reference/constraints.md": "845b4ed64dc03b57d2af9ba1927bf8fcfa59386607593046da694e86dbfd3271"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

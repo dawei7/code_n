@@ -1,0 +1,13 @@
+## Description
+
+You are given an array `nums` consisting of positive integers.
+
+You are also given an integer array `queries` of size `m`. For the `i^th` query, you want to make all of the elements of `nums` equal to` queries[i]`. You can perform the following operation on the array **any** number of times:
+
+<ul>
+	<li>**Increase** or **decrease** an element of the array by `1`.</li>
+</ul>
+
+Return *an array *`answer`* of size *`m`* where *`answer[i]`* is the **minimum** number of operations to make all elements of *`nums`* equal to *`queries[i]`.
+
+**Note** that after each query the array is reset to its original state.

@@ -1,9 +1,14 @@
 ## Description
 
-You are given an integer array `nums`. Treat every element independently.
+You are given an integer array `nums`.
 
-For any `nums[i]`, one operation either increases its value by 1 or decreases its value by 1. You may apply either operation any number of times, including no operations at all.
+For each element `nums[i]`, you may perform the following operations **any** number of times (including zero):
 
-A value is a **binary palindrome** when its binary representation, written without leading zeros, reads identically from left to right and from right to left.
+<ul>
+	<li>Increase `nums[i]` by 1, or</li>
+	<li>Decrease `nums[i]` by 1.</li>
+</ul>
 
-Return an integer array `ans` of the same length. For every index `i`, `ans[i]` must be the minimum number of unit operations needed to turn `nums[i]` into a binary palindrome.
+A number is called a **binary palindrome** if its binary representation without leading zeros reads the same forward and backward.
+
+Your task is to return an integer array `ans`, where `ans[i]` represents the **minimum** number of operations required to convert `nums[i]` into a **binary palindrome**.

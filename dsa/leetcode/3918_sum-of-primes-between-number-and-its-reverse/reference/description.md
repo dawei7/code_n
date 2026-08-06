@@ -1,5 +1,7 @@
 ## Description
 
-Given an integer `n`, reverse its decimal digits to form another integer `r`. Any zeroes that become leading digits after reversal do not contribute to the integer value; for example, reversing `120` gives `21`.
+You are given an integer `n`.
 
-Consider the inclusive interval whose endpoints are `n` and `r`, regardless of which endpoint is smaller. Return the sum of every prime number in that interval.
+Let `r` be the integer formed by reversing the digits of `n`.
+
+Return the **sum** of all <span data-keyword="prime-number">prime numbers</span> between `min(n, r)` and `max(n, r)`, inclusive.

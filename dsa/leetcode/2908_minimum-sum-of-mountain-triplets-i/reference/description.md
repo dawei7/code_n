@@ -1,0 +1,12 @@
+## Description
+
+You are given a **0-indexed** array `nums` of integers.
+
+A triplet of indices `(i, j, k)` is a **mountain** if:
+
+<ul>
+	<li>`i < j < k`</li>
+	<li>`nums[i] < nums[j]` and `nums[k] < nums[j]`</li>
+</ul>
+
+Return *the **minimum possible sum** of a mountain triplet of* `nums`. *If no such triplet exists, return* `-1`.

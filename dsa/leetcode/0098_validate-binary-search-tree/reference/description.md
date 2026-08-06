@@ -1,9 +1,11 @@
 ## Description
 
-Given a binary-tree root, determine whether the tree is a valid binary search tree.
+Given the `root` of a binary tree, *determine if it is a valid binary search tree (BST)*.
 
-A valid BST obeys all three rules:
+A **valid BST** is defined as follows:
 
-- Every key in a node's left subtree is strictly less than that node's key.
-- Every key in its right subtree is strictly greater than that node's key.
-- Both subtrees are themselves valid BSTs.
+<ul>
+	<li>The left <span data-keyword="subtree">subtree</span> of a node contains only nodes with keys **strictly less than** the node's key.</li>
+	<li>The right subtree of a node contains only nodes with keys **strictly greater than** the node's key.</li>
+	<li>Both the left and right subtrees must also be binary search trees.</li>
+</ul>

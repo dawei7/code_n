@@ -1,5 +1,5 @@
 ## Description
 
-Given an unsorted integer array `nums`, return the length of its longest sequence of consecutive values.
+Given an unsorted array of integers `nums`, return *the length of the longest consecutive elements sequence.*
 
-The algorithm must run in $O(n)$ time.
+You must write an algorithm that runs in `O(n)` time.

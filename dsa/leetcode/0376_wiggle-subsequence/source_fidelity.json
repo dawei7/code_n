@@ -1,21 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_376", "frontend_id": "376", "title_slug": "wiggle-subsequence", "url": "https://leetcode.com/problems/wiggle-subsequence/description/", "paid_only": false, "content_sha256": "ebbd9de03b1da693444af3c8710d5a13273c85ab3139eddc6fbe3b7f9465c0ef", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_376",
+    "frontend_id": "376",
+    "title_slug": "wiggle-subsequence",
+    "url": "https://leetcode.com/problems/wiggle-subsequence/description/",
+    "paid_only": false,
+    "content_sha256": "ebbd9de03b1da693444af3c8710d5a13273c85ab3139eddc6fbe3b7f9465c0ef",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [1,7,4,9,2,5]", "output": "6", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [1,17,5,10,13,15,10,5,16,8]", "output": "7", "has_explanation": true},
-      {"ordinal": 3, "input": "nums = [1,2,3,4,5,6,7,8,9]", "output": "2", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [1,7,4,9,2,5]",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,17,5,10,13,15,10,5,16,8]",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,2,3,4,5,6,7,8,9]",
+        "output": "2",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "501daf987e58db38de8a2c5a6ad6fcd24dfc7cd8bbe537e0657864b5293a233a",
-    "reference/contract.md": "1b07bbfdcd7a87c503b460b8ceb199f9e5081f6d273a3ea43048b9d6966030e7",
-    "reference/examples.md": "74ce3a10aab6637d912ce47656c69a9706b01dea3f7e48acd476f1ba941159f8",
-    "reference/constraints.md": "5d7fbcc3553808b51e9b20b28d2940c697316fb7681fcbdcd2526e8a4827bef2",
-    "reference/follow_up.md": "c91211d7b5b8d453298ec3e5220a4c0690096f6e0c2272bec9fba199e9701fa1"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "796fee319a3e59dc87ab73d1b53228e2e22746aa70f8075604883383c8f57c01",
+      "reference/contract.md": "1b07bbfdcd7a87c503b460b8ceb199f9e5081f6d273a3ea43048b9d6966030e7",
+      "reference/examples.md": "74ce3a10aab6637d912ce47656c69a9706b01dea3f7e48acd476f1ba941159f8",
+      "reference/constraints.md": "5d7fbcc3553808b51e9b20b28d2940c697316fb7681fcbdcd2526e8a4827bef2",
+      "reference/follow_up.md": "c91211d7b5b8d453298ec3e5220a4c0690096f6e0c2272bec9fba199e9701fa1"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

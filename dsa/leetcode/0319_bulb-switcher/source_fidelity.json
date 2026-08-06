@@ -1,20 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_319", "frontend_id": "319", "title_slug": "bulb-switcher", "url": "https://leetcode.com/problems/bulb-switcher/description/", "paid_only": false, "content_sha256": "d7d33576d77ea1620abc2ced16dc1382dc860049908b3e1d3d91b2aa3a20bf88", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_319",
+    "frontend_id": "319",
+    "title_slug": "bulb-switcher",
+    "url": "https://leetcode.com/problems/bulb-switcher/description/",
+    "paid_only": false,
+    "content_sha256": "d7d33576d77ea1620abc2ced16dc1382dc860049908b3e1d3d91b2aa3a20bf88",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "n = 3", "output": "1", "has_explanation": true},
-      {"ordinal": 2, "input": "n = 0", "output": "0", "has_explanation": false},
-      {"ordinal": 3, "input": "n = 1", "output": "1", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "n = 3",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 0",
+        "output": "0",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 1",
+        "output": "1",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "7ceb3570017a26040b2b71cffc1f27a503bb91dc116bc66ea19e48657b210ae0",
-    "reference/contract.md": "0d3820f4a806c0eb7ac77681100d8c7a4670dee2a491fc79b97d6cfb4f90224a",
-    "reference/examples.md": "aaea18d734d6b556998124c97a75eddf56b465038405d10cb702886cb26115b2",
-    "reference/constraints.md": "12fe6d363255b02c08067056beb3d925c85f5f68631b28a81f90a5c3e47c5f5d"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b20dfa95b50a2684623798cb924fc44eb63e6cad02b536002319b085fddcda39",
+      "reference/contract.md": "0d3820f4a806c0eb7ac77681100d8c7a4670dee2a491fc79b97d6cfb4f90224a",
+      "reference/examples.md": "aaea18d734d6b556998124c97a75eddf56b465038405d10cb702886cb26115b2",
+      "reference/constraints.md": "12fe6d363255b02c08067056beb3d925c85f5f68631b28a81f90a5c3e47c5f5d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

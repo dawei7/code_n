@@ -1,29 +1,66 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_50", "frontend_id": "50",
+    "provider": "leetcode",
+    "challenge_id": "lc_50",
+    "frontend_id": "50",
     "title_slug": "powx-n",
     "url": "https://leetcode.com/problems/powx-n/description/",
-    "paid_only": false, "content_sha256": "e076662f2857b7f1152b9d4fffecb247ae88bef1007d8cce4c0c302873674ccf", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "e076662f2857b7f1152b9d4fffecb247ae88bef1007d8cce4c0c302873674ccf",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "x = 2.00000, n = 10", "output": "1024.00000", "has_explanation": false},
-      {"ordinal": 2, "input": "x = 2.10000, n = 3", "output": "9.26100", "has_explanation": false},
-      {"ordinal": 3, "input": "x = 2.00000, n = -2", "output": "0.25000", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "x = 2.00000, n = 10",
+        "output": "1024.00000",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "x = 2.10000, n = 3",
+        "output": "9.26100",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "x = 2.00000, n = -2",
+        "output": "0.25000",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 5,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "a9f088f68eb13841126a16dfa89710093c5b3f61a7d234f82ed2b6d6f0781ef6",
+      "reference/description.md": "e8b89085b99cbf8d9fad69b0258e27b8f4dd6f9b175d1cd5c4aaab508327d39f",
       "reference/contract.md": "6809979a695fe22a8e5887eb5edcb4f3d0118e00a9a36fe76acfd4909ef5049d",
       "reference/examples.md": "a1526058fabb4a53e6f3748c80bb6e7cb9e2dc09e4334ba4bf468c02681c109c",
       "reference/constraints.md": "8bca68e5e4fbde60bf0539798e0c70a89f3bada720972c339838fc701f84d4c7"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

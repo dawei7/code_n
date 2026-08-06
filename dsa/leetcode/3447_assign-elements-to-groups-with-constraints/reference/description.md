@@ -1,0 +1,15 @@
+## Description
+
+You are given an integer array `groups`, where `groups[i]` represents the size of the `i^th` group. You are also given an integer array `elements`.
+
+Your task is to assign **one** element to each group based on the following rules:
+
+<ul>
+	<li>An element at index `j` can be assigned to a group `i` if `groups[i]` is **divisible** by `elements[j]`.</li>
+	<li>If there are multiple elements that can be assigned, assign the element with the **smallest index** `j`.</li>
+	<li>If no element satisfies the condition for a group, assign -1 to that group.</li>
+</ul>
+
+Return an integer array `assigned`, where `assigned[i]` is the index of the element chosen for group `i`, or -1 if no suitable element exists.
+
+**Note**: An element may be assigned to more than one group.

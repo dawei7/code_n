@@ -1,15 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_203", "frontend_id": "203", "title_slug": "remove-linked-list-elements", "url": "https://leetcode.com/problems/remove-linked-list-elements/description/", "paid_only": false, "content_sha256": "022f5842e9399b0dad5373b96d1eabac812d3348ab88b019f74904f50d80b1d9", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_203",
+    "frontend_id": "203",
+    "title_slug": "remove-linked-list-elements",
+    "url": "https://leetcode.com/problems/remove-linked-list-elements/description/",
+    "paid_only": false,
+    "content_sha256": "022f5842e9399b0dad5373b96d1eabac812d3348ab88b019f74904f50d80b1d9",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "head = [1,2,6,3,4,5,6], val = 6", "output": "[1,2,3,4,5]", "has_explanation": false}, {"ordinal": 2, "input": "head = [], val = 1", "output": "[]", "has_explanation": false}, {"ordinal": 3, "input": "head = [7,7,7,7], val = 7", "output": "[]", "has_explanation": false}],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "head = [1,2,6,3,4,5,6], val = 6",
+        "output": "[1,2,3,4,5]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "head = [], val = 1",
+        "output": "[]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "head = [7,7,7,7], val = 7",
+        "output": "[]",
+        "has_explanation": false
+      }
+    ],
     "constraint_count": 3,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "db01ec21f7f0449c74137c28c50da24b8cb93b52271ec2dce7ac193fc171dff8", "reference/contract.md": "d9deddfc38995cbc690e8e599b7f4cffc1e749007f9e5c6315fc948d0d0f94eb", "reference/examples.md": "d4681c9d50cdd667c2d6bb392ec9f47f122cd2b06c501df060a7581a00ba18fd", "reference/constraints.md": "245c81ab0815fd3e13446a610031c306bf2309c83ce22d10a24960520a6b6737"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "4aed6109282bafcc99745b9c82cb0fcdf89eb8e218f22a4d7121e7d5994de022",
+      "reference/contract.md": "d9deddfc38995cbc690e8e599b7f4cffc1e749007f9e5c6315fc948d0d0f94eb",
+      "reference/examples.md": "d4681c9d50cdd667c2d6bb392ec9f47f122cd2b06c501df060a7581a00ba18fd",
+      "reference/constraints.md": "245c81ab0815fd3e13446a610031c306bf2309c83ce22d10a24960520a6b6737"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

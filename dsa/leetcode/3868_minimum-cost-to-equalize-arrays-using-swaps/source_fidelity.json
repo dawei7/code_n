@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/minimum-cost-to-equalize-arrays-using-swaps/description/",
     "paid_only": false,
     "content_sha256": "da42f5c92e58ba7a42c27666746b8ed917536d74899df9363e5a3a084b930241",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums1 = [10,20], nums2 = [20,10]",
-        "output": "0",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums1 = [10,10], nums2 = [20,20]",
-        "output": "1",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums1 = [10,20], nums2 = [30,40]",
-        "output": "-1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "9cd99c2a342fef22a4bfa8d24754b56894619f7c7a906167ce8724b9aa7b4060",
+      "reference/description.md": "4920b2aaabf07f447a170d3be4ece9ba96da3c5eadfe14438bfceb2cbd0ab775",
       "reference/contract.md": "240d2e590ddd3456334471e5deb4b45d81364c12ab474fddb3d81b781d4f4b4c",
       "reference/examples.md": "0a251fdd83a026740575e224a7f2cdfec514191e8adce639eb52b9cb1c3b67e1",
       "reference/constraints.md": "0bbf1a6bdb22c81e4ac90b63dfbef693693d30079885d252c05519593ad70525"

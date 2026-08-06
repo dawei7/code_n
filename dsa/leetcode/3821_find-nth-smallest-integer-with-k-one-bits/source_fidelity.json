@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/find-nth-smallest-integer-with-k-one-bits/description/",
     "paid_only": false,
     "content_sha256": "a36bb3babd384f4bbf0588830293eed3ec6827d4636fda13de189803e53c6a9b",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "`n = 4, k = 2`",
-        "output": "`9`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`n = 3, k = 1`",
-        "output": "`4`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1fb3aeff4749b331710d5db5943ca8a0b9ea0c4d6ee3808312abc8b05ca0e2bd",
+      "reference/description.md": "7e1ba5362cdaf27b353e9fd072957b801b95b955375da4ee97d1055065e3b329",
       "reference/contract.md": "960b384e6ac9102ca7dc164769c352c21738c05078de9dbfc28bb993fac86a6f",
       "reference/examples.md": "972f232cbb8a224842af6a618faacb5091a81dd6a951c880ef2d910397e2fe2b",
       "reference/constraints.md": "be317a64da22d72a1ac02741bce0f9491cb0c2f8e8a098079f2e9d56653f7f82"

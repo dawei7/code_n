@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_45", "frontend_id": "45",
+    "provider": "leetcode",
+    "challenge_id": "lc_45",
+    "frontend_id": "45",
     "title_slug": "jump-game-ii",
     "url": "https://leetcode.com/problems/jump-game-ii/description/",
-    "paid_only": false, "content_sha256": "8b21b212ede1c30159453ea1c9d4fef9fb8d9da9c28042c485a441854fa37186", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "8b21b212ede1c30159453ea1c9d4fef9fb8d9da9c28042c485a441854fa37186",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [2,3,1,1,4]", "output": "2", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [2,3,0,1,4]", "output": "2", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [2,3,1,1,4]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [2,3,0,1,4]",
+        "output": "2",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "9113076b3ec199493e7b4ec8ffc7ff0c6aa195b09436b96af8fdc7656df093ca",
+      "reference/description.md": "a07a29790f2a89a18c6fcd94c105586d5b3131aae8c4853354c7c12884ba6149",
       "reference/contract.md": "4a75d62fbf460ce5a41d55ba9330884d0e0f0c02db7129fab9abb63cc52e9721",
       "reference/examples.md": "f584406f7a78ac424e738263cbd845b024e670d42a7f73355a8fb4a71d499c0e",
       "reference/constraints.md": "796d149e244cdc10fadcb9cb5d1c62493351f261e3aebc7725e4bd1e639109dd"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

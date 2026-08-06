@@ -11,10 +11,24 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "digits = \"23\"", "output": "[\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]", "has_explanation": false},
-      {"ordinal": 2, "input": "digits = \"2\"", "output": "[\"a\",\"b\",\"c\"]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "digits = \"23\"",
+        "output": "[\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "digits = \"2\"",
+        "output": "[\"a\",\"b\",\"c\"]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
     "visuals": {
@@ -29,7 +43,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "481dfb384a5dcb99a096f95f17bf657264e68b1e13e0c5a5ffeba20f7cf9da29",
+      "reference/description.md": "de13ef46d551df7646e958e67b356384a5cc87f975debc17f18a144528f5d734",
       "reference/contract.md": "ae79eaa27356c9fd6625fef18f1ccc784c92d27fe83224434df552772dacd65b",
       "reference/examples.md": "a00bd8c5baa7031f156920cea842149979f7916ed4ea6abcfc04681539cb4112",
       "reference/constraints.md": "58dcbc78941a2d44ec4f8e2d1745b2d02f1f3bb7401d3897410ce0ef90fc505f"

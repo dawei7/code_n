@@ -1,13 +1,18 @@
 ## Description
 
-You are given an integer array `nums` of length `n`. Choose a split index `i` with `0 <= i < n - 1`, so both sides of the split are nonempty.
+You are given an integer array `nums` of length `n`.
 
-For that index, `prefixSum(i)` is `nums[0] + nums[1] + ... + nums[i]`, while `suffixMin(i)` is the minimum among `nums[i + 1], ..., nums[n - 1]`.
+Choose an index `i` such that `0 <= i < n - 1`.
 
-Define the split score by
+For a chosen split index `i`:
 
-$$
-\operatorname{score}(i)=\operatorname{prefixSum}(i)-\operatorname{suffixMin}(i).
-$$
+<ul>
+	<li>Let `prefixSum(i)` be the sum of `nums[0] + nums[1] + ... + nums[i]`.</li>
+	<li>Let `suffixMin(i)` be the minimum value among `nums[i + 1], nums[i + 2], ..., nums[n - 1]`.</li>
+</ul>
 
-Return the greatest score over all valid split indices.
+The **score** of a split at index `i` is defined as:
+
+`score(i) = prefixSum(i) - suffixMin(i)`
+
+Return an integer denoting the **maximum** score over all valid split indices.

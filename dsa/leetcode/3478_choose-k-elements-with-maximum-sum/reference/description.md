@@ -1,0 +1,12 @@
+## Description
+
+You are given two integer arrays, `nums1` and `nums2`, both of length `n`, along with a positive integer `k`.
+
+For each index `i` from `0` to `n - 1`, perform the following:
+
+<ul>
+	<li>Find **all** indices `j` where `nums1[j]` is less than `nums1[i]`.</li>
+	<li>Choose **at most** `k` values of `nums2[j]` at these indices to **maximize** the total sum.</li>
+</ul>
+
+Return an array `answer` of size `n`, where `answer[i]` represents the result for the corresponding index `i`.

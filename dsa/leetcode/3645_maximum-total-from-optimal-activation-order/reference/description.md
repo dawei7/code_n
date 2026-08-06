@@ -1,0 +1,13 @@
+## Description
+
+You are given two integer arrays `value` and `limit`, both of length `n`.
+
+Initially, all elements are **inactive**. You may activate them in any order.
+
+<ul>
+	<li>To activate an inactive element at index `i`, the number of **currently** active elements must be **strictly less** than `limit[i]`.</li>
+	<li>When you activate the element at index `i`, it adds `value[i]` to the **total** activation value (i.e., the sum of `value[i]` for all elements that have undergone activation operations).</li>
+	<li>After each activation, if the number of **currently** active elements becomes `x`, then **all** elements `j` with `limit[j] <= x` become **permanently** inactive, even if they are already active.</li>
+</ul>
+
+Return the **maximum** **total** you can obtain by choosing the activation order optimally.

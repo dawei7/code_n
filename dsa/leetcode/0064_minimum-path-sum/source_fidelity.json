@@ -1,29 +1,62 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_64", "frontend_id": "64",
+    "provider": "leetcode",
+    "challenge_id": "lc_64",
+    "frontend_id": "64",
     "title_slug": "minimum-path-sum",
     "url": "https://leetcode.com/problems/minimum-path-sum/description/",
-    "paid_only": false, "content_sha256": "64c51cf174a1650ae93ed56c14f29cbde591777ba9e984f85b0e581b6ee25197", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "64c51cf174a1650ae93ed56c14f29cbde591777ba9e984f85b0e581b6ee25197",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "grid = [[1,3,1],[1,5,1],[4,2,1]]", "output": "7", "has_explanation": true},
-      {"ordinal": 2, "input": "grid = [[1,2,3],[4,5,6]]", "output": "12", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "grid = [[1,3,1],[1,5,1],[4,2,1]]",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[1,2,3],[4,5,6]]",
+        "output": "12",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 4,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "049aa21520d4832bc70af22be19f1ad53a1a8b568a2d6e62e3cbd1f973e3e43d",
+      "reference/description.md": "97ef2ec439f9329e0960ea1fef80cd8bd187b934e984d8417822c8a817df9fd4",
       "reference/contract.md": "bba1fc98929e1258749131147d808c69dde0573eb67ef5a2e589ffe8b5d4dfb8",
       "reference/note.md": "c4143731de49825226741ba0e1f193e2d93191542e4a097f4c91f82476eb136d",
       "reference/examples.md": "f004bb5672d75117b02ac3ae17e8bb9a28624819503cb3899355b0d2fc791603",
       "reference/constraints.md": "26efe5c3eb654ecad065404684b16a2a202ad0d649ef346141832c087b615fe6"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

@@ -1,1 +1,54 @@
-{"schema_version":1,"source":{"provider":"leetcode","challenge_id":"lc_3793","frontend_id":"3793","title_slug":"find-users-with-high-token-usage","url":"https://leetcode.com/problems/find-users-with-high-token-usage/description/","paid_only":false,"content_sha256":"d834c8c67ee1d671e10023d6c11ea6509eb8bfcdfd0aaa4422ab154c8f221de6","checked_at":"2026-07-29"},"structure":{"sections":["description","examples"],"examples":[{"ordinal":1,"input":"prompts table (9 rows)","output":"users 3 and 1 with their prompt counts and average tokens","has_explanation":true}],"constraint_count":0,"visuals":{"source_images":0,"source_tables":3,"source_diagrams":0,"local_images":0,"local_tables":3,"local_diagrams":0}},"review":{"status":"verified","files":{"reference/description.md":"d59ef93a34d3b33a00314605241bf0d1c134f7449352281199c8da60c97d764f","reference/contract.md":"4461e771203e341414f7a4c1d51bfe62fda9894c92e528db0f5e1356d907b4a3","reference/examples.md":"3a9be562eb37461e88b535c2c4f6ebcfacfd715db886bd3594695ecffa2e2559"},"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}}
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3793",
+    "frontend_id": "3793",
+    "title_slug": "find-users-with-high-token-usage",
+    "url": "https://leetcode.com/problems/find-users-with-high-token-usage/description/",
+    "paid_only": false,
+    "content_sha256": "d834c8c67ee1d671e10023d6c11ea6509eb8bfcdfd0aaa4422ab154c8f221de6",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "419ada4de8fe8efbbf8c0b6d223b43fc4879a6893f4f3662795285f157dab866",
+      "reference/contract.md": "4461e771203e341414f7a4c1d51bfe62fda9894c92e528db0f5e1356d907b4a3",
+      "reference/examples.md": "3a9be562eb37461e88b535c2c4f6ebcfacfd715db886bd3594695ecffa2e2559",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

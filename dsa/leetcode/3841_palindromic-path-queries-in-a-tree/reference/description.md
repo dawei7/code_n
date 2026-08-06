@@ -1,12 +1,14 @@
 ## Description
 
-An undirected tree has `n` nodes labeled from `0` through `n - 1`. Its `n - 1` edges are listed in `edges`; each pair `edges[i] = [u_i, v_i]` joins nodes `u_i` and `v_i`.
+You are given an undirected tree with `n` nodes labeled 0 to `n - 1`. This is represented by a 2D array `edges` of length `n - 1`, where `edges[i] = [u_i, v_i]` indicates an undirected edge between nodes `u_i` and `v_i`.
 
-A lowercase string `s` of length `n` assigns one character to every node, with `s[i]` belonging to node `i`.
+You are also given a string `s` of length `n` consisting of lowercase English letters, where `s[i]` represents the character assigned to node `i`.
 
-The array `queries` describes operations that must be processed in order. Each operation has one of two forms:
+You are also given a string array `queries`, where each `queries[i]` is either:
 
-- `"update u_i c"` changes the character at node `u_i` to `c`, so subsequent operations use `s[u_i] = c`.
-- `"query u_i v_i"` considers the characters on the unique path from `u_i` to `v_i`, including both endpoints, and asks whether those characters can be rearranged into a palindrome.
+<ul>
+	<li>`"update u_i c"`: Change the character at node `u_i` to `c`. Formally, update `s[u_i] = c`.</li>
+	<li>`"query u_i v_i"`: Determine whether the string formed by the characters on the **unique** path from `u_i` to `v_i` (inclusive) can be **rearranged** into a **<span data-keyword="palindrome-string">palindrome</span>**.</li>
+</ul>
 
-Return a boolean array containing one result for each `query` operation: its entry is `true` exactly when that path can be rearranged into a palindrome, and `false` otherwise.
+Return a boolean array `answer`, where `answer[j]` is `true` if the `j^th` query of type `"query u_i v_i"​​​​​​​` can be rearranged into a **palindrome**, and `false` otherwise.

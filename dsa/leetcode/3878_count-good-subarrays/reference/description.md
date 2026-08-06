@@ -1,7 +1,9 @@
 ## Description
 
-You are given an integer array `nums`. Consider each non-empty contiguous subarray and take the bitwise OR of all values inside it.
+You are given an integer array `nums`.
 
-A subarray is **good** when that OR result is equal to at least one element that actually occurs within the same subarray. Return the total number of good subarrays, counting equal value sequences at different index ranges separately.
+A **<span data-keyword="subarray-nonempty">subarray</span>** is called **good** if the **bitwise OR** of all its elements is equal to **at least one** element present in that subarray.
 
-For integers `a` and `b`, their bitwise OR is written `a | b`.
+Return the number of good subarrays in `nums`.
+
+Here, the bitwise OR of two integers `a` and `b` is denoted by `a | b`.

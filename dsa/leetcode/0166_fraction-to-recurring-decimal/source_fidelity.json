@@ -1,19 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_166", "frontend_id": "166", "title_slug": "fraction-to-recurring-decimal", "url": "https://leetcode.com/problems/fraction-to-recurring-decimal/description/", "paid_only": false, "content_sha256": "42236ba13c49ebf1b98ffaf08556ca8a273c7dab9729662eea7cd40cddeacb22", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_166",
+    "frontend_id": "166",
+    "title_slug": "fraction-to-recurring-decimal",
+    "url": "https://leetcode.com/problems/fraction-to-recurring-decimal/description/",
+    "paid_only": false,
+    "content_sha256": "42236ba13c49ebf1b98ffaf08556ca8a273c7dab9729662eea7cd40cddeacb22",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "numerator = 1, denominator = 2", "output": "\"0.5\"", "has_explanation": false},
-      {"ordinal": 2, "input": "numerator = 2, denominator = 1", "output": "\"2\"", "has_explanation": false},
-      {"ordinal": 3, "input": "numerator = 4, denominator = 333", "output": "\"0.(012)\"", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "numerator = 1, denominator = 2",
+        "output": "\"0.5\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "numerator = 2, denominator = 1",
+        "output": "\"2\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "numerator = 4, denominator = 333",
+        "output": "\"0.(012)\"",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "5b5a8eec5f57b82a9a0bfa8f62284b1b57391c7ee14700048888c720a9524731", "reference/contract.md": "c8d7551791886c331502f840b466ed12ae0542adb931face2accb63f3252c3ef", "reference/note.md": "8c8d312750c861b487d3a007c787c13641ae348107fe967c10a9a3222a628d40", "reference/examples.md": "b9a2b03665389677e04b6007d0f0523d00da130799a715bc60505bffe692d049", "reference/constraints.md": "a1c43d8967f2d2dc4fafa1379c5759bac0174c57a681a39649c11a52b8d797f3"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "4314f193d33f689b0b4d6e2fa8433fa78243f4fa942a27be56af71a6fefa2959",
+      "reference/contract.md": "c8d7551791886c331502f840b466ed12ae0542adb931face2accb63f3252c3ef",
+      "reference/note.md": "8c8d312750c861b487d3a007c787c13641ae348107fe967c10a9a3222a628d40",
+      "reference/examples.md": "b9a2b03665389677e04b6007d0f0523d00da130799a715bc60505bffe692d049",
+      "reference/constraints.md": "a1c43d8967f2d2dc4fafa1379c5759bac0174c57a681a39649c11a52b8d797f3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

@@ -1,5 +1,5 @@
 ## Description
 
-Given an integer array `nums`, sort its values conceptually and return the maximum difference between two successive elements in that sorted order. If the array contains fewer than two elements, return `0`.
+Given an integer array `nums`, return *the maximum difference between two successive elements in its sorted form*. If the array contains less than two elements, return `0`.
 
-The algorithm must run in linear time and use linear extra space.
+You must write an algorithm that runs in linear time and uses linear extra space.

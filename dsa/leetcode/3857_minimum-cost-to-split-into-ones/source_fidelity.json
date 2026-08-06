@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/minimum-cost-to-split-into-ones/description/",
     "paid_only": false,
     "content_sha256": "c48eddd97d7cb288f043b760f4f09cb61413ff3bf2e0d11fcfca81d05638a46a",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,31 +19,25 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 3",
+        "input": "n = 6",
         "output": "3",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 4",
-        "output": "6",
-        "has_explanation": true
+        "has_explanation": false
       }
     ],
     "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 2,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 2,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "f1b447fb7184ad025615b14bc34f4b2745bf9760d51d693c351547ab232e7179",
+      "reference/description.md": "ce4d4534a5ce257691749f6cde1cb2a313dde7eb1994ff25de825ffe6d5f052f",
       "reference/contract.md": "d1d73c55e3efb9e917c330a6d7eb551bddb90baed026bf87ab861fca95e5e12e",
       "reference/examples.md": "4bb3a9fbf48edd1ecfd08f77d9cfb66b5bfce6096e6a007625d97ec525e379be",
       "reference/constraints.md": "9bdd2f0e85193b84e9a992307f55c0cda00b816f193a2681ff8c395805dfba63"

@@ -1,5 +1,24 @@
 ## Description
 
-An undirected weighted graph has `n` nodes numbered from `0` through `n - 1`. Each edge joins two nodes and has a positive integer weight. For an integer threshold $T$, an edge is **light** when its weight is at most $T$ and **heavy** when its weight is greater than $T$.
+There is an undirected weighted graph with `n` nodes labeled from 0 to `n - 1`.
 
-A path from `source` to `target` is valid when it traverses at most `k` heavy edges; there is no separate limit on how many light edges it may use. Find the smallest integer threshold for which at least one valid path exists. Return `-1` when the two endpoints cannot be joined by any path, even after every graph edge is classified as light.
+The graph is represented by a 2D integer array `edges`, where each edge `edges[i] = [u_i, v_i, w_​​​​​​​i]` indicates that there is an undirected edge between nodes `u_i` and `v_i` with weight `w_​​​​​​​i`.
+
+You are also given integers `source`, `target` and `k`.
+
+A `threshold` value determines whether an edge is considered **light** or **heavy**:
+
+<ul>
+	<li>
+	An edge is **light** if its weight is **less than** or **equal** to `threshold`.
+
+	</li>
+	<li>
+	An edge is **heavy** if its weight is **greater than** `threshold`.
+
+	</li>
+</ul>
+
+A path from `source` to `target` is **valid** if it contains **at most** `k` heavy edges.
+
+Return the **minimum integer **`threshold` such that **at least** one **valid** path exists from `source` to `target`. If no such path exists, return -1.

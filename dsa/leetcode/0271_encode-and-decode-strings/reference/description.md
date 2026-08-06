@@ -1,23 +1,33 @@
 ## Description
 
-Design a reversible codec that converts a list of strings into one string for transmission across a network, then reconstructs the original list at the receiver.
+Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
 
-The sending machine provides an encoding function:
+Machine 1 (sender) has the function:
 
 ```cpp
 string encode(vector<string> strs) {
-    return encoded_string;
+  // ... your code
+  return encoded_string;
 }
 ```
 
-The receiving machine provides the inverse function:
+Machine 2 (receiver) has the function:
 
 ```cpp
 vector<string> decode(string s) {
-    return strs;
+  //... your code
+  return strs;
 }
 ```
 
-The sender computes `string encoded_string = encode(strs)`. After that value is transmitted, the receiver computes `vector<string> strs2 = decode(encoded_string)`. The reconstructed `strs2` must contain exactly the same strings, in the same order, as the sender's `strs`.
+So Machine 2 should be able to decode the output of Machine 1's encode.
 
-Implement both `encode` and `decode`. Built-in serialization mechanisms such as `eval` may not be used to solve the problem.
+```cpp
+string encoded_string = encode(strs);
+vector<string> strs2 = decode(encoded_string);
+```
+
+`strs2` should be equal to `strs`.
+
+Implement the `encode` and `decode` methods.
+

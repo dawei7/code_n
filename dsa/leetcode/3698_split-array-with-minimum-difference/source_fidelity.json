@@ -1,24 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider":"leetcode","challenge_id":"lc_3698","frontend_id":"3698","title_slug":"split-array-with-minimum-difference","url":"https://leetcode.com/problems/split-array-with-minimum-difference/description/","paid_only":false,"content_sha256":"6e67971f878fdb4ed448fc3075fe9131c44708a26abadcd3d7d698ffe1b09be2","checked_at":"2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3698",
+    "frontend_id": "3698",
+    "title_slug": "split-array-with-minimum-difference",
+    "url": "https://leetcode.com/problems/split-array-with-minimum-difference/description/",
+    "paid_only": false,
+    "content_sha256": "6e67971f878fdb4ed448fc3075fe9131c44708a26abadcd3d7d698ffe1b09be2",
+    "checked_at": "2026-08-06"
+  },
   "structure": {
-    "sections": ["description","examples","constraints"],
-    "examples": [
-      {"ordinal":1,"input":"nums = [1,3,2]","output":"2","has_explanation":true},
-      {"ordinal":2,"input":"nums = [1,2,4,3]","output":"4","has_explanation":true},
-      {"ordinal":3,"input":"nums = [3,1,2]","output":"-1","has_explanation":true}
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
     ],
-    "constraint_count": 2,
-    "visuals": {"source_images":0,"source_tables":2,"source_diagrams":0,"local_images":0,"local_tables":2,"local_diagrams":0}
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
-    "status":"verified",
+    "status": "verified",
     "files": {
-      "reference/description.md":"f6e92ef4f83aab3c415076f17f444c40a404a28044321cd8b8df6f17312f1531",
-      "reference/contract.md":"64c429b1ccdf744d6cb30d346622acdb4a36feaab9d81de963f6cd3db2009a6e",
-      "reference/examples.md":"d7d6353cb9395b6cfabedeca407004bacc22dd9d7fc667a372bd72cc9649c57c",
-      "reference/constraints.md":"53748eb1e7ad261f31fa6708d1643d1c80cd2c911a0b66d5632be55636461b91"
+      "reference/description.md": "f560bd87361b0e2ff4577140d73273b9d8fc6fd97b08eacf7561df7d50d0f686",
+      "reference/contract.md": "64c429b1ccdf744d6cb30d346622acdb4a36feaab9d81de963f6cd3db2009a6e",
+      "reference/examples.md": "d7d6353cb9395b6cfabedeca407004bacc22dd9d7fc667a372bd72cc9649c57c",
+      "reference/constraints.md": "53748eb1e7ad261f31fa6708d1643d1c80cd2c911a0b66d5632be55636461b91"
     },
-    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

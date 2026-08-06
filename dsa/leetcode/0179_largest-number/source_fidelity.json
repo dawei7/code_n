@@ -1,18 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_179", "frontend_id": "179", "title_slug": "largest-number", "url": "https://leetcode.com/problems/largest-number/description/", "paid_only": false, "content_sha256": "56bf72050aaf891c2c1d614550214ca4d22149991f536ac2a9ea93e0fb976033", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_179",
+    "frontend_id": "179",
+    "title_slug": "largest-number",
+    "url": "https://leetcode.com/problems/largest-number/description/",
+    "paid_only": false,
+    "content_sha256": "56bf72050aaf891c2c1d614550214ca4d22149991f536ac2a9ea93e0fb976033",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [10,2]", "output": "\"210\"", "has_explanation": false},
-      {"ordinal": 2, "input": "nums = [3,30,34,5,9]", "output": "\"9534330\"", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [10,2]",
+        "output": "\"210\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [3,30,34,5,9]",
+        "output": "\"9534330\"",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "21d298b7c12764bb7ec4926a81ef579a5bdb05d9de2f37fe9e2e8a165d5a8fdb", "reference/contract.md": "78bb58256d65cfc2c1128da39267b353b6be49724f56794236ffe39d65e20e9c", "reference/examples.md": "0bad78565c8571146d64e5057c214557a5e9ed5d30ab276f1f68078c8cde812b", "reference/constraints.md": "4b37e9925a241be47962e9d75a23c6c479922841cd110aaa4f9090bdff41cc03"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "6783aa23b616d1ba29c8e7703c60635b4e39e8a044f3402305d3963ebb96bfff",
+      "reference/contract.md": "78bb58256d65cfc2c1128da39267b353b6be49724f56794236ffe39d65e20e9c",
+      "reference/examples.md": "0bad78565c8571146d64e5057c214557a5e9ed5d30ab276f1f68078c8cde812b",
+      "reference/constraints.md": "4b37e9925a241be47962e9d75a23c6c479922841cd110aaa4f9090bdff41cc03"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

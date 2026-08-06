@@ -1,19 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_404", "frontend_id": "404", "title_slug": "sum-of-left-leaves", "url": "https://leetcode.com/problems/sum-of-left-leaves/description/", "paid_only": false, "content_sha256": "5772f94fab4eb169ea0ede7e57a06f5dce41ef3e1200db6121031a4411abd86e", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_404",
+    "frontend_id": "404",
+    "title_slug": "sum-of-left-leaves",
+    "url": "https://leetcode.com/problems/sum-of-left-leaves/description/",
+    "paid_only": false,
+    "content_sha256": "5772f94fab4eb169ea0ede7e57a06f5dce41ef3e1200db6121031a4411abd86e",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "root = [3,9,20,null,null,15,7]", "output": "24", "has_explanation": true},
-      {"ordinal": 2, "input": "root = [1]", "output": "0", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "root = [3,9,20,null,null,15,7]",
+        "output": "24",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [1]",
+        "output": "0",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "03660501dcd415560823dcb66dd75f449f0c898e9ad3a89a3da622f40f650744",
-    "reference/contract.md": "4918571be5f40ea8a151e857a51a9da015587f934de0dad784a14138ebff278f",
-    "reference/examples.md": "c7254edea8ccaa51f04d17ed20316eb67bdc03a2baa1aab2e09ef44e3ad46610",
-    "reference/constraints.md": "72bedc706836d73d87865b7f66da11579e28be4326dc16fca26add7a488b1b74"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a964ee6a4d08a8381b3b3f6a9e6aab7b9a3ec7bbb9e1a8ef4d7b79bf1b2a6c14",
+      "reference/contract.md": "4918571be5f40ea8a151e857a51a9da015587f934de0dad784a14138ebff278f",
+      "reference/examples.md": "c7254edea8ccaa51f04d17ed20316eb67bdc03a2baa1aab2e09ef44e3ad46610",
+      "reference/constraints.md": "72bedc706836d73d87865b7f66da11579e28be4326dc16fca26add7a488b1b74"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,9 +1,7 @@
 ## Description
 
-You are given an array `intervals`, where `intervals[i] = [start_i, end_i]` and every start point is unique.
+You are given an array of `intervals`, where `intervals[i] = [start_i, end_i]` and each `start_i` is **unique**.
 
-For each interval `i`, its right interval is an interval `j` whose start satisfies `start_j >= end_i`. Among all
-qualifying intervals, choose the one with the smallest start. The two indices may be equal.
+The **right interval** for an interval `i` is an interval `j` such that `start_j >= end_i` and `start_j` is **minimized**. Note that `i` may equal `j`.
 
-Return the chosen original index for every input position. Place `-1` at position `i` when interval `i` has no
-right interval.
+Return *an array of **right interval** indices for each interval `i`*. If no **right interval** exists for interval `i`, then put `-1` at index `i`.

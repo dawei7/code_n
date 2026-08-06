@@ -1,5 +1,6 @@
 ## Description
 
-Given the root of a binary search tree and a node `p` contained in that tree, return `p`'s inorder successor. If no successor exists, return `null`.
+Given the `root` of a binary search tree and a node `p` in it, return the in-order successor of that node in the BST. If the given node has no in-order successor in the tree, return `null`.
 
-The inorder successor is the tree node whose key is the smallest key strictly greater than `p.val`.
+The successor of a node `p` is the node with the smallest key greater than `p.val`.
+

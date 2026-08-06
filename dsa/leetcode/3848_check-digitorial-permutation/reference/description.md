@@ -1,9 +1,16 @@
 ## Description
 
-You are given a positive decimal integer `n`.
+You are given an integer `n`.
 
-An integer is called a **digitorial** when it equals the sum of the factorials of all its decimal digits.
+A number is called **digitorial** if the sum of the **factorials** of its digits is **equal** to the number itself.
 
-Consider every permutation of the digits of `n`, including their original order. Determine whether at least one valid permutation forms a digitorial number.
+Determine whether **any permutation** of `n` (including the original order) forms a **digitorial** number.
 
-Return `true` when such a permutation exists; otherwise, return `false`.
+Return `true` if such a **permutation** exists, otherwise return `false`.
+
+**Note**:
+
+<ul>
+	<li>The **factorial** of a non-negative integer `x`, denoted as `x!`, is the **product** of all positive integers **less than or equal** to `x`, and `0! = 1`.</li>
+	<li>A **permutation** is a rearrangement of all the digits of a number that does **not** start with zero. Any arrangement starting with zero is invalid.</li>
+</ul>

@@ -1,7 +1,12 @@
 ## Description
 
-A sequence is a **wiggle sequence** when the differences between adjacent values strictly alternate in sign. The first difference, when present, may be positive or negative. Any one-element sequence is a wiggle sequence, as is any two-element sequence whose values are unequal.
+A **wiggle sequence** is a sequence where the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with one element and a sequence with two non-equal elements are trivially wiggle sequences.
 
-For example, `[1,7,4,9,2,5]` qualifies because its successive differences are `(6,-3,5,-7,3)`. By contrast, `[1,4,7,2,5]` begins with two positive differences, while `[1,7,4,5,5]` ends with a zero difference, so neither qualifies.
+<ul>
+	<li>For example, `[1, 7, 4, 9, 2, 5]` is a **wiggle sequence** because the differences `(6, -3, 5, -7, 3)` alternate between positive and negative.</li>
+	<li>In contrast, `[1, 4, 7, 2, 5]` and `[1, 7, 4, 5, 5]` are not wiggle sequences. The first is not because its first two differences are positive, and the second is not because its last difference is zero.</li>
+</ul>
 
-A subsequence keeps the original relative order while deleting any number of elements, including none. Given an integer array `nums`, return the maximum length of a wiggle subsequence obtainable from it.
+A **subsequence** is obtained by deleting some elements (possibly zero) from the original sequence, leaving the remaining elements in their original order.
+
+Given an integer array `nums`, return *the length of the longest **wiggle subsequence** of *`nums`.

@@ -1,7 +1,5 @@
 ## Description
 
-An integer array `nums` contains exactly two values that occur once. Every other value in the array occurs exactly twice.
+Given an integer array `nums`, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. You can return the answer in **any order**.
 
-Return the two values that appear only once. Their order in the returned array does not matter.
-
-The solution must run in linear time and use only constant extra space.
+You must write an algorithm that runs in linear runtime complexity and uses only constant extra space.

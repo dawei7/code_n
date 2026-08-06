@@ -1,11 +1,13 @@
 ## Description
 
-An $n$-bit Gray-code sequence contains $2^n$ integers and must satisfy every condition below:
+An **n-bit gray code sequence** is a sequence of `2^n` integers where:
 
-- Each integer lies in the inclusive range $[0,2^n-1]$.
-- The first integer is `0`.
-- No integer appears more than once.
-- The $n$-bit binary forms of every adjacent pair differ in exactly one bit.
-- The binary forms of the final and first integers also differ in exactly one bit, closing the sequence into a cycle.
+<ul>
+	<li>Every integer is in the **inclusive** range `[0, 2^n - 1]`,</li>
+	<li>The first integer is `0`,</li>
+	<li>An integer appears **no more than once** in the sequence,</li>
+	<li>The binary representation of every pair of **adjacent** integers differs by **exactly one bit**, and</li>
+	<li>The binary representation of the **first** and **last** integers differs by **exactly one bit**.</li>
+</ul>
 
-Given `n`, return any valid $n$-bit Gray-code sequence.
+Given an integer `n`, return *any valid **n-bit gray code sequence***.

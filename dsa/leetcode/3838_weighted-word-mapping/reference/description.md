@@ -1,11 +1,11 @@
 ## Description
 
-You are given an array `words`. Every element is a word made only from lowercase English letters.
+You are given an array of strings `words`, where each string represents a word containing lowercase English letters.
 
-You are also given an integer array `weights` containing 26 entries. Entry `weights[i]` is the weight assigned to the $i$th lowercase English letter.
+You are also given an integer array `weights` of length 26, where `weights[i]` represents the weight of the `i^th` lowercase English letter.
 
-The **weight** of one word is the **sum** of the weights assigned to all of its characters.
+The **weight** of a word is defined as the **sum** of the weights of its characters.
 
-For each word, reduce its weight modulo 26 and convert that residue to a lowercase letter in reverse alphabetical order: `0 -> 'z'`, `1 -> 'y'`, through `25 -> 'a'`.
+For each word, take its weight modulo 26 and map the result to a lowercase English letter using reverse alphabetical order (`0 -> 'z', 1 -> 'y', ..., 25 -> 'a'`).
 
-Return the string obtained by concatenating the mapped letters for the words in their original order.
+Return a string formed by concatenating the mapped characters for all words in order.

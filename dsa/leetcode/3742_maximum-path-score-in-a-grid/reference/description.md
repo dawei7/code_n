@@ -1,13 +1,17 @@
 ## Description
 
-You are given an $m \times n$ grid whose cells contain only `0`, `1`, or `2`, together with an integer budget `k`.
+You are given an `m x n` grid where each cell contains one of the values 0, 1, or 2. You are also given an integer `k`.
 
-Begin at the top-left cell `(0,0)` and reach the bottom-right cell `(m - 1,n - 1)`. Every move must go exactly one cell to the right or exactly one cell down.
+You start from the top-left corner `(0, 0)` and want to reach the bottom-right corner `(m - 1, n - 1)` by moving only **right** or **down**.
 
-Each visited cell adds score and cost according to its value:
+Each cell contributes a specific score and incurs an associated cost, according to their cell values:
 
-- A `0` adds `0` to the score and costs `0`.
-- A `1` adds `1` to the score and costs `1`.
-- A `2` adds `2` to the score and costs `1`.
+<ul>
+	<li>0: adds 0 to your score and costs 0.</li>
+	<li>1: adds 1 to your score and costs 1.</li>
+	<li>2: adds 2 to your score and costs 1. ​​​​​​​</li>
+</ul>
 
-Return the greatest score obtainable by a path whose total cost does not exceed `k`. Return `-1` if no such path reaches the destination.
+Return the **maximum** score achievable without exceeding a total cost of `k`, or -1 if no valid path exists.
+
+**Note:** If you reach the last cell but the total cost exceeds `k`, the path is invalid.

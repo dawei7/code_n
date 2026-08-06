@@ -1,15 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3743","frontend_id":"3743","title_slug":"maximize-cyclic-partition-score","url":"https://leetcode.com/problems/maximize-cyclic-partition-score/description/","paid_only":false,"content_sha256":"ce352a407ccce57fbd5d3bb8ffb1c96b3e42397cd45484425608249cad1a5a39","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"nums = [1,2,3,3], k = 2","output":"3","has_explanation":true},
-    {"ordinal":2,"input":"nums = [1,2,3,3], k = 1","output":"2","has_explanation":true},
-    {"ordinal":3,"input":"nums = [1,2,3,3], k = 4","output":"3","has_explanation":true}
-  ],"constraint_count":3,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"0028c5ecd1ebc207891dc03da6bef1d5a92bf97f761ec8e90c75046e63cae7e7",
-    "reference/contract.md":"80ddfdf98d257755894359a74c28a9ee9fbc6aa42dbf19f24644ab49bb3a9d0b",
-    "reference/examples.md":"86a18495ededab7e99ae9d0b2ed8ffb290010cb30cb0055b75c90207fb1aac2f",
-    "reference/constraints.md":"c6e631534cfac2528688b07ab5e2ff1aa5c3fc5ff7c6c8a7471f7e3baf434cce"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3743",
+    "frontend_id": "3743",
+    "title_slug": "maximize-cyclic-partition-score",
+    "url": "https://leetcode.com/problems/maximize-cyclic-partition-score/description/",
+    "paid_only": false,
+    "content_sha256": "ce352a407ccce57fbd5d3bb8ffb1c96b3e42397cd45484425608249cad1a5a39",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "aca4cee560a00cf95e1841dfccd7287dbd14de5deb75f2401af7d9ab76c59db9",
+      "reference/contract.md": "80ddfdf98d257755894359a74c28a9ee9fbc6aa42dbf19f24644ab49bb3a9d0b",
+      "reference/examples.md": "86a18495ededab7e99ae9d0b2ed8ffb290010cb30cb0055b75c90207fb1aac2f",
+      "reference/constraints.md": "c6e631534cfac2528688b07ab5e2ff1aa5c3fc5ff7c6c8a7471f7e3baf434cce"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

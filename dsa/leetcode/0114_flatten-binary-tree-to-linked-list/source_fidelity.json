@@ -1,19 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_114", "frontend_id": "114", "title_slug": "flatten-binary-tree-to-linked-list", "url": "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/", "paid_only": false, "content_sha256": "9342ed0d3c405c846a8b45bc3a75546f0de8f021ed6ca3883ba14a71dfaadf12", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_114",
+    "frontend_id": "114",
+    "title_slug": "flatten-binary-tree-to-linked-list",
+    "url": "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/",
+    "paid_only": false,
+    "content_sha256": "9342ed0d3c405c846a8b45bc3a75546f0de8f021ed6ca3883ba14a71dfaadf12",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "root = [1,2,5,3,4,null,6]", "output": "[1,null,2,null,3,null,4,null,5,null,6]", "has_explanation": false},
-      {"ordinal": 2, "input": "root = []", "output": "[]", "has_explanation": false},
-      {"ordinal": 3, "input": "root = [0]", "output": "[0]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "root = [1,2,5,3,4,null,6]",
+        "output": "[1,null,2,null,3,null,4,null,5,null,6]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "root = []",
+        "output": "[]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "root = [0]",
+        "output": "[0]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "a26be4b464ddf146175b2873f7027152c7c97652ff5e790571a7432c4af7490a", "reference/contract.md": "06a0f1783f567fc4520c8ca137918e1a6746ef42a0eb97c08265be453276e074", "reference/examples.md": "04522c8f8ce499ec08786c418c62bc8891384c69adbbb6817083f9d97cc8cd3d", "reference/constraints.md": "7588b29341a17fae0f9d975ed61996ba8088c4a9d1a0ecbacf2808c1f496e5e8", "reference/follow_up.md": "833563e591e4400982295bf518dcdb1cda5b0b766e7b8f118cfa98e942c838d0"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "109e8eda3b17c42d5fd5b39360e3efc33538cb413bddf0758328dd54295be176",
+      "reference/contract.md": "06a0f1783f567fc4520c8ca137918e1a6746ef42a0eb97c08265be453276e074",
+      "reference/examples.md": "04522c8f8ce499ec08786c418c62bc8891384c69adbbb6817083f9d97cc8cd3d",
+      "reference/constraints.md": "7588b29341a17fae0f9d975ed61996ba8088c4a9d1a0ecbacf2808c1f496e5e8",
+      "reference/follow_up.md": "833563e591e4400982295bf518dcdb1cda5b0b766e7b8f118cfa98e942c838d0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

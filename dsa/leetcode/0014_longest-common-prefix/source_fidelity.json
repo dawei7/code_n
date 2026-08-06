@@ -11,10 +11,24 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "strs = [\"flower\",\"flow\",\"flight\"]", "output": "\"fl\"", "has_explanation": false},
-      {"ordinal": 2, "input": "strs = [\"dog\",\"racecar\",\"car\"]", "output": "\"\"", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "strs = [\"flower\",\"flow\",\"flight\"]",
+        "output": "\"fl\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "strs = [\"dog\",\"racecar\",\"car\"]",
+        "output": "\"\"",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
     "visuals": {
@@ -29,7 +43,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "e2a4cd35b26ac565ff61daa9317887a878fed73ee9587e269f0dbc52d7e82bed",
+      "reference/description.md": "441344add58a6f2d6292752e4864a0595331754a58c784e2811242c39a2fde8d",
       "reference/contract.md": "ca0390f408c6819de4fe7ad4420a9b34cc124cedc42fe1776a0af47ed753647b",
       "reference/examples.md": "9e483f91f95e2fbda0e54ef85c75f1b8749d3e10d439f8cf1b363ddf3ff91690",
       "reference/constraints.md": "cf19bbe3132753547589c0b49eba0f80179de70e23cf6278dcf5ba3959085ae7"

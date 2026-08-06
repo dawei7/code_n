@@ -1,5 +1,5 @@
 ## Description
 
-Given strings `s` and `t`, return whether `s` is a subsequence of `t`.
+Given two strings `s` and `t`, return `true`* if *`s`* is a **subsequence** of *`t`*, or *`false`* otherwise*.
 
-A subsequence is formed by deleting any number of characters, possibly none, while keeping the relative order of those retained. For example, `"ace"` is a subsequence of `"abcde"`, whereas `"aec"` is not.
+A **subsequence** of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., `"ace"` is a subsequence of `"<u>a</u>b<u>c</u>d<u>e</u>"` while `"aec"` is not).

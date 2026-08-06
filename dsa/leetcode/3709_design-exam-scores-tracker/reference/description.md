@@ -1,11 +1,18 @@
 ## Description
 
-Alice takes exams over time and wants a tracker that can record each result and total the scores earned during a requested time interval.
+Alice frequently takes exams and wants to track her scores and calculate the total scores over specific time periods.
 
-Implement the `ExamTracker` class with these operations:
+Implement the `ExamTracker` class:
 
-- `ExamTracker()` creates an empty tracker.
-- `record(time, score)` records an exam taken at `time` with the given `score`.
-- `totalScore(startTime, endTime)` returns the sum of the scores recorded at times in the inclusive interval from `startTime` through `endTime`. Return `0` when that interval contains no recorded exam.
+<ul>
+	<li>`ExamTracker()`: Initializes the `ExamTracker` object.</li>
+	<li>`void record(int time, int score)`: Alice takes a new exam at time `time` and achieves the score `score`.</li>
+	<li>`long long totalScore(int startTime, int endTime)`: Returns an integer that represents the **total** score of all exams taken by Alice between `startTime` and `endTime` (inclusive). If there are no recorded exams taken by Alice within the specified time interval, return 0.</li>
+</ul>
 
-Calls arrive chronologically. In particular, successive `record` operations use strictly increasing times, and a query never asks beyond the latest recorded time. If the most recent record occurred at time `t`, every query satisfies `startTime <= endTime <= t`.
+It is guaranteed that the function calls are made in chronological order. That is,
+
+<ul>
+	<li>Calls to `record()` will be made with **strictly increasing** `time`.</li>
+	<li>Alice will never ask for total scores that require information from the future. That is, if the latest `record()` is called with `time = t`, then `totalScore()` will always be called with `startTime <= endTime <= t`.</li>
+</ul>

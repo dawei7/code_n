@@ -1,10 +1,12 @@
 ## Description
 
-The count-and-say sequence consists of digit strings defined recursively:
+The **count-and-say** sequence is a sequence of digit strings defined by the recursive formula:
 
-- `countAndSay(1) = "1"`.
-- For $n > 1$, `countAndSay(n)` is the run-length encoding of `countAndSay(n - 1)`.
+<ul>
+	<li>`countAndSay(1) = "1"`</li>
+	<li>`countAndSay(n)` is the run-length encoding of `countAndSay(n - 1)`.</li>
+</ul>
 
-Run-length encoding scans a string by maximal consecutive groups of the same character. Each group is replaced by its length followed by that character. For example, the groups in `"3322251"` are `"33"`, `"222"`, `"5"`, and `"1"`. They encode as `"23"`, `"32"`, `"15"`, and `"11"`, producing `"23321511"`.
+<a href="http://en.wikipedia.org/wiki/Run-length_encoding" target="_blank">Run-length encoding</a> (RLE) is a string compression method that works by replacing each maximal group of consecutive identical characters with the concatenation of the length of the group followed by the character itself. For example, to compress the string `"3322251"` we replace `"33"` with `"23"`, replace `"222"` with `"32"`, replace `"5"` with `"15"`, and replace `"1"` with `"11"`. Thus the compressed string becomes `"23321511"`.
 
-Given a positive integer `n`, return the $n$th string in this sequence.
+Given a positive integer `n`, return *the *`n^th`* element of the **count-and-say** sequence*.

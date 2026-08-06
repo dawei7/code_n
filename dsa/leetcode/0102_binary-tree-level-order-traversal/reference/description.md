@@ -1,3 +1,3 @@
 ## Description
 
-Given the `root` of a binary tree, return its node values in level order: visit the levels from top to bottom and list the nodes within each level from left to right.
+Given the `root` of a binary tree, return *the level order traversal of its nodes' values*. (i.e., from left to right, level by level).

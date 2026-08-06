@@ -1,12 +1,12 @@
 ## Description
 
-The **median** of an ordered list with an odd number of integers is its middle value. For example, the median of
-`[2, 3, 4]` is `3`. An even-length list has two central values, so its median is their arithmetic mean; the median of
-`[1, 2, 3, 4]` is `(2 + 3) / 2 = 2.5`.
+The **median** is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle values.
 
-Given an integer array `nums` and an integer `k`, consider a window containing exactly `k` consecutive elements. The
-window starts at the left end of the array and advances one position at a time until it reaches the right end. At
-each position, only the values within that window participate in its median.
+<ul>
+	<li>For examples, if `arr = [2,<u>3</u>,4]`, the median is `3`.</li>
+	<li>For examples, if `arr = [1,<u>2,3</u>,4]`, the median is `(2 + 3) / 2 = 2.5`.</li>
+</ul>
 
-Return the medians of all window positions in their original left-to-right order. A reported value is accepted when
-it differs from the exact median by at most $10^{-5}$.
+You are given an integer array `nums` and an integer `k`. There is a sliding window of size `k` which is moving from the very left of the array to the very right. You can only see the `k` numbers in the window. Each time the sliding window moves right by one position.
+
+Return *the median array for each window in the original array*. Answers within `10^-5` of the actual value will be accepted.

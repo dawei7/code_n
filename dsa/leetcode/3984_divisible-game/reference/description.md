@@ -1,7 +1,25 @@
 ## Description
 
-Alice receives a nonempty integer array `nums` and chooses three values: an integer $k>1$ and two indices `l` and `r` with $0 \le l \le r < n$. The chosen indices describe one nonempty, inclusive subarray.
+You are given an integer array `nums` of length `n`.
 
-Starting from zero scores, inspect every value in that subarray. A value divisible by $k$ is added to Alice's score; every other value is added to Bob's score. The resulting score difference is Alice's score minus Bob's score.
+Alice and Bob are playing a game. Alice chooses:
 
-Alice first maximizes this difference over every legal subarray and every legal $k$. If several values of $k$ attain the same maximum difference, she uses the smallest such $k$. Return the maximum difference multiplied by that selected $k$, reduced modulo $10^9+7$.
+<ul>
+	<li>An integer `k` such that `k > 1`.</li>
+	<li>Two integers `l` and `r` such that `0 <= l <= r < n`.</li>
+</ul>
+
+Initially, both Alice's and Bob's scores are 0.
+
+For each index `i` in the range `[l, r]` (inclusive):
+
+<ul>
+	<li>If `nums[i]` is divisible by `k`, Alice's score **increases** by `nums[i]`.</li>
+	<li>Otherwise, Bob's score **increases** by `nums[i]`.</li>
+</ul>
+
+The **score difference** is Alice's score **minus** Bob's score.
+
+Alice wants to **maximize** the score difference. If there are multiple values of `k` that achieve the **maximum** score difference, she chooses the **smallest** such `k`.
+
+Return the **product** of the **maximum** score difference and the chosen value of `k`. Since the result can be large, return it **modulo** `10^9 + 7`.

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/description/",
     "paid_only": false,
     "content_sha256": "319f94fc5ac8d97bacae9be7b616f70c25a7093ad21421c0a0acfc5cdfec2d14",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \"LUL\", k = 1",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"UDLR\", k = 4",
-        "output": "1",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"UU\", k = 1",
-        "output": "1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "7a525d0eb3c7c9795ee75a2319d43e7b20b87d17018ab116469ec13f4cb81153",
+      "reference/description.md": "aac0999c6a3190820c1c03b33f956fa716768d23749bd98b4c7dbcd5d6093d48",
       "reference/contract.md": "dbb44508072fb0cd6d7eef1c4929d523b3a93b89024ecc618740a4da5aed957f",
       "reference/examples.md": "d8c30e05de6b7ad9e441ac6162e007c266755b78d7b2114a4b3c13c9a3d7a7bf",
       "reference/constraints.md": "a80e978462c516141cc3223c1c17decb068d6ee58c157ad01c5ce72f22fddfe7"

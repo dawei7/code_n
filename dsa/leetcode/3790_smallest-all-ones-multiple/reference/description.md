@@ -2,8 +2,6 @@
 
 You are given a positive integer `k`.
 
-Among the positive integers whose decimal representation contains only the digit `1`—such as `1`, `11`, and `111`—find the smallest one divisible by `k`.
+Find the **smallest** integer `n` divisible by `k` that consists of **only the digit 1** in its decimal representation (e.g., 1, 11, 111, ...).
 
-Every candidate has one or more digits, and increasing its length appends another `1`, so the candidates are considered in exactly that numerical order.
-
-Return the number of decimal digits in the first divisible candidate, rather than the potentially enormous integer itself. If no all-ones multiple of `k` exists, return `-1`.
+Return an integer denoting the **number of digits** in the decimal representation of `n`. If no such `n` exists, return `-1`.

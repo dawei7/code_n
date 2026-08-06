@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_90", "frontend_id": "90",
+    "provider": "leetcode",
+    "challenge_id": "lc_90",
+    "frontend_id": "90",
     "title_slug": "subsets-ii",
     "url": "https://leetcode.com/problems/subsets-ii/description/",
-    "paid_only": false, "content_sha256": "003784eb54156adbf02838d272b083b3e24d1b3a8731e40a458d7e2f1abadda1", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "003784eb54156adbf02838d272b083b3e24d1b3a8731e40a458d7e2f1abadda1",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [1,2,2]", "output": "[[],[1],[1,2],[1,2,2],[2],[2,2]]", "has_explanation": false},
-      {"ordinal": 2, "input": "nums = [0]", "output": "[[],[0]]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,2]",
+        "output": "[[],[1],[1,2],[1,2,2],[2],[2,2]]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [0]",
+        "output": "[[],[0]]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "25ba806ee08240ee688db4b12aaba2cfda73bf6b0d2ab5e454078f77f6f7b607",
+      "reference/description.md": "91611eecc46dc5545e0bb4ca456bd68c210808e7636c44ff92e02dde13288560",
       "reference/contract.md": "f6279a5f3e1485623df13b550d6d0c3f7d57b191da6b00ef6a26bc5995eb01d1",
       "reference/examples.md": "77fbc2d262ee12cc26d0a11683e84963a97ec1941aea6e03c44ab33826188cd6",
       "reference/constraints.md": "bbe2b7c39004707b3d04f3b6ef9422d49ba3e2f111df8c990296ad3ab179034c"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

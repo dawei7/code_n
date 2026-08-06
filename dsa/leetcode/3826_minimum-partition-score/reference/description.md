@@ -1,9 +1,9 @@
 ## Description
 
-You receive an integer array `nums` and an integer `k`.
+You are given an integer array `nums` and an integer `k`.
 
-Divide `nums` into exactly `k` nonempty subarrays. Among every valid partition, return the smallest score that can be achieved.
+Your task is to partition `nums` into **exactly** `k` <span data-keyword="subarray-nonempty">subarrays</span> and return an integer denoting the **minimum possible score** among all valid partitions.
 
-A partition's score is the sum of the values assigned to all of its subarrays.
+The **score** of a partition is the **sum** of the **values** of all its subarrays.
 
-For a subarray whose elements sum to `sumArr`, its value is `sumArr * (sumArr + 1) / 2`.
+The **value** of a subarray is defined as `sumArr * (sumArr + 1) / 2`, where `sumArr` is the sum of its elements.

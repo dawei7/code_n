@@ -1,18 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_177", "frontend_id": "177", "title_slug": "nth-highest-salary", "url": "https://leetcode.com/problems/nth-highest-salary/description/", "paid_only": false, "content_sha256": "36f761e7bf2d123db1ebcafba7c30b5635a8f1eec0623afb536b314141127782", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_177",
+    "frontend_id": "177",
+    "title_slug": "nth-highest-salary",
+    "url": "https://leetcode.com/problems/nth-highest-salary/description/",
+    "paid_only": false,
+    "content_sha256": "36f761e7bf2d123db1ebcafba7c30b5635a8f1eec0623afb536b314141127782",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["employee_table", "description", "examples"],
+    "sections": [
+      "employee_table",
+      "description",
+      "examples"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "Employee = [[1,100],[2,200],[3,300]], n = 2", "output": "getNthHighestSalary(2) = [200]", "has_explanation": false},
-      {"ordinal": 2, "input": "Employee = [[1,100]], n = 2", "output": "getNthHighestSalary(2) = [null]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "Employee = [[1,100],[2,200],[3,300]], n = 2",
+        "output": "getNthHighestSalary(2) = [200]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "Employee = [[1,100]], n = 2",
+        "output": "getNthHighestSalary(2) = [null]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 0,
-    "visuals": {"source_images": 0, "source_tables": 5, "source_diagrams": 0, "local_images": 0, "local_tables": 5, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/employee_table.md": "0dff36a5057360445c9dd75446e22576f92fe6003ce346e9921fbe80f387722e", "reference/description.md": "8b188cb3947e9ec4a5c446addbc293c5362adb30abf403e012338e2ab411d15a", "reference/contract.md": "66dfd2c3299307297c5059c99568501ad7a312a8613543d00d5a41db3d60cc6f", "reference/examples.md": "ddbcfd649c5c170e72f0dd7b2955991b18c48233338f770081204d68d968b615"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/employee_table.md": "0dff36a5057360445c9dd75446e22576f92fe6003ce346e9921fbe80f387722e",
+      "reference/description.md": "eb721a6abf9bdf8a673dbc99662fdfa354efcadf7f687a3918f41959a152e4f2",
+      "reference/contract.md": "66dfd2c3299307297c5059c99568501ad7a312a8613543d00d5a41db3d60cc6f",
+      "reference/examples.md": "ddbcfd649c5c170e72f0dd7b2955991b18c48233338f770081204d68d968b615"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

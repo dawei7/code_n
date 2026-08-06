@@ -1,9 +1,11 @@
 ## Description
 
-Given a string `s` containing only `(`, `)`, `{`, `}`, `[`, and `]`, determine whether its brackets are valid.
+Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
 
-A string is valid only when all three conditions hold:
+An input string is valid if:
 
-- Every opening bracket is closed by a bracket of the same type.
-- Bracket pairs close in the correct nested order.
-- Every closing bracket has a corresponding earlier opening bracket of its type.
+<ol>
+	<li>Open brackets must be closed by the same type of brackets.</li>
+	<li>Open brackets must be closed in the correct order.</li>
+	<li>Every close bracket has a corresponding open bracket of the same type.</li>
+</ol>

@@ -1,12 +1,12 @@
 ## Description
 
-You are given two integers, `low` and `high`.
+You are given two integers `low` and `high`.
 
-An integer is **balanced** when both conditions below hold:
+An integer is called **balanced** if it satisfies **both** of the following conditions:
 
-- Its decimal representation contains at least two digits.
-- Numbering digit positions from `1` at the leftmost digit, the sum at even positions equals the sum at odd positions.
+<ul>
+	<li>It contains **at least** two digits.</li>
+	<li>The **sum of digits at even positions** is equal to the **sum of digits at odd positions** (the leftmost digit has position 1).</li>
+</ul>
 
-Each value is evaluated using its own ordinary decimal representation, so its leftmost digit always occupies position `1`.
-
-Return the number of balanced integers in the inclusive range `[low, high]`.
+Return an integer representing the number of balanced integers in the range `[low, high]` (both inclusive).

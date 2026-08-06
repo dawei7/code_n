@@ -2,6 +2,6 @@
 
 You are given an integer array `nums`.
 
-Remove exactly one prefix from the array. The chosen prefix is allowed to be empty, so leaving the entire array unchanged is a valid operation. After the removal, the surviving elements form a suffix of `nums`.
+You need to remove **exactly** one prefix (possibly empty) from nums.
 
-Return the minimum number of elements that must be removed so that the remaining array is strictly increasing. In a strictly increasing array, every element after the first is greater than the element immediately before it.
+Return an integer denoting the **minimum** length of the removed <span data-keyword="array-prefix">prefix</span> such that the remaining array is **<span data-keyword="strictly-increasing-array">strictly increasing</span>**.

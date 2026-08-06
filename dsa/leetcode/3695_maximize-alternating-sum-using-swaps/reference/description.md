@@ -1,11 +1,9 @@
 ## Description
 
-For an integer array `nums`, its alternating sum adds values at even indices and subtracts values at odd indices:
+You are given an integer array `nums`.
 
-$$
-\texttt{nums[0]}-\texttt{nums[1]}+\texttt{nums[2]}-\texttt{nums[3]}+\cdots.
-$$
+You want to maximize the **alternating sum** of `nums`, which is defined as the value obtained by **adding** elements at even indices and **subtracting** elements at odd indices. That is, `nums[0] - nums[1] + nums[2] - nums[3]...`
 
-The array `swaps` lists allowed index pairs. For every pair `[p_i, q_i]`, the values currently stored at indices `p_i` and `q_i` may be exchanged. Any allowed exchange can be used repeatedly, and the exchanges may be performed in any order.
+You are also given a 2D integer array `swaps` where `swaps[i] = [p_i, q_i]`. For each pair `[p_i, q_i]` in `swaps`, you are allowed to swap the elements at indices `p_i` and `q_i`. These swaps can be performed any number of times and in any order.
 
-Rearrange the values through zero or more allowed swaps so that the resulting alternating sum is as large as possible. Return that maximum value.
+Return the maximum possible **alternating sum** of `nums`.

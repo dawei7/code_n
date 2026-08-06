@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/trim-trailing-vowels/description/",
     "paid_only": false,
     "content_sha256": "03243fb8e1dc9fad38a0cb52c0a901f6f330a644eb9b8b37d7a9e3494e541907",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \"idea\"",
-        "output": "\"id\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"day\"",
-        "output": "\"day\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"aeiou\"",
-        "output": "\"\"",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "dce92018f191414b8a411d260388102e01c7283fd902ab81156dab4a22ef04be",
+      "reference/description.md": "836e79a3c183e04dc02fafe208dd2a48010531e4d04ebe9344aefc86e7294d8d",
       "reference/contract.md": "4e64e55cf6a255851d04cf06b20ae13736efe229ffd258706c90bc646a4ad7a3",
       "reference/examples.md": "4699f720cde9ad756106105757f33ae86af756ce2cc3f88ce1c84996cec14a7c",
       "reference/constraints.md": "6bd31ded2ad55ae1d1b809a885ce2b6a20495d650d4fed6e978de53f4ec5a7ff"

@@ -11,10 +11,24 @@
     "checked_at": "2026-08-02"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"owoztneoer\"", "output": "\"012\"", "has_explanation": false},
-      {"ordinal": 2, "input": "s = \"fviefuro\"", "output": "\"45\"", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "s = \"owoztneoer\"",
+        "output": "\"012\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"fviefuro\"",
+        "output": "\"45\"",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
     "visuals": {
@@ -29,7 +43,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "658c4ff95393824e843c622cb30a15eae97a9a1d4f20f217fe24a6acf958f9b4",
+      "reference/description.md": "7f47ad7cbbc6e06c6ec6d94a4809e99adad67bde3c94737c903f02cbf5a94eb2",
       "reference/contract.md": "572bacd9d8e2781bdd0fc4d09e4f0daa8b62b0d173fdb6e45ff79a7c95721680",
       "reference/examples.md": "78143effd95db7f35bd45cf7c05eeab9d9ea97c83ab8fe7171493b5e495622ad",
       "reference/constraints.md": "23bfed0321f9894fbc93675f687a1f0a546a6ffc5d847901a42864f38d2c749d"

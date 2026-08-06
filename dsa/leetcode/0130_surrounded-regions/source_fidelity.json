@@ -1,18 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_130", "frontend_id": "130", "title_slug": "surrounded-regions", "url": "https://leetcode.com/problems/surrounded-regions/description/", "paid_only": false, "content_sha256": "7612b5c2a4c883944a62910b62a0aa71bf9f17d6975e0906ae47ab8b2b564a66", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_130",
+    "frontend_id": "130",
+    "title_slug": "surrounded-regions",
+    "url": "https://leetcode.com/problems/surrounded-regions/description/",
+    "paid_only": false,
+    "content_sha256": "7612b5c2a4c883944a62910b62a0aa71bf9f17d6975e0906ae47ab8b2b564a66",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "board = [[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"O\",\"X\"],[\"X\",\"X\",\"O\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]", "output": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]", "has_explanation": true},
-      {"ordinal": 2, "input": "board = [[\"X\"]]", "output": "[[\"X\"]]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "board = [[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"O\",\"X\"],[\"X\",\"X\",\"O\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]",
+        "output": "[[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "board = [[\"X\"]]",
+        "output": "[[\"X\"]]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 4,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "988514b17c113400ef67c2b648cdf5a4e80973ecb26be371ecbbd69ccb4d80ae", "reference/contract.md": "72576eda52bb462527f0da618a44f293f2f29fc5c3b71c46806ada00dd18141e", "reference/examples.md": "1d26cc483bbccb73b0adaa693465f702e0abcd66ab6909c280d24a9242d190a0", "reference/constraints.md": "e05f01453df634dbc51bf39f16fee79d90d4c592be9920d7eaadaad8ee7506f7"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "2fa17d06fd92bc4578505df343137c9acdfde8dac5c856a7e4990e424a51cf61",
+      "reference/contract.md": "72576eda52bb462527f0da618a44f293f2f29fc5c3b71c46806ada00dd18141e",
+      "reference/examples.md": "1d26cc483bbccb73b0adaa693465f702e0abcd66ab6909c280d24a9242d190a0",
+      "reference/constraints.md": "e05f01453df634dbc51bf39f16fee79d90d4c592be9920d7eaadaad8ee7506f7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

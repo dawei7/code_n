@@ -1,5 +1,5 @@
 ## Description
 
-A positive integer is called an ugly number when every prime factor it has belongs to the set `{2,3,5}`.
+An **ugly number** is a *positive* integer which does not have a prime factor other than 2, 3, and 5.
 
-Given an integer `n`, return whether it is an ugly number.
+Given an integer `n`, return `true` *if* `n` *is an **ugly number***.

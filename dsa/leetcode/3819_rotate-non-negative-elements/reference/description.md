@@ -2,10 +2,10 @@
 
 You are given an integer array `nums` and an integer `k`.
 
-Take only the non-negative elements and rotate their order cyclically to the left by `k` positions. Zero belongs to this movable sequence.
+Rotate only the **non-negative** elements of the array to the **left** by `k` positions, in a cyclic manner.
 
-Every negative element must remain at its original index without moving.
+All **negative** elements must stay in their original positions and must not move.
 
-After rotating the extracted sequence, write its values back only into positions that originally contained non-negative elements, skipping each negative position.
+After rotation, place the **non-negative** elements back into the array in the new order, filling only the positions that originally contained **non-negative** values and **skipping all negative** positions.
 
 Return the resulting array.

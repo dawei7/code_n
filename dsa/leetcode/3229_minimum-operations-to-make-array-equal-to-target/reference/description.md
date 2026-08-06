@@ -1,0 +1,7 @@
+## Description
+
+You are given two positive integer arrays `nums` and `target`, of the same length.
+
+In a single operation, you can select any subarray of `nums` and increment each element within that subarray by 1 or decrement each element within that subarray by 1.
+
+Return the **minimum** number of operations required to make `nums` equal to the array `target`.

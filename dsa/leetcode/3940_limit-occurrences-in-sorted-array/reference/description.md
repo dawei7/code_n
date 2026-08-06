@@ -1,7 +1,7 @@
 ## Description
 
-You receive an integer array `nums` whose values are already sorted in non-decreasing order, together with a positive limit `k`. Build the filtered array without changing the relative order of the retained elements.
+You are given a **sorted** integer array `nums` and an integer `k`.
 
-Every distinct value may occur at most `k` times in the result. Apply this limit independently to each contiguous value group.
+Return an array such that each **distinct** element appears **at most** `k` times, while preserving the relative order of the elements in `nums`.
 
-Return the resulting array after applying this rule to every value.
+Note: If a distinct element appears **at least** `k` times, then it must appear **exactly** `k` times in the resulting array.

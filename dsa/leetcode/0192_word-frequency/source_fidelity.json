@@ -1,15 +1,56 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_192", "frontend_id": "192", "title_slug": "word-frequency", "url": "https://leetcode.com/problems/word-frequency/description/", "paid_only": false, "content_sha256": "d7383f8facebe8c102c659eb4adc0cf03fc7612b4ff1579a681a60c4fde41dd2", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_192",
+    "frontend_id": "192",
+    "title_slug": "word-frequency",
+    "url": "https://leetcode.com/problems/word-frequency/description/",
+    "paid_only": false,
+    "content_sha256": "d7383f8facebe8c102c659eb4adc0cf03fc7612b4ff1579a681a60c4fde41dd2",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "assumptions", "examples", "note"],
-    "examples": [{"ordinal": 1, "input": "words.txt = \"the day is sunny the the\\nthe sunny is is\"", "output": "the 4\\nis 3\\nsunny 2\\nday 1", "has_explanation": false}],
+    "sections": [
+      "description",
+      "assumptions",
+      "examples",
+      "note"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "words.txt = \"the day is sunny the the\\nthe sunny is is\"",
+        "output": "the 4\\nis 3\\nsunny 2\\nday 1",
+        "has_explanation": false
+      }
+    ],
     "constraint_count": 0,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 2, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 2,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "c808d9153b56bb9452c2758d767cb4589da446d824ef8685b4650135d1dd5ab2", "reference/contract.md": "96a058c8d670d7a0c26215f35ef20d802441336aa5cf45f5515ae98179785c31", "reference/assumptions.md": "353dec5a45fdfdc067bdc146df1d55bbf7cdfd75f158686f939f1ed50fa2f484", "reference/examples.md": "a6dfaef40a86be49da50cdf3cfc5d6fa4bdd65251a14a6cafc2a31ca29328301", "reference/note.md": "f8659ce2dad343ff02e320268bcca56b2d3dc2ee781f1d4d77189f5d7e55da9c"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "af484111a6e2936c8982d06d8e65b02824b4d2ab42202659be044e3771a6ffea",
+      "reference/contract.md": "96a058c8d670d7a0c26215f35ef20d802441336aa5cf45f5515ae98179785c31",
+      "reference/assumptions.md": "353dec5a45fdfdc067bdc146df1d55bbf7cdfd75f158686f939f1ed50fa2f484",
+      "reference/examples.md": "a6dfaef40a86be49da50cdf3cfc5d6fa4bdd65251a14a6cafc2a31ca29328301",
+      "reference/note.md": "f8659ce2dad343ff02e320268bcca56b2d3dc2ee781f1d4d77189f5d7e55da9c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

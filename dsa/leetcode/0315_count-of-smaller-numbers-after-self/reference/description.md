@@ -1,3 +1,3 @@
 ## Description
 
-Given an integer array `nums`, return an array `counts` in which `counts[i]` equals the number of elements strictly smaller than `nums[i]` that appear to its right.
+Given an integer array `nums`, return* an integer array *`counts`* where *`counts[i]`* is the number of smaller elements to the right of *`nums[i]`.

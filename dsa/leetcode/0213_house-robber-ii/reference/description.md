@@ -1,5 +1,5 @@
 ## Description
 
-A professional robber is considering houses along a street, with `nums[i]` giving the money in house `i`. The houses form a circle, so the first and last houses are neighbors. The security systems of every pair of adjacent houses are linked and will alert the police if both houses are robbed during the same night.
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are **arranged in a circle.** That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have a security system connected, and **it will automatically contact the police if two adjacent houses were broken into on the same night**.
 
-Return the greatest amount that can be robbed without selecting two adjacent houses.
+Given an integer array `nums` representing the amount of money of each house, return *the maximum amount of money you can rob tonight **without alerting the police***.

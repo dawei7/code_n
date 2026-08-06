@@ -8,16 +8,23 @@
     "url": "https://leetcode.com/problems/frequency-balance-subarray/description/",
     "paid_only": false,
     "content_sha256": "a32e2a98ac3dbc5c77ba5d08ba966d358aa545f86e0eb910c2ae505ba31c7217",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [
-      {"ordinal": 1, "input": "nums = [1,2,2,1,2,3,3,3]", "output": "5", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [5,5,5,5]", "output": "4", "has_explanation": true},
-      {"ordinal": 3, "input": "nums = [1,2,3,4]", "output": "1", "has_explanation": true}
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
     ],
-    "constraint_count": 2,
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -30,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1b6100e1ec5d9bc12b33bbb86b768d51d5bbe26fb3171221fc7e5b48346af89f",
+      "reference/description.md": "348673151bc74b112562fb1063358e21b91e00ae106046d10ddccf00b72ff65f",
       "reference/contract.md": "f2eeac0b720fdd6a1b0ae0b60cde3285399697f06c3c9066f1779cd010191cbb",
       "reference/examples.md": "df4872c58c06116478fd43b1ef066fb50d5c709b0789aa022ca9d1fbad40026b",
       "reference/constraints.md": "6ec772623cc557791f27bd151ffbab2f36dd1fa8c70437c6e86cf9eab4709ab3"

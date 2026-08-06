@@ -1,7 +1,9 @@
 ## Description
 
-Consider `n` people arranged in a circle. Their net balances are stored in `balance`, with `balance[i]` belonging to person `i`.
+You are given a **circular** array `balance` of length `n`, where `balance[i]` is the net balance of person `i`.
 
-One move transfers exactly one balance unit from a person to either adjacent person: the neighbor immediately to the left or the neighbor immediately to the right around the circle.
+In one move, a person can transfer **exactly** 1 unit of balance to either their left or right neighbor.
 
-Find the minimum number of moves needed to make every balance non-negative. Return `-1` when no sequence of permitted transfers can achieve that condition.
+Return the **minimum** number of moves required so that every person has a **non-negative** balance. If it is impossible, return `-1`.
+
+**Note**: You are guaranteed that **at most** 1 index has a **negative** balance initially.

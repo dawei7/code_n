@@ -1,7 +1,5 @@
 ## Description
 
-You are given an uppercase-English string `s` and an integer `k`. In one operation, choose any character position
-and replace that character with any other uppercase English letter. At most `k` such operations may be performed.
+You are given a string `s` and an integer `k`. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most `k` times.
 
-Return the length of the longest contiguous substring that can contain only one repeated letter after the permitted
-replacements.
+Return *the length of the longest substring containing the same letter you can get after performing the above operations*.

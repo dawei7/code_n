@@ -11,7 +11,13 @@
     "checked_at": "2026-08-05"
   },
   "structure": {
-    "sections": ["transactions_table", "chargebacks_table", "description", "note", "examples"],
+    "sections": [
+      "transactions_table",
+      "chargebacks_table",
+      "description",
+      "note",
+      "examples"
+    ],
     "examples": [
       {
         "ordinal": 1,

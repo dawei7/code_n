@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/maximum-number-of-items-from-sale-ii/description/",
     "paid_only": false,
     "content_sha256": "2065f72b978aa507ccd20493536e966ec5d1c416f2301d67e3c02d75142e67d9",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "items = [[1,6],[2,4],[3,5]], budget = 19",
-        "output": "5",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "items = [[2,8],[1,10],[6,6],[4,12],[5,20],[5,17]], budget = 35",
-        "output": "7",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 5,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "71a6465e01821d8fb4ae5503ae15b5d5ff820da85f37a9fb75ea1388b06a15ef",
+      "reference/description.md": "5849ab64c75c4c6d515e84298f3c8c0afc7ed9b12ee5ca86af38a11dbc6a75b5",
       "reference/contract.md": "588ecbe21662c87c65a5fe4a7ed80d77bb284b67753b1bdc1138cb7d97bfde65",
       "reference/examples.md": "1f61db6832ea1391f026d5a43d93a7ef2bd06dab0eb850a0ad18edb0ce1f14b9",
       "reference/constraints.md": "62954612c767294af4bc0f22594cf9f61318fbfb01da11ddc3d6fb424464c3fa"

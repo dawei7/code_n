@@ -1,7 +1,10 @@
 ## Description
 
-A row contains `n` houses. Each house must be painted red, blue, or green, and its painting cost depends on the chosen color. Adjacent houses may not use the same color.
+There is a row of `n` houses, where each house can be painted one of three colors: red, blue, or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.
 
-The `n x 3` matrix `costs` records these prices. In each row, column `0` is red, column `1` is blue, and column `2` is green; for example, `costs[0][0]` is the red cost for house `0`, while `costs[1][2]` is the green cost for house `1`.
+The cost of painting each house with a certain color is represented by an `n x 3` cost matrix `costs`.
 
-Return the minimum total cost of painting every house under the adjacency rule.
+- For example, `costs[0][0]` is the cost of painting house `0` with the color red; `costs[1][2]` is the cost of painting house `1` with color green, and so on...
+
+Return the minimum cost to paint all houses.
+

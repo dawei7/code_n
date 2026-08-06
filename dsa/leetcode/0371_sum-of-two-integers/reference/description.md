@@ -1,3 +1,3 @@
 ## Description
 
-Given integers `a` and `b`, return their sum without using either the `+` or `-` operator.
+Given two integers `a` and `b`, return *the sum of the two integers without using the operators* `+` *and* `-`.

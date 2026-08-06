@@ -1,8 +1,12 @@
 ## Description
 
-You are given two integer arrays, `nums1` and `nums2`, each containing $N$ elements. You may apply either of the following operations any number of times:
+You are given two integer arrays `nums1` and `nums2` of size `n`.
 
-- **Swap within one array:** Choose indices `i` and `j`, then exchange `nums1[i]` with `nums1[j]` or exchange `nums2[i]` with `nums2[j]`. This operation has no cost.
-- **Swap between the arrays:** Choose an index `i` and exchange `nums1[i]` with `nums2[i]`. This operation costs `1`.
+You can perform the following two operations any number of times on these two arrays:
 
-Determine the minimum total cost needed to make `nums1` and `nums2` identical. Return `-1` when no sequence of the allowed operations can make the arrays equal.
+<ul>
+	<li>**Swap within the same array**: Choose two indices `i` and `j`. Then, choose either to swap `nums1[i]` and `nums1[j]`, or `nums2[i]` and `nums2[j]`. This operation is **free of charge**.</li>
+	<li>**Swap between two arrays**: Choose an index `i`. Then, swap `nums1[i]` and `nums2[i]`. This operation **incurs a cost of 1**.</li>
+</ul>
+
+Return an integer denoting the **minimum cost** to make `nums1` and `nums2` **identical**. If this is not possible, return -1.

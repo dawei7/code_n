@@ -1,5 +1,13 @@
 ## Description
 
-Given a string `s` of lowercase English letters, keep every consonant at its existing index and rearrange only the vowel characters. The five vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
+<p data-end="271" data-start="95">You are given a string `s` consisting of lowercase English characters.
 
-Each vowel type has a frequency equal to its total number of appearances in `s`. The rearranged vowel sequence must place types with larger frequencies before types with smaller frequencies. When two vowel types occur equally often, the one whose first occurrence is earlier in `s` comes first. Return the string obtained by writing that ordered vowel sequence back into the original vowel positions.
+Rearrange only the **vowels** in the string so that they appear in **non-increasing** order of their frequency.
+
+If multiple vowels have the same **frequency**, order them by the position of their **first occurrence** in `s`.
+
+Return the modified string.
+
+Vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
+
+The **frequency** of a letter is the number of times it occurs in the string.

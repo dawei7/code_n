@@ -1,7 +1,7 @@
 ## Description
 
-There are `n` gas stations on a circular route, and station `i` provides `gas[i]` units of gas.
+There are `n` gas stations along a circular route, where the amount of gas at the `i^th` station is `gas[i]`.
 
-Your car has an unlimited-capacity tank. Traveling from station `i` to the next station `(i + 1)` consumes `cost[i]` units. You choose a station at which to begin with an empty tank.
+You have a car with an unlimited gas tank and it costs `cost[i]` of gas to travel from the `i^th` station to its next `(i + 1)^th` station. You begin the journey with an empty tank at one of the gas stations.
 
-Given arrays `gas` and `cost`, return the starting station's index if one complete clockwise circuit is possible; otherwise return `-1`. Whenever a solution exists, it is guaranteed to be unique.
+Given two integer arrays `gas` and `cost`, return *the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return* `-1`. If there exists a solution, it is **guaranteed** to be **unique**.

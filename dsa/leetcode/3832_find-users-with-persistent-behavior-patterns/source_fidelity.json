@@ -8,37 +8,39 @@
     "url": "https://leetcode.com/problems/find-users-with-persistent-behavior-patterns/description/",
     "paid_only": false,
     "content_sha256": "771240d5a2e5a371e1130436e7396d36370b8bc564c663c1575342884b4eeb6d",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
       "description",
-      "examples"
+      "examples",
+      "constraints"
     ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`activity` table (17 rows)",
-        "output": "users 3 and 1 with their selected streaks",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 0,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 3,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 3,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "34fd337c61137edd1c9b2ad92073059c182565962364a2ca4896c1f4e7299ff4",
+      "reference/description.md": "df118c4b1326967fa56ef65c2eeb295cabad7d416b574f3f3318455f792816b7",
       "reference/contract.md": "04abed5e607fade32d7500b28e5bbb357aeb8e34cd7685b833cc05c79c5bcbd9",
-      "reference/examples.md": "da1cf3b5f84b07fb4ae628e1f677cd0bc980acb9ea466ecfea2b0a1e37933342"
+      "reference/examples.md": "da1cf3b5f84b07fb4ae628e1f677cd0bc980acb9ea466ecfea2b0a1e37933342",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
     },
     "assertions": {
       "semantic_coverage": true,

@@ -8,16 +8,23 @@
     "url": "https://leetcode.com/problems/maximize-sum-of-device-ratings/description/",
     "paid_only": false,
     "content_sha256": "de8c88a11b1c3b8dc39a4d1280120059a23f0c43b5b102a5494a608f474229ca",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints"],
-    "examples": [
-      {"ordinal": 1, "input": "units = [[1,3],[2,2]]", "output": "4", "has_explanation": true},
-      {"ordinal": 2, "input": "units = [[1,2,3],[4,5,6]]", "output": "6", "has_explanation": true},
-      {"ordinal": 3, "input": "units = [[5,5,5],[1,1,1]]", "output": "6", "has_explanation": true}
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
     ],
-    "constraint_count": 4,
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -30,9 +37,8 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "33c2002d368c804d7a234924ee2baee06e4ba9c34888bbcd346e5f6a6139c9dc",
+      "reference/description.md": "aff1910c311b86880426b04637388e9c1b30e1fa9ad73f940114a8f5068fd326",
       "reference/contract.md": "591cfb22fc96337e0a8131498239a18846dec88210435ac4a7fc88d4ea13a2af",
-      "reference/note.md": "9c25d57f897f0785d48cba6534f13db98b45771ba8b32c5bb64b336265643016",
       "reference/examples.md": "e4443519fc8de6f53ee4a9a57cbb380d8cb6ed984797845f99e9612b08f2f9d6",
       "reference/constraints.md": "1a20fec76d931550d50e1aeb788d17015fb907835491771d02f4e639b2be0593"
     },

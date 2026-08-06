@@ -1,5 +1,5 @@
 ## Description
 
-Given an integer array `nums` and an integer `k`, find the smallest positive multiple of `k` that does not occur in `nums`.
+Given an integer array `nums` and an integer `k`, return the **smallest positive multiple** of `k` that is **missing** from `nums`.
 
-A positive integer is a multiple of `k` exactly when it is divisible by `k`.
+A **multiple** of `k` is any positive integer divisible by `k`.

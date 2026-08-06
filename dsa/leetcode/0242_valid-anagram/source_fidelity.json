@@ -1,11 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_242", "frontend_id": "242", "title_slug": "valid-anagram", "url": "https://leetcode.com/problems/valid-anagram/description/", "paid_only": false, "content_sha256": "44ec3ead3ae34c7a9ded2c6bbc3496840f8b113c6e669d50fbfe28aa2edfb2c6", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "s = \"anagram\", t = \"nagaram\"", "output": "true", "has_explanation": false}, {"ordinal": 2, "input": "s = \"rat\", t = \"car\"", "output": "false", "has_explanation": false}],
-    "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_242",
+    "frontend_id": "242",
+    "title_slug": "valid-anagram",
+    "url": "https://leetcode.com/problems/valid-anagram/description/",
+    "paid_only": false,
+    "content_sha256": "44ec3ead3ae34c7a9ded2c6bbc3496840f8b113c6e669d50fbfe28aa2edfb2c6",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "628b02ba88b1f65aec82731ac063f8a4806c393f6c83836857cdcbdc74589108", "reference/contract.md": "90372e41e176e529b5d6d3f95e32b0095f4016fc196b866a11276bb7a18145bf", "reference/examples.md": "27fb7b480975e25f5edb477d34b03487a26ec639c111713e23aca628cd39d6b1", "reference/constraints.md": "8503119408cbb447362fb490ecf2381109aa57d319475861312de4da8bb04126", "reference/follow_up.md": "1c0dd68859a127c36e7c71ffdd0d0b440c35e00592483748b14f54e42a3fde00"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"anagram\", t = \"nagaram\"",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"rat\", t = \"car\"",
+        "output": "false",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f7f87d2ca79af86b4c886ecaaff8588d93c7b3dd120e2dab2766bafe3982a482",
+      "reference/contract.md": "90372e41e176e529b5d6d3f95e32b0095f4016fc196b866a11276bb7a18145bf",
+      "reference/examples.md": "27fb7b480975e25f5edb477d34b03487a26ec639c111713e23aca628cd39d6b1",
+      "reference/constraints.md": "8503119408cbb447362fb490ecf2381109aa57d319475861312de4da8bb04126",
+      "reference/follow_up.md": "1c0dd68859a127c36e7c71ffdd0d0b440c35e00592483748b14f54e42a3fde00"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,7 +1,21 @@
 ## Description
 
-You are given an inclusive integer interval `[l, r]` and a six-character string `directions` containing exactly three `D` moves and three `R` moves. Every integer $x$ in the interval is interpreted as exactly 16 decimal digits by adding leading zeros when necessary.
+You are given two integers `l` and `r`, and a string `directions` consisting of **exactly** three `'D'` characters and three `'R'` characters.
 
-Write those digits into a $4\times4$ grid in row-major order. Starting at cell `(0, 0)`, follow `directions` in order: `D` moves down one row, and `R` moves right one column. Include the starting digit and the digit after every move, so the path records seven digits and finishes at `(3, 3)`.
+For each integer `x` in the range `[l, r]` (inclusive), perform the following steps:
 
-The integer is good precisely when those seven visited digits are non-decreasing. Return how many integers in `[l, r]` are good.
+<ol>
+	<li>If `x` has fewer than 16 digits, pad it on the left with **leading zeros** to obtain a 16-digit string.</li>
+	<li>Place the 16 digits into a `4 × 4` grid in **row-major** order (the first 4 digits form the first row from left to right, the next 4 digits form the second row, and so on).</li>
+	<li>Starting at the **top-left** cell (`row = 0`, `column = 0`), apply the 6 characters of `directions` in order:
+	<ul>
+		<li>`'D'` increments the row by 1.</li>
+		<li>`'R'` increments the column by 1.</li>
+	</ul>
+	</li>
+	<li>Record the sequence of digits visited along the path (including the starting cell), producing a sequence of length 7.</li>
+</ol>
+
+The integer `x` is considered **good** if the recorded sequence is **non-decreasing**.
+
+Return an integer representing the number of good integers in the range `[l, r]`.

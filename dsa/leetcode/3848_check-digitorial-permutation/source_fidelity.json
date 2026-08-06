@@ -8,27 +8,20 @@
     "url": "https://leetcode.com/problems/check-digitorial-permutation/description/",
     "paid_only": false,
     "content_sha256": "d805b43ee205f13db6b668b9ca1df83f3c5406decb74f0a6ad2cda127a4e92bf",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
       "description",
-      "note",
       "examples",
       "constraints"
     ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 145",
-        "output": "true",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 10",
-        "output": "false",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
     "constraint_count": 1,
@@ -44,9 +37,8 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1e27defc7746c355ba5bf5dc380190e9ca882160d2d25125355f993857ebaf0d",
+      "reference/description.md": "0891c9bd94a4fa8b0ab196e1eb4d8d1db1144449a93949b6315f762ffd6aefc8",
       "reference/contract.md": "85409b7f92b759df59fe203299ec0d4087dc0607b5b2d9a2c8cb500fe721e868",
-      "reference/note.md": "fc244b74a8d8a3be3344e17fbdb94f24ac18699749048b648b70682dc67e73be",
       "reference/examples.md": "eecfb580419d6ac13cf5142ae2519f19456f20e509e34364507a46d1b2fc0156",
       "reference/constraints.md": "0fc2a156825a551525de777abbe185f02b439cf74a977090d3e689f7c4ad2493"
     },

@@ -1,5 +1,5 @@
 ## Description
 
-Given an integer array `nums` of length $n$, a **132 pattern** is a subsequence formed by three positions $i < j < k$ whose values satisfy `nums[i] < nums[k] < nums[j]`.
+Given an array of `n` integers `nums`, a **132 pattern** is a subsequence of three integers `nums[i]`, `nums[j]` and `nums[k]` such that `i < j < k` and `nums[i] < nums[k] < nums[j]`.
 
-Return `true` if at least one 132 pattern exists; otherwise, return `false`. The selected values need not be adjacent, but both the position order and the strict value inequalities must hold.
+Return `true`* if there is a **132 pattern** in *`nums`*, otherwise, return *`false`*.*

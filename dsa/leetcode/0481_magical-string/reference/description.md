@@ -1,0 +1,13 @@
+## Description
+
+A magical string `s` consists of only `'1'` and `'2'` and obeys the following rule:
+
+<ul>
+	<li>Concatenating the sequence of lengths of its consecutive groups of identical characters `'1'` and `'2'` generates the string `s` itself.</li>
+</ul>
+
+The first few elements of `s` is `s = "1221121221221121122……"`. If we group the consecutive `1`'s and `2`'s in `s`, it will be `"1 22 11 2 1 22 1 22 11 2 11 22 ......"` and counting the occurrences of `1`'s or `2`'s in each group yields the sequence `"1 2 2 1 1 2 1 2 2 1 2 2 ......"`.
+
+You can see that concatenating the occurrence sequence gives us `s` itself.
+
+Given an integer `n`, return the number of `1`'s in the first `n` number in the magical string `s`.

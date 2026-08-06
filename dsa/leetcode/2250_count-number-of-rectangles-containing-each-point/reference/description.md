@@ -1,0 +1,9 @@
+## Description
+
+You are given a 2D integer array `rectangles` where `rectangles[i] = [l_i, h_i]` indicates that `i^th` rectangle has a length of `l_i` and a height of `h_i`. You are also given a 2D integer array `points` where `points[j] = [x_j, y_j]` is a point with coordinates `(x_j, y_j)`.
+
+The `i^th` rectangle has its **bottom-left corner** point at the coordinates `(0, 0)` and its **top-right corner** point at `(l_i, h_i)`.
+
+Return* an integer array *`count`* of length *`points.length`* where *`count[j]`* is the number of rectangles that **contain** the *`j^th`* point.*
+
+The `i^th` rectangle **contains** the `j^th` point if `0 <= x_j <= l_i` and `0 <= y_j <= h_i`. Note that points that lie on the **edges** of a rectangle are also considered to be contained by that rectangle.

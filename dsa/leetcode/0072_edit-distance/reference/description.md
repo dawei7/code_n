@@ -1,9 +1,11 @@
 ## Description
 
-Given strings `word1` and `word2`, return the minimum number of single-character operations needed to transform `word1` into `word2`.
+Given two strings `word1` and `word2`, return *the minimum number of operations required to convert `word1` to `word2`*.
 
-Exactly three operation types are available:
+You have the following three operations permitted on a word:
 
-- insert one character;
-- delete one character; or
-- replace one character.
+<ul>
+	<li>Insert a character</li>
+	<li>Delete a character</li>
+	<li>Replace a character</li>
+</ul>

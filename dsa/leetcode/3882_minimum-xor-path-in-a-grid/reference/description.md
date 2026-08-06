@@ -1,7 +1,11 @@
 ## Description
 
-You are given an $m\times n$ integer grid. Begin at its top-left cell `(0, 0)` and reach the bottom-right cell `(m - 1, n - 1)` by moving only one cell right or one cell down at each step.
+You are given a 2D integer array `grid` of size `m * n`.
 
-The cost of a path is the bitwise XOR of every cell value visited, including both endpoint cells.
+You start at the **top-left** cell `(0, 0)` and want to reach the **bottom-right** cell `(m - 1, n - 1)`.
 
-Return the smallest XOR cost attainable by any valid top-left-to-bottom-right path.
+At each step, you **may** move either **right or down**.
+
+The **cost** of a path is defined as the **bitwise XOR** of all the values in the cells along that path, **including** the start and end cells.
+
+Return the **minimum** possible XOR value among all valid paths from `(0, 0)` to `(m - 1, n - 1)`.

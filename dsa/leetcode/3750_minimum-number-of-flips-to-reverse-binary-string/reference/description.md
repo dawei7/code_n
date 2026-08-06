@@ -1,9 +1,11 @@
 ## Description
 
-You are given a positive integer `n`. Let `s` denote its binary representation written without any leading zeros.
+You are given a **positive** integer `n`.
 
-Reversing `s` means listing those same binary characters in the opposite order. This reversed original string is the fixed target; it is not recomputed after changes are made.
+Let `s` be the **binary representation** of `n` without leading zeros.
 
-In one flip, choose exactly one position of `s` and change its bit from `0` to `1` or from `1` to `0`. Any position may be flipped independently.
+The **reverse** of a binary string `s` is obtained by writing the characters of `s` in the opposite order.
 
-Return the minimum number of individual bit flips needed to transform `s` into the reverse of its original form.
+You may flip any bit in `s` (change `0 → 1` or `1 → 0`). Each flip affects **exactly** one bit.
+
+Return the **minimum** number of flips required to make `s` equal to the reverse of its original form.

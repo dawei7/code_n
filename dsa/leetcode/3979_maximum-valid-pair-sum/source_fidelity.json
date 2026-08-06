@@ -8,25 +8,23 @@
     "url": "https://leetcode.com/problems/maximum-valid-pair-sum/description/",
     "paid_only": false,
     "content_sha256": "b24c3d2670d3b17df1b581631bcefa6a9ceeb7fb8e2f29b7c33a82223311c6bb",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [1,3,5,2,8], k = 2",
-        "output": "13",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [5,1,9], k = 1",
-        "output": "14",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -39,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "4124b902e84d42e89f51f0f862f4ada055c80d955b5edf2ca463be023011d00b",
+      "reference/description.md": "dfbc1290fd1878a4afe19b12a4c32a777515207a05c3036393715a0cb3ca59dc",
       "reference/contract.md": "465d8a0dfebd56fa4c17bda76ffb24f55bf9b90066280681c5aa2043d84be535",
       "reference/examples.md": "869c7f6246ec94a25a6bc983a2b6bf776e9f5500db5745782ea76f3f92139f0a",
       "reference/constraints.md": "85f4193d3b54bada6c802f7ef29739e835195966b8bba06949b6f7f67f4d3e18"

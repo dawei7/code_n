@@ -1,5 +1,9 @@
 ## Description
 
-Given a non-negative integer `x`, return its square root rounded down to the nearest integer. The result is also non-negative.
+Given a non-negative integer `x`, return *the square root of *`x`* rounded down to the nearest integer*. The returned integer should be **non-negative** as well.
 
-Do not use a built-in exponentiation function or operator. For example, solutions must not calculate the answer with `pow(x, 0.5)` or `x ** 0.5`.
+You **must not use** any built-in exponent function or operator.
+
+<ul>
+	<li>For example, do not use `pow(x, 0.5)` in c++ or `x ** 0.5` in python.</li>
+</ul>

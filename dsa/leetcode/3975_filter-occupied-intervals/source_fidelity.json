@@ -8,25 +8,23 @@
     "url": "https://leetcode.com/problems/filter-occupied-intervals/description/",
     "paid_only": false,
     "content_sha256": "1ddef28f170d62dc02f67c68a236306c90aaf23526313e26247581ff4d639522",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "occupiedIntervals = [[2,6],[4,8],[10,10],[10,12],[14,16]], freeStart = 7, freeEnd = 11",
-        "output": "[[2,6],[12,12],[14,16]]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "occupiedIntervals = [[1,5],[2,3]], freeStart = 3, freeEnd = 8",
-        "output": "[[1,2]]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 4,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -39,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "b61369a8e1a8f886cfd9bfdc161ccf086a6447915a7a107af7a66eb712904276",
+      "reference/description.md": "fa0c370688572aa5d56c9bc6a268d93f0a818e317b232d8bd301e1faf205abf1",
       "reference/contract.md": "e083a9e4ddafc48fff93bc1ff4cb75bff63df826c095ad118bd96e9b8a8cbdf2",
       "reference/examples.md": "51c79cc0a6a82fdab3f696a4ff7eb55e16d3c9141fffa83e1f47c0c4d704b30e",
       "reference/constraints.md": "afd5d62b692fd02e5ddc34833d57cbc761e6ef64566de1575d50a55619d85c06"

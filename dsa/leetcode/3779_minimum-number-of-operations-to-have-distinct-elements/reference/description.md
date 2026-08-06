@@ -2,8 +2,8 @@
 
 You are given an integer array `nums`.
 
-An operation removes the first three elements of the current array. When fewer than three elements remain, the operation removes every remaining element instead.
+In one operation, you remove the **first three elements** of the current array. If there are fewer than three elements remaining, **all** remaining elements are removed.
 
-Continue applying this operation while the array is nonempty and still contains a duplicate value. Stop as soon as the array becomes empty or every remaining value is distinct.
+Repeat this operation until the array is empty or contains no duplicate values.
 
-Return the number of operations performed before reaching that stopping condition.
+Return an integer denoting the number of operations required.

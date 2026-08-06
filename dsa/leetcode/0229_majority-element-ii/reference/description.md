@@ -1,3 +1,3 @@
 ## Description
 
-Given an integer array of size `n`, return every element whose frequency is strictly greater than $\lfloor n/3 \rfloor$.
+Given an integer array of size `n`, find all elements that appear more than `⌊n / 3⌋` times.

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/count-valid-word-occurrences/description/",
     "paid_only": false,
     "content_sha256": "92b2a06f4b36e5c90c90984bc2ead8b6bf7c73147c232d1da6b9c1855a4965b0",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "chunks = [\"hello wor\",\"ld hello\"], queries = [\"hello\",\"world\",\"wor\"]",
-        "output": "[2,1,0]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "chunks = [\"a-b a--b \",\"a-\",\"b\"], queries = [\"a-b\",\"a\",\"b\"]",
-        "output": "[2,1,1]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "chunks = [\"-cat dog- mouse\"], queries = [\"cat\",\"dog\",\"mouse\",\"cat-dog\"]",
-        "output": "[1,1,1,0]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 9,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1df68f83ddcfa5cce6e50cbb628839fa5f53b9e3b989211053ca419537bd8405",
+      "reference/description.md": "5fd2a396987ff0fab58265365bf66efb47fd61e596b24c3bd7e51e5268b08eb2",
       "reference/contract.md": "9d4209d6a44de37d998ee5da9c03a32a48436aac14baaa8d7678e46afab313d5",
       "reference/examples.md": "8d2dd845ed9637ce0fa828e960d8276f9922c948e915c66eb0d1af10a256c171",
       "reference/constraints.md": "f09383c6d8278e3f7e7b062176fcdcb27df18ccb6d16e8943c1363b8cbd533dc"

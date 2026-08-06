@@ -1,10 +1,19 @@
 ## Description
 
-Given integers `n`, `l`, and `r`, count the arrays of length `n` whose values all belong to the inclusive range `[l, r]` and which satisfy both ZigZag rules:
+You are given three integers `n`, `l`, and `r`.
 
-- neighboring elements must be different; and
-- no three consecutive elements may form a strictly increasing sequence or a strictly decreasing sequence.
+A **ZigZag** array of length `n` is defined as follows:
 
-Return the number of valid ZigZag arrays modulo $10^9+7$.
+<ul>
+	<li>Each element lies in the range `[l, r]`.</li>
+	<li>No **two** adjacent elements are equal.</li>
+	<li>No **three** consecutive elements form a **strictly increasing** or **strictly decreasing** sequence.</li>
+</ul>
 
-A sequence is **strictly increasing** when every element after the first is greater than the element immediately before it. It is **strictly decreasing** when every element after the first is smaller than its immediate predecessor.
+Return the total number of valid **ZigZag** arrays.
+
+Since the answer may be large, return it **modulo** `10^9 + 7`.
+
+A **sequence** is said to be **strictly increasing** if each element is strictly greater than its previous one (if exists).
+
+A **sequence** is said to be **strictly decreasing** if each element is strictly smaller than its previous one (if exists).

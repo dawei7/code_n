@@ -1,0 +1,3 @@
+## Description
+
+Given two arrays of **unique** digits `nums1` and `nums2`, return *the **smallest** number that contains **at least** one digit from each array*.

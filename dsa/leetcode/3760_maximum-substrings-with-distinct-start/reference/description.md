@@ -1,7 +1,5 @@
 ## Description
 
-You are given a string `s` made of lowercase English letters.
+You are given a string `s` consisting of lowercase English letters.
 
-Split the entire string into one or more nonempty contiguous substrings, preserving the original order and using every character exactly once. The split is valid only when the first characters of all resulting substrings are pairwise distinct; no two pieces may begin with the same letter.
-
-Return the maximum number of substrings obtainable under this distinct-start requirement.
+Return an integer denoting the **maximum** number of <span data-keyword="substring-nonempty">substrings</span> you can split `s` into such that each **substring** starts with a **distinct** character (i.e., no two substrings start with the same character).

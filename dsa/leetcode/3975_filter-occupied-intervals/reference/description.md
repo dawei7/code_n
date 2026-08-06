@@ -1,7 +1,11 @@
 ## Description
 
-You receive a collection of inclusive integer intervals named `occupiedIntervals`. An interval `[start, end]` marks every integer point from `start` through `end` as occupied. The supplied intervals may overlap and may appear in any order.
+You are given a 2D integer array `occupiedIntervals`, where `occupiedIntervals[i] = [start_i, end_i]` represents a time interval during which you are occupied. Each interval starts at `start_i` and ends at `end_i`, **inclusive**. These intervals may **overlap**.
 
-First combine every pair or chain of occupied intervals that overlaps or touches. Here, touching has a discrete meaning: an interval beginning exactly one integer after another interval ends is contiguous with it. For example, `[1,1]` and `[2,2]` combine into `[1,2]`.
+You are also given two integers `freeStart` and `freeEnd`, which define a free time interval from `freeStart` to `freeEnd`, inclusive.
 
-The inclusive interval from `freeStart` through `freeEnd` is free time. Remove every integer point in that interval from the merged occupied set. Return the occupied portions that remain, ordered by their starting points. They must be pairwise non-overlapping and represented with the fewest possible intervals. Return an empty list when the free interval removes every occupied point.
+Your task is to merge **all** occupied intervals that overlap or touch, then remove **all** integer points in the free interval from the merged occupied intervals.
+
+Two intervals touch if the second interval starts **immediately after** the first one ends. For example, `[1, 1]` and `[2, 2]` touch and should be merged into `[1, 2]`.
+
+Return the **remaining** occupied intervals in **sorted** order. The returned intervals must be **non-overlapping** and must contain the **minimum** number of intervals possible. If there are no remaining occupied points, return an empty list.

@@ -1,13 +1,21 @@
 ## Description
 
-Arrange the characters of a string `s` across `numRows` in a repeating zigzag path: move vertically from the first row to the last, then diagonally upward toward the first row, and repeat until every character has been placed.
+The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
-For example, `"PAYPALISHIRING"` arranged on three rows is:
+```
 
-```text
 P   A   H   N
 A P L S I I G
 Y   I   R
+
 ```
 
-Read the completed arrangement one row at a time from top to bottom. The three-row arrangement above therefore becomes `"PAHNAPLSIIGYIR"`. Return this row-wise conversion for the supplied string and row count.
+And then read line by line: `"PAHNAPLSIIGYIR"`
+
+Write the code that will take a string and make this conversion given a number of rows:
+
+```
+
+string convert(string s, int numRows);
+
+```

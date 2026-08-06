@@ -1,21 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_342", "frontend_id": "342", "title_slug": "power-of-four", "url": "https://leetcode.com/problems/power-of-four/description/", "paid_only": false, "content_sha256": "c3691e377575fd79d01882e86a76329d749d9302a0df00b9e4c738f3030503c1", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_342",
+    "frontend_id": "342",
+    "title_slug": "power-of-four",
+    "url": "https://leetcode.com/problems/power-of-four/description/",
+    "paid_only": false,
+    "content_sha256": "c3691e377575fd79d01882e86a76329d749d9302a0df00b9e4c738f3030503c1",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "n = 16", "output": "true", "has_explanation": false},
-      {"ordinal": 2, "input": "n = 5", "output": "false", "has_explanation": false},
-      {"ordinal": 3, "input": "n = 1", "output": "true", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "n = 16",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 5",
+        "output": "false",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 1",
+        "output": "true",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "c07da4cccc0d33d85887b91cffe3b764ca1aa970732b6dc62d29cff7a582e924",
-    "reference/contract.md": "376b6560e28facd8f8ef425380bd8a98fb1b8caf185c497f480a9f8e9b670368",
-    "reference/examples.md": "ad16a9f01afaeacf6bf1fd3e0fa3a594be29f9a8a3455aa9e2510f1ac68c0ceb",
-    "reference/constraints.md": "10e07c93559227d1d99d5b5671e3b645a1c4a7179a0b281c5d6a32a5842c805b",
-    "reference/follow_up.md": "aaa2f8532765a5aadb6b807abc6a2902ca82499bc32aab096cca18bbb0484e29"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "fa2998590c779685284f6fa3c281aa8177c27251b74122f195f08f171fded315",
+      "reference/contract.md": "376b6560e28facd8f8ef425380bd8a98fb1b8caf185c497f480a9f8e9b670368",
+      "reference/examples.md": "ad16a9f01afaeacf6bf1fd3e0fa3a594be29f9a8a3455aa9e2510f1ac68c0ceb",
+      "reference/constraints.md": "10e07c93559227d1d99d5b5671e3b645a1c4a7179a0b281c5d6a32a5842c805b",
+      "reference/follow_up.md": "aaa2f8532765a5aadb6b807abc6a2902ca82499bc32aab096cca18bbb0484e29"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

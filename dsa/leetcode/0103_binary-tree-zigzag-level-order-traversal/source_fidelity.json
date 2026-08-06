@@ -1,19 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_103", "frontend_id": "103", "title_slug": "binary-tree-zigzag-level-order-traversal", "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/", "paid_only": false, "content_sha256": "25cbf1d456be070db76e3d5d28312e48a605eb230a998d0653dd0b276cabbf74", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_103",
+    "frontend_id": "103",
+    "title_slug": "binary-tree-zigzag-level-order-traversal",
+    "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/",
+    "paid_only": false,
+    "content_sha256": "25cbf1d456be070db76e3d5d28312e48a605eb230a998d0653dd0b276cabbf74",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "root = [3,9,20,null,null,15,7]", "output": "[[3],[20,9],[15,7]]", "has_explanation": false},
-      {"ordinal": 2, "input": "root = [1]", "output": "[[1]]", "has_explanation": false},
-      {"ordinal": 3, "input": "root = []", "output": "[]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "root = [3,9,20,null,null,15,7]",
+        "output": "[[3],[20,9],[15,7]]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [1]",
+        "output": "[[1]]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "root = []",
+        "output": "[]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "1ad552d60a255ebfa4c4084e7033ee89f55aec2a62c4bb79d405e126cb42593f", "reference/contract.md": "bc62f04c7a95bfa87e46a803115f0ed93dcf9f8bb9728851c9e08159f7384716", "reference/examples.md": "b22786d8b52a420f43863385b759187ca8fa915fe343809d3e67d3890cf58afc", "reference/constraints.md": "7588b29341a17fae0f9d975ed61996ba8088c4a9d1a0ecbacf2808c1f496e5e8"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "6eabeecf3c379594585f9507ff47c06e9b66d50ef2c8f1af7c120071d75e41a1",
+      "reference/contract.md": "bc62f04c7a95bfa87e46a803115f0ed93dcf9f8bb9728851c9e08159f7384716",
+      "reference/examples.md": "b22786d8b52a420f43863385b759187ca8fa915fe343809d3e67d3890cf58afc",
+      "reference/constraints.md": "7588b29341a17fae0f9d975ed61996ba8088c4a9d1a0ecbacf2808c1f496e5e8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

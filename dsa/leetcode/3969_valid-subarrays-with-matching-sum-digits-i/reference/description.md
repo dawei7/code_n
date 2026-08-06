@@ -1,5 +1,12 @@
 ## Description
 
-Given a positive-integer array `nums` and a decimal digit `x`, consider every nonempty contiguous subarray `nums[l..r]`. Add all values in that subarray and write the positive sum in its ordinary decimal representation. The subarray is valid precisely when the representation starts with `x` and also ends with `x`.
+You are given an integer array `nums` and an integer digit `x`.
 
-Count and return all valid subarrays. The condition applies to the first and last digits of the **sum**, not to the endpoint elements of the subarray. Overlapping subarrays and subarrays with the same sum are counted separately because each index interval is a distinct candidate.
+A <span data-keyword="subarray-nonempty">**subarray**</span> `nums[l..r]` is considered **valid** if the sum of its elements satisfies both of the following conditions:
+
+<ul>
+	<li>The first digit of the sum is equal to `x`.</li>
+	<li>The last digit of the sum is equal to `x`.</li>
+</ul>
+
+Return the number of valid subarrays.

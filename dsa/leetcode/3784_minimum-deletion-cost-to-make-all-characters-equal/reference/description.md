@@ -1,7 +1,7 @@
 ## Description
 
-You are given a string `s` of length `n` and an integer array `cost` of the same length. Deleting the character originally at index `i` costs `cost[i]`.
+You are given a string `s` of length `n` and an integer array `cost` of the same length, where `cost[i]` is the cost to **delete** the `i^th` character of `s`.
 
-Delete any number of characters, possibly none, so that the remaining string is nonempty and every one of its characters is equal.
+You may delete any number of characters from `s` (possibly none), such that the resulting string is **non-empty** and consists of **equal** characters.
 
-Return the smallest possible sum of deletion costs.
+Return an integer denoting the **minimum** total deletion cost required.

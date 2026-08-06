@@ -1,5 +1,10 @@
 ## Description
 
-Given the root of a binary search tree and an integer `key`, remove the node whose value equals `key` and return the tree's possibly updated root.
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return *the **root node reference** (possibly updated) of the BST*.
 
-Deletion has two stages: first use the BST ordering to locate the node, then—if that node exists—remove it while preserving a valid binary search tree. If no node has the requested value, the tree remains unchanged.
+Basically, the deletion can be divided into two stages:
+
+<ol>
+	<li>Search for a node to remove.</li>
+	<li>If the node is found, delete the node.</li>
+</ol>

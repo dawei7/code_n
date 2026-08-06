@@ -1,7 +1,18 @@
 ## Description
 
-Compress the character array `chars` by considering each maximal group of consecutive equal characters in order. A group of length one contributes only its character. A longer group contributes its character followed by the decimal representation of its length.
+Given an array of characters `chars`, compress it using the following algorithm:
 
-Store the compressed sequence at the beginning of the same input array instead of returning a separate string. If a group length has multiple digits, write each digit into its own array position. After modifying `chars`, return the length of the compressed prefix.
+Begin with an empty string `s`. For each group of **consecutive repeating characters** in `chars`:
 
-The compression must use only constant extra space.
+<ul>
+	<li>If the group's length is `1`, append the character to `s`.</li>
+	<li>Otherwise, append the character followed by the group's length.</li>
+</ul>
+
+The compressed string `s` **should not be returned separately**, but instead, be stored **in the input character array `chars`**. Note that group lengths that are `10` or longer will be split into multiple characters in `chars`.
+
+After you are done **modifying the input array,** return *the new length of the array*.
+
+You must write an algorithm that uses only constant extra space.
+
+**Note: **The characters in the array beyond the returned length do not matter and should be ignored.

@@ -1,10 +1,16 @@
 ## Description
 
-You are given an integer array `nums`. It is **alternating prime** when its values follow index parity, using zero-based indices:
+You are given an integer array `nums`.
 
-- every element at an even index is a prime number;
-- every element at an odd index is a non-prime number.
+An array is considered **alternating prime** if:
 
-One operation increments any one array element by exactly $1$. Operations may be applied repeatedly to the same position. Return the minimum total number of operations needed to make `nums` alternating prime.
+<ul>
+	<li>Elements at **even** indices (0-based) are **prime** numbers.</li>
+	<li>Elements at **odd** indices are **non-prime** numbers.</li>
+</ul>
 
-A prime number is a natural number greater than $1$ whose only factors are $1$ and itself. Consequently, $1$ is non-prime.
+In one operation, you may **increment** any element by 1.
+
+Return the **minimum** number of operations required to transform `nums` into an **alternating prime** array.
+
+A **prime** number is a natural number greater than 1 with only two factors, 1 and itself.

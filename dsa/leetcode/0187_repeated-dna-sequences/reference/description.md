@@ -1,5 +1,11 @@
 ## Description
 
-A DNA sequence consists of nucleotides abbreviated `A`, `C`, `G`, and `T`; for example, `"ACGAATTCCG"` is a DNA sequence.
+The **DNA sequence** is composed of a series of nucleotides abbreviated as `'A'`, `'C'`, `'G'`, and `'T'`.
 
-Given a DNA string `s`, return every 10-letter-long substring that occurs more than once. The repeated sequences may be returned in any order.
+<ul>
+	<li>For example, `"ACGAATTCCG"` is a **DNA sequence**.</li>
+</ul>
+
+When studying **DNA**, it is useful to identify repeated sequences within the DNA.
+
+Given a string `s` that represents a **DNA sequence**, return all the **`10`-letter-long** sequences (substrings) that occur more than once in a DNA molecule. You may return the answer in **any order**.

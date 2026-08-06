@@ -8,39 +8,39 @@
     "url": "https://leetcode.com/problems/find-emotionally-consistent-users/description/",
     "paid_only": false,
     "content_sha256": "a5cb9d3720e2c7b3f97a2bd25972174cdc51219bc2a868a853d17522d572d3d5",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
       "description",
-      "note",
-      "examples"
+      "examples",
+      "constraints"
     ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "reactions table (15 rows)",
-        "output": "users 3 and 1 with their dominant reactions and reaction ratios",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 0,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 3,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 3,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "f18e3b7726b271a6b93ab27c9ee6578a133d582a1c8ae12ed404c10dff39222f",
+      "reference/description.md": "70770de1cdec94a8c3d7182dc36841c7be2b61b1207d50ee61782b3995984df7",
       "reference/contract.md": "d704e4a12ca8761318ef5fa903d67f18d611690d36b3c0c5a2adc125b57372cf",
-      "reference/note.md": "0bb3fd6ae242afe0d26780e9a4b1b965039560e8af90f3d262cf61ba7dc5c034",
-      "reference/examples.md": "acd5da104309d50670dfa84b01e3bc42274e704e7c137b50f04fc28ef6319b10"
+      "reference/examples.md": "acd5da104309d50670dfa84b01e3bc42274e704e7c137b50f04fc28ef6319b10",
+      "reference/constraints.md": "238f56d9d43b20f8ef5bbf15a7cc1d4a465d1eb8c0ee3c9f5346ec82a36c4428"
     },
     "assertions": {
       "semantic_coverage": true,

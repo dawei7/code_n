@@ -1,7 +1,6 @@
 ## Description
 
-Reorder the integer array `nums` so its values satisfy
+Given an integer array `nums`, reorder it such that `nums[0] <= nums[1] >= nums[2] <= nums[3]...`
 
-`nums[0] <= nums[1] >= nums[2] <= nums[3] >= ...`.
+You may assume the input array always has a valid answer.
 
-The input is guaranteed to admit at least one valid arrangement.

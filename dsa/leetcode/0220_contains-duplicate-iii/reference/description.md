@@ -2,10 +2,12 @@
 
 You are given an integer array `nums` and two integers `indexDiff` and `valueDiff`.
 
-Find whether a pair of indices `(i,j)` meets all three conditions:
+Find a pair of indices `(i, j)` such that:
 
-- `i != j`
-- $\lvert i-j \rvert \le \texttt{indexDiff}$
-- $\lvert \texttt{nums[i]}-\texttt{nums[j]} \rvert \le \texttt{valueDiff}$
+<ul>
+	<li>`i != j`,</li>
+	<li>`abs(i - j) <= indexDiff`.</li>
+	<li>`abs(nums[i] - nums[j]) <= valueDiff`, and</li>
+</ul>
 
-Return `true` if at least one such pair exists; otherwise return `false`.
+Return `true`* if such pair exists or *`false`* otherwise*.

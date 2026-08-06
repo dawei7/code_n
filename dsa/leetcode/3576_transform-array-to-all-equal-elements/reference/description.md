@@ -1,0 +1,16 @@
+## Description
+
+You are given an integer array `nums` of size `n` containing only `1` and `-1`, and an integer `k`.
+
+You can perform the following operation at most `k` times:
+
+<ul>
+	<li>
+	Choose an index `i` (`0 <= i < n - 1`), and **multiply** both `nums[i]` and `nums[i + 1]` by `-1`.
+
+	</li>
+</ul>
+
+**Note** that you can choose the same index <code data-end="459" data-start="456">i</code> more than once in **different** operations.
+
+Return `true` if it is possible to make all elements of the array **equal** after at most `k` operations, and `false` otherwise.

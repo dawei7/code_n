@@ -1,5 +1,7 @@
 ## Description
 
-You are given integer arrays `nums1` and `nums2`, both sorted in non-decreasing order, and an integer `k`.
+You are given two integer arrays `nums1` and `nums2` sorted in **non-decreasing order** and an integer `k`.
 
-Define a pair $(u,v)$ by choosing one element `u` from `nums1` and one element `v` from `nums2`. Return the `k` pairs with the smallest values of $u+v$.
+Define a pair `(u, v)` which consists of one element from the first array and one element from the second array.
+
+Return *the* `k` *pairs* `(u_1, v_1), (u_2, v_2), ..., (u_k, v_k)` *with the smallest sums*.

@@ -2,14 +2,8 @@
 
 You are given an integer array `nums`.
 
-A tuple `(i, j, k)` is called good when its three indices are distinct and the values at those positions are equal: `nums[i] == nums[j] == nums[k]`.
+A tuple `(i, j, k)` of 3 **distinct** indices is **good** if `nums[i] == nums[j] == nums[k]`.
 
-The distance of a good tuple is
+The **distance** of a **good** tuple is `abs(i - j) + abs(j - k) + abs(k - i)`, where `abs(x)` denotes the **absolute value** of `x`.
 
-$$
-\lvert i-j \rvert + \lvert j-k \rvert + \lvert k-i \rvert,
-$$
-
-where each pair contributes its absolute index difference.
-
-Return the smallest distance among all good tuples. If the array contains no good tuple, return `-1`.
+Return an integer denoting the **minimum** possible **distance** of a **good** tuple. If no **good** tuples exist, return `-1`.

@@ -1,11 +1,16 @@
 ## Description
 
-You are given an integer array `nums` of length $n$ and a non-negative threshold `k`. Each index $i$ has an instability score obtained from two inclusive ranges: the prefix ending at $i$ and the suffix beginning at $i$.
+You are given an integer array `nums` of length `n` and an integer `k`.
 
-Take the largest value in `nums[0..i]` and subtract the smallest value in `nums[i..n - 1]`:
+For each index `i`, define its **instability score** as `max(nums[0..i]) - min(nums[i..n - 1])`.
 
-$$
-\max(\texttt{nums}[0..i])-\min(\texttt{nums}[i..n-1]).
-$$
+In other words:
 
-Index $i$ is stable when this difference is at most `k`. Return the smallest stable index. If every index has an instability score greater than `k`, return `-1`.
+<ul>
+	<li>`max(nums[0..i])` is the **largest** value among the elements from index 0 to index `i`.</li>
+	<li>`min(nums[i..n - 1])` is the **smallest** value among the elements from index `i` to index `n - 1`.</li>
+</ul>
+
+An index `i` is called **stable** if its instability score is **less than or equal to** `k`.
+
+Return the **smallest** stable index. If no such index exists, return -1.

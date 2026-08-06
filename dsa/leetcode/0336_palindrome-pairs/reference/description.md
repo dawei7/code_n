@@ -1,17 +1,15 @@
 ## Description
 
-You are given a zero-indexed array `words` whose strings are all unique.
+You are given a **0-indexed** array of **unique** strings `words`.
 
-An ordered pair of indices $(i,j)$ is a palindrome pair precisely when all three conditions hold:
+A **palindrome pair** is a pair of integers `(i, j)` such that:
 
-- $0 \le i,j < \texttt{words.length}$,
-- $i \ne j$, and
-- concatenating `words[i] + words[j]` produces a palindrome.
+<ul>
+	<li>`0 <= i, j < words.length`,</li>
+	<li>`i != j`, and</li>
+	<li>`words[i] + words[j]` (the concatenation of the two strings) is a <span data-keyword="palindrome-string">palindrome</span>.</li>
+</ul>
 
-Return an array containing every palindrome pair. The algorithm must run in
+Return *an array of all the **palindrome pairs** of *`words`.
 
-$$
-O\!\left(\sum_i \lvert\texttt{words[i]}\rvert\right)
-$$
-
-time.
+You must write an algorithm with `O(sum of words[i].length)` runtime complexity.

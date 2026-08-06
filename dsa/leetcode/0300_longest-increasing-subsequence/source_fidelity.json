@@ -1,25 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_300", "frontend_id": "300", "title_slug": "longest-increasing-subsequence", "url": "https://leetcode.com/problems/longest-increasing-subsequence/description/", "paid_only": false, "content_sha256": "671191eb69912892f8f5ae44c79acb303cc7ca8f1da6a8f0edaafbc00878ebab", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_300",
+    "frontend_id": "300",
+    "title_slug": "longest-increasing-subsequence",
+    "url": "https://leetcode.com/problems/longest-increasing-subsequence/description/",
+    "paid_only": false,
+    "content_sha256": "671191eb69912892f8f5ae44c79acb303cc7ca8f1da6a8f0edaafbc00878ebab",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [10,9,2,5,3,7,101,18]", "output": "4", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [0,1,0,3,2,3]", "output": "4", "has_explanation": false},
-      {"ordinal": 3, "input": "nums = [7,7,7,7,7,7,7]", "output": "1", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [10,9,2,5,3,7,101,18]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [0,1,0,3,2,3]",
+        "output": "4",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [7,7,7,7,7,7,7]",
+        "output": "1",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "991b7f0e70ef88913dfa72b626269d7425a19456750f1842429288267c38e34a",
+      "reference/description.md": "599907a285acf251df81953d3fdc9ba8dc81c177a87e882ea4a0796f0069e757",
       "reference/contract.md": "c00be59d6d24cd0469086ffc65d402d578fa36d45c6e5bef3f1fafaf48aa76b7",
       "reference/examples.md": "63b7c1e6ee6b7bc34bb00269e30920900c32c58f4d09467d464a8d6eec094ee2",
       "reference/constraints.md": "b2c52eaaa2acb57a4c92fb52526b8bf37d8681cc6b47bf0b0458106d6ece0b8f",
       "reference/follow_up.md": "38f82081f2ab74042cb8151fdae2a6f450c6662bc3611b46445dfbb10d07c3b4"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

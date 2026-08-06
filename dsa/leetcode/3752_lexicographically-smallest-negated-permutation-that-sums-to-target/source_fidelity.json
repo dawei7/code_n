@@ -1,14 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3752","frontend_id":"3752","title_slug":"lexicographically-smallest-negated-permutation-that-sums-to-target","url":"https://leetcode.com/problems/lexicographically-smallest-negated-permutation-that-sums-to-target/description/","paid_only":false,"content_sha256":"823dedb5b24ba2060de8158361194c0c071c3d50c1a38a55f404d243a69fdc6c","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"n = 3, target = 0","output":"[-3,1,2]","has_explanation":true},
-    {"ordinal":2,"input":"n = 1, target = 10000000000","output":"[]","has_explanation":true}
-  ],"constraint_count":2,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"101784e3428d134ecfa8cb69d2748bc3ce813eba8eccab2518bcbc96feb9175b",
-    "reference/contract.md":"b01cb5eb34efe8492d10f8a76b4a38d74c66161cdeec1faebf552d567f210139",
-    "reference/examples.md":"cc7ca2421100fad7608edfc0da20294f2246b7ef5eda5940c429a4c8da056cbe",
-    "reference/constraints.md":"e500b2fbfa89a973d82aff0bedbee5ebb42da9c8922ccc397bc7585f423ec2e7"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3752",
+    "frontend_id": "3752",
+    "title_slug": "lexicographically-smallest-negated-permutation-that-sums-to-target",
+    "url": "https://leetcode.com/problems/lexicographically-smallest-negated-permutation-that-sums-to-target/description/",
+    "paid_only": false,
+    "content_sha256": "823dedb5b24ba2060de8158361194c0c071c3d50c1a38a55f404d243a69fdc6c",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7f88b2967bc9e3a1058e48fcd205f1af7323ed784ff5b8dcf08a8d08f4828d76",
+      "reference/contract.md": "b01cb5eb34efe8492d10f8a76b4a38d74c66161cdeec1faebf552d567f210139",
+      "reference/examples.md": "cc7ca2421100fad7608edfc0da20294f2246b7ef5eda5940c429a4c8da056cbe",
+      "reference/constraints.md": "e500b2fbfa89a973d82aff0bedbee5ebb42da9c8922ccc397bc7585f423ec2e7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

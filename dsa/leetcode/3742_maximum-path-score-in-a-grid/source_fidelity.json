@@ -1,15 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3742","frontend_id":"3742","title_slug":"maximum-path-score-in-a-grid","url":"https://leetcode.com/problems/maximum-path-score-in-a-grid/description/","paid_only":false,"content_sha256":"88a26029b490b72ffaa6b2d553a75fdef55341962b89bfdb865ecac1ed7bf150","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","note","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"grid = [[0, 1],[2, 0]], k = 1","output":"2","has_explanation":true},
-    {"ordinal":2,"input":"grid = [[0, 1],[1, 2]], k = 1","output":"-1","has_explanation":true}
-  ],"constraint_count":4,"visuals":{"source_images":0,"source_tables":1,"source_diagrams":0,"local_images":0,"local_tables":1,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"0e2ac39c9ebd328433bb5f909da1302b634c12acde0faba27dd3faac2ebf6210",
-    "reference/contract.md":"d7637d97bfd044cbd7f6a179df9f5c6de6d1c7fe24ad013bc45ccdc995d2e571",
-    "reference/note.md":"816f3a1ea0cdb9694cd7f06e51d4174030d77c709ed02d821bef38bdfbf3b807",
-    "reference/examples.md":"e7b3cfa0b8a7f16340f991c023a19a8a29d1429e69e4a2a5d95e86d2ee472637",
-    "reference/constraints.md":"4dc8f565addd879bc1687d3e1761293c0bc8937bc00c2743981c939622235b01"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3742",
+    "frontend_id": "3742",
+    "title_slug": "maximum-path-score-in-a-grid",
+    "url": "https://leetcode.com/problems/maximum-path-score-in-a-grid/description/",
+    "paid_only": false,
+    "content_sha256": "88a26029b490b72ffaa6b2d553a75fdef55341962b89bfdb865ecac1ed7bf150",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c50a91107dc3d3874869a484b9bdd9d102f6035f635f67408e691c3ff809cfe4",
+      "reference/contract.md": "d7637d97bfd044cbd7f6a179df9f5c6de6d1c7fe24ad013bc45ccdc995d2e571",
+      "reference/examples.md": "e7b3cfa0b8a7f16340f991c023a19a8a29d1429e69e4a2a5d95e86d2ee472637",
+      "reference/constraints.md": "4dc8f565addd879bc1687d3e1761293c0bc8937bc00c2743981c939622235b01"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/concatenate-array-with-reverse/description/",
     "paid_only": false,
     "content_sha256": "5192144a78b847751e0821c4229a0f90d725c141c2e4f588fb620da93457c69d",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [1,2,3]",
-        "output": "[1,2,3,3,2,1]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [1]",
-        "output": "[1,1]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "2adcb179eb6147e440649e3ecf4c8fec25d366d60b148aef375fe9cc2a1fff7c",
+      "reference/description.md": "b0f23ba147073c2f003516e93349b293efe8ccfdeb9ded7a7ec2fb7482f6d4b7",
       "reference/contract.md": "e7e281a4fea0332b07be61109a53fc8ccbd3772a49bf52b2400c056d2d9d62f2",
       "reference/examples.md": "27f97895a886b34848fc721821e7a0b122cc849e2aecbbce7be968e17d36179c",
       "reference/constraints.md": "2607901e8eae580adacbda8f84fbe0b7ad0af61ab5184c21a18a4f33e73974f2"

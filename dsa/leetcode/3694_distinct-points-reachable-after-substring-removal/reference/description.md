@@ -1,12 +1,16 @@
 ## Description
 
-The string `s` describes a walk on an infinite two-dimensional Cartesian grid. Each character makes one unit move from the current coordinate $(x,y)$:
+You are given a string `s` consisting of characters `'U'`, `'D'`, `'L'`, and `'R'`, representing moves on an infinite 2D Cartesian grid.
 
-- `U` moves to $(x,y+1)$.
-- `D` moves to $(x,y-1)$.
-- `L` moves to $(x-1,y)$.
-- `R` moves to $(x+1,y)$.
+<ul>
+	<li>`'U'`: Move from `(x, y)` to `(x, y + 1)`.</li>
+	<li>`'D'`: Move from `(x, y)` to `(x, y - 1)`.</li>
+	<li>`'L'`: Move from `(x, y)` to `(x - 1, y)`.</li>
+	<li>`'R'`: Move from `(x, y)` to `(x + 1, y)`.</li>
+</ul>
 
-Choose exactly one contiguous substring whose length is `k` and remove it from `s`. After that removal, begin at $(0,0)$ and execute every character that remains, without changing their order.
+You are also given a positive integer `k`.
 
-Different choices of the removed substring can lead to the same endpoint. Return the number of distinct final coordinates that can be reached over all valid removal positions.
+You **must** choose and remove **exactly one** contiguous substring of length `k` from `s`. Then, start from coordinate `(0, 0)` and perform the remaining moves in order.
+
+Return an integer denoting the number of **distinct** final coordinates reachable.

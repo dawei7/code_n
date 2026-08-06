@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_267", "frontend_id": "267", "title_slug": "palindrome-permutation-ii", "url": "https://leetcode.com/problems/palindrome-permutation-ii/description/", "paid_only": true, "content_sha256": "c6b88734bb32cef286cc611bb205a29d573ae9c55f7fe5d880f44bd3566541d1", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "s = \"aabb\"", "output": "[\"abba\",\"baab\"]", "has_explanation": false}, {"ordinal": 2, "input": "s = \"abc\"", "output": "[]", "has_explanation": false}],
-    "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_267",
+    "frontend_id": "267",
+    "title_slug": "palindrome-permutation-ii",
+    "url": "https://leetcode.com/problems/palindrome-permutation-ii/description/",
+    "paid_only": true,
+    "content_sha256": "c6b88734bb32cef286cc611bb205a29d573ae9c55f7fe5d880f44bd3566541d1",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "f57119a113cd2e23309a8dc56732cccc4770d3e6da0f6b054de1936e7b78d140", "reference/contract.md": "c72a880b06257c0a9ac957e8d433ffea8158f23332efebbf031455e47ceb8f98", "reference/examples.md": "530e965d6b08a30e7c4c6303d395e93124977d17e1c1b0c43cab87a61574d0da", "reference/constraints.md": "4453f9a67ebb922a4ede2926f4f13a0e9e3b731c2a29a80a3f2a2e4cc2b40313"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"aabb\"",
+        "output": "[\"abba\",\"baab\"]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"abc\"",
+        "output": "[]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9f5714cdbbbd24dc74f97c2efaf69e0e0a1c64ba939fa5b22356c21f691674e6",
+      "reference/contract.md": "c72a880b06257c0a9ac957e8d433ffea8158f23332efebbf031455e47ceb8f98",
+      "reference/examples.md": "530e965d6b08a30e7c4c6303d395e93124977d17e1c1b0c43cab87a61574d0da",
+      "reference/constraints.md": "4453f9a67ebb922a4ede2926f4f13a0e9e3b731c2a29a80a3f2a2e4cc2b40313"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,13 +1,11 @@
 ## Description
 
-You are given an integer array `nums`, and you may rearrange its elements in any order.
+You are given an integer array `nums`. You may **rearrange the elements** in any order.
 
-For an array `arr`, the alternating score is defined by squaring every element and alternating between addition and subtraction from index zero onward:
+The **alternating score** of an array `arr` is defined as:
 
-$$
-\operatorname{score}(\texttt{arr})
-= \texttt{arr}[0]^2 - \texttt{arr}[1]^2
-+ \texttt{arr}[2]^2 - \texttt{arr}[3]^2 + \cdots
-$$
+<ul>
+	<li>`score = arr[0]^2 - arr[1]^2 + arr[2]^2 - arr[3]^2 + ...`</li>
+</ul>
 
-Return the maximum alternating score that can be obtained by rearranging `nums`.
+Return an integer denoting the **maximum possible alternating score** of `nums` after rearranging its elements.

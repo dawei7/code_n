@@ -1,3 +1,3 @@
 ## Description
 
-Given the `root` of a binary tree, return the zigzag level-order traversal of its node values. Read the first level from left to right, the next from right to left, and continue alternating direction at every following level.
+Given the `root` of a binary tree, return *the zigzag level order traversal of its nodes' values*. (i.e., from left to right, then right to left for the next level and alternate between).

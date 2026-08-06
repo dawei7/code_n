@@ -2,21 +2,31 @@
 
 Table: `course_completions`
 
-| Column Name | Type |
-|---|---|
-| `user_id` | integer |
-| `course_id` | integer |
-| `course_name` | varchar |
-| `completion_date` | date |
-| `course_rating` | integer |
+```
 
-The pair (`user_id`, `course_id`) uniquely identifies a row. Each row records one course completed by a user, the completion date, and that user's rating on the 1-to-5 scale.
++-------------------+---------+
+| Column Name       | Type    | 
++-------------------+---------+
+| user_id           | int     |
+| course_id         | int     |
+| course_name       | varchar |
+| completion_date   | date    |
+| course_rating     | int     |
++-------------------+---------+
+(user_id, course_id) is the combination of columns with unique values for this table.
+Each row represents a completed course by a user with their rating (1-5 scale).
 
-Analyze the course histories to identify the learning transitions most often followed by top-performing students:
+```
 
-- A **top-performing student** has completed at least 5 courses and has an average `course_rating` of at least 4.
-- For each such student, arrange the completed courses in chronological order.
-- From that personal sequence, form every pair of consecutive courses, written as `Course A → Course B`.
-- Count how often every ordered pair occurs across all top performers, revealing the most common transitions among high achievers.
+Write a solution to identify **skill mastery pathways** by analyzing course completion sequences among top-performing students:
 
-Return each pair and its frequency. Sort higher frequencies first; when frequencies tie, sort by the first course name and then the second course name, both in ascending order.
+<ul>
+	<li>Consider only **top-performing students** (those who completed **at least **`5`** courses** with an **average rating of **`4`** or higher**).</li>
+	<li>For each top performer, identify the **sequence of courses** they completed in chronological order.</li>
+	<li>Find all **consecutive course pairs** (`Course A → Course B`) taken by these students.</li>
+	<li>Return the **pair frequency**, identifying which course transitions are most common among high achievers.</li>
+</ul>
+
+Return *the result table ordered by* *pair frequency in **descending** order* *and then by first course name and second course name in **ascending** order*.
+
+The result format is in the following example.

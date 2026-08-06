@@ -1,29 +1,66 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_66", "frontend_id": "66",
+    "provider": "leetcode",
+    "challenge_id": "lc_66",
+    "frontend_id": "66",
     "title_slug": "plus-one",
     "url": "https://leetcode.com/problems/plus-one/description/",
-    "paid_only": false, "content_sha256": "2a05f46409667e55adcd8e0aa77c13a1c834db263523ea1a7d7cbbbeba25a4b1", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "2a05f46409667e55adcd8e0aa77c13a1c834db263523ea1a7d7cbbbeba25a4b1",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "digits = [1,2,3]", "output": "[1,2,4]", "has_explanation": true},
-      {"ordinal": 2, "input": "digits = [4,3,2,1]", "output": "[4,3,2,2]", "has_explanation": true},
-      {"ordinal": 3, "input": "digits = [9]", "output": "[1,0]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "digits = [1,2,3]",
+        "output": "[1,2,4]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "digits = [4,3,2,1]",
+        "output": "[4,3,2,2]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "digits = [9]",
+        "output": "[1,0]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "2294904eda066b427ebf18012a9b2f60b01aa58c38e3261f41d108bc21669e60",
+      "reference/description.md": "407d082e30cc731ea3c63cd7d34f574eb33e8cc85ba9804793819b887ddcad81",
       "reference/contract.md": "06c4249656608a1e9aa9f985f76455b9588a33cab44a017d182efcde1e9cf39f",
       "reference/examples.md": "16e18988c1dc23db91b3564a2bf0466a07cec8b223bdda6561f8f1dba614ed5d",
       "reference/constraints.md": "4bd956d7ea7b5fda3c965fcf25a1e36402035054687a5b9fdba5e90e37c42e93"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

@@ -1,17 +1,56 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_173", "frontend_id": "173", "title_slug": "binary-search-tree-iterator", "url": "https://leetcode.com/problems/binary-search-tree-iterator/description/", "paid_only": false, "content_sha256": "50cacdb9e22811f781ef9a95f319d60dc60e984efaec46359566632256dc1e18", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_173",
+    "frontend_id": "173",
+    "title_slug": "binary-search-tree-iterator",
+    "url": "https://leetcode.com/problems/binary-search-tree-iterator/description/",
+    "paid_only": false,
+    "content_sha256": "50cacdb9e22811f781ef9a95f319d60dc60e984efaec46359566632256dc1e18",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "operations = [\"BSTIterator\",\"next\",\"next\",\"hasNext\",\"next\",\"hasNext\",\"next\",\"hasNext\",\"next\",\"hasNext\"], arguments = [[[7,3,15,null,null,9,20]],[],[],[],[],[],[],[],[],[]]", "output": "[null,3,7,true,9,true,15,true,20,false]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "operations = [\"BSTIterator\",\"next\",\"next\",\"hasNext\",\"next\",\"hasNext\",\"next\",\"hasNext\",\"next\",\"hasNext\"], arguments = [[[7,3,15,null,null,9,20]],[],[],[],[],[],[],[],[],[]]",
+        "output": "[null,3,7,true,9,true,15,true,20,false]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "c6d1b0c38071225f5b37d4da4483a39c26524d6727a34d5c61033b6d4d26fdb5", "reference/contract.md": "4b42f3c4200cf100a47f859459ef6e4a6f2aea1d9e88460af330a0df1f31e797", "reference/examples.md": "59ac1d2726502d830a74ba3cc66e7832433a38d097dcd21fdce3510032e6e3e9", "reference/constraints.md": "1c205ae3e3efa4e9ee88b5426bb38fe2b725c52ab1984c0fe3244eed194d5e8c", "reference/follow_up.md": "5a6a2ff65769b790168845936dfa3883bb926cbc0649fbee67c137c2629ac6e2"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "dab42da995733c504dc427db476eb60a6d1db75b31e376795dd0f19040728090",
+      "reference/contract.md": "4b42f3c4200cf100a47f859459ef6e4a6f2aea1d9e88460af330a0df1f31e797",
+      "reference/examples.md": "59ac1d2726502d830a74ba3cc66e7832433a38d097dcd21fdce3510032e6e3e9",
+      "reference/constraints.md": "1c205ae3e3efa4e9ee88b5426bb38fe2b725c52ab1984c0fe3244eed194d5e8c",
+      "reference/follow_up.md": "5a6a2ff65769b790168845936dfa3883bb926cbc0649fbee67c137c2629ac6e2"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

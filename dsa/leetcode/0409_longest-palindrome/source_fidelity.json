@@ -11,10 +11,24 @@
     "checked_at": "2026-08-02"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"abccccdd\"", "output": "7", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"a\"", "output": "1", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"abccccdd\"",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"a\"",
+        "output": "1",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 2,
     "visuals": {
@@ -29,7 +43,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "2470b3e2eb4ba030fecdb1e8d3f31b476bc3e1d56a50e57344c672c01e83d30e",
+      "reference/description.md": "b829f766c04c31cf8a73036e5bf10c6ad9e22eef814d5745ff9cc56ba5936d7b",
       "reference/contract.md": "f6b75c01ffa765f642bd313fd9a88f8099d33d47e0dac05761472c39e701696b",
       "reference/examples.md": "d3eb5f7e6094fc46643a0937e3bad14ed6b29bdf0e33318d962afa97759b8427",
       "reference/constraints.md": "ee6e329078bef105f0f5f81f880f7c0ac9f5e6066546d246bfe699a00ba6dc4a"

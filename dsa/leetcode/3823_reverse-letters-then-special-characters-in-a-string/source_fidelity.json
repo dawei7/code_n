@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/reverse-letters-then-special-characters-in-a-string/description/",
     "paid_only": false,
     "content_sha256": "4607db55410ef5338d899ad0f2b8daea6617bcc88605756fc663416c0a5cb8a1",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \")ebc#da@f(\"",
-        "output": "\"(fad@cb#e)\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"z\"",
-        "output": "\"z\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"!@#$%^&*()\"",
-        "output": "\")(*&^%$#@!\"",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "f112d6c541f541681033bd2850de4cc6107d88105b91fae5b114f91f95e4748d",
+      "reference/description.md": "d7e04b02a97c99fd7fc34d5a20b8e3163ccc255b2126cf49e846369bb6dcbb5e",
       "reference/contract.md": "8e6750d961edecfb6607646b2ce8ccc693f6021c34af8d985aa1263dc9806412",
       "reference/examples.md": "2e0a212f36bef39a29edc149050905c8f69f229be31aaa6731ced8f50da8d91a",
       "reference/constraints.md": "322b08f10ad2d9ee31a4df98416bf4b12c678aa69f69198e3c551388a3a10623"

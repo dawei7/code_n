@@ -1,9 +1,30 @@
 ## Description
 
-Write a solution that assigns a rank to every score under these rules:
+Table: `Scores`
 
-- Rank scores from highest to lowest.
-- Equal scores receive the same rank.
-- After a tie, use the next consecutive integer rank, leaving no gaps.
+```
 
-Return the `score` and `rank` columns ordered by `score` in descending order.
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| score       | decimal |
++-------------+---------+
+id is the primary key (column with unique values) for this table.
+Each row of this table contains the score of a game. Score is a floating point value with two decimal places.
+
+```
+
+ 
+
+Write a solution to find the rank of the scores. The ranking should be calculated according to the following rules:
+
+<ul>
+	<li>The scores should be ranked from the highest to the lowest.</li>
+	<li>If there is a tie between two scores, both should have the same ranking.</li>
+	<li>After a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no holes between ranks.</li>
+</ul>
+
+Return the result table ordered by `score` in descending order.
+
+The result format is in the following example.

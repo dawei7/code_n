@@ -1,3 +1,3 @@
 ## Description
 
-Convert the non-negative integer `num` into its English-word representation.
+Convert a non-negative integer `num` to its English words representation.

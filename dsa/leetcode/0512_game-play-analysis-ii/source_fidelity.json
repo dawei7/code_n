@@ -11,7 +11,11 @@
     "checked_at": "2026-08-02"
   },
   "structure": {
-    "sections": ["activity_table", "description", "examples"],
+    "sections": [
+      "activity_table",
+      "description",
+      "examples"
+    ],
     "examples": [
       {
         "ordinal": 1,

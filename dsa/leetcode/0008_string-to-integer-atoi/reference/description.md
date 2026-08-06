@@ -1,11 +1,14 @@
 ## Description
 
-Implement `myAtoi`, which converts a string `s` into a signed 32-bit integer by applying these rules in order:
+Implement the `myAtoi(string s)` function, which converts a string to a 32-bit signed integer.
 
-1. **Whitespace:** Skip every leading space character.
-2. **Signedness:** If the next character is `-` or `+`, consume it and use the corresponding sign. Otherwise, keep a positive sign.
-3. **Conversion:** Ignore leading zeroes in the numeric value, then consume consecutive decimal digits until the string ends or the next character is not a digit. If no digit is consumed, the result is `0`.
-4. **Range adjustment:** Clamp a value below $-2^{31}$ to $-2^{31}$ and a value above $2^{31}-1$ to $2^{31}-1$.
-5. Return the resulting integer.
+The algorithm for `myAtoi(string s)` is as follows:
 
-Characters after the first non-digit encountered during conversion do not affect the result.
+<ol>
+	<li>**Whitespace**: Ignore any leading whitespace (`" "`).</li>
+	<li>**Signedness**: Determine the sign by checking if the next character is `'-'` or `'+'`, assuming positivity if neither present.</li>
+	<li>**Conversion**: Read the integer by skipping leading zeros until a non-digit character is encountered or the end of the string is reached. If no digits were read, then the result is 0.</li>
+	<li>**Rounding**: If the integer is out of the 32-bit signed integer range `[-2^31, 2^31 - 1]`, then round the integer to remain in the range. Specifically, integers less than `-2^31` should be rounded to `-2^31`, and integers greater than `2^31 - 1` should be rounded to `2^31 - 1`.</li>
+</ol>
+
+Return the integer as the final result.

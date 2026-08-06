@@ -1,35 +1,42 @@
 ## Description
 
-Given an $n \times n$ matrix `grid` containing only `0` and `1`, return the root of a Quad-Tree that represents the
-entire matrix.
+Given a `n * n` matrix `grid` of `0's` and `1's` only. We want to represent `grid` with a Quad-Tree.
 
-Every internal Quad-Tree node has exactly four children: `topLeft`, `topRight`, `bottomLeft`, and `bottomRight`.
-Each node also has these attributes:
+Return *the root of the Quad-Tree representing *`grid`.
 
-- `val` is `True` for a leaf region filled with `1` and `False` for a leaf region filled with `0`. Either Boolean
-  value is accepted when `isLeaf` is `False`.
-- `isLeaf` is `True` for a leaf and `False` for an internal node with four children.
+A Quad-Tree is a tree data structure in which each internal node has exactly four children. Besides, each node has two attributes:
 
-Construct the representation by applying the following rules to each square region:
+<ul>
+	<li>`val`: True if the node represents a grid of 1's or False if the node represents a grid of 0's. Notice that you can assign the `val` to True or False when `isLeaf` is False, and both are accepted in the answer.</li>
+	<li>`isLeaf`: True if the node is a leaf node on the tree or False if the node has four children.</li>
+</ul>
 
-1. If every cell has the same value, make a leaf whose `val` is that value, set all four children to `null`, and
-   stop processing that region.
-2. Otherwise, make an internal node whose `val` may be either Boolean value, divide the region into four equal
-   subgrids, and recurse on each child region.
+```
 
-The source's quadrant diagram corresponds to these exact half-open ranges for a region starting at row $r$, column
-$c$, with side length $s$ and $h = s/2$:
+class Node {
+    public boolean val;
+    public boolean isLeaf;
+    public Node topLeft;
+    public Node topRight;
+    public Node bottomLeft;
+    public Node bottomRight;
+}
+```
 
-| Child | Row range | Column range |
-|---|---|---|
-| `topLeft` | $[r, r+h)$ | $[c, c+h)$ |
-| `topRight` | $[r, r+h)$ | $[c+h, c+s)$ |
-| `bottomLeft` | $[r+h, r+s)$ | $[c, c+h)$ |
-| `bottomRight` | $[r+h, r+s)$ | $[c+h, c+s)$ |
+We can construct a Quad-Tree from a two-dimensional area using the following steps:
 
-**Quad-Tree format**
+<ol>
+	<li>If the current grid has the same value (i.e all `1's` or all `0's`) set `isLeaf` True and set `val` to the value of the grid and set the four children to Null and stop.</li>
+	<li>If the current grid has different values, set `isLeaf` to False and set `val` to any value and divide the current grid into four sub-grids as shown in the photo.</li>
+	<li>Recurse for each of the children with the proper sub-grid.</li>
+</ol>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/02/11/new_top.png" style="width: 777px; height: 181px;" />
+If you want to know more about the Quad-Tree, you can refer to the <a href="https://en.wikipedia.org/wiki/Quadtree">wiki</a>.
 
-The displayed output is a level-order serialization included only to explain the examples. A `null` entry ends a
-path because no node exists below it. Each real node is encoded as `[isLeaf, val]`; `True` becomes `1` and `False`
-becomes `0` in either position. This is analogous to binary-tree serialization, except each internal node has four
-ordered children.
+**Quad-Tree format:**
+
+You don't need to read this section for solving the problem. This is only if you want to understand the output format here. The output represents the serialized format of a Quad-Tree using level order traversal, where `null` signifies a path terminator where no node exists below.
+
+It is very similar to the serialization of the binary tree. The only difference is that the node is represented as a list `[isLeaf, val]`.
+
+If the value of `isLeaf` or `val` is True we represent it as **1** in the list `[isLeaf, val]` and if the value of `isLeaf` or `val` is False we represent it as **0**.

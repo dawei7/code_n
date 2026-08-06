@@ -1,5 +1,25 @@
 ## Description
 
-Two integers `m` and `n` give the number of rows and columns in a grid. Construct any grid of exactly those dimensions using only `.` for a free cell and `#` for an obstacle.
+You are given two integers `m` and `n`, representing the number of rows and columns of a grid.
 
-A valid path begins at the top-left cell `(0, 0)`, finishes at the bottom-right cell `(m - 1, n - 1)`, stays entirely on free cells, and moves only one cell right or one cell down at each step. Return a grid for which exactly one such path exists. Different valid constructions are accepted; the returned grid does not have to match an example literally.
+Construct **any** `m x n` grid consisting only of the characters `'.'` and `'#'`, where:
+
+<ul>
+	<li>`'.'` represents a free cell.</li>
+	<li>`'#'` represents an obstacle cell.</li>
+</ul>
+
+A **valid path** is a sequence of free cells that:
+
+<ul>
+	<li>Starts at the top-left cell `(0, 0)`.</li>
+	<li>Ends at the bottom-right cell `(m - 1, n - 1)`.</li>
+	<li>Moves only:
+	<ul>
+		<li>Right, from `(i, j)` to `(i, j + 1)`, or</li>
+		<li>Down, from `(i, j)` to `(i + 1, j)`.</li>
+	</ul>
+	</li>
+</ul>
+
+Return any grid such that there is **exactly one valid path** from the top-left cell to the bottom-right cell.

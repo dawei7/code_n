@@ -1,8 +1,10 @@
 ## Description
 
-Given an input string `s` and a pattern `p`, determine whether they match under these wildcard rules:
+Given an input string (`s`) and a pattern (`p`), implement wildcard pattern matching with support for `'?'` and `'*'` where:
 
-- `?` matches exactly one arbitrary character.
-- `*` matches any sequence of characters, including an empty sequence.
+<ul>
+	<li>`'?'` Matches any single character.</li>
+	<li>`'*'` Matches any sequence of characters (including the empty sequence).</li>
+</ul>
 
-The pattern must cover the whole input string; matching only a substring is not sufficient.
+The matching should cover the **entire** input string (not partial).

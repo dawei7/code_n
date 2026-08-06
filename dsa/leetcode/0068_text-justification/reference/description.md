@@ -1,9 +1,17 @@
 ## Description
 
-Given an array of strings `words` and an integer `maxWidth`, format the words into lines containing exactly `maxWidth` characters, with both the left and right edges justified.
+Given an array of strings `words` and a width `maxWidth`, format the text such that each line has exactly `maxWidth` characters and is fully (left and right) justified.
 
-Pack each line greedily: include as many words as will fit before beginning the next line. Add space characters wherever padding is needed to reach the required width.
+You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces `' '` when necessary so that each line has exactly `maxWidth` characters.
 
-For an ordinary line with multiple words, distribute the required spaces between adjacent words as evenly as possible. When the spaces cannot be divided equally among the gaps, assign the extra spaces to gaps farther left before gaps farther right.
+Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
 
-The final line is left-justified. Its words are separated by single spaces, and all remaining padding follows the last word.
+For the last line of text, it should be left-justified, and no extra space is inserted between words.
+
+**Note:**
+
+<ul>
+	<li>A word is defined as a character sequence consisting of non-space characters only.</li>
+	<li>Each word's length is guaranteed to be greater than `0` and not exceed `maxWidth`.</li>
+	<li>The input array `words` contains at least one word.</li>
+</ul>

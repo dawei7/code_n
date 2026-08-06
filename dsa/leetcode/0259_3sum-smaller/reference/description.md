@@ -1,9 +1,4 @@
 ## Description
 
-Given an array `nums` containing `n` integers and an integer `target`, count the index triplets $i$, $j$, and $k$ such that
+Given an array of `n` integers `nums` and an integer `target`, find the number of index triplets `i, j, k` with `0 <= i < j < k < n` that satisfy the condition `nums[i] + nums[j] + nums[k] < target`.
 
-$$
-0 \le i < j < k < n
-$$
-
-and `nums[i] + nums[j] + nums[k] < target`.

@@ -1,14 +1,13 @@
 ## Description
 
-You are given a 2D integer array `lists`. Every `lists[i]` is nonempty and sorted in non-decreasing order.
+You are given a 2D integer array `lists`, where each `lists[i]` is a non-empty array of integers **sorted** in **non-decreasing** order.
 
-Repeatedly choose two different current lists `a = lists[i]` and `b = lists[j]`, merge their elements into one sorted list, remove `a` and `b`, and insert the merged list at any position. The cost of that merge is
+You may **repeatedly** choose two lists `a = lists[i]` and `b = lists[j]`, where `i != j`, and merge them. The **cost** to merge `a` and `b` is:
 
-$$
-\operatorname{len}(a)+\operatorname{len}(b)
-+ \lvert\operatorname{median}(a)-\operatorname{median}(b)\rvert.
-$$
+`len(a) + len(b) + abs(median(a) - median(b))`, where `len` and `median` denote the list length and median, respectively.
 
-Continue until only one sorted list remains. Return the minimum total cost among all possible merge orders.
+After merging `a` and `b`, remove both `a` and `b` from `lists` and insert the new merged **sorted list** in **any** position. Repeat merges until only **one** list remains.
 
-For this problem, the median of a sorted list is its middle element. When the length is even, use the left of the two middle elements.
+Return an integer denoting the **minimum total cost** required to merge all lists into one single sorted list.
+
+The **median** of an array is the middle element after sorting it in non-decreasing order. If the array has an even number of elements, the median is the left middle element.

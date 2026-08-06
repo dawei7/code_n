@@ -1,10 +1,9 @@
 ## Description
 
-A rectangular $m \times n$ island borders two oceans. The Pacific Ocean touches its top and left edges, while the
-Atlantic Ocean touches its bottom and right edges. The island is divided into square cells, and `heights[r][c]`
-gives the height above sea level at coordinate `(r, c)`.
+There is an `m x n` rectangular island that borders both the **Pacific Ocean** and **Atlantic Ocean**. The **Pacific Ocean** touches the island's left and top edges, and the **Atlantic Ocean** touches the island's right and bottom edges.
 
-Rain water may move directly north, south, east, or west into a neighboring cell whose height is less than or equal
-to the current height. Water in a boundary cell adjacent to an ocean may flow directly into that ocean.
+The island is partitioned into a grid of square cells. You are given an `m x n` integer matrix `heights` where `heights[r][c]` represents the **height above sea level** of the cell at coordinate `(r, c)`.
 
-Return every coordinate `[r, c]` from which rain water can reach both the Pacific and Atlantic oceans.
+The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell's height is **less than or equal to** the current cell's height. Water can flow from any cell adjacent to an ocean into the ocean.
+
+Return *a **2D list** of grid coordinates *`result`* where *`result[i] = [r_i, c_i]`* denotes that rain water can flow from cell *`(r_i, c_i)`* to **both** the Pacific and Atlantic oceans*.

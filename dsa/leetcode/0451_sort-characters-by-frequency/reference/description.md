@@ -1,5 +1,5 @@
 ## Description
 
-The frequency of a character is the number of times that character occurs in a string.
+Given a string `s`, sort it in **decreasing order** based on the **frequency** of the characters. The **frequency** of a character is the number of times it appears in the string.
 
-Given a string `s`, reorder all of its characters in decreasing order of frequency and return the resulting string. Every occurrence of a character must stay together in the result. When several characters have the same frequency, any ordering of their groups is valid.
+Return *the sorted string*. If there are multiple answers, return *any of them*.

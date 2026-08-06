@@ -1,0 +1,13 @@
+## Description
+
+You are given a `m x n` **0-indexed **2D** **matrix `mat`. From every cell, you can create numbers in the following way:
+
+<ul>
+	<li>There could be at most `8` paths from the cells namely: east, south-east, south, south-west, west, north-west, north, and north-east.</li>
+	<li>Select a path from them and append digits in this path to the number being formed by traveling in this direction.</li>
+	<li>Note that numbers are generated at every step, for example, if the digits along the path are `1, 9, 1`, then there will be three numbers generated along the way: `1, 19, 191`.</li>
+</ul>
+
+Return *the most frequent <span data-keyword="prime-number">prime number</span> **greater** than *`10`* out of all the numbers created by traversing the matrix or *`-1`* if no such prime number exists. If there are multiple prime numbers with the highest frequency, then return the **largest** among them.*
+
+**Note:** It is invalid to change the direction during the move.

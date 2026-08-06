@@ -1,5 +1,5 @@
 ## Description
 
-You are given an integer array `nums`, already sorted in ascending order, and an integer `n`. You may patch the array by adding elements. Afterward, every integer in the inclusive range `[1,n]` must be expressible as the sum of some elements selected from the resulting array.
+Given a sorted integer array `nums` and an integer `n`, add/patch elements to the array such that any number in the range `[1, n]` inclusive can be formed by the sum of some elements in the array.
 
-Return the smallest number of patches needed to obtain that complete range of representable sums.
+Return *the minimum number of patches required*.

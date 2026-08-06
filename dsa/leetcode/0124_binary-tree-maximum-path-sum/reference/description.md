@@ -1,7 +1,7 @@
 ## Description
 
-In a binary tree, a path is a sequence of nodes in which every consecutive pair is joined by an edge. No node may occur more than once in the sequence, and the path is not required to include the root.
+A **path** in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence **at most once**. Note that the path does not need to pass through the root.
 
-A path's sum is the total of the values stored in its nodes.
+The **path sum** of a path is the sum of the node's values in the path.
 
-Given the tree's `root`, return the greatest path sum among all non-empty paths.
+Given the `root` of a binary tree, return *the maximum **path sum** of any **non-empty** path*.

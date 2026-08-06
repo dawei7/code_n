@@ -1,14 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3745","frontend_id":"3745","title_slug":"maximize-expression-of-three-elements","url":"https://leetcode.com/problems/maximize-expression-of-three-elements/description/","paid_only":false,"content_sha256":"9e60441eccbb4baa79f2c87537f91b43a279e9913e91cb431949af0f2dfde042","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"nums = [1,4,2,5]","output":"8","has_explanation":true},
-    {"ordinal":2,"input":"nums = [-2,0,5,-2,4]","output":"11","has_explanation":true}
-  ],"constraint_count":2,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"620f9ac793aa0bfaec9271dc23d087cfc651560da48e89a331d71dde8f92f756",
-    "reference/contract.md":"617d2ce8f85273455806c466e0f7d172dcbecf8bae7c0fd8f19d37efe1d6990d",
-    "reference/examples.md":"27d1011f5f601f8264c12b79c6b9a11821c70aa5c58272df76bec0e15fd92df4",
-    "reference/constraints.md":"2b028c5ae7c052c9132667648f4ef2801eb23843e7c53a72dee3b6fdd7fd7721"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3745",
+    "frontend_id": "3745",
+    "title_slug": "maximize-expression-of-three-elements",
+    "url": "https://leetcode.com/problems/maximize-expression-of-three-elements/description/",
+    "paid_only": false,
+    "content_sha256": "9e60441eccbb4baa79f2c87537f91b43a279e9913e91cb431949af0f2dfde042",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8e392dcf4cb71731c612a17a0504c6350b0a5cb50736eb68c0f236a01c233dc4",
+      "reference/contract.md": "617d2ce8f85273455806c466e0f7d172dcbecf8bae7c0fd8f19d37efe1d6990d",
+      "reference/examples.md": "27d1011f5f601f8264c12b79c6b9a11821c70aa5c58272df76bec0e15fd92df4",
+      "reference/constraints.md": "2b028c5ae7c052c9132667648f4ef2801eb23843e7c53a72dee3b6fdd7fd7721"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

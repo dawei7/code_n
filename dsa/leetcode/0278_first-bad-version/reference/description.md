@@ -1,7 +1,7 @@
 ## Description
 
-You manage a product whose newest release fails its quality check. Each version is built from the preceding one, so every release after a bad version is bad as well.
+You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.
 
-The versions are numbered `[1, 2, ..., n]`. Find the earliest bad version—the point that causes all subsequent versions to be bad.
+Suppose you have `n` versions `[1, 2, ..., n]` and you want to find out the first bad one, which causes all the following ones to be bad.
 
-The API `bool isBadVersion(version)` reports whether a particular version is bad. Implement the search while minimizing the number of calls to this API.
+You are given an API `bool isBadVersion(version)` which returns whether `version` is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/lexicographically-smallest-string-after-deleting-duplicate-characters/description/",
     "paid_only": false,
     "content_sha256": "2595824643bd76de422f3f1302637f6e574636853da85834b184c4a3d794e480",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "`s = \"aaccb\"`",
-        "output": "`\"aacb\"`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`s = \"z\"`",
-        "output": "`\"z\"`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "aa6c9adbe3c4d0a79ca68379fd99d2999ffd94418bda1ac62e80ffcb3cf09601",
+      "reference/description.md": "492f58c43b12f3b461e9ce6ad106a0c58586c80554a085700ecd0e9bcb0efb99",
       "reference/contract.md": "c25132adb344c94fed36cf98c7b0e5696c2a3d2f7968bf8fa15145fac58d57a3",
       "reference/examples.md": "66f72c31a8da0b4397c1f0d2415ef8490c5887622eb0bd48751a1ac0f2462222",
       "reference/constraints.md": "239187a1f295708a5fa6f463e6c86ff4f6e48711316d76fc55603e267b4aecb6"

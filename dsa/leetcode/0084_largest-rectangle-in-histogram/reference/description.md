@@ -1,5 +1,3 @@
 ## Description
 
-An integer array `heights` gives the heights of adjacent histogram bars, each with width `1`.
-
-Return the greatest rectangular area that can fit within the histogram.
+Given an array of integers `heights` representing the histogram's bar height where the width of each bar is `1`, return *the area of the largest rectangle in the histogram*.

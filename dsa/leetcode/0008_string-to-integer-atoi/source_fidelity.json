@@ -11,13 +11,42 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"42\"", "output": "42", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \" -042\"", "output": "-42", "has_explanation": true},
-      {"ordinal": 3, "input": "s = \"1337c0d3\"", "output": "1337", "has_explanation": true},
-      {"ordinal": 4, "input": "s = \"0-1\"", "output": "0", "has_explanation": true},
-      {"ordinal": 5, "input": "s = \"words and 987\"", "output": "0", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"42\"",
+        "output": "42",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \" -042\"",
+        "output": "-42",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"1337c0d3\"",
+        "output": "1337",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 4,
+        "input": "s = \"0-1\"",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 5,
+        "input": "s = \"words and 987\"",
+        "output": "0",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 2,
     "visuals": {
@@ -32,7 +61,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "d6ae5e9d8da5d25fd9cc7814810e967bfb1d30cd81a29e0d4ef27b40aec38053",
+      "reference/description.md": "ecfa6f31b1bacc901c66dfc872a999e026b6bdc1409037879b438616c85ad151",
       "reference/contract.md": "6bc58529a8c791f150e406ac935da480b260bbd8c736436f908cb44bf81e382a",
       "reference/examples.md": "921b3d541f2daec94363192f5003e41740478854fc9ea6ec56c54259b6ef7ea8",
       "reference/constraints.md": "30d7d55d63cbe30413f0fd5450585e463de2aee6aa85e783b3873d7280a22a5e"

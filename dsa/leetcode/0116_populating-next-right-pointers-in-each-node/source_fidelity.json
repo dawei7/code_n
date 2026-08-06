@@ -1,18 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_116", "frontend_id": "116", "title_slug": "populating-next-right-pointers-in-each-node", "url": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/", "paid_only": false, "content_sha256": "0b40117b144ce079eebef93f6d869e21bfc18c33a0a31d13b8f3221f36707d97", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_116",
+    "frontend_id": "116",
+    "title_slug": "populating-next-right-pointers-in-each-node",
+    "url": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/",
+    "paid_only": false,
+    "content_sha256": "0b40117b144ce079eebef93f6d869e21bfc18c33a0a31d13b8f3221f36707d97",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "root = [1,2,3,4,5,6,7]", "output": "[1,#,2,3,#,4,5,6,7,#]", "has_explanation": true},
-      {"ordinal": 2, "input": "root = []", "output": "[]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "root = [1,2,3,4,5,6,7]",
+        "output": "[1,#,2,3,#,4,5,6,7,#]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = []",
+        "output": "[]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "cd61e9eae4bc79a9b1ea157570cc347156598523d2d59ad88ac77395cd9146a5", "reference/contract.md": "5bd61c93302a8bd8183eee3eca04c50244e8f900096ceee8457760b8f678566f", "reference/examples.md": "b511eec17489ae49401f3dac57a259bac3483dab59e266cef4fffbddcc0d9d26", "reference/constraints.md": "2a4ba1200eff612bb8d18bff0aba2372abfa91798f859e35ee9060bdd6d3a930", "reference/follow_up.md": "217375bc429e47fd928beeb9911018abf6cb58661dc3369dc00edf5f7c8fc509"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "08571c1888613cd441bf6a46528fcd95b97202c28889880d4727497a3acecc0b",
+      "reference/contract.md": "5bd61c93302a8bd8183eee3eca04c50244e8f900096ceee8457760b8f678566f",
+      "reference/examples.md": "b511eec17489ae49401f3dac57a259bac3483dab59e266cef4fffbddcc0d9d26",
+      "reference/constraints.md": "2a4ba1200eff612bb8d18bff0aba2372abfa91798f859e35ee9060bdd6d3a930",
+      "reference/follow_up.md": "217375bc429e47fd928beeb9911018abf6cb58661dc3369dc00edf5f7c8fc509"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

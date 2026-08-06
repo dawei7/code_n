@@ -1,3 +1,3 @@
 ## Description
 
-Given an $m \times n$ binary `matrix` filled with `'0'` and `'1'`, find the largest square submatrix containing only `'1'` cells and return that square's area.
+Given an `m x n` binary `matrix` filled with `0`'s and `1`'s, *find the largest square containing only* `1`'s *and return its area*.

@@ -1,3 +1,3 @@
 ## Description
 
-You are given two integer arrays, `inorder` and `postorder`. They record, respectively, the inorder traversal and the postorder traversal of the same binary tree. Reconstruct that tree and return its root.
+Given two integer arrays `inorder` and `postorder` where `inorder` is the inorder traversal of a binary tree and `postorder` is the postorder traversal of the same tree, construct and return *the binary tree*.

@@ -8,37 +8,23 @@
     "url": "https://leetcode.com/problems/count-distinct-ways-to-form-target-from-two-strings/description/",
     "paid_only": false,
     "content_sha256": "69009ab09d523d550856fccbc9fbb58cadb7876bd3afcc2a37cf82a690c3e68b",
-    "checked_at": "2026-07-31"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "word1 = \"abc\", word2 = \"bac\", target = \"abc\"",
-        "output": "5",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "word1 = \"cd\", word2 = \"cd\", target = \"ccd\"",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "word1 = \"xy\", word2 = \"xy\", target = \"xyxy\"",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 4,
-        "input": "word1 = \"ab\", word2 = \"cde\", target = \"ace\"",
-        "output": "1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -51,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "fa434131d498f8925ab3efeff03e574932f99056d37038b1598adea3d81097ff",
+      "reference/description.md": "34b5fff5806954590405a0ca24a620a7dc1b647d084549225e695d736daf0b78",
       "reference/contract.md": "6de65fad45cef0e651f1ac3d1be868f7a67624b697abc82242f5919492b48cd2",
       "reference/examples.md": "e42d85bb6e649d074a5c3fafcad5c2c765694662111c5e5000b7a551ab7d56b2",
       "reference/constraints.md": "ce6fb7cd749229618a61b542fb1d9718d866501f56621387d5598e238ccb0026"

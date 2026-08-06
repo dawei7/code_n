@@ -1,5 +1,3 @@
 ## Description
 
-Given an array of positive integers `nums` and a positive integer `target`, find a nonempty **subarray** whose sum is greater than or equal to `target`.
-
-Return the minimal length among all such subarrays. If no qualifying subarray exists, return `0`.
+Given an array of positive integers `nums` and a positive integer `target`, return *the **minimal length** of a *<span data-keyword="subarray-nonempty">*subarray*</span>* whose sum is greater than or equal to* `target`. If there is no such subarray, return `0` instead.

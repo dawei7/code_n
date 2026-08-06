@@ -1,20 +1,26 @@
 ## Description
 
-Given a string `s`, determine whether it represents a valid number.
+Given a string `s`, return whether `s` is a **valid number**.
 
-Examples of valid representations include `"2"`, `"0089"`, `"-0.1"`, `"+3.14"`, `"4."`, `"-.9"`, `"2e10"`, `"-90E3"`, `"3e+7"`, `"+6e-1"`, `"53.5e93"`, and `"-123.456e789"`. Invalid representations include `"abc"`, `"1a"`, `"1e"`, `"e3"`, `"99e2.5"`, `"--6"`, `"-+3"`, and `"95a54e53"`.
+For example, all the following are valid numbers: `"2", "0089", "-0.1", "+3.14", "4.", "-.9", "2e10", "-90E3", "3e+7", "+6e-1", "53.5e93", "-123.456e789"`, while the following are not valid numbers: `"abc", "1a", "1e", "e3", "99e2.5", "--6", "-+3", "95a54e53"`.
 
-A valid number has one of two top-level forms:
+Formally, a **valid number** is defined using one of the following definitions:
 
-- an integer followed by an optional exponent; or
-- a decimal followed by an optional exponent.
+<ol>
+	<li>An **integer number** followed by an **optional exponent**.</li>
+	<li>A **decimal number** followed by an **optional exponent**.</li>
+</ol>
 
-An integer consists of an optional `+` or `-` sign followed by one or more digits.
+An **integer number** is defined with an **optional sign** `'-'` or `'+'` followed by **digits**.
 
-A decimal consists of an optional sign followed by exactly one of these forms:
+A **decimal number** is defined with an **optional sign** `'-'` or `'+'` followed by one of the following definitions:
 
-- one or more digits followed by `.`;
-- one or more digits, then `.`, then one or more digits; or
-- `.`, followed by one or more digits.
+<ol>
+	<li>**Digits** followed by a **dot** `'.'`.</li>
+	<li>**Digits** followed by a **dot** `'.'` followed by **digits**.</li>
+	<li>A **dot** `'.'` followed by **digits**.</li>
+</ol>
 
-An exponent consists of `e` or `E` followed by an integer in the form defined above.
+An **exponent** is defined with an **exponent notation** `'e'` or `'E'` followed by an **integer number**.
+
+The **digits** are defined as one or more digits.

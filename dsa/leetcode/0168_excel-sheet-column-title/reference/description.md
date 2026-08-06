@@ -1,16 +1,18 @@
 ## Description
 
-Given an integer `columnNumber`, return the corresponding column title used by an Excel sheet.
+Given an integer `columnNumber`, return *its corresponding column title as it appears in an Excel sheet*.
 
-The sequence begins as follows:
+For example:
 
-```text
-A  -> 1
-B  -> 2
-C  -> 3
+```
+
+A -> 1
+B -> 2
+C -> 3
 ...
-Z  -> 26
+Z -> 26
 AA -> 27
-AB -> 28
+AB -> 28 
 ...
+
 ```

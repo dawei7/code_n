@@ -1,9 +1,10 @@
 ## Description
 
-Create an iterator for two integer vectors, `v1` and `v2`, that returns their elements alternately, beginning with `v1`. When one vector has no remaining element, iteration continues through the other vector without discarding any values.
+Given two vectors of integers `v1` and `v2`, perform their zigzag iterator.
 
-The `ZigzagIterator` class provides these operations:
+Implement the `ZigzagIterator` class:
 
-- `ZigzagIterator(List<int> v1, List<int> v2)` initializes the iterator with the two vectors.
-- `boolean hasNext()` reports whether another element can be returned.
-- `int next()` returns the next element in the alternating traversal.
+- `ZigzagIterator(List<int> v1, List<int> v2)` initializes the object with the two vectors `v1` and `v2`.
+- `boolean hasNext()` returns `true` if the iteration has more elements, and `false` otherwise.
+- `int next()` returns the next element in the iteration.
+

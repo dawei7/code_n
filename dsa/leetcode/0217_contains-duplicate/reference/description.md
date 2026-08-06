@@ -1,3 +1,3 @@
 ## Description
 
-Given an integer array `nums`, return `true` when at least one value occurs **at least twice**. Return `false` when every element is distinct.
+Given an integer array `nums`, return `true` if any value appears **at least twice** in the array, and return `false` if every element is distinct.

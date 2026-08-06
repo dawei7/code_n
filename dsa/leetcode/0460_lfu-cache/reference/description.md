@@ -1,13 +1,17 @@
 ## Description
 
-Design and implement a **Least Frequently Used (LFU) cache** with these operations:
+Design and implement a data structure for a <a href="https://en.wikipedia.org/wiki/Least_frequently_used" target="_blank">Least Frequently Used (LFU)</a> cache.
 
-- `LFUCache(int capacity)` creates a cache with the given maximum number of keys.
-- `get(int key)` returns the stored value when the key exists, or `-1` otherwise.
-- `put(int key, int value)` updates an existing key or inserts a new key-value pair.
+Implement the `LFUCache` class:
 
-Every resident key has a use counter. A new key starts with frequency `1` because its insertion is a use; a successful `get` or an update through `put` increments the key's counter.
+<ul>
+	<li>`LFUCache(int capacity)` Initializes the object with the `capacity` of the data structure.</li>
+	<li>`int get(int key)` Gets the value of the `key` if the `key` exists in the cache. Otherwise, returns `-1`.</li>
+	<li>`void put(int key, int value)` Update the value of the `key` if present, or inserts the `key` if not already present. When the cache reaches its `capacity`, it should invalidate and remove the **least frequently used** key before inserting a new item. For this problem, when there is a **tie** (i.e., two or more keys with the same frequency), the **least recently used** `key` would be invalidated.</li>
+</ul>
 
-Before inserting a new key into a full cache, remove the key with the smallest use counter. When several keys share that minimum frequency, evict the least recently used one among them.
+To determine the least frequently used key, a **use counter** is maintained for each key in the cache. The key with the smallest **use counter** is the least frequently used key.
 
-Both `get` and `put` must run in average $O(1)$ time.
+When a key is first inserted into the cache, its **use counter** is set to `1` (due to the `put` operation). The **use counter** for a key in the cache is incremented either a `get` or `put` operation is called on it.
+
+The functions <code data-stringify-type="code">get</code> and <code data-stringify-type="code">put</code> must each run in `O(1)` average time complexity.

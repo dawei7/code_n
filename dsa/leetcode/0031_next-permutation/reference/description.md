@@ -1,7 +1,19 @@
 ## Description
 
-A permutation is a linear arrangement of every member of an integer array. For `arr = [1, 2, 3]`, its permutations in lexicographic order are `[1, 2, 3]`, `[1, 3, 2]`, `[2, 1, 3]`, `[2, 3, 1]`, `[3, 1, 2]`, and `[3, 2, 1]`.
+A **permutation** of an array of integers is an arrangement of its members into a sequence or linear order.
 
-The next permutation is the immediately following arrangement in that lexicographic ordering. Thus `[1, 2, 3]` advances to `[1, 3, 2]`, and `[2, 3, 1]` advances to `[3, 1, 2]`. If the current arrangement is already the greatest one, such as `[3, 2, 1]`, wrap around to the lowest arrangement `[1, 2, 3]`.
+<ul>
+	<li>For example, for `arr = [1,2,3]`, the following are all the permutations of `arr`: `[1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1]`.</li>
+</ul>
 
-Transform `nums` into its next permutation in place, using only constant extra memory.
+The **next permutation** of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the **next permutation** of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
+
+<ul>
+	<li>For example, the next permutation of `arr = [1,2,3]` is `[1,3,2]`.</li>
+	<li>Similarly, the next permutation of `arr = [2,3,1]` is `[3,1,2]`.</li>
+	<li>While the next permutation of `arr = [3,2,1]` is `[1,2,3]` because `[3,2,1]` does not have a lexicographical larger rearrangement.</li>
+</ul>
+
+Given an array of integers `nums`, *find the next permutation of* `nums`.
+
+The replacement must be **<a href="http://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in place</a>** and use only constant extra memory.

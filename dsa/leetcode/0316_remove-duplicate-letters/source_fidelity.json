@@ -1,20 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_316", "frontend_id": "316", "title_slug": "remove-duplicate-letters", "url": "https://leetcode.com/problems/remove-duplicate-letters/description/", "paid_only": false, "content_sha256": "b3d5e61c79e173cc5f726588393fbc998c014959f3eba0561b9b104cab0792d6", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_316",
+    "frontend_id": "316",
+    "title_slug": "remove-duplicate-letters",
+    "url": "https://leetcode.com/problems/remove-duplicate-letters/description/",
+    "paid_only": false,
+    "content_sha256": "b3d5e61c79e173cc5f726588393fbc998c014959f3eba0561b9b104cab0792d6",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "note"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "note"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"bcabc\"", "output": "\"abc\"", "has_explanation": false},
-      {"ordinal": 2, "input": "s = \"cbacdcbc\"", "output": "\"acdb\"", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "s = \"bcabc\"",
+        "output": "\"abc\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"cbacdcbc\"",
+        "output": "\"acdb\"",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "7be2ee3d1a6af244b9a1429fbaef73553ab559c3644c00e8174e4cf1be30a8e5",
-    "reference/contract.md": "09ca61f0649eeb82c30e7cd06d1a129e8e415b385c468f7684a3f49b45d9cb4a",
-    "reference/examples.md": "4a66f159478178f38eb0059da1cc055a4afcd3758715c391a7c614bc6908dac7",
-    "reference/constraints.md": "e79d1992f6c7f00a5de3c17cbca5ee5bf02435c4fa7a3b7176085ba3371e9dac",
-    "reference/note.md": "b2a0289c2fa3e60eed7d1624f233afc8fd407db80021fe9fb40281be9d8d6feb"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c10b9075fa5fa64caa361204396008f062d5e725b8fb917ded78a2ea1460b745",
+      "reference/contract.md": "09ca61f0649eeb82c30e7cd06d1a129e8e415b385c468f7684a3f49b45d9cb4a",
+      "reference/examples.md": "4a66f159478178f38eb0059da1cc055a4afcd3758715c391a7c614bc6908dac7",
+      "reference/constraints.md": "e79d1992f6c7f00a5de3c17cbca5ee5bf02435c4fa7a3b7176085ba3371e9dac",
+      "reference/note.md": "b2a0289c2fa3e60eed7d1624f233afc8fd407db80021fe9fb40281be9d8d6feb"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

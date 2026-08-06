@@ -1,5 +1,5 @@
 ## Description
 
-The **Hamming distance** between two integers is the number of bit positions at which their corresponding binary digits differ.
+The <a href="https://en.wikipedia.org/wiki/Hamming_distance" target="_blank">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.
 
-Given nonnegative integers `x` and `y`, return their Hamming distance. Leading zero bits may be added to the shorter binary representation; positions beyond both highest set bits agree and contribute nothing.
+Given two integers `x` and `y`, return *the **Hamming distance** between them*.

@@ -1,5 +1,5 @@
 ## Description
 
-You are given the attributes of people in a queue, but not in queue order. Pair `people[i] = [h_i,k_i]` describes a person of height $h_i$ who must have exactly $k_i$ people ahead of them whose heights are greater than or equal to $h_i$.
+You are given an array of people, `people`, which are the attributes of some people in a queue (not necessarily in order). Each `people[i] = [h_i, k_i]` represents the `i^th` person of height `h_i` with **exactly** `k_i` other people in front who have a height greater than or equal to `h_i`.
 
-Reconstruct and return the queue. In the result, `queue[j] = [h_j,k_j]` gives the attributes of the person at position `j`, with `queue[0]` at the front.
+Reconstruct and return *the queue that is represented by the input array *`people`. The returned queue should be formatted as an array `queue`, where `queue[j] = [h_j, k_j]` is the attributes of the `j^th` person in the queue (`queue[0]` is the person at the front of the queue).

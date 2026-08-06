@@ -1,7 +1,7 @@
 ## Description
 
-Given `head`, the first node of a linked list, determine whether the list contains a cycle.
+Given `head`, the head of a linked list, determine if the linked list has a cycle in it.
 
-A cycle exists when repeatedly following `next` pointers can reach some node more than once. In the displayed test data, `pos` is the zero-based index of the node to which the tail's `next` pointer connects. The value `pos` describes how the input is built and is not passed to your function.
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the `next` pointer. Internally, `pos` is used to denote the index of the node that tail's `next` pointer is connected to. **Note that `pos` is not passed as a parameter**.
 
-Return `true` when the list contains a cycle; otherwise return `false`.
+Return `true`* if there is a cycle in the linked list*. Otherwise, return `false`.

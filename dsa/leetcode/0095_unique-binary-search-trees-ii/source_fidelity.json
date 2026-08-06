@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_95", "frontend_id": "95",
+    "provider": "leetcode",
+    "challenge_id": "lc_95",
+    "frontend_id": "95",
     "title_slug": "unique-binary-search-trees-ii",
     "url": "https://leetcode.com/problems/unique-binary-search-trees-ii/description/",
-    "paid_only": false, "content_sha256": "5aebb9c207443f252a88054ecc58cfcd9dca78588f2e866e0699c43cdb612a19", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "5aebb9c207443f252a88054ecc58cfcd9dca78588f2e866e0699c43cdb612a19",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "n = 3", "output": "[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]", "has_explanation": false},
-      {"ordinal": 2, "input": "n = 1", "output": "[[1]]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "n = 3",
+        "output": "[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 1",
+        "output": "[[1]]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "457b713d2192b130909a2d3f9570489e64741f39d30f54c29552d720583e9396",
+      "reference/description.md": "07f9b9ff7b580ef8d6ddbb76e3c39c94566d51152dcbf3212908c05e9938c260",
       "reference/contract.md": "306bce8002b4da7826f7a22d4a33213e5d2d4cc1fc276433c5983febce513d64",
       "reference/examples.md": "78f55a363da17f99712ca240744c4675db52e583968aa8d513ee66c5279310ce",
       "reference/constraints.md": "4990854e27dea1caf4d162a8bbb76094d3398f33c31b23a8abe8f1422060a0c5"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

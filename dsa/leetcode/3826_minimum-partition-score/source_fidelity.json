@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/minimum-partition-score/description/",
     "paid_only": false,
     "content_sha256": "e3468609bdd74aeeeb9e48f416ef7af816c5ec32efaf7620b916f8b098f30111",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [5,1,2,1], k = 2",
-        "output": "25",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [1,2,3,4], k = 1",
-        "output": "55",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums = [1,1,1], k = 3",
+        "input": "n = 6",
         "output": "3",
-        "has_explanation": true
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "6b9a80602dca4cd51c52406f438922109e034ddd16a6280e276e4d3d4f340d56",
+      "reference/description.md": "5a682ac8159115084a1ecee407279805b77a1242cb3082789f0aa361bf07f021",
       "reference/contract.md": "8c1c3a5122659effb01150fd3f4be9f7271eca130ae4ce0e28f19d72ad44f198",
       "reference/examples.md": "4461a13f024362114a9e2162a17a6d5a233245eb023c564d8e18474baf94155d",
       "reference/constraints.md": "f298dfcb3c575a1c061fd06c4b6ef6d0c5d1dcad517af32c27acd8fb0251ae8e"

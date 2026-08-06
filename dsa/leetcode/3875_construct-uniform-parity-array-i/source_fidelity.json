@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/construct-uniform-parity-array-i/description/",
     "paid_only": false,
     "content_sha256": "6aa5965e730ef686bf9e107ddb40e1614d77b033c5093b4dc40e55f145678b5f",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums1 = [2,3]",
-        "output": "true",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums1 = [4,6]",
-        "output": "true",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "ea0fda36434e9c1c6d54a63ec35fa06e4e1b8fb63e1c8d97eb43441dffd10bf7",
+      "reference/description.md": "95c84075d83bbf92b6fe28c2e7cb59178476e78b3f262e4ab381c1f4421aff2b",
       "reference/contract.md": "f4719957c8af376a73dcdb63123e00f503076c897e526fd28b8acc7b1a751f28",
       "reference/examples.md": "a6efde1485a0f037d18a42b78e4ad49e1efa4ead5053eecfeac5588a44841ab8",
       "reference/constraints.md": "d822f913797035aba52321a09bd83741181b63644853136ddbb5cbd4bc79d637"

@@ -1,3 +1,3 @@
 ## Description
 
-Given two integer arrays `nums1` and `nums2`, return their intersection as an array. A value must occur in the result as many times as it occurs in both inputs, and the result may be returned in any order.
+Given two integer arrays `nums1` and `nums2`, return *an array of their intersection*. Each element in the result must appear as many times as it shows in both arrays and you may return the result in **any order**.

@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_261", "frontend_id": "261", "title_slug": "graph-valid-tree", "url": "https://leetcode.com/problems/graph-valid-tree/description/", "paid_only": true, "content_sha256": "82a1d14f165ad921a579ce9404fe82e2e12d253c454e4d67d3dd389a621ea574", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]", "output": "true", "has_explanation": false}, {"ordinal": 2, "input": "n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]", "output": "false", "has_explanation": false}],
-    "constraint_count": 6,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_261",
+    "frontend_id": "261",
+    "title_slug": "graph-valid-tree",
+    "url": "https://leetcode.com/problems/graph-valid-tree/description/",
+    "paid_only": true,
+    "content_sha256": "82a1d14f165ad921a579ce9404fe82e2e12d253c454e4d67d3dd389a621ea574",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "20750d811ff55e60b9861d315086692530785dceca32b8128e996f61da0e0018", "reference/contract.md": "9bdc194857ad4b9e65dd37230e1458805a9566b9eac07630ab32d904cfcfd4c3", "reference/examples.md": "8103eaff9c64e916f1d2dfe788719e481a7e30a212c4a138f219163d54888bf9", "reference/constraints.md": "dddf7c884955cb5594cadf108ffca6dfb915835a9ac5f492e7d06253a1ed4eca"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]",
+        "output": "false",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "845c50b97b87d4c1764c45cb5f2a13f485960529ebb8c3fb7190593e4468464d",
+      "reference/contract.md": "9bdc194857ad4b9e65dd37230e1458805a9566b9eac07630ab32d904cfcfd4c3",
+      "reference/examples.md": "8103eaff9c64e916f1d2dfe788719e481a7e30a212c4a138f219163d54888bf9",
+      "reference/constraints.md": "dddf7c884955cb5594cadf108ffca6dfb915835a9ac5f492e7d06253a1ed4eca"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

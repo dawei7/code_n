@@ -1,5 +1,5 @@
 ## Description
 
-Given the `root` of a binary tree, return every root-to-leaf path in **any order**.
+Given the `root` of a binary tree, return *all root-to-leaf paths in **any order***.
 
-A **leaf** is a node that has no children.
+A **leaf** is a node with no children.

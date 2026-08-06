@@ -11,10 +11,24 @@
     "checked_at": "2026-08-02"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [7,2,5,10,8], k = 2", "output": "18", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [1,2,3,4,5], k = 2", "output": "9", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "nums = [7,2,5,10,8], k = 2",
+        "output": "18",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,3,4,5], k = 2",
+        "output": "9",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
     "visuals": {
@@ -29,7 +43,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "4c421004d8295dc8f78e58e7172ed5405aa043940d1aa88456e2784125e4ae19",
+      "reference/description.md": "ec0b4527cf6e9cb6bd4f1d3cc7dce3b1f975c961745b73bf9eb5e897494630bc",
       "reference/contract.md": "da8fd76114f30617d6d625776e318f43f51161b1a8bd6e16f5606f9f2a573759",
       "reference/examples.md": "5e283f8fe0277a87982900a83986c8605e7d91b8fd76ae5f7b1acdfa9676bff6",
       "reference/constraints.md": "f1bea921a5418397939a33d23dc5ebb397ec98965c42f99086e1e5c314f29370"

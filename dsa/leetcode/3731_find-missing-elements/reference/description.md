@@ -1,9 +1,9 @@
 ## Description
 
-You are given an integer array `nums` whose elements are unique.
+You are given an integer array `nums` consisting of **unique** integers.
 
-The array originally contained every integer in one consecutive range, but some values may now be absent.
+Originally, `nums` contained **every integer** within a certain range. However, some integers might have gone **missing** from the array.
 
-The smallest and largest values from that original range are guaranteed to remain in `nums`.
+The **smallest** and **largest** integers of the original range are still present in `nums`.
 
-Return every missing integer from the range in sorted order. Return an empty list when the range is already complete.
+Return a **sorted** list of all the missing integers in this range. If no integers are missing, return an **empty** list.

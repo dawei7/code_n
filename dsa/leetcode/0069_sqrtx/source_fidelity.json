@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_69", "frontend_id": "69",
+    "provider": "leetcode",
+    "challenge_id": "lc_69",
+    "frontend_id": "69",
     "title_slug": "sqrtx",
     "url": "https://leetcode.com/problems/sqrtx/description/",
-    "paid_only": false, "content_sha256": "8f9177ede234c4700b638acfd58c312f18cf3c0ff679947cd56e41c1716ade30", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "8f9177ede234c4700b638acfd58c312f18cf3c0ff679947cd56e41c1716ade30",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "x = 4", "output": "2", "has_explanation": true},
-      {"ordinal": 2, "input": "x = 8", "output": "2", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "x = 4",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "x = 8",
+        "output": "2",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "31dff476349db230d201da3c43168ff039a746cb6612954fb42ad24fb538aa15",
+      "reference/description.md": "cda6398325118c0f5212494c5c88426866a90dc3d03adca82728e8275dac57a5",
       "reference/contract.md": "0ab724f7b010f36c48a5b60e36e2fc8f3b7dc7fce6aeaf3da31e3975178c29fa",
       "reference/examples.md": "15b16eb54237621b4f7f4a1997d211bfaf82ff14ac2add7011eaa9b2b92be682",
       "reference/constraints.md": "c5169e09acf103382c95c267eaa9a8936e17a2ded9c8a7d060d67329db78504c"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

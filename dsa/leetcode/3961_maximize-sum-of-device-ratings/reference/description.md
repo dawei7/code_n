@@ -1,7 +1,22 @@
 ## Description
 
-The rectangular matrix `units` describes $m$ devices, each containing exactly $n$ units. Entry `units[i][j]` is a capacity, and a device's rating is the minimum capacity among the units it currently holds.
+You are given a 2D integer array `units` of size `m × n` where `units[i][j]` represents the capacity of the `j^th` unit in the `i^th` device. Each device contains **exactly** `n` units.
 
-An operation selects a device that has never previously acted as a source, removes exactly one of its current units, and adds that unit to a different device. The chosen source is then permanently marked, while destination devices may receive units any number of times. Performing no operation is allowed.
+The **rating** of a device is the **minimum** capacity among all its units.
 
-After any legal sequence of transfers, add the ratings of all devices. Return the greatest total that can be achieved.
+You may perform the following operation any number of times (including zero):
+
+<ul>
+	<li>Choose a device `i` that has **not been** used as a source before.</li>
+	<li>Remove **exactly** one unit from device `i` and add it to **any** different device.</li>
+	<li>Then mark device `i` as used, so it cannot be chosen again as a source.</li>
+</ul>
+
+Return the **maximum** possible sum of the ratings of all devices after any number of such operations.
+
+**Note:**
+
+<ul>
+	<li>Devices can receive units from multiple devices, regardless of whether they have been selected.</li>
+	<li>The rating of an empty device is 0.</li>
+</ul>

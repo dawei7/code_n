@@ -1,7 +1,11 @@
 ## Description
 
-You are given two integer arrays, `nums` and `forbidden`, each containing `n` elements.
+You are given two integer arrays, `nums` and `forbidden`, each of length `n`.
 
-In one operation, choose two different indices `i` and `j` and exchange `nums[i]` with `nums[j]`. You may perform this operation any number of times, including zero.
+You may perform the following operation any number of times (including zero):
 
-Find the minimum number of swaps needed to make `nums[i] != forbidden[i]` at every index. If no rearrangement of `nums` can satisfy every index, return `-1`.
+<ul>
+	<li>Choose two **distinct** indices `i` and `j`, and swap `nums[i]` with `nums[j]`.</li>
+</ul>
+
+Return the **minimum** number of swaps required such that, for every index `i`, the value of `nums[i]` is **not equal** to `forbidden[i]`. If no amount of swaps can ensure that every index avoids its forbidden value, return -1.

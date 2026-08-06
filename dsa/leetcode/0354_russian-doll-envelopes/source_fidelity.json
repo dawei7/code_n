@@ -1,20 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_354", "frontend_id": "354", "title_slug": "russian-doll-envelopes", "url": "https://leetcode.com/problems/russian-doll-envelopes/description/", "paid_only": false, "content_sha256": "0bba6d975c470d69205f0be0c44a6ced42879b1a47f9a7846e1f016be163391c", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_354",
+    "frontend_id": "354",
+    "title_slug": "russian-doll-envelopes",
+    "url": "https://leetcode.com/problems/russian-doll-envelopes/description/",
+    "paid_only": false,
+    "content_sha256": "0bba6d975c470d69205f0be0c44a6ced42879b1a47f9a7846e1f016be163391c",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "envelopes = [[5,4],[6,4],[6,7],[2,3]]", "output": "3", "has_explanation": true},
-      {"ordinal": 2, "input": "envelopes = [[1,1],[1,1],[1,1]]", "output": "1", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "envelopes = [[5,4],[6,4],[6,7],[2,3]]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "envelopes = [[1,1],[1,1],[1,1]]",
+        "output": "1",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "a64160b8ab1a40e994be8483729c561fe49a6eff68f29aada59607504e08f801",
-    "reference/contract.md": "72b5f005cbcc334ebff22fa75cc5f205896b553a739149cbd55897a187849e9c",
-    "reference/note.md": "4462d277662c996e7056e415f21d37da9fa39c910d2ca4dba35a1582984b514d",
-    "reference/examples.md": "0df56c750bbe3f03cf5896cb307ecbfea990a6e03100265a3afcd4d64b748f95",
-    "reference/constraints.md": "87732bfb8d665d140a40f0e448f72f45758b322abab86acb4ccf4cdd9e403ea8"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5624d4f1cf82d032bea993b8cc0fcfdc6fbc3a36be7a218fbddfbdbdd18ef503",
+      "reference/contract.md": "72b5f005cbcc334ebff22fa75cc5f205896b553a739149cbd55897a187849e9c",
+      "reference/note.md": "4462d277662c996e7056e415f21d37da9fa39c910d2ca4dba35a1582984b514d",
+      "reference/examples.md": "0df56c750bbe3f03cf5896cb307ecbfea990a6e03100265a3afcd4d64b748f95",
+      "reference/constraints.md": "87732bfb8d665d140a40f0e448f72f45758b322abab86acb4ccf4cdd9e403ea8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

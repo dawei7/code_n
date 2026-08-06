@@ -1,5 +1,3 @@
 ## Description
 
-Given a string `s`, locate the first character that appears exactly once in the complete string and return its zero-based index.
-
-If no non-repeating character exists, return `-1`.
+Given a string `s`, find the **first** non-repeating character in it and return its index. If it **does not** exist, return `-1`.

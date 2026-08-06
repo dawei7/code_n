@@ -1,7 +1,9 @@
 ## Description
 
-The integer array `stations` gives the positions of existing gas stations on the x-axis. You must add exactly `k` new gas stations, and each new position may be anywhere on that axis; it does not need to be an integer.
+You are given an integer array `stations` that represents the positions of the gas stations on the x-axis. You are also given an integer `k`.
 
-After all additions, define `penalty()` as the maximum distance between adjacent gas stations. Choose the new positions so that this maximum is as small as possible.
+You should add `k` new gas stations. You can add the stations anywhere on the x-axis, and not necessarily on an integer position.
 
-Return the minimum achievable value of `penalty()`. A result within $10^{-6}$ of the exact optimum is accepted.
+Let `penalty()` be the maximum distance between adjacent gas stations after adding the `k` new stations.
+
+Return the smallest possible value of `penalty()`. Answers within 10^-6 of the actual answer will be accepted.

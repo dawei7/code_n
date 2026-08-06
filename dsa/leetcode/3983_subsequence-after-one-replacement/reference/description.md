@@ -1,5 +1,7 @@
 ## Description
 
-You receive two strings `s` and `t`, both made of lowercase English letters. Before testing their relationship, you may replace the character at **at most one** position of `s` with any lowercase English letter. Because the operation is optional, leaving `s` unchanged is also permitted.
+You are given two strings `s` and `t` consisting of lowercase English letters.
 
-A string is a subsequence of another when all of its characters can be matched in order after deleting zero or more characters from the other string; the matched positions need not be adjacent. Determine whether some allowed choice—no replacement or one replacement—can make the resulting `s` a subsequence of `t`.
+You may choose **at most** one index in `s` and replace the character at that index with any lowercase English letter.
+
+Return `true` if it is possible to make `s` a <span data-keyword="subsequence-string">subsequence</span> of `t`; otherwise, return `false`.

@@ -1,0 +1,5 @@
+## Description
+
+You are given an integer array `nums`. In one operation, you can select a <span data-keyword="subarray-nonempty">subarray</span> and replace it with a single element equal to its **maximum** value.
+
+Return the **maximum possible size** of the array after performing zero or more operations such that the resulting array is **non-decreasing**.

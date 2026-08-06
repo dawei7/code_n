@@ -1,11 +1,3 @@
 ## Description
 
-Given an integer array `nums`, determine whether there are three indices $(i,j,k)$ such that
-
-$$
-i < j < k
-\quad\text{and}\quad
-\texttt{nums[i]} < \texttt{nums[j]} < \texttt{nums[k]}.
-$$
-
-Return `true` if such a strictly increasing triplet exists; return `false` if no such indices can be chosen.
+Given an integer array `nums`, return `true`* if there exists a triple of indices *`(i, j, k)`* such that *`i < j < k`* and *`nums[i] < nums[j] < nums[k]`. If no such indices exists, return `false`.

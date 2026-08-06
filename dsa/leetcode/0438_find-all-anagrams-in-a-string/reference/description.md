@@ -1,4 +1,3 @@
 ## Description
 
-Given strings `s` and `p`, return the starting indices of every substring of `s` that is an anagram of `p`. The
-indices may be returned in any order.
+Given two strings `s` and `p`, return an array of all the start indices of `p`'s <span data-keyword="anagram">anagrams</span> in `s`. You may return the answer in **any order**.

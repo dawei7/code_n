@@ -1,0 +1,14 @@
+## Description
+
+A string is considered **beautiful** if it satisfies the following conditions:
+
+<ul>
+	<li>Each of the 5 English vowels (`'a'`, `'e'`, `'i'`, `'o'`, `'u'`) must appear **at least once** in it.</li>
+	<li>The letters must be sorted in **alphabetical order** (i.e. all `'a'`s before `'e'`s, all `'e'`s before `'i'`s, etc.).</li>
+</ul>
+
+For example, strings `"aeiou"` and `"aaaaaaeiiiioou"` are considered **beautiful**, but `"uaeio"`, `"aeoiu"`, and `"aaaeeeooo"` are **not beautiful**.
+
+Given a string `word` consisting of English vowels, return *the **length of the longest beautiful substring** of *`word`*. If no such substring exists, return *`0`.
+
+A **substring** is a contiguous sequence of characters in a string.

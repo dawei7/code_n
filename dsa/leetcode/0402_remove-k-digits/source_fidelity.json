@@ -1,20 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_402", "frontend_id": "402", "title_slug": "remove-k-digits", "url": "https://leetcode.com/problems/remove-k-digits/description/", "paid_only": false, "content_sha256": "c2ff47f7c9ae44f62ea586c9122597702b7daac3ac7580323180540a2b6b778a", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_402",
+    "frontend_id": "402",
+    "title_slug": "remove-k-digits",
+    "url": "https://leetcode.com/problems/remove-k-digits/description/",
+    "paid_only": false,
+    "content_sha256": "c2ff47f7c9ae44f62ea586c9122597702b7daac3ac7580323180540a2b6b778a",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "num = \"1432219\", k = 3", "output": "\"1219\"", "has_explanation": true},
-      {"ordinal": 2, "input": "num = \"10200\", k = 1", "output": "\"200\"", "has_explanation": true},
-      {"ordinal": 3, "input": "num = \"10\", k = 2", "output": "\"0\"", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "num = \"1432219\", k = 3",
+        "output": "\"1219\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "num = \"10200\", k = 1",
+        "output": "\"200\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "num = \"10\", k = 2",
+        "output": "\"0\"",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "7c8b153763c2e40f8840ba1f118f79d542a3d5c0eb34672850575588e18b7854",
-    "reference/contract.md": "896630dafde02fe0815d4e552c80826a3d73d0f67a03cddb83b1a962bf5535e0",
-    "reference/examples.md": "f1b5e15d2c7dff18dc0f684d32b2d13a09f80985d25b8983a32bc9a7b3b4c096",
-    "reference/constraints.md": "dfe558918fdf311fd486a62b63565942dbfa62b4143ee42fcc4da9fab7d2c1d8"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8c6f2b1da500835bfc721c851798523f2f32aab258d66d1e6ac2692d5324443f",
+      "reference/contract.md": "896630dafde02fe0815d4e552c80826a3d73d0f67a03cddb83b1a962bf5535e0",
+      "reference/examples.md": "f1b5e15d2c7dff18dc0f684d32b2d13a09f80985d25b8983a32bc9a7b3b4c096",
+      "reference/constraints.md": "dfe558918fdf311fd486a62b63565942dbfa62b4143ee42fcc4da9fab7d2c1d8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

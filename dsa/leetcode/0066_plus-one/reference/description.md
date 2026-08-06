@@ -1,5 +1,5 @@
 ## Description
 
-A large integer is represented by an array `digits`, with `digits[i]` holding one decimal digit. The digits appear from most significant to least significant as the array is read from left to right, and the number has no leading zero.
+You are given a **large integer** represented as an integer array `digits`, where each `digits[i]` is the `i^th` digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading `0`'s.
 
-Add one to this integer and return the digits of the resulting value.
+Increment the large integer by one and return *the resulting array of digits*.

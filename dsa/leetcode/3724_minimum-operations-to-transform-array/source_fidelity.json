@@ -8,44 +8,36 @@
     "url": "https://leetcode.com/problems/minimum-operations-to-transform-array/description/",
     "paid_only": false,
     "content_sha256": "e1cb8160c6fbfd6bbcb1feff926ae87d61522da49d47deb1b97500791077c695",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums1 = [2,8], nums2 = [1,7,3]",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums1 = [1,3,6], nums2 = [2,4,5,3]",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums1 = [2], nums2 = [3,4]",
+        "input": "n = 6",
         "output": "3",
-        "has_explanation": true
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 3,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 3,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "53288e21ead0cd6943eec0607b49c52d60307feb6a7b47585b0db89e01d41b27",
+      "reference/description.md": "c670e5039cde4070222fe143ef1a2cb8b0e2b485c3675de01c012d29220d556b",
       "reference/contract.md": "ebaa62ca8e8655c0d5cbaefad77867a95f9cd42c9d62c401d5889eb1eeb34a4a",
       "reference/examples.md": "10c29e0d6bb1f0f86280c7ff09b490f3089fc62c75d73937b907f921efe9d4ee",
       "reference/constraints.md": "37522e00a61e40f8b02f45b1c63c1a2f1d8da19ded75fb110abc433d9b7ca32c"

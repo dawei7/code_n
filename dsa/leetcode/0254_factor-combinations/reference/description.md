@@ -1,7 +1,8 @@
 ## Description
 
-An integer can be represented as a product of its factors. For instance, $8 = 2 \times 2 \times 2 = 2 \times 4$.
+Numbers can be regarded as the product of their factors. For example, $8 = 2 \times 2 \times 2 = 2 \times 4$.
 
-Given `n`, return every possible factor combination whose product is `n`. The combinations may be returned in any order.
+Given an integer `n`, return all possible combinations of its factors. You may return the answer in any order.
 
-Every factor used in an answer must lie in the inclusive range `[2, n - 1]`.
+**Note** that the factors should be in the range `[2, n - 1]`.
+

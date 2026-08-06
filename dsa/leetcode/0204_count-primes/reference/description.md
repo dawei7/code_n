@@ -1,3 +1,3 @@
 ## Description
 
-Given an integer `n`, count how many prime numbers are **strictly less than** `n` and return that count.
+Given an integer `n`, return *the number of prime numbers that are strictly less than* `n`.

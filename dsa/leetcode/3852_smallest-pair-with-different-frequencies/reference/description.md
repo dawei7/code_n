@@ -1,9 +1,19 @@
 ## Description
 
-You are given an integer array `nums`. A value's frequency is the number of times that value occurs in the array.
+You are given an integer array `nums`.
 
-Consider pairs of distinct values `x` and `y` that both occur in `nums`. A pair is valid only when `x < y` and the two values have different frequencies.
+Consider all pairs of **distinct** values `x` and `y` from `nums` such that:
 
-Choose among the valid pairs by minimizing `x` first. If several valid pairs use that same `x`, minimize `y` next.
+<ul>
+	<li>`x < y`</li>
+	<li>`x` and `y` have different <span data-keyword="frequency-array">frequencies</span> in `nums`.</li>
+</ul>
 
-Return the chosen pair as `[x, y]`. If no pair satisfies both conditions, return `[-1, -1]`.
+Among all such pairs:
+
+<ul>
+	<li>Choose the pair with the smallest possible value of `x`.</li>
+	<li>If multiple pairs have the same `x`, choose the one with the smallest possible value of `y`.</li>
+</ul>
+
+Return an integer array `[x, y]`. If no valid pair exists, return `[-1, -1]`.

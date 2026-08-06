@@ -1,0 +1,16 @@
+## Description
+
+You are given a binary string `s`. You are allowed to perform two types of operations on the string in any sequence:
+
+<ul>
+	<li>**Type-1: Remove** the character at the start of the string `s` and **append** it to the end of the string.</li>
+	<li>**Type-2: Pick** any character in `s` and **flip** its value, i.e., if its value is `'0'` it becomes `'1'` and vice-versa.</li>
+</ul>
+
+Return *the **minimum** number of **type-2** operations you need to perform* *such that *`s` *becomes **alternating**.*
+
+The string is called **alternating** if no two adjacent characters are equal.
+
+<ul>
+	<li>For example, the strings `"010"` and `"1010"` are alternating, while the string `"0100"` is not.</li>
+</ul>

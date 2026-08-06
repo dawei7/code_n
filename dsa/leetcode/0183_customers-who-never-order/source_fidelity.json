@@ -1,15 +1,56 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_183", "frontend_id": "183", "title_slug": "customers-who-never-order", "url": "https://leetcode.com/problems/customers-who-never-order/description/", "paid_only": false, "content_sha256": "3bb15cf553575c6314d97284c1a4206f0e550c63557c7f91d26ee76c798e0dcb", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_183",
+    "frontend_id": "183",
+    "title_slug": "customers-who-never-order",
+    "url": "https://leetcode.com/problems/customers-who-never-order/description/",
+    "paid_only": false,
+    "content_sha256": "3bb15cf553575c6314d97284c1a4206f0e550c63557c7f91d26ee76c798e0dcb",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["customers_table", "orders_table", "description", "examples"],
-    "examples": [{"ordinal": 1, "input": "Customers = [[1,\"Joe\"],[2,\"Henry\"],[3,\"Sam\"],[4,\"Max\"]], Orders = [[1,3],[2,1]]", "output": "Customers = [\"Henry\",\"Max\"]", "has_explanation": false}],
+    "sections": [
+      "customers_table",
+      "orders_table",
+      "description",
+      "examples"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "Customers = [[1,\"Joe\"],[2,\"Henry\"],[3,\"Sam\"],[4,\"Max\"]], Orders = [[1,3],[2,1]]",
+        "output": "Customers = [\"Henry\",\"Max\"]",
+        "has_explanation": false
+      }
+    ],
     "constraint_count": 0,
-    "visuals": {"source_images": 0, "source_tables": 5, "source_diagrams": 0, "local_images": 0, "local_tables": 5, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/customers_table.md": "3ea63e889bc0ded1e4c6939f4ed46a360edaa2b4f0fe7d353c10bb6c119d3034", "reference/orders_table.md": "7e4d0b3294707923f8b955e51ed1ff19cd44d1796ed0d84df365c411f6e54de9", "reference/description.md": "5c442251ae24ebb65ea54e062d9768cb48a2ae8fa3c73a5c4d1e73f329cccfc0", "reference/contract.md": "3079e7555672e6024ff8458676ba5bab27b25c49091a5e02dd4f1669e7d1e846", "reference/examples.md": "baa38ed7879c4a4c314170b41d5585ae807203c208526a7aca91db0e7204a411"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/customers_table.md": "3ea63e889bc0ded1e4c6939f4ed46a360edaa2b4f0fe7d353c10bb6c119d3034",
+      "reference/orders_table.md": "7e4d0b3294707923f8b955e51ed1ff19cd44d1796ed0d84df365c411f6e54de9",
+      "reference/description.md": "ac1f7cfcaebb58d285da8ac7ee688bdc097d8e9da5fe4fb31bb9ae198c281ff3",
+      "reference/contract.md": "3079e7555672e6024ff8458676ba5bab27b25c49091a5e02dd4f1669e7d1e846",
+      "reference/examples.md": "baa38ed7879c4a4c314170b41d5585ae807203c208526a7aca91db0e7204a411"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

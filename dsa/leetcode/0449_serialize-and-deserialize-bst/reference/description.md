@@ -1,5 +1,7 @@
 ## Description
 
-Serialization converts a data structure into a sequence that can be stored or transmitted and later used to reconstruct the same structure.
+Serialization is converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
 
-Design an algorithm that serializes a binary search tree into a string and deserializes that string back into the original tree structure. The encoding format is your choice, but it must support a complete round trip and should be as compact as possible.
+Design an algorithm to serialize and deserialize a **binary search tree**. There is no restriction on how your serialization/deserialization algorithm should work. You need to ensure that a binary search tree can be serialized to a string, and this string can be deserialized to the original tree structure.
+
+**The encoded string should be as compact as possible.**

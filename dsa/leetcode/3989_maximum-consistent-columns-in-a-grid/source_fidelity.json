@@ -8,31 +8,23 @@
     "url": "https://leetcode.com/problems/maximum-consistent-columns-in-a-grid/description/",
     "paid_only": false,
     "content_sha256": "0fbefdea52a629aeefdccdbe0a683c689d8c5ddc3dd05997080796a8ba9700dd",
-    "checked_at": "2026-07-31"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "grid = [[-2,0,3]], limit = 2",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "grid = [[1,-1,1],[2,2,2]], limit = 1",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "grid = [[-5,5]], limit = 9",
-        "output": "1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 4,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -45,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "8ea59f6e6eb568a6e55a79da27c84898116f62bb062dc5b6e8eca862962388b1",
+      "reference/description.md": "019c95172b04c9f94ce83eb4ac3a7859d3a8184f2e0453ff446eb8885f5756d5",
       "reference/contract.md": "b1ce65e2fb7e6bb78c7fe6a08d62213f07c943be6ee77bd0d5f6e8e012b5b090",
       "reference/examples.md": "399c739d36eb0e4e0a50171dd08681967dbc5eb40ddb4d4d2fd5494b2a37cc73",
       "reference/constraints.md": "8a725dc332ef21ce40d4b9bd70fd56a97ff6c8c2a56fd5807a534c7c0e60a13b"

@@ -1,20 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_358", "frontend_id": "358", "title_slug": "rearrange-string-k-distance-apart", "url": "https://leetcode.com/problems/rearrange-string-k-distance-apart/description/", "paid_only": true, "content_sha256": "5d5dbf0e5a368fa031847dec03c172b7d21a7ad3d5936fe0a6b3933d28aba88a", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_358",
+    "frontend_id": "358",
+    "title_slug": "rearrange-string-k-distance-apart",
+    "url": "https://leetcode.com/problems/rearrange-string-k-distance-apart/description/",
+    "paid_only": true,
+    "content_sha256": "5d5dbf0e5a368fa031847dec03c172b7d21a7ad3d5936fe0a6b3933d28aba88a",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"aabbcc\", k = 3", "output": "\"abcabc\"", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"aaabc\", k = 3", "output": "\"\"", "has_explanation": true},
-      {"ordinal": 3, "input": "s = \"aaadbbcc\", k = 2", "output": "\"abacabcd\"", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"aabbcc\", k = 3",
+        "output": "\"abcabc\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"aaabc\", k = 3",
+        "output": "\"\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"aaadbbcc\", k = 2",
+        "output": "\"abacabcd\"",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "9b2e0b0c6b73b748499ed1949ccd8e944347d2fdef16c4934bf153f1301a745c",
-    "reference/contract.md": "703ae2fae5da54bcc9ca856f4642bb8502bbc3960b4119a013c401faee7a0d9c",
-    "reference/examples.md": "9e732c4fcf0d8e65de6d46dc316d81f53e99e5c1fd4349aa6db6abeb97bd0c2c",
-    "reference/constraints.md": "87500c5d56881db5fa78ed1fca9b1b0be707784df883bc9553f543f356360f0a"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9b2e0b0c6b73b748499ed1949ccd8e944347d2fdef16c4934bf153f1301a745c",
+      "reference/contract.md": "703ae2fae5da54bcc9ca856f4642bb8502bbc3960b4119a013c401faee7a0d9c",
+      "reference/examples.md": "9e732c4fcf0d8e65de6d46dc316d81f53e99e5c1fd4349aa6db6abeb97bd0c2c",
+      "reference/constraints.md": "87500c5d56881db5fa78ed1fca9b1b0be707784df883bc9553f543f356360f0a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

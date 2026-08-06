@@ -1,7 +1,13 @@
 ## Description
 
-Concatenate every string in `chunks`, in its given order and without inserting any character between adjacent chunks, to obtain one string `s`. For each string in `queries`, count how often it occurs as a complete word of `s`.
+You are given an array of strings `chunks`. Concatenate all strings in `chunks` in order to form a string `s`.
 
-A hyphen in `s` is a **joiner hyphen** only when both of its immediate neighbors exist and are lowercase English letters. A **word** is a maximal nonempty substring containing only lowercase English letters and joiner hyphens. Spaces and every hyphen that fails the neighbor test are separators, so they end any word currently being formed.
+You are also given an array of strings `queries`.
 
-Matches are exact words rather than arbitrary substrings. Consequently, a query found strictly inside a longer word does not count, while repeated complete words and repeated queries must retain their multiplicities.
+A **joiner hyphen** is a hyphen character `'-'` in `s` whose previous and next characters both exist and are lowercase English letters.
+
+A **word** is a **maximal** <span data-keyword="substring-nonempty">substring</span> of `s` consisting only of lowercase English letters and **joiner hyphens**.
+
+All other characters, including spaces and hyphens that are not **joiner hyphens**, are treated as separators.
+
+Return an integer array `ans`, where `ans[i]` is the number of times `queries[i]` appears as a word in `s`.

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/maximum-bitwise-xor-after-rearrangement/description/",
     "paid_only": false,
     "content_sha256": "79fc72794913db62ab4e5406c7b02e4f0e3eb9b76c1025861bf15b45fd007310",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \"101\", t = \"011\"",
-        "output": "\"110\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"0110\", t = \"1110\"",
-        "output": "\"1101\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"0101\", t = \"1001\"",
-        "output": "\"1111\"",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "f195ce32d58c01a74b2ebf3883155f38ce414f2a88fcaceaad987a942a43acd7",
+      "reference/description.md": "32df292528882ed635b13bc9fc1cec10c586dbb047647fa0b16c1bbd9f8a343b",
       "reference/contract.md": "923e72740461c467f50fe1489bcb780a57be189dc6df2904a890b55c31cacd45",
       "reference/examples.md": "ae8f3ddc9c8652cfb5c9c7a7305210c25110e6ea6396da90f65ace00dbe590f5",
       "reference/constraints.md": "c4eb40979d6dcb17e2ece0a428ba86f690ddc90fd79eab81f5ac3dfe2809f333"

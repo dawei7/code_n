@@ -1,0 +1,20 @@
+## Description
+
+You are given a large sample of integers in the range `[0, 255]`. Since the sample is so large, it is represented by an array `count` where `count[k]` is the **number of times** that `k` appears in the sample.
+
+Calculate the following statistics:
+
+<ul>
+	<li>`minimum`: The minimum element in the sample.</li>
+	<li>`maximum`: The maximum element in the sample.</li>
+	<li>`mean`: The average of the sample, calculated as the total sum of all elements divided by the total number of elements.</li>
+	<li>`median`:
+	<ul>
+		<li>If the sample has an odd number of elements, then the `median` is the middle element once the sample is sorted.</li>
+		<li>If the sample has an even number of elements, then the `median` is the average of the two middle elements once the sample is sorted.</li>
+	</ul>
+	</li>
+	<li>`mode`: The number that appears the most in the sample. It is guaranteed to be **unique**.</li>
+</ul>
+
+Return *the statistics of the sample as an array of floating-point numbers *`[minimum, maximum, mean, median, mode]`*. Answers within *`10^-5`* of the actual answer will be accepted.*

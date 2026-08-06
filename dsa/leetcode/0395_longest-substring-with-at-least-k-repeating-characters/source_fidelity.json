@@ -1,19 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_395", "frontend_id": "395", "title_slug": "longest-substring-with-at-least-k-repeating-characters", "url": "https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/description/", "paid_only": false, "content_sha256": "644befc6d69c03e422e7e365b8f96e802f68fc25e72b48ac3d4289c15ea76a97", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_395",
+    "frontend_id": "395",
+    "title_slug": "longest-substring-with-at-least-k-repeating-characters",
+    "url": "https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/description/",
+    "paid_only": false,
+    "content_sha256": "644befc6d69c03e422e7e365b8f96e802f68fc25e72b48ac3d4289c15ea76a97",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"aaabb\", k = 3", "output": "3", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"ababbc\", k = 2", "output": "5", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"aaabb\", k = 3",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"ababbc\", k = 2",
+        "output": "5",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "cb56fdb8d6c83485019f552dd2278ed26f3782dc8d27c4c4d876f288c287698a",
-    "reference/contract.md": "605fe67d611881f362a2df0dbb985631212894a08255df785228d8112bb0d4e4",
-    "reference/examples.md": "683b0f3ed9c1ce7fa5369a706645b81ac418c97fe8a880b8b46f0a3113eb0762",
-    "reference/constraints.md": "d34c722e1e8dc09abb7b78cb63a67d22183d2dba392d715b1a8baf273fc2b6db"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "54a5acca6ee858745b8bcbeb0178847f6a1af441a92f6d3b65585fc66098c52e",
+      "reference/contract.md": "605fe67d611881f362a2df0dbb985631212894a08255df785228d8112bb0d4e4",
+      "reference/examples.md": "683b0f3ed9c1ce7fa5369a706645b81ac418c97fe8a880b8b46f0a3113eb0762",
+      "reference/constraints.md": "d34c722e1e8dc09abb7b78cb63a67d22183d2dba392d715b1a8baf273fc2b6db"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

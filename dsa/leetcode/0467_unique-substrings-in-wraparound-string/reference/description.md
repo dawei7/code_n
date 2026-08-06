@@ -1,5 +1,9 @@
 ## Description
 
-Let `base` be the infinite wraparound string formed by repeating the lowercase English alphabet. Around any point it has the form `"...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd...."`, so the sequence continues from `z` back to `a`.
+We define the string `base` to be the infinite wraparound string of `"abcdefghijklmnopqrstuvwxyz"`, so `base` will look like this:
 
-Given a string `s`, return the number of its unique nonempty substrings that also occur in `base`.
+<ul>
+	<li>`"...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd...."`.</li>
+</ul>
+
+Given a string `s`, return *the number of **unique non-empty substrings** of *`s`* are present in *`base`.

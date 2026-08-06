@@ -1,3 +1,3 @@
 ## Description
 
-Given `n`, return the number of structurally distinct binary search trees containing exactly `n` nodes whose unique values are the integers from `1` through `n`.
+Given an integer `n`, return *the number of structurally unique **BST'**s (binary search trees) which has exactly *`n`* nodes of unique values from* `1` *to* `n`.

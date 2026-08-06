@@ -1,11 +1,58 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_232", "frontend_id": "232", "title_slug": "implement-queue-using-stacks", "url": "https://leetcode.com/problems/implement-queue-using-stacks/description/", "paid_only": false, "content_sha256": "04533e2e99a8ced2b568a28b5925a492ffbe31f69533a2a41747136cfd08e894", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "notes", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "[\"MyQueue\",\"push\",\"push\",\"peek\",\"pop\",\"empty\"], [[],[1],[2],[],[],[]]", "output": "[null,null,null,1,1,false]", "has_explanation": true}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 1, "local_images": 0, "local_tables": 1, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_232",
+    "frontend_id": "232",
+    "title_slug": "implement-queue-using-stacks",
+    "url": "https://leetcode.com/problems/implement-queue-using-stacks/description/",
+    "paid_only": false,
+    "content_sha256": "04533e2e99a8ced2b568a28b5925a492ffbe31f69533a2a41747136cfd08e894",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "706c997197288da0ac742f4d9a83ee8f1eea8541f06d7905d20db5146f477f72", "reference/contract.md": "024c9a5c6b3bfb2f9ac36b70ab3634ae98585fe57a60a0bffc7912751a3008be", "reference/notes.md": "3d7c3eefad98f47f0119f27ad61d3fe34a08ac66e46ff253bdd8798c04805480", "reference/examples.md": "042e914f1b1f362384d21edd17475955f51bef44c0b774c9f5f12ba5a88e8e90", "reference/constraints.md": "5739fc2f8bb0267a0390f62d51e70dc9c3f9e1607378e7de46ba078b53b3a3fc", "reference/follow_up.md": "da78eeea85a7f34dd2d2ad63d66e13bb0838487e77353e150800daf82b4d890a"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "notes",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "[\"MyQueue\",\"push\",\"push\",\"peek\",\"pop\",\"empty\"], [[],[1],[2],[],[],[]]",
+        "output": "[null,null,null,1,1,false]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 1,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c73cbe1f76793856d82c4c75f0dc846f5c3e815321de6b0fbb961807a28d9b02",
+      "reference/contract.md": "024c9a5c6b3bfb2f9ac36b70ab3634ae98585fe57a60a0bffc7912751a3008be",
+      "reference/notes.md": "3d7c3eefad98f47f0119f27ad61d3fe34a08ac66e46ff253bdd8798c04805480",
+      "reference/examples.md": "042e914f1b1f362384d21edd17475955f51bef44c0b774c9f5f12ba5a88e8e90",
+      "reference/constraints.md": "5739fc2f8bb0267a0390f62d51e70dc9c3f9e1607378e7de46ba078b53b3a3fc",
+      "reference/follow_up.md": "da78eeea85a7f34dd2d2ad63d66e13bb0838487e77353e150800daf82b4d890a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

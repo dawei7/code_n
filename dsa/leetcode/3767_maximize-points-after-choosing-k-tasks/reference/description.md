@@ -1,10 +1,16 @@
 ## Description
 
-You are given two integer arrays, `technique1` and `technique2`, of the same length $n$. The $n$ positions represent tasks that must all be completed.
+You are given two integer arrays, `technique1` and `technique2`, each of length `n`, where `n` represents the number of tasks to complete.
 
-- Completing task `i` with technique 1 earns `technique1[i]` points.
-- Completing task `i` with technique 2 earns `technique2[i]` points.
+<ul>
+	<li>If the `i^th` task is completed using technique 1, you earn `technique1[i]` points.</li>
+	<li>If it is completed using technique 2, you earn `technique2[i]` points.</li>
+</ul>
 
-An integer `k` specifies the minimum number of tasks that must use technique 1. Those tasks may occur at any indices; they are not required to be the first `k` tasks.
+You are also given an integer `k`, representing the **minimum** number of tasks that **must** be completed using technique 1.
 
-Every task beyond that mandatory minimum may use whichever technique is more beneficial. Return the maximum total number of points obtainable after assigning exactly one technique to every task while using technique 1 at least `k` times.
+You **must** complete **at least** `k` tasks using technique 1 (they do not need to be the first `k` tasks).
+
+The remaining tasks may be completed using **either** technique.
+
+Return an integer denoting the **maximum total points** you can earn.

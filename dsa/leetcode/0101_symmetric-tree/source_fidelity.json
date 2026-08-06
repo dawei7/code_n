@@ -1,18 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_101", "frontend_id": "101", "title_slug": "symmetric-tree", "url": "https://leetcode.com/problems/symmetric-tree/description/", "paid_only": false, "content_sha256": "39e6b81ad8c2b8fafb34fd5159c66581d9af50cc08b0cf421b7b5fec050526d6", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_101",
+    "frontend_id": "101",
+    "title_slug": "symmetric-tree",
+    "url": "https://leetcode.com/problems/symmetric-tree/description/",
+    "paid_only": false,
+    "content_sha256": "39e6b81ad8c2b8fafb34fd5159c66581d9af50cc08b0cf421b7b5fec050526d6",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "root = [1,2,2,3,4,4,3]", "output": "true", "has_explanation": false},
-      {"ordinal": 2, "input": "root = [1,2,2,null,3,null,3]", "output": "false", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "root = [1,2,2,3,4,4,3]",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [1,2,2,null,3,null,3]",
+        "output": "false",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "21870ddafe60b3d72800703a0f4bab7a23fa6a868403e83b3842428d7abeca0e", "reference/contract.md": "ecfa019557f3b58f2939e7fc660a88e0c9d5896637fd43c1344606a6c6c6235a", "reference/examples.md": "d583c1a131d410bfb5756de39112c43e0160ebc5be47f836115025c23df87b6b", "reference/constraints.md": "3eb5a16788a8490835f521fff7a52ed3f178dba876bae7c2480fd476a705deac", "reference/follow_up.md": "0761cfdcff9a5e6bbd0c1b937353c657af9e8826b9ce968c7e9ba97c6d4312ae"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "bf13f222e0e50b1057b98811c540e5f14b363c66931332ff6e03902357d1b425",
+      "reference/contract.md": "ecfa019557f3b58f2939e7fc660a88e0c9d5896637fd43c1344606a6c6c6235a",
+      "reference/examples.md": "d583c1a131d410bfb5756de39112c43e0160ebc5be47f836115025c23df87b6b",
+      "reference/constraints.md": "3eb5a16788a8490835f521fff7a52ed3f178dba876bae7c2480fd476a705deac",
+      "reference/follow_up.md": "0761cfdcff9a5e6bbd0c1b937353c657af9e8826b9ce968c7e9ba97c6d4312ae"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

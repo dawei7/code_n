@@ -1,5 +1,5 @@
 ## Description
 
-Given an $m \times n$ integer matrix, every cell that initially contains `0` causes its entire row and entire column to become zero.
+Given an `m x n` integer matrix `matrix`, if an element is `0`, set its entire row and column to `0`'s.
 
-Apply all such changes to the supplied matrix in place.
+You must do it <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in place</a>.

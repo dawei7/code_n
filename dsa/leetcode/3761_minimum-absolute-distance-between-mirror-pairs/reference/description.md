@@ -2,6 +2,13 @@
 
 You are given an integer array `nums`.
 
-An ordered index pair `(i,j)` is a **mirror pair** when $0\leq i<j<\texttt{nums.length}$ and reversing the decimal digits of `nums[i]` produces `nums[j]`. Any leading zeros created by the reversal are discarded; for example, `reverse(120) = 21`.
+A **mirror pair** is a pair of indices `(i, j)` such that:
 
-For every mirror pair, its absolute index distance is `abs(i - j)`. Return the smallest such distance across the array, or return `-1` when no mirror pair exists.
+<ul>
+	<li>`0 <= i < j < nums.length`, and</li>
+	<li>`reverse(nums[i]) == nums[j]`, where `reverse(x)` denotes the integer formed by reversing the digits of `x`. Leading zeros are omitted after reversing, for example `reverse(120) = 21`.</li>
+</ul>
+
+Return the **minimum** absolute distance between the indices of any mirror pair. The absolute distance between indices `i` and `j` is `abs(i - j)`.
+
+If no mirror pair exists, return `-1`.

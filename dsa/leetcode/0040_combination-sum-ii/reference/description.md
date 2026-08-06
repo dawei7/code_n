@@ -1,5 +1,7 @@
 ## Description
 
-Given a collection of candidate numbers and a target value, find every unique combination of candidates whose sum equals the target.
+Given a collection of candidate numbers (`candidates`) and a target number (`target`), find all unique combinations in `candidates` where the candidate numbers sum to `target`.
 
-Each array position may contribute its number at most once to a combination.
+Each number in `candidates` may only be used **once** in the combination.
+
+**Note:** The solution set must not contain duplicate combinations.

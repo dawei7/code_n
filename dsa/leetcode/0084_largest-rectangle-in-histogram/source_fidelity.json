@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_84", "frontend_id": "84",
+    "provider": "leetcode",
+    "challenge_id": "lc_84",
+    "frontend_id": "84",
     "title_slug": "largest-rectangle-in-histogram",
     "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/description/",
-    "paid_only": false, "content_sha256": "93712221a55af155aa4e149a8ca5acb628055650bf12d0d4eab89fe83f27e2c7", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "93712221a55af155aa4e149a8ca5acb628055650bf12d0d4eab89fe83f27e2c7",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "heights = [2,1,5,6,2,3]", "output": "10", "has_explanation": true},
-      {"ordinal": 2, "input": "heights = [2,4]", "output": "4", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "heights = [2,1,5,6,2,3]",
+        "output": "10",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "heights = [2,4]",
+        "output": "4",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "fb129f24f4b1612330581aaa7b4c22f59357f38624f7d13fb081ebb7df7a86c9",
+      "reference/description.md": "7ace0d206d4c884f01966a771379032a859dcfa24ea7a9c84816c5d2d730980a",
       "reference/contract.md": "7228b8771f40161bb8dfd5fafc5a3457aede430cd078ef885b4d7926d3d12194",
       "reference/examples.md": "2b2f5dea0ed494b80601f997bbc8150ca1a102b19ddad331728d82d8bd73b40a",
       "reference/constraints.md": "079ad4c975091718f2352aea320e1662887cf5fea9e24da00bebc36ee799b385"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

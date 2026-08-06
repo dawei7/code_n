@@ -1,21 +1,25 @@
 ## Description
 
-You are given a nested list of integers called `nestedList`. Each top-level element is either an integer or another list, and any list may recursively contain further integers or lists. Implement an iterator that exposes the integers as one flattened sequence.
+You are given a nested list of integers `nestedList`. Each element is either an integer or a list whose elements may also be integers or other lists. Implement an iterator to flatten it.
 
-Implement the `NestedIterator` class with this interface:
+Implement the `NestedIterator` class:
 
-- `NestedIterator(List<NestedInteger> nestedList)` initializes an iterator over `nestedList`.
-- `int next()` returns the next integer in the flattened order.
-- `boolean hasNext()` returns `true` while at least one integer remains and `false` after all integers have been consumed.
+<ul>
+	<li>`NestedIterator(List<NestedInteger> nestedList)` Initializes the iterator with the nested list `nestedList`.</li>
+	<li>`int next()` Returns the next integer in the nested list.</li>
+	<li>`boolean hasNext()` Returns `true` if there are still some integers in the nested list and `false` otherwise.</li>
+</ul>
 
-The judge exercises the class with logic equivalent to:
+Your code will be tested with the following pseudocode:
 
-```text
+```
+
 initialize iterator with nestedList
 res = []
 while iterator.hasNext()
-    append iterator.next() to res
+    append iterator.next() to the end of res
 return res
+
 ```
 
-The implementation is correct when `res` equals the expected flattened list.
+If `res` matches the expected flattened list, then your code will be judged as correct.

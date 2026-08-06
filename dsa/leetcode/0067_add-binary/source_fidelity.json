@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_67", "frontend_id": "67",
+    "provider": "leetcode",
+    "challenge_id": "lc_67",
+    "frontend_id": "67",
     "title_slug": "add-binary",
     "url": "https://leetcode.com/problems/add-binary/description/",
-    "paid_only": false, "content_sha256": "42e8a8fd60b33b8731573b91e69d74848f254b79afa38ae850db6e98b623afcb", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "42e8a8fd60b33b8731573b91e69d74848f254b79afa38ae850db6e98b623afcb",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "a = \"11\", b = \"1\"", "output": "\"100\"", "has_explanation": false},
-      {"ordinal": 2, "input": "a = \"1010\", b = \"1011\"", "output": "\"10101\"", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "a = \"11\", b = \"1\"",
+        "output": "\"100\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "a = \"1010\", b = \"1011\"",
+        "output": "\"10101\"",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "5b8446e408767496ebbfe04405beb73c6a22eb1ad2cec16a9eb9f4857eab3f7e",
+      "reference/description.md": "01e38db23274eefe2fba1d65e3fed25bd11cec9c41dba5d77f429f2d332db8e6",
       "reference/contract.md": "9abab3cc578ebdefffd415b839a9b886e0f95513d84ad065c3731b994f796d01",
       "reference/examples.md": "3b9ca1b8b39a48057bf574565290b0931526c7d1e71ed42a68d014978fd6d6e5",
       "reference/constraints.md": "a02261470a1af488af2f92e6173b4788f6c40496330028a57d6758a61bca6455"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

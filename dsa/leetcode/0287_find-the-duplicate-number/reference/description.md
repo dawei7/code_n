@@ -1,7 +1,7 @@
 ## Description
 
-The integer array `nums` contains `n + 1` entries, and every entry lies in the inclusive range `[1,n]`.
+Given an array of integers `nums` containing `n + 1` integers where each integer is in the range `[1, n]` inclusive.
 
-Exactly one distinct value is repeated. Return that repeated number.
+There is only **one repeated number** in `nums`, return *this repeated number*.
 
-The solution must leave `nums` unchanged and use only constant extra space.
+You must solve the problem **without** modifying the array `nums` and using only constant extra space.

@@ -1,0 +1,15 @@
+## Description
+
+You are given a string `s` that consists of the digits `'1'` to `'9'` and two integers `k` and `minLength`.
+
+A partition of `s` is called **beautiful** if:
+
+<ul>
+	<li>`s` is partitioned into `k` non-intersecting substrings.</li>
+	<li>Each substring has a length of **at least** `minLength`.</li>
+	<li>Each substring starts with a **prime** digit and ends with a **non-prime** digit. Prime digits are `'2'`, `'3'`, `'5'`, and `'7'`, and the rest of the digits are non-prime.</li>
+</ul>
+
+Return* the number of **beautiful** partitions of *`s`. Since the answer may be very large, return it **modulo** `10^9 + 7`.
+
+A **substring** is a contiguous sequence of characters within a string.

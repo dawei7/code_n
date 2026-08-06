@@ -1,5 +1,3 @@
 ## Description
 
-The array `nums` has length `n` and contains distinct values selected from the inclusive range `[0, n]`. Exactly one number from that range is absent.
-
-Return the missing number.
+Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, return *the only number in the range that is missing from the array.*

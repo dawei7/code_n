@@ -1,0 +1,3 @@
+## Description
+
+Given a string `s`, return *the last substring of* `s` *in lexicographical order*.

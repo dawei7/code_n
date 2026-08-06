@@ -1,7 +1,9 @@
 ## Description
 
-A tree is an undirected graph in which exactly one path connects every pair of vertices; equivalently, it is connected and has no simple cycle.
+A tree is an undirected graph in which any two vertices are connected by *exactly* one path. In other words, any connected graph without simple cycles is a tree.
 
-You receive such a tree with `n` nodes labeled from `0` through `n - 1` and exactly `n - 1` undirected edges. Any node may be selected as the root. Rooting the tree at node `x` gives it a height $h$, defined as the number of edges on the longest downward path from that root to a leaf.
+Given a tree of `n` nodes labelled from `0` to `n - 1`, and an array of `n - 1` `edges` where `edges[i] = [a_i, b_i]` indicates that there is an undirected edge between the two nodes `a_i` and `b_i` in the tree, you can choose any node of the tree as the root. When you select a node `x` as the root, the result tree has height `h`. Among all possible rooted trees, those with minimum height (i.e. `min(h)`)  are called **minimum height trees** (MHTs).
 
-A minimum height tree (MHT) is a rooting whose height is the smallest possible over all root choices. Return the labels of every MHT root in any order.
+Return *a list of all **MHTs'** root labels*. You can return the answer in **any order**.
+
+The **height** of a rooted tree is the number of edges on the longest downward path between the root and a leaf.

@@ -1,7 +1,15 @@
 ## Description
 
-You are given a binary string `s` and an array `strs`. Every string in `strs` has the same length as `s`; its characters may be `0`, `1`, or `?`. Each question mark must independently be replaced by either `0` or `1`.
+You are given a <span data-keyword="binary-string">binary string</span> `s`.
 
-The source string may be changed by repeating the following operation any number of times, including zero. Choose a subsequence of `s`, sort the selected binary characters into non-decreasing order, and write them back into the same selected positions. Characters outside those positions do not move.
+You are also given an array of strings `strs`, where each `strs[i]` has the **same** length as `s` and consists of characters `'0'`, `'1'`, and `'?'`. Each `'?'` can be replaced by either `'0'` or `'1'`.
 
-For every pattern `strs[i]`, decide whether some replacement of all its question marks can be obtained from `s` through those subsequence-sorting operations. Return the decisions in a boolean array `ans`, preserving the order of `strs`.
+You may perform the following operation any number of times (including zero):
+
+<ul>
+	<li>Choose any <span data-keyword="subsequence-string">subsequence</span> `sub` of `s`.</li>
+	<li>Sort `sub` in **non-decreasing** order.</li>
+	<li>Replace the chosen **subsequence** in `s` with the sorted `sub`, keeping all other characters unchanged.</li>
+</ul>
+
+Return a boolean array `ans`, where `ans[i]` is `true` if it's possible to replace all `'?'` in `strs[i]` with `'0'` or `'1'` and transform `s` into the resulting string using the allowed operation above, otherwise return `false`.

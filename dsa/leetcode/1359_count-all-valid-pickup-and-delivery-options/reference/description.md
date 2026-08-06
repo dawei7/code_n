@@ -1,0 +1,7 @@
+## Description
+
+Given `n` orders, each order consists of a pickup and a delivery service.
+
+Count all valid pickup/delivery possible sequences such that delivery(i) is always after of pickup(i). 
+
+Since the answer may be too large, return it modulo 10^9 + 7.

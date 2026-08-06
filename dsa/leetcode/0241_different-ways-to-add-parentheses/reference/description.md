@@ -1,5 +1,5 @@
 ## Description
 
-Given a string `expression` containing numbers and operators, compute every possible result produced by grouping its numbers and operators in all structurally different ways. Return the results in any order, retaining repeated values when different groupings produce the same result.
+Given a string `expression` of numbers and operators, return *all possible results from computing all the different possible ways to group numbers and operators*. You may return the answer in **any order**.
 
-The generated tests guarantee that every output fits in a signed 32-bit integer and that the result list contains at most $10^4$ entries.
+The test cases are generated such that the output values fit in a 32-bit integer and the number of different results does not exceed `10^4`.

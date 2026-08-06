@@ -1,0 +1,13 @@
+## Description
+
+You are given an integer array `nums` of size `n` where `n` is **even**, and an integer `k`.
+
+You can perform some changes on the array, where in one change you can replace **any** element in the array with **any** integer in the range from `0` to `k`.
+
+You need to perform some changes (possibly none) such that the final array satisfies the following condition:
+
+<ul>
+	<li>There exists an integer `X` such that `abs(a[i] - a[n - i - 1]) = X` for all `(0 <= i < n)`.</li>
+</ul>
+
+Return the **minimum** number of changes required to satisfy the above condition.

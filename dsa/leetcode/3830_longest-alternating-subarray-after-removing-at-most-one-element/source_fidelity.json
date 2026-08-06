@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/longest-alternating-subarray-after-removing-at-most-one-element/description/",
     "paid_only": false,
     "content_sha256": "c298ff12ed68f7d9b660fdf449a41238e74029ff6c602895f39108a3b5721016",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [2,1,3,2]",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [3,2,1,2,3,2,1]",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums = [100000,100000]",
-        "output": "1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "8ffbff874aef9effc9d5edf3f72f5b62d96a3794b3623d2ffe454ced9c71ff6d",
+      "reference/description.md": "d690bab32e78aee63368505e88f62ff6474f966d6dc8ffe887538b2092afa4b1",
       "reference/contract.md": "1931311b9aef201749a26466e47b75e7bc97463f11d4a87ad831285e1caea487",
       "reference/examples.md": "2b1476ed9bb3c123a60e3c74644f82f70cb85baa90c67ccb1a3a0cace3f54b16",
       "reference/constraints.md": "91b358a5c32175a08d9e040d161d3b82ad1e0a24ceabe20682ea67a9fea84f14"

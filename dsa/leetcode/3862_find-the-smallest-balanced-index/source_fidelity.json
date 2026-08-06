@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/find-the-smallest-balanced-index/description/",
     "paid_only": false,
     "content_sha256": "b0ce81cbdbead566b01c4728d500dc9369446531214c1b3cdff3fd63ff4b1c0f",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [2,1,2]",
-        "output": "1",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [2,8,2,2,5]",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums = [1]",
-        "output": "-1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "88011b614907e45a2d95744856fafc9a5b2b0dbefa7352f872ebe92e44113db5",
+      "reference/description.md": "efbbca4f3681e8e03cd90a63a36748047e5ee615ac6b76796ff4fe7be7591789",
       "reference/contract.md": "8f82aaa06e726415d5699b63c2bec80ead6575df5717d1ab95b87d857bbb6710",
       "reference/examples.md": "75d1c281edc2e620128715093a78ec0c024864540bc83351f076c7c736dc2b49",
       "reference/constraints.md": "5da58d4d12496d1a9e0522902bfbd6ecb0cbfb83c6e06fbaa63c8d1497c11b0c"

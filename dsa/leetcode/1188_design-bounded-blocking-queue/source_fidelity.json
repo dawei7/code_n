@@ -11,7 +11,12 @@
     "checked_at": "2026-08-04"
   },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,

@@ -1,11 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_205", "frontend_id": "205", "title_slug": "isomorphic-strings", "url": "https://leetcode.com/problems/isomorphic-strings/description/", "paid_only": false, "content_sha256": "797608cc5d72e96a25d93c5afc04246846af5e2439f9e4b204441e63ced43f19", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "s = \"egg\", t = \"add\"", "output": "true", "has_explanation": true}, {"ordinal": 2, "input": "s = \"f11\", t = \"b23\"", "output": "false", "has_explanation": true}, {"ordinal": 3, "input": "s = \"paper\", t = \"title\"", "output": "true", "has_explanation": false}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_205",
+    "frontend_id": "205",
+    "title_slug": "isomorphic-strings",
+    "url": "https://leetcode.com/problems/isomorphic-strings/description/",
+    "paid_only": false,
+    "content_sha256": "797608cc5d72e96a25d93c5afc04246846af5e2439f9e4b204441e63ced43f19",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "c71f9c795a2bf1e268169054b0fa73e415523cd446dba398c67cb42a4952d4ee", "reference/contract.md": "de18d72052f5a93bbf850e76df9733bcf7cd7ac7d1c0f3c2f331afc517f286ac", "reference/examples.md": "8cce4bea7988716d3515869ad7512fdc6ca72889215b5f8f4353b6048bad35e9", "reference/constraints.md": "3aa82e78e96b623622e87be39e6321883bdbe4761548dde74032097e0e038d8d"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"egg\", t = \"add\"",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"f11\", t = \"b23\"",
+        "output": "false",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"paper\", t = \"title\"",
+        "output": "true",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "2972ddc926e022a13bb5904a3c3bea33c5697f96b2d614a3ff3bc411b8072118",
+      "reference/contract.md": "de18d72052f5a93bbf850e76df9733bcf7cd7ac7d1c0f3c2f331afc517f286ac",
+      "reference/examples.md": "8cce4bea7988716d3515869ad7512fdc6ca72889215b5f8f4353b6048bad35e9",
+      "reference/constraints.md": "3aa82e78e96b623622e87be39e6321883bdbe4761548dde74032097e0e038d8d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

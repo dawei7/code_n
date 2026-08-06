@@ -1,9 +1,9 @@
 ## Description
 
-You are given a cyclic integer array `nums` and an integer `k`.
+You are given a **cyclic** array `nums` and an integer `k`.
 
-Partition the cycle into at most `k` non-empty subarrays. Each part contains consecutive positions around the cycle, so one part may continue from the end of the displayed array back to its beginning. Together, the parts cover every array position exactly once.
+**Partition** `nums` into **at most** `k`** **<span data-keyword="subarray-nonempty">subarrays</span>. As `nums` is cyclic, these subarrays may wrap around from the end of the array back to the beginning.
 
-The range of one subarray is its maximum value minus its minimum value. A partition's score is the sum of the ranges of all its parts.
+The **range** of a subarray is the difference between its **maximum** and **minimum** values. The **score** of a partition is the sum of subarray **ranges**.
 
-Return the greatest score attainable by any valid cyclic partition.
+Return the **maximum** possible **score** among all cyclic partitions.

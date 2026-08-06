@@ -1,9 +1,26 @@
 ## Description
 
-Process a list of string events while maintaining `score = 0` and `counter = 0` initially.
+You are given a string array `events`.
 
-- A numeric event—`"0"`, `"1"`, `"2"`, `"3"`, `"4"`, or `"6"`—adds its integer value to `score`.
-- `"W"` adds `1` to `counter` and adds nothing to `score`.
-- Either `"WD"` or `"NB"` adds `1` to `score` without changing `counter`.
+Initially, `score = 0` and `counter = 0`. Each element in `events` is one of the following:
 
-Read events from left to right. Processing ends after the whole list or immediately after an event makes `counter` equal to `10`, whichever happens first. Return the final score and counter together as `[score, counter]`.
+<ul>
+	<li>`"0"`, `"1"`, `"2"`, `"3"`, `"4"`, `"6"`: Add that value to the total score.</li>
+	<li>`"W"`: Increase the counter by 1. No score is added.</li>
+	<li>`"WD"`: Add 1 to the total score.</li>
+	<li>`"NB"`: Add 1 to the total score.</li>
+</ul>
+
+Process the array from left to right. Stop processing when either:
+
+<ul>
+	<li>All elements in `events` have been processed, or</li>
+	<li>The counter becomes 10.</li>
+</ul>
+
+Return an integer array `[score, counter]`, where:
+
+<ul>
+	<li>`score` is the final total score.</li>
+	<li>`counter` is the final counter value.</li>
+</ul>

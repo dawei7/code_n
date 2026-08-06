@@ -1,1 +1,54 @@
-{"schema_version":1,"source":{"provider":"leetcode","challenge_id":"lc_3756","frontend_id":"3756","title_slug":"concatenate-non-zero-digits-and-multiply-by-sum-ii","url":"https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-ii/description/","paid_only":false,"content_sha256":"78531f1427fd615dd1204acdfca8e78787445daa4e193a5895d52f8cb55f3832","checked_at":"2026-07-28"},"structure":{"sections":["description","examples","constraints"],"examples":[{"ordinal":1,"input":"s = \"10203004\", queries = [[0,7],[1,3],[4,6]]","output":"[12340, 4, 9]","has_explanation":true},{"ordinal":2,"input":"s = \"1000\", queries = [[0,3],[1,1]]","output":"[1, 0]","has_explanation":true},{"ordinal":3,"input":"s = \"9876543210\", queries = [[0,9]]","output":"[444444137]","has_explanation":true}],"constraint_count":5,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},"review":{"status":"verified","files":{"reference/description.md":"3b4f416c407b62016fbac099daefc551954fc9159b49a37ae1b4bb75f671b490","reference/contract.md":"31035d532befcf13f6a1204ecd2a377b90e3ff29dd1126853cbaf1ef06e996d9","reference/examples.md":"539eb12b41fa940f51259f48454f93cf6cc2df378de329b1238fa5924bf43405","reference/constraints.md":"ebd41391dfd12c516afd93cac7f8aec3ff4000b6f9a82d8eee7e97772863b595"},"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}}
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3756",
+    "frontend_id": "3756",
+    "title_slug": "concatenate-non-zero-digits-and-multiply-by-sum-ii",
+    "url": "https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-ii/description/",
+    "paid_only": false,
+    "content_sha256": "78531f1427fd615dd1204acdfca8e78787445daa4e193a5895d52f8cb55f3832",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b37f9ed282278a2fc46f1658260fc6b9effe1a3185f8864258e714d920f2e0d5",
+      "reference/contract.md": "31035d532befcf13f6a1204ecd2a377b90e3ff29dd1126853cbaf1ef06e996d9",
+      "reference/examples.md": "539eb12b41fa940f51259f48454f93cf6cc2df378de329b1238fa5924bf43405",
+      "reference/constraints.md": "ebd41391dfd12c516afd93cac7f8aec3ff4000b6f9a82d8eee7e97772863b595"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

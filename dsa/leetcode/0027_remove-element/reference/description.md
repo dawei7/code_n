@@ -1,5 +1,33 @@
 ## Description
 
-Given an integer array `nums` and an integer `val`, remove every occurrence of `val` in place. The remaining values may be reordered.
+Given an integer array `nums` and an integer `val`, remove all occurrences of `val` in `nums` <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">**in-place**</a>. The order of the elements may be changed. Then return *the number of elements in *`nums`* which are not equal to *`val`.
 
-Let $k$ be the number of elements not equal to `val`. Store those retained values in the first $k$ positions of `nums` and return $k$. The array size and all positions after the retained prefix are irrelevant.
+Consider the number of elements in `nums` which are not equal to `val` be `k`, to get accepted, you need to do the following things:
+
+<ul>
+	<li>Change the array `nums` such that the first `k` elements of `nums` contain the elements which are not equal to `val`. The remaining elements of `nums` are not important as well as the size of `nums`.</li>
+	<li>Return `k`.</li>
+</ul>
+
+**Custom Judge:**
+
+The judge will test your solution with the following code:
+
+```
+
+int[] nums = [...]; // Input array
+int val = ...; // Value to remove
+int[] expectedNums = [...]; // The expected answer with correct length.
+                            // It is sorted with no values equaling val.
+
+int k = removeElement(nums, val); // Calls your implementation
+
+assert k == expectedNums.length;
+sort(nums, 0, k); // Sort the first k elements of nums
+for (int i = 0; i < actualLength; i++) {
+    assert nums[i] == expectedNums[i];
+}
+
+```
+
+If all assertions pass, then your solution will be **accepted**.

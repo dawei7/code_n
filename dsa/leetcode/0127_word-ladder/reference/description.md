@@ -1,9 +1,11 @@
 ## Description
 
-A transformation sequence from `beginWord` to `endWord`, using dictionary `wordList`, has the form `beginWord -> s1 -> s2 -> ... -> sk` and must satisfy every rule below:
+A **transformation sequence** from word `beginWord` to word `endWord` using a dictionary `wordList` is a sequence of words `beginWord -> s_1 -> s_2 -> ... -> s_k` such that:
 
-- Each adjacent pair differs in exactly one letter.
-- Every word `si`, for $1 \le i \le k$, belongs to `wordList`; `beginWord` itself does not have to be in the dictionary.
-- The final word `sk` equals `endWord`.
+<ul>
+	<li>Every adjacent pair of words differs by a single letter.</li>
+	<li>Every `s_i` for `1 <= i <= k` is in `wordList`. Note that `beginWord` does not need to be in `wordList`.</li>
+	<li>`s_k == endWord`</li>
+</ul>
 
-Given `beginWord`, `endWord`, and `wordList`, return the number of words in the shortest valid transformation sequence. Return `0` if no sequence reaches `endWord`.
+Given two words, `beginWord` and `endWord`, and a dictionary `wordList`, return *the **number of words** in the **shortest transformation sequence** from* `beginWord` *to* `endWord`*, or *`0`* if no such sequence exists.*

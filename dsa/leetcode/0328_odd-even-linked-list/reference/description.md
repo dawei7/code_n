@@ -1,7 +1,9 @@
 ## Description
 
-Given the head of a singly linked list, rearrange its nodes by their one-based positions. Nodes originally at odd indices must appear first, followed by those originally at even indices.
+Given the `head` of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return *the reordered list*.
 
-The head occupies index `1`, so it belongs to the odd-index group; the next node is at even index `2`, and the position parity continues to alternate. This classification depends on position, not on a node's stored value.
+The **first** node is considered **odd**, and the **second** node is **even**, and so on.
 
-Within each group, retain the nodes' original relative order. Return the head of the reordered list, using $O(1)$ extra space and $O(n)$ time for a list of $n$ nodes.
+Note that the relative order inside both the even and odd groups should remain as it was in the input.
+
+You must solve the problem in `O(1)` extra space complexity and `O(n)` time complexity.

@@ -1,10 +1,14 @@
 ## Description
 
-You are given an integer `n`, a list `restrictions`, and an array `diff` of length `n - 1`. Construct a length-`n` sequence `a[0], a[1], ..., a[n - 1]` subject to all of these rules:
+You are given an integer `n`, a 2D integer array `restrictions`, and an integer array `diff` of length `n - 1`. Your task is to construct a sequence of length `n`, denoted by `a[0], a[1], ..., a[n - 1]`, such that it satisfies the following conditions:
 
-- `a[0] = 0`.
-- Every sequence value is non-negative.
-- Across edge `i`, neighboring values satisfy `abs(a[i] - a[i + 1]) <= diff[i]` for every `0 <= i <= n - 2`.
-- Each pair `[idx, maxVal]` in `restrictions` imposes `a[idx] <= maxVal`.
+<ul>
+	<li>`a[0]` is 0.</li>
+	<li>All elements in the sequence are **non-negative**.</li>
+	<li>For every index `i` (`0 <= i <= n - 2`), `abs(a[i] - a[i + 1]) <= diff[i]`.</li>
+	<li>For each `restrictions[i] = [idx, maxVal]`, the value at position `idx` in the sequence must not exceed `maxVal` (i.e., `a[idx] <= maxVal`).</li>
+</ul>
 
-Among all valid sequences, maximize the largest value occurring anywhere in the sequence. Return that largest value for an optimal construction.
+Your goal is to construct a valid sequence that **maximizes** the **largest** value within the sequence while satisfying all the above conditions.
+
+Return an integer denoting the **largest** value present in such an optimal sequence.

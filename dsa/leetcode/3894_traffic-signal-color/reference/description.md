@@ -1,9 +1,13 @@
 ## Description
 
-You are given an integer `timer` that records how many seconds remain on a traffic signal. The signal's current state is determined by these rules:
+You are given an integer `timer` representing the remaining time (in seconds) on a traffic signal.
 
-- when `timer == 0`, the state is `"Green"`;
-- when `timer == 30`, the state is `"Orange"`;
-- when $30 < \texttt{timer} \le 90$, the state is `"Red"`.
+The signal follows these rules:
 
-Return the string for the applicable state. If `timer` satisfies none of those rules, return `"Invalid"`.
+<ul>
+	<li>If `timer == 0`, the signal is `"Green"`</li>
+	<li>If `timer == 30`, the signal is `"Orange"`</li>
+	<li>If `30 < timer <= 90`, the signal is `"Red"`</li>
+</ul>
+
+Return the current state of the signal. If none of the above conditions are met, return `"Invalid"`.

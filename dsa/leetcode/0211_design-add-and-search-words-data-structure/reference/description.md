@@ -1,9 +1,11 @@
 ## Description
 
-Design a data structure in which new words can be stored and later queried by a matching string.
+Design a data structure that supports adding new words and finding if a string matches any previously added string.
 
-Implement the `WordDictionary` class with these operations:
+Implement the `WordDictionary` class:
 
-- `WordDictionary()` initializes an empty object.
-- `addWord(word)` adds `word` so that future searches can match it.
-- `search(word)` returns `true` when at least one stored string matches the entire query and `false` otherwise. A dot `'.'` in the query can match any single letter.
+<ul>
+	<li>`WordDictionary()` Initializes the object.</li>
+	<li>`void addWord(word)` Adds `word` to the data structure, it can be matched later.</li>
+	<li>`bool search(word)` Returns `true` if there is any string in the data structure that matches `word` or `false` otherwise. `word` may contain dots `'.'` where dots can be matched with any letter.</li>
+</ul>

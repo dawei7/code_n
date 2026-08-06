@@ -1,5 +1,5 @@
 ## Description
 
-Given strings `s` and `t` with lengths $m$ and $n$, return the shortest substring window of `s` that contains every character required by `t`, including repeated occurrences. If no such window exists, return the empty string `""`.
+Given two strings `s` and `t` of lengths `m` and `n` respectively, return *the **minimum window*** <span data-keyword="substring-nonempty">***substring***</span>* of *`s`* such that every character in *`t`* (**including duplicates**) is included in the window*. If there is no such substring, return *the empty string *`""`.
 
-Each test case is constructed so that a valid answer, when one exists, is unique.
+The testcases will be generated such that the answer is **unique**.

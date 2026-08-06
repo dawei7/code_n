@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_220", "frontend_id": "220", "title_slug": "contains-duplicate-iii", "url": "https://leetcode.com/problems/contains-duplicate-iii/description/", "paid_only": false, "content_sha256": "d19ac8119d7d0ec14cec257f79e204d700b113ac7b526a38449654e8b11b59ad", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "nums = [1,2,3,1], indexDiff = 3, valueDiff = 0", "output": "true", "has_explanation": true}, {"ordinal": 2, "input": "nums = [1,5,9,1,5,9], indexDiff = 2, valueDiff = 3", "output": "false", "has_explanation": true}],
-    "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_220",
+    "frontend_id": "220",
+    "title_slug": "contains-duplicate-iii",
+    "url": "https://leetcode.com/problems/contains-duplicate-iii/description/",
+    "paid_only": false,
+    "content_sha256": "d19ac8119d7d0ec14cec257f79e204d700b113ac7b526a38449654e8b11b59ad",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "d7bbb68d2b7f37eb422a4f4b514376f969f34c0f85d3b87f3672527e8cf9621c", "reference/contract.md": "cf1229030f7e0fd9116c02c402611d23247dd15908a8382a667581c0578a0ee1", "reference/examples.md": "ecec675a87caf5e46e89b242f7c7a0e6ce3189ad4e46022e00b86fd1140db33a", "reference/constraints.md": "95c02533511219b423ca07cc78283a833d3d885fdff53b180fe4348de191ab6e"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3,1], indexDiff = 3, valueDiff = 0",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,5,9,1,5,9], indexDiff = 2, valueDiff = 3",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "935824294d456bc30263e2b2ae2ef198d04ef62a3c116f6cd4ffa3e131d2e47f",
+      "reference/contract.md": "cf1229030f7e0fd9116c02c402611d23247dd15908a8382a667581c0578a0ee1",
+      "reference/examples.md": "ecec675a87caf5e46e89b242f7c7a0e6ce3189ad4e46022e00b86fd1140db33a",
+      "reference/constraints.md": "95c02533511219b423ca07cc78283a833d3d885fdff53b180fe4348de191ab6e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

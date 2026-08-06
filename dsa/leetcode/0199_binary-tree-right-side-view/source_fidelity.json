@@ -1,15 +1,72 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_199", "frontend_id": "199", "title_slug": "binary-tree-right-side-view", "url": "https://leetcode.com/problems/binary-tree-right-side-view/description/", "paid_only": false, "content_sha256": "8a257d358180c225feaacacdd7a2cfe423fa4cbe5aa0593d5e9567cd40cbccd1", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_199",
+    "frontend_id": "199",
+    "title_slug": "binary-tree-right-side-view",
+    "url": "https://leetcode.com/problems/binary-tree-right-side-view/description/",
+    "paid_only": false,
+    "content_sha256": "8a257d358180c225feaacacdd7a2cfe423fa4cbe5aa0593d5e9567cd40cbccd1",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "root = [1,2,3,null,5,null,4]", "output": "[1,3,4]", "has_explanation": true}, {"ordinal": 2, "input": "root = [1,2,3,4,null,null,null,5]", "output": "[1,3,4,5]", "has_explanation": true}, {"ordinal": 3, "input": "root = [1,null,3]", "output": "[1,3]", "has_explanation": false}, {"ordinal": 4, "input": "root = []", "output": "[]", "has_explanation": false}],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [1,2,3,null,5,null,4]",
+        "output": "[1,3,4]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [1,2,3,4,null,null,null,5]",
+        "output": "[1,3,4,5]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "root = [1,null,3]",
+        "output": "[1,3]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 4,
+        "input": "root = []",
+        "output": "[]",
+        "has_explanation": false
+      }
+    ],
     "constraint_count": 2,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "bac572b2a1f23efb1cc0f4654963048dbfeb3015cb44ea58b58a0df32ba71efd", "reference/contract.md": "978a0a567cb3133b7d69a28bb7a08cd40b9a9cb2d7f33d7f19087caa21aa0446", "reference/examples.md": "7dc3b84f2753c78f21b77e435aa724bd39d478328cadc0440fb8512bb75ce0fe", "reference/constraints.md": "50f3959752ba884ffc0c4300db7a5a7d8e549bd5870c01febea11105e4e33309"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "75875597be2894a0dbdbc365d2f8a44d307ea45fd41f95604f185dc00da7977b",
+      "reference/contract.md": "978a0a567cb3133b7d69a28bb7a08cd40b9a9cb2d7f33d7f19087caa21aa0446",
+      "reference/examples.md": "7dc3b84f2753c78f21b77e435aa724bd39d478328cadc0440fb8512bb75ce0fe",
+      "reference/constraints.md": "50f3959752ba884ffc0c4300db7a5a7d8e549bd5870c01febea11105e4e33309"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

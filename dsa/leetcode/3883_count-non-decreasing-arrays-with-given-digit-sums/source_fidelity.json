@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/count-non-decreasing-arrays-with-given-digit-sums/description/",
     "paid_only": false,
     "content_sha256": "cfd4ed9de5915f35f02d205dece15f261fcf60407e1aa46f0c19716ed2c33880",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "digitSum = [25,1]",
-        "output": "6",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "digitSum = [1]",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "digitSum = [2,49,23]",
-        "output": "0",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1767ac97211beb39a54c486fd05ac469ea6c434ba41847e6afec146b1544c1dc",
+      "reference/description.md": "7f059cb6b2f36ad2a24a2a1759d0ad97a86dce3ae11090860fd758d8481990c4",
       "reference/contract.md": "e5add94051bc741ff041a05e1b69b1d5a8ccb7aa9c5d5a75c50d633a5e5bea2b",
       "reference/examples.md": "42fd1fa08204fc07b2834777c5db60b3b5f2144e75281a04f7ee72ebc25fb398",
       "reference/constraints.md": "f19e49fea4d4648fa2a60fe79aa8ded8b1072a9323e5b2b376aa84b41258c86e"

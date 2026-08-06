@@ -8,31 +8,23 @@
     "url": "https://leetcode.com/problems/minimum-inversion-count-in-subarrays-of-fixed-length/description/",
     "paid_only": false,
     "content_sha256": "5a540ce334c68239e224cfb13f4355084a188d4f62332d0b6b697b1cb965ea9c",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`nums = [3,1,2,5,4], k = 3`",
-        "output": "`0`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`nums = [5,3,2,1], k = 4`",
-        "output": "`6`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "`nums = [2,1], k = 1`",
-        "output": "`0`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -45,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "fe5df74628afda4e21c3b06b350607395b6bea905220fed0c33cdbc44d382455",
+      "reference/description.md": "7efdb0c84e95122b819c371a19908e7929e7bdc10fa422692643624f03789989",
       "reference/contract.md": "0fa23553c94ba350b1c1d6ef44737ebd23f947af80945f7505d345e75ce03e02",
       "reference/examples.md": "deb072142f4dec257ed8c11f94b0aac3f6ca39f000efb0a150bd418cf72b403c",
       "reference/constraints.md": "23b5ad5b0424e3eb44bbb05ad052d9fa88bc14610a97d74f01147a2a3af05448"

@@ -1,0 +1,17 @@
+## Description
+
+You are given a string `s`. Reorder the string using the following algorithm:
+
+<ol>
+	<li>Remove the **smallest** character from `s` and **append** it to the result.</li>
+	<li>Remove the **smallest** character from `s` that is greater than the last appended character, and **append** it to the result.</li>
+	<li>Repeat step 2 until no more characters can be removed.</li>
+	<li>Remove the **largest** character from `s` and **append** it to the result.</li>
+	<li>Remove the **largest** character from `s` that is smaller than the last appended character, and **append** it to the result.</li>
+	<li>Repeat step 5 until no more characters can be removed.</li>
+	<li>Repeat steps 1 through 6 until all characters from `s` have been removed.</li>
+</ol>
+
+If the smallest or largest character appears more than once, you may choose any occurrence to append to the result.
+
+Return the resulting string after reordering `s` using this algorithm.

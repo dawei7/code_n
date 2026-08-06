@@ -1,20 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_336", "frontend_id": "336", "title_slug": "palindrome-pairs", "url": "https://leetcode.com/problems/palindrome-pairs/description/", "paid_only": false, "content_sha256": "57e42082276be2e86022f622f3c02a918b922483ffec17c3458c703ff4353aff", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_336",
+    "frontend_id": "336",
+    "title_slug": "palindrome-pairs",
+    "url": "https://leetcode.com/problems/palindrome-pairs/description/",
+    "paid_only": false,
+    "content_sha256": "57e42082276be2e86022f622f3c02a918b922483ffec17c3458c703ff4353aff",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "words = [\"abcd\",\"dcba\",\"lls\",\"s\",\"sssll\"]", "output": "[[0,1],[1,0],[3,2],[2,4]]", "has_explanation": true},
-      {"ordinal": 2, "input": "words = [\"bat\",\"tab\",\"cat\"]", "output": "[[0,1],[1,0]]", "has_explanation": true},
-      {"ordinal": 3, "input": "words = [\"a\",\"\"]", "output": "[[0,1],[1,0]]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "words = [\"abcd\",\"dcba\",\"lls\",\"s\",\"sssll\"]",
+        "output": "[[0,1],[1,0],[3,2],[2,4]]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "words = [\"bat\",\"tab\",\"cat\"]",
+        "output": "[[0,1],[1,0]]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "words = [\"a\",\"\"]",
+        "output": "[[0,1],[1,0]]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "bc3d998a55172de2b3b979616ca066f7c70d8908baf8428b5d2cb7b2e4fe971b",
-    "reference/contract.md": "3e50a71cce40283f28af82bfd1a0ae26140b55dbb27e48f652c5801d3cd8fa17",
-    "reference/examples.md": "0c8ac39a2ef7a91ead3a525c51d5348d6197b619c6874a185059c0d6bdadda2a",
-    "reference/constraints.md": "b4935b551e97a664fe40d99f2b2345b8adfe1bb809552c0d072c86d01daa8a06"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b94576ca5cde1caf29d47e6b59ba07d3a0390f3abcd8091226ea4cba353b8736",
+      "reference/contract.md": "3e50a71cce40283f28af82bfd1a0ae26140b55dbb27e48f652c5801d3cd8fa17",
+      "reference/examples.md": "0c8ac39a2ef7a91ead3a525c51d5348d6197b619c6874a185059c0d6bdadda2a",
+      "reference/constraints.md": "b4935b551e97a664fe40d99f2b2345b8adfe1bb809552c0d072c86d01daa8a06"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

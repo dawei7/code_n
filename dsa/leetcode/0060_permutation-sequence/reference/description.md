@@ -1,14 +1,16 @@
 ## Description
 
-The set $[1, 2, 3, \ldots, n]$ has $n!$ distinct permutations. Arrange those permutations in lexicographic order and number them from `1`.
+The set `[1, 2, 3, ..., n]` contains a total of `n!` unique permutations.
 
-For $n = 3$, that ordered sequence is:
+By listing and labeling all of the permutations in order, we get the following sequence for `n = 3`:
 
-1. `"123"`
-2. `"132"`
-3. `"213"`
-4. `"231"`
-5. `"312"`
-6. `"321"`
+<ol>
+	<li>`"123"`</li>
+	<li>`"132"`</li>
+	<li>`"213"`</li>
+	<li>`"231"`</li>
+	<li>`"312"`</li>
+	<li>`"321"`</li>
+</ol>
 
-Given `n` and `k`, return the $k$th permutation in this ordering.
+Given `n` and `k`, return the `k^th` permutation sequence.

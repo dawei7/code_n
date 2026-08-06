@@ -1,9 +1,16 @@
 ## Description
 
-You are given an integer array `nums`. It is parity alternating when every adjacent pair contains one even value and one odd value.
+You are given an integer array `nums`.
 
-One operation selects any array position and changes its value by exactly `1`, either upward or downward.
+An array is called **parity alternating** if for every index `i` where `0 <= i < n - 1`, `nums[i]` and `nums[i + 1]` have different parity (one is even and the other is odd).
 
-Return a two-element array `answer`. Its first element is the fewest operations needed to obtain a parity-alternating array. Its second element is the smallest possible value of `max(nums) - min(nums)` among only those parity-alternating arrays reached using exactly that minimum number of operations.
+In one operation, you may choose any index `i` and either increase `nums[i]` by 1 or decrease `nums[i]` by 1.
 
-An array containing one element is parity alternating by definition.
+Return an integer array `answer` of length 2 where:
+
+<ul>
+	<li>`answer[0]` is the **minimum** number of operations required to make the array parity alternating.</li>
+	<li>`answer[1]` is the **minimum** possible value of `max(nums) - min(nums)` taken over all arrays that are parity alternating and can be obtained by performing **exactly** `answer[0]` operations.</li>
+</ul>
+
+An array of length 1 is considered parity alternating.

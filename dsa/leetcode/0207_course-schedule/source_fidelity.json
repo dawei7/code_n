@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_207", "frontend_id": "207", "title_slug": "course-schedule", "url": "https://leetcode.com/problems/course-schedule/description/", "paid_only": false, "content_sha256": "6056ce365acd0aeabee9a75f1a46d57e360c1166b8aa303983cfe1bb4c7bccf5", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "numCourses = 2, prerequisites = [[1,0]]", "output": "true", "has_explanation": true}, {"ordinal": 2, "input": "numCourses = 2, prerequisites = [[1,0],[0,1]]", "output": "false", "has_explanation": true}],
-    "constraint_count": 5,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_207",
+    "frontend_id": "207",
+    "title_slug": "course-schedule",
+    "url": "https://leetcode.com/problems/course-schedule/description/",
+    "paid_only": false,
+    "content_sha256": "6056ce365acd0aeabee9a75f1a46d57e360c1166b8aa303983cfe1bb4c7bccf5",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "d454be23ada90108e70e55367953e35fe60733eb61192757280048b3d5bc8738", "reference/contract.md": "3c55cb6ce1a1077b3ac2a768cbe41af7b2e451483518d167acc6ce4d90e173b9", "reference/examples.md": "fb1353707deffed82e9529758aa44ada5464a274a71addcc1672c40b28f17bec", "reference/constraints.md": "cd0574c1b65550a7b19a5bbd46939512a97cee5d533be4473efec73616285198"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "numCourses = 2, prerequisites = [[1,0]]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "numCourses = 2, prerequisites = [[1,0],[0,1]]",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0cad1e28bab506db25374f22c31c5399ad62cbcb05de80e80a941db77a7ddd0c",
+      "reference/contract.md": "3c55cb6ce1a1077b3ac2a768cbe41af7b2e451483518d167acc6ce4d90e173b9",
+      "reference/examples.md": "fb1353707deffed82e9529758aa44ada5464a274a71addcc1672c40b28f17bec",
+      "reference/constraints.md": "cd0574c1b65550a7b19a5bbd46939512a97cee5d533be4473efec73616285198"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

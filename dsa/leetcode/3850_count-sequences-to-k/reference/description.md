@@ -1,11 +1,17 @@
 ## Description
 
-You are given an integer array `nums` and an integer `k`. Begin with `val = 1`, then process the elements of `nums` from left to right.
+You are given an integer array `nums`, and an integer `k`.
 
-At every index `i`, choose exactly one action:
+Start with an initial value `val = 1` and process `nums` from left to right. At each index `i`, you must choose **exactly one** of the following actions:
 
-- Multiply `val` by `nums[i]`.
-- Divide `val` by `nums[i]`.
-- Leave `val` unchanged.
+<ul>
+	<li>Multiply `val` by `nums[i]`.</li>
+	<li>Divide `val` by `nums[i]`.</li>
+	<li>Leave `val` unchanged.</li>
+</ul>
 
-After every array element has received one choice, compare the final rational value of `val` with `k`. Count the distinct complete sequences of choices for which the two values are exactly equal, and return that count.
+After processing all elements, `val` is considered **equal** to `k` only if its final rational value **exactly** equals `k`.
+
+Return the count of **distinct** sequences of choices that result in `val == k`.
+
+**Note:** Division is rational (exact), not integer division. For example, `2 / 4 = 1 / 2`.

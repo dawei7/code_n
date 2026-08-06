@@ -11,7 +11,12 @@
     "checked_at": "2026-08-04"
   },
   "structure": {
-    "sections": ["players_table", "matches_table", "description", "examples"],
+    "sections": [
+      "players_table",
+      "matches_table",
+      "description",
+      "examples"
+    ],
     "examples": [
       {
         "ordinal": 1,

@@ -1,0 +1,13 @@
+## Description
+
+You are given an integer `n` representing the number of nodes in a graph, labeled from 0 to `n - 1`.
+
+You are also given an integer array `nums` of length `n` and an integer `maxDiff`.
+
+An **undirected **edge exists between nodes `i` and `j` if the **absolute** difference between `nums[i]` and `nums[j]` is **at most** `maxDiff` (i.e., `|nums[i] - nums[j]| <= maxDiff`).
+
+You are also given a 2D integer array `queries`. For each `queries[i] = [u_i, v_i]`, find the **minimum** distance between nodes `u_i` and `v_i`_. If no path exists between the two nodes, return -1 for that query.
+
+Return an array `answer`, where `answer[i]` is the result of the `i^th` query.
+
+**Note:** The edges between the nodes are unweighted.

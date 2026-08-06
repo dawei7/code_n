@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/longest-almost-palindromic-substring/description/",
     "paid_only": false,
     "content_sha256": "a31084b73351d94dec23a85cdda6f0e570d6643f62f9612e9cd1b1bcd06b87a3",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \"abca\"",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"abba\"",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"zzabba\"",
-        "output": "5",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "b5c5ef9e423fa2e5c6b6d2e9692de3ddd38af28eb2d694de95cae43c74b5acbb",
+      "reference/description.md": "84ef8a4730cfda2ab46f134e0fbade6bdedd4bfcf83ed9ab5393d0494444b077",
       "reference/contract.md": "5248b99b4d27e2d2e0800dfd64fd3fb46081a27c2bf07fd324ef0f504e56b1ff",
       "reference/examples.md": "5f3183efe9435fb1c914e481307247cf4de7242d507f1d7496af8b422ea42b30",
       "reference/constraints.md": "72eb86b4919e5e9c786dd0deb2cd097fd5508fa16657540fd6dc297c43c5197c"

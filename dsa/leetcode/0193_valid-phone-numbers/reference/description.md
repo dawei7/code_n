@@ -1,5 +1,7 @@
 ## Description
 
-The text file `file.txt` contains one phone number per line. Write a one-line Bash script that prints every valid phone number.
+Given a text file `file.txt` that contains a list of phone numbers (one per line), write a one-liner bash script to print all valid phone numbers.
 
-A line is valid only when it has one of these two forms, where each `x` is a digit: `(xxx) xxx-xxxx` or `xxx-xxx-xxxx`. No input line has leading or trailing whitespace.
+You may assume that a valid phone number must appear in one of the following two formats: (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit)
+
+You may also assume each line in the text file must not contain leading or trailing white spaces.

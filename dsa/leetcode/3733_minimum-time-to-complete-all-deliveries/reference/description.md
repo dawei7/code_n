@@ -1,11 +1,11 @@
 ## Description
 
-You are given two length-two integer arrays, `d = [d1,d2]` and `r = [r1,r2]`.
+You are given two integer arrays of size 2: `d = [d_1, d_2]` and `r = [r_1, r_2]`.
 
-There are two delivery drones. Drone `i` must complete exactly `d[i]` deliveries.
+Two delivery drones are tasked with completing a specific number of deliveries. Drone `i` must complete `d_i` deliveries.
 
-Each delivery occupies one complete hour, and at most one drone may deliver during any hour.
+Each delivery takes **exactly** one hour and **only one** drone can make a delivery at any given hour.
 
-Drone `i` must recharge at every hour that is a multiple of `r[i]`; it cannot make a delivery during those recharge hours.
+Additionally, both drones require recharging at specific intervals during which they cannot make deliveries. Drone `i` must recharge every `r_i` hours (i.e. at hours that are multiples of `r_i`).
 
-Return the minimum number of hours needed to complete every required delivery.
+Return an integer denoting the **minimum** total time (in hours) required to complete all deliveries.

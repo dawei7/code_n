@@ -1,11 +1,10 @@
 ## Description
 
-A party has `n` people labeled from `0` through `n - 1`, and it may contain one celebrity. A celebrity is known by every other attendee but does not know any of them.
+Suppose you are at a party with `n` people labeled from `0` to `n - 1` and among them, there may exist one celebrity. The definition of a celebrity is that all the other `n - 1` people know the celebrity, but the celebrity does not know any of them.
 
-Determine the celebrity's identity, or establish that nobody satisfies the definition, while asking asymptotically as few questions of the form “Does person `A` know person `B`?” as possible.
+Now you want to find out who the celebrity is or verify that there is not one. The only thing you are allowed to do is ask questions like: "Hi, A. Do you know B?" to get information on whether A knows B. You need to find out the celebrity (or verify there is not one) by asking as few questions as possible (in the asymptotic sense).
 
-You receive `n` and the helper API `bool knows(a, b)`, which reports whether `a` knows `b`. Implement `int findCelebrity(n)`. If a celebrity is present, that person is unique.
+You are given a helper function `bool knows(a, b)` that tells you whether `a` knows `b`. Implement a function `int findCelebrity(n)`.
 
-Return the celebrity's label when one exists; otherwise, return `-1`.
+There will be exactly one celebrity if they are at the party. Return the celebrity's label if there is a celebrity at the party. If there is no celebrity, return `-1`.
 
-The `n x n` matrix `graph` shown in inputs is not directly available to the native solution. Relationships may be inspected only through `knows`. A value `graph[i][j] == 1` means person `i` knows person `j`; a value of `0` means person `i` does not know person `j`.

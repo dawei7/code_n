@@ -1,5 +1,4 @@
 ## Description
 
-Given a string `s`, produce every distinct permutation of its characters that forms a palindrome.
+Given a string `s`, return all the palindromic permutations (without duplicates) of it. You may return the answer in any order. If no palindromic permutation could be formed, return an empty list.
 
-The results may be returned in any order. If no permutation of `s` is palindromic, return an empty list.

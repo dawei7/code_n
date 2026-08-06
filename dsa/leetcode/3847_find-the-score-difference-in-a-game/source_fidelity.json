@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/find-the-score-difference-in-a-game/description/",
     "paid_only": false,
     "content_sha256": "b2d98f37b378da2534117e854272957ae55f1772e69f77f9253f3cf0567f50da",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [1,2,3]",
-        "output": "0",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [2,4,2,1,2,1]",
-        "output": "4",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums = [1]",
-        "output": "-1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "b87cbb95f43011a6e19e4493c760ca46f0d9ce8351c20259de68c9dcd031864c",
+      "reference/description.md": "cfa14837cba6d495bcaa26ea4c6503e4b035b50ffb8391acf2960cb5ef84e28e",
       "reference/contract.md": "5860f00046c17b5df3ced4bd6cfcb0529efec0b7024e94af8ba4d1c62fb8ceee",
       "reference/examples.md": "a4d67abb0949c8d753410804752180b21d4403f3333f716d32c13cfd2cc130ae",
       "reference/constraints.md": "dd1358fe6fe62a1a362e59c01035e7a358871c72b7b2590f1f9ee1c2b675f590"

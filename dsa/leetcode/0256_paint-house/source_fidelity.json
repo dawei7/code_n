@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_256", "frontend_id": "256", "title_slug": "paint-house", "url": "https://leetcode.com/problems/paint-house/description/", "paid_only": true, "content_sha256": "c83b23e0dd6fa627e1153652b306a6fe26ee7fa71402b6283da3887b8b97b0cc", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "costs = [[17,2,17],[16,16,5],[14,3,19]]", "output": "10", "has_explanation": true}, {"ordinal": 2, "input": "costs = [[7,6,2]]", "output": "2", "has_explanation": false}],
-    "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_256",
+    "frontend_id": "256",
+    "title_slug": "paint-house",
+    "url": "https://leetcode.com/problems/paint-house/description/",
+    "paid_only": true,
+    "content_sha256": "c83b23e0dd6fa627e1153652b306a6fe26ee7fa71402b6283da3887b8b97b0cc",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "c48ea377a8e1fe6e6d24453e10223c63abeffa3fa5843dda6c76ccb55bd28d41", "reference/contract.md": "594dee1677ef563edc6f9807910f499c3b90398ac873b178ee85ebd35b859887", "reference/examples.md": "70b748b9e5c96247b582828d864e288bcd1c90a7434b8db8f2819ba28b5de691", "reference/constraints.md": "d4ab1bb246c27a00a31098aa65df9f57a2601a3daa074af4a10dd966589b4c40"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "costs = [[17,2,17],[16,16,5],[14,3,19]]",
+        "output": "10",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "costs = [[7,6,2]]",
+        "output": "2",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0d5bd14027280cd3a555d535731e476943544f9de1c7c98971c788b061f0f0e8",
+      "reference/contract.md": "594dee1677ef563edc6f9807910f499c3b90398ac873b178ee85ebd35b859887",
+      "reference/examples.md": "70b748b9e5c96247b582828d864e288bcd1c90a7434b8db8f2819ba28b5de691",
+      "reference/constraints.md": "d4ab1bb246c27a00a31098aa65df9f57a2601a3daa074af4a10dd966589b4c40"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

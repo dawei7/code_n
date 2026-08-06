@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/angles-of-a-triangle/description/",
     "paid_only": false,
     "content_sha256": "9721bcf31f857ad01336f22edbee05e8327e27c7053c03cd933fbb884bd7edd3",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "sides = [3,4,5]",
-        "output": "[36.86990,53.13010,90.00000]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "sides = [2,4,2]",
-        "output": "[]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1370f2613ad3f60d32a29ee290bf6e5aca6e36b2e1e5263196b2d1abc4ad1861",
+      "reference/description.md": "bfb1c92873902a2a06e128e1caa27875f05a5bc5ee0399f1d5b3df560f85b0dc",
       "reference/contract.md": "ceb1c6291b42bb245a9e2f21e022c66584696d7dcf76bc118cfc1e3b5cffd86f",
       "reference/examples.md": "cb1be2d8f3defe81cb66cb22347def418d600116cbbc5beaa85cae297b6ddfc1",
       "reference/constraints.md": "c89a3f48c7b8d19f61522a1c03454987be75a40343a6b59df18041ae05751f04"

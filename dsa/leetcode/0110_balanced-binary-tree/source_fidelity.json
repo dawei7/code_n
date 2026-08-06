@@ -1,19 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_110", "frontend_id": "110", "title_slug": "balanced-binary-tree", "url": "https://leetcode.com/problems/balanced-binary-tree/description/", "paid_only": false, "content_sha256": "c13859eb42aa1250e7f031bf9180004cacc13ce6e14f115ba7f2807980676796", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_110",
+    "frontend_id": "110",
+    "title_slug": "balanced-binary-tree",
+    "url": "https://leetcode.com/problems/balanced-binary-tree/description/",
+    "paid_only": false,
+    "content_sha256": "c13859eb42aa1250e7f031bf9180004cacc13ce6e14f115ba7f2807980676796",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "root = [3,9,20,null,null,15,7]", "output": "true", "has_explanation": false},
-      {"ordinal": 2, "input": "root = [1,2,2,3,3,null,null,4,4]", "output": "false", "has_explanation": false},
-      {"ordinal": 3, "input": "root = []", "output": "true", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "root = [3,9,20,null,null,15,7]",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [1,2,2,3,3,null,null,4,4]",
+        "output": "false",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "root = []",
+        "output": "true",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "b25925af4e64bb859b6dacd4d948071a2fc17441cb4144d9988a800296f0f8c5", "reference/contract.md": "6b27dc3edc2836c9d152f50c06b7cef7772e2cf742869a926676725819a7968d", "reference/examples.md": "afa03518ca926420bec676fc5eccdd490b96188e51de95a6e596e1fc8d798514", "reference/constraints.md": "ca10451673c4bfca7c653fa13c1ffd4412574cb43b00c5ac711c6a240f0e1a59"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "a60b608cd11bc6433fe856db6aa0e672584b02edfdc7379b9517dab9e5950318",
+      "reference/contract.md": "6b27dc3edc2836c9d152f50c06b7cef7772e2cf742869a926676725819a7968d",
+      "reference/examples.md": "afa03518ca926420bec676fc5eccdd490b96188e51de95a6e596e1fc8d798514",
+      "reference/constraints.md": "ca10451673c4bfca7c653fa13c1ffd4412574cb43b00c5ac711c6a240f0e1a59"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

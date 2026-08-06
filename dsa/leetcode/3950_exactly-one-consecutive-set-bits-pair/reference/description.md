@@ -1,5 +1,5 @@
 ## Description
 
-Given a nonnegative integer `n`, inspect its standard binary representation. An adjacent pair of set bits occurs wherever two neighboring binary positions both contain `1`.
+You are given an integer `n`.
 
-Return `true` only when exactly one such pair occurs; return `false` when there are none or more than one. Pairs are identified by their positions and may overlap, so the representation `111` contains two adjacent pairs rather than one.
+Return `true` if its binary representation contains **exactly one adjacent pair** of <span data-keyword="set-bit">set bits</span>, and `false` otherwise.

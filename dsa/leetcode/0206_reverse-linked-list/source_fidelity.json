@@ -1,11 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_206", "frontend_id": "206", "title_slug": "reverse-linked-list", "url": "https://leetcode.com/problems/reverse-linked-list/description/", "paid_only": false, "content_sha256": "11f1ccdfeabbca7d8709b97751a0a127a165c308fbf2477871148070f14699a8", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "head = [1,2,3,4,5]", "output": "[5,4,3,2,1]", "has_explanation": false}, {"ordinal": 2, "input": "head = [1,2]", "output": "[2,1]", "has_explanation": false}, {"ordinal": 3, "input": "head = []", "output": "[]", "has_explanation": false}],
-    "constraint_count": 2,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_206",
+    "frontend_id": "206",
+    "title_slug": "reverse-linked-list",
+    "url": "https://leetcode.com/problems/reverse-linked-list/description/",
+    "paid_only": false,
+    "content_sha256": "11f1ccdfeabbca7d8709b97751a0a127a165c308fbf2477871148070f14699a8",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "ee8adc9f07fbe5ac13048debde0b6cd671f9a7e110c2fd81aaf06326369f3dde", "reference/contract.md": "6ae4b93c2744c030c9ed17f9fb9e04cc52fae331e224cc85bff8090eff11d4d5", "reference/examples.md": "563a44f3084bbbc472e3dbe7c57b239d986938dcee1b47a494c62d8e0c67ce39", "reference/constraints.md": "b959b4be3faff97e983d34999ea3e20ada71f7bf8099bc20ec6c7b397ca3981d", "reference/follow_up.md": "659156ae832bee7f9de6bf1648d233c54ef0bc890152c9d97d03a36960b16544"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "head = [1,2,3,4,5]",
+        "output": "[5,4,3,2,1]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "head = [1,2]",
+        "output": "[2,1]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "head = []",
+        "output": "[]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f10aef379bf9316d1d76fadb7f7d9037666a85233ef8c038760f2bfc4cb47ace",
+      "reference/contract.md": "6ae4b93c2744c030c9ed17f9fb9e04cc52fae331e224cc85bff8090eff11d4d5",
+      "reference/examples.md": "563a44f3084bbbc472e3dbe7c57b239d986938dcee1b47a494c62d8e0c67ce39",
+      "reference/constraints.md": "b959b4be3faff97e983d34999ea3e20ada71f7bf8099bc20ec6c7b397ca3981d",
+      "reference/follow_up.md": "659156ae832bee7f9de6bf1648d233c54ef0bc890152c9d97d03a36960b16544"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

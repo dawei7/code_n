@@ -1,15 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_201", "frontend_id": "201", "title_slug": "bitwise-and-of-numbers-range", "url": "https://leetcode.com/problems/bitwise-and-of-numbers-range/description/", "paid_only": false, "content_sha256": "584d966e583506ec8e1dc2da7ef4c4826dc990f290b82f5c443e77cef0922bc9", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_201",
+    "frontend_id": "201",
+    "title_slug": "bitwise-and-of-numbers-range",
+    "url": "https://leetcode.com/problems/bitwise-and-of-numbers-range/description/",
+    "paid_only": false,
+    "content_sha256": "584d966e583506ec8e1dc2da7ef4c4826dc990f290b82f5c443e77cef0922bc9",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "left = 5, right = 7", "output": "4", "has_explanation": false}, {"ordinal": 2, "input": "left = 0, right = 0", "output": "0", "has_explanation": false}, {"ordinal": 3, "input": "left = 1, right = 2147483647", "output": "0", "has_explanation": false}],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "left = 5, right = 7",
+        "output": "4",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "left = 0, right = 0",
+        "output": "0",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "left = 1, right = 2147483647",
+        "output": "0",
+        "has_explanation": false
+      }
+    ],
     "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "91e897597c35384059facc705c779bf8b88dbe6c090d84ee62c070cbb462b0c2", "reference/contract.md": "da0096679010565ed3d5c48f9028875a5efdbdffe5d1f23990a3abae6986eee1", "reference/examples.md": "4292d600b654a9968b8070d2094aa9544c26bfb14c0f93fac9ba25450f2ef523", "reference/constraints.md": "14e4dcfe1b9e76841115ee2f13f6adf6e221aba3d946bcc20f195b18c46bf811"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "1fbc49495f7238a5f7a2caf5b69642f948d9379f71c7bb351208edcbfb52b40d",
+      "reference/contract.md": "da0096679010565ed3d5c48f9028875a5efdbdffe5d1f23990a3abae6986eee1",
+      "reference/examples.md": "4292d600b654a9968b8070d2094aa9544c26bfb14c0f93fac9ba25450f2ef523",
+      "reference/constraints.md": "14e4dcfe1b9e76841115ee2f13f6adf6e221aba3d946bcc20f195b18c46bf811"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

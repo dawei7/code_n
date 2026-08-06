@@ -1,7 +1,14 @@
 ## Description
 
-Two integer arrays, `value` and `decay`, describe a collection of selectable indices. Index `i` begins with gain `value[i]`. It may be selected repeatedly, but each previous selection reduces its next gain by `decay[i]`. Consequently, its first, second, and later gains form a decreasing arithmetic sequence.
+You are given two integer arrays `value` and `decay`, and an integer `m`.
 
-More precisely, selecting index `i` for the $t$th time, with $t$ numbered from one, gains `value[i] - decay[i] * (t - 1)`. Across all indices, make at most `m` selections. Because the limit is an upper bound rather than an exact requirement, no non-positive gain ever needs to be accepted.
+<ul>
+	<li>`value[i]` represents the initial value at index `i`.</li>
+	<li>`decay[i]` represents how much the value decreases after each selection of index `i`.</li>
+</ul>
 
-Maximize the total unmodded gain from the selected terms. Return that maximum modulo $10^9 + 7$.
+You may select any index **multiple** times. The total number of selections across all indices must not exceed `m`.
+
+If you select index `i` for the `t^th` time, where `t` is 1-indexed, the value gained is `value[i] - decay[i] * (t - 1)`.
+
+Return the **maximum** total value you can obtain. Since the answer may be large, return it **modulo** `10^9 + 7`.

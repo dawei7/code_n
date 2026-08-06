@@ -1,5 +1,7 @@
 ## Description
 
-You are given the heads of two linked lists, `list1` and `list2`, each sorted in non-decreasing order.
+You are given the heads of two sorted linked lists `list1` and `list2`.
 
-Splice together nodes from the two inputs to form one non-decreasing linked list, and return the head of that merged list.
+Merge the two lists into one **sorted** list. The list should be made by splicing together the nodes of the first two lists.
+
+Return *the head of the merged linked list*.

@@ -1,15 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_200", "frontend_id": "200", "title_slug": "number-of-islands", "url": "https://leetcode.com/problems/number-of-islands/description/", "paid_only": false, "content_sha256": "71a78ddce0450d4eab3ed0bdb2a3752c125817284484e8fa119dcec19c6de74a", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_200",
+    "frontend_id": "200",
+    "title_slug": "number-of-islands",
+    "url": "https://leetcode.com/problems/number-of-islands/description/",
+    "paid_only": false,
+    "content_sha256": "71a78ddce0450d4eab3ed0bdb2a3752c125817284484e8fa119dcec19c6de74a",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "grid = [[\"1\",\"1\",\"1\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"0\",\"0\"]]", "output": "1", "has_explanation": false}, {"ordinal": 2, "input": "grid = [[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"1\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"1\",\"1\"]]", "output": "3", "has_explanation": false}],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "grid = [[\"1\",\"1\",\"1\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"0\",\"0\"]]",
+        "output": "1",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"1\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"1\",\"1\"]]",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
     "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 2, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 2,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "d94b092085aba8069f92381d329817ff6849af6a58ef60c02e9c5f0a678284b9", "reference/contract.md": "732b12dd8ee739e8cdb79f679f7776e56c9f36a451f1e1c378bf07480ad48457", "reference/examples.md": "9f5c9256c04f1ac5160027fe909762009ba9e200d7c0fbc85d05ef92c843f9ad", "reference/constraints.md": "4ec0e7e69c9c8d3f9452d0b2f9e47b413a3af30f687a702a6f5c814ee39cfdeb"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "f3c394f329e6ab0d35393a94151c2d7bc462c55898a59720e7d8c7288ae41ffe",
+      "reference/contract.md": "732b12dd8ee739e8cdb79f679f7776e56c9f36a451f1e1c378bf07480ad48457",
+      "reference/examples.md": "9f5c9256c04f1ac5160027fe909762009ba9e200d7c0fbc85d05ef92c843f9ad",
+      "reference/constraints.md": "4ec0e7e69c9c8d3f9452d0b2f9e47b413a3af30f687a702a6f5c814ee39cfdeb"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

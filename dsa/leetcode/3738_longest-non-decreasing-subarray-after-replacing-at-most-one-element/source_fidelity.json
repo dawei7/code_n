@@ -1,14 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3738","frontend_id":"3738","title_slug":"longest-non-decreasing-subarray-after-replacing-at-most-one-element","url":"https://leetcode.com/problems/longest-non-decreasing-subarray-after-replacing-at-most-one-element/description/","paid_only":false,"content_sha256":"ffd0f3b59619f0d4a1352084b79fd4477de5ce82b81b84abee8db01fd79adb03","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"nums = [1,2,3,1,2]","output":"4","has_explanation":true},
-    {"ordinal":2,"input":"nums = [2,2,2,2,2]","output":"5","has_explanation":true}
-  ],"constraint_count":2,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"6f86c36a35d7b83959286fd5af8da108ed042336280e7e31759042ef4ca7c603",
-    "reference/contract.md":"9a218b83f308519781818feb7c5a33421dedc247683928b5a86e577a8d3b2e2d",
-    "reference/examples.md":"0dc61ef5c8adf6c081037ef8b79e28fd606f63a481c02c20dc268d87548a6cb7",
-    "reference/constraints.md":"f387f1d1d6cdc036c3cd8e6cc57fd6a459581a9e08ee7d583b9f39cf525cf298"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3738",
+    "frontend_id": "3738",
+    "title_slug": "longest-non-decreasing-subarray-after-replacing-at-most-one-element",
+    "url": "https://leetcode.com/problems/longest-non-decreasing-subarray-after-replacing-at-most-one-element/description/",
+    "paid_only": false,
+    "content_sha256": "ffd0f3b59619f0d4a1352084b79fd4477de5ce82b81b84abee8db01fd79adb03",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d7479d5c26db900296288c27aff9f8353342e2c92074f1ddd5378ec4d3ab3c6e",
+      "reference/contract.md": "9a218b83f308519781818feb7c5a33421dedc247683928b5a86e577a8d3b2e2d",
+      "reference/examples.md": "0dc61ef5c8adf6c081037ef8b79e28fd606f63a481c02c20dc268d87548a6cb7",
+      "reference/constraints.md": "f387f1d1d6cdc036c3cd8e6cc57fd6a459581a9e08ee7d583b9f39cf525cf298"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

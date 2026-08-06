@@ -1,9 +1,9 @@
 ## Description
 
-You are given a string `s` containing only lowercase English letters.
+You are given a string `s` consisting only of lowercase English letters.
 
-Call a prefix of `s` a **residue** when the number of distinct characters in that prefix equals its length modulo $3$.
+A **prefix** of `s` is called a **residue** if the number of **distinct characters** in the **prefix** is equal to `len(prefix) % 3`.
 
-Return the number of residue prefixes of `s`.
+Return the count of **residue** prefixes in `s`.
 
-A prefix is a nonempty substring that begins at the first character of the string and may end at any position in it.
+A **prefix** of a string is a **non-empty substring** that starts from the beginning of the string and extends to any point within it.

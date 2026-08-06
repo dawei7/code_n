@@ -1,18 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_121", "frontend_id": "121", "title_slug": "best-time-to-buy-and-sell-stock", "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/", "paid_only": false, "content_sha256": "fbac1d1612e669d39ef6e998e047318d10a2c8bd191a2924b2ea820d80af7171", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_121",
+    "frontend_id": "121",
+    "title_slug": "best-time-to-buy-and-sell-stock",
+    "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/",
+    "paid_only": false,
+    "content_sha256": "fbac1d1612e669d39ef6e998e047318d10a2c8bd191a2924b2ea820d80af7171",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "prices = [7,1,5,3,6,4]", "output": "5", "has_explanation": true},
-      {"ordinal": 2, "input": "prices = [7,6,4,3,1]", "output": "0", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "prices = [7,1,5,3,6,4]",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "prices = [7,6,4,3,1]",
+        "output": "0",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "bdc2ebe497a37fe1783557e79bd1d517be9b4dc2f3499bbfcf6cf1313d448dc3", "reference/contract.md": "b410907509faedd787b0c20f08f507b63b134ecb7504abe2159c3c96ac9c0245", "reference/examples.md": "dadb098ec6c31851d86a29f0f196915d152826c172b7dcacdda82c064b7f0d7f", "reference/constraints.md": "a497fc164fd06349414757bff4da1a8cf26b26f133da686a33930d2311e0e47c"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "ce11f8858aa3edee5b3c3eba65cf9a9221569d4bed599e575ba68458d3b25571",
+      "reference/contract.md": "b410907509faedd787b0c20f08f507b63b134ecb7504abe2159c3c96ac9c0245",
+      "reference/examples.md": "dadb098ec6c31851d86a29f0f196915d152826c172b7dcacdda82c064b7f0d7f",
+      "reference/constraints.md": "a497fc164fd06349414757bff4da1a8cf26b26f133da686a33930d2311e0e47c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

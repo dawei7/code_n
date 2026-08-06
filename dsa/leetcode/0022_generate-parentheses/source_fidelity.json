@@ -11,22 +11,50 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "n = 3", "output": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]", "has_explanation": false},
-      {"ordinal": 2, "input": "n = 1", "output": "[\"()\"]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "n = 3",
+        "output": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 1",
+        "output": "[\"()\"]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "cb45d64aa3d32f70b84d9fa11b3a77d93aecae05bc78b88cd94d17ab75b9b371",
+      "reference/description.md": "a0bd6714ebbde160b479061135568ae5c8023564d345eb95580fa883831b8f79",
       "reference/contract.md": "3cef41bc20f55aa0e741019ac72d637cb0f0eefcdd763edca86a0b862827dfd6",
       "reference/examples.md": "7e780980cb8b46b3b5d17d6b28446f333564ae2ad849c1aef46d88d991832909",
       "reference/constraints.md": "4990854e27dea1caf4d162a8bbb76094d3398f33c31b23a8abe8f1422060a0c5"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

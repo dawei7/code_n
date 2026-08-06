@@ -1,7 +1,5 @@
 ## Description
 
-You want to distribute cookies among your children, giving each child at most one cookie.
+Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie.
 
-Child `i` has greed factor `g[i]`, the minimum cookie size that makes that child content. Cookie `j` has size `s[j]`; it can be assigned to child `i` only when `s[j] >= g[i]`. Each cookie can be used once.
-
-Choose the assignments that maximize the number of content children, and return that maximum count.
+Each child `i` has a greed factor `g[i]`, which is the minimum size of a cookie that the child will be content with; and each cookie `j` has a size `s[j]`. If `s[j] >= g[i]`, we can assign the cookie `j` to the child `i`, and the child `i` will be content. Your goal is to maximize the number of your content children and output the maximum number.

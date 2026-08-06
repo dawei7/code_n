@@ -11,23 +11,56 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "list1 = [1,2,4], list2 = [1,3,4]", "output": "[1,1,2,3,4,4]", "has_explanation": false},
-      {"ordinal": 2, "input": "list1 = [], list2 = []", "output": "[]", "has_explanation": false},
-      {"ordinal": 3, "input": "list1 = [], list2 = [0]", "output": "[0]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "list1 = [1,2,4], list2 = [1,3,4]",
+        "output": "[1,1,2,3,4,4]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "list1 = [], list2 = []",
+        "output": "[]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "list1 = [], list2 = [0]",
+        "output": "[0]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "aa10e07a1a7cbff4767f2e5e3a0bbbf67c4de8a3929f170f722f1f379ca403e0",
+      "reference/description.md": "620ade10a6f1a9490eac9d63d14d0b060492b9c4d2dbfa23feee613c3e6e92e0",
       "reference/contract.md": "9c414d93b30c4e8ee6dc8d81d2b23967673e397a02c0cf9c5a166d356a7349b9",
       "reference/examples.md": "ee8bf3c2d15ce617cb61e3bf509627c28b15ff78d787416fc605a27601cd6fbc",
       "reference/constraints.md": "8163f0dd575b2601a98103976f60da5e96d87f7a02aad3ff486ffde5ae79fd33"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

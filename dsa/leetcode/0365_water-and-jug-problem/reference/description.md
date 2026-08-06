@@ -1,9 +1,9 @@
 ## Description
 
-You have two jugs with capacities `x` liters and `y` liters, together with an unlimited water supply. Determine whether the combined amount held by the two jugs can be made exactly `target` liters using only these operations:
+You are given two jugs with capacities `x` liters and `y` liters. You have an infinite water supply. Return whether the total amount of water in both jugs may reach `target` using the following operations:
 
-- Fill either jug completely.
-- Empty either jug completely.
-- Pour from one jug into the other until the receiving jug becomes full or the pouring jug becomes empty.
-
-Return whether reaching the target total is possible.
+<ul>
+	<li>Fill either jug completely with water.</li>
+	<li>Completely empty either jug.</li>
+	<li>Pour water from one jug into another until the receiving jug is full, or the transferring jug is empty.</li>
+</ul>

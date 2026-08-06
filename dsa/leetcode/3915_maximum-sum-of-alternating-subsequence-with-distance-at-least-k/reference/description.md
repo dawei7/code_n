@@ -1,7 +1,19 @@
 ## Description
 
-Given an integer array `nums` and an integer `k`, choose a non-empty subsequence at indices $i_1<i_2<\dots<i_m$. Every two consecutive selected indices must be separated by at least `k`, so $i_{t+1}-i_t\ge k$.
+You are given an integer array `nums` of length `n` and an integer `k`.
 
-The chosen values must alternate strictly: they may begin with either an increase or a decrease, but every later comparison must reverse the preceding direction. Thus the pattern is either `nums[i1] < nums[i2] > nums[i3] < ...` or `nums[i1] > nums[i2] < nums[i3] > ...`. Equal consecutive selected values are not allowed. A one-element subsequence is strictly alternating by definition.
+Pick a **<span data-keyword="subsequence-sequence">subsequence</span>** with indices `0 <= i_1 < i_2 < ... < i_m < n` such that:
 
-Its score is the sum of all selected values. Return the greatest score among all valid subsequences.
+<ul>
+	<li>For every `1 <= t < m`, `i_t+1 - i_t >= k`.</li>
+	<li>The selected values form a **strictly alternating** sequence. In other words, either:
+	<ul>
+		<li>`nums[i_1] < nums[i_2] > nums[i_3] < ...`, or</li>
+		<li>`nums[i_1] > nums[i_2] < nums[i_3] > ...`</li>
+	</ul>
+	</li>
+</ul>
+
+A **subsequence** of length 1 is also considered **strictly** alternating. The score of a **valid** subsequence is the **sum** of its selected values.
+
+Return an integer denoting the **maximum** possible **score** of a valid subsequence.

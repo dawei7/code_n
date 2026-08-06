@@ -1,8 +1,13 @@
 ## Description
 
-You are given an integer array `nums`. Repeatedly inspect the current array for adjacent elements with equal values. Whenever one or more equal adjacent pairs exist, select the **leftmost** such pair and replace its two values with their sum.
+You are given an integer array `nums`.
 
-Each replacement shortens the array by one. Because a merge can create a new equal pair with a neighboring value, continue applying the same leftmost rule to the updated array until no adjacent values are equal.
+You must **repeatedly** apply the following merge operation until no more changes can be made:
 
-Return the final array after the process can no longer perform a merge.
+<ul>
+	<li>If any **two adjacent elements are equal**, choose the **leftmost** such adjacent pair in the current array and replace them with a single element equal to their **sum**.</li>
+</ul>
 
+After each merge operation, the array size **decreases** by 1. Repeat the process on the updated array until no more changes can be made.
+
+Return the final array after all possible merge operations.

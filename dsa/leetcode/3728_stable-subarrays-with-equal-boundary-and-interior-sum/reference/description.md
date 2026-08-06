@@ -2,15 +2,11 @@
 
 You are given an integer array `capacity`.
 
-A subarray `capacity[l..r]` is **stable** when both of these conditions hold:
+A <span data-keyword="subarray-nonempty">subarray</span> `capacity[l..r]` is considered **stable** if:
 
-- Its length is at least 3.
-- Its first element and its last element are each equal to the sum of every element strictly between them. In other words,
+<ul>
+	<li>Its length is **at least** 3.</li>
+	<li>The **first** and **last** elements are each equal to the **sum** of all elements **strictly between** them (i.e., `capacity[l] = capacity[r] = capacity[l + 1] + capacity[l + 2] + ... + capacity[r - 1]`).</li>
+</ul>
 
-  $$
-  \texttt{capacity}[l]
-  = \texttt{capacity}[r]
-  = \sum_{i=l+1}^{r-1} \texttt{capacity}[i].
-  $$
-
-Return the number of stable subarrays in `capacity`.
+Return an integer denoting the number of **stable subarrays**.

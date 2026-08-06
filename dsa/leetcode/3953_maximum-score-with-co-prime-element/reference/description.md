@@ -1,7 +1,20 @@
 ## Description
 
-You are given an integer array `nums` and a positive limit `maxVal`. You may replace any array element with any positive integer at most `maxVal`; each element whose value changes contributes one unit to the modification cost.
+You are given an integer array `nums` of length `n` and an integer `maxVal`.
 
-After all replacements, choose one index whose final value is co-prime with the final value at every other index. Two integers are co-prime when their greatest common divisor is $1$.
+You **may** change any element in `nums` to any positive integer **less than or equal** to `maxVal`. Each such change costs 1.
 
-Let `selectedValue` be the chosen index's final value and `modificationCost` be the number of changed elements. The resulting score is `selectedValue - modificationCost`. Return the largest score achievable by choosing the modifications and selected index optimally.
+Two integers are **co-prime** if their <span data-keyword="gcd-function">**greatest common divisor (GCD)**</span> is 1.
+
+After all modifications, you **must** choose an index `i` such that, `nums[i]` is **co-prime** with every other element `nums[j]`.
+
+Let:
+
+<ul>
+	<li>`selectedValue` be the final value of `nums[i]` after modifications.</li>
+	<li>`modificationCost` be the total number of elements changed.</li>
+</ul>
+
+The score is defined as `score = selectedValue - modificationCost`.
+
+Return the **maximum** possible score.

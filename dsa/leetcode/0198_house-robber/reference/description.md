@@ -1,5 +1,5 @@
 ## Description
 
-A robber is planning one night along a street of houses. House `i` contains `nums[i]` money, but robbing two adjacent houses triggers their connected security systems and alerts the police.
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and **it will automatically contact the police if two adjacent houses were broken into on the same night**.
 
-Return the greatest amount that can be taken without robbing adjacent houses.
+Given an integer array `nums` representing the amount of money of each house, return *the maximum amount of money you can rob tonight **without alerting the police***.

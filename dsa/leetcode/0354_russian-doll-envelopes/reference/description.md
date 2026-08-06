@@ -1,5 +1,9 @@
 ## Description
 
-You are given a two-dimensional integer array `envelopes`, where `envelopes[i] = [w_i,h_i]` gives the width and height of one envelope.
+You are given a 2D array of integers `envelopes` where `envelopes[i] = [w_i, h_i]` represents the width and the height of an envelope.
 
-One envelope fits inside another if and only if the containing envelope has both greater width and greater height. Return the largest number of envelopes that can be nested in this Russian-doll fashion.
+One envelope can fit into another if and only if both the width and height of one envelope are greater than the other envelope's width and height.
+
+Return *the maximum number of envelopes you can Russian doll (i.e., put one inside the other)*.
+
+**Note:** You cannot rotate an envelope.

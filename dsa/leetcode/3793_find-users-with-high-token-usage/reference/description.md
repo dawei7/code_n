@@ -1,15 +1,30 @@
 ## Description
 
-The `prompts` table records prompts sent by users to an AI system and the token consumption of each request:
+Table: `prompts`
 
-| Column | Type | Meaning |
-|---|---|---|
-| `user_id` | `int` | Identifier of the submitting user |
-| `prompt` | `varchar` | Prompt text |
-| `tokens` | `int` | Tokens consumed by the prompt |
+```
 
-The pair (`user_id`, `prompt`) is the table's primary key, so no user has two rows with the same prompt text.
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| user_id     | int     |
+| prompt      | varchar |
+| tokens      | int     |
++-------------+---------+
+(user_id, prompt) is the primary key (unique value) for this table.
+Each row represents a prompt submitted by a user to an AI system along with the number of tokens consumed.
 
-Analyze usage separately for each user. Report the number of submitted prompts and the average number of tokens per prompt, rounded to two decimal places. Retain a user only when they submitted at least three prompts and at least one of their prompts used strictly more tokens than their own average.
+```
 
-Order the result by average token usage from highest to lowest, then by `user_id` from lowest to highest.
+Write a solution to analyze **AI prompt usage patterns** based on the following requirements:
+
+<ul>
+	<li>For each user, calculate the **total number of prompts** they have submitted.</li>
+	<li>For each user, calculate the **average tokens used per prompt **(Rounded to `2` decimal places).</li>
+	<li>Only include users who have submitted **at least **`3`** prompts**.</li>
+	<li>Only include users who have submitted **at least one prompt** with `tokens` **greater than** their own average token usage.</li>
+</ul>
+
+Return *the result table ordered by **average tokens** in **descending** order, and then by `user_id` in **ascending** order.*
+
+The result format is in the following example.

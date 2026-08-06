@@ -1,8 +1,11 @@
 ## Description
 
-You are given an integer array `nums` of length `n`. For each index `i`, consider the suffix made from every element positioned strictly to its right: `nums[i + 1]` through `nums[n - 1]`.
+You are given an integer array `nums` of length `n`.
 
-An index is **dominant** when its value is strictly greater than the arithmetic average of that entire right-hand suffix. Here, an average is the sum of the suffix values divided by the number of values in the suffix.
+An element at index `i` is called **dominant** if: `nums[i] > average(nums[i + 1], nums[i + 2], ..., nums[n - 1])`
 
-Return the number of indices that satisfy this dominance condition.
+Your task is to count the number of indices `i` that are **dominant**.
 
+The **average** of a set of numbers is the value obtained by adding all the numbers together and dividing the sum by the total number of numbers.
+
+**Note**: The **rightmost** element of any array is **not** **dominant**.

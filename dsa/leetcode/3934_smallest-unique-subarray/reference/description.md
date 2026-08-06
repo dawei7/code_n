@@ -1,7 +1,9 @@
 ## Description
 
-An integer array `nums` contains many contiguous subarrays. Two subarrays are identical when they have equal lengths and the same value at every corresponding position. Their occurrences may start at different indices and may overlap.
+You are given an integer array `nums`.
 
-A subarray is unique when no other subarray occurrence in `nums` is identical to it. Find the smallest possible length among all unique subarrays and return that length.
+Find the **minimum **length of a <span data-keyword="subarray">subarray</span> that is **not** **identical** to any other **subarray** in `nums`.
 
-The complete array is always one qualifying occurrence, so a valid answer exists even when every shorter value sequence is repeated.
+Return an integer denoting the **minimum possible length** of such a **subarray**.
+
+Two **subarrays** are considered identical if they have the same length and the same elements in corresponding positions.

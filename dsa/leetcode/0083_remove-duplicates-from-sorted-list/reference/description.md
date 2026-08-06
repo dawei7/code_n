@@ -1,5 +1,3 @@
 ## Description
 
-Given the head of a sorted linked list, remove duplicate nodes so that each value appears exactly once.
-
-Return the deduplicated list, still in sorted order.
+Given the `head` of a sorted linked list, *delete all duplicates such that each element appears only once*. Return *the linked list **sorted** as well*.

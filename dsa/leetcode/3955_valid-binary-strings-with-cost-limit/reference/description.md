@@ -1,10 +1,14 @@
 ## Description
 
-You are given two integers, `n` and `k`. For a binary string `s`, define its **cost** as the sum of every zero-based index `i` at which `s[i] == '1'`.
+You are given two integers `n` and `k`.
 
-A binary string is valid only when both conditions hold:
+The **cost** of a binary string `s` is defined as the sum of all indices `i` (0-based) such that `s[i] == '1'`.
 
-- it has no pair of consecutive `'1'` characters;
-- its cost is at most `k`.
+A binary string is considered **valid** if:
 
-Return every valid binary string of length `n`. The result may list the strings in any order.
+<ul>
+	<li>It does not contain two consecutive `'1'` characters.</li>
+	<li>Its cost is **less than or equal** to `k`.</li>
+</ul>
+
+Return a list of all valid binary strings of length `n` in any order.

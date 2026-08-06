@@ -1,19 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_325", "frontend_id": "325", "title_slug": "maximum-size-subarray-sum-equals-k", "url": "https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/description/", "paid_only": true, "content_sha256": "0f4b46356d5fed0c0ca2f7e18f1cd67caec7b8dda279adeb2f8c2e90308cf232", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_325",
+    "frontend_id": "325",
+    "title_slug": "maximum-size-subarray-sum-equals-k",
+    "url": "https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/description/",
+    "paid_only": true,
+    "content_sha256": "0f4b46356d5fed0c0ca2f7e18f1cd67caec7b8dda279adeb2f8c2e90308cf232",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [1,-1,5,-2,3], k = 3", "output": "4", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [-2,-1,2,1], k = 1", "output": "2", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "nums = [1,-1,5,-2,3], k = 3",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [-2,-1,2,1], k = 1",
+        "output": "2",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "46102810ea156669b2156f20059e0b1a69318c9df3fca8d9e0dc3ac642ab1112",
-    "reference/contract.md": "05580b53c158ae5015263026774acf8d6a53be7c493bd8a4554767fc2095eee3",
-    "reference/examples.md": "f125f0a3fa3e06737356d4d7db8eb16595a5abb8c9ae007a69b3fd3b4bee1d6b",
-    "reference/constraints.md": "5a34efa7fc99e6d0ccfa820bcb1355a43dd5ea26ca28a3be59c2af07df9140e4"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "46102810ea156669b2156f20059e0b1a69318c9df3fca8d9e0dc3ac642ab1112",
+      "reference/contract.md": "05580b53c158ae5015263026774acf8d6a53be7c493bd8a4554767fc2095eee3",
+      "reference/examples.md": "f125f0a3fa3e06737356d4d7db8eb16595a5abb8c9ae007a69b3fd3b4bee1d6b",
+      "reference/constraints.md": "5a34efa7fc99e6d0ccfa820bcb1355a43dd5ea26ca28a3be59c2af07df9140e4"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,8 +1,5 @@
 ## Description
 
-Given a collection of distinct strings `words`, identify every word whose complete text can be assembled by joining
-two or more shorter strings that also occur in the collection.
+Given an array of strings `words` (**without duplicates**), return *all the **concatenated words** in the given list of* `words`.
 
-The component strings do not need to be different: the same dictionary word may be used repeatedly. Their
-concatenation must reproduce the candidate exactly, with every character covered in order. Return all words that
-meet this definition.
+A **concatenated word** is defined as a string that is comprised entirely of at least two shorter words (not necessarily distinct) in the given array.

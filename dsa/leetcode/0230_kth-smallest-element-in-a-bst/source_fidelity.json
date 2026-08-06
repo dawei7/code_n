@@ -1,11 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_230", "frontend_id": "230", "title_slug": "kth-smallest-element-in-a-bst", "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/", "paid_only": false, "content_sha256": "2843bc19e1b138ba754f3928e03113a3f92e4732c8ffb267c5f9881c1555a7d6", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "root = [3,1,4,null,2], k = 1", "output": "1", "has_explanation": false}, {"ordinal": 2, "input": "root = [5,3,6,2,4,null,null,1], k = 3", "output": "3", "has_explanation": false}],
-    "constraint_count": 3,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_230",
+    "frontend_id": "230",
+    "title_slug": "kth-smallest-element-in-a-bst",
+    "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/",
+    "paid_only": false,
+    "content_sha256": "2843bc19e1b138ba754f3928e03113a3f92e4732c8ffb267c5f9881c1555a7d6",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "e8b9bfe1e7bf1d2b493c057d3053392d0806cc8f0a38da93d79e6bd94c669194", "reference/contract.md": "dae445409433b35279b4dc8d30e08658e7df56ec153669e314d3a490ed456859", "reference/examples.md": "f73e96a46bc0a762e24971c389e488a0ada85b0323334bc23d89600b45e97e3d", "reference/constraints.md": "236b61d642f309b91acd2729984abf2de2ba2d52d1408751f9f75cfacd01cf2a", "reference/follow_up.md": "974c4f737c4a1a1c0e70f1dbb98e87a2bb6716204c654ee1dd296499f70c3f26"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "root = [3,1,4,null,2], k = 1",
+        "output": "1",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [5,3,6,2,4,null,null,1], k = 3",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "67bee9eb0b30cd046edc24ca7083bce4d05cf60a5a174805f9c9c24b6a998593",
+      "reference/contract.md": "dae445409433b35279b4dc8d30e08658e7df56ec153669e314d3a490ed456859",
+      "reference/examples.md": "f73e96a46bc0a762e24971c389e488a0ada85b0323334bc23d89600b45e97e3d",
+      "reference/constraints.md": "236b61d642f309b91acd2729984abf2de2ba2d52d1408751f9f75cfacd01cf2a",
+      "reference/follow_up.md": "974c4f737c4a1a1c0e70f1dbb98e87a2bb6716204c654ee1dd296499f70c3f26"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

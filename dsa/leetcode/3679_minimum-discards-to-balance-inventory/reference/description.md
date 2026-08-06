@@ -1,0 +1,17 @@
+## Description
+
+You are given two integers `w` and `m`, and an integer array `arrivals`, where `arrivals[i]` is the type of item arriving on day `i` (days are **1-indexed**).
+
+Items are managed according to the following rules:
+
+<ul>
+	<li>Each arrival may be **kept** or **discarded**; an item may only be discarded on its arrival day.</li>
+	<li>For each day `i`, consider the window of days `[max(1, i - w + 1), i]` (the `w` most recent days up to day `i`):
+	<ul>
+		<li>For **any** such window, each item type may appear **at most** `m` times among kept arrivals whose arrival day lies in that window.</li>
+		<li>If keeping the arrival on day `i` would cause its type to appear **more than** `m` times in the window, that arrival **must** be discarded.</li>
+	</ul>
+	</li>
+</ul>
+
+Return the **minimum** number of arrivals to be discarded so that every `w`-day window contains at most `m` occurrences of each type.

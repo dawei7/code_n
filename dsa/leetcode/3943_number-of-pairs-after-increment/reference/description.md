@@ -1,10 +1,12 @@
 ## Description
 
-You receive two integer arrays, `nums1` and `nums2`, together with a sequence of queries. The values in `nums1` remain fixed, while range-addition queries change `nums2` as the sequence is processed.
+You are given two integer arrays `nums1` and `nums2`, and a 2D integer array `queries`.
 
-Each query has one of two forms:
+Each `queries[i]` is one of the following types:
 
-- `[1, x, y, val]` adds `val` to every element of the inclusive subarray `nums2[x..y]`.
-- `[2, tot]` asks how many index pairs `(j, k)` satisfy `nums1[j] + nums2[k] == tot` using the current values of `nums2`.
+<ul>
+	<li>`[1, x, y, val]` – **Add** `val` to every element in `nums2[x..y]`.</li>
+	<li>`[2, tot]` – **Compute** the number of pairs `(j, k)` such that `nums1[j] + nums2[k] == tot`.</li>
+</ul>
 
-Process the queries in their given order. Every pair of indices is counted separately, so equal values occurring at different positions contribute their full multiplicity. Return the answers to the type-2 queries in the same order in which those queries appear.
+Return an integer array `answer`, where `answer[j]` is the number of pairs for the `j^th` query of type 2.

@@ -1,15 +1,15 @@
 ## Description
 
-Design a data structure that associates string keys with positive integer counts and can return a key at either
-count extreme.
+Design a data structure to store the strings' count with the ability to return the strings with minimum and maximum counts.
 
-Implement the `AllOne` class with these operations:
+Implement the `AllOne` class:
 
-- `AllOne()` creates an empty structure.
-- `inc(key)` adds one to `key`'s count. A missing key is inserted with count $1$.
-- `dec(key)` subtracts one from an existing key's count. Remove the key if its count becomes $0$; the input
-  guarantees that the key exists before this call.
-- `getMaxKey()` returns any key whose count is maximal, or `""` when the structure is empty.
-- `getMinKey()` returns any key whose count is minimal, or `""` when the structure is empty.
+<ul>
+	<li>`AllOne()` Initializes the object of the data structure.</li>
+	<li>`inc(String key)` Increments the count of the string `key` by `1`. If `key` does not exist in the data structure, insert it with count `1`.</li>
+	<li>`dec(String key)` Decrements the count of the string `key` by `1`. If the count of `key` is `0` after the decrement, remove it from the data structure. It is guaranteed that `key` exists in the data structure before the decrement.</li>
+	<li>`getMaxKey()` Returns one of the keys with the maximal count. If no element exists, return an empty string `""`.</li>
+	<li>`getMinKey()` Returns one of the keys with the minimum count. If no element exists, return an empty string `""`.</li>
+</ul>
 
-When several keys share an extreme count, returning any one of them is valid.
+**Note** that each function must run in `O(1)` average time complexity.

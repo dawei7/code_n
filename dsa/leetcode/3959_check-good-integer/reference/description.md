@@ -1,7 +1,9 @@
 ## Description
 
-For a positive integer `n`, define `digitSum` as the sum of its decimal digits. Define `squareSum` as the sum obtained after squaring each of those digits individually.
+You are given a positive integer `n`.
 
-The integer is **good** precisely when the difference `squareSum - digitSum` is at least `50`.
+Let `digitSum` be the sum of the digits of `n`, and let `squareSum` be the sum of the squares of the digits of `n`.
 
-Only the usual base-10 representation of `n` is considered. Determine whether the supplied integer satisfies that inclusive threshold and return the corresponding boolean value.
+An integer is called **good** if `squareSum - digitSum >= 50`.
+
+Return `true` if `n` is good. Otherwise, return `false`.

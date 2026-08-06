@@ -1,9 +1,18 @@
 ## Description
 
-Given an integer array `nums`, count all of its arithmetic subsequences.
+Given an integer array `nums`, return *the number of all the **arithmetic subsequences** of* `nums`.
 
-An arithmetic sequence contains at least three elements and has the same difference between every pair of consecutive elements. For instance, `[1,3,5,7,9]`, `[7,7,7,7]`, and `[3,-1,-5,-9]` satisfy this definition, whereas `[1,1,2,5,7]` does not.
+A sequence of numbers is called arithmetic if it consists of **at least three elements** and if the difference between any two consecutive elements is the same.
 
-A subsequence retains the relative order of chosen elements while allowing any number of other elements to be removed. Thus `[2,5,10]` can be selected, in order, from `[1,2,1,2,4,1,5,10]`.
+<ul>
+	<li>For example, `[1, 3, 5, 7, 9]`, `[7, 7, 7, 7]`, and `[3, -1, -5, -9]` are arithmetic sequences.</li>
+	<li>For example, `[1, 1, 2, 5, 7]` is not an arithmetic sequence.</li>
+</ul>
 
-The generated inputs guarantee that the final count fits in a signed 32-bit integer.
+A **subsequence** of an array is a sequence that can be formed by removing some elements (possibly none) of the array.
+
+<ul>
+	<li>For example, `[2,5,10]` is a subsequence of `[1,2,1,**<u>2</u>**,4,1,<u>**5**</u>,<u>**10**</u>]`.</li>
+</ul>
+
+The test cases are generated so that the answer fits in **32-bit** integer.

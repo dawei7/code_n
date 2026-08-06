@@ -1,17 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_178", "frontend_id": "178", "title_slug": "rank-scores", "url": "https://leetcode.com/problems/rank-scores/description/", "paid_only": false, "content_sha256": "9a03d1f5f09448d68851d0b4b5aa06e874efa679ef678716e5395bf1c02a1ada", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_178",
+    "frontend_id": "178",
+    "title_slug": "rank-scores",
+    "url": "https://leetcode.com/problems/rank-scores/description/",
+    "paid_only": false,
+    "content_sha256": "9a03d1f5f09448d68851d0b4b5aa06e874efa679ef678716e5395bf1c02a1ada",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["scores_table", "description", "examples"],
+    "sections": [
+      "scores_table",
+      "description",
+      "examples"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "Scores = [[1,3.50],[2,3.65],[3,4.00],[4,3.85],[5,4.00],[6,3.65]]", "output": "[[4.00,1],[4.00,1],[3.85,2],[3.65,3],[3.65,3],[3.50,4]]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "Scores = [[1,3.50],[2,3.65],[3,4.00],[4,3.85],[5,4.00],[6,3.65]]",
+        "output": "[[4.00,1],[4.00,1],[3.85,2],[3.65,3],[3.65,3],[3.50,4]]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 0,
-    "visuals": {"source_images": 0, "source_tables": 3, "source_diagrams": 0, "local_images": 0, "local_tables": 3, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/scores_table.md": "31ba7e1cf2dfa42c0afc15e0178d965539e607e305df66c7de33dae6511f581a", "reference/description.md": "f3e1564ee951e77a3bcab37ed671d9bd386b5466e243c143b528f9be79053ad1", "reference/contract.md": "15a74277ea0c83f34abdce4f5f30bda7804a20a0879045af16aea560b7d5fe63", "reference/examples.md": "c663819b8cb098a30b067c8d277a89eeacd0766f450dd79c35b468bd421db70a"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/scores_table.md": "31ba7e1cf2dfa42c0afc15e0178d965539e607e305df66c7de33dae6511f581a",
+      "reference/description.md": "e24ef364face62658a9592baf49e60ae00ef10dce6b777c9f569953cd3b180aa",
+      "reference/contract.md": "15a74277ea0c83f34abdce4f5f30bda7804a20a0879045af16aea560b7d5fe63",
+      "reference/examples.md": "c663819b8cb098a30b067c8d277a89eeacd0766f450dd79c35b468bd421db70a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

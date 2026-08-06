@@ -8,25 +8,23 @@
     "url": "https://leetcode.com/problems/sort-integers-by-binary-reflection/description/",
     "paid_only": false,
     "content_sha256": "b339f8f3ae7c1e5ab63505280292d3a2c98e599df3fd8955ff8e60b45507b0b8",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`nums = [4,5,4]`",
-        "output": "`[4,4,5]`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`nums = [3,6,5,8]`",
-        "output": "`[8,3,6,5]`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -39,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "8b12389b04ca48f9243e801b94159444e132de6c29d1a08bcd9453bad11c51df",
+      "reference/description.md": "29be9294c1e6c13d49b6a710d311bc7135c0e70fd3b558bd970f580b0feb8da4",
       "reference/contract.md": "cf5fff9622a09d9592a2379b9d4964eaf0ca2628c144692e262de0be925ab38c",
       "reference/examples.md": "968ddebae049a4967fd83bae09abcd004b106762a5dedd1a5a2c128d5fee45ea",
       "reference/constraints.md": "c95f9ca913f063aa4a24666bfc88d6074be14bc9ccfb3e591a664c94594b5bf4"

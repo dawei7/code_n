@@ -1,5 +1,7 @@
 ## Description
 
-You receive an integer array `nums`. It is **beautiful** when every position after the first contains a value divisible by the value immediately before it: for each $i > 0$, `nums[i] % nums[i - 1] == 0`.
+You are given an integer array `nums`.
 
-One operation increments `nums[i]` by `1`, but only an index with $i > 0$ may be changed. Determine the fewest operations needed to make the entire array beautiful.
+In one operation, you can choose any element of `nums` and change its value to any integer.
+
+Return the **minimum** number of operations required to make `nums` beautiful. An array is defined as beautiful if all adjacent elements have different parities.

@@ -1,29 +1,62 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_40", "frontend_id": "40",
+    "provider": "leetcode",
+    "challenge_id": "lc_40",
+    "frontend_id": "40",
     "title_slug": "combination-sum-ii",
     "url": "https://leetcode.com/problems/combination-sum-ii/description/",
-    "paid_only": false, "content_sha256": "322b372ac85a5413ce6a96418a2bceaeaba5a24506b5b5578db9a8a981b2c4fb", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "322b372ac85a5413ce6a96418a2bceaeaba5a24506b5b5578db9a8a981b2c4fb",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "candidates = [10,1,2,7,6,1,5], target = 8", "output": "[[1,1,6],[1,2,5],[1,7],[2,6]]", "has_explanation": false},
-      {"ordinal": 2, "input": "candidates = [2,5,2,1,2], target = 5", "output": "[[1,2,2],[5]]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "candidates = [10,1,2,7,6,1,5], target = 8",
+        "output": "[[1,1,6],[1,2,5],[1,7],[2,6]]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "candidates = [2,5,2,1,2], target = 5",
+        "output": "[[1,2,2],[5]]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "dc0400a8966145607d73a9109b184629859f4487dc30ea968c18aaabe5dfc50a",
+      "reference/description.md": "49196f1794bd775784586377937bcedda2658df7f0982726642e3986255b9d9b",
       "reference/contract.md": "9f1b878a2f928678385a8e685a27f3c666aed222b60c32d8d1fa4a7994ef4e61",
       "reference/note.md": "fae60c68df5213aa3a22165795a6e435629c4f73a46b7fed06e22ee4874a5abd",
       "reference/examples.md": "896d63f70c34be24b013f8fdee50566d7bc6bd97d7b78bef4968fac0ff2c4788",
       "reference/constraints.md": "ad949110ba3e42185d79adfeae175051854d174e41a19dae2405c685d4c11b79"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

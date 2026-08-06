@@ -1,5 +1,5 @@
 ## Description
 
-A staircase has `n` steps between you and the top. On each move, you may climb either one step or two steps.
+You are climbing a staircase. It takes `n` steps to reach the top.
 
-Return the number of distinct move sequences that reach the top exactly.
+Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/minimum-k-to-reduce-array-within-limit/description/",
     "paid_only": false,
     "content_sha256": "c3b9268fae1a0fdc1a20ca348d1c7c94a4a027d59812bea2a2328f46aa00c4d4",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [3,7,5]",
+        "input": "n = 6",
         "output": "3",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [1]",
-        "output": "1",
-        "has_explanation": true
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "fa4c10ef86465306bd465168c4a19c90df4efa84b4d4a28dfb4eefa46bd7a257",
+      "reference/description.md": "cac9042c062ba1d07bf33009f052e63d3d7ba4b5fdcf00baf178010b25b4169c",
       "reference/contract.md": "151609011901521bd1141ab1a08c74d69ae56849aa7cd49117e1c165ed9e1744",
       "reference/examples.md": "ff2d0bb50138fe0fb50ca7115a99b87c752e4d1683a82cb646535102e9c33b0b",
       "reference/constraints.md": "2f55c0e5569d9dd65dadf518a80c857717f856b4c9bc3e0e5666725ab1b31c1f"

@@ -1,6 +1,3 @@
 ## Description
 
-Given an integer array `nums`, return its third distinct maximum value. Duplicate occurrences of the same value
-occupy only one distinct rank.
-
-If the array contains fewer than three distinct values, return its overall maximum instead.
+Given an integer array `nums`, return *the **third distinct maximum** number in this array. If the third maximum does not exist, return the **maximum** number*.

@@ -1,21 +1,29 @@
 ## Description
 
-Consider an abstract file system containing directories and files. One representative hierarchy has root directory `dir`; it contains `subdir1` and `subdir2`. The first contains `file1.ext` and `subsubdir1`, while the second contains `subsubdir2`, which in turn contains `file2.ext`.
+Suppose we have a file system that stores both files and directories. An example of one system is represented in the following picture:
 
-The source hierarchy and its indentation encoding can be represented together as follows. Each `\t` indicates one leading tab and each `\n` separates entries.
+<img alt="" src="https://assets.leetcode.com/uploads/2020/08/28/mdir.jpg" style="width: 681px; height: 322px;" />
 
-```text
-dir
-├─ \t subdir1
-│  ├─ \t\t file1.ext
-│  └─ \t\t subsubdir1
-└─ \t subdir2
-   └─ \t\t subsubdir2
-      └─ \t\t\t file2.ext
+Here, we have `dir` as the only directory in the root. `dir` contains two subdirectories, `subdir1` and `subdir2`. `subdir1` contains a file `file1.ext` and subdirectory `subsubdir1`. `subdir2` contains a subdirectory `subsubdir2`, which contains a file `file2.ext`.
+
+In text form, it looks like this (with ⟶ representing the tab character):
+
 ```
 
-Thus the serialized form is `"dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"`.
+dir
+⟶ subdir1
+⟶ ⟶ file1.ext
+⟶ ⟶ subsubdir1
+⟶ subdir2
+⟶ ⟶ subsubdir2
+⟶ ⟶ ⟶ file2.ext
 
-An absolute path lists the directories traversed to reach an entry and joins their names with `/`. For example, the path to `file2.ext` above is `"dir/subdir2/subsubdir2/file2.ext"`. Directory names contain letters, digits, or spaces. File names have the form `name.extension`, with letters, digits, or spaces in both parts.
+```
 
-Given a valid serialized file system string `input`, return the length of its longest absolute path ending at a file. Return `0` when the system contains no file. Every file and directory name is nonempty.
+If we were to write this representation in code, it will look like this: `"dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"`. Note that the `'\n'` and `'\t'` are the new-line and tab characters.
+
+Every file and directory has a unique **absolute path** in the file system, which is the order of directories that must be opened to reach the file/directory itself, all concatenated by `'/'s`. Using the above example, the **absolute path** to `file2.ext` is `"dir/subdir2/subsubdir2/file2.ext"`. Each directory name consists of letters, digits, and/or spaces. Each file name is of the form `name.extension`, where `name` and `extension` consist of letters, digits, and/or spaces.
+
+Given a string `input` representing the file system in the explained format, return *the length of the **longest absolute path** to a **file** in the abstracted file system*. If there is no file in the system, return `0`.
+
+**Note** that the testcases are generated such that the file system is valid and no file or directory name has length 0.

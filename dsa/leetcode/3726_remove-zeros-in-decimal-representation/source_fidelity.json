@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/remove-zeros-in-decimal-representation/description/",
     "paid_only": false,
     "content_sha256": "516e3799b3890b0caf1047730aee7a214a2882f2eb4ffdcdcee2a53440831e2b",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,15 +19,9 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 1020030",
-        "output": "123",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 1",
-        "output": "1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
     "constraint_count": 1,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "815f5460f8228c318202233004163be3c087ada0c9c5197f013dc283f05ccbd2",
+      "reference/description.md": "d40871d44de8d5e405cdcad9d47beb77229c62ace70a738c54d1c54a7a18c639",
       "reference/contract.md": "f3bba8ad574021e20815950fdcfa33d47500a445e1c84def79dce88003bf58c5",
       "reference/examples.md": "e76aca23b358ec203ecdcb507281a76309c09d5976dbbb9e3160917e28fc1ce2",
       "reference/constraints.md": "81dbefa1cf023abdca0871b3ebc6f221b180d129f401d161c0a419305e5dbcb9"

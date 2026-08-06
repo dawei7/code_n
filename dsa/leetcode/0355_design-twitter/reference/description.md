@@ -1,11 +1,13 @@
 ## Description
 
-Design a simplified Twitter service. Users must be able to publish tweets, follow or unfollow other users, and view the ten most recent tweets available in their news feed.
+Design a simplified version of Twitter where users can post tweets, follow/unfollow another user, and is able to see the `10` most recent tweets in the user's news feed.
 
 Implement the `Twitter` class:
 
-- `Twitter()` initializes the service object.
-- `void postTweet(int userId, int tweetId)` publishes a tweet with ID `tweetId` from `userId`. Every invocation receives a globally unique `tweetId`.
-- `List<Integer> getNewsFeed(int userId)` returns up to ten tweet IDs posted by `userId` or by users whom `userId` follows. Order them from most recent to least recent.
-- `void follow(int followerId, int followeeId)` makes `followerId` follow `followeeId`.
-- `void unfollow(int followerId, int followeeId)` makes `followerId` stop following `followeeId`.
+<ul>
+	<li>`Twitter()` Initializes your twitter object.</li>
+	<li>`void postTweet(int userId, int tweetId)` Composes a new tweet with ID `tweetId` by the user `userId`. Each call to this function will be made with a unique `tweetId`.</li>
+	<li>`List<Integer> getNewsFeed(int userId)` Retrieves the `10` most recent tweet IDs in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user themself. Tweets must be **ordered from most recent to least recent**.</li>
+	<li>`void follow(int followerId, int followeeId)` The user with ID `followerId` started following the user with ID `followeeId`.</li>
+	<li>`void unfollow(int followerId, int followeeId)` The user with ID `followerId` started unfollowing the user with ID `followeeId`.</li>
+</ul>

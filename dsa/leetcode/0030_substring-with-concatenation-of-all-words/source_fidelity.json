@@ -1,29 +1,66 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_30", "frontend_id": "30",
+    "provider": "leetcode",
+    "challenge_id": "lc_30",
+    "frontend_id": "30",
     "title_slug": "substring-with-concatenation-of-all-words",
     "url": "https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/",
-    "paid_only": false, "content_sha256": "7fdc881b33e8eb36cd941d22ea315205b7a47b7c903acd9d342ee933b174dcc6", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "7fdc881b33e8eb36cd941d22ea315205b7a47b7c903acd9d342ee933b174dcc6",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"barfoothefoobarman\", words = [\"foo\",\"bar\"]", "output": "[0,9]", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"wordgoodgoodgoodbestword\", words = [\"word\",\"good\",\"best\",\"word\"]", "output": "[]", "has_explanation": true},
-      {"ordinal": 3, "input": "s = \"barfoofoobarthefoobarman\", words = [\"bar\",\"foo\",\"the\"]", "output": "[6,9,12]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"barfoothefoobarman\", words = [\"foo\",\"bar\"]",
+        "output": "[0,9]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"wordgoodgoodgoodbestword\", words = [\"word\",\"good\",\"best\",\"word\"]",
+        "output": "[]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"barfoofoobarthefoobarman\", words = [\"bar\",\"foo\",\"the\"]",
+        "output": "[6,9,12]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "61fffd43a5807d25e20432a585d05a94f1911a9e167993e5c76d16cc624b7fd8",
+      "reference/description.md": "68d6939570e685370305db364009b613183e5b14d0621e75c815dab02cae93e2",
       "reference/contract.md": "5fc9cf7c1282b0f04ffd38fe7be788f32a1e3d6fda724611f521581a618c5fe2",
       "reference/examples.md": "90e09119eb60f498c6004b984c17d97c7e3f89463c2dd3aecd4dea77ec30d7a4",
       "reference/constraints.md": "02d3c4de2c54c242a4fdb55a801eea933509db13e900fdedefc2112dfc9ef077"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

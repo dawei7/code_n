@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_279", "frontend_id": "279", "title_slug": "perfect-squares", "url": "https://leetcode.com/problems/perfect-squares/description/", "paid_only": false, "content_sha256": "c596df0f103d039e03e583c4338cc9859c61ca2705cae733e70c2591be8e3a9d", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "n = 12", "output": "3", "has_explanation": true}, {"ordinal": 2, "input": "n = 13", "output": "2", "has_explanation": true}],
-    "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_279",
+    "frontend_id": "279",
+    "title_slug": "perfect-squares",
+    "url": "https://leetcode.com/problems/perfect-squares/description/",
+    "paid_only": false,
+    "content_sha256": "c596df0f103d039e03e583c4338cc9859c61ca2705cae733e70c2591be8e3a9d",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "0ffd7c35eeb7f696f26ad961de23617c2c7df3c11cb680b2c254134dc168ba5b", "reference/contract.md": "576ad8ca9460a576aaa459732efd12219f5df41597e99b43668fc79c7fe024a8", "reference/examples.md": "062d112e1ce59f58ac91906e7131538f3582f4968f3127ab245bf0a12ee2e72b", "reference/constraints.md": "a6eb09c68e979b233460b1b7f1c9e292a4bc5350d9e873e7bb5e00cef9eb6a35"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 12",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 13",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8934beba7c9b9fa9486ec3197bfb1f4b5c985706a6f70de641b891d29608ca6a",
+      "reference/contract.md": "576ad8ca9460a576aaa459732efd12219f5df41597e99b43668fc79c7fe024a8",
+      "reference/examples.md": "062d112e1ce59f58ac91906e7131538f3582f4968f3127ab245bf0a12ee2e72b",
+      "reference/constraints.md": "a6eb09c68e979b233460b1b7f1c9e292a4bc5350d9e873e7bb5e00cef9eb6a35"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

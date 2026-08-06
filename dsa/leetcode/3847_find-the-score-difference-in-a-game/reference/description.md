@@ -1,13 +1,15 @@
 ## Description
 
-You are given an integer array `nums`. Its element `nums[i]` is the number of points available in game $i$.
+You are given an integer array `nums`, where `nums[i]` represents the points scored in the `i^th` game.
 
-Exactly two players participate. Before any game is processed, the first player is active and the second player is inactive.
+There are **exactly **two players. Initially, the first player is **active** and the second player is **inactive**.
 
-Process the games from left to right. For every index $i$, apply these rules in order:
+The following rules apply **sequentially** for each game `i`:
 
-1. If `nums[i]` is odd, swap which player is active.
-2. On every sixth game—indices `5`, `11`, `17`, and so on—swap the active player again.
-3. The player who is active after both possible swaps plays game $i$ and receives `nums[i]` points.
+<ul>
+	<li>If `nums[i]` is odd, the active and inactive players swap roles.</li>
+	<li>In every 6th game (that is, game indices `5, 11, 17, ...`), the active and inactive players swap roles.</li>
+	<li>The active player plays the `i^th` game and gains `nums[i]` points.</li>
+</ul>
 
-Return the first player's total score minus the second player's total score.
+Return the **score difference**, defined as the first player's **total** score **minus** the second player's **total** score.

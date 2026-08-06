@@ -1,7 +1,18 @@
 ## Description
 
-Given an integer array `nums`, partition it from left to right by repeatedly removing a nonempty prefix. If the chosen prefix has length `k`, compute the prefix's MEX, append that value to `result`, and then continue with the unremoved suffix. The process ends only after every element has been removed.
+You are given an integer array `nums`.
 
-The MEX of an array is the smallest non-negative integer absent from that array. For example, a collection containing `0` and `1` but not `2` has MEX $2$, while any collection without `0` has MEX $0$.
+You want to construct an array `result` by repeatedly performing the following operation until `nums` becomes empty:
 
-Among every result array obtainable by choosing the prefix lengths, return the lexicographically maximum one. At the first position where two arrays differ, the array with the larger value is greater. If every position up to the length of the shorter array agrees, the longer array is greater.
+<ul>
+	<li>Choose an integer `k` such that `1 <= k <= len(nums)`.</li>
+	<li>Compute the **MEX** of the first `k` elements of `nums`.</li>
+	<li>Append this **MEX** to `result`.</li>
+	<li>Remove the first `k` elements from `nums`.</li>
+</ul>
+
+Return the **lexicographically maximum** array `result` that can be obtained after performing the operations.
+
+The **MEX** of an array is the **smallest non-negative** integer not present in the array.
+
+An array `a` is **lexicographically greater** than an array `b` if in the first position where `a` and `b` differ, array `a` has an element that is greater than the corresponding element in `b`. If the first `min(a.length, b.length)` elements do not differ, then the longer array is the **lexicographically greater** one.

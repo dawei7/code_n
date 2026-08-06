@@ -1,7 +1,5 @@
 ## Description
 
-An integer array `matchsticks` gives the length of every available matchstick. Determine whether those sticks can be
-joined to form the four sides of a single square.
+You are given an integer array `matchsticks` where `matchsticks[i]` is the length of the `i^th` matchstick. You want to use **all the matchsticks** to make one square. You **should not break** any stick, but you can link them up, and each matchstick must be used **exactly one time**.
 
-Every matchstick must be used exactly once, and no stick may be broken into smaller pieces. Return `true` when such a
-square can be formed; otherwise return `false`.
+Return `true` if you can make this square and `false` otherwise.

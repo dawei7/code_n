@@ -1,7 +1,9 @@
 ## Description
 
-You are given an array `nums` of positive integers.
+You are given an array of **positive** integers `nums`.
 
-A contiguous sequence is a **Fibonacci array** when every term from the third onward equals the sum of the two terms immediately before it.
+A **Fibonacci** array is a contiguous sequence whose third and subsequent terms each equal the sum of the two preceding terms.
 
-Return the length of the longest contiguous subarray of `nums` that is a Fibonacci array.
+Return the length of the longest **Fibonacci** **<span data-keyword="subarray-nonempty">subarray</span>** in `nums`.
+
+**Note:** Subarrays of length 1 or 2 are always **Fibonacci**.

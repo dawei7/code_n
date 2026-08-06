@@ -1,18 +1,12 @@
 ## Description
 
-You begin at index `0` of a 0-indexed integer array `nums` with length $n$.
+You are given a **0-indexed** array of integers `nums` of length `n`. You are initially positioned at index 0.
 
-The value `nums[i]` is the greatest permitted length of a forward jump from index `i`. From `i`, you may choose a jump length $j$ satisfying both
+Each element `nums[i]` represents the maximum length of a forward jump from index `i`. In other words, if you are at index `i`, you can jump to any index `(i + j)` where:
 
-$$
-0 \le j \le \texttt{nums[i]}
-$$
+<ul>
+	<li>`0 <= j <= nums[i]` and</li>
+	<li>`i + j < n`</li>
+</ul>
 
-and
-
-
-$$
-i + j < n.
-$$
-
-Return the minimum number of jumps required to reach index $n - 1$. Every test case guarantees that the final index is reachable.
+Return *the minimum number of jumps to reach index *`n - 1`. The test cases are generated such that you can reach index `n - 1`.

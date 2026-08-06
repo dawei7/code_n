@@ -1,12 +1,14 @@
 ## Description
 
-You are given an integer array `bulbs`, and every value in it lies between `1` and `100`.
+You are given an array `bulbs` of integers between 1 and 100.
 
-There are exactly 100 light bulbs, numbered `1` through `100`. Before processing the array, every bulb is off.
+There are 100 light bulbs numbered from 1 to 100. All of them are switched off initially.
 
-Read the entries of `bulbs` from left to right. For each `bulbs[i]`:
+For each element `bulbs[i]` in the array `bulbs`:
 
-- If that numbered bulb is off, switch it on.
-- Otherwise, switch that bulb off.
+<ul>
+	<li>If the `bulbs[i]^th` light bulb is currently off, switch it on.</li>
+	<li>Otherwise, switch it off.</li>
+</ul>
 
-Return the numbers of the bulbs that remain on after every toggle, sorted in ascending order. Return an empty list when all bulbs finish off.
+Return the list of integers denoting the light bulbs that are on in the end, **sorted** in **ascending** order. If no bulb is on, return an empty list.

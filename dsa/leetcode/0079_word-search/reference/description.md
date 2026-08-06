@@ -1,5 +1,5 @@
 ## Description
 
-Given an $m \times n$ character grid `board` and a string `word`, return whether the word can be found in the grid.
+Given an `m x n` grid of characters `board` and a string `word`, return `true` *if* `word` *exists in the grid*.
 
-Construct the word from a sequence of cells whose letters appear in order. Consecutive cells in the sequence must share a horizontal or vertical edge, and no cell may be used more than once in the same word.
+The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.

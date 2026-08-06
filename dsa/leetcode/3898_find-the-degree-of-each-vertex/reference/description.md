@@ -1,5 +1,12 @@
 ## Description
 
-You are given an $N\times N$ integer matrix `matrix` that represents a simple undirected graph. Its vertices are labeled from $0$ through $N-1$. An entry `matrix[i][j]` is $1$ exactly when an edge joins vertices $i$ and $j$; otherwise that entry is $0$.
+You are given a 2D integer array `matrix` of size `n x n` representing the adjacency matrix of an undirected graph with `n` vertices labeled from 0 to `n - 1`.
 
-The degree of a vertex is the number of edges incident to it. Return an integer array `ans` of length $N$ in which `ans[i]` is the degree of vertex $i$.
+<ul>
+	<li>`matrix[i][j] = 1` indicates that there is an edge between vertices `i` and `j`.</li>
+	<li>`matrix[i][j] = 0` indicates that there is no edge between vertices `i` and `j`.</li>
+</ul>
+
+The **degree** of a vertex is the number of edges connected to it.
+
+Return an integer array `ans` of size `n` where `ans[i]` represents the degree of vertex `i`.

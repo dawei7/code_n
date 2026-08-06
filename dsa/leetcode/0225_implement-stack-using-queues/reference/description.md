@@ -1,8 +1,19 @@
 ## Description
 
-Implement a last-in-first-out (**LIFO**) stack using only two queues. It must provide the usual stack operations through a `MyStack` class:
+Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack (`push`, `top`, `pop`, and `empty`).
 
-- `push(x)` places `x` on top of the stack.
-- `pop()` removes and returns the top element.
-- `top()` returns the top element without removing it.
-- `empty()` returns `true` when the stack has no elements and `false` otherwise.
+Implement the `MyStack` class:
+
+<ul>
+	<li>`void push(int x)` Pushes element x to the top of the stack.</li>
+	<li>`int pop()` Removes the element on the top of the stack and returns it.</li>
+	<li>`int top()` Returns the element on the top of the stack.</li>
+	<li>`boolean empty()` Returns `true` if the stack is empty, `false` otherwise.</li>
+</ul>
+
+**Notes:**
+
+<ul>
+	<li>You must use **only** standard operations of a queue, which means that only `push to back`, `peek/pop from front`, `size` and `is empty` operations are valid.</li>
+	<li>Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.</li>
+</ul>

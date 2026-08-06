@@ -1,0 +1,14 @@
+## Description
+
+Given two positive integers `num1` and `num2`, find the positive integer `x` such that:
+
+<ul>
+	<li>`x` has the same number of set bits as `num2`, and</li>
+	<li>The value `x XOR num1` is **minimal**.</li>
+</ul>
+
+Note that `XOR` is the bitwise XOR operation.
+
+Return *the integer *`x`. The test cases are generated such that `x` is **uniquely determined**.
+
+The number of **set bits** of an integer is the number of `1`'s in its binary representation.

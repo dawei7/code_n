@@ -1,7 +1,7 @@
 ## Description
 
-You are given a string `s` made only of the characters `a` and `b`.
+You are given a string `s` consisting only of the characters `'a'` and `'b'`.
 
-In one operation, choose any contiguous substring that contains the same number of `a` characters as `b` characters, then remove that entire substring. Join the portions before and after the removed substring to form the string used by the next operation.
+You are allowed to repeatedly remove **any <span data-keyword="substring-nonempty">substring</span>** where the number of `'a'` characters is equal to the number of `'b'` characters. After each removal, the remaining parts of the string are concatenated together without gaps.
 
-You may perform this operation as many times as desired, including zero times. Return the minimum length that can remain after choosing the removals optimally.
+Return an integer denoting the **minimum possible length** of the string after performing any number of such operations.

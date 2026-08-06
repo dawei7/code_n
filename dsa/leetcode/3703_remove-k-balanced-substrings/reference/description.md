@@ -1,7 +1,53 @@
 ## Description
 
-You are given a string `s` containing only `(` and `)`, together with an integer `k`.
+You are given a string `s` consisting of `'('` and `')'`, and an integer `k`.
 
-A string is **k-balanced** when it consists of exactly `k` consecutive opening parentheses followed immediately by exactly `k` consecutive closing parentheses. Equivalently, it is `'(' * k + ')' * k`; for example, `k = 3` gives `"((()))"`.
+A **string** is **k-balanced** if it is **exactly** `k` **consecutive** `'('` followed by `k` **consecutive** `')'`, i.e., `'(' * k + ')' * k`.
 
-In each round, remove every non-overlapping k-balanced substring currently present in `s`, then concatenate the pieces that remain. Repeat these rounds until the string contains no k-balanced substring. Return the final string.
+For example, if `k = 3`, k-balanced is `"((()))"`.
+
+You must **repeatedly** remove all **non-overlapping k-balanced <span data-keyword="substring-nonempty">substrings</span>** from `s`, and then join the remaining parts. Continue this process until no k-balanced **substring** exists.
+
+Return the final string after all possible removals.
+
+ 
+
+​​​​​​​<strong class="example">Example 1:</strong>
+
+<div class="example-block">
+**Input:** <span class="example-io">s = "(())", k = 1</span>
+
+**Output:** <span class="example-io">""</span>
+
+**Explanation:**
+
+k-balanced substring is `"()"`
+
+<table style="border: 1px solid black;">
+	<thead>
+		<tr>
+			<th style="border: 1px solid black;">Step</th>
+			<th style="border: 1px solid black;">Current `s`</th>
+			<th style="border: 1px solid black;">`k-balanced`</th>
+			<th style="border: 1px solid black;">Result `s`</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="border: 1px solid black;">1</td>
+			<td style="border: 1px solid black;">`(())`</td>
+			<td style="border: 1px solid black;">`(<s>**()**</s>)`</td>
+			<td style="border: 1px solid black;">`()`</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid black;">2</td>
+			<td style="border: 1px solid black;">`()`</td>
+			<td style="border: 1px solid black;"><s>**`()`**</s></td>
+			<td style="border: 1px solid black;">Empty</td>
+		</tr>
+	</tbody>
+</table>
+
+Thus, the final string is `""`.
+
+</div>

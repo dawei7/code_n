@@ -1,3 +1,3 @@
 ## Description
 
-Given a binary matrix with `rows` rows and `cols` columns, find the largest rectangular region containing only `1` cells and return its area.
+Given a `rows x cols` binary `matrix` filled with `0`'s and `1`'s, find the largest rectangle containing only `1`'s and return *its area*.

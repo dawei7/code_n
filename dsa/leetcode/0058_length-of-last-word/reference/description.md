@@ -1,5 +1,5 @@
 ## Description
 
-Given a string `s` made of words and spaces, return the number of characters in its last word.
+Given a string `s` consisting of words and spaces, return *the length of the **last** word in the string.*
 
-A word is a maximal substring containing only non-space characters.
+A **word** is a maximal <span data-keyword="substring-nonempty">substring</span> consisting of non-space characters only.

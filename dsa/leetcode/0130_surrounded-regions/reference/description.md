@@ -1,9 +1,11 @@
 ## Description
 
-You are given an $m \times n$ matrix `board` containing only `'X'` and `'O'`. Capture every surrounded region according to these definitions:
+You are given an `m x n` matrix `board` containing **letters** `'X'` and `'O'`, **capture regions** that are **surrounded**:
 
-- **Connected:** Two cells connect when they share a horizontal or vertical side.
-- **Region:** A region consists of `'O'` cells connected through those side adjacencies.
-- **Surrounded:** A region is surrounded when none of its `'O'` cells lies on the board's edge; such a region is completely enclosed by `'X'` cells.
+<ul>
+	<li>**Connect**: A cell is connected to adjacent cells horizontally or vertically.</li>
+	<li>**Region**: To form a region **connect every** `'O'` cell.</li>
+	<li>**Surround**: A region is surrounded if none of the `'O'` cells in that region are on the edge of the board. Such regions are **completely enclosed **by `'X'` cells.</li>
+</ul>
 
-Capture a surrounded region by replacing each of its `'O'` cells with `'X'` directly in the original board. Do not return a separate result.
+To capture a **surrounded region**, replace all `'O'`s with `'X'`s **in-place** within the original board. You do not need to return anything.

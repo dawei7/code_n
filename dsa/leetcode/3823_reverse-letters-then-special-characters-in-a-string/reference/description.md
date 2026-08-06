@@ -1,10 +1,12 @@
 ## Description
 
-You are given a string `s` made from lowercase English letters and special characters.
+You are given a string `s` consisting of lowercase English letters and special characters.
 
-Perform these two reversals **in order**:
+Your task is to perform these **in order**:
 
-1. Reverse the sequence of lowercase letters, then place those reversed letters back only into the positions that originally held letters.
-2. Reverse the sequence of special characters, then place those reversed characters back only into the positions that originally held special characters.
+<ul>
+	<li>**Reverse** the **lowercase letters** and place them back into the positions originally occupied by letters.</li>
+	<li>**Reverse** the **special characters** and place them back into the positions originally occupied by special characters.</li>
+</ul>
 
-Return the string produced after both reversals.
+Return the resulting string after performing the reversals.

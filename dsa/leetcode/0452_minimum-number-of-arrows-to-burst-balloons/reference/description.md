@@ -1,7 +1,7 @@
 ## Description
 
-Spherical balloons are attached to a flat wall representing the $xy$-plane. Each balloon is described only by its horizontal diameter: `points[i] = [x_start, x_end]`. Its exact vertical position is unknown.
+There are some spherical balloons taped onto a flat wall that represents the XY-plane. The balloons are represented as a 2D integer array `points` where `points[i] = [x_start, x_end]` denotes a balloon whose **horizontal diameter** stretches between `x_start` and `x_end`. You do not know the exact y-coordinates of the balloons.
 
-An arrow may be fired vertically upward from any coordinate $x$ on the $x$-axis. It continues upward without limit and bursts every balloon whose closed horizontal span contains that coordinate, so a balloon is hit when $x_{start} \le x \le x_{end}$. There is no limit on how many arrows may be fired.
+Arrows can be shot up **directly vertically** (in the positive y-direction) from different points along the x-axis. A balloon with `x_start` and `x_end` is **burst** by an arrow shot at `x` if `x_start <= x <= x_end`. There is **no limit** to the number of arrows that can be shot. A shot arrow keeps traveling up infinitely, bursting any balloons in its path.
 
-Given all balloon intervals, return the minimum number of arrows needed to burst every balloon.
+Given the array `points`, return *the **minimum** number of arrows that must be shot to burst all balloons*.

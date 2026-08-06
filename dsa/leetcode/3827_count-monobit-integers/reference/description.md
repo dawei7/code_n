@@ -2,6 +2,6 @@
 
 You are given an integer `n`.
 
-An integer is **Monobit** when every bit in its binary representation has the same value.
+An integer is called **Monobit** if all bits in its binary representation are the same.
 
-Return the number of Monobit integers contained in the inclusive range `[0, n]`.
+Return the count of **Monobit** integers in the range `[0, n]` (inclusive).

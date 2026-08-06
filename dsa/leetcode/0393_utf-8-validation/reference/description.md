@@ -1,19 +1,28 @@
 ## Description
 
-Given an integer array `data`, determine whether it represents a structurally valid sequence of UTF-8 encoded characters.
+Given an integer array `data` representing the data, return whether it is a valid **UTF-8** encoding (i.e. it translates to a sequence of valid UTF-8 encoded characters).
 
-A UTF-8 character uses between one and four bytes:
+A character in **UTF8** can be from **1 to 4 bytes** long, subjected to the following rules:
 
-- A one-byte character begins with bit `0`, followed by its Unicode payload.
-- For an $n$-byte character, the leading byte begins with $n$ one-bits followed by a zero, and each of the next $n-1$ bytes begins with bits `10`.
+<ol>
+	<li>For a **1-byte** character, the first bit is a `0`, followed by its Unicode code.</li>
+	<li>For an **n-bytes** character, the first `n` bits are all one's, the `n + 1` bit is `0`, followed by `n - 1` bytes with the most significant `2` bits being `10`.</li>
+</ol>
 
-The source's octet-pattern table is reproduced semantically below:
+This is how the UTF-8 encoding would work:
 
-| Bytes | UTF-8 octet sequence in binary |
-|---:|---|
-| 1 | `0xxxxxxx` |
-| 2 | `110xxxxx 10xxxxxx` |
-| 3 | `1110xxxx 10xxxxxx 10xxxxxx` |
-| 4 | `11110xxx 10xxxxxx 10xxxxxx 10xxxxxx` |
+```
 
-Each `x` represents a payload bit that may be either `0` or `1`.
+     Number of Bytes   |        UTF-8 Octet Sequence
+                       |              (binary)
+   --------------------+-----------------------------------------
+            1          |   0xxxxxxx
+            2          |   110xxxxx 10xxxxxx
+            3          |   1110xxxx 10xxxxxx 10xxxxxx
+            4          |   11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+
+```
+
+`x` denotes a bit in the binary form of a byte that may be either `0` or `1`.
+
+**Note: **The input is an array of integers. Only the **least significant 8 bits** of each integer is used to store the data. This means each integer represents only 1 byte of data.

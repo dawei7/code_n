@@ -1,7 +1,9 @@
 ## Description
 
-The complement of an integer is formed from its binary representation by changing each `0` bit to `1` and each `1`
-bit to `0`. Only the significant representation is considered; leading zero bits are not included.
+The **complement** of an integer is the integer you get when you flip all the `0`'s to `1`'s and all the `1`'s to `0`'s in its binary representation.
 
-For example, 5 has binary representation `101`. Flipping those three bits produces `010`, whose integer value is 2.
-Given the positive integer `num`, return its complement.
+<ul>
+	<li>For example, The integer `5` is `"101"` in binary and its **complement** is `"010"` which is the integer `2`.</li>
+</ul>
+
+Given an integer `num`, return *its complement*.

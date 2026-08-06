@@ -8,22 +8,20 @@
     "url": "https://leetcode.com/problems/largest-prime-from-consecutive-prime-sum/description/",
     "paid_only": false,
     "content_sha256": "2c6e748d5a494189c474b2e6b011de7d479a7cb1bf3a40669f4569ab5cd4c382",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`n = 20`",
-        "output": "`17`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`n = 2`",
-        "output": "`2`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
     "constraint_count": 1,
@@ -39,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "35178b7b38db237a84e914ac1ea54ec2e8f1a3f5ae3686aa02abbd4455979a3e",
+      "reference/description.md": "ea3d98e1af8080575611f683b846a0c9ae77499b52bddd33dd5f4cc6514985a1",
       "reference/contract.md": "4f94d6e142d86ef3b3082bd6eb04d7605daa48a3d39f3e3b9492df417e1fef0a",
       "reference/examples.md": "04f433fe1d97008f84f6ad26f83e9fde81b8cf2ac70b924350b964dd3261aa00",
       "reference/constraints.md": "5853c4edb5e810a82bc1eae72a2d021a70ac5cd7cedb2a6d35e005f055b5cb7f"

@@ -1,1 +1,54 @@
-{"schema_version":1,"source":{"provider":"leetcode","challenge_id":"lc_3786","frontend_id":"3786","title_slug":"total-sum-of-interaction-cost-in-tree-groups","url":"https://leetcode.com/problems/total-sum-of-interaction-cost-in-tree-groups/description/","paid_only":false,"content_sha256":"d75185cdcbe1ba4839990f6d4a2eb5862311ca0fb9db2d49059fb94b4cc8d3f8","checked_at":"2026-07-29"},"structure":{"sections":["description","examples","constraints"],"examples":[{"ordinal":1,"input":"`n = 3, edges = [[0,1],[1,2]], group = [1,1,1]`","output":"`4`","has_explanation":true},{"ordinal":2,"input":"`n = 3, edges = [[0,1],[1,2]], group = [3,2,3]`","output":"`2`","has_explanation":true},{"ordinal":3,"input":"`n = 4, edges = [[0,1],[0,2],[0,3]], group = [1,1,4,4]`","output":"`3`","has_explanation":true},{"ordinal":4,"input":"`n = 2, edges = [[0,1]], group = [9,8]`","output":"`0`","has_explanation":true}],"constraint_count":7,"visuals":{"source_images":2,"source_tables":0,"source_diagrams":0,"local_images":2,"local_tables":0,"local_diagrams":0}},"review":{"status":"verified","files":{"reference/description.md":"d422e6a783434cc4dc2da7bfd00ee0ac1a9531727d38e3edd843a789c6c29bdc","reference/contract.md":"de62e37d79c6efe0ef75f10170a5f754ad08612f127ffd2bb9bc1c817f226989","reference/examples.md":"f0d68fc043b9ec6b230f36779a9aed13dfcf7bc7398733c40a95456d466b755f","reference/constraints.md":"82833d31d2094372371c4ecb66e22aeee81d5ecb9e1cc8cd7780466bf9c2fd30"},"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}}
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3786",
+    "frontend_id": "3786",
+    "title_slug": "total-sum-of-interaction-cost-in-tree-groups",
+    "url": "https://leetcode.com/problems/total-sum-of-interaction-cost-in-tree-groups/description/",
+    "paid_only": false,
+    "content_sha256": "d75185cdcbe1ba4839990f6d4a2eb5862311ca0fb9db2d49059fb94b4cc8d3f8",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8565fb0f740ebd4e8c3c3e7f08fe7d34a8851c1051489c6165be878a8b829756",
+      "reference/contract.md": "de62e37d79c6efe0ef75f10170a5f754ad08612f127ffd2bb9bc1c817f226989",
+      "reference/examples.md": "f0d68fc043b9ec6b230f36779a9aed13dfcf7bc7398733c40a95456d466b755f",
+      "reference/constraints.md": "82833d31d2094372371c4ecb66e22aeee81d5ecb9e1cc8cd7780466bf9c2fd30"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

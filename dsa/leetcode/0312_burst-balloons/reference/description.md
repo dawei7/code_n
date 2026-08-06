@@ -1,7 +1,7 @@
 ## Description
 
-There are `n` balloons indexed from `0` to `n - 1`, and `nums[i]` is the number painted on balloon $i$. Burst every balloon in an order of your choice.
+You are given `n` balloons, indexed from `0` to `n - 1`. Each balloon is painted with a number on it represented by an array `nums`. You are asked to burst all the balloons.
 
-When the current balloon $i$ is burst, it earns `nums[i - 1] * nums[i] * nums[i + 1]` coins using its then-adjacent surviving neighbors. If either neighbor is outside the current array, treat that side as a balloon painted with `1`.
+If you burst the `i^th` balloon, you will get `nums[i - 1] * nums[i] * nums[i + 1]` coins. If `i - 1` or `i + 1` goes out of bounds of the array, then treat it as if there is a balloon with a `1` painted on it.
 
-Return the maximum total coins obtainable by choosing the burst order wisely.
+Return *the maximum coins you can collect by bursting the balloons wisely*.

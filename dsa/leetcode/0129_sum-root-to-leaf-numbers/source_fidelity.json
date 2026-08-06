@@ -1,18 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_129", "frontend_id": "129", "title_slug": "sum-root-to-leaf-numbers", "url": "https://leetcode.com/problems/sum-root-to-leaf-numbers/description/", "paid_only": false, "content_sha256": "0c55ea4a0650eb4b84df96c5f480b9f691b23245313495e76203fbc1dd63f3ad", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_129",
+    "frontend_id": "129",
+    "title_slug": "sum-root-to-leaf-numbers",
+    "url": "https://leetcode.com/problems/sum-root-to-leaf-numbers/description/",
+    "paid_only": false,
+    "content_sha256": "0c55ea4a0650eb4b84df96c5f480b9f691b23245313495e76203fbc1dd63f3ad",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "root = [1,2,3]", "output": "25", "has_explanation": true},
-      {"ordinal": 2, "input": "root = [4,9,0,5,1]", "output": "1026", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "root = [1,2,3]",
+        "output": "25",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "root = [4,9,0,5,1]",
+        "output": "1026",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "4c377ff73a6b9472b43efeb00e2dc8d73174c86b24fc951aea2c37356ba7dc50", "reference/contract.md": "1e6aa82468044551e3506c8e37d3d4e1dfdf8f782bfa022970fa3845815686d6", "reference/examples.md": "0662f5c5866cc9df6d8608c8a0dec5a29e1d83bd174984522ce293aa69c47e17", "reference/constraints.md": "fd065ce210fb357402364e231dfe6e60ecb78c1c8ef01626147daff19848aa41"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "b8520a08ecfa12bde16378d80a235a3c6239ff8513bc9b81204946e9d3226669",
+      "reference/contract.md": "1e6aa82468044551e3506c8e37d3d4e1dfdf8f782bfa022970fa3845815686d6",
+      "reference/examples.md": "0662f5c5866cc9df6d8608c8a0dec5a29e1d83bd174984522ce293aa69c47e17",
+      "reference/constraints.md": "fd065ce210fb357402364e231dfe6e60ecb78c1c8ef01626147daff19848aa41"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

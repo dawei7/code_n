@@ -1,3 +1,5 @@
 ## Description
 
-Given an integer `n`, return an array `ans` of length $n+1$. For every integer $i$ in the inclusive range $0 \le i \le n$, `ans[i]` must equal the number of `1` bits in the binary representation of $i$.
+Given an integer `n`, return *an array *`ans`* of length *`n + 1`* such that for each *`i`* *(`0 <= i <= n`)*, *`ans[i]`* is the **number of ***`1`***'s** in the binary representation of *`i`.
+
+Do not solve it with built-in functions (i.e., like `__builtin_popcount` in C++).

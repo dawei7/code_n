@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/sum-of-primes-between-number-and-its-reverse/description/",
     "paid_only": false,
     "content_sha256": "1718492ba81f3242a2129adb4b29e94d09d52aea18d132b79f79d8bad257a967",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,21 +19,9 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 13",
-        "output": "132",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 10",
-        "output": "17",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "n = 8",
-        "output": "0",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
     "constraint_count": 1,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "e2314183f26108c15de0f30a023bc0514b56f1f83cd8f3813eec646cbb7b558b",
+      "reference/description.md": "77f0ead30de107bb4e6eb07e495502753310e6b8f6c19926f07d97e4660cc22e",
       "reference/contract.md": "29db74699e6693f2dc95caaec92a287937201aa55a4ea4b42d97905922efeae8",
       "reference/examples.md": "fa1fe45d1032220a9ad2f91c32c683e711568a45361b3a4203ab402ec0ec52a8",
       "reference/constraints.md": "612384068f36cccae84708e102bb899eec915c07d49faccd0b4c22a30dcd7196"

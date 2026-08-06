@@ -1,7 +1,7 @@
 ## Description
 
-You are given integers `l`, `r`, and `k`. Form every possible sequence of exactly `k` digits by choosing each position independently from the inclusive integer interval `[l, r]`.
+You are given three integers `l`, `r`, and `k`.
 
-Interpret each sequence as an integer and add all of those integers. When `0` belongs to the permitted interval, a sequence may begin with one or more zeros; those sequences are still included among the choices.
+Consider all possible integers consisting of **exactly** `k` digits, where each digit is chosen independently from the integer range `[l, r]` (inclusive). If 0 is included in the range, leading zeros are allowed.
 
-Return the total modulo $10^9+7$.
+Return an integer representing the **sum of all such numbers.**​​​​​​​ Since the answer may be very large, return it **modulo** `10^9 + 7`.

@@ -1,5 +1,5 @@
 ## Description
 
-Given an integer array `nums` that may contain repeated values, return every possible subset—the power set.
+Given an integer array `nums` that may contain duplicates, return *all possible* <span data-keyword="subset">*subsets*</span>* (the power set)*.
 
-The result must not contain duplicate subsets and may be returned in any order.
+The solution set **must not** contain duplicate subsets. Return the solution in **any order**.

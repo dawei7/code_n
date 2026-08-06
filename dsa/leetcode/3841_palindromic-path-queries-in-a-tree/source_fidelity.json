@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/palindromic-path-queries-in-a-tree/description/",
     "paid_only": false,
     "content_sha256": "07154c3f26079b6f17e8bbe6f59cf6a48821682f51af11b4ed68cc698065114a",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 3, edges = [[0,1],[1,2]], s = \"aac\", queries = [\"query 0 2\",\"update 1 b\",\"query 0 2\"]",
-        "output": "[true,false]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 4, edges = [[0,1],[0,2],[0,3]], s = \"abca\", queries = [\"query 1 2\",\"update 0 b\",\"query 2 3\",\"update 3 a\",\"query 1 3\"]",
-        "output": "[false,false,true]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 11,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "30fa478cac8bcd2671d163d5e444fa34a66e672afe4d13ce235f6fce2e6882e8",
+      "reference/description.md": "5f2ac439d9e7aaa97bcc1d529d81c84b613584e889ddec526fc4ef50a1684f23",
       "reference/contract.md": "afb1c034751e0e1260a42e202eee86b7ea95cd79c5e058a72c94fd05832e3d0c",
       "reference/examples.md": "b4dbbcc0e2b0149482ad83015ba754f3dde2805a6903f13d8256aa2257c46603",
       "reference/constraints.md": "63a585fb581509f366afb2e17e79eef3b3cd37aaac3780ef74c2d1f4b97c7cc1"

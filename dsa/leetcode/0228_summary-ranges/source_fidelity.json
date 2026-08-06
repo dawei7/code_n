@@ -1,11 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_228", "frontend_id": "228", "title_slug": "summary-ranges", "url": "https://leetcode.com/problems/summary-ranges/description/", "paid_only": false, "content_sha256": "273b0947a5f89c07f7c96fb05d9c591a3fd5055ff278ddb83f79cdbc21602847", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "nums = [0,1,2,4,5,7]", "output": "[\"0->2\",\"4->5\",\"7\"]", "has_explanation": true}, {"ordinal": 2, "input": "nums = [0,2,3,4,6,8,9]", "output": "[\"0\",\"2->4\",\"6\",\"8->9\"]", "has_explanation": true}],
-    "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_228",
+    "frontend_id": "228",
+    "title_slug": "summary-ranges",
+    "url": "https://leetcode.com/problems/summary-ranges/description/",
+    "paid_only": false,
+    "content_sha256": "273b0947a5f89c07f7c96fb05d9c591a3fd5055ff278ddb83f79cdbc21602847",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "398a6e9541b1de387783bca0b79af5e0ea915ba660c60ed165e8900948925520", "reference/contract.md": "1f8dae2c9025aaace2d9fe6aa4becbad0480a03f5ba33e55fad58e18efce9c74", "reference/examples.md": "7296a4020d452ccdd325bcdc4e8935d8890a9f43bcbc0c79c4636e57dc53e5de", "reference/constraints.md": "044827a5b4eb63cd7e004f435e9ce6815b4c02788c0d6f0aef21ef34545575c9"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [0,1,2,4,5,7]",
+        "output": "[\"0->2\",\"4->5\",\"7\"]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [0,2,3,4,6,8,9]",
+        "output": "[\"0\",\"2->4\",\"6\",\"8->9\"]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "72c87e15ae7985407b6b5dfad5f7d45d872827915ffeeae8a96b9b764356ed70",
+      "reference/contract.md": "1f8dae2c9025aaace2d9fe6aa4becbad0480a03f5ba33e55fad58e18efce9c74",
+      "reference/examples.md": "7296a4020d452ccdd325bcdc4e8935d8890a9f43bcbc0c79c4636e57dc53e5de",
+      "reference/constraints.md": "044827a5b4eb63cd7e004f435e9ce6815b4c02788c0d6f0aef21ef34545575c9"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

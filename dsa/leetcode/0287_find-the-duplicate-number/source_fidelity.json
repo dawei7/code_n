@@ -1,11 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_287", "frontend_id": "287", "title_slug": "find-the-duplicate-number", "url": "https://leetcode.com/problems/find-the-duplicate-number/description/", "paid_only": false, "content_sha256": "c028672cfeb07cd1c3cd5251fdb260c62bd2157190b08143f69fb9b9fbb3ea05", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "nums = [1,3,4,2,2]", "output": "2", "has_explanation": false}, {"ordinal": 2, "input": "nums = [3,1,3,4,2]", "output": "3", "has_explanation": false}, {"ordinal": 3, "input": "nums = [3,3,3,3,3]", "output": "3", "has_explanation": false}],
-    "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_287",
+    "frontend_id": "287",
+    "title_slug": "find-the-duplicate-number",
+    "url": "https://leetcode.com/problems/find-the-duplicate-number/description/",
+    "paid_only": false,
+    "content_sha256": "c028672cfeb07cd1c3cd5251fdb260c62bd2157190b08143f69fb9b9fbb3ea05",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "eb71836694d6e3f5f5baaa3614c71c9d952645c9d7f405f9355264b66c662eb8", "reference/contract.md": "a788c95354e878b15c59125091244bfeabaebc7c63bd64ae3f9ced1c52e32365", "reference/examples.md": "05adc3baa4901ba9eea3bd8c747db5d10d317aff1c53e8e6cffe6659449d210f", "reference/constraints.md": "15561668859adb1fe54b08b5020479f67cf9c8347193fe2c4769651c09e86192", "reference/follow_up.md": "daf67e799ef314d8ff4f41bb0006847816b042217395a321c2de985e11ead704"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,3,4,2,2]",
+        "output": "2",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [3,1,3,4,2]",
+        "output": "3",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [3,3,3,3,3]",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b25c33b9fbe1d232b22f6f4a87806af11bede21b81ffd39408d5c331165ed726",
+      "reference/contract.md": "a788c95354e878b15c59125091244bfeabaebc7c63bd64ae3f9ced1c52e32365",
+      "reference/examples.md": "05adc3baa4901ba9eea3bd8c747db5d10d317aff1c53e8e6cffe6659449d210f",
+      "reference/constraints.md": "15561668859adb1fe54b08b5020479f67cf9c8347193fe2c4769651c09e86192",
+      "reference/follow_up.md": "daf67e799ef314d8ff4f41bb0006847816b042217395a321c2de985e11ead704"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

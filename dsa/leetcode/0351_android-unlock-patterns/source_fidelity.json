@@ -1,19 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_351", "frontend_id": "351", "title_slug": "android-unlock-patterns", "url": "https://leetcode.com/problems/android-unlock-patterns/description/", "paid_only": true, "content_sha256": "528db6426e93c6d78159012136e606a53189a714dddf37477bc161e0fbc3afba", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_351",
+    "frontend_id": "351",
+    "title_slug": "android-unlock-patterns",
+    "url": "https://leetcode.com/problems/android-unlock-patterns/description/",
+    "paid_only": true,
+    "content_sha256": "528db6426e93c6d78159012136e606a53189a714dddf37477bc161e0fbc3afba",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "m = 1, n = 1", "output": "9", "has_explanation": false},
-      {"ordinal": 2, "input": "m = 1, n = 2", "output": "65", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "m = 1, n = 1",
+        "output": "9",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "m = 1, n = 2",
+        "output": "65",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "c9da9ecd0d343e2e3b24714c1918a3ba84b1689224020c784c141a9262968ad6",
-    "reference/contract.md": "42d3e58fdea5721e64632ee3566ccdf7e704d9324539f245d9f29fee327c07ef",
-    "reference/examples.md": "fbaeb85b8f9cb11f844caf733f2f42f8038ea33a51330970e66d5066ae15fc59",
-    "reference/constraints.md": "8f86acb7f9e97317590fa9213eaae0eb259960f084d79a650c7d88252a192c5b"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c9da9ecd0d343e2e3b24714c1918a3ba84b1689224020c784c141a9262968ad6",
+      "reference/contract.md": "42d3e58fdea5721e64632ee3566ccdf7e704d9324539f245d9f29fee327c07ef",
+      "reference/examples.md": "fbaeb85b8f9cb11f844caf733f2f42f8038ea33a51330970e66d5066ae15fc59",
+      "reference/constraints.md": "8f86acb7f9e97317590fa9213eaae0eb259960f084d79a650c7d88252a192c5b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

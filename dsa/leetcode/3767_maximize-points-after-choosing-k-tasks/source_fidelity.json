@@ -8,31 +8,23 @@
     "url": "https://leetcode.com/problems/maximize-points-after-choosing-k-tasks/description/",
     "paid_only": false,
     "content_sha256": "a85907a7835b1661e6468acc4fa9a4be7c2719ecde769bc58fde43983abd0761",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`technique1 = [5,2,10], technique2 = [10,3,8], k = 2`",
-        "output": "`22`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`technique1 = [10,20,30], technique2 = [5,15,25], k = 2`",
-        "output": "`60`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "`technique1 = [1,2,3], technique2 = [4,5,6], k = 0`",
-        "output": "`15`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -45,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "cf7c38575b4ef0fa2b17fc1c5fdbf712bbe29f7b16b64103b2c4a7887285361c",
+      "reference/description.md": "2050a926646e06bb2d216742f40e43dd4550c7503723e1ad3d6334de86ceadb0",
       "reference/contract.md": "59d4e29333a7d1707db882d9e3143db3b9d01347bad9b968917f3a3b27688a0d",
       "reference/examples.md": "e8c8af13c8dc906b44b3b23577b6f2d206af67a70b42b4dacbf5d56d4a26fb8f",
       "reference/constraints.md": "c4bababbcad571931096fba20a659d91cd993e0d2783fd1f2b8c089e74aa0a53"

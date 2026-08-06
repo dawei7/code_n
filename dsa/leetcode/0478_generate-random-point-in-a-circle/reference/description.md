@@ -1,7 +1,10 @@
 ## Description
 
-Given a circle's positive radius and center position, implement a generator that returns points uniformly at random
-from the circle's area. Points on the circumference count as inside the circle.
+Given the radius and the position of the center of a circle, implement the function `randPoint` which generates a uniform random point inside the circle.
 
-The native `Solution` object stores `radius`, `x_center`, and `y_center`. Each call to `randPoint()` returns one
-floating-point coordinate pair `[x, y]` sampled from the specified circle.
+Implement the `Solution` class:
+
+<ul>
+	<li>`Solution(double radius, double x_center, double y_center)` initializes the object with the radius of the circle `radius` and the position of the center `(x_center, y_center)`.</li>
+	<li>`randPoint()` returns a random point inside the circle. A point on the circumference of the circle is considered to be in the circle. The answer is returned as an array `[x, y]`.</li>
+</ul>

@@ -1,19 +1,70 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_97", "frontend_id": "97", "title_slug": "interleaving-string", "url": "https://leetcode.com/problems/interleaving-string/description/", "paid_only": false, "content_sha256": "97258b58f1bbaf199e7c9b1b15c42e479a947d50a429df96a36cc11d08686fc7", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_97",
+    "frontend_id": "97",
+    "title_slug": "interleaving-string",
+    "url": "https://leetcode.com/problems/interleaving-string/description/",
+    "paid_only": false,
+    "content_sha256": "97258b58f1bbaf199e7c9b1b15c42e479a947d50a429df96a36cc11d08686fc7",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbcbcac\"", "output": "true", "has_explanation": true},
-      {"ordinal": 2, "input": "s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbbaccc\"", "output": "false", "has_explanation": true},
-      {"ordinal": 3, "input": "s1 = \"\", s2 = \"\", s3 = \"\"", "output": "true", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbcbcac\"",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbbaccc\"",
+        "output": "false",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s1 = \"\", s2 = \"\", s3 = \"\"",
+        "output": "true",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "da34a2b10e8521cc13d8012da19689bc9602791a796012c0854693c67cdab0ab", "reference/contract.md": "70f3e67c2769605585872ecd9400f7c9f3337eb75dc2a07a5db3395a71890589", "reference/note.md": "436b4f29962af3626dbcdf32e0983e3fbbec1ec30a94016afc5b37e8ca6ae0a7", "reference/examples.md": "182d9ebba29a3ccb8bb5cf6b372c2d63018eff7825dd8acbf10f1c29bc17c61d", "reference/constraints.md": "4cd1660f87518689ec1ef0bcc28cc50c79fcc91b8dc0742bd5cb17c5065fba32", "reference/follow_up.md": "4c110fdf302dc5070c56fccac6fb40dbfc146939587fa8825ac2441f0230ec5e"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "8f70e553ea174a7f4561962b119e45d3bdde33f46317b9918c95c999356b9340",
+      "reference/contract.md": "70f3e67c2769605585872ecd9400f7c9f3337eb75dc2a07a5db3395a71890589",
+      "reference/note.md": "436b4f29962af3626dbcdf32e0983e3fbbec1ec30a94016afc5b37e8ca6ae0a7",
+      "reference/examples.md": "182d9ebba29a3ccb8bb5cf6b372c2d63018eff7825dd8acbf10f1c29bc17c61d",
+      "reference/constraints.md": "4cd1660f87518689ec1ef0bcc28cc50c79fcc91b8dc0742bd5cb17c5065fba32",
+      "reference/follow_up.md": "4c110fdf302dc5070c56fccac6fb40dbfc146939587fa8825ac2441f0230ec5e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

@@ -1,5 +1,14 @@
 ## Description
 
-An integer array `nums` contains $n$ elements. Build a new array `ans` of length $2n$ by placing an unchanged copy of `nums` in its first half and the elements of `nums` in reverse order in its second half.
+You are given an integer array `nums` of length `n`.
 
-More precisely, for every index $i$ from $0$ through $n-1$, position `i` of the result must equal `nums[i]`, while position `i + n` must equal `nums[n - i - 1]`. Return the newly constructed array; the values and their repetitions must be preserved exactly.
+Construct a new array `ans` of length `2 * n` such that the first `n` elements are the same as `nums`, and the next `n` elements are the elements of `nums` in reverse order.
+
+Formally, for `0 <= i <= n - 1`:
+
+<ul>
+	<li>`ans[i] = nums[i]`</li>
+	<li>`ans[i + n] = nums[n - i - 1]`</li>
+</ul>
+
+Return an integer array `ans`.

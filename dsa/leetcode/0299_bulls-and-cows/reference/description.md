@@ -1,8 +1,14 @@
 ## Description
 
-In the Bulls and Cows game, you choose a secret number and a friend attempts to guess it. After a guess, report two kinds of matches:
+You are playing the **<a href="https://en.wikipedia.org/wiki/Bulls_and_Cows" target="_blank">Bulls and Cows</a>** game with your friend.
 
-- A **bull** is a guessed digit that is already in the correct position.
-- A **cow** is a non-bull guessed digit that occurs in the secret at a different position. Equivalently, it is one of the remaining digits that could be rearranged to create an additional bull.
+You write down a secret number and ask your friend to guess what the number is. When your friend makes a guess, you provide a hint with the following info:
 
-Given the strings `secret` and `guess`, return the hint in the form `"xAyB"`, where `x` is the bull count and `y` is the cow count. Both strings may contain repeated digits, and each occurrence can be matched at most once.
+<ul>
+	<li>The number of "bulls", which are digits in the guess that are in the correct position.</li>
+	<li>The number of "cows", which are digits in the guess that are in your secret number but are located in the wrong position. Specifically, the non-bull digits in the guess that could be rearranged such that they become bulls.</li>
+</ul>
+
+Given the secret number `secret` and your friend's guess `guess`, return *the hint for your friend's guess*.
+
+The hint should be formatted as `"xAyB"`, where `x` is the number of bulls and `y` is the number of cows. Note that both `secret` and `guess` may contain duplicate digits.

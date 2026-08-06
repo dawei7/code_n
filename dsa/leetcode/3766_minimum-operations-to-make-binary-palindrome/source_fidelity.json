@@ -8,38 +8,36 @@
     "url": "https://leetcode.com/problems/minimum-operations-to-make-binary-palindrome/description/",
     "paid_only": false,
     "content_sha256": "42708a55a583d279138c2cc9694ac67aab22bd2ccda851ef82db67cf7227b0ce",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`nums = [1,2,4]`",
-        "output": "`[0,1,1]`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`nums = [6,7,12]`",
-        "output": "`[1,0,3]`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 2,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 2,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "b7f6c30014b792eb4f2f4f981764d1c5b2d23593aa0eff272136ed3250dda330",
+      "reference/description.md": "ffffd3597f37a4f0c2a62b7b760265fb7eeb6da22e99f2541827b93a5af503ea",
       "reference/contract.md": "e653938d8e7ec3b5b5a3530dd15786578ede8414c8d39466de413f59f76b6915",
       "reference/examples.md": "7ceb4ba4ad345e4fb3a1b2129485545bf0df935281787d90b2ce9f8ab72fc05d",
       "reference/constraints.md": "1e20fc08a9fdeee9fb574e2ea2f0b4331b3f42e2cac5dc054d6ed95a22e91448"

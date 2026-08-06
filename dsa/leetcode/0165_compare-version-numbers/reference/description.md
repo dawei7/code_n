@@ -1,11 +1,13 @@
 ## Description
 
-Given two version strings, `version1` and `version2`, compare them. Each version is a dot-separated sequence of **revisions**. A revision's value is its integer conversion, so leading zeroes do not change that value.
+Given two **version strings**, `version1` and `version2`, compare them. A version string consists of **revisions** separated by dots `'.'`. The **value of the revision** is its **integer conversion** ignoring leading zeros.
 
-Compare revision values from left to right. When one version has fewer revisions, treat each missing revision as `0`.
+To compare version strings, compare their revision values in **left-to-right order**. If one of the version strings has fewer revisions, treat the missing revision values as `0`.
 
-Return:
+Return the following:
 
-- `-1` if `version1 < version2`;
-- `1` if `version1 > version2`;
-- `0` otherwise.
+<ul>
+	<li>If `version1 < version2`, return -1.</li>
+	<li>If `version1 > version2`, return 1.</li>
+	<li>Otherwise, return 0.</li>
+</ul>

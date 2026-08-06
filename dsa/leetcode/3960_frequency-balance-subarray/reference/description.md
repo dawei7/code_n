@@ -1,7 +1,12 @@
 ## Description
 
-Given an integer array `nums`, consider each nonempty contiguous subarray and the occurrence count of every distinct value inside it.
+You are given an integer array ​​​​​​​`nums`.
 
-A subarray is **frequency balanced** when it contains just one distinct value. If it contains multiple distinct values, there must instead be some positive integer $f$ for which every distinct value occurs either $f$ or $2f$ times. Both of those frequency levels must actually be represented by at least one value.
+Define a **frequency balance <span data-keyword="subarray-nonempty">subarray</span>** as follows:
 
-Return the length of the longest frequency balance subarray. A subarray with several distinct values all occurring equally often does not satisfy the second rule, because it has only one frequency level.
+<ul>
+	<li>If the subarray contains only one distinct value, it is frequency balanced.</li>
+	<li>Otherwise, there must exist a positive integer `f` such that every distinct value in the subarray occurs either `f` or `2 * f` times, and both <span data-keyword="frequency-array">frequencies</span> occur among the distinct values.</li>
+</ul>
+
+Return an integer denoting the length of the **longest** frequency balance subarray.

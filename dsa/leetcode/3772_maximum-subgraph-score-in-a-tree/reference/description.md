@@ -1,11 +1,15 @@
 ## Description
 
-You are given an undirected tree with $n$ nodes numbered from $0$ through $n-1$. Its `n - 1` edges are listed in `edges`; each pair `[a_i,b_i]` joins nodes `a_i` and `b_i`.
+You are given an **undirected tree** with `n` nodes, numbered from 0 to `n - 1`. It is represented by a 2D integer array `edges`​​​​​​​ of length `n - 1`, where `edges[i] = [a_i, b_i]` indicates that there is an edge between nodes `a_i` and `b_i` in the tree.
 
-An array `good` classifies every node. Node `i` is **good** when `good[i] = 1` and **bad** when `good[i] = 0`.
+You are also given an integer array `good` of length `n`, where `good[i]` is 1 if the `i^th` node is good, and 0 if it is bad.
 
-The score of a subgraph is its number of good nodes minus its number of bad nodes. For every node `i`, determine the greatest score among all connected subgraphs that contain `i`.
+Define the **score** of a **subgraph** as the number of good nodes minus the number of bad nodes in that subgraph.
 
-Return an array of $n$ integers whose `i`th value is that maximum score for node `i`.
+For each node `i`, find the **maximum** possible score among all **connected subgraphs** that contain node `i`.
 
-A **subgraph** selects some vertices and edges from the original tree. It is **connected** when every two selected vertices can reach one another using only selected edges.
+Return an array of `n` integers where the `i^th` element is the **maximum** score for node `i`.
+
+A **subgraph** is a graph whose vertices and edges are subsets of the original graph.
+
+A **connected subgraph** is a subgraph in which every pair of its vertices is reachable from one another using only its edges.

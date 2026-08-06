@@ -1,14 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3736","frontend_id":"3736","title_slug":"minimum-moves-to-equal-array-elements-iii","url":"https://leetcode.com/problems/minimum-moves-to-equal-array-elements-iii/description/","paid_only":false,"content_sha256":"bc32b44f3a168853c5cbeafba07f8821d09b2c05a1a1ebd46e7e751943106289","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"nums = [2,1,3]","output":"3","has_explanation":true},
-    {"ordinal":2,"input":"nums = [4,4,5]","output":"2","has_explanation":true}
-  ],"constraint_count":2,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"87fc2cf1ac7633b87d589a6ab5032e390408fbaaaf31a931255747c311d3f4cc",
-    "reference/contract.md":"5d91b5011de469fcf454de23c39e8aa17d848becea65655dd68abd4cd8fdd04d",
-    "reference/examples.md":"52df50031ddd0b77f29ee1a216c5306b199435826413f2d8d4605af24ab25b3d",
-    "reference/constraints.md":"fb1f76f0350653a8e6b45878fe758d4f8d7b16c53e05fad4ff931a8bf486a6e6"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3736",
+    "frontend_id": "3736",
+    "title_slug": "minimum-moves-to-equal-array-elements-iii",
+    "url": "https://leetcode.com/problems/minimum-moves-to-equal-array-elements-iii/description/",
+    "paid_only": false,
+    "content_sha256": "bc32b44f3a168853c5cbeafba07f8821d09b2c05a1a1ebd46e7e751943106289",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5e515967c18256db3eed7a035fcd7d8f679c15e08583c9c52e0771bd91fcfb02",
+      "reference/contract.md": "5d91b5011de469fcf454de23c39e8aa17d848becea65655dd68abd4cd8fdd04d",
+      "reference/examples.md": "52df50031ddd0b77f29ee1a216c5306b199435826413f2d8d4605af24ab25b3d",
+      "reference/constraints.md": "fb1f76f0350653a8e6b45878fe758d4f8d7b16c53e05fad4ff931a8bf486a6e6"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

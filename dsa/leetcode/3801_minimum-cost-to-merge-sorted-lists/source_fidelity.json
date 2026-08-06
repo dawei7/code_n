@@ -8,37 +8,23 @@
     "url": "https://leetcode.com/problems/minimum-cost-to-merge-sorted-lists/description/",
     "paid_only": false,
     "content_sha256": "696f917bc1cfffe675db3850acf7d3a145f4d91d42d4f7742c8e1c43af2cc867",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`lists = [[1,3,5],[2,4],[6,7,8]]`",
-        "output": "`18`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`lists = [[1,1,5],[1,4,7,8]]`",
-        "output": "`10`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "`lists = [[1],[3]]`",
-        "output": "`4`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 4,
-        "input": "`lists = [[1],[1]]`",
-        "output": "`2`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 5,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -51,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "b4e4dd3b5dd5a2e0a8d5c779c23377be41d34870d142df3dc45f6b427fa7c133",
+      "reference/description.md": "27a4e9d579d4bbb10d81d8810b2e2f0cd38ad0be32e7556ed76a529675e201ad",
       "reference/contract.md": "ed35c8935a225c90650138a12ebbe73d0e92a108f09590467630d3267ecff179",
       "reference/examples.md": "6e01e10963168e36790be2d1b09d97f7615431f3243fe88fd96562cc18a0df89",
       "reference/constraints.md": "510f99caf3c40015d8597053ed4a828b9c4952aedd2b73154ad095d812524c57"

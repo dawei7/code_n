@@ -1,5 +1,3 @@
 ## Description
 
-Given the head of a linked list, swap every adjacent pair of nodes and return the resulting head.
-
-The node values themselves may not be modified. Perform the transformation by changing node connections only.
+Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)

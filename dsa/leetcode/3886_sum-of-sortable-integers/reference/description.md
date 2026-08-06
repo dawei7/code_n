@@ -1,7 +1,12 @@
 ## Description
 
-An integer array `nums` has length $n$. Consider a positive integer $k$ that divides $n$, so the array can be split into consecutive subarrays whose lengths are all exactly $k$.
+You are given an integer array `nums` of length `n`.
 
-Within each fixed subarray, any number of cyclic rotations may be performed independently, in either direction. Rotating moves values around that subarray but never transfers a value across one of its boundaries.
+An integer `k` is called **sortable** if `k` **divides** `n` and you can sort `nums` in **non-decreasing** order by sequentially performing the following operations:
 
-The integer $k$ is **sortable** when some choices of these rotations make the entire array non-decreasing. Determine every sortable divisor $k$ of $n$ and return their sum.
+<ul>
+	<li>Partition `nums` into **consecutive <span data-keyword="subarray-nonempty">subarrays</span>** of length `k`.</li>
+	<li>**Cyclically rotate each subarray independently** any number of times to the left or to the right.</li>
+</ul>
+
+Return an integer denoting the sum of all possible sortable integers `k`.

@@ -1,5 +1,5 @@
 ## Description
 
-Given the `root` of a binary tree and an integer `targetSum`, return every root-to-leaf path whose node values sum to `targetSum`. Represent each returned path as a list of node values, not as references to the nodes themselves.
+Given the `root` of a binary tree and an integer `targetSum`, return *all **root-to-leaf** paths where the sum of the node values in the path equals *`targetSum`*. Each path should be returned as a list of the node **values**, not node references*.
 
-A root-to-leaf path begins at the root and finishes at a leaf; a leaf is a node with no children.
+A **root-to-leaf** path is a path starting from the root and ending at any leaf node. A **leaf** is a node with no children.

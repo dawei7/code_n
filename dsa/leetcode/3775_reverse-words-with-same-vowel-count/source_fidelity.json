@@ -1,24 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider":"leetcode","challenge_id":"lc_3775","frontend_id":"3775","title_slug":"reverse-words-with-same-vowel-count","url":"https://leetcode.com/problems/reverse-words-with-same-vowel-count/description/","paid_only":false,"content_sha256":"e67972656551a4a1fd4d181c83ff023a3b107849e9f71835a2cf19c416292c26","checked_at":"2026-07-29"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3775",
+    "frontend_id": "3775",
+    "title_slug": "reverse-words-with-same-vowel-count",
+    "url": "https://leetcode.com/problems/reverse-words-with-same-vowel-count/description/",
+    "paid_only": false,
+    "content_sha256": "e67972656551a4a1fd4d181c83ff023a3b107849e9f71835a2cf19c416292c26",
+    "checked_at": "2026-08-06"
+  },
   "structure": {
-    "sections": ["description","examples","constraints"],
-    "examples": [
-      {"ordinal":1,"input":"`s = \"cat and mice\"`","output":"`\"cat dna mice\"`","has_explanation":true},
-      {"ordinal":2,"input":"`s = \"book is nice\"`","output":"`\"book is ecin\"`","has_explanation":true},
-      {"ordinal":3,"input":"`s = \"banana healthy\"`","output":"`\"banana healthy\"`","has_explanation":true}
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
     ],
-    "constraint_count": 4,
-    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md":"44f8bbfa190811bd610132439f5ab00a6cc94ece784a5d51a367327acb27cd26",
-      "reference/contract.md":"d0ebef877ac5cc275df2b40cd17aab919d9c0ad9497cd376a8858532c1a9d96b",
-      "reference/examples.md":"f3cba5dfd0c2f2cae3699ccdbfec04922c200d7bebebc628f6998a3db1026ea0",
-      "reference/constraints.md":"82e09700a2a45bdfc9197ec75fa2aa907ed61a44d97907b9cfe7a05088400702"
+      "reference/description.md": "452f722df6e378ff04dddf0fe597b4e2dddb73a1fad0d952d9eaacdcd69091bb",
+      "reference/contract.md": "d0ebef877ac5cc275df2b40cd17aab919d9c0ad9497cd376a8858532c1a9d96b",
+      "reference/examples.md": "f3cba5dfd0c2f2cae3699ccdbfec04922c200d7bebebc628f6998a3db1026ea0",
+      "reference/constraints.md": "82e09700a2a45bdfc9197ec75fa2aa907ed61a44d97907b9cfe7a05088400702"
     },
-    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

@@ -1,5 +1,5 @@
 ## Description
 
-An $n \times n$ integer matrix represents an image. Rotate that image $90$ degrees clockwise.
+You are given an `n x n` 2D `matrix` representing an image, rotate the image by **90** degrees (clockwise).
 
-Perform the rotation in place by modifying the supplied matrix. Allocating a second two-dimensional matrix for the rotated result is not allowed.
+You have to rotate the image <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">**in-place**</a>, which means you have to modify the input 2D matrix directly. **DO NOT** allocate another 2D matrix and do the rotation.

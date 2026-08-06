@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/merge-close-characters/description/",
     "paid_only": false,
     "content_sha256": "913d22788263a7d18dba8c3eecfa9ffa16fd23531f6b016245a71e187a941395",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "s = \"abca\", k = 3",
-        "output": "\"abc\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "s = \"aabca\", k = 2",
-        "output": "\"abca\"",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "s = \"yybyzybz\", k = 2",
-        "output": "\"ybzybz\"",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "6bdc7771454468d243f2cb0cf298f8407edee770ffc4e410ab167e5cfaa8cf8f",
+      "reference/description.md": "f72f6718156c195bca0f2bf74f5d4de950fc6397a96acb6a13e2b0840a8e96fb",
       "reference/contract.md": "57c75cf7ad6345c6e7f4f1ecf45c0403bb2907b79aa731dee013a8c07cb2af19",
       "reference/examples.md": "3495471485f514bd807c4520012bb6350cb25317838a7021a56e442264d3ec9a",
       "reference/constraints.md": "8cc5514191f291e2e109f45121cefbace2d0d82595bd5a26b01cff0371bca7c3"

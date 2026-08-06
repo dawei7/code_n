@@ -1,30 +1,68 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_76", "frontend_id": "76",
+    "provider": "leetcode",
+    "challenge_id": "lc_76",
+    "frontend_id": "76",
     "title_slug": "minimum-window-substring",
     "url": "https://leetcode.com/problems/minimum-window-substring/description/",
-    "paid_only": false, "content_sha256": "dd07cca075be32b5aa5b63facf44100d23215cf31fcb36cb21d77531a90a4417", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "dd07cca075be32b5aa5b63facf44100d23215cf31fcb36cb21d77531a90a4417",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"ADOBECODEBANC\", t = \"ABC\"", "output": "\"BANC\"", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"a\", t = \"a\"", "output": "\"a\"", "has_explanation": true},
-      {"ordinal": 3, "input": "s = \"a\", t = \"aa\"", "output": "\"\"", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"ADOBECODEBANC\", t = \"ABC\"",
+        "output": "\"BANC\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"a\", t = \"a\"",
+        "output": "\"a\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"a\", t = \"aa\"",
+        "output": "\"\"",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "445da2be6a540e511560c1e08d315e351d7b975b5d37bad0d86e4ad902f738c7",
+      "reference/description.md": "83b18bb62b24796ce62510624f6a3d06ef6ef1433f50ca86755b64f9a2b0725a",
       "reference/contract.md": "a84d75570c76be4f3a13bde6853eae52824b6f0ae8e002681821c0d78f500035",
       "reference/examples.md": "fd168a756a08354d189583409b2cc3b2e0f868bed3827e7ee6620fbe04db8a39",
       "reference/constraints.md": "d6963aa0846bc8330cd4006585d22f57e16f4109d238f6786f4d56b3e1c452a2",
       "reference/follow_up.md": "a536350ce7922b84f20d6e89f433e26915f04a9b9a576903dfa092be9769cf8a"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

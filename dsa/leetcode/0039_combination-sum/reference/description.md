@@ -1,7 +1,7 @@
 ## Description
 
-Given an array `candidates` of distinct integers and an integer `target`, return every unique combination of candidate values whose sum equals `target`. The combinations may be returned in any order.
+Given an array of **distinct** integers `candidates` and a target integer `target`, return *a list of all **unique combinations** of *`candidates`* where the chosen numbers sum to *`target`*.* You may return the combinations in **any order**.
 
-A candidate value may be selected any number of times. Two combinations are considered different when at least one chosen value has a different frequency.
+The **same** number may be chosen from `candidates` an **unlimited number of times**. Two combinations are unique if the <span data-keyword="frequency-array">frequency</span> of at least one of the chosen numbers is different.
 
-For every test case, fewer than 150 unique combinations sum to the target.
+The test cases are generated such that the number of unique combinations that sum up to `target` is less than `150` combinations for the given input.

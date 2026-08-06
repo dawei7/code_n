@@ -1,9 +1,13 @@
 ## Description
 
-Design an `LRUCache` class that stores key-value pairs up to a positive, fixed `capacity`. The cache must expose these operations:
+Design a data structure that follows the constraints of a **<a href="https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU" target="_blank">Least Recently Used (LRU) cache</a>**.
 
-- `LRUCache(int capacity)` creates an empty cache with the given capacity.
-- `get(key)` returns the value associated with `key`, or `-1` when that key is absent. A successful lookup makes the key the most recently used entry.
-- `put(key, value)` updates an existing key or inserts a new key-value pair. The written key becomes the most recently used entry. If an insertion would exceed the capacity, remove the least recently used key first.
+Implement the `LRUCache` class:
 
-Both `get` and `put` must run in $O(1)$ average time.
+<ul>
+	<li>`LRUCache(int capacity)` Initialize the LRU cache with **positive** size `capacity`.</li>
+	<li>`int get(int key)` Return the value of the `key` if the key exists, otherwise return `-1`.</li>
+	<li>`void put(int key, int value)` Update the value of the `key` if the `key` exists. Otherwise, add the `key-value` pair to the cache. If the number of keys exceeds the `capacity` from this operation, **evict** the least recently used key.</li>
+</ul>
+
+The functions `get` and `put` must each run in `O(1)` average time complexity.

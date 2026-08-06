@@ -1,12 +1,26 @@
 ## Description
 
-An $m \times n$ grid is indexed from the upper-left corner. You begin in cell $(1,1)$ at the first second and pay that cell's entrance cost. Entering cell $(i,j)$ costs $i \cdot j$, using one-based row and column indices.
+You are given two integers `m` and `n` representing the number of rows and columns of a grid. Your goal is to reach cell `(m - 1, n - 1)`. You are also given a 2D integer array `penalty`.
 
-At each second, choose one of two kinds of action:
+The cost to enter cell `(i, j)` is `(i + 1) * (j + 1)`.
 
-- move to an orthogonally adjacent cell; or
-- remain in the current cell for one second.
+You begin at cell `(0, 0)` and initially pay its entrance cost. Actions performed after entering `(0, 0)` are numbered starting from 1.
 
-Direction and time parity determine whether a move incurs an extra charge. During an odd-numbered second, moving right or down is permitted without a penalty. During an even-numbered second, moving left or up is permitted without a penalty. A valid move in one of the other two directions is still possible, but it additionally costs the value of `penalty` at the cell being left. Waiting also costs the current cell's penalty. Every move or wait consumes one second, so the next action uses the opposite parity.
+On each action, you may move to an **adjacent** cell or wait in the current cell. A move follows the parity rule if:
 
-Find the minimum total cost needed to reach cell $(m,n)$. The total includes the initial cost of cell $(1,1)$, every later cell entrance cost, and every direction or waiting penalty paid along the chosen timed walk.
+<ul>
+	<li>On an **odd-numbered** action, you move **right** or **down**.</li>
+	<li>On an **even-numbered** action, you move **left** or **up**.</li>
+</ul>
+
+The cost of an action is determined as follows:
+
+<ul>
+	<li>If you move according to the parity rule, pay only the entrance cost of the destination cell.</li>
+	<li>If you move in a direction that **violates** the parity rule, pay the entrance cost of the destination cell plus `penalty[i][j]`, where `(i, j)` is the cell you move from.</li>
+	<li>If you **wait** in cell `(i, j)`, pay `penalty[i][j]`.</li>
+</ul>
+
+After every move or wait, the action number increases by 1. Therefore, the required parity alternates after every action, regardless of whether a penalty was paid.
+
+Return the **minimum** total cost required to reach `(m - 1, n - 1)`.

@@ -1,3 +1,3 @@
 ## Description
 
-Given a string `s`, remove repeated letter occurrences so that every distinct letter appears exactly once in the result. Among all results that meet that requirement, return the lexicographically smallest one.
+Given a string `s`, remove duplicate letters so that every letter appears once and only once. You must make sure your result is <span data-keyword="lexicographically-smaller-string">**the smallest in lexicographical order**</span> among all possible results.

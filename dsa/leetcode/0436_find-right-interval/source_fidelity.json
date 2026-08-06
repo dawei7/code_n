@@ -11,7 +11,11 @@
     "checked_at": "2026-08-02"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,
@@ -45,7 +49,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "9e2c18d32385d88031f541a9d2be7f8f789531140a2bc3c85aff67716d652375",
+      "reference/description.md": "88d5e982e733e7c3c4ed0e620c8a3c8a764f27ec5067f935a4042f1ad0cc2b99",
       "reference/contract.md": "e199753139e59367bac3cca69dcb6d82bb9d425b38ff37f96c6b89e791c17395",
       "reference/examples.md": "edf689c5668276d84eebae44a68842408f7679c5abf746df6071a970713acc80",
       "reference/constraints.md": "c88ff1f67cc2efd62a9eb9840017faeb77a64898adadea98f140e1dfd5b83b46"

@@ -1,5 +1,7 @@
 ## Description
 
-Given an $n \times n$ matrix in which every row and every column is sorted in ascending order, return the element occupying position `k` when all $n^2$ entries are placed in sorted order.
+Given an `n x n` `matrix` where each of the rows and columns is sorted in ascending order, return *the* `k^th` *smallest element in the matrix*.
 
-The requested rank counts duplicate occurrences separately; it is the `k`th smallest element, not the `k`th distinct value. The solution must use less than $O(n^2)$ memory.
+Note that it is the `k^th` smallest element **in the sorted order**, not the `k^th` **distinct** element.
+
+You must find a solution with a memory complexity better than `O(n^2)`.

@@ -2,9 +2,13 @@
 
 You are given a **sorted unique** integer array `nums`.
 
-A range `[a,b]` contains every integer from `a` through `b`, inclusive. Return the **smallest sorted** list of ranges that covers the input exactly: each value in `nums` belongs to one range, and no range includes an integer absent from `nums`.
+A **range** `[a,b]` is the set of all integers from `a` to `b` (inclusive).
 
-Write each range as follows:
+Return *the **smallest sorted** list of ranges that **cover all the numbers in the array exactly***. That is, each element of `nums` is covered by exactly one of the ranges, and there is no integer `x` such that `x` is in one of the ranges but not in `nums`.
 
-- Use `"a->b"` when `a != b`.
-- Use `"a"` when `a == b`.
+Each range `[a,b]` in the list should be output as:
+
+<ul>
+	<li>`"a->b"` if `a != b`</li>
+	<li>`"a"` if `a == b`</li>
+</ul>

@@ -1,7 +1,22 @@
 ## Description
 
-There are `n` shops numbered from `0` through `n - 1`. Shop `i` sells apples for `prices[i]`. Bidirectional roads connect some pairs of shops; a road described by `[u, v, cost, tax]` has two travel prices. Crossing it while empty costs `cost`, whereas crossing it while carrying apples costs `cost * tax`.
+You are given an integer `n` and an integer array `prices` of length `n`, where `prices[i]` is the price of apples at shop `i`.
 
-For every possible starting shop `i`, choose between buying there immediately and making a round trip to buy at some shop `j`. On such a trip, travel from `i` to `j` without apples, pay `prices[j]`, and return to `i` while carrying the purchase. Either leg may use any number of roads, and the outward and return routes do not have to coincide.
+You are also given a 2D integer array `roads`, where `roads[i] = [u_i, v_i, cost_i, tax_i]` represents a **bidirectional** road:
 
-Compute the least total cost independently for each starting shop and return those `n` costs in shop order.
+<ul>
+	<li>`u_i` and `v_i` are the shops connected by the road.</li>
+	<li>`cost_i` is the cost to travel the road **without** carrying apples.</li>
+	<li>`tax_i` is the multiplier applied to `cost_i` when traveling **with** apples.</li>
+</ul>
+
+For each shop `i`, you can either:
+
+<ul>
+	<li>Buy apples locally at shop `i` for `prices[i]`.</li>
+	<li>Travel **empty** to any shop `j` using **any** number of roads, buy apples for `prices[j]`, and return to shop `i` while carrying apples, paying `cost * tax` on each road used for the return trip.</li>
+</ul>
+
+The forward path, where you travel empty, and the return path may be **different**.
+
+Return an integer array `ans` of length `n`, where `ans[i]` is the **minimum** total cost to buy apples starting from shop `i`.

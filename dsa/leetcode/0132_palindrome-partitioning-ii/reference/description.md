@@ -1,5 +1,5 @@
 ## Description
 
-Given a string `s`, split it into non-empty contiguous substrings so that every resulting substring is a palindrome. A palindrome reads identically in both directions.
+Given a string `s`, partition `s` such that every <span data-keyword="substring-nonempty">substring</span> of the partition is a <span data-keyword="palindrome-string">palindrome</span>.
 
-Return the minimum number of cuts required to produce such a palindrome partition of `s`.
+Return *the **minimum** cuts needed for a palindrome partitioning of* `s`.

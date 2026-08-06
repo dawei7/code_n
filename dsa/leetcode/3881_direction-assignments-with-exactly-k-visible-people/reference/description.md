@@ -1,7 +1,20 @@
 ## Description
 
-There are `n` people in a line at indices `0` through `n - 1`. Each person independently chooses either `L` or `R`. Choosing `L` makes that person visible only to people on their right, while choosing `R` makes them visible only to people on their left.
+You are given three integers `n`, `pos`, and `k`.
 
-Focus on the observer at index `pos`. A person at an index below `pos` is visible to the observer exactly when choosing `L`; a person above `pos` is visible exactly when choosing `R`.
+There are `n` people standing in a line indexed from 0 to `n - 1`. Each person **independently** chooses a direction:
 
-Count the complete direction assignments in which the observer sees exactly `k` other people. Return the count modulo $10^9+7$.
+<ul>
+	<li>`'L'`: **visible** only to people on their **right**</li>
+	<li>`'R'`: **visible** only to people on their **left**</li>
+</ul>
+A person at index `pos` sees others as follows:
+
+<ul>
+	<li>A person `i < pos` is visible if and only if they choose `'L'`.</li>
+	<li>A person `i > pos` is visible if and only if they choose `'R'`.</li>
+</ul>
+
+Return the number of possible direction assignments such that the person at index `pos` sees **exactly** `k` people.
+
+Since the answer may be large, return it **modulo** `10^9 + 7`.

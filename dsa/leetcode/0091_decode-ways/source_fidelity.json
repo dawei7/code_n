@@ -1,30 +1,68 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_91", "frontend_id": "91",
+    "provider": "leetcode",
+    "challenge_id": "lc_91",
+    "frontend_id": "91",
     "title_slug": "decode-ways",
     "url": "https://leetcode.com/problems/decode-ways/description/",
-    "paid_only": false, "content_sha256": "1db5f6ec1895a4e9bd282629ee4f3676b193f7b28cdb80d50056c8178f2bb036", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "1db5f6ec1895a4e9bd282629ee4f3676b193f7b28cdb80d50056c8178f2bb036",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "note", "examples", "constraints"],
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"12\"", "output": "2", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"226\"", "output": "3", "has_explanation": true},
-      {"ordinal": 3, "input": "s = \"06\"", "output": "0", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"12\"",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"226\"",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"06\"",
+        "output": "0",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "4b975cd6a0d8a445466f8703de1e4e283cfcccfbdf9df4f822b99f5083e491d4",
+      "reference/description.md": "bd29ad5b57fc44324711058d0310a6feb2a70377eca82c8cccefe28c133dbda1",
       "reference/contract.md": "6dab79e3808534ef2e0e060fe5b2a9f102ecfdc377a45e9b3256e38091c713ca",
       "reference/note.md": "8285cba98da144483e3cb211d27b199f72b26ea55fc205bb5b0c614169c699ed",
       "reference/examples.md": "b3a74cacfe12ff3fe02a0544bc3b859529116853dcdb57d615b5c89d19eb8120",
       "reference/constraints.md": "43142b0667f5586718b25c931545917395c7dd1f9c0a1d08f85d0207d1b4e7e7"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

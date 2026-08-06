@@ -11,10 +11,24 @@
     "checked_at": "2026-07-30"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "n = 3", "output": "3", "has_explanation": true},
-      {"ordinal": 2, "input": "n = 4", "output": "6", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "n = 3",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 4",
+        "output": "6",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 1,
     "visuals": {
@@ -29,7 +43,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "0e5996b4942555835212ac9d22670bd320609274a58aeacf8fc21e63e4c01ca0",
+      "reference/description.md": "027202a5c06bb0e3f73bc26666b387da056ce3213cce84ae783776864065d8fd",
       "reference/contract.md": "2ec6bf321d12b3fa86f5690d11f4f43d25edf13b5c31242c6bd1d596b665e695",
       "reference/examples.md": "85ca25b281d37f717d3f9624d85e65b0958565ef065d57331e1198c129d579a8",
       "reference/constraints.md": "c3ba53cfbbf3ddf2fd52b3c2f8355035daecd54465919e1541f7a3b31fc8ef2c"

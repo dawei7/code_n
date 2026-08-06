@@ -1,5 +1,5 @@
 ## Description
 
-A string `s` contains the valid serialization of a nested list. Parse it and return the corresponding `NestedInteger` value.
+Given a string s represents the serialization of a nested list, implement a parser to deserialize it and return *the deserialized* `NestedInteger`.
 
-Each element is either an integer or a list whose members may recursively be integers or further lists. A top-level integer is represented directly rather than being wrapped in a list.
+Each element is either an integer or a list whose elements may also be integers or other lists.

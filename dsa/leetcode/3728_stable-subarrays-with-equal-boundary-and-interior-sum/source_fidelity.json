@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/stable-subarrays-with-equal-boundary-and-interior-sum/description/",
     "paid_only": false,
     "content_sha256": "18ecca9ee9975c98ecbb6736c091b4aba426d86a782176c7739fa51935ea9f91",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "capacity = [9,3,3,3,9]",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "capacity = [1,2,3,4,5]",
-        "output": "0",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "capacity = [-4,4,0,0,-8,-4]",
-        "output": "1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "6310c92d39b5682072b797f2707e0ba2256d3caa5be9fac5f9aab32607c95d58",
+      "reference/description.md": "05bd5c0f49c652cb4418d8ba225b5db284a0ba90e610770b6fd497014bc9bb12",
       "reference/contract.md": "b05b3a083eed2b58a9b0897e4f2ee2b63b3e4ec300f34fc5bb9300e8c06a48e7",
       "reference/examples.md": "59dfdd3c4345fe62a1c56827dee6def0679fa59ddf7b1f7dfdf1ee7b83c8ebac",
       "reference/constraints.md": "2b1e4cedf1ab2a5231c50a415abe21dc4a459ae2916a4adac6df36a89d018e09"

@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/count-good-integers-on-a-grid-path/description/",
     "paid_only": false,
     "content_sha256": "5e4054b0cb8e0e6f3c95d290068f53ff25b469650051daf2410f60c0f33baa43",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,37 +19,25 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "l = 8, r = 10, directions = \"DDDRRR\"",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "l = 123456789, r = 123456790, directions = \"DDRRDR\"",
-        "output": "1",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "l = 1288561398769758, r = 1288561398769758, directions = \"RRRDDD\"",
-        "output": "0",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 6,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 6,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "a740b96a97bc6488f6d9fa7807672659a3c08f6d5e88de9a55fda62c94ee06ad",
+      "reference/description.md": "47a7878e693161e1e51702a0e96ab26536ce8643a2f13b4581fdb4744b16241f",
       "reference/contract.md": "6de086b5b882e6d8d18f1f2d153e3fc29ab09ab1fd43fcc725b67d929c5b5815",
       "reference/examples.md": "58203c1ffab01b0ef66372d6b9e518020de433170e177a4348d04895b62e90ff",
       "reference/constraints.md": "734168d5b0f6e8a5ba5c2bb33700ddf3dc3ad97de3657fcded3713f8e81c6f8b"

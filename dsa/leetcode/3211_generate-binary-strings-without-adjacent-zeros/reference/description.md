@@ -1,0 +1,7 @@
+## Description
+
+You are given a positive integer `n`.
+
+A binary string `x` is **valid** if all <span data-keyword="substring-nonempty">substrings</span> of `x` of length 2 contain **at least** one `"1"`.
+
+Return all **valid** strings with length `n`**, **in *any* order.

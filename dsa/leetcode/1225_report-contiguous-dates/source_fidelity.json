@@ -11,7 +11,12 @@
     "checked_at": "2026-08-05"
   },
   "structure": {
-    "sections": ["failed_table", "succeeded_table", "description", "examples"],
+    "sections": [
+      "failed_table",
+      "succeeded_table",
+      "description",
+      "examples"
+    ],
     "examples": [
       {
         "ordinal": 1,

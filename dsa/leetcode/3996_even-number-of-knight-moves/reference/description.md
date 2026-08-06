@@ -1,18 +1,9 @@
 ## Description
 
-You are given two integer arrays, `start` and `target`. Each has the form `[x, y]` and identifies one cell of a standard $8\times8$ chessboard.
+You are given two integer arrays `start` and `target`, where each array is of the form `[x, y]` representing a cell on a standard 8 x 8 chessboard.
 
-A knight move changes one coordinate by two squares and the perpendicular coordinate by one square. From an interior cell `(x, y)`, the eight possible relative destinations are:
+Return `true` if a knight can move from `start` to `target` in an **even** number of moves. Otherwise, return `false`.
 
-| Horizontal change | Vertical change | Destination |
-|---:|---:|---|
-| $+1$ | $+2$ | $(x+1,y+2)$ |
-| $+2$ | $+1$ | $(x+2,y+1)$ |
-| $-1$ | $+2$ | $(x-1,y+2)$ |
-| $-2$ | $+1$ | $(x-2,y+1)$ |
-| $+1$ | $-2$ | $(x+1,y-2)$ |
-| $+2$ | $-1$ | $(x+2,y-1)$ |
-| $-1$ | $-2$ | $(x-1,y-2)$ |
-| $-2$ | $-1$ | $(x-2,y-1)$ |
+**Note:** A valid knight move consists of moving two squares in one direction and one square perpendicular to it. The figure below illustrates all eight possible moves from a cell.
 
-Only destinations that remain on the board are legal. Return `true` if the knight can travel from `start` to `target` using an even number of moves; otherwise, return `false`.
+<img src="https://assets.leetcode.com/uploads/2018/10/12/knight.png" style="height: 200px; width: 200px;" />

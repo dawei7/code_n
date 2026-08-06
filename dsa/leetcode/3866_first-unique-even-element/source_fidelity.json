@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/first-unique-even-element/description/",
     "paid_only": false,
     "content_sha256": "89cba71848edda6ca2f012c0ed1047c3c25352c9bfb298095e6578e3867bd95d",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [3,4,2,5,4,6]",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [4,4]",
-        "output": "-1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "79a32135b2e0337362f7c3e0af4392e0dc1b9e40b5494c3b0cc7d42b848c03bc",
+      "reference/description.md": "f90339a72211fe72404e4d109103793962cf6659d15d13ff04231d17026f0208",
       "reference/contract.md": "8ca736c020d3c5dc1437cda8c8d98118bba6d05169e58584bd92abe002e7ff14",
       "reference/examples.md": "fd41f4c0650d719501b3fda8c2ce0edd5c1bc89c1919088a14609a1780571711",
       "reference/constraints.md": "d480b7f38de92d9ad960d8cf9fc64d43b26fc8d36acad683fb0cf228af8bab53"

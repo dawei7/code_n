@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/largest-local-values-in-a-matrix-ii/description/",
     "paid_only": false,
     "content_sha256": "679acdf80b1b972a4a90799a73358ad8b0a42e9515be26e6e4081e08c02459f1",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,43 +19,25 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]",
-        "output": "1",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "matrix = [[1,2],[3,4]]",
-        "output": "1",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "matrix = [[1,0,1],[0,1,0],[1,0,1]]",
-        "output": "5",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 4,
-        "input": "matrix = [[1,1],[1,1]]",
-        "output": "4",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
-      "source_images": 1,
+      "source_images": 0,
       "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 1,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "2e410ea732a62fb4ef9be90d38ee8bc59f9b2d2e0b1fb202212c13e0bbe5d449",
+      "reference/description.md": "157841fb3a702f2e08ab58e3ac306995a1a47373283921ae3a46b646069b31f2",
       "reference/contract.md": "9821abe69690d7644d2403320ca86804d99c6721d21916d19537308d962b3cd6",
       "reference/examples.md": "91b1819893e981f9cdbdf63a0b93f22b7a2e3ff314b9c8ed7be8a56dd8469987",
       "reference/constraints.md": "499270a825e8326e7df2da75879c6cd376eb5e69d26152ae546c1bcfd3282f51"

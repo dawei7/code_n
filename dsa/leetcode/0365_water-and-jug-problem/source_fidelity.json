@@ -1,20 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_365", "frontend_id": "365", "title_slug": "water-and-jug-problem", "url": "https://leetcode.com/problems/water-and-jug-problem/description/", "paid_only": false, "content_sha256": "f0f89250a2d61a0e52dc655ba25fef03a262b0cb556adbc12eb5ec1e1268023e", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_365",
+    "frontend_id": "365",
+    "title_slug": "water-and-jug-problem",
+    "url": "https://leetcode.com/problems/water-and-jug-problem/description/",
+    "paid_only": false,
+    "content_sha256": "f0f89250a2d61a0e52dc655ba25fef03a262b0cb556adbc12eb5ec1e1268023e",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "x = 3, y = 5, target = 4", "output": "true", "has_explanation": true},
-      {"ordinal": 2, "input": "x = 2, y = 6, target = 5", "output": "false", "has_explanation": false},
-      {"ordinal": 3, "input": "x = 1, y = 2, target = 3", "output": "true", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "x = 3, y = 5, target = 4",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "x = 2, y = 6, target = 5",
+        "output": "false",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "x = 1, y = 2, target = 3",
+        "output": "true",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "cabe106ede160585942672a621cf592ab54c53691a444d360c6362a8b2ae8f3b",
-    "reference/contract.md": "48559f724e399df2c43c29666521814eb2e16065e39ede5e4b14dec141b116b0",
-    "reference/examples.md": "2761a6427ff8df7e8ad20b2d0fb6a78c6b98a61758323af727d33cc62ffc1ca6",
-    "reference/constraints.md": "cb99e49a846eef5aa26f8b17d89ee0d80052a487edb6fdcd13ee21734a886559"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "1b6264f66c2be27b94da40cfd643e06b46417f36edee318adacc7bc357772bb1",
+      "reference/contract.md": "48559f724e399df2c43c29666521814eb2e16065e39ede5e4b14dec141b116b0",
+      "reference/examples.md": "2761a6427ff8df7e8ad20b2d0fb6a78c6b98a61758323af727d33cc62ffc1ca6",
+      "reference/constraints.md": "cb99e49a846eef5aa26f8b17d89ee0d80052a487edb6fdcd13ee21734a886559"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

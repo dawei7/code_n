@@ -1,6 +1,3 @@
 ## Description
 
-Given an integer digit count `n`, consider products of two decimal integers that each have exactly `n` digits.
-Among the products whose decimal representation is a palindrome, find the largest one.
-
-Because that palindrome may be large, return its value modulo `1337`.
+Given an integer n, return *the **largest palindromic integer** that can be represented as the product of two `n`-digits integers*. Since the answer can be very large, return it **modulo** `1337`.

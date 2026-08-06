@@ -1,5 +1,5 @@
 ## Description
 
-Given a string `s` containing letters and parentheses, remove the minimum number of invalid parentheses needed to make the string valid.
+Given a string `s` that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.
 
-Return every unique valid string obtainable with that minimum number of removals. The results may be returned in any order.
+Return *a list of **unique strings** that are valid with the minimum number of removals*. You may return the answer in **any order**.

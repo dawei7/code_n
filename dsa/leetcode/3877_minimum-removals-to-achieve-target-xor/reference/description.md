@@ -2,8 +2,8 @@
 
 You are given an integer array `nums` and an integer `target`.
 
-You may remove any number of elements from `nums`, including none of them.
+You may remove **any** number of elements from `nums` (possibly zero).
 
-Return the minimum number of removals that makes the bitwise XOR of all remaining elements equal `target`. If no choice of remaining elements can produce `target`, return `-1`.
+Return the **minimum** number of removals required so that the **bitwise XOR** of the remaining elements equals `target`. If it is impossible to achieve `target`, return -1.
 
-The bitwise XOR of an empty array is defined as `0`.
+The bitwise XOR of an empty array is 0.

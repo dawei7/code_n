@@ -1,9 +1,11 @@
 ## Description
 
-Given an integer array `nums`, design a shuffling algorithm for which every permutation of the array is equally likely.
+Given an integer array `nums`, design an algorithm to randomly shuffle the array. All permutations of the array should be **equally likely** as a result of the shuffling.
 
 Implement the `Solution` class:
 
-- `Solution(nums)` initializes the object with the supplied array.
-- `reset()` restores and returns the original configuration.
-- `shuffle()` returns a uniformly random permutation of the array.
+<ul>
+	<li>`Solution(int[] nums)` Initializes the object with the integer array `nums`.</li>
+	<li>`int[] reset()` Resets the array to its original configuration and returns it.</li>
+	<li>`int[] shuffle()` Returns a random shuffling of the array.</li>
+</ul>

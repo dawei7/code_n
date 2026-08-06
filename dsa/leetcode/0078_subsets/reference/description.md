@@ -1,5 +1,5 @@
 ## Description
 
-Given an integer array `nums` whose elements are unique, return every possible subset—the power set.
+Given an integer array `nums` of **unique** elements, return *all possible* <span data-keyword="subset">*subsets*</span> *(the power set)*.
 
-No subset may appear more than once. The subsets may be returned in any order.
+The solution set **must not** contain duplicate subsets. Return the solution in **any order**.

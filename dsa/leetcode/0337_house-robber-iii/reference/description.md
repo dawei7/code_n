@@ -1,5 +1,7 @@
 ## Description
 
-A thief has discovered another neighborhood with a single entrance, represented by `root`. Every other house has exactly one parent house, so the complete neighborhood forms a binary tree.
+The thief has found himself a new place for his thievery again. There is only one entrance to this area, called `root`.
 
-The security system alerts the police if two houses joined directly by a tree edge are robbed during the same night. Given the tree's root, return the greatest total amount the thief can take without triggering that alarm.
+Besides the `root`, each house has one and only one parent house. After a tour, the smart thief realized that all houses in this place form a binary tree. It will automatically contact the police if **two directly-linked houses were broken into on the same night**.
+
+Given the `root` of the binary tree, return *the maximum amount of money the thief can rob **without alerting the police***.

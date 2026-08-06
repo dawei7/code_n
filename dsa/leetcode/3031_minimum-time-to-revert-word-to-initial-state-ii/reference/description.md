@@ -1,0 +1,14 @@
+## Description
+
+You are given a **0-indexed** string `word` and an integer `k`.
+
+At every second, you must perform the following operations:
+
+<ul>
+	<li>Remove the first `k` characters of `word`.</li>
+	<li>Add any `k` characters to the end of `word`.</li>
+</ul>
+
+**Note** that you do not necessarily need to add the same characters that you removed. However, you must perform **both** operations at every second.
+
+Return *the **minimum** time greater than zero required for* `word` *to revert to its **initial** state*.

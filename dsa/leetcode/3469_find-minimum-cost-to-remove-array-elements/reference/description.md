@@ -1,0 +1,10 @@
+## Description
+
+You are given an integer array `nums`. Your task is to remove **all elements** from the array by performing one of the following operations at each step until `nums` is empty:
+
+<ul>
+	<li>Choose any two elements from the first three elements of `nums` and remove them. The cost of this operation is the **maximum** of the two elements removed.</li>
+	<li>If fewer than three elements remain in `nums`, remove all the remaining elements in a single operation. The cost of this operation is the **maximum** of the remaining elements.</li>
+</ul>
+
+Return the **minimum** cost required to remove all the elements.

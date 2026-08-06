@@ -1,5 +1,7 @@
 ## Description
 
-Given an integer array `nums`, select a non-empty subarray whose elements have the largest possible product, and return that product.
+Given an integer array `nums`, find a <span data-keyword="subarray-nonempty">subarray</span> that has the largest product, and return *the product*.
 
-Every generated test case has an answer that fits in a signed 32-bit integer.
+The test cases are generated so that the answer will fit in a **32-bit** integer.
+
+**Note** that the product of an array with a single element is the value of that element.

@@ -2,8 +2,8 @@
 
 You are given an integer array `nums`.
 
-You may replace at most one array element with any other integer value you choose. Because the replacement is optional, leaving every value unchanged is also permitted.
+You are allowed to replace **at most** one element in the array with any other integer value of your choice.
 
-After that optional replacement, determine the greatest possible length of a non-decreasing subarray. A subarray is a consecutive portion of `nums`.
+Return the length of the **longest non-decreasing <span data-keyword="subarray">subarray</span>** that can be obtained after performing at most one replacement.
 
-An array is non-decreasing when every element is greater than or equal to the element immediately before it, whenever such a previous element exists.
+An array is said to be **non-decreasing** if each element is greater than or equal to its previous one (if it exists).

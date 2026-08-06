@@ -11,11 +11,30 @@
     "checked_at": "2026-08-02"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "num1 = \"11\", num2 = \"123\"", "output": "\"134\"", "has_explanation": false},
-      {"ordinal": 2, "input": "num1 = \"456\", num2 = \"77\"", "output": "\"533\"", "has_explanation": false},
-      {"ordinal": 3, "input": "num1 = \"0\", num2 = \"0\"", "output": "\"0\"", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "num1 = \"11\", num2 = \"123\"",
+        "output": "\"134\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "num1 = \"456\", num2 = \"77\"",
+        "output": "\"533\"",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "num1 = \"0\", num2 = \"0\"",
+        "output": "\"0\"",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
     "visuals": {
@@ -30,7 +49,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "b5369f1888a7b01ebe3850401e201ad6e5aec9e621b32f7ba0137f3b2918e128",
+      "reference/description.md": "7398ef20d563a9b8bd44f3e34add1bf43421d318efe758dca94c60949d6119e5",
       "reference/contract.md": "7aed5492659d4319e3b579a4799cb9a7258f818eb3cb8d3e028be7aadf1bafc8",
       "reference/examples.md": "279fc9e23f16bab907c7af64a4214c762d9a84f5c451dffa1cc0bc98825222bc",
       "reference/constraints.md": "53a58a8e0ee9ae3c8ad218ff3ca6f820d4b605d5a79de268c30cb65e9d0fae5b"

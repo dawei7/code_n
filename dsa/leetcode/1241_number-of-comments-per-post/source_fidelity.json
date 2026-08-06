@@ -11,7 +11,11 @@
     "checked_at": "2026-08-05"
   },
   "structure": {
-    "sections": ["submissions_table", "description", "examples"],
+    "sections": [
+      "submissions_table",
+      "description",
+      "examples"
+    ],
     "examples": [
       {
         "ordinal": 1,

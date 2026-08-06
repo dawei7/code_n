@@ -1,0 +1,14 @@
+## Description
+
+You are given an `m x n` binary `grid`, where each `1` represents a brick and `0` represents an empty space. A brick is **stable** if:
+
+<ul>
+	<li>It is directly connected to the top of the grid, or</li>
+	<li>At least one other brick in its four adjacent cells is **stable**.</li>
+</ul>
+
+You are also given an array `hits`, which is a sequence of erasures we want to apply. Each time we want to erase the brick at the location `hits[i] = (row_i, col_i)`. The brick on that location (if it exists) will disappear. Some other bricks may no longer be stable because of that erasure and will **fall**. Once a brick falls, it is **immediately** erased from the `grid` (i.e., it does not land on other stable bricks).
+
+Return *an array *`result`*, where each *`result[i]`* is the number of bricks that will **fall** after the *`i^th`* erasure is applied.*
+
+**Note** that an erasure may refer to a location with no brick, and if it does, no bricks drop.

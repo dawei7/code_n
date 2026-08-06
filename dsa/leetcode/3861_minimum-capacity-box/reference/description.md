@@ -1,13 +1,9 @@
 ## Description
 
-You are given an integer array `capacity`, where `capacity[i]` is the capacity
-of the box at index `i`, and an integer `itemSize` describing one item's size.
-A box can store the item exactly when its capacity is at least `itemSize`.
+You are given an integer array `capacity`, where `capacity[i]` represents the capacity of the `i^th` box, and an integer `itemSize` representing the size of an item.
 
-Among all boxes that can store the item, select one whose capacity is minimum.
-The objective concerns the capacity value, not merely the first box that fits.
-If the same minimum eligible capacity occurs at several indices, select its
-smallest index.
+The `i^th` box can store the item if `capacity[i] >= itemSize`.
 
-Return the chosen box index. If every capacity is smaller than `itemSize`, no
-box is eligible and the required result is `-1`.
+Return an integer denoting the index of the box with the **minimum** capacity that can store the item. If multiple such boxes exist, return the **smallest index**.
+
+If no box can store the item, return -1.

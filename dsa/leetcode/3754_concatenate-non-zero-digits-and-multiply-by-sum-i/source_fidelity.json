@@ -1,14 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3754","frontend_id":"3754","title_slug":"concatenate-non-zero-digits-and-multiply-by-sum-i","url":"https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-i/description/","paid_only":false,"content_sha256":"d185b9085b25e48aa09a811190a442d94002f826a9a982b8e67027614e4bbbe8","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"n = 10203004","output":"12340","has_explanation":true},
-    {"ordinal":2,"input":"n = 1000","output":"1","has_explanation":true}
-  ],"constraint_count":1,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"68e8866b5bd181780122501733d6d3ba0ce969dc788ea77295ad55aafc70eac4",
-    "reference/contract.md":"e0605d104b2c90a8ffe2fbb6a8b9d6a36df37dae943612d23a04aeceb725315e",
-    "reference/examples.md":"c7a01ab86871334cf4f77eb17e06bd89d800de8e751ce2ffc13806d484d69270",
-    "reference/constraints.md":"0a4d257d97611188bde1bbade900259e140e97b9010e6cf5083e8234a940083e"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3754",
+    "frontend_id": "3754",
+    "title_slug": "concatenate-non-zero-digits-and-multiply-by-sum-i",
+    "url": "https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-i/description/",
+    "paid_only": false,
+    "content_sha256": "d185b9085b25e48aa09a811190a442d94002f826a9a982b8e67027614e4bbbe8",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "fb66ee1293c57a56b597326ead6d1e4efe26fbfcfb546554087e39dac6798435",
+      "reference/contract.md": "e0605d104b2c90a8ffe2fbb6a8b9d6a36df37dae943612d23a04aeceb725315e",
+      "reference/examples.md": "c7a01ab86871334cf4f77eb17e06bd89d800de8e751ce2ffc13806d484d69270",
+      "reference/constraints.md": "0a4d257d97611188bde1bbade900259e140e97b9010e6cf5083e8234a940083e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

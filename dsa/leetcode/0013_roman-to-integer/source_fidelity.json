@@ -11,11 +11,30 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"III\"", "output": "3", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"LVIII\"", "output": "58", "has_explanation": true},
-      {"ordinal": 3, "input": "s = \"MCMXCIV\"", "output": "1994", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "s = \"III\"",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"LVIII\"",
+        "output": "58",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"MCMXCIV\"",
+        "output": "1994",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
     "visuals": {
@@ -30,7 +49,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "fbab613fa639d54433fe137175456ef8e0a4b2e6133ebe059a8e99390f0ef88d",
+      "reference/description.md": "634b92d425a5ce57d3ff41d4dd6635eb87c3a5f38b6beddf263798f457dd6dd9",
       "reference/contract.md": "092522d2b3b560661008327a4699ccb266629eb43e886d36e7c6f2d20d7858af",
       "reference/examples.md": "86ff36981d3f46d21f8de07a83bdace82ca34b7e59a681a5e3036b8fdc143bc6",
       "reference/constraints.md": "b4935af39352c13e6ac00c4b2f0131f7044f48ca4873a893eb7468bb8e8936c8"

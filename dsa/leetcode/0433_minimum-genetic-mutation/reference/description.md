@@ -1,11 +1,15 @@
 ## Description
 
-A gene is an eight-character string whose characters are chosen from `A`, `C`, `G`, and `T`. One mutation changes
-exactly one character, leaving the other seven positions unchanged. For example, changing `"AACCGGTT"` to
-`"AACCGGTA"` is one mutation.
+A gene string can be represented by an 8-character long string, with choices from `'A'`, `'C'`, `'G'`, and `'T'`.
 
-The gene bank lists the strings that are valid after a mutation. Starting from `startGene`, find the minimum number
-of single-character mutations needed to reach `endGene`, with each newly reached gene present in `bank`. Return `-1`
-when no such sequence exists.
+Suppose we need to investigate a mutation from a gene string `startGene` to a gene string `endGene` where one mutation is defined as one single character changed in the gene string.
 
-The starting gene is assumed to be valid and therefore does not have to appear in the bank.
+<ul>
+	<li>For example, `"AACCGGTT" --> "AACCGGTA"` is one mutation.</li>
+</ul>
+
+There is also a gene bank `bank` that records all the valid gene mutations. A gene must be in `bank` to make it a valid gene string.
+
+Given the two gene strings `startGene` and `endGene` and the gene bank `bank`, return *the minimum number of mutations needed to mutate from *`startGene`* to *`endGene`. If there is no such a mutation, return `-1`.
+
+Note that the starting point is assumed to be valid, so it might not be included in the bank.

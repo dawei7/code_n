@@ -1,13 +1,7 @@
 ## Description
 
-Given an integer `numRows`, return the first `numRows` rows of Pascal's triangle.
+Given an integer `numRows`, return the first numRows of **Pascal's triangle**.
 
-Every value in Pascal's triangle is the sum of the two values directly above it. Values beyond an upper row's ends are treated as absent, so every row begins and ends with `1`.
+In **Pascal's triangle**, each number is the sum of the two numbers directly above it as shown:
 
-```text
-            1
-          1   1
-        1   2   1
-      1   3   3   1
-    1   4   6   4   1
-```
+<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif" style="height:240px; width:260px" />

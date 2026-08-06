@@ -1,11 +1,17 @@
 ## Description
 
-We play a guessing game in which one fixed number `pick` is chosen from the inclusive range `[1,n]`. Your task is to identify it.
+We are playing the Guess Game. The game is as follows:
 
-After each incorrect guess, you learn whether `pick` is higher or lower. The predefined API `int guess(int num)` returns:
+I pick a number from `1` to `n`. You have to guess which number I picked (the number I picked stays the same throughout the game).
 
-- `-1` when `num > pick`, meaning the guess is too high.
-- `1` when `num < pick`, meaning the guess is too low.
-- `0` when `num == pick`.
+Every time you guess wrong, I will tell you whether the number I picked is higher or lower than your guess.
 
-Return the chosen number.
+You call a pre-defined API `int guess(int num)`, which returns three possible results:
+
+<ul>
+	<li>`-1`: Your guess is higher than the number I picked (i.e. `num > pick`).</li>
+	<li>`1`: Your guess is lower than the number I picked (i.e. `num < pick`).</li>
+	<li>`0`: your guess is equal to the number I picked (i.e. `num == pick`).</li>
+</ul>
+
+Return *the number that I picked*.

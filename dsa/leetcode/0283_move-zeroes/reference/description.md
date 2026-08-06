@@ -1,5 +1,5 @@
 ## Description
 
-Given the integer array `nums`, move every `0` to the end while preserving the relative order of all nonzero elements.
+Given an integer array `nums`, move all `0`'s to the end of it while maintaining the relative order of the non-zero elements.
 
-Perform the transformation in place; do not make a copy of the array.
+**Note** that you must do this in-place without making a copy of the array.

@@ -1,20 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_377", "frontend_id": "377", "title_slug": "combination-sum-iv", "url": "https://leetcode.com/problems/combination-sum-iv/description/", "paid_only": false, "content_sha256": "5ab25f76b575a98c44e95eaea207a9ad59d86665a873e6897b6a6ce5f89362a1", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_377",
+    "frontend_id": "377",
+    "title_slug": "combination-sum-iv",
+    "url": "https://leetcode.com/problems/combination-sum-iv/description/",
+    "paid_only": false,
+    "content_sha256": "5ab25f76b575a98c44e95eaea207a9ad59d86665a873e6897b6a6ce5f89362a1",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [1,2,3], target = 4", "output": "7", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [9], target = 3", "output": "0", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3], target = 4",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [9], target = 3",
+        "output": "0",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "c8be9f75029e60b613496e2d231deac8a905368b220106d3d404af410bf5b5e7",
-    "reference/contract.md": "5436918e9b981f933fe7fd1ecd97a435ec79a9ba62812d6727b8e627a22a9804",
-    "reference/examples.md": "43a3be71d04c95935f22800b3d0632d35ff7369aa346d251a143a67a01f0e754",
-    "reference/constraints.md": "2fa497a71274c777e6e3dee70f1aa3c9fac0961642c84af640fb7e2be121165e",
-    "reference/follow_up.md": "72c695ce8dc5c723c11f7117a7c44e83bcbee893a793e8e85c91ee0c2271501e"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "83d98b0bf9cbaa2f54904ddbbc283ddb7cde973687c73c3e86c7eac530c755b8",
+      "reference/contract.md": "5436918e9b981f933fe7fd1ecd97a435ec79a9ba62812d6727b8e627a22a9804",
+      "reference/examples.md": "43a3be71d04c95935f22800b3d0632d35ff7369aa346d251a143a67a01f0e754",
+      "reference/constraints.md": "2fa497a71274c777e6e3dee70f1aa3c9fac0961642c84af640fb7e2be121165e",
+      "reference/follow_up.md": "72c695ce8dc5c723c11f7117a7c44e83bcbee893a793e8e85c91ee0c2271501e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

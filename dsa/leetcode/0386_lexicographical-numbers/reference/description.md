@@ -1,5 +1,5 @@
 ## Description
 
-Given an integer `n`, return every number in the inclusive range `[1,n]` arranged in lexicographical order according to its decimal representation.
+Given an integer `n`, return all the numbers in the range `[1, n]` sorted in lexicographical order.
 
-The algorithm must run in $O(n)$ time while using $O(1)$ extra space beyond the returned array.
+You must write an algorithm that runs in `O(n)` time and uses `O(1)` extra space.

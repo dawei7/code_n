@@ -1,11 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_231", "frontend_id": "231", "title_slug": "power-of-two", "url": "https://leetcode.com/problems/power-of-two/description/", "paid_only": false, "content_sha256": "67fdf022b189e537545549c0c6a2313d8b34a90f32a9fa73907a0c22be4e976b", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
-    "examples": [{"ordinal": 1, "input": "n = 1", "output": "true", "has_explanation": true}, {"ordinal": 2, "input": "n = 16", "output": "true", "has_explanation": true}, {"ordinal": 3, "input": "n = 3", "output": "false", "has_explanation": false}],
-    "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_231",
+    "frontend_id": "231",
+    "title_slug": "power-of-two",
+    "url": "https://leetcode.com/problems/power-of-two/description/",
+    "paid_only": false,
+    "content_sha256": "67fdf022b189e537545549c0c6a2313d8b34a90f32a9fa73907a0c22be4e976b",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "af0f4d0a21d7f7f84ebab0a6f5b9d7eb44bb17309d194149ed8afc2ecb2d41b7", "reference/contract.md": "9d881a92b0f0158eee59ddcbb6b132fbb4dc87b42b9b1a9fbb02d07d9a9892e0", "reference/examples.md": "30000044cef48274626314f0d28959aa6e20da20fea03f9e6c1e1315eeaab309", "reference/constraints.md": "10e07c93559227d1d99d5b5671e3b645a1c4a7179a0b281c5d6a32a5842c805b", "reference/follow_up.md": "b93d9f98b038904852149d3ff63cd17b9fc467b07259d77ce8583476672f742f"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 1",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 16",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 3",
+        "output": "false",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5179c45cf85069b952b9ad1b697e7731b3576ba5123450119b29d47d40c03b6f",
+      "reference/contract.md": "9d881a92b0f0158eee59ddcbb6b132fbb4dc87b42b9b1a9fbb02d07d9a9892e0",
+      "reference/examples.md": "30000044cef48274626314f0d28959aa6e20da20fea03f9e6c1e1315eeaab309",
+      "reference/constraints.md": "10e07c93559227d1d99d5b5671e3b645a1c4a7179a0b281c5d6a32a5842c805b",
+      "reference/follow_up.md": "b93d9f98b038904852149d3ff63cd17b9fc467b07259d77ce8583476672f742f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

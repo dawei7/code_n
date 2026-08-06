@@ -1,19 +1,18 @@
 ## Description
 
-A binary tree can be serialized by traversing it in preorder. Record the value of each non-null node, and record a sentinel such as `#` whenever the traversal encounters a null child.
+One way to serialize a binary tree is to use **preorder traversal**. When we encounter a non-null node, we record the node's value. If it is a null node, we record using a sentinel value such as `'#'`.
 
-For example, consider this tree:
+<img alt="" src="https://assets.leetcode.com/uploads/2021/03/12/pre-tree.jpg" style="width: 362px; height: 293px;" />
+For example, the above binary tree can be serialized to the string `"9,3,4,#,#,1,#,#,2,#,6,#,#"`, where `'#'` represents a null node.
 
-```text
-        9
-      /   \
-     3     2
-    / \     \
-   4   1     6
-```
+Given a string of comma-separated values `preorder`, return `true` if it is a correct preorder traversal serialization of a binary tree.
 
-Its comma-separated preorder serialization is `"9,3,4,#,#,1,#,#,2,#,6,#,#"`, where every `#` marks a null pointer.
+It is **guaranteed** that each comma-separated value in the string must be either an integer or a character `'#'` representing null pointer.
 
-Given a comma-separated string `preorder`, return `true` when it is a valid preorder serialization of one binary tree; otherwise return `false`.
+You may assume that the input format is always valid.
 
-Every token is guaranteed to be either an integer or `#`, and the comma-separated format itself is valid. In particular, malformed text such as `"1,,3"` will not be supplied.
+<ul>
+	<li>For example, it could never contain two consecutive commas, such as `"1,,3"`.</li>
+</ul>
+
+**Note: **You are not allowed to reconstruct the tree.

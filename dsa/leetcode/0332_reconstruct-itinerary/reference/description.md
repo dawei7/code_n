@@ -1,7 +1,11 @@
 ## Description
 
-You are given airline tickets in which `tickets[i] = [from_i,to_i]` identifies one flight from its departure airport to its arrival airport. Reconstruct the flights as an ordered itinerary and return its airport sequence.
+You are given a list of airline `tickets` where `tickets[i] = [from_i, to_i]` represent the departure and the arrival airports of one flight. Reconstruct the itinerary in order and return it.
 
-Every ticket belongs to a traveler whose journey begins at `"JFK"`, so the first airport must be `"JFK"`. Each supplied ticket must be used once and only once, and at least one complete itinerary is guaranteed to exist.
+All of the tickets belong to a man who departs from `"JFK"`, thus, the itinerary must begin with `"JFK"`. If there are multiple valid itineraries, you should return the itinerary that has the smallest lexical order when read as a single string.
 
-If several complete itineraries are possible, choose the one with the smallest lexical order when each itinerary is read as one string. For instance, `["JFK","LGA"]` is lexically smaller than `["JFK","LGB"]`.
+<ul>
+	<li>For example, the itinerary `["JFK", "LGA"]` has a smaller lexical order than `["JFK", "LGB"]`.</li>
+</ul>
+
+You may assume all tickets form at least one valid itinerary. You must use all the tickets once and only once.

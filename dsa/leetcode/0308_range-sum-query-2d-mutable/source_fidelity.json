@@ -1,16 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_308", "frontend_id": "308", "title_slug": "range-sum-query-2d-mutable", "url": "https://leetcode.com/problems/range-sum-query-2d-mutable/description/", "paid_only": true, "content_sha256": "02818f4b470ce6960b9a86b59d90360c767fb7f0a52b844acd8ae976b28023ce", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "[\"NumMatrix\",\"sumRegion\",\"update\",\"sumRegion\"], [[[[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]],[2,1,4,3],[3,2,2],[2,1,4,3]]", "output": "[null,8,null,10]", "has_explanation": true}],
-    "constraint_count": 10,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_308",
+    "frontend_id": "308",
+    "title_slug": "range-sum-query-2d-mutable",
+    "url": "https://leetcode.com/problems/range-sum-query-2d-mutable/description/",
+    "paid_only": true,
+    "content_sha256": "02818f4b470ce6960b9a86b59d90360c767fb7f0a52b844acd8ae976b28023ce",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "fd76ae9523c28d4bacae1df70e4417518e24b85403756a620d4144ea2a8c4f57",
-    "reference/contract.md": "46a4629bba3cb37f04718b11a9c52bdc3b21cc2feccb646f9ca835bd8795aee9",
-    "reference/examples.md": "8c88f525b3bb59a18989ccf47dca9256df2bb824539d4b2b9f4a87ba551ad9c3",
-    "reference/constraints.md": "b44413cddc43737516ca06be39c72445f093308c57c93bfccae18af674cde9d9"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "[\"NumMatrix\",\"sumRegion\",\"update\",\"sumRegion\"], [[[[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]],[2,1,4,3],[3,2,2],[2,1,4,3]]",
+        "output": "[null,8,null,10]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 10,
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "fd76ae9523c28d4bacae1df70e4417518e24b85403756a620d4144ea2a8c4f57",
+      "reference/contract.md": "46a4629bba3cb37f04718b11a9c52bdc3b21cc2feccb646f9ca835bd8795aee9",
+      "reference/examples.md": "8c88f525b3bb59a18989ccf47dca9256df2bb824539d4b2b9f4a87ba551ad9c3",
+      "reference/constraints.md": "b44413cddc43737516ca06be39c72445f093308c57c93bfccae18af674cde9d9"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

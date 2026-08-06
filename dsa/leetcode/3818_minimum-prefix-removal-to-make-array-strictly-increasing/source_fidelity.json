@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/minimum-prefix-removal-to-make-array-strictly-increasing/description/",
     "paid_only": false,
     "content_sha256": "9e95a5f4a4b9da673a6bfc549afe8dc810a044c672fbb1afaefd1548648643af",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "`nums = [1,-1,2,3,3,4,5]`",
-        "output": "`4`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`nums = [4,3,-2,-5]`",
-        "output": "`3`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "`nums = [1,2,3,4]`",
-        "output": "`0`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "3987297c7ffb42e4202507a024aad29d580f558b9853cf4ba19235f586f914b8",
+      "reference/description.md": "f8f94833bda1e79c5b4d27d782a2bad5003894d07ae786122bf39623a208b4c5",
       "reference/contract.md": "a53b06a862c7a3d696e07f08c48c4df26f1db6a6af983e0076ef837303b2c795",
       "reference/examples.md": "60e9945bb67b3cc56a10d3d3549bc55ffcc064434679e12711b6076538239ded",
       "reference/constraints.md": "e64628b2b4aae6e6566b0384ccd511ac8d5a3ba3d4ad7f0b040aa98105d5447e"

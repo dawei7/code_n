@@ -1,8 +1,11 @@
 ## Description
 
-You are given a positive-integer array `nums`. One operation selects any single element and changes only that element in one of the following ways:
+You are given an integer array `nums`.
 
-- multiply it by an integer factor $k \ge 2$; or
-- divide it by an integer factor $k$ when $2 \le k < \texttt{nums[i]}$ and `nums[i]` is divisible by $k$.
+In one operation, you may choose any element `nums[i]` and perform one of the following:
 
-The chosen factor may differ between operations and between elements. Determine the minimum total number of operations needed to make every array element equal to the same positive integer. The final common value is not specified in advance.
+- **Multiply** `nums[i]` by an integer `k`, where `k >= 2`.
+- **Divide** `nums[i]` by an integer `k`, where `2 <= k < nums[i]`, provided that `nums[i]` is divisible by `k`.
+
+Return the *minimum* number of operations required to make all elements of `nums` **equal**.
+

@@ -1,19 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_302", "frontend_id": "302", "title_slug": "smallest-rectangle-enclosing-black-pixels", "url": "https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/description/", "paid_only": true, "content_sha256": "5f6d9c6b74ee552361f5c63020183fd576befaae85a6cc664870aede174b72e9", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_302",
+    "frontend_id": "302",
+    "title_slug": "smallest-rectangle-enclosing-black-pixels",
+    "url": "https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/description/",
+    "paid_only": true,
+    "content_sha256": "5f6d9c6b74ee552361f5c63020183fd576befaae85a6cc664870aede174b72e9",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "image = [[\"0\",\"0\",\"1\",\"0\"],[\"0\",\"1\",\"1\",\"0\"],[\"0\",\"1\",\"0\",\"0\"]], x = 0, y = 2", "output": "6", "has_explanation": false},
-      {"ordinal": 2, "input": "image = [[\"1\"]], x = 0, y = 0", "output": "1", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "image = [[\"0\",\"0\",\"1\",\"0\"],[\"0\",\"1\",\"1\",\"0\"],[\"0\",\"1\",\"0\",\"0\"]], x = 0, y = 2",
+        "output": "6",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "image = [[\"1\"]], x = 0, y = 0",
+        "output": "1",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 8,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "f629f4f2ececc713a32e99d031569ae4a3efd31ced8d1bc63b3c1b54dc9cec8e",
-    "reference/contract.md": "e5ecc2a9a110bc643b1f90e17d2deb339a151dca267d7fe79a90ba95d161c082",
-    "reference/examples.md": "03f0501049e9f6537fcc8ddf67d41ee63a3629748863553168ac991b76faedb9",
-    "reference/constraints.md": "18c1f638d7efa88c4700f4ab71ba2f04a5bd0b9ca7465e80c157bef14a32f551"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f629f4f2ececc713a32e99d031569ae4a3efd31ced8d1bc63b3c1b54dc9cec8e",
+      "reference/contract.md": "e5ecc2a9a110bc643b1f90e17d2deb339a151dca267d7fe79a90ba95d161c082",
+      "reference/examples.md": "03f0501049e9f6537fcc8ddf67d41ee63a3629748863553168ac991b76faedb9",
+      "reference/constraints.md": "18c1f638d7efa88c4700f4ab71ba2f04a5bd0b9ca7465e80c157bef14a32f551"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

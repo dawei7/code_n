@@ -8,15 +8,23 @@
     "url": "https://leetcode.com/problems/equal-score-substrings/description/",
     "paid_only": false,
     "content_sha256": "ff1ea518df872f49a5d63fdfa8dc3cfe96e842b16c4bee228a4c84e4b2be46c7",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [
-      {"ordinal": 1, "input": "s = \"adcb\"", "output": "true", "has_explanation": true},
-      {"ordinal": 2, "input": "s = \"bace\"", "output": "false", "has_explanation": true}
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
     ],
-    "constraint_count": 2,
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -29,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "eb6b01a11bbd21dce6361b47047cad5da10002ec6b8c0cc5973429e59dc4adda",
+      "reference/description.md": "9c13ac82478a5ddab6a0902cfac7d7e5345f0a719797b0b6b3be0504acc4f0d9",
       "reference/contract.md": "10c4c825cdad1081f613aff98ee9dd854955d67e86d3691e87fb1d339d878ba2",
       "reference/examples.md": "ec98a97a763e20cd7353833b87c14822cde77e09df0d9a9251504ac4126beca8",
       "reference/constraints.md": "2f62750170ae4e2c2308c37b32bb9e4fee2d01e843128c5528346be578274118"

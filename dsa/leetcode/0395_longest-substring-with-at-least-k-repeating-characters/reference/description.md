@@ -1,5 +1,5 @@
 ## Description
 
-Given a string `s` and an integer `k`, find the longest substring in which every character that appears has frequency at least `k` within that substring.
+Given a string `s` and an integer `k`, return *the length of the longest substring of* `s` *such that the frequency of each character in this substring is greater than or equal to* `k`.
 
-Return its length, or return `0` if no such substring exists.
+<p data-pm-slice="1 1 []">if no such substring exists, return 0.

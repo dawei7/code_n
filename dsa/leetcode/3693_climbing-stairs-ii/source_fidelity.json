@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/climbing-stairs-ii/description/",
     "paid_only": false,
     "content_sha256": "689d94bebea802b6b8cf7044e4328e3cee1342258484e703ea81e82e349554f0",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,37 +19,25 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 4, costs = [1,2,3,4]",
-        "output": "13",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 4, costs = [5,1,6,2]",
-        "output": "11",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "n = 3, costs = [9,8,3]",
-        "output": "12",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
-      "source_tables": 2,
+      "source_tables": 0,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 2,
+      "local_tables": 0,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "6b7b56de7829b00688993773e3ac21118877b89e60570e4a3da4dd04001cf949",
+      "reference/description.md": "88e3ba1679dcf34d6bc5c6c22aa31eef4ed9d331faf963d033e011498157f5e9",
       "reference/contract.md": "dc8a77684fbf3ff98eb46040f8ceba79d6f949a54b23f7bc488363e445ff9c74",
       "reference/examples.md": "21e7435e3f2f19c29d03bc449ce962a76ebaf051e94b15f448d18540de702aa4",
       "reference/constraints.md": "2009e984eaf1033b6b3c20747bfb56a8d0bc8dd57984be75d519eeb071a7afe9"

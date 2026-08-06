@@ -1,5 +1,14 @@
 ## Description
 
-Given an integer array `nums`, call `nums[i]` valid when it meets at least one of two strict conditions: it is greater than every value before index `i`, or it is greater than every value after index `i`.
+You are given an integer array `nums`.
 
-The first element has no values to its left and the last has none to its right, so both endpoints are always valid. Return the values of every valid element without changing their original left-to-right order. Equal values do not satisfy a strictly-greater comparison.
+An element `nums[i]` is considered **valid** if it satisfies **at least** one of the following conditions:
+
+<ul>
+	<li>It is **strictly greater** than every element to its left.</li>
+	<li>It is **strictly greater** than every element to its right.</li>
+</ul>
+
+The first and last elements are always valid.
+
+Return an array of all valid elements in the same order as they appear in `nums`.

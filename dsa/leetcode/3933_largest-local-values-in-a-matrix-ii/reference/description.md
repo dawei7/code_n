@@ -1,15 +1,38 @@
 ## Description
 
-An `n` by `m` matrix contains nonnegative integers. Consider a cell at `(row, column)` whose value is a nonzero integer `x`. Its neighborhood contains every in-bounds cell `(other_row, other_column)` satisfying both
+You are given an `n x m` integer matrix `matrix` containing non-negative integers.
 
-$$
-\lvert\texttt{other\_row}-\texttt{row}\rvert\le x
-\quad\text{and}\quad
-\lvert\texttt{other\_column}-\texttt{column}\rvert\le x.
-$$
+A **non-zero **cell `(row, col)` checks the cells near it as follows:
 
-There is one exception: ignore a position when both distances are exactly `x`. These are the four possible corners `(row ± x, column ± x)` of the square neighborhood; any corner outside the matrix is ignored as well.
+<ul>
+	<li>Let `x = matrix[row][col]`.</li>
+	<li>Consider every cell within `x` rows and `x` columns of `(row, col)`.</li>
+	<li>Ignore cells that are outside the matrix.</li>
+	<li>Ignore the cells where both the row distance and column distance are exactly `x`.</li>
+</ul>
 
-The nonzero cell is a local maximum when none of the cells that remain in its neighborhood has a value strictly greater than `x`. Equal values are allowed, so several tied cells can all qualify. Cells whose own value is zero are never local-maximum candidates.
+The cell `(row, col)` is a **local maximum** if it is **non-zero** and no considered cell has a value **greater than** `x`.
 
-Return the number of cells that satisfy this definition.
+Return an integer denoting the number of **local maximums** in `matrix`.
+
+ 
+
+<strong class="example">​​​​​​​Example 1:</strong>
+
+<div class="example-block">
+**Input:** <span class="example-io">matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]</span>
+
+**Output:** <span class="example-io">1</span>
+
+<img alt="" src="https://assets.leetcode.com/uploads/2026/05/13/chatgpt-image-may-14-2026-01_53_19-am.png" style="width: 300px; height: 300px;" />​​​​​​​​​​​​​​​​​​​​​
+
+**Explanation:**
+
+<ul>
+	<li>For the non-zero cell `(3, 3)`, `x = matrix[3][3] = 2`.</li>
+	<li>The highlighted cells are the considered cells within `x` rows and `x` columns of `(3, 3)`.</li>
+	<li>The four cells with both row and column distances equal to `x = 2` are ignored.</li>
+	<li>No considered cell has a value greater than 2, so `(3, 3)` is a local maximum.</li>
+	<li>There are no other non-zero cells, so the answer is 1.</li>
+</ul>
+</div>

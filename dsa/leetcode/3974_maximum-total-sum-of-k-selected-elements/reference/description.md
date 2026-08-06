@@ -1,12 +1,16 @@
 ## Description
 
-You receive an integer array `nums` together with integers `k` and `mul`. Choose exactly `k` elements from the array, then decide the order in which those selected elements will be processed.
+You are given an integer array `nums` and two integers `k` and `mul`.
 
-For each processed element, independently choose one of two contributions:
+Select **exactly** `k` elements from `nums`. Process these elements one by one in any order you choose.
 
-- add the element's value directly to the total; or
-- multiply the element by the current value of `mul`, then add that product to the total.
+For each selected element, **independently** choose one of the following:
 
-After every selected element is processed, decrease `mul` by one. This decrease happens whichever contribution was chosen, and the evolving value of `mul` is allowed to reach zero or become negative.
+<ul>
+	<li>**Add** the element's value to the total sum, or</li>
+	<li>**Multiply** the element by the **current** value of `mul` and **add** the result to the total sum.</li>
+</ul>
 
-Return the greatest total obtainable by coordinating the exact selection, processing order, and per-element add-or-multiply choices.
+After processing each selected element, `mul` **decreases** by 1, regardless of which option was chosen. The current value of `mul` may become 0 or negative.
+
+Return an integer denoting the **maximum** possible total sum.

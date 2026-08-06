@@ -11,7 +11,12 @@
     "checked_at": "2026-08-02"
   },
   "structure": {
-    "sections": ["description", "abbreviation_rules", "examples", "constraints"],
+    "sections": [
+      "description",
+      "abbreviation_rules",
+      "examples",
+      "constraints"
+    ],
     "examples": [
       {
         "ordinal": 1,

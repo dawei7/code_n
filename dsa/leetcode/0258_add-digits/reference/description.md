@@ -1,5 +1,3 @@
 ## Description
 
-Start with the nonnegative integer `num`. While its decimal representation has more than one digit, replace the number by the sum of those digits.
-
-Return the single digit left after this process finishes.
+Given an integer `num`, repeatedly add all its digits until the result has only one digit, and return it.

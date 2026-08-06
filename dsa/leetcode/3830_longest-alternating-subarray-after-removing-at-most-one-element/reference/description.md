@@ -2,15 +2,17 @@
 
 You are given an integer array `nums`.
 
-A subarray `nums[l..r]` is **alternating** when it follows either of these two patterns:
+A <span data-keyword="subarray">subarray</span> `nums[l..r]` is **alternating** if one of the following holds:
 
-- `nums[l] < nums[l + 1] > nums[l + 2] < nums[l + 3] > ...`
-- `nums[l] > nums[l + 1] < nums[l + 2] > nums[l + 3] < ...`
+<ul>
+	<li>`nums[l] < nums[l + 1] > nums[l + 2] < nums[l + 3] > ...`</li>
+	<li>`nums[l] > nums[l + 1] < nums[l + 2] > nums[l + 3] < ...`</li>
+</ul>
 
-Equivalently, every comparison between adjacent elements must be strict, and the direction of those comparisons must alternate between greater and smaller.
+In other words, if we compare adjacent elements in the subarray, then the comparisons alternate between **strictly** greater and **strictly** smaller.
 
-Before choosing the subarray, you may remove **at most one** element from `nums`; choosing not to remove anything is also allowed. Select an alternating subarray from the array that remains.
+You can remove **at most one** element from `nums`. Then, you select an alternating subarray from `nums`.
 
-Return the maximum possible length of the selected alternating subarray.
+Return an integer denoting the **maximum** **length** of the alternating subarray you can select.
 
-A subarray of length $1$ is alternating.
+A subarray of length 1 is considered alternating.

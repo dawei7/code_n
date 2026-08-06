@@ -1,7 +1,5 @@
 ## Description
 
-Two non-negative integers are provided through their decimal string representations `num1` and `num2`. Return
-their arithmetic sum as a decimal string.
+Given two non-negative integers, `num1` and `num2` represented as string, return *the sum of* `num1` *and* `num2` *as a string*.
 
-Do not use a built-in facility for arbitrary-precision integers, such as `BigInteger`, and do not convert either
-complete input string directly into an integer.
+You must solve the problem without using any built-in library for handling large integers (such as `BigInteger`). You must also not convert the inputs to integers directly.

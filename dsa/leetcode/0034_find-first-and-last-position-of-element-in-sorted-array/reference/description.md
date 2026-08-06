@@ -1,5 +1,7 @@
 ## Description
 
-Given an integer array `nums` sorted in non-decreasing order, locate the first and last positions occupied by `target`. Let $n = \lvert\texttt{nums}\rvert$.
+Given an array of integers `nums` sorted in non-decreasing order, find the starting and ending position of a given `target` value.
 
-Return those two indices as a pair. If `target` does not occur in the array, return `[-1, -1]` instead. The algorithm must run in $O(\log n)$ time.
+If `target` is not found in the array, return `[-1, -1]`.
+
+You must write an algorithm with `O(log n)` runtime complexity.

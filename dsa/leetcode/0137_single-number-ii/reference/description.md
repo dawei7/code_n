@@ -1,5 +1,5 @@
 ## Description
 
-Given an integer array `nums`, every value appears exactly three times except for one value that appears exactly once. Find and return that single value.
+Given an integer array `nums` where every element appears **three times** except for one, which appears **exactly once**. *Find the single element and return it*.
 
-Your solution must run in linear time and use only constant extra space.
+You must implement a solution with a linear runtime complexity and use only constant extra space.

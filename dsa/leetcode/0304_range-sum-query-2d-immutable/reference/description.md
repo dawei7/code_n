@@ -1,10 +1,16 @@
 ## Description
 
-Given a 2D integer matrix `matrix`, support repeated queries for the sum of all values inside an inclusive rectangle. The rectangle's upper-left corner is `(row1, col1)` and its lower-right corner is `(row2, col2)`.
+Given a 2D matrix `matrix`, handle multiple queries of the following type:
+
+<ul>
+	<li>Calculate the **sum** of the elements of `matrix` inside the rectangle defined by its **upper left corner** `(row1, col1)` and **lower right corner** `(row2, col2)`.</li>
+</ul>
 
 Implement the `NumMatrix` class:
 
-- `NumMatrix(int[][] matrix)` initializes the object with `matrix`.
-- `int sumRegion(int row1, int col1, int row2, int col2)` returns the sum inside the rectangle bounded by those corners.
+<ul>
+	<li>`NumMatrix(int[][] matrix)` Initializes the object with the integer matrix `matrix`.</li>
+	<li>`int sumRegion(int row1, int col1, int row2, int col2)` Returns the **sum** of the elements of `matrix` inside the rectangle defined by its **upper left corner** `(row1, col1)` and **lower right corner** `(row2, col2)`.</li>
+</ul>
 
-Each `sumRegion` call must run in $O(1)$ time.
+You must design an algorithm where `sumRegion` works on `O(1)` time complexity.

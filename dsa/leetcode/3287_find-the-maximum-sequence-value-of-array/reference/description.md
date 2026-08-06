@@ -1,0 +1,11 @@
+## Description
+
+You are given an integer array `nums` and a **positive** integer `k`.
+
+The **value** of a sequence `seq` of size `2 * x` is defined as:
+
+<ul>
+	<li>`(seq[0] OR seq[1] OR ... OR seq[x - 1]) XOR (seq[x] OR seq[x + 1] OR ... OR seq[2 * x - 1])`.</li>
+</ul>
+
+Return the **maximum** **value** of any <span data-keyword="subsequence-array">subsequence</span> of `nums` having size `2 * k`.

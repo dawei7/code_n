@@ -1,9 +1,14 @@
 ## Description
 
-You are given a length-`n` string `s` whose characters are only `'A'` and `'B'`, together with `q` queries that must be processed in order.
+You are given a string `s` of length `n` consisting only of the characters `'A'` and `'B'`.
 
-A query of the form `[1, j]` flips `s[j]`: `'A'` becomes `'B'`, and `'B'` becomes `'A'`. This change mutates `s`, so every later query observes the updated character.
+You are also given a 2D integer array `queries` of length `q`, where each `queries[i]` is one of the following:
 
-A query of the form `[2, l, r]` asks for the minimum number of characters that must be deleted from the substring `s[l..r]` to make it alternating. This query does not modify `s` or change its length. A string is alternating when every pair of adjacent characters differs; any one-character string satisfies that definition.
+<ul>
+	<li>`[1, j]`: **Flip** the character at index `j` of `s` i.e. `'A'` changes to `'B'` (and vice versa). This operation mutates `s` and affects subsequent queries.</li>
+	<li>`[2, l, r]`: **Compute** the **minimum** number of character deletions required to make the **substring** `s[l..r]` **alternating**. This operation does not modify `s`; the length of `s` remains `n`.</li>
+</ul>
 
-Return the results of the type-2 queries in their processing order. Type-1 queries contribute no entry to the returned array.
+A **<span data-keyword="substring-nonempty">substring</span>** is **alternating** if no two **adjacent** characters are **equal**. A substring of length 1 is always alternating.
+
+Return an integer array `answer`, where `answer[i]` is the result of the `i^th` query of type `[2, l, r]`.

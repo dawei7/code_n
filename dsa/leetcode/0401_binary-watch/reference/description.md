@@ -1,15 +1,23 @@
 ## Description
 
-A binary watch uses four LEDs for the hour, from `0` through `11`, and six LEDs for the minutes, from `0` through `59`. Each LED represents one binary bit, with the least significant bit on the right.
+A binary watch has 4 LEDs on the top to represent the hours (0-11), and 6 LEDs on the bottom to represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on the right.
 
-The source watch image shows the value `4:51`; its lit positions can be represented as follows:
+<ul>
+	<li>For example, the below binary watch reads `"4:51"`.</li>
+</ul>
 
-```text
-hours:    8  4  2  1       lit: 4          -> 4
-minutes: 32 16  8  4  2  1 lit: 32+16+2+1 -> 51
-display: 4:51
-```
+<img alt="" src="https://assets.leetcode.com/uploads/2021/04/08/binarywatch.jpg" style="width: 500px; height: 500px;" />
 
-Given `turnedOn`, the total number of lit LEDs, return every time the watch could display, in any order. Ignore whether the time is AM or PM.
+Given an integer `turnedOn` which represents the number of LEDs that are currently on (ignoring the PM), return *all possible times the watch could represent*. You may return the answer in **any order**.
 
-Hours must not have a leading zero: use `"1:00"`, not `"01:00"`. Minutes always use exactly two digits and may begin with zero: use `"10:02"`, not `"10:2"`.
+The hour must not contain a leading zero.
+
+<ul>
+	<li>For example, `"01:00"` is not valid. It should be `"1:00"`.</li>
+</ul>
+
+The minute must consist of two digits and may contain a leading zero.
+
+<ul>
+	<li>For example, `"10:2"` is not valid. It should be `"10:02"`.</li>
+</ul>

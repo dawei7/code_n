@@ -11,13 +11,42 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "s = \"()\"", "output": "true", "has_explanation": false},
-      {"ordinal": 2, "input": "s = \"()[]{}\"", "output": "true", "has_explanation": false},
-      {"ordinal": 3, "input": "s = \"(]\"", "output": "false", "has_explanation": false},
-      {"ordinal": 4, "input": "s = \"([])\"", "output": "true", "has_explanation": false},
-      {"ordinal": 5, "input": "s = \"([)]\"", "output": "false", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "s = \"()\"",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"()[]{}\"",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"(]\"",
+        "output": "false",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 4,
+        "input": "s = \"([])\"",
+        "output": "true",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 5,
+        "input": "s = \"([)]\"",
+        "output": "false",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
     "visuals": {
@@ -32,7 +61,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "ffa59754e9e7dac5897e95a672165610e48d48610a85e75c9f8ab099452bc820",
+      "reference/description.md": "fa075641bc87817673c42502abe076bd366cba7053af38db6c987c6a61d57b0d",
       "reference/contract.md": "f1f31a1430ddee0a58dddffd10b10872918c9c6955aed96dd2569b2c3f87b1e7",
       "reference/examples.md": "38fa2696687861cb1079e794ea33990b5882e179ff39ab8375940cc64c3ba98d",
       "reference/constraints.md": "0a89d5f5a96a0bdec0136c3044bdbd5e1532f59637e1c756af0dfa91e65f52cc"

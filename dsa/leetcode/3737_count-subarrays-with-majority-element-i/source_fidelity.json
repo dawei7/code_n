@@ -1,15 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3737","frontend_id":"3737","title_slug":"count-subarrays-with-majority-element-i","url":"https://leetcode.com/problems/count-subarrays-with-majority-element-i/description/","paid_only":false,"content_sha256":"c5704f3ad33786cfdd5c4c7576592940cd4168baa05d66d7aafd273e6e5dfd23","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"nums = [1,2,2,3], target = 2","output":"5","has_explanation":true},
-    {"ordinal":2,"input":"nums = [1,1,1,1], target = 1","output":"10","has_explanation":true},
-    {"ordinal":3,"input":"nums = [1,2,3], target = 4","output":"0","has_explanation":true}
-  ],"constraint_count":3,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"1e69ada5adc72f060a6f83a95147a11d56063978e866fb9976bff4c270a88309",
-    "reference/contract.md":"30178e92b5db166287c67856888d46063139a0928de96f604bff86a0b700c0a5",
-    "reference/examples.md":"b358502782e920bb84b7907d60a21a975ee4b6d03b24c6afea5a54599a8ac5ef",
-    "reference/constraints.md":"5683cca0f11b3ec2bbcf310dce733ee758d13516493e8e76aa29bb34e22d62c3"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3737",
+    "frontend_id": "3737",
+    "title_slug": "count-subarrays-with-majority-element-i",
+    "url": "https://leetcode.com/problems/count-subarrays-with-majority-element-i/description/",
+    "paid_only": false,
+    "content_sha256": "c5704f3ad33786cfdd5c4c7576592940cd4168baa05d66d7aafd273e6e5dfd23",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b757c87b1a9271d02cfd2c4442c5084faf55f76ae193e56c930cdbc17295d769",
+      "reference/contract.md": "30178e92b5db166287c67856888d46063139a0928de96f604bff86a0b700c0a5",
+      "reference/examples.md": "b358502782e920bb84b7907d60a21a975ee4b6d03b24c6afea5a54599a8ac5ef",
+      "reference/constraints.md": "5683cca0f11b3ec2bbcf310dce733ee758d13516493e8e76aa29bb34e22d62c3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,0 +1,12 @@
+## Description
+
+Alice and Bob are playing a game where they take turns removing stones from a pile, with *Alice going first*.
+
+<ul>
+	<li>Alice starts by removing **exactly** 10 stones on her first turn.</li>
+	<li>For each subsequent turn, each player removes **exactly** 1 fewer** **stone** **than the previous opponent.</li>
+</ul>
+
+The player who cannot make a move loses the game.
+
+Given a positive integer `n`, return `true` if Alice wins the game and `false` otherwise.

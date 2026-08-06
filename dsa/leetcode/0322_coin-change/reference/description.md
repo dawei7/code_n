@@ -1,5 +1,7 @@
 ## Description
 
-The integer array `coins` contains available coin denominations, and `amount` is a target sum of money. Return the fewest coins whose values add to exactly `amount`. Return `-1` if no combination can form the target.
+You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.
 
-There is an unlimited supply of every denomination.
+Return *the fewest number of coins that you need to make up that amount*. If that amount of money cannot be made up by any combination of the coins, return `-1`.
+
+You may assume that you have an infinite number of each kind of coin.

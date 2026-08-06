@@ -1,10 +1,16 @@
 ## Description
 
-An integer matrix `grid` is crossed by two monotone paths with opposite vertical directions:
+<p data-end="139" data-start="64">You are given an `m x n` integer matrix `grid`.
 
-- The first path starts at the top-left cell and finishes at the bottom-right cell. At each step, it moves either one cell right or one cell down.
-- The second path starts at the bottom-left cell and finishes at the top-right cell. At each step, it moves either one cell right or one cell up.
+Two players move across the grid:
 
-The **intersection** of a chosen pair of paths consists of every cell visited by both paths. Its score is the sum of the values in those shared cells.
+<ul>
+	<li>Player 1 starts at the top-left cell `(0, 0)` and can move only right or down. Their destination is the bottom-right cell `(m - 1, n - 1)`.</li>
+	<li>Player 2 starts at the bottom-left cell `(m - 1, 0)` and can move only right or up. Their destination is the top-right cell `(0, n - 1)`.</li>
+</ul>
 
-Choose both paths so that their intersection score is as large as possible, and return that maximum score. Matrix values may be negative, so the best intersection is not necessarily the one containing the most cells.
+Each player must choose a valid path from their respective starting cell to their destination.
+
+A cell is called **shared** if it belongs to **both** chosen paths.
+
+Return an integer denoting the **maximum** possible sum of values of all **shared** cells.

@@ -1,15 +1,54 @@
 {
-  "schema_version":1,
-  "source":{"provider":"leetcode","challenge_id":"lc_3751","frontend_id":"3751","title_slug":"total-waviness-of-numbers-in-range-i","url":"https://leetcode.com/problems/total-waviness-of-numbers-in-range-i/description/","paid_only":false,"content_sha256":"c7b965fc2a10cd464db908e9a56cc4687d5d4a173b5738c86dee3e2a47f3eaf7","checked_at":"2026-07-28"},
-  "structure":{"sections":["description","examples","constraints"],"examples":[
-    {"ordinal":1,"input":"num1 = 120, num2 = 130","output":"3","has_explanation":true},
-    {"ordinal":2,"input":"num1 = 198, num2 = 202","output":"3","has_explanation":true},
-    {"ordinal":3,"input":"num1 = 4848, num2 = 4848","output":"2","has_explanation":true}
-  ],"constraint_count":1,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
-  "review":{"status":"verified","files":{
-    "reference/description.md":"8c8e36c9e870a9c5e3fe1f8984e42da99083f7f03bbe4f2dfa20b4587346ef12",
-    "reference/contract.md":"f5e1d777b7c0070cbf9eee80e87d5546ef67665ea3d6a2ded5b70bf479fdbe7c",
-    "reference/examples.md":"a9b95a32723337bc89f0bbe90d0b79f9a2d1a0c515db3d8b87d13238333cc7de",
-    "reference/constraints.md":"54f83da84750de30395d0378847268b935f86ff2d6e1a88446be54d50f260c3d"
-  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3751",
+    "frontend_id": "3751",
+    "title_slug": "total-waviness-of-numbers-in-range-i",
+    "url": "https://leetcode.com/problems/total-waviness-of-numbers-in-range-i/description/",
+    "paid_only": false,
+    "content_sha256": "c7b965fc2a10cd464db908e9a56cc4687d5d4a173b5738c86dee3e2a47f3eaf7",
+    "checked_at": "2026-08-06"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3cf1139e9ca177feb4f2bdd4abd04fa17bca549103812270fb94ae216b0710a1",
+      "reference/contract.md": "f5e1d777b7c0070cbf9eee80e87d5546ef67665ea3d6a2ded5b70bf479fdbe7c",
+      "reference/examples.md": "a9b95a32723337bc89f0bbe90d0b79f9a2d1a0c515db3d8b87d13238333cc7de",
+      "reference/constraints.md": "54f83da84750de30395d0378847268b935f86ff2d6e1a88446be54d50f260c3d"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

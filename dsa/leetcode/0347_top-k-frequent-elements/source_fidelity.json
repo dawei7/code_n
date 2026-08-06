@@ -1,21 +1,68 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_347", "frontend_id": "347", "title_slug": "top-k-frequent-elements", "url": "https://leetcode.com/problems/top-k-frequent-elements/description/", "paid_only": false, "content_sha256": "6dedfcf3030799c9c162e7ae58a9eac1013af8ed694230150a112523e5b3646d", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_347",
+    "frontend_id": "347",
+    "title_slug": "top-k-frequent-elements",
+    "url": "https://leetcode.com/problems/top-k-frequent-elements/description/",
+    "paid_only": false,
+    "content_sha256": "6dedfcf3030799c9c162e7ae58a9eac1013af8ed694230150a112523e5b3646d",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [1,1,1,2,2,3], k = 2", "output": "[1,2]", "has_explanation": false},
-      {"ordinal": 2, "input": "nums = [1], k = 1", "output": "[1]", "has_explanation": false},
-      {"ordinal": 3, "input": "nums = [1,2,1,2,1,2,3,1,3,2], k = 2", "output": "[1,2]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [1,1,1,2,2,3], k = 2",
+        "output": "[1,2]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1], k = 1",
+        "output": "[1]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,2,1,2,1,2,3,1,3,2], k = 2",
+        "output": "[1,2]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "fe55a8fceeeeef71572f20e6f269bf997e940280a09d5e7471dbd2e192133cde",
-    "reference/contract.md": "85dad2b50b6430da48beef2b1e3901b39a725d5b83701b1057bb4a369b983fde",
-    "reference/examples.md": "18a82edc315e858bb52671ef6a6c859d1078bb4f160b3f126a0c1d40349c5056",
-    "reference/constraints.md": "cde502b8b50c6e6bcf421586b27a4f266cce305ad92de0d09341ee6be4743233",
-    "reference/follow_up.md": "6b6fd400d30f95776383620cb162ee571b38671ce6d656319643eddd0b89da74"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "1c24e7515b95b29ca03d0c80fd321709ba4ae2258b307f37c4ea1d420e1769d1",
+      "reference/contract.md": "85dad2b50b6430da48beef2b1e3901b39a725d5b83701b1057bb4a369b983fde",
+      "reference/examples.md": "18a82edc315e858bb52671ef6a6c859d1078bb4f160b3f126a0c1d40349c5056",
+      "reference/constraints.md": "cde502b8b50c6e6bcf421586b27a4f266cce305ad92de0d09341ee6be4743233",
+      "reference/follow_up.md": "6b6fd400d30f95776383620cb162ee571b38671ce6d656319643eddd0b89da74"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

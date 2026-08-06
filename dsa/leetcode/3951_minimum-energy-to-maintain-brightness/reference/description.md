@@ -1,9 +1,13 @@
 ## Description
 
-There are `n` light bulbs in a line, indexed from `0` through `n - 1`. You are also given a required `brightness` and a collection of inclusive time `intervals`. At every integer time contained in at least one interval, the lighting requirement must be met.
+You are given an integer `n`, representing `n` light bulbs arranged in a line and indexed from 0 to `n - 1`.
 
-At any time unit, each bulb may be independently on or off. A bulb that is on illuminates its own position and either adjacent position that exists. Total illumination is the number of distinct positions illuminated; a position reached by several bulbs is still counted only once.
+You are also given an integer `brightness` and a 2D integer array `intervals`, where `intervals[i] = [start_i, end_i]` represents an **inclusive** time interval during which the lighting requirement **must** be satisfied.
 
-During every covered time unit, total illumination must be at least `brightness`. All bulbs may be off at uncovered times. Keeping one bulb on for one time unit costs one unit of energy.
+At each time unit, every bulb can independently be either on or off. A bulb that is on **illuminates** its own position and its **adjacent** positions, if they exist.
 
-Return the minimum total energy needed across all required time units.
+The **total illumination** at a time unit is the number of **illuminated** positions. Each position is counted **at most once**.
+
+For every integer time unit covered by **at least** one interval in `intervals`, the **total illumination** must be **at least** `brightness`. At time units not covered by any interval, all bulbs may remain off. Each bulb that is on consumes 1 unit of energy for that time unit.
+
+Return an integer denoting the **minimum** total energy required.

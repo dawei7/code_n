@@ -1,5 +1,7 @@
 ## Description
 
-The string `num` contains only decimal digits. Insert the binary operators `+`, `-`, and/or `*` between its digits, then return every resulting expression whose value equals `target`.
+Given a string `num` that contains only digits and an integer `target`, return ***all possibilities** to insert the binary operators *`'+'`*, *`'-'`*, and/or *`'*'`* between the digits of *`num`* so that the resultant expression evaluates to the *`target`* value*.
 
-No operand in a returned expression may have a leading zero. An operand may contain more than one digit.
+Note that operands in the returned expressions **should not** contain leading zeros.
+
+**Note** that a number can contain multiple digits.

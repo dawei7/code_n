@@ -1,17 +1,56 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_175", "frontend_id": "175", "title_slug": "combine-two-tables", "url": "https://leetcode.com/problems/combine-two-tables/description/", "paid_only": false, "content_sha256": "ca48b8aac28c9ef8ce745042320b8b406782454679a6b31e3623dd22cbf56dd2", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_175",
+    "frontend_id": "175",
+    "title_slug": "combine-two-tables",
+    "url": "https://leetcode.com/problems/combine-two-tables/description/",
+    "paid_only": false,
+    "content_sha256": "ca48b8aac28c9ef8ce745042320b8b406782454679a6b31e3623dd22cbf56dd2",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["person_table", "address_table", "description", "examples"],
+    "sections": [
+      "person_table",
+      "address_table",
+      "description",
+      "examples"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "Person = [[1,\"Wang\",\"Allen\"],[2,\"Alice\",\"Bob\"]], Address = [[1,2,\"New York City\",\"New York\"],[2,3,\"Leetcode\",\"California\"]]", "output": "[[\"Allen\",\"Wang\",null,null],[\"Bob\",\"Alice\",\"New York City\",\"New York\"]]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "Person = [[1,\"Wang\",\"Allen\"],[2,\"Alice\",\"Bob\"]], Address = [[1,2,\"New York City\",\"New York\"],[2,3,\"Leetcode\",\"California\"]]",
+        "output": "[[\"Allen\",\"Wang\",null,null],[\"Bob\",\"Alice\",\"New York City\",\"New York\"]]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 0,
-    "visuals": {"source_images": 0, "source_tables": 5, "source_diagrams": 0, "local_images": 0, "local_tables": 5, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 5,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 5,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/person_table.md": "b4b3ee9a095ded4fe031d2c2eba0a75cff03aa70839677a4bd967710e6ea3f2b", "reference/address_table.md": "0a4db57e2855d972e85831e9d9b9099ffdda827c0ab690feea3b97a6c6a847eb", "reference/description.md": "77a7f0a97b8e6748a0288d4d5bea53a47a147d04a1f55aa4b450d334b3206a9c", "reference/contract.md": "a108f61b66cf9fb6dcb148c7560c15797688ddaa3de1857569e34a0ee354b831", "reference/examples.md": "d5e0c8096bd422f38754a1535eae4931c11b02486dd7ac843aa608592aabf119"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/person_table.md": "b4b3ee9a095ded4fe031d2c2eba0a75cff03aa70839677a4bd967710e6ea3f2b",
+      "reference/address_table.md": "0a4db57e2855d972e85831e9d9b9099ffdda827c0ab690feea3b97a6c6a847eb",
+      "reference/description.md": "77a7f0a97b8e6748a0288d4d5bea53a47a147d04a1f55aa4b450d334b3206a9c",
+      "reference/contract.md": "a108f61b66cf9fb6dcb148c7560c15797688ddaa3de1857569e34a0ee354b831",
+      "reference/examples.md": "d5e0c8096bd422f38754a1535eae4931c11b02486dd7ac843aa608592aabf119"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

@@ -1,11 +1,11 @@
 ## Description
 
-You are given a string `s` containing lowercase English letters.
+You are given a string `s` that consists of lowercase English letters.
 
-The following operation may be performed any number of times, including zero times:
+You can perform the following operation any number of times (possibly zero times):
 
-- Choose a letter that occurs at least twice in the current string, then delete any one occurrence of that letter.
+<ul>
+	<li>Choose any letter that appears **at least twice** in the current string `s` and delete any **one** occurrence.</li>
+</ul>
 
-Only the selected occurrence is removed; all other characters keep their relative order.
-
-Return the lexicographically smallest string that can be obtained through these operations.
+Return the **<span data-keyword="lexicographically-smaller-string">lexicographically smallest</span>** resulting string that can be formed this way.

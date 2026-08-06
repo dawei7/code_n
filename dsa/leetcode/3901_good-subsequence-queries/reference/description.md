@@ -1,7 +1,18 @@
 ## Description
 
-You are given an integer array `nums` of length $n$ and a positive integer `p`. A subsequence is good when it is non-empty, uses strictly fewer than $n$ elements, and the greatest common divisor (GCD) of all its selected values is exactly `p`.
+You are given an integer array `nums` of length `n` and an integer `p`.
 
-You are also given a sequence of point updates. Each query `[ind_i, val_i]` replaces `nums[ind_i]` with `val_i`; the change remains in effect for all later queries.
+A **non-empty <span data-keyword="subsequence-sequence">subsequence</span>** of `nums` is called **good** if:
 
-After applying each update, determine whether the current array contains at least one good subsequence. Return the number of queries whose resulting array satisfies that condition. For two integers $a$ and $b$, $gcd(a,b)$ denotes their greatest common divisor.
+<ul>
+	<li>Its length is **strictly less** than `n`.</li>
+	<li>The **greatest common divisor (GCD)** of its elements is **exactly** `p`.</li>
+</ul>
+
+You are also given a 2D integer array `queries` of length `q`, where each `queries[i] = [ind_i, val_i]` indicates that you should update `nums[ind_i]` to `val_i`.
+
+After each query, determine whether there exists **any good subsequence** in the current array.
+
+Return the **number** of queries for which a **good subsequence** exists.
+
+The term `gcd(a, b)` denotes the **greatest common divisor** of `a` and `b`.

@@ -1,0 +1,13 @@
+## Description
+
+There are n points on an infinite plane. You are given two integer arrays `xCoord` and `yCoord` where `(xCoord[i], yCoord[i])` represents the coordinates of the `i^th` point.
+
+Your task is to find the **maximum **area of a rectangle that:
+
+<ul>
+	<li>Can be formed using **four** of these points as its corners.</li>
+	<li>Does **not** contain any other point inside or on its border.</li>
+	<li>Has its edges **parallel** to the axes.</li>
+</ul>
+
+Return the **maximum area** that you can obtain or -1 if no such rectangle is possible.

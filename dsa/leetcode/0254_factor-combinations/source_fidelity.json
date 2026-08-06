@@ -1,11 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_254", "frontend_id": "254", "title_slug": "factor-combinations", "url": "https://leetcode.com/problems/factor-combinations/description/", "paid_only": true, "content_sha256": "7a38a631399ca53fc642de886dc54917ae6a2ab5b18dc3b585b1aba9ab390b5b", "checked_at": "2026-07-28"},
-  "structure": {
-    "sections": ["description", "examples", "constraints"],
-    "examples": [{"ordinal": 1, "input": "n = 1", "output": "[]", "has_explanation": false}, {"ordinal": 2, "input": "n = 12", "output": "[[2,6],[3,4],[2,2,3]]", "has_explanation": false}, {"ordinal": 3, "input": "n = 37", "output": "[]", "has_explanation": false}],
-    "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_254",
+    "frontend_id": "254",
+    "title_slug": "factor-combinations",
+    "url": "https://leetcode.com/problems/factor-combinations/description/",
+    "paid_only": true,
+    "content_sha256": "7a38a631399ca53fc642de886dc54917ae6a2ab5b18dc3b585b1aba9ab390b5b",
+    "checked_at": "2026-07-28"
   },
-  "review": {"status": "verified", "files": {"reference/description.md": "22a4589e861adb87c0227d677993b2dfd90e2a16bf252516edf288b507f52cbf", "reference/contract.md": "03deef9efdbeea50012ad3dfb23a5b8576f2a12e166fda7f5ed53467329c5a62", "reference/examples.md": "b5b1bee137343e7ded7fb883189475fb8dbef85a09e974e86490b12d69b5ab20", "reference/constraints.md": "9006ee428bc8d73acb92ea9580d3dbde17e693d93b957c2b8d29a0ad6c7b4074"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 1",
+        "output": "[]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 12",
+        "output": "[[2,6],[3,4],[2,2,3]]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 37",
+        "output": "[]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "86b854a856736e7fef019470c23a34f7a33095eb1c7b9014b685dd4491f065bc",
+      "reference/contract.md": "03deef9efdbeea50012ad3dfb23a5b8576f2a12e166fda7f5ed53467329c5a62",
+      "reference/examples.md": "b5b1bee137343e7ded7fb883189475fb8dbef85a09e974e86490b12d69b5ab20",
+      "reference/constraints.md": "9006ee428bc8d73acb92ea9580d3dbde17e693d93b957c2b8d29a0ad6c7b4074"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

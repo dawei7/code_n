@@ -1,0 +1,12 @@
+## Description
+
+You are given an integer array `rewardValues` of length `n`, representing the values of rewards.
+
+Initially, your total reward `x` is 0, and all indices are **unmarked**. You are allowed to perform the following operation **any** number of times:
+
+<ul>
+	<li>Choose an **unmarked** index `i` from the range `[0, n - 1]`.</li>
+	<li>If `rewardValues[i]` is **greater** than your current total reward `x`, then add `rewardValues[i]` to `x` (i.e., `x = x + rewardValues[i]`), and **mark** the index `i`.</li>
+</ul>
+
+Return an integer denoting the **maximum ***total reward* you can collect by performing the operations optimally.

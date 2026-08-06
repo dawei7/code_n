@@ -1,28 +1,60 @@
 {
   "schema_version": 1,
   "source": {
-    "provider": "leetcode", "challenge_id": "lc_47", "frontend_id": "47",
+    "provider": "leetcode",
+    "challenge_id": "lc_47",
+    "frontend_id": "47",
     "title_slug": "permutations-ii",
     "url": "https://leetcode.com/problems/permutations-ii/description/",
-    "paid_only": false, "content_sha256": "d5a9d3f1ccb44d6c894db5a1cb747f8aa5c7ac28232be4a4c9657010bb5955be", "checked_at": "2026-07-28"
+    "paid_only": false,
+    "content_sha256": "d5a9d3f1ccb44d6c894db5a1cb747f8aa5c7ac28232be4a4c9657010bb5955be",
+    "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [1,1,2]", "output": "[[1,1,2],[1,2,1],[2,1,1]]", "has_explanation": false},
-      {"ordinal": 2, "input": "nums = [1,2,3]", "output": "[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [1,1,2]",
+        "output": "[[1,1,2],[1,2,1],[2,1,1]]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,3]",
+        "output": "[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "ab201b27b87151d1f69150f38bcbbfecc684ceef2b33df2f535f8b7e6852d5b9",
+      "reference/description.md": "26650b5c2d70ea7982aaf26dc0dc38fbbff335c260f5fce99f8d0a2ab3054e0e",
       "reference/contract.md": "16fa925e14a051676d446fd7d529709c8c3a279bf295e724ac96f8ff1ed107ef",
       "reference/examples.md": "58ffa0234be277f6ab8800f66316046cd80412516222082557faf2b677481857",
       "reference/constraints.md": "6cd083580431eac9e396473b9e9e9cb8a65650dc4271e27095b2db64617953c0"
     },
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

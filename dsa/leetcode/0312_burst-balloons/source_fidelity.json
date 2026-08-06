@@ -1,19 +1,60 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_312", "frontend_id": "312", "title_slug": "burst-balloons", "url": "https://leetcode.com/problems/burst-balloons/description/", "paid_only": false, "content_sha256": "4dc04699298284502fcfb611d537ec4011daaf33b5fe45bfea530768240c8c92", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_312",
+    "frontend_id": "312",
+    "title_slug": "burst-balloons",
+    "url": "https://leetcode.com/problems/burst-balloons/description/",
+    "paid_only": false,
+    "content_sha256": "4dc04699298284502fcfb611d537ec4011daaf33b5fe45bfea530768240c8c92",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "nums = [3,1,5,8]", "output": "167", "has_explanation": true},
-      {"ordinal": 2, "input": "nums = [1,5]", "output": "10", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "nums = [3,1,5,8]",
+        "output": "167",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,5]",
+        "output": "10",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "ccfc31a854919917ae8a5cfc5f593f6628c433f657a612148370a81eee38b5c4",
-    "reference/contract.md": "c9071edb2345f5101f94d278677d8d8464b37146679bd7b3d843ba7c81646c75",
-    "reference/examples.md": "21a7dd77b81062042ef9f6ecbc77f0f2b8f44e7282b47c469a054a1e3959c786",
-    "reference/constraints.md": "a0836805102a91d56d7d679f4c8a702146d30652ee3cdccee12dc4491b938742"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "fa4539bcf69d537540adbc7cdd18f7bc2bd0576cd134a06bb23e3e6b28595756",
+      "reference/contract.md": "c9071edb2345f5101f94d278677d8d8464b37146679bd7b3d843ba7c81646c75",
+      "reference/examples.md": "21a7dd77b81062042ef9f6ecbc77f0f2b8f44e7282b47c469a054a1e3959c786",
+      "reference/constraints.md": "a0836805102a91d56d7d679f4c8a702146d30652ee3cdccee12dc4491b938742"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

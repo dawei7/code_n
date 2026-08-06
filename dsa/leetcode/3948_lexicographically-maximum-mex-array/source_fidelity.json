@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/lexicographically-maximum-mex-array/description/",
     "paid_only": false,
     "content_sha256": "db9e517330744cb14c59ed826507cbed94bcf15c45103463b14a66ba1a5120ee",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [0,1,0]",
-        "output": "[2,1]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [1,0,2]",
-        "output": "[3]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums = [3,1]",
-        "output": "[0,0]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "17dd3d560472dc10980a1dd25492a5433d5e0ee07c4f9570a992e8748d1d93ee",
+      "reference/description.md": "7db3dcafd19c6a3839ee814f5e99a896187f4b8cb3d4fb51310475240e6089c2",
       "reference/contract.md": "ccfc6811e05d0b13c3c01cd207bf6cf44a0cde0337d7b5d03699657df2260471",
       "reference/examples.md": "51268d03252540c8b2e60486a899b4fc58a55b1c1a6e6326002d78658cce5c9d",
       "reference/constraints.md": "af74ab9630425fc81e68c04254bfb5224e76a6ce45ea90c2fd97b072f3bcbf26"

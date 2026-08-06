@@ -1,3 +1,3 @@
 ## Description
 
-Given an $m \times n$ matrix, return its elements in spiral order.
+Given an `m x n` `matrix`, return *all elements of the* `matrix` *in spiral order*.

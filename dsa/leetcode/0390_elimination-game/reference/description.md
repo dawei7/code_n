@@ -1,9 +1,11 @@
 ## Description
 
-Start with `arr`, the strictly increasing list of all integers in `[1,n]`, and repeatedly eliminate values as follows:
+You have a list `arr` of all integers in the range `[1, n]` sorted in a strictly increasing order. Apply the following algorithm on `arr`:
 
-1. Traverse from left to right, removing the first value encountered and then every other remaining value through the end.
-2. On the next pass, traverse from right to left, removing the rightmost value and then every other remaining value.
-3. Keep alternating those two directions until one value remains.
+<ul>
+	<li>Starting from left to right, remove the first number and every other number afterward until you reach the end of the list.</li>
+	<li>Repeat the previous step again, but this time from right to left, remove the rightmost number and every other number from the remaining numbers.</li>
+	<li>Keep repeating the steps again, alternating left to right and right to left, until a single number remains.</li>
+</ul>
 
-Return the final surviving value.
+Given the integer `n`, return *the last number that remains in* `arr`.

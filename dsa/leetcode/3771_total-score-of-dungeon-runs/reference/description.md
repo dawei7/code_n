@@ -1,7 +1,11 @@
 ## Description
 
-You are given a positive integer `hp` and two positive, 1-indexed integer arrays, `damage` and `requirement`, of the same length $n$.
+You are given a **positive** integer `hp` and two **positive** **1-indexed** integer arrays `damage` and `requirement`.
 
-A dungeon contains trap rooms numbered from $1$ through $n$. Upon entering room $i$, first subtract `damage[i]` from the current health. After that subtraction, the room awards one point exactly when the remaining health is at least `requirement[i]`.
+There is a dungeon with `n` trap rooms numbered from 1 to `n`. Entering room `i` reduces your health points by `damage[i]`. After that reduction, if your remaining health points are **at least** `requirement[i]`, you earn **1 point **for that room.
 
-For each starting room $j$, define `score(j)` by beginning with the full `hp` and visiting rooms $j,j+1,\ldots,n$ in order. Return `score(1) + score(2) + ... + score(n)`, the combined score across every possible starting room.
+Let `score(j)` be the number of **points** you get if you start with `hp` health points and enter the rooms `j`, `j + 1`, ..., `n` in this order.
+
+Return the integer `score(1) + score(2) + ... + score(n)`, the sum of scores over all starting rooms.
+
+**Note**: You cannot skip rooms. You can finish your journey even if your health points become non-positive.

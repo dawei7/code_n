@@ -1,9 +1,9 @@
 ## Description
 
-You are given a nonnegative integer `n`.
+You are given an integer `n`.
 
-Read its decimal digits from left to right and keep only the digits that are not zero. Concatenate the retained digits in their original order to form a new integer `x`. When no nonzero digit exists, define `x = 0`.
+Form a new integer `x` by concatenating all the **non-zero digits** of `n` in their original order. If there are no **non-zero** digits, `x = 0`.
 
-Let `sum` be the sum of the decimal digits retained in `x`.
+Let `sum` be the **sum of digits** in `x`.
 
-Return the product `x * sum` as an integer.
+Return an integer representing the value of `x * sum`.

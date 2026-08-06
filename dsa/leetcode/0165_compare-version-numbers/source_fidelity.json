@@ -1,19 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_165", "frontend_id": "165", "title_slug": "compare-version-numbers", "url": "https://leetcode.com/problems/compare-version-numbers/description/", "paid_only": false, "content_sha256": "86c0ec666510daefe1c29647c160f8dc4fe637acc5c77409800b502cb5f1f77f", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_165",
+    "frontend_id": "165",
+    "title_slug": "compare-version-numbers",
+    "url": "https://leetcode.com/problems/compare-version-numbers/description/",
+    "paid_only": false,
+    "content_sha256": "86c0ec666510daefe1c29647c160f8dc4fe637acc5c77409800b502cb5f1f77f",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "version1 = \"1.2\", version2 = \"1.10\"", "output": "-1", "has_explanation": true},
-      {"ordinal": 2, "input": "version1 = \"1.01\", version2 = \"1.001\"", "output": "0", "has_explanation": true},
-      {"ordinal": 3, "input": "version1 = \"1.0\", version2 = \"1.0.0.0\"", "output": "0", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "version1 = \"1.2\", version2 = \"1.10\"",
+        "output": "-1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "version1 = \"1.01\", version2 = \"1.001\"",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "version1 = \"1.0\", version2 = \"1.0.0.0\"",
+        "output": "0",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 4,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "301e195cd2be3d79eb90813275b6b38e6709ce6c10c7ac49e30275cbac342d66", "reference/contract.md": "00dca19c08ade9acb4f46621043c4e67747bcbd00cd42cff4820d6fd46cabfd7", "reference/examples.md": "1c0a16812416bb58f8815e34e04acfddd3180ad79140d94428a0fb8c2522896b", "reference/constraints.md": "e47829251a0ba08698c13d4c83e667d070d873c5fd4f3e4b1e62d1b4832220d4"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "04afe9d731e364ba72cf8440cec1a35280761ba62f3910a38966d27888a0f22b",
+      "reference/contract.md": "00dca19c08ade9acb4f46621043c4e67747bcbd00cd42cff4820d6fd46cabfd7",
+      "reference/examples.md": "1c0a16812416bb58f8815e34e04acfddd3180ad79140d94428a0fb8c2522896b",
+      "reference/constraints.md": "e47829251a0ba08698c13d4c83e667d070d873c5fd4f3e4b1e62d1b4832220d4"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

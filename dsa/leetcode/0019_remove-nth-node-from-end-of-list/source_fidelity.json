@@ -11,11 +11,31 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "head = [1,2,3,4,5], n = 2", "output": "[1,2,3,5]", "has_explanation": false},
-      {"ordinal": 2, "input": "head = [1], n = 1", "output": "[]", "has_explanation": false},
-      {"ordinal": 3, "input": "head = [1,2], n = 1", "output": "[1]", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "head = [1,2,3,4,5], n = 2",
+        "output": "[1,2,3,5]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "head = [1], n = 1",
+        "output": "[]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "head = [1,2], n = 1",
+        "output": "[1]",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 4,
     "visuals": {
@@ -30,7 +50,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "2ab55b397b0bd9bac0844b69b46da45609abc83fda1f7c212ce65a28d4769a52",
+      "reference/description.md": "e359c124e413ddf6b1e6d7aec998e2b9fb26bcd4eb4c131a535188ffa9aa8372",
       "reference/contract.md": "69246f4a8dbfebf011d22bc15867564ea25d761324004502548aacb3e500df62",
       "reference/examples.md": "b0cb104e9899c29193d982951362e5a0174e57b69daa54230225ca58c6421186",
       "reference/constraints.md": "44f5e7f35c0ccf150932e4c8f1f18ac8702863ff73270165e05305c52ecbf1a9",

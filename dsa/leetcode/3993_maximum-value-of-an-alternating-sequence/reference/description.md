@@ -1,19 +1,20 @@
 ## Description
 
-You are given three positive integers `n`, `s`, and `m`. Consider integer sequences `seq` of length `n` whose first element is fixed as `seq[0] = s`.
+You are given three integers `n`, `s`, and `m`.
 
-The sequence must alternate strictly in one of the two possible directions:
+A sequence `seq` of integers of length `n` is considered **valid** if:
 
-$$
-\texttt{seq[0]} > \texttt{seq[1]} < \texttt{seq[2]} > \texttt{seq[3]} < \cdots
-$$
+<ul>
+	<li>`seq[0] = s`.</li>
+	<li>The sequence is **alternating**, meaning that either:
+	<ul>
+		<li>`seq[0] > seq[1] < seq[2] > ...`, or</li>
+		<li>`seq[0] < seq[1] > seq[2] < ...`.</li>
+	</ul>
+	</li>
+	<li>For every adjacent pair, `|seq[i] - seq[i - 1]| <= m`.</li>
+</ul>
 
-or
+A sequence of length 1 is considered alternating.
 
-$$
-\texttt{seq[0]} < \texttt{seq[1]} > \texttt{seq[2]} < \texttt{seq[3]} > \cdots.
-$$
-
-In addition, the absolute difference between every pair of adjacent elements must be at most `m`. A sequence containing only one element is considered alternating.
-
-Among every valid sequence satisfying these rules, return the largest value that any element can attain.
+Return the **maximum** possible element that can appear in any valid sequence.

@@ -1,5 +1,5 @@
 ## Description
 
-Given roots `p` and `q` of two binary trees, determine whether the trees are the same.
+Given the roots of two binary trees `p` and `q`, write a function to check if they are the same or not.
 
-Two trees are the same only when their structures are identical and corresponding nodes hold equal values.
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.

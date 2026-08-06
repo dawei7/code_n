@@ -1,5 +1,7 @@
 ## Description
 
-An array `nums` contains `n` objects colored red, white, or blue. Reorder it in place so equal colors are adjacent and the color groups occur as red, then white, then blue.
+Given an array `nums` with `n` objects colored red, white, or blue, sort them **<a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in-place</a> **so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
 
-Integers `0`, `1`, and `2` represent red, white, and blue, respectively. Do not use a library sorting function.
+We will use the integers `0`, `1`, and `2` to represent the color red, white, and blue, respectively.
+
+You must solve this problem without using the library's sort function.

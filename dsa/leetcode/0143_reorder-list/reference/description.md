@@ -1,15 +1,19 @@
 ## Description
 
-You are given the head of a singly linked list whose nodes are ordered as
+You are given the head of a singly linked-list. The list can be represented as:
 
-$$
-L_0 \to L_1 \to \cdots \to L_{n-1} \to L_n.
-$$
+```
 
-Reorder the existing nodes into
+L_0 → L_1 → … → L_n - 1 → L_n
 
-$$
-L_0 \to L_n \to L_1 \to L_{n-1} \to L_2 \to L_{n-2} \to \cdots.
-$$
+```
 
-Do not change any node's stored value; change only the links among the nodes.
+*Reorder the list to be on the following form:*
+
+```
+
+L_0 → L_n → L_1 → L_n - 1 → L_2 → L_n - 2 → …
+
+```
+
+You may not modify the values in the list's nodes. Only nodes themselves may be changed.

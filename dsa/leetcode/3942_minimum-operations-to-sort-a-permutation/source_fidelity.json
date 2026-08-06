@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/minimum-operations-to-sort-a-permutation/description/",
     "paid_only": false,
     "content_sha256": "2c79db44df4dee62f16a82e7ca3bcb9dcd69f29bdefb9836e5dbc15cb4b17e7e",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [0,2,1]",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [1,0,2]",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "nums = [2,0,1,3]",
-        "output": "-1",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "deb8c8b70049f574281ec810b99e4af60cc85e0df67bb1ea7fedd9b8ce791afc",
+      "reference/description.md": "d174de2e61c7f28761d8ed51dbf38d60781b3f9328be61946c8150f1abbc4456",
       "reference/contract.md": "efd8defe112e5ec2818578e6d5886b3e381541e0c924b8d7801a8bcc8d58dc02",
       "reference/examples.md": "a4baac66f8299690f5ba5a8df2f4b057b41adb8a319f5b8c10ab834fa0985507",
       "reference/constraints.md": "e8cf9cca96863a951abf53e431978094f9882a6eefafd50eecc3b0690decb91e"

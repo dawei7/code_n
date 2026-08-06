@@ -1,3 +1,3 @@
 ## Description
 
-Given an integer `n`, count the total number of times the decimal digit `1` appears across all non-negative integers from `0` through `n`, inclusive.
+Given an integer `n`, count *the total number of digit *`1`* appearing in all non-negative integers less than or equal to* `n`.

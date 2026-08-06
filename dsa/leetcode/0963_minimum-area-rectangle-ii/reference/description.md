@@ -1,0 +1,7 @@
+## Description
+
+You are given an array of points in the **X-Y** plane `points` where `points[i] = [x_i, y_i]`.
+
+Return *the minimum area of any rectangle formed from these points, with sides **not necessarily parallel** to the X and Y axes*. If there is not any such rectangle, return `0`.
+
+Answers within `10^-5` of the actual answer will be accepted.

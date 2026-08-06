@@ -1,5 +1,3 @@
 ## Description
 
-Given an array of intervals where `intervals[i] = [start_i, end_i]`, combine every pair or chain of overlapping intervals.
-
-Return non-overlapping intervals whose union covers exactly the same values as all input intervals.
+Given an array of `intervals` where `intervals[i] = [start_i, end_i]`, merge all overlapping intervals, and return *an array of the non-overlapping intervals that cover all the intervals in the input*.

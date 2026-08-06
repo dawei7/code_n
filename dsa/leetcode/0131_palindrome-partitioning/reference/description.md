@@ -1,5 +1,3 @@
 ## Description
 
-Given a string `s`, split it into non-empty contiguous substrings so that every resulting substring is a palindrome. A palindrome reads the same from left to right and from right to left.
-
-Return every possible palindrome partition of `s`.
+Given a string `s`, partition `s` such that every <span data-keyword="substring-nonempty">substring</span> of the partition is a <span data-keyword="palindrome-string">**palindrome**</span>. Return *all possible palindrome partitioning of *`s`.

@@ -1,10 +1,14 @@
 ## Description
 
-You are given an array `nums1` containing `n` distinct integers. Construct another length-`n` array, `nums2`, whose elements are either all odd or all even.
+You are given an array `nums1` of `n` **distinct** integers.
 
-For each index `i`, choose exactly one of these assignments, in any order:
+You want to construct another array `nums2` of length `n` such that the elements in `nums2` are either **all odd or all even**.
 
-- Keep its original value: `nums2[i] = nums1[i]`.
-- Subtract another original value: `nums2[i] = nums1[i] - nums1[j]` for an index $j\ne i$, provided that `nums1[i] - nums1[j] >= 1`.
+For each index `i`, you must choose **exactly one** of the following (in any order):
 
-Return `true` if a uniform-parity array can be constructed under those rules. Otherwise, return `false`.
+<ul>
+	<li>`nums2[i] = nums1[i]`​​​​​​​</li>
+	<li>`nums2[i] = nums1[i] - nums1[j]`, for an index `j != i`, such that `nums1[i] - nums1[j] >= 1`</li>
+</ul>
+
+Return `true` if it is possible to construct such an array, otherwise return `false`.

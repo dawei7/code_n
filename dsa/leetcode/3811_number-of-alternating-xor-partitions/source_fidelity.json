@@ -8,36 +8,23 @@
     "url": "https://leetcode.com/problems/number-of-alternating-xor-partitions/description/",
     "paid_only": false,
     "content_sha256": "1cc024f0e6166b5529110ab28f0007b43a69018d98639cd380e6c9f20c3cbe9b",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
       "description",
-      "note",
       "examples",
       "constraints"
     ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "`nums = [2,3,1,4], target1 = 1, target2 = 5`",
-        "output": "`1`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`nums = [1,0,0], target1 = 1, target2 = 0`",
-        "output": "`3`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "`nums = [7], target1 = 1, target2 = 7`",
-        "output": "`0`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 3,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -50,9 +37,8 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "f26019dc03a96c31309ffd9b336d6bbe946f4ce20535dc5a5e1a9c0a1adfd473",
+      "reference/description.md": "70eb11cf74c63f226b1f9a5fa655c310d21d28302611b2657e9706d23ca23372",
       "reference/contract.md": "9eeef9e1b57717aadf3e6af728a9331b09b0c3bb17afeed0e6eeedc2d003635d",
-      "reference/note.md": "ea62c044c85e0529333eb0449a9c292f164690a5d76e558b7f4acc11a8ab844b",
       "reference/examples.md": "d7eb6c87a9a1d489023097e20dd1a83f0812ebe4fe7c3ac147fb4903356144bc",
       "reference/constraints.md": "27d8a9982a6537ca6b0398adde4ff8a0131319c751312507cbc975f5c6643129"
     },

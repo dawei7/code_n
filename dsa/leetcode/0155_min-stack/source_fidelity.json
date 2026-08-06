@@ -1,17 +1,54 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_155", "frontend_id": "155", "title_slug": "min-stack", "url": "https://leetcode.com/problems/min-stack/description/", "paid_only": false, "content_sha256": "949507f6f720a7ad7af75599a3760138b888fbed11f74f72987aff42a94d9297", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_155",
+    "frontend_id": "155",
+    "title_slug": "min-stack",
+    "url": "https://leetcode.com/problems/min-stack/description/",
+    "paid_only": false,
+    "content_sha256": "949507f6f720a7ad7af75599a3760138b888fbed11f74f72987aff42a94d9297",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "operations = [\"MinStack\",\"push\",\"push\",\"push\",\"getMin\",\"pop\",\"top\",\"getMin\"], arguments = [[],[-2],[0],[-3],[],[],[],[]]", "output": "[null,null,null,null,-3,null,0,-2]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "operations = [\"MinStack\",\"push\",\"push\",\"push\",\"getMin\",\"pop\",\"top\",\"getMin\"], arguments = [[],[-2],[0],[-3],[],[],[],[]]",
+        "output": "[null,null,null,null,-3,null,0,-2]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
-    "files": {"reference/description.md": "c65b4b7afa261da9d48997a00c34bbaa2ab31022af499c20e9659df87976e71c", "reference/contract.md": "27f29057b38f81a1902b3962afe0c3e1cd5aeba682a69fb3c3ee8acf4f48c70f", "reference/examples.md": "06398fbf8e02e4c3efcb6c4d3da330dac14e0007b0b7edd0a5cd0baf8b8050b7", "reference/constraints.md": "4146c89f45038d21b90e27be8995141c09d19fb1a565d3aaeb327faf1514109e"},
-    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+    "files": {
+      "reference/description.md": "60c93880b99ff4ff28a67cfc608901395c40055989b418592ab9442463709db2",
+      "reference/contract.md": "27f29057b38f81a1902b3962afe0c3e1cd5aeba682a69fb3c3ee8acf4f48c70f",
+      "reference/examples.md": "06398fbf8e02e4c3efcb6c4d3da330dac14e0007b0b7edd0a5cd0baf8b8050b7",
+      "reference/constraints.md": "4146c89f45038d21b90e27be8995141c09d19fb1a565d3aaeb327faf1514109e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

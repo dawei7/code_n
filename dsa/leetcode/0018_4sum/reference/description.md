@@ -1,9 +1,11 @@
 ## Description
 
-Given an array `nums` of $n$ integers, return all unique quadruplets `[nums[a], nums[b], nums[c], nums[d]]` satisfying all of the following:
+Given an array `nums` of `n` integers, return *an array of all the **unique** quadruplets* `[nums[a], nums[b], nums[c], nums[d]]` such that:
 
-- $0 \le a,b,c,d < n$.
-- The indices $a$, $b$, $c$, and $d$ are pairwise distinct.
-- `nums[a] + nums[b] + nums[c] + nums[d] = target`.
+<ul>
+	<li>`0 <= a, b, c, d < n`</li>
+	<li>`a`, `b`, `c`, and `d` are **distinct**.</li>
+	<li>`nums[a] + nums[b] + nums[c] + nums[d] == target`</li>
+</ul>
 
-Return the quadruplets in any order, without duplicate value combinations.
+You may return the answer in **any order**.

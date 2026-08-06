@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/minimum-energy-to-maintain-brightness/description/",
     "paid_only": false,
     "content_sha256": "8c1aafa4829eee284ea7033013608c8e1c387be92e638e888e81ba6d3b28a73a",
-    "checked_at": "2026-07-30"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 5, brightness = 5, intervals = [[6,12]]",
-        "output": "14",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "n = 2, brightness = 1, intervals = [[0,0],[2,2]]",
-        "output": "2",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "n = 4, brightness = 2, intervals = [[1,3],[2,4]]",
-        "output": "4",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 5,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "66d0a313dddb71201b61fb5b76c8f828038c03136559b1e5802ed6c72999d8e5",
+      "reference/description.md": "d23a2fbcd9ccbb2612c7dddc57b5ba8b62c24456b5275c869daf537cc5874274",
       "reference/contract.md": "f22d08113e833e2e2d9621f516e15c4869f27d0adc06d309c85dfaea488b098c",
       "reference/examples.md": "3bb38803e4c57a77969b8d7c64c16546b646f0d9d31c9a92e60ff6f28ccb6a7d",
       "reference/constraints.md": "2894874a841ec87178d41ab3efcaa42d16670f48f0e27598cb4fd526af619a46"

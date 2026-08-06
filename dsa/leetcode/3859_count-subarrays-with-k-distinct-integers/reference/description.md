@@ -1,14 +1,10 @@
 ## Description
 
-You are given an integer array `nums` together with two integers `k` and `m`.
-Examine every nonempty contiguous subarray of `nums` as a separate candidate.
+You are given an integer array `nums` and two integers `k` and `m`.
 
-A candidate qualifies only when two conditions hold at the same time. It must
-contain exactly `k` distinct integers, and every distinct integer present in
-that subarray must appear at least `m` times. A subarray with the right number
-of distinct values is therefore still invalid if even one of their frequencies
-is below the threshold.
+Return an integer denoting the count of **<span data-keyword="subarray-nonempty">subarrays</span>** of `nums` such that:
 
-Return the total number of qualifying subarrays. Intervals with different
-boundaries are counted separately, even when their value sequences happen to
-be equal.
+<ul>
+	<li>The subarray contains **exactly** `k` **distinct** integers.</li>
+	<li>Within the subarray, each **distinct** integer appears **at least** `m` times.</li>
+</ul>

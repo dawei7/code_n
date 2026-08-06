@@ -1,8 +1,9 @@
 ## Description
 
-Houses and heaters stand at integer positions along one horizontal line. For winter coverage, choose one standard
-warm radius that every heater will use. A house is warmed whenever its position lies within that radius of at least
-one heater.
+Winter is coming! During the contest, your first job is to design a standard heater with a fixed warm radius to warm all the houses.
 
-Given the two position arrays `houses` and `heaters`, return the smallest common heater radius that covers every
-house.
+Every house can be warmed, as long as the house is within the heater's warm radius range. 
+
+Given the positions of `houses` and `heaters` on a horizontal line, return *the minimum radius standard of heaters so that those heaters could cover all houses.*
+
+**Notice** that all the `heaters` follow your radius standard, and the warm radius will be the same.

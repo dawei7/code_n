@@ -1,20 +1,66 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_317", "frontend_id": "317", "title_slug": "shortest-distance-from-all-buildings", "url": "https://leetcode.com/problems/shortest-distance-from-all-buildings/description/", "paid_only": true, "content_sha256": "05637d13ed5f9433d9cbb8a6b1c8deeaaad2965a10acfc674dc08f211a797783", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_317",
+    "frontend_id": "317",
+    "title_slug": "shortest-distance-from-all-buildings",
+    "url": "https://leetcode.com/problems/shortest-distance-from-all-buildings/description/",
+    "paid_only": true,
+    "content_sha256": "05637d13ed5f9433d9cbb8a6b1c8deeaaad2965a10acfc674dc08f211a797783",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "grid = [[1,0,2,0,1],[0,0,0,0,0],[0,0,1,0,0]]", "output": "7", "has_explanation": true},
-      {"ordinal": 2, "input": "grid = [[1,0]]", "output": "1", "has_explanation": false},
-      {"ordinal": 3, "input": "grid = [[1]]", "output": "-1", "has_explanation": false}
+      {
+        "ordinal": 1,
+        "input": "grid = [[1,0,2,0,1],[0,0,0,0,0],[0,0,1,0,0]]",
+        "output": "7",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[1,0]]",
+        "output": "1",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 3,
+        "input": "grid = [[1]]",
+        "output": "-1",
+        "has_explanation": false
+      }
     ],
     "constraint_count": 5,
-    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+    "visuals": {
+      "source_images": 1,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 1
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "bfff1df8f208f30e129e094898928b578a306ef5f8b6da867da3b2c681ee1995",
-    "reference/contract.md": "eff36e73574a91ff12f653aaef3b4482eede9031fc97d7f2ebf18a692213f14f",
-    "reference/examples.md": "8e3898f4b1f84359292bda19d383518935d98a7ec36d68a8b49b41cb2d1f954d",
-    "reference/constraints.md": "f13429ea9b4a7cdea336936a1ecbf874c76f3b38721a62ea87e04a56cf8a3a17"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "bfff1df8f208f30e129e094898928b578a306ef5f8b6da867da3b2c681ee1995",
+      "reference/contract.md": "eff36e73574a91ff12f653aaef3b4482eede9031fc97d7f2ebf18a692213f14f",
+      "reference/examples.md": "8e3898f4b1f84359292bda19d383518935d98a7ec36d68a8b49b41cb2d1f954d",
+      "reference/constraints.md": "f13429ea9b4a7cdea336936a1ecbf874c76f3b38721a62ea87e04a56cf8a3a17"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

@@ -1,7 +1,11 @@
 ## Description
 
-You are given a collection `points` of distinct points in the integer coordinate plane. Each entry `points[i] = [x_i, y_i]` identifies one point.
+You are given a 2D integer array `points`, where `points[i] = [x_i, y_i]` represents the coordinates of the `i^th` point. All coordinates in `points` are **distinct**.
 
-Whenever a point becomes **activated**, every point sharing its x-coordinate or its y-coordinate also becomes activated. Those newly activated points apply the same rule, so propagation continues until it cannot reach another point.
+If a point is **activated**, then all points that have the **same** x-coordinate **or** y-coordinate become **activated** as well.
 
-You must add exactly one point at an integer coordinate `(x, y)` that is not already present. Activation starts from this new point. Choose its coordinate to maximize the final number of activated points, counting the added point itself, and return that maximum.
+Activation continues until no additional points can be activated.
+
+You may add **one additional** point at any integer coordinate `(x, y)` not already present in `points`. Activation begins by **activating** this **newly added point**.
+
+Return an integer denoting the **maximum** number of points that can be activated, including the newly added point.

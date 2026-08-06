@@ -1,5 +1,3 @@
 ## Description
 
-Given strings `haystack` and `needle`, return the starting index of the first occurrence of `needle` within `haystack`.
-
-Return `-1` when `needle` does not occur in `haystack`.
+Given two strings `needle` and `haystack`, return the index of the first occurrence of `needle` in `haystack`, or `-1` if `needle` is not part of `haystack`.

@@ -1,9 +1,9 @@
 ## Description
 
-A street contains a row of houses, each holding some money and carrying a security-system color code.
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed and is protected by a security system with a color code.
 
-You are given two integer arrays `nums` and `colors`, both of length `n`. The value `nums[i]` is the amount stored in the $i^{\text{th}}$ house, while `colors[i]` is that house's color code.
+You are given two integer arrays `nums` and `colors`, both of length `n`, where `nums[i]` is the amount of money in the `i^th` house and `colors[i]` is the color code of that house.
 
-Two adjacent houses may not both be robbed when their color codes are the same. Adjacent houses with different colors may both be chosen, and non-adjacent choices do not restrict one another through color.
+You **cannot rob two adjacent** houses if they share the **same color** code.
 
-Return the maximum total amount that can be robbed by a valid selection of houses.
+Return the **maximum** amount of money you can rob.

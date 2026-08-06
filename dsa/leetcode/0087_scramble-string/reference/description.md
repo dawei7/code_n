@@ -1,10 +1,16 @@
 ## Description
 
-A string `s` can be scrambled into a string `t` by applying this recursive process:
+We can scramble a string s to get a string t using the following algorithm:
 
-1. If the current string has length `1`, stop processing it.
-2. Otherwise, split it at some index into two non-empty substrings `x` and `y`, so the current string is `x + y`.
-3. Either keep those two substrings in the order `x + y` or swap them to `y + x`.
-4. Apply the same process recursively to both `x` and `y`.
+<ol>
+	<li>If the length of the string is 1, stop.</li>
+	<li>If the length of the string is > 1, do the following:
+	<ul>
+		<li>Split the string into two non-empty substrings at a random index, i.e., if the string is `s`, divide it to `x` and `y` where `s = x + y`.</li>
+		<li>**Randomly** decide to swap the two substrings or to keep them in the same order. i.e., after this step, `s` may become `s = x + y` or `s = y + x`.</li>
+		<li>Apply step 1 recursively on each of the two substrings `x` and `y`.</li>
+	</ul>
+	</li>
+</ol>
 
-Given equal-length strings `s1` and `s2`, return whether `s2` can result from scrambling `s1` in this way.
+Given two strings `s1` and `s2` of **the same length**, return `true` if `s2` is a scrambled string of `s1`, otherwise, return `false`.

@@ -1,18 +1,7 @@
 ## Description
 
-Given a string `digits` containing only digits from `2` through `9`, return every letter combination that the number can represent. The result may be returned in any order.
+Given a string containing digits from `2-9` inclusive, return all possible letter combinations that the number could represent. Return the answer in **any order**.
 
-The source telephone-button image is reproduced as an accessible mapping table:
+A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
 
-| Digit | Letters |
-|:---:|:---|
-| `2` | `abc` |
-| `3` | `def` |
-| `4` | `ghi` |
-| `5` | `jkl` |
-| `6` | `mno` |
-| `7` | `pqrs` |
-| `8` | `tuv` |
-| `9` | `wxyz` |
-
-Digit `1` has no associated letters.
+<img alt="" src="https://assets.leetcode.com/uploads/2022/03/15/1200px-telephone-keypad2svg.png" style="width: 300px; height: 243px;" />

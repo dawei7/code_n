@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/toggle-light-bulbs/description/",
     "paid_only": false,
     "content_sha256": "055612cb29bf0752ceef4074f067f71e8477d98bce5646902b788f1237553379",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "bulbs = [10,30,20,10]",
-        "output": "[20,30]",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "bulbs = [100,100]",
-        "output": "[]",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 2,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "f2dc1e4465b18ded9f4595341e598f56d25d3e78d8152bdbad144306bce7a939",
+      "reference/description.md": "a11f8f3242c46cddc03dd45d4615eb36f9a0d5738b2cf008db74d9146a135618",
       "reference/contract.md": "16308b5bec598a105c0657e516bfbcaf1488ee4ff66af710432dee87266e231d",
       "reference/examples.md": "589d8d82d2c45ace2d053c7f2676efabc929dbb1135a03824826f5899e398f82",
       "reference/constraints.md": "4af47212e8ce1fe6784bbb7b52723f0a9397b1b9dddd5eef003de4b4d207fefe"

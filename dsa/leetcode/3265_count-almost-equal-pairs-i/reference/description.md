@@ -1,0 +1,13 @@
+## Description
+
+You are given an array `nums` consisting of positive integers.
+
+We call two integers `x` and `y` in this problem **almost equal** if both integers can become equal after performing the following operation **at most once**:
+
+<ul>
+	<li>Choose **either** `x` or `y` and swap any two digits within the chosen number.</li>
+</ul>
+
+Return the number of indices `i` and `j` in `nums` where `i < j` such that `nums[i]` and `nums[j]` are **almost equal**.
+
+**Note** that it is allowed for an integer to have leading zeros after performing an operation.

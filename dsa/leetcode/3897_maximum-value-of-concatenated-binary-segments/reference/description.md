@@ -1,7 +1,21 @@
 ## Description
 
-You are given two integer arrays, `nums1` and `nums0`, with the same length. Index $i$ describes one binary segment: it contains `nums1[i]` consecutive `1` bits followed by `nums0[i]` consecutive `0` bits. Every described segment is non-empty.
+You are given two integer arrays `nums1` and `nums0`, each of size `n`.
 
-The segments may be rearranged in any order, but the bits within an individual segment must stay in that prescribed one-run-then-zero-run form. Concatenate all segments after choosing an order. Among every possible ordering, maximize the integer represented by the resulting binary string.
+<ul>
+	<li>`nums1[i]` represents the number of `'1'`s in the `i^th` segment.</li>
+	<li>`nums0[i]` represents the number of `'0'`s in the `i^th` segment.</li>
+</ul>
 
-Return that maximum integer modulo $10^9+7$. The ordering must maximize the full binary value itself; applying the modulus is only the final numeric representation step.
+For each index `i`, construct a binary segment consisting of:
+
+<ul>
+	<li>`nums1[i]` occurrences of `'1'` followed by</li>
+	<li>`nums0[i]` occurrences of `'0'`.</li>
+</ul>
+
+You may **rearrange** the order of these **segments** in any way. After rearranging, **concatenate** all segments to form a single binary string.
+
+Return the **maximum** possible integer value of the concatenated binary string.
+
+Since the result can be very large, return the answer **modulo** `10^9 + 7`.

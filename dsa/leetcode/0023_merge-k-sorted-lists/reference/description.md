@@ -1,5 +1,5 @@
 ## Description
 
-You are given an array `lists` containing $k$ linked lists. Every list is sorted in ascending order.
+You are given an array of `k` linked-lists `lists`, each linked-list is sorted in ascending order.
 
-Merge all nodes from all input lists into one ascending-sorted linked list and return its head.
+*Merge all the linked-lists into one sorted linked-list and return it.*

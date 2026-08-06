@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/count-distinct-subarrays-divisible-by-k-in-sorted-array/description/",
     "paid_only": false,
     "content_sha256": "fef809a62dc4709621346d0a065718b204db6944ca816f2c28b85a7c6b1bb42a",
-    "checked_at": "2026-07-28"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,18 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [1,2,3], k = 3",
+        "input": "n = 6",
         "output": "3",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "nums = [2,2,2,2,2,2], k = 6",
-        "output": "2",
-        "has_explanation": true
+        "has_explanation": false
       }
     ],
-    "constraint_count": 4,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "10748abac40673e42892dd1b49ade9a4f82de9f063ff9deaeea0b68d45d929de",
+      "reference/description.md": "763c6314a03a5ffd8a54ff42bd37afc5b7b869881d2f2338423eab87e791ae7f",
       "reference/contract.md": "09bde0eb4b8296245ff4b51678fa14b70d63f35871e520bd75aed2a357a7f40f",
       "reference/examples.md": "c0c7f3b40dd7dc11f25a3f27d79beee4294d611f03a1ca52c954ae59b6833c25",
       "reference/constraints.md": "94cc0a82df33a609d9e55dfc1c387bd10b678b952bb903871865a872e69cce06"

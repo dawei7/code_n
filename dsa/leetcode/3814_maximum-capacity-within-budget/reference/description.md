@@ -1,9 +1,9 @@
 ## Description
 
-You are given integer arrays `costs` and `capacity`, both with length `n`. Machine `i` has purchase cost `costs[i]` and performance capacity `capacity[i]`.
+You are given two integer arrays `costs` and `capacity`, both of length `n`, where `costs[i]` represents the purchase cost of the `i^th` machine and `capacity[i]` represents its performance capacity.
 
 You are also given an integer `budget`.
 
-Choose **at most two distinct** machines. The combined cost of the chosen machines must be **strictly less** than `budget`.
+You may select **at most two distinct** machines such that the **total cost** of the selected machines is **strictly less** than `budget`.
 
-Return the greatest total capacity that can be obtained from a valid selection.
+Return the **maximum** achievable total capacity of the selected machines.

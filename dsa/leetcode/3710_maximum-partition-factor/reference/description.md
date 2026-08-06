@@ -1,13 +1,11 @@
 ## Description
 
-You are given a two-dimensional integer array `points`, where `points[i] = [x_i, y_i]` is the position of point $i$ in the Cartesian plane.
+You are given a 2D integer array `points`, where `points[i] = [x_i, y_i]` represents the coordinates of the `<font>i^th</font>` point on the Cartesian plane.
 
-For points $i$ and $j$, their **Manhattan distance** is
+The **Manhattan distance** between two points `points[i] = [x_i, y_i]` and `points[j] = [x_j, y_j]` is `|x_i - x_j| + |y_i - y_j|`.
 
-$$
-\lvert x_i-x_j\rvert+\lvert y_i-y_j\rvert.
-$$
+Split the `n` points into **exactly two non-empty** groups. The **partition factor** of a split is the **minimum** Manhattan distance among all unordered pairs of points that lie in the same group.
 
-Divide all $n$ points into exactly two non-empty groups. A split's **partition factor** is the minimum Manhattan distance over every unordered pair of points that belongs to the same group.
+Return the **maximum** possible **partition factor** over all valid splits.
 
-Return the greatest partition factor achievable by any valid split.
+Note: A group of size 1 contributes no intra-group pairs. When `n = 2` (both groups size 1), there are no intra-group pairs, so define the partition factor as 0.

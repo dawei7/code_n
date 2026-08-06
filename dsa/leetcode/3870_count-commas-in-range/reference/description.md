@@ -1,5 +1,12 @@
 ## Description
 
-You are given an integer `n`. Imagine writing every positive integer from `1` through `n`, including both endpoints, using standard number formatting. Determine how many comma characters appear across all of those written numbers in total.
+You are given an integer `n`.
 
-Standard formatting divides the decimal digits into groups of three, starting at the rightmost digit, and places a comma between neighboring groups. Consequently, an integer with fewer than four digits contains no comma.
+Return the **total** number of commas used when writing all integers from `[1, n]` (inclusive) in **standard** number formatting.
+
+In **standard** formatting:
+
+<ul>
+	<li>A comma is inserted after **every three** digits from the right.</li>
+	<li>Numbers with **fewer** than 4 digits contain no commas.</li>
+</ul>

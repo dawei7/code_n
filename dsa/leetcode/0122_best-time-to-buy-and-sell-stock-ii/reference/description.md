@@ -1,7 +1,7 @@
 ## Description
 
-You are given an integer array `prices`, where `prices[i]` is one stock's price on day `i`.
+You are given an integer array `prices` where `prices[i]` is the price of a given stock on the `i^th` day.
 
-On any day you may buy, sell, or do both. You may hold at most one share at a time, although selling one share and buying again on the same day is allowed as long as this limit is never exceeded.
+On each day, you may decide to buy and/or sell the stock. You can only hold **at most one** share of the stock at any time. However, you can sell and buy the stock multiple times on the **same day**, ensuring you never hold more than one share of the stock.
 
-Return the maximum total profit obtainable over all days.
+Find and return *the **maximum** profit you can achieve*.

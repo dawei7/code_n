@@ -1,7 +1,13 @@
 ## Description
 
-You receive an integer array `nums` and a positive integer `k`. Begin with exactly `k` resource units, then process every array element from left to right. Processing `nums[i]` consumes `nums[i]` units from the currently available resource.
+You are given an integer array `nums` and an integer `k`.
 
-Whenever the available amount is smaller than the next requirement, you may perform an operation that adds another `k` resource units. The value of `k` never changes. Operations have increasing costs: the first costs `1`, the second costs `2`, and the cost continues to rise by one for each later operation.
+Initially, you have `k` units of resources.
 
-Find the minimum total operation cost that makes it possible to process the complete array in order. Because this total can be large, return it modulo $10^9+7$.
+You must process the elements of `nums` from left to right. To process the `i^th` element, you need `nums[i]` resources.
+
+If your available resources are less than `nums[i]`, you may perform an operation that increases your available resources by `k`. The value of `k` is fixed and does not change throughout the process. The first such operation incurs a cost of 1, the second incurs a cost of 2, and so on.
+
+After processing the `i^th` element, your available resources decrease by `nums[i]`.
+
+Return an integer denoting the **minimum total cost** required to process all elements. Since the answer may be very large, return it **modulo** `10^9 + 7`.

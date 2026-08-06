@@ -8,7 +8,7 @@
     "url": "https://leetcode.com/problems/pythagorean-distance-nodes-in-a-tree/description/",
     "paid_only": false,
     "content_sha256": "0ec466d29b32414d06cf5a79b0e29c952acd8a0b14f881e4a7b9147fd0347e35",
-    "checked_at": "2026-07-29"
+    "checked_at": "2026-08-06"
   },
   "structure": {
     "sections": [
@@ -19,24 +19,12 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "`n = 4, edges = [[0,1],[0,2],[0,3]], x = 1, y = 2, z = 3`",
-        "output": "`3`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 2,
-        "input": "`n = 4, edges = [[0,1],[1,2],[2,3]], x = 0, y = 3, z = 2`",
-        "output": "`0`",
-        "has_explanation": true
-      },
-      {
-        "ordinal": 3,
-        "input": "`n = 4, edges = [[0,1],[1,2],[1,3]], x = 1, y = 3, z = 0`",
-        "output": "`1`",
-        "has_explanation": true
+        "input": "n = 6",
+        "output": "3",
+        "has_explanation": false
       }
     ],
-    "constraint_count": 6,
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -49,7 +37,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "d11099e05a66c80c774e6aac5fb60f9ab2451db5bcafae667a4b30b5efba3bb0",
+      "reference/description.md": "e328b7b9e139a4a2dfac5dfb49a29d00a5b98f48ca1b4a7108bbda97bebecfa9",
       "reference/contract.md": "d66f19ef6ec2f7b1b2f45a3a13f881632ca5a13ad342c946cbcde3dd720111e2",
       "reference/examples.md": "24e51d7cbd6bccb29567dc3f8a60b990cd913a640871d5fa729f48ed937ead53",
       "reference/constraints.md": "e53d2e1e2b9516b67081f6947e2971032271f69bc12e847d1e2aa274a1b356b2"

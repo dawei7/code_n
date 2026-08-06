@@ -1,20 +1,62 @@
 {
   "schema_version": 1,
-  "source": {"provider": "leetcode", "challenge_id": "lc_338", "frontend_id": "338", "title_slug": "counting-bits", "url": "https://leetcode.com/problems/counting-bits/description/", "paid_only": false, "content_sha256": "4260a2c4a27194d064a156e4c5ffe6b6b57e1c6902e804cd378aa9eb4d905ceb", "checked_at": "2026-07-28"},
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_338",
+    "frontend_id": "338",
+    "title_slug": "counting-bits",
+    "url": "https://leetcode.com/problems/counting-bits/description/",
+    "paid_only": false,
+    "content_sha256": "4260a2c4a27194d064a156e4c5ffe6b6b57e1c6902e804cd378aa9eb4d905ceb",
+    "checked_at": "2026-07-28"
+  },
   "structure": {
-    "sections": ["description", "examples", "constraints", "follow_up"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints",
+      "follow_up"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "n = 2", "output": "[0,1,1]", "has_explanation": true},
-      {"ordinal": 2, "input": "n = 5", "output": "[0,1,1,2,1,2]", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "n = 2",
+        "output": "[0,1,1]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 5",
+        "output": "[0,1,1,2,1,2]",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 1,
-    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
-  "review": {"status": "verified", "files": {
-    "reference/description.md": "4ab4ea2234c795f77984be00415b9498ef302010c1c97290f02935b4cb32ad28",
-    "reference/contract.md": "4c119950b28a89e63c7f889d579aa25e3c78d6648940a2dd5c1cd11d11b996b8",
-    "reference/examples.md": "89aa3ab3e58ba11a62979da4b8e7742a0fdbcad74ba8e9a634434790b5f1ebd4",
-    "reference/constraints.md": "bca2a2564ad78ee57de052e3fcf3d59c715149b7511fe7e1bbad45f0cab97fb8",
-    "reference/follow_up.md": "b73cbc249b0de89b1ea5e095f87ab804372d60d2ad2056705135f889b00ba382"
-  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "33af56c3d5e673a05fc2b54dee5e9a25f6cf13c0e5b80f3e5bd1afed30ff3304",
+      "reference/contract.md": "4c119950b28a89e63c7f889d579aa25e3c78d6648940a2dd5c1cd11d11b996b8",
+      "reference/examples.md": "89aa3ab3e58ba11a62979da4b8e7742a0fdbcad74ba8e9a634434790b5f1ebd4",
+      "reference/constraints.md": "bca2a2564ad78ee57de052e3fcf3d59c715149b7511fe7e1bbad45f0cab97fb8",
+      "reference/follow_up.md": "b73cbc249b0de89b1ea5e095f87ab804372d60d2ad2056705135f889b00ba382"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
 }

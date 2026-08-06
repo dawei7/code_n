@@ -1,0 +1,5 @@
+## Description
+
+You are given two positive integers `n` and `limit`.
+
+Return *the **total number** of ways to distribute *`n` *candies among *`3`* children such that no child gets more than *`limit`* candies.*

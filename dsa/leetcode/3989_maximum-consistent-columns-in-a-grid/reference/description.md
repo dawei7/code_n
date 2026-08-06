@@ -1,13 +1,9 @@
 ## Description
 
-You are given an integer matrix `grid` with `m` rows and `n` columns, together with a nonnegative integer `limit`. You may remove any number of columns, including none, but at least one column must remain. The relative order of every retained column is unchanged.
+You are given a 2D integer array `grid` of size `m x n`, and an integer `limit`.
 
-The retained grid is consistent when each adjacent retained pair meets the same condition in every row. If retained column `a` is immediately followed by retained column `b`, where $a<b$, then
+You may remove zero or more columns from the grid, but at least one column must remain. The **relative** order of the remaining columns must be preserved.
 
-$$
-\lvert \texttt{grid[i][b]}-\texttt{grid[i][a]} \rvert \le \texttt{limit}
-$$
+A grid is called **consistent** if for every row `i`, and for every pair of adjacent remaining columns `a` and `b` with `a < b`, the following holds: `|grid[i][b] - grid[i][a]| <= limit`.
 
-must hold for every row `i`. Only neighboring columns in the retained order are compared; columns separated by another retained column do not need to satisfy the condition directly.
-
-Return the maximum possible number of columns in a consistent grid after the removals.
+Return the **maximum** number of columns that can remain such that the resulting grid is **consistent**.
